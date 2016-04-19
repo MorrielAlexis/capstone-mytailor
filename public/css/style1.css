@@ -1,0 +1,95 @@
+
+.app-name {
+  margin-left: 10px;
+  font-size: 2em;
+  
+}
+
+.logo {
+  width: 60%;
+  margin: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.account-pane {
+  color: black;
+  line-height: 3em;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.main-wrapper {
+  padding-top: 1.25em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+.page-title {
+  font-size: 1.5em;
+}
+
+.card-title {
+  font-size: 1.3em;
+}
+
+.overflow-x {
+  overflow-x: auto;
+}
+
+.center-btn {
+  text-align: center;
+}
+
+.btn-small {
+  padding: 0 1em;
+  font-size: 0.75em;
+  margin: 5px 0;
+}
+
+.table-fixed {
+  table-layout: fixed;
+}
+
+.clearfix {
+  clear: both;
+}
+
+label{
+  font-color: black;
+}
+nav {
+  padding: 0 15px 0 15px;
+}
+
+body {
+  background-color: aquamarine;
+}
+
+header, main, footer {
+  padding-left: 240px;
+}
+
+@media only screen and (max-width : 992px) {
+  header, main, footer {
+    padding-left: 0;
+  }
+}
+
+/* OVERRIDE DEFAULT INPUT COLOR*/
+
+/* label focus color */
+.input-field input:focus + label {
+  color: #1E88E5 !important;
+}
+/* label underline focus color */
+.input-field input:focus {
+  border-bottom: 1px solid #1E88E5 !important;
+  box-shadow: 0 1px 0 0 #1E88E5 !important;
+}
+
+.input-field .prefix.active {
+  color: #1E88E5 !important;
+}

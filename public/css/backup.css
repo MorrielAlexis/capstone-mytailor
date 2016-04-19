@@ -1,0 +1,26 @@
+
+
+      
+
+      body{
+    font-family: cursive;
+}
+
+header{
+    width: 100%;
+    background: teal;
+    position: fixed; 
+    height: 70px;
+}
+
+#slide-out{
+    background: lavender;
+    width: 240px;
+    position:absolute;
+    margin-top: 70px;
+    height: 100%;    
+}
+
+.bold{
+    background-color: lavender;
+}
