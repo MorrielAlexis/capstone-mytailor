@@ -14,10 +14,10 @@ class CreateThreadTable extends Migration
     {
         Schema::create('tblMaterialThread', function (Blueprint $table) {
             $table->string('strMaterialThreadID')->primary();
-            $table->string('strMaterialThreadName');
+            $table->string('strMaterialThreadBrand');
             $table->string('strMaterialThreadColor');
-            $table->string('strMaterialThreadDesc');
-            $table->string('strMaterialThreadImage');
+            $table->string('strMaterialThreadDesc')->nullable();
+            $table->string('strMaterialThreadImage')->nullable();
             $table->boolean('boolIsActive');
             $table->timestamps();
         });

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFabrictypeTable extends Migration
+class CreateEmproleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,12 @@ class CreateFabrictypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('tblFabricType', function (Blueprint $table) {
-            $table->string('strFabricTypeID')->primary();
-            $table->string('strFabricTypeName');
-            $table->string('strFabricTypeDesc', 255)->nullable();
+        Schema::create('tblEmpRole', function (Blueprint $table) {
+            $table->string('strEmpRoleID')->primary();
+            $table->string('strEmpRoleName');
+            $table->string('strEmpRoleDesc', 255)->nullable();
             $table->boolean('boolIsActive');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +28,6 @@ class CreateFabrictypeTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tblFabricType');
+        Schema::drop('tblEmpRole');
     }
 }
