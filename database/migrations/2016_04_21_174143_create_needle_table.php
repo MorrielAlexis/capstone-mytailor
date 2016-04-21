@@ -12,12 +12,12 @@ class CreateNeedleTable extends Migration
      */
     public function up()
     {
-        Schema::create('tblMaterialNeedle', function (Blueprint $table) {
-            $table->string('strMaterialNeedleID')->primary();
-            $table->string('strMaterialNeedleBrand');
-            $table->string('strMaterialNeedleSize');
-            $table->string('strMaterialNeedleDesc')->nullable();
-            $table->string('strMaterialNeedleImage')->nullable();
+        Schema::create('tblNeedle', function (Blueprint $table) {
+            $table->increments('intNeedleID');
+            $table->string('strNeedleBrand');
+            $table->string('strNeedleSize');
+            $table->string('strNeedleDesc')->nullable();
+            $table->string('strNeedleImage')->nullable();
             $table->boolean('boolIsActive');
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ class CreateNeedleTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tblMaterialNeedle');
+        Schema::drop('tblNeedle');
     }
 }

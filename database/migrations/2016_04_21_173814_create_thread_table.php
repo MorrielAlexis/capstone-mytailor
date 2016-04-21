@@ -12,12 +12,12 @@ class CreateThreadTable extends Migration
      */
     public function up()
     {
-        Schema::create('tblMaterialThread', function (Blueprint $table) {
-            $table->string('strMaterialThreadID')->primary();
-            $table->string('strMaterialThreadBrand');
-            $table->string('strMaterialThreadColor');
-            $table->string('strMaterialThreadDesc')->nullable();
-            $table->string('strMaterialThreadImage')->nullable();
+        Schema::create('tblThread', function (Blueprint $table) {
+            $table->increments('intThreadID');
+            $table->string('strThreadBrand');
+            $table->string('strThreadColor');
+            $table->string('strThreadDesc')->nullable();
+            $table->string('strThreadImage')->nullable();
             $table->boolean('boolIsActive');
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ class CreateThreadTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tblMaterialThread');
+        Schema::drop('tblThread');
     }
 }

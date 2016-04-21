@@ -15,8 +15,9 @@ class CreateFabrictypeTable extends Migration
         Schema::create('tblFabricType', function (Blueprint $table) {
             $table->string('strFabricTypeID')->primary();
             $table->string('strFabricTypeName');
-            $table->string('strFabricTypeDesc', 255)->nullable();
+            $table->text('txtFabricTypeDesc')->nullable();
             $table->boolean('boolIsActive');
+            $table->timestamps();
         });
     }
 

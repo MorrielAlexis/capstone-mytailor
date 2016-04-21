@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCustindividualTable extends Migration
+class CreateCustIndividualTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,9 @@ class CreateCustindividualTable extends Migration
      */
     public function up()
     {
-        Schema::create('tblIndividual', function (Blueprint $table) {
+        Schema::create('tblCustIndividual', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->string('strIndivID')->primary();
+            $table->string('strIndivID');
             $table->string('strIndivFName');
             $table->string('strIndivLName');
             $table->string('strIndivMName')->nullable();
@@ -34,7 +34,6 @@ class CreateCustindividualTable extends Migration
         });
     }
 
-
     /**
      * Reverse the migrations.
      *
@@ -42,6 +41,6 @@ class CreateCustindividualTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tblIndividual');
+        Schema::drop('tblCustIndividual');
     }
 }

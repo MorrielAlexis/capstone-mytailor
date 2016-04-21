@@ -12,8 +12,8 @@ class CreateCustCompanyTable extends Migration
      */
     public function up()
     {
-        Schema::create('tblCompany', function (Blueprint $table) {
-            $table->string('strCompanyID')->primary();
+        Schema::create('tblCustCompany', function (Blueprint $table) {
+            $table->string('strCompanyID');
             $table->string('strCompanyName');
             $table->string('strCompanyBuildingNo');
             $table->string('strCompanyStreet');
@@ -32,8 +32,6 @@ class CreateCustCompanyTable extends Migration
         });
     }
 
-
-
     /**
      * Reverse the migrations.
      *
@@ -41,6 +39,6 @@ class CreateCustCompanyTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tblCompany');
+        Schema::drop('tblCustCompany');
     }
 }
