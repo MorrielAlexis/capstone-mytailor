@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCustomerTable extends Migration
+class CreateJobdescriptionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,11 @@ class CreateCustomerTable extends Migration
      */
     public function up()
     {
-        Schema::create('tblCustomer', function (Blueprint $table) {
-            $table->string('strCustID')->primary();
-            $table->boolean('boolHasAccount');
+        Schema::create('tblJobDescription', function (Blueprint $table) {
+            $table->string('strJobDescriptionID')->primary();
+            $table->string('strJobName');
+            $table->text('txtJobDescription');
             $table->boolean('boolIsActive');
-            $table->string('strCustInactiveReason');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateCustomerTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tblCustomer');
+        Schema::drop('tblJobDescription');
     }
 }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCustomerTable extends Migration
+class CreateTermsofpaymentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,10 @@ class CreateCustomerTable extends Migration
      */
     public function up()
     {
-        Schema::create('tblCustomer', function (Blueprint $table) {
-            $table->string('strCustID')->primary();
-            $table->boolean('boolHasAccount');
-            $table->boolean('boolIsActive');
-            $table->string('strCustInactiveReason');
+        Schema::create('tblTermsofPayment', function (Blueprint $table) {
+            $table->string('strTermsOfPaymentID')->primary();
+            $table->string('strTOPName');
+            $table->text('textTOPDescription');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateCustomerTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tblCustomer');
+        Schema::drop('tblTermsofPayment');
     }
 }
