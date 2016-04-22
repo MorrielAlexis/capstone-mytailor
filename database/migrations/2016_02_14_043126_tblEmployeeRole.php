@@ -17,7 +17,6 @@ class tblEmployeeRole extends Migration {
 			$table->string('strEmpRoleName');
 			$table->text('txtEmpRoleDesc')->nullable();
 			$table->string('strEmpRoleInactiveReason');
-			$table->string('strEmpRoleInactiveReason');
 			$table->timestamps();
 			$table->boolean('boolIsActive');
 
