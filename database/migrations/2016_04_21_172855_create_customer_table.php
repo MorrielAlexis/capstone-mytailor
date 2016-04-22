@@ -16,6 +16,7 @@ class CreateCustomerTable extends Migration
             $table->string('strCustID');
             $table->boolean('boolHasAccount');
             $table->boolean('boolIsActive');
+            $table->string('strCustInactiveReason');
             $table->timestamps();
         });
     }

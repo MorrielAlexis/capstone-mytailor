@@ -1,4 +1,4 @@
-<?php
+  <?php
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -29,6 +29,7 @@ class CreateCustIndividualTable extends Migration
             $table->string('strIndivCPNumber');      
             $table->string('strIndivCPNumberAlt')->nullable();   
             $table->string('strIndivEmailAddress')->unique();
+            $table->string('strIndivInactiveReason');
             $table->boolean('boolIsActive');
             $table->timestamps();
         });

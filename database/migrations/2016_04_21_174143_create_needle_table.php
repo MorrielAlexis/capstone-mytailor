@@ -18,6 +18,7 @@ class CreateNeedleTable extends Migration
             $table->string('strNeedleSize');
             $table->string('strNeedleDesc')->nullable();
             $table->string('strNeedleImage')->nullable();
+            $table->string('strNeedleInactiveReason');
             $table->boolean('boolIsActive');
             $table->timestamps();
         });

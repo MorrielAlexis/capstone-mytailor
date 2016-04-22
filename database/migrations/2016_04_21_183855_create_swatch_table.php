@@ -18,6 +18,7 @@ class CreateSwatchTable extends Migration
             $table->string('strSwatchName');
             $table->string('strSwatchCode');
             $table->string('strSwatchImage')->nullable();
+            $table->string('strSwatchInactiveReason');
             $table->boolean('boolIsActive');
             $table->timestamps();
 

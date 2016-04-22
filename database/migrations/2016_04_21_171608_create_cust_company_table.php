@@ -23,10 +23,12 @@ class CreateCustCompanyTable extends Migration
             $table->string('strCompanyZipCode');
             $table->string('strContactPerson');
             $table->string('strCompanyEmailAddress')->unique();
-            $table->string('strCompanyTelNumber')->nullable()->change();
+            $table->string('strCompanyTelNumber')->nullable();
             $table->string('strCompanyCPNumber');
             $table->string('strCompanyCPNumberAlt')->nullable();
-            $table->string('strCompanyFaxNumber')->nullable()->change();
+            $table->string('strCompanyFaxNumber')->nullable();
+            $table->string('strCompanyInactiveReason');
+            $table->string('strCompanyInactiveReason');
             $table->boolean('boolIsActive');
             $table->timestamps();
         });

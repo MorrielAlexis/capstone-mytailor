@@ -19,6 +19,7 @@ class CreateZipperTable extends Migration
             $table->string('strZipperColor');
             $table->text('txtZipperDesc')->nullable();
             $table->string('strZipperImage')->nullable();
+            $table->string('strZipperInactiveReason');
             $table->boolean('boolIsActive');
             $table->timestamps();
         });
