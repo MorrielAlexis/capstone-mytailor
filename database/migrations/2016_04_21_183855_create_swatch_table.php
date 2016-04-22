@@ -14,7 +14,7 @@ class CreateSwatchTable extends Migration
     {
         Schema::create('tblSwatch', function (Blueprint $table) {
             $table->string('strSwatchID')->primary;
-             $table->string('strSwatchTypeFK');//fk
+            $table->string('strSwatchTypeFK');//fk
             $table->string('strSwatchName');
             $table->string('strSwatchCode');
             $table->string('strSwatchImage')->nullable();
