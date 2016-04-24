@@ -40,7 +40,7 @@ class tblEmployee extends Migration {
 
 		Schema::table('tblEmployee', function(Blueprint $table){
 
-			$table->foreign('strRole')->references('strEmpRoleID')->on('tblEmployeeRole');
+			$table->foreign('strRole')->references('strRoleID')->on('tblRole');
 		});
 	}
 
