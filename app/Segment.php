@@ -15,4 +15,12 @@ class Segment extends Model
 								'boolIsActive'
 								//
 								);
+
+	public function garmentcategories()
+	{
+
+		// return $this->belongstoMany('App\GarmentCategory')->withPivot('tblGarment_Segment');
+		return $this->belongstoMany('App\GarmentCategory');
+
+	}
 }

@@ -15,4 +15,12 @@ class MeasurementCategory extends Model
 								'boolIsActive'
 								//
 								);
+
+	public function measurementdetails()
+	{
+
+		// return $this->belongstoMany('App\GarmentCategory')->withPivot('tblGarment_Segment');
+		return $this->belongstoMany('App\MeasurementCategory');
+
+	}
 }

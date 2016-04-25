@@ -20,6 +20,6 @@ class Role extends Model
 
     public function employees()
 	{
-		return $this->belongstoMany('App\Employee')->withPivot('tblEmployee_Role');
+		return $this->belongstoMany('App\Employee');
 	}
 }
