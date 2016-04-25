@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class MeasurementCategory extends Model
 {
     protected $table = 'tblMeasurementCategory';
+
 	protected $primaryKey = 'strMeasCatID';
 	protected $fillable = array('strMeasCatID',
 								'strMeasGarFK',
@@ -23,4 +24,5 @@ class MeasurementCategory extends Model
 		return $this->belongstoMany('App\MeasurementCategory');
 
 	}
+
 }

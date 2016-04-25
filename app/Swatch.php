@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Swatch extends Model
 {
     protected $table = 'tblSwatch';
+
 	protected $primaryKey = 'strSwatchID';
 	protected $fillable = array('strSwatchID',
 								'strSwatchTypeFK',
@@ -16,4 +17,5 @@ class Swatch extends Model
 								'boolIsActive'
 								//
 								);
+
 }

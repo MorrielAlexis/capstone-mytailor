@@ -16,4 +16,5 @@ class SegmentPattern extends Model
 								'boolIsActive'
 								//
 								);
+
 }
