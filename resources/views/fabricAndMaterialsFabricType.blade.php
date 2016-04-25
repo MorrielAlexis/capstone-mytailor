@@ -110,13 +110,13 @@
 
               	  </tr>
                 </thead>
-
+              
                 <tbody>
                    @foreach($fabricType as $fabricType)
-                   @if($fabricType->boolIsActive == 1)
+                     @if($fabricType->boolIsActive == 1)
                   <tr>
-              		  <!--<td>{{ $fabricType->strFabricTypeID }}</td>-->
-              		  <td>{{ $fabricType->strFabricTypeName }}</td>
+              		 <!--<td>{{ $fabricType->strFabricTypeID }}</td>-->
+             		  <td>{{ $fabricType->strFabricTypeName }}</td>
               		  <td>{{ $fabricType->strFabricTypeDesc}}</td>
               		  <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of fabric type" href="#edit{{$fabricType->strFabricTypeID}}">EDIT</button></td>
                     <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of fabric type from the table" href="#del{{$fabricType->strFabricTypeID}}">DEACTIVATE</button></td>
@@ -209,7 +209,7 @@
               </div>  
 
             <!--********ADD******-->
-              <div id="addFabricType" class="modal modal-fixed-footer"> <!-- addFabricType  -->                 
+             <div id="addFabricType" class="modal modal-fixed-footer">                  
                 <h5><font color = "#1b5e20"><center>ADD NEW FABRIC TYPE</center> </font> </h5> 
                 <form action="{{URL::to('addFabricType')}}" method="POST">
                 <div class="divider" style="height:2px"></div>
@@ -241,7 +241,7 @@
                   </div>
                 </form>
     	       </div><!-- addFabricType  -->
-            </div> <!-- card-content  --> 
+            </div><!-- card-content  --> 
         </div>  <!-- card-panel -->
       </div> <!-- col s12 m12 l12 --> 
   </div> 

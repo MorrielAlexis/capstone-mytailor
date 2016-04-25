@@ -110,6 +110,7 @@
                   <th data-field="Delete">Deactivate</th>
                 </tr>
               </thead>
+            
 
               <tbody>
                 @foreach($company as $company)
@@ -226,7 +227,7 @@
                       </div>
                     </form>
                    </div>
-                    <!-- DELETE -->
+                   
                    <div id="del{{$company->strCustCompanyID}}" class="modal modal-fixed-footer">                      
                       <h5><font color="#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS CUSTOMER?</center></font></h5>                       
                         <form action="{{URL::to('delCustCompany')}}" method="POST">
@@ -408,10 +409,12 @@
         </div>
        </div>  
     </div> 
-    @stop
+
+
+@stop
 
 @section('scripts') 
-    {{ HTML::script('js/customer_validation.js') }}
+    {!! Html::script('js/customer_validation.js'); !!}
 
 
     <script>

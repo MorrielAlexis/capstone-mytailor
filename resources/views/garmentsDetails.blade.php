@@ -120,7 +120,7 @@
                   @if($segment->boolIsActive == 1)
                   <tr>
               		  <!--<td>{{ $segment->strGarmentSegmentID }}</td>-->
-              		  <td>{{ $segment->strGarmentCategoryName }}</td>
+             		  <td>{{ $segment->strGarmentCategoryName }}</td>
                     <td>{{ $segment->strGarmentSegmentName }}</td>
               		  <td>{{ $segment->strGarmentSegmentDesc }}</td>
               		  <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of segment" href="#edit{{ $segment->strGarmentSegmentID }}">EDIT</button> </td>
@@ -286,6 +286,8 @@
         </div>
       </div>  
     </div>
+
+
 @stop
 
 @section('scripts')
