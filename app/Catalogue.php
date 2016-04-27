@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Catalogue extends Model
 {
+
     protected $table = 'tblCatalogue';
 	protected $primaryKey = 'strCatalogueID';
 	protected $fillable = array('strCatalogueID',
@@ -14,6 +15,7 @@ class Catalogue extends Model
 								'strCatalogueDesc',
 								'strCatalogueImage',
 								'boolIsActive'
+								'strCatalogueInactiveReason'
 								//
 								);
 }

@@ -109,7 +109,7 @@
 
               		</tr>
                 </thead>
-
+ 
               	<tbody>
                   @foreach($swatch as $swatch)
                     @if($swatch->boolIsActive == 1)
@@ -145,7 +145,7 @@
                                   @endforeach
                                 </select>
                                 <!--<label>*Fabric Type</label>-->
-                              </div>  
+                       </div>  
                         </div>
 
                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
@@ -180,7 +180,7 @@
                           </form>
                           </div> 
                           <!--******************Soft Delete*************************-->
-                      <div id="del{{$swatch->strSwatchID}}" class="modal modal-fixed-footer">                        
+                  <div id="del{{$swatch->strSwatchID}}" class="modal modal-fixed-footer">                        
                         <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS SWATCH?</center> </font> </h5>                           
                           <form action="{{URL::to('delSwatch')}}" method="POST"> 
                           <div class="divider" style="height:2px"></div>
@@ -263,7 +263,7 @@
                           @endforeach
                       </select>
                       <!--<label>*Fabric Type</label>-->
-                    </div> 
+                 </div> 
                 </div> 
 
                 <div class = "col s12" style="padding:15px;  border:3px solid white;">
@@ -302,7 +302,7 @@
         </div>
       </div>
     </div>
-  </div> 	
+  </div> 
 
 @stop
 

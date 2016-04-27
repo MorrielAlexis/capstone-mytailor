@@ -123,7 +123,7 @@
                   <th data-field="Delete">Deactivate</th>
               	</tr>
               </thead>
-
+            
               <tbody>
                 @foreach($employee as $employee)
                   @if($employee->boolIsActive == 1)
@@ -144,7 +144,7 @@
               		<td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of employee" href="#edit{{$employee->strEmployeeID}}">EDIT</button></td>
                   <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of employee from table" href="#del{{$employee->strEmployeeID}}">DEACTIVATE</button>
                   
-               <!-- <Modal Structure for Edit Employee>   -->
+
                    <div id="edit{{$employee->strEmployeeID}}" class="modal modal-fixed-footer">                       
                     <h5><font color = "#1b5e20"><center>EDIT EMPLOYEE'S PROFILE</center> </font> </h5>
                       <form action="{{URL::to('editEmployee')}}" method="POST"> 
@@ -279,7 +279,7 @@
                       </form>
                     </div> 
 
-                    <!-- Modal for (SOFT) delete Employee -->
+    
                     <div id="del{{$employee->strEmployeeID}}" class="modal modal-fixed-footer">                        
                       <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS EMPLOYEE?</center> </font> </h5>
                         <form action="{{URL::to('delEmployee')}}" method="POST">
@@ -346,7 +346,7 @@
 
             </div>
                 
-          <!-- <Modal Structure for Add Employee> -->
+
     			<div id="newemp" class="modal modal-fixed-footer">              
             <h5><font color = "#1b5e20"><center>ADD NEW EMPLOYEE PROFILE</center> </font> </h5>
             <form action="{{URL::to('addEmployee')}}" method="POST" id="addEmployee" class="employee-form" name="addEmployee">               
@@ -473,20 +473,20 @@
             </form>
           </div>
           
-            <!-- <End for Add Employee> -->
+      
 
             </div>
         </div>
       </div>
      </div>
-          
+        
         
 
 @stop
 
 
 @section('scripts')
-    {{ HTML::script('js/employee_validation.js') }}
+    {!! Html::script('js/employee_validation.js'); !!}
 
     <script>
     $( document ).ready(function() {

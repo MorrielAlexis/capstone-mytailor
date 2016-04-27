@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class MeasurementDetail extends Model
 {
     protected $table = 'tblMeasurementDetail';
+
 	protected $primaryKey = 'strMeasurementDetailID';
 	protected $fillable = array('strMeasurementDetailID',
 								'strMeasurementDetailName',
 								'txtMeasurementDetailDesc',
+								'strMeasDetInactiveReason',
 								'boolIsActive'
 								//
 								);
@@ -22,4 +24,5 @@ class MeasurementDetail extends Model
 		return $this->belongstoMany('App\MeasurementCategory','tblMetCategory_Detail', 'strMesCatIDfk', 'strMesDetIDfk');
 
 	}
+
 }

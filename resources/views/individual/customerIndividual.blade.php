@@ -108,7 +108,8 @@
 
                   </tr>
                 </thead>
-
+              </table><!--DONT FORGET TO REMOVE THIS ENDING TAG!!!! -->
+<!--
                 <tbody>           
                     @foreach($individual as $individual)
                     @if($individual->boolIsActive == 1)
@@ -385,8 +386,13 @@
             </div>
           </div>            
       </div> 
-      
-  @stop
+-->
+    </div> 
+  </div>
+</div>
+</div>
+</div>
+    @stop
 
 @section('scripts')
     {!! Html::script('js/customer_validation.js'); !!}

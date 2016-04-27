@@ -110,7 +110,7 @@
                 @foreach($pattern as $pattern)
                 @if($pattern->boolIsActive == 1)
                 <tr>
-              		<!--<td>{{ $pattern->strDesignPatternID }}</td>-->
+             		<!--<td>{{ $pattern->strDesignPatternID }}</td>-->
                   <td>{{ $pattern->strGarmentCategoryName }}</td>
                   <td>{{ $pattern->strGarmentSegmentName }}</td>
               		<td>{{ $pattern->strPatternName }}</td>
@@ -181,7 +181,7 @@
                         </div>
                       </form>
                    </div>  
-                 <!-- DELETE DESIGN PATTERN --> 
+                
 
                 <div id="del{{ $pattern->strDesignPatternID }}" class="modal modal-fixed-footer">
                       <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS SEGMENT PATTERN?</center> </font> </h5>
@@ -308,6 +308,8 @@
       </div>
     </div>
   </div>
+
+
 
 @stop 
 

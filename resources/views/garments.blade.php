@@ -158,7 +158,7 @@
                           </div>
                     </form>
                   </div>
-                      <!--///////////////////////DELETE/////////////////////-->
+                      
                       <div id="del{{ $category->strGarmentCategoryID }}" class="modal modal-fixed-footer">
                         <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS GARMENT CATEGORY?</center> </font> </h5>
                         <form action="{{URL::to('delGarmentCategory')}}" method="POST">
@@ -213,7 +213,7 @@
 
             </div>
              
-         <!--    <Modal for Add Garment Category> -->
+         
             <div id="addGCategory" class="modal modal-fixed-footer">
               <h5><font color = "#1b5e20"><center>ADD NEW GARMENT CATEGORY</center> </font> </h5>
               <form action="{{URL::to('addGarmentCategory')}}" method="POST" id="addGarmentCategory" name="addGarmentCategory"> 
@@ -250,6 +250,8 @@
         </div>
       </div>
     </div>
+
+
 @stop
 
 @section('scripts')

@@ -105,10 +105,10 @@
              		  <th data-field="name">Role Name</th>
               	  <th data-field="address">Role Description</th>
                   <th data-field="Edit">Edit</th>
-                  <th data-field="Edit">Deactivate</th>
+                  <th data-field="Delete">Deactivate</th>
               </tr>
             </thead>
-
+          
             <tbody>
               @foreach($role as $role)
               @if($role->boolIsActive == 1)
@@ -150,7 +150,7 @@
                       </div>
                     </form>
                   </div>
-                  <!---/////////////////DELETE ROLE//////////////////////-->
+                  
                   <div id="del{{$role->strEmpRoleID}}" class="modal modal-fixed-footer">                     
                      <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS EMPLOYEE ROLE?</center> </font> </h5>
                       <form action="{{URL::to('delRole')}}" method="POST">
@@ -238,6 +238,7 @@
         </div>
       </div>
     </div>
+
 
 @stop
 
