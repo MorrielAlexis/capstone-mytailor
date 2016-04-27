@@ -29,7 +29,7 @@ class CreateCustIndividualTable extends Migration
             $table->string('strIndivCPNumber');      
             $table->string('strIndivCPNumberAlt')->nullable();   
             $table->string('strIndivEmailAddress')->unique();
-            $table->string('strIndivInactiveReason');
+            $table->string('strIndivInactiveReason')->nullable();
             $table->boolean('boolIsActive');
             $table->timestamps();
         });

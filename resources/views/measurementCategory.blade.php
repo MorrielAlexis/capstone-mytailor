@@ -159,13 +159,13 @@
                       </thead>
 
                       <tbody>
-                        @foreach($head as $head)
-                        @if($head->boolIsActive == 1)
+                            @foreach($head as $head) 
+                            @if($head->boolIsActive == 1) 
                         <tr>   
-                         <!--<td>{{ $head->strMeasurementID }}</td>-->
-                          <td>{{ $head->strGarmentCategoryName }}</td>
-                          <td>{{ $head->strGarmentSegmentName }}</td>
-                          <td>{{ $head->strMeasurementDetailName }}</td>
+                           <td>{{ $head->strMeasurementID }}</td>
+                           <td>{{ $head->strGarmentCategoryName }}</td>
+                           <td>{{ $head->strGarmentSegmentName }}</td>
+                          <td>{{ $head->strMeasurementDetailName }}</td> 
                           <td><button style = "color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement information" href="#edit{{$head->strMeasurementID}}">EDIT</button></td>
                           <td><button style = "color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement information" href="#del{{$head->strMeasurementID}}">DEACTIVATE</button>
                         

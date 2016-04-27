@@ -14,7 +14,7 @@ class Catalogue extends Model
 								'strCatalogueName',
 								'strCatalogueDesc',
 								'strCatalogueImage',
-								'boolIsActive'
+								'boolIsActive',
 								'strCatalogueInactiveReason'
 								//
 								);

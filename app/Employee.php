@@ -32,6 +32,6 @@ class Employee extends Model
 	public function roles()
 	{
 		// return $this->belongstoMany('App\Role')->withPivot('tblEmployee_Role');
-		return $this->belongstoMany('App\Role','tblEmployee_Role','strEmpID','strEmpRoleID');
+		return $this->belongstoMany('App\EmployeeRole','tblEmployee_Role','strEmpID','strEmpRoleID');
 	}
 }

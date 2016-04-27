@@ -31,7 +31,7 @@ class tblEmployee extends Migration {
 			$table->string('strCellNoAlt')->nullable();
 			$table->string('strPhoneNo')->nullable();
 			$table->string('strEmailAdd')->nullable();
-			$table->string('strEmpInactiveReason');
+			$table->string('strEmpInactiveReason')->nullable();
 			$table->boolean('boolIsActive');
 			//$table->datetime('dtUpdatedAt');
 			$table->timestamps();
@@ -40,7 +40,7 @@ class tblEmployee extends Migration {
 
 		Schema::table('tblEmployee', function(Blueprint $table){
 
-			$table->foreign('strRole')->references('strRoleID')->on('tblRole');
+			$table->foreign('strRole')->references('strEmpRoleID')->on('tblEmployeeRole');
 		});
 	}
 

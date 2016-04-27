@@ -17,7 +17,7 @@ class CreateGarmentcategoryTable extends Migration
             $table->timestamps();
             $table->string('strGarmentCategoryName');
             $table->text('textGarmentCategoryDesc')->nullable();
-            $table->string('strGarmentCategoryInactiveReason');
+            $table->string('strGarmentCategoryInactiveReason')->nullable();
             $table->boolean('boolIsActive');
         });
     }

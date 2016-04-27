@@ -18,7 +18,7 @@ class CreateThreadTable extends Migration
             $table->string('strThreadColor');
             $table->string('strThreadDesc')->nullable();
             $table->string('strThreadImage')->nullable();
-            $table->string('strThreadInactiveReason');
+            $table->string('strThreadInactiveReason')->nullable();
             $table->boolean('boolIsActive');
             $table->timestamps();
         });

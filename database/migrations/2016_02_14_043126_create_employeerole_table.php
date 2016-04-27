@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class tblRole extends Migration {
+class CreateEmployeeRoleTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,11 @@ class tblRole extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('tblRole', function(Blueprint $table){
-			$table->string('strRoleID')->primary();
-			$table->string('strRoleName');
-			$table->text('strRoleDesc')->nullable();
-			$table->string('strRoleInactiveReason');
+		Schema::create('tblEmployeeRole', function(Blueprint $table){
+			$table->string('strEmpRoleID')->primary();
+			$table->string('strEmpRoleName');
+			$table->text('strEmpRoleDesc')->nullable();
+			$table->string('strRoleInactiveReason')->nullable;
 			$table->timestamps();
 			$table->boolean('boolIsActive');
 
@@ -30,7 +30,7 @@ class tblRole extends Migration {
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('tblRole');
+		Schema::dropIfExists('tblEmployeeRole');
 	}
 
 }

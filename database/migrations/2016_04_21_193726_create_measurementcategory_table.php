@@ -17,7 +17,7 @@ class CreateMeasurementcategoryTable extends Migration
             $table->string('strMeasGarFK')->index();//fk
             $table->string('strMeasSegmentNameFK')->index();//fk
             $table->string('strMeasDetFK')->index();//fk
-            $table->string('strMeasCatInactiveReason');
+            $table->string('strMeasCatInactiveReason')->nullable();
             $table->boolean('boolIsActive');
             $table->timestamps();
 
