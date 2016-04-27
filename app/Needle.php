@@ -13,5 +13,6 @@ class Needle extends Model
 
 	protected $fillable = ['strNeedleBrand', 'strNeedleSize',
 							'strNeedleDesc', 'strNeedleImage',
+							'strNeedleInactiveReason',
 							'boolIsActive'];
 }

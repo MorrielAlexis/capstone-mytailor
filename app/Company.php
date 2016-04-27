@@ -16,5 +16,6 @@ class Company extends Model
     					'strCompanyZipCode', 'strContactPerson',
     					'strCompanyEmailAddress', 'strCompanyTelNumber',
     					'strCompanyCPNumber', 'strCompanyCPNumberAlt',
-    					'strCompanyFaxNumber', 'boolIsActive'];   
+    					'strCompanyFaxNumber', 'boolIsActive'
+    					'strCompanyInactiveReason'];   
 }

@@ -13,6 +13,7 @@ class MeasurementCategory extends Model
 								'strMeasGarFK',
 								'strMeasSegmentNameFK',
 								'strMeasDetFK',
+								'strMeasCatInactiveReason',
 								'boolIsActive'
 								//
 								);

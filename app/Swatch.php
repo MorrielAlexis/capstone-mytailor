@@ -14,6 +14,7 @@ class Swatch extends Model
 								'strSwatchName',
 								'strSwatchCode',
 								'strSwatchImage',
+								'strSwatchInactiveReason',
 								'boolIsActive'
 								//
 								);

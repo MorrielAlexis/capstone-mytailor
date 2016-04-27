@@ -12,6 +12,8 @@ class HookAndEye extends Model
 
 	protected $fillable = ['strHookBrand', 'strHookSize',
 							'strHookColor', 'strHookImage',
-							'textHookDesc', 'boolIsActive'];
+							'textHookDesc', 
+							'strHookInactiveReason',
+							'boolIsActive'];
 
 }

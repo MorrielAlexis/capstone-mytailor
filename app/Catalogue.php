@@ -15,6 +15,7 @@ class Catalogue extends Model
 								'strCatalogueDesc',
 								'strCatalogueImage',
 								'boolIsActive'
+								'strCatalogueInactiveReason'
 								//
 								);
 }

@@ -12,6 +12,7 @@ class MeasurementDetail extends Model
 	protected $fillable = array('strMeasurementDetailID',
 								'strMeasurementDetailName',
 								'txtMeasurementDetailDesc',
+								'strMeasDetInactiveReason',
 								'boolIsActive'
 								//
 								);

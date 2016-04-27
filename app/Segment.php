@@ -12,6 +12,7 @@ class Segment extends Model
 								'strSegCategoryFK',
 								'strSegmentName',
 								'textSegmentDesc',
+								'strSegInactiveReason',
 								'boolIsActive'
 								//
 								);

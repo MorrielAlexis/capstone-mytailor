@@ -12,5 +12,6 @@ class Thread extends Model
 
 	protected $fillable = ['strThreadBrand', 'strThreadColor',
 							'strThreadDesc', 'strThreadImage',
+							'strThreadInactiveReason',
 							'boolIsActive'];
 }

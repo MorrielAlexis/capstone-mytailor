@@ -18,5 +18,6 @@ class Individual extends Model
     					'strIndivProvince', 'strIndivZipCode',
     					'strIndivLandlineNumber', 'strIndivCPNumber',
     					'strIndivCPNumberAlt', 'strIndivEmailAddress',
+                        'strIndivInactiveReason',
     					'boolIsActive'];   
 }

@@ -13,6 +13,7 @@ class SegmentPattern extends Model
 								'strSegPNameFK',
 								'strSegPName',
 								'strSegPImage',
+								'strSegPInactiveReason',
 								'boolIsActive'
 								//
 								);

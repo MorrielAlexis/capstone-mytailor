@@ -12,6 +12,7 @@ class FabricType extends Model
 	protected $fillable = array('strFabricTypeID',
 								'strFabricTypeName',
 								'txtFabricTypeDesc',
+								'strFabricTypeInactiveReason',
 								'boolIsActive'
 								//
 								);

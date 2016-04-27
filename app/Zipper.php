@@ -12,5 +12,7 @@ class Zipper extends Model
 
 	protected $fillable = ['strZipperBrand', 'strZipperSize',
 							'strZipperColor', 'txtZipperDesc',
-							'strZipperImage', 'boolIsActive'];
+							'strZipperImage', 
+							'strZipperInactiveReason',
+							'boolIsActive'];
 }

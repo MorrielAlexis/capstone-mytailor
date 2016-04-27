@@ -10,13 +10,15 @@ class EmployeeRole extends Model
 
     protected $primaryKey = 'strEmpRoleID';
 
-    protected $fillable = ['strEmpRoleName', 'strEmpRoleDesc',  				
+    protected $fillable = ['strEmpRoleName', 
+    						'strEmpRoleDesc',  	
+    						'strRoleInactiveReason',			
     					'boolIsActive'];
     					
 
-   	public function employees() {
-
-		return $this->hasMany('Employee', 'strEmployeeID');
+   public function employees()
+	{
+		return $this->belongstoMany('App\Employee');
 	}
 
 }
