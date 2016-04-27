@@ -12,7 +12,7 @@ class SegmentPatternSeeder extends Seeder
      */
     public function run()
     {   
-        DB::table('tblSegmentPattern')->delete();
+        //DB::table('tblSegmentPattern')->delete();
 
         $tblSegmentPattern = array (
             array(

@@ -12,7 +12,7 @@ class SwatchSeeder extends Seeder
      */
     public function run()
     {   
-        DB::table('tblSwatch')->delete();
+        //DB::table('tblSwatch')->delete();
 
         $tblSwatch = array (
             array(

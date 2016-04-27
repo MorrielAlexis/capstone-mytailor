@@ -12,7 +12,7 @@ class CustIndividualSeeder extends Seeder
      */
     public function run()
     {   
-        DB::table('tblCustIndividual')->delete();
+       // DB::table('tblCustIndividual')->delete();
 
         $tblCustIndividual = array (
             array(
@@ -20,7 +20,7 @@ class CustIndividualSeeder extends Seeder
                 'strIndivFName' => 'Melody',
                 'strIndivLName' => 'Legaspi',
                 'strIndivMName' => 'Reyes',
-                'strIndivGender' => 'Female'
+                'strIndivGender' => 'Female',
                 'strIndivHouseNo' => '44',
                 'strIndivStreet' => 'Ipil St.',
                 'strIndivBarangay' => 'St. Anthony',
@@ -39,7 +39,7 @@ class CustIndividualSeeder extends Seeder
                 'strIndivFName' => 'Rachel',
                 'strIndivLName' => 'Nayre',
                 'strIndivMName' => 'Atian',
-                'strIndivGender' => 'Female'
+                'strIndivGender' => 'Female',
                 'strIndivHouseNo' => '41',
                 'strIndivStreet' => 'Narra St.',
                 'strIndivBarangay' => 'Kwek-kwek',

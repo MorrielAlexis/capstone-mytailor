@@ -12,7 +12,7 @@ class MaterialThreadSeeder extends Seeder
      */
     public function run()
     {   
-        DB::table('tblThread')->delete();
+       // DB::table('tblThread')->delete();
 
         $tblThread = array (
             array(

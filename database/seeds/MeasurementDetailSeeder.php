@@ -12,7 +12,7 @@ class MeasurementDetailSeeder extends Seeder
      */
     public function run()
     {   
-        DB::table('tblMeasurementDetail')->delete();
+        //DB::table('tblMeasurementDetail')->delete();
 
         $tblMeasurementDetail = array (
             array(

@@ -12,7 +12,7 @@ class MaterialButtonSeeder extends Seeder
      */
     public function run()
     {   
-        DB::table('tblButton')->delete();
+       // DB::table('tblButton')->delete();
 
         $tblButton = array (
             array(

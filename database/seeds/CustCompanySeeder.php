@@ -12,7 +12,7 @@ class CustCompanySeeder extends Seeder
      */
     public function run()
     {   
-        DB::table('tblCustCompany')->delete();
+        //DB::table('tblCustCompany')->delete();
 
         $tblCustCompany = array (
             array(

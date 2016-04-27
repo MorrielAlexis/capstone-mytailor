@@ -12,7 +12,7 @@ class MaterialZipperSeeder extends Seeder
      */
     public function run()
     {   
-        DB::table('tblZipper')->delete();
+      //  DB::table('tblZipper')->delete();
 
         $tblZipper = array (
             array(

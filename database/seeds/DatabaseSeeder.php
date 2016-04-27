@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(CustCompanySeeder::class);
         $this->call(CustIndividualSeeder::class);
-        $this->call(RoleSeeder::class);
+        $this->call(EmployeeRoleSeeder::class);
         $this->call(EmployeeSeeder::class);
         $this->call(MaterialThreadSeeder::class);
         $this->call(MaterialNeedleSeeder::class);
@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SwatchSeeder::class);
         $this->call(GarmentCategorySeeder::class);
         $this->call(SegmentSeeder::class);
-        $this->call(SegmentPattern::class);
+        $this->call(SegmentPatternSeeder::class);
         $this->call(CatalogueSeeder::class);
         $this->call(MeasurementDetailSeeder::class);
         $this->call(MeasurementCategorySeeder::class);

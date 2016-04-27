@@ -12,7 +12,7 @@ class CatalogueSeeder extends Seeder
      */
     public function run()
     {   
-        DB::table('tblCatalogue')->delete();
+       // DB::table('tblCatalogue')->delete();
 
         $tblCatalogue = array (
             array(

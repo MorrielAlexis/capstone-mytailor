@@ -12,7 +12,7 @@ class MaterialNeedleSeeder extends Seeder
      */
     public function run()
     {   
-        DB::table('tblNeedle')->delete();
+      //  DB::table('tblNeedle')->delete();
 
         $tblNeedle = array (
             array(

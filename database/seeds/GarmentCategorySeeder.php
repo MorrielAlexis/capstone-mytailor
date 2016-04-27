@@ -12,7 +12,7 @@ class GarmentCategorySeeder extends Seeder
      */
     public function run()
     {   
-        DB::table('tblGarmentCategory')->delete();
+      //  DB::table('tblGarmentCategory')->delete();
 
         $tblGarmentCategory = array (
             array(

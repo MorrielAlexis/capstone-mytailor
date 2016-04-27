@@ -12,7 +12,7 @@ class EmployeeSeeder extends Seeder
      */
     public function run()
     {   
-        DB::table('tblEmployee')->delete();
+      //  DB::table('tblEmployee')->delete();
 
         $tblEmployee = array (
             array(

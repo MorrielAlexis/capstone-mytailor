@@ -12,7 +12,7 @@ class MaterialHookEyeSeeder extends Seeder
      */
     public function run()
     {   
-        DB::table('tblHookEye')->delete();
+       // DB::table('tblHookEye')->delete();
 
         $tblHookEye = array (
             array(

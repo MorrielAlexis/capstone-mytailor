@@ -12,7 +12,7 @@ class FabricTypeSeeder extends Seeder
      */
     public function run()
     {   
-        DB::table('tblFabricType')->delete();
+        //DB::table('tblFabricType')->delete();
 
         $tblFabricType = array (
             array(
