@@ -14,7 +14,23 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call(UserTableSeeder::class);
+        $this->call(CustCompanySeeder::class);
+        $this->call(CustIndividualSeeder::class);
+        $this->call(RoleSeeder::class);
+        $this->call(EmployeeSeeder::class);
+        $this->call(MaterialThreadSeeder::class);
+        $this->call(MaterialNeedleSeeder::class);
+        $this->call(MaterialButtonSeeder::class);
+        $this->call(MaterialZipperSeeder::class);
+        $this->call(MaterialHookEyeSeeder::class);
+        $this->call(FabricTypeSeeder::class);
+        $this->call(SwatchSeeder::class);
+        $this->call(GarmentCategorySeeder::class);
+        $this->call(SegmentSeeder::class);
+        $this->call(SegmentPattern::class);
+        $this->call(CatalogueSeeder::class);
+        $this->call(MeasurementDetailSeeder::class);
+        $this->call(MeasurementCategorySeeder::class);
 
         Model::reguard();
     }

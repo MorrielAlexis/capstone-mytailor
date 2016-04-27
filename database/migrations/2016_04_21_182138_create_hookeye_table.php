@@ -13,7 +13,7 @@ class CreateHookeyeTable extends Migration
     public function up()
     {
         Schema::create('tblHookEye', function (Blueprint $table) {
-            $table->increments('strHookID');
+            $table->increments('intHookID');
              $table->string('strHookBrand');
             $table->string('strHookSize');
             $table->string('strHookColor');

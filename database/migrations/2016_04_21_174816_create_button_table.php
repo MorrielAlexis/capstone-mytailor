@@ -13,7 +13,7 @@ class CreateButtonTable extends Migration
     public function up()
     {
         Schema::create('tblButton', function (Blueprint $table) {
-            $table->increments('strButtonID');
+            $table->increments('intButtonID');
             $table->string('strButtonBrand');
             $table->string('strButtonSize');
             $table->string('strButtonColor');
