@@ -72,11 +72,12 @@
                         <td>{{ $individual_1->strCustPrivLandlineNumber }}</td> 
                         <td>{{ $individual_1->strInactiveReason }}</td>      
                         <td>          
-                          <form action="{{URL::to('reactCustPrivIndiv')}}" method="POST">
+                          
+                          {!! Form::open(['url' => 'reactCustPrivIndiv']) !!}
                             <input type="hidden" value="{{ $individual_1->strCustPrivIndivID }}" id="reactID" name="reactID">
                             <input type="hidden" value="{{ $individual_1->strCustPrivIndivID }}" id="reactInactiveIndiv" name="reactInactiveIndiv">
                             <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of customer to the table">REACTIVATE</button>
-                          </form>
+                          {!! Form::close() !!}
                         </td>
                     </tr>
                     @endif
@@ -129,12 +130,13 @@
                             <td>{{ $company_1->strCustCompanyFaxNumber }}</td>                 
                             <td>{{ $company_1->strInactiveReason }}</td>  
                           <td>
-                            <form action="{{URL::to('reactCustCompany')}}" method="POST">
-                            <input type="hidden" value="{{ $company_1->strCustCompanyID }}" id="reactInactiveComp" name="reactInactiveComp">
-                            <input type="hidden" value="{{ $company_1->strCustCompanyID }}" id="reactID" name="reactID">
-                            <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to reeturn data of customer to the table">REACTIVATE</button>
-                           
-                            </form>
+                            
+                            {!! Form::open(['url' => 'reactCustCompany']) !!}
+                              <input type="hidden" value="{{ $company_1->strCustCompanyID }}" id="reactInactiveComp" name="reactInactiveComp">
+                              <input type="hidden" value="{{ $company_1->strCustCompanyID }}" id="reactID" name="reactID">
+                              <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to reeturn data of customer to the table">REACTIVATE</button>
+                             
+                            {!! Form::close() !!}
                           </td>
                     </tr>
                     @endif
@@ -181,11 +183,11 @@
                           <td>{{ $role_1->strEmpRoleDesc }}</td>
                           <td>{{ $role_1->strInactiveReason }}</td>
                           <td>
-                            <form action="{{URL::to('reactRole')}}" method="POST">
+                            {!! Form::open(['url' => 'reactRole']) !!}
                               <input type="hidden" value="{{ $role_1->strEmpRoleID }}" id="reactID" name="reactID">
                               <input type="hidden" value="{{ $role_1->strEmpRoleID }}" id="reactInactiveRole" name="reactInactiveRole">
                               <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of position to the table">REACTIVATE</button>
-                            </form>
+                            {!! Form::close() !!}
                           </td>
                       </tr>
                       @endif
@@ -247,11 +249,11 @@
                             <td>{{ $employee_1->strEmailAdd }}</td>
                             <td>{{ $employee_1->strInactiveReason }}</td>
                             <td>
-                            <form action="{{URL::to('reactEmployee')}}" method="POST">
-                            <input type="hidden" value="{{ $employee_1->strEmployeeID }}" id="reactID" name="reactID">
-                            <input type="hidden" value="{{ $employee_1->strEmployeeID }}" id="reactInactiveEmp" name="reactInactiveEmp">
-                            <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of customer to the table">REACTIVATE</button>
-                            </form>
+                            {!! Form::open(['url' => 'reactEmployee']) !!}
+                              <input type="hidden" value="{{ $employee_1->strEmployeeID }}" id="reactID" name="reactID">
+                              <input type="hidden" value="{{ $employee_1->strEmployeeID }}" id="reactInactiveEmp" name="reactInactiveEmp">
+                              <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of customer to the table">REACTIVATE</button>
+                            {!! Form::close() !!}
                           </td>
                       </tr>
                       @endif
@@ -300,11 +302,11 @@
                         <td>{{ $category_1->strGarmentCategoryDesc }}</td>
                         <td>{{ $category_1->strInactiveReason }}</td>
                         <td>
-                          <form action="{{URL::to('reactGarmentCategory')}}" method="POST">
+                          {!! Form::open(['url' => 'reactGarmentCategory']) !!}
                             <input type="hidden" id="reactID" name="reactID" value="{{$category_1->strGarmentCategoryID}}">
                             <input type="hidden" id="reactInactiveGarment" name="reactInactiveGarment" value="{{$category_1->strGarmentCategoryID}}">
                             <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of garment category to the table">REACTIVATE</button>
-                          </form>
+                          {!! Form::close() !!}
                         </td>
                       </tr>
                       @endif
@@ -350,11 +352,11 @@
                         <td>{{ $segment_1->strGarmentSegmentDesc }}</td>
                         <td>{{ $segment_1->strInactiveReason }}</td>
                         <td>
-                          <form action="{{URL::to('reactGarmentSegment')}}" method="POST">
+                          {!! Form::open(['url' => 'reactGarmentSegment']) !!}
                             <input type="hidden" id="reactID" name="reactID" value="{{$segment_1->strGarmentSegmentID}}">
                             <input type="hidden" id="reactInactiveSegment" name="reactInactiveSegment" value="{{$segment_1->strGarmentSegmentID}}">
                             <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of segment to the table">REACTIVATE</button>
-                          </form>
+                          {!! Form::close() !!}
                         </td>
                       </tr>
                       @endif
@@ -401,11 +403,11 @@
                             <td><img class="materialboxed" width="650" src="{{URL::asset($pattern_1->strPatternImage)}}"></td>
                             <td>{{ $pattern_1->strInactiveReason }}</td>
                             <td>
-                            <form action="{{URL::to('reactDesignPattern')}}" method="POST">
-                            <input type="hidden" value="{{ $pattern_1->strDesignPatternID }}" id="reactID" name="reactID">
-                            <input type="hidden" value="{{ $pattern_1->strDesignPatternID }}" id="reactInactivePattern" name="reactInactivePattern">
-                            <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of segment pattern to the table">REACTIVATE</button>
-                            </form>
+                            {!! Form::open(['url' => 'reactDesignPattern']) !!}
+                              <input type="hidden" value="{{ $pattern_1->strDesignPatternID }}" id="reactID" name="reactID">
+                              <input type="hidden" value="{{ $pattern_1->strDesignPatternID }}" id="reactInactivePattern" name="reactInactivePattern">
+                              <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of segment pattern to the table">REACTIVATE</button>
+                            {!! Form::close() !!}
                           </td>
                       </tr>
                       @endif
@@ -449,11 +451,11 @@
                            <td>{{ $head_1->meas_details }}</td>
                            <td>{{ $head_1->strInactiveReason }}</td>
                             <td>
-                            <form action="{{URL::to('reactMeasurementCategory')}}" method="POST">
+                            {!! Form::open(['url' => 'reactMeasurementCategory']) !!}
                               <input type="hidden" value="{{ $head_1->strMeasurementID }}" id="reactID" name="reactID">
                               <input type="hidden" value="{{ $head_1->strMeasurementID }}" id="reactInactiveHead" name="reactInactiveHead">
                               <button type="submit"  style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return measuremennt information to the table">REACTIVATE</button>
-                            </form>
+                            {!! Form::close() !!}
                           </td>
                       </tr>
                       @endif
@@ -495,11 +497,11 @@
                         <td>{{ $detail_1->strMeasurementDetailDesc }}</td>
                         <td>{{ $detail_1->strInactiveReason }}</td>
                         <td>
-                          <form action="{{URL::to('reactMeasurementDetail')}}" method="POST">
+                          {!! Form::open(['url' => 'reactMeasurementDetail]) !!}
                             <input type="hidden" id="reactID" name="reactID" value="{{ $detail_1->strMeasurementDetailID }}">
                             <input type="hidden" id="reactInactiveDetail" name="reactInactiveDetail" value="{{ $detail_1->strMeasurementDetailID }}">
                             <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of segment to the table">REACTIVATE</button>
-                          </form>
+                          {!! Form::close() !!}
                         </td>
                       </tr>
                       @endif
@@ -547,11 +549,11 @@
                         <td>{{ $fabricType_1->strFabricTypeDesc }}</td>
                         <td>{{ $fabricType_1->strInactiveReason }}</td>
                         <td>
-                          <form action="{{URL::to('reactFabricType')}}" method="POST">
+                          {!! Form::open(['url' => 'reactFabricType']) !!}
                             <input type="hidden" value="{{ $fabricType_1->strFabricTypeID }}" id="reactID" name="reactID">
                             <input type="hidden" value="{{ $fabricType_1->strFabricTypeID }}" id="reactInactiveFabric" name="reactInactiveFabric">
                             <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="CLick to return data of fabric type to the table">REACTIVATE</button>
-                          </form>
+                          {!! Form::close() !!}
                         </td>
                       </tr>
                       @endif
@@ -599,12 +601,13 @@
                         <td>{{ $swatch_1->strInactiveReason }}</td>
                         <td>
 
-                         <form action="{{URL::to('reactSwatch')}}" method="POST">
+                          {!! Form::open(['url' => ''reactSwatch]) !!}
+
                             <input type="hidden" value="{{ $swatch_1->strSwatchID }}" id="reactID" name="reactID">
                             <input type="hidden" value="{{ $swatch_1->strSwatchID }}" id="reactInactiveSwatch" name="reactInactiveSwatch">
-                        <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of fabric swatch to the table">REACTIVATE</button>
+                            <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of fabric swatch to the table">REACTIVATE</button>
 
-                        </form>
+                          {!! Form::close() !!}
                       </td>
                       </tr>
                   @endif
@@ -656,11 +659,11 @@
                         <td><img src="{{URL::asset($thread_1->strMaterialThreadImage)}}"></td> 
                           <td>{{ $thread_1->strInactiveReason }}</td>   
                         <td>          
-                        <form action="{{URL::to('reactThread')}}" method="POST">
-                        <input type="hidden" value="{{ $thread_1->strMaterialThreadID }}" id="reactID" name="reactID">
-                        <input type="hidden" value="{{ $thread_1->strMaterialThreadID }}" id="reactInactiveThread" name="reactInactiveThread">
-                        <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green darken-2" data-position="bottom" data-delay="50" data-tooltip="Returns data of thread to the table">REACTIVATE</button>
-                        </form>
+                        {!! Form::open(['url' => 'reactThread']) !!}
+                          <input type="hidden" value="{{ $thread_1->strMaterialThreadID }}" id="reactID" name="reactID">
+                          <input type="hidden" value="{{ $thread_1->strMaterialThreadID }}" id="reactInactiveThread" name="reactInactiveThread">
+                          <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green darken-2" data-position="bottom" data-delay="50" data-tooltip="Returns data of thread to the table">REACTIVATE</button>
+                        {!! Form::close() !!}
                       </td>
                     </tr>
                     @endif
@@ -705,11 +708,11 @@
                         <td><img class="materialboxed" width="650" src="{{URL::asset($needle_1->strMaterialNeedleImage)}}"> </td>  
                         <td>{{ $needle_1->strInactiveReason }}</td>    
                         <td>          
-                        <form action="{{URL::to('reactNeedle')}}" method="POST">
-                        <input type="hidden" value="{{ $needle_1->strMaterialNeedleID }}" id="reactID" name="reactID">
-                        <input type="hidden" value="{{ $needle_1->strMaterialNeedleID }}" id="reactInactiveNeedle" name="reactInactiveNeedle">
-                        <button type="submit"  style="color:black" class="btn tooltipped btn-small center-text light-green darken-2" data-position="bottom" data-delay="50" data-tooltip="Returns data of needle to the table">REACTIVATE</button>
-                        </form>
+                        {!! Form::open(['url' => 'reactNeedle']) !!}
+                          <input type="hidden" value="{{ $needle_1->strMaterialNeedleID }}" id="reactID" name="reactID">
+                          <input type="hidden" value="{{ $needle_1->strMaterialNeedleID }}" id="reactInactiveNeedle" name="reactInactiveNeedle">
+                          <button type="submit"  style="color:black" class="btn tooltipped btn-small center-text light-green darken-2" data-position="bottom" data-delay="50" data-tooltip="Returns data of needle to the table">REACTIVATE</button>
+                        {!! Form::close() !!}
                       </td>
                     </tr>
                     @endif
@@ -756,11 +759,11 @@
                         <td><img class="materialboxed" width="650" src="{{URL::asset($button_1->strMaterialButtonImage)}}"> </td>
                         <td>{{ $button_1->strInactiveReason }}</td>      
                         <td>          
-                        <form action="{{URL::to('reactButton')}}" method="POST">
-                        <input type="hidden" value="{{ $button_1->strMaterialButtonID }}" id="reactID" name="reactID">
-                        <input type="hidden" value="{{ $button_1->strMaterialButtonID }}" id="reactInactiveButton" name="reactInactiveButton">
-                        <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green darken-2" data-position="bottom" data-delay="50" data-tooltip="Returns data of button to the table">REACTIVATE</button>
-                        </form>
+                        {!! Form::open(['url' => 'reactButton']) !!}
+                          <input type="hidden" value="{{ $button_1->strMaterialButtonID }}" id="reactID" name="reactID">
+                          <input type="hidden" value="{{ $button_1->strMaterialButtonID }}" id="reactInactiveButton" name="reactInactiveButton">
+                          <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green darken-2" data-position="bottom" data-delay="50" data-tooltip="Returns data of button to the table">REACTIVATE</button>
+                        {!! Form::close() !!}
                       </td>
                     </tr>
                     @endif
@@ -807,11 +810,11 @@
                         <td><img class="materialboxed" width="650" src="{{URL::asset($zipper_1->strMaterialZipperImage)}}"> </td>
                         <td>{{ $zipper_1->strInactiveReason }}</td>      
                         <td>          
-                        <form action="{{URL::to('reactZipper')}}" method="POST">
-                        <input type="hidden" value="{{ $zipper_1->strMaterialZipperID }}" id="reactID" name="reactID">
-                        <input type="hidden" value="{{ $zipper_1->strMaterialZipperID }}" id="reactInactiveZipper" name="reactInactiveZipper">
-                        <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green darken-2" data-position="bottom" data-delay="50" data-tooltip="Returns data of zippers to the table">REACTIVATE</button>
-                        </form>
+                        {!! Form::open(['url' => 'reactZipper']) !!}
+                          <input type="hidden" value="{{ $zipper_1->strMaterialZipperID }}" id="reactID" name="reactID">
+                          <input type="hidden" value="{{ $zipper_1->strMaterialZipperID }}" id="reactInactiveZipper" name="reactInactiveZipper">
+                          <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green darken-2" data-position="bottom" data-delay="50" data-tooltip="Returns data of zippers to the table">REACTIVATE</button>
+                        {!! Form::close() !!}
                       </td>
                     </tr>
                     @endif
@@ -859,10 +862,11 @@
                         <td>{{$hook_1->strInactiveReason}}</td>     
                         <td>          
                         <form action="{{URL::to('reactHook')}}" method="POST">
-                        <input type="hidden" value="{{$hook_1->strMaterialHookID}}" id="reactID" name="reactID">
-                        <input type="hidden" value="{{$hook_1->strMaterialHookID}}" id="reactInactiveHook" name="reactInactiveHook">
-                        <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green darken-2" data-position="bottom" data-delay="50" data-tooltip="Returns data of hook and eye to the table">REACTIVATE</button>
-                        </form>
+                        {!! Form::open(['url' => 'reactHook']) !!}
+                          <input type="hidden" value="{{$hook_1->strMaterialHookID}}" id="reactID" name="reactID">
+                          <input type="hidden" value="{{$hook_1->strMaterialHookID}}" id="reactInactiveHook" name="reactInactiveHook">
+                          <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green darken-2" data-position="bottom" data-delay="50" data-tooltip="Returns data of hook and eye to the table">REACTIVATE</button>
+                        {!! Form::close() !!}
                       </td>
                     </tr>
                     @endif
@@ -913,11 +917,11 @@
                         <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($catalogue_1->strCatalogueImage)}}"></td>
                         <td>{{ $catalogue_1->strInactiveReason }}</td>
                         <td>
-                          <form action="{{URL::to('reactCatalogueDesign')}}" method="POST">
+                          {!! Form::open(['url' => 'reactCatalogueDesign']) !!}
                             <input type="hidden" value="{{ $catalogue_1->strCatalogueID }}" id="reactID" name="reactID">
                             <input type="hidden" value="{{ $catalogue_1->strCatalogueID }}" id="reactInactiveCatalogue" name="reactInactiveCatalogue">
                             <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of customer to the table">REACTIVATE</button>
-                          </form>
+                          {!! Form::close() !!}
                         </td>
                       </tr>
                       @endif

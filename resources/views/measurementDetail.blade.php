@@ -156,7 +156,8 @@
 
                         <div id="edit{{ $detail->strMeasurementDetailID }}" class="modal modal-fixed-footer">
                           <h5><font color = "#1b5e20"><center>EDIT MEASUREMENT PART</center> </font> </h5>
-                            <form action="{{URL::to('editMeasurementDetail')}}" method="POST"> 
+                            
+                            {!! Form::open(['url' => 'editMeasurementDetail']) !!}
                               <div class="divider" style="height:2px"></div>
                               <div class="modal-content col s12">
                                 
@@ -183,13 +184,14 @@
                                 <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Update</button>
                                 <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
                               </div>
-                          </form>
+                          {!! Form::close() !!}
                         </div>
                           
 
                         <div id="del{{ $detail->strMeasurementDetailID }}" class="modal modal-fixed-footer">
                           <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS MEASUREMENT PART?</center> </font> </h5>                            
-                            <form action="{{URL::to('delMeasurementDetail')}}" method="POST"> 
+                              
+                            {!! Form::open(['url' => 'delMeasurementDetail']) !!}
                               <div class="divider" style="height:2px"></div>
                               <div class="modal-content col s12">
                                 
@@ -227,7 +229,7 @@
                                 <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">OK</button>
                                 <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
                               </div>
-                            </form>
+                            {!! Form::close() !!}
                           </div>
                         </td>
                       </tr>
@@ -244,7 +246,8 @@
           
                 <div id="addMeasurementPart" class="modal modal-fixed-footer">
                   <h5><font color = "#1b5e20"><center>ADD NEW MEASUREMENT PART</center> </font> </h5>
-                    <form action="{{URL::to('addMeasurementDetail')}}" method="POST">
+                      
+                    {!! Form::open(['url' => 'addMeasurementDetail']) !!}
                       <div class="divider" style="height:2px"></div>
                       <div class="modal-content col s12">
                         
@@ -271,7 +274,7 @@
                         <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
                         <button type="button" onclick="clearData()" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
                       </div>
-                    </form>
+                    {!! Form::close() !!}
                   </div>          
                 </div>
               </div>

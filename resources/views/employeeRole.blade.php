@@ -120,7 +120,8 @@
                 </td>	
                   <div id="edit{{$role->strEmpRoleID}}" class="modal modal-fixed-footer">                     
                     <h5><font color = "#1b5e20"><center>EDIT EMPLOYEE ROLE</center> </font> </h5>
-                    <form action="{{URL::to('editRole')}}" method="POST">
+                      
+                    {!! Form::open(['url' => 'editRole']) !!}
                       <div class="divider" style="height:2px"></div>
                       <div class="modal-content col s12">
 
@@ -148,14 +149,15 @@
                         <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Update</button>
                         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
                       </div>
-                    </form>
+                    {!! Form::close() !!}
                   </div>
                   
                   <div id="del{{$role->strEmpRoleID}}" class="modal modal-fixed-footer">                     
                      <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS EMPLOYEE ROLE?</center> </font> </h5>
-                      <form action="{{URL::to('delRole')}}" method="POST">
-                       <div class="divider" style="height:2px"></div>
-                       <div class="modal-content col s12">
+                        
+                      {!! Form::open(['url' => 'delRole']) !!}
+                        <div class="divider" style="height:2px"></div>
+                        <div class="modal-content col s12">
 
 
                           <div class="input-field col s12">
@@ -192,7 +194,7 @@
                         <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">OK</button>
                         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
                       </div>
-                    </form>
+                    {!! Form::close() !!}
                   </div>
               </tr>
               @endif
@@ -206,9 +208,10 @@
         
     			<div id="addRole" class="modal">
             <h5><font color = "#1b5e20"><center>ADD NEW EMPLOYEE ROLE</center> </font> </h5>
-              <form action="{{URL::to('addRole')}}" method="POST" id="formAddRole" name="formAddRole">
+                
+              {!! Form::open(['url' => 'addRole']) !!}
                 <div class="divider" style="height:2px"></div>
-               <div class="modal-content col s12">
+                <div class="modal-content col s12">
 
                   <div class="input-field">
                     <input value="{{$newID}}" id="addRoleID" name="addRoleID" type="hidden">
@@ -233,7 +236,7 @@
                   <button type="submit" class="modal-action  waves-effect waves-green btn-flat">Add</button>
                   <button type="button" onclick="clearData()" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
                 </div>
-            </form>
+            {!! Form::close() !!}
           </div>
         </div>
       </div>

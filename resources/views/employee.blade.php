@@ -147,7 +147,8 @@
 
                    <div id="edit{{$employee->strEmployeeID}}" class="modal modal-fixed-footer">                       
                     <h5><font color = "#1b5e20"><center>EDIT EMPLOYEE'S PROFILE</center> </font> </h5>
-                      <form action="{{URL::to('editEmployee')}}" method="POST"> 
+                        
+                      {!! Form::open(['url' => 'editEmployee']) !!} 
                         <div class="divider" style="height:2px"></div>
                         <div class="modal-content col s12">
 
@@ -276,13 +277,14 @@
                           <button type="submit" class="waves-effect waves-green btn-flat">Update</button>
                           <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
                         </div>                  
-                      </form>
+                      {!! Form::close() !!}
                     </div> 
 
     
                     <div id="del{{$employee->strEmployeeID}}" class="modal modal-fixed-footer">                        
                       <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS EMPLOYEE?</center> </font> </h5>
-                        <form action="{{URL::to('delEmployee')}}" method="POST">
+                          
+                          {!! Form::open(['url' => 'delEmployee']) !!}
                             <div class="divider" style="height:2px"></div>
                             <div class="modal-content col s12">
 
@@ -332,7 +334,7 @@
                           <button type="submit" class="waves-effect waves-green btn-flat">OK</button>
                           <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
                         </div>                  
-                      </form>
+                      {!! Form::close() !!}
                     </div>
                   </tr>
                 @endif
@@ -349,7 +351,8 @@
 
     			<div id="newemp" class="modal modal-fixed-footer">              
             <h5><font color = "#1b5e20"><center>ADD NEW EMPLOYEE PROFILE</center> </font> </h5>
-            <form action="{{URL::to('addEmployee')}}" method="POST" id="addEmployee" class="employee-form" name="addEmployee">               
+              
+              {!! Form::open(['url' => 'addEmployee']) !!}
                 <div class="divider" style="height:2px"></div>
                 <div class="modal-content col s12">
 
@@ -470,7 +473,7 @@
                 <button type="submit" id="send" name="send" class="modal-action waves-effect waves-green btn-flat">Add</button>
                 <button type="button" onclick="clearData()" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</button>
               </div>
-            </form>
+            {!! Form::close() !!}
           </div>
           
       

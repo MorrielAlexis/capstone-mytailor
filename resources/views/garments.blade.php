@@ -129,7 +129,8 @@
                       <!-- Modal Structure for Edit Garment Category> -->
                       <div id="edit{{ $category->strGarmentCategoryID }}" class="modal modal-fixed-footer">
                         <h5><font color = "#1b5e20"><center>EDIT GARMENT CATEGORY</center> </font> </h5>                          
-                            <form action="{{URL::to('editGarmentCategory')}}" method="POST">       
+                            
+                            {!! Form::open(['url' => 'editGarmentCategory']) !!}
                               <div class="divider" style="height:2px"></div>
                               <div class="modal-content col s12">
                                 
@@ -156,12 +157,13 @@
                               <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Update</button>
                               <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
                           </div>
-                    </form>
+                    {!! Form::close() !!}
                   </div>
                       
                       <div id="del{{ $category->strGarmentCategoryID }}" class="modal modal-fixed-footer">
                         <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS GARMENT CATEGORY?</center> </font> </h5>
-                        <form action="{{URL::to('delGarmentCategory')}}" method="POST">
+                        
+                        {!! Form::open(['url' => 'delGarmentCategory']) !!}
                           <div class="divider" style="height:2px"></div>
                           <div class="modal-content col s12">
                             
@@ -199,7 +201,7 @@
                             <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">OK</button>
                             <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
                           </div>
-                        </form>
+                        {!! Form::close() !!}
                       </div>
                   </tr>
                   @endif
@@ -216,7 +218,8 @@
          
             <div id="addGCategory" class="modal modal-fixed-footer">
               <h5><font color = "#1b5e20"><center>ADD NEW GARMENT CATEGORY</center> </font> </h5>
-              <form action="{{URL::to('addGarmentCategory')}}" method="POST" id="addGarmentCategory" name="addGarmentCategory"> 
+              
+              {!! Form::open(['url' => 'addGarmentCategory']) !!}
                 <div class="divider" style="height:2px"></div>
                 <div class="modal-content col s12">
   
@@ -243,7 +246,7 @@
                   <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
                   <vutton type="button" onclick="clearData()" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
                 </div>
-              </form>
+              {!! Form::close() !!}
             </div>
             </div>
           </div>

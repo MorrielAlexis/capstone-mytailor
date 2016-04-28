@@ -78,7 +78,7 @@
 
       <div class="row">
         <div class="col s12 m12 l12">
-          <button style="color:black; margin-right:35px; margin-left: 20px" class="modal-trigger btn tooltipped btn-small center-text  light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to add a new customer to the table" href="/individual/create">ADD INDIVIDUAL CUSTOMER</button>
+          <button style="color:black; margin-right:35px; margin-left: 20px" class="modal-trigger btn tooltipped btn-small center-text  light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to add a new customer to the table" href="#addCusIndi">ADD INDIVIDUAL CUSTOMER</button>
         </div>      
       </div>
     </div>    
@@ -113,27 +113,26 @@
                     @foreach($individual as $individual)
                     @if($individual->boolIsActive == 1)
                   <tr>
-                    <td>{{ $individual->strIndivFName }} {{ $individual->strIndivMName }} {{ $individual->strIndivLName }}</td>
-                    <td>{{ $individual->strIndivGender}}</td>
-                    <td>{{ $individual->strIndivHouseNo }} {{ $individual->strIndivStreet }} {{ $individual->strIndivBarangay }} {{ $individual->strCustPrivCity }} {{ $individual->strIndivProvince }}  {{ $individual->strIndivZipCode }} </td>
-                    <td>{{ $individual->strIndivEmailAddress}}</td>                  
-                    <td>{{ $individual->strIndivCPNumber }}</td> 
-                    <td>{{ $individual->strIndivCPNumberAlt }}</td> 
-                    <td>{{ $individual->strIndivLandlineNumber }}</td>
-                    <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-2" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of customer" href="#edit{{$individual->strIndivID}}">EDIT</button></td>      
-                    <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-2" data-position="bottom" data-delay="50" data-tooltip="Click to remove customer from table" href="#del{{$individual->strIndivID}}">DEACTIVATE</button></td>
+                    <td>{{ $individual->strCustPrivFName }} {{ $individual->strCustPrivMName }} {{ $individual->strCustPrivLName }}</td>
+                    <td>{{ $individual->strCustPrivHouseNo }} {{ $individual->strCustPrivStreet }} {{ $individual->strCustPrivBarangay }} {{ $individual->strCustPrivCity }} {{ $individual->strCustPrivProvince }}  {{ $individual->strCustPrivZipCode }} </td>
+                    <td>{{ $individual->strCustPrivEmailAddress}}</td>                  
+                    <td>{{ $individual->strCustPrivCPNumber }}</td> 
+                    <td>{{ $individual->strCustPrivCPNumberAlt }}</td> 
+                    <td>{{ $individual->strCustPrivLandlineNumber }}</td>
+                    <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-2" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of customer" href="#edit{{$individual->strCustPrivIndivID}}">EDIT</button></td>      
+                    <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-2" data-position="bottom" data-delay="50" data-tooltip="Click to remove customer from table" href="#del{{$individual->strCustPrivIndivID}}">DEACTIVATE</button></td>
 
 
-                    <div id="edit{{$individual->strIndivID}}" class="modal modal-fixed-footer">                     
+                    <div id="edit{{$individual->strCustPrivIndivID}}" class="modal modal-fixed-footer">                     
                       <h5><font color = "#1b5e20"><center>EDIT INDIVIDUAL'S CUSTOMER PROFILE</center> </font> </h5>
-                        <form action="{{URL::to('editCustPrivIndiv')}}" method="POST">
+                          {!! Form::open(['url' => 'editCustPrivIndiv']) !!}
                             <div class="divider" style="height:2px"></div>
                               <div class="modal-content col s12">
 
 
                                <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                   <div class="input-field col s12">                 
-                                    <input value="{{$individual->strIndivID}}" id="editIndiID" name="editIndiID" type="text" class="" readonly>
+                                    <input value="{{$individual->strCustPrivIndivID}}" id="editIndiID" name="editIndiID" type="text" class="" readonly>
                                     <label for="indi_id">Individual ID </label>
                                   </div>
                                 </div>
@@ -141,7 +140,7 @@
 
                                 <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                   <div class="input-field col s4">
-                                    <input required id="editFName" name = "editFName" value = "{{$individual->strIndivFName}}" type="text" class="validateFirst">
+                                    <input required id="editFName" name = "editFName" value = "{{$individual->strCustPrivFName}}" type="text" class="validateFirst">
                                     <label for="first_name"> *First Name </label>
                                   </div>
 
@@ -221,26 +220,26 @@
                         <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Update</button> 
                         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>    
                     </div>
-                    </form>
+                    {!! Form::close() !!}
                   </div>
 
-                    <div id="del{{$individual->strIndivID}}" class="modal modal-fixed-footer">                     
+                    <div id="del{{$individual->strCustPrivIndivID}}" class="modal modal-fixed-footer">                     
                         <h5><font color:"#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS CUSTOMER?</center> </font> </h5>                        
-                         <form action="{{URL::to('delCustPrivIndiv')}}" method="POST">
-                           <div class="divider" style="height:2px"></div>
-                          <div class="modal-content col s12">
+                          {!! Form::open(['url' => 'delCustPrivIndiv']) !!}
+                            <div class="divider" style="height:2px"></div>
+                            <div class="modal-content col s12">
 
                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
                             <label for="first_name">Individual ID </label>
-                            <input value="{{$individual->strIndivID}}" id="delIndivID" name="delIndivID" type="text" readonly>
+                            <input value="{{$individual->strCustPrivIndivID}}" id="delIndivID" name="delIndivID" type="text" readonly>
                           </div>
                         </div>
 
                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s4">
                             <label for="first_name">First Name </label>
-                            <input value="{{$individual->strIndivFName}}" id="delIndivFName" name="delIndivFName" type="text" readonly>
+                            <input value="{{$individual->strCustPrivFName}}" id="delIndivFName" name="delIndivFName" type="text" readonly>
                           </div>
 
                            <div class="input-field col s4">
@@ -255,7 +254,7 @@
                         </div>
 
                           <div class="input-field col s12">
-                            <input id="delInactiveIndiv" name = "delInactiveIndiv" value = "{{$individual->strIndivID}}" type="hidden">
+                            <input id="delInactiveIndiv" name = "delInactiveIndiv" value = "{{$individual->strCustPrivIndivID}}" type="hidden">
                           </div>
 
                         <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
@@ -270,7 +269,7 @@
                             <button type="submit" style="color:black" class="modal-action waves-effect waves-green btn-flat">OK</button>
                             <a href="#!" style="color:black" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
                           </div> 
-                        </form>
+                        {!! Form::close() !!}
                     </div>
                  </td> 
                 </tr>
@@ -288,7 +287,7 @@
 
             <div id="addCusIndi" class="modal modal-fixed-footer">
               <div class = "label"><h5><font color = "#1b5e20"><center>ADD NEW INDIVIDUAL CUSTOMER PROFILE </center> </font> </h5>
-                <form action="{{URL::to('addCustPrivIndiv')}}" method="POST">
+                {!! Form::open(['url' => 'addCustPrivIndiv']) !!}
                   <div class="divider" style="height:2px"></div>
                   <div class="modal-content col s12">
 
@@ -381,15 +380,16 @@
                 <button type="submit" class="waves-effect waves-green btn-flat">Save</button> 
                 <button type="button" onclick="clearData()" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button>  
               </div>
-            </form>
+            {!! Form::close() !!}
             </div>
           </div>            
+        </div>
       </div> 
-      
-  @stop
+    </div> 
+    @stop
 
 @section('scripts')
-    {!! Html::script('js/customer_validation.js'); !!}
+    {!! Html::script('js/customer_validation.js') !!}
 
     <script>
       function clearData(){

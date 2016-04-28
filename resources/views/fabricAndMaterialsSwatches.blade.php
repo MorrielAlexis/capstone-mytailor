@@ -124,7 +124,8 @@
 
                       <div id="edit{{$swatch->strSwatchID}}" class="modal modal-fixed-footer">                        
                         <h5><font color = "#1b5e20"><center>EDIT FABRIC SWATCH</center> </font> </h5>
-                          <form action="{{URL::to('editSwatch')}}" method="POST" enctype="multipart/form-data">
+                            
+                          {!! Form::open(['url' => 'editSwatch']) !!}
                             <div class="divider" style="height:2px"></div>
                             <div class="modal-content col s12">
                                                       
@@ -177,12 +178,13 @@
                                 <button type="submit" class=" modal-action modal-close waves-effect waves-green btn-flat">Update</button>
                                 <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
                               </div>                          
-                          </form>
+                          {!! Form::close() !!}
                           </div> 
                           <!--******************Soft Delete*************************-->
                   <div id="del{{$swatch->strSwatchID}}" class="modal modal-fixed-footer">                        
                         <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS SWATCH?</center> </font> </h5>                           
-                          <form action="{{URL::to('delSwatch')}}" method="POST"> 
+                        
+                        {!! Form::open(['url' => 'delSwatch']) !!}
                           <div class="divider" style="height:2px"></div>
                           <div class="modal-content col s12">  
                             
@@ -226,7 +228,7 @@
                               <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
                             </div>
                           </p>
-                        </form>
+                        {!! Form::close() !!}
                       </div>
                       </td>
                     </tr>     
@@ -244,7 +246,8 @@
                 <!--    <Modal Structure for Add swatches> -->
             <div id="addSwatches" class="modal modal-fixed-footer">
              <h5><font color = "#1b5e20"><center>ADD NEW FABRIC SWATCH</center> </font> </h5>
-              <form action="{{URL::to('addSwatch')}}" method="POST" id="addSwatch" name="addSwatch" enctype="multipart/form-data"> 
+              
+              {!! Form::open(['url' => 'addSwatch']) !!}
                 <div class="divider" style="height:2px"></div>
                 <div class="modal-content col s12">
  
@@ -296,7 +299,7 @@
                   <button type="submit" id="send" name="send" class=" modal-action waves-effect waves-green btn-flat">Add</button>
                   <button type="button" onclick="clearData()" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
                 </div>           
-              </form>
+              {!! Form::close() !!}
             </div>
 
         </div>

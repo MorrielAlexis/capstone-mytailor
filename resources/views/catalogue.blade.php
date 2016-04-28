@@ -109,7 +109,10 @@
 
                   <div id="edit{{$catalogue->strCatalogueID}}" class="modal modal-fixed-footer">                   
                     <h5><font color = "#1b5e20"><center>EDIT CATALOGUE DESIGN</center></font> </h5>                     
-                      <form action="{{URL::to('editCatalogueDesign')}}" method="POST" enctype="multipart/form-data">
+                      editCatalogueDesign
+
+                      {!! Form::open(['url' => 'editCatalogueDesign']) !!} 
+                       
                        <div class="divider" style="height:2px"></div>
                        <div class="modal-content col s12">
 
@@ -117,7 +120,7 @@
                           <input value="{{$catalogue->strCatalogueID}}" id="editCatalogueID" name="editCatalogueID" type="text" class="" hidden>
                         </div>
 
-                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                      <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s12">
                           <select class="browser-default" id="editCategory" name="editCategory"> 
                                 <option disabled selected value="">Choose Category</option>
@@ -165,13 +168,14 @@
                         <button type="submit" class="waves-effect waves-green btn-flat">Update</button>
                         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
                       </div>
-                  </form>
+                  {!! Form::close() !!}
                 </div>
 
               <!-- DELETE DESIGN IN CATALOGUE -->
               <div id="del{{ $catalogue->strCatalogueID }}" class="modal modal-fixed-footer">               
                 <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS CATALOGUE DESIGN?</center> </font> </h5>                     
-                    <form action="{{URL::to('delCatalogueDesign')}}" method="POST">
+                   
+                    {!! Form::open(['url' => 'delCatalogueDesign']) !!}
                      <div class="divider" style="height:2px"></div>
                      <div class="modal-content col s12">
 
@@ -216,7 +220,7 @@
                         <button type="submit" class="waves-effect waves-green btn-flat">OK</button>
                           <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
                       </div>          
-                    </form>                 
+                    {!! Form::close() !!}                 
                   </div>
                 </td>
             </tr>
@@ -235,7 +239,8 @@
                <!-- ADD DESIGN IN CATALOGUE -->
           <div id="addCatalogue" class="modal modal-fixed-footer">            
             <h5><font color = "#1b5e20"><center>ADD NEW CATALOGUE DESIGN</center> </font> </h5>               
-              <form action='{{URL::to('addCatalogueDesign')}}' method="POST" enctype="multipart/form-data">
+              
+              {!! Form::open(['url' => 'addCatalogueDesign']) !!}
               <div class="divider" style="height:2px"></div>
               <div class="modal-content col s12">               
 
@@ -289,7 +294,7 @@
               <button type="submit" class=" waves-effect waves-green btn-flat">Add</button>  
               <button type="button" onclick="clearData()" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button>                    
             </div>
-          </form>
+          {!! Form::close() !!}
 @stop
 
 @section('scripts')

@@ -130,7 +130,8 @@
 
                     <div id="edit{{$company->strCustCompanyID}}" class="modal modal-fixed-footer">                     
                      <h5><font color = "#1b5e20"><center>EDIT COMPANY'S CUSTOMER PROFILE</center> </font> </h5>                      
-                        <form action="{{URL::to('editCustCompany')}}" method="POST">
+                        
+                        {!! Form::open(['url' => 'editCustCompany']) !!}
                           <div class="divider" style="height:2px"></div>
                         <div class="modal-content col s12">
                         
@@ -225,12 +226,13 @@
                          <button type="submit" class="waves-effect waves-green btn-flat">Update</button>  
                          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>   
                       </div>
-                    </form>
+                    {!! Form::close() !!}
                    </div>
                    
                    <div id="del{{$company->strCustCompanyID}}" class="modal modal-fixed-footer">                      
                       <h5><font color="#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS CUSTOMER?</center></font></h5>                       
-                        <form action="{{URL::to('delCustCompany')}}" method="POST">
+                        
+                        {!! Form::open(['url' => 'delCustCompany']) !!}
                           <div class="divider" style="height:2px"></div>
                           <div class="modal-content col s12">
 
@@ -293,7 +295,7 @@
                           <button type="submit" class="waves-effect waves-green btn-flat">OK</button>
                           <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
                           </div> 
-                        </form>
+                        {!! Form::close() !!}
                       </div>                  
                 </tr>
                 @endif
@@ -309,7 +311,8 @@
     
             <div id="addCom" class="modal modal-fixed-footer">
              <div class = "label"> <h5><font color = "#1b5e20"><center>ADD NEW COMPANY CUSTOMER PROFILE</center> </font> </h5>                      
-                <form action="{{URL::to('addCustCompany')}}" method="POST">
+                
+                {!! Form::open(['url' => 'addCustCompany']) !!}
                   <div class="divider" style="height:2px"></div>
                   <div class="modal-content col s12">
 
@@ -403,7 +406,7 @@
               <button type="submit" class=" waves-effect waves-green btn-flat">Add</button>  
               <button type="button" onclick="clearData()" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button>
             </div>
-            </form>
+            {!! Form::close() !!}
           </div> 
           </div>      
         </div>

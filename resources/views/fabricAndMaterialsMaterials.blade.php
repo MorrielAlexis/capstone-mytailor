@@ -144,9 +144,10 @@
                           <!--EDIT THREADS-->
                           <div id="edit{{ $thread->strMaterialThreadID }}" class="modal modal-fixed-footer">
                             <h5><font color = "#1b5e20"><center>EDIT THREAD</center> </font> </h5>
-                            <form action="{{URL::to('editThread')}}" method="POST" enctype="multipart/form-data"> 
+                            
+                            {!! Form::open(['url' => 'editThread']) !!}
                               <div class="divider" style="height:2px"></div>
-                                <div class="modal-content col s12">
+                              <div class="modal-content col s12">
 
 
                                 <div class="input-field">
@@ -192,12 +193,13 @@
                                 <button type="submit" class="modal-action  waves-effect waves-green btn-flat">Update</button>
                                 <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>   
                               </div>
-                            </form>
+                            {!! Form::close() !!}
                           </div>
                         
                             <!--deactivate THREADS-->
                           <div id="del{{ $thread->strMaterialThreadID }}" class="modal modal-fixed-footer">
-                            <form action="{{URL::to('delThread')}}" method="POST">                             
+                              
+                              {!! Form::open(['url' => 'delThread']) !!}
                                 <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS THREAD?</center> </font> </h5> 
                                 <div class="divider" style="height:2px"></div>
                                 <div class="modal-content col s12">
@@ -243,7 +245,7 @@
                                 <button type="submit" class="waves-effect waves-green btn-flat">OK</button>
                                 <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
                               </div> 
-                            </form>
+                            {!! Form::close() !!}
                           </div>
                         </td>
                       </tr>
@@ -303,7 +305,8 @@
                             
                           <div id="edit{{$needle->strMaterialNeedleID}}" class="modal modal-fixed-footer">
                             <h5><font color = "#1b5e20"><center>EDIT NEEDLE</center> </font> </h5>
-                            <form action="{{URL::to('editNeedle')}}" method="POST" enctype="multipart/form-data"> 
+                              
+                            {!! Form::open(['url' => 'editNeedle']) !!}
                               <div class="divider" style="height:2px"></div>
                               <div class="modal-content col s12">
 
@@ -350,14 +353,15 @@
                                 <button type="submit" class="modal-action  waves-effect waves-green btn-flat">Update</button>
                                 <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
                               </div>
-                            </form>
+                            {!! Form::close() !!}
                           </div>
                         
                         
 
                           <div id="del{{$needle->strMaterialNeedleID}}" class="modal modal-fixed-footer">
                             <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS NEEDLE?</center> </font> </h5> 
-                            <form action="{{URL::to('delNeedle')}}" method="POST">
+                            
+                            {!! Form::open(['url' => 'delNeedle']) !!}
                               <div class="divider" style="height:2px"></div>
                               <div class="modal-content col s12">
                                 
@@ -402,7 +406,7 @@
                                 <button type="submit" class="waves-effect waves-green btn-flat">OK</button>
                                 <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
                               </div> 
-                            </form>
+                            {!! Form::close() !!}
                           </div>
                         </td>
                       </tr>
@@ -466,7 +470,8 @@
                           <!-- <EDIT BUTTONS>   -->
                           <div id="edit{{$button->strMaterialButtonID}}" class="modal modal-fixed-footer">
                             <h5><font color = "#1b5e20"><center>EDIT BUTTON</center> </font> </h5>
-                            <form action="{{URL::to('editButton')}}" method="POST" enctype="multipart/form-data">                               
+                              
+                            {!! Form::open(['url' => 'editButton']) !!}
                               <div class="divider" style="height:2px"></div> 
                               <div class="modal-content col s12">
 
@@ -518,14 +523,15 @@
                                 <button type="submit" class="modal-action  waves-effect waves-green btn-flat">Update</button>
                                 <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
                               </div>
-                            </form>  
+                            {!! Form::close() !!}  
                           </div>
                        
                        
 
                           <div id="del{{$button->strMaterialButtonID}}" class="modal modal-fixed-footer">
                             <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS BUTTON?</center> </font> </h5>                             
-                              <form action="{{URL::to('delButton')}}" method="POST">
+                                
+                              {!! Form::open(['url' => 'delButton']) !!}
                                 <div class="divider" style="height:2px"></div>
                                 <div class="modal-content col s12">
 
@@ -576,7 +582,7 @@
                                 <button type="submit" class="waves-effect waves-green btn-flat">OK</button>
                                 <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
                               </div> 
-                            </form>
+                            {!! Form::close() !!}
                           </div>
                         </td>
                       </tr>
@@ -639,7 +645,8 @@
                             
                           <div id="edit{{$zipper->strMaterialZipperID}}" class="modal modal-fixed-footer">
                             <h5><font color = "#1b5e20"><center>EDIT ZIPPER</center> </font> </h5>
-                            <form action="{{URL::to('editZipper')}}" method="POST" enctype="multipart/form-data">
+                            
+                            {!! Form::open(['url' => 'editZipper']) !!}
                               <div class="divider" style="height:2px"></div>
                               <div class="modal-content col s12"> 
 
@@ -691,14 +698,15 @@
                                 <button type="submit" class="modal-action  waves-effect waves-green btn-flat">Update</button>
                                 <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
                               </div>
-                            </form>
+                            {!! Form::close() !!}
                           </div>
                         
                         
 
                           <div id="del{{$zipper->strMaterialZipperID}}" class="modal modal-fixed-footer">
                             <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS ZIPPER?</center> </font> </h5>                            
-                              <form action="{{URL::to('delZipper')}}" method="POST">
+                                
+                              {!! Form::open(['url' => 'delZipper']) !!}
                                 <div class="divider" style="height:2px"></div>                          
                                 <div class="modal-content col s12">
 
@@ -748,7 +756,7 @@
                                 <button type="submit" class="waves-effect waves-green btn-flat">OK</button>
                                 <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
                               </div> 
-                            </form>
+                            {!! Form::close() !!}
                           </div>
                         </td>
                       </tr>
@@ -814,7 +822,8 @@
                             
                           <div id="edit{{$hook->strMaterialHookID}}" class="modal modal-fixed-footer">
                             <h5><font color = "#1b5e20"><center>EDIT HOOK AND EYE</center> </font> </h5>
-                            <form action ="{{URL::to('editHook')}}" method="POST" enctype="multipart/form-data">
+                              
+                            {!! Form::open(['url' => 'editHook']) !!}
                               <div class="divider" style="height:2px"></div>
                               <div class="modal-content col s12"> 
                                                          
@@ -865,13 +874,14 @@
                                 <button type="submit" class="modal-action  waves-effect waves-green btn-flat">Update</button>
                                 <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>   
                             </div>
-                            </form>
+                            {!! Form::close() !!}
                           </div>
                         
 
                           <div id="del{{$hook->strMaterialHookID}}" class="modal modal-fixed-footer">
                             <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS HOOK AND EYE?</center> </font> </h5>
-                            <form action="{{URL::to('delHook')}}" method="POST">
+                              
+                            {!! Form::open(['url' => 'delHook']) !!}
                               <div class="divider" style="height:2px"></div>
                               <div class="modal-content col s12">
                                 
@@ -922,7 +932,7 @@
                                 <button type="submit" class="waves-effect waves-green btn-flat">OK</button>
                                 <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
                               </div>
-                            </form>
+                            {!! Form::close() !!}
                           </div>
                         </td>
                       </tr>
@@ -944,7 +954,8 @@
   <!--MODAL: add Thread-->
   <div id="addThread" class="modal modal-fixed-footer">
     <h5><font color = "#1b5e20"><center>ADD NEW THREAD</center> </font> </h5>
-      <form action="{{URL::to('addThread')}}" method="POST" enctype="multipart/form-data">
+        
+      {!! Form::open(['url' => 'addThread']) !!}
         <div class="divider" style="height:2px"></div>
         <div class="modal-content col s12">
     
@@ -992,14 +1003,15 @@
         <button type="submit" class="modal-action  waves-effect waves-green btn-flat">Save</button>
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
       </div>
-    </form>
+    {!! Form::close() !!}
   </div>
 
 
   <!--MODAL: add Needle-->
   <div id="addNeedle" class="modal modal-fixed-footer">
     <h5><font color = "#1b5e20"><center>ADD NEW NEEDLE</center> </font> </h5>   
-      <form action="{{URL::to('addNeedle')}}" method="POST" enctype="multipart/form-data">
+        
+      {!! Form::open(['url' => 'addNeedle']) !!}
         <div class="divider" style="height:2px"></div>
         <div class="modal-content col s12"> 
 
@@ -1047,13 +1059,14 @@
         <button type="submit" class="modal-action  waves-effect waves-green btn-flat">Save</button>
         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
       </div>
-    </form>
+    {!! Form::close() !!}
   </div>
 
   <!--MODAL: add Button-->
   <div id="addButton" class="modal modal-fixed-footer">
     <h5><font color = "#1b5e20"><center>ADD NEW BUTTON</center> </font> </h5>
-    <form action="{{URL::to('addButton')}}" method="POST" enctype="multipart/form-data">
+      
+    {!! Form::open(['url' => 'addButton']) !!}
       <div class="divider" style="height:2px"></div>
       <div class="modal-content col s12">
     
@@ -1105,13 +1118,14 @@
         <button type="submit" class="modal-action  waves-effect waves-green btn-flat">Save</button>
         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
       </div>
-    </form>
+    {!! Form::close() !!}
   </div>
 
   <!--MODAL: add Zipper-->
   <div id="addZipper" class="modal modal-fixed-footer">
     <h5><font color = "#1b5e20"><center>ADD NEW ZIPPER</center> </font> </h5>
-    <form action="{{URL::to('addZipper')}}" method="POST" enctype="multipart/form-data">
+    
+    {!! Form::open(['url' => 'addZipper']) !!}
       <div class="divider" style="height:2px"></div>
       <div class="modal-content col s12">
     
@@ -1164,13 +1178,14 @@
         <button type="submit" class="modal-action  waves-effect waves-green btn-flat">Save</button>
         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
       </div>
-    </form>
+    {!! Form::close() !!}
   </div>
 
   <!--MODAL: add HookEye-->
   <div id="addHookEye" class="modal modal-fixed-footer">
     <h5><font color = "#1b5e20"><center>ADD NEW HOOK AND EYE</center> </font> </h5>
-    <form action="{{URL::to('addHook')}}" method="POST" enctype="multipart/form-data">
+      
+    {!! Form::open(['url' => 'addHook']) !!}
       <div class="divider" style="height:2px"></div>
       <div class="modal-content col s12">
     
@@ -1223,7 +1238,7 @@
         <button type="button" onclick="clearData()" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
       </div>
       
-    </form>
+    {!! Form::close() !!}
   </div>
 
 @stop

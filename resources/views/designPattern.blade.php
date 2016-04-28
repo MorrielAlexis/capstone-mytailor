@@ -120,7 +120,8 @@
                       
                     <div id="edit{{ $pattern->strDesignPatternID }}" class="modal modal-fixed-footer">                     
                         <h5><font color = "#1b5e20"><center>EDIT SEGMENT PATTERN</center> </font> </h5>                        
-                        <form action="{{URL::to('editDesignPattern')}}" method="POST" enctype="multipart/form-data">
+
+                      {!! Form::open(['url' => 'editDesignPattern']) !!}
                         <div class="divider" style="height:2px"></div>
                         <div class="modal-content col s12">
                           
@@ -179,13 +180,14 @@
                           <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">OK</button>
                           <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
                         </div>
-                      </form>
+                      {!! Form::close() !!}
                    </div>  
                 
 
                 <div id="del{{ $pattern->strDesignPatternID }}" class="modal modal-fixed-footer">
                       <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS SEGMENT PATTERN?</center> </font> </h5>
-                        <form action="{{URL::to('delDesignPattern')}}" method="POST" enctype="multipart/form-data">
+                        
+                      {!! Form::open(['url' => 'delDesignPattern']) !!}
                         <div class="divider" style="height:2px"></div>
                         <div class="modal-content col s12">
 
@@ -228,7 +230,7 @@
                         <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">OK</button>
                         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
                       </div>
-                    </form>              
+                    {!! Form::close() !!}              
                     </div>
                   </td>
                 </tr>   
@@ -247,7 +249,8 @@
 
             <div id="addDesign" class="modal modal-fixed-footer">
               <h5><font color = "#1b5e20"><center>ADD NEW SEGMENT PATTERN</center> </font> </h5> 
-                <form action="{{URL::to('addDesignPattern')}}" method="POST" enctype="multipart/form-data">
+                
+              {!! Form::open(['url' => 'addDesignPattern']) !!}
                 <div class="divider" style="height:2px"></div>
                 <div class="modal-content col s12">
 
@@ -302,7 +305,7 @@
                 <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
                 <button type="button" onclick="clearData()" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
               </div>
-              </form>
+              {!! Form::close() !!}
             </div>	
         </div>
       </div>
