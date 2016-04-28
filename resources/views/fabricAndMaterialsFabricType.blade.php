@@ -117,7 +117,7 @@
                   <tr>
               		 <!--<td>{{ $fabricType->strFabricTypeID }}</td>-->
              		  <td>{{ $fabricType->strFabricTypeName }}</td>
-              		  <td>{{ $fabricType->strFabricTypeDesc}}</td>
+              		  <td>{{ $fabricType->txtFabricTypeDesc}}</td>
               		  <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of fabric type" href="#edit{{$fabricType->strFabricTypeID}}">EDIT</button></td>
                     <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of fabric type from the table" href="#del{{$fabricType->strFabricTypeID}}">DEACTIVATE</button></td>
               	
@@ -141,7 +141,7 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                         <div class="input-field col s12">
-                          <input required value = "{{ $fabricType->strFabricTypeDesc }}" id="editFabricTypeDesc" name = "editFabricTypeDesc" type="text" class="validateTypeDesc">
+                          <input required value = "{{ $fabricType->txtFabricTypeDesc }}" id="editFabricTypeDesc" name = "editFabricTypeDesc" type="text" class="validateTypeDesc">
                           <label for="fabrictype_description">*Fabric Desription </label>
                         </div>  
                   </div>
@@ -177,7 +177,7 @@
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
                             <label for="middle_name">Fabric Desription </label>
-                            <input value="{{$fabricType->strFabricTypeDesc}}" id="delFabricDesc" name="delFabricDesc" type="text" readonly>
+                            <input value="{{$fabricType->txtFabricTypeDesc}}" id="delFabricDesc" name="delFabricDesc" type="text" readonly>
                           </div>
                       </div>
 
