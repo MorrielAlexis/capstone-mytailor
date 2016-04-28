@@ -24,7 +24,7 @@ class EmployeeController extends Controller
             ->select('strEmpRoleID', 'strEmpRoleName', 'boolIsActive')
             ->get();  
         */
-        $roles = EmployeeRole::all();
+        $roles = EmployeeRole::lists('strEmpRoleName', 'strEmpRoleID');
 
         $reason = Employee::all(); /*dummy lang wala pang model un reasons e*/
 
