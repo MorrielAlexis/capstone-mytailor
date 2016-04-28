@@ -29,13 +29,15 @@ class EmployeeController extends Controller
         $reason = Employee::all(); /*dummy lang wala pang model un reasons e*/
 
 
-        $newID = 0;
-        
 
-        $employee = EmployeeRole::with('employees')
-            ->join('tblEmployee', function($join){
-            $join->on('tblEmployee.strEmployeeID', '=', 'tblEmployeeRole.strEmpRoleID');
-            })->get();
+        $newID = 0;
+
+        $employee = Employee::all();
+
+        // $employee = EmployeeRole::with('employees')
+        //     ->join('tblEmployee', function($join){
+        //     $join->on('tblEmployee.strEmployeeID', '=', 'tblEmployeeRole.strEmpRoleID');
+        //     })->get();
 
         //load the view and pass the employees
         return view('employee')

@@ -113,7 +113,7 @@
              		<!--<td>{{ $pattern->strDesignPatternID }}</td>-->
                   <td>{{ $pattern->strGarmentCategoryName }}</td>
                   <td>{{ $pattern->strGarmentSegmentName }}</td>
-              		<td>{{ $pattern->strPatternName }}</td>
+              		<td>{{ $pattern->strSegPName }}</td>
                   <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($pattern->strPatternImage)}}"></td>
               		<td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of pattern" href="#edit{{ $pattern->strDesignPatternID }}">EDIT</button></td>
                   <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="CLick to remove data of pattern from table" href="#del{{ $pattern->strDesignPatternID }}">DEACTIVATE</button>

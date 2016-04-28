@@ -136,6 +136,7 @@
                     @endif
                   </td>
                   <td>{{ $employee->strEmpHouseNo }} {{ $employee->strEmpStreet }} {{ $employee->strEmpBarangay }} {{ $employee->strEmpCity }} {{ $employee->strEmpProvince }}  {{ $employee->strEmpZipCode }} </td>
+                  
                   <td>{{ $employee->strEmpRoleName}}</td>                  
                   <td>{{ $employee->strCellNo }}</td> 
                   <td>{{ $employee->strCellNoAlt }}</td> 

@@ -24,7 +24,7 @@ class CatalogueController extends Controller
 
         $newID = 0;
 
-        $catalogue = GarmentCategory::all();
+        $catalogue = Catalogue::all();
         
         //load the view and pass the employee roles
         return view('catalogue')

@@ -120,9 +120,8 @@
                 @foreach($category as $category)
                   @if($category->boolIsActive == 1)
                   <tr>
-                    <!--<td>{{ $category->strGarmentCategoryID }}</td>-->
                     <td>{{ $category->strGarmentCategoryName }}</td>
-                    <td>{{ $category->strGarmentCategoryDesc }}</td>
+                    <td>{{ $category->textGarmentCategoryDesc }}</td>
                     <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of category" href="#edit{{ $category->strGarmentCategoryID }}">EDIT</button></td>
                     <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of category from the table" href="#del{{ $category->strGarmentCategoryID }}">DEACTIVATE</button></td>
               
@@ -147,7 +146,7 @@
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                               <div class="input-field col s12">
-                                <input required value= "{{ $category->strGarmentCategoryDesc }}" id="editGarmentDescription" name="editGarmentDescription" name="GarmentDescription" type="text" class="validateGarmentDesc">
+                                <input required value= "{{ $category->textGarmentCategoryDesc }}" id="editGarmentDescription" name="editGarmentDescription" name="GarmentDescription" type="text" class="validateGarmentDesc">
                                 <label for="garment_description">*Garment Desription </label>
                               </div>
                           </div>
@@ -180,7 +179,7 @@
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                               <input  value= "{{ $category->strGarmentCategoryDesc }}" type="text" class="" readonly>
+                               <input  value= "{{ $category->textGarmentCategoryDesc }}" type="text" class="" readonly>
                                 <label for="garment_description">Garment Desription </label>
                               </div>
                           </div>
@@ -191,7 +190,7 @@
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                               <div class="input-field">
-                                <input value="{{ $category->strInactiveReason }}" type="text" id="delInactiveReason" name="delInactiveReason" class="validate" required>
+                                <input value="{{ $category->strGarmentCategoryInactiveReason }}" type="text" id="delInactiveReason" name="delInactiveReason" class="validate" required>
                                 <label for="reason"> *Reason for Deactivation </label>
                               </div>
                           </div>

@@ -32,7 +32,7 @@ class SwatchController extends Controller
         $newID = 0;
         
 
-        $swatch = FabricType::all();
+        $swatch = Swatch::all();
 
         //load the view and pass the employees
         return view('fabricAndMaterialsSwatches')

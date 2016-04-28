@@ -81,7 +81,7 @@
 
     <div class="row">
       <div class="col s12 m12 l12">
-        <button style="color:black; margin-right:35px; margin-left: 20px" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to add a new swatch to the table" href="#addSwatches">ADD FABRIC SWATCH</button>
+        <button style="color:black; margin-right:35px; margin-left: 20px" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to add a new swatch to the table" href="#addSwatches">ADD SWATCH</button>
       </div>
     </div>
   </div>
@@ -91,7 +91,7 @@
   <div class="row">
     <div class="col s12 m12 l12">
     	<div class="card-panel">
-        <span class="card-title"><h5 style="color:#1b5e20"><center>Swatches Details</center></h5></span>
+        <span class="card-title"><h5 style="color:#1b5e20"><center>Swatch Details</center></h5></span>
         <div class="divider"></div>
         <div class="card-content">
             <div class="col s12 m12 l12 overflow-x">
@@ -99,8 +99,7 @@
       				<table class = "table centered data-swatches" align = "center" border = "1">
        				 <thead>
           				<tr>
-                    <!--<th date-field="Swatch ID">Swatch ID</th>-->
-              			<th data-field="Swatch fabric type Name">Swatch Fabric Type Name</th>
+              			<th data-field="Swatch Type">Swatch Type</th>
              		  	<th data-field="SwatchName">Swatch Name</th>
                     <th data-field="SwatchCode">Swatch Code</th>
               			<th data-field="SwatchImage">Image</th>
@@ -139,9 +138,9 @@
                                   <option disabled selected value="">*Fabric Type</option>
                                   @foreach($fabricType as $fab)
                                     @if($swatch->strSwatchFabricTypeName == $fab->strFabricTypeID && $fab->boolIsActive == 1)
-                                      <option selected value="{{ $fab->strFabricTypeID }}">{{ $fab->strFabricTypeName }}</option>
+                                      <option selected value="{{ $fab->strFabricTypeID }}">{{ $fab->strSwatchFabricTypeNamestrSwatchFabricTypeName }}</option>
                                     @elseif($fab->boolIsActive == 1)
-                                      <option value="{{ $fab->strFabricTypeID }}">{{ $fab->strFabricTypeName }}</option>
+                                      <option value="{{ $fab->strFabricTypeID }}">{{ $fab->strSwatchFabricTypeName }}</option>strSwatchFabricTypeName
                                     @endif
                                   @endforeach
                                 </select>
@@ -194,7 +193,7 @@
 
                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                  <input type="text" value="{{$swatch->strFabricTypeName}}" readonly>
+                                  <input type="text" value="{{$swatch->strSwatchFabricTypeName}}" readonly>
                                   <label>Fabric Type</label>
                               </div>
                         </div>  
@@ -217,7 +216,7 @@
 
                         <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                               <div class="input-field col s12">
-                                <input value="{{$swatch->strInactiveReason}}" id="delInactiveReason" name= "delInactiveReason" type="text" class="" required>
+                                <input value="{{$swatch->strSwatchInactiveReason}}" id="delInactiveReason" name= "delInactiveReason" type="text" class="" required>
                                 <label for="swatch_code">*Reason for Deactivation </label>
                               </div> 
                         </div>                
@@ -258,10 +257,10 @@
                 <div class = "col s12" style="padding:15px;  border:3px solid white;">
                     <div class="input-field col s12">
                       <select class="browser-default" name='addFabric' id='addFabric' required>
-                         <option disabled selected value="">*Fabric Type</option>
+                         <option disabled selected value="">*Swatch Type</option>
                           @foreach($fabricType as $fab)
                             @if($fab->boolIsActive == 1)
-                              <option value="{{ $fab->strFabricTypeID }}">{{ $fab->strFabricTypeName }}</option>
+                              <option value="{{ $fab->strFabricTypeID }}">{{ $fab->strSwatchFabricTypeName }}</option>
                             @endif
                           @endforeach
                       </select>

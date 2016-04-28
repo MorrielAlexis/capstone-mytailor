@@ -24,7 +24,7 @@ class GarmentSegmentController extends Controller
 
         $newID = 0;
 
-        $segment = GarmentCategory::all();
+        $segment = GarmentSegment::all();
         
         //load the view and pass the garment segment
         return view('garmentsDetails')
