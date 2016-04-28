@@ -113,17 +113,17 @@
                     @foreach($individual as $individual)
                     @if($individual->boolIsActive == 1)
                   <tr>
-                    <td>{{ $individual->strCustPrivFName }} {{ $individual->strCustPrivMName }} {{ $individual->strCustPrivLName }}</td>
-                    <td>{{ $individual->strCustPrivHouseNo }} {{ $individual->strCustPrivStreet }} {{ $individual->strCustPrivBarangay }} {{ $individual->strCustPrivCity }} {{ $individual->strCustPrivProvince }}  {{ $individual->strCustPrivZipCode }} </td>
-                    <td>{{ $individual->strCustPrivEmailAddress}}</td>                  
-                    <td>{{ $individual->strCustPrivCPNumber }}</td> 
-                    <td>{{ $individual->strCustPrivCPNumberAlt }}</td> 
-                    <td>{{ $individual->strCustPrivLandlineNumber }}</td>
-                    <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-2" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of customer" href="#edit{{$individual->strCustPrivIndivID}}">EDIT</button></td>      
-                    <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-2" data-position="bottom" data-delay="50" data-tooltip="Click to remove customer from table" href="#del{{$individual->strCustPrivIndivID}}">DEACTIVATE</button></td>
+                    <td>{{ $individual->strIndivFName }} {{ $individual->strIndivMName }} {{ $individual->strIndivLName }}</td>
+                    <td>{{ $individual->strIndivHouseNo }} {{ $individual->strIndivStreet }} {{ $individual->strIndivBarangay }} {{ $individual->strIndivCity }} {{ $individual->strIndivProvince }}  {{ $individual->strIndivZipCode }} </td>
+                    <td>{{ $individual->strIndivEmailAddress}}</td>                  
+                    <td>{{ $individual->strIndivCPNumber }}</td> 
+                    <td>{{ $individual->strIndivCPNumberAlt }}</td> 
+                    <td>{{ $individual->strIndivLandlineNumber }}</td>
+                    <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-2" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of customer" href="#edit{{$individual->strIndivID}}">EDIT</button></td>      
+                    <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-2" data-position="bottom" data-delay="50" data-tooltip="Click to remove customer from table" href="#del{{$individual->strIndivID}}">DEACTIVATE</button></td>
 
 
-                    <div id="edit{{$individual->strCustPrivIndivID}}" class="modal modal-fixed-footer">                     
+                    <div id="edit{{$individual->strIndivID}}" class="modal modal-fixed-footer">                     
                       <h5><font color = "#1b5e20"><center>EDIT INDIVIDUAL'S CUSTOMER PROFILE</center> </font> </h5>
                           {!! Form::open(['url' => 'editCustPrivIndiv']) !!}
                             <div class="divider" style="height:2px"></div>
@@ -132,7 +132,7 @@
 
                                <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                   <div class="input-field col s12">                 
-                                    <input value="{{$individual->strCustPrivIndivID}}" id="editIndiID" name="editIndiID" type="text" class="" readonly>
+                                    <input value="{{$individual->strIndivID}}" id="editIndiID" name="editIndiID" type="text" class="" readonly>
                                     <label for="indi_id">Individual ID </label>
                                   </div>
                                 </div>
@@ -140,77 +140,77 @@
 
                                 <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                   <div class="input-field col s4">
-                                    <input required id="editFName" name = "editFName" value = "{{$individual->strCustPrivFName}}" type="text" class="validateFirst">
+                                    <input required id="editFName" name = "editFName" value = "{{$individual->strIndivFName}}" type="text" class="validateFirst">
                                     <label for="first_name"> *First Name </label>
                                   </div>
 
                                   <div class="input-field col s4">
-                                    <input  id="editMName" name = "editMName" value = "{{$individual->strCustPrivMName}}" type="text" class="validateMiddle">
+                                    <input  id="editMName" name = "editMName" value = "{{$individual->strIndivMName}}" type="text" class="validateMiddle">
                                     <label for="middle_name"> Middle Name </label>
                                   </div>
 
                                   <div class="input-field col s4">
-                                    <input required id="editLName" name = "editLName" value = "{{$individual->strCustPrivLName}}" type="text" class="validateLast">
+                                    <input required id="editLName" name = "editLName" value = "{{$individual->strIndivLName}}" type="text" class="validateLast">
                                     <label for="last_name"> *Last Name </label>
                                   </div>
                                 </div>
 
                                 <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                   <div class="input-field col s3">
-                                    <input required value="{{$individual->strCustPrivHouseNo}}" id="editCustPrivHouseNo" name="editCustPrivHouseNo" type="text" class="validateHouseNo">
+                                    <input required value="{{$individual->strIndivHouseNo}}" id="editCustPrivHouseNo" name="editCustPrivHouseNo" type="text" class="validateHouseNo">
                                     <label for="House No">*House No. </label>
                                   </div>
 
                                   <div class="input-field col s3">
-                                    <input required value="{{$individual->strCustPrivStreet }}" id="editCustPrivStreet" name="editCustPrivStreet" type="text" class="validateStreet">
+                                    <input required value="{{$individual->strIndivStreet }}" id="editCustPrivStreet" name="editCustPrivStreet" type="text" class="validateStreet">
                                     <label for=" Street">*Street </label>
                                   </div>
 
                                   <div class="input-field col s3">
-                                    <input value="{{$individual->strCustPrivBarangay}}" id="editCustPrivBarangay" name="editCustPrivBarangay" type="text" class="validateBarangay">
+                                    <input value="{{$individual->strIndivBarangay}}" id="editCustPrivBarangay" name="editCustPrivBarangay" type="text" class="validateBarangay">
                                     <label for=" Brgy">Barangay </label>
                                   </div>
 
                                   <div class="input-field col s3">
-                                    <input required value="{{$individual->strCustPrivCity}}" id="editCustPrivCity" name="editCustPrivCity" type="text" class="validateCity">
+                                    <input required value="{{$individual->strIndivCity}}" id="editCustPrivCity" name="editCustPrivCity" type="text" class="validateCity">
                                     <label for=" City">*City/Municipality </label>
                                   </div>
                                 </div>
 
                                 <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                   <div class="input-field col s6">
-                                    <input value="{{$individual->strCustPrivProvince}}" id="editCustPrivProvince" name="editCustPrivProvince" type="text" class="validateProvince">
+                                    <input value="{{$individual->strIndivProvince}}" id="editCustPrivProvince" name="editCustPrivProvince" type="text" class="validateProvince">
                                     <label for=" Province">Province </label>
                                   </div>
 
                                   <div class="input-field col s6">
-                                    <input value="{{$individual->strCustPrivZipCode}}" id="editCustPrivZipCode" name="editCustPrivZipCode" type="text" class="validateZip">
+                                    <input value="{{$individual->strIndivZipCode}}" id="editCustPrivZipCode" name="editCustPrivZipCode" type="text" class="validateZip">
                                     <label for=" Zip Code">Zip Code </label>
                                   </div>
                                 </div>
 
                                 <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                   <div class="input-field col s12">
-                                    <input id="editEmail" name = "editEmail" value = "{{$individual->strCustPrivEmailAddress}}" type="text" class="validateEmail">
+                                    <input id="editEmail" name = "editEmail" value = "{{$individual->strIndivEmailAddress}}" type="text" class="validateEmail">
                                     <label for="email"> *Email Address </label>
                                   </div>
                                 </div>
 
                                 <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                   <div class="input-field col s6">
-                                    <input required id="editCel" name = "editCel" value = "{{$individual->strCustPrivCPNumber}}" type="text" class="validateCell" maxlength="11">
+                                    <input required id="editCel" name = "editCel" value = "{{$individual->strIndivCPNumber}}" type="text" class="validateCell" maxlength="11">
                                     <label for="cellphone"> *Cellphone Number </label>
                                   </div>
                       
                                   <div class="input-field col s6">
-                                    <input id="editCelAlt" name = "editCelAlt" value = "{{$individual->strCustPrivCPNumberAlt}}" type="text" class="validateCellAlt" maxlength="11">
+                                    <input id="editCelAlt" name = "editCelAlt" value = "{{$individual->strIndivCPNumberAlt}}" type="text" class="validateCellAlt" maxlength="11">
                                     <label for="cellphone"> *Cellphone Number (alternate)</label>
                                   </div>
                                 </div>
 
                                 <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                                   <div class="input-field col s12">
-                                    <input id="editPhone" name = "editPhone" value = "{{$individual->strCustPrivLandlineNumber}}" type="text" class="validatePhone" maxlength="10">
+                                    <input id="editPhone" name = "editPhone" value = "{{$individual->strIndivLandlineNumber}}" type="text" class="validatePhone" maxlength="10">
                                     <label for="tel"> Telephone Number </label>
                                   </div>
                                 </div>
@@ -239,27 +239,27 @@
                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s4">
                             <label for="first_name">First Name </label>
-                            <input value="{{$individual->strCustPrivFName}}" id="delIndivFName" name="delIndivFName" type="text" readonly>
+                            <input value="{{$individual->strIndivFName}}" id="delIndivFName" name="delIndivFName" type="text" readonly>
                           </div>
 
                            <div class="input-field col s4">
                             <label for="middle_name">Middle Name </label>
-                            <input value="{{$individual->strCustPrivMName}}" id="delIndivMName" name="delIndivMName" type="text" readonly>
+                            <input value="{{$individual->strIndivMName}}" id="delIndivMName" name="delIndivMName" type="text" readonly>
                           </div>
 
                           <div class="input-field col s4">
-                            <input value="{{$individual->strCustPrivLName}}" id="delIndivLName" name="delIndivLName" type="text" readonly>
+                            <input value="{{$individual->strIndivLName}}" id="delIndivLName" name="delIndivLName" type="text" readonly>
                             <label for="LastName">Last Name </label>
                           </div>
                         </div>
 
                           <div class="input-field col s12">
-                            <input id="delInactiveIndiv" name = "delInactiveIndiv" value = "{{$individual->strCustPrivIndivID}}" type="hidden">
+                            <input id="delInactiveIndiv" name = "delInactiveIndiv" value = "{{$individual->strIndivID}}" type="hidden">
                           </div>
 
                         <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                           <div class="input-field col s12">
-                            <input id="delInactiveReason" name = "delInactiveReason" value = "{{$individual->strInactiveReason}}" type="text" class="validate" required>
+                            <input id="delInactiveReason" name = "delInactiveReason" value = "{{$individual->strIndivInactiveReason}}" type="text" class="validate" required>
                             <label for="fax"> *Reason for Deactivation </label>
                           </div>
                         </div>

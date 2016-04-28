@@ -116,19 +116,19 @@
                 @foreach($company as $company)
                   @if($company->boolIsActive == 1)
                 <tr>
-                  <td>{{ $company->strCustCompanyName }}</td>
-                  <td>{{ $company->strCustCompanyHouseNo }} {{ $company->strCustCompanyStreet }} {{ $company->strCustCompanyBarangay }} {{ $company->strCustCompanyCity }} {{ $company->strCustCompanyProvince }}  {{ $company->strCustCompanyZipCode }} </td>
-                  <td>{{ $company->strCustContactPerson }} </td>
-                  <td>{{ $company->strCustCompanyEmailAddress}}</td>                  
-                  <td>{{ $company->strCustCompanyCPNumber }}</td> 
-                  <td>{{ $company->strCustCompanyCPNumberAlt }}</td> 
-                  <td>{{ $company->strCustCompanyTelNumber }}</td>                  
-                  <td>{{ $company->strCustCompanyFaxNumber }}</td>        
-                  <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of customer" href="#edit{{$company->strCustCompanyID}}">EDIT</button></td>    
-                  <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to remove customer from table" href="#del{{$company->strCustCompanyID}}">DEACTIVATE</button></td>
+                  <td>{{ $company->strCompanyName }}</td>
+                  <td>{{ $company->strCompanyBuildingNo }} {{ $company->strCompanyStreet }} {{ $company->strCompanyBarangay }} {{ $company->strCompanyCity }} {{ $company->strCompanyProvince }}  {{ $company->strCompanyZipCode }} </td>
+                  <td>{{ $company->strContactPerson }} </td>
+                  <td>{{ $company->strCompanyEmailAddress}}</td>                  
+                  <td>{{ $company->strCompanyCPNumber }}</td> 
+                  <td>{{ $company->strCompanyCPNumberAlt }}</td> 
+                  <td>{{ $company->strCompanyTelNumber }}</td>                  
+                  <td>{{ $company->strCompanyFaxNumber }}</td>        
+                  <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of customer" href="#edit{{$company->strCompanyID}}">EDIT</button></td>    
+                  <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to remove customer from table" href="#del{{$company->strCompanyID}}">DEACTIVATE</button></td>
                   
 
-                    <div id="edit{{$company->strCustCompanyID}}" class="modal modal-fixed-footer">                     
+                    <div id="edit{{$company->strCompanyID}}" class="modal modal-fixed-footer">                     
                      <h5><font color = "#1b5e20"><center>EDIT COMPANY'S CUSTOMER PROFILE</center> </font> </h5>                      
                         
                         {!! Form::open(['url' => 'editCustCompany']) !!}
@@ -138,84 +138,84 @@
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s12">                 
-                          <input value="{{$company->strCustCompanyID}}" id="editComID" name="editComID" type="text" class="" readonly>
+                          <input value="{{$company->strCompanyID}}" id="editComID" name="editComID" type="text" class="" readonly>
                           <label for="company_id">Company ID </label>
                         </div>
                     </div>
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s12">
-                          <input required id="editComName" name = "editComName" value = "{{$company->strCustCompanyName}}" type="text" class="validateComName">
+                          <input required id="editComName" name = "editComName" value = "{{$company->strCompanyName}}" type="text" class="validateComName">
                           <label for="company_name">*Company Name </label>
                         </div>
                     </div>
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s3">
-                            <input required value="{{$company->strCustCompanyHouseNo}}" id="editCustCompanyHouseNo" name="editCustCompanyHouseNo" type="text" class="validateHouseNo">
+                            <input required value="{{$company->strCompanyBuildingNo}}" id="editCustCompanyHouseNo" name="editCustCompanyHouseNo" type="text" class="validateHouseNo">
                             <label for="House No">*House No. </label>
                           </div>
 
                            <div class="input-field col s3">
-                            <input required value="{{$company->strCustCompanyStreet }}" id="editCustCompanyStreet" name="editCustCompanyStreet" type="text" class="validateStreet">
+                            <input required value="{{$company->strCompanyStreet }}" id="editCustCompanyStreet" name="editCustCompanyStreet" type="text" class="validateStreet">
                             <label for=" Street">*Street </label>
                           </div>
 
                           <div class="input-field col s3">
-                            <input value="{{$company->strCustCompanyBarangay}}" id="editCustCompanyBarangay" name="editCustCompanyBarangay" type="text" class="validateBarangay">
+                            <input value="{{$company->strCompanyBarangay}}" id="editCustCompanyBarangay" name="editCustCompanyBarangay" type="text" class="validateBarangay">
                             <label for=" Brgy">Barangay/Subd </label>
                           </div>
 
                           <div class="input-field col s3">
-                            <input required value="{{$company->strCustCompanyCity}}" id="editCustCompanyCity" name="editCustCompanyCity" type="text" class="validateCity">
+                            <input required value="{{$company->strCompanyCity}}" id="editCustCompanyCity" name="editCustCompanyCity" type="text" class="validateCity">
                             <label for=" City">*City/Municipality </label>
                           </div>
                     </div>
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s6">
-                            <input value="{{$company->strCustCompanyProvince}}" id="editCustCompanyProvince" name="editCustCompanyProvince" type="text" class="validateProvince">
+                            <input value="{{$company->strCompanyProvince}}" id="editCustCompanyProvince" name="editCustCompanyProvince" type="text" class="validateProvince">
                             <label for=" Province">Province </label>
                           </div>
 
                            <div class="input-field col s6">
-                            <input value="{{$company->strCustCompanyZipCode}}" id="editCustCompanyZipCode" name="editCustCompanyZipCode" type="text" class="validateZip">
+                            <input value="{{$company->strCompanyZipCode}}" id="editCustCompanyZipCode" name="editCustCompanyZipCode" type="text" class="validateZip">
                             <label for=" Zip Code">Zip Code </label>
                           </div>
                       </div>
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s6">
-                          <input required id="editConPerson" name = "editConPerson" value = "{{$company->strCustContactPerson}}" type="text" class="validateConPerson">
+                          <input required id="editConPerson" name = "editConPerson" value = "{{$company->strContactPerson}}" type="text" class="validateConPerson">
                           <label for="company_name">*Contact Person </label>
                         </div>
 
                         <div class="input-field col s6">
-                          <input required id="editComEmailAddress" name = "editComEmailAddress" value = "{{$company->strCustCompanyEmailAddress}}" type="text" class="validateEmail">
+                          <input required id="editComEmailAddress" name = "editComEmailAddress" value = "{{$company->strCompanyEmailAddress}}" type="text" class="validateEmail">
                           <label for="com_email_address">*Company Email Address </label>
                         </div>
                     </div>
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s6">
-                          <input required id="editCel" name = "editCel" value = "{{$company->strCustCompanyCPNumber}}" type="text" class="validateCell" maxlength="11">
+                          <input required id="editCel" name = "editCel" value = "{{$company->strCompanyCPNumber}}" type="text" class="validateCell" maxlength="11">
                           <label for="cellphone"> *Cellphone Number </label>
                         </div>
 
                         <div class="input-field col s6">
-                          <input id="editCelAlt" name = "editCelAlt" value = "{{$company->strCustCompanyCPNumberAlt}}" type="text" class="validateCellAlt" maxlength="11">
+                          <input id="editCelAlt" name = "editCelAlt" value = "{{$company->strCompanyCPNumberAlt}}" type="text" class="validateCellAlt" maxlength="11">
                           <label for="cellphone"> Cellphone Number (alternate)</label>
                         </div>
                     </div>
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                         <div class="input-field col s6">
-                          <input id="editPhone" name = "editPhone" value = "{{$company->strCustCompanyTelNumber}}" type="text" class="validatePhone" maxlength="10">
+                          <input id="editPhone" name = "editPhone" value = "{{$company->strCompanyTelNumber}}" type="text" class="validatePhone" maxlength="10">
                           <label for="tel"> Telephone Number </label>
                         </div>
 
                         <div class="input-field col s6">
-                          <input id="editFax" name = "editFax" value = "{{$company->strCustCompanyFaxNumber}}" type="text" class="validateFax" maxlength="9" minlength="9">
+                          <input id="editFax" name = "editFax" value = "{{$company->strCompanyFaxNumber}}" type="text" class="validateFax" maxlength="9" minlength="9">
                           <label for="fax"> Fax Number </label>
                         </div>
                     </div>
@@ -229,7 +229,7 @@
                     {!! Form::close() !!}
                    </div>
                    
-                   <div id="del{{$company->strCustCompanyID}}" class="modal modal-fixed-footer">                      
+                   <div id="del{{$company->strCompanyID}}" class="modal modal-fixed-footer">                      
                       <h5><font color="#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS CUSTOMER?</center></font></h5>                       
                         
                         {!! Form::open(['url' => 'delCustCompany']) !!}
@@ -239,48 +239,48 @@
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
                             <label for="first_name">Company ID </label>
-                            <input value="{{$company->strCustCompanyID}}" id="delCompanyID" name="delCompanyID" type="text" class="" readonly>
+                            <input value="{{$company->strCompanyID}}" id="delCompanyID" name="delCompanyID" type="text" class="" readonly>
                           </div>
                       </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
                             <label for="first_name">Company Name </label>
-                            <input value="{{$company->strCustCompanyName}}" id="delCompanyName" name="delCompanyName" type="text" class="" readonly>
+                            <input value="{{$company->strCompanyName}}" id="delCompanyName" name="delCompanyName" type="text" class="" readonly>
                           </div>
                       </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s6">
-                            <input value="{{$company->strCustContactPerson}}" id="delConPerson" name="delConPerson" type="text" class="" readonly>
+                            <input value="{{$company->strContactPerson}}" id="delConPerson" name="delConPerson" type="text" class="" readonly>
                             <label for="LastName">Contact Person </label>
                           </div>
 
                             <div class="input-field col s6">
-                            <input required id="delComEmailAddress" name = "delComEmailAddress" value = "{{$company->strCustCompanyEmailAddress}}" type="text" class="" readonly>
+                            <input required id="delComEmailAddress" name = "delComEmailAddress" value = "{{$company->strCompanyEmailAddress}}" type="text" class="" readonly>
                             <label for="com_email_address">Company Email Address </label>
                           </div>
                       </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s4">
-                            <input required id="delCel" name = "delCel" value = "{{$company->strCustCompanyCPNumber}}" type="text" class="" maxlength="11"readonly>
+                            <input required id="delCel" name = "delCel" value = "{{$company->strCompanyCPNumber}}" type="text" class="" maxlength="11"readonly>
                             <label for="cellphone"> Cellphone Number </label>
                           </div>
 
                           <div class="input-field col s4">
-                            <input required id="delPhone" name = "delPhone" value = "{{$company->strCustCompanyTelNumber}}" type="text" class="" maxlength="10" readonly>
+                            <input required id="delPhone" name = "delPhone" value = "{{$company->strCompanyTelNumber}}" type="text" class="" maxlength="10" readonly>
                             <label for="tel"> Telephone Number </label>
                           </div>
 
                           <div class="input-field col s4">
-                            <input id="delFax" name = "delFax" value = "{{$company->strCustCompanyFaxNumber}}" type="text" class="" maxlength="9" minlength="9" readonly>
+                            <input id="delFax" name = "delFax" value = "{{$company->strCompanyFaxNumber}}" type="text" class="" maxlength="9" minlength="9" readonly>
                             <label for="fax"> Fax Number </label>
                           </div>
                       </div>
 
                           <div class="input-field">
-                            <input id="delInactiveComp" name = "delInactiveComp" value = "{{$company->strCustCompanyID}}" type="hidden">
+                            <input id="delInactiveComp" name = "delInactiveComp" value = "{{$company->strCompanyID}}" type="hidden">
                           </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
