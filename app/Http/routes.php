@@ -69,6 +69,3 @@ Route::group(['prefix' => 'maintenance'], function(){
 		['only' => ['index']]);
 });
 
-//HONEY MAY NAPAKA PANGET MO TALAGA PROMISE SSAKTAN KITA NEX TIME <3
-//Pag di ka gumising bburahin ko to lahat xD
-//disconnect nko tinulugan moko ee
