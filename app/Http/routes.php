@@ -69,3 +69,20 @@ Route::group(['prefix' => 'maintenance'], function(){
 		['only' => ['index']]);
 });
 
+<<<<<<< Updated upstream
+=======
+Route::group(['prefix' => 'transaction/walkIn'], function(){
+	Route::resource('walkIndiv', 'WalkInIndividualController',
+		['only' => ['index']]);
+	Route::resource('walkCompany', 'WalkInCompanyController',
+		['only' => ['index']]);
+});
+
+Route::group(['prefix' => 'transaction/onlineCust'], function(){
+	Route::resource('onlineCustIndiv', 'OnlineCustomerIndividualController',
+		['only' => ['index']]);
+	Route::resource('onlineCustComp', 'OnlineCustomerCompanyController',
+		['only' => ['index']]);
+});
+
+>>>>>>> Stashed changes
