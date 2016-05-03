@@ -68,6 +68,20 @@ Route::group(['prefix' => 'maintenance'], function(){
 		['only' => ['index']]);
 });
 
-//HONEY MAY NAPAKA PANGET MO TALAGA PROMISE SSAKTAN KITA NEX TIME <3
-//Pag di ka gumising bburahin ko to lahat xD
-//disconnect nko tinulugan moko ee
+<<<<<<< Updated upstream
+=======
+Route::group(['prefix' => 'transaction/walkIn'], function(){
+	Route::resource('walkIndiv', 'WalkInIndividualController',
+		['only' => ['index']]);
+	Route::resource('walkCompany', 'WalkInCompanyController',
+		['only' => ['index']]);
+});
+
+Route::group(['prefix' => 'transaction/onlineCust'], function(){
+	Route::resource('onlineCustIndiv', 'OnlineCustomerIndividualController',
+		['only' => ['index']]);
+	Route::resource('onlineCustComp', 'OnlineCustomerCompanyController',
+		['only' => ['index']]);
+});
+
+>>>>>>> Stashed changes

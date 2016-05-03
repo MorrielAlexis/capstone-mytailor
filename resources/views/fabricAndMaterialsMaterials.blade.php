@@ -298,7 +298,7 @@
                         <td>{{$needle->strNeedleSize}}</td>
                         <td>{{$needle->strNeedleDesc}}</td>
                         <td><img class="materialboxed" width="650" src="{{URL::asset($needle->strNeedleImage)}}"></td>
-                        <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit needle detail" href="#edit{{  $needle->intNeedleID}}">EDIT</button></td>
+                        <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit needle detail" href="#edit{{$needle->intNeedleID}}">EDIT</button></td>
                         <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of needle detail from the table" href="#del{{$needle->intNeedleID}}">DEACTIVATE</button>
                             
                           <div id="edit{{$needle->intNeedleID}}" class="modal modal-fixed-footer">
