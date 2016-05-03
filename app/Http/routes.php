@@ -68,8 +68,7 @@ Route::group(['prefix' => 'maintenance'], function(){
 		['only' => ['index']]);
 });
 
-<<<<<<< Updated upstream
-=======
+
 Route::group(['prefix' => 'transaction/walkIn'], function(){
 	Route::resource('walkIndiv', 'WalkInIndividualController',
 		['only' => ['index']]);
@@ -84,4 +83,3 @@ Route::group(['prefix' => 'transaction/onlineCust'], function(){
 		['only' => ['index']]);
 });
 
->>>>>>> Stashed changes

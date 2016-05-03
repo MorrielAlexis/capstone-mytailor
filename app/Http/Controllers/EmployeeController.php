@@ -19,7 +19,15 @@ class EmployeeController extends Controller
     public function index()
     {
         //get all the employees
-        $newID = 0;
+        $ids = \DB::table('tblEmployee')
+            ->select('strEmployeeID')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('strEmployeeID', 'desc')
+            ->take(1)
+            ->get();
+
+        $ID = $ids["0"]->strEmployeeID;
+        $newID = $this->smartCounter($ID);  
 
         $roles =  \DB::table('tblEmployeeRole')
                 ->select('strEmpRoleID', 'strEmpRoleName', 'boolIsActive')
@@ -102,7 +110,11 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $employee = Employee::find($id);
+
+        $employee->boolIsActive = 0;
+
+        $employee->save();
     }
 
     function saveEmployee(Request $request){
@@ -187,9 +199,49 @@ class EmployeeController extends Controller
                     'strEmailAdd' => trim($request->input('addEmail')),
                     'boolIsActive' => 1
                 ));
-$employee->save();
-            }
-            
+                $employee->save();
+            }   
         }
+    }
+
+        public function smartCounter($id)
+    {   
+
+        $lastID = str_split($id);
+
+        $ctr = 0;
+        $tempID = "";
+        $tempNew = [];
+        $newID = "";
+        $add = TRUE;
+
+        for($ctr = count($lastID)-1; $ctr >= 0; $ctr--){
+
+            $tempID = $lastID[$ctr];
+
+            if($add){
+                if(is_numeric($tempID) || $tempID == '0'){
+                    if($tempID == '9'){
+                        $tempID = '0';
+                        $tempNew[$ctr] = $tempID;
+
+                    }else{
+                        $tempID = $tempID + 1;
+                        $tempNew[$ctr] = $tempID;
+                        $add = FALSE;
+                    }
+                }else{
+                    $tempNew[$ctr] = $tempID;
+                }           
+            }
+            $tempNew[$ctr] = $tempID;   
+        }
+
+        
+        for($ctr = 0; $ctr < count($lastID); $ctr++){
+            $newID = $newID . $tempNew[$ctr];
+        }
+
+        return $newID;
     }
 }
