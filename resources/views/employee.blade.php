@@ -180,7 +180,7 @@
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="col s6">
                             <p><font size = "-1" color = "gray">*Date of Birth </font></p>
-                            <input id="editdtEmpBday" name="editdtEmpBday" type="date" value="{{date("Y-m-d", strtotime( $employee->dtEmpBday ))}}" class = "datepicker">
+                            <input id="editdtEmpBday" required name="editdtEmpBday" type="date" value="{{date("Y-m-d", strtotime( $employee->dtEmpBday ))}}" class = "datepicker">
                           </div>  
 
                            <div class="input-field col s6" style="margin-top:47px">                                                    
@@ -458,7 +458,7 @@
                   </div>
 
                   <div class="input-field col s6">
-                    <input required id="addEmail" placeholder="capstone_email@gmail.com" name="addEmail" type="email" class="validateEmail">
+                    <input required id="addEmail" placeholder="capstone_email@gmail.com" name="addEmail" type="email" class="validate">
                     <label for="email" data-error="wrong" data-success="right">Email Address <span class="red-text"><b>*</b></span></label>
                   </div>
               </div>
