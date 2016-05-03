@@ -28,8 +28,7 @@ Route::group(['prefix' => 'maintenance'], function(){
 });
 
 Route::group(['prefix' => 'maintenance'], function(){
-	Route::resource('employee', 'EmployeeController',
-		['only' => ['index']]);
+	Route::resource('employee', 'EmployeeController');
 
 	Route::resource('role', 'EmployeeRoleController',
 		['only' => ['index']]);

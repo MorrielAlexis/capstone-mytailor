@@ -323,12 +323,6 @@
                             <input id="delInactiveEmp" name = "delInactiveEmp" value = "{{$employee->strEmployeeID}}" type="hidden">
                           </div>
 
-                        <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
-                          <div class="input-field col s12">
-                            <input id="delInactiveReason" name = "delInactiveReason" value = "{{$employee->strInactiveReason}}" type="text" class="validate" required>
-                            <label for="fax"> *Reason for Deactivation </label>
-                          </div>
-                        </div>
                         </div>   
 
                         <div class="modal-footer col s12" style="background-color:#26a69a">
@@ -353,7 +347,7 @@
     			<div id="newemp" class="modal modal-fixed-footer">              
             <h5><font color = "#1b5e20"><center>ADD NEW EMPLOYEE PROFILE</center> </font> </h5>
               
-              {!! Form::open(['url' => 'addEmployee']) !!}
+              {!! Form::open(['url' => 'employee', 'method' => 'post']) !!}
                 <div class="divider" style="height:2px"></div>
                 <div class="modal-content col s12">
 
@@ -366,18 +360,18 @@
 
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s4">
-                    <input required id="addFirstName" name="addFirstName" type="text" class="validateFirst">
-                    <label for="first_name">*First Name </label>
+                      <input name="addFirstName" placeholder="Ex: Hope" id="addFirstName" type="text" class="validate tooltipped specialname" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="15" minlength="2">
+                      <label for="addFirstName" class="active">First Name<span class="red-text"><b>*</b></span></label>
                   </div>
 
                   <div class="input-field col s4">
-                    <input id="addMiddleName" name="addMiddleName" type="text" class="validateMiddle">
-                    <label for="middle_name">Middle Name </label>
+                    <input name="addMiddleName" placeholder="Ex: Elizabeth" id="addMiddleName" type="text" data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="15" minlength="2">
+                    <label for="strMiddleName" class="active">Middle Name</label>
                   </div>
 
                   <div class="input-field col s4">
-                    <input required id="addLastName" name="addLastName" type="text" class="validateLast">
-                    <label for="last_name">*Last Name </label>
+                    <input name="addLastName" placeholder="Ex: Soberano" id="addLastName" type="text" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="15" minlength="2">
+                    <label for="strLastName" class="active">Last Name<span class="red-text"><b>*</b></span></label>
                   </div>
               </div>
 
@@ -490,7 +484,6 @@
 
 
 @section('scripts')
-    {!! Html::script('js/employee_validation.js'); !!}
 
     <script>
     $( document ).ready(function() {
