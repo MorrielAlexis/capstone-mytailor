@@ -63,7 +63,29 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        $this->saveEmployee($request);
+        $emp = Employee::get();
+
+            $employee = Employee::create(array(
+                'strEmployeeID' => $request->input('addEmpID'),
+                'strEmpFName' => trim($request->input('addFirstName')),  
+                'strEmpMName' => trim($request->input('addMiddleName')), 
+                'strEmpLName' => trim($request->input('addLastName')),
+                'dtEmpBday' => date("Y-m-d", strtotime($request->input("addDtEmpBday"))),
+                'strSex' => $request->input('addSex'),
+                'strEmpHouseNo' => trim($request->input('addEmpHouseNo')),   
+                'strEmpStreet' => trim($request->input('addEmpStreet')),
+                'strEmpBarangay' => trim($request->input('addEmpBarangay')), 
+                'strEmpCity' => trim($request->input('addEmpCity')), 
+                'strEmpProvince' => trim($request->input('addEmpProvince')),
+                'strEmpZipCode' => trim($request->input('addEmpZipCode')),
+                'strRole' => $request->input('addRoles'), 
+                'strCellNo' => trim($request->input('addCellNo')),
+                'strCellNoAlt' => trim($request->input('addCellNoAlt')),
+                'strPhoneNo' => trim($request->input('addPhoneNo')),
+                'strEmailAdd' => trim($request->input('addEmail')),
+                'boolIsActive' => 1
+            ));
+            $employee->save();
 
         return redirect('maintenance/employee');
     }
@@ -109,39 +131,46 @@ class EmployeeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
+    {   
+        //
+    }
+
+    function updateEmployee(Request $request)
+    {        
+            $employee = Employee::find($request->input('editEmpID'));
+
+                $employee->strEmpFName = trim($request->input('editFirstName')); 
+                $employee->strEmpLName = trim($request->input('editLastName'));  
+                $employee->strEmpMName = trim($request->input('editMiddleName'));    
+                $employee->dtEmpBday = date("Y-m-d", strtotime($request->input("editDtEmpBday")));
+                $employee->strSex = $request->input('editSex');
+                $employee->strEmpHouseNo = trim($request->input('editEmpHouseNo'));
+                $employee->strEmpStreet = trim($request->input('editEmpStreet'));
+                $employee->strEmpBarangay = trim($request->input('editEmpBarangay'));
+                $employee->strEmpCity = trim($request->input('editEmpCity'));
+                $employee->strEmpProvince = trim($request->input('editEmpProvince'));
+                $employee->strEmpZipCode = trim($request->input('editEmpZipCode'));
+                $employee->strRole = $request->input('editRoles');
+                $employee->strCellNo = trim($request->input('editCellNo'));
+                $employee->strCellNoAlt = trim($request->input('editCellNoAlt'));
+                $employee->strPhoneNo = trim($request->input('editPhoneNo'));
+                $employee->strEmailAdd = trim($request->input('editEmail'));
+
+            $employee->save();
+
+            return redirect('maintenance/employee');
+
+    }
+
+    function deleteEmployee(Request $request)
     {
-        $employee = Employee::find($id);
+        $employee = Employee::find($request->input('delEmpID'));
 
         $employee->boolIsActive = 0;
 
         $employee->save();
-    }
-
-    function saveEmployee(Request $request){
-        $emp = Employee::get();
-
-            $employee = Employee::create(array(
-                'strEmployeeID' => $request->input('addEmpID'),
-                'strEmpFName' => trim($request->input('addFirstName')),  
-                'strEmpMName' => trim($request->input('addMiddleName')), 
-                'strEmpLName' => trim($request->input('addLastName')),
-                'dtEmpBday' => date("Y-m-d", strtotime($request->input("addDtEmpBday"))),
-                'strSex' => $request->input('addSex'),
-                'strEmpHouseNo' => trim($request->input('addEmpHouseNo')),   
-                'strEmpStreet' => trim($request->input('addEmpStreet')),
-                'strEmpBarangay' => trim($request->input('addEmpBarangay')), 
-                'strEmpCity' => trim($request->input('addEmpCity')), 
-                'strEmpProvince' => trim($request->input('addEmpProvince')),
-                'strEmpZipCode' => trim($request->input('addEmpZipCode')),
-                'strRole' => $request->input('addRoles'), 
-                'strCellNo' => trim($request->input('addCellNo')),
-                'strCellNoAlt' => trim($request->input('addCellNoAlt')),
-                'strPhoneNo' => trim($request->input('addPhoneNo')),
-                'strEmailAdd' => trim($request->input('addEmail')),
-                'boolIsActive' => 1
-            ));
-            $employee->save();
-
+        
+        return redirect('maintenance/employee');
     }
 
     public function smartCounter($id)

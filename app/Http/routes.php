@@ -30,6 +30,9 @@ Route::group(['prefix' => 'maintenance'], function(){
 Route::group(['prefix' => 'maintenance'], function(){
 	Route::resource('employee', 'EmployeeController');
 
+	Route::post('employee/update', 'EmployeeController@updateEmployee');
+	Route::post('employee/destroy', 'EmployeeController@deleteEmployee');
+
 	Route::resource('role', 'EmployeeRoleController',
 		['only' => ['index']]);
 
