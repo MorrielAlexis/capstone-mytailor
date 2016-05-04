@@ -167,7 +167,7 @@
                     <li class="no-padding">
                       <ul class="collapsible collapsible-accordion">
 
-                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('utilities/inactiveData') ? 'active' : '' }}" href="{{URL::to('utilities/inactiveData')}}"><b>Inactive Data</b></a></li>
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('utilities/inactiveData') ? 'active' : '' }}" href= "{{URL::to('utilities/inactiveData')}}"><b>Inactive Data</b></a></li>
 
                       </ul>
                     </li>
