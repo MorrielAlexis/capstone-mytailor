@@ -497,7 +497,7 @@
                         <td>{{ $detail_1->strMeasurementDetailDesc }}</td>
                         <td>{{ $detail_1->strInactiveReason }}</td>
                         <td>
-                          {!! Form::open(['url' => 'reactMeasurementDetail]) !!}
+                          {!! Form::open(['url' => 'reactMeasurementDetail']) !!}
                             <input type="hidden" id="reactID" name="reactID" value="{{ $detail_1->strMeasurementDetailID }}">
                             <input type="hidden" id="reactInactiveDetail" name="reactInactiveDetail" value="{{ $detail_1->strMeasurementDetailID }}">
                             <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of segment to the table">REACTIVATE</button>
@@ -601,7 +601,7 @@
                         <td>{{ $swatch_1->strInactiveReason }}</td>
                         <td>
 
-                          {!! Form::open(['url' => ''reactSwatch]) !!}
+                          {!! Form::open(['url' => 'reactSwatch']) !!}
 
                             <input type="hidden" value="{{ $swatch_1->strSwatchID }}" id="reactID" name="reactID">
                             <input type="hidden" value="{{ $swatch_1->strSwatchID }}" id="reactInactiveSwatch" name="reactInactiveSwatch">

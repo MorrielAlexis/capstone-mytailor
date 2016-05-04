@@ -87,6 +87,6 @@ Route::group(['prefix' => 'transaction/onlineCust'], function(){
 });
 
 Route::group(['prefix' => 'utilities'], function(){
-	Route::resource('inactiveData', 'InactiveDataController',
+	Route::resource('inactive', 'InactiveDataController',
 		['only' => ['index']]);
 });

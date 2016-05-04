@@ -23,30 +23,30 @@ class MeasurementCategoryController extends Controller
     {
         //get all the category
 
-        $garCategory =  GarmentCategory::all();
+        $category =  GarmentCategory::all();
 
-        $garSegment = GarmentSegment::all();
+        $segment = GarmentSegment::all();
 
-        $measureDetail = MeasurementDetail::all();
+        $detailList = MeasurementDetail::all();
 
 
         $reason = MeasurementCategory::all(); /*dummy lang wala pang model un reasons e*/
 
 
-        $newID = 0;
+        $categoryNewID = 0;
         
 
-        $measureCategory = MeasurementDetail::all();
+        $head = MeasurementDetail::all();
        
 
         //load the view and pass the employees
         return view('measurementCategory')
-                    ->with('measureCategory', $measureCategory)
-                    ->with('garCategory', $garCategory)
-                    ->with('garSegment', $garSegment)
-                    ->with('measureDetail', $measureDetail)
+                    ->with('head', $head)
+                    ->with('category', $category)
+                    ->with('segment', $segment)
+                    ->with('detailList', $detailList)
                     ->with('reason', $reason)
-                    ->with('newID', $newID);
+                    ->with('categoryNewID', $categoryNewID);
 
     }
 
