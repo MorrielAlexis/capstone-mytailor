@@ -149,38 +149,38 @@
                    <div id="edit{{$employee->strEmployeeID}}" class="modal modal-fixed-footer">                       
                     <h5><font color = "#1b5e20"><center>EDIT EMPLOYEE'S PROFILE</center> </font> </h5>
                         
-                      {!! Form::open(['url' => 'editEmployee']) !!} 
+                      {!! Form::open(['url' => 'maintenance/employee/update']) !!} 
                         <div class="divider" style="height:2px"></div>
                         <div class="modal-content col s12">
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <label for="first_name">Employee ID </label>
                             <input value="{{$employee->strEmployeeID}}" id="editEmpID" name="editEmpID" type="text" class="" readonly>
+                            <label for="first_name">Employee ID </label>
                           </div>
                       </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s4">
-                            <input required value="{{$employee->strEmpFName}}" id="editFirstName" name="editFirstName" type="text" class="validateFirst">
-                            <label for="first_name">*First Name </label>
+                            <input required value="{{$employee->strEmpFName}}" id="editFirstName" name="editFirstName" placeholder="Hope" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2">
+                            <label for="first_name">First Name <span class="red-text"><b>*</b></span> </label>
                           </div>
 
                           <div class="input-field col s4">
-                            <input value="{{$employee->strEmpMName}}" id="editMiddleName" name="editMiddleName" type="text" class="validateMiddle">
+                            <input value="{{$employee->strEmpMName}}" id="editMiddleName" name="editMiddleName" placeholder="Elizabeth" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2">
                             <label for="middle_name">Middle Name </label>
                           </div>
 
                           <div class="input-field col s4">
-                            <input required value="{{$employee->strEmpLName}}" id="editLastName" name="editLastName" type="text" class="validateLast">
-                            <label for="LastName">*Last Name </label>
+                            <input required value="{{$employee->strEmpLName}}" id="editLastName" name="editLastName" placeholder="Soberano" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2">
+                            <label for="LastName">Last Name <span class="red-text"><b>*</b></span></label>
                           </div>
                       </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="col s6">
-                            <p><font size = "-1" color = "gray">*Date of Birth </font></p>
-                            <input id="editdtEmpBday" name="editdtEmpBday" type="date" value="{{date("Y-m-d", strtotime( $employee->dtEmpBday ))}}" class = "datepicker">
+                            <p><font size = "-1" color = "gray">Date of Birth<span class="red-text"><b>*</b></span> </font></p>
+                            <input id="editDtEmpBday" required name="editDtEmpBday" type="date" class = "datepicker" placeholder="January 1, 1996"  value="{{date("Y-m-d", strtotime( $employee->dtEmpBday ))}}" class = "datepicker">
                           </div>  
 
                            <div class="input-field col s6" style="margin-top:47px">                                                    
@@ -198,38 +198,37 @@
                           </div>  
                         </div> 
 
-
                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s3">
-                            <input required value="{{$employee->strEmpHouseNo}}" id="editEmpHouseNo" name="editEmpHouseNo" type="text" class="validateHouseNo">
-                            <label for="Emp House No">*House No. </label>
+                            <input required value="{{$employee->strEmpHouseNo}}" id="editEmpHouseNo" pattern="[0-9a-zA-Z\-\s]+$" name="addEmpHouseNo" type="text" placeholder="1-A" class="validate">
+                            <label for="Emp House No">House No.<span class="red-text"><b>*</b></span> </label>
                           </div>
 
                            <div class="input-field col s3">
-                            <input required value="{{$employee->strEmpStreet}}" id="editEmpStreet" name="editEmpStreet" type="text" class="validateStreet">
-                            <label for="Emp Street">*Street </label>
+                            <input required value="{{$employee->strEmpStreet}}" id="editEmpStreet" name="editEmpStreet" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$" type="text" placeholder="Malunggay"class="validate">
+                            <label for="Emp Street">Street <span class="red-text"><b>*</b></span></label>
                           </div>
 
                           <div class="input-field col s3">
-                            <input value="{{$employee->strEmpBarangay}}" id="editEmpBarangay" name="editEmpBarangay" type="text" class="validateBarangay">
+                            <input value="{{$employee->strEmpBarangay}}" id="editEmpBarangay" name="editEmpBarangay" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$" type="text" placeholder="Daang Bakal" class="validate">
                             <label for="Emp Brgy">Barangay/Subd </label>
                           </div>
 
                           <div class="input-field col s3">
-                            <input required value="{{$employee->strEmpCity}}" id="editEmpCity" name="editEmpCity" type="text" class="validateCity">
-                            <label for="Emp City">*City/Municipality </label>
+                            <input required value="{{$employee->strEmpCity}}" id="editEmpCity" name="editEmpCity" pattern="^[a-zA-Z\'\-]+( [a-zA-Z\'\-]+)*$" type="text" placeholder="Mandaluyong" class="validate">
+                            <label for="Emp City">City/Municipality <span class="red-text"><b>*</b></span></label>
                           </div>
                         </div>
 
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s6">
-                            <input value="{{$employee->strEmpProvince}}" id="editEmpProvince" name="editEmpProvince" type="text" class="validateProvince">
+                            <input value="{{$employee->strEmpProvince}}" id="editEmpProvince" name="editEmpProvince" pattern="^[a-zA-Z\'\-\.]+( [a-zA-Z\'\-\.]+)*$" type="text" placeholder="Pampanga" class="validate">
                             <label for="Emp Province">Province </label>
                           </div>
 
                            <div class="input-field col s6">
-                            <input value="{{$employee->strEmpZipCode}}" id="editEmpZipCode" name="editEmpZipCode" type="text" class="validateZip">
+                            <input value="{{$employee->strEmpZipCode}}" id="editEmpZipCode" name="editEmpZipCode" pattern="^[0-9]+$" type="text" placeholder="1001" class="validate">
                             <label for="Emp Zip Code">Zip Code </label>
                           </div>
                       </div>
@@ -245,31 +244,31 @@
                                     @endif
                                 @endforeach
                             </select>    
-                            <label >Role</label>
+                            <label >Role<span class="red-text"><b>*</b></span></label>
                           </div> 
                         </div>
 
                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s6">
-                            <input required value="{{$employee->strCellNo}}" id="editCellNo" name="editCellNo" type="text" class="validateCell" maxlength="11">
-                            <label for="cellphone_number">*Cellphone Number </label>
+                            <input required value="{{$employee->strCellNo}}" id="editCellNo" name="editCellNo" pattern="^[0-9]{11,11}$" type="text" class="validate" placeholder="09361234567" maxlength="11">
+                            <label for="cellphone_number">Cellphone Number <span class="red-text"><b>*</b></span></label>
                           </div>
 
                           <div class="input-field col s6">
-                            <input value="{{$employee->strCellNoAlt}}" id="editCellNoAlt" name="editCellNoAlt" type="text" class="validateCellAlt" maxlength="11">
+                            <input value="{{$employee->strCellNoAlt}}" id="editCellNoAlt" name="editCellNoAlt" pattern="^[0-9]{11,11}$" type="text" class="validate" placeholder="09361234567" maxlength="11">
                             <label for="cellphone_number">Cellphone Number (alternate)</label>
                           </div>
                         </div>
 
                         <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                           <div class="input-field col s6">
-                            <input value="{{$employee->strPhoneNo}}" id="editPhoneNo" name="editPhoneNo" type="text" class="validatePhone" maxlength="10">
+                            <input value="{{$employee->strPhoneNo}}" id="editPhoneNo" name="editPhoneNo" placeholder="5351673" pattern="^[0-9]{6,10}$" type="text" class="validate" maxlength="10">
                             <label for="landline_number">Landline Number </label>
                           </div>
 
                           <div class="input-field col s6">
-                            <input  value="{{$employee->strEmailAdd}}" id="editEmail" name="editEmail"type="text" class="validateEmail">
-                            <label for="email">Email Address </label>
+                            <input required value="{{$employee->strEmailAdd}}" id="editEmail" name="editEmail" type="email" class="validate">
+                            <label for="email">Email Address <span class="red-text"><b>*</b></span></label>
                           </div>
                         </div>
                         </div>
@@ -285,7 +284,7 @@
                     <div id="del{{$employee->strEmployeeID}}" class="modal modal-fixed-footer">                        
                       <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS EMPLOYEE?</center> </font> </h5>
                           
-                          {!! Form::open(['url' => 'delEmployee']) !!}
+                          {!! Form::open(['url' => 'maintenance/employee/destroy']) !!}
                             <div class="divider" style="height:2px"></div>
                             <div class="modal-content col s12">
 
@@ -323,12 +322,6 @@
                             <input id="delInactiveEmp" name = "delInactiveEmp" value = "{{$employee->strEmployeeID}}" type="hidden">
                           </div>
 
-                        <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
-                          <div class="input-field col s12">
-                            <input id="delInactiveReason" name = "delInactiveReason" value = "{{$employee->strInactiveReason}}" type="text" class="validate" required>
-                            <label for="fax"> *Reason for Deactivation </label>
-                          </div>
-                        </div>
                         </div>   
 
                         <div class="modal-footer col s12" style="background-color:#26a69a">
@@ -353,7 +346,7 @@
     			<div id="newemp" class="modal modal-fixed-footer">              
             <h5><font color = "#1b5e20"><center>ADD NEW EMPLOYEE PROFILE</center> </font> </h5>
               
-              {!! Form::open(['url' => 'addEmployee']) !!}
+              {!! Form::open(['url' => 'maintenance/employee', 'method' => 'post']) !!}
                 <div class="divider" style="height:2px"></div>
                 <div class="modal-content col s12">
 
@@ -366,25 +359,25 @@
 
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s4">
-                    <input required id="addFirstName" name="addFirstName" type="text" class="validateFirst">
-                    <label for="first_name">*First Name </label>
+                      <input name="addFirstName" placeholder="Hope" id="addFirstName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2">
+                      <label for="addFirstName" class="active">First Name<span class="red-text"><b>*</b></span></label>
                   </div>
 
                   <div class="input-field col s4">
-                    <input id="addMiddleName" name="addMiddleName" type="text" class="validateMiddle">
-                    <label for="middle_name">Middle Name </label>
+                    <input name="addMiddleName" placeholder="Elizabeth" id="addMiddleName" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="15" minlength="2">
+                    <label for="strMiddleName" class="active">Middle Name</label>
                   </div>
 
                   <div class="input-field col s4">
-                    <input required id="addLastName" name="addLastName" type="text" class="validateLast">
-                    <label for="last_name">*Last Name </label>
+                    <input name="addLastName" placeholder="Soberano" id="addLastName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="15" minlength="2">
+                    <label for="strLastName" class="active">Last Name<span class="red-text"><b>*</b></span></label>
                   </div>
               </div>
 
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="col s6">
-                    <p><font size = "-1" color = "gray">*Date of Birth </font></p>
-                    <input id="adddtEmpBday" name="adddtEmpBday" type="date" class = "datepicker">
+                    <p><font size = "-1" color = "gray">Date of Birth<span class="red-text"><b>*</b></span></font></p>
+                    <input id="addDtEmpBday" name="addDtEmpBday" type="date" class = "datepicker" value="January/1/1996" placeholder="January 1, 1996" >
                   </div>
 
                   <div class="input-field col s6" style="margin-top:47px">
@@ -392,80 +385,80 @@
                       <option value="M">Male</option>
                       <option value="F">Female</option>
                     </select>    
-                    <label >Sex</label>
+                    <label>Sex</label>
                   </div>
               </div>   
 
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s3">
-                    <input required id="addEmpHouseNo." name="addEmpHouseNo" type="text" class="validateHouseNo">
-                    <label for="Emp House No">*House No. </label>
+                    <input required id="addEmpHouseNo." pattern="[0-9a-zA-Z\-\s]+$" name="addEmpHouseNo" type="text" placeholder="1-A" class="validate">
+                    <label for="Emp House No">House No.<span class="red-text"><b>*</b></span></label>
                   </div>
 
                    <div class="input-field col s3">
-                    <input required id="addEmpStreet" name="addEmpStreet" type="text" class="validateStreet">
-                    <label for="Emp Street">*Street </label>
+                    <input required id="addEmpStreet" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$" name="addEmpStreet" type="text" placeholder="Malunggay"class="validate">
+                    <label for="Emp Street">Street<span class="red-text"><b>*</b></span></label>
                   </div>
 
                   <div class="input-field col s3">
-                    <input  id="addEmpBarangay" name="addEmpBarangay" type="text" class="validateBarangay">
-                    <label for="Emp Brgy">Barangay/Subd </label>
+                    <input  id="addEmpBarangay" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$" name="addEmpBarangay" type="text" placeholder="Daang Bakal" class="validate">
+                    <label for="Emp Brgy">Barangay/Subd.</label>
                   </div>
 
                   <div class="input-field col s3">
-                    <input required id="addEmpCity" name="addEmpCity" type="text" class="validateCity">
-                    <label for="Emp City">*City/Municipality </label>
+                    <input required id="addEmpCity" pattern="^[a-zA-Z\'\-]+( [a-zA-Z\'\-]+)*$" name="addEmpCity" type="text" placeholder="Mandaluyong" class="validate">
+                    <label for="Emp City">City/Municipality<span class="red-text"><b>*</b></span></label>
                   </div>
               </div>
 
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s6">
-                    <input id="addEmpProvince" name="addEmpProvince" type="text" class="validateProvince">
-                    <label for="Emp Province">Province </label>
+                    <input id="addEmpProvince" pattern="^[a-zA-Z\'\-\.]+( [a-zA-Z\'\-\.]+)*$" name="addEmpProvince" type="text" placeholder="Pampanga" class="validate">
+                    <label for="Emp Province">Province</label>
                   </div>
 
                    <div class="input-field col s6">
-                    <input  id="addEmpZipCode" name="addEmpZipCode" type="text" class="validateZip">
-                    <label for="Emp Zip Code">Zip Code </label>
+                    <input  id="addEmpZipCode" pattern="^[0-9]+$"name="addEmpZipCode" type="text" placeholder="1001" class="validate">
+                    <label for="Emp Zip Code">Zip Code</label>
                   </div>
               </div>
 
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s12">
                     <select name='addRoles' id='addRoles' required>
-                      @foreach($roles as $roles2)
-                        @if($roles2->boolIsActive == 1)
-                          <option value="{{ $roles2->strEmpRoleID }}" selected>{{ $roles2->strEmpRoleName }}</option>
+                      @foreach($roles as $role)
+                        @if($role->boolIsActive == 1)
+                          <option value="{{ $role->strEmpRoleID }}" selected>{{ $role->strEmpRoleName }}</option>
                         @endif
                       @endforeach
                     </select>   
-                    <label>Role</label>
+                    <label>Role<span class="red-text"><b>*</b></span></label>
                   </div>
               </div>      
                 
               <div class = "col s12" style="padding:15px;  border:3px solid white;">   
                   <div class="input-field col s6">
-                    <input required id="addCellNo" name="addCellNo" type="text" class="validateCell" maxlength="11">
-                    <label for="cellphone_number">*Cellphone Number </label>
+                    <input required id="addCellNo" pattern="^[0-9]{11,11}$" name="addCellNo" type="text" class="validate" placeholder="09361234567" maxlength="11">
+                    <label for="cellphone_number">Cellphone Number <span class="red-text"><b>*</b></span></label>
                     <span id="left"></span>
                   </div>
 
                   <div class="input-field col s6">
-                    <input id="addCellNoAlt" name="addCellNoAlt" type="text" class="validateCellAlt" maxlength="11">
-                    <label for="cellphone_number">Cellphone Number (alternate) </label>
+                    <input id="addCellNoAlt" pattern="^[0-9]{11,11}$" name="addCellNoAlt" type="text" class="validate" placeholder="09361234567" maxlength="11">
+                    <label for="cellphone_number">Cellphone Number (Alt)</label>
                     <span id="left"></span>
                   </div>
               </div>
 
               <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                   <div class="input-field col s6">
-                    <input id="addPhoneNo" name="addPhoneNo" type="text" class="validatePhone" maxlength="10">
+                    <input id="addPhoneNo" placeholder="5351673" pattern="^[0-9]{6,10}$" name="addPhoneNo" type="text" class="validate" maxlength="10">
                     <label for="landline_number">Landline Number </label>
                   </div>
 
                   <div class="input-field col s6">
-                    <input required id="addEmail" name="addEmail" type="email" class="validateEmail">
-                    <label for="email" data-error="wrong" data-success="right">*Email Address </label>
+                    <input required id="addEmail" placeholder="capstone_email@gmail.com" name="addEmail" type="email" class="validate">
+                    <label for="email" data-error="wrong" data-success="right">Email Address <span class="red-text"><b>*</b></span></label>
                   </div>
               </div>
               </div>
@@ -476,21 +469,15 @@
               </div>
             {!! Form::close() !!}
           </div>
-          
-      
-
+        
             </div>
         </div>
       </div>
      </div>
-        
-        
-
 @stop
 
 
 @section('scripts')
-    {!! Html::script('js/employee_validation.js'); !!}
 
     <script>
     $( document ).ready(function() {
@@ -532,6 +519,11 @@
 
       } );
 
+      $('.validate').blur('input', function() {
+        var name = $(this).val();
+        $(this).val(name.trim());
+      }); 
+
     </script>
 
 
@@ -558,12 +550,6 @@
   }); 
 </script>
 
-    <script type="text/javascript">
-      $('.datepicker').pickadate({
-        selectMonths: true, // Creates a dropdown to control month
-        selectYears: 15 // Creates a dropdown of 15 years to control year
-      });
-        
-    </script>
+
 
 @stop

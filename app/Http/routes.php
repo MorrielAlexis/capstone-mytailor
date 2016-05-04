@@ -28,8 +28,10 @@ Route::group(['prefix' => 'maintenance'], function(){
 });
 
 Route::group(['prefix' => 'maintenance'], function(){
-	Route::resource('employee', 'EmployeeController',
-		['only' => ['index']]);
+	Route::resource('employee', 'EmployeeController');
+
+	Route::post('employee/update', 'EmployeeController@updateEmployee');
+	Route::post('employee/destroy', 'EmployeeController@deleteEmployee');
 
 	Route::resource('role', 'EmployeeRoleController',
 		['only' => ['index']]);
@@ -68,6 +70,7 @@ Route::group(['prefix' => 'maintenance'], function(){
 	Route::resource('catalogue', 'CatalogueController',
 		['only' => ['index']]);
 });
+
 
 Route::group(['prefix' => 'transaction/walkIn'], function(){
 	Route::resource('walkIndiv', 'WalkInIndividualController',
