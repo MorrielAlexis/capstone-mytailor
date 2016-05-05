@@ -142,7 +142,7 @@
                   <td>{{ $employee->strCellNoAlt }}</td> 
                   <td>{{ $employee->strPhoneNo }}</td>
                   <td>{{ $employee->strEmailAdd }}</td>
-              		<td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of employee" href="#edit{{$employee->strEmployeeID}}">EDIT</button></td>
+              		<td><button onclick="editEmp('{!! $employee->strEmployeeID !!}')" style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of employee" href="#edit{{$employee->strEmployeeID}}">EDIT</button></td>
                   <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of employee from table" href="#del{{$employee->strEmployeeID}}">DEACTIVATE</button>
                   
 
@@ -162,7 +162,7 @@
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s4">
-                            <input required value="{{$employee->strEmpFName}}" id="editFirstName" name="editFirstName" placeholder="Hope" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2">
+                            <input required id="editFirstName" name="editFirstName" placeholder="Hope" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2">
                             <label for="first_name">First Name <span class="red-text"><b>*</b></span> </label>
                           </div>
 
@@ -465,7 +465,7 @@
 
               <div class="modal-footer col s12" style="background-color:#26a69a">
                 <button type="submit" id="send" name="send" class="modal-action waves-effect waves-green btn-flat">Add</button>
-                <button type="button" onclick="clearData()" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</button>
+                <button type="reset" value="Reset" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</button>
               </div>
             {!! Form::close() !!}
           </div>
@@ -478,7 +478,7 @@
 
 
 @section('scripts')
-
+  
     <script>
     $( document ).ready(function() {
     
@@ -496,20 +496,7 @@
 
     });
     </script>
-  
-    <script>
-      function clearData(){
-          document.getElementById("addFirstName").value = "";
-          document.getElementById("addMiddleName").value = "";
-          document.getElementById("addLastName").value = "";
-          document.getElementById("addAddress").value = "";
-          document.getElementById("addAge").value = "";
-          document.getElementById("addCellNo").value = "";
-          document.getElementById("addPhoneNo").value = "";
-          document.getElementById("addEmail").value = "";
-      }
 
-    </script>
     <!--DATA TABLE SCRIPT-->
     <script type="text/javascript">
 

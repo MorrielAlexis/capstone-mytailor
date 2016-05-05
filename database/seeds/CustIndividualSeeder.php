@@ -28,8 +28,8 @@ class CustIndividualSeeder extends Seeder
                 'strIndivProvince' => 'Rizal',
                 'strIndivZipCode' => '1007',
                 'strIndivLandlineNumber' => '0467892',
-                'strIndivCPNumber' => '(0915)-678-9678',
-                'strIndivCPNumberAlt' => '(0912)-234-5678',
+                'strIndivCPNumber' => '09156789678',
+                'strIndivCPNumberAlt' => '09122345678',
                 'strIndivEmailAddress' => 'melodyreyes@gmail.com',
                 'boolIsActive' => '1'
             ),
@@ -47,8 +47,8 @@ class CustIndividualSeeder extends Seeder
                 'strIndivProvince' => 'Rizal',
                 'strIndivZipCode' => '1003',
                 'strIndivLandlineNumber' => '0723456',
-                'strIndivCPNumber' => '(0919)-876-1290',
-                'strIndivCPNumberAlt' => '(0912)-123-6789',
+                'strIndivCPNumber' => '09198761290',
+                'strIndivCPNumberAlt' => '09121236789',
                 'strIndivEmailAddress' => 'reychnayre@yahoo.com',
                 'boolIsActive' => '1'
             )

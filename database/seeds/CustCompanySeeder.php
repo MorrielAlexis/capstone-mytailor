@@ -27,8 +27,8 @@ class CustCompanySeeder extends Seeder
                 'strContactPerson' => 'Lala Roque',
                 'strCompanyEmailAddress' => 'melodyreyes@pfizer.com',
                 'strCompanyTelNumber' => '2227777',
-                'strCompanyCPNumber' => '(0917)-890-1234',
-                'strCompanyCPNumberAlt' => '(0917)-123-4567',
+                'strCompanyCPNumber' => '09178901234',
+                'strCompanyCPNumberAlt' => '09171234567',
                 'strCompanyFaxNumber' => '4440102',
                 'boolIsActive' => '1'
             ),
@@ -45,8 +45,8 @@ class CustCompanySeeder extends Seeder
                 'strContactPerson' => 'Zobel Ayala',
                 'strCompanyEmailAddress' => 'welness@nestle.com',
                 'strCompanyTelNumber' => '0345678',
-                'strCompanyCPNumber' => '(0922)-234-9876',
-                'strCompanyCPNumberAlt' => '(0922)-345-6987',
+                'strCompanyCPNumber' => '09222349876',
+                'strCompanyCPNumberAlt' => '0922345-6987',
                 'strCompanyFaxNumber' => '0031234',
                 'boolIsActive' => '1'
             )
