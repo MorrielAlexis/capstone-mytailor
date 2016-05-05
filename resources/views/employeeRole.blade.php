@@ -209,7 +209,7 @@
     			<div id="addRole" class="modal">
             <h5><font color = "#1b5e20"><center>ADD NEW EMPLOYEE ROLE</center> </font> </h5>
                 
-              {!! Form::open(['url' => 'addRole']) !!}
+              {!! Form::open(['url' => 'maintainance/employeeRole', 'method' => 'post']) !!}
                 <div class="divider" style="height:2px"></div>
                 <div class="modal-content col s12">
 
@@ -219,21 +219,21 @@
                         
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s12">
-                    <input required pattern="[A-Za-z\s]+" id="addRoleName" name="addRoleName" type="text" class="validateRole">
-                    <label for="role_name">*Role Name </label>
+                    <input required id="addRoleName" name="addRoleName" type="text" class="validate" placeholder="Sewer" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2">
+                    <label for="addRoleName" class="active">Role Name <span class="red-text"><b>*</b></span></label>
                   </div>
               </div>
 
-              <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
+              <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s12">
-                    <input required pattern="[A-Za-z\s]+" id="addRoleDescription" name="addRoleDescription" type="text" class="validateRole">
-                    <label for="role_description">*Role Description </label>
+                    <input required id="addRoleDescription" name="addRoleDescription" type="text" class="validate" placeholder="In charge in manufacturing garments." required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$">
+                    <label for="addRoleDescription" class="active">Role Name <span class="red-text"><b>*</b></span></label>
                   </div>
               </div>
               </div>
 
                 <div class="modal-footer col s12" style="background-color:#26a69a">
-                  <button type="submit" class="modal-action  waves-effect waves-green btn-flat">Add</button>
+                  <button type="submit" id="send" name"send" class="modal-action  waves-effect waves-green btn-flat">Add</button>
                   <button type="button" onclick="clearData()" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
                 </div>
             {!! Form::close() !!}
@@ -247,56 +247,22 @@
 
 @section('scripts')
   <script>
-    $('.validateRole').on('input', function() {
-        var input=$(this);
-        var re = /^[a-zA-Z\'\-]+( [a-zA-Z\'\-]+)*$/;
-        var is_name=re.test(input.val());
-        if(is_name){input.removeClass("invalid").addClass("valid");}
-        else{input.removeClass("valid").addClass("invalid");}
+    $(document).ready(function() {
+    
+      $('.dropdown-button').dropdown({
+      inDuration: 300,
+      outDuration: 225,
+      constrain_width: false, // Does not change width of dropdown to that of the activator
+      hover: true, // Activate on hover
+      gutter: 0, // Spacing from edge
+      belowOrigin: false, // Displays dropdown below the button
+      alignment: 'left' // Displays dropdown with edge aligned to the left of button
       });
 
-    $('.validateRole').blur('input', function() {
-        var input=$(this);
-        var re = /^[a-zA-Z\'\-]+( [a-zA-Z\'\-]+)*$/;
-        var is_name=re.test(input.val());
-        if(is_name){input.removeClass("invalid").addClass("valid");}
-        else{input.removeClass("valid").addClass("invalid");}
-      });
-      //Kapag Number
-      $('.validateRole').keyup(function() {
-        var name = $(this).val();
-        $(this).val(name.replace(/\d/, ''));
-      });  
+      $('select').material_select();
 
-      //Kapag whitespace
-      $('.validateRole').blur('input', function() {
-        var name = $(this).val();
-        $(this).val(name.trim());
-      }); 
-
-      $('.validateRoleDesc').on('input', function() {
-        var input=$(this);
-        var re=/^[a-zA-Z0-9\'\-\.\,]+( [a-zA-Z0-9\,\'\-\.]+)*$/;
-        var re=/^[a-zA-Z\'\-\s\.\,]+$/;
-        var is_name=re.test(input.val());
-        if(is_name){input.removeClass("invalid").addClass("valid");}
-        else{input.removeClass("valid").addClass("invalid");}
-      });
-
-      $('.validateRoleDesc').blur('input', function() {
-        var input=$(this);
-        var re=/^[a-zA-Z0-9\'\-\.\,]+( [a-zA-Z0-9\,\'\-\.]+)*$/;
-        var is_name=re.test(input.val());
-        if(is_name){input.removeClass("invalid").addClass("valid");}
-        else{input.removeClass("valid").addClass("invalid");}
-      });
-
-      //Kapag whitespace
-      $('.validateRoleDesc').blur('input', function() {
-        var name = $(this).val();
-        $(this).val(name.trim());
-      });        
-  </script>
+    });
+    </script>
   
 
   <script>
@@ -305,13 +271,29 @@
           document.getElementById("addRoleName").value = "";
       }
     </script>
+     <!--DATA TABLE SCRIPT-->
+    <script type="text/javascript">
+
+      $(document).ready(function() {
+
+          $('.data-role').DataTable();
+
+      } );
+
+      $('.validate').blur('input', function() {
+        var name = $(this).val();
+        $(this).val(name.trim());
+      }); 
+
+    </script>
+
 
        <!--DATA TABLE SCRIPT-->
     <script type="text/javascript">
 
       $(document).ready(function() {
 
-          $('.data-role').DataTable();
+          // $('.data-role').DataTable();
           $('.data-reactRole').DataTable();
           $('select').material_select();
 
@@ -329,29 +311,6 @@
   }); 
   </script>
   
-  <script>  
 
-    $('#formAddRole').on('submit', function(){
-        $.ajax({
-                  url:"{{URL::to('addRole')}}",
-                  type: "POST",
-                  data:{
-                      roleID: $('#addRoleID').val(),
-                      roleName: $('#addRoleName').val(),
-                      roleDesc: $('#addRoleDescription').val()
-                  },
-                  success: function(data){
-                    alert('Added!');
-                  },
-                  error:function(xhr){
-                    console.log(xhr);
-                  }
-              });//end of ajax
-    });
-    
-    /*$("#addRole").click(function(){
-              
-          });//end of click*/
-  </script>
 
 @stop

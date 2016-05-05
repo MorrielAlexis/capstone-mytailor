@@ -455,11 +455,13 @@
                     <input id="addPhoneNo" placeholder="5351673" pattern="^[0-9]{6,10}$" name="addPhoneNo" type="text" class="validate" maxlength="10">
                     <label for="landline_number">Landline Number </label>
                   </div>
+                </div>  
 
+              <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">   
                   <div class="input-field col s6">
                     <input required id="addEmail" placeholder="capstone_email@gmail.com" name="addEmail" type="email" class="validate">
                     <label for="email" data-error="wrong" data-success="right">Email Address <span class="red-text"><b>*</b></span></label>
-                  </div>
+                  </div> 
               </div>
               </div>
 
@@ -469,8 +471,6 @@
               </div>
             {!! Form::close() !!}
           </div>
-        
-            </div>
         </div>
       </div>
      </div>
@@ -480,7 +480,7 @@
 @section('scripts')
 
     <script>
-    $( document ).ready(function() {
+    $(document).ready(function() {
     
       $('.dropdown-button').dropdown({
       inDuration: 300,
