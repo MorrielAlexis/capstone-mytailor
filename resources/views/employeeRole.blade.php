@@ -2,10 +2,20 @@
 
 @section('content')
 
-
-  @if (Session::has('message'))
-
-    @endif
+  @if (count($errors) > 0)
+    <div class="row" id="success-message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red">
+              <span class="black-text" style="color:black">
+                @foreach ($errors->all() as $error)
+                  {{ $error }}
+                @endforeach
+                <i class="material-icons right" onclick="$('#success-message').hide()">clear</i>
+              </span>
+            </div>
+          </div>
+        </div>
+  @endif
 
   <div class="main-wrapper" style="margin-top:30px">
         <!--Add Employee Role-->

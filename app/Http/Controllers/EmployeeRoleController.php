@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\EmployeeRole;
 use App\Http\Requests;
+use App\Http\Requests\RoleRequest;
+
+use App\EmployeeRole;
 use App\Http\Controllers\Controller;
 
 class EmployeeRoleController extends Controller
@@ -53,13 +55,12 @@ class EmployeeRoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $rol = EmployeeRole::get();
-             $role = EmployeeRole::create(array(
+    public function store(RoleRequest $request)
+    {        
+            $role = EmployeeRole::create(array(
                 'strEmpRoleID' => $request->input('addRoleID'),
-                'strEmpRoleName' => trim($request->input('addRoleName')),
-                'strEmpRoleDesc' => trim($request->input('addRoleDescription')),  
+                'strEmpRoleName' => $request->input('addRoleName'),
+                'strEmpRoleDesc' => $request->input('addRoleDescription'),  
                 'boolIsActive' => 1
             ));
             $role->save();
