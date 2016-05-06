@@ -21,12 +21,12 @@ class MeasurementDetailController extends Controller
         $detail = MeasurementDetail::all();
         $reason = MeasurementDetail::all(); /*dummy lang wala pang model un reasons e*/
 
-        $newID = 0;
+        $detailNewID = 0;
         
         //load the view and pass the individuals
         return view('measurementDetail')
                     ->with('detail', $detail)
                     ->with('reason', $reason)
-                    ->with('newID', $newID);
+                    ->with('detailNewID', $detailNewID);
     }
 }

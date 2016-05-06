@@ -13,14 +13,15 @@ class CreateMeasurementcategoryTable extends Migration
     public function up()
     {
         Schema::create('tblMeasurementCategory', function (Blueprint $table) {
-            $table->string('strMeasCatID')->primary();
+            $table->string('strMeasCatID');
             $table->string('strMeasGarFK')->index();//fk
             $table->string('strMeasSegmentNameFK')->index();//fk
             $table->string('strMeasDetFK')->index();//fk
             $table->string('strMeasCatInactiveReason')->nullable();
             $table->boolean('boolIsActive');
-            $table->timestamps();
-
+            $table->timestamps();          
+            
+            $table->primary('strMeasCatID','strMeasGarFK','strMeasSegmentNameFK','strMeasDetFK');
 
             $table->foreign('strMeasGarFK')
                   ->references('strGarmentCategoryID')
