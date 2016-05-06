@@ -33,8 +33,9 @@ Route::group(['prefix' => 'maintenance'], function(){
 	Route::post('employee/update', 'EmployeeController@updateEmployee');
 	Route::post('employee/destroy', 'EmployeeController@deleteEmployee');
 
-	Route::resource('role', 'EmployeeRoleController',
-		['only' => ['index']]);
+	Route::resource('employeeRole', 'EmployeeRoleController');
+		
+
 
 });
 

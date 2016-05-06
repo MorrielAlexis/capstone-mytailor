@@ -19,15 +19,22 @@ class EmployeeRoleController extends Controller
     {
         //get all the employee roles
         $role = EmployeeRole::all();
-        $reason = EmployeeRole::all(); /*dummy lang wala pang model un reasons e*/
+        //$reason = EmployeeRole::all(); /*dummy lang wala pang model un reasons e*/
+        $ids = \DB::table('tblEmployeeRole')
+            ->select('strEmpRoleID')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('strEmpRoleID', 'desc')
+            ->take(1)
+            ->get();
 
-        $newID = 0;
-        
-        //load the view and pass the employee roles
+        $ID = $ids["0"]->strEmpRoleID;
+        $newID = $this->smartCounter($ID);  
+
+         //load the view and pass the employees
         return view('employeeRole')
-                    ->with('role', $role)
-                    ->with('reason', $reason)
-                    ->with('newID', $newID);
+                ->with('role', $role)
+                ->with('newID', $newID);
+       
     }
 
     /**
@@ -48,7 +55,16 @@ class EmployeeRoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rol = EmployeeRole::get();
+             $role = EmployeeRole::create(array(
+                'strEmpRoleID' => $request->input('addRoleID'),
+                'strEmpRoleName' => trim($request->input('addRoleName')),
+                'strEmpRoleDesc' => trim($request->input('addRoleDescription')),  
+                'boolIsActive' => 1
+            ));
+            $role->save();
+
+        return redirect('maintenance/employeeRole');
     }
 
     /**
@@ -94,5 +110,46 @@ class EmployeeRoleController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function smartCounter($id)
+    {   
+
+        $lastID = str_split($id);
+
+        $ctr = 0;
+        $tempID = "";
+        $tempNew = [];
+        $newID = "";
+        $add = TRUE;
+
+        for($ctr = count($lastID)-1; $ctr >= 0; $ctr--){
+
+            $tempID = $lastID[$ctr];
+
+            if($add){
+                if(is_numeric($tempID) || $tempID == '0'){
+                    if($tempID == '9'){
+                        $tempID = '0';
+                        $tempNew[$ctr] = $tempID;
+
+                    }else{
+                        $tempID = $tempID + 1;
+                        $tempNew[$ctr] = $tempID;
+                        $add = FALSE;
+                    }
+                }else{
+                    $tempNew[$ctr] = $tempID;
+                }           
+            }
+            $tempNew[$ctr] = $tempID;   
+        }
+
+        
+        for($ctr = 0; $ctr < count($lastID); $ctr++){
+            $newID = $newID . $tempNew[$ctr];
+        }
+
+        return $newID;
     }
 }

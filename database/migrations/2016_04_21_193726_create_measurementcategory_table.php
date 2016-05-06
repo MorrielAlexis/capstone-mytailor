@@ -19,9 +19,9 @@ class CreateMeasurementcategoryTable extends Migration
             $table->string('strMeasDetFK')->index();//fk
             $table->string('strMeasCatInactiveReason')->nullable();
             $table->boolean('boolIsActive');
-            $table->timestamps();
-
-            $table->primary(array('strMeasCatID', 'strMeasGarFK', 'strMeasSegmentNameFK', 'strMeasDetFK'));
+            $table->timestamps();          
+            
+            $table->primary('strMeasCatID','strMeasGarFK','strMeasSegmentNameFK','strMeasDetFK');
 
             $table->foreign('strMeasGarFK')
                   ->references('strGarmentCategoryID')
