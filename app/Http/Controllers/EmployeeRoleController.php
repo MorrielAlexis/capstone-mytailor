@@ -18,17 +18,17 @@ class EmployeeRoleController extends Controller
     public function index()
     {
         //get all the employee roles
-        $role = EmployeeRole::all();
-        //$reason = EmployeeRole::all(); /*dummy lang wala pang model un reasons e*/
-        $ids = \DB::table('tblEmployeeRole')
+         $ids = \DB::table('tblEmployeeRole')
             ->select('strEmpRoleID')
             ->orderBy('created_at', 'desc')
             ->orderBy('strEmpRoleID', 'desc')
             ->take(1)
             ->get();
+        //$reason = EmployeeRole::all(); /*dummy lang wala pang model un reasons e*/
 
         $ID = $ids["0"]->strEmpRoleID;
         $newID = $this->smartCounter($ID);  
+        $role = EmployeeRole::all();
 
          //load the view and pass the employees
         return view('employeeRole')
