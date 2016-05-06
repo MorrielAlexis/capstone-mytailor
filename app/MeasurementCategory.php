@@ -8,7 +8,7 @@ class MeasurementCategory extends Model
 {
     protected $table = 'tblMeasurementCategory';
 
-	protected $primaryKey = 'strMeasCatID';
+	protected $primaryKey = 'strMeasCatID','strMeasGarFK','strMeasSegmentNameFK','strMeasDetFK';
 	protected $fillable = array('strMeasCatID',
 								'strMeasGarFK',
 								'strMeasSegmentNameFK',
