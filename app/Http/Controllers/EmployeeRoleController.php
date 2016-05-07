@@ -114,6 +114,20 @@ class EmployeeRoleController extends Controller
         //
     }
 
+    function updateRole(Request $request)
+    {
+
+        $role = EmployeeRole::find($request->input('editRoleID'));
+
+               $role->strEmpRoleName = trim($request->input('editRoleName'));
+               $role->strEmpRoleDesc = trim($request->input('editRoleDescription'));
+        $role->save();
+
+         return redirect('maintenance/employeeRole');
+        
+       
+    }
+
     public function smartCounter($id)
     {   
 

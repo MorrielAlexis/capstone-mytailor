@@ -140,7 +140,7 @@
                   <div id="edit{{$role->strEmpRoleID}}" class="modal modal-fixed-footer">                     
                     <h5><font color = "#1b5e20"><center>EDIT EMPLOYEE ROLE</center> </font> </h5>
                       
-                    {!! Form::open(['url' => 'editRole']) !!}
+                    {!! Form::open(['url' => 'maintenance/employeeRole/update']) !!}
                       <div class="divider" style="height:2px"></div>
                       <div class="modal-content col s12">
 
@@ -150,26 +150,28 @@
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input required pattern="[A-Za-z\s]+" value="{{$role->strEmpRoleName}}" id="editRoleName" name="editRoleName" type="text" class="validateRole">
-                            <label for="role_name">*Role Name </label>
+                             <input required id="editRoleName" name="editRoleName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2" value="{{$role->strEmpRoleName}}">
+                            <label for="role_name">Role Name<span class="red-text"><b>*</b></span> </label>
                           </div>
                       </div>
 
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
-                          <div class="input-field col s12">
-                            <input required value="{{$role->strEmpRoleDesc}}" id="editRoleDescription" name="editRoleDescription" type="text" class="validateRole">
-                            <label for="role_description">*Role Description </label>
+                          <div class="input-field col s12">         
+                          <input required id="editRoleDescription" name="editRoleDescription" type="text" class="validate" required data-position="bottom" pattern="[A-Za-z\s]+" value="{{$role->strEmpRoleDesc}}">
+                            <label for="role_description">Role Description <span class="red-text"><b>*</b></span> </label>
                           </div>  
                       </div>
                       </div>
 
                       <div class="modal-footer col s12" style="background-color:#26a69a">
                         <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Update</button>
-                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
+                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" button type="reset" value="Reset">Cancel</a> 
                       </div>
                     {!! Form::close() !!}
                   </div>
+
+                  <!-- //Deactivate Role -->
                   
                   <div id="del{{$role->strEmpRoleID}}" class="modal modal-fixed-footer">                     
                      <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS EMPLOYEE ROLE?</center> </font> </h5>
