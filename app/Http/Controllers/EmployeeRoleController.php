@@ -65,6 +65,7 @@ class EmployeeRoleController extends Controller
             ));
             $role->save();
 
+        $request->session()->flash('alert-success', 'Role was successfully added!');
         return redirect('maintenance/employeeRole');
     }
 
