@@ -91,12 +91,12 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col s12 m12 l12">
-       <button style="color:black; margin-right:35px; margin-left: 20px" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to add a new employee to the table" href="#newemp">ADD EMPLOYEE PROFILE</button>
+    
+      <div class="col s6 left">
+         <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="left" data-delay="50" data-tooltip="Click to add a new employee to the table" href="#newemp" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
      </div>
     </div>
-  </div>
+  
 
 
     <div class="row">
@@ -142,8 +142,8 @@
                   <td>{{ $employee->strCellNoAlt }}</td> 
                   <td>{{ $employee->strPhoneNo }}</td>
                   <td>{{ $employee->strEmailAdd }}</td>
-              		<td><button onclick="editEmp('{!! $employee->strEmployeeID !!}')" style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of employee" href="#edit{{$employee->strEmployeeID}}">EDIT</button></td>
-                  <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of employee from table" href="#del{{$employee->strEmployeeID}}">DEACTIVATE</button>
+              		<td><a onclick="editEmp('{!! $employee->strEmployeeID !!}')" style="color:black" class="modal-trigger btn tooltipped btn-floating blue accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of employee" href="#edit{{$employee->strEmployeeID}}"><i class="mdi-editor-mode-edit"></i></a></td>
+                  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating red accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of employee from table" href="#del{{$employee->strEmployeeID}}"><i class="mdi-action-delete"></i></a>
                   
 
                    <div id="edit{{$employee->strEmployeeID}}" class="modal modal-fixed-footer">                       

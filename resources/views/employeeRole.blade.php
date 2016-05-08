@@ -101,12 +101,11 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col s12 m12 l12">
-       <button style="color:black; margin-right:35px; margin-left: 20px" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="CLick to add a new role to the table" href="#addRole">ADD EMPLOYEE ROLE</button>
-      </div>
-    </div>
+      <div class="col s6 left">
+         <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="left" data-delay="50"  data-tooltip="CLick to add a new role to the table" href="#addRole" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
+     </div>
   </div>
+
 
 
   <div class="row">
@@ -134,8 +133,8 @@
               <tr>
                 <td>{{ $role->strEmpRoleName }}</td>
                 <td>{{ $role->strEmpRoleDesc }}</td>
-                <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of role" href="#edit{{$role->strEmpRoleID}}">EDIT</button></td>
-                <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of role from table" href="#del{{$role->strEmpRoleID}}">DEACTIVATE</button>
+                <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of role" href="#edit{{$role->strEmpRoleID}}"><i class="mdi-editor-mode-edit"></i></a></td>
+                <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating red accent-1"data-position="bottom" data-delay="50" data-tooltip="Click to remove data of role from table" href="#del{{$role->strEmpRoleID}}"><i class="mdi-action-delete"></i></a>
                 </td>	
                   <div id="edit{{$role->strEmpRoleID}}" class="modal modal-fixed-footer">                     
                     <h5><font color = "#1b5e20"><center>EDIT EMPLOYEE ROLE</center> </font> </h5>
