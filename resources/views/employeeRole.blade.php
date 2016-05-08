@@ -176,7 +176,7 @@
                   <div id="del{{$role->strEmpRoleID}}" class="modal modal-fixed-footer">                     
                      <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS EMPLOYEE ROLE?</center> </font> </h5>
                         
-                      {!! Form::open(['url' => 'delRole']) !!}
+                      {!! Form::open(['url' => 'maintenance/employeeRole/destroy']) !!}
                         <div class="divider" style="height:2px"></div>
                         <div class="modal-content col s12">
 
@@ -187,19 +187,19 @@
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input pattern="[A-Za-z\s]+" value="{{$role->strEmpRoleName}}" type="text" class="" readonly>
+                            <input id="delEmpRoleName" name="delEmpRoleName" pattern="[A-Za-z\s]+" value="{{$role->strEmpRoleName}}" type="text" class="readonly" >
                             <label for="role_name">Role Name </label>
                           </div>
                     </div>
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input  value="{{$role->strEmpRoleDesc}}" type="text" class="" readonly>
+                            <input  value="{{$role->strEmpRoleDesc}}" type="text" class="readonly"  id="delEmpRoleDesc" name="delEmpRoleDesc">
                             <label for="role_description">Role Description </label>
                           </div>  
                     </div>
 
-                          <div class="input-field">
+                          <!-- <div class="input-field">
                             <input id="delInactiveRole" name = "delInactiveRole" value = "{{$role->strEmpRoleID}}" type="hidden">
                           </div>
 
@@ -208,7 +208,7 @@
                             <input id="delInactiveReason" name = "delInactiveReason" value = "{{$role->strInactiveReason}}" type="text" class="validate" required>
                             <label for="fax"> *Reason for Deactivation </label>
                           </div>
-                    </div>    
+                    </div>    --> 
                       </div>
 
                       <div class="modal-footer col s12" style="background-color:#26a69a">

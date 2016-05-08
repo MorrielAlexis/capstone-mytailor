@@ -128,6 +128,19 @@ class EmployeeRoleController extends Controller
        
     }
 
+    
+    function deleteRole(Request $request)
+    {
+        $role = EmployeeRole::find($request->input('delRoleID'));
+
+        $role->boolIsActive = 0;
+
+        $role->save();
+        
+        return redirect('maintenance/employeeRole');
+    }
+
+
     public function smartCounter($id)
     {   
 
