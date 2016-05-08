@@ -27,11 +27,11 @@ class GarmentCategoryController extends Controller
 
         $ID = $ids["0"]->strGarmentCategoryID;
         $newID = $this->smartCounter($ID);  
-        $category = GarmentCategory::all();
+        $garment = GarmentCategory::all();
        
         //load the view and pass the individuals
         return view('garments')
-                    ->with('category', $category)
+                    ->with('garment', $garment)
                     ->with('newID', $newID);
     }
 
@@ -53,7 +53,18 @@ class GarmentCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $garms = GarmentCategory::get();
+        // $garment = Category::create(array(
+        //         'strGarmentCategoryID' => Input::get('addGarmentID'),
+        //         'strGarmentCategoryName' => trim(Input::get('addGarmentName')),
+        //         'strGarmentCategoryDesc' => trim(Input::get('addGarmentDesc')),
+        //         'boolIsActive' => 1
+        //         ));
+
+        //         $garment->save();
+        //         return Redirect::to('/maintenance/garments?success=true');
+        //     }else return Redirect::to('/maintenance/garments?success=duplicate');
+        // }else return Redirect::to('/maintenance/garments?input=invalid');
     }
 
     /**

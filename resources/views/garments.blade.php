@@ -88,13 +88,12 @@
       <span class="page-title"><h4>Garment Category</h4></span>
     </div>
 
-    <div class="row">
-      <div class="col s12 m12 l12">
-      <button style="color:black; margin-right:35px; margin-left: 20px" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="CLick to add a new type of garment to the table" href="#addGCategory">ADD GARMENT CATEGORY</button>
-
+       <div class="col s6 left">
+         <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="left" data-delay="50"  data-tooltip="CLick to add a new type of garment to the table" href="#addGCategory" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
+       </div>
      </div>
    </div>
-  </div>
+  
 
     <div class="row">
       <div class="col s12 m12 l12">
@@ -117,16 +116,16 @@
               </thead>
 
               <tbody>
-                @foreach($category as $category)
-                  @if($category->boolIsActive == 1)
+                @foreach($garment as $garment)
+                  @if($garment->boolIsActive == 1)
                   <tr>
-                    <td>{{ $category->strGarmentCategoryName }}</td>
-                    <td>{{ $category->textGarmentCategoryDesc }}</td>
-                    <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of category" href="#edit{{ $category->strGarmentCategoryID }}">EDIT</button></td>
-                    <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of category from the table" href="#del{{ $category->strGarmentCategoryID }}">DEACTIVATE</button></td>
+                    <td>{{ $garment->strGarmentCategoryName }}</td>
+                    <td>{{ $garment->textGarmentCategoryDesc }}</td>
+                    <td><a style="color:black" class="modal-trigger btn tooltippedbtn-floating blue accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of category" href="#edit{{ $garment->strGarmentCategoryID }}"><i class="mdi-editor-mode-edit"></a></td>
+                    <td><a style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of category from the table" href="#del{{ $garment->strGarmentCategoryID }}">DEACTIVATE</a></td>
               
                       <!-- Modal Structure for Edit Garment Category> -->
-                      <div id="edit{{ $category->strGarmentCategoryID }}" class="modal modal-fixed-footer">
+                      <div id="edit{{ $garment->strGarmentCategoryID }}" class="modal modal-fixed-footer">
                         <h5><font color = "#1b5e20"><center>EDIT GARMENT CATEGORY</center> </font> </h5>                          
                             
                             {!! Form::open(['url' => 'editGarmentCategory']) !!}
@@ -134,19 +133,19 @@
                               <div class="modal-content col s12">
                                 
                               <div class="input-field">
-                                <input value="{{ $category->strGarmentCategoryID }}" id="editGarmentID" name="editGarmentID" type="hidden">
+                                <input value="{{ $garment->strGarmentCategoryID }}" id="editGarmentID" name="editGarmentID" type="hidden">
                               </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input required value="{{ $category->strGarmentCategoryName }}" id="editGarmentName" name="editGarmentName"type="text" class="validateGarmentName">
+                                <input required value="{{ $garment->strGarmentCategoryName }}" id="editGarmentName" name="editGarmentName"type="text" class="validateGarmentName">
                                 <label for="garment_name">*Garment Name </label>
                               </div>
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                               <div class="input-field col s12">
-                                <input required value= "{{ $category->textGarmentCategoryDesc }}" id="editGarmentDescription" name="editGarmentDescription" name="GarmentDescription" type="text" class="validateGarmentDesc">
+                                <input required value= "{{ $garment->textGarmentCategoryDesc }}" id="editGarmentDescription" name="editGarmentDescription" name="GarmentDescription" type="text" class="validateGarmentDesc">
                                 <label for="garment_description">*Garment Desription </label>
                               </div>
                           </div>
@@ -159,7 +158,7 @@
                     {!! Form::close() !!}
                   </div>
                       
-                      <div id="del{{ $category->strGarmentCategoryID }}" class="modal modal-fixed-footer">
+                      <div id="del{{ $garment->strGarmentCategoryID }}" class="modal modal-fixed-footer">
                         <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS GARMENT CATEGORY?</center> </font> </h5>
                         
                         {!! Form::open(['url' => 'delGarmentCategory']) !!}
@@ -167,30 +166,30 @@
                           <div class="modal-content col s12">
                             
                               <div class="input-field">
-                                <input value="{{ $category->strGarmentCategoryID }}" id="delGarmentID" name="delGarmentID" type="hidden">
+                                <input value="{{ $garment->strGarmentCategoryID }}" id="delGarmentID" name="delGarmentID" type="hidden">
                               </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input required pattern="[A-Za-z\s]+" value="{{ $category->strGarmentCategoryName }}" type="text" class="" readonly>
+                                <input required pattern="[A-Za-z\s]+" value="{{ $garment->strGarmentCategoryName }}" type="text" class="" readonly>
                                 <label for="garment_name">Garment Name </label>
                               </div>
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                               <input  value= "{{ $category->textGarmentCategoryDesc }}" type="text" class="" readonly>
+                               <input  value= "{{ $garment->textGarmentCategoryDesc }}" type="text" class="" readonly>
                                 <label for="garment_description">Garment Desription </label>
                               </div>
                           </div>
 
                               <div class="input-field">
-                                <input value="{{ $category->strGarmentCategoryID }}" type="hidden" id="delInactiveGarment" name="delInactiveGarment">
+                                <input value="{{ $garment->strGarmentCategoryID }}" type="hidden" id="delInactiveGarment" name="delInactiveGarment">
                               </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                               <div class="input-field">
-                                <input value="{{ $category->strGarmentCategoryInactiveReason }}" type="text" id="delInactiveReason" name="delInactiveReason" class="validate" required>
+                                <input value="{{ $garment->strGarmentCategoryInactiveReason }}" type="text" id="delInactiveReason" name="delInactiveReason" class="validate" required>
                                 <label for="reason"> *Reason for Deactivation </label>
                               </div>
                           </div>

@@ -62,7 +62,7 @@
                     <li class="no-padding">
                       <ul class="collapsible collapsible-accordion">
 
-                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('maintenance/customerIndividual') || Request::is('maintenance/customerCompany') ? 'active' : '' }}"><b>Customer Profile</b></a> 
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('maintenance/individual') || Request::is('maintenance/company') ? 'active' : '' }}"><b>Customer Profile</b></a> 
                           <div class="collapsible-body">
                             <ul>
                               <li><a style="color:black; font-weight:normal" class="waves-effect waves-white " href="{{URL::to('maintenance/individual')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#cc ff90;"><font font-family: "Century Gothic">Individual</font></i></a></li>
@@ -83,10 +83,10 @@
                            </div>
                         </li>
 
-                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('maintenance/garments') || Request::is('maintenance/garmentsDetails') || Request::is('maintenance/designPattern') || Request::is('maintenance/measurementCategory') || Request::is('maintenance/measurementDetail') ? 'active' : '' }}"><b>Garments</b></a>
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('maintenance/garment') || Request::is('maintenance/segment') || Request::is('maintenance/segment_pattern') || Request::is('maintenance/measure_detail') || Request::is('maintenance/measure_category') ? 'active' : '' }}"><b>Garments</b></a>
                           <div class="collapsible-body">
                             <ul>  
-                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/category')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Category</font></i></a></li>
+                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/garment')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Category</font></i></a></li>
                               <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/segment')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Segment</font></i></a></li>
                               <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/segment_pattern')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Segment Pattern</font></i></a></li>
                               <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/measure_detail')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Meas Detail</font></i></a></li>
@@ -96,7 +96,7 @@
                           </div>
                         </li>
 
-                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('maintenance/fabricAndMaterialsFabricType') || Request::is('maintenance/fabricAndMaterialsSwatches') || Request::is('maintenance/fabricAndMaterialsMaterials') ? 'active' : '' }}"><b>Fabrics & Materials</b></a>
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('maintenance/fabric_type') || Request::is('maintenance/swatch') || Request::is('maintenance/materials') ? 'active' : '' }}"><b>Fabrics & Materials</b></a>
                           <div class="collapsible-body">
                             <ul>  
                               <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/fabric_type')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Fabric Types</font></i></a></li>
