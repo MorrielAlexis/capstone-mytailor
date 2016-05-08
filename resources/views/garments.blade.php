@@ -82,17 +82,33 @@
         </div>
       @endif
 
+   @if (count($errors) > 0)
+    <div class="row" id="success-message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red">
+              <span class="black-text" style="color:black">
+                @foreach ($errors->all() as $error)
+                  {{ $error }}
+                @endforeach
+                <i class="material-icons right" onclick="$('#success-message').hide()">clear</i>
+              </span>
+            </div>
+          </div>
+        </div>
+  @endif
+
 
     <div class="row">
       <div class="col s12 m12 l12">
       <span class="page-title"><h4>Garment Category</h4></span>
+      </div>
     </div>
 
        <div class="col s6 left">
          <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="left" data-delay="50"  data-tooltip="CLick to add a new type of garment to the table" href="#addGCategory" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
        </div>
      </div>
-   </div>
+   
   
 
     <div class="row">
@@ -121,14 +137,14 @@
                   <tr>
                     <td>{{ $garment->strGarmentCategoryName }}</td>
                     <td>{{ $garment->textGarmentCategoryDesc }}</td>
-                    <td><a style="color:black" class="modal-trigger btn tooltippedbtn-floating blue accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of category" href="#edit{{ $garment->strGarmentCategoryID }}"><i class="mdi-editor-mode-edit"></a></td>
-                    <td><a style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of category from the table" href="#del{{ $garment->strGarmentCategoryID }}">DEACTIVATE</a></td>
+                    <td><a style="color:black" class="modal-trigger btn tooltippedbtn-floating blue accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of garment category" href="#edit{{ $garment->strGarmentCategoryID }}"><i class="mdi-editor-mode-edit"></a></td>
+                    <td><a style="color:black" class="modal-trigger btn tooltipped btn-small center-text red accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of garment from table" href="#del{{$garment->strGarmentCategoryID}}"><i class="mdi-action-delete"></i></a></td>
               
                       <!-- Modal Structure for Edit Garment Category> -->
                       <div id="edit{{ $garment->strGarmentCategoryID }}" class="modal modal-fixed-footer">
                         <h5><font color = "#1b5e20"><center>EDIT GARMENT CATEGORY</center> </font> </h5>                          
                             
-                            {!! Form::open(['url' => 'editGarmentCategory']) !!}
+                            {!! Form::open(['url' => 'maintenance/garment/update']) !!}
                               <div class="divider" style="height:2px"></div>
                               <div class="modal-content col s12">
                                 
@@ -138,15 +154,16 @@
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input required value="{{ $garment->strGarmentCategoryName }}" id="editGarmentName" name="editGarmentName"type="text" class="validateGarmentName">
+                                <input required value="{{ $garment->strGarmentCategoryName }}" id="editGarmentName" name="editGarmentName"type="text" class="validate" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2" >
                                 <label for="garment_name">*Garment Name </label>
+                                <span class="red-text"><b>*</b></span>
                               </div>
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                               <div class="input-field col s12">
-                                <input required value= "{{ $garment->textGarmentCategoryDesc }}" id="editGarmentDescription" name="editGarmentDescription" name="GarmentDescription" type="text" class="validateGarmentDesc">
-                                <label for="garment_description">*Garment Desription </label>
+                                <input required value= "{{ $garment->textGarmentCategoryDesc }}" id="editGarmentDescription" name="editGarmentDescription" name="GarmentDescription" type="text" class="validate">
+                                <label for="garment_description"><span class="red-text"><b>*</b></span> *Garment Desription </label>
                               </div>
                           </div>
                           </div>
@@ -217,7 +234,7 @@
             <div id="addGCategory" class="modal modal-fixed-footer">
               <h5><font color = "#1b5e20"><center>ADD NEW GARMENT CATEGORY</center> </font> </h5>
               
-              {!! Form::open(['url' => 'addGarmentCategory']) !!}
+              {!! Form::open(['url' => 'maintenance/garment']) !!}
                 <div class="divider" style="height:2px"></div>
                 <div class="modal-content col s12">
   
@@ -227,15 +244,15 @@
 
                 <div class = "col s12" style="padding:15px;  border:3px solid white;">
                     <div class="input-field col s12">
-                      <input required id="addGarmentName" name="addGarmentName" type="text" class="validateGarmentName">
-                      <label for="garment_name">*Garment Name </label>
+                      <input required id="addGarmentName" name="addGarmentName" type="text" class="validateG" pattern="^[a-zA-Z\-'`\s]{2,}$">
+                      <label for="garment_name">Garment Name<span class="red-text"><b>*</b></span> </label>
                     </div>
                 </div>
 
                 <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                     <div class="input-field">
-                      <input required id="addGarmentDesc" name="addGarmentDesc" type="text" class="validateGarmentDesc">
-                      <label for="garment_description">*Garment Desription </label>
+                      <input required id="addGarmentDesc" name="addGarmentDesc" type="text" class="validate">
+                      <label for="garment_description">Garment Desription <span class="red-text"><b>*</b></span> </label>
                     </div>
                 </div>
                 </div>

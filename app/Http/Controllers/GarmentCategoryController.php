@@ -53,18 +53,17 @@ class GarmentCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        // $garms = GarmentCategory::get();
-        // $garment = Category::create(array(
-        //         'strGarmentCategoryID' => Input::get('addGarmentID'),
-        //         'strGarmentCategoryName' => trim(Input::get('addGarmentName')),
-        //         'strGarmentCategoryDesc' => trim(Input::get('addGarmentDesc')),
-        //         'boolIsActive' => 1
-        //         ));
+        $garms = GarmentCategory::get();
+            $garment = GarmentCategory::create(array(
+                'strGarmentCategoryID' => $request->input('addGarmentID'),
+                'strGarmentCategoryName' => trim($request->input('addGarmentName')),
+                'textGarmentCategoryDesc' => trim($request->input('addGarmentDesc')),
+                'boolIsActive' => 1
+                ));
 
-        //         $garment->save();
-        //         return Redirect::to('/maintenance/garments?success=true');
-        //     }else return Redirect::to('/maintenance/garments?success=duplicate');
-        // }else return Redirect::to('/maintenance/garments?input=invalid');
+         $garment->save();
+        return redirect('maintenance/garment');
+           
     }
 
     /**
@@ -110,6 +109,20 @@ class GarmentCategoryController extends Controller
     public function destroy($id)
     {
         //
+    }
+    function updateGarmentCategory(Request $request)
+    {
+    
+        $garment = GarmentCategory::find($request->input('editGarmentID'));
+            $garment->strGarmentCategoryName = trim($request->input('editGarmentName'));
+
+            $garment->textGarmentCategoryDesc = trim($request->input('editGarmentDescription'));
+            $garment ->save();
+
+        return  redirect('maintenance/garment');
+
+        
+   
     }
 
      public function smartCounter($id)
