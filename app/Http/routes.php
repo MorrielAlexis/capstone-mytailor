@@ -45,7 +45,7 @@ Route::group(['prefix' => 'maintenance'], function(){
 Route::group(['prefix' => 'maintenance'], function(){
 	Route::resource('garment', 'GarmentCategoryController');
 
-		Route::post('garment/update','EmployeeRoleController@updateGarmentCategory');
+		Route::post('garment/update','GarmentCategoryController@updateGarmentCategory');
 
 	
 

@@ -126,8 +126,8 @@
                     <!--<th data-field="id">Garment ID</th>-->
                     <th data-field="garmentName">Garment Name</th>
                     <th data-field="garmentDescription">Garment Description</th>
-                    <th data-field="Edit">Edit</th>
-                    <th>Deactivate</th>
+                    <th data-field="Edit">Actions</th>
+                    <!-- <th>Deactivate</th> -->
                   </tr>
               </thead>
 
@@ -137,8 +137,9 @@
                   <tr>
                     <td>{{ $garment->strGarmentCategoryName }}</td>
                     <td>{{ $garment->textGarmentCategoryDesc }}</td>
-                    <td><a style="color:black" class="modal-trigger btn tooltippedbtn-floating blue accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of garment category" href="#edit{{ $garment->strGarmentCategoryID }}"><i class="mdi-editor-mode-edit"></a></td>
-                    <td><a style="color:black" class="modal-trigger btn tooltipped btn-small center-text red accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of garment from table" href="#del{{$garment->strGarmentCategoryID}}"><i class="mdi-action-delete"></i></a></td>
+                    <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of garment category" href="#edit{{ $garment->strGarmentCategoryID }}"><i class="mdi-editor-mode-edit"></i></a>
+
+                    <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of garment from table" href="#del{{$garment->strGarmentCategoryID}}"><i class="mdi-action-delete"></i></a></td>
               
                       <!-- Modal Structure for Edit Garment Category> -->
                       <div id="edit{{ $garment->strGarmentCategoryID }}" class="modal modal-fixed-footer">

@@ -78,13 +78,11 @@
       </div> 
     </div>
 
-    <div class="row">
-      <div class="col s12 m12 l12">
-
-          <button style="color:black; margin-right:35px; margin-left: 20px" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="CLick to add a new fabric type to the table" href="#addFabricType">ADD FABRIC TYPE</button>
+      <div class="col s6 left">
+         <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="left" data-delay="50"  data-tooltip="CLick to add a new role to the table" href="#addFabricType" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
       </div>
     </div>
-  </div> <!-- End of Main Wrapper  --> 
+   <!-- End of Main Wrapper  --> 
 
 
 
@@ -105,8 +103,8 @@
               		  <!--<th data-field="fabricID">Fabric Type ID</th>-->
                     <th data-field="fabricName">Fabric Type Name</th>
               		  <th data-field="fabricDescription">Fabric Description</th>
-                    <th data-field="Edit">Edit</th>
-                    <th data-field="Delete">Deactivate</th>
+                    <th data-field="Edit">Actions</th>
+                    
 
               	  </tr>
                 </thead>
@@ -118,8 +116,8 @@
               		 <!--<td>{{ $fabricType->strFabricTypeID }}</td>-->
              		  <td>{{ $fabricType->strFabricTypeName }}</td>
               		  <td>{{ $fabricType->txtFabricTypeDesc}}</td>
-              		  <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of fabric type" href="#edit{{$fabricType->strFabricTypeID}}">EDIT</button></td>
-                    <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of fabric type from the table" href="#del{{$fabricType->strFabricTypeID}}">DEACTIVATE</button></td>
+              		  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of fabric type" href="#edit{{$fabricType->strFabricTypeID}}"><i class="mdi-editor-mode-edit"></i></a>
+                    <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of fabric type from the table" href="#del{{$fabricType->strFabricTypeID}}"><i class="mdi-action-delete"></i></a></td>
               	
                     <div id="edit{{ $fabricType->strFabricTypeID }}" class="modal modal-fixed-footer"> <!-- editFabricType  --> 
                       <h5><font color = "#1b5e20"><center>EDIT FABRIC TYPE</center> </font> </h5>

@@ -119,8 +119,8 @@
                   <th data-field="cellphone">Cellphone No. (alt)</th>
                   <th data-field="Landline">Phone No.</th>
                   <th data-field="email">Email Address</th>
-                  <th data-field="Edit">Edit</th>
-                  <th data-field="Delete">Deactivate</th>
+                  <th data-field="Edit">Actions</th>
+                  <!-- <th data-field="Delete">Deactivate</th> -->
               	</tr>
               </thead>
             
@@ -142,8 +142,8 @@
                   <td>{{ $employee->strCellNoAlt }}</td> 
                   <td>{{ $employee->strPhoneNo }}</td>
                   <td>{{ $employee->strEmailAdd }}</td>
-              		<td><a onclick="editEmp('{!! $employee->strEmployeeID !!}')" style="color:black" class="modal-trigger btn tooltipped btn-floating blue accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of employee" href="#edit{{$employee->strEmployeeID}}"><i class="mdi-editor-mode-edit"></i></a></td>
-                  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating red accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of employee from table" href="#del{{$employee->strEmployeeID}}"><i class="mdi-action-delete"></i></a>
+              		<td><a onclick="editEmp('{!! $employee->strEmployeeID !!}')" style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of employee" href="#edit{{$employee->strEmployeeID}}"><i class="mdi-editor-mode-edit"></i></a>
+                  <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of employee from table" href="#del{{$employee->strEmployeeID}}"><i class="mdi-action-delete"></i></a>
                   
 
                    <div id="edit{{$employee->strEmployeeID}}" class="modal modal-fixed-footer">                       
