@@ -179,7 +179,7 @@
                       <div id="del{{ $garment->strGarmentCategoryID }}" class="modal modal-fixed-footer">
                         <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS GARMENT CATEGORY?</center> </font> </h5>
                         
-                        {!! Form::open(['url' => 'delGarmentCategory']) !!}
+                        {!! Form::open(['url' => 'maintenance/garment/destroy']) !!}
                           <div class="divider" style="height:2px"></div>
                           <div class="modal-content col s12">
                             
@@ -205,12 +205,12 @@
                                 <input value="{{ $garment->strGarmentCategoryID }}" type="hidden" id="delInactiveGarment" name="delInactiveGarment">
                               </div>
 
-                          <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
+                          <!-- <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                               <div class="input-field">
                                 <input value="{{ $garment->strGarmentCategoryInactiveReason }}" type="text" id="delInactiveReason" name="delInactiveReason" class="validate" required>
                                 <label for="reason"> *Reason for Deactivation </label>
                               </div>
-                          </div>
+                          </div> -->
                           </div>
 
                           <div class="modal-footer col s12" style="background-color:#26a69a">

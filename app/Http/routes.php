@@ -46,6 +46,8 @@ Route::group(['prefix' => 'maintenance'], function(){
 	Route::resource('garment', 'GarmentCategoryController');
 
 		Route::post('garment/update','GarmentCategoryController@updateGarmentCategory');
+		Route::post('garment/destroy','GarmentCategoryController@deleteGarmentCategory');
+
 
 	
 

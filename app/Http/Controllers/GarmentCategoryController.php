@@ -125,6 +125,21 @@ class GarmentCategoryController extends Controller
    
     }
 
+
+    function deleteGarmentCategory(Request $request)
+    {
+    
+        $garment = GarmentCategory::find($request->input('delGarmentID'));
+    
+
+        $garment->boolIsActive = 0;
+        $garment ->save();
+
+        return  redirect('maintenance/garment');
+
+        
+   
+    }
      public function smartCounter($id)
     {   
 
