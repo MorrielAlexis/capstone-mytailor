@@ -118,7 +118,7 @@
   
 
   <br><br><br>
- <!--<p><h4 style="lightpink">Measurements</h4></p>-->
+ <p><h4 style="lightpink">Measurement Category</h4></p>
     <div class="row" style="padding:20px">
     
 
@@ -132,12 +132,11 @@
 -->    
     <!--Tab Contents-->
     <!--Measurement Category-->
-            <div class="row">
-              <div class="col s12 m12 l12">
-                <button style="color:black; margin-right:35px; margin-left: 20px" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to add a new measurement information to the table" href="#addMeasurementInfo"> ADD MEASUREMENT CATEGORY </button>
-              </div>
-            </div> 
-        </div> <!--DIV CLASS MAIN WRAPPER-->       
+        <div class="col s6 left">
+             <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="left" data-delay="50"  data-tooltip="Click to add a new measurement information to the table" href="#addMeasurementInfo" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
+          </div>
+        </div> 
+    </div> <!--DIV CLASS MAIN WRAPPER-->       
  
           <div class="row">
             <div class="col s12 m12 l12">
@@ -153,8 +152,8 @@
                           <th data-field="Garmentcategory">Garment Category</th>
                           <th data-field="Garmentcategory">Segment</th>
                           <th data-field="MeasurementName">Measurement Name</th>
-                          <th data-field="MeasurementName">Edit</th>
-                          <th data-field="MeasurementName">Deactivate</th>
+                          <th data-field="MeasurementName">Actions</th>
+                          
                         </tr>
                       </thead>
 
@@ -162,12 +161,11 @@
                             @foreach($head as $head) 
                             @if($head->boolIsActive == 1) 
                         <tr>   
-                           <td>{{ $head->strMeasurementID }}</td>
                            <td>{{ $head->strGarmentCategoryName }}</td>
                            <td>{{ $head->strGarmentSegmentName }}</td>
                           <td>{{ $head->strMeasurementDetailName }}</td> 
-                          <td><button style = "color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement information" href="#edit{{$head->strMeasurementID}}">EDIT</button></td>
-                          <td><button style = "color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement information" href="#del{{$head->strMeasurementID}}">DEACTIVATE</button>
+                          <td><a style = "color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement information" href="#edit{{$head->strMeasurementID}}"><i class="mdi-editor-mode-edit"></i></a>
+                          <a style = "color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement information" href="#del{{$head->strMeasurementID}}"><i class="mdi-action-delete"></i></a>
                         
                           <div id="edit{{$head->strMeasurementID}}" class="modal modal-fixed-footer">
                             <h5><font color = "#1b5e20"><center>EDIT MEASUREMENT INFORMATION</center> </font> </h5>

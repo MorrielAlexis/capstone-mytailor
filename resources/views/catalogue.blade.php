@@ -66,12 +66,11 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col s12 m12 l12">
-        <button style="color:black; margin-right:35px; margin-left: 20px" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to add a new catalogue design to the table" href="#addCatalogue">ADD CATALOGUE DESIGN</button>
+      <div class="col s6 left">
+         <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="left" data-delay="50"  data-tooltip="Click to add a new catalogue design to the table" href="#addCatalogue" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
       </div>
     </div>
-  </div>
+  
 
 
   <div class="row">
@@ -85,13 +84,11 @@
       		<table class = "table centered data-catalogue" align = "center" border = "1">
             <thead>
           		<tr>
-                <!--<th data-field= "Catalogue ID">Catalogue ID</th>-->
                 <th data-field="Catalogue Category">Catalogue Category</th>
              		<th data-field="Catalogue Name">Catalogue Name</th>
                 <th data-field="Description">Description</th>
                 <th data-field="Image">Image</th>
-                <th data-field="Edit">Edit</th>
-                <th data-field="Edit">Deactivate</th>
+                <th data-field="Edit">Actions</th>
               </tr>
             </thead>
 
@@ -104,9 +101,9 @@
               	<td>{{ $catalogue->strCatalogueName }}</td>
               	<td>{{ $catalogue->strCatalogueDesc }}</td>
                 <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($catalogue->strCatalogueImage)}}"></td>
-              	<td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit catalogue design detail" href="#edit{{$catalogue->strCatalogueID}}">EDIT</button></td>
-                <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of catalogue design from the table" href="#del{{$catalogue->strCatalogueID}}">DEACTIVATE</button>
-
+              	<td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit catalogue design detail" href="#edit{{$catalogue->strCatalogueID}}"><i class="mdi-editor-mode-edit"></i></a>
+                <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of catalogue design from the table" href="#del{{$catalogue->strCatalogueID}}"><i class="mdi-action-delete"></i></a></td>
+a
                   <div id="edit{{$catalogue->strCatalogueID}}" class="modal modal-fixed-footer">                   
                     <h5><font color = "#1b5e20"><center>EDIT CATALOGUE DESIGN</center></font> </h5>                     
                       editCatalogueDesign
