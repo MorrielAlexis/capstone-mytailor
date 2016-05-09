@@ -79,12 +79,11 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col s12 m12 l12">
-        <button style="color:black; margin-right:35px; margin-left: 20px" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to add a new swatch to the table" href="#addSwatches">ADD SWATCH</button>
-      </div>
+    <div class="col s6 left">
+         <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="left" data-delay="50"  data-tooltip="Click to add a new swatch to the table" href="#addSwatches" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
     </div>
   </div>
+  
 
 
 
@@ -103,10 +102,8 @@
              		  	<th data-field="SwatchName">Swatch Name</th>
                     <th data-field="SwatchCode">Swatch Code</th>
               			<th data-field="SwatchImage">Image</th>
-                    <th data-field="Edit">Edit</th>
-                    <th data-field="Edit">Deactivate</th>
-
-              		</tr>
+                    <th data-field="Edit">Actions</th>
+                 	</tr>
                 </thead>
  
               	<tbody>
@@ -117,8 +114,8 @@
                     <td>{{ $swatch->strSwatchName }}</td>
                     <td>{{ $swatch->strSwatchCode }}</td>
                     <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($swatch->strSwatchImage)}}"></td>
-              		  <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit swatch detail" href="#edit{{ $swatch->strSwatchID }}">EDIT</button></td>
-                    <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of swatch from the table" href="#del{{ $swatch->strSwatchID }}">DEACTIVATE</button>
+              		  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit swatch detail" href="#edit{{ $swatch->strSwatchID }}"><i class="mdi-editor-mode-edit"></i></a>
+                    <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of swatch from the table" href="#del{{ $swatch->strSwatchID }}"><i class="mdi-action-delete"></i></a></td>
     
 
                       <div id="edit{{$swatch->strSwatchID}}" class="modal modal-fixed-footer">                        
