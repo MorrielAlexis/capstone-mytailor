@@ -121,12 +121,12 @@
   <br><br><br>
  <!--<p><h4 style="lightpink">Measurement Details</h4></p>-->
 
-            <div class="row">
-              <div class="col s12 m12 l6">
-                <button style="color:black; margin-right:35px; margin-left: 20px" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to add a new measurement detail to the table" href="#addMeasurementPart">ADD MEASUREMENT DETAIL</button>
-              </div>
-            </div>
-        </div> <!-- ENDING TAG FOR MAIN_WRAPPER-->
+        
+      <div class="col s6 left">
+           <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="left" data-delay="50"  data-tooltip="Click to add a new measurement detail to the table" href="#addMeasurementPart" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
+      </div>
+    </div>
+         <!-- ENDING TAG FOR MAIN_WRAPPER-->
 
           <div class="row">
             <div class="col s12 m12 l12">
@@ -140,8 +140,7 @@
                       <tr>
                         <th data-field="name">Measurement Name</th>
                         <th data-field="description">Measurement Description</th>
-                        <th data-field="action">Edit</th>
-                        <th data-field="action">Deactivate</th>
+                        <th data-field="action">Actions</th>
                       </tr>
                     </thead>
 
@@ -151,8 +150,8 @@
                       <tr>
                         <td>{{ $detail->strMeasurementDetailName }}</td>
                         <td>{{ $detail->strMeasurementDetailDesc }}</td>
-                        <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement detail" href="#edit{{ $detail->strMeasurementDetailID }}">EDIT</button></td>
-                        <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to deactivate measurement detail from the table" href="#del{{ $detail->strMeasurementDetailID }}">DEACTIVATE</button>
+                        <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement detail" href="#edit{{ $detail->strMeasurementDetailID }}"><i class="mdi-editor-mode-edit"></i></a>
+                        <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to deactivate measurement detail from the table" href="#del{{ $detail->strMeasurementDetailID }}"><i class="mdi-action-delete"></i></a></td>
 
                         <div id="edit{{ $detail->strMeasurementDetailID }}" class="modal modal-fixed-footer">
                           <h5><font color = "#1b5e20"><center>EDIT MEASUREMENT PART</center> </font> </h5>

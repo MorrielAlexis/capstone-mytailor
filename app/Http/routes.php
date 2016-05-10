@@ -30,17 +30,21 @@ Route::group(['prefix' => 'maintenance'], function(){
 Route::group(['prefix' => 'maintenance'], function(){
 	Route::resource('employee', 'EmployeeController');
 
-	Route::post('employee/update', 'EmployeeController@updateEmployee');
-	Route::post('employee/destroy', 'EmployeeController@deleteEmployee');
+		Route::post('employee/update', 'EmployeeController@updateEmployee');
+		Route::post('employee/destroy', 'EmployeeController@deleteEmployee');
 
 	Route::resource('employee-role', 'EmployeeRoleController');
-		
+	
+		Route::post('employee-role/update','EmployeeRoleController@updateRole');
+	    Route::post('employee-role/destroy','EmployeeRoleController@deleteRole');
 
 });
 
 Route::group(['prefix' => 'maintenance'], function(){
-	Route::resource('garment-category', 'GarmentCategoryController',
-		['only' => ['index']]);
+	Route::resource('garment-category', 'GarmentCategoryController');
+
+		Route::post('garment-category/update','GarmentCategoryController@updateGarmentCategory');
+		Route::post('garment-category/destroy','GarmentCategoryController@deleteGarmentCategory');
 
 	Route::resource('garment-segment', 'GarmentSegmentController', 
 		['only' => ['index']]);

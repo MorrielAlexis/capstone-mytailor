@@ -10,10 +10,11 @@ class EmployeeRole extends Model
 
     protected $primaryKey = 'strEmpRoleID';
 
-    protected $fillable = ['strEmpRoleName', 
+    protected $fillable = array('strEmpRoleID',
+                            'strEmpRoleName', 
     						'strEmpRoleDesc',  	
     						'strRoleInactiveReason',			
-    					'boolIsActive'];
+    					    'boolIsActive');
     					
 
     // An role can be posess by many emloyees.

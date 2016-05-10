@@ -82,19 +82,34 @@
         </div>
       @endif
 
+   @if (count($errors) > 0)
+    <div class="row" id="success-message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red">
+              <span class="black-text" style="color:black">
+                @foreach ($errors->all() as $error)
+                  {{ $error }}
+                @endforeach
+                <i class="material-icons right" onclick="$('#success-message').hide()">clear</i>
+              </span>
+            </div>
+          </div>
+        </div>
+  @endif
+
 
     <div class="row">
       <div class="col s12 m12 l12">
       <span class="page-title"><h4>Garment Category</h4></span>
+      </div>
     </div>
 
-    <div class="row">
-      <div class="col s12 m12 l12">
-      <button style="color:black; margin-right:35px; margin-left: 20px" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="CLick to add a new type of garment to the table" href="#addGCategory">ADD GARMENT CATEGORY</button>
-
+       <div class="col s6 left">
+         <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="left" data-delay="50"  data-tooltip="CLick to add a new type of garment to the table" href="#addGCategory" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
+       </div>
      </div>
-   </div>
-  </div>
+   
+  
 
     <div class="row">
       <div class="col s12 m12 l12">
@@ -111,43 +126,45 @@
                     <!--<th data-field="id">Garment ID</th>-->
                     <th data-field="garmentName">Garment Name</th>
                     <th data-field="garmentDescription">Garment Description</th>
-                    <th data-field="Edit">Edit</th>
-                    <th>Deactivate</th>
+                    <th data-field="Edit">Actions</th>
+                    <!-- <th>Deactivate</th> -->
                   </tr>
               </thead>
 
               <tbody>
-                @foreach($category as $category)
-                  @if($category->boolIsActive == 1)
+                @foreach($garment as $garment)
+                  @if($garment->boolIsActive == 1)
                   <tr>
-                    <td>{{ $category->strGarmentCategoryName }}</td>
-                    <td>{{ $category->textGarmentCategoryDesc }}</td>
-                    <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of category" href="#edit{{ $category->strGarmentCategoryID }}">EDIT</button></td>
-                    <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of category from the table" href="#del{{ $category->strGarmentCategoryID }}">DEACTIVATE</button></td>
+                    <td>{{ $garment->strGarmentCategoryName }}</td>
+                    <td>{{ $garment->textGarmentCategoryDesc }}</td>
+                    <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of garment category" href="#edit{{ $garment->strGarmentCategoryID }}"><i class="mdi-editor-mode-edit"></i></a>
+
+                    <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of garment from table" href="#del{{$garment->strGarmentCategoryID}}"><i class="mdi-action-delete"></i></a></td>
               
                       <!-- Modal Structure for Edit Garment Category> -->
-                      <div id="edit{{ $category->strGarmentCategoryID }}" class="modal modal-fixed-footer">
+                      <div id="edit{{ $garment->strGarmentCategoryID }}" class="modal modal-fixed-footer">
                         <h5><font color = "#1b5e20"><center>EDIT GARMENT CATEGORY</center> </font> </h5>                          
                             
-                            {!! Form::open(['url' => 'editGarmentCategory']) !!}
+                            {!! Form::open(['url' => 'maintenance/garment/update']) !!}
                               <div class="divider" style="height:2px"></div>
                               <div class="modal-content col s12">
                                 
                               <div class="input-field">
-                                <input value="{{ $category->strGarmentCategoryID }}" id="editGarmentID" name="editGarmentID" type="hidden">
+                                <input value="{{ $garment->strGarmentCategoryID }}" id="editGarmentID" name="editGarmentID" type="hidden">
                               </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input required value="{{ $category->strGarmentCategoryName }}" id="editGarmentName" name="editGarmentName"type="text" class="validateGarmentName">
+                                <input required value="{{ $garment->strGarmentCategoryName }}" id="editGarmentName" name="editGarmentName"type="text" class="validate" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2" >
                                 <label for="garment_name">*Garment Name </label>
+                                <span class="red-text"><b>*</b></span>
                               </div>
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                               <div class="input-field col s12">
-                                <input required value= "{{ $category->textGarmentCategoryDesc }}" id="editGarmentDescription" name="editGarmentDescription" name="GarmentDescription" type="text" class="validateGarmentDesc">
-                                <label for="garment_description">*Garment Desription </label>
+                                <input required value= "{{ $garment->textGarmentCategoryDesc }}" id="editGarmentDescription" name="editGarmentDescription" name="GarmentDescription" type="text" class="validate">
+                                <label for="garment_description"><span class="red-text"><b>*</b></span> *Garment Desription </label>
                               </div>
                           </div>
                           </div>
@@ -159,41 +176,41 @@
                     {!! Form::close() !!}
                   </div>
                       
-                      <div id="del{{ $category->strGarmentCategoryID }}" class="modal modal-fixed-footer">
+                      <div id="del{{ $garment->strGarmentCategoryID }}" class="modal modal-fixed-footer">
                         <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS GARMENT CATEGORY?</center> </font> </h5>
                         
-                        {!! Form::open(['url' => 'delGarmentCategory']) !!}
+                        {!! Form::open(['url' => 'maintenance/garment/destroy']) !!}
                           <div class="divider" style="height:2px"></div>
                           <div class="modal-content col s12">
                             
                               <div class="input-field">
-                                <input value="{{ $category->strGarmentCategoryID }}" id="delGarmentID" name="delGarmentID" type="hidden">
+                                <input value="{{ $garment->strGarmentCategoryID }}" id="delGarmentID" name="delGarmentID" type="hidden">
                               </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input required pattern="[A-Za-z\s]+" value="{{ $category->strGarmentCategoryName }}" type="text" class="" readonly>
+                                <input required pattern="[A-Za-z\s]+" value="{{ $garment->strGarmentCategoryName }}" type="text" class="" readonly>
                                 <label for="garment_name">Garment Name </label>
                               </div>
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                               <input  value= "{{ $category->textGarmentCategoryDesc }}" type="text" class="" readonly>
+                               <input  value= "{{ $garment->textGarmentCategoryDesc }}" type="text" class="" readonly>
                                 <label for="garment_description">Garment Desription </label>
                               </div>
                           </div>
 
                               <div class="input-field">
-                                <input value="{{ $category->strGarmentCategoryID }}" type="hidden" id="delInactiveGarment" name="delInactiveGarment">
+                                <input value="{{ $garment->strGarmentCategoryID }}" type="hidden" id="delInactiveGarment" name="delInactiveGarment">
                               </div>
 
-                          <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
+                          <!-- <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                               <div class="input-field">
-                                <input value="{{ $category->strGarmentCategoryInactiveReason }}" type="text" id="delInactiveReason" name="delInactiveReason" class="validate" required>
+                                <input value="{{ $garment->strGarmentCategoryInactiveReason }}" type="text" id="delInactiveReason" name="delInactiveReason" class="validate" required>
                                 <label for="reason"> *Reason for Deactivation </label>
                               </div>
-                          </div>
+                          </div> -->
                           </div>
 
                           <div class="modal-footer col s12" style="background-color:#26a69a">
@@ -218,7 +235,7 @@
             <div id="addGCategory" class="modal modal-fixed-footer">
               <h5><font color = "#1b5e20"><center>ADD NEW GARMENT CATEGORY</center> </font> </h5>
               
-              {!! Form::open(['url' => 'addGarmentCategory']) !!}
+              {!! Form::open(['url' => 'maintenance/garment']) !!}
                 <div class="divider" style="height:2px"></div>
                 <div class="modal-content col s12">
   
@@ -228,15 +245,15 @@
 
                 <div class = "col s12" style="padding:15px;  border:3px solid white;">
                     <div class="input-field col s12">
-                      <input required id="addGarmentName" name="addGarmentName" type="text" class="validateGarmentName">
-                      <label for="garment_name">*Garment Name </label>
+                      <input required id="addGarmentName" name="addGarmentName" type="text" class="validateG" pattern="^[a-zA-Z\-'`\s]{2,}$">
+                      <label for="garment_name">Garment Name<span class="red-text"><b>*</b></span> </label>
                     </div>
                 </div>
 
                 <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                     <div class="input-field">
-                      <input required id="addGarmentDesc" name="addGarmentDesc" type="text" class="validateGarmentDesc">
-                      <label for="garment_description">*Garment Desription </label>
+                      <input required id="addGarmentDesc" name="addGarmentDesc" type="text" class="validate">
+                      <label for="garment_description">Garment Desription <span class="red-text"><b>*</b></span> </label>
                     </div>
                 </div>
                 </div>

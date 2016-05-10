@@ -212,13 +212,14 @@
 
             </div>
 			</div>
-		</div>
 
 		<div class="modal-footer" style="background-color:#26a69a">
 			<a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
 			<a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
 		</div>
 	</div>
+	</div>
+
 
 	<!--segment modal-->
 	<div id="segment" class="modal modal-fixed-footer">

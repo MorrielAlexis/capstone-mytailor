@@ -89,12 +89,11 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col s12 m12 l12">
-        <button style="color:black; margin-right:35px; margin-left: 20px" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to add a new segment to the table" href="#addSegment">ADD GARMENT SEGMENT</button>
+      <div class="col s6 left">
+         <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="left" data-delay="50"  data-tooltip="Click to add a new segment to the table" href="#addSegment" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
       </div>
     </div>
-  </div>
+
 
     <div class="row">
     	<div class="col s12 m12 l12">
@@ -110,8 +109,8 @@
              		   	<th data-field="name">Category Name</th>
                     <th data-field="name">Segment Name</th>
               			<th data-field="address">Segment Description</th>
-                    <th data-field="Edit">Edit</th>
-                    <th data-field="Delete">Deactivate</th>
+                    <th data-field="Edit">Actions</th>
+                    
               		</tr>
                 </thead>
 
@@ -123,8 +122,8 @@
              		  <td>{{ $segment->strGarmentCategoryName }}</td>
                     <td>{{ $segment->strGarmentSegmentName }}</td>
               		  <td>{{ $segment->strGarmentSegmentDesc }}</td>
-              		  <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of segment" href="#edit{{ $segment->strGarmentSegmentID }}">EDIT</button> </td>
-                    <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of segment from table" href="#del{{ $segment->strGarmentSegmentID }}">DEACTIVATE</button>
+              		  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of segment" href="#edit{{ $segment->strGarmentSegmentID }}"><i class="mdi-editor-mode-edit"></i></a> 
+                    <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of segment from table" href="#del{{ $segment->strGarmentSegmentID }}"><i class="mdi-action-delete"></i></a></td>
        
                       <div id="edit{{ $segment->strGarmentSegmentID }}" class="modal modal-fixed-footer">
                         <h5><font color = "#1b5e20"><center>EDIT GARMENT SEGMENT</center> </font> </h5>

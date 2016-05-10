@@ -2,10 +2,29 @@
 
 @section('content')
 
+  <div class="flash-message">
+    @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+      @if(Session::has('alert-' . $msg))
 
-  @if (Session::has('message'))
+      <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+      @endif
+    @endforeach
+  </div>
 
-    @endif
+  @if (count($errors) > 0)
+    <div class="row" id="success-message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red">
+              <span class="black-text" style="color:black">
+                @foreach ($errors->all() as $error)
+                  {{ $error }}
+                @endforeach
+                <i class="material-icons right" onclick="$('#success-message').hide()">clear</i>
+              </span>
+            </div>
+          </div>
+        </div>
+  @endif
 
   <div class="main-wrapper" style="margin-top:30px">
         <!--Add Employee Role-->
@@ -82,12 +101,11 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col s12 m12 l12">
-       <button style="color:black; margin-right:35px; margin-left: 20px" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="CLick to add a new role to the table" href="#addRole">ADD EMPLOYEE ROLE</button>
-      </div>
-    </div>
+      <div class="col s6 left">
+         <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="left" data-delay="50"  data-tooltip="CLick to add a new role to the table" href="#addRole" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
+     </div>
   </div>
+
 
 
   <div class="row">
@@ -104,8 +122,8 @@
           		<tr>
              		  <th data-field="name">Role Name</th>
               	  <th data-field="address">Role Description</th>
-                  <th data-field="Edit">Edit</th>
-                  <th data-field="Delete">Deactivate</th>
+                  <th data-field="Edit">Actions</th>
+                
               </tr>
             </thead>
           
@@ -115,13 +133,13 @@
               <tr>
                 <td>{{ $role->strEmpRoleName }}</td>
                 <td>{{ $role->strEmpRoleDesc }}</td>
-                <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of role" href="#edit{{$role->strEmpRoleID}}">EDIT</button></td>
-                <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of role from table" href="#del{{$role->strEmpRoleID}}">DEACTIVATE</button>
+                <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of role" href="#edit{{$role->strEmpRoleID}}"><i class="mdi-editor-mode-edit"></i></a>
+                <a style="color:black" class="modal-trigger btn tooltipped btn-floating red"data-position="bottom" data-delay="50" data-tooltip="Click to remove data of role from table" href="#del{{$role->strEmpRoleID}}"><i class="mdi-action-delete"></i></a>
                 </td>	
                   <div id="edit{{$role->strEmpRoleID}}" class="modal modal-fixed-footer">                     
                     <h5><font color = "#1b5e20"><center>EDIT EMPLOYEE ROLE</center> </font> </h5>
                       
-                    {!! Form::open(['url' => 'editRole']) !!}
+                    {!! Form::open(['url' => 'maintenance/employeeRole/update']) !!}
                       <div class="divider" style="height:2px"></div>
                       <div class="modal-content col s12">
 
@@ -131,31 +149,33 @@
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input required pattern="[A-Za-z\s]+" value="{{$role->strEmpRoleName}}" id="editRoleName" name="editRoleName" type="text" class="validateRole">
-                            <label for="role_name">*Role Name </label>
+                             <input required id="editRoleName" name="editRoleName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2" value="{{$role->strEmpRoleName}}">
+                            <label for="role_name">Role Name<span class="red-text"><b>*</b></span> </label>
                           </div>
                       </div>
 
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
-                          <div class="input-field col s12">
-                            <input required value="{{$role->strEmpRoleDesc}}" id="editRoleDescription" name="editRoleDescription" type="text" class="validateRole">
-                            <label for="role_description">*Role Description </label>
+                          <div class="input-field col s12">         
+                          <input required id="editRoleDescription" name="editRoleDescription" type="text" class="validate" required data-position="bottom" pattern="[A-Za-z\s]+" value="{{$role->strEmpRoleDesc}}">
+                            <label for="role_description">Role Description <span class="red-text"><b>*</b></span> </label>
                           </div>  
                       </div>
                       </div>
 
                       <div class="modal-footer col s12" style="background-color:#26a69a">
                         <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Update</button>
-                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
+                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" button type="reset" value="Reset">Cancel</a> 
                       </div>
                     {!! Form::close() !!}
                   </div>
+
+                  <!-- //Deactivate Role -->
                   
                   <div id="del{{$role->strEmpRoleID}}" class="modal modal-fixed-footer">                     
                      <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS EMPLOYEE ROLE?</center> </font> </h5>
                         
-                      {!! Form::open(['url' => 'delRole']) !!}
+                      {!! Form::open(['url' => 'maintenance/employeeRole/destroy']) !!}
                         <div class="divider" style="height:2px"></div>
                         <div class="modal-content col s12">
 
@@ -166,19 +186,19 @@
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input pattern="[A-Za-z\s]+" value="{{$role->strEmpRoleName}}" type="text" class="" readonly>
+                            <input id="delEmpRoleName" name="delEmpRoleName" pattern="[A-Za-z\s]+" value="{{$role->strEmpRoleName}}" type="text" class="readonly" >
                             <label for="role_name">Role Name </label>
                           </div>
                     </div>
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input  value="{{$role->strEmpRoleDesc}}" type="text" class="" readonly>
+                            <input  value="{{$role->strEmpRoleDesc}}" type="text" class="readonly"  id="delEmpRoleDesc" name="delEmpRoleDesc">
                             <label for="role_description">Role Description </label>
                           </div>  
                     </div>
 
-                          <div class="input-field">
+                          <!-- <div class="input-field">
                             <input id="delInactiveRole" name = "delInactiveRole" value = "{{$role->strEmpRoleID}}" type="hidden">
                           </div>
 
@@ -187,7 +207,7 @@
                             <input id="delInactiveReason" name = "delInactiveReason" value = "{{$role->strInactiveReason}}" type="text" class="validate" required>
                             <label for="fax"> *Reason for Deactivation </label>
                           </div>
-                    </div>    
+                    </div>    --> 
                       </div>
 
                       <div class="modal-footer col s12" style="background-color:#26a69a">

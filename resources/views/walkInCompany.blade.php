@@ -92,9 +92,57 @@
 						  </div>
 		    			</div>
 
-		    			<div class="col s12" style="margin-top:40px;">
-		    				<div class="modal-trigger btn right teal-accent 2" href="#save">SAVE</div>
+		    			<div class="row container">
+		    				<div class="col s12 center" style="margin-top:20px;">
+	    						<div style="border:3px solid #69f0ae; padding:10px;">
+	    							<h5>List of employees</h5>
+	    							<div style="border:4px solid white; background-color:#ffebee" style="padding:5px; margin-bottom:10px;">
+	    								<div class="input-field" style="padding:10px;">
+							                <input id="empname" name="empname" type="text" class="validate">
+							                <label for="empname">Employee Name</label>
+							        	</div>
+							        	<div class="row">
+		    								<div class="input-field col s7">
+											    <select>
+											    	<option value="" disabled selected>Female</option>
+											    	<option value="1">Female</option>
+											    	<option value="2">Male</option>
+											    </select>
+											    <label>Gender</label>
+											</div>
+											<div class="col s5" style="margin-top:10px;">
+												<center><a class="btn modal-trigger tooltipped" href="#measurementmodal" data-position="bottom" data-delay="50" data-tooltip="Supply measurements"><i class="large material-icons">playlist_add</i></a></center>
+											</div>
+										</div>
+	    							</div>
+	    							<div style="border:4px solid white; background-color:#ffebee" style="padding:5px; margin-bottom:10px;">
+	    								<div class="input-field" style="padding:10px;">
+							                <input id="empname" name="empname" type="text" class="validate">
+							                <label for="empname">Employee Name</label>
+							        	</div>
+							        	<div class="row">
+		    								<div class="input-field col s7">
+											    <select>
+											    	<option value="" disabled selected>Female</option>
+											    	<option value="1">Female</option>
+											    	<option value="2">Male</option>
+											    </select>
+											    <label>Gender</label>
+											</div>
+											<div class="col s5" style="margin-top:10px;">
+												<center><a class="btn modal-trigger tooltipped" href="#measurementmodal" data-position="bottom" data-delay="50" data-tooltip="Supply measurements"><i class="large material-icons">playlist_add</i></a></center>
+											</div>
+										</div>
+	    							</div>
+	    						<center><div class="btn container" style="width:100%; margin-top:10px;"><font size="+1">+</font></div></center>
+
+	    						</div>
+		    				</div>
+
 		    			</div>
+
+		    			<center><div class="modal-trigger btn teal-accent 2" href="#save">SAVE</div></center>
+
 
 	    			</div>
 	    		</div>
@@ -274,7 +322,7 @@
 	</div>
 
 
-	<!--swatchmodal-->
+	<!--swatch modal-->
 	<div id="swatch" class="modal modal-fixed-footer">
 		<div class="modal-content">
 			<h4 style="color:#1b5e20" class="center">SWATCHES</h4>
@@ -313,12 +361,54 @@
 		</div>
 	</div>
 
+	<!--measurement modal--> 
+	<div id="measurementmodal" class="modal modal-fixed-footer">
+		<div class="modal-content">
+			<h4 style="color:#1b5e20" class="center">Measurements</h4>
+			<div class="divider container" style="margin-bottom:20px;"></div>
+			<div class="row">
+				<div class="col s6">
+					<div class="input-field">
+	                  	<input id ="measurement" type="text" class="validate">
+	                  	<label for="measurement">Measurement</label>
+	                </div>
+	                <div class="input-field">
+	                  	<input id ="measurement" type="text" class="validate">
+	                  	<label for="measurement">Measurement</label>
+	                </div>
+	                <div class="input-field">
+	                  	<input id ="measurement" type="text" class="validate">
+	                  	<label for="measurement">Measurement</label>
+	                </div>
+				</div>
+				<div class="col s6">
+					<div class="input-field">
+	                  	<input id ="measurement" type="text" class="validate">
+	                  	<label for="measurement">Measurement</label>
+	                </div>
+	                <div class="input-field">
+	                  	<input id ="measurement" type="text" class="validate">
+	                  	<label for="measurement">Measurement</label>
+	                </div>
+	                <div class="input-field">
+	                  	<input id ="measurement" type="text" class="validate">
+	                  	<label for="measurement">Measurement</label>
+	                </div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal-footer" style="background-color:#26a69a">
+			<a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+			<a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+		</div>
+	</div>
 
 @stop
 
 @section('scripts')
 
-	<script type="text/javascript">
+	<script>
 	  $('.modal-trigger').leanModal({
 	      dismissible: true, // Modal can be dismissed by clicking outside of the modal
 	      opacity: .5, // Opacity of modal background
@@ -335,5 +425,10 @@
 	  });
 	</script>	        
 
+	<script>
+	 $(document).ready(function(){
+		$('.tooltipped').tooltip({delay: 50});
+	 });
+	</script>
 
 @stop

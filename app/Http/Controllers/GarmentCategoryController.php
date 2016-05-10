@@ -17,16 +17,21 @@ class GarmentCategoryController extends Controller
      */
     public function index()
     {
-        //get all the garment categories
-        $category = GarmentCategory::all();
-        $reason = GarmentCategory::all(); /*dummy lang wala pang model un reasons e*/
+         //get all the garment categories
+        $ids = \DB::table('tblGarmentCategory')
+            ->select('strGarmentCategoryID')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('strGarmentCategoryID', 'desc')
+            ->take(1)
+            ->get();
 
-        $newID = 0;
-        
+        $ID = $ids["0"]->strGarmentCategoryID;
+        $newID = $this->smartCounter($ID);  
+        $garment = GarmentCategory::all();
+       
         //load the view and pass the individuals
         return view('garments')
-                    ->with('category', $category)
-                    ->with('reason', $reason)
+                    ->with('garment', $garment)
                     ->with('newID', $newID);
     }
 
@@ -48,7 +53,17 @@ class GarmentCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $garms = GarmentCategory::get();
+            $garment = GarmentCategory::create(array(
+                'strGarmentCategoryID' => $request->input('addGarmentID'),
+                'strGarmentCategoryName' => trim($request->input('addGarmentName')),
+                'textGarmentCategoryDesc' => trim($request->input('addGarmentDesc')),
+                'boolIsActive' => 1
+                ));
+
+         $garment->save();
+        return redirect('maintenance/garment-category');
+           
     }
 
     /**
@@ -94,5 +109,75 @@ class GarmentCategoryController extends Controller
     public function destroy($id)
     {
         //
+    }
+    function updateGarmentCategory(Request $request)
+    {
+    
+        $garment = GarmentCategory::find($request->input('editGarmentID'));
+            $garment->strGarmentCategoryName = trim($request->input('editGarmentName'));
+
+            $garment->textGarmentCategoryDesc = trim($request->input('editGarmentDescription'));
+            $garment ->save();
+
+        return  redirect('maintenance/garment-category');
+
+        
+   
+    }
+
+
+    function deleteGarmentCategory(Request $request)
+    {
+    
+        $garment = GarmentCategory::find($request->input('delGarmentID'));
+    
+
+        $garment->boolIsActive = 0;
+        $garment ->save();
+
+        return  redirect('maintenance/garment-category');
+
+        
+   
+    }
+     public function smartCounter($id)
+    {   
+
+        $lastID = str_split($id);
+
+        $ctr = 0;
+        $tempID = "";
+        $tempNew = [];
+        $newID = "";
+        $add = TRUE;
+
+        for($ctr = count($lastID)-1; $ctr >= 0; $ctr--){
+
+            $tempID = $lastID[$ctr];
+
+            if($add){
+                if(is_numeric($tempID) || $tempID == '0'){
+                    if($tempID == '9'){
+                        $tempID = '0';
+                        $tempNew[$ctr] = $tempID;
+
+                    }else{
+                        $tempID = $tempID + 1;
+                        $tempNew[$ctr] = $tempID;
+                        $add = FALSE;
+                    }
+                }else{
+                    $tempNew[$ctr] = $tempID;
+                }           
+            }
+            $tempNew[$ctr] = $tempID;   
+        }
+
+        
+        for($ctr = 0; $ctr < count($lastID); $ctr++){
+            $newID = $newID . $tempNew[$ctr];
+        }
+
+        return $newID;
     }
 }

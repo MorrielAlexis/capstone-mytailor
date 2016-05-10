@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\EmployeeRole;
 use App\Http\Requests;
+use App\Http\Requests\RoleRequest;
+
+use App\EmployeeRole;
 use App\Http\Controllers\Controller;
 
 class EmployeeRoleController extends Controller
@@ -18,17 +20,17 @@ class EmployeeRoleController extends Controller
     public function index()
     {
         //get all the employee roles
-        $role = EmployeeRole::all();
-        //$reason = EmployeeRole::all(); /*dummy lang wala pang model un reasons e*/
-        $ids = \DB::table('tblEmployeeRole')
+         $ids = \DB::table('tblEmployeeRole')
             ->select('strEmpRoleID')
             ->orderBy('created_at', 'desc')
             ->orderBy('strEmpRoleID', 'desc')
             ->take(1)
             ->get();
+        //$reason = EmployeeRole::all(); /*dummy lang wala pang model un reasons e*/
 
         $ID = $ids["0"]->strEmpRoleID;
         $newID = $this->smartCounter($ID);  
+        $role = EmployeeRole::all();
 
          //load the view and pass the employees
         return view('employeeRole')
@@ -53,17 +55,18 @@ class EmployeeRoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(RoleRequest $request)
+    {        
         $rol = EmployeeRole::get();
-             $role = EmployeeRole::create(array(
+            $role = EmployeeRole::create(array(
                 'strEmpRoleID' => $request->input('addRoleID'),
-                'strEmpRoleName' => trim($request->input('addRoleName')),
+                'strEmpRoleName' =>trim($request->input('addRoleName')),
                 'strEmpRoleDesc' => trim($request->input('addRoleDescription')),  
                 'boolIsActive' => 1
             ));
             $role->save();
 
+        $request->session()->flash('alert-success', 'Role was successfully added!');
         return redirect('maintenance/employee-role');
     }
 
@@ -111,6 +114,33 @@ class EmployeeRoleController extends Controller
     {
         //
     }
+
+    function updateRole(Request $request)
+    {
+
+        $role = EmployeeRole::find($request->input('editRoleID'));
+
+               $role->strEmpRoleName = trim($request->input('editRoleName'));
+               $role->strEmpRoleDesc = trim($request->input('editRoleDescription'));
+        $role->save();
+
+         return redirect('maintenance/employee-role');
+        
+       
+    }
+
+    
+    function deleteRole(Request $request)
+    {
+        $role = EmployeeRole::find($request->input('delRoleID'));
+
+        $role->boolIsActive = 0;
+
+        $role->save();
+        
+        return redirect('maintenance/employee-role');
+    }
+
 
     public function smartCounter($id)
     {   
