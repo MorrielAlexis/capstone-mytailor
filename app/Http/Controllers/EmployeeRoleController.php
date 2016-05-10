@@ -64,7 +64,7 @@ class EmployeeRoleController extends Controller
             ));
             $role->save();
 
-        return redirect('maintenance/employeeRole');
+        return redirect('maintenance/employee-role');
     }
 
     /**
