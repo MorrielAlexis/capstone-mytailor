@@ -171,7 +171,7 @@
 
                           <div class="modal-footer col s12" style="background-color:#26a69a">
                               <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Update</button>
-                              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
+                              <a href="#!"  class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
                           </div>
                     {!! Form::close() !!}
                   </div>
@@ -260,7 +260,7 @@
 
                 <div class="modal-footer" style="background-color:#26a69a">
                   <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
-                  <vutton type="button" onclick="clearData()" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
+                  <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
                 </div>
               {!! Form::close() !!}
             </div>
@@ -293,12 +293,12 @@
       });
     </script>
 
-    <script>
+<!--     <script>
       function clearData(){
           document.getElementById("addGarmentDesc").value = "";
           document.getElementById("addGarmentName").value = "";
       }
-    </script>
+    </script> -->
 
     <script type="text/javascript">
       $('.validateGarmentName').on('input', function() {

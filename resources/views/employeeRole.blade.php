@@ -254,7 +254,7 @@
 
                 <div class="modal-footer col s12" style="background-color:#26a69a">
                   <button type="submit" id="send" name"send" class="modal-action  waves-effect waves-green btn-flat">Add</button>
-                  <button type="button" onclick="clearData()" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
+                  <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
                 </div>
             {!! Form::close() !!}
           </div>
@@ -285,12 +285,13 @@
     </script>
   
 
-  <script>
+<!--   <script>
       function clearData(){
           document.getElementById("addRoleDescription").value = "";
           document.getElementById("addRoleName").value = "";
       }
-    </script>
+  </script>
+   -->
      <!--DATA TABLE SCRIPT-->
     <script type="text/javascript">
 
