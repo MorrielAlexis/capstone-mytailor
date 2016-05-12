@@ -145,7 +145,7 @@
                       <div id="edit{{ $garment->strGarmentCategoryID }}" class="modal modal-fixed-footer">
                         <h5><font color = "#1b5e20"><center>EDIT GARMENT CATEGORY</center> </font> </h5>                          
                             
-                            {!! Form::open(['url' => 'maintenance/garment/update']) !!}
+                            {!! Form::open(['url' => 'maintenance/garment-category/update']) !!}
                               <div class="divider" style="height:2px"></div>
                               <div class="modal-content col s12">
                                 
@@ -179,7 +179,7 @@
                       <div id="del{{ $garment->strGarmentCategoryID }}" class="modal modal-fixed-footer">
                         <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS GARMENT CATEGORY?</center> </font> </h5>
                         
-                        {!! Form::open(['url' => 'maintenance/garment/destroy']) !!}
+                        {!! Form::open(['url' => 'maintenance/garment-category/destroy']) !!}
                           <div class="divider" style="height:2px"></div>
                           <div class="modal-content col s12">
                             
@@ -235,7 +235,7 @@
             <div id="addGCategory" class="modal modal-fixed-footer">
               <h5><font color = "#1b5e20"><center>ADD NEW GARMENT CATEGORY</center> </font> </h5>
               
-              {!! Form::open(['url' => 'maintenance/garment']) !!}
+              {!! Form::open(['url' => 'maintenance/garment-category', 'method' => 'post']) !!}
                 <div class="divider" style="height:2px"></div>
                 <div class="modal-content col s12">
   

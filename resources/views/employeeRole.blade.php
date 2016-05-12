@@ -139,7 +139,7 @@
                   <div id="edit{{$role->strEmpRoleID}}" class="modal modal-fixed-footer">                     
                     <h5><font color = "#1b5e20"><center>EDIT EMPLOYEE ROLE</center> </font> </h5>
                       
-                    {!! Form::open(['url' => 'maintenance/employeeRole/update']) !!}
+                    {!! Form::open(['url' => 'maintenance/employee-role/update']) !!}
                       <div class="divider" style="height:2px"></div>
                       <div class="modal-content col s12">
 
@@ -175,7 +175,7 @@
                   <div id="del{{$role->strEmpRoleID}}" class="modal modal-fixed-footer">                     
                      <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS EMPLOYEE ROLE?</center> </font> </h5>
                         
-                      {!! Form::open(['url' => 'maintenance/employeeRole/destroy']) !!}
+                      {!! Form::open(['url' => 'maintenance/employee-role/destroy']) !!}
                         <div class="divider" style="height:2px"></div>
                         <div class="modal-content col s12">
 

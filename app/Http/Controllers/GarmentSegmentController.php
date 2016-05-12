@@ -19,18 +19,25 @@ class GarmentSegmentController extends Controller
     public function index()
     {
         //get all the garment segment
-        $category = GarmentCategory::all();
-        $reason = GarmentSegment::all(); /*dummy lang wala pang model un reasons e*/
+        $ids = \DB::table('tblSegment')
+            ->select('strSegmentID')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('strSegmentID', 'desc')
+            ->take(1)
+            ->get();
 
-        $newID = 0;
+        $ID = $ids["0"]->strSegmentID;
+        $newID = $this->smartCounter($ID);  
 
-        $segment = GarmentSegment::all();
-        
-        //load the view and pass the garment segment
+        $category =  GarmentCategory::all();
+
+        $segment = \DB::table('tblSegment')
+            ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
+            ->get();
+
         return view('garmentsDetails')
                     ->with('segment', $segment)
                     ->with('category', $category)
-                    ->with('reason', $reason)
                     ->with('newID', $newID);
     }
 
@@ -52,7 +59,21 @@ class GarmentSegmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $seg = GarmentSegment::get();
+
+            $segment = GarmentSegment::create(array(
+
+                    'strSegmentID' => $request->input('addSegmentID'),
+                    'strSegCategoryFK' =>$request->input('addCategory'),
+                    'strSegmentName' =>trim($request->input('addSegmentName')),
+                    'textSegmentDesc' => trim($request->input('addSegmentDesc')),
+                    'boolIsActive' => 1
+
+            ));
+
+             $segment->save();
+
+        return redirect('maintenance/garment-segment');   
     }
 
     /**
@@ -98,5 +119,71 @@ class GarmentSegmentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+     function updateGarmentSegment(Request $request)
+    {
+        $segment = GarmentSegment::find($request->input('editSegmentID'));
+
+                $segment->strSegCategoryFK = $request->input('editCategory'); 
+                $segment->strSegmentName = trim($request->input('editSegmentName'));  
+                $segment->textSegmentDesc = trim($request->input('editSegmentDesc'));
+                
+                $segment->save();
+
+         return redirect('maintenance/garment-segment');      
+    }
+
+    function deleteGarmentSegment(Request $request)
+    {
+        $segment = GarmentSegment::find($request->input('delSegmentID'));
+
+        $segment->boolIsActive = 0;
+
+        $segment->save();
+
+       return redirect('maintenance/garment-segment');
+    }
+
+
+     public function smartCounter($id)
+    {   
+
+        $lastID = str_split($id);
+
+        $ctr = 0;
+        $tempID = "";
+        $tempNew = [];
+        $newID = "";
+        $add = TRUE;
+
+        for($ctr = count($lastID)-1; $ctr >= 0; $ctr--){
+
+            $tempID = $lastID[$ctr];
+
+            if($add){
+                if(is_numeric($tempID) || $tempID == '0'){
+                    if($tempID == '9'){
+                        $tempID = '0';
+                        $tempNew[$ctr] = $tempID;
+
+                    }else{
+                        $tempID = $tempID + 1;
+                        $tempNew[$ctr] = $tempID;
+                        $add = FALSE;
+                    }
+                }else{
+                    $tempNew[$ctr] = $tempID;
+                }           
+            }
+            $tempNew[$ctr] = $tempID;   
+        }
+
+        
+        for($ctr = 0; $ctr < count($lastID); $ctr++){
+            $newID = $newID . $tempNew[$ctr];
+        }
+
+        return $newID;
     }
 }
