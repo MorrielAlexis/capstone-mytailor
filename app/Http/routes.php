@@ -20,11 +20,15 @@ Route::post('/login', 'HomeController@LogIn');
 
 
 Route::group(['prefix' => 'maintenance'], function(){
-	Route::resource('individual', 'CustomerIndividualController',
-		['only' => ['index']]);
+	Route::resource('individual', 'CustomerIndividualController');
 
-	Route::resource('company', 'CustomerCompanyController',
-		['only' => ['index']]);
+		Route::post('individual/update', 'CustomerIndividualController@updateIndividual');
+		Route::post('individual/destroy', 'CustomerIndividualController@deleteIndividual');
+
+	Route::resource('company', 'CustomerCompanyController');
+
+		Route::post('company/update', 'CustomerCompanyController@updateCompany');
+		Route::post('company/destroy', 'CustomerCompanyController@deleteCompany');
 });
 
 Route::group(['prefix' => 'maintenance'], function(){
