@@ -59,7 +59,21 @@ class GarmentSegmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $seg = GarmentSegment::get();
+
+            $segment = GarmentSegment::create(array(
+
+                    'strSegmentID' => $request->input('addSegmentID'),
+                    'strSegCategoryFK' =>$request->input('addCategory'),
+                    'strSegmentName' =>trim($request->input('addSegmentName')),
+                    'textSegmentDesc' => trim($request->input('addSegmentDesc')),
+                    'boolIsActive' => 1
+
+            ));
+
+             $segment->save();
+
+        return redirect('maintenance/garment-segment');   
     }
 
     /**
@@ -106,6 +120,31 @@ class GarmentSegmentController extends Controller
     {
         //
     }
+
+     function updateGarmentSegment(Request $request)
+    {
+        $segment = GarmentSegment::find($request->input('editSegmentID'));
+
+                $segment->strSegCategoryFK = $request->input('editCategory'); 
+                $segment->strSegmentName = trim($request->input('editSegmentName'));  
+                $segment->textSegmentDesc = trim($request->input('editSegmentDesc'));
+                
+                $segment->save();
+
+         return redirect('maintenance/garment-segment');      
+    }
+
+    function deleteGarmentSegment(Request $request)
+    {
+        $segment = GarmentSegment::find($request->input('delSegmentID'));
+
+        $segment->boolIsActive = 0;
+
+        $segment->save();
+
+       return redirect('maintenance/garment-segment');
+    }
+
 
      public function smartCounter($id)
     {   

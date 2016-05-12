@@ -265,7 +265,7 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                       <div class="input-field col s12">
-                        <input required id="addSegmentDesc" name = "addSegmentDesc" pattern="[a-zA-Z0-9\'\-\.\,]"type="text" class="validate" class="active" data-position="bottom" >
+                        <input  required id="addSegmentDesc" name = "addSegmentDesc" type="text" class="validate"  data-position="bottom" >
                         <label for="segment_description">Segment Description<span class="red-text"><b>*</b></span> </label>
                       </div>
                   </div>
@@ -343,7 +343,8 @@
         else{input.removeClass("valid").addClass("invalid");}
       }); 
       </script>
-         <!--DATA TABLE SCRIPT-->
+      
+         // <!--DATA TABLE SCRIPT-->
 
     <script type="text/javascript">
 
