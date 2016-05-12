@@ -77,12 +77,11 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col s12 m12 l12">
-          <button style="color:black; margin-right:35px; margin-left: 20px" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to add a new segment pattern to the table" href="#addDesign">ADD SEGMENT PATTERN</button>
+      <div class="col s6 left">
+         <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="right" data-delay="50" data-tooltip="Click to add a new segment pattern to the table" href="#addDesign" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
       </div>
     </div>
-  </div>
+  
 
 
   <div class="row">
@@ -101,8 +100,7 @@
               		<th data-field="Garment Name">Segment Name </th>
              		  <th data-field="Pattern Name">Pattern Name</th>
               		<th data-field="Pattern Image">Pattern Image</th>
-                  <th data-field="Edit">Edit</th>
-                  <th data-field="Edit">Deactivate</th>
+                  <th data-field="Edit">Actions</th>
               	</tr>
               </thead>
 
@@ -110,30 +108,30 @@
                 @foreach($pattern as $pattern)
                 @if($pattern->boolIsActive == 1)
                 <tr>
-             		<!--<td>{{ $pattern->strDesignPatternID }}</td>-->
+             		<!--<td>{{ $pattern->strSegPatternID }}</td>-->
                   <td>{{ $pattern->strGarmentCategoryName }}</td>
-                  <td>{{ $pattern->strGarmentSegmentName }}</td>
+                  <td>{{ $pattern->strSegmentName }}</td>
               		<td>{{ $pattern->strSegPName }}</td>
-                  <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($pattern->strPatternImage)}}"></td>
-              		<td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of pattern" href="#edit{{ $pattern->strDesignPatternID }}">EDIT</button></td>
-                  <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="CLick to remove data of pattern from table" href="#del{{ $pattern->strDesignPatternID }}">DEACTIVATE</button>
+                  <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($pattern->strSegPImage)}}"></td>
+              		<td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of pattern" href="#edit{{ $pattern->strSegPatternID }}"><i class="mdi-editor-mode-edit"></i></a>
+                  <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="CLick to remove data of pattern from table" href="#del{{ $pattern->strSegPatternID }}"><i class="mdi-action-delete"></i></a></td>
                       
-                    <div id="edit{{ $pattern->strDesignPatternID }}" class="modal modal-fixed-footer">                     
+                    <div id="edit{{ $pattern->strSegPatternID }}" class="modal modal-fixed-footer">                     
                         <h5><font color = "#1b5e20"><center>EDIT SEGMENT PATTERN</center> </font> </h5>                        
 
-                      {!! Form::open(['url' => 'editDesignPattern']) !!}
+                      {!! Form::open(['url' => 'maintenance/segment-pattern/update']) !!}
                         <div class="divider" style="height:2px"></div>
                         <div class="modal-content col s12">
                           
                           <div class="input-field">
-                            <input value= "{{ $pattern->strDesignPatternID }}" id="editPatternID" name= "editPatternID" type="hidden">
+                            <input value= "{{ $pattern->strSegPatternID }}" id="editPatternID" name= "editPatternID" type="hidden">
                           </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s6">                                                    
-                            <select class="browser-default editCategory" id="{{ $pattern->strDesignPatternID }}" name='editCategory'>
+                            <select class="browser-default editCategory" id="{{ $pattern->strSegPatternID }}" name='editCategory'>
                               @foreach($category as $cat)
-                                @if($pattern->strDesignCategory == $cat->strGarmentCategoryID && $cat->boolIsActive == 1)
+                                @if($pattern->strSegPCategoryFK == $cat->strGarmentCategoryID && $cat->boolIsActive == 1)
                                   <option selected value="{{ $cat->strGarmentCategoryID }}">{{ $cat->strGarmentCategoryName }}</option>
                                 @elseif($cat->boolIsActive == 1)
                                   <option value="{{ $cat->strGarmentCategoryID }}">{{ $cat->strGarmentCategoryName }}</option>
@@ -143,9 +141,9 @@
                           </div>  
 
                           <div class="input-field col s6">                                                    
-                            <select class="browser-default editSegment" id="{{ $pattern->strDesignPatternID }}" name='editSegment'>
+                            <select class="browser-default editSegment" id="{{ $pattern->strSegPatternID }}" name='editSegment'>
                                   @foreach($segment as $segment_2)
-                                    @if($pattern->strDesignSegmentName == $segment_2->strGarmentSegmentID && $segment_2->boolIsActive == 1)
+                                    @if($pattern->strSegPNameFK == $segment_2->strGarmentSegmentID && $segment_2->boolIsActive == 1)
                                       <option selected value="{{ $segment_2->strGarmentSegmentID }}" class="{{$segment_2->strCategory }}">{{ $segment_2->strGarmentSegmentName }}</option>
                                     @elseif($segment_2->boolIsActive == 1)
                                       <option value="{{ $segment_2->strGarmentSegmentID }}" class="{{$segment_2->strCategory }}">{{ $segment_2->strGarmentSegmentName }}</option>
@@ -157,7 +155,7 @@
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input required value = "{{ $pattern->strPatternName }}" id="editPatternName" name= "editPatternName" type="text" class="validatePatternName">
+                            <input required value = "{{ $pattern->strSegPName }}" id="editPatternName" name= "editPatternName" type="text" class="validatePatternName">
                             <label for="pattern_name">Pattern Name </label>
                           </div>
                       </div>
@@ -170,7 +168,7 @@
                             </div>
                           
                             <div class="file-path-wrapper">
-                              <input value="{{$pattern->strPatternImage}}" id="editImage" name="editImage" class="file-path validate" type="text" readonly="readonly">
+                              <input value="{{$pattern->strSegPImage}}" id="editImage" name="editImage" class="file-path validate" type="text" readonly="readonly">
                             </div>
                           </div>
                       </div>
@@ -184,7 +182,7 @@
                    </div>  
                 
 
-                <div id="del{{ $pattern->strDesignPatternID }}" class="modal modal-fixed-footer">
+                <div id="del{{ $pattern->strSegPatternID }}" class="modal modal-fixed-footer">
                       <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS SEGMENT PATTERN?</center> </font> </h5>
                         
                       {!! Form::open(['url' => 'delDesignPattern']) !!}
@@ -192,7 +190,7 @@
                         <div class="modal-content col s12">
 
                         <div class="input-field">
-                          <input value= "{{ $pattern->strDesignPatternID }}" id="delPatternID" name= "delPatternID" type="hidden">
+                          <input value= "{{ $pattern->strSegPatternID }}" id="delPatternID" name= "delPatternID" type="hidden">
                         </div>
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
@@ -202,27 +200,24 @@
                         </div> 
 
                         <div class="input-field col s6">                                                    
-                            <input type="text" value="{{$pattern->strGarmentSegmentName}}" readonly>
+                            <input type="text" value="{{$pattern->strSegmentName}}" readonly>
                           <label>Segment</label>
                         </div>  
                     </div> 
   
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s12">
-                          <input value = "{{ $pattern->strPatternName }}" type="text" class="validate" readonly>
+                          <input value = "{{ $pattern->strSegPName }}" type="text" class="validate" readonly>
                           <label for="pattern_name">Pattern Name </label>
                         </div>
                     </div>
 
                           <div class="input-field">
-                            <input id="delInactivePattern" name = "delInactivePattern" value = "{{$pattern->strDesignPatternID}}" type="hidden">
+                            <input id="delInactivePattern" name = "delInactivePattern" value = "{{$pattern->strSegPatternID}}" type="hidden">
                           </div>
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
-                          <div class="input-field col s12">
-                            <input id="delInactiveReason" name = "delInactiveReason" value = "{{$pattern->strInactiveReason}}" type="text" class="validate" required>
-                            <label for="fax"> *Reason for Deactivation </label>
-                          </div>
+                          
                     </div>
                     </div>              
 
@@ -250,7 +245,7 @@
             <div id="addDesign" class="modal modal-fixed-footer">
               <h5><font color = "#1b5e20"><center>ADD NEW SEGMENT PATTERN</center> </font> </h5> 
                 
-              {!! Form::open(['url' => 'addDesignPattern']) !!}
+              {!! Form::open(['url' => 'maintenance/segment-pattern', 'method' => 'post']) !!}
                 <div class="divider" style="height:2px"></div>
                 <div class="modal-content col s12">
 
@@ -260,20 +255,22 @@
 
             <div class = "col s12" style="padding:15px;  border:3px solid white;">
                 <div class="input-field col s6">
-                  <select class="browser-default" name='addCategory' id='addCategory' required>
+                  <select  class="browser-default"  name="addCategory" id="addCategory" required>
                       @foreach($category as $category)
                         @if($category->boolIsActive == 1)
                           <option value="{{ $category->strGarmentCategoryID }}">{{ $category->strGarmentCategoryName }}</option>
                         @endif
                       @endforeach
-                  </select>   
-                </div>  
+                  </select> 
+                  <!-- <label>Garment Category<span class="red-text"><b>*</b></span></label>   -->
+                </div> 
+
 
                 <div class="input-field col s6">
                   <select class="browser-default" required id="addSegment" name="addSegment">
                         @foreach($segment as $segment_1)
                           @if($segment_1->boolIsActive == 1)
-                            <option value="{{ $segment_1->strGarmentSegmentID }}" class="{{ $segment_1->strCategory }}">{{ $segment_1->strGarmentSegmentName }}</option>
+                            <option value="{{ $segment_1->strSegmentID }}" class="{{ $segment_1->strCategory }}">{{ $segment_1->strSegmentName }}</option>
                           @endif
                         @endforeach
                   </select>
@@ -283,7 +280,8 @@
             <div class = "col s12" style="padding:15px;  border:3px solid white;">
                 <div class="input-field col s12">
                   <input required id="addPatternName" name= "addPatternName" type="text" class="validatePatternName">
-                  <label for="pattern_name">Pattern Name </label>
+                  <label for="pattern_name">Pattern Name <span class="red-text"><b>*</b></span></label>
+                    <span id="left"></span></label>
                 </div>
             </div>
 
@@ -303,7 +301,7 @@
 
               <div class="modal-footer col s12" style="background-color:#26a69a">
                 <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
-                <button type="button" onclick="clearData()" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
+                <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
               </div>
               {!! Form::close() !!}
             </div>	
@@ -461,12 +459,12 @@
     </script>
 
     
-    <script>
+   <!--  <script>
       function clearData(){
         document.getElementById('addPatternName').value = "";
         document.getElementById('addImage').value = "";
       }
-    </script>
+    </script> -->
 
     <script type="text/javascript">
       $('.validatePatternName').on('input', function() {

@@ -57,8 +57,10 @@ Route::group(['prefix' => 'maintenance'], function(){
 		
 
 
-	Route::resource('segment-pattern', 'SegmentPatternController',
-		['only' => ['index']]);
+	Route::resource('segment-pattern', 'SegmentPatternController');
+
+		Route::post('segment-pattern/update','SegmentPatternController@updateSegmentPattern');
+		Route::post('segment-pattern/destroy','SegmentPatternController@deleteSegmentPattern');
 
 	Route::resource('measurement-category', 'MeasurementCategoryController',
 		['only' => ['index']]);
