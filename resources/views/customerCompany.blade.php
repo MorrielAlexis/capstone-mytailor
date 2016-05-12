@@ -284,10 +284,10 @@
                           </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
-                          <div class="input-field col s12 wrap-text">
+                          <!-- <div class="input-field col s12 wrap-text">
                             <input id="delInactiveReason" name = "delInactiveReason" value = "{{$company->strInactiveReason}}" type="text" class="validate" required>
                             <label for="fax"> Reason for Deactivation <span class="red-text"><b>*</b></span></label>
-                          </div>
+                          </div> -->
                       </div>
                       </div>
 
@@ -312,7 +312,7 @@
             <div id="addCom" class="modal modal-fixed-footer">
              <div class = "label"> <h5><font color = "#1b5e20"><center>ADD NEW COMPANY CUSTOMER PROFILE</center> </font> </h5>                      
                 
-                {!! Form::open(['url' => 'addCustCompany']) !!}
+                {!! Form::open(['url' => 'maintenance/company' , 'method' => 'post']) !!}
                   <div class="divider" style="height:2px"></div>
                   <div class="modal-content col s12">
 
@@ -404,7 +404,7 @@
 
             <div class="modal-footer col s12" style="background-color:#26a69a">
               <button type="submit" class=" waves-effect waves-green btn-flat">Add</button>  
-              <button type="button" onclick="clearData()" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button>
+              <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button>
             </div>
             {!! Form::close() !!}
           </div> 
@@ -420,7 +420,7 @@
     {!! Html::script('js/customer_validation.js'); !!}
 
 
-    <script>
+   <!--  <script>
       function clearData(){
           document.getElementById("addComName").value = "";
           document.getElementById("addConPerson").value = "";
@@ -430,7 +430,7 @@
           document.getElementById("addComEmailAdd").value = "";
           document.getElementById("addFax").value = "";
       }
-    </script>
+    </script> -->
 
       <!--DATA TABLE SCRIPT-->
     <script type="text/javascript">

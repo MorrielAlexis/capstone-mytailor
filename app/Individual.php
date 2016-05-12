@@ -11,7 +11,8 @@ class Individual extends Model
 
     protected $primaryKey = 'strIndivID';
 
-    protected $fillable = ['strIndivFName', 'strIndivLName',
+    protected $fillable = array('strIndivID','strIndivFName', 
+                        'strIndivLName',
     					'strIndivMName', 'strIndivGender',
     					'strIndivHouseNo', 'strIndivStreet',
     					'strIndivBarangay', 'strIndivCity',
@@ -19,5 +20,5 @@ class Individual extends Model
     					'strIndivLandlineNumber', 'strIndivCPNumber',
     					'strIndivCPNumberAlt', 'strIndivEmailAddress',
                         'strIndivInactiveReason',
-    					'boolIsActive'];   
+    					'boolIsActive');   
 }

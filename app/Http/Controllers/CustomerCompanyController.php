@@ -149,7 +149,7 @@ class CustomerCompanyController extends Controller
 
     function deleteCompany(Request $request)
     {
-        $company = Company::find($request->input('editComID'));
+        $company = Company::find($request->input('delCompanyID'));
 
         $company->boolIsActive = 0;
         $company->save();

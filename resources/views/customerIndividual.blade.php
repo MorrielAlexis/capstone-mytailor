@@ -257,10 +257,10 @@
                           </div>
 
                         <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
-                          <div class="input-field col s12">
+                          <!-- <div class="input-field col s12">
                             <input id="delInactiveReason" name = "delInactiveReason" value = "{{$individual->strIndivInactiveReason}}" type="text" class="validate" required>
                             <label for="fax"> Reason for Deactivation <span class="red-text"><b>*</b></span></label>
-                          </div>
+                          </div> -->
                         </div>
                         </div>
 
@@ -286,7 +286,7 @@
 
             <div id="addCusIndi" class="modal modal-fixed-footer">
               <div class = "label"><h5><font color = "#1b5e20"><center>ADD NEW INDIVIDUAL CUSTOMER PROFILE </center> </font> </h5>
-                {!! Form::open(['url' => 'addCustPrivIndiv']) !!}
+                {!! Form::open(['url' => 'maintenance/individual' , 'method' => 'post']) !!}
                   <div class="divider" style="height:2px"></div>
                   <div class="modal-content col s12">
 
@@ -377,7 +377,7 @@
 
               <div class="modal-footer col s12" style="background-color:#26a69a">
                 <button type="submit" class="waves-effect waves-green btn-flat">Save</button> 
-                <button type="button" onclick="clearData()" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button>  
+                <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button>  
               </div>
             {!! Form::close() !!}
             </div>
@@ -389,20 +389,6 @@
 
 @section('scripts')
     {!! Html::script('js/customer_validation.js') !!}
-
-    <script>
-      function clearData(){
-          document.getElementById("addFName").value = "";
-          document.getElementById("addMName").value = "";
-          document.getElementById("addLName").value = "";
-          document.getElementById("addAddress").value = "";
-          document.getElementById("addEmail").value = "";
-          document.getElementById("addCel").value = "";
-          document.getElementById("addPhone").value = "";
-          
-      }
-
-    </script>
 
           <!--DATA TABLE SCRIPT-->
     <script type="text/javascript">
