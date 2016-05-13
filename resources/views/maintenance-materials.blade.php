@@ -107,7 +107,7 @@
 
        <div class="row">
           <div class="col s12 m12 l12">
-              <button style="color:black; margin-right:35px; margin-left: 20px" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1"style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to add a new thread detail to the table" href="#addThread">ADD THREAD</button>
+              <a style="color:black; margin-right:35px; margin-left: 20px" class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1"style="color:black"  data-position="bottom" data-delay="50" data-tooltip="Click to add a new thread detail to the table" href="#addThread"><i class="large mdi-content-add"></i></a>
           </div>
         </div>                                 
 
@@ -138,8 +138,8 @@
                         <td>{{ $thread->strThreadColor }}</td>
                         <td>{{ $thread->strThreadDesc }}</td>
                         <td><img class="materialboxed" width="650" src="{{URL::asset($thread->strThreadImage)}}"></td> 
-                        <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit thread details" href="#edit{{ $thread->intThreadID }}">EDIT</button></td>
-                        <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of thread details from the table" href="#del{{ $thread->intThreadID }}">DEACTIVATE</button>
+                        <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit thread details" href="#edit{{ $thread->intThreadID }}"><i class="mdi-editor-mode-edit"></i></a></td>
+                        <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of thread details from the table" href="#del{{ $thread->intThreadID }}"><i class="mdi-action-delete"></i></a></td>
                             
                           <!--EDIT THREADS-->
                           <div id="edit{{ $thread->intThreadID }}" class="modal modal-fixed-footer">
@@ -268,7 +268,7 @@
 
       <div class="row">
         <div class="col s12 m12 l12">
-            <button style="color:black; margin-right:35px; margin-left: 20px" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to add a new needle detail to the table" href="#addNeedle">ADD NEEDLE</button>
+            <a style="color:black; margin-right:35px; margin-left: 20px" class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1"style="color:black"  data-position="bottom" data-delay="50" data-tooltip="Click to add a new needle detail to the table" href="#addNeedle"><i class="large mdi-content-add"></i></a>
         </div>
       </div>  
 
@@ -286,7 +286,8 @@
                         <th data-field="Needle Desc">Description</th>
                         <th data-field="Needle Image">Image</th>
                         <th data-field="Needle Desc">Edit</th>
-                        <th data-field="Needle Image">Delete</th>
+                        <th data-field="Needle Desc">Deactivate</th>
+                  
                       </tr>
                     </thead>
 
@@ -298,8 +299,8 @@
                         <td>{{$needle->strNeedleSize}}</td>
                         <td>{{$needle->strNeedleDesc}}</td>
                         <td><img class="materialboxed" width="650" src="{{URL::asset($needle->strNeedleImage)}}"></td>
-                        <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit needle detail" href="#edit{{$needle->intNeedleID}}">EDIT</button></td>
-                        <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of needle detail from the table" href="#del{{$needle->intNeedleID}}">DEACTIVATE</button>
+                        <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit needle detail" href="#edit{{$needle->intNeedleID}}"><i class="mdi-editor-mode-edit"></i></a></td>
+                        <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of needle detail from the table" href="#del{{$needle->intNeedleID}}"><i class="mdi-action-delete"></i></a></td>
                             
                           <div id="edit{{$needle->intNeedleID}}" class="modal modal-fixed-footer">
                             <h5><font color = "#1b5e20"><center>EDIT NEEDLE</center> </font> </h5>
@@ -427,7 +428,7 @@
 
       <div class="row">
         <div class="col s12 m12 l12">
-            <button style="color:black; margin-right:35px; margin-left: 20px" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to add a new button detail to the table" href="#addButton">ADD BUTTON</button>
+            <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to add a new button detail to the table" href="#addButton" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
         </div>
       </div> 
 
@@ -447,7 +448,7 @@
                         <th data-field="Button Color">Description</th>
                         <th data-field="ButtonImage">Image</th>
                         <th data-field="Button Color">Edit</th>
-                        <th data-field="ButtonImage">Deactivate</th>
+                        <th data-field="Button Color">Deactivate</th>
                       </tr>
                     </thead>
 
@@ -460,8 +461,8 @@
                         <td>{{$button->strButtonColor}}</td>
                         <td>{{$button->strButtonDesc}}</td>
                         <td><img class="materialboxed" width="650" src="{{URL::asset($button->strButtonImage)}}"></td>
-                        <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit button detail" href="#edit{{$button->intButtonID}}">EDIT</button></td>
-                        <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of button detail from the table" href="#del{{$button->intButtonID}}">DEACTIVATE</button>
+                        <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit button detail" href="#edit{{$button->intButtonID}}"><i class="mdi-editor-mode-edit"></i></a></td>
+                        <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of button detail from the table" href="#del{{$button->intButtonID}}"><i class="mdi-action-delete"></i></a></td>
                            
                           <!-- <EDIT BUTTONS>   -->
                           <div id="edit{{$button->intButtonID}}" class="modal modal-fixed-footer">
@@ -601,7 +602,7 @@
 
     <div class="row">
         <div class="col s12 m12 l12">
-            <button style="color:black; margin-right:35px; margin-left: 20px" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to add a new zipper detail to the table" href="#addZipper">ADD ZIPPER</button>
+            <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="left" data-delay="50" data-tooltip="Click to add a new zipper detail to the table" href="#addZipper" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
         </div>
       </div> 
 
@@ -636,8 +637,8 @@
                         <td>{{$zipper->strZipperColor}}</td>
                         <td>{{$zipper->txtZipperDesc}}</td>
                         <td><img class="materialboxed" width="650" src="{{URL::asset($zipper->strZipperImage)}}"></td>
-                        <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit zipper detail" href="#edit{{$zipper->intZipperID}}">EDIT</button></td>
-                        <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of zipper detail from the table" href="#del{{$zipper->intZipperID}}">DEACTIVATE</button>
+                        <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit zipper detail" href="#edit{{$zipper->intZipperID}}"><i class="mdi-editor-mode-edit"></i></a></td>
+                        <td><a style="color:black" class="modal-trigger btn tooltipped btn-red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of zipper detail from the table" href="#del{{$zipper->intZipperID}}"><i class="mdi-action-delete"></i></a></td>
                             
                           <div id="edit{{$zipper->intZipperID}}" class="modal modal-fixed-footer">
                             <h5><font color = "#1b5e20"><center>EDIT ZIPPER</center> </font> </h5>
@@ -775,7 +776,7 @@
 
        <div class="row">
         <div class="col s12 m12 l12">
-            <button style="color:black; margin-right:35px; margin-left: 20px" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to add a new hook and eye detail to the table" href="#addHookEye">ADD HOOK AND EYE</button>
+            <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="left" data-delay="50" data-tooltip="Click to add a new hook and eye detail to the table" href="#addHookEye" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
         </div>
       </div> 
 
@@ -812,8 +813,8 @@
                         <td>{{$hook->textHookDesc}}</td>
                         <td><img class="materialboxed" width="650" src="{{URL::asset($hook->strHookImage)}}"></td>
 
-                        <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to edit hook and eye detail" href="#edit{{$hook->intHookID}}">EDIT</button></td>
-                        <td><button style="color:black" class="modal-trigger btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of hook and eye detail from the table" href="#del{{$hook->intHookID}}">DEACTIVATE</button>
+                        <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit hook and eye detail" href="#edit{{$hook->intHookID}}"><i class="mdi-editor-mode-edit"></i></a></td>
+                        <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of hook and eye detail from the table" href="#del{{$hook->intHookID}}"><i class="mdi-action-delete"></i></a></td>
 
                             
                           <div id="edit{{$hook->intHookID}}" class="modal modal-fixed-footer">

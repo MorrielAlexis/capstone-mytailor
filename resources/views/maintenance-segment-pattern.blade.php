@@ -78,7 +78,7 @@
     </div>
 
       <div class="col s6 left">
-         <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="right" data-delay="50" data-tooltip="Click to add a new segment pattern to the table" href="#addDesign" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
+         <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to add a new segment pattern to the table" href="#addDesign" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
       </div>
     </div>
   
