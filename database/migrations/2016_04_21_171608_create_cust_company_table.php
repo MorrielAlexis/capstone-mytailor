@@ -13,7 +13,7 @@ class CreateCustCompanyTable extends Migration
     public function up()
     {
         Schema::create('tblCustCompany', function (Blueprint $table) {
-            $table->string('strCompanyID');
+            $table->string('strCompanyID')->primary();
             $table->string('strCompanyName');
             $table->string('strCompanyBuildingNo');
             $table->string('strCompanyStreet');

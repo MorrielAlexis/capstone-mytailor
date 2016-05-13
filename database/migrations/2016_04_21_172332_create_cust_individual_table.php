@@ -14,7 +14,7 @@ class CreateCustIndividualTable extends Migration
     {
         Schema::create('tblCustIndividual', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->string('strIndivID');
+            $table->string('strIndivID')->primary();
             $table->string('strIndivFName');
             $table->string('strIndivLName');
             $table->string('strIndivMName')->nullable();
