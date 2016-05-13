@@ -267,9 +267,9 @@
 
                 <div class="input-field col s6">
                   <select class="browser-default" required id="addSegment" name="addSegment">
-                        @foreach($segment as $segment_1)
-                          @if($segment_1->boolIsActive == 1)
-                            <option value="{{ $segment_1->strSegmentID }}" class="{{ $segment_1->strCategory }}">{{ $segment_1->strSegmentName }}</option>
+                        @foreach($segment as $segment)
+                          @if($segment->boolIsActive == 1)
+                            <option value="{{ $segment->strSegmentID }}" class="{{ $segment->strSegCategoryFK }}">{{ $segment->strSegmentName }}</option>
                           @endif
                         @endforeach
                   </select>
@@ -278,7 +278,7 @@
 
             <div class = "col s12" style="padding:15px;  border:3px solid white;">
                 <div class="input-field col s12">
-                  <input required id="addPatternName" name= "addPatternName" type="text" class="validatePatternName">
+                  <input required id="addPatternName" name= "addPatternName" type="text" class="validate">
                   <label for="pattern_name">Pattern Name <span class="red-text"><b>*</b></span></label>
                     <span id="left"></span></label>
                 </div>
