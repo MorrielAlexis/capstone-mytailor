@@ -144,6 +144,54 @@ class SegmentPatternController extends Controller
     {
         //
     }
+
+    // function update_segmentpattern(Request $request)
+    // {
+
+    //     $pattern = SegmentPattern::find($request->input('editPatternID'));
+
+    //     // $file = $request->file('');
+    //     // $destinationPath = 'imgDesignPatterns';
+
+
+    //             if ($request->get('editImage') == $pattern->('strSegPImage')
+    //             {
+    //                 $pattern->strSegPCategoryFK = $request->input('editCategory');
+    //                 $pattern->strSegPNameFK = $request->input('editSegment');
+    //                 $pattern->strSegPName = trim($request->input('editPatternName'));
+    //             }
+    //             else{
+    //                 $file = $request->('editImage');
+    //                 $destinationPath = 'imgDesignPatterns';
+    //                 $request->('editImg')->move($destinationPath);
+
+    //                 $pattern->strSegPCategoryFK = $request->input('editCategory');
+    //                 $pattern->strSegPNameFK = $request->input('editSegment');
+    //                 $pattern->strSegPName = trim($request->input('editPatternName'));
+    //                 $pattern->strSegPImage = 'imgDesignPatterns/'.$file;
+    //             }           
+
+    //             $pattern->save();
+
+            
+    //         return redirect('/maintenance/segment-pattern');
+               
+
+    // }
+
+
+    function delete_segmentpattern(Request $request)
+    {
+
+        $pattern = SegmentPattern::find($request->input('delPatternID'));
+
+        $pattern->boolIsActive = 0;
+
+        $pattern->save();
+
+        return redirect('maintenance/segment-pattern/destroy');
+    }
+    
     public function smartCounter($id)
     {   
 

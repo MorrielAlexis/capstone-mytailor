@@ -142,11 +142,11 @@
 
                           <div class="input-field col s6">                                                    
                             <select class="browser-default editSegment" id="{{ $pattern->strSegPatternID }}" name='editSegment'>
-                                  @foreach($segment as $segment_2)
-                                    @if($pattern->strSegPNameFK == $segment_2->strGarmentSegmentID && $segment_2->boolIsActive == 1)
-                                      <option selected value="{{ $segment_2->strGarmentSegmentID }}" class="{{$segment_2->strCategory }}">{{ $segment_2->strGarmentSegmentName }}</option>
-                                    @elseif($segment_2->boolIsActive == 1)
-                                      <option value="{{ $segment_2->strGarmentSegmentID }}" class="{{$segment_2->strCategory }}">{{ $segment_2->strGarmentSegmentName }}</option>
+                                  @foreach($segment as $segment_1)
+                                    @if($pattern->strSegPNameFK == $segment_1->strSegmentID && $segment_1->boolIsActive == 1)
+                                      <option selected value="{{ $segment_1->strSegmentID }}" class="{{$segment_1->strSegCategoryFK  }}">{{ $segment_1->strSegmentName }}</option>
+                                    @elseif($segment_1->boolIsActive == 1)
+                                      <option value="{{ $segment_1->strSegmentID }}" class="{{$segment_1->strSegCategoryFK  }}">{{ $segment_1->strSegmentName }}</option>
                                     @endif
                                   @endforeach
                             </select>    
@@ -185,7 +185,7 @@
                 <div id="del{{ $pattern->strSegPatternID }}" class="modal modal-fixed-footer">
                       <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS SEGMENT PATTERN?</center> </font> </h5>
                         
-                      {!! Form::open(['url' => 'delDesignPattern']) !!}
+                      {!! Form::open(['url' => 'maintenance/segment-pattern/destroy']) !!}
                         <div class="divider" style="height:2px"></div>
                         <div class="modal-content col s12">
 
@@ -212,9 +212,9 @@
                         </div>
                     </div>
 
-                          <div class="input-field">
+                          <!-- <div class="input-field">
                             <input id="delInactivePattern" name = "delInactivePattern" value = "{{$pattern->strSegPatternID}}" type="hidden">
-                          </div>
+                          </div> -->
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                           
