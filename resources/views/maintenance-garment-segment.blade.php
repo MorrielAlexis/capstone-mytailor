@@ -139,11 +139,11 @@
                               <div class="input-field col s12">                                                    
                                 <select class="browser-default" id="editCategory" name="editCategory"required>
                                   <option value="" disabled selected>Choose garment category</option>
-                                  @foreach($category as $cat)
-                                    @if($segment->strSegCategoryFK == $cat->strGarmentCategoryID && $cat->boolIsActive == 1)
-                                      <option selected value="{{ $cat->strGarmentCategoryID }}">{{ $cat->strGarmentCategoryName }}</option>
-                                    @elseif($cat->boolIsActive == 1)
-                                      <option value="{{ $cat->strGarmentCategoryID }}">{{ $cat->strGarmentCategoryName }}</option>
+                                  @foreach($garment as $garm)
+                                    @if($segment->strSegCategoryFK == $garm->strGarmentCategoryID && $garm->boolIsActive == 1)
+                                      <option selected value="{{ $garm->strGarmentCategoryID }}">{{ $garm->strGarmentCategoryName }}</option>
+                                    @elseif($garm->boolIsActive == 1)
+                                      <option value="{{ $garm->strGarmentCategoryID }}">{{ $garm->strGarmentCategoryName }}</option>
                                     @endif
                                   @endforeach
                                 </select>   
@@ -247,9 +247,9 @@
                       <div class="input-field col s12">
                         <select class="browser-default" name='addCategory' id='addCategory' required>
                           <option value="" disabled selected>Choose garment category</option>
-                          @foreach($category as $category_1)
-                            @if($category_1->boolIsActive == 1) 
-                              <option value="{{ $category_1->strGarmentCategoryID }}">{{ $category_1->strGarmentCategoryName }}</option>
+                          @foreach($garment as $garment_1)
+                            @if($garment_1->boolIsActive == 1) 
+                              <option value="{{ $garment_1->strGarmentCategoryID }}">{{ $garment_1->strGarmentCategoryName }}</option>
                             @endif                       
                           @endforeach
                         </select> 

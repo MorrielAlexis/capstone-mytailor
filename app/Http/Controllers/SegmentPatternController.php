@@ -40,6 +40,7 @@ class SegmentPatternController extends Controller
         $pattern = \DB::table('tblSegmentPattern')
                 ->join('tblGarmentCategory', 'tblSegmentPattern.strSegPCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
                 ->join('tblSegment', 'tblSegmentPattern.strSegPNameFK', '=', 'tblSegment.strSegmentID')
+                ->select('tblSegmentPattern.*', 'tblGarmentCategory.strGarmentCategoryName', 'tblSegment.strSegmentName') 
                 ->orderBy('strSegPatternID')
                 ->get();
         

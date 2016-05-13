@@ -122,7 +122,7 @@ a
                           <select class="browser-default" id="editCategory" name="editCategory"> 
                                 <option disabled selected value="">Choose Category</option>
                               @foreach($category as $cat)
-                                @if($catalogue->strCatalogueCategory == $cat->strGarmentCategoryID && $cat->boolIsActive == 0)
+                                @if($catalogue->strCatalogueCategoryFK == $cat->strGarmentCategoryID && $cat->boolIsActive == 0)
                                   <option selected value="{{$cat->strGarmentCategoryID}}" selected>{{$cat->strGarmentCategoryName}}</option>
                                 @elseif($cat->boolIsActive == 1)
                                   <option value="{{$cat->strGarmentCategoryID}}" selected>{{$cat->strGarmentCategoryName}}</option>
@@ -206,10 +206,7 @@ a
                       </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
-                      <div class="input-field col s12">
-                        <input value="{{ $catalogue->strInactiveReason }}" id="delInactiveReason" name="delInactiveReason" type="text" class="validate" required>
-                        <label for="catalogue_name"> *Reason for Deactivation </label>
-                      </div>
+                     
                   </div>
                   </div>
 

@@ -29,15 +29,17 @@ class GarmentSegmentController extends Controller
         $ID = $ids["0"]->strSegmentID;
         $newID = $this->smartCounter($ID);  
 
-        $category =  GarmentCategory::all();
+        $garment =  GarmentCategory::all();
 
         $segment = \DB::table('tblSegment')
             ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
+            ->select('tblSegment.*', 'tblGarmentCategory.strGarmentCategoryName')
+
             ->get();
 
         return view('maintenance-garment-segment')
                     ->with('segment', $segment)
-                    ->with('category', $category)
+                    ->with('garment', $garment)
                     ->with('newID', $newID);
     }
 
