@@ -69,59 +69,34 @@ class SegmentPatternController extends Controller
      */
     public function store(Request $request)
     {
-        // $file = $request->input('addImage');
-        // $destinationPath = 'public/imgDesignPatterns';
+        $file = $request->input('addImage');
+        $destinationPath = 'imgDesignPatterns';
 
-        // $pat = SegmentPattern::get();
-        // $isAdded = FALSE;
-        // $validInput = TRUE;
+            if($file == '' || $file == null){
+                $pattern = SegmentPattern::create(array(
+                'strSegPatternID' => $request->input('addPatternID'),
+                'strSegPCategoryFK' => $request->input('addCategory'),
+                'strSegPNameFK' => $request->input('addSegment'),
+                'strSegPName' => trim($request->input('addPatternName')),
+                'boolIsActive' => 1
+                ));     
+                }else{
+                    $request->file('addImg')->move($destinationPath, $file);
 
-        // $regex = "/^[a-zA-Z\'\-]+( [a-zA-Z\'\-]+)*$/";
-        
-        // if(!trim(Input::get('addPatternName')) == ''){
-        //     $validInput = TRUE;
-        //     if (preg_match($regex, Input::get('addPatternName'))) {
-        //         $validInput = TRUE;
-        //     }else $validInput = FALSE;
-        // }else $validInput = FALSE;
+                    $pattern = SegmentPattern::create(array(
+                        'strSegPatternID' => $request->input('addPatternID'),
+                        'strSegPCategoryFK' => $request->input('addCategory'),
+                        'strSegPNameFK' => $request->input('addSegment'),
+                        'strSegPName' => trim($request->input('addPatternName')),
+                        'strSegPImage' => 'imgDesignPatterns/'.$file,
+                        'boolIsActive' => 1
+                    )); 
+                }
 
+            $pattern->save();
+            
+            return redirect('/maintenance/segment-pattern');
 
-        // foreach ($pat as $pat) 
-        //     if(strcasecmp($pat->strDesignCategory, Input::get('addCategory')) == 0 && 
-        //        strcasecmp($pat->strDesignSegmentName, Input::get('addSegment')) == 0 && 
-        //        strcasecmp($pat->strPatternName, trim(Input::get('addPatternName'))) == 0)
-        //         $isAdded = TRUE;
-
-
-        // if($validInput){
-        //     if(!$isAdded){
-        //         if($file == '' || $file == null){
-        //         $pattern = SegmentPattern::create(array(
-        //         'strSegPatternID' => Input::get('addPatternID'),
-        //         'strSegPCategoryFK' => Input::get('addCategory'),
-        //         'strSegPNameFK' => Input::get('addSegment'),
-        //         'strSegPName' => trim(Input::get('addPatternName')),
-        //         'boolIsActive' => 1
-        //         ));     
-        //         }else{
-        //             $extension = Input::file('addImg')->getClientOriginalExtension();
-        //             $fileName = $file;
-        //             Input::file('addImg')->move($destinationPath, $fileName);
-
-        //             $pattern = SegmentPattern::create(array(
-        //             'strSegPatternID' => Input::get('addPatternID'),
-        //             'strSegPCategoryFK' => Input::get('addCategory'),
-        //             'strSegPNameFK' => Input::get('addSegment'),
-        //             'strSegPName' => trim(Input::get('addPatternName')),
-        //             'strSegPImage' => 'imgDesignPatterns/'.$fileName,
-        //             'boolIsActive' => 1
-        //             )); 
-        //         }
-
-        //         $pattern->save();
-        //         return Redirect::to('/maintenance/segment-pattern?success=true');
-        //     } else return Redirect::to('/maintenance/segment-pattern?success=duplicate');
-        // }else return Redirect::to('/maintenance/segment-pattern?input=invalid');
     }
 
     /**

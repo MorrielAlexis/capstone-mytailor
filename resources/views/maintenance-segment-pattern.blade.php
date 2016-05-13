@@ -245,13 +245,12 @@
             <div id="addDesign" class="modal modal-fixed-footer">
               <h5><font color = "#1b5e20"><center>ADD NEW SEGMENT PATTERN</center> </font> </h5> 
                 
-              {!! Form::open(['url' => 'maintenance/segment-pattern', 'method' => 'post']) !!}
+              {!! Form::open(['url' => 'maintenance/segment-pattern', 'method' => 'post', 'files' => 'true']) !!}
                 <div class="divider" style="height:2px"></div>
                 <div class="modal-content col s12">
-
-                <div class="input-field">
-                  <input value = "{{$newID}}" id="addPatternID" name= "addPatternID" type="hidden">
-                </div>
+                
+                <input type="hidden" name="_token" value="{!! csrf_token() !!}" />
+                <input value = "{{$newID}}" id="addPatternID" name= "addPatternID" type="hidden">
 
             <div class = "col s12" style="padding:15px;  border:3px solid white;">
                 <div class="input-field col s6">
