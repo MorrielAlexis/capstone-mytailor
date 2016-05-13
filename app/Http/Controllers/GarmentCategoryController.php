@@ -30,7 +30,7 @@ class GarmentCategoryController extends Controller
         $garment = GarmentCategory::all();
        
         //load the view and pass the individuals
-        return view('garments')
+        return view('maintenance-garment-category')
                     ->with('garment', $garment)
                     ->with('newID', $newID);
     }

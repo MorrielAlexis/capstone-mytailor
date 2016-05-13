@@ -40,7 +40,7 @@ class MeasurementCategoryController extends Controller
        
 
         //load the view and pass the employees
-        return view('measurementCategory')
+        return view('maintenance-measurement-category')
                     ->with('head', $head)
                     ->with('category', $category)
                     ->with('segment', $segment)

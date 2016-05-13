@@ -39,7 +39,7 @@ class EmployeeController extends Controller
             ->get();
 
         //load the view and pass the employees
-        return view('employee')
+        return view('maintenance-employee')
                     ->with('employee', $employee)
                     ->with('roles', $roles)
                     ->with('newID', $newID);

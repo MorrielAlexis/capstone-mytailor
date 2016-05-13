@@ -31,7 +31,7 @@ class CustomerIndividualController extends Controller
         $individual = Individual::all();
         
         //load the view and pass the individuals
-        return view('customerIndividual')
+        return view('maintenance-customer-individual')
                     ->with('individual', $individual)
                     ->with('newID', $newID);
     }

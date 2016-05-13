@@ -40,7 +40,7 @@ class MaterialsController extends Controller
         $newZipperID = 0;
         $newHookID = 0;
 
-        return view('fabricAndMaterialsMaterials')
+        return view('maintenance-materials')
                     ->with('threads', $thread)
                     ->with('reasonThread', $reasonThread)
                     ->with('newThreadID', $newThreadID)

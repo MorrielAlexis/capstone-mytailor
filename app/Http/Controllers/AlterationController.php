@@ -16,7 +16,7 @@ class AlterationController extends Controller
      */
     public function index()
     {
-        return view('alteration');
+        return view('maintenance-alteration');
     }
 
     /**

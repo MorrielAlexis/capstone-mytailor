@@ -35,7 +35,7 @@ class SwatchController extends Controller
         $swatch = Swatch::all();
 
         //load the view and pass the employees
-        return view('fabricAndMaterialsSwatches')
+        return view('maintenance-swatches')
                     ->with('fabricType', $fabricType)
                     ->with('swatch', $swatch)
                     ->with('reason', $reason)

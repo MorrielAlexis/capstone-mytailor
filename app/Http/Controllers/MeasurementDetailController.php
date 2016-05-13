@@ -24,7 +24,7 @@ class MeasurementDetailController extends Controller
         $detailNewID = 0;
         
         //load the view and pass the individuals
-        return view('measurementDetail')
+        return view('maintenance-measurement-detail')
                     ->with('detail', $detail)
                     ->with('reason', $reason)
                     ->with('detailNewID', $detailNewID);

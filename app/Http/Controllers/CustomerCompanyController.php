@@ -31,7 +31,7 @@ class CustomerCompanyController extends Controller
         $company = Company::all();
         
         //load the view and pass the companies
-        return view('customerCompany')
+        return view('maintenance-customer-company')
                     ->with('company', $company)
                     ->with('newID', $newID);
     }

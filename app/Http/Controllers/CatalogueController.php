@@ -27,7 +27,7 @@ class CatalogueController extends Controller
         $catalogue = Catalogue::all();
         
         //load the view and pass the employee roles
-        return view('catalogue')
+        return view('maintenance-catalogue')
                     ->with('catalogue', $catalogue)
                     ->with('category', $category)
                     ->with('reason', $reason)

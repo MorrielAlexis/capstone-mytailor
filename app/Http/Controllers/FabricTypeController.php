@@ -24,7 +24,7 @@ class FabricTypeController extends Controller
         $newID = 0;
         
         //load the view and pass the fabric types
-        return view('fabricAndMaterialsFabricType')
+        return view('maintenance-fabric-type')
                     ->with('fabricType', $fabricType)
                     ->with('reason', $reason)
                     ->with('newID', $newID);

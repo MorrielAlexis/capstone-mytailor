@@ -35,7 +35,7 @@ class GarmentSegmentController extends Controller
             ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
             ->get();
 
-        return view('garmentsDetails')
+        return view('maintenance-garment-segment')
                     ->with('segment', $segment)
                     ->with('category', $category)
                     ->with('newID', $newID);
