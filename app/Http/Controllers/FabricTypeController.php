@@ -18,15 +18,22 @@ class FabricTypeController extends Controller
     public function index()
     {
         //get all the fabric types
-        $fabricType = FabricType::all();
-        $reason = FabricType::all(); /*dummy lang wala pang model un reasons e*/
+          
+        $ids = \DB::table('tblFabricType')
+            ->select('strFabricTypeID')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('strFabricTypeID', 'desc')
+            ->take(1)
+            ->get();
 
-        $newID = 0;
-        
+        $ID = $ids["0"]->strFabricTypeID;
+        $newID = $this->smartCounter($ID);  
+        $fabricType = FabricType::all();
+
         //load the view and pass the fabric types
-        return view('maintenance-fabric-type')
+
+         return view('maintenance-fabric-type')
                     ->with('fabricType', $fabricType)
-                    ->with('reason', $reason)
                     ->with('newID', $newID);
     }
 
@@ -48,7 +55,18 @@ class FabricTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $fabrics = FabricType::get();
+
+            $fabricType = FabricType::create(array(
+            'strFabricTypeID' => $request->input('addFabricTypeID'),
+            'strFabricTypeName' => trim($request->input('addFabricTypeName')),
+            'txtFabricTypeDesc' => trim($request->input('addFabricTypeDesc')),
+            'boolIsActive' => 1
+            ));
+
+            $fabricType->save();
+
+        return redirect('maintenance/fabric-type');
     }
 
     /**
@@ -94,5 +112,77 @@ class FabricTypeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    function update_fabrictype(Request $request)
+
+    {   
+       
+        $fabricType = FabricType::find($request->input('editFabricTypeID'));
+
+                $fabricType->strFabricTypeName = trim($request->get('editFabricTypeName'));    
+                $fabricType->txtFabricTypeDesc = trim($request->get('editFabricTypeDesc'));
+
+                $fabricType->save();
+
+                return redirect('maintenance/fabric-type');
+
+    }
+
+
+    function delete_fabrictype(Request $request)
+    {
+
+            $fabricType = FabricType::find($request-> input('delFabricID'));
+
+            $fabricType->boolIsActive = 0;
+
+            $fabricType->save();
+
+        return redirect('maintenance/employee-role');
+
+    }
+
+
+    public function smartCounter($id)
+    {   
+
+        $lastID = str_split($id);
+
+        $ctr = 0;
+        $tempID = "";
+        $tempNew = [];
+        $newID = "";
+        $add = TRUE;
+
+        for($ctr = count($lastID)-1; $ctr >= 0; $ctr--){
+
+            $tempID = $lastID[$ctr];
+
+            if($add){
+                if(is_numeric($tempID) || $tempID == '0'){
+                    if($tempID == '9'){
+                        $tempID = '0';
+                        $tempNew[$ctr] = $tempID;
+
+                    }else{
+                        $tempID = $tempID + 1;
+                        $tempNew[$ctr] = $tempID;
+                        $add = FALSE;
+                    }
+                }else{
+                    $tempNew[$ctr] = $tempID;
+                }           
+            }
+            $tempNew[$ctr] = $tempID;   
+        }
+
+        
+        for($ctr = 0; $ctr < count($lastID); $ctr++){
+            $newID = $newID . $tempNew[$ctr];
+        }
+
+        return $newID;
     }
 }

@@ -145,39 +145,39 @@ class SegmentPatternController extends Controller
         //
     }
 
-    function update_segmentpattern(Request $request)
-    {
+    // function update_segmentpattern(Request $request)
+    // {
 
-        $pattern = SegmentPattern::find($request->input('editPatternID'));
+    //     $pattern = SegmentPattern::find($request->input('editPatternID'));
 
-        // $file = $request->file('');
-        // $destinationPath = 'imgDesignPatterns';
+    //     // $file = $request->file('');
+    //     // $destinationPath = 'imgDesignPatterns';
 
 
-                if ($request->input('editImage') == $pattern->('strSegPImage'))
-                {
-                    $pattern->strSegPCategoryFK = $request->input('editCategory');
-                    $pattern->strSegPNameFK = $request->input('editSegment');
-                    $pattern->strSegPName = trim($request->input('editPatternName'));
-                }
-                else{
-                    $file = $request->('editImage');
-                    $destinationPath = 'imgDesignPatterns';
-                    $request->('editImg')->move($destinationPath);
+    //             if ($request->input('editImage') == $pattern->('strSegPImage'))
+    //             {
+    //                 $pattern->strSegPCategoryFK = $request->input('editCategory');
+    //                 $pattern->strSegPNameFK = $request->input('editSegment');
+    //                 $pattern->strSegPName = trim($request->input('editPatternName'));
+    //             }
+    //             else{
+    //                 $file = $request->('editImage');
+    //                 $destinationPath = 'imgDesignPatterns';
+    //                 $request->('editImg')->move($destinationPath);
 
-                    $pattern->strSegPCategoryFK = $request->input('editCategory');
-                    $pattern->strSegPNameFK = $request->input('editSegment');
-                    $pattern->strSegPName = trim($request->input('editPatternName'));
-                    $pattern->strSegPImage = 'imgDesignPatterns/'.$file;
-                }           
+    //                 $pattern->strSegPCategoryFK = $request->input('editCategory');
+    //                 $pattern->strSegPNameFK = $request->input('editSegment');
+    //                 $pattern->strSegPName = trim($request->input('editPatternName'));
+    //                 $pattern->strSegPImage = 'imgDesignPatterns/'.$file;
+    //             }           
 
-                $pattern->save();
+    //             $pattern->save();
 
             
-            return redirect('/maintenance/segment-pattern');
+    //         return redirect('/maintenance/segment-pattern');
                
 
-    }
+    // }
 
 
     function delete_segmentpattern(Request $request)

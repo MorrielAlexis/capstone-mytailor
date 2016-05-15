@@ -70,8 +70,11 @@ Route::group(['prefix' => 'maintenance'], function(){
 });
 
 Route::group(['prefix' => 'maintenance'], function(){
-	Route::resource('fabric-type', 'FabricTypeController',
-		['only' => ['index']]);
+	Route::resource('fabric-type', 'FabricTypeController');
+		
+		Route::post('fabric-type/update','FabricTypeController@update_fabrictype');
+		Route::post('fabric-type/destroy','FabricTypeController@delete_fabrictype');
+
 
 	Route::resource('swatch', 'SwatchController',
 		['only' => ['index']]);
