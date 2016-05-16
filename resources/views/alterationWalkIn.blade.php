@@ -2,7 +2,6 @@
 
 @section('content')
 
-<h1>ETO AY Alteration</h1>
-
+<h1>ALTERATION WALK IN</h1>
 
 @stop
