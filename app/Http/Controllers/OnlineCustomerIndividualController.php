@@ -19,6 +19,7 @@ class OnlineCustomerIndividualController extends Controller
         return view('onlineCustomerIndividual');
     }
 
+
     /**
      * Show the form for creating a new resource.
      *
