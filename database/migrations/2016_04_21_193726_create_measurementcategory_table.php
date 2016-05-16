@@ -33,7 +33,7 @@ class CreateMeasurementcategoryTable extends Migration
                   ->references('strMeasurementDetailID')
                   ->on('tblMeasurementDetail');
 
-            $table->unique(array('strMeasCatID', 'strMeasGarFK', 'strMeasSegmentFK', 'strMeasDetFK'), 'strMeasCatPK');
+            $table->unique(array('strMeasCatID', 'strMeasGarFK', 'strMeasSegmentFK', 'strMeasDetFK'));
         });
     }
 

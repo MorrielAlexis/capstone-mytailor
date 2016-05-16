@@ -283,7 +283,7 @@
                   <div id="addMeasurementInfo" class="modal modal-fixed-footer">
                     <h5><font color = "#1b5e20"><center>ADD NEW MEASUREMENT INFORMATION</center> </font> </h5> 
                       
-                      {!! Form::open(['url' => 'measurement-category', 'method' => 'post']) !!}
+                      {!! Form::open(['url' => 'maintenance/measurement-category', 'method' => 'post']) !!}
                         <div class="divider" style="height:2px"></div>
                         <div class="modal-content col s12">
 
