@@ -109,6 +109,7 @@
                         </li>
 
                         <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('maintenance/catalogue') ? 'active' : '' }}" href="{{URL::to('maintenance/catalogue')}}"><b>Catalogue</b></a></li>
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('maintenance/alteration') ? 'active' : '' }}" href="{{URL::to('maintenance/alteration')}}"><b>Alteration</b></a></li>
                       </ul>
                     </li>
                   </ul>

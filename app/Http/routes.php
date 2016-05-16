@@ -95,6 +95,11 @@ Route::group(['prefix' => 'maintenance'], function(){
 		['only' => ['index']]);
 });
 
+Route::group(['prefix' => 'maintenance'], function(){
+	Route::resource('alteration', 'AlterationController',
+		['only' => ['index']]);
+});
+
 
 Route::group(['prefix' => 'transaction'], function(){
 	Route::resource('walkin-individual', 'WalkInIndividualController',
