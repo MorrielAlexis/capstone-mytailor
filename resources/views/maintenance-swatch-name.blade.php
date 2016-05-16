@@ -34,8 +34,8 @@
                 <thead>
                   <tr>
               		  <!--<th data-field="fabricID">Fabric Type ID</th>-->
-                    <th data-field="swatchName">Swatch Name</th>
-              		  <th data-field="swatchDescription">Swatch Description</th>
+                    <th data-field="swatchName">Name</th>
+              		  <th data-field="swatchDescription">Description</th>
                     <th data-field="Edit">Actions</th>
                     
 
