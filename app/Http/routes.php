@@ -65,8 +65,13 @@ Route::group(['prefix' => 'maintenance'], function(){
 	Route::resource('measurement-category', 'MeasurementCategoryController',
 		['only' => ['index']]);
 
-	Route::resource('measurement-detail', 'MeasurementDetailController',
-		['only' => ['index']]);
+	Route::resource('measurement-detail', 'MeasurementDetailController');
+
+		Route::post('measurement-detail/update','MeasurementDetailController@update_measurementdetail');
+		Route::post('measurement-detail/destroy','MeasurementDetailController@delete_measurementdetail');
+
+	
+
 });
 
 Route::group(['prefix' => 'maintenance'], function(){
