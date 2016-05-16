@@ -80,6 +80,9 @@ Route::group(['prefix' => 'maintenance'], function(){
 		Route::post('fabric-type/destroy','FabricTypeController@delete_fabrictype');
 
 
+	Route::resource('swatch-name', 'SwatchNameController',
+		['only' => ['index']]);
+
 	Route::resource('swatch', 'SwatchController',
 		['only' => ['index']]);
 
