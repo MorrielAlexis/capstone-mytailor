@@ -123,9 +123,9 @@ Route::group(['prefix' => 'transaction'], function(){
 });
 
 Route::group(['prefix' => 'transaction'], function(){
-	Route::resource('jobOrderPending', 'ManagePendingOrdersController',
+	Route::resource('modifyIndividual', 'ModifyCompanyOrdersController',
 		['only' => ['index']]);
-	Route::resource('jobOrderModify', 'ManageModifyOrdersController',
+	Route::resource('modifyCompany', 'ModifyIndividualOrdersController',
 		['only' => ['index']]);
 });
 
@@ -151,5 +151,7 @@ Route::group(['prefix' => 'utilities'], function(){
 		['only' => ['index']]);
 });
 
+Route::get('/acceptIndividual','OnlineCustomerIndividualController@accept');
+Route::get('/acceptCompany','OnlineCustomerCompanyController@accept');
 
 Route::get('transaction/walkin-individual-payment', 'WalkInIndividualController@payment');
