@@ -251,7 +251,7 @@
                       <input value = "{{$newID}}" id="addSwatchID" name= "addSwatchID" type="hidden">
                     </div>
 
-                <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                  <div class = "col s12" style="padding:15px;  border:3px solid white;">
                     <div class="input-field col s12">
                       <select class="browser-default" name='addFabric' id='addFabric' required>
                          <option disabled selected value="">*Swatch Type</option>
@@ -262,16 +262,30 @@
                           @endforeach
                       </select>
                       <!--<label>*Fabric Type</label>-->
-                 </div> 
-                </div> 
+                    </div> 
+                  </div> 
+
+                  <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                    <div class="input-field col s12">
+                      <select class="browser-default" name='addSwatchName' id='addSwatchName' required>
+                         <option disabled selected value="">*Swatch Name</option>
+                          @foreach($fabricType as $fab)
+                            @if($fab->boolIsActive == 1)
+                              <option value="{{ $fab->strFabricTypeID }}">{{ $fab->strSwatchFabricTypeName }}</option>
+                            @endif
+                          @endforeach
+                      </select>
+                      <!--<label>*Fabric Type</label>-->
+                    </div> 
+                  </div> 
 
                 <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                    <div class="input-field col s6">
+                   <!--  <div class="input-field col s6">
                       <input required id="addSwatchName" name="addSwatchName" type="text" class="validateSwatchName">
                       <label for="swatch_name">*Swatch Name </label>
-                    </div>    
+                    </div> -->    
 
-                    <div class="input-field col s6">
+                    <div class="input-field col s12">
                       <input required id="addSwatchCode" name = "addSwatchCode" type="text" class="validateSwatchCode">
                       <label for="swatch_code">*Swatch Code </label>
                     </div>
