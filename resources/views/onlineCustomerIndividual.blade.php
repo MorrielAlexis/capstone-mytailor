@@ -16,6 +16,31 @@
 		        <span class="card-title"><h5 style="color:#1b5e20"><center>Orders</center></h5></span>
 		        <div class="divider" style="margin-bottom:30px;"></div>
 
+   		        <div class="row">
+		        	<div class="col s7">
+		        		<table class="centered">
+		        			<thead>
+						    	<tr>
+						        	<th style="color:#1b5e20">Track#</th>
+						            <th style="color:#1b5e20">Company Name</th>
+						            <th style="color:#1b5e20">Due Date</th>
+						            <th>
+						        </tr>
+						    </thead>
+						</table>
+		        	</div>
+		        	<div class="col s5">
+		        		<table class="centered">
+		        			<thead>
+						    	<tr>
+						            <th style="color:#1b5e20">Action</th>
+						        </tr>
+						    </thead>
+						</table>
+		        	</div>
+		        </div>
+
+
 		        <ul class="collapsible z-depth-0" data-collapsible="accordion" style="border:none;">
 			    
 			    <!--Order#1-->
@@ -24,14 +49,6 @@
 						<div class="row">
 							<div class="col s7">
 								<table class="centered">
-								    <thead>
-								    	<tr>
-								        	<th style="color:#1b5e20">Track#</th>
-								            <th style="color:#1b5e20">Customer Name</th>
-								            <th style="color:#1b5e20">Due Date</th>
-								        </tr>
-								    </thead>
-
 								    <tbody>
 								        <tr>
 								        	<td>#001</td>
@@ -41,12 +58,12 @@
 								    </tbody>
 								</table>
 							</div>
-							<div class="col s5 center" style="margin-top:50px;">
+							<div class="col s5 center">
 								<table class="centered">
 								    <tbody>
 								        <tr>
-								        	<td><a class="btn modal-trigger" href="#acceptmodal">Accept</a></td>
-								        	<td><a class="btn modal-trigger" href="#rejectmodal">Reject</a></td>
+								        	<td><a class="btn modal-trigger" href="{{URL::to('/acceptIndividual')}}"><i class="mdi-action-done"></i>Accept</a></td>
+								        	<td><a class="btn modal-trigger" href="#rejectmodal"><i class="mdi-content-clear"></i>Reject</a></td>
 								        </tr>
 								    </tbody>
 								</table>
@@ -83,7 +100,7 @@
 						    				<td>Linen Keme</td>
 						    				<td><img class="img hoverable" src="../imgSwatches/citadel alpine.jpg"></td>
 						    				<td>LINK001</td>
-						    				<td><a class="btn modal-trigger tooltipped" href="#measurementmodal" data-position="top" data-delay="50" data-tooltip="Measurements"><i class="large material-icons">reorder</i></a></td>
+						    				<td><a class="btn modal-trigger tooltipped" href="#measurementmodal" data-position="top" data-delay="50" data-tooltip="Measurements"><i class="mdi-action-view-headline"></i></a></td>
 						    			</tr>
 						    			<tr>
 						    				<td>Gown</td>
@@ -94,7 +111,7 @@
 						    				<td>Cotton Keme</td>
 						    				<td><img class="img hoverable" src="../imgSwatches/citadel grape.jpg"></td>
 						    				<td>COT001</td>
-						    				<td><a class="btn modal-trigger tooltipped" href="#measurementmodal" data-position="top" data-delay="50" data-tooltip="Measurements"><i class="large material-icons">reorder</i></a></td>
+						    				<td><a class="btn modal-trigger tooltipped" href="#measurementmodal" data-position="top" data-delay="50" data-tooltip="Measurements"><i class="mdi-action-view-headline"></i></a></td>
 						    			</tr>
 						    		</tbody>
 						    	</table>
@@ -112,14 +129,6 @@
 						<div class="row">
 							<div class="col s7">
 								<table class="centered">
-								    <thead>
-								    	<tr>
-								        	<th style="color:#1b5e20">Track#</th>
-								            <th style="color:#1b5e20">Customer Name</th>
-								            <th style="color:#1b5e20">Due Date</th>
-								        </tr>
-								    </thead>
-
 								    <tbody>
 								        <tr>
 								        	<td>#002</td>
@@ -129,12 +138,12 @@
 								    </tbody>
 								</table>
 							</div>
-							<div class="col s5 center" style="margin-top:50px;">
+							<div class="col s5 center">
 								<table class="centered">
 								    <tbody>
 								        <tr>
-								        	<td><a class="btn modal-trigger" href="#acceptmodal">Accept</a></td>
-								        	<td><a class="btn modal-trigger" href="#rejectmodal">Reject</a></td>
+								        	<td><a class="btn modal-trigger" href="{{URL::to('/acceptIndividual')}}"><i class="mdi-action-done"></i>Accept</a></td>
+								        	<td><a class="btn modal-trigger" href="#rejectmodal"><i class="mdi-content-clear"></i>Reject</a></td>
 								        </tr>
 								    </tbody>
 								</table>
@@ -171,7 +180,7 @@
 						    				<td>Linen Keme</td>
 						    				<td><img class="img hoverable" src="../imgSwatches/citadel alpine.jpg"></td>
 						    				<td>LINK001</td>
-						    				<td><a class="btn modal-trigger tooltipped" href="#measurementmodal" data-position="top" data-delay="50" data-tooltip="Measurements"><i class="large material-icons">reorder</i></a></td>
+						    				<td><a class="btn modal-trigger tooltipped" href="#measurementmodal" data-position="top" data-delay="50" data-tooltip="Measurements"><i class="mdi-action-view-headline"></i></a></td>
 						    			</tr>
 						    			<tr>
 						    				<td>Gown</td>
@@ -182,7 +191,7 @@
 						    				<td>Cotton Keme</td>
 						    				<td><img class="img hoverable" src="../imgSwatches/citadel grape.jpg"></td>
 						    				<td>COT001</td>
-						    				<td><a class="btn modal-trigger tooltipped" href="#measurementmodal" data-position="top" data-delay="50" data-tooltip="Measurements"><i class="large material-icons">reorder</i></a></td>
+						    				<td><a class="btn modal-trigger tooltipped" href="#measurementmodal" data-position="top" data-delay="50" data-tooltip="Measurements"><i class="mdi-action-view-headline"></i></a></td>
 						    			</tr>
 						    		</tbody>
 						    	</table>
@@ -201,7 +210,7 @@
 
 
 	<!--Accept button Modal-->
-	<div id="acceptmodal" class="modal modal-fixed-footer">
+	<div id="acceptmodal" class="modal modal-fixed-footer" style="height:320px; width:700px;">
 		<div class="modal-content">
 			<h4 style="color:#1b5e20" class="center">Accepted Order</h4>
 			<div class="divider container" style="margin-bottom:20px;"></div>

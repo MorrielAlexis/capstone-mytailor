@@ -19,6 +19,10 @@ class OnlineCustomerCompanyController extends Controller
         return view('onlineCustomerCompany');
     }
 
+    public function accept()
+    {
+        return view('acceptCompanyOrder');
+    }
     /**
      * Show the form for creating a new resource.
      *

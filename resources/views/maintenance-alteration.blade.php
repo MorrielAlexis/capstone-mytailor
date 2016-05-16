@@ -24,7 +24,7 @@
     	<div class="col s12 m12 l12">  <!-- col s12 m12 l12 -->
 
     		<div class="card-panel">  <!-- card-panel -->
-   		    <span class="card-title"><h5 style="color:#1b5e20"><center>Alteration Name</center></h5></span>
+   		    <span class="card-title"><h5 style="color:#1b5e20"><center>Alteration</center></h5></span>
    				<div class="divider"> </div>
             <div class="card-content"><!-- card-content  --> 
 
@@ -34,9 +34,9 @@
                 <thead>
                   <tr>
               		  <!--<th data-field="fabricID">Fabric Type ID</th>-->
-                    <th data-field="alterationName">Alteration Name</th>
-              		  <th data-field="alterationDescription">Alteration Description</th>
-                    <th data-field="alterationPrice">Alteration Price</th>
+                    <th data-field="alterationName">Name</th>
+              		  <th data-field="alterationDescription">Description</th>
+                    <th data-field="alterationPrice">Price</th>
                     <th data-field="Edit">Actions</th>
                     
 
@@ -47,9 +47,9 @@
                   
                   <tr>
               		 
-                    <td>Alteration Name</td>
-              		  <td>Alteration Desc</td>
-                    <td>Alteration Price</td>
+                    <td>Name</td>
+              		  <td>Desc</td>
+                    <td>Price</td>
               		  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of alteration name" href="#editAlterationName"><i class="mdi-editor-mode-edit"></i></a>
                     <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of alteration name from the table" href="#delAlterationName"><i class="mdi-action-delete"></i></a></td>
               	
