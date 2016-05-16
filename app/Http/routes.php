@@ -108,9 +108,9 @@ Route::group(['prefix' => 'transaction'], function(){
 });
 
 Route::group(['prefix' => 'transaction'], function(){
-	Route::resource('jobOrderPending', 'ManagePendingOrdersController',
+	Route::resource('modifyIndividual', 'ModifyCompanyOrdersController',
 		['only' => ['index']]);
-	Route::resource('jobOrderModify', 'ManageModifyOrdersController',
+	Route::resource('modifyCompany', 'ModifyIndividualOrdersController',
 		['only' => ['index']]);
 });
 
@@ -135,3 +135,6 @@ Route::group(['prefix' => 'utilities'], function(){
 	Route::resource('inactive-data', 'InactiveDataController',
 		['only' => ['index']]);
 });
+
+Route::get('/acceptIndividual','OnlineCustomerIndividualController@accept');
+Route::get('/acceptCompany','OnlineCustomerCompanyController@accept');

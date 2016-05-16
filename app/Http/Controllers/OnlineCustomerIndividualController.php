@@ -19,6 +19,10 @@ class OnlineCustomerIndividualController extends Controller
         return view('onlineCustomerIndividual');
     }
 
+    public function accept()
+    {
+        return view('acceptIndividualOrder');
+    }
     /**
      * Show the form for creating a new resource.
      *
