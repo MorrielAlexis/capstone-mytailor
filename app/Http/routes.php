@@ -86,13 +86,19 @@ Route::group(['prefix' => 'maintenance'], function(){
 	Route::resource('swatch', 'SwatchController',
 		['only' => ['index']]);
 
-	Route::resource('material', 'MaterialsController',
-		['only' => ['index']]);
+	Route::resource('material', 'MaterialsController');
+
+		Route::post('material/update','MaterialsController@update_material');
+		Route::post('material/destroy','MaterialsController@delete_material');
+
+
 });
 
 Route::group(['prefix' => 'maintenance'], function(){
-	Route::resource('catalogue', 'CatalogueController',
-		['only' => ['index']]);
+	Route::resource('catalogue', 'CatalogueController');
+
+		Route::post('catalogue/update','CatalogueController@update_catalogue');
+		Route::post('catalogue/destroy','CatalogueController@delete_catalogue');
 });
 
 Route::group(['prefix' => 'maintenance'], function(){

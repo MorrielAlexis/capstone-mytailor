@@ -233,7 +233,7 @@
           <div id="addCatalogue" class="modal modal-fixed-footer">            
             <h5><font color = "#1b5e20"><center>ADD NEW CATALOGUE DESIGN</center> </font> </h5>               
               
-              {!! Form::open(['url' => 'addCatalogueDesign']) !!}
+              {!! Form::open(['url' => 'maintenance/catalogue', 'method' => 'post', 'files' => 'true']) !!}
               <div class="divider" style="height:2px"></div>
               <div class="modal-content col s12">               
 
@@ -285,19 +285,12 @@
             
             <div class="modal-footer col s12" style="background-color:#26a69a">                  
               <button type="submit" class=" waves-effect waves-green btn-flat">Add</button>  
-              <button type="button" onclick="clearData()" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button>                    
+              <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button>                    
             </div>
           {!! Form::close() !!}
 @stop
 
 @section('scripts')
-    <script>
-      function clearData(){
-          document.getElementById('addCatalogueName').value = "";
-          document.getElementById('addCatalogueDesc').value = "";
-          document.getElementById('addImage').value = "";
-      }
-    </script>
 
      <script>
       $(document).ready(function(){

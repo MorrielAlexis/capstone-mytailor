@@ -53,7 +53,7 @@ class CatalogueController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -64,7 +64,34 @@ class CatalogueController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $file = $request->input('addImage');
+        $destinationPath = 'imgCatalogue';
+
+            if($file == '' || $file == null){
+                $catalogue = Catalogue::create(array(
+                'strCatalogueID' => $request->input('addCatalogueID'),
+                'strCatalogueCategoryFK' => $request->input('addCategory'),
+                'strCatalogueName' => trim($request ->input('addCatalogueName')),
+                'strCatalogueDesc' => trim($request->input('addCatalogueDesc')),
+                'strCatalogueImage' => 'imgCatalogue/' .$file,
+                'boolIsActive' => 1
+                ));     
+                }else{
+                    $request->file('addImg')->move($destinationPath, $file);
+
+                    $catalogue = Catalogue::create(array(
+                        'strCatalogueID' => $request->input('addCatalogueID'),
+                        'strCatalogueCategoryFK' => $request->input('addCategory'),
+                        'strCatalogueName' => $request->input('addCatalogueName'),
+                        'strCatalogueDesc' => trim($request->input('addCatalogueDesc')),
+                        'strCatalogueImage' => 'imgDesignPatterns/'.$file,
+                        'boolIsActive' => 1
+                    )); 
+
+                }
+            $catalogue->save();
+
+            return redirect('maintenance/catalogue');
     }
 
     /**
