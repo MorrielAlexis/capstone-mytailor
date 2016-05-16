@@ -306,7 +306,7 @@
                             <select class="browser-default" required id="addSegment" name="addSegment">
                                 @foreach($segment as $segment_1)
                                   @if($segment_1->boolIsActive == 1)
-                                    <option value="{{ $segment_1->strGarmentSegmentID }}" class="{{ $segment_1->strSegCategoryFK }}">{{ $segment_1->strSegmentName }}</option>
+                                    <option value="{{ $segment_1->strSegmentID }}" class="{{ $segment_1->strSegCategoryFK }}">{{ $segment_1->strSegmentName }}</option>
                                   @endif
                                 @endforeach                          
                             </select>    
