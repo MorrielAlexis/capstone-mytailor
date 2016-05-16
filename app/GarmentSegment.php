@@ -10,11 +10,12 @@ class GarmentSegment extends Model
 
     protected $primaryKey = 'strSegmentID';
 
-    protected $fillable = ['strSegCategoryFK', 
+    protected $fillable = array('strSegmentID',
+                            'strSegCategoryFK', 
     						'strSegmentName',
     						'textSegmentDesc', 
     						'strSegInactiveReason',
-    						'boolIsActive'];   
+    						'boolIsActive');   
 
     public function garmentcategories()
 	{

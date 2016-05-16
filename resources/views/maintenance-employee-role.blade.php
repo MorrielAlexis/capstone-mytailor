@@ -102,7 +102,7 @@
     </div>
 
       <div class="col s6 left">
-         <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="left" data-delay="50"  data-tooltip="CLick to add a new role to the table" href="#addRole" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
+         <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="bottom" data-delay="50"  data-tooltip="CLick to add a new role to the table" href="#addRole" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
      </div>
   </div>
 
@@ -139,7 +139,7 @@
                   <div id="edit{{$role->strEmpRoleID}}" class="modal modal-fixed-footer">                     
                     <h5><font color = "#1b5e20"><center>EDIT EMPLOYEE ROLE</center> </font> </h5>
                       
-                    {!! Form::open(['url' => 'maintenance/employeeRole/update']) !!}
+                    {!! Form::open(['url' => 'maintenance/employee-role/update']) !!}
                       <div class="divider" style="height:2px"></div>
                       <div class="modal-content col s12">
 
@@ -175,7 +175,7 @@
                   <div id="del{{$role->strEmpRoleID}}" class="modal modal-fixed-footer">                     
                      <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS EMPLOYEE ROLE?</center> </font> </h5>
                         
-                      {!! Form::open(['url' => 'maintenance/employeeRole/destroy']) !!}
+                      {!! Form::open(['url' => 'maintenance/employee-role/destroy']) !!}
                         <div class="divider" style="height:2px"></div>
                         <div class="modal-content col s12">
 
@@ -254,7 +254,7 @@
 
                 <div class="modal-footer col s12" style="background-color:#26a69a">
                   <button type="submit" id="send" name"send" class="modal-action  waves-effect waves-green btn-flat">Add</button>
-                  <button type="button" onclick="clearData()" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
+                  <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
                 </div>
             {!! Form::close() !!}
           </div>
@@ -285,12 +285,13 @@
     </script>
   
 
-  <script>
+<!--   <script>
       function clearData(){
           document.getElementById("addRoleDescription").value = "";
           document.getElementById("addRoleName").value = "";
       }
-    </script>
+  </script>
+   -->
      <!--DATA TABLE SCRIPT-->
     <script type="text/javascript">
 

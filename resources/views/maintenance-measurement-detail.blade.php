@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+
     <div class="main-wrapper">
                   <!--Input Validation-->
               @if (Input::get('input') == 'invalid')
@@ -118,155 +119,109 @@
   
 
   <br><br><br>
- <p><h4 style="lightpink">Measurement Category</h4></p>
-    <div class="row" style="padding:20px">
-    
+ <!--<p><h4 style="lightpink">Measurement Details</h4></p>-->
 
-    <!--Measurement Tabs-->
-<!--      <div class="col s12" id="measurements" name="measurements">
-        <ul class="tabs transparent">
-          <li id="detailTab" class="tab col s3" style="background-color: #00b0ff;"><a style="color:black; padding-top:5px; opacity:0.80" class="tooltipped center-text" accent data-position="bottom" data-delay="50" data-tooltip="Click to see to parts being measured" href="#tabDetails"><b>Details</b></a></li>     
-          <li id="categoryTab" class="tab col s3" style="background-color: #00b0ff;"><a @if (Input::get('isCat') == 'true') class="active" @endif style="color:black; padding-top:5px; opacity:0.80" class="tooltipped center-text" accent data-position="bottom" data-delay="50" data-tooltip="Click to see measurement details about a particular garment" href="#tabCategory"><b>Category</b></a></li>
-          <div class="indicator white" style="z-index:1"></div>
-        </ul>
--->    
-    <!--Tab Contents-->
-    <!--Measurement Category-->
-        <div class="col s6 left">
-             <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="left" data-delay="50"  data-tooltip="Click to add a new measurement information to the table" href="#addMeasurementInfo" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
-          </div>
-        </div> 
-    </div> <!--DIV CLASS MAIN WRAPPER-->       
- 
+        
+      <div class="col s6 left">
+           <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="bottom" data-delay="50"  data-tooltip="Click to add a new measurement detail to the table" href="#addMeasurementPart" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
+      </div>
+    </div>
+         <!-- ENDING TAG FOR MAIN_WRAPPER-->
+
           <div class="row">
             <div class="col s12 m12 l12">
               <div class="card-panel">
-                <span class="card-title"><h5><center>Measurement Category</center></h5></span>
+                <span class="card-title"><h5><center>Measurement Detail</center></h5></span>
                 <div class="divider"></div>
                 <div class="card-content">
-
                   <div class="col s12 m12 l12 overflow-x">
-                    <table class = "table centered data-measHead" align = "center" border = "1">
-                      <thead>
-                        <tr>
-                          <th data-field="Garmentcategory">Garment Category</th>
-                          <th data-field="Garmentcategory">Segment</th>
-                          <th data-field="MeasurementName">Measurement Name</th>
-                          <th data-field="MeasurementName">Actions</th>
-                          
-                        </tr>
-                      </thead>
+                  <table class = "table centered data-measDet" align = "center" border = "1">
+                    <thead>
+                      <tr>
+                        <th data-field="name">Measurement Name</th>
+                        <th data-field="description">Measurement Description</th>
+                        <th data-field="action">Actions</th>
+                      </tr>
+                    </thead>
 
-                      <tbody>
-                            @foreach($head as $head) 
-                            @if($head->boolIsActive == 1) 
-                        <tr>   
-                           <td>{{ $head->strGarmentCategoryName }}</td>
-                           <td>{{ $head->strGarmentSegmentName }}</td>
-                          <td>{{ $head->strMeasurementDetailName }}</td> 
-                          <td><a style = "color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement information" href="#edit{{$head->strMeasurementID}}"><i class="mdi-editor-mode-edit"></i></a>
-                          <a style = "color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement information" href="#del{{$head->strMeasurementID}}"><i class="mdi-action-delete"></i></a>
-                        
-                          <div id="edit{{$head->strMeasurementID}}" class="modal modal-fixed-footer">
-                            <h5><font color = "#1b5e20"><center>EDIT MEASUREMENT INFORMATION</center> </font> </h5>
-                              {!! Form::open(['url' => 'editMeasurementCategory']) !!}
-                                <div class="divider" style="height:2px"></div>
-                                <div class="modal-content col s12"> 
- 
+                    <tbody>
+                      @foreach($detail as $detail)
+                      @if($detail->boolIsActive == 1)
+                      <tr>
+                        <td>{{ $detail->strMeasurementDetailName }}</td>
+                        <td>{{ $detail->txtMeasurementDetailDesc }}</td>
+                        <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement detail" href="#edit{{ $detail->strMeasurementDetailID }}"><i class="mdi-editor-mode-edit"></i></a>
+                        <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to deactivate measurement detail from the table" href="#del{{ $detail->strMeasurementDetailID }}"><i class="mdi-action-delete"></i></a></td>
+
+                        <div id="edit{{ $detail->strMeasurementDetailID }}" class="modal modal-fixed-footer">
+                          <h5><font color = "#1b5e20"><center>EDIT MEASUREMENT PART</center> </font> </h5>
+                            
+                            {!! Form::open(['url' => 'maintenance/measurement-detail/update']) !!}
+                              <div class="divider" style="height:2px"></div>
+                              <div class="modal-content col s12">
+                                
                                     <div class="input-field">
-                                      <input value="{{ $head->strMeasurementID }}" id="editMeasurementID" name="editMeasurementID" type="hidden" readonly>                                 
+                                      <input value="{{ $detail->strMeasurementDetailID }}" id="editDetailID" name="editDetailID" type="hidden">
                                     </div>
 
                               <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                                    <div class="input-field col s6">                                                    
-                                      <select class="browser-default editCategory" name="editCategory" id="{{ $head->strMeasurementID}}"> 
-                                        @foreach($category as $cat)
-                                            @if($head->strCategoryName == $cat->strGarmentCategoryID && $cat->boolIsActive == 1) 
-                                              <option value="{{ $cat->strGarmentCategoryID }}" selected>{{ $cat->strGarmentCategoryName }}</option> 
-                                            @elseif($cat->boolIsActive == 1)
-                                              <option value="{{ $cat->strGarmentCategoryID }}">{{ $cat->strGarmentCategoryName }}</option>
-                                            @endif 
-                                        @endforeach                                  
-                                      </select>    
-                                    </div>       
-                                      
-                                    <div class="input-field col s6">                                                    
-                                      <select class="browser-default editSegment" required name='editSegment' id="{{ $head->strMeasurementID}}">
-                                        @foreach($segment as $seg)
-                                          @if($head->strSegmentName == $seg->strGarmentSegmentID && $seg->boolIsActive == 1)
-                                            <option value="{{ $seg->strGarmentSegmentID }}" class="{{ $seg->strCategory }}" selected>{{ $seg->strGarmentSegmentName }}</option>
-                                          @elseif($seg->boolIsActive == 1)
-                                            <option value="{{ $seg->strGarmentSegmentID }}" class="{{ $seg->strCategory }}">{{ $seg->strGarmentSegmentName }}</option>
-                                          @endif
-                                        @endforeach
-                                      </select>    
-                                    </div> 
-                                </div>    
-    
-                                <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
-                                    <div class="input-field col s12">                                                                               
-                                       <select class="browser-default" name="editDetail" id="editDetail" required>
-                                           @foreach($detailList as $dl)
-                                              @if($head->strMeasurementName == $dl->strMeasurementDetailID && $dl->boolIsActive == 1)
-                                                <option selected value ="{{ $dl->strMeasurementDetailID }}">{{$dl->strMeasurementDetailName}}</option>
-                                              @elseif($dl->boolIsActive == 1)
-                                                <option value ="{{ $dl->strMeasurementDetailID }}">{{$dl->strMeasurementDetailName}}</option>
-                                              @endif  
-                                           @endforeach
-                                       </select>   
-                                     </div>
-                                  </div>
-                                </div> 
+                                    <div class="input-field col s12">
+                                      <input required value="{{ $detail->strMeasurementDetailName }}" id="editDetailName" name = "editDetailName" type="text" class="validateDetailName">
+                                      <label for="measurement_name"> Measurement Name <span class="red-text"><b>*</b></span></label>
+                                    </div>
+                              </div>
 
-                                <div class="modal-footer col s12" style="background-color:#26a69a">
-                                  <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Update</button>
-                                  <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
-                                </div>
-                              {!! Form::close() !!}
-                            </div>
+                              <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
+                                    <div class="input-field col s12">
+                                      <input required value="{{ $detail->txtMeasurementDetailDesc }}" id="editDetailDesc" name = "editDetailDesc" type="text" class="validateDetailDesc">
+                                      <label for="measurement_desc">Measurement Description <span class="red-text"><b>*</b></span></label>
+                                    </div>
+                              </div>
+                              </div>
 
-                         
+                              <div class="modal-footer col s12" style="background-color:#26a69a">
+                                <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Update</button>
+                                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
+                              </div>
+                          {!! Form::close() !!}
+                        </div>
+                          
 
-                          <div id="del{{$head->strMeasurementID}}" class="modal modal-fixed-footer">
-                            <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS MEASUREMENT INFORMATION?</center> </font> </h5>
-                            
-                            {!! Form::open(['url' => 'delMeasurementCategory']) !!}
+                        <div id="del{{ $detail->strMeasurementDetailID }}" class="modal modal-fixed-footer">
+                          <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS MEASUREMENT PART?</center> </font> </h5>                            
+                              
+                            {!! Form::open(['url' => 'maintenance/measurement-detail/destroy']) !!}
                               <div class="divider" style="height:2px"></div>
                               <div class="modal-content col s12">
                                 
                                   <div class="input-field">
-                                      <input value="{{ $head->strMeasurementID }}" id="delMeasurementID" name="delMeasurementID" type="hidden" readonly>                                 
-                                    </div>
-
-                            <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                                  <div class="input-field col s6">
-                                    <input value="{{ $head->strGarmentCategoryName }}" type="text" readonly>
-                                    <label for="measurement_id">Garment Category </label>
+                                    <input value="{{ $detail->strMeasurementDetailID }}" id="delDetailID" name="delDetailID" type="hidden">
                                   </div>
 
-                                  <div class="input-field col s6">
-                                    <input value="{{ $head->strGarmentSegmentName }}" type="text" readonly>
-                                    <label for="measurement_name">Segment </label>
+                            <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                                  <div class="input-field col s12">
+                                    <input value="{{ $detail->strMeasurementDetailName }}" type="text"  readonly>
+                                    <label for="measurement_name"> Measurement Name </label>
                                   </div>
                             </div>
 
                             <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                   <div class="input-field col s12">
-                                    <input value="{{ $head->strMeasurementDetailName }}" type="text" readonly>
-                                    <label for="measurement_desc">Measurement Name </label>
+                                    <input value="{{ $detail->txtMeasurementDetailDesc }}"type="text"  readonly>
+                                    <label for="measurement_desc">Measurement Description </label>
                                   </div>
                             </div>
 
                                   <div class="input-field">
-                                      <input value="{{ $head->strMeasurementID }}" id="delInactiveHead" name="delInactiveHead" type="hidden">                                 
+                                    <input value="{{ $detail->strMeasurementDetailID }}" id="delInactiveDetail" name="delInactiveDetail" type="hidden">
                                   </div>
 
-                            <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
-                                  <div class="input-field">
-                                    <input value="{{ $head->strInactiveReason }}" id="delInactiveReason" name="delInactiveReason" type="text" class="validate" required>
+                           <!--  <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
+                                  <div class="input-field col s12">
+                                    <input value="{{ $detail->strInactiveReason }}" id="delInactiveReason" name="delInactiveReason" type="text"  required>
                                     <label for="measurement_desc">Reason for Deactivation </label>
                                   </div>
-                            </div>
+                            </div> -->
                             </div>
 
                               <div class="modal-footer col s12" style="background-color:#26a69a">
@@ -276,80 +231,58 @@
                             {!! Form::close() !!}
                           </div>
                         </td>
-                        </tr>
-                        @endif
-                        @endforeach
-                      </tbody>
-                    </table>
+                      </tr>
+                      @endif
+                      @endforeach
+                    </tbody>
+                  </table>
+
                   </div>
 
                   <div class = "clearfix">
 
                   </div>
-
-                  <div id="addMeasurementInfo" class="modal modal-fixed-footer">
-                    <h5><font color = "#1b5e20"><center>ADD NEW MEASUREMENT INFORMATION</center> </font> </h5> 
+          
+                <div id="addMeasurementPart" class="modal modal-fixed-footer">
+                  <h5><font color = "#1b5e20"><center>ADD NEW MEASUREMENT PART</center> </font> </h5>
                       
-                      {!! Form::open(['url' => 'addMeasurementCategory']) !!}
-                        <div class="divider" style="height:2px"></div>
-                        <div class="modal-content col s12">
-
+                    {!! Form::open(['url' => 'maintenance/measurement-detail', 'method' => 'post']) !!}
+                      <div class="divider" style="height:2px"></div>
+                      <div class="modal-content col s12">
+                        
                           <div class="input-field">
-                            <input value="{{ $categoryNewID }}" id="addMeasurementID" name="addMeasurementID" type="text" hidden>
+                            <input value="{{$detailNewID}}" id="addDetailID" name="addDetailID" type="text"  hidden>
                           </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                          <div class="input-field col s6">                                                    
-                              <select class="browser-default" required id="addCategory" name='addCategory'>                                      
-                                  @foreach($category as $category_1)
-                                    @if($category_1->boolIsActive == 1)  
-                                      <option value="{{ $category_1->strGarmentCategoryID }}">{{ $category_1->strGarmentCategoryName }}</option>
-                                    @endif
-                                  @endforeach
-                              </select>    
-                          </div>        
-                
-                          <div class="input-field col s6">                                                    
-                            <select class="browser-default" required id="addSegment" name='addSegment'>
-                                @foreach($segment as $segment_1)
-                                  @if($segment_1->boolIsActive == 1)
-                                    <option value="{{ $segment_1->strGarmentSegmentID }}" class="{{ $segment_1->strCategory }}">{{ $segment_1->strGarmentSegmentName }}</option>
-                                  @endif
-                                @endforeach                          
-                            </select>    
-                          </div>   
-                      </div>  
+                          <div class="input-field col s12">
+                            <input required id="addDetailName" name= "addDetailName" type="text" class="validate" pattern="^[a-zA-Z\-'`\s]{2,}$" placeholder="Chest">
+                            <label for="measurement_name"> Measurement Name <span class="red-text"><b>*</b></span></label>
+                          </div>
+                      </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
-                          <div class="input-field col s12">                                                                                 
-                            <select class="browser-default" name="addDetail" id="addDetail" required>
-                                @foreach($detailList as $detail_1)
-                                  @if($detail_1->boolIsActive == 1)
-                                    <option value="{{ $detail_1->strMeasurementDetailID }}" class="">{{ $detail_1->strMeasurementDetailName }}</option>
-                                  @endif
-                                @endforeach                               
-                            </select>
+                          <div class="input-field col s12">
+                            <input required id="addDetailDesc" name ="addDetailDesc" type="text" class="validate" placeholder="Front portion to be measured" pattern="[A-Za-z\s]+">
+                            <label for="measurement_desc">Measurement Description <span class="red-text"><b>*</b></span></label>
                           </div>
-                      </div>                       
+                      </div>
                       </div>
 
                       <div class="modal-footer col s12" style="background-color:#26a69a">
                         <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
-                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
+                        <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
                       </div>
                     {!! Form::close() !!}
-                  </div> 
-                  
-                </div> 
+                  </div>          
+                </div>
               </div>
             </div>
-          </div>
-      
-        <!--END OF MEASUREMENT CATEGORY-->
+          </div>      
 
 
 
-  @stop
+@stop
 
 @section('scripts')
     <script src="js/jquery-1.12.0.min.js"></script>
@@ -493,13 +426,7 @@
       $('select').material_select();
       });
     </script>
-    
-    <script>
-      function clearData(){
-          document.getElementById('addDetailDesc').value = "";
-          document.getElementById('addDetailName').value = "";
-      }
-    </script>
+  
 
     <script type="text/javascript">
       $('.validateDetailName').on('input', function() {

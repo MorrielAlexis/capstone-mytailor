@@ -79,7 +79,7 @@
     </div>
 
       <div class="col s6 left">
-         <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="left" data-delay="50"  data-tooltip="CLick to add a new role to the table" href="#addFabricType" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
+         <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="bottom" data-delay="50"  data-tooltip="CLick to add a new role to the table" href="#addFabricType" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
       </div>
     </div>
    <!-- End of Main Wrapper  --> 
@@ -122,7 +122,7 @@
                     <div id="edit{{ $fabricType->strFabricTypeID }}" class="modal modal-fixed-footer"> <!-- editFabricType  --> 
                       <h5><font color = "#1b5e20"><center>EDIT FABRIC TYPE</center> </font> </h5>
                         
-                      {!! Form::open(['url' => 'editFabricType']) !!}
+                      {!! Form::open(['url' => 'maintenance/fabric-type/update']) !!}
                         <div class="divider" style="height:2px"></div>
                         <div class="modal-content col s12">
                         
@@ -133,14 +133,14 @@
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s12">
                           <input required value = "{{ $fabricType->strFabricTypeName }}" id="editFabricTypeName" name = "editFabricTypeName" type="text" class="validateTypeName">
-                          <label for="fabrictype_name">*Fabric Type Name </label>
+                          <label for="fabrictype_name">Fabric Type Name <span class="red-text"><b>*</b></span> </label>
                         </div>
                   </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                         <div class="input-field col s12">
                           <input required value = "{{ $fabricType->txtFabricTypeDesc }}" id="editFabricTypeDesc" name = "editFabricTypeDesc" type="text" class="validateTypeDesc">
-                          <label for="fabrictype_description">*Fabric Desription </label>
+                          <label for="fabrictype_description">Fabric Desription <span class="red-text"><b>*</b></span> </label>
                         </div>  
                   </div>
                   </div>
@@ -157,7 +157,7 @@
               <div id="del{{ $fabricType->strFabricTypeID }}" class="modal modal-fixed-footer">                     
                 <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS FABRIC TYPE?</center> </font> </h5>                       
                     
-                  {!! Form::open(['url' => 'delFabricType']) !!}
+                  {!! Form::open(['url' => 'maintenance/fabric-type/destroy']) !!}
                     <div class="divider" style="height:2px"></div>
                     <div class="modal-content col s12">
                       
@@ -184,10 +184,7 @@
                           </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
-                           <div class="input-field col s12">
-                            <label for="middle_name">*Reason for Deactivation </label>
-                            <input value="{{$fabricType->strInactiveReason}}" id="delInactiveReason" name="delInactiveReason" type="text" required>
-                          </div>
+                           
                       </div>
                       </div>
 
@@ -212,7 +209,7 @@
              <div id="addFabricType" class="modal modal-fixed-footer">                  
                 <h5><font color = "#1b5e20"><center>ADD NEW FABRIC TYPE</center> </font> </h5> 
                 
-                {!! Form::open(['url' => 'addFabricType']) !!}
+                {!! Form::open(['url' => 'maintenance/fabric-type']) !!}
                   <div class="divider" style="height:2px"></div>
                   <div class="modal-content col s12">
                             
@@ -223,22 +220,21 @@
 
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s12">
-                    <input required id="addFabricTypeName" name = "addFabricTypeName" type="text" class="validateTypeName">
-                    <label for="fabrictype_name">*Fabric Name </label>
-                  </div>
-              </div>
+                    <input required id="addFabricTypeName" name = "addFabricTypeName" type="text" class="validate" pattern="[0-9a-zA-Z\-\s]+$">
+                    <label for="fabrictype_name">Fabric Name <span class="red-text"><b>*</b></span></label>
+                  </div              </div>
 
               <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                   <div class="input-field col s12">
                     <input required id="addFabricTypeDesc" name = "addFabricTypeDesc" type="text" class="validateTypeDesc">
-                    <label for="fabrictype_description">*Fabric Desription </label>
+                    <label for="fabrictype_description">Fabric Desription <span class="red-text"><b>*</b></span></label>
                   </div>
               </div>
               </div>
 
                   <div class="modal-footer col s12" style="background-color:#26a69a">
                     <button type="submit" id="addFabType" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
-                    <button type="button" onclick="clearData()" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
+                    <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
                   </div>
                 {!! Form::close() !!}
     	       </div><!-- addFabricType  -->
@@ -253,13 +249,6 @@
 @stop
 
 @section('scripts')
-    <script>
-      function clearData(){
-          document.getElementById('addFabricTypeDesc').value = "";
-          document.getElementById('addFabricTypeName').value = "";
-
-      }
-    </script>
 
     <script type="text/javascript">
       $('.validateTypeName').on('input', function() {

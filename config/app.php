@@ -145,7 +145,12 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class
+
+        /*
+         * Third-party Service Providers...
+         */
+        Barryvdh\Debugbar\ServiceProvider::class,
+        'Felixkiss\UniqueWithValidator\UniqueWithValidatorServiceProvider',
 
     ],
 

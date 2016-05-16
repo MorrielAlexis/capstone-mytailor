@@ -4,16 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Thread;
-use App\Needle;
-use App\Button;
-use App\Zipper;
-use App\HookAndEye;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class MaterialsController extends Controller
+class JobOrderProgressController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,40 +16,7 @@ class MaterialsController extends Controller
      */
     public function index()
     {
-        $thread = Thread::all();
-        $needle = Needle::all();
-        $button = Button::all();
-        $zipper = Zipper::all();
-        $hook = HookAndEye::all();
-
-        $reasonThread = Thread::all();
-        $reasonNeedle = Needle::all();
-        $reasonButton = Button::all();
-        $reasonZipper = Zipper::all();
-        $reasonHook = HookAndEye::all();
-
-        $newThreadID = 0;
-        $newNeedleID =0;
-        $newButtonID = 0;
-        $newZipperID = 0;
-        $newHookID = 0;
-
-        return view('maintenance-materials')
-                    ->with('threads', $thread)
-                    ->with('reasonThread', $reasonThread)
-                    ->with('newThreadID', $newThreadID)
-                    ->with('needles', $needle)
-                    ->with('reasonNeedle', $reasonNeedle)
-                    ->with('newNeedleID', $newNeedleID)
-                    ->with('buttons', $button)
-                    ->with('reasonButton', $reasonButton)
-                    ->with('newButtonID', $newButtonID)
-                    ->with('zippers', $zipper)
-                    ->with('reasonZipper', $reasonZipper)
-                    ->with('newZipperID', $newZipperID)
-                    ->with('hooks', $hook)
-                    ->with('reasonHook', $reasonHook)
-                    ->with('newHookID', $newHookID);
+        return view('jobOrderProgress');
     }
 
     /**

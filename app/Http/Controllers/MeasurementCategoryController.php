@@ -23,6 +23,16 @@ class MeasurementCategoryController extends Controller
     {
         //get all the category
 
+        $ids = \DB::table('tblMeasurementCategory')
+            ->select('strMeasCatID')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('strMeasCatID', 'desc')
+            ->take(1)
+            ->get();
+
+        $ID = $ids["0"]->strMeasCatID;
+        $newID = $this->smartCounter($ID);
+
         $category =  GarmentCategory::all();
 
         $segment = GarmentSegment::all();
@@ -30,23 +40,21 @@ class MeasurementCategoryController extends Controller
         $detailList = MeasurementDetail::all();
 
 
-        $reason = MeasurementCategory::all(); /*dummy lang wala pang model un reasons e*/
-
-
-        $categoryNewID = 0;
-        
-
-        $head = MeasurementDetail::all();
-       
+        $head = \DB::table('tblMeasurementCategory AS a')
+            ->leftJoin('tblGarmentCategory AS b', 'a.strMeasGarFK', '=', 'b.strGarmentCategoryID')
+            ->leftJoin('tblSegment AS c', 'a.strMeasSegmentFK', '=', 'c.strSegmentID')
+            ->leftJoin('tblMeasurementDetail AS d', 'a.strMeasDetFK', '=', 'd.strMeasurementDetailID')
+            ->select('a.*', 'b.strGarmentCategoryName','c.strSegmentName', 'd.strMeasurementDetailName')
+            ->orderBy('created_at') 
+            ->get();
 
         //load the view and pass the employees
-        return view('measurementCategory')
+        return view('maintenance-measurement-category')
                     ->with('head', $head)
                     ->with('category', $category)
                     ->with('segment', $segment)
                     ->with('detailList', $detailList)
-                    ->with('reason', $reason)
-                    ->with('categoryNewID', $categoryNewID);
+                    ->with('newID', $newID);
 
     }
 
@@ -68,7 +76,18 @@ class MeasurementCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $meas_category = MeasurementCategory::create(array(
+                'strMeasCatID' => $request->input('addMeasurementID'),
+                'strMeasGarFK' => $request->input('addCategory'),
+                'strMeasSegmentFK' => $request->input('addSegment'),
+                'strMeasDetFK' => $request->input('addDetail'),
+                'strMeasCatInactiveReason' => null,
+                'boolIsActive' => 1
+            ));
+
+        $meas_category->save();
+
+        return redirect('maintenance/measurement-category');
     }
 
     /**
@@ -114,5 +133,46 @@ class MeasurementCategoryController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function smartCounter($id)
+    {   
+
+        $lastID = str_split($id);
+
+        $ctr = 0;
+        $tempID = "";
+        $tempNew = [];
+        $newID = "";
+        $add = TRUE;
+
+        for($ctr = count($lastID)-1; $ctr >= 0; $ctr--){
+
+            $tempID = $lastID[$ctr];
+
+            if($add){
+                if(is_numeric($tempID) || $tempID == '0'){
+                    if($tempID == '9'){
+                        $tempID = '0';
+                        $tempNew[$ctr] = $tempID;
+
+                    }else{
+                        $tempID = $tempID + 1;
+                        $tempNew[$ctr] = $tempID;
+                        $add = FALSE;
+                    }
+                }else{
+                    $tempNew[$ctr] = $tempID;
+                }           
+            }
+            $tempNew[$ctr] = $tempID;   
+        }
+
+        
+        for($ctr = 0; $ctr < count($lastID); $ctr++){
+            $newID = $newID . $tempNew[$ctr];
+        }
+
+        return $newID;
     }
 }

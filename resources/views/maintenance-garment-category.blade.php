@@ -105,7 +105,7 @@
     </div>
 
        <div class="col s6 left">
-         <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="left" data-delay="50"  data-tooltip="CLick to add a new type of garment to the table" href="#addGCategory" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
+         <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="bottom" data-delay="50"  data-tooltip="CLick to add a new type of garment to the table" href="#addGCategory" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
        </div>
      </div>
    
@@ -145,7 +145,7 @@
                       <div id="edit{{ $garment->strGarmentCategoryID }}" class="modal modal-fixed-footer">
                         <h5><font color = "#1b5e20"><center>EDIT GARMENT CATEGORY</center> </font> </h5>                          
                             
-                            {!! Form::open(['url' => 'maintenance/garment/update']) !!}
+                            {!! Form::open(['url' => 'maintenance/garment-category/update']) !!}
                               <div class="divider" style="height:2px"></div>
                               <div class="modal-content col s12">
                                 
@@ -171,7 +171,7 @@
 
                           <div class="modal-footer col s12" style="background-color:#26a69a">
                               <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Update</button>
-                              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
+                              <a href="#!"  class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
                           </div>
                     {!! Form::close() !!}
                   </div>
@@ -179,7 +179,7 @@
                       <div id="del{{ $garment->strGarmentCategoryID }}" class="modal modal-fixed-footer">
                         <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS GARMENT CATEGORY?</center> </font> </h5>
                         
-                        {!! Form::open(['url' => 'maintenance/garment/destroy']) !!}
+                        {!! Form::open(['url' => 'maintenance/garment-category/destroy']) !!}
                           <div class="divider" style="height:2px"></div>
                           <div class="modal-content col s12">
                             
@@ -235,7 +235,7 @@
             <div id="addGCategory" class="modal modal-fixed-footer">
               <h5><font color = "#1b5e20"><center>ADD NEW GARMENT CATEGORY</center> </font> </h5>
               
-              {!! Form::open(['url' => 'maintenance/garment']) !!}
+              {!! Form::open(['url' => 'maintenance/garment-category', 'method' => 'post']) !!}
                 <div class="divider" style="height:2px"></div>
                 <div class="modal-content col s12">
   
@@ -260,7 +260,7 @@
 
                 <div class="modal-footer" style="background-color:#26a69a">
                   <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
-                  <vutton type="button" onclick="clearData()" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
+                  <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
                 </div>
               {!! Form::close() !!}
             </div>
@@ -293,12 +293,12 @@
       });
     </script>
 
-    <script>
+<!--     <script>
       function clearData(){
           document.getElementById("addGarmentDesc").value = "";
           document.getElementById("addGarmentName").value = "";
       }
-    </script>
+    </script> -->
 
     <script type="text/javascript">
       $('.validateGarmentName').on('input', function() {

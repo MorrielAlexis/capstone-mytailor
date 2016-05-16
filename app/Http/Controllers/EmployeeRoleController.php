@@ -33,7 +33,7 @@ class EmployeeRoleController extends Controller
         $role = EmployeeRole::all();
 
          //load the view and pass the employees
-        return view('employeeRole')
+        return view('maintenance-employee-role')
                 ->with('role', $role)
                 ->with('newID', $newID);
        

@@ -30,7 +30,7 @@ class EmployeeSeeder extends Seeder
                 'strEmpZipCode' => '2501',
                 'strRole' => 'ROLE001',
                 'strCellNo' =>'09162451291',
-                'strCellNoAlt' =>'0915543-2875',
+                'strCellNoAlt' =>'09155432875',
                 'strPhoneNo' => '02345890',
                 'strEmailAdd' => 'earvintol@gmail.com',
                 'boolIsActive' => '1'
@@ -50,7 +50,7 @@ class EmployeeSeeder extends Seeder
                 'strEmpProvince' => 'La Union',
                 'strEmpZipCode' => '2501',
                 'strRole' => 'ROLE002',
-                'strCellNo' =>'0919786-4523',
+                'strCellNo' =>'09197864523',
                 'strCellNoAlt' =>'0923098567',
                 'strPhoneNo' => '02341276',
                 'strEmailAdd' => 'amberaq@gmail.com',
