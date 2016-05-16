@@ -149,7 +149,7 @@
                       @if($detail->boolIsActive == 1)
                       <tr>
                         <td>{{ $detail->strMeasurementDetailName }}</td>
-                        <td>{{ $detail->strMeasurementDetailDesc }}</td>
+                        <td>{{ $detail->txtMeasurementDetailDesc }}</td>
                         <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement detail" href="#edit{{ $detail->strMeasurementDetailID }}"><i class="mdi-editor-mode-edit"></i></a>
                         <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to deactivate measurement detail from the table" href="#del{{ $detail->strMeasurementDetailID }}"><i class="mdi-action-delete"></i></a></td>
 
@@ -173,7 +173,7 @@
 
                               <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                                     <div class="input-field col s12">
-                                      <input required value="{{ $detail->strMeasurementDetailDesc }}" id="editDetailDesc" name = "editDetailDesc" type="text" class="validateDetailDesc">
+                                      <input required value="{{ $detail->txtMeasurementDetailDesc }}" id="editDetailDesc" name = "editDetailDesc" type="text" class="validateDetailDesc">
                                       <label for="measurement_desc">*Measurement Description </label>
                                     </div>
                               </div>
