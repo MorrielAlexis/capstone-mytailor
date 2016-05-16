@@ -283,13 +283,13 @@
                   <div id="addMeasurementInfo" class="modal modal-fixed-footer">
                     <h5><font color = "#1b5e20"><center>ADD NEW MEASUREMENT INFORMATION</center> </font> </h5> 
                       
-                      {!! Form::open(['url' => 'addMeasurementCategory']) !!}
+                      {!! Form::open(['url' => 'measurement-category', 'method' => 'post']) !!}
                         <div class="divider" style="height:2px"></div>
                         <div class="modal-content col s12">
 
-                          <div class="input-field">
-                            <input value="{{ $newID }}" id="addMeasurementID" name="addMeasurementID" type="text" hidden>
-                          </div>
+                          <input type="hidden" name="_token" value="{!! csrf_token() !!}" />
+                          <input value="{{ $newID }}" id="addMeasurementID" name="addMeasurementID" type="text" hidden>
+                          
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s6">                                                    

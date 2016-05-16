@@ -18,7 +18,7 @@ class MeasurementCategorySeeder extends Seeder
             array(
                 'strMeasCatID' => 'MEAS001',
                 'strMeasGarFK' => 'GARM001',
-                'strMeasSegmentNameFK' =>'SEGM001',
+                'strMeasSegmentFK' =>'SEGM001',
                 'strMeasDetFK' => 'MDET001',
                 'boolIsActive' => '1'
             ),
@@ -26,7 +26,7 @@ class MeasurementCategorySeeder extends Seeder
             array(
                 'strMeasCatID' => 'MEAS002',
                 'strMeasGarFK' => 'GARM001',
-                'strMeasSegmentNameFK' =>'SEGM001',
+                'strMeasSegmentFK' =>'SEGM001',
                 'strMeasDetFK' => 'MDET002',
                 'boolIsActive' => '1'
             )

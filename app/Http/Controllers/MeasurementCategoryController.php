@@ -76,7 +76,13 @@ class MeasurementCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $meas_category = MeasurementCategory::create(array(
+                'strMeasCatID'
+                'strMeasGarFK'
+                'strMeasSegmentFK'
+                'boolIs'
+
+            ));
     }
 
     /**
