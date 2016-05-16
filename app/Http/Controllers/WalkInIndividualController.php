@@ -19,6 +19,11 @@ class WalkInIndividualController extends Controller
         return view('walkInIndividual');
     }
 
+    public function payment()
+    {
+        return view('walkInIndividualCheckout');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

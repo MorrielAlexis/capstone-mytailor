@@ -102,8 +102,8 @@ Route::group(['prefix' => 'maintenance'], function(){
 
 
 Route::group(['prefix' => 'transaction'], function(){
-	Route::resource('walkin-individual', 'WalkInIndividualController',
-		['only' => ['index']]);
+	Route::resource('walkin-individual', 'WalkInIndividualController');
+
 	Route::resource('walkin-company', 'WalkInCompanyController',
 		['only' => ['index']]);
 });
@@ -150,3 +150,6 @@ Route::group(['prefix' => 'utilities'], function(){
 	Route::resource('inactive-data', 'InactiveDataController',
 		['only' => ['index']]);
 });
+
+
+Route::get('transaction/walkin-individual-payment', 'WalkInIndividualController@payment');
