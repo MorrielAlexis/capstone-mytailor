@@ -123,7 +123,7 @@
 
         
       <div class="col s6 left">
-           <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="left" data-delay="50"  data-tooltip="Click to add a new measurement detail to the table" href="#addMeasurementPart" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
+           <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="bottom" data-delay="50"  data-tooltip="Click to add a new measurement detail to the table" href="#addMeasurementPart" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
       </div>
     </div>
          <!-- ENDING TAG FOR MAIN_WRAPPER-->
@@ -149,14 +149,14 @@
                       @if($detail->boolIsActive == 1)
                       <tr>
                         <td>{{ $detail->strMeasurementDetailName }}</td>
-                        <td>{{ $detail->strMeasurementDetailDesc }}</td>
+                        <td>{{ $detail->txtMeasurementDetailDesc }}</td>
                         <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement detail" href="#edit{{ $detail->strMeasurementDetailID }}"><i class="mdi-editor-mode-edit"></i></a>
                         <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to deactivate measurement detail from the table" href="#del{{ $detail->strMeasurementDetailID }}"><i class="mdi-action-delete"></i></a></td>
 
                         <div id="edit{{ $detail->strMeasurementDetailID }}" class="modal modal-fixed-footer">
                           <h5><font color = "#1b5e20"><center>EDIT MEASUREMENT PART</center> </font> </h5>
                             
-                            {!! Form::open(['url' => 'editMeasurementDetail']) !!}
+                            {!! Form::open(['url' => 'maintenance/measurement-detail/update']) !!}
                               <div class="divider" style="height:2px"></div>
                               <div class="modal-content col s12">
                                 
@@ -167,14 +167,14 @@
                               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                     <div class="input-field col s12">
                                       <input required value="{{ $detail->strMeasurementDetailName }}" id="editDetailName" name = "editDetailName" type="text" class="validateDetailName">
-                                      <label for="measurement_name"> *Measurement Name </label>
+                                      <label for="measurement_name"> Measurement Name <span class="red-text"><b>*</b></span></label>
                                     </div>
                               </div>
 
                               <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                                     <div class="input-field col s12">
-                                      <input required value="{{ $detail->strMeasurementDetailDesc }}" id="editDetailDesc" name = "editDetailDesc" type="text" class="validateDetailDesc">
-                                      <label for="measurement_desc">*Measurement Description </label>
+                                      <input required value="{{ $detail->txtMeasurementDetailDesc }}" id="editDetailDesc" name = "editDetailDesc" type="text" class="validateDetailDesc">
+                                      <label for="measurement_desc">Measurement Description <span class="red-text"><b>*</b></span></label>
                                     </div>
                               </div>
                               </div>
@@ -190,7 +190,7 @@
                         <div id="del{{ $detail->strMeasurementDetailID }}" class="modal modal-fixed-footer">
                           <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS MEASUREMENT PART?</center> </font> </h5>                            
                               
-                            {!! Form::open(['url' => 'delMeasurementDetail']) !!}
+                            {!! Form::open(['url' => 'maintenance/measurement-detail/destroy']) !!}
                               <div class="divider" style="height:2px"></div>
                               <div class="modal-content col s12">
                                 
@@ -207,7 +207,7 @@
 
                             <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                   <div class="input-field col s12">
-                                    <input value="{{ $detail->strMeasurementDetailDesc }}"type="text"  readonly>
+                                    <input value="{{ $detail->txtMeasurementDetailDesc }}"type="text"  readonly>
                                     <label for="measurement_desc">Measurement Description </label>
                                   </div>
                             </div>
@@ -216,12 +216,12 @@
                                     <input value="{{ $detail->strMeasurementDetailID }}" id="delInactiveDetail" name="delInactiveDetail" type="hidden">
                                   </div>
 
-                            <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
+                           <!--  <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                                   <div class="input-field col s12">
                                     <input value="{{ $detail->strInactiveReason }}" id="delInactiveReason" name="delInactiveReason" type="text"  required>
                                     <label for="measurement_desc">Reason for Deactivation </label>
                                   </div>
-                            </div>
+                            </div> -->
                             </div>
 
                               <div class="modal-footer col s12" style="background-color:#26a69a">
@@ -246,7 +246,7 @@
                 <div id="addMeasurementPart" class="modal modal-fixed-footer">
                   <h5><font color = "#1b5e20"><center>ADD NEW MEASUREMENT PART</center> </font> </h5>
                       
-                    {!! Form::open(['url' => 'addMeasurementDetail']) !!}
+                    {!! Form::open(['url' => 'maintenance/measurement-detail', 'method' => 'post']) !!}
                       <div class="divider" style="height:2px"></div>
                       <div class="modal-content col s12">
                         
@@ -256,22 +256,22 @@
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input required id="addDetailName" name= "addDetailName" type="text" class="validateDetailName" >
-                            <label for="measurement_name"> *Measurement Name </label>
+                            <input required id="addDetailName" name= "addDetailName" type="text" class="validate" pattern="^[a-zA-Z\-'`\s]{2,}$" placeholder="Chest">
+                            <label for="measurement_name"> Measurement Name <span class="red-text"><b>*</b></span></label>
                           </div>
                       </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                           <div class="input-field col s12">
-                            <input required id="addDetailDesc" name ="addDetailDesc" type="text" class="validateDetailDesc">
-                            <label for="measurement_desc">*Measurement Description </label>
+                            <input required id="addDetailDesc" name ="addDetailDesc" type="text" class="validate" placeholder="Front portion to be measured" pattern="[A-Za-z\s]+">
+                            <label for="measurement_desc">Measurement Description <span class="red-text"><b>*</b></span></label>
                           </div>
                       </div>
                       </div>
 
                       <div class="modal-footer col s12" style="background-color:#26a69a">
                         <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
-                        <button type="button" onclick="clearData()" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
+                        <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
                       </div>
                     {!! Form::close() !!}
                   </div>          
@@ -426,13 +426,7 @@
       $('select').material_select();
       });
     </script>
-    
-    <script>
-      function clearData(){
-          document.getElementById('addDetailDesc').value = "";
-          document.getElementById('addDetailName').value = "";
-      }
-    </script>
+  
 
     <script type="text/javascript">
       $('.validateDetailName').on('input', function() {

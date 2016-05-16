@@ -161,27 +161,27 @@
                             @foreach($head as $head) 
                             @if($head->boolIsActive == 1) 
                         <tr>   
-                           <td>{{ $head->strGarmentCategoryName }}</td>
-                           <td>{{ $head->strGarmentSegmentName }}</td>
+                          <td>{{ $head->strGarmentCategoryName }}</td>
+                          <td>{{ $head->strSegmentName }}</td>
                           <td>{{ $head->strMeasurementDetailName }}</td> 
-                          <td><a style = "color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement information" href="#edit{{$head->strMeasurementID}}"><i class="mdi-editor-mode-edit"></i></a>
-                          <a style = "color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement information" href="#del{{$head->strMeasurementID}}"><i class="mdi-action-delete"></i></a>
+                          <td><a style = "color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement information" href="#edit{{$head->strMeasCatID}}"><i class="mdi-editor-mode-edit"></i></a>
+                          <a style = "color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement information" href="#del{{$head->strMeasCatID}}"><i class="mdi-action-delete"></i></a>
                         
-                          <div id="edit{{$head->strMeasurementID}}" class="modal modal-fixed-footer">
+                          <div id="edit{{$head->strMeasCatID}}" class="modal modal-fixed-footer">
                             <h5><font color = "#1b5e20"><center>EDIT MEASUREMENT INFORMATION</center> </font> </h5>
                               {!! Form::open(['url' => 'editMeasurementCategory']) !!}
                                 <div class="divider" style="height:2px"></div>
                                 <div class="modal-content col s12"> 
  
                                     <div class="input-field">
-                                      <input value="{{ $head->strMeasurementID }}" id="editMeasurementID" name="editMeasurementID" type="hidden" readonly>                                 
+                                      <input value="{{ $head->strMeasCatID }}" id="editMeasurementID" name="editMeasurementID" type="hidden" readonly>                                 
                                     </div>
 
                               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                     <div class="input-field col s6">                                                    
-                                      <select class="browser-default editCategory" name="editCategory" id="{{ $head->strMeasurementID}}"> 
+                                      <select class="browser-default editCategory" name="editCategory" id="{{ $head->strMeasCatID}}"> 
                                         @foreach($category as $cat)
-                                            @if($head->strCategoryName == $cat->strGarmentCategoryID && $cat->boolIsActive == 1) 
+                                            @if($head->strMeasGarFK == $cat->strGarmentCategoryID && $cat->boolIsActive == 1) 
                                               <option value="{{ $cat->strGarmentCategoryID }}" selected>{{ $cat->strGarmentCategoryName }}</option> 
                                             @elseif($cat->boolIsActive == 1)
                                               <option value="{{ $cat->strGarmentCategoryID }}">{{ $cat->strGarmentCategoryName }}</option>
@@ -191,12 +191,12 @@
                                     </div>       
                                       
                                     <div class="input-field col s6">                                                    
-                                      <select class="browser-default editSegment" required name='editSegment' id="{{ $head->strMeasurementID}}">
+                                      <select class="browser-default editSegment" required name='editSegment' id="{{ $head->strMeasCatID}}">
                                         @foreach($segment as $seg)
-                                          @if($head->strSegmentName == $seg->strGarmentSegmentID && $seg->boolIsActive == 1)
-                                            <option value="{{ $seg->strGarmentSegmentID }}" class="{{ $seg->strCategory }}" selected>{{ $seg->strGarmentSegmentName }}</option>
+                                          @if($head->strMeasSegmentFK == $seg->strGarmentSegmentID && $seg->boolIsActive == 1)
+                                            <option value="{{ $seg->strGarmentSegmentID }}" class="{{ $seg->strCategory }}" selected>{{ $seg->strSegmentName }}</option>
                                           @elseif($seg->boolIsActive == 1)
-                                            <option value="{{ $seg->strGarmentSegmentID }}" class="{{ $seg->strCategory }}">{{ $seg->strGarmentSegmentName }}</option>
+                                            <option value="{{ $seg->strGarmentSegmentID }}" class="{{ $seg->strCategory }}">{{ $seg->strSegmentName }}</option>
                                           @endif
                                         @endforeach
                                       </select>    
@@ -207,7 +207,7 @@
                                     <div class="input-field col s12">                                                                               
                                        <select class="browser-default" name="editDetail" id="editDetail" required>
                                            @foreach($detailList as $dl)
-                                              @if($head->strMeasurementName == $dl->strMeasurementDetailID && $dl->boolIsActive == 1)
+                                              @if($head->strMeasDetFK == $dl->strMeasurementDetailID && $dl->boolIsActive == 1)
                                                 <option selected value ="{{ $dl->strMeasurementDetailID }}">{{$dl->strMeasurementDetailName}}</option>
                                               @elseif($dl->boolIsActive == 1)
                                                 <option value ="{{ $dl->strMeasurementDetailID }}">{{$dl->strMeasurementDetailName}}</option>
@@ -227,7 +227,7 @@
 
                          
 
-                          <div id="del{{$head->strMeasurementID}}" class="modal modal-fixed-footer">
+                          <div id="del{{$head->strMeasCatID}}" class="modal modal-fixed-footer">
                             <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS MEASUREMENT INFORMATION?</center> </font> </h5>
                             
                             {!! Form::open(['url' => 'delMeasurementCategory']) !!}
@@ -235,7 +235,7 @@
                               <div class="modal-content col s12">
                                 
                                   <div class="input-field">
-                                      <input value="{{ $head->strMeasurementID }}" id="delMeasurementID" name="delMeasurementID" type="hidden" readonly>                                 
+                                      <input value="{{ $head->strMeasCatID }}" id="delMeasurementID" name="delMeasurementID" type="hidden" readonly>                                 
                                     </div>
 
                             <div class = "col s12" style="padding:15px;  border:3px solid white;">
@@ -245,7 +245,7 @@
                                   </div>
 
                                   <div class="input-field col s6">
-                                    <input value="{{ $head->strGarmentSegmentName }}" type="text" readonly>
+                                    <input value="{{ $head->strSegmentName }}" type="text" readonly>
                                     <label for="measurement_name">Segment </label>
                                   </div>
                             </div>
@@ -258,15 +258,8 @@
                             </div>
 
                                   <div class="input-field">
-                                      <input value="{{ $head->strMeasurementID }}" id="delInactiveHead" name="delInactiveHead" type="hidden">                                 
+                                      <input value="{{ $head->strMeasCatID }}" id="delInactiveHead" name="delInactiveHead" type="hidden">                                 
                                   </div>
-
-                            <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
-                                  <div class="input-field">
-                                    <input value="{{ $head->strInactiveReason }}" id="delInactiveReason" name="delInactiveReason" type="text" class="validate" required>
-                                    <label for="measurement_desc">Reason for Deactivation </label>
-                                  </div>
-                            </div>
                             </div>
 
                               <div class="modal-footer col s12" style="background-color:#26a69a">
@@ -290,17 +283,17 @@
                   <div id="addMeasurementInfo" class="modal modal-fixed-footer">
                     <h5><font color = "#1b5e20"><center>ADD NEW MEASUREMENT INFORMATION</center> </font> </h5> 
                       
-                      {!! Form::open(['url' => 'addMeasurementCategory']) !!}
+                      {!! Form::open(['url' => 'maintenance/measurement-category', 'method' => 'post']) !!}
                         <div class="divider" style="height:2px"></div>
                         <div class="modal-content col s12">
 
-                          <div class="input-field">
-                            <input value="{{ $categoryNewID }}" id="addMeasurementID" name="addMeasurementID" type="text" hidden>
-                          </div>
+                          <input type="hidden" name="_token" value="{!! csrf_token() !!}" />
+                          <input value="{{ $newID }}" id="addMeasurementID" name="addMeasurementID" type="text" hidden>
+                          
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s6">                                                    
-                              <select class="browser-default" required id="addCategory" name='addCategory'>                                      
+                              <select class="browser-default" required id="addCategory" name="addCategory">                                      
                                   @foreach($category as $category_1)
                                     @if($category_1->boolIsActive == 1)  
                                       <option value="{{ $category_1->strGarmentCategoryID }}">{{ $category_1->strGarmentCategoryName }}</option>
@@ -310,10 +303,10 @@
                           </div>        
                 
                           <div class="input-field col s6">                                                    
-                            <select class="browser-default" required id="addSegment" name='addSegment'>
+                            <select class="browser-default" required id="addSegment" name="addSegment">
                                 @foreach($segment as $segment_1)
                                   @if($segment_1->boolIsActive == 1)
-                                    <option value="{{ $segment_1->strGarmentSegmentID }}" class="{{ $segment_1->strCategory }}">{{ $segment_1->strGarmentSegmentName }}</option>
+                                    <option value="{{ $segment_1->strSegmentID }}" class="{{ $segment_1->strSegCategoryFK }}">{{ $segment_1->strSegmentName }}</option>
                                   @endif
                                 @endforeach                          
                             </select>    

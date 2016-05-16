@@ -103,7 +103,6 @@
                 <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($catalogue->strCatalogueImage)}}"></td>
               	<td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit catalogue design detail" href="#edit{{$catalogue->strCatalogueID}}"><i class="mdi-editor-mode-edit"></i></a>
                 <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of catalogue design from the table" href="#del{{$catalogue->strCatalogueID}}"><i class="mdi-action-delete"></i></a></td>
-a
                   <div id="edit{{$catalogue->strCatalogueID}}" class="modal modal-fixed-footer">                   
                     <h5><font color = "#1b5e20"><center>EDIT CATALOGUE DESIGN</center></font> </h5>                     
                       editCatalogueDesign

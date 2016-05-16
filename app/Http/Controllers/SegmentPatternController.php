@@ -150,20 +150,16 @@ class SegmentPatternController extends Controller
 
         $pattern = SegmentPattern::find($request->input('editPatternID'));
 
-        // $file = $request->file('');
-        // $destinationPath = 'imgDesignPatterns';
+        $file = $request->input('editImage');
+        $destinationPath = 'imgDesignPatterns';
 
-
-                if ($request->input('editImage') == $pattern->('strSegPImage'))
+                if($file == $pattern->strSegPImage)
                 {
                     $pattern->strSegPCategoryFK = $request->input('editCategory');
                     $pattern->strSegPNameFK = $request->input('editSegment');
                     $pattern->strSegPName = trim($request->input('editPatternName'));
-                }
-                else{
-                    $file = $request->('editImage');
-                    $destinationPath = 'imgDesignPatterns';
-                    $request->('editImg')->move($destinationPath);
+                }else{
+                    $request->file('editImg')->move($destinationPath);
 
                     $pattern->strSegPCategoryFK = $request->input('editCategory');
                     $pattern->strSegPNameFK = $request->input('editSegment');

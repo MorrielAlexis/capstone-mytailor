@@ -62,15 +62,25 @@ Route::group(['prefix' => 'maintenance'], function(){
 		Route::post('segment-pattern/update','SegmentPatternController@update_segmentpattern');
 		Route::post('segment-pattern/destroy','SegmentPatternController@delete_segmentpattern');
 
-	Route::resource('measurement-category', 'MeasurementCategoryController',
-		['only' => ['index']]);
+		Route::resource('measurement-category', 'MeasurementCategoryController');
 
-	Route::resource('measurement-detail', 'MeasurementDetailController',
-		['only' => ['index']]);
+		Route::resource('measurement-detail', 'MeasurementDetailController');
+
+		Route::post('measurement-detail/update','MeasurementDetailController@update_measurementdetail');
+		Route::post('measurement-detail/destroy','MeasurementDetailController@delete_measurementdetail');
+
+	
+
 });
 
 Route::group(['prefix' => 'maintenance'], function(){
-	Route::resource('fabric-type', 'FabricTypeController',
+	Route::resource('fabric-type', 'FabricTypeController');
+		
+		Route::post('fabric-type/update','FabricTypeController@update_fabrictype');
+		Route::post('fabric-type/destroy','FabricTypeController@delete_fabrictype');
+
+
+	Route::resource('swatch-name', 'SwatchNameController',
 		['only' => ['index']]);
 
 	Route::resource('swatch', 'SwatchController',
@@ -85,10 +95,15 @@ Route::group(['prefix' => 'maintenance'], function(){
 		['only' => ['index']]);
 });
 
+Route::group(['prefix' => 'maintenance'], function(){
+	Route::resource('alteration', 'AlterationController',
+		['only' => ['index']]);
+});
+
 
 Route::group(['prefix' => 'transaction'], function(){
-	Route::resource('walkin-individual', 'WalkInIndividualController',
-		['only' => ['index']]);
+	Route::resource('walkin-individual', 'WalkInIndividualController');
+
 	Route::resource('walkin-company', 'WalkInCompanyController',
 		['only' => ['index']]);
 });
@@ -138,3 +153,5 @@ Route::group(['prefix' => 'utilities'], function(){
 
 Route::get('/acceptIndividual','OnlineCustomerIndividualController@accept');
 Route::get('/acceptCompany','OnlineCustomerCompanyController@accept');
+
+Route::get('transaction/walkin-individual-payment', 'WalkInIndividualController@payment');

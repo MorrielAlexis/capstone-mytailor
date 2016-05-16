@@ -2,358 +2,575 @@
 
 @section('content')
 
-  <div class="main-wrapper"  style="margin-top:30px">
-
-  	<div class="row">
+	<div class="row">
       <div class="col s12 m12 l12">
-        <span class="page-title"><h4>Individual Walk In Customer</h4></span>
+        <span class="page-title"><h4>Walkin Individual</h4></span>
       </div>
     </div>
 
 	<div class="row">
-	    <div class="col s12 m12 l12">
-	    	<div class="card-panel">
-		        <span class="card-title"><h5 style="color:#1b5e20"><center>Walk In Order</center></h5></span>
-		        <div class="divider"></div>
+		<div class="col s12 m12 l12">
 
-	    		<div class="card-content">
-	    			<div class="row">
-	    				<div class="col s12">
-		    				<div class="col s6 m6 l6" style="margin-top:30px">
-		    					<div class="container">
-		    						  <div class="input-field col s12">
-									    <select>
-									      <option value="" disabled selected>GARMENT</option>
-									      <option value="1" data-icon="#!" class="circle">Gown</option>
-									      <option value="2" data-icon="#!" class="circle">Suit</option>
-									      <option value="3" data-icon="#!" class="circle">Uniform</option>
-									    </select>
-									  </div>
+			<div class="col s12">
+				<ul class="tabs transparent" style="margin-top:15px">
+					<li class="tab col s12" style="border-top-left-radius: 20px; border-top-right-radius: 20px; background-color: #00b0ff;"><a style="color:black; padding-top:5px; opacity:0.80" class="tooltipped center-text" accent data-position="bottom" data-delay="50" data-tooltip="Fill up personal information" href="#shoppingCart">Welcome to MyTailor!</a></li>	
+					<div class="indicator white" style="z-index:1"></div>
+	            </ul>
+				<div id="shoppingCart" class="card-panel">
+					<div class="card-content">
+						<div class="row">
+						<div class="col s12">
+							<div class="col s6"><p>Choose your garment type</p></div>
+							<div class="col s6">
+								<div class="input-field col s12">
+										<select>
+										    <option value="1" data-icon="#!" class="circle">Uniform</option>
+										    <option value="2" data-icon="#!" class="circle">Suit</option>
+										    <option value="3" data-icon="#!" class="circle">Uniform</option>
+										</select>
+								</div>
+							</div>
+						</div>
 
-									    <form class="col s12" style="margin-top:20px;">
-											<label>Choose your design:</label>
-											<div class="file-field input-field">
-												<div class="btn">
-													<span>Catalogue</span>
-														<input type="file">
+						<div class="col s12" style="margin-bottom:20px">
+							<div class="col s3">
+		      							<label for="label"><font size="+0.5">Show garments for:</font></label>
+		      				</div>
+							<div class="col s3">
+				          				<input type="checkbox" class="filled-in" id="male" />
+		      							<label for="male">Male Only</label>
+		      				</div>
+		      				<div class="col s3">
+				          				<input type="checkbox" class="filled-in" id="female" />
+		      							<label for="female">Female Only</label>
+		      				</div>
+		      				<div class="col s3">
+				          				<input type="checkbox" class="filled-in" id="all" />
+		      							<label for="all">All</label>
+		      				</div>
+						</div>
+
+						<div class="divider"></div>
+
+						<div class="col s12" style="margin-top:15px">
+							<div class="divider" style="margin-bottom:40px; height:2px"></div>
+							<div class="col s4">
+				          				<input type="checkbox" class="filled-in" id="polo" style="padding:5px"/>
+		      							<label for="polo" ><font size="+1">Polo</font></label>
+								<img src="#!" style="height:170px; width:210px; padding-left:10px">
+								<center><h6>Quantity</h6></center>
+				                  <div class="row">
+				                    <div class="col s3 center"><i class="small mdi-content-add-circle" style="color:teal"></i></div>
+				                    <div class="input-field col s6" style="margin-top:-2px;">
+				                      <input class="center" id="quantity" value="2" type="text" readonly>
+				                    </div>
+				                    <div class="col s3 center"><i class="small mdi-content-remove-circle" style="color:teal"></i></div>
+				                  </div>
+							</div>
+							<div class="col s4">
+										<input type="checkbox" class="filled-in" id="pants" style="padding:5px" />
+		      							<label for="pants"><font size="+1">Pants</font></label>
+								<img src="#!" style="height:170px; width:210px; padding-left:10px">
+								<center><h6>Quantity</h6></center>
+				                  <div class="row">
+				                    <div class="col s3 center"><i class="small mdi-content-add-circle" style="color:teal"></i></div>
+				                    <div class="input-field col s6" style="margin-top:-2px;">
+				                      <input class="center" id="quantity" value="1" type="text" readonly>
+				                    </div>
+				                    <div class="col s3 center"><i class="small mdi-content-remove-circle" style="color:teal"></i></div>
+				                  </div>
+							</div>
+							<div class="col s4">
+										<input type="checkbox" class="filled-in" id="shorts" style="padding:5px"/>
+		      							<label for="shorts"><font size="+1">Shorts</font></label>
+								<img src="#!" style="height:170px; width:200px; padding-left:10px">
+								<center><h6>Quantity</h6></center>
+				                  <div class="row">
+				                    <div class="col s3 center"><i class="small mdi-content-add-circle" style="color:teal"></i></div>
+				                    <div class="input-field col s6" style="margin-top:-2px;">
+				                      <input class="center" id="quantity" value="1" type="text" readonly>
+				                    </div>
+				                    <div class="col s3 center"><i class="small mdi-content-remove-circle" style="color:teal"></i></div>
+				                  </div>
+							</div>
+						</div>
+
+
+							<div class="btn" style="margin-left:550px; margin-top:50px; color:black"><i class="mdi-action-add-shopping-cart" style="font-size:20px;">  Add to Cart</i></div>
+							<div class="modal-trigger btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#resetOrder" style="margin-left:50px; margin-top:50px; color:black"><i class="mdi-navigation-cancel" style="font-size:20px;">  Reset Order</i></div>
+								<div id="resetOrder" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
+									<h5><font color="red"><center><b>Warning!</b></center></font></h5>	
+									{!! Form::open() !!}
+											<div class="divider" style="height:2px"></div>
+											<div class="modal-content col s12">
+												<div class="col s3">
+													<i class="mdi-alert-error" style="font-size:50px; color:red"></i>
 												</div>
+												<div class="col s9">
+													<p><font size="+1">Doing this will clear all orders made!</font></p>
+												</div>
+											</div>
+
+											<div class="modal-footer col s12" style="background-color:red; opacity:0.85">
+								                <button type="submit" class="waves-effect waves-green btn-flat" href="#!"><font color="black">OK</font></button>
+								                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Cancel</font></a>
+								            </div>
+										{!! Form::close() !!}
+								</div>
+						</div>
+
+					</div>
+
+					<div class="divider" style="height:2px; margin-top:50px"></div>      	
+		      		<center><p><font color="gray">End of product list for MyTailor</font></p></center>
+				
+				</div>
+			</div>
+
+
+			<!-- CUSTOMIZING ORDER HERE -->
+			<div class="col s12">
+				<ul class="tabs transparent" style="margin-top:50px">
+					<li class="tab col s12" style="border-top-left-radius: 20px; border-top-right-radius: 20px; background-color: #00b0ff;"><a style="color:black; padding-top:5px; opacity:0.80" class="tooltipped center-text" accent data-position="bottom" data-delay="50" data-tooltip="Fill up personal information" href="#shoppingCart">All your orders are listed below...</a></li>	
+					<div class="indicator white" style="z-index:1"></div>
+	            </ul>
+				<div class="card-panel">
+					<div class="card-content">
+						<div class="row">
+						<div class="col s12">
+							<div class="col s12">
+								
+								<div class="col s6"><p><h5>Customize Order</h5></p></div>
+								<div class="col s6"><a style="margin-left:170px; margin-top:15px" type="submit" class="waves-effect waves-green btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to proceed to payment of orders" href="{{URL::to('/transaction/walkin-individual-payment')}}"><font color="black" size="+1"><i class="mdi-action-payment" style="font-size:20px;">  Proceed to Checkout</i></font></a></div>				
+							</div>
+							
+							<div class="divider" style="margin-bottom:30px"></div>
+							<div class="divider" style="margin-bottom:30px"></div>
+							<div class="divider" style="margin-bottom:30px; height:3px"></div>
+							<div class="col s6">
+							<a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#removeOrder"><i class="mdi-action-delete"></i></a>
+								<div id="removeOrder" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
+									<h5><font color="red"><center><b>Warning!</b></center></font></h5>
+										
+										{!! Form::open() !!}
+											<div class="divider" style="height:2px"></div>
+											<div class="modal-content col s12">
+												<div class="col s3">
+													<i class="mdi-alert-warning" style="font-size:50px; color:red"></i>
+												</div>
+												<div class="col s9">
+													<p><font size="+1">Are you sure to remove this order from cart?</font></p>
+												</div>
+											</div>
+
+											<div class="modal-footer col s12" style="background-color:red; opacity:0.85">
+								                <button type="submit" class="waves-effect waves-green btn-flat" href="#!"><font color="black">Yes</font></button>
+								                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+								            </div>
+										{!! Form::close() !!}
+								</div>
+							<center><img src="#!" style="height:250px; width:250px;"></center>
+								<center><label>Garment Segment: Polo</label></center>
+								<center><label>Sex: Male</label></center>
+
+                  			
+							</div>
+
+								<br>
+								<div class="col s6">
+								<div class="col s12">
+								<label>Choose your design:</label>
+											<div class="file-field input-field">
+												<a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to choose a segment pattern" href="#editDesign"><i class="mdi-editor-mode-edit"></i></a>
+													<div id="editDesign" class="modal modal-fixed-footer">
+														<h5><font color = "#1b5e20"><center>Segment Patterns</center> </font> </h5>
+                        
+									                      {!! Form::open() !!} 
+									                        <div class="divider" style="height:2px"></div>
+									                        <div class="modal-content col s12">
+									                        	<div class="col s1" style="margin-top:60px">
+									                        		<input type="checkbox" class="filled-in" id="pattern1" />
+									                        		<label for="pattern1"></label>
+									                        	</div>
+									                        	 <div class="col s11">
+															        <div class="card-panel grey lighten-5 z-depth-1">
+															          <div class="row valign-wrapper">
+															            <div class="col s4">
+															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+															            </div>
+															            <div class="col s7"> 
+															              <p>STRAIGHT-CUT</p> <!-- This will be the name of the pattern -->
+															              <span class="black-text">
+															                This is a square image. Add the "circle" class to it to make it appear circular.
+															              </span>
+															            </div>
+															          </div>
+															        </div>
+															      </div>
+
+															    <div class="col s1" style="margin-top:60px">
+									                        		<input type="checkbox" class="filled-in" id="pattern2" />
+									                        		<label for="pattern2"></label>
+									                        	</div>
+															      <div class="col s11">
+															        <div class="card-panel grey lighten-5 z-depth-1">
+															          <div class="row valign-wrapper">
+															            <div class="col s4">
+															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+															            </div>
+															            <div class="col s7">
+															            	<p>SPECIAL PATTERN</p>
+															              <span class="black-text">
+															                This is a square image. Add the "circle" class to it to make it appear circular.
+															              </span>
+															            </div>
+															          </div>
+															        </div>
+															      </div>
+
+
+															    <div class="col s1" style="margin-top:60px">
+									                        		<input type="checkbox" class="filled-in" id="pattern3" />
+									                        		<label for="pattern3"></label>
+									                        	</div>
+															      <div class="col s11">
+															        <div class="card-panel grey lighten-5 z-depth-1">
+															          <div class="row valign-wrapper">
+															            <div class="col s4">
+															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+															            </div>
+															            <div class="col s7">
+															            	<p>JUST ANOTHER PATTERN</p>
+															              <span class="black-text">
+															                This is a square image. Add the "circle" class to it to make it appear circular.
+															              </span>
+															            </div>
+															          </div>
+															        </div>
+															      </div>
+															<div style="margin:570px"></div>
+															</div>
+
+
+														<div class="modal-footer col s12" style="background-color:#26a69a">
+								                          <button type="submit" class="waves-effect waves-green btn-flat">OK</button>
+								                          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+								                        </div>
+									                      {!! Form::close() !!}
+													</div>
 												<div class="file-path-wrapper">
 													<input class="file-path validate" type="text">
 												</div>
 											</div>
-										</form>
+								</div>
+								
+								<div class="col s12" style="margin-top:30px">
+								<label>Choose your fabric:</label>
+											<div class="file-field input-field">	
+												<a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#editFabric"><i class="mdi-editor-mode-edit"></i></a>
+                     								<div id="editFabric" class="modal modal-fixed-footer">
+                     								<h5><font color = "#1b5e20"><center>Fabric</center> </font> </h5>
+                        
+									                      {!! Form::open() !!} 
+									                        <div class="divider" style="height:2px"></div>
+									                        <div class="modal-content col s12">
+									                        	<div class="col s1" style="margin-top:60px">
+									                        		<input type="checkbox" class="filled-in" id="fabric1" />
+									                        		<label for="fabric1"></label>
+									                        	</div>
+									                        	 <div class="col s11">
+															        <div class="card-panel grey lighten-5 z-depth-1">
+															          <div class="row valign-wrapper">
+															            <div class="col s4">
+															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+															            </div>
+															            <div class="col s7"> 
+															              <p>COTTON CHENES</p> <!-- This will be the name of the pattern -->
+															              <span class="black-text">
+															                This is a square image. Add the "circle" class to it to make it appear circular.
+															              </span>
+															            </div>
+															          </div>
+															        </div>
+															      </div>
 
-		    					</div>
-		    				</div>
-
-		    				<div class="col s6 m6 l6" style="margin-top:20px">
-		    					<div class="right button red accent-1">
-		    						<label><h3>Track #001</h3></label>
-			    				</div>
-		    				</div>
-		    			</div>
-		    			
-		    			<div class="col s12">
-		    				<div class="container" style="margin-top:30px;">
-
-		    				<table class="bordered centered responsive-table">
-						        <thead>
-						          <tr style="color:#1b5e20">
-						              <th data-field="segment">Segments</th>
-						              <th data-field="fabric">Fabrics</th>
-						              <th data-field="swatch">Swatches</th>
-						          </tr>
-						        </thead>
-
-						        <tbody>
-						          <tr>
-						            <td>
-						            	<a class="modal-trigger" href="#segment">
-						            		<img src="#!">
-						            		<label>segmentname</label>
-						            	</a>
-						            </td>
-						            <td>
-						            	<a class="modal-trigger" href="#fabric">
-						            		<img src="#!">
-						            		<label>fabricname</label>
-						            	</a>
-						            </td>
-						            <td>
-						            	<a class="modal-trigger" href="#swatch">
-						            		<img src="#!">
-						            		<label>swatchname</label>
-						            	</a>
-						            </td>
-						          </tr>
-						        </tbody>
-						  	</table>
-
-						  </div>
-		    			</div>
-
-
-		    			<div class="row" style="margin-top:40px;">
-			                <div class="col s6" style="margin-top:40x;">
-				                <center><h6>Quantity</h6></center>
-				                <div class="container">
-				                  <div class="row">
-				                    <div class="col s3"><i class="small mdi-content-add-circle" style="color:teal"></i></div>
-				                    <div class="input-field col s6" style="margin-top:-2px;">
-				                      <input class="center" id="quantity" value="1" type="text" readonly>
-				                    </div>
-				                    <div class="col s3"><i class="small mdi-content-remove-circle" style="color:teal"></i></div>
-				                  </div>
-				                </div>
-			            	</div>
-
-			    			<div class="col s6" style="margin-top:40px;">
-			    				<div class="modal-trigger btn right teal-accent 2" href="#save">SAVE</div>
-			    			</div>
-		    			</div>
-
-	    			</div>
-	    		</div>
-
-	    	</div>
-	    </div>
-	</div>
-
-	<!--save modal-->
-	<div id="save" class="modal modal-fixed-footer">
-		<div class="modal-content">
-            <div class = "label"><h5><font color = "#1b5e20"><center>CUSTOMER INFO</center> </font> </h5>
-			<div class="divider container" style="margin-bottom:20px;"></div>
-			<div class="row">
-					<div class = "col s12" style="padding:15px;  border:3px solid white;">
-                        <div class="input-field col s12">                 
-                          <input value = "" id="addIndiID" name="addIndiID" type="text" class="" readonly>
-                          <label for="indi_id">Individual ID </label>
-                        </div>
-                    </div>
-
-                    <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                        <div class="input-field col s4">
-                          <input required id="addFName" name = "addFName" type="text" class="validateFirst">
-                          <label for="first_name" > *First Name </label>
-                        </div>
-
-                        <div class="input-field col s4">
-                          <input id="addMName" name = "addMName" type="text" class="validateMiddle">
-                          <label for="middle_name"> Middle Name </label>
-                        </div>
-
-                        <div class="input-field col s4">
-                          <input required id="addLName" name = "addLName" type="text" class="validateLast">
-                          <label for="last_name"> *Last Name </label>
-                        </div>
-                      </div>
-
-                      <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                          <div class="input-field col s3">
-                            <input required id="addCustPrivHouseNo" name="addCustPrivHouseNo" type="text" class="validateHouseNo">
-                            <label for="House No">*House No. </label>
-                          </div>
-
-                           <div class="input-field col s3">
-                            <input required id="addCustPrivStreet" name="addCustPrivStreet" type="text" class="validateStreet">
-                            <label for=" Street">*Street </label>
-                          </div>
-
-                          <div class="input-field col s3">
-                            <input  id="addCustPrivBarangay" name="addCustPrivBarangay" type="text" class="validateBarangay">
-                            <label for=" Brgy">Barangay/Subd </label>
-                          </div>
-
-                          <div class="input-field col s3">
-                            <input required id="addCustPrivCity" name="addCustPrivCity" type="text" class="validateCity">
-                            <label for=" City">*City/Municipality </label>
-                          </div>
-                      </div>
-
-                      <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                          <div class="input-field col s6">
-                            <input id="addCustPrivProvince" name="addCustPrivProvince" type="text" class="validateProvince">
-                            <label for=" Province">Province/Region </label>
-                          </div>
-
-                           <div class="input-field col s6">
-                            <input id="addCustPrivZipCode" name="addCustPrivZipCode" type="text" class="validateZip">
-                            <label for=" Zip Code">Zip Code </label>
-                          </div>
-                      </div>
-
-                      <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                          <div class="input-field col s12">
-                            <input required id="addEmail" name = "addEmail" type="text" class="validateEmail">
-                            <label for="email"> *Email Address </label>
-                          </div>
-                      </div>
-
-                      <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                          <div class="input-field col s6">
-                            <input required id="addCel" name = "addCel" type="text" class="validateCell" maxlength="11">
-                            <label for="cellphone"> *Cellphone Number </label>
-                          </div>
-
-                          <div class="input-field col s6">
-                            <input id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt" maxlength="11">
-                            <label for="cellphone"> Cellphone Number (alternate)</label>
-                          </div>
-                      </div>
-
-                      <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
-                          <div class="input-field col s12">
-                            <input id="addPhone" name = "addPhone" type="text" class="validatePhone" maxlength="10">
-                            <label for="tel"> Telephone Number </label>
-                          </div>
-                      </div>
-                	</div>
-
-            </div>
-			</div>
-
-		<div class="modal-footer" style="background-color:#26a69a">
-			<a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-			<a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
-		</div>
-	</div>
-	</div>
+															    <div class="col s1" style="margin-top:60px">
+									                        		<input type="checkbox" class="filled-in" id="fabric2" />
+									                        		<label for="fabric2"></label>
+									                        	</div>
+															      <div class="col s11">
+															        <div class="card-panel grey lighten-5 z-depth-1">
+															          <div class="row valign-wrapper">
+															            <div class="col s4">
+															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+															            </div>
+															            <div class="col s7">
+															            	<p>REGULAR COTTON</p>
+															              <span class="black-text">
+															                This is a square image. Add the "circle" class to it to make it appear circular.
+															              </span>
+															            </div>
+															          </div>
+															        </div>
+															      </div>
 
 
-	<!--segment modal-->
-	<div id="segment" class="modal modal-fixed-footer">
-		<div class="modal-content">
-			<h4 style="color:#1b5e20" class="center">SEGMENTS</h4>
-			<div class="divider container" style="margin-bottom:20px;"></div>
-			<div class="row">
-				<div class="col s5" style="margin-top:50px">
-					<div class="center">
-							<img src="#!">
-					</div>
-					<div class="center">
-							<label>segment</label>
-					</div>
-					<div class="divider container" style="margin-top:10px; margin-bottom:40px;"></div>
-					<div class="input-field">
-	                  	<input id ="measurement" type="text" class="validate">
-	                  	<label for="measurement">Measurement</label>
-	                </div>
-					<div class="input-field">
-	                  	<input id ="measurement" type="text" class="validate">
-	                  	<label for="measurement">Measurement</label>
-	                </div>
-	                <div class="input-field">
-	                  	<input id ="measurement" type="text" class="validate">
-	                  	<label for="measurement">Measurement</label>
-	                </div>
-				</div>
-				<div class="col s7" style="overflow:auto;">
-					<div class="row">
-						<div class="col s4">
-							<img src="#!">
-							<img src="#!">
-							<img src="#!">
-							<img src="#!">
+															    <div class="col s1" style="margin-top:60px">
+									                        		<input type="checkbox" class="filled-in" id="fabric3" />
+									                        		<label for="fabric3"></label>
+									                        	</div>
+															      <div class="col s11">
+															        <div class="card-panel grey lighten-5 z-depth-1">
+															          <div class="row valign-wrapper">
+															            <div class="col s4">
+															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+															            </div>
+															            <div class="col s7">
+															            	<p>REMARKABLE COTTON</p>
+															              <span class="black-text">
+															                This is a square image. Add the "circle" class to it to make it appear circular.
+															              </span>
+															            </div>
+															          </div>
+															        </div>
+															      </div>
+															<div style="margin:570px"></div>
+															</div>
+
+
+														<div class="modal-footer col s12" style="background-color:#26a69a">
+								                          <button type="submit" class="waves-effect waves-green btn-flat">OK</button>
+								                          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+								                        </div>
+									                      {!! Form::close() !!}
+													</div>
+												<div class="file-path-wrapper">
+													<input class="file-path validate" type="text">
+												</div>
+											</div>
+								</div>
+							</div>
 						</div>
-						<div class="col s4">
-							<img src="#!">
-							<img src="#!">
-							<img src="#!">
-							<img src="#!">
+
+						<div class="col s12">
+						<div class="divider" style="margin-bottom:30px; margin-top:30px"></div>
+					</div>
+							<div class="col s6">
+							<a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#removeOrder"><i class="mdi-action-delete"></i></a>
+								<div id="removeOrder" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
+									<h5><font color="red"><center><b>Warning!</b></center></font></h5>
+										
+										{!! Form::open() !!}
+											<div class="divider" style="heightL2px"></div>
+											<div class="modal-content col s12">
+												<div class="col s3">
+													<i class="mdi-alert-warning" style="font-size:50px; color:red"></i>
+												</div>
+												<div class="col s9">
+													<p><font size="+1">Are you sure to remove this order from cart?</font></p>
+												</div>
+											</div>
+
+											<div class="modal-footer col s12" style="background-color:red; opacity:0.85">
+								                <button type="submit" class="waves-effect waves-green btn-flat" href="#!"><font color="black">Yes</font></button>
+								                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+								            </div>
+										{!! Form::close() !!}
+								</div>
+							<center><img src="#!" style="height:250px; width:250px;"></center>
+								<center><label>Garment Segment: Polo</label></center>
+								<center><label>Sex: Male</label></center>
+
+                  			
+							</div>
+
+								<br>
+								<div class="col s6">
+								<div class="col s12" style="margin-top:30px">
+								<label>Choose your design:</label>
+											<div class="file-field input-field">
+												<a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to choose a segment pattern" href="#editDesign"><i class="mdi-editor-mode-edit"></i></a>
+													<div id="editDesign" class="modal modal-fixed-footer">
+													<h5><font color = "#1b5e20"><center>Segment Patterns</center> </font> </h5>
+                        
+									                      {!! Form::open() !!} 
+									                        <div class="divider" style="height:2px"></div>
+									                        <div class="modal-content col s12">
+									                        	<div class="col s1" style="margin-top:60px">
+									                        		<input type="checkbox" class="filled-in" id="pattern1" />
+									                        		<label for="pattern1"></label>
+									                        	</div>
+									                        	 <div class="col s11">
+															        <div class="card-panel grey lighten-5 z-depth-1">
+															          <div class="row valign-wrapper">
+															            <div class="col s4">
+															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+															            </div>
+															            <div class="col s7"> 
+															              <p>STRAIGHT-CUT</p> <!-- This will be the name of the pattern -->
+															              <span class="black-text">
+															                This is a square image. Add the "circle" class to it to make it appear circular.
+															              </span>
+															            </div>
+															          </div>
+															        </div>
+															      </div>
+
+															    <div class="col s1" style="margin-top:60px">
+									                        		<input type="checkbox" class="filled-in" id="pattern2" />
+									                        		<label for="pattern2"></label>
+									                        	</div>
+															      <div class="col s11">
+															        <div class="card-panel grey lighten-5 z-depth-1">
+															          <div class="row valign-wrapper">
+															            <div class="col s4">
+															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+															            </div>
+															            <div class="col s7">
+															            	<p>SPECIAL PATTERN</p>
+															              <span class="black-text">
+															                This is a square image. Add the "circle" class to it to make it appear circular.
+															              </span>
+															            </div>
+															          </div>
+															        </div>
+															      </div>
+
+
+															    <div class="col s1" style="margin-top:60px">
+									                        		<input type="checkbox" class="filled-in" id="pattern3" />
+									                        		<label for="pattern3"></label>
+									                        	</div>
+															      <div class="col s11">
+															        <div class="card-panel grey lighten-5 z-depth-1">
+															          <div class="row valign-wrapper">
+															            <div class="col s4">
+															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+															            </div>
+															            <div class="col s7">
+															            	<p>JUST ANOTHER PATTERN</p>
+															              <span class="black-text">
+															                This is a square image. Add the "circle" class to it to make it appear circular.
+															              </span>
+															            </div>
+															          </div>
+															        </div>
+															      </div>
+															<div style="margin:570px"></div>
+															</div>
+
+
+														<div class="modal-footer col s12" style="background-color:#26a69a">
+								                          <button type="submit" class="waves-effect waves-green btn-flat">OK</button>
+								                          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+								                        </div>
+									                      {!! Form::close() !!}
+									                </div>
+
+													<div class="file-path-wrapper">
+														<input class="file-path validate" type="text">
+													</div>
+												</div>
+									</div>
+								
+								<div class="col s12" style="margin-top:30px">
+								<label>Choose your fabric:</label>
+											<div class="file-field input-field">
+												<a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#editFabric"><i class="mdi-editor-mode-edit"></i></a>
+												<div id="editFabric" class="modal modal-fixed-footer">
+													<h5><font color = "#1b5e20"><center>Segment Patterns</center> </font> </h5>
+                        
+									                      {!! Form::open() !!} 
+									                        <div class="divider" style="height:2px"></div>
+									                        <div class="modal-content col s12">
+									                        	<div class="col s1" style="margin-top:60px">
+									                        		<input type="checkbox" class="filled-in" id="pattern1" />
+									                        		<label for="pattern1"></label>
+									                        	</div>
+									                        	 <div class="col s11">
+															        <div class="card-panel grey lighten-5 z-depth-1">
+															          <div class="row valign-wrapper">
+															            <div class="col s4">
+															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+															            </div>
+															            <div class="col s7"> 
+															              <p>STRAIGHT-CUT</p> <!-- This will be the name of the pattern -->
+															              <span class="black-text">
+															                This is a square image. Add the "circle" class to it to make it appear circular.
+															              </span>
+															            </div>
+															          </div>
+															        </div>
+															      </div>
+
+															    <div class="col s1" style="margin-top:60px">
+									                        		<input type="checkbox" class="filled-in" id="pattern2" />
+									                        		<label for="pattern2"></label>
+									                        	</div>
+															      <div class="col s11">
+															        <div class="card-panel grey lighten-5 z-depth-1">
+															          <div class="row valign-wrapper">
+															            <div class="col s4">
+															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+															            </div>
+															            <div class="col s7">
+															            	<p>SPECIAL PATTERN</p>
+															              <span class="black-text">
+															                This is a square image. Add the "circle" class to it to make it appear circular.
+															              </span>
+															            </div>
+															          </div>
+															        </div>
+															      </div>
+
+
+															    <div class="col s1" style="margin-top:60px">
+									                        		<input type="checkbox" class="filled-in" id="pattern3" />
+									                        		<label for="pattern3"></label>
+									                        	</div>
+															      <div class="col s11">
+															        <div class="card-panel grey lighten-5 z-depth-1">
+															          <div class="row valign-wrapper">
+															            <div class="col s4">
+															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+															            </div>
+															            <div class="col s7">
+															            	<p>JUST ANOTHER PATTERN</p>
+															              <span class="black-text">
+															                This is a square image. Add the "circle" class to it to make it appear circular.
+															              </span>
+															            </div>
+															          </div>
+															        </div>
+															      </div>
+															<div style="margin:570px"></div>
+															</div>
+
+
+														<div class="modal-footer col s12" style="background-color:#26a69a">
+								                          <button type="submit" class="waves-effect waves-green btn-flat">OK</button>
+								                          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+								                        </div>
+									                      {!! Form::close() !!}
+									                </div>
+
+												<div class="file-path-wrapper">
+													<input class="file-path validate" type="text">
+												</div>
+											</div>
+								</div>
+							</div>
 						</div>
-						<div class="col s4">
-							<img src="#!">
-							<img src="#!">
-							<img src="#!">
+						</div><!--Col s12-->
+
+							<div class="divider" style="height:2px; margin-top:50px"></div>      	
+				      		<center><p><font color="gray">End of order list wanting to purchase</font></p></center>
+						
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="modal-footer" style="background-color:#26a69a">
-			<a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-			<a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
-		</div>
-	</div>
-
-	<!--fabric modal-->
-	<div id="fabric" class="modal modal-fixed-footer">
-		<div class="modal-content">
-			<h4 style="color:#1b5e20" class="center">FABRICS</h4>
-			<div class="divider container" style="margin-bottom:20px;"></div>
-			<div class="row">
-				<div class="center">
-				<div class="col s3">
-					<img src="#!">
-					<img src="#!">
-					<img src="#!">
-					<img src="#!">
-				</div>
-				<div class="col s3">
-					<img src="#!">
-					<img src="#!">
-					<img src="#!">
-					<img src="#!">
-				</div>
-				<div class="col s3">
-					<img src="#!">
-					<img src="#!">
-					<img src="#!">
-				</div>
-				<div class="col s3">
-					<img src="#!">
-					<img src="#!">
-					<img src="#!">
-				</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="modal-footer" style="background-color:#26a69a">
-			<a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-			<a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
-		</div>
-	</div>
-
-
-	<!--swatchmodal-->
-	<div id="swatch" class="modal modal-fixed-footer">
-		<div class="modal-content">
-			<h4 style="color:#1b5e20" class="center">SWATCHES</h4>
-			<div class="divider container" style="margin-bottom:20px;"></div>
-			<div class="row">
-				<div class="center">
-				<div class="col s3">
-					<img src="#!">
-					<img src="#!">
-					<img src="#!">
-					<img src="#!">
-				</div>
-				<div class="col s3">
-					<img src="#!">
-					<img src="#!">
-					<img src="#!">
-					<img src="#!">
-				</div>
-				<div class="col s3">
-					<img src="#!">
-					<img src="#!">
-					<img src="#!">
-				</div>
-				<div class="col s3">
-					<img src="#!">
-					<img src="#!">
-					<img src="#!">
-				</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="modal-footer" style="background-color:#26a69a">
-			<a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-			<a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
 		</div>
 	</div>
 

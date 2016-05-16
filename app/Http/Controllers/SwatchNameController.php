@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class OnlineCustomerIndividualController extends Controller
+class SwatchNameController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,17 +16,31 @@ class OnlineCustomerIndividualController extends Controller
      */
     public function index()
     {
-        return view('onlineCustomerIndividual');
+         //get all the fabric types
+
+       /* $roles =  EmployeeRole::with('employees')
+            ->select('strEmpRoleID', 'strEmpRoleName', 'boolIsActive')
+            ->get();  
+        */
+        //$fabricType = FabricType::all();
+
+        //$reason = Swatch::all(); /*dummy lang wala pang model un reasons e*/
+
+
+        //$newID = 0;
+        
+
+       // $swatch = Swatch::all();
+
+        //load the view and pass the employees
+        return view('maintenance-swatch-name')
+                    // ->with('fabricType', $fabricType)
+                    // ->with('swatch', $swatch)
+                    // ->with('reason', $reason)
+                    // ->with('newID', $newID)
+        ;
     }
 
-<<<<<<< HEAD
-    public function accept()
-    {
-        return view('acceptIndividualOrder');
-    }
-=======
-
->>>>>>> 80e093514d350a8871a333c2aeff7ba721b8146c
     /**
      * Show the form for creating a new resource.
      *
