@@ -100,6 +100,37 @@ Route::group(['prefix' => 'transaction'], function(){
 		['only' => ['index']]);
 });
 
+Route::group(['prefix' => 'transaction'], function(){
+	Route::resource('alterationWalkIn', 'AlterationWalkInController',
+		['only' => ['index']]);
+	Route::resource('alterationOnline', 'AlterationOnlineController',
+		['only' => ['index']]);
+});
+
+Route::group(['prefix' => 'transaction'], function(){
+	Route::resource('jobOrderPending', 'ManagePendingOrdersController',
+		['only' => ['index']]);
+	Route::resource('jobOrderModify', 'ManageModifyOrdersController',
+		['only' => ['index']]);
+});
+
+Route::group(['prefix' => 'transaction'], function(){
+	Route::resource('orderProgress', 'JobOrderProgressController',
+		['only' => ['index']]);
+});
+
+Route::group(['prefix' => 'transaction'], function(){
+	Route::resource('materialPurchasing', 'MaterialPurchasingController',
+		['only' => ['index']]);
+});
+
+Route::group(['prefix' => 'transaction'], function(){
+	Route::resource('billingPayment', 'BillingPaymentController',
+		['only' => ['index']]);
+	Route::resource('billingCollection', 'BillingCollectionController',
+		['only' => ['index']]);
+});
+
 Route::group(['prefix' => 'utilities'], function(){
 	Route::resource('inactive-data', 'InactiveDataController',
 		['only' => ['index']]);

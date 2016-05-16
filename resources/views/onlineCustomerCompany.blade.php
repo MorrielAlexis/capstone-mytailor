@@ -16,8 +16,9 @@
 		        <span class="card-title"><h5 style="color:#1b5e20"><center>Orders</center></h5></span>
 		        <div class="divider" style="margin-bottom:30px;"></div>
 
-		        <!--Order#1-->
 		        <ul class="collapsible z-depth-0" data-collapsible="accordion" style="border:none;">
+				
+				<!--Order#1-->			    
 			    <li style="margin-bottom:10px;">
 			        <div class="collapsible-header" style="background-color:#ffebee">
 						<div class="row">
@@ -41,13 +42,28 @@
 								</table>
 							</div>
 							<div class="col s5 center" style="margin-top:50px;">
-								<div class="btn" href="#!">Accept</div>
-								<div class="btn" href="#!">Reject</div>
+								<table class="centered">
+								    <tbody>
+								        <tr>
+								        	<td><a class="btn modal-trigger" href="#acceptmodal">Accept</a></td>
+								        	<td><a class="btn modal-trigger" href="#rejectmodal">Reject</a></td>
+								        </tr>
+								    </tbody>
+								</table>
 							</div>
 						</div>
 					</div>
 					<div class="collapsible-body" style="border:3px solid #ffebee;">
-						<h5 style="color:#1b5e20; margin-left:20px;">Order Specification</h5>
+						<div class="row">
+							<div class="col s12">
+								<div class="col s10">
+									<h5 style="color:#1b5e20; margin-left:20px;">Order Specification</h5>
+								</div>
+								<div class="col s2">
+									<div class="btn modal-trigger red lighten-5" href="#employeesmodal" style="margin-top:20px;"><font color="#1b5e20">Employees</font></div>
+								</div>
+							</div>
+						</div>
 
 					    <div class = "row">
 
@@ -120,13 +136,28 @@
 								</table>
 							</div>
 							<div class="col s5 center" style="margin-top:50px;">
-								<div class="btn" href="#!">Accept</div>
-								<div class="btn" href="#!">Reject</div>
+								<table class="centered">
+								    <tbody>
+								        <tr>
+								        	<td><a class="btn modal-trigger" href="#acceptmodal">Accept</a></td>
+								        	<td><a class="btn modal-trigger" href="#rejectmodal">Reject</a></td>
+								        </tr>
+								    </tbody>
+								</table>
 							</div>
 						</div>
 					</div>
 					<div class="collapsible-body" style="border:3px solid #ffebee;">
-						<h5 style="color:#1b5e20; margin-left:20px;">Order Specification</h5>
+						<div class="row">
+							<div class="col s12">
+								<div class="col s10">
+									<h5 style="color:#1b5e20; margin-left:20px;">Order Specification</h5>
+								</div>
+								<div class="col s2">
+									<div class="btn modal-trigger red lighten-5" href="#employeesmodal" style="margin-top:20px;"><font color="#1b5e20">Employees</font></div>
+								</div>
+							</div>
+						</div>
 
 					    <div class = "row">
 
@@ -181,15 +212,185 @@
 	</div>
 
 
+	<!--Employees button Modal-->
+	<div id="employeesmodal" class="modal modal-fixed-footer">
+		<div class="modal-content">
+			<h4 style="color:#1b5e20" class="center">Employees</h4>
+			<div class="divider container" style="margin-bottom:20px;"></div>
+
+			<table style="margin-bottom:10px;">
+			    <thead>
+			        <tr>
+			        	<th>Employee Name</th>
+			        	<th>Gender</th>
+			        </tr>
+			    </thead>
+			</table>
+			<div class="row">
+		        <div>
+    		        <ul class="collapsible z-depth-0" data-collapsible="accordion" style="border:none;">
+		
+					    <li>
+					        <div class="collapsible-header" style="background-color:#ffebee;">
+								<div class="row">
+									<div class="col s12">
+										<div class="col s6">
+											<p>Klare Desteen Ty</p>
+										</div>
+										<div class="col s6">
+											<center><p>Female</p></center>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="collapsible-body" style="border:3px solid #ffebee; border-top:none;">
+								<div class="row">
+									<div class="col s6">
+										<div class="input-field">
+						                  	<input id ="measurement" type="text" class="validate">
+						                  	<label for="measurement">Measurement</label>
+						                </div>
+						                <div class="input-field">
+						                  	<input id ="measurement" type="text" class="validate">
+						                  	<label for="measurement">Measurement</label>
+						                </div>
+						                <div class="input-field">
+						                  	<input id ="measurement" type="text" class="validate">
+						                  	<label for="measurement">Measurement</label>
+						                </div>
+									</div>
+									<div class="col s6">
+										<div class="input-field">
+						                  	<input id ="measurement" type="text" class="validate">
+						                  	<label for="measurement">Measurement</label>
+						                </div>
+						                <div class="input-field">
+						                  	<input id ="measurement" type="text" class="validate">
+						                  	<label for="measurement">Measurement</label>
+						                </div>
+						                <div class="input-field">
+						                  	<input id ="measurement" type="text" class="validate">
+						                  	<label for="measurement">Measurement</label>
+						                </div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+					        <div class="collapsible-header" style="background-color:#e1f5fe;">
+								<div class="row">
+									<div class="col s12">
+										<div class="col s6">
+											<p>Elijah Riley Montefalco</p>
+										</div>
+										<div class="col s6">
+											<center><p>Male</p></center>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="collapsible-body" style="border:3px solid #ffebee; border-top:none;">
+								<div class="row">
+									<div class="col s6">
+										<div class="input-field">
+						                  	<input id ="measurement" type="text" class="validate">
+						                  	<label for="measurement">Measurement</label>
+						                </div>
+						                <div class="input-field">
+						                  	<input id ="measurement" type="text" class="validate">
+						                  	<label for="measurement">Measurement</label>
+						                </div>
+						                <div class="input-field">
+						                  	<input id ="measurement" type="text" class="validate">
+						                  	<label for="measurement">Measurement</label>
+						                </div>
+									</div>
+									<div class="col s6">
+										<div class="input-field">
+						                  	<input id ="measurement" type="text" class="validate">
+						                  	<label for="measurement">Measurement</label>
+						                </div>
+						                <div class="input-field">
+						                  	<input id ="measurement" type="text" class="validate">
+						                  	<label for="measurement">Measurement</label>
+						                </div>
+						                <div class="input-field">
+						                  	<input id ="measurement" type="text" class="validate">
+						                  	<label for="measurement">Measurement</label>
+						                </div>
+									</div>
+								</div>
+							</div>
+						</li>
+
+					</ul>
+		        </div>
+		    </div>
+
+		</div>
+
+		<div class="modal-footer" style="background-color:#26a69a">
+			<a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+		</div>
+	</div>
+
+	<!--Accept button Modal-->
+	<div id="acceptmodal" class="modal modal-fixed-footer">
+		<div class="modal-content">
+			<h4 style="color:#1b5e20" class="center">Accepted Order</h4>
+			<div class="divider container" style="margin-bottom:20px;"></div>
+			<div class="row">
+		        <div class="col s12">
+		            <div class="card" style="background-color:#ffebee">
+		            	<div class="card-content">
+		            		<table class="centered">
+							    <tbody>
+							        <tr>
+							        	<td>track#</td>
+							        	<td>customer name</td>
+							        	<td></td>
+							        	<td style="color:#1b5e20">Paid</td>
+							        </tr>
+							    </tbody>
+							</table>
+		            	</div>
+		            </div>
+		        </div>
+		    </div>
+
+		</div>
+
+		<div class="modal-footer" style="background-color:#26a69a">
+			<a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+			<a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+		</div>
+	</div>
 
 @stop
 
 @section('scripts')
 
 	<script>
-		$(document).ready(function() {
-	    	$('select').material_select();
-	    });
+	  $('.modal-trigger').leanModal({
+	      dismissible: true, // Modal can be dismissed by clicking outside of the modal
+	      opacity: .5, // Opacity of modal background
+	      in_duration: 300, // Transition in duration
+	      out_duration: 200, // Transition out duration
+	      width:400,
+	    }
+	  );
+	</script>
+
+	<script>
+	  $(document).ready(function() {
+	    $('select').material_select();
+	  });
+	</script>	        
+
+	<script>
+	 $(document).ready(function(){
+		$('.tooltipped').tooltip({delay: 50});
+	 });
 	</script>
 
 	<script>
