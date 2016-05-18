@@ -129,9 +129,9 @@ Route::group(['prefix' => 'transaction'], function(){
 });
 
 Route::group(['prefix' => 'transaction'], function(){
-	Route::resource('modifyIndividual', 'ModifyCompanyOrdersController',
+	Route::resource('modifyIndividual', 'ModifyIndividualOrdersController',
 		['only' => ['index']]);
-	Route::resource('modifyCompany', 'ModifyIndividualOrdersController',
+	Route::resource('modifyCompany', 'ModifyCompanyOrdersController',
 		['only' => ['index']]);
 });
 

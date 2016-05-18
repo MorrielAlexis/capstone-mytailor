@@ -17,7 +17,7 @@
 		    		<!--DELIVERY DETAILS-->
 			    	<center>
 			    	<div style="width:90%;">
-				        <div style="background-color:#ef5350;"><h5 style="color:#1b5e20; padding:10px;"><center><b>Delivery Details</b></center></h5></div>
+				        <div style="background-color:#ef5350; border-radius:180px;"><h5 style="color:#1b5e20; padding:20px;"><center><b>Delivery Details</b></center></h5></div>
 				        <div class="divider" style="margin-bottom:30px;"></div>
 
 						<div class="row container">
@@ -111,7 +111,7 @@
 				    <!--PAYMENT DETAILS-->
 				    <center>
 				    <div style="width:90%;">
-				        <div style="background-color:#ef5350;"><h5 style="color:#1b5e20; padding:10px;"><center><b>Payment Details</b></center></h5></div>
+				        <div style="background-color:#ef5350; border-radius:180px;"><h5 style="color:#1b5e20; padding:20px;"><center><b>Payment Details</b></center></h5></div>
 				        <div class="divider" style="margin-bottom:30px;"></div>
 
 				        <div class="container">
@@ -171,7 +171,7 @@
 				    <!--DURATION-->
 				    <center>
 				    <div style="width:90%;">
-				        <div style="background-color:#ef5350;"><h5 style="color:#1b5e20; padding:10px;"><center><b>Duration</b></center></h5></div>
+				        <div style="background-color:#ef5350; border-radius:180px;"><h5 style="color:#1b5e20; padding:20px;"><center><b>Duration</b></center></h5></div>
 				        <div class="divider" style="margin-bottom:30px;"></div>
 
 				        <div class="container">
