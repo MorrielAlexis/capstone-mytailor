@@ -138,8 +138,6 @@ class CatalogueController extends Controller
     {
         //
     }
-
-
     function update_catalogue(Request $request)
     {
 
@@ -166,11 +164,9 @@ class CatalogueController extends Controller
 
             
             return redirect('maintenance/catalogue');
-               
-
     }
 
-     function delete_catalogue(Request $request)
+    function delete_catalogue(Request $request)
     {
 
         $catalogue = Catalogue::find($request->input('delCatalogueID'));

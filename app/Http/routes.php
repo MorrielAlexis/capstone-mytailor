@@ -88,8 +88,13 @@ Route::group(['prefix' => 'maintenance'], function(){
 
 	Route::resource('material', 'MaterialsController');
 
-		Route::post('material/update','MaterialsController@update_material');
-		Route::post('material/destroy','MaterialsController@delete_material');
+		Route::post('material/addThread','MaterialsController@addThread');
+		Route::post('material/editThread','MaterialsController@editThread');
+		Route::post('material/destroyThread','MaterialsController@deleteThread');
+
+		Route::post('material/addNeedle','MaterialsController@addNeedle');
+		Route::post('material/editNeedle','MaterialsController@editNeedle');
+		Route::post('material/destroyNeedle','MaterialsController@deleteNeedle');
 
 
 });
