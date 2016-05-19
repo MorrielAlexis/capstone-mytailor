@@ -4,7 +4,8 @@
 
 	<div class="row">
       <div class="col s12 m12 l12">
-        <span class="page-title"><h4>Walkin Individual</h4></span>
+        <span class="page-title"><center><h3><b>Welcome to <font color="white">MyTailor</font></b></h3></center></span>
+        <center><h5>Walk-in Individual</h5></center>
       </div>
     </div>
 
@@ -13,7 +14,7 @@
 
 			<div class="col s12">
 				<ul class="tabs transparent" style="margin-top:15px">
-					<li class="tab col s12" style="border-top-left-radius: 20px; border-top-right-radius: 20px; background-color: #00b0ff;"><a style="color:black; padding-top:5px; opacity:0.80" class="tooltipped center-text" accent data-position="bottom" data-delay="50" data-tooltip="Fill up personal information" href="#shoppingCart">Welcome to MyTailor!</a></li>	
+					<li class="tab col s12" style="border-top-left-radius: 20px; border-top-right-radius: 20px; background-color: #00b0ff;"><a style="color:black; padding-top:5px; opacity:0.80" href="#shoppingCart"></a></li>	
 					<div class="indicator white" style="z-index:1"></div>
 	            </ul>
 				<div id="shoppingCart" class="card-panel">
@@ -95,35 +96,41 @@
 							</div>
 						</div>
 
+						<div class="col s12">
+							<div class="divider"></div>
+						<div>
 
-							<div class="btn" style="margin-left:550px; margin-top:50px; color:black"><i class="mdi-action-add-shopping-cart" style="font-size:20px;">  Add to Cart</i></div>
-							<div class="modal-trigger btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#resetOrder" style="margin-left:50px; margin-top:50px; color:black"><i class="mdi-navigation-cancel" style="font-size:20px;">  Reset Order</i></div>
-								<div id="resetOrder" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
-									<h5><font color="red"><center><b>Warning!</b></center></font></h5>	
-									{!! Form::open() !!}
-											<div class="divider" style="height:2px"></div>
-											<div class="modal-content col s12">
-												<div class="col s3">
-													<i class="mdi-alert-error" style="font-size:50px; color:red"></i>
+							<div class="col s12">
+								<div class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to create a new package of orders " style="margin-left:40px; margin-top:30px; font-size:15px; color:black"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Add to Cart<!--</i>--></div>
+								<div class="right modal-trigger btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#resetOrder" style=" margin-top:30px; font-size:15px; color:black"><!--<i class="mdi-navigation-cancel" style="font-size:20px;">-->  Reset Order<!--</i>--></div>
+									<div id="resetOrder" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
+										<h5><font color="red"><center><b>Warning!</b></center></font></h5>	
+										{!! Form::open() !!}
+												<div class="divider" style="height:2px"></div>
+												<div class="modal-content col s12">
+													<div class="col s3">
+														<i class="mdi-alert-error" style="font-size:50px; color:red"></i>
+													</div>
+													<div class="col s9">
+														<p><font size="+1">Doing this will clear all orders made!</font></p>
+													</div>
 												</div>
-												<div class="col s9">
-													<p><font size="+1">Doing this will clear all orders made!</font></p>
-												</div>
-											</div>
 
-											<div class="modal-footer col s12" style="background-color:red; opacity:0.85">
-								                <button type="submit" class="waves-effect waves-green btn-flat" href="#!"><font color="black">OK</font></button>
-								                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Cancel</font></a>
-								            </div>
-										{!! Form::close() !!}
-								</div>
+												<div class="modal-footer col s12" style="background-color:red; opacity:0.85">
+									                <button type="submit" class="waves-effect waves-green btn-flat" href="#!"><font color="black">OK</font></button>
+									                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Cancel</font></a>
+									            </div>
+											{!! Form::close() !!}
+									</div>
+							</div>
 						</div>
 
 					</div>
 
-					<div class="divider" style="height:2px; margin-top:50px"></div>      	
-		      		<center><p><font color="gray">End of product list for MyTailor</font></p></center>
-				
+					<div class="col s12">
+						<div class="divider" style="height:2px; margin-top:50px"></div>      	
+		      			<center><p><font color="gray">End of product list for MyTailor</font></p></center>
+					</div>
 				</div>
 			</div>
 
@@ -131,7 +138,7 @@
 			<!-- CUSTOMIZING ORDER HERE -->
 			<div class="col s12">
 				<ul class="tabs transparent" style="margin-top:50px">
-					<li class="tab col s12" style="border-top-left-radius: 20px; border-top-right-radius: 20px; background-color: #00b0ff;"><a style="color:black; padding-top:5px; opacity:0.80" class="tooltipped center-text" accent data-position="bottom" data-delay="50" data-tooltip="Fill up personal information" href="#shoppingCart">All your orders are listed below...</a></li>	
+					<li class="tab col s12" style="border-top-left-radius: 20px; border-top-right-radius: 20px; background-color: red;"><a style="color:black; padding-top:5px; opacity:0.80" href="#shoppingCart"></a></li>	
 					<div class="indicator white" style="z-index:1"></div>
 	            </ul>
 				<div class="card-panel">
@@ -141,7 +148,7 @@
 							<div class="col s12">
 								
 								<div class="col s6"><p><h5>Customize Order</h5></p></div>
-								<div class="col s6"><a style="margin-left:170px; margin-top:15px" type="submit" class="waves-effect waves-green btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to proceed to payment of orders" href="{{URL::to('/transaction/walkin-individual-payment')}}"><font color="black" size="+1"><i class="mdi-action-payment" style="font-size:20px;">  Proceed to Checkout</i></font></a></div>				
+								<div class="col s6"><a style="margin-left:170px; margin-top:15px" type="submit" class="right waves-effect waves-green btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to proceed to payment of orders" href="{{URL::to('/transaction/walkin-individual-payment')}}"><font color="black" size="+1"><!--<i class="mdi-action-payment" style="font-size:20px;">-->  Proceed to Checkout<!--</i>--></font></a></div>				
 							</div>
 							
 							<div class="divider" style="margin-bottom:30px"></div>

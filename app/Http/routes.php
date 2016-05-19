@@ -148,3 +148,4 @@ Route::group(['prefix' => 'utilities'], function(){
 
 
 Route::get('transaction/walkin-individual-payment', 'WalkInIndividualController@payment');
+Route::get('transaction/walkin-company-payment', 'WalkInCompanyController@payment');
