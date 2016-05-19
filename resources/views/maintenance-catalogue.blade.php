@@ -107,7 +107,7 @@
                     <h5><font color = "#1b5e20"><center>EDIT CATALOGUE DESIGN</center></font> </h5>                     
                       editCatalogueDesign
 
-                      {!! Form::open(['url' => 'editCatalogueDesign']) !!} 
+                      {!! Form::open(['url' => 'maintenance/catalogue/update',  'files' => 'true']) !!} 
                        
                        <div class="divider" style="height:2px"></div>
                        <div class="modal-content col s12">
@@ -135,14 +135,14 @@
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s12">
                           <input required value="{{$catalogue->strCatalogueName}}" id="editCatalogueName" name = "editCatalogueName" type="text" class="validateCatalogueName">
-                          <label for="Catalogue_Name"> *Catalogue Name </label>
+                          <label for="Catalogue_Name"> Catalogue Name <span class="red-text"><b>*</b></span></label>
                         </div>
                     </div>
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s12">
                           <input  required value="{{$catalogue->strCatalogueDesc}}" id="editCatalogueDesc" name = "editCatalogueDesc" type="text" class="validateCatalogueDesc">
-                          <label for="Category_Desc">*Catalogue Description </label>
+                          <label for="Category_Desc">Catalogue Description <span class="red-text"><b>*</b></span></label>
                         </div>
                     </div>
 
@@ -154,7 +154,7 @@
                           </div>
 
                           <div class="file-path-wrapper">
-                            <input value="{{$catalogue->strCatalogueImage}}" id="editImage" name="editImage" class="file-path validate" type="text">
+                            <input value="{{$catalogue->strCatalogueImage}}" id="editImage" name="editImage" class="file-path validate" type="text" readonly="readonly">
                           </div>
                         </div> 
                     </div>
@@ -171,7 +171,7 @@
               <div id="del{{ $catalogue->strCatalogueID }}" class="modal modal-fixed-footer">               
                 <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS CATALOGUE DESIGN?</center> </font> </h5>                     
                    
-                    {!! Form::open(['url' => 'delCatalogueDesign']) !!}
+                    {!! Form::open(['url' => 'maintenance/catalogue/destroy']) !!}
                      <div class="divider" style="height:2px"></div>
                      <div class="modal-content col s12">
 
@@ -200,9 +200,7 @@
                       </div>
                   </div>
                       
-                      <div class="input-field">
-                        <input value="{{ $catalogue->strCatalogueID }}" id="delInactiveCatalogueID" name="delInactiveCatalogueID" type="hidden">
-                      </div>
+
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                      

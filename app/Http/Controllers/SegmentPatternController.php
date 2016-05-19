@@ -170,7 +170,7 @@ class SegmentPatternController extends Controller
                 $pattern->save();
 
             
-            return redirect('/maintenance/segment-pattern');
+            return redirect('maintenance/segment-pattern');
                
 
     }
@@ -185,7 +185,7 @@ class SegmentPatternController extends Controller
 
         $pattern->save();
 
-        return redirect('maintenance/segment-pattern/destroy');
+        return redirect('maintenance/segment-pattern');
     }
     
     public function smartCounter($id)

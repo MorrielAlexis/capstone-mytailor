@@ -139,6 +139,49 @@ class CatalogueController extends Controller
         //
     }
 
+
+    function update_catalogue(Request $request)
+    {
+
+        $catalogue = Catalogue::find($request->input('editCatalogueID'));
+
+        $file = $request->input('editImage');
+        $destinationPath = 'imgCatalogue';
+
+                if($file == $catalogue->strCatalogueImage)
+                {
+                    $catalogue->strCatalogueCategoryFK = $request->input('editCategory');
+                    $catalogue->strCatalogueName = trim($request->input('editCatalogueName'));
+                    $catalogue->strCatalogueDesc = trim($request->input('editCatalogueDesc'));
+                }else{
+                    $request->file('editImg')->move($destinationPath);
+
+                    $catalogue->strCatalogueCategoryFK = $request->input('editCategory');
+                    $catalogue->strCatalogueName = trim($request->input('editCatalogueName'));
+                    $catalogue->strCatalogueDesc = trim($request->input('editCatalogueDesc'));
+                    $catalogue->strCatalogueImage = 'imgCatalogue/'.$file;
+                }           
+
+                $catalogue->save();
+
+            
+            return redirect('maintenance/catalogue');
+               
+
+    }
+
+     function delete_catalogue(Request $request)
+    {
+
+        $catalogue = Catalogue::find($request->input('delCatalogueID'));
+
+        $catalogue->boolIsActive = 0;
+
+        $catalogue->save();
+
+        return redirect('maintenance/catalogue');
+    }
+
     public function smartCounter($id)
     {   
 
