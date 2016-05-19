@@ -44,12 +44,13 @@
                 </thead>
               
                 <tbody>
-                  
+                  @foreach($alteration as $alteration)
+                    @if($alteration->boolIsActive == 1)
                   <tr>
               		 
-                    <td>Name</td>
-              		  <td>Desc</td>
-                    <td>Price</td>
+                    <td>{{$alteration->strAlterationName}}</td>
+              		  <td>{{$alteration->txtAlterationDesc}}</td>
+                    <td>{{$alteration->strAlterationPrice}}</td>
               		  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of alteration name" href="#editAlterationName"><i class="mdi-editor-mode-edit"></i></a>
                     <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of alteration name from the table" href="#delAlterationName"><i class="mdi-action-delete"></i></a></td>
               	
