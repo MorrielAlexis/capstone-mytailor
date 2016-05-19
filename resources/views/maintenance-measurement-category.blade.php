@@ -132,7 +132,7 @@
 -->    
     <!--Tab Contents-->
     <!--Measurement Category-->
-        <div class="col s6 left">
+        <div class="col s1 left">
              <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="left" data-delay="50"  data-tooltip="Click to add a new measurement information to the table" href="#addMeasurementInfo" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
           </div>
         </div> 
