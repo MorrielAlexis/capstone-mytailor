@@ -57,17 +57,15 @@ class EmployeeRoleController extends Controller
      */
     public function store(RoleRequest $request)
     {        
-        $rol = EmployeeRole::get();
             $role = EmployeeRole::create(array(
                 'strEmpRoleID' => $request->input('addRoleID'),
                 'strEmpRoleName' =>trim($request->input('addRoleName')),
                 'strEmpRoleDesc' => trim($request->input('addRoleDescription')),  
                 'boolIsActive' => 1
             ));
-            $role->save();
+        $added = $role->save();
 
-        $request->session()->flash('alert-success', 'Role was successfully added!');
-        return redirect('maintenance/employee-role');
+        return redirect('maintenance/employee-role?success=true');
     }
 
     /**
