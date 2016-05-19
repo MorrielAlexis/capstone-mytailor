@@ -62,10 +62,10 @@
                     <td>{{$alteration->strAlterationName}}</td>
               		  <td>{{$alteration->txtAlterationDesc}}</td>
                     <td>{{"Php" . $alteration->dblAlterationPrice}}</td>
-              		  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of alteration name" href="#editAlterationName"><i class="mdi-editor-mode-edit"></i></a>
-                    <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of alteration name from the table" href="#delAlterationName"><i class="mdi-action-delete"></i></a></td>
+              		  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of alteration name" href="#edit{{$alteration->strAlterationID}}"><i class="mdi-editor-mode-edit"></i></a>
+                    <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of alteration name from the table" href="#del{{$alteration->strAlterationID}}"><i class="mdi-action-delete"></i></a></td>
               	
-                    <div id="editAlterationName" class="modal modal-fixed-footer"> <!-- editFabricType  --> 
+                    <div id="edit{{$alteration->strAlterationID}}" class="modal modal-fixed-footer"> <!-- editFabricType  --> 
                       <h5><font color = "#1b5e20"><center>EDIT FABRIC TYPE</center> </font> </h5>
 
                       {!! Form::open(['url' => 'maintenance/alteration/update']) !!} 
@@ -108,7 +108,7 @@
                   
 
               <!--**********DELETE***********-->
-                    <div id="delAlterationName" class="modal modal-fixed-footer">                     
+                    <div id="del{{$alteration->strAlterationID}}" class="modal modal-fixed-footer">                     
                       <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS ALTERATION NAME?</center> </font> </h5>                       
                           
                         {!! Form::open(['url' => 'maintenance/alteration/destroy']) !!} 
