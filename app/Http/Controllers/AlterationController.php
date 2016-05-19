@@ -58,7 +58,16 @@ class AlterationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $alteration = Alteration::create(array(
+                'strAlterationID' => $request->input('addAlterationNameID'),
+                'strAlterationName' =>trim($request->input('addAlterationName')),
+                'txtAlterationDesc' => trim($request->input('addAlterationDesc')),  
+                'dblAlterationPrice' => trim($request->input('addAlterationPrice')),  
+                'boolIsActive' => 1
+            ));
+        $added = $alteration->save();
+
+        return redirect('maintenance/alteration?success=true');
     }
 
     /**
@@ -105,6 +114,35 @@ class AlterationController extends Controller
     {
         //
     }
+
+    function update_alteration(Request $request)
+    {
+
+        $alteration = Alteration::find($request->input('editAlterationNameID'));
+
+               $alteration->strAlterationName = trim($request->input('editAlterationName'));
+               $alteration->txtAlterationDesc = trim($request->input('editAlterationDesc'));
+               $alteration->dblAlterationPrice = trim($request->input('editAlterationPrice'));
+
+        $alteration->save();
+
+         return redirect('maintenance/alteration');
+        
+       
+    }
+
+    
+    function delete_alteration(Request $request)
+    {
+        $alteration = Alteration::find($request->input('delAlterationNameID'));
+
+        $alteration->boolIsActive = 0;
+
+        $alteration->save();
+        
+        return redirect('maintenance/alteration');
+    }
+
 
      public function smartCounter($id)
     {   

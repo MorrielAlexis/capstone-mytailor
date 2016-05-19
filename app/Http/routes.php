@@ -108,6 +108,9 @@ Route::group(['prefix' => 'maintenance'], function(){
 
 Route::group(['prefix' => 'maintenance'], function(){
 	Route::resource('alteration', 'AlterationController');
+
+		Route::post('alteration/update','AlterationController@update_alteration');
+		Route::post('alteration/destroy','AlterationController@delete_alteration');
 });
 
 

@@ -3,6 +3,17 @@
 @section('content')
   <div class="main-wrapper" style="margin-top:30px">  <!-- Main Wrapper  -->   
       <!--Input Validation-->
+
+    <!--Add Employee Role-->
+         @if (Input::get('success') == 'true')
+        <div class="row" id="success-message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel yellow">
+              <span class="black-text" style="color:black">Successfully added alteration type!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+            </div>
+          </div>
+        </div>
+      @endif
       
 
     <div class="row">
@@ -56,31 +67,32 @@
               	
                     <div id="editAlterationName" class="modal modal-fixed-footer"> <!-- editFabricType  --> 
                       <h5><font color = "#1b5e20"><center>EDIT FABRIC TYPE</center> </font> </h5>
-                        
+
+                      {!! Form::open(['url' => 'maintenance/alteration/update']) !!} 
                       <div class="divider" style="height:2px"></div>
                       <div class="modal-content col s12">
                         
                         <div class="input-field">
-                          <input value = "editAlterationNameID" id="editAlterationNameID" name = "editAlterationNameID" type="hidden">
+                          <input value = "{{$alteration->strAlterationID}}" id="editAlterationNameID" name = "editAlterationNameID" type="hidden">
                         </div>
 
                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input required value = "editAlterationName" id="editAlterationName" name = "editAlterationName" type="text" class="validateName">
+                            <input required value = "{{$alteration->strAlterationName}}" id="editAlterationName" name = "editAlterationName" type="text" class="validateName">
                             <label for="alteration_name">Alteration Name <span class="red-text"><b>*</b></span> </label>
                           </div>
                         </div>
 
                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input required value = "editAlterationDesc" id="editAlterationDesc" name = "editAlterationDesc" type="text" class="validateDesc">
+                            <input required value = "{{$alteration->txtAlterationDesc}}" id="editAlterationDesc" name = "editAlterationDesc" type="text" class="validateDesc">
                             <label for="alteration_description">Alteration Desription <span class="red-text"><b>*</b></span> </label>
                           </div>  
                         </div>
 
                         <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                           <div class="input-field col s12">
-                            <input required value = "editAlterationPrice" id="editAlterationPrice" name = "editAlterationPrice" type="text" class="validate">
+                            <input required value = "{{$alteration->dblAlterationPrice}}" id="editAlterationPrice" name = "editAlterationPrice" type="text" class="validate">
                             <label for="alteration_price">Alteration Price <span class="red-text"><b>*</b></span> </label>
                           </div>  
                         </div>
@@ -91,7 +103,7 @@
                         <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Update</button>
                         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
                       </div>
-                     
+                     {!! Form::close() !!}
                     </div> <!-- editFabricType  -->    
                   
 
@@ -99,37 +111,33 @@
                     <div id="delAlterationName" class="modal modal-fixed-footer">                     
                       <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS ALTERATION NAME?</center> </font> </h5>                       
                           
-                        
+                        {!! Form::open(['url' => 'maintenance/alteration/destroy']) !!} 
                       <div class="divider" style="height:2px"></div>
                         <div class="modal-content col s12">
                             
                           <div class="input-field">
-                            <input value="delAlterationNameID" id="delAlterationNameID" name="delAlterationNameID" type="hidden">
+                            <input value="{{$alteration->strAlterationID}}" id="delAlterationNameID" name="delAlterationNameID" type="hidden">
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
                                 <label for="alteration_name">Alteration Name </label>
-                                <input value="delAlterationName" id="delAlterationName" name="delAlterationName" type="text" readonly>
+                                <input value="{{$alteration->strAlterationName}}" id="delAlterationName" name="delAlterationName" type="text" readonly>
                               </div>
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
                                 <label for="alteration_desc">Alteration Desription </label>
-                                <input value="delAlterationDesc" id="delAlterationDesc" name="delAlterationDesc" type="text" readonly>
+                                <input value="{{$alteration->txtAlterationDesc}}" id="delAlterationDesc" name="delAlterationDesc" type="text" readonly>
                               </div>
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
                                 <label for="alteration_price">Alteration Price</label>
-                                <input value="delAlterationPrice" id="delAlterationPrice" name="delAlterationPrice" type="text" readonly>
+                                <input value="{{$alteration->dblAlterationPrice}}" id="delAlterationPrice" name="delAlterationPrice" type="text" readonly>
                               </div>
-                          </div>
-
-                          <div>
-                            <input value="delInactiveAlterationName" id="delInactiveAlterationName" name="delInactiveAlterationName" type="hidden">
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
@@ -141,7 +149,7 @@
                           <button type="submit" class="waves-effect waves-green btn-flat">OK</button>
                           <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
                         </div> 
-                              
+                        {!! Form::close() !!}      
                       </div>
                     </tr>
                     @endif
@@ -158,26 +166,26 @@
             <div id="addFabricType" class="modal modal-fixed-footer">                  
               <h5><font color = "#1b5e20"><center>ADD NEW ALTERATION NAME</center> </font> </h5> 
               
-             
+             {!! Form::open(['url' => 'maintenance/alteration', 'method' => 'post']) !!}
               <div class="divider" style="height:2px"></div>
                 <div class="modal-content col s12">
                           
 
                   <div class="input-field">
-                    <input value = "addAlterationNameID" id="addAlterationNameID" name = "addAlterationNameID" type="hidden">
+                    <input value = "{{$newID}}" id="addAlterationNameID" name = "addAlterationNameID" type="hidden">
                   </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input required id="addAlterationName" name = "addAlterationName" type="text" class="validate" pattern="[0-9a-zA-Z\-\s]+$">
+                        <input required id="addAlterationName" name = "addAlterationName" type="text" class="validate" pattern="^[a-zA-Z\-'`\s]{2,}$" placeholder="Skinny Cut">
                         <label for="alteration_name">Alteration Name <span class="red-text"><b>*</b></span></label>
                       </div>
                   </div>    
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input required id="addAlterationDesc" name = "addAlterationDesc" type="text" class="validateDesc">
-                        <label for="alteration_description">Alteration Description <span class="red-text"><b>*</b></span></label>
+                        <input required id="addAlterationDesc" name = "addAlterationDesc" type="text" class="validate" placeholder="Alteration type for modifying pants cuff." pattern="^[a-zA-Z\-'`\s]{2,}$">
+                        <label for="alteration_description">Alteration Description</label>
                       </div>
                   </div>
 
