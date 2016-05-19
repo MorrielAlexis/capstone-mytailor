@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CatalogueSeeder::class);
         $this->call(MeasurementDetailSeeder::class);
         $this->call(MeasurementCategorySeeder::class);
-        $this->call(AlterationMaintenanceSeeder::class);
+        $this->call(AlterationSeeder::class);
 
         Model::reguard();
     }

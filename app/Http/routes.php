@@ -102,8 +102,7 @@ Route::group(['prefix' => 'maintenance'], function(){
 });
 
 Route::group(['prefix' => 'maintenance'], function(){
-	Route::resource('alteration', 'AlterationController',
-		['only' => ['index']]);
+	Route::resource('alteration', 'AlterationController');
 });
 
 

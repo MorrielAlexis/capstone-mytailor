@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Alteration;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -18,7 +20,7 @@ class AlterationController extends Controller
     {
        //   get all the alteration types
 
-       $ids = \DB::table('tblAlterationMaintenance')
+       $ids = \DB::table('tblAlteration')
             ->select('strAlterationID')
             ->orderBy('created_at', 'desc')
             ->orderBy('strAlterationID', 'desc')
@@ -27,7 +29,7 @@ class AlterationController extends Controller
 
         $ID = $ids["0"]->strAlterationID;
         $newID = $this->smartCounter($ID);  
-        $alteration = AlterationMaintenance::all();
+        $alteration = Alteration::all();
 
        //  load the view and pass the fabric types
 

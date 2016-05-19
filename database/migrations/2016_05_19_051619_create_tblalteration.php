@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTblalteration extends Migration
+class CreateTblAlteration extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,11 @@ class CreateTblalteration extends Migration
      */
     public function up()
     {
-        Schema::create('tblAlterationMaintenance', function (Blueprint $table) {
+        Schema::create('tblAlteration', function (Blueprint $table) {
             $table->string('strAlterationID')->primary();
             $table->string('strAlterationName');
             $table->text('txtAlterationDesc')->nullable();
-            $table->string('strAlterationPrice');
+            $table->double('dblAlterationPrice');
             $table->boolean('boolIsActive');
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ class CreateTblalteration extends Migration
      */
     public function down()
     {
-        Schema::drop('tblAlterationMaintenance');
+        Schema::drop('tblAlteration');
     }
 }

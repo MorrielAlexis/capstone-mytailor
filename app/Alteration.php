@@ -4,15 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AlterationMaintenance extends Model
+class Alteration extends Model
 {
-     protected $table = 'tblAlterationMaintenance';
+     protected $table = 'tblAlteration';
     
 	protected $primaryKey = 'strAlterationID';
 	protected $fillable = array('strAlterationID',
 								'strAlterationName',
 								'txtAlterationDesc',
-								'strAlterationPrice',
+								'dblAlterationPrice',
 								'boolIsActive'
 								//
 								);
