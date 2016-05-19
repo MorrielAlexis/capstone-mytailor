@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MeasurementDetailSeeder::class);
         $this->call(MeasurementCategorySeeder::class);
         $this->call(AlterationSeeder::class);
+        $this->call(SwatchNameSeeder::class);
 
         Model::reguard();
     }
