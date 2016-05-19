@@ -351,10 +351,8 @@
                               </div>
                             {!! Form::close() !!}
                           </div>
-                        
-                        
 
-                          <div id="del{{$needle->intNeedleID}}" class="modal modal-fixed-footer">
+                          <div id="del{{ $needle->intNeedleID }}" class="modal modal-fixed-footer">
                             <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS NEEDLE?</center> </font> </h5> 
                             
                             {!! Form::open(['url' => 'maintenance/material/delNeedle', 'method' => 'post', 'files' => 'true']) !!}
