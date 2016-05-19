@@ -119,7 +119,7 @@
                     <div id="edit{{ $pattern->strSegPatternID }}" class="modal modal-fixed-footer">                     
                         <h5><font color = "#1b5e20"><center>EDIT SEGMENT PATTERN</center> </font> </h5>                        
 
-                      {!! Form::open(['url' => 'maintenance/segment-pattern/update']) !!}
+                      {!! Form::open(['url' => 'maintenance/segment-pattern/update', 'files' => 'true']) !!}
                         <div class="divider" style="height:2px"></div>
                         <div class="modal-content col s12">
                           
@@ -175,7 +175,7 @@
                       </div>
 
                         <div class="modal-footer col s12" style="background-color:#26a69a">
-                          <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">OK</button>
+                          <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Update</button>
                           <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
                         </div>
                       {!! Form::close() !!}

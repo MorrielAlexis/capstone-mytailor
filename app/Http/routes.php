@@ -86,12 +86,23 @@ Route::group(['prefix' => 'maintenance'], function(){
 	Route::resource('swatch', 'SwatchController',
 		['only' => ['index']]);
 
-	Route::resource('material', 'MaterialsController',
-		['only' => ['index']]);
+	Route::resource('material', 'MaterialsController');
+
+		Route::post('material/update','MaterialsController@update_material');
+		Route::post('material/destroy','MaterialsController@delete_material');
+
+
 });
 
 Route::group(['prefix' => 'maintenance'], function(){
-	Route::resource('catalogue', 'CatalogueController',
+	Route::resource('catalogue', 'CatalogueController');
+
+		Route::post('catalogue/update','CatalogueController@update_catalogue');
+		Route::post('catalogue/destroy','CatalogueController@delete_catalogue');
+});
+
+Route::group(['prefix' => 'maintenance'], function(){
+	Route::resource('alteration', 'AlterationController',
 		['only' => ['index']]);
 });
 
@@ -118,9 +129,9 @@ Route::group(['prefix' => 'transaction'], function(){
 });
 
 Route::group(['prefix' => 'transaction'], function(){
-	Route::resource('jobOrderPending', 'ManagePendingOrdersController',
+	Route::resource('modifyIndividual', 'ModifyIndividualOrdersController',
 		['only' => ['index']]);
-	Route::resource('jobOrderModify', 'ManageModifyOrdersController',
+	Route::resource('modifyCompany', 'ModifyCompanyOrdersController',
 		['only' => ['index']]);
 });
 
@@ -146,6 +157,9 @@ Route::group(['prefix' => 'utilities'], function(){
 		['only' => ['index']]);
 });
 
+Route::get('/acceptIndividual','OnlineCustomerIndividualController@accept');
+Route::get('/acceptCompany','OnlineCustomerCompanyController@accept');
 
 Route::get('transaction/walkin-individual-payment', 'WalkInIndividualController@payment');
 Route::get('transaction/walkin-company-payment', 'WalkInCompanyController@payment');
+

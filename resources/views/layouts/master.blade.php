@@ -21,7 +21,7 @@
         </div>
     </header>
 
-      <nav id="slide-out" class="side-nav fixed" style="position fixed; top: 0; padding-top:0px; margin-top:0px; background: #26A69A"> 
+      <nav id="slide-out" class="side-nav fixed" style="position fixed; top: 0; padding-top:0px; margin-top:0px; background: #26A69A; width:310px;"> 
         <ul id="ul">
           <li id="admin" class="admin-background" align="center" style="background: #00695C;">
             <div class="row">
@@ -89,8 +89,8 @@
                               <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/garment-category')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Category</font></i></a></li>
                               <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/garment-segment')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Segment</font></i></a></li>
                               <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/segment-pattern')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Segment Pattern</font></i></a></li>
-                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/measurement-detail')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Meas Detail</font></i></a></li>
-                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/measurement-category')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Meas Category</font></i></a></li>
+                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/measurement-detail')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Measurement Detail</font></i></a></li>
+                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/measurement-category')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Measurement Category</font></i></a></li>
                               <div class="divider"></div>
                             </ul>
                           </div>
@@ -109,6 +109,7 @@
                         </li>
 
                         <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('maintenance/catalogue') ? 'active' : '' }}" href="{{URL::to('maintenance/catalogue')}}"><b>Catalogue</b></a></li>
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('maintenance/alteration') ? 'active' : '' }}" href="{{URL::to('maintenance/alteration')}}"><b>Alteration</b></a></li>
                       </ul>
                     </li>
                   </ul>
@@ -148,11 +149,11 @@
                             </ul>
                           </div>
                         </li>
-                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('transaction/jobOrderPending') || Request::is('transaction/jobOrderModify') ? 'active' : '' }}"><b>Manage Job Order</b></a>
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('transaction/modifyIndividual') || Request::is('transaction/modifyCompany') ? 'active' : '' }}"><b>Modify Job Order</b></a>
                           <div class="collapsible-body">
                             <ul>
-                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white " href="{{URL::to('transaction/jobOrderPending')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Pending Orders</font></i></a></li>
-                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('transaction/jobOrderModify')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Modify Orders</font></i></a></li>
+                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white " href="{{URL::to('transaction/modifyIndividual')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Individual Orders</font></i></a></li>
+                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('transaction/modifyCompany')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Company Orders</font></i></a></li>
                              <div class="divider"></div>
                             </ul>
                           </div>

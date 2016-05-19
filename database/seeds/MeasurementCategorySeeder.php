@@ -12,7 +12,7 @@ class MeasurementCategorySeeder extends Seeder
      */
     public function run()
     {   
-        //DB::table('tblMeasurementCategory')->delete();
+        DB::table('tblMeasurementCategory')->delete();
 
         $tblMeasurementCategory = array (
             array(

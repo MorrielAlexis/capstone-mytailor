@@ -53,7 +53,7 @@ class CatalogueController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -64,7 +64,34 @@ class CatalogueController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $file = $request->input('addImage');
+        $destinationPath = 'imgCatalogue';
+
+            if($file == '' || $file == null){
+                $catalogue = Catalogue::create(array(
+                'strCatalogueID' => $request->input('addCatalogueID'),
+                'strCatalogueCategoryFK' => $request->input('addCategory'),
+                'strCatalogueName' => trim($request ->input('addCatalogueName')),
+                'strCatalogueDesc' => trim($request->input('addCatalogueDesc')),
+                'strCatalogueImage' => 'imgCatalogue/' .$file,
+                'boolIsActive' => 1
+                ));     
+                }else{
+                    $request->file('addImg')->move($destinationPath, $file);
+
+                    $catalogue = Catalogue::create(array(
+                        'strCatalogueID' => $request->input('addCatalogueID'),
+                        'strCatalogueCategoryFK' => $request->input('addCategory'),
+                        'strCatalogueName' => $request->input('addCatalogueName'),
+                        'strCatalogueDesc' => trim($request->input('addCatalogueDesc')),
+                        'strCatalogueImage' => 'imgDesignPatterns/'.$file,
+                        'boolIsActive' => 1
+                    )); 
+
+                }
+            $catalogue->save();
+
+            return redirect('maintenance/catalogue');
     }
 
     /**
@@ -110,6 +137,49 @@ class CatalogueController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    function update_catalogue(Request $request)
+    {
+
+        $catalogue = Catalogue::find($request->input('editCatalogueID'));
+
+        $file = $request->input('editImage');
+        $destinationPath = 'imgCatalogue';
+
+                if($file == $catalogue->strCatalogueImage)
+                {
+                    $catalogue->strCatalogueCategoryFK = $request->input('editCategory');
+                    $catalogue->strCatalogueName = trim($request->input('editCatalogueName'));
+                    $catalogue->strCatalogueDesc = trim($request->input('editCatalogueDesc'));
+                }else{
+                    $request->file('editImg')->move($destinationPath);
+
+                    $catalogue->strCatalogueCategoryFK = $request->input('editCategory');
+                    $catalogue->strCatalogueName = trim($request->input('editCatalogueName'));
+                    $catalogue->strCatalogueDesc = trim($request->input('editCatalogueDesc'));
+                    $catalogue->strCatalogueImage = 'imgCatalogue/'.$file;
+                }           
+
+                $catalogue->save();
+
+            
+            return redirect('maintenance/catalogue');
+               
+
+    }
+
+     function delete_catalogue(Request $request)
+    {
+
+        $catalogue = Catalogue::find($request->input('delCatalogueID'));
+
+        $catalogue->boolIsActive = 0;
+
+        $catalogue->save();
+
+        return redirect('maintenance/catalogue');
     }
 
     public function smartCounter($id)
