@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\SwatchNameMaintenance;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -16,28 +18,24 @@ class SwatchNameController extends Controller
      */
     public function index()
     {
-         //get all the fabric types
+         //get all the swatch names
 
-       /* $roles =  EmployeeRole::with('employees')
-            ->select('strEmpRoleID', 'strEmpRoleName', 'boolIsActive')
-            ->get();  
-        */
-        //$fabricType = FabricType::all();
+        $ids = \DB::table('tblSwatchName')
+            ->select('strSwatchNameID')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('strSwatchNameID', 'desc')
+            ->take(1)
+            ->get();
 
-        //$reason = Swatch::all(); /*dummy lang wala pang model un reasons e*/
+        $ID = $ids["0"]->strSwatchNameID;
+        $newID = $this->smartCounter($ID);  
+        $swatchnamemainte = SwatchNameMaintenance::all();
 
-
-        //$newID = 0;
-        
-
-       // $swatch = Swatch::all();
 
         //load the view and pass the employees
         return view('maintenance-swatch-name')
-                    // ->with('fabricType', $fabricType)
-                    // ->with('swatch', $swatch)
-                    // ->with('reason', $reason)
-                    // ->with('newID', $newID)
+                    ->with('swatchnamemainte', $swatchnamemainte)
+                    ->with('newID', $newID)
         ;
     }
 
@@ -105,5 +103,46 @@ class SwatchNameController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function smartCounter($id)
+    {   
+
+        $lastID = str_split($id);
+
+        $ctr = 0;
+        $tempID = "";
+        $tempNew = [];
+        $newID = "";
+        $add = TRUE;
+
+        for($ctr = count($lastID)-1; $ctr >= 0; $ctr--){
+
+            $tempID = $lastID[$ctr];
+
+            if($add){
+                if(is_numeric($tempID) || $tempID == '0'){
+                    if($tempID == '9'){
+                        $tempID = '0';
+                        $tempNew[$ctr] = $tempID;
+
+                    }else{
+                        $tempID = $tempID + 1;
+                        $tempNew[$ctr] = $tempID;
+                        $add = FALSE;
+                    }
+                }else{
+                    $tempNew[$ctr] = $tempID;
+                }           
+            }
+            $tempNew[$ctr] = $tempID;   
+        }
+
+        
+        for($ctr = 0; $ctr < count($lastID); $ctr++){
+            $newID = $newID . $tempNew[$ctr];
+        }
+
+        return $newID;
     }
 }

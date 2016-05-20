@@ -43,17 +43,17 @@
                 </thead>
               
                 <tbody>
-                  
+                   @foreach($swatchnamemainte as $swatchnamemainte)
+                     @if($swatchnamemainte->boolIsActive == 1)
                   <tr>
-              		 
-             		  <td>Swatch Name</td>
-              		  <td>Swatch Desc</td>
-              		  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of swatch name" href="#editSwatchName"><i class="mdi-editor-mode-edit"></i></a>
-                    <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of swatch name from the table" href="#delSwatchName"><i class="mdi-action-delete"></i></a></td>
+               		  <td>{{ $swatchnamemainte->strSName}}</td>
+              		  <td>{{ $swatchnamemainte->txtSwatchNameDesc}}</td>
+              		  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of swatch name" href="#edit{{$swatchnamemainte->strSwatchNameID}}"><i class="mdi-editor-mode-edit"></i></a>
+                    <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of swatch name from the table" href="#del{{$swatchnamemainte->strSwatchNameID}}"><i class="mdi-action-delete"></i></a></td>
               	
-                    <div id="editSwatchName" class="modal modal-fixed-footer"> <!-- editFabricType  --> 
-                      <h5><font color = "#1b5e20"><center>EDIT FABRIC TYPE</center> </font> </h5>
-                        
+                    <div id="edit{{$swatchnamemainte->strSwatchNameID}}" class="modal modal-fixed-footer"> <!-- editFabricType  --> 
+                      <h5><font color = "#1b5e20"><center>EDIT SWATCH NAME</center> </font> </h5>
+                        {!! Form::open(['url' => 'maintenance/swatch-name/update']) !!}
                         <div class="divider" style="height:2px"></div>
                         <div class="modal-content col s12">
                         
@@ -85,9 +85,9 @@
                   
 
               <!--**********DELETE***********-->
-              <div id="delSwatchName" class="modal modal-fixed-footer">                     
+              <div id="del{{$swatchnamemainte->strSwatchNameID}}" class="modal modal-fixed-footer">                     
                 <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS SWATCH NAME?</center> </font> </h5>                       
-                    
+                   {!! Form::open(['url' => 'maintenance/swatch-name/destroy']) !!}  
                   
                     <div class="divider" style="height:2px"></div>
                     <div class="modal-content col s12">
@@ -126,6 +126,8 @@
                         
                     </div>
                     </tr>
+                  @endif
+                @endforeach
                 </tbody>
               </table>
               </div>

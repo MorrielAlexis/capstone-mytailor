@@ -4,81 +4,37 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Thread;
-use App\Needle;
 use App\Button;
-use App\Zipper;
-use App\HookAndEye;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class MaterialController extends Controller
+class MaterialButtonController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function thread()
+    public function index()
     {
-        $thread = Thread::all();
-        $reasonThread = Thread::all();
-        $newThreadID = 0;
+        $ids = \DB::table('tblButton')
+            ->select('intButtonID')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('intButtonID', 'desc')
+            ->take(1)
+            ->get();
 
-        return view('maintenance-material-thread')
-                    ->with('threads', $thread)
-                    ->with('reasonThread', $reasonThread)
-                    ->with('newThreadID', $newThreadID);
-    }
+        $ID = $ids["0"]->intButtonID;
+        $newButtonID = $this->smartCounter($ID);  
 
-    public function needle()
-    {       
-        $needle = Needle::all();
-        $reasonNeedle = Needle::all();
-        $newNeedleID = 0;
-
-        return view('maintenance-material-needle')
-                    ->with('needles', $needle)
-                    ->with('reasonNeedle', $reasonNeedle)
-                    ->with('newNeedleID', $newNeedleID);
-    }
-
-    public function button()
-    {   
         $button = Button::all();
-        $reasonButton = Button::all();
-        $newButtonID = 0;
 
         return view('maintenance-material-button')
                     ->with('buttons', $button)
-                    ->with('reasonButton', $reasonButton)
                     ->with('newButtonID', $newButtonID);
     }
-    public function zipper()
-    {   
-        $zipper = Zipper::all();
-        $reasonZipper = Zipper::all();
-        $newZipperID = 0;
 
-        return view('maintenance-material-zipper')
-                    ->with('zippers', $zipper)
-                    ->with('reasonZipper', $reasonZipper)
-                    ->with('newZipperID', $newZipperID);
-    }
-    public function hookandeye()
-    {   
-        $hook = HookAndEye::all();
-        $reasonHook = HookAndEye::all();
-        $newHookID = 0;
-
-        return view('maintenance-material-hookandeye')
-                    ->with('hooks', $hook)
-                    ->with('reasonHook', $reasonHook)
-                    ->with('newHookID', $newHookID);
-    }
-   
     /**
      * Show the form for creating a new resource.
      *
@@ -143,5 +99,47 @@ class MaterialController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function smartCounter($id)
+    {   
+
+        $lastID = str_split($id);
+
+        $ctr = 0;
+        $tempID = "";
+        $tempNew = [];
+        $newID = "";
+        $add = TRUE;
+
+        for($ctr = count($lastID)-1; $ctr >= 0; $ctr--){
+
+            $tempID = $lastID[$ctr];
+
+            if($add){
+                if(is_numeric($tempID) || $tempID == '0'){
+                    if($tempID == '9'){
+                        $tempID = '0';
+                        $tempNew[$ctr] = $tempID;
+
+                    }else{
+                        $tempID = $tempID + 1;
+                        $tempNew[$ctr] = $tempID;
+                        $add = FALSE;
+                    }
+                }else{
+                    $tempNew[$ctr] = $tempID;
+                }           
+            }
+            $tempNew[$ctr] = $tempID;   
+        }
+
+        
+        for($ctr = 0; $ctr < count($lastID); $ctr++){
+            $newID = $newID . $tempNew[$ctr];
+        }
+
+        return $newID;
     }
 }

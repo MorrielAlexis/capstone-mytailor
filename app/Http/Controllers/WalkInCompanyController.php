@@ -18,7 +18,11 @@ class WalkInCompanyController extends Controller
     {
         return view('walkInCompany');
     }
-
+ 
+    public function payment()
+    {
+        return view('walkInCompanyCheckout');
+    }
     /**
      * Show the form for creating a new resource.
      *

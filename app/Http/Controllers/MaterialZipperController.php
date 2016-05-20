@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-use App\Http\Requests\RoleRequest;
+use App\Zipper;
 
-use App\EmployeeRole;
+use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class EmployeeRoleController extends Controller
+class MaterialZipperController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,24 +18,21 @@ class EmployeeRoleController extends Controller
      */
     public function index()
     {
-        //get all the employee roles
-         $ids = \DB::table('tblEmployeeRole')
-            ->select('strEmpRoleID')
+        $ids = \DB::table('tblZipper')
+            ->select('intZipperID')
             ->orderBy('created_at', 'desc')
-            ->orderBy('strEmpRoleID', 'desc')
+            ->orderBy('intZipperID', 'desc')
             ->take(1)
             ->get();
-        //$reason = EmployeeRole::all(); /*dummy lang wala pang model un reasons e*/
 
-        $ID = $ids["0"]->strEmpRoleID;
-        $newID = $this->smartCounter($ID);  
-        $role = EmployeeRole::all();
+        $ID = $ids["0"]->intZipperID;
+        $newZipperID = $this->smartCounter($ID);  
 
-         //load the view and pass the employees
-        return view('maintenance-employee-role')
-                ->with('role', $role)
-                ->with('newID', $newID);
-       
+        $zipper = Zipper::all();
+
+        return view('maintenance-material-zipper')
+                    ->with('zippers', $zipper)
+                    ->with('newZipperID', $newZipperID);
     }
 
     /**
@@ -55,17 +51,9 @@ class EmployeeRoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RoleRequest $request)
-    {        
-            $role = EmployeeRole::create(array(
-                'strEmpRoleID' => $request->input('addRoleID'),
-                'strEmpRoleName' =>trim($request->input('addRoleName')),
-                'strEmpRoleDesc' => trim($request->input('addRoleDescription')),  
-                'boolIsActive' => 1
-            ));
-        $added = $role->save();
-
-        return redirect('maintenance/employee-role?success=true');
+    public function store(Request $request)
+    {
+        //
     }
 
     /**
@@ -113,32 +101,6 @@ class EmployeeRoleController extends Controller
         //
     }
 
-    function updateRole(Request $request)
-    {
-
-        $role = EmployeeRole::find($request->input('editRoleID'));
-
-               $role->strEmpRoleName = trim($request->input('editRoleName'));
-               $role->strEmpRoleDesc = trim($request->input('editRoleDescription'));
-        $role->save();
-
-         return redirect('maintenance/employee-role');
-        
-       
-    }
-
-    
-    function deleteRole(Request $request)
-    {
-        $role = EmployeeRole::find($request->input('delRoleID'));
-
-        $role->boolIsActive = 0;
-
-        $role->save();
-        
-        return redirect('maintenance/employee-role');
-    }
-
 
     public function smartCounter($id)
     {   
@@ -179,5 +141,5 @@ class EmployeeRoleController extends Controller
         }
 
         return $newID;
-    }
+    }    
 }
