@@ -95,6 +95,13 @@ Route::group(['prefix' => 'maintenance'], function(){
 });
 
 Route::group(['prefix' => 'maintenance'], function(){
+	Route::resource('walkin-individual', 'WalkInIndividualController');
+
+	Route::resource('walkin-company', 'WalkInCompanyController',
+		['only' => ['index']]);
+});
+
+Route::group(['prefix' => 'maintenance'], function(){
 	Route::resource('catalogue', 'CatalogueController');
 
 		Route::post('catalogue/update','CatalogueController@update_catalogue');
@@ -102,7 +109,15 @@ Route::group(['prefix' => 'maintenance'], function(){
 });
 
 Route::group(['prefix' => 'maintenance'], function(){
-	Route::resource('alteration', 'AlterationController',
+	Route::resource('material-thread', 'MaterialController@thread',
+		['only' => ['index']]);
+	Route::resource('material-needle', 'MaterialController@needle',
+		['only' => ['index']]);
+	Route::resource('material-button', 'MaterialController@button',
+		['only' => ['index']]);
+	Route::resource('material-zipper', 'MaterialController@zipper',
+		['only' => ['index']]);
+	Route::resource('material-hookandeye', 'MaterialController@hookandeye',
 		['only' => ['index']]);
 });
 
