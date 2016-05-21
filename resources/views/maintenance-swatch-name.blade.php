@@ -3,8 +3,17 @@
 @section('content')
   <div class="main-wrapper" style="margin-top:30px">  <!-- Main Wrapper  -->   
       <!--Input Validation-->
-      
 
+      <!--Add Swatch Name-->
+         @if (Input::get('success') == 'true')
+        <div class="row" id="success-message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel yellow">
+              <span class="black-text" style="color:black">Successfully added swatch name!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+            </div>
+          </div>
+        </div>
+      @endif
     <div class="row">
       <div class="col s12 m12 l12">
         <span class="page-title"><h4>Swatch Name</h4></span>
@@ -70,8 +79,8 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                         <div class="input-field col s12">
-                          <input required value = "{{$swatchnamemainte->txtSwatchNameDesc}}" id="editSwatchNameDesc" name = "editSwatchNameDesc" type="text" class="validate"required data-position="bottom" pattern="[A-Za-z\s]+">
-                          <label for="swatch_description">Swatch Desription <span class="red-text"><b>*</b></span> </label>
+                          <input  value = "{{$swatchnamemainte->txtSwatchNameDesc}}" id="editSwatchNameDesc" name = "editSwatchNameDesc" type="text" class="validate">
+                          <label for="swatch_description">Swatch Desription </label>
                         </div>  
                   </div>
                   </div>
@@ -80,7 +89,7 @@
                         <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Update</button>
                         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" button type="reset" value="Reset">Cancel</a> 
                       </div>
-                     
+                      {!! Form::close() !!}
                     </div> <!-- editFabricType  -->    
                   
 
@@ -121,10 +130,12 @@
                       </div>
 
                           <div class="modal-footer col s12" style="background-color:#26a69a">
+
                             <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">OK</button>
                             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
                           </div>
                         {!! Form::close() !!} 
+
                     </div>
                   </td>
                     </tr>
@@ -141,9 +152,8 @@
             <!--********ADD******-->
              <div id="addFabricType" class="modal modal-fixed-footer">                  
                 <h5><font color = "#1b5e20"><center>ADD NEW SWATCH NAME</center> </font> </h5> 
-                
-               
-                  <div class="divider" style="height:2px"></div>
+                  {!! Form::open(['url' => 'maintenance/swatch-name', 'method' => 'post']) !!} 
+                <div class="divider" style="height:2px"></div>
                   <div class="modal-content col s12">
                             
 
@@ -160,16 +170,17 @@
 
               <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                   <div class="input-field col s12">
-                    <input required id="addSwatchDesc" name = "addSwatchDesc" type="text" class="validate" placeholder="Smooth and reddish like version of citadel." required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$">
-                    <label for="swatch_description">Swatch Description <span class="red-text"><b>*</b></span></label>
+                    <input id="addSwatchDesc" name = "addSwatchDesc" type="text" class="validate" placeholder="Smooth and reddish like version of citadel.">
+                    <label for="swatch_description">Swatch Description </label>
                   </div>
               </div>
               </div>
 
                   <div class="modal-footer col s12" style="background-color:#26a69a">
-                    <button type="submit" id="addFabType" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
+                    <button type="submit" id="send" name="send" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
                     <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
                   </div>
+                    {!! Form::close() !!}
     	       </div><!-- addFabricType  -->
             </div><!-- card-content  --> 
         </div>  <!-- card-panel -->

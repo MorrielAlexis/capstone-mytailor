@@ -85,7 +85,7 @@
 
                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input required value = "{{$alteration->txtAlterationDesc}}" id="editAlterationDesc" name = "editAlterationDesc" type="text" class="validateDesc">
+                            <input  value = "{{$alteration->txtAlterationDesc}}" id="editAlterationDesc" name = "editAlterationDesc" type="text" class="validateDesc">
                             <label for="alteration_description">Alteration Desription</label>
                           </div>  
                         </div>
@@ -189,7 +189,7 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input required id="addAlterationDesc" name = "addAlterationDesc" type="text" class="validate" placeholder="Alteration type for modifying pants cuff.">
+                        <input  id="addAlterationDesc" name = "addAlterationDesc" type="text" class="validate" placeholder="Alteration type for modifying pants cuff.">
                         <label for="alteration_description">Alteration Description</label>
                       </div>
                   </div>
@@ -203,9 +203,10 @@
                 </div>
 
                 <div class="modal-footer col s12" style="background-color:#26a69a">
-                  <button type="submit" id="addFabType" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
+                  <button type="submit" id="send" name="send" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
                   <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
                 </div>
+                  {!! Form::close() !!}
     	       </div><!-- addFabricType  -->
             </div><!-- card-content  --> 
         </div>  <!-- card-panel -->

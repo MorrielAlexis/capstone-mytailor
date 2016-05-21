@@ -157,8 +157,8 @@
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                           <div class="input-field col s12">         
-                          <input required id="editRoleDescription" name="editRoleDescription" type="text" class="validate" required data-position="bottom" pattern="[A-Za-z\s]+" value="{{$role->strEmpRoleDesc}}">
-                            <label for="role_description">Role Description <span class="red-text"><b>*</b></span> </label>
+                          <input  id="editRoleDescription" name="editRoleDescription" type="text" class="validate" value="{{$role->strEmpRoleDesc}}">
+                            <label for="role_description">Role Description</label>
                           </div>  
                       </div>
                       </div>
@@ -247,7 +247,7 @@
 
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s12">
-                    <input required id="addRoleDescription" name="addRoleDescription" type="text" class="validate" placeholder="In charge in manufacturing garments." 
+                    <input  id="addRoleDescription" name="addRoleDescription" type="text" class="validate" placeholder="In charge in manufacturing garments." 
                     <label for="addRoleDescription" class="active">Role Description </label>
                   </div>
               </div>
@@ -255,7 +255,7 @@
 
                 <div class="modal-footer col s12" style="background-color:#26a69a">
                   <button type="submit" id="send" name"send" class="modal-action  waves-effect waves-green btn-flat">Add</button>
-                  <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
+                  <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
                 </div>
             {!! Form::close() !!}
           </div>
