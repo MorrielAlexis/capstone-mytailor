@@ -247,8 +247,8 @@
 
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s12">
-                    <input required id="addRoleDescription" name="addRoleDescription" type="text" class="validate" placeholder="In charge in manufacturing garments." required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$">
-                    <label for="addRoleDescription" class="active">Role Name <span class="red-text"><b>*</b></span></label>
+                    <input required id="addRoleDescription" name="addRoleDescription" type="text" class="validate" placeholder="In charge in manufacturing garments." 
+                    <label for="addRoleDescription" class="active">Role Description </label>
                   </div>
               </div>
               </div>

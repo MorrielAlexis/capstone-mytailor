@@ -16,7 +16,7 @@ class MaterialPurchasingController extends Controller
      */
     public function index()
     {
-        return view('materialPurchasing');
+        return view('transaction-materialpurchasing');
     }
 
     /**

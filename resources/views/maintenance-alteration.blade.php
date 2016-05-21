@@ -78,7 +78,7 @@
 
                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input required value = "{{$alteration->strAlterationName}}" id="editAlterationName" name = "editAlterationName" type="text" class="validateName">
+                            <input required value = "{{$alteration->strAlterationName}}" id="editAlterationName" name = "editAlterationName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" >
                             <label for="alteration_name">Alteration Name <span class="red-text"><b>*</b></span> </label>
                           </div>
                         </div>
@@ -86,7 +86,7 @@
                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
                             <input required value = "{{$alteration->txtAlterationDesc}}" id="editAlterationDesc" name = "editAlterationDesc" type="text" class="validateDesc">
-                            <label for="alteration_description">Alteration Desription <span class="red-text"><b>*</b></span> </label>
+                            <label for="alteration_description">Alteration Desription</label>
                           </div>  
                         </div>
 
@@ -182,14 +182,14 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input required id="addAlterationName" name = "addAlterationName" type="text" class="validate" pattern="^[a-zA-Z\-'`\s]{2,}$" placeholder="Skinny Cut">
+                        <input required id="addAlterationName" name = "addAlterationName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$"  placeholder="Skinny Cut">
                         <label for="alteration_name">Alteration Name <span class="red-text"><b>*</b></span></label>
                       </div>
                   </div>    
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input required id="addAlterationDesc" name = "addAlterationDesc" type="text" class="validate" placeholder="Alteration type for modifying pants cuff." pattern="^[a-zA-Z\-'`\s]{2,}$">
+                        <input required id="addAlterationDesc" name = "addAlterationDesc" type="text" class="validate" placeholder="Alteration type for modifying pants cuff.">
                         <label for="alteration_description">Alteration Description</label>
                       </div>
                   </div>

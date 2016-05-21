@@ -89,25 +89,27 @@ Route::group(['prefix' => 'maintenance'], function(){
 
 	Route::resource('swatch', 'SwatchController',
 		['only' => ['index']]);
+});
 
-	Route::resource('material', 'MaterialsController');
+Route::group(['prefix' => 'maintenance'], function(){
+	Route::resource('material-thread', 'MaterialThreadController');
 
 		Route::post('material/addThread','MaterialsController@addThread');
 		Route::post('material/editThread','MaterialsController@editThread');
 		Route::post('material/destroyThread','MaterialsController@deleteThread');
 
+	Route::resource('material-needle', 'MaterialNeedleController');
+
 		Route::post('material/addNeedle','MaterialsController@addNeedle');
 		Route::post('material/editNeedle','MaterialsController@editNeedle');
 		Route::post('material/destroyNeedle','MaterialsController@deleteNeedle');
 
-
-});
-
-Route::group(['prefix' => 'maintenance'], function(){
-	Route::resource('catalogue', 'CatalogueController');
-
-		Route::post('catalogue/update','CatalogueController@update_catalogue');
-		Route::post('catalogue/destroy','CatalogueController@delete_catalogue');
+	Route::resource('material-button', 'MaterialButtonController',
+		['only' => ['index']]);
+	Route::resource('material-zipper', 'MaterialZipperController',
+		['only' => ['index']]);
+	Route::resource('material-hookandeye', 'MaterialHookAndEyeController',
+		['only' => ['index']]);
 });
 
 Route::group(['prefix' => 'maintenance'], function(){
@@ -117,6 +119,12 @@ Route::group(['prefix' => 'maintenance'], function(){
 		Route::post('alteration/destroy','AlterationController@delete_alteration');
 });
 
+Route::group(['prefix' => 'maintenance'], function(){
+	Route::resource('catalogue', 'CatalogueController');
+
+		Route::post('catalogue/update','CatalogueController@update_catalogue');
+		Route::post('catalogue/destroy','CatalogueController@delete_catalogue');
+});
 
 Route::group(['prefix' => 'transaction'], function(){
 	Route::resource('walkin-individual', 'WalkInIndividualController');

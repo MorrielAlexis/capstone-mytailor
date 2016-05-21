@@ -16,12 +16,12 @@ class WalkInCompanyController extends Controller
      */
     public function index()
     {
-        return view('walkInCompany');
+        return view('transaction-walkincompany');
     }
  
     public function payment()
     {
-        return view('walkInCompanyCheckout');
+        return view('transaction-walkincompanycheckout');
     }
     /**
      * Show the form for creating a new resource.

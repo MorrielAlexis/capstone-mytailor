@@ -16,12 +16,12 @@ class WalkInIndividualController extends Controller
      */
     public function index()
     {
-        return view('walkInIndividual');
+        return view('transaction-walkInindividual');
     }
 
     public function payment()
     {
-        return view('walkInIndividualCheckout');
+        return view('transaction-walkInindividualcheckout');
     }
 
     /**

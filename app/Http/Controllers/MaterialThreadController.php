@@ -5,15 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Thread;
-use App\Needle;
-use App\Button;
-use App\Zipper;
-use App\HookAndEye;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class MaterialsController extends Controller
+class MaterialThreadController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -32,68 +28,11 @@ class MaterialsController extends Controller
         $ID = $ids["0"]->intThreadID;
         $newThreadID = $this->smartCounter($ID);    
 
-        /////NEEDLES/////
-        $ids = \DB::table('tblNeedle')
-            ->select('intNeedleID')
-            ->orderBy('created_at', 'desc')
-            ->orderBy('intNeedleID', 'desc')
-            ->take(1)
-            ->get();
-
-        $ID = $ids["0"]->intNeedleID;
-        $newNeedleID = $this->smartCounter($ID);    
-
-        /////BUTTONS/////
-        $ids = \DB::table('tblButton')
-            ->select('intButtonID')
-            ->orderBy('created_at', 'desc')
-            ->orderBy('intButtonID', 'desc')
-            ->take(1)
-            ->get();
-
-        $ID = $ids["0"]->intButtonID;
-        $newButtonID = $this->smartCounter($ID);    
-
-        /////ZIPPERS/////
-        $ids = \DB::table('tblZipper')
-            ->select('intZipperID')
-            ->orderBy('created_at', 'desc')
-            ->orderBy('intZipperID', 'desc')
-            ->take(1)
-            ->get();
-
-        $ID = $ids["0"]->intZipperID;
-        $newZipperID = $this->smartCounter($ID);    
-
-        /////HOOK AND EYE/////
-        $ids = \DB::table('tblHookEye')
-            ->select('intHookID')
-            ->orderBy('created_at', 'desc')
-            ->orderBy('intHookID', 'desc')
-            ->take(1)
-            ->get();
-
-        $ID = $ids["0"]->intHookID;
-        $newHookID = $this->smartCounter($ID);  
-
-
         $thread = Thread::all();
-        $needle = Needle::all();
-        $button = Button::all();
-        $zipper = Zipper::all();
-        $hook = HookAndEye::all();
 
-        return view('maintenance-materials')
+        return view('maintenance-material-thread')
                     ->with('threads', $thread)
-                    ->with('newThreadID', $newThreadID)
-                    ->with('needles', $needle)
-                    ->with('newNeedleID', $newNeedleID)
-                    ->with('buttons', $button)
-                    ->with('newButtonID', $newButtonID)
-                    ->with('zippers', $zipper)
-                    ->with('newZipperID', $newZipperID)
-                    ->with('hooks', $hook)
-                    ->with('newHookID', $newHookID);
+                    ->with('newThreadID', $newThreadID);
     }
 
     /**
@@ -162,7 +101,6 @@ class MaterialsController extends Controller
         //
     }
 
-        ///////////THREADS/////////////
     public function addThread(Request $request)
     {   
         $file = $request->input('addImage');
@@ -229,71 +167,6 @@ class MaterialsController extends Controller
         return redirect('maintenance/material');
     }
 
-    public function addNeedle(Request $request)
-    {   
-        $file = $request->input('addImage');
-        $destinationPath = 'imgNeedles';
-
-                if($file == '' || $file == null){
-                $Needle = Needle::create(array(
-                    'strNeedleID' => $request->input('addNeedleID'),
-                    'strNeedleBrand' => trim($request->input('addNeedleBrand')),
-                    'strNeedleSize' => trim($request->input('addNeedleSize')),
-                    'strNeedleDesc' => trim($request->input('addNeedleDesc')),
-                    'boolIsActive' => 1
-                    ));
-                }else{
-                    $request->file('addImg')->move($destinationPath);
-
-                    $Needle = Needle::create(array(
-                    'strNeedleID' => $request->input('addNeedleID'),
-                    'strNeedleBrand' => trim($request->input('addNeedleBrand')),
-                    'strNeedleSize' => trim($request->input('addNeedleSize')),
-                    'strNeedleDesc' => trim($request->input('addNeedleDesc')),
-                    'strNeedleImage' => 'imgMaterialNeedles/'.$fileBrand,
-                    'boolIsActive' => 1
-                        ));
-                }
-                $Needle ->save();
-
-                return redirect('/maintenance/material');
-    }
-
-    public function editNeedle(Request $request)
-    {
-        $isAdded = FALSE;
-
-        $id = $request->input('editNeedleID');
-        $Needle = Needle::find($id);
-
-                if($request->input('editNeedleImage') == $Needle->strNeedleImage){
-                    $Needle->strNeedleBrand = trim($request->input('editNeedleBrand'));
-                    $Needle->strNeedleSize = trim($request->input('editNeedleSize'));
-                    $Needle->strNeedleDesc = trim($request->input('editNeedleDesc'));    
-                }else{  
-                    $destinationPath = 'imgNeedles';
-                    $request->file('editImg')->move($destinationPath);
-
-                    $Needle->strNeedleBrand = trim($request->input('editNeedleBrand'));
-                    $Needle->strNeedleSize = trim($request->input('editNeedleSize'));
-                    $Needle->strNeedleDesc = trim($request->input('editNeedleDesc'));
-                    $Needle->strNeedleImage = 'imgMaterialNeedles/'.$fileBrand;
-                }
-                $Needle->save();
-                return redirect('/maintenance/material');
-    }
-
-    public function delNeedle(Request $request)
-    {
-        $id = $request->input('delNeedleID');
-        $Needle = Needle::find($id);
-
-        $Needle->boolIsActive = 0;
-
-        $Needle->save();
-
-        return redirect('maintenance/material');
-    }
 
     public function smartCounter($id)
     {   
