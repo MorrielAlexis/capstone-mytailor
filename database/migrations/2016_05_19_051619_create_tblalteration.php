@@ -17,6 +17,7 @@ class CreateTblAlteration extends Migration
             $table->string('strAlterationName');
             $table->text('txtAlterationDesc')->nullable();
             $table->double('dblAlterationPrice');
+            $table->string('strAlterationInactiveReason')->nullable();
             $table->boolean('boolIsActive');
             $table->timestamps();
         });

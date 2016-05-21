@@ -62,9 +62,10 @@ Route::group(['prefix' => 'maintenance'], function(){
 		Route::post('segment-pattern/update','SegmentPatternController@update_segmentpattern');
 		Route::post('segment-pattern/destroy','SegmentPatternController@delete_segmentpattern');
 
-		Route::resource('measurement-category', 'MeasurementCategoryController');
+	Route::resource('measurement-category', 'MeasurementCategoryController');
+		Route::post('measurement-category/destroy', 'MeasurementCategoryController@delete_measurementcategory');
 
-		Route::resource('measurement-detail', 'MeasurementDetailController');
+	Route::resource('measurement-detail', 'MeasurementDetailController');
 
 		Route::post('measurement-detail/update','MeasurementDetailController@update_measurementdetail');
 		Route::post('measurement-detail/destroy','MeasurementDetailController@delete_measurementdetail');
@@ -90,29 +91,35 @@ Route::group(['prefix' => 'maintenance'], function(){
 
 
 		Route::post('swatch/update','SwatchController@update_swatch');
-		Route::post('swatch/destroy','SwatchController@delete_swatch');
-		
+	
+		Route::post('swatch/destroy', 'SwatchController@delete_swatch');
+
 });
 
 Route::group(['prefix' => 'maintenance'], function(){
 	Route::resource('material-thread', 'MaterialThreadController');
 
-		Route::post('material/addThread','MaterialsController@addThread');
-		Route::post('material/editThread','MaterialsController@editThread');
-		Route::post('material/destroyThread','MaterialsController@deleteThread');
+		Route::post('material-thread/add','MaterialThreadController@addThread');
+		Route::post('material-thread/edit','MaterialThreadController@editThread');
+		Route::post('material-thread/destroy','MaterialThreadController@deleteThread');
 
 	Route::resource('material-needle', 'MaterialNeedleController');
 
-		Route::post('material/addNeedle','MaterialsController@addNeedle');
-		Route::post('material/editNeedle','MaterialsController@editNeedle');
-		Route::post('material/destroyNeedle','MaterialsController@deleteNeedle');
+		Route::post('material-needle/add','MaterialNeedleController@addNeedle');
+		Route::post('material-needle/edit','MaterialNeedleController@editNeedle');
+		Route::post('material-needle/destroy','MaterialNeedleController@delNeedle');
 
-	Route::resource('material-button', 'MaterialButtonController',
-		['only' => ['index']]);
-	Route::resource('material-zipper', 'MaterialZipperController',
-		['only' => ['index']]);
-	Route::resource('material-hookandeye', 'MaterialHookAndEyeController',
-		['only' => ['index']]);
+	Route::resource('material-button', 'MaterialButtonController');
+
+		Route::post('material-button/destroy', 'MaterialButtonController@delete_button');
+
+	Route::resource('material-zipper', 'MaterialZipperController');
+
+		Route::post('material-zipper/destroy', 'MaterialZipperController@delete_zipper');
+
+	Route::resource('material-hookandeye', 'MaterialHookAndEyeController');
+
+		Route::post('material-hookandeye/destroy', 'MaterialHookAndEyeController@delete_hookeye');
 });
 
 Route::group(['prefix' => 'maintenance'], function(){
@@ -175,8 +182,9 @@ Route::group(['prefix' => 'transaction'], function(){
 });
 
 Route::group(['prefix' => 'utilities'], function(){
-	Route::resource('inactive-data', 'InactiveDataController',
-		['only' => ['index']]);
+	Route::resource('inactive-data', 'InactiveDataController');
+
+		Route::post('inactive-data/reactivate_individual', 'InactiveDataController@reactivate_individual');
 });
 
 Route::get('/acceptIndividual','OnlineCustomerIndividualController@accept');

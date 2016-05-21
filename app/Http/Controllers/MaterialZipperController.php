@@ -101,6 +101,16 @@ class MaterialZipperController extends Controller
         //
     }
 
+    function delete_zipper(Request $request)
+    {
+        $zipper = Zipper::find($request->input('delZipperID'));
+
+        $zipper->strZipperInactiveReason = trim($request->input('delInactiveZipper'));
+        $zipper->boolIsActive = 0;
+        $zipper->save();
+
+        return redirect('maintenance/material-zipper');
+    }
 
     public function smartCounter($id)
     {   

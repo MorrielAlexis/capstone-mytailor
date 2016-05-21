@@ -101,6 +101,16 @@ class MaterialButtonController extends Controller
         //
     }
 
+    function delete_button(Request $request)
+    {
+        $button = Button::find($request->input('delButtonID'));
+
+        $button->strButtonInactiveReason = trim($request->input('delInactiveButton'));
+        $button->boolIsActive = 0;
+        $button->save();
+
+        return redirect('maintenance/material-button');
+    }
 
     public function smartCounter($id)
     {   

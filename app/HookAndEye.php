@@ -8,7 +8,7 @@ class HookAndEye extends Model
 {
      protected $table = 'tblHookEye';
 
-	protected $primaryKey = 'strHookID';
+	protected $primaryKey = 'intHookID';
 
 	protected $fillable = ['strHookBrand', 'strHookSize',
 							'strHookColor', 'strHookImage',

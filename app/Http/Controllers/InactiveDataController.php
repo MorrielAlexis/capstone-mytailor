@@ -54,7 +54,7 @@ class InactiveDataController extends Controller
 
         $newID = 0;
 
-        $reason = Individual::all(); 
+//$reason = Individual::all(); 
 
 
         return view('inactiveData')
@@ -76,7 +76,7 @@ class InactiveDataController extends Controller
             ->with('hook', $hook)
             ->with('catalogue', $catalogue)
 
-            ->with('reason', $reason)
+            //->with('reason', $reason)
             ->with('newID', $newID);
     }
 
@@ -144,5 +144,25 @@ class InactiveDataController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    function reactivate_individual(Request $request)
+    {
+        $individual = Individual::find($request->input('reactID'));
+
+      //  $reas = $request->input('reactInactiveID');
+       //$indiv = \DB::table('tblCustIndividual')
+           //     ->where('strIndivID', "=", $reas)
+           //     ->delete();
+
+       // $reason = Individual::where('strIndivID', '=', $reas)->update(['strIndivInactiveReason' => null]);
+
+        $indiv = \DB::table('tblCustIndividual')->where('strIndivID', $individual)
+                ->update(array($individual->strIndivInactiveReason => null));
+
+        $individual->boolIsActive = 1;
+        $individual->save();
+
+        return redirect('utilities/inactive-data');
     }
 }

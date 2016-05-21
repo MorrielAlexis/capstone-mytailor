@@ -47,15 +47,14 @@
                 <table class = "table centered data-custInd" align = "center" border = "1">
                   <thead>
                     <tr>
-                      <th data-field="fname">First Name</th>
-                      <th data-field= "mname">Middle Name </th>
-                      <th data-field="lname">Last Name</th>
+                      <th data-field="fname">Customer Name</th>
                       <th data-field="address">Address</th>
                       <th data-field="email">Email Address</th>
                       <th data-field="cellphone">Cellphone No.</th>
+                      <th data-field="cellphone">Cellphone No. (alt) </th>
                       <th data-field="Landline">Telephone No.</th>
-                      <th data-field="React">Reason for Deactivation</th>
-                      <th data-field="React">Reactivate</th>
+                      <th data-field="Landline">Reason for Deactivation</th>
+                      <th data-field="Edit">Reactivate</th>
                     </tr>
                   </thead>
 
@@ -63,19 +62,18 @@
                     @foreach($individual as $individual_1)
                       @if($individual_1->boolIsActive == 0)
                       <tr>
-                        <td>{{ $individual_1->strCustPrivFName }}</td>
-                        <td>{{ $individual_1->strCustPrivMName }}</td>
-                        <td>{{ $individual_1->strCustPrivLName }}</td>
-                        <td>{{ $individual_1->strCustPrivHouseNo }} {{ $individual_1->strCustPrivStreet }} {{ $individual_1->strCustPrivBarangay }} {{ $individual_1->strCustPrivCity }} {{ $individual_1->strCustPrivProvince }}  {{ $individual_1->strCustPrivZipCode }} </td>
-                        <td>{{ $individual_1->strCustPrivEmailAddress}}</td>                  
-                        <td>{{ $individual_1->strCustPrivCPNumber }}</td> 
-                        <td>{{ $individual_1->strCustPrivLandlineNumber }}</td> 
-                        <td>{{ $individual_1->strInactiveReason }}</td>      
+                        <td>{{ $individual_1->strIndivFName }} {{ $individual_1->strIndivMName }} {{ $individual_1->strIndivLName }}</td>
+                        <td>{{ $individual_1->strIndivHouseNo }} {{ $individual_1->strIndivStreet }} {{ $individual_1->strIndivBarangay }} {{ $individual_1->strIndivCity }} {{ $individual_1->strIndivProvince }}  {{ $individual_1->strIndivZipCode }} </td>
+                        <td>{{ $individual_1->strIndivEmailAddress}}</td>                  
+                        <td>{{ $individual_1->strIndivCPNumber }}</td> 
+                        <td>{{ $individual_1->strIndivCPNumberAlt }}</td> 
+                        <td>{{ $individual_1->strIndivLandlineNumber }}</td> 
+                        <td>{{ $individual_1->strIndivInactiveReason }}</td>      
                         <td>          
                           
-                          {!! Form::open(['url' => 'reactCustPrivIndiv']) !!}
-                            <input type="hidden" value="{{ $individual_1->strCustPrivIndivID }}" id="reactID" name="reactID">
-                            <input type="hidden" value="{{ $individual_1->strCustPrivIndivID }}" id="reactInactiveIndiv" name="reactInactiveIndiv">
+                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate_individual']) !!}
+                            <input type="hidden" value="{{ $individual_1->strIndivID }}" id="reactID" name="reactID">
+                            <input type="hidden" value="{{ $individual_1->strIndivID }}" id="reactInactiveIndiv" name="reactInactiveIndiv">
                             <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of customer to the table">REACTIVATE</button>
                           {!! Form::close() !!}
                         </td>
@@ -132,8 +130,8 @@
                           <td>
                             
                             {!! Form::open(['url' => 'reactCustCompany']) !!}
-                              <input type="hidden" value="{{ $company_1->strCustCompanyID }}" id="reactInactiveComp" name="reactInactiveComp">
-                              <input type="hidden" value="{{ $company_1->strCustCompanyID }}" id="reactID" name="reactID">
+                              <input type="hidden" value="{{ $company_1->strCompanyID }}" id="reactInactiveComp" name="reactInactiveComp">
+                              <input type="hidden" value="{{ $company_1->strCompanyID }}" id="reactID" name="reactID">
                               <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to reeturn data of customer to the table">REACTIVATE</button>
                              
                             {!! Form::close() !!}
@@ -404,7 +402,7 @@
                             <td>{{ $pattern_1->strInactiveReason }}</td>
                             <td>
                             {!! Form::open(['url' => 'reactDesignPattern']) !!}
-                              <input type="hidden" value="{{ $pattern_1->strDesignPatternID }}" id="reactID" name="reactID">
+                              <input type="hidden" value="{{ $pattern_1->strSegPatternID }}" id="reactID" name="reactID">
                               <input type="hidden" value="{{ $pattern_1->strDesignPatternID }}" id="reactInactivePattern" name="reactInactivePattern">
                               <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of segment pattern to the table">REACTIVATE</button>
                             {!! Form::close() !!}

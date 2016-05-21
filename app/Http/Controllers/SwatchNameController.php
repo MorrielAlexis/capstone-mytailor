@@ -135,14 +135,15 @@ class SwatchNameController extends Controller
          return redirect('maintenance/swatch-name');
     }
 
-      function delete_swatchname(Request $request)
+    function delete_swatchname(Request $request)
     {
         $swatchnamemainte = SwatchNameMaintenance::find($request->input('delSwatchNameID'));
 
+        $swatchnamemainte->strSwatchNameInactiveReason = trim($request->input('delInactiveSwatchName'));
         $swatchnamemainte->boolIsActive = 0;
         $swatchnamemainte->save();
 
-         return redirect('maintenance/swatch-name');
+        return redirect('maintenance/swatch-name');
     }
 
     public function smartCounter($id)

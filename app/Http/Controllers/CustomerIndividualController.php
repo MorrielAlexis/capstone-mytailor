@@ -151,6 +151,7 @@ class CustomerIndividualController extends Controller
     {
         $individual = Individual::find($request->input('delIndivID'));
 
+        $individual->strIndivInactiveReason = trim($request->input('delInactiveReason'));
         $individual->boolIsActive = 0;
         $individual->save();
 

@@ -13,6 +13,7 @@ class SwatchNameMaintenance extends Model
 								'strSwatchNameTypeFK',
 								'strSName',
 								'txtSwatchNameDesc',
+								'strSwatchNameInactiveReason',
 								'boolIsActive'
 								//
 								);

@@ -131,7 +131,7 @@ class GarmentCategoryController extends Controller
     
         $garment = GarmentCategory::find($request->input('delGarmentID'));
     
-
+        $garment->strGarmentCategoryInactiveReason = trim($request->input('delInactiveGarment'));
         $garment->boolIsActive = 0;
         $garment ->save();
 

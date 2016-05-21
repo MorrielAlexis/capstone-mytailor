@@ -181,7 +181,7 @@
                           <div id="del{{$needle->intNeedleID}}" class="modal modal-fixed-footer">
                             <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS NEEDLE?</center> </font> </h5> 
                             
-                            {!! Form::open(['url' => 'delNeedle']) !!}
+                            {!! Form::open(['url' => 'maintenance/material-needle/destroy']) !!}
                               <div class="divider" style="height:2px"></div>
                               <div class="modal-content col s12">
                                 
@@ -210,17 +210,18 @@
                                   </div>
                               </div>
 
-                                  <div class="input-field">
-                                    <input value="{{$needle->intNeedleID}}" id="delInactiveNeedle" name="delInactiveNeedle" type="hidden">
+                                  <div class="input-field col s12">
+                                    <label for="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span></label>
+                                    <input value="{{$needle->strNeedleInactiveReason}}" id="delInactiveNeedle" name="delInactiveNeedle" type="text">
                                   </div>
 
                               <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
-                                  <div class="input-field col s12">
+                                  <!--<div class="input-field col s12">
                                     <input id="delInactiveReason" name = "delInactiveReason" value="{{$needle->strNeedleInactiveReason}}" type="text" class="validate" required>
-                                    <label for="Needle_Reason"> *Reason for Deactivation </label>
+                                    <label for="Needle_Reason"> *Reason for Deactivation </label>-->
                                   </div>
                               </div>
-                              </div>
+                              
 
                               <div class="modal-footer col s12" style="background-color:#26a69a">
                                 <button type="submit" class="waves-effect waves-green btn-flat">OK</button>

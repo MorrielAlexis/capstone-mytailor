@@ -151,6 +151,7 @@ class CustomerCompanyController extends Controller
     {
         $company = Company::find($request->input('delCompanyID'));
 
+        $company->strCompanyInactiveReason = trim($request->input('delInactiveComp'));
         $company->boolIsActive = 0;
         $company->save();
 

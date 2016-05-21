@@ -8,7 +8,7 @@ class Button extends Model
 {
      protected $table = 'tblButton';
 
-	protected $primaryKey = 'strButtonID';
+	protected $primaryKey = 'intButtonID';
 
 	protected $fillable = ['strButtonBrand', 
 							'strButtonSize',

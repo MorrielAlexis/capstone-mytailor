@@ -135,6 +135,17 @@ class MeasurementCategoryController extends Controller
         //
     }
 
+    function delete_measurementcategory(Request $request)
+    {
+        $meas_category = MeasurementCategory::find($request->input('delMeasurementID'));
+
+        $meas_category->strMeasCatInactiveReason = trim($request->input('delInactiveHead'));
+        $meas_category->boolIsActive = 0;
+        $meas_category->save();
+
+        return redirect('maintenance/measurement-category');
+    }
+
     public function smartCounter($id)
     {   
 

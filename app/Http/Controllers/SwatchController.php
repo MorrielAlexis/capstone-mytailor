@@ -114,7 +114,19 @@ class SwatchController extends Controller
         //
     }
 
-     public function smartCounter($id)
+
+    function delete_swatch(Request $request)
+    {
+        $swatch = Swatch::find($request->input('delSwatchID'));
+
+        $swatch->strSwatchInactiveReason = trim($request->input('delInactiveSwatch'));
+        $swatch->boolIsActive = 0;
+        $swatch->save();
+
+        return redirect('maintenance/swatch');
+    }
+
+    public function smartCounter($id)
     {   
 
         $lastID = str_split($id);

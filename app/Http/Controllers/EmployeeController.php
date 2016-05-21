@@ -167,6 +167,7 @@ class EmployeeController extends Controller
     {
         $employee = Employee::find($request->input('delEmpID'));
 
+        $employee->strEmpInactiveReason = trim($request->input('delInactiveEmp'));
         $employee->boolIsActive = 0;
 
         $employee->save();
