@@ -16,6 +16,7 @@ class CreateSwatchnameMaintenance extends Migration
             $table->string('strSwatchNameID')->primary();
             $table->string('strSName');
             $table->text('txtSwatchNameDesc');
+            $table->text('strSwatchNameInactiveReason')->nullable();
             $table->boolean('boolIsActive');
             $table->timestamps();
         });

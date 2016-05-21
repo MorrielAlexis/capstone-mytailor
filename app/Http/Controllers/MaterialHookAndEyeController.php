@@ -101,6 +101,16 @@ class MaterialHookAndEyeController extends Controller
         //
     }
 
+    function delete_hookeye(Request $request)
+    {
+        $hook = HookAndEye::find($request->input('delHookID'));
+
+        $hook->strHookInactiveReason = trim($request->input('delInactiveHook'));
+        $hook->boolIsActive = 0;
+        $hook->save();
+
+        return redirect('maintenance/material-hookandeye');
+    }
 
     public function smartCounter($id)
     {   

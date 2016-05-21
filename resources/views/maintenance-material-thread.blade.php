@@ -182,7 +182,7 @@
 			                            <!--deactivate THREADS-->
 			                          <div id="del{{ $thread->intThreadID }}" class="modal modal-fixed-footer">
 			                              
-			                              {!! Form::open(['url' => 'delThread']) !!}
+			                              {!! Form::open(['url' => 'maintenance/material-thread/destroy']) !!}
 			                                <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS THREAD?</center> </font> </h5> 
 			                                <div class="divider" style="height:2px"></div>
 			                                <div class="modal-content col s12">
@@ -212,17 +212,18 @@
 			                                  </div>
 			                              </div>
 
-			                                  <div class="input-field">
-			                                    <input value="{{$thread->intThreadID}}" id="delInactiveThread" name="delInactiveThread" type="hidden" readonly>
+			                                  <div class="input-field col s12">
+			                                  	<label for="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span></label>
+			                                    <input value="{{$thread->strThreadInactiveReason}}" id="delInactiveThread" name="delInactiveThread" type="text">
 			                                  </div>
 
 			                              <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
-			                                  <div class="input-field col s12">
+			                                  <!--<div class="input-field col s12">
 			                                    <input id="delInactiveReason" name = "delInactiveReason" value="{{$thread->strThreadInactiveReason}}" type="text" class="validate" required>
-			                                    <label for="Thread_InactiveReason"> *Reason for Deactivation </label>
+			                                    <label for="Thread_InactiveReason"> *Reason for Deactivation </label>-->
 			                                  </div>
 			                              </div>
-			                              </div>
+			                              
 
 			                              <div class="modal-footer col s12" style="background-color:#26a69a">
 			                                <button type="submit" class="waves-effect waves-green btn-flat">OK</button>

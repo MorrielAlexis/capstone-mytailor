@@ -160,6 +160,7 @@ class MaterialNeedleController extends Controller
         $id = $request->input('delNeedleID');
         $Needle = Needle::find($id);
 
+        $Needle->strNeedleInactiveReason = trim($request->input('delInactiveNeedle'));
         $Needle->boolIsActive = 0;
 
         $Needle->save();

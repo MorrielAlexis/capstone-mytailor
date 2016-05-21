@@ -155,16 +155,17 @@ class MaterialThreadController extends Controller
                 return redirect('/maintenance/material');
     }
 
-    public function delThread(Request $request)
+    public function deleteThread(Request $request)
     {
         $id = $request->input('delThreadID');
         $thread = Thread::find($id);
 
+        $thread->strThreadInactiveReason = trim($request->input('delInactiveThread'));
         $thread->boolIsActive = 0;
 
         $thread->save();
 
-        return redirect('maintenance/material');
+        return redirect('maintenance/material-thread');
     }
 
 

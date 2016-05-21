@@ -12,6 +12,7 @@ class SwatchNameMaintenance extends Model
 	protected $fillable = array('strSwatchNameID',
 								'strSName',
 								'txtSwatchNameDesc',
+								'strSwatchNameInactiveReason',
 								'boolIsActive'
 								//
 								);

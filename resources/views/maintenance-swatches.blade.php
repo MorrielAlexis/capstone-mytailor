@@ -180,7 +180,7 @@
                   <div id="del{{$swatch->strSwatchID}}" class="modal modal-fixed-footer">                        
                         <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS SWATCH?</center> </font> </h5>                           
                         
-                        {!! Form::open(['url' => 'delSwatch']) !!}
+                        {!! Form::open(['url' => 'maintenance/swatch/destroy']) !!}
                           <div class="divider" style="height:2px"></div>
                           <div class="modal-content col s12">  
                             
@@ -207,15 +207,16 @@
                               </div>
                         </div>
 
-                              <div class="input-field">
-                                <input value = "{{ $swatch->strSwatchID }}" id="delInactiveSwatch" name= "delInactiveSwatch" type="hidden">
+                              <div class="input-field col s12">
+                                <label for="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span> </label>
+                                <input value = "{{ $swatch->strSwatchInactiveReason }}" id="delInactiveSwatch" name= "delInactiveSwatch" type="text">
                               </div>   
 
                         <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
-                              <div class="input-field col s12">
+                              <!--<div class="input-field col s12">
                                 <input value="{{$swatch->strSwatchInactiveReason}}" id="delInactiveReason" name= "delInactiveReason" type="text" class="" required>
                                 <label for="swatch_code">*Reason for Deactivation </label>
-                              </div> 
+                              </div> -->
                         </div>                
                         </div>
                           
