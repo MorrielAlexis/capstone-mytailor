@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\SwatchNameMaintenance;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -57,7 +56,15 @@ class SwatchNameController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $swatchnamemainte = SwatchNameMaintenance::create(array(
+                'strSwatchNameID' => $request->input('addSwatchNameID'),
+                'strSName' =>trim($request->input('addSwatchName')),
+                'txtSwatchNameDesc' => trim($request->input('addSwatchDesc')),  
+                'boolIsActive' => 1
+            ));
+        $added = $swatchnamemainte->save();
+
+        return redirect('maintenance/swatch-name?success=true');
     }
 
     /**
@@ -103,6 +110,27 @@ class SwatchNameController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    function update_swatchname(Request $request)
+    {
+         $swatchnamemainte = SwatchNameMaintenance::find($request->input('editSwatchNameID'));
+
+               $swatchnamemainte->strSName = trim($request->input('editSName'));
+               $swatchnamemainte->txtSwatchNameDesc = trim($request->input('editSwatchNameDesc'));
+        $swatchnamemainte->save();
+
+         return redirect('maintenance/swatch-name');
+    }
+
+      function delete_swatchname(Request $request)
+    {
+        $swatchnamemainte = SwatchNameMaintenance::find($request->input('delSwatchNameID'));
+
+        $swatchnamemainte->boolIsActive = 0;
+        $swatchnamemainte->save();
+
+         return redirect('maintenance/swatch-name');
     }
 
     public function smartCounter($id)
