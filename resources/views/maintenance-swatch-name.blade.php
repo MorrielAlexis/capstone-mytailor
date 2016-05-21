@@ -43,6 +43,7 @@
                 <thead>
                   <tr>
               		  <!--<th data-field="fabricID">Fabric Type ID</th>-->
+                    <th data-field="swatchNameType">Type</th>
                     <th data-field="swatchName">Name</th>
               		  <th data-field="swatchDescription">Description</th>
                     <th data-field="Edit">Actions</th>
@@ -55,6 +56,7 @@
                    @foreach($swatchnamemainte as $swatchnamemainte)
                      @if($swatchnamemainte->boolIsActive == 1)
                   <tr>
+                    <td>{{ $swatchnamemainte->strFabricTypeName}}</td>
                		  <td>{{ $swatchnamemainte->strSName}}</td>
               		  <td>{{ $swatchnamemainte->txtSwatchNameDesc}}</td>
               		  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of swatch name" href="#edit{{$swatchnamemainte->strSwatchNameID}}"><i class="mdi-editor-mode-edit"></i></a>
@@ -69,6 +71,25 @@
                         <div class="input-field">
                           <input value = "{{$swatchnamemainte->strSwatchNameID}}" id="editSwatchNameID" name = "editSwatchNameID" type="hidden">
                         </div>
+
+                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                              <div class="input-field col s12">                                                    
+                                <select class="browser-default" id="editCategory" name="editCategory"required>
+                                  <option value="" disabled selected>Choose fabric type:</option>
+                                  @foreach($fabricType as $fab)
+                                    @if($swatchnamemainte->strSwatchNameTypeFK == $fab->strFabricTypeID && $fab->boolIsActive == 1)
+                                      <option selected value="{{ $fab->strFabricTypeID }}">{{ $fab->strFabricTypeName }}</option>
+                                    @elseif($fab->boolIsActive == 1)
+                                      <option value="{{ $fab->strFabricTypeID }}">{{ $fab->strFabricTypeName }}</option>
+                                    @endif
+                                  @endforeach
+                                </select>  
+                                <!-- <label >Type<span class="red-text"><b>*</b></span></label>  -->
+                              </div>  
+                          </div> 
+
+
+
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s12">
@@ -156,6 +177,21 @@
                   <div class="input-field">
                     <input value = "{{$newID}}" id="addSwatchNameID" name = "addSwatchNameID" type="hidden">
                   </div>
+
+
+                  <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                      <div class="input-field col s12">
+                      <select class="browser-default" id="addCategory" name="addCategory"required>
+                                      <option value="" disabled selected>Choose fabric type:</option>
+                                        @foreach($fabricType as $fabricType_1)
+                                        @if($fabricType_1->boolIsActive == 1) 
+                                          <option value="{{ $fabricType_1->strFabricTypeID }}">{{ $fabricType_1->strFabricTypeName
+                                       }}</option>
+                                    @endif                       
+                                  @endforeach
+                                </select>  
+                              </div>  
+                          </div> 
 
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s12">

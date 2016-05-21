@@ -17,13 +17,15 @@ class SwatchNameSeeder extends Seeder
         $tblSwatchName = array (
             array(
                 'strSwatchNameID' => 'SWNAM0001',
-                'strSName' => 'Citadel Silk',
+                'strSwatchNameTypeFK' => 'FAB001',
+                'strSName' => 'Ruby',
                 'txtSwatchNameDesc' =>'A smooth version of citadel.',
                 'boolIsActive' => '1'
             ),
 
             array(
                 'strSwatchNameID' => 'SWNAM0002',
+                'strSwatchNameTypeFK' => 'FAB002',
                 'strSName' => 'Antique',
                 'txtSwatchNameDesc' =>'An antique version of silk.',
                 'boolIsActive' => '1'

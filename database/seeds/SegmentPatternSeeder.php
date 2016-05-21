@@ -26,7 +26,7 @@ class SegmentPatternSeeder extends Seeder
 
             array(
                 'strSegPatternID' => 'SPAT002',
-                'strSegPCategoryFK' => 'GARM001',
+                'strSegPCategoryFK' => 'GARM002',
                 'strSegPNameFK' => 'SEGM001',
                 'strSegPName'=>'Slim Fit',
                 'strSegPImage' => '',

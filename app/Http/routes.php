@@ -86,8 +86,12 @@ Route::group(['prefix' => 'maintenance'], function(){
 		Route::post('swatch-name/destroy','SwatchNameController@delete_swatchname');
 
 
-	Route::resource('swatch', 'SwatchController',
-		['only' => ['index']]);
+	Route::resource('swatch', 'SwatchController');
+
+
+		Route::post('swatch/update','SwatchController@update_swatch');
+		Route::post('swatch/destroy','SwatchController@delete_swatch');
+		
 });
 
 Route::group(['prefix' => 'maintenance'], function(){

@@ -121,7 +121,7 @@
                       <div id="edit{{$swatch->strSwatchID}}" class="modal modal-fixed-footer">                        
                         <h5><font color = "#1b5e20"><center>EDIT FABRIC SWATCH</center> </font> </h5>
                             
-                          {!! Form::open(['url' => 'editSwatch']) !!}
+                          {!! Form::open(['url' => 'maintenance/swatch/update', 'files' => 'true']) !!}
                             <div class="divider" style="height:2px"></div>
                             <div class="modal-content col s12">
                                                       
@@ -131,13 +131,15 @@
 
                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
+
                                 <select class="browser-default" required  name='editFabric'>
                                   <option disabled selected value="">*Fabric Type</option>
+                                  
                                   @foreach($fabricType as $fab)
-                                    @if($swatch->strSwatchFabricTypeName == $fab->strFabricTypeID && $fab->boolIsActive == 1)
-                                      <option selected value="{{ $fab->strFabricTypeID }}">{{ $fab->strSwatchFabricTypeNamestrSwatchFabricTypeName }}</option>
+                                    @if($swatch->strSwatchTypeFK == $fab->strFabricTypeID && $fab->boolIsActive == 1)
+                                      <option selected value="{{ $fab->strFabricTypeID }}">{{ $fab->strSwatchTypeFK }}</option>
                                     @elseif($fab->boolIsActive == 1)
-                                      <option value="{{ $fab->strFabricTypeID }}">{{ $fab->strSwatchFabricTypeName }}</option>strSwatchFabricTypeName
+                                      <option value="{{ $fab->strFabricTypeID }}">{{ $fab->strSwatchTypeFK }}</option>strSwatchTypeFK
                                     @endif
                                   @endforeach
                                 </select>
@@ -190,7 +192,7 @@
 
                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                  <input type="text" value="{{$swatch->strSwatchFabricTypeName}}" readonly>
+                                  <input type="text" value="{{$swatch->strSwatchTypeFK}}" readonly>
                                   <label>Fabric Type</label>
                               </div>
                         </div>  
