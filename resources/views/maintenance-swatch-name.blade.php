@@ -110,8 +110,9 @@
                           </div>
                       </div>
 
-                          <div>
-                            <input value="delInactiveSwatchName" id="delInactiveSwatchName" name="delInactiveSwatchName" type="hidden">
+                          <div class="input-field col s12">
+                            <label for="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span> </label>
+                            <input value="delInactiveSwatchName" id="delInactiveSwatchName" name="delInactiveSwatchName" type="text">
                           </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">

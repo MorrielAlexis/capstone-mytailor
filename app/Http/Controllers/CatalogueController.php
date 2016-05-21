@@ -171,8 +171,8 @@ class CatalogueController extends Controller
 
         $catalogue = Catalogue::find($request->input('delCatalogueID'));
 
+        $catalogue->strCatalogueInactiveReason = trim($request->input('delInactiveCatalogue'));
         $catalogue->boolIsActive = 0;
-
         $catalogue->save();
 
         return redirect('maintenance/catalogue');

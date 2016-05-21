@@ -186,23 +186,24 @@
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input id="delEmpRoleName" name="delEmpRoleName" pattern="[A-Za-z\s]+" value="{{$role->strEmpRoleName}}" type="text" class="readonly" >
+                            <input id="delEmpRoleName" name="delEmpRoleName" pattern="[A-Za-z\s]+" value="{{$role->strEmpRoleName}}" type="text" class="" readonly>
                             <label for="role_name">Role Name </label>
                           </div>
                     </div>
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input  value="{{$role->strEmpRoleDesc}}" type="text" class="readonly"  id="delEmpRoleDesc" name="delEmpRoleDesc">
+                            <input  value="{{$role->strEmpRoleDesc}}" type="text" class=""  id="delEmpRoleDesc" name="delEmpRoleDesc" readonly>
                             <label for="role_description">Role Description </label>
                           </div>  
                     </div>
 
-                          <!-- <div class="input-field">
-                            <input id="delInactiveRole" name = "delInactiveRole" value = "{{$role->strEmpRoleID}}" type="hidden">
+                          <div class="input-field col s12">
+                            <label for="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span> </label>
+                            <input id="delInactiveRole" name = "delInactiveRole" value = "{{$role->strRoleInactiveReason}}" type="text">
                           </div>
 
-                    <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
+                    <!-- <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                           <div class="input-field">
                             <input id="delInactiveReason" name = "delInactiveReason" value = "{{$role->strInactiveReason}}" type="text" class="validate" required>
                             <label for="fax"> *Reason for Deactivation </label>

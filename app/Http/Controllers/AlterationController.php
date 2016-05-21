@@ -136,8 +136,8 @@ class AlterationController extends Controller
     {
         $alteration = Alteration::find($request->input('delAlterationNameID'));
 
+        $alteration->strAlterationInactiveReason = trim($request->input('delInactiveAlteration'));
         $alteration->boolIsActive = 0;
-
         $alteration->save();
         
         return redirect('maintenance/alteration');

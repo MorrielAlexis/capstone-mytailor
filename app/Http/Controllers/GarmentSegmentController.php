@@ -140,8 +140,8 @@ class GarmentSegmentController extends Controller
     {
         $segment = GarmentSegment::find($request->input('delSegmentID'));
 
+        $segment->strSegInactiveReason = trim($request->input('delInactiveSegment'));
         $segment->boolIsActive = 0;
-
         $segment->save();
 
        return redirect('maintenance/garment-segment');

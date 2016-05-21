@@ -181,8 +181,8 @@ class SegmentPatternController extends Controller
 
         $pattern = SegmentPattern::find($request->input('delPatternID'));
 
+        $pattern->strSegPInactiveReason = trim($request->input('delInactivePattern'));
         $pattern->boolIsActive = 0;
-
         $pattern->save();
 
         return redirect('maintenance/segment-pattern');

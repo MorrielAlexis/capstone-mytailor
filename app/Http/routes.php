@@ -62,9 +62,10 @@ Route::group(['prefix' => 'maintenance'], function(){
 		Route::post('segment-pattern/update','SegmentPatternController@update_segmentpattern');
 		Route::post('segment-pattern/destroy','SegmentPatternController@delete_segmentpattern');
 
-		Route::resource('measurement-category', 'MeasurementCategoryController');
+	Route::resource('measurement-category', 'MeasurementCategoryController');
+		Route::post('measurement-category/destroy', 'MeasurementCategoryController@delete_measurementcategory');
 
-		Route::resource('measurement-detail', 'MeasurementDetailController');
+	Route::resource('measurement-detail', 'MeasurementDetailController');
 
 		Route::post('measurement-detail/update','MeasurementDetailController@update_measurementdetail');
 		Route::post('measurement-detail/destroy','MeasurementDetailController@delete_measurementdetail');
@@ -163,8 +164,9 @@ Route::group(['prefix' => 'transaction'], function(){
 });
 
 Route::group(['prefix' => 'utilities'], function(){
-	Route::resource('inactive-data', 'InactiveDataController',
-		['only' => ['index']]);
+	Route::resource('inactive-data', 'InactiveDataController');
+
+		Route::post('inactive-data/reactivate_individual', 'InactiveDataController@reactivate_individual');
 });
 
 Route::get('/acceptIndividual','OnlineCustomerIndividualController@accept');

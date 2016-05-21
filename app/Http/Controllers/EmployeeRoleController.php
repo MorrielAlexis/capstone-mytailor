@@ -132,6 +132,7 @@ class EmployeeRoleController extends Controller
     {
         $role = EmployeeRole::find($request->input('delRoleID'));
 
+        $role->strRoleInactiveReason = trim($request->input('delInactiveRole'));
         $role->boolIsActive = 0;
 
         $role->save();
