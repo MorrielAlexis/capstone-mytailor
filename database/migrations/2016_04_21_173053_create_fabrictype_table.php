@@ -16,7 +16,7 @@ class CreateFabrictypeTable extends Migration
             $table->string('strFabricTypeID')->primary();
             $table->string('strFabricTypeName');
             $table->text('txtFabricTypeDesc')->nullable();
-            $table->string('strFabricTypeInactiveReason')->nullable();
+            $table->string('strFabricTypeInactiveReason')->nullable()->default(null);
             $table->boolean('boolIsActive');
             $table->timestamps();
         });

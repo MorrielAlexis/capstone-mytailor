@@ -17,7 +17,7 @@ class CreateMeasurementdetailTable extends Migration
             $table->string('strMeasurementDetailName');
             $table->text('txtMeasurementDetailDesc', 255)->nullable();
             $table->boolean('boolIsActive');
-            $table->string('strMeasDetInactiveReason')->nullable();
+            $table->string('strMeasDetInactiveReason')->nullable()->default(null);
             $table->timestamps();
         });
     }

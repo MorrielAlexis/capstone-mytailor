@@ -105,7 +105,7 @@
                 <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of catalogue design from the table" href="#del{{$catalogue->strCatalogueID}}"><i class="mdi-action-delete"></i></a></td>
                   <div id="edit{{$catalogue->strCatalogueID}}" class="modal modal-fixed-footer">                   
                     <h5><font color = "#1b5e20"><center>EDIT CATALOGUE DESIGN</center></font> </h5>                     
-                      editCatalogueDesign
+                    
 
                       {!! Form::open(['url' => 'maintenance/catalogue/update',  'files' => 'true']) !!} 
                        

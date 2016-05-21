@@ -114,7 +114,7 @@
                      @if($fabricType->boolIsActive == 1)
                   <tr>
               		 <!--<td>{{ $fabricType->strFabricTypeID }}</td>-->
-             		  <td>{{ $fabricType->strFabricTypeName }}</td>
+               		  <td>{{ $fabricType->strFabricTypeName }}</td>
               		  <td>{{ $fabricType->txtFabricTypeDesc}}</td>
               		  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of fabric type" href="#edit{{$fabricType->strFabricTypeID}}"><i class="mdi-editor-mode-edit"></i></a>
                     <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of fabric type from the table" href="#del{{$fabricType->strFabricTypeID}}"><i class="mdi-action-delete"></i></a></td>

@@ -27,7 +27,7 @@ class CreateCustCompanyTable extends Migration
             $table->string('strCompanyCPNumber');
             $table->string('strCompanyCPNumberAlt')->nullable();
             $table->string('strCompanyFaxNumber')->nullable();
-            $table->string('strCompanyInactiveReason')->nullable;
+            $table->string('strCompanyInactiveReason')->nullable->default(null);
             $table->boolean('boolIsActive');
             $table->timestamps();
         });

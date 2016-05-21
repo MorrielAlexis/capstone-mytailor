@@ -165,7 +165,7 @@ class MaterialNeedleController extends Controller
 
         $Needle->save();
 
-        return redirect('maintenance/material');
+        return redirect('maintenance/material-needle');
     }
 
 

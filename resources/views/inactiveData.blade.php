@@ -30,6 +30,7 @@
         <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabFabmat">Fabrics</a></li>
         <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabMate">Materials</a></li>
         <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabCata">Catalogue</a></li>
+        <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabAlte">Alteration</a></li>
         <div class="indicator white" style="z-index:1"></div>
       </ul>
 
@@ -71,7 +72,7 @@
                         <td>{{ $individual_1->strIndivInactiveReason }}</td>      
                         <td>          
                           
-                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate_individual']) !!}
+                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-individual']) !!}
                             <input type="hidden" value="{{ $individual_1->strIndivID }}" id="reactID" name="reactID">
                             <input type="hidden" value="{{ $individual_1->strIndivID }}" id="reactInactiveIndiv" name="reactInactiveIndiv">
                             <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of customer to the table">REACTIVATE</button>
@@ -118,18 +119,18 @@
                     @foreach($company as $company_1)
                             @if($company_1->boolIsActive == 0)
                           <tr>
-                            <td>{{ $company_1->strCustCompanyName }}</td>
-                            <td>{{ $company_1->strCustCompanyHouseNo }} {{ $company_1->strCustCompanyStreet }} {{ $company_1->strCustCompanyBarangay }} {{ $company_1->strCustCompanyCity }} {{ $company_1->strCustCompanyProvince }}  {{ $company_1->strCustCompanyZipCode }} </td>
-                            <td>{{ $company_1->strCustContactPerson }} </td>
-                            <td>{{ $company_1->strCustCompanyEmailAddress}}</td>                  
-                            <td>{{ $company_1->strCustCompanyCPNumber }}</td>
-                            <td>{{ $company_1->strCustCompanyCPNumberAlt }}</td>  
-                            <td>{{ $company_1->strCustCompanyTelNumber }}</td>                  
-                            <td>{{ $company_1->strCustCompanyFaxNumber }}</td>                 
-                            <td>{{ $company_1->strInactiveReason }}</td>  
+                            <td>{{ $company_1->strCompanyName }}</td>
+                            <td>{{ $company_1->strCompanyBuildingNo }} {{ $company_1->strCompanyStreet }} {{ $company_1->strCompanyBarangay }} {{ $company_1->strCompanyCity }} {{ $company_1->strCompanyProvince }}  {{ $company_1->strCompanyZipCode }} </td>
+                            <td>{{ $company_1->strContactPerson }} </td>
+                            <td>{{ $company_1->strCompanyEmailAddress}}</td>                  
+                            <td>{{ $company_1->strCompanyCPNumber }}</td> 
+                            <td>{{ $company_1->strCompanyCPNumberAlt }}</td> 
+                            <td>{{ $company_1->strCompanyTelNumber }}</td>                  
+                            <td>{{ $company_1->strCompanyFaxNumber }}</td>                  
+                            <td>{{ $company_1->strCompanyInactiveReason }}</td>  
                           <td>
                             
-                            {!! Form::open(['url' => 'reactCustCompany']) !!}
+                            {!! Form::open(['url' => 'utilities/inactive-data/reactivate-company']) !!}
                               <input type="hidden" value="{{ $company_1->strCompanyID }}" id="reactInactiveComp" name="reactInactiveComp">
                               <input type="hidden" value="{{ $company_1->strCompanyID }}" id="reactID" name="reactID">
                               <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to reeturn data of customer to the table">REACTIVATE</button>
@@ -168,7 +169,7 @@
                         <tr>
                             <th data-field="name">Role Name</th>
                             <th data-field="address">Role Description</th>
-                      <th data-field="React">Reason for Deactivation</th>
+                            <th data-field="React">Reason for Deactivation</th>
                             <th data-field="Edit">Reactivate</th>
                         </tr>
                       </thead>
@@ -179,9 +180,9 @@
                         <tr>
                           <td>{{ $role_1->strEmpRoleName }}</td>
                           <td>{{ $role_1->strEmpRoleDesc }}</td>
-                          <td>{{ $role_1->strInactiveReason }}</td>
+                          <td>{{ $role_1->strRoleInactiveReason }}</td>
                           <td>
-                            {!! Form::open(['url' => 'reactRole']) !!}
+                            {!! Form::open(['url' => 'utilities/inactive-data/reactivate-employeeRole']) !!}
                               <input type="hidden" value="{{ $role_1->strEmpRoleID }}" id="reactID" name="reactID">
                               <input type="hidden" value="{{ $role_1->strEmpRoleID }}" id="reactInactiveRole" name="reactInactiveRole">
                               <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of position to the table">REACTIVATE</button>
@@ -212,14 +213,13 @@
                 <table class="table centered data-reactEmployee" border="1">
                   <thead>
                     <tr>
-                      <th data-field="firstname">First Name</th>
-                      <th data-field="middlename">Middle Name</th>
-                      <th data-field="lastname">Last Name</th>          
+                      <th data-field="firstname">Employee Name</th>         
                       <th data-field="dtEmpBday">Date of Birth</th>
                       <th data-field="Sex">Sex</th>
                       <th data-field="address">Address</th>
                       <th data-field="Role">Role</th>
                       <th data-field="cellphone">Cellphone No.</th>
+                      <th data-field="cellphone">Cellphone No. (alt)</th>
                       <th data-field="Landline">Phone No.</th>
                       <th data-field="email">Email Address</th>
                       <th data-field="React">Reason for Deactivation</th>
@@ -231,9 +231,7 @@
                     @foreach($employee as $employee_1)
                     @if($employee_1->boolIsActive == 0)
                       <tr>
-                            <td>{{ $employee_1->strEmpFName }}</td>
-                            <td>{{ $employee_1->strEmpMName }}</td>
-                            <td>{{ $employee_1->strEmpLName }}</td>
+                            <td>{{ $employee_1->strEmpFName }} {{ $employee_1->strEmpMName }} {{ $employee_1->strEmpLName }}</td>
                             <td>{{ $employee_1->dtEmpBday }} </td>
                             <td>
                               @if($employee_1->strSex == 'M') Male
@@ -241,13 +239,15 @@
                               @endif
                             </td>
                             <td>{{ $employee_1->strEmpHouseNo }} {{ $employee_1->strEmpStreet }} {{ $employee_1->strEmpBarangay }} {{ $employee_1->strEmpCity }} {{ $employee_1->strEmpProvince }}  {{ $employee_1->strEmpZipCode }} </td>
+                            
                             <td>{{ $employee_1->strEmpRoleName}}</td>                  
                             <td>{{ $employee_1->strCellNo }}</td> 
+                            <td>{{ $employee_1->strCellNoAlt }}</td> 
                             <td>{{ $employee_1->strPhoneNo }}</td>
                             <td>{{ $employee_1->strEmailAdd }}</td>
-                            <td>{{ $employee_1->strInactiveReason }}</td>
+                            <td>{{ $employee_1->strEmpInactiveReason }}</td>
                             <td>
-                            {!! Form::open(['url' => 'reactEmployee']) !!}
+                            {!! Form::open(['url' => 'utilities/inactive-data/reactivate-employee']) !!}
                               <input type="hidden" value="{{ $employee_1->strEmployeeID }}" id="reactID" name="reactID">
                               <input type="hidden" value="{{ $employee_1->strEmployeeID }}" id="reactInactiveEmp" name="reactInactiveEmp">
                               <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of customer to the table">REACTIVATE</button>
@@ -283,10 +283,10 @@
                   <thead>
                     <tr>
                       <!--<th data-field="id">Garment Details ID</th>-->
-                      <th data-field="name">Category Name</th>
-                      <th data-field="address">Category Description</th>
+                      <th data-field="garmentName">Garment Name</th>
+                      <th data-field="garmentDescription">Garment Description</th>
                       <th data-field="React">Reason for Deactivation</th>
-                      <th><th data-field="React">Reactivate</th>
+                      <th data-field="React">Reactivate</th>
                     </tr>
                   </thead>
 
@@ -296,11 +296,10 @@
                       <tr>
                         <!--<td>{{ $category_1->strGarmentCategoryID }}</td>-->
                         <td>{{ $category_1->strGarmentCategoryName }}</td>
-                        <td>{{ $category_1->strGarmentCategoryName }}</td>
-                        <td>{{ $category_1->strGarmentCategoryDesc }}</td>
-                        <td>{{ $category_1->strInactiveReason }}</td>
+                        <td>{{ $category_1->textGarmentCategoryDesc }}</td>
+                        <td>{{ $category_1->strGarmentCategoryInactiveReason }}</td>
                         <td>
-                          {!! Form::open(['url' => 'reactGarmentCategory']) !!}
+                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-garmentCategory']) !!}
                             <input type="hidden" id="reactID" name="reactID" value="{{$category_1->strGarmentCategoryID}}">
                             <input type="hidden" id="reactInactiveGarment" name="reactInactiveGarment" value="{{$category_1->strGarmentCategoryID}}">
                             <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of garment category to the table">REACTIVATE</button>
@@ -346,13 +345,13 @@
                       <tr>
                         <!--<td>{{ $segment_1->strGarmentSegmentID }}</td>-->
                         <td>{{ $segment_1->strGarmentCategoryName }}</td>
-                        <td>{{ $segment_1->strGarmentSegmentName }}</td>
-                        <td>{{ $segment_1->strGarmentSegmentDesc }}</td>
-                        <td>{{ $segment_1->strInactiveReason }}</td>
+                        <td>{{ $segment_1->strSegmentName }}</td>
+                        <td>{{ $segment_1->textSegmentDesc }}</td>
+                        <td>{{ $segment_1->strSegInactiveReason }}</td>
                         <td>
-                          {!! Form::open(['url' => 'reactGarmentSegment']) !!}
-                            <input type="hidden" id="reactID" name="reactID" value="{{$segment_1->strGarmentSegmentID}}">
-                            <input type="hidden" id="reactInactiveSegment" name="reactInactiveSegment" value="{{$segment_1->strGarmentSegmentID}}">
+                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-segment']) !!}
+                            <input type="hidden" id="reactID" name="reactID" value="{{$segment_1->strSegmentID}}">
+                            <input type="hidden" id="reactInactiveSegment" name="reactInactiveSegment" value="{{$segment_1->strSegmentID}}">
                             <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of segment to the table">REACTIVATE</button>
                           {!! Form::close() !!}
                         </td>
@@ -396,12 +395,12 @@
                           <tr>
                             <!--<td>{{ $pattern_1->strDesignPatternID }}</td>-->
                             <td>{{ $pattern_1->strGarmentCategoryName }}</td>
-                            <td>{{ $pattern_1->strGarmentSegmentName }}</td>
-                            <td>{{ $pattern_1->strPatternName }}</td>
-                            <td><img class="materialboxed" width="650" src="{{URL::asset($pattern_1->strPatternImage)}}"></td>
-                            <td>{{ $pattern_1->strInactiveReason }}</td>
+                            <td>{{ $pattern_1->strSegmentName }}</td>
+                            <td>{{ $pattern_1->strSegPName }}</td>
+                            <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($pattern_1->strSegPImage)}}"></td>
+                            <td>{{ $pattern_1->strSegPInactiveReason }}</td>
                             <td>
-                            {!! Form::open(['url' => 'reactDesignPattern']) !!}
+                            {!! Form::open(['url' => 'utilities/inactive-data/reactivate-segmentPattern']) !!}
                               <input type="hidden" value="{{ $pattern_1->strSegPatternID }}" id="reactID" name="reactID">
                               <input type="hidden" value="{{ $pattern_1->strDesignPatternID }}" id="reactInactivePattern" name="reactInactivePattern">
                               <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of segment pattern to the table">REACTIVATE</button>
@@ -444,14 +443,14 @@
                       @foreach($head as $head_1)
                       @if($head_1->boolIsActive == 0)
                           <tr>
-                           <td>{{ $head_1->strGarmentCategoryName }}</td>
-                           <td>{{ $head_1->strGarmentSegmentName }}</td>
-                           <td>{{ $head_1->meas_details }}</td>
-                           <td>{{ $head_1->strInactiveReason }}</td>
+                            <td>{{ $head_1->strGarmentCategoryName }}</td>
+                            <td>{{ $head_1->strSegmentName }}</td>
+                            <td>{{ $head_1->strMeasurementDetailName }}</td>
+                            <td>{{ $head_1->strMeasCatInactiveReason }}</td>
                             <td>
-                            {!! Form::open(['url' => 'reactMeasurementCategory']) !!}
-                              <input type="hidden" value="{{ $head_1->strMeasurementID }}" id="reactID" name="reactID">
-                              <input type="hidden" value="{{ $head_1->strMeasurementID }}" id="reactInactiveHead" name="reactInactiveHead">
+                            {!! Form::open(['url' => 'utilities/inactive-data/reactivate-head']) !!}
+                              <input type="hidden" value="{{ $head_1->strMeasCatID }}" id="reactID" name="reactID">
+                              <input type="hidden" value="{{ $head_1->strMeasCatID }}" id="reactInactiveHead" name="reactInactiveHead">
                               <button type="submit"  style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return measuremennt information to the table">REACTIVATE</button>
                             {!! Form::close() !!}
                           </td>
@@ -480,8 +479,8 @@
                 <table class = "table centered data-reactSegment" align = "center" border = "1">
                   <thead>
                     <tr>
-                      <th data-field="name">Measurement Name</th>
-                      <th data-field="description">Measurement Description</th>
+                        <th data-field="name">Measurement Name</th>
+                        <th data-field="description">Measurement Description</th>
                         <th data-field="Garmentcategory">Reason for Deactivation</th>
                         <th data-field="MeasurementName">Reactivate</th>
                     </tr>
@@ -492,10 +491,10 @@
                       @if($detail_1->boolIsActive == 0)
                       <tr>
                         <td>{{ $detail_1->strMeasurementDetailName }}</td>
-                        <td>{{ $detail_1->strMeasurementDetailDesc }}</td>
-                        <td>{{ $detail_1->strInactiveReason }}</td>
+                        <td>{{ $detail_1->txtMeasurementDetailDesc }}</td>
+                        <td>{{ $detail_1->strMeasDetInactiveReason }}</td>
                         <td>
-                          {!! Form::open(['url' => 'reactMeasurementDetail']) !!}
+                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-detail']) !!}
                             <input type="hidden" id="reactID" name="reactID" value="{{ $detail_1->strMeasurementDetailID }}">
                             <input type="hidden" id="reactInactiveDetail" name="reactInactiveDetail" value="{{ $detail_1->strMeasurementDetailID }}">
                             <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of segment to the table">REACTIVATE</button>
@@ -531,8 +530,8 @@
                   <thead>
                     <tr>
                       <!--<th data-field="fabricID">Fabric Type ID</th>-->
-                      <th data-field="fabricName">Fabric TypeName</th>
-                      <th data-field="fabricDesc">Fabric Description</th> 
+                      <th data-field="fabricName">Fabric Type Name</th>
+                      <th data-field="fabricDescription">Fabric Description</th> 
                       <th data-field="React">Reason for Deactivation</th>    
                       <th>Reactivate</th>
                     </tr>   
@@ -544,10 +543,10 @@
                       <tr>
                         <!--<td>{{ $fabricType_1->strFabricTypeID }}</td>-->
                         <td>{{ $fabricType_1->strFabricTypeName }}</td>
-                        <td>{{ $fabricType_1->strFabricTypeDesc }}</td>
-                        <td>{{ $fabricType_1->strInactiveReason }}</td>
+                        <td>{{ $fabricType_1->txtFabricTypeDesc}}</td>
+                        <td>{{ $fabricType_1->strFabricTypeInactiveReason }}</td>
                         <td>
-                          {!! Form::open(['url' => 'reactFabricType']) !!}
+                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-fabricType']) !!}
                             <input type="hidden" value="{{ $fabricType_1->strFabricTypeID }}" id="reactID" name="reactID">
                             <input type="hidden" value="{{ $fabricType_1->strFabricTypeID }}" id="reactInactiveFabric" name="reactInactiveFabric">
                             <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="CLick to return data of fabric type to the table">REACTIVATE</button>
@@ -578,7 +577,7 @@
                   <thead>
                     <tr>
                       <!--<th date-field="Swatch ID">Swatch ID </th>-->
-                      <th data-field="Swatch fabric type Name">Swatch Fabric Type Name</th>
+                      <th data-field="Swatch Type">Swatch Type</th>
                       <th data-field="SwatchName">Swatch Name</th>
                       <th data-field="SwatchCode">Swatch Code</th>
                       <th data-field="SwatchImage">Image</th>
@@ -596,10 +595,10 @@
                         <td>{{ $swatch_1->strSwatchName }}</td>
                         <td>{{ $swatch_1->strSwatchCode }}</td>
                         <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($swatch_1->strSwatchImage)}}"></td>
-                        <td>{{ $swatch_1->strInactiveReason }}</td>
+                        <td>{{ $swatch_1->strSwatchInactiveReason }}</td>
                         <td>
 
-                          {!! Form::open(['url' => 'reactSwatch']) !!}
+                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-swatch']) !!}
 
                             <input type="hidden" value="{{ $swatch_1->strSwatchID }}" id="reactID" name="reactID">
                             <input type="hidden" value="{{ $swatch_1->strSwatchID }}" id="reactInactiveSwatch" name="reactInactiveSwatch">
@@ -610,6 +609,53 @@
                       </tr>
                   @endif
                   @endforeach
+                  </tbody>
+                </table>
+              </div>
+              <div class = "clearfix"></div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Swatch Name-->
+      <p><h5 style="margin-left:20px"><b>Swatch Names</b></h5></p>
+      <div class="row">
+        <div class="col s12">
+          <div class="card">
+            <div class="card-content">
+              <div class = "col s12 m12 l12 overflow-x">
+                <h5><font color = "#1b5e20"><center>Inactive Swatch Names</center> </font> </h5>
+                <table class="centered" border="1">
+                  <thead>
+                    <tr>
+                      <!--<th data-field="fabricID">Fabric Type ID</th>-->
+                      <th data-field="swatchName">Name</th>
+                      <th data-field="swatchDescription">Description</th> 
+                      <th data-field="React">Reason for Deactivation</th>    
+                      <th>Reactivate</th>
+                    </tr>   
+                  </thead>
+
+                  <tbody>
+                    @foreach($swatchname as $swatchname_1)
+                    @if($swatchname_1->boolIsActive == 0)
+                      <tr>
+                        <!--<td>{{ $fabricType_1->strFabricTypeID }}</td>-->
+                        <td>{{ $swatchname_1->strSName}}</td>
+                        <td>{{ $swatchname_1->txtSwatchNameDesc}}</td>
+                        <td>{{ $swatchname_1->strSwatchNameInactiveReason }}</td>
+                        <td>
+                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-swatchName']) !!}
+                            <input type="hidden" value="{{ $swatchname_1->strSwatchNameID }}" id="reactID" name="reactID">
+                            <input type="hidden" value="{{ $swatchname_1->strSwatchNameID }}" id="reactInactiveSName" name="reactInactiveSName">
+                            <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="CLick to return data of fabric type to the table">REACTIVATE</button>
+                          {!! Form::close() !!}
+                        </td>
+                      </tr>
+                      @endif
+                      @endforeach
                   </tbody>
                 </table>
               </div>
@@ -637,9 +683,9 @@
                   <thead>
                     <tr>
                       <!--<th date-field= "Thread ID">Thread ID</th>-->
-                      <th data-field="Thread Name">Thread Name</th>
+                      <th data-field="Thread Brand">Thread Brand</th>
                       <th data-field="Thread Color">Thread Color</th>
-                      <th data-field="Thread Description">Description</th>
+                      <th data-field="Thread Desc">Description</th>
                       <th data-field="ThreadImage">Image</th>
                       <th data-field="React">Reason for Deactivation</th>
                       <th data-field="React">Reactivate</th>
@@ -651,15 +697,15 @@
                       @if($thread_1->boolIsActive == 0)
                       <tr>
                        <!-- <td>{{ $thread_1->strMaterialThreadID }}</td>-->
-                        <td>{{ $thread_1->strMaterialThreadName }}</td>
-                        <td>{{ $thread_1->strMaterialThreadColor }}</td>
-                          <td>{{ $thread_1->strMaterialThreadDesc }}</td>
-                        <td><img src="{{URL::asset($thread_1->strMaterialThreadImage)}}"></td> 
-                          <td>{{ $thread_1->strInactiveReason }}</td>   
+                        <td>{{ $thread_1->strThreadBrand }}</td>
+                        <td>{{ $thread_1->strThreadColor }}</td>
+                        <td>{{ $thread_1->strThreadDesc }}</td>
+                        <td><img class="materialboxed" width="650" src="{{URL::asset($thread_1->strThreadImage)}}"></td> 
+                          <td>{{ $thread_1->strThreadInactiveReason }}</td>   
                         <td>          
-                        {!! Form::open(['url' => 'reactThread']) !!}
-                          <input type="hidden" value="{{ $thread_1->strMaterialThreadID }}" id="reactID" name="reactID">
-                          <input type="hidden" value="{{ $thread_1->strMaterialThreadID }}" id="reactInactiveThread" name="reactInactiveThread">
+                        {!! Form::open(['url' => 'utilities/inactive-data/reactivate-thread']) !!}
+                          <input type="hidden" value="{{ $thread_1->intThreadID }}" id="reactID" name="reactID">
+                          <input type="hidden" value="{{ $thread_1->intThreadID }}" id="reactInactiveThread" name="reactInactiveThread">
                           <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green darken-2" data-position="bottom" data-delay="50" data-tooltip="Returns data of thread to the table">REACTIVATE</button>
                         {!! Form::close() !!}
                       </td>
@@ -688,9 +734,10 @@
                   <thead>
                     <tr>
                       <!--<th data-field="Needle ID">Needle ID</th>-->
-                      <th data-field="Needle Name">Needle Name</th>
-                      <th data-field= "Needle Size">Needle Size </th>
-                      <th data-field="Image">Image</th> 
+                      <th data-field="Needle Brand">Needle Brand</th>
+                      <th data-field="Needle Size">Needle Size</th>
+                      <th data-field="Needle Desc">Description</th>
+                      <th data-field="Needle Image">Image</th>
                       <th data-field="React">Reason for Deactivation</th>
                       <th data-field="React">Reactivate</th>         
                     </tr>
@@ -701,14 +748,15 @@
                       @if($needle_1->boolIsActive == 0)
                       <tr>
                         <!--<td>{{ $needle_1->strMaterialNeedleID }}</td>-->
-                        <td>{{ $needle_1->strMaterialNeedleName }}</td>
-                        <td>{{ $needle_1->strMaterialNeedleSize }}</td>
-                        <td><img class="materialboxed" width="650" src="{{URL::asset($needle_1->strMaterialNeedleImage)}}"> </td>  
-                        <td>{{ $needle_1->strInactiveReason }}</td>    
+                        <td>{{$needle_1->strNeedleBrand}}</td>
+                        <td>{{$needle_1->strNeedleSize}}</td>
+                        <td>{{$needle_1->strNeedleDesc}}</td>
+                        <td><img class="materialboxed" width="650" src="{{URL::asset($needle_1->strNeedleImage)}}"></td>  
+                        <td>{{ $needle_1->strNeedleInactiveReason }}</td>    
                         <td>          
-                        {!! Form::open(['url' => 'reactNeedle']) !!}
-                          <input type="hidden" value="{{ $needle_1->strMaterialNeedleID }}" id="reactID" name="reactID">
-                          <input type="hidden" value="{{ $needle_1->strMaterialNeedleID }}" id="reactInactiveNeedle" name="reactInactiveNeedle">
+                        {!! Form::open(['url' => 'utilities/inactive-data/reactivate-needle']) !!}
+                          <input type="hidden" value="{{ $needle_1->intNeedleID }}" id="reactID" name="reactID">
+                          <input type="hidden" value="{{ $needle_1->intNeedleID }}" id="reactInactiveNeedle" name="reactInactiveNeedle">
                           <button type="submit"  style="color:black" class="btn tooltipped btn-small center-text light-green darken-2" data-position="bottom" data-delay="50" data-tooltip="Returns data of needle to the table">REACTIVATE</button>
                         {!! Form::close() !!}
                       </td>
@@ -737,10 +785,11 @@
                   <thead>
                     <tr>
                       <!--<th data-field="Button ID">Button ID</th>-->
-                      <th data-field="Button Name">Button Name</th>
-                      <th data-field= "Button Size">Button Size </th>
-                      <th data-field= "Button Color">Button Color </th>
-                      <th data-field="Image">Image</th>  
+                      <th data-field="Button Brand">Button Brand</th>
+                      <th data-field="Button Size">Button Size</th>
+                      <th data-field="Button Color">Button Color</th>
+                      <th data-field="Button Color">Description</th>
+                      <th data-field="ButtonImage">Image</th>  
                       <th data-field="React">Reason for Deactivation</th>
                       <th data-field="React">Reactivate</th>        
                     </tr>
@@ -751,15 +800,16 @@
                       @if($button_1->boolIsActive == 0)
                       <tr>
                         <!--<td>{{ $button_1->strMaterialButtonID }}</td>-->
-                        <td>{{ $button_1->strMaterialButtonName }}</td>
-                        <td>{{ $button_1->strMaterialButtonSize }}</td>
-                        <td>{{ $button_1->strMaterialButtonColor }}</td>
-                        <td><img class="materialboxed" width="650" src="{{URL::asset($button_1->strMaterialButtonImage)}}"> </td>
-                        <td>{{ $button_1->strInactiveReason }}</td>      
+                        <td>{{$button_1->strButtonBrand}}</td>
+                        <td>{{$button_1->strButtonSize}}</td>
+                        <td>{{$button_1->strButtonColor}}</td>
+                        <td>{{$button_1->strButtonDesc}}</td>
+                        <td><img class="materialboxed" width="650" src="{{URL::asset($button_1->strButtonImage)}}"></td>
+                        <td>{{ $button_1->strButtonInactiveReason }}</td>      
                         <td>          
-                        {!! Form::open(['url' => 'reactButton']) !!}
-                          <input type="hidden" value="{{ $button_1->strMaterialButtonID }}" id="reactID" name="reactID">
-                          <input type="hidden" value="{{ $button_1->strMaterialButtonID }}" id="reactInactiveButton" name="reactInactiveButton">
+                        {!! Form::open(['url' => 'utilities/inactive-data/reactivate-button']) !!}
+                          <input type="hidden" value="{{ $button_1->intButtonID }}" id="reactID" name="reactID">
+                          <input type="hidden" value="{{ $button_1->intButtonID }}" id="reactInactiveButton" name="reactInactiveButton">
                           <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green darken-2" data-position="bottom" data-delay="50" data-tooltip="Returns data of button to the table">REACTIVATE</button>
                         {!! Form::close() !!}
                       </td>
@@ -788,10 +838,11 @@
                   <thead>
                     <tr>
                       <!--<th data-field="Zipper ID">Zipper ID</th>-->
-                      <th data-field="Zipper Name">Zipper Name</th>
-                      <th data-field= "Zipper Size">Zipper Size </th>
-                      <th data-field= "Zipper Color">Zipper Color </th>
-                      <th data-field="Image">Image</th> 
+                      <th data-field="Zipper Brand">Zipper Brand</th>
+                      <th data-field="Zipper Size">Zipper Size</th>
+                      <th data-field="Zipper Color">Zipper Color</th>
+                      <th data-field="Zipper Desc">Description</th>
+                      <th data-field="ZipperImage">Image</th> 
                       <th data-field="React">Reason for Deactivation</th>
                       <th data-field="React">Reactivate</th>         
                     </tr>
@@ -802,15 +853,16 @@
                       @if($zipper_1->boolIsActive == 0)
                       <tr>
                         <!--<td>{{ $zipper_1->strMaterialZipperID }}</td>-->
-                        <td>{{ $zipper_1->strMaterialZipperName }}</td>
-                        <td>{{ $zipper_1->strMaterialZipperSize }}</td>
-                        <td>{{ $zipper_1->strMaterialZipperColor }}</td>
-                        <td><img class="materialboxed" width="650" src="{{URL::asset($zipper_1->strMaterialZipperImage)}}"> </td>
-                        <td>{{ $zipper_1->strInactiveReason }}</td>      
+                        <td>{{$zipper_1->strZipperBrand}}</td>
+                        <td>{{$zipper_1->strZipperSize}}</td>
+                        <td>{{$zipper_1->strZipperColor}}</td>
+                        <td>{{$zipper_1->txtZipperDesc}}</td>
+                        <td><img class="materialboxed" width="650" src="{{URL::asset($zipper_1->strZipperImage)}}"></td>
+                        <td>{{ $zipper_1->strZipperInactiveReason }}</td>      
                         <td>          
-                        {!! Form::open(['url' => 'reactZipper']) !!}
-                          <input type="hidden" value="{{ $zipper_1->strMaterialZipperID }}" id="reactID" name="reactID">
-                          <input type="hidden" value="{{ $zipper_1->strMaterialZipperID }}" id="reactInactiveZipper" name="reactInactiveZipper">
+                        {!! Form::open(['url' => 'utilities/inactive-data/reactivate-zipper']) !!}
+                          <input type="hidden" value="{{ $zipper_1->intZipperID }}" id="reactID" name="reactID">
+                          <input type="hidden" value="{{ $zipper_1->intZipperID }}" id="reactInactiveZipper" name="reactInactiveZipper">
                           <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green darken-2" data-position="bottom" data-delay="50" data-tooltip="Returns data of zippers to the table">REACTIVATE</button>
                         {!! Form::close() !!}
                       </td>
@@ -839,10 +891,11 @@
                   <thead>
                     <tr>
                       <!--<th data-field="Hook ID">Hook and Eye ID</th>-->
-                      <th data-field="Hook Name">Hook and Eye Name</th>
-                      <th data-field= "Hook Size">Hook and Eye Size </th>
-                      <th data-field= "Hook Color">Hook and Eye Color </th>
-                      <th data-field="Image">Image</th> 
+                      <th data-field="Hook and Eye Name"> Hook Brand</th>
+                      <th data-field="Hook and Eye Size"> Hook Size</th>
+                      <th data-field="Hook and Eye Color"> Hook Color</th>
+                      <th data-field="Hook and Eye Desc">Description</th>
+                      <th data-field="Image">Image</th>
                       <th data-field="React">Reason for Deactivation</th>
                       <th data-field="React">Reactivate</th>         
                     </tr>
@@ -853,16 +906,16 @@
                       @if($hook_1->boolIsActive == 0)
                       <tr>
                        <!-- <td>{{$hook_1->strMaterialHookID}}</td>-->
-                        <td>{{$hook_1->strMaterialHookName}}</td>
-                        <td>{{$hook_1->strMaterialHookSize}}</td>
-                        <td>{{$hook_1->strMaterialHookColor}}</td>
-                        <td><img class="materialboxed" width="650" src="{{URL::asset($hook_1->strMaterialHookImage)}}"> </td> 
-                        <td>{{$hook_1->strInactiveReason}}</td>     
+                        <td>{{$hook_1->strHookBrand}}</td>
+                        <td>{{$hook_1->strHookSize}}</td>
+                        <td>{{$hook_1->strHookColor}}</td>
+                        <td>{{$hook_1->textHookDesc}}</td>
+                        <td><img class="materialboxed" width="650" src="{{URL::asset($hook_1->strHookImage)}}"></td>
+                        <td>{{$hook_1->strHookInactiveReason}}</td>     
                         <td>          
-                        <form action="{{URL::to('reactHook')}}" method="POST">
-                        {!! Form::open(['url' => 'reactHook']) !!}
-                          <input type="hidden" value="{{$hook_1->strMaterialHookID}}" id="reactID" name="reactID">
-                          <input type="hidden" value="{{$hook_1->strMaterialHookID}}" id="reactInactiveHook" name="reactInactiveHook">
+                        {!! Form::open(['url' => 'utilities/inactive-data/reactivate-hookAndEye']) !!}
+                          <input type="hidden" value="{{$hook_1->intHookID}}" id="reactID" name="reactID">
+                          <input type="hidden" value="{{$hook_1->intHookID}}" id="reactInactiveHook" name="reactInactiveHook">
                           <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green darken-2" data-position="bottom" data-delay="50" data-tooltip="Returns data of hook and eye to the table">REACTIVATE</button>
                         {!! Form::close() !!}
                       </td>
@@ -913,11 +966,64 @@
                         <td>{{ $catalogue_1->strCatalogueName }}</td>
                         <td>{{ $catalogue_1->strCatalogueDesc }}</td>
                         <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($catalogue_1->strCatalogueImage)}}"></td>
-                        <td>{{ $catalogue_1->strInactiveReason }}</td>
+                        <td>{{ $catalogue_1->strCatalogueInactiveReason }}</td>
                         <td>
-                          {!! Form::open(['url' => 'reactCatalogueDesign']) !!}
+                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-catalogue']) !!}
                             <input type="hidden" value="{{ $catalogue_1->strCatalogueID }}" id="reactID" name="reactID">
                             <input type="hidden" value="{{ $catalogue_1->strCatalogueID }}" id="reactInactiveCatalogue" name="reactInactiveCatalogue">
+                            <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of customer to the table">REACTIVATE</button>
+                          {!! Form::close() !!}
+                        </td>
+                      </tr>
+                      @endif
+                      @endforeach
+                  </tbody>
+                </table>
+              </div>
+              <div class = "clearfix"></div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="tabAlte" class="hue col s12" style="margin-top:45px; background-color: #80d8ff;">
+    <div style="height:30px;"></div>
+    
+      <!--Catalogue-->
+      <p><h5 style="margin-left:20px"><b>Alteration</b></h5></p>
+      <div class="row">
+        <div class="col s12">
+          <div class="card">
+            <div class="card-content">
+              <div class = "col s12 m12 l12 overflow-x">
+                <h5><font color = "#1b5e20"><center>Inactive Alterations</center> </font> </h5>
+                <table class="centered" border="1">
+
+                  <thead>
+                    <tr>
+                      <!--<th data-field= "Catalogue ID">Catalogue ID</th>-->
+                      <th data-field="alterationName">Name</th>
+                      <th data-field="alterationDescription">Description</th>
+                      <th data-field="alterationPrice">Price</th>
+                      <th data-field="React">Reason for Deactivation</th>
+                      <th data-field="React">Reactivate</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach($alteration as $alteration_1)
+                    @if($alteration_1->boolIsActive == 0)
+                      <tr>
+                        <td>{{$alteration_1->strAlterationName}}</td>
+                        <td>{{$alteration_1->txtAlterationDesc}}</td>
+                        <td>{{"Php" . $alteration_1->dblAlterationPrice}}</td>
+                        <td>{{ $alteration_1->strAlterationInactiveReason }}</td>
+                        <td>
+                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-alteration']) !!}
+                            <input type="hidden" value="{{ $alteration_1->strAlterationID }}" id="reactID" name="reactID">
+                            <input type="hidden" value="{{ $alteration_1->strAlterationID }}" id="reactInactiveCatalogue" name="reactInactiveCatalogue">
                             <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of customer to the table">REACTIVATE</button>
                           {!! Form::close() !!}
                         </td>

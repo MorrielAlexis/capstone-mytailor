@@ -19,7 +19,7 @@ class CreateButtonTable extends Migration
             $table->string('strButtonColor');
             $table->string('strButtonDesc')->nullable();
             $table->string('strButtonImage')->nullable();
-            $table->string('strButtonInactiveReason')->nullable();
+            $table->string('strButtonInactiveReason')->nullable()->default(null);
             $table->boolean('boolIsActive');
             $table->timestamps();
         });

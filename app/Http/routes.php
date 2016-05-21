@@ -180,7 +180,25 @@ Route::group(['prefix' => 'transaction'], function(){
 Route::group(['prefix' => 'utilities'], function(){
 	Route::resource('inactive-data', 'InactiveDataController');
 
-		Route::post('inactive-data/reactivate_individual', 'InactiveDataController@reactivate_individual');
+		Route::post('inactive-data/reactivate-individual', 'InactiveDataController@reactivate_individual');
+		Route::post('inactive-data/reactivate-company', 'InactiveDataController@reactivate_company');
+		Route::post('inactive-data/reactivate-employeeRole', 'InactiveDataController@reactivate_emprole');
+		Route::post('inactive-data/reactivate-employee', 'InactiveDataController@reactivate_employee');
+		Route::post('inactive-data/reactivate-garmentCategory', 'InactiveDataController@reactivate_category');
+		Route::post('inactive-data/reactivate-segment', 'InactiveDataController@reactivate_segment');
+		Route::post('inactive-data/reactivate-segmentPattern', 'InactiveDataController@reactivate_segmentPattern');
+		Route::post('inactive-data/reactivate-head', 'InactiveDataController@reactivate_head');
+		Route::post('inactive-data/reactivate-detail', 'InactiveDataController@reactivate_detail');
+		Route::post('inactive-data/reactivate-fabricType', 'InactiveDataController@reactivate_fabrictype');
+		Route::post('inactive-data/reactivate-swatch', 'InactiveDataController@reactivate_swatch');
+		Route::post('inactive-data/reactivate-swatchName', 'InactiveDataController@reactivate_swatchname');
+		Route::post('inactive-data/reactivate-button', 'InactiveDataController@reactivate_button');
+		Route::post('inactive-data/reactivate-hookAndEye', 'InactiveDataController@reactivate_hookeye');
+		Route::post('inactive-data/reactivate-needle', 'InactiveDataController@reactivate_needle');
+		Route::post('inactive-data/reactivate-thread', 'InactiveDataController@reactivate_thread');
+		Route::post('inactive-data/reactivate-zipper', 'InactiveDataController@reactivate_zipper');
+		Route::post('inactive-data/reactivate-catalogue', 'InactiveDataController@reactivate_catalogue');
+		Route::post('inactive-data/reactivate-alteration', 'InactiveDataController@reactivate_alteration');
 });
 
 Route::get('/acceptIndividual','OnlineCustomerIndividualController@accept');
