@@ -14,11 +14,16 @@ class CreateSwatchnameMaintenance extends Migration
     {
         Schema::create('tblSwatchName', function (Blueprint $table) {
             $table->string('strSwatchNameID')->primary();
+            $table->string('strSwatchNameTypeFK')->index();
             $table->string('strSName');
-            $table->text('txtSwatchNameDesc');
+            $table->text('txtSwatchNameDesc')->nullable();
             $table->text('strSwatchNameInactiveReason')->nullable()->default(null);
             $table->boolean('boolIsActive');
             $table->timestamps();
+
+             $table->foreign('strSwatchNameTypeFK')
+                  ->references('strFabricTypeID')
+                  ->on('tblFabricType');
         });
     }
 

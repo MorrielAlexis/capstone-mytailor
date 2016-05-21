@@ -10,6 +10,7 @@ class SwatchNameMaintenance extends Model
 
 	protected $primaryKey = 'strSwatchNameID';
 	protected $fillable = array('strSwatchNameID',
+								'strSwatchNameTypeFK',
 								'strSName',
 								'txtSwatchNameDesc',
 								'strSwatchNameInactiveReason',

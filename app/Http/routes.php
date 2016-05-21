@@ -89,7 +89,11 @@ Route::group(['prefix' => 'maintenance'], function(){
 
 	Route::resource('swatch', 'SwatchController');
 
+
+		Route::post('swatch/update','SwatchController@update_swatch');
+	
 		Route::post('swatch/destroy', 'SwatchController@delete_swatch');
+
 });
 
 Route::group(['prefix' => 'maintenance'], function(){

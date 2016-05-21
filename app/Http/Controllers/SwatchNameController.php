@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\SwatchNameMaintenance;
+use App\FabricType;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -28,14 +29,23 @@ class SwatchNameController extends Controller
 
         $ID = $ids["0"]->strSwatchNameID;
         $newID = $this->smartCounter($ID);  
+
+        $fabricType = FabricType::all();
         $swatchnamemainte = SwatchNameMaintenance::all();
+
+         $swatchnamemainte = \DB::table('tblSwatchName')
+            ->join('tblFabricType', 'tblSwatchName.strSwatchNameTypeFK', '=', 'tblFabricType.strFabricTypeID')
+            ->select('tblSwatchName.*', 'tblFabricType.strFabricTypeName')
+
+            ->get();
 
 
         //load the view and pass the employees
         return view('maintenance-swatch-name')
                     ->with('swatchnamemainte', $swatchnamemainte)
-                    ->with('newID', $newID)
-        ;
+                    ->with('fabricType', $fabricType)
+                    ->with('newID', $newID);
+        
     }
 
     /**
@@ -58,6 +68,7 @@ class SwatchNameController extends Controller
     {
         $swatchnamemainte = SwatchNameMaintenance::create(array(
                 'strSwatchNameID' => $request->input('addSwatchNameID'),
+                'strSwatchNameTypeFK' =>$request->input('addCategory'),
                 'strSName' =>trim($request->input('addSwatchName')),
                 'txtSwatchNameDesc' => trim($request->input('addSwatchDesc')),  
                 'boolIsActive' => 1
@@ -115,6 +126,7 @@ class SwatchNameController extends Controller
     function update_swatchname(Request $request)
     {
          $swatchnamemainte = SwatchNameMaintenance::find($request->input('editSwatchNameID'));
+                $swatchnamemainte->strSwatchNameTypeFK = trim($request->input('editCategory'));
 
                $swatchnamemainte->strSName = trim($request->input('editSName'));
                $swatchnamemainte->txtSwatchNameDesc = trim($request->input('editSwatchNameDesc'));
