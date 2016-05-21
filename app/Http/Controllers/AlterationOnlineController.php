@@ -16,7 +16,7 @@ class AlterationOnlineController extends Controller
      */
     public function index()
     {
-        return view('alterationOnline');
+        return view('transaction-alterationonline');
     }
 
     /**

@@ -58,19 +58,19 @@
                         <div class="modal-content col s12">
                         
                         <div class="input-field">
-                          <input value = "editSwatchNameID" id="editSwatchNameID" name = "editSwatchNameID" type="hidden">
+                          <input value = "{{$swatchnamemainte->strSwatchNameID}}" id="editSwatchNameID" name = "editSwatchNameID" type="hidden">
                         </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s12">
-                          <input required value = "editSwatchName" id="editSwatchName" name = "editSwatchName" type="text" class="validateName">
+                          <input required value = "{{$swatchnamemainte->strSName}}" id="editSName" name = "editSName" type="text" pattern="^[a-zA-Z\-'`\s]{2,}$" class="validate" required data-position="bottom">
                           <label for="swatch_name">Swatch Name <span class="red-text"><b>*</b></span> </label>
                         </div>
                   </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                         <div class="input-field col s12">
-                          <input required value = "editSwatchDesc" id="editSwatchDesc" name = "editSwatchDesc" type="text" class="validateDesc">
+                          <input required value = "{{$swatchnamemainte->txtSwatchNameDesc}}" id="editSwatchNameDesc" name = "editSwatchNameDesc" type="text" class="validate"required data-position="bottom" pattern="[A-Za-z\s]+">
                           <label for="swatch_description">Swatch Desription <span class="red-text"><b>*</b></span> </label>
                         </div>  
                   </div>
@@ -78,7 +78,7 @@
 
                       <div class="modal-footer col s12" style="background-color:#26a69a">
                         <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Update</button>
-                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
+                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" button type="reset" value="Reset">Cancel</a> 
                       </div>
                      
                     </div> <!-- editFabricType  -->    
@@ -93,20 +93,20 @@
                     <div class="modal-content col s12">
                       
                           <div class="input-field">
-                            <input value="delSwatchNameID" id="delSwatchNameID" name="delSwatchNameID" type="hidden">
+                            <input value="{{$swatchnamemainte->strSwatchNameID}}" id="delSwatchNameID" name="delSwatchNameID" type="hidden">
                           </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
                             <label for="swatch_name">Swatch Name </label>
-                            <input value="delSwatchName" id="delSwatchName" name="delSwatchName" type="text" readonly>
+                            <input value="{{$swatchnamemainte->strSName}}" id="delSwatchName" name="delSwatchName" type="text" readonly>
                           </div>
                       </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
                             <label for="swatch_desc">Swatch Desription </label>
-                            <input value="delSwatchDesc" id="delSwatchDesc" name="delSwatchDesc" type="text" readonly>
+                            <input value="{{$swatchnamemainte->txtSwatchNameDesc}}" id="delSwatchDesc" name="delSwatchDesc" type="text" readonly>
                           </div>
                       </div>
 
@@ -146,19 +146,19 @@
                             
 
                   <div class="input-field">
-                    <input value = "addSwatchNameID" id="addSwatchNameID" name = "addSwatchNameID" type="hidden">
+                    <input value = "{{$newID}}" id="addSwatchNameID" name = "addSwatchNameID" type="hidden">
                   </div>
 
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s12">
-                    <input required id="addSwatchName" name = "addSwatchName" type="text" class="validate" pattern="[0-9a-zA-Z\-\s]+$">
+                    <input required id="addSwatchName" name = "addSwatchName" type="text" class="validate" required data-position="bottom" pattern="[0-9a-zA-Z\-\s]+$" placeholder="Nickel">
                     <label for="swatch_name">Swatch Name <span class="red-text"><b>*</b></span></label>
                   </div>
               </div>    
 
               <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                   <div class="input-field col s12">
-                    <input required id="addSwatchDesc" name = "addSwatchDesc" type="text" class="validateDesc">
+                    <input required id="addSwatchDesc" name = "addSwatchDesc" type="text" class="validate" placeholder="Smooth and reddish like version of citadel." required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$">
                     <label for="swatch_description">Swatch Description <span class="red-text"><b>*</b></span></label>
                   </div>
               </div>

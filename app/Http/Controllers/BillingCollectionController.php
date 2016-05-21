@@ -16,7 +16,7 @@ class BillingCollectionController extends Controller
      */
     public function index()
     {
-        return view('billingCollection');
+        return view('transaction-billingcollection');
     }
 
     /**

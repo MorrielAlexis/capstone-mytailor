@@ -16,12 +16,12 @@ class OnlineCustomerCompanyController extends Controller
      */
     public function index()
     {
-        return view('onlineCustomerCompany');
+        return view('transaction-onlinecustomercompany');
     }
 
     public function accept()
     {
-        return view('acceptCompanyOrder');
+        return view('transaction-acceptcompanyorder');
     }
     /**
      * Show the form for creating a new resource.

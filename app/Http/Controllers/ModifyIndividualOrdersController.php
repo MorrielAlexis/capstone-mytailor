@@ -16,7 +16,7 @@ class ModifyIndividualOrdersController extends Controller
      */
     public function index()
     {
-        return view('modifyIndividualOrders');
+        return view('transaction-modifyindividualorders');
     }
 
     /**
