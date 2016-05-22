@@ -19,7 +19,7 @@ class CreateCatalogueTable extends Migration
             $table->string('strCatalogueDesc', 255)->nullable();
             $table->string('strCatalogueImage')->nullable();
             $table->boolean('boolIsActive');
-            $table->string('strCatalogueInactiveReason')->nullable()->default(null);
+            $table->string('strCatalogueInactiveReason')->nullable();
             $table->timestamps();
 
             //foreign constraint

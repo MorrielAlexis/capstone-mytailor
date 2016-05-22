@@ -16,7 +16,7 @@ class CreateEmployeeRoleTable extends Migration {
 			$table->string('strEmpRoleID')->primary();
 			$table->string('strEmpRoleName');
 			$table->text('strEmpRoleDesc')->nullable();
-			$table->string('strRoleInactiveReason')->nullable->default(null);
+			$table->string('strRoleInactiveReason')->nullable();
 			$table->timestamps();
 			$table->boolean('boolIsActive');
 

@@ -15,9 +15,9 @@ class CreateMeasurementdetailTable extends Migration
         Schema::create('tblMeasurementDetail', function (Blueprint $table) {
             $table->string('strMeasurementDetailID')->primary();
             $table->string('strMeasurementDetailName');
-            $table->text('txtMeasurementDetailDesc', 255)->nullable();
+            $table->text('txtMeasurementDetailDesc')->nullable();
             $table->boolean('boolIsActive');
-            $table->string('strMeasDetInactiveReason')->nullable()->default(null);
+            $table->string('strMeasDetInactiveReason')->nullable();
             $table->timestamps();
         });
     }

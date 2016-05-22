@@ -19,7 +19,7 @@ class CreateHookeyeTable extends Migration
             $table->string('strHookColor');
             $table->string('strHookImage')->nullable();
             $table->text('textHookDesc')->nullable();
-            $table->string('strHookInactiveReason')->nullable()->default(null);
+            $table->string('strHookInactiveReason')->nullable();
             $table->boolean('boolIsActive');
             $table->timestamps();
         });
