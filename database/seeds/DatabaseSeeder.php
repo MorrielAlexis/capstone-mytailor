@@ -24,7 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(MaterialZipperSeeder::class);
         $this->call(MaterialHookEyeSeeder::class);
         $this->call(FabricTypeSeeder::class);
-        $this->call(SwatchSeeder::class);
         $this->call(GarmentCategorySeeder::class);
         $this->call(SegmentSeeder::class);
         $this->call(SegmentPatternSeeder::class);
@@ -33,6 +32,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MeasurementCategorySeeder::class);
         $this->call(AlterationSeeder::class);
         $this->call(SwatchNameSeeder::class);
+        $this->call(SwatchSeeder::class);
 
         Model::reguard();
     }

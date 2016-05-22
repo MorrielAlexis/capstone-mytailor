@@ -18,7 +18,7 @@ class SwatchSeeder extends Seeder
             array(
                 'strSwatchID' => 'SW001',
                 'strSwatchTypeFK' => 'FAB001',
-                'strSwatchName' =>'Linen Antique',
+                'strSwatchNameFK' =>'SWNAM0001',
                 'strSwatchCode' =>'LINK01',
                 'strSwatchImage' => '',
                 'boolIsActive' => '1'
@@ -27,7 +27,7 @@ class SwatchSeeder extends Seeder
             array(
                 'strSwatchID' => 'SW002',
                 'strSwatchTypeFK' => 'FAB002',
-                'strSwatchName' =>'Cotton Classic',
+                'strSwatchNameFK' =>'SWNAM0002',
                 'strSwatchCode' =>'CKJK01',
                 'strSwatchImage' => '',
                 'boolIsActive' => '1'
