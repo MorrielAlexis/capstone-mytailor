@@ -211,3 +211,5 @@ Route::get('/acceptCompany','OnlineCustomerCompanyController@accept');
 Route::get('transaction/walkin-individual-payment', 'WalkInIndividualController@payment');
 Route::get('transaction/walkin-company-payment', 'WalkInCompanyController@payment');
 
+Route::get('/transaction-alterationwalkIn-newtransaction','AlterationWalkInController@newTrans');
+
