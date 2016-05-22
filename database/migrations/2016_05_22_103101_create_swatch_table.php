@@ -14,8 +14,8 @@ class CreateSwatchTable extends Migration
     {
         Schema::create('tblSwatch', function (Blueprint $table) {
             $table->string('strSwatchID')->primary();
-            $table->string('strSwatchTypeFK');//fk
-            $table->string('strSwatchName');
+            $table->string('strSwatchTypeFK')->index();//fk
+            $table->string('strSwatchNameFK')->index();//fk
             $table->string('strSwatchCode');
             $table->string('strSwatchImage')->nullable();
             $table->string('strSwatchInactiveReason')->nullable();
@@ -25,6 +25,13 @@ class CreateSwatchTable extends Migration
             $table->foreign('strSwatchTypeFK')
                   ->references('strFabricTypeID')
                   ->on('tblFabricType');
+                  
+             $table->foreign('strSwatchNameFK')
+                  ->references('strSwatchNameID')
+                  ->on('tblSwatchName');
+ 
+
+
         });
     }
 

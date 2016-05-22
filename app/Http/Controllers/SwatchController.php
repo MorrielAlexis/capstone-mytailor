@@ -36,7 +36,9 @@ class SwatchController extends Controller
         
         $swatch = \DB::table('tblSwatch')
             ->join('tblFabricType', 'tblSwatch.strSwatchTypeFK', '=', 'tblFabricType.strFabricTypeID')
-            ->select('tblSwatch.*', 'tblFabricType.strFabricTypeName')
+            ->join('tblSwatchName', 'tblSwatch.strSwatchNameFK', '=', 'tblSwatchName.strSwatchNameID')
+            ->select('tblSwatch.*', 'tblFabricType.strFabricTypeName', 'tblSwatchName.strSName')
+            ->orderBy('strSwatchID')
             ->get();
 
 

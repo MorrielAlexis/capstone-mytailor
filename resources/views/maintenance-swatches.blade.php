@@ -111,7 +111,7 @@
                     @if($swatch->boolIsActive == 1)
                   <tr>
                     <td>{{ $swatch->strFabricTypeName }}</td>
-                    <td>{{ $swatch->strSwatchName }}</td>
+                    <td>{{ $swatch->strSName }}</td>
                     <td>{{ $swatch->strSwatchCode }}</td>
                     <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($swatch->strSwatchImage)}}"></td>
               		  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit swatch detail" href="#edit{{ $swatch->strSwatchID }}"><i class="mdi-editor-mode-edit"></i></a>
@@ -148,10 +148,17 @@
                         </div>
 
                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                              <div class="input-field col s6">
-                                <input required value="{{$swatch->strSwatchName}}" id="editSwatchName" name = "editSwatchName" type="text" class="validateSwatchName">
-                                <label for="swatch_name">*Swatch Name </label>
-                              </div>    
+                          <div class="input-field col s6">   
+                            <select class="browser-default editSwatchName"  required name='editSwatchName'>
+                                  @foreach($swatchnamemainte as $swatchnamemainte_1)
+                                    @if($swatch->strSwatchNameFK == $swatchnamemainte_1->strSwatchNameID && $swatchnamemainte_1->boolIsActive == 1)
+                                      <option selected value="{{ $swatchnamemainte_1->strSwatchNameID }}" class="{{$swatchnamemainte_1->strSwatchTypeFK  }}">{{ $swatchnamemainte_1->strSName }}</option>
+                                    @elseif($swatchnamemainte_1->boolIsActive == 1)
+                                      <option value="{{ $swatchnamemainte_1->strSwatchNameID }}" class="{{$swatchnamemainte_1->strSwatchTypeFK  }}">{{ $swatchnamemainte_1->strSName }}</option>
+                                    @endif
+                                  @endforeach
+                            </select>    
+                          </div> 
 
                               <div class="input-field col s6">
                                 <input required value="{{$swatch->strSwatchCode}}" id="editSwatchCode" name = "editSwatchCode" type="text" class="validateSwatchCode">
@@ -199,7 +206,7 @@
 
                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s6">
-                                <input value="{{$swatch->strSwatchName}}" type="text" class="" readonly>
+                                <input value="{{$swatch->strSName}}" type="text" class="" readonly>
                                 <label for="swatch_name">Swatch Name </label>
                               </div>    
 

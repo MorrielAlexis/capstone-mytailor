@@ -11,7 +11,7 @@ class Swatch extends Model
 	protected $primaryKey = 'strSwatchID';
 	protected $fillable = array('strSwatchID',
 								'strSwatchTypeFK',
-								'strSwatchName',
+								'strSwatchNameFK',
 								'strSwatchCode',
 								'strSwatchImage',
 								'strSwatchInactiveReason',
