@@ -1,4 +1,4 @@
-@extends('layouts.master')
+ @extends('layouts.master')
 
 @section('content')
   <div class="main-wrapper" style="margin-top:30px">
@@ -206,7 +206,7 @@
 
                               <div class="input-field col s12">
                                 <label for="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span> </label>
-                                <input value="{{ $segment->strSegInactiveReason }}" id="delInactiveSegment" name="delInactiveSegment" type="text">
+                                <input required value="{{ $segment->strSegInactiveReason }}" id="delInactiveSegment" name="delInactiveSegment" type="text">
                               </div>
 
                               <div class = "col s12" style="padding:15px;  border:3px solid white;">

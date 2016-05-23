@@ -226,7 +226,7 @@
 
                                  <div class="input-field col s12">
                                     <label for="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span> </label>
-                                    <input value="{{$zipper->strZipperInactiveReason}}" id="delInactiveZipper" name="delInactiveZipper" type="text">
+                                    <input required value="{{$zipper->strZipperInactiveReason}}" id="delInactiveZipper" name="delInactiveZipper" type="text">
                                   </div>
 
                               <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
