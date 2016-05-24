@@ -53,7 +53,35 @@ class MaterialButtonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $file = $request->input('addImage');
+        $destinationPath = 'imgMaterialButtons';
+
+                if($file == '' || $file == null){
+                $button = Button::create(array(
+                    'intButtonID' => $request->input('addButtonID'),
+                    'strButtonBrand' => trim($request->input('addButtonBrand')),
+                    'strButtonSize' => trim($request->input('addButtonSize')),
+                    'strButtonColor' => trim($request->input('addButtonColor')),
+                    'strButtonDesc' => trim($request->input('addButtonDesc')),
+                    'boolIsActive' => 1
+                    ));
+                }else{
+                    $request->file('addImg')->move($destinationPath);
+
+                    $button = Button::create(array(
+                    'intButtonID' => $request->input('addButtonID'),
+                    'strButtonBrand' => trim($request->input('addButtonBrand')),
+                    'strButtonSize' => trim($request->input('addButtonSize')),
+                     'strButtonColor' => trim($request->input('addButtonColor')),
+                    'strButtonDesc' => trim($request->input('addButtonDesc')),
+                    'strButtonImage' => 'imgMaterialButtons/'.$file,
+                    'boolIsActive' => 1
+                        ));
+                }
+                $button ->save();
+
+                return redirect('maintenance/material-button');
+        
     }
 
     /**
@@ -110,6 +138,38 @@ class MaterialButtonController extends Controller
         $button->save();
 
         return redirect('maintenance/material-button');
+    }
+
+
+    function update_button(Request $request)
+    {
+        $isAdded = FALSE;
+
+        $id = $request->input('editButtonID');
+        $button = Button::find($id);
+        
+
+                
+                if($request->input('editButtonImage') == $button->strButtonImage){
+                   $button ->strButtonBrand = trim($request->input('editButtonBrand'));
+                    $button ->strButtonSize = trim($request->input('editButtonSize'));
+                    $button ->strButtonColor = trim($request->input('editButtonColor'));
+                    $button ->strButtonDesc = trim($request->input('editButtonDesc'));
+                    
+                }else{
+                    $destinationPath = 'imgMaterialButtons';
+                    $request->file('editImg')->move($destinationPath);
+                    $button ->strButtonBrand = trim($request->input('editButtonBrand'));
+                    $button ->strButtonSize = trim($request->input('editButtonSize'));
+                    $button ->strButtonColor = trim($request->input('editButtonColor'));
+                    $button ->strButtonDesc = trim($request->input('editButtonDesc'));
+                   $button ->strButtonImage = 'imgMaterialButtons/'.$file;
+                   
+                }
+                $button ->save();
+
+                return redirect('maintenance/material-button');
+
     }
 
     public function smartCounter($id)

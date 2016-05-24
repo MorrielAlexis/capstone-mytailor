@@ -113,6 +113,8 @@ Route::group(['prefix' => 'maintenance'], function(){
 
 		Route::post('material-button/destroy', 'MaterialButtonController@delete_button');
 
+		Route::post('material-button/update', 'MaterialButtonController@update_button');
+
 	Route::resource('material-zipper', 'MaterialZipperController');
 
 		Route::post('material-zipper/destroy', 'MaterialZipperController@delete_zipper');

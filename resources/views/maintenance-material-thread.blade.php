@@ -252,7 +252,7 @@
 									  <div id="addThread" class="modal modal-fixed-footer">
 									    <h5><font color = "#1b5e20"><center>ADD NEW THREAD</center> </font> </h5>
 									        
-									      {!! Form::open(['url' => 'maintenance/material-thread', 'files' => 'true']) !!}
+									      {!! Form::open(['url' => 'maintenance/material-thread', 'files' => 'true' , 'method' => 'post']) !!}
 									        <div class="divider" style="height:2px"></div>
 									        <div class="modal-content col s12">
 									    

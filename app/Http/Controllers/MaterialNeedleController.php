@@ -53,7 +53,32 @@ class MaterialNeedleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $file = $request->input('addImage');
+        $destinationPath = 'imgNeedles';
+
+                if($file == '' || $file == null){
+                $Needle = Needle::create(array(
+                    'strNeedleID' => $request->input('addNeedleID'),
+                    'strNeedleBrand' => trim($request->input('addNeedleBrand')),
+                    'strNeedleSize' => trim($request->input('addNeedleSize')),
+                    'strNeedleDesc' => trim($request->input('addNeedleDesc')),
+                    'boolIsActive' => 1
+                    ));
+                }else{
+                    $request->file('addImg')->move($destinationPath);
+
+                    $Needle = Needle::create(array(
+                    'strNeedleID' => $request->input('addNeedleID'),
+                    'strNeedleBrand' => trim($request->input('addNeedleBrand')),
+                    'strNeedleSize' => trim($request->input('addNeedleSize')),
+                    'strNeedleDesc' => trim($request->input('addNeedleDesc')),
+                    'strNeedleImage' => 'imgMaterialNeedles/'.$file,
+                    'boolIsActive' => 1
+                        ));
+                }
+                $Needle ->save();
+
+                return redirect('/maintenance/material-needle');
     }
 
     /**
@@ -101,37 +126,10 @@ class MaterialNeedleController extends Controller
         //
     }
 
-    public function addNeedle(Request $request)
-    {   
-        $file = $request->input('addImage');
-        $destinationPath = 'imgNeedles';
+  
+    
 
-                if($file == '' || $file == null){
-                $Needle = Needle::create(array(
-                    'strNeedleID' => $request->input('addNeedleID'),
-                    'strNeedleBrand' => trim($request->input('addNeedleBrand')),
-                    'strNeedleSize' => trim($request->input('addNeedleSize')),
-                    'strNeedleDesc' => trim($request->input('addNeedleDesc')),
-                    'boolIsActive' => 1
-                    ));
-                }else{
-                    $request->file('addImg')->move($destinationPath);
-
-                    $Needle = Needle::create(array(
-                    'strNeedleID' => $request->input('addNeedleID'),
-                    'strNeedleBrand' => trim($request->input('addNeedleBrand')),
-                    'strNeedleSize' => trim($request->input('addNeedleSize')),
-                    'strNeedleDesc' => trim($request->input('addNeedleDesc')),
-                    'strNeedleImage' => 'imgMaterialNeedles/'.$fileBrand,
-                    'boolIsActive' => 1
-                        ));
-                }
-                $Needle ->save();
-
-                return redirect('/maintenance/material');
-    }
-
-    public function editNeedle(Request $request)
+     function editNeedle(Request $request)
     {
         $isAdded = FALSE;
 
@@ -152,10 +150,10 @@ class MaterialNeedleController extends Controller
                     $Needle->strNeedleImage = 'imgMaterialNeedles/'.$fileBrand;
                 }
                 $Needle->save();
-                return redirect('/maintenance/material');
+                return redirect('/maintenance/material-needle');
     }
 
-    public function delNeedle(Request $request)
+     function delNeedle(Request $request)
     {
         $id = $request->input('delNeedleID');
         $Needle = Needle::find($id);

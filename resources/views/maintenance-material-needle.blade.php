@@ -126,7 +126,7 @@
                           <div id="edit{{$needle->intNeedleID}}" class="modal modal-fixed-footer">
                             <h5><font color = "#1b5e20"><center>EDIT NEEDLE</center> </font> </h5>
                               
-                            {!! Form::open(['url' => 'editNeedle']) !!}
+                            {!! Form::open(['url' => 'maintenance/material-needle/update', 'files' => 'true']) !!}
                               <div class="divider" style="height:2px"></div>
                               <div class="modal-content col s12">
 
@@ -250,7 +250,7 @@
   <div id="addNeedle" class="modal modal-fixed-footer">
     <h5><font color = "#1b5e20"><center>ADD NEW NEEDLE</center> </font> </h5>   
         
-      {!! Form::open(['url' => 'addNeedle']) !!}
+      {!! Form::open(['url' => 'maintenance/material-needle', 'method' => 'post', 'files' => 'true']) !!}
         <div class="divider" style="height:2px"></div>
         <div class="modal-content col s12"> 
 
@@ -260,7 +260,7 @@
          
         <div class = "col s12" style="padding:15px;  border:3px solid white;">           
           <div class="input-field col s12">
-            <input required id="addNeedleName" name = "addNeedleName"  type="text" class="validateName">
+            <input required id="addNeedleBrandtttttttttttttttttttttttttttttttt" name = "addNeedleBrandtttttttttttttttttttttttttttttttt"  type="text" class="validateName">
             <label for="Needle_Name"> Needle Name<span class="red-text"><b>*</b></span> </label>
           </div>
         </div>

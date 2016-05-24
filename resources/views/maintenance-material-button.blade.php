@@ -129,7 +129,7 @@
                           <div id="edit{{$button->intButtonID}}" class="modal modal-fixed-footer">
                             <h5><font color = "#1b5e20"><center>EDIT BUTTON</center> </font> </h5>
                               
-                            {!! Form::open(['url' => 'editButton']) !!}
+                            {!! Form::open(['url' => 'maintenance/material-button/update' , 'files' => 'true']) !!}
                               <div class="divider" style="height:2px"></div> 
                               <div class="modal-content col s12">
 
@@ -139,20 +139,20 @@
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                 <div class="input-field col s12">
-                                  <input required id="editButtonName" name = "editButtonName" value = "{{$button->strButtonBrand}}" type="text" class="validateName">
-                                  <label for="Button_Name"> *Button Name </label>
+                                  <input required id="editButtonBrand" name = "editButtonBrand" value = "{{$button->strButtonBrand}}" type="text" class="validateName">
+                                  <label for="Button_Name"> Button Brand <span class="red-text"><b>*</b></span></label>
                                 </div>
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                 <div class="input-field col s6">
                                   <input required id="editButtonSize" name = "editButtonSize" value = "{{$button->strButtonSize}}" type="text" class="validateSize">
-                                  <label for="Button_Size"> *Button Size </label>
+                                  <label for="Button_Size"> Button Size <span class="red-text"><b>*</b></span></label>
                                 </div>
 
                                 <div class="input-field col s6">
                                   <input required id="editButtonColor" name = "editButtonColor" value = "{{$button->strButtonColor}}" type="text" class="validateColor">
-                                  <label for="Button_Color"> *Button Color </label>
+                                  <label for="Button_Color"> Button Color <span class="red-text"><b>*</b></span></label>
                                 </div>
                           </div>
 
@@ -265,7 +265,7 @@
   <div id="addButton" class="modal modal-fixed-footer">
     <h5><font color = "#1b5e20"><center>ADD NEW BUTTON</center> </font> </h5>
       
-    {!! Form::open(['url' => 'addButton']) !!}
+    {!! Form::open(['url' => 'maintenance/material-button', 'files' => 'true' , 'method' => 'post']) !!}
       <div class="divider" style="height:2px"></div>
       <div class="modal-content col s12">
     
@@ -275,20 +275,20 @@
         
       <div class = "col s12" style="padding:15px;  border:3px solid white;">            
         <div class="input-field col s12">
-          <input required  id="addButtonName" name = "addButtonName" type="text" class="validateName">
-          <label for="Button_Name"> *Button Name </label>
+          <input required  id="addButtonBrand" name = "addButtonBrand" type="text" class="validate">
+          <label for="Button_Name"> Button Name <span class="red-text"><b>*</b></span></label>
         </div>
       </div>
 
       <div class = "col s12" style="padding:15px;  border:3px solid white;">
         <div class="input-field col s6">
-          <input required id="addButtonSize" name = "addButtonSize" type="text" class="validateSize">
-          <label for="Button_Size"> *Button Size </label>
+          <input required id="addButtonSize" name = "addButtonSize" type="text" class="validate">
+          <label for="Button_Size"> Button Size <span class="red-text"><b>*</b></span></label>
         </div>
 
         <div class="input-field col s6">
           <input required id="addButtonColor" name = "addButtonColor" type="text" class="validateColor">
-          <label for="Button_Color"> *Button Color </label>
+          <label for="Button_Color"> Button Color <span class="red-text"><b>*</b></span></label>
         </div>
       </div>
 
@@ -315,7 +315,7 @@
       <!--MODAL FOOTER-->
       <div class="modal-footer col s12" style="background-color:#26a69a">
         <button type="submit" class="modal-action  waves-effect waves-green btn-flat">Save</button>
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
+        <button type="reset" value="Reset" href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
       </div>
     {!! Form::close() !!}
   </div>

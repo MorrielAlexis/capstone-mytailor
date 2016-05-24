@@ -10,11 +10,11 @@ class Button extends Model
 
 	protected $primaryKey = 'intButtonID';
 
-	protected $fillable = ['strButtonBrand', 
+	protected $fillable = array('intButtonID','strButtonBrand', 
 							'strButtonSize',
 							'strButtonColor',
 							'strButtonDesc',
 							'strButtonImage', 
 							'strButtonInactiveReason',
-							'boolIsActive'];
+							'boolIsActive');
 }
