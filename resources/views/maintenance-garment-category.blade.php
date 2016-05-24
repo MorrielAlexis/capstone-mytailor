@@ -206,6 +206,7 @@
                                 <input required value="{{ $garment->strGarmentCategoryInactiveReason }}" type="text" id="delInactiveGarment" name="delInactiveGarment">
                               </div>
 
+
                           <!-- <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                               <div class="input-field">
                                 <input value="{{ $garment->strGarmentCategoryInactiveReason }}" type="text" id="delInactiveReason" name="delInactiveReason" class="validate" required>
@@ -213,7 +214,7 @@
                               </div>
                           </div> -->
                           </div>
-
+    
                           <div class="modal-footer col s12" style="background-color:#26a69a">
                             <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">OK</button>
                             <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 

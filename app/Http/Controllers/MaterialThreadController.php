@@ -52,8 +52,34 @@ class MaterialThreadController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    { 
+        $file = $request->input('addImage');
+        $destinationPath = 'imgThreads';
+
+                if($file == '' || $file == null){
+                $thread = Thread::create(array(
+                    'strThreadID' => $request->input('addThreadID'),
+                    'strThreadBrand' => trim($request->input('addThreadBrand')),
+                    'strThreadColor' => trim($request->input('addThreadColor')),
+                    'strThreadDesc' => trim($request->input('addThreadDesc')),
+                    'boolIsActive' => 1
+                    ));
+                }else{
+                    $request->file('addImg')->move($destinationPath);
+
+                    $thread = Thread::create(array(
+                    'strThreadID' => $request->input('addThreadID'),
+                    'strThreadBrand' => trim($request->input('addThreadBrand')),
+                    'strThreadColor' => trim($request->input('addThreadColor')),
+                    'strThreadDesc' => trim($request->input('addThreadDesc')),
+                    'strThreadImage' => 'imgMaterialThreads/'.$file,
+                    'boolIsActive' => 1
+                        ));
+                }
+                $thread ->save();
+
+                return redirect('maintenance/material-thread');
+    
     }
 
     /**
@@ -101,37 +127,8 @@ class MaterialThreadController extends Controller
         //
     }
 
-    public function addThread(Request $request)
-    {   
-        $file = $request->input('addImage');
-        $destinationPath = 'imgThreads';
 
-                if($file == '' || $file == null){
-                $thread = Thread::create(array(
-                    'strThreadID' => $request->input('addThreadID'),
-                    'strThreadBrand' => trim($request->input('addThreadBrand')),
-                    'strThreadColor' => trim($request->input('addThreadColor')),
-                    'strThreadDesc' => trim($request->input('addThreadDesc')),
-                    'boolIsActive' => 1
-                    ));
-                }else{
-                    $request->file('addImg')->move($destinationPath);
-
-                    $thread = Thread::create(array(
-                    'strThreadID' => $request->input('addThreadID'),
-                    'strThreadBrand' => trim($request->input('addThreadBrand')),
-                    'strThreadColor' => trim($request->input('addThreadColor')),
-                    'strThreadDesc' => trim($request->input('addThreadDesc')),
-                    'strThreadImage' => 'imgMaterialThreads/'.$fileBrand,
-                    'boolIsActive' => 1
-                        ));
-                }
-                $thread ->save();
-
-                return redirect('/maintenance/material');
-    }
-
-    public function editThread(Request $request)
+     function editThread(Request $request)
     {
         $isAdded = FALSE;
 
@@ -149,10 +146,10 @@ class MaterialThreadController extends Controller
                     $thread->strThreadBrand = trim($request->input('editThreadBrand'));
                     $thread->strThreadColor = trim($request->input('editThreadColor'));
                     $thread->strThreadDesc = trim($request->input('editThreadDesc'));
-                    $thread->strThreadImage = 'imgMaterialThreads/'.$fileBrand;
+                    $thread->strThreadImage = 'imgMaterialThreads/'.$file;
                 }
                 $thread->save();
-                return redirect('/maintenance/material');
+                return redirect('maintenance/material-thread');
     }
 
     public function deleteThread(Request $request)

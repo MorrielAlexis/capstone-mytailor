@@ -160,7 +160,7 @@
 
                               <div class="input-field col s6">
                                 <input required value="{{$swatch->strSwatchCode}}" id="editSwatchCode" name = "editSwatchCode" type="text" class="validateSwatchCode">
-                                <label for="swatch_code">*Swatch Code </label>
+                                <label for="swatch_code">Swatch Code <span class="red-text"><b>*</b></span></label>
                               </div>
                         </div>
 
@@ -251,7 +251,7 @@
             <div id="addSwatches" class="modal modal-fixed-footer">
              <h5><font color = "#1b5e20"><center>ADD NEW FABRIC SWATCH</center> </font> </h5>
               
-              {!! Form::open(['url' => 'addSwatch']) !!}
+              {!! Form::open(['url' => 'maintenance/swatch', 'method' => 'post', 'files' => 'true']) !!}
                 <div class="divider" style="height:2px"></div>
                 <div class="modal-content col s12">
  
@@ -291,7 +291,7 @@
 
                     <div class="input-field col s12">
                       <input required id="addSwatchCode" name = "addSwatchCode" type="text" class="validateSwatchCode">
-                      <label for="swatch_code">*Swatch Code </label>
+                      <label for="swatch_code">Swatch Code <span class="red-text"><b>*</b></span></label>
                     </div>
                 </div>
 

@@ -68,7 +68,33 @@ class SwatchController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $file = $request->input('addImage');
+        $destinationPath = 'imgSwatches';
+
+            if($file == '' || $file == null){
+                $swatch = Swatch::create(array(
+                'strSwatchID' => $request->input('addSwatchID'),
+                'strSwatchTypeFK' => $request->input('addFabric'),
+                'strSwatchNameFK' => $request->input('addSwatchName'),
+                'strSwatchCode' => trim($request->input('addSwatchCode')),
+                'boolIsActive' => 1
+                ));     
+                }else{
+                    $request->file('addImg')->move($destinationPath, $file);
+
+                    $swatch = Swatch::create(array(
+                        'strSwatchID' => $request->input('addSwatchID'),
+                        'strSwatchTypeFK' => $request->input('addFabric'),
+                        'strSwatchNameFK' => $request->input('addSwatchName'),
+                        'strSwatchCode' => trim($request->input('addSwatchCode')),
+                        'strSwatchImage' => 'imgSwatches/'.$file,
+                        'boolIsActive' => 1
+                    )); 
+                }
+
+            $swatch->save();
+            
+            return redirect('/maintenance/swatch');
     }
 
     /**
@@ -114,6 +140,33 @@ class SwatchController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    function update_swatch(Request $request)
+    {
+        $swatch = Swatch::find($request->input('editSwatchID'));
+
+        $file = $request->input('editImage');
+        $destinationPath = 'imgSwatches';
+
+                if($file == $swatch->strSwatchImage)
+                {
+                    $swatch->strSwatchTypeFK = $request->input('editFabric');
+                    $swatch->strSwatchNameFK = $request->input('editSwatchName');
+                    $swatch->strSwatchCode = trim($request->input('editSwatchCode'));
+                }else{
+                    $request->file('editImg')->move($destinationPath);
+
+                    $swatch->strSwatchTypeFK = $request->input('editFabric');
+                    $swatch->strSwatchNameFK = $request->input('editSwatchName');
+                    $swatch->strSwatchCode = trim($request->input('editSwatchCode'));
+                    $swatch->strSegPImage = 'imgSwatches/'.$file;
+                }        
+
+                $swatch->save();
+
+            
+            return redirect('maintenance/segment-pattern');
     }
 
 

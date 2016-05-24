@@ -128,7 +128,7 @@
 			                          <div id="edit{{ $thread->intThreadID }}" class="modal modal-fixed-footer">
 			                            <h5><font color = "#1b5e20"><center>EDIT THREAD</center> </font> </h5>
 			                            
-			                            {!! Form::open(['url' => 'editThread']) !!}
+			                            {!! Form::open(['url' => 'maintenance/material-thread/update', 'files' => 'true']) !!}
 			                              <div class="divider" style="height:2px"></div>
 			                              <div class="modal-content col s12">
 
@@ -140,14 +140,14 @@
 			                          <div class = "col s12" style="padding:15px;  border:3px solid white;">
 			                                <div class="input-field col s12">
 			                                  <input id="editThreadBrand" name = "editThreadBrand" value = "{{ $thread->strThreadBrand }}" type="text" class="validateName">
-			                                  <label for="Thread_Brand"> *Thread Brand </label>
+			                                  <label for="Thread_Brand"> Thread Brand <span class="red-text"><b>*</b></span></label>
 			                                </div>
 			                          </div>
 
 			                          <div class = "col s12" style="padding:15px;  border:3px solid white;">
 			                                <div class="input-field col s12">
 			                                  <input id="editThreadColor" name = "editThreadColor" value = "{{ $thread->strThreadColor }}" type="text" class="validateColor">
-			                                  <label for="Thread_Color"> *Thread Color </label>
+			                                  <label for="Thread_Color"> Thread Color <span class="red-text"><b>*</b></span></label>
 			                                </div>
 			                          </div>
 
@@ -248,60 +248,60 @@
       
 </div>
 
-  <!--MODAL: add Thread-->
-  <div id="addThread" class="modal modal-fixed-footer">
-    <h5><font color = "#1b5e20"><center>ADD NEW THREAD</center> </font> </h5>
-        
-      {!! Form::open(['url' => 'addThread']) !!}
-        <div class="divider" style="height:2px"></div>
-        <div class="modal-content col s12">
-    
-        <div class="input-field">
-            <input id="addThreadID" name = "addThreadID" value = "{{$newThreadID}}" type="hidden">
-         </div>
-       
-    <div class = "col s12" style="padding:15px;  border:3px solid white;">             
-        <div class="input-field col s12">
-          <input required id="addThreadName" name = "addThreadName" type="text" class="validateName">
-          <label for="Thread_Name"> *Thread Brand </label>
-        </div>
-    </div>
+									  <!--MODAL: add Thread-->
+									  <div id="addThread" class="modal modal-fixed-footer">
+									    <h5><font color = "#1b5e20"><center>ADD NEW THREAD</center> </font> </h5>
+									        
+									      {!! Form::open(['url' => 'maintenance/material-thread', 'files' => 'true']) !!}
+									        <div class="divider" style="height:2px"></div>
+									        <div class="modal-content col s12">
+									    
+									        <div class="input-field">
+									            <input id="addThreadID" name = "addThreadID" value = "{{$newThreadID}}" type="hidden">
+									         </div>
+									       
+									    <div class = "col s12" style="padding:15px;  border:3px solid white;">             
+									        <div class="input-field col s12">
+									          <input required id="addThreadBrand" name = "addThreadBrand" type="text" class="validate" placeholder="Sew Essens">
+									          <label for="Thread_Name"> Thread Brand <span class="red-text"><b>*</b></span></label>
+									        </div>
+									    </div>
 
-    <div class = "col s12" style="padding:15px;  border:3px solid white;">
-        <div class="input-field col s12">
-          <input required id="addThreadColor" name = "addThreadColor" type="text" class="validateColor">
-          <label for="Thread_Color"> *Thread Color </label>
-        </div>
-    </div>
+									    <div class = "col s12" style="padding:15px;  border:3px solid white;">
+									        <div class="input-field col s12">
+									          <input required id="addThreadColor" name = "addThreadColor" type="text" class="validate" placeholder="Blue">
+									          <label for="Thread_Color"> Thread Color <span class="red-text"><b>*</b></span></label>
+									        </div>
+									    </div>
 
-    <div class = "col s12" style="padding:15px;  border:3px solid white;">
-        <div class="input-field col s12">
-          <input required id="addThreadDesc" name = "addThreadDesc" type="text" class="validateDesc">
-          <label for="Thread_Desc"> Description </label>
-        </div>
-    </div>
+									    <div class = "col s12" style="padding:15px;  border:3px solid white;">
+									        <div class="input-field col s12">
+									          <input required id="addThreadDesc" name = "addThreadDesc" type="text" class="validate" placeholder="A bluish version of the famous sew esens essentials.">
+									          <label for="Thread_Desc"> Description </label>
+									        </div>
+									    </div>
 
-    <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
-        <div class="file-field input-field col s12">
-          <div style="color:black" class="btn tooltipped btn-small center-text light-green lighten-2" data-position="bottom" data-delay="50" data-tooltip="May upload jpg, png, gif, bmp, tif, tiff files">
-            <span>Upload Image</span>
-            <input type="file" id="addImg" name="addImg" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*">
-          </div>
+									    <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
+									        <div class="file-field input-field col s12">
+									          <div style="color:black" class="btn tooltipped btn-small center-text light-green lighten-2" data-position="bottom" data-delay="50" data-tooltip="May upload jpg, png, gif, bmp, tif, tiff files">
+									            <span>Upload Image</span>
+									            <input type="file" id="addImg" name="addImg" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*">
+									          </div>
 
-          <div class="file-path-wrapper">
-            <input class="file-path validate" id="addImage" name="addImage" type="text">
-          </div>
-        </div>
-    </div>
-    </div>
-    
-      <!--MODAL FOOTER-->
-      <div class="modal-footer col s12" style="background-color:#26a69a">
-        <button type="submit" class="modal-action  waves-effect waves-green btn-flat">Save</button>
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
-      </div>
-    {!! Form::close() !!}
-  </div>
+									          <div class="file-path-wrapper">
+									            <input class="file-path validate" id="addImage" name="addImage" type="text">
+									          </div>
+									        </div>
+									    </div>
+									    </div>
+									    
+									      <!--MODAL FOOTER-->
+									      <div class="modal-footer col s12" style="background-color:#26a69a">
+									        <button type="submit" class="modal-action  waves-effect waves-green btn-flat">Save</button>
+									        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
+									      </div>
+									    {!! Form::close() !!}
+									  </div>
 
 @stop
 

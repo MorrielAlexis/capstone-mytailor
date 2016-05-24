@@ -98,15 +98,15 @@ Route::group(['prefix' => 'maintenance'], function(){
 
 Route::group(['prefix' => 'maintenance'], function(){
 	Route::resource('material-thread', 'MaterialThreadController');
+	
+		Route::post('material-thread/update','MaterialThreadController@editThread');
 
-		Route::post('material-thread/add','MaterialThreadController@addThread');
-		Route::post('material-thread/edit','MaterialThreadController@editThread');
 		Route::post('material-thread/destroy','MaterialThreadController@deleteThread');
 
 	Route::resource('material-needle', 'MaterialNeedleController');
 
-		Route::post('material-needle/add','MaterialNeedleController@addNeedle');
-		Route::post('material-needle/edit','MaterialNeedleController@editNeedle');
+		Route::post('material-needle/update','MaterialNeedleController@editNeedle');
+
 		Route::post('material-needle/destroy','MaterialNeedleController@delNeedle');
 
 	Route::resource('material-button', 'MaterialButtonController');

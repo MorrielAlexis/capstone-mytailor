@@ -137,14 +137,14 @@
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                 <div class="input-field col s12">
                                   <input required id="editNeedleBrand" name = "editNeedleBrand" value = "{{$needle->strNeedleBrand}}" type="text" class="validateName">
-                                  <label for="Needle_Brand"> *Needle Brand </label>
+                                  <label for="Needle_Brand"> Needle Brand <span class="red-text"><b>*</b></span></label>
                                 </div>
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                 <div class="input-field col s12">
                                   <input required id="editNeedleSize" name = "editNeedleSize" value = "{{$needle->strNeedleSize}}" type="text" class="validateSize">
-                                  <label for="Needle_Size"> *Needle Size </label>
+                                  <label for="Needle_Size"> Needle Size <span class="red-text"><b>*</b></span></label>
                                 </div>
                           </div>
 
@@ -225,7 +225,7 @@
 
                               <div class="modal-footer col s12" style="background-color:#26a69a">
                                 <button type="submit" class="waves-effect waves-green btn-flat">OK</button>
-                                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
+                                <button href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
                               </div> 
                             {!! Form::close() !!}
                           </div>
@@ -261,14 +261,14 @@
         <div class = "col s12" style="padding:15px;  border:3px solid white;">           
           <div class="input-field col s12">
             <input required id="addNeedleName" name = "addNeedleName"  type="text" class="validateName">
-            <label for="Needle_Name"> *Needle Name </label>
+            <label for="Needle_Name"> Needle Name<span class="red-text"><b>*</b></span> </label>
           </div>
         </div>
 
         <div class = "col s12" style="padding:15px;  border:3px solid white;">
           <div class="input-field col s12">
             <input required  id="addNeedleSize" name = "addNeedleSize" type="text" class="validateSize">
-            <label for="Needle_Size"> *Needle Size </label>
+            <label for="Needle_Size"> Needle Size <span class="red-text"><b>*</b></span></label>
           </div>
         </div>
               
@@ -296,7 +296,7 @@
       <!--MODAL FOOTER-->
       <div class="modal-footer col s12" style="background-color:#26a69a">
         <button type="submit" class="modal-action  waves-effect waves-green btn-flat">Save</button>
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
+        <button type="reset" value="Reset" href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
       </div>
     {!! Form::close() !!}
   </div>
