@@ -124,6 +124,8 @@ Route::group(['prefix' => 'maintenance'], function(){
 	Route::resource('material-hookandeye', 'MaterialHookAndEyeController');
 
 		Route::post('material-hookandeye/destroy', 'MaterialHookAndEyeController@delete_hookeye');
+
+		Route::post('material-hookandeye/update', 'MaterialHookAndEyeController@update_hookeye');
 });
 
 Route::group(['prefix' => 'maintenance'], function(){

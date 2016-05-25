@@ -53,7 +53,35 @@ class MaterialHookAndEyeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
+       $file = $request->input('addImage');
+        $destinationPath = 'imgMaterialHooks';
+
+                if($file == '' || $file == null){
+                $hook = HookAndEye::create(array(
+                    'intHookID' => $request->input('addHookEyeID'),
+                    'strHookBrand' => trim($request->input('addHookEyeBrand')),
+                    'strHookSize' => trim($request->input('addHookEyeSize')),
+                    'strHookColor' => trim($request->input('addHookEyeColor')),
+                    'textHookDesc' => trim($request->input('addHookEyeDesc')),
+                    'boolIsActive' => 1
+                    ));
+                }else{
+                    $request->file('addImg')->move($destinationPath);
+
+                    $hook = HookAndEye::create(array(
+                    'intHookID' => $request->input('addHookEyeID'),
+                    'strHookBrand' => trim($request->input('addHookEyeBrand')),
+                    'strHookSize' => trim($request->input('addHookEyeSize')),
+                    'strHookColor' => trim($request->input('addHookEyeColor')),
+                    'textHookDesc' => trim($request->input('addHookEyeDesc')),
+                    'strHookImage' => 'imgMaterialHooks/'.$file,
+                    'boolIsActive' => 1
+                        ));
+                }
+                $hook ->save();
+
+                return redirect('maintenance/material-hookandeye');
     }
 
     /**
@@ -110,6 +138,35 @@ class MaterialHookAndEyeController extends Controller
         $hook->save();
 
         return redirect('maintenance/material-hookandeye');
+    }
+
+    function update_hookeye(Request $request)
+    {
+       $hook = HookAndEye::find($request->input('editHookID'));
+
+        $file = $request->input('editHookImage');
+        $destinationPath = 'imgMaterialHooks';
+
+                if($file == $hook->strHookImage)
+                {
+                   $hook ->strHookBrand = trim($request->input('editHookBrand'));
+                    $hook ->strHookSize = trim($request->input('editHookSize'));
+                    $hook ->strHookColor = trim($request->input('editHookColor'));
+                    $hook ->textHookDesc = trim($request->input('editHookDesc'));
+                    
+                }else{
+                    $request->file('editImg')->move($destinationPath);
+                    $hook ->strHookBrand = trim($request->input('editHookBrand'));
+                    $hook ->strHookSize = trim($request->input('editHookSize'));
+                    $hook ->strHookColor = trim($request->input('editHookColor'));
+                    $hook ->textHookDesc = trim($request->input('editHookDesc'));
+                   $hook ->strHookImage = 'imgMaterialHooks/'.$file;
+                   
+                }
+                $hook ->save();
+
+                return redirect('maintenance/material-hookandeye');
+
     }
 
     public function smartCounter($id)

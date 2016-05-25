@@ -131,18 +131,18 @@ class MaterialZipperController extends Controller
 
     function update_zipper(Request $request)
     {
-        $isAdded = FALSE;
+       $zipper = Zipper::find($request->input('editZipperID'));
 
-        $id = $request->input('editZipperID');
-        $zipper = Zipper::find($id);
+        $file = $request->input('editZipperImage');
+        $destinationPath = 'imgMaterialZippers';
 
-               if($request->input('editZipperImage') == $zipper->strZipperImage){
+                if($file == $zipper->strZipperImage)
+                 {
                     $zipper->strZipperBrand = trim($request->input('editZipperBrand'));
                     $zipper->strZipperColor = trim($request->input('editZipperColor'));
                     $zipper->strZipperSize = trim($request->input('editZipperSize'));
                     $zipper->txtZipperDesc = trim($request->input('editZipperDesc'));    
                 }else{  
-                    $destinationPath = 'imgMaterialZippers';
                     $request->file('editImg')->move($destinationPath);
 
                     $zipper->strZipperBrand = trim($request->input('editZipperBrand'));

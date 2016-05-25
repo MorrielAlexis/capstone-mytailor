@@ -10,10 +10,11 @@ class HookAndEye extends Model
 
 	protected $primaryKey = 'intHookID';
 
-	protected $fillable = ['strHookBrand', 'strHookSize',
+	protected $fillable =array('intHookID','strHookBrand', 
+							'strHookSize',
 							'strHookColor', 'strHookImage',
 							'textHookDesc', 
 							'strHookInactiveReason',
-							'boolIsActive'];
+							'boolIsActive');
 
 }

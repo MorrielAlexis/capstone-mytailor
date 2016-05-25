@@ -131,25 +131,26 @@ class MaterialNeedleController extends Controller
 
      function editNeedle(Request $request)
     {
-        $isAdded = FALSE;
+        $needle = Needle::find($request->input('editNeedleID'));
 
-        $id = $request->input('editNeedleID');
-        $Needle = Needle::find($id);
+        $file = $request->input('editNeedleImage');
+        $destinationPath = 'imgMaterialNeedles';
 
-                if($request->input('editNeedleImage') == $Needle->strNeedleImage){
-                    $Needle->strNeedleBrand = trim($request->input('editNeedleBrand'));
-                    $Needle->strNeedleSize = trim($request->input('editNeedleSize'));
-                    $Needle->strNeedleDesc = trim($request->input('editNeedleDesc'));    
+                if($file == $needle->strNeedleImage)
+                {
+                    $needle->strNeedleBrand = trim($request->input('editNeedleBrand'));
+                    $needle->strNeedleSize = trim($request->input('editNeedleSize'));
+                    $needle->strNeedleDesc = trim($request->input('editNeedleDesc'));    
                 }else{  
                     $destinationPath = 'imgNeedles';
                     $request->file('editImg')->move($destinationPath);
 
-                    $Needle->strNeedleBrand = trim($request->input('editNeedleBrand'));
-                    $Needle->strNeedleSize = trim($request->input('editNeedleSize'));
-                    $Needle->strNeedleDesc = trim($request->input('editNeedleDesc'));
-                    $Needle->strNeedleImage = 'imgMaterialNeedles/'.$fileBrand;
+                    $needle->strNeedleBrand = trim($request->input('editNeedleBrand'));
+                    $needle->strNeedleSize = trim($request->input('editNeedleSize'));
+                    $needle->strNeedleDesc = trim($request->input('editNeedleDesc'));
+                    $needle->strNeedleImage = 'imgMaterialNeedles/'.$file;
                 }
-                $Needle->save();
+                $needle->save();
                 return redirect('/maintenance/material-needle');
     }
 

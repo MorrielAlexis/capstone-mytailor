@@ -143,21 +143,19 @@ class MaterialButtonController extends Controller
 
     function update_button(Request $request)
     {
-        $isAdded = FALSE;
+        $button = Button::find($request->input('editButtonID'));
 
-        $id = $request->input('editButtonID');
-        $button = Button::find($id);
-        
+        $file = $request->input('editButtonImage');
+        $destinationPath = 'imgMaterialButtons';
 
-                
-                if($request->input('editButtonImage') == $button->strButtonImage){
+                if($file == $button->strButtonImage)
+                {
                    $button ->strButtonBrand = trim($request->input('editButtonBrand'));
                     $button ->strButtonSize = trim($request->input('editButtonSize'));
                     $button ->strButtonColor = trim($request->input('editButtonColor'));
                     $button ->strButtonDesc = trim($request->input('editButtonDesc'));
                     
                 }else{
-                    $destinationPath = 'imgMaterialButtons';
                     $request->file('editImg')->move($destinationPath);
                     $button ->strButtonBrand = trim($request->input('editButtonBrand'));
                     $button ->strButtonSize = trim($request->input('editButtonSize'));

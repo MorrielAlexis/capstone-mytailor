@@ -58,7 +58,7 @@ class MaterialThreadController extends Controller
 
                 if($file == '' || $file == null){
                 $thread = Thread::create(array(
-                    'strThreadID' => $request->input('addThreadID'),
+                    'intThreadID' => $request->input('addThreadID'),
                     'strThreadBrand' => trim($request->input('addThreadBrand')),
                     'strThreadColor' => trim($request->input('addThreadColor')),
                     'strThreadDesc' => trim($request->input('addThreadDesc')),
@@ -68,7 +68,7 @@ class MaterialThreadController extends Controller
                     $request->file('addImg')->move($destinationPath);
 
                     $thread = Thread::create(array(
-                    'strThreadID' => $request->input('addThreadID'),
+                    'intThreadID' => $request->input('addThreadID'),
                     'strThreadBrand' => trim($request->input('addThreadBrand')),
                     'strThreadColor' => trim($request->input('addThreadColor')),
                     'strThreadDesc' => trim($request->input('addThreadDesc')),
@@ -130,12 +130,14 @@ class MaterialThreadController extends Controller
 
      function editThread(Request $request)
     {
-        $isAdded = FALSE;
+        $thread = Thread::find($request->input('editThreadID'));
 
-        $id = $request->input('editThreadID');
-        $thread = Thread::find($id);
+        $file = $request->input('editThreadImage');
+        $destinationPath = 'imgMaterialThreads';
 
-                if($request->input('editThreadImage') == $thread->strThreadImage){
+                if($file == $thread->strThreadImage)
+                
+                {
                     $thread->strThreadBrand = trim($request->input('editThreadBrand'));
                     $thread->strThreadColor = trim($request->input('editThreadColor'));
                     $thread->strThreadDesc = trim($request->input('editThreadDesc'));    

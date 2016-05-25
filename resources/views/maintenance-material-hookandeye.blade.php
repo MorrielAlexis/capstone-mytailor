@@ -133,36 +133,36 @@
                           <div id="edit{{$hook->intHookID}}" class="modal modal-fixed-footer">
                             <h5><font color = "#1b5e20"><center>EDIT HOOK AND EYE</center> </font> </h5>
                               
-                            {!! Form::open(['url' => 'editHook']) !!}
+                            {!! Form::open(['url' => 'maintenance/material-hookandeye/update' , 'files' => 'true']) !!}
                               <div class="divider" style="height:2px"></div>
                               <div class="modal-content col s12"> 
                                                          
                                 <div class="input-field">
-                                  <input id="editHookID" name = "editHookID" value = "{{$hook->strMaterialHookID}}" type="hidden">
+                                  <input id="editHookID" name = "editHookID" value = "{{$hook->intHookID}}" type="hidden">
                                 </div>
                           
                             <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                 <div class="input-field col s12">
-                                  <input id="editHookName" name = "editHookName" value = "{{$hook->strHookBrand}}" type="text" class="validateName">
-                                  <label for="HookEye_Name"> *Hook and Eye Brand </label>
+                                  <input id="editHookBrand" name = "editHookBrand" value = "{{$hook->strHookBrand}}" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" >
+                                  <label for="HookEye_Name"> Hook and Eye Brand <span class="red-text"><b>*</b></span></label>
                                 </div>
                             </div>
 
                             <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                 <div class="input-field col s6">
-                                  <input id="editHookSize" name = "editHookSize" value = "{{$hook->strHookSize}}" type="text" class="validateSize">
-                                  <label for="HookEye_Size"> *Hook and Eye Size </label>
+                                  <input id="editHookSize" name = "editHookSize" value = "{{$hook->strHookSize}}" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" >
+                                  <label for="HookEye_Size"> Hook and Eye Size <span class="red-text"><b>*</b></span></label>
                                 </div>
 
                                 <div class="input-field col s6">
-                                  <input id="editHookColor" name = "editHookColor" value = "{{$hook->strHookColor}}" type="text" class="validateColor">
-                                  <label for="Hookeye_Color"> *Hook and Eye Color </label>
+                                  <input id="editHookColor" name = "editHookColor" value = "{{$hook->strHookColor}}" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" >
+                                  <label for="Hookeye_Color"> Hook and Eye Color <span class="red-text"><b>*</b></span></label>
                                 </div>
                             </div>
 
                             <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                 <div class="input-field col s12">
-                                  <input id="editHookDesc" name = "editHookDesc" value = "{{$hook->textHookDesc}}" type="text" class="validateDesc">
+                                  <input id="editHookDesc" name = "editHookDesc" value = "{{$hook->textHookDesc}}" type="text" class="validate">
                                   <label for="Hookeye_Desc">Description </label>
                                 </div>
                             </div>
@@ -174,7 +174,7 @@
                                     <input type="file" id="editImg" name="editImg" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*">
                                   </div>
                                   <div class="file-path-wrapper">
-                                    <input value="{{$hook->strMaterialHookImage}}" id="editHookImage" name="editHookImage" class="file-path validate" type="text">
+                                    <input value="{{$hook->strHookImage}}" id="editHookImage" name="editHookImage" class="file-path validate" type="text">
                                   </div>
                                 </div> 
                             </div>
@@ -268,36 +268,36 @@
   <div id="addHookEye" class="modal modal-fixed-footer">
     <h5><font color = "#1b5e20"><center>ADD NEW HOOK AND EYE</center> </font> </h5>
       
-    {!! Form::open(['url' => 'addHook']) !!}
+    {!! Form::open(['url' => 'maintenance/material-hookandeye', 'method' => 'post', 'files' => 'true']) !!}
       <div class="divider" style="height:2px"></div>
       <div class="modal-content col s12">
     
         <div class="input-field">
-          <input id="addHookEyeID" name = "addHookID" value = "{{$newHookID}}" type="hidden">
+          <input id="addHookEyeID" name = "addHookEyeID" value = "{{$newHookID}}" type="hidden">
         </div>
           
       <div class = "col s12" style="padding:15px;  border:3px solid white;">          
         <div class="input-field col s12">
-          <input required id="addHookEyeName" name = "addHookName" type="text" class="validateName">
-          <label for="HookEye_Name"> *Hook and Eye Name </label>
+          <input required id="addHookEyeBrand" name = "addHookEyeBrand" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" >
+          <label for="HookEye_Name"> Hook and Eye Brand <span class="red-text"><b>*</b></span></label>
         </div>
       </div>
 
       <div class = "col s12" style="padding:15px;  border:3px solid white;">
         <div class="input-field col s6">
-          <input required id="addHookEyeSize" name = "addHookSize" type="text" class="validateSize">
-          <label for="HookEye_Size"> *Hook and Eye Size </label>
+          <input required id="addHookEyeSize" name = "addHookEyeSize" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" >
+          <label for="HookEye_Size"> Hook and Eye Size <span class="red-text"><b>*</b></span></label>
         </div>
 
         <div class="input-field col s6">
-          <input required id="addHookEyeColor" name = "addHookColor" type="text" class="validateColor">
-          <label for="Hookeye_Color"> *Hook and Eye Color </label>
+          <input required id="addHookEyeColor" name = "addHookEyeColor" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" >
+          <label for="Hookeye_Color"> Hook and Eye Color <span class="red-text"><b>*</b></span></label>
         </div>
       </div>
 
       <div class = "col s12" style="padding:15px;  border:3px solid white;">
          <div class="input-field col s12">
-          <input required id="addHookEyeDesc" name = "addHookDesc" type="text" class="validateDesc">
+          <input required id="addHookEyeDesc" name = "addHookEyeDesc" type="text" class="validate">
           <label for="Hookeye_Desc"> Description </label>
         </div>
       </div>
@@ -318,7 +318,7 @@
       <!--MODAL FOOTER-->
       <div class="modal-footer col s12" style="background-color:#26a69a">
         <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
-        <button type="button" onclick="clearData()" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
+        <button type="button" type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
       </div>
       
     {!! Form::close() !!}
