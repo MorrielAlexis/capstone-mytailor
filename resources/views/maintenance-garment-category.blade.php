@@ -163,8 +163,8 @@
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                               <div class="input-field col s12">
-                                <input required value= "{{ $garment->textGarmentCategoryDesc }}" id="editGarmentDescription" name="editGarmentDescription" name="GarmentDescription" type="text" class="validate">
-                                <label for="garment_description"><span class="red-text"><b>*</b></span> *Garment Desription </label>
+                                <input  value= "{{ $garment->textGarmentCategoryDesc }}" id="editGarmentDescription" name="editGarmentDescription" name="GarmentDescription" type="text" class="validate">
+                                <label for="garment_description"> Garment Desription </label>
                               </div>
                           </div>
                           </div>
@@ -201,9 +201,11 @@
                               </div>
                           </div>
 
-                              <div class="input-field">
-                                <input value="{{ $garment->strGarmentCategoryID }}" type="hidden" id="delInactiveGarment" name="delInactiveGarment">
+                              <div class="input-field col s12">
+                                <label for="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span> </label>
+                                <input required value="{{ $garment->strGarmentCategoryInactiveReason }}" type="text" id="delInactiveGarment" name="delInactiveGarment">
                               </div>
+
 
                           <!-- <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                               <div class="input-field">
@@ -212,7 +214,7 @@
                               </div>
                           </div> -->
                           </div>
-
+    
                           <div class="modal-footer col s12" style="background-color:#26a69a">
                             <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">OK</button>
                             <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
@@ -252,14 +254,14 @@
 
                 <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                     <div class="input-field">
-                      <input required id="addGarmentDesc" name="addGarmentDesc" type="text" class="validate">
-                      <label for="garment_description">Garment Desription <span class="red-text"><b>*</b></span> </label>
+                      <input  id="addGarmentDesc" name="addGarmentDesc" type="text" class="validate">
+                      <label for="garment_description">Garment Desription </label>
                     </div>
                 </div>
                 </div>
 
                 <div class="modal-footer" style="background-color:#26a69a">
-                  <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
+                  <button type="submit" id="send" name="send" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
                   <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
                 </div>
               {!! Form::close() !!}

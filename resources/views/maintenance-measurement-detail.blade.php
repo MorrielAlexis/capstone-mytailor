@@ -166,15 +166,15 @@
 
                               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                     <div class="input-field col s12">
-                                      <input required value="{{ $detail->strMeasurementDetailName }}" id="editDetailName" name = "editDetailName" type="text" class="validateDetailName">
+                                      <input required value="{{ $detail->strMeasurementDetailName }}" id="editDetailName" name = "editDetailName" type="text" class="validate">
                                       <label for="measurement_name"> Measurement Name <span class="red-text"><b>*</b></span></label>
                                     </div>
                               </div>
 
                               <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                                     <div class="input-field col s12">
-                                      <input required value="{{ $detail->txtMeasurementDetailDesc }}" id="editDetailDesc" name = "editDetailDesc" type="text" class="validateDetailDesc">
-                                      <label for="measurement_desc">Measurement Description <span class="red-text"><b>*</b></span></label>
+                                      <input  value="{{ $detail->txtMeasurementDetailDesc }}" id="editDetailDesc" name = "editDetailDesc" type="text" class="validate">
+                                      <label for="measurement_desc">Measurement Description</label>
                                     </div>
                               </div>
                               </div>
@@ -212,8 +212,9 @@
                                   </div>
                             </div>
 
-                                  <div class="input-field">
-                                    <input value="{{ $detail->strMeasurementDetailID }}" id="delInactiveDetail" name="delInactiveDetail" type="hidden">
+                                  <div class="input-field col s12">
+                                    <label for="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span> </label>
+                                    <input required value="{{ $detail->strMeasDetInactiveReason }}" id="delInactiveDetail" name="delInactiveDetail" type="text">
                                   </div>
 
                            <!--  <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
@@ -263,14 +264,14 @@
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                           <div class="input-field col s12">
-                            <input required id="addDetailDesc" name ="addDetailDesc" type="text" class="validate" placeholder="Front portion to be measured" pattern="[A-Za-z\s]+">
-                            <label for="measurement_desc">Measurement Description <span class="red-text"><b>*</b></span></label>
+                            <input  id="addDetailDesc" name ="addDetailDesc" type="text" class="validate" placeholder="Front portion to be measured">
+                            <label for="measurement_desc">Measurement Description </label>
                           </div>
                       </div>
                       </div>
 
                       <div class="modal-footer col s12" style="background-color:#26a69a">
-                        <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
+                        <button type="submit" name="send" id="send" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
                         <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
                       </div>
                     {!! Form::close() !!}

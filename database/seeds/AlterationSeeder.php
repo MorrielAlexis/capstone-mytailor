@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
-class AlterationMaintenanceSeeder extends Seeder
+class AlterationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,12 +14,12 @@ class AlterationMaintenanceSeeder extends Seeder
     {   
         //DB::table('tblFabricType')->delete();
 
-        $tblAlterationMaintenance = array (
+        $tblAlteration= array (
             array(
                 'strAlterationID' => 'ALTE0001',
                 'strAlterationName' => 'Baston',
                 'txtAlterationDesc' =>'Use for modifying pants cuff size of pants.',
-                'strAlterationPrice' => 'Php100.00',
+                'dblAlterationPrice' => 100.00,
                 'boolIsActive' => '1'
             ),
 
@@ -27,12 +27,12 @@ class AlterationMaintenanceSeeder extends Seeder
                 'strAlterationID' => 'ALTE0002',
                 'strAlterationName' => 'Hem',
                 'txtAlterationDesc' =>'Use in almost all classes of shirt for resizing.',
-                'strAlterationPrice' => 'Php200.00',
+                'dblAlterationPrice' => 200.00,
                 'boolIsActive' => '1'
             )
 
         );
 
-        DB::table('tblAlterationMaintenance')->insert($tblAlterationMaintenance);
+        DB::table('tblAlteration')->insert($tblAlteration);
     }
 }

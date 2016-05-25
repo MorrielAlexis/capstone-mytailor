@@ -116,8 +116,8 @@ class MeasurementDetailController extends Controller
 
         $detail = MeasurementDetail::find($request->input('delDetailID'));
 
+        $detail->strMeasDetInactiveReason = trim($request->input('delInactiveDetail'));
         $detail->boolIsActive = 0;
-
         $detail-> save();
 
         return redirect('maintenance/measurement-detail');

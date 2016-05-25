@@ -132,10 +132,19 @@ class GarmentCategoryController extends Controller
         $garment = GarmentCategory::find($request->input('delGarmentID'));
     
 
+        $count = \DB::table('tblSegment')
+                ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
+                ->select('tblGarmentCategory.*')
+                ->where('tblGarmentCategory.strGarmentCategoryID','=', $request)
+                ->count();
+
+        if ($count == 0 ) {
+               $garment->strGarmentCategoryInactiveReason = trim($request->input('delInactiveGarment'));
         $garment->boolIsActive = 0;
         $garment ->save();
 
-        return  redirect('maintenance/garment-category');
+        return  redirect('maintenance/garment-category?successDel=true');
+         } else return redirect('/maintenance/garment-category?success=beingUsed');
 
         
    

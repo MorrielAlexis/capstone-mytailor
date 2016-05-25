@@ -62,9 +62,10 @@ Route::group(['prefix' => 'maintenance'], function(){
 		Route::post('segment-pattern/update','SegmentPatternController@update_segmentpattern');
 		Route::post('segment-pattern/destroy','SegmentPatternController@delete_segmentpattern');
 
-		Route::resource('measurement-category', 'MeasurementCategoryController');
+	Route::resource('measurement-category', 'MeasurementCategoryController');
+		Route::post('measurement-category/destroy', 'MeasurementCategoryController@delete_measurementcategory');
 
-		Route::resource('measurement-detail', 'MeasurementDetailController');
+	Route::resource('measurement-detail', 'MeasurementDetailController');
 
 		Route::post('measurement-detail/update','MeasurementDetailController@update_measurementdetail');
 		Route::post('measurement-detail/destroy','MeasurementDetailController@delete_measurementdetail');
@@ -80,18 +81,58 @@ Route::group(['prefix' => 'maintenance'], function(){
 		Route::post('fabric-type/destroy','FabricTypeController@delete_fabrictype');
 
 
-	Route::resource('swatch-name', 'SwatchNameController',
-		['only' => ['index']]);
+	Route::resource('swatch-name', 'SwatchNameController');
 
-	Route::resource('swatch', 'SwatchController',
-		['only' => ['index']]);
-
-	Route::resource('material', 'MaterialsController');
-
-		Route::post('material/update','MaterialsController@update_material');
-		Route::post('material/destroy','MaterialsController@delete_material');
+		Route::post('swatch-name/update','SwatchNameController@update_swatchname');
+		Route::post('swatch-name/destroy','SwatchNameController@delete_swatchname');
 
 
+	Route::resource('swatch', 'SwatchController');
+
+
+		Route::post('swatch/update','SwatchController@update_swatch');
+	
+		Route::post('swatch/destroy', 'SwatchController@delete_swatch');
+
+});
+
+Route::group(['prefix' => 'maintenance'], function(){
+	Route::resource('material-thread', 'MaterialThreadController');
+	
+		Route::post('material-thread/update','MaterialThreadController@editThread');
+
+		Route::post('material-thread/destroy','MaterialThreadController@deleteThread');
+
+	Route::resource('material-needle', 'MaterialNeedleController');
+
+		Route::post('material-needle/update','MaterialNeedleController@editNeedle');
+
+		Route::post('material-needle/destroy','MaterialNeedleController@delNeedle');
+
+	Route::resource('material-button', 'MaterialButtonController');
+
+		Route::post('material-button/destroy', 'MaterialButtonController@delete_button');
+
+		Route::post('material-button/update', 'MaterialButtonController@update_button');
+
+	Route::resource('material-zipper', 'MaterialZipperController');
+
+		Route::post('material-zipper/destroy', 'MaterialZipperController@delete_zipper');
+
+		Route::post('material-zipper/update', 'MaterialZipperController@update_zipper');
+
+	Route::resource('material-hookandeye', 'MaterialHookAndEyeController');
+
+		Route::post('material-hookandeye/destroy', 'MaterialHookAndEyeController@delete_hookeye');
+
+		Route::post('material-hookandeye/update', 'MaterialHookAndEyeController@update_hookeye');
+});
+
+Route::group(['prefix' => 'maintenance'], function(){
+	Route::resource('alteration', 'AlterationController');
+
+		Route::post('alteration/update','AlterationController@update_alteration');
+		Route::post('alteration/destroy','AlterationController@delete_alteration');
 });
 
 Route::group(['prefix' => 'maintenance'], function(){
@@ -100,12 +141,6 @@ Route::group(['prefix' => 'maintenance'], function(){
 		Route::post('catalogue/update','CatalogueController@update_catalogue');
 		Route::post('catalogue/destroy','CatalogueController@delete_catalogue');
 });
-
-Route::group(['prefix' => 'maintenance'], function(){
-	Route::resource('alteration', 'AlterationController',
-		['only' => ['index']]);
-});
-
 
 Route::group(['prefix' => 'transaction'], function(){
 	Route::resource('walkin-individual', 'WalkInIndividualController');
@@ -153,8 +188,27 @@ Route::group(['prefix' => 'transaction'], function(){
 });
 
 Route::group(['prefix' => 'utilities'], function(){
-	Route::resource('inactive-data', 'InactiveDataController',
-		['only' => ['index']]);
+	Route::resource('inactive-data', 'InactiveDataController');
+
+		Route::post('inactive-data/reactivate-individual', 'InactiveDataController@reactivate_individual');
+		Route::post('inactive-data/reactivate-company', 'InactiveDataController@reactivate_company');
+		Route::post('inactive-data/reactivate-employeeRole', 'InactiveDataController@reactivate_emprole');
+		Route::post('inactive-data/reactivate-employee', 'InactiveDataController@reactivate_employee');
+		Route::post('inactive-data/reactivate-garmentCategory', 'InactiveDataController@reactivate_category');
+		Route::post('inactive-data/reactivate-segment', 'InactiveDataController@reactivate_segment');
+		Route::post('inactive-data/reactivate-segmentPattern', 'InactiveDataController@reactivate_segmentPattern');
+		Route::post('inactive-data/reactivate-head', 'InactiveDataController@reactivate_head');
+		Route::post('inactive-data/reactivate-detail', 'InactiveDataController@reactivate_detail');
+		Route::post('inactive-data/reactivate-fabricType', 'InactiveDataController@reactivate_fabrictype');
+		Route::post('inactive-data/reactivate-swatch', 'InactiveDataController@reactivate_swatch');
+		Route::post('inactive-data/reactivate-swatchName', 'InactiveDataController@reactivate_swatchname');
+		Route::post('inactive-data/reactivate-button', 'InactiveDataController@reactivate_button');
+		Route::post('inactive-data/reactivate-hookAndEye', 'InactiveDataController@reactivate_hookeye');
+		Route::post('inactive-data/reactivate-needle', 'InactiveDataController@reactivate_needle');
+		Route::post('inactive-data/reactivate-thread', 'InactiveDataController@reactivate_thread');
+		Route::post('inactive-data/reactivate-zipper', 'InactiveDataController@reactivate_zipper');
+		Route::post('inactive-data/reactivate-catalogue', 'InactiveDataController@reactivate_catalogue');
+		Route::post('inactive-data/reactivate-alteration', 'InactiveDataController@reactivate_alteration');
 });
 
 Route::get('/acceptIndividual','OnlineCustomerIndividualController@accept');
@@ -169,3 +223,7 @@ Route::get('transaction/walkin-company-customize-orders', 'WalkInCompanyControll
 Route::get('transaction/walkin-company-payment-customer-info', 'WalkInCompanyController@information');
 Route::get('transaction/walkin-company-payment-payment-info', 'WalkInCompanyController@payment');
 Route::get('transaction/walkin-company-payment-measure-detail', 'WalkInCompanyController@measurement');
+
+Route::get('/transaction-alterationwalkIn-newtransaction','AlterationWalkInController@newTrans');
+
+

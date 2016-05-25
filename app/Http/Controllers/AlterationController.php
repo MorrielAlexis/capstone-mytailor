@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Alteration;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -18,7 +20,7 @@ class AlterationController extends Controller
     {
        //   get all the alteration types
 
-       $ids = \DB::table('tblAlterationMaintenance')
+       $ids = \DB::table('tblAlteration')
             ->select('strAlterationID')
             ->orderBy('created_at', 'desc')
             ->orderBy('strAlterationID', 'desc')
@@ -27,7 +29,7 @@ class AlterationController extends Controller
 
         $ID = $ids["0"]->strAlterationID;
         $newID = $this->smartCounter($ID);  
-        $alteration = AlterationMaintenance::all();
+        $alteration = Alteration::all();
 
        //  load the view and pass the fabric types
 
@@ -56,7 +58,16 @@ class AlterationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $alteration = Alteration::create(array(
+                'strAlterationID' => $request->input('addAlterationNameID'),
+                'strAlterationName' =>trim($request->input('addAlterationName')),
+                'txtAlterationDesc' => trim($request->input('addAlterationDesc')),  
+                'dblAlterationPrice' => trim($request->input('addAlterationPrice')),  
+                'boolIsActive' => 1
+            ));
+        $added = $alteration->save();
+
+        return redirect('maintenance/alteration?success=true');
     }
 
     /**
@@ -103,6 +114,35 @@ class AlterationController extends Controller
     {
         //
     }
+
+    function update_alteration(Request $request)
+    {
+
+        $alteration = Alteration::find($request->input('editAlterationNameID'));
+
+               $alteration->strAlterationName = trim($request->input('editAlterationName'));
+               $alteration->txtAlterationDesc = trim($request->input('editAlterationDesc'));
+               $alteration->dblAlterationPrice = trim($request->input('editAlterationPrice'));
+
+        $alteration->save();
+
+         return redirect('maintenance/alteration');
+        
+       
+    }
+
+    
+    function delete_alteration(Request $request)
+    {
+        $alteration = Alteration::find($request->input('delAlterationNameID'));
+
+        $alteration->strAlterationInactiveReason = trim($request->input('delInactiveAlteration'));
+        $alteration->boolIsActive = 0;
+        $alteration->save();
+        
+        return redirect('maintenance/alteration');
+    }
+
 
      public function smartCounter($id)
     {   

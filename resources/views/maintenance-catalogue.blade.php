@@ -105,7 +105,7 @@
                 <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of catalogue design from the table" href="#del{{$catalogue->strCatalogueID}}"><i class="mdi-action-delete"></i></a></td>
                   <div id="edit{{$catalogue->strCatalogueID}}" class="modal modal-fixed-footer">                   
                     <h5><font color = "#1b5e20"><center>EDIT CATALOGUE DESIGN</center></font> </h5>                     
-                      editCatalogueDesign
+                    
 
                       {!! Form::open(['url' => 'maintenance/catalogue/update',  'files' => 'true']) !!} 
                        
@@ -134,7 +134,7 @@
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s12">
-                          <input required value="{{$catalogue->strCatalogueName}}" id="editCatalogueName" name = "editCatalogueName" type="text" class="validateCatalogueName">
+                          <input required value="{{$catalogue->strCatalogueName}}" id="editCatalogueName" name = "editCatalogueName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" >
                           <label for="Catalogue_Name"> Catalogue Name <span class="red-text"><b>*</b></span></label>
                         </div>
                     </div>
@@ -142,7 +142,7 @@
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s12">
                           <input  required value="{{$catalogue->strCatalogueDesc}}" id="editCatalogueDesc" name = "editCatalogueDesc" type="text" class="validateCatalogueDesc">
-                          <label for="Category_Desc">Catalogue Description <span class="red-text"><b>*</b></span></label>
+                          <label for="Category_Desc">Catalogue Description</label>
                         </div>
                     </div>
 
@@ -200,7 +200,10 @@
                       </div>
                   </div>
                       
-
+                      <div class="input-field col s12">
+                        <label for="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span> </label>
+                        <input required value="{{ $catalogue->strCatalogueInactiveReason }}" id="delInactiveCatalogue" name="delInactiveCatalogue" type="text">
+                      </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                      
@@ -255,15 +258,15 @@
 
           <div class = "col s12" style="padding:15px;  border:3px solid white;">
               <div class="input-field col s12">
-                <input required id="addCatalogueName" name = "addCatalogueName" type="text" class="validateCatalogueName">
+                <input required id="addCatalogueName" name = "addCatalogueName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" >
                 <label for="Catalogue_Name"> *Catalogue Name </label>
               </div>
           </div>
 
           <div class = "col s12" style="padding:15px;  border:3px solid white;">
               <div class="input-field col s12">
-                <input  id="addCatalogueDesc" name="addCatalogueDesc" type="text" class="validateCatalogueDesc">
-                <label for="Category_Desc">*Category Description </label>
+                <input  id="addCatalogueDesc" name="addCatalogueDesc" type="text" class="validate">
+                <label for="Category_Desc">Category Description </label>
               </div>
           </div>
 

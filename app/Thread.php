@@ -10,8 +10,8 @@ class Thread extends Model
 
 	protected $primaryKey = 'intThreadID';
 
-	protected $fillable = ['strThreadBrand', 'strThreadColor',
+	protected $fillable = array('intThreadID','strThreadBrand', 'strThreadColor',
 							'strThreadDesc', 'strThreadImage',
 							'strThreadInactiveReason',
-							'boolIsActive'];
+							'boolIsActive');
 }

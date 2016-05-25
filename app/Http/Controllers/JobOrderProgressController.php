@@ -16,7 +16,7 @@ class JobOrderProgressController extends Controller
      */
     public function index()
     {
-        return view('jobOrderProgress');
+        return view('transaction-joborderprogress');
     }
 
     /**

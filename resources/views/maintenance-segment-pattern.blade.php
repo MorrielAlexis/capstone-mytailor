@@ -155,7 +155,7 @@
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input required value = "{{ $pattern->strSegPName }}" id="editPatternName" name= "editPatternName" type="text" class="validatePatternName">
+                            <input required value = "{{ $pattern->strSegPName }}" id="editPatternName" name= "editPatternName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$">
                             <label for="pattern_name">Pattern Name </label>
                           </div>
                       </div>
@@ -212,9 +212,10 @@
                         </div>
                     </div>
 
-                          <!-- <div class="input-field">
-                            <input id="delInactivePattern" name = "delInactivePattern" value = "{{$pattern->strSegPatternID}}" type="hidden">
-                          </div> -->
+                           <div class="input-field col s12">
+                            <label for="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span> </label>
+                            <input required id="delInactivePattern" name = "delInactivePattern" value = "{{$pattern->strSegPInactiveReason}}" type="text">
+                          </div> 
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                           
@@ -278,7 +279,7 @@
 
             <div class = "col s12" style="padding:15px;  border:3px solid white;">
                 <div class="input-field col s12">
-                  <input required id="addPatternName" name= "addPatternName" type="text" class="validate">
+                  <input required id="addPatternName" name= "addPatternName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$">
                   <label for="pattern_name">Pattern Name <span class="red-text"><b>*</b></span></label>
                     <span id="left"></span></label>
                 </div>
@@ -300,7 +301,7 @@
             </div>
 
               <div class="modal-footer col s12" style="background-color:#26a69a">
-                <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
+                <button type="submit" id="send" name"send" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
                 <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
               </div>
               {!! Form::close() !!}

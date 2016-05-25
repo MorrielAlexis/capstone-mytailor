@@ -32,6 +32,7 @@ class WalkInCompanyController extends Controller
     public function payment()
     {
         return view('walkin-company-checkout-pay');
+
     }
 
     public function measurement()

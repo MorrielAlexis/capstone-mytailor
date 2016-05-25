@@ -16,7 +16,12 @@ class AlterationWalkInController extends Controller
      */
     public function index()
     {
-        return view('alterationWalkIn');
+        return view('transaction-alterationwalkin');
+    }
+
+    public function newTrans()
+    {
+        return view('transaction-alterationwalkIn-newtransaction');
     }
 
     /**

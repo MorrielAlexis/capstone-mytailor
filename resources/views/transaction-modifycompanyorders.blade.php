@@ -798,12 +798,18 @@
 			<div class="divider container" style="margin-bottom:20px;"></div>
 
 			<table style="margin-bottom:10px;">
-			    <thead>
-			        <tr>
-			        	<th>Employee Name</th>
-			        	<th>Gender</th>
-			        </tr>
-			    </thead>
+			    <table class = "table centered order-summary" border = "1">
+       				<thead style="color:gray">
+	          			<tr>
+		                  <th data-field="first_name" class="col s3">First Name</th>         
+		                  <th data-field="middle_name" class="col s3">Middle Name</th>
+		                  <th data-field="last_name" class="col s3">Last Name</th>
+		                  <th data-field="gender" class="col s1">Sex</th>
+		                  <th data-field="package" class="col s1">Package</th>
+		                  <th></th>
+		              	</tr>
+	              	</thead>
+			    </table>
 			</table>
 			<div class="row">
 		        <div>
@@ -812,13 +818,30 @@
 					    <li>
 					        <div class="collapsible-header" style="background-color:#ffebee;">
 								<div class="row">
-									<div class="col s12">
-										<div class="col s6">
-											<p>Klare Desteen Ty</p>
-										</div>
-										<div class="col s6">
-											<center><p>Female</p></center>
-										</div>
+									<div style="color:black" class="input-field col s3">
+			                            <input value="Klare Desteen" id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt" maxlength="11">		           
+			                        </div>
+			                        <div style="color:black" class="input-field col s3">
+			                            <input value="Ty" id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt" maxlength="11">		           
+			                        </div>
+			                        <div style="color:black" class="input-field col s3">
+			                            <input value="Montefalco" id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt" maxlength="11">		           
+			                        </div>
+			                        <div style="color:black" class="input-field col s1">
+										<select>
+										    <option value="1">F</option>
+										    <option value="2">M</option>
+										</select>
+									</div>
+									<div style="color:black" class="input-field col s1">
+										<select>
+										    <option value="1">A</option>
+										    <option value="2">B</option>
+										</select>
+									</div>
+
+									<div style="color:black" class="col s1">
+										<a style="color:black; margin-top:20px" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of employee from list" href="#!"><i class="mdi-action-delete"></i></a>
 									</div>
 								</div>
 							</div>
@@ -858,13 +881,30 @@
 						<li>
 					        <div class="collapsible-header" style="background-color:#e1f5fe;">
 								<div class="row">
-									<div class="col s12">
-										<div class="col s6">
-											<p>Elijah Riley Montefalco</p>
-										</div>
-										<div class="col s6">
-											<center><p>Male</p></center>
-										</div>
+									<div style="color:black" class="input-field col s3">
+			                            <input value="Elijah Riley" id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt" maxlength="11">		           
+			                        </div>
+			                        <div style="color:black" class="input-field col s3">
+			                            <input value="-" id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt" maxlength="11">		           
+			                        </div>
+			                        <div style="color:black" class="input-field col s3">
+			                            <input value="Montefalco" id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt" maxlength="11">		           
+			                        </div>
+			                        <div style="color:black" class="input-field col s1">
+										<select>
+										    <option value="1">F</option>
+										    <option value="2">M</option>
+										</select>
+									</div>
+									<div style="color:black" class="input-field col s1">
+										<select>
+										    <option value="1">A</option>
+										    <option value="2">B</option>
+										</select>
+									</div>
+
+									<div style="color:black" class="col s1">
+										<a style="color:black; margin-top:20px" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of employee from list" href="#!"><i class="mdi-action-delete"></i></a>
 									</div>
 								</div>
 							</div>

@@ -125,9 +125,7 @@
                         <th data-field="Thread Color">Thread Color</th>
                         <th data-field="Thread Desc">Description</th>
                         <th data-field="ThreadImage">Image</th>
-                        <th data-field="Edit">Edit</th>
-                        <th data-field="Deactivate">Deactivate</th>
-                      </tr>
+                        <th data-field="Edit">Actions</th>
                     </thead>
 
                     <tbody>
@@ -138,14 +136,14 @@
                         <td>{{ $thread->strThreadColor }}</td>
                         <td>{{ $thread->strThreadDesc }}</td>
                         <td><img class="materialboxed" width="650" src="{{URL::asset($thread->strThreadImage)}}"></td> 
-                        <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit thread details" href="#edit{{ $thread->intThreadID }}"><i class="mdi-editor-mode-edit"></i></a></td>
-                        <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of thread details from the table" href="#del{{ $thread->intThreadID }}"><i class="mdi-action-delete"></i></a></td>
+                        <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit thread details" href="#edit{{ $thread->intThreadID }}"><i class="mdi-editor-mode-edit"></i></a>
+                            <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of thread details from the table" href="#del{{ $thread->intThreadID }}"><i class="mdi-action-delete"></i></a></td>
                             
                           <!--EDIT THREADS-->
                           <div id="edit{{ $thread->intThreadID }}" class="modal modal-fixed-footer">
                             <h5><font color = "#1b5e20"><center>EDIT THREAD</center> </font> </h5>
                             
-                            {!! Form::open(['url' => 'editThread']) !!}
+                            {!! Form::open(['url' => 'maintenance/material/editThread', 'method' => 'post', 'files' => 'true']) !!}
                               <div class="divider" style="height:2px"></div>
                               <div class="modal-content col s12">
 
@@ -199,7 +197,7 @@
                             <!--deactivate THREADS-->
                           <div id="del{{ $thread->intThreadID }}" class="modal modal-fixed-footer">
                               
-                              {!! Form::open(['url' => 'delThread']) !!}
+                              {!! Form::open(['url' => 'maintenance/material/delThread', 'method' => 'post']) !!}
                                 <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS THREAD?</center> </font> </h5> 
                                 <div class="divider" style="height:2px"></div>
                                 <div class="modal-content col s12">
@@ -285,8 +283,7 @@
                         <th data-field="Needle Size">Needle Size</th>
                         <th data-field="Needle Desc">Description</th>
                         <th data-field="Needle Image">Image</th>
-                        <th data-field="Needle Desc">Edit</th>
-                        <th data-field="Needle Desc">Deactivate</th>
+                        <th data-field="Needle Desc">Actions</th>
                   
                       </tr>
                     </thead>
@@ -299,14 +296,14 @@
                         <td>{{$needle->strNeedleSize}}</td>
                         <td>{{$needle->strNeedleDesc}}</td>
                         <td><img class="materialboxed" width="650" src="{{URL::asset($needle->strNeedleImage)}}"></td>
-                        <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit needle detail" href="#edit{{$needle->intNeedleID}}"><i class="mdi-editor-mode-edit"></i></a></td>
-                        <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of needle detail from the table" href="#del{{$needle->intNeedleID}}"><i class="mdi-action-delete"></i></a></td>
+                        <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit needle detail" href="#edit{{$needle->intNeedleID}}"><i class="mdi-editor-mode-edit"></i></a>
+                            <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of needle detail from the table" href="#del{{$needle->intNeedleID}}"><i class="mdi-action-delete"></i></a></td>
                             
                           <div id="edit{{$needle->intNeedleID}}" class="modal modal-fixed-footer">
                             <h5><font color = "#1b5e20"><center>EDIT NEEDLE</center> </font> </h5>
                               
-                            {!! Form::open(['url' => 'editNeedle']) !!}
-                              <div class="divider" style="height:2px"></div>
+                            {!! Form::open(['url' => 'maintenance/material/editNeedle', 'method' => 'post', 'files' => 'true']) !!}
+                              <div class="divider" style="height:2px"></div> 
                               <div class="modal-content col s12">
 
                                 <div class="input-field">
@@ -348,6 +345,7 @@
                                 </div>
                                 </div>    
 
+<<<<<<< HEAD
                                 <div class="modal-footer col s12" style="background-color:#26a69a">
                                     <button type="submit" class="modal-action  waves-effect waves-green btn-flat">Update</button>
                                     <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
@@ -356,11 +354,19 @@
                               </div> <!-- End of modal content for edit needle-->
                         
                         
+=======
+                              <div class="modal-footer col s12" style="background-color:#26a69a">
+                                <button type="submit" class="modal-action  waves-effect waves-green btn-flat">Update</button>
+                                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
+                              </div>
+                            {!! Form::close() !!}
+                          </div>
+>>>>>>> 34b249cb988496ddc85c8772d6d99e025e76fd7e
 
-                          <div id="del{{$needle->intNeedleID}}" class="modal modal-fixed-footer">
+                          <div id="del{{ $needle->intNeedleID }}" class="modal modal-fixed-footer">
                             <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS NEEDLE?</center> </font> </h5> 
                             
-                            {!! Form::open(['url' => 'delNeedle']) !!}
+                            {!! Form::open(['url' => 'maintenance/material/delNeedle', 'method' => 'post', 'files' => 'true']) !!}
                               <div class="divider" style="height:2px"></div>
                               <div class="modal-content col s12">
                                 
@@ -952,7 +958,7 @@
   <div id="addThread" class="modal modal-fixed-footer">
     <h5><font color = "#1b5e20"><center>ADD NEW THREAD</center> </font> </h5>
         
-      {!! Form::open(['url' => 'addThread']) !!}
+      {!! Form::open(['url' => 'maintenance/material/addThread', 'method' => 'post']) !!}
         <div class="divider" style="height:2px"></div>
         <div class="modal-content col s12">
     
@@ -962,7 +968,7 @@
        
     <div class = "col s12" style="padding:15px;  border:3px solid white;">             
         <div class="input-field col s12">
-          <input required id="addThreadName" name = "addThreadName" type="text" class="validateName">
+          <input required id="addThreadBrand" name = "addThreadBrand" type="text" class="validate">
           <label for="Thread_Name"> *Thread Brand </label>
         </div>
     </div>
@@ -1008,7 +1014,7 @@
   <div id="addNeedle" class="modal modal-fixed-footer">
     <h5><font color = "#1b5e20"><center>ADD NEW NEEDLE</center> </font> </h5>   
         
-      {!! Form::open(['url' => 'addNeedle']) !!}
+      {!! Form::open(['url' => 'maintenance/material/addNeedle', 'method' => 'post', 'files' => 'true']) !!}
         <div class="divider" style="height:2px"></div>
         <div class="modal-content col s12"> 
 
@@ -1018,8 +1024,8 @@
          
         <div class = "col s12" style="padding:15px;  border:3px solid white;">           
           <div class="input-field col s12">
-            <input required id="addNeedleName" name = "addNeedleName"  type="text" class="validateName">
-            <label for="Needle_Name"> *Needle Name </label>
+            <input required id="addNeedleBrand" name= "addNeedleBrand"  type="text" class="validate">
+            <label for="Needle_Brand"> *Needle Brand </label>
           </div>
         </div>
 

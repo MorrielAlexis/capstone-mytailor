@@ -136,11 +136,11 @@ class FabricTypeController extends Controller
 
             $fabricType = FabricType::find($request-> input('delFabricID'));
 
+            $fabricType->strFabricTypeInactiveReason = trim($request->input('delInactiveFabricType'));
             $fabricType->boolIsActive = 0;
-
             $fabricType->save();
 
-        return redirect('maintenance/employee-role');
+        return redirect('maintenance/fabric-type');
 
     }
 

@@ -1,4 +1,4 @@
-@extends('layouts.master')
+ @extends('layouts.master')
 
 @section('content')
   <div class="main-wrapper" style="margin-top:30px">
@@ -159,7 +159,7 @@
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                               <div class="input-field col s12">
-                                <input required value="{{ $segment->textSegmentDesc }}" id="SegmentDesc" name = "editSegmentDesc" type="text" class="validateSegDesc">
+                                <input  value="{{ $segment->textSegmentDesc }}" id="SegmentDesc" name = "editSegmentDesc" type="text" class="validate">
                                <label for="segment_description">*Segment Description</label>
                               </div>
                           </div>
@@ -204,8 +204,12 @@
                               </div>
                           </div>
 
-                              <div class="input-field">
-                                <input value="{{ $segment->strSegmentID }}" id="delInactiveSegment" name="delInactiveSegment" type="hidden">
+                              <div class="input-field col s12">
+                                <label for="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span> </label>
+                                <input required value="{{ $segment->strSegInactiveReason }}" id="delInactiveSegment" name="delInactiveSegment" type="text">
+                              </div>
+
+                              <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               </div>
 
                           </div>
@@ -265,14 +269,14 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                       <div class="input-field col s12">
-                        <input  required id="addSegmentDesc" name = "addSegmentDesc" type="text" class="validate"  data-position="bottom" >
-                        <label for="segment_description">Segment Description<span class="red-text"><b>*</b></span> </label>
+                        <input id="addSegmentDesc" name = "addSegmentDesc" type="text" class="validate"  data-position="bottom" >
+                        <label for="segment_description">Segment Description </label>
                       </div>
                   </div>
                   </div>
 
                   <div class="modal-footer col s12" style="background-color:#26a69a">
-                    <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
+                    <button type="submit" name="send" id="send" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
                     <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
                   </div>
                 {!! Form::close() !!}

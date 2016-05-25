@@ -3,8 +3,17 @@
 @section('content')
   <div class="main-wrapper" style="margin-top:30px">  <!-- Main Wrapper  -->   
       <!--Input Validation-->
-      
 
+      <!--Add Swatch Name-->
+         @if (Input::get('success') == 'true')
+        <div class="row" id="success-message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel yellow">
+              <span class="black-text" style="color:black">Successfully added swatch name!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+            </div>
+          </div>
+        </div>
+      @endif
     <div class="row">
       <div class="col s12 m12 l12">
         <span class="page-title"><h4>Swatch Name</h4></span>
@@ -34,6 +43,7 @@
                 <thead>
                   <tr>
               		  <!--<th data-field="fabricID">Fabric Type ID</th>-->
+                    <th data-field="swatchNameType">Type</th>
                     <th data-field="swatchName">Name</th>
               		  <th data-field="swatchDescription">Description</th>
                     <th data-field="Edit">Actions</th>
@@ -43,75 +53,96 @@
                 </thead>
               
                 <tbody>
-                  
+                   @foreach($swatchnamemainte as $swatchnamemainte)
+                     @if($swatchnamemainte->boolIsActive == 1)
                   <tr>
-              		 
-             		  <td>Swatch Name</td>
-              		  <td>Swatch Desc</td>
-              		  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of swatch name" href="#editSwatchName"><i class="mdi-editor-mode-edit"></i></a>
-                    <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of swatch name from the table" href="#delSwatchName"><i class="mdi-action-delete"></i></a></td>
+                    <td>{{ $swatchnamemainte->strFabricTypeName}}</td>
+               		  <td>{{ $swatchnamemainte->strSName}}</td>
+              		  <td>{{ $swatchnamemainte->txtSwatchNameDesc}}</td>
+              		  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of swatch name" href="#edit{{$swatchnamemainte->strSwatchNameID}}"><i class="mdi-editor-mode-edit"></i></a>
+                    <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of swatch name from the table" href="#del{{$swatchnamemainte->strSwatchNameID}}"><i class="mdi-action-delete"></i></a></td>
               	
-                    <div id="editSwatchName" class="modal modal-fixed-footer"> <!-- editFabricType  --> 
-                      <h5><font color = "#1b5e20"><center>EDIT FABRIC TYPE</center> </font> </h5>
-                        
+                    <div id="edit{{$swatchnamemainte->strSwatchNameID}}" class="modal modal-fixed-footer"> <!-- editFabricType  --> 
+                      <h5><font color = "#1b5e20"><center>EDIT SWATCH NAME</center> </font> </h5>
+                        {!! Form::open(['url' => 'maintenance/swatch-name/update']) !!}
                         <div class="divider" style="height:2px"></div>
                         <div class="modal-content col s12">
                         
                         <div class="input-field">
-                          <input value = "editSwatchNameID" id="editSwatchNameID" name = "editSwatchNameID" type="hidden">
+                          <input value = "{{$swatchnamemainte->strSwatchNameID}}" id="editSwatchNameID" name = "editSwatchNameID" type="hidden">
                         </div>
+
+                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                              <div class="input-field col s12">                                                    
+                                <select class="browser-default" id="editCategory" name="editCategory"required>
+                                  <option value="" disabled selected>Choose fabric type:</option>
+                                  @foreach($fabricType as $fab)
+                                    @if($swatchnamemainte->strSwatchNameTypeFK == $fab->strFabricTypeID && $fab->boolIsActive == 1)
+                                      <option selected value="{{ $fab->strFabricTypeID }}">{{ $fab->strFabricTypeName }}</option>
+                                    @elseif($fab->boolIsActive == 1)
+                                      <option value="{{ $fab->strFabricTypeID }}">{{ $fab->strFabricTypeName }}</option>
+                                    @endif
+                                  @endforeach
+                                </select>  
+                                <!-- <label >Type<span class="red-text"><b>*</b></span></label>  -->
+                              </div>  
+                          </div> 
+
+
+
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s12">
-                          <input required value = "editSwatchName" id="editSwatchName" name = "editSwatchName" type="text" class="validateName">
+                          <input required value = "{{$swatchnamemainte->strSName}}" id="editSName" name = "editSName" type="text" pattern="^[a-zA-Z\-'`\s]{2,}$" class="validate" required data-position="bottom">
                           <label for="swatch_name">Swatch Name <span class="red-text"><b>*</b></span> </label>
                         </div>
                   </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                         <div class="input-field col s12">
-                          <input required value = "editSwatchDesc" id="editSwatchDesc" name = "editSwatchDesc" type="text" class="validateDesc">
-                          <label for="swatch_description">Swatch Desription <span class="red-text"><b>*</b></span> </label>
+                          <input  value = "{{$swatchnamemainte->txtSwatchNameDesc}}" id="editSwatchNameDesc" name = "editSwatchNameDesc" type="text" class="validate">
+                          <label for="swatch_description">Swatch Desription </label>
                         </div>  
                   </div>
                   </div>
 
                       <div class="modal-footer col s12" style="background-color:#26a69a">
                         <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Update</button>
-                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
+                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" button type="reset" value="Reset">Cancel</a> 
                       </div>
-                     
+                      {!! Form::close() !!}
                     </div> <!-- editFabricType  -->    
                   
 
               <!--**********DELETE***********-->
-              <div id="delSwatchName" class="modal modal-fixed-footer">                     
+              <div id="del{{$swatchnamemainte->strSwatchNameID}}" class="modal modal-fixed-footer">                     
                 <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS SWATCH NAME?</center> </font> </h5>                       
-                    
+                   {!! Form::open(['url' => 'maintenance/swatch-name/destroy']) !!}  
                   
                     <div class="divider" style="height:2px"></div>
                     <div class="modal-content col s12">
                       
                           <div class="input-field">
-                            <input value="delSwatchNameID" id="delSwatchNameID" name="delSwatchNameID" type="hidden">
+                            <input value="{{$swatchnamemainte->strSwatchNameID}}" id="delSwatchNameID" name="delSwatchNameID" type="hidden">
                           </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
                             <label for="swatch_name">Swatch Name </label>
-                            <input value="delSwatchName" id="delSwatchName" name="delSwatchName" type="text" readonly>
+                            <input value="{{$swatchnamemainte->strSName}}" id="delSwatchName" name="delSwatchName" type="text" readonly>
                           </div>
                       </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
                             <label for="swatch_desc">Swatch Desription </label>
-                            <input value="delSwatchDesc" id="delSwatchDesc" name="delSwatchDesc" type="text" readonly>
+                            <input value="{{$swatchnamemainte->txtSwatchNameDesc}}" id="delSwatchDesc" name="delSwatchDesc" type="text" readonly>
                           </div>
                       </div>
 
-                          <div>
-                            <input value="delInactiveSwatchName" id="delInactiveSwatchName" name="delInactiveSwatchName" type="hidden">
+                          <div class="input-field col s12">
+                            <label for="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span> </label>
+                            <input value="{{$swatchnamemainte->strSwatchNameInactiveReason}}" id="delInactiveSwatchName" name="delInactiveSwatchName" type="text" required>
                           </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
@@ -120,12 +151,17 @@
                       </div>
 
                           <div class="modal-footer col s12" style="background-color:#26a69a">
-                            <button type="submit" class="waves-effect waves-green btn-flat">OK</button>
-                            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-                          </div> 
-                        
+
+                            <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">OK</button>
+                            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
+                          </div>
+                        {!! Form::close() !!} 
+
                     </div>
+                  </td>
                     </tr>
+                  @endif
+                @endforeach
                 </tbody>
               </table>
               </div>
@@ -137,35 +173,50 @@
             <!--********ADD******-->
              <div id="addFabricType" class="modal modal-fixed-footer">                  
                 <h5><font color = "#1b5e20"><center>ADD NEW SWATCH NAME</center> </font> </h5> 
-                
-               
-                  <div class="divider" style="height:2px"></div>
+                  {!! Form::open(['url' => 'maintenance/swatch-name', 'method' => 'post']) !!} 
+                <div class="divider" style="height:2px"></div>
                   <div class="modal-content col s12">
                             
 
                   <div class="input-field">
-                    <input value = "addSwatchNameID" id="addSwatchNameID" name = "addSwatchNameID" type="hidden">
+                    <input value = "{{$newID}}" id="addSwatchNameID" name = "addSwatchNameID" type="hidden">
                   </div>
+
+
+                  <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                      <div class="input-field col s12">
+                      <select class="browser-default" id="addCategory" name="addCategory"required>
+                                      <option value="" disabled selected>Choose fabric type:</option>
+                                        @foreach($fabricType as $fabricType_1)
+                                        @if($fabricType_1->boolIsActive == 1) 
+                                          <option value="{{ $fabricType_1->strFabricTypeID }}">{{ $fabricType_1->strFabricTypeName
+                                       }}</option>
+                                    @endif                       
+                                  @endforeach
+                                </select>  
+                              </div>  
+                          </div> 
 
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s12">
-                    <input required id="addSwatchName" name = "addSwatchName" type="text" class="validate" pattern="[0-9a-zA-Z\-\s]+$">
+                    <input required id="addSwatchName" name = "addSwatchName" type="text" class="validate" required data-position="bottom" pattern="[0-9a-zA-Z\-\s]+$" placeholder="Nickel">
                     <label for="swatch_name">Swatch Name <span class="red-text"><b>*</b></span></label>
                   </div>
               </div>    
 
               <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                   <div class="input-field col s12">
-                    <input required id="addSwatchDesc" name = "addSwatchDesc" type="text" class="validateDesc">
-                    <label for="swatch_description">Swatch Description <span class="red-text"><b>*</b></span></label>
+                    <input id="addSwatchDesc" name = "addSwatchDesc" type="text" class="validate" placeholder="Smooth and reddish like version of citadel.">
+                    <label for="swatch_description">Swatch Description </label>
                   </div>
               </div>
               </div>
 
                   <div class="modal-footer col s12" style="background-color:#26a69a">
-                    <button type="submit" id="addFabType" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
+                    <button type="submit" id="send" name="send" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
                     <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
                   </div>
+                    {!! Form::close() !!}
     	       </div><!-- addFabricType  -->
             </div><!-- card-content  --> 
         </div>  <!-- card-panel -->

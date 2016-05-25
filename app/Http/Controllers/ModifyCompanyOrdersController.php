@@ -16,7 +16,7 @@ class ModifyCompanyOrdersController extends Controller
      */
     public function index()
     {
-        return view('modifyCompanyOrders');
+        return view('transaction-modifycompanyorders');
     }
 
     /**

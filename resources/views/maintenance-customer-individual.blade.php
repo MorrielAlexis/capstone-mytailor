@@ -222,7 +222,7 @@
                     {!! Form::close() !!}
                   </div>
 
-                    <div id="del{{$individual->strCustPrivIndivID}}" class="modal modal-fixed-footer">                     
+                    <div id="del{{$individual->strIndivID}}" class="modal modal-fixed-footer">                     
                         <h5><font color:"#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS CUSTOMER?</center> </font> </h5>                        
                           {!! Form::open(['url' => 'maintenance/individual/destroy']) !!}
                             <div class="divider" style="height:2px"></div>
@@ -231,7 +231,7 @@
                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
                             <label for="first_name">Individual ID </label>
-                            <input value="{{$individual->strCustPrivIndivID}}" id="delIndivID" name="delIndivID" type="text" readonly>
+                            <input value="{{$individual->strIndivID}}" id="delIndivID" name="delIndivID" type="text" readonly>
                           </div>
                         </div>
 
@@ -253,7 +253,8 @@
                         </div>
 
                           <div class="input-field col s12">
-                            <input id="delInactiveIndiv" name = "delInactiveIndiv" value = "{{$individual->strIndivID}}" type="hidden">
+                            <label for="inactive_reason">Reason for Deactivation <span class="red-text"><b>*</b></label>
+                            <input required  id="delInactiveReason" name = "delInactiveReason" value = "{{$individual->strIndivInactiveReason}}" type="text">
                           </div>
 
                         <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">

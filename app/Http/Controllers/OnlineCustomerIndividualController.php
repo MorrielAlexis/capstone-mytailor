@@ -16,12 +16,12 @@ class OnlineCustomerIndividualController extends Controller
      */
     public function index()
     {
-        return view('onlineCustomerIndividual');
+        return view('transaction-onlinecustomerindividual');
     }
 
     public function accept()
     {
-        return view('acceptIndividualOrder');
+        return view('transaction-acceptindividualorder');
     }
 
     /**

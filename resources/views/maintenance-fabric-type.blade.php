@@ -114,7 +114,7 @@
                      @if($fabricType->boolIsActive == 1)
                   <tr>
               		 <!--<td>{{ $fabricType->strFabricTypeID }}</td>-->
-             		  <td>{{ $fabricType->strFabricTypeName }}</td>
+               		  <td>{{ $fabricType->strFabricTypeName }}</td>
               		  <td>{{ $fabricType->txtFabricTypeDesc}}</td>
               		  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of fabric type" href="#edit{{$fabricType->strFabricTypeID}}"><i class="mdi-editor-mode-edit"></i></a>
                     <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of fabric type from the table" href="#del{{$fabricType->strFabricTypeID}}"><i class="mdi-action-delete"></i></a></td>
@@ -132,15 +132,15 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s12">
-                          <input required value = "{{ $fabricType->strFabricTypeName }}" id="editFabricTypeName" name = "editFabricTypeName" type="text" class="validateTypeName">
+                          <input required value = "{{ $fabricType->strFabricTypeName }}" id="editFabricTypeName" name = "editFabricTypeName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$">
                           <label for="fabrictype_name">Fabric Type Name <span class="red-text"><b>*</b></span> </label>
                         </div>
                   </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                         <div class="input-field col s12">
-                          <input required value = "{{ $fabricType->txtFabricTypeDesc }}" id="editFabricTypeDesc" name = "editFabricTypeDesc" type="text" class="validateTypeDesc">
-                          <label for="fabrictype_description">Fabric Desription <span class="red-text"><b>*</b></span> </label>
+                          <input  value = "{{ $fabricType->txtFabricTypeDesc }}" id="editFabricTypeDesc" name = "editFabricTypeDesc" type="text" class="validate">
+                          <label for="fabrictype_description">Fabric Desription </label>
                         </div>  
                   </div>
                   </div>
@@ -179,8 +179,9 @@
                           </div>
                       </div>
 
-                          <div>
-                            <input value="{{$fabricType->strFabricTypeID}}" id="delInactiveFabricType" name="delInactiveFabricType" type="hidden">
+                          <div class="input-field col s12">
+                            <label for="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span> </label>
+                            <input required value="{{$fabricType->strFabricTypeInactiveReason}}" id="delInactiveFabricType" name="delInactiveFabricType" type="text">
                           </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
@@ -220,20 +221,20 @@
 
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s12">
-                    <input required id="addFabricTypeName" name = "addFabricTypeName" type="text" class="validate" pattern="[0-9a-zA-Z\-\s]+$">
+                    <input required id="addFabricTypeName" name = "addFabricTypeName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" >
                     <label for="fabrictype_name">Fabric Name <span class="red-text"><b>*</b></span></label>
                   </div              </div>
 
               <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                   <div class="input-field col s12">
-                    <input required id="addFabricTypeDesc" name = "addFabricTypeDesc" type="text" class="validateTypeDesc">
-                    <label for="fabrictype_description">Fabric Desription <span class="red-text"><b>*</b></span></label>
+                    <input  id="addFabricTypeDesc" name = "addFabricTypeDesc" type="text" class="validateTypeDesc">
+                    <label for="fabrictype_description">Fabric Desription </label>
                   </div>
               </div>
               </div>
 
                   <div class="modal-footer col s12" style="background-color:#26a69a">
-                    <button type="submit" id="addFabType" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
+                    <button type="submit" id="send" name="send" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
                     <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
                   </div>
                 {!! Form::close() !!}

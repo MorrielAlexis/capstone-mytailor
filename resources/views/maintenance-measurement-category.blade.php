@@ -132,7 +132,7 @@
 -->    
     <!--Tab Contents-->
     <!--Measurement Category-->
-        <div class="col s6 left">
+        <div class="col s1 left">
              <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="left" data-delay="50"  data-tooltip="Click to add a new measurement information to the table" href="#addMeasurementInfo" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
           </div>
         </div> 
@@ -230,7 +230,7 @@
                           <div id="del{{$head->strMeasCatID}}" class="modal modal-fixed-footer">
                             <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS MEASUREMENT INFORMATION?</center> </font> </h5>
                             
-                            {!! Form::open(['url' => 'delMeasurementCategory']) !!}
+                            {!! Form::open(['url' => 'maintenance/measurement-category/destroy']) !!}
                               <div class="divider" style="height:2px"></div>
                               <div class="modal-content col s12">
                                 
@@ -257,8 +257,9 @@
                                   </div>
                             </div>
 
-                                  <div class="input-field">
-                                      <input value="{{ $head->strMeasCatID }}" id="delInactiveHead" name="delInactiveHead" type="hidden">                                 
+                                  <div class="input-field col s12">
+                                    <label for="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span> </label>
+                                      <input value="{{ $head->strMeasCatInactiveReason}}" id="delInactiveHead" name="delInactiveHead" type="text">                                 
                                   </div>
                             </div>
 
