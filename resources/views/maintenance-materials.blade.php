@@ -313,47 +313,47 @@
                                   <input id="editNeedleID" name = "editNeedleID" value = "{{$needle->intNeedleID}}" type="hidden">
                                 </div>
                           
-                          <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                                <div class="input-field col s12">
-                                  <input required id="editNeedleBrand" name = "editNeedleBrand" value = "{{$needle->strNeedleBrand}}" type="text" class="validateName">
-                                  <label for="Needle_Brand"> *Needle Brand </label>
+                                <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                                      <div class="input-field col s12">
+                                        <input required id="editNeedleBrand" name = "editNeedleBrand" value = "{{$needle->strNeedleBrand}}" type="text" class="validateName">
+                                        <label for="Needle_Brand"> *Needle Brand </label>
+                                      </div>
                                 </div>
-                          </div>
 
-                          <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                                <div class="input-field col s12">
-                                  <input required id="editNeedleSize" name = "editNeedleSize" value = "{{$needle->strNeedleSize}}" type="text" class="validateSize">
-                                  <label for="Needle_Size"> *Needle Size </label>
+                                <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                                      <div class="input-field col s12">
+                                        <input required id="editNeedleSize" name = "editNeedleSize" value = "{{$needle->strNeedleSize}}" type="text" class="validateSize">
+                                        <label for="Needle_Size"> *Needle Size </label>
+                                      </div>
                                 </div>
-                          </div>
 
-                          <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                                <div class="input-field col s12">
-                                  <input required id="editNeedleDesc" name = "editNeedleDesc" value = "{{$needle->strNeedleDesc}}" type="text" class="validateDesc">
-                                  <label for="Needle_Size"> Description </label>
+                                <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                                      <div class="input-field col s12">
+                                        <input required id="editNeedleDesc" name = "editNeedleDesc" value = "{{$needle->strNeedleDesc}}" type="text" class="validateDesc">
+                                        <label for="Needle_Size"> Description </label>
+                                      </div>
                                 </div>
-                          </div>
 
-                          <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">                 
-                                <div class="file-field input-field col s12">
-                                  <div style="color:black" class="btn tooltipped btn-small center-text light-green lighten-2" data-position="bottom" data-delay="50" data-tooltip="May upload jpg, png, gif, bmp, tif, tiff files">
-                                    <span>Upload Image</span>
-                                    <input type="file" id="editImg" name="editImg" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*">
-                                  </div>
+                                <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">                 
+                                      <div class="file-field input-field col s12">
+                                        <div style="color:black" class="btn tooltipped btn-small center-text light-green lighten-2" data-position="bottom" data-delay="50" data-tooltip="May upload jpg, png, gif, bmp, tif, tiff files">
+                                          <span>Upload Image</span>
+                                          <input type="file" id="editImg" name="editImg" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*">
+                                        </div>
 
-                                  <div class="file-path-wrapper">
-                                    <input value="{{$needle->strNeedleImage}}" class="file-path validate" id="editNeedleImage" name="editNeedleImage" type="text">
-                                  </div> 
+                                        <div class="file-path-wrapper">
+                                          <input value="{{$needle->strNeedleImage}}" class="file-path validate" id="editNeedleImage" name="editNeedleImage" type="text">
+                                        </div> 
+                                      </div>
                                 </div>
-                          </div>
-                          </div>    
+                                </div>    
 
-                              <div class="modal-footer col s12" style="background-color:#26a69a">
-                                <button type="submit" class="modal-action  waves-effect waves-green btn-flat">Update</button>
-                                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
-                              </div>
-                            {!! Form::close() !!}
-                          </div>
+                                <div class="modal-footer col s12" style="background-color:#26a69a">
+                                    <button type="submit" class="modal-action  waves-effect waves-green btn-flat">Update</button>
+                                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
+                                </div>
+                              {!! Form::close() !!}
+                              </div> <!-- End of modal content for edit needle-->
                         
                         
 
@@ -406,7 +406,7 @@
                                 <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
                               </div> 
                             {!! Form::close() !!}
-                          </div>
+                          </div> <!-- End of modal content for delete needle -->
                         </td>
                       </tr>
                       @endif

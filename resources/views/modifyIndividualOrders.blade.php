@@ -9,7 +9,7 @@
         	<span class="page-title"><h4>Individual Orders</h4></span>
       	</div>
       	<div class="col s6">
-      		<font size="+2"><ul style="margin-right:25px;" class="right section table-of-contents">
+      		<font size="+2"><ul style="margin-right:25px; margin-top:-20px;" class="right section table-of-contents">
         		<li><a class="white-text" href="#walkinorders">Walk In Orders</a></li>
         		<li><a class="white-text" href="#onlineorders">Online Orders</a></li>
       		</ul></font>
@@ -323,7 +323,7 @@
 						    				<td><img class="img hoverable modal-trigger" href="#swatchpattern" src="../imgSwatches/citadel grape.jpg"></td>
 						    				<td><a class="btn modal-trigger tooltipped" href="#measurementmodal" data-position="top" data-delay="50" data-tooltip="Measurements"><i class="mdi-action-view-headline"></i></a></td>
 						    				<td><a class="btn modal-trigger tooltipped circle red" href="#removeOrder" data-position="top" data-delay="50" data-tooltip="Delete Order" style="border-radius:180px;"><i class="mdi-content-clear"></i></a></td>
-						    			</tr>d
+						    			</tr>
 						    		</tbody>
 						    	</table>
 						    </div>
@@ -433,6 +433,7 @@
 
 					</div>
 			    </li>
+				</ul>
 
 		    </div>
 		</div>

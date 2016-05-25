@@ -16,12 +16,27 @@ class WalkInIndividualController extends Controller
      */
     public function index()
     {
-        return view('walkInIndividual');
+        return view('transaction-walkin-individual');
+    }
+
+    public function customize()
+    {
+        return view('walkin-individual-customize-order');
+    }
+
+    public function information()
+    {
+        return view('walkin-individual-checkout-info');
     }
 
     public function payment()
     {
-        return view('walkInIndividualCheckout');
+        return view('walkin-individual-checkout-pay');
+    }
+
+    public function measurement()
+    {
+        return view('walkin-individual-checkout-measure');
     }
 
     /**

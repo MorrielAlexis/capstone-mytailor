@@ -160,6 +160,12 @@ Route::group(['prefix' => 'utilities'], function(){
 Route::get('/acceptIndividual','OnlineCustomerIndividualController@accept');
 Route::get('/acceptCompany','OnlineCustomerCompanyController@accept');
 
-Route::get('transaction/walkin-individual-payment', 'WalkInIndividualController@payment');
-Route::get('transaction/walkin-company-payment', 'WalkInCompanyController@payment');
+Route::get('transaction/walkin-individual-customize-orders', 'WalkInIndividualController@customize');
+Route::get('transaction/walkin-individual-payment-customer-info', 'WalkInIndividualController@information');
+Route::get('transaction/walkin-individual-payment-payment-info', 'WalkInIndividualController@payment');
+Route::get('transaction/walkin-individual-payment-measure-detail', 'WalkInIndividualController@measurement');
 
+Route::get('transaction/walkin-company-customize-orders', 'WalkInCompanyController@customize');
+Route::get('transaction/walkin-company-payment-customer-info', 'WalkInCompanyController@information');
+Route::get('transaction/walkin-company-payment-payment-info', 'WalkInCompanyController@payment');
+Route::get('transaction/walkin-company-payment-measure-detail', 'WalkInCompanyController@measurement');
