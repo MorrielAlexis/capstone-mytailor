@@ -119,6 +119,8 @@ Route::group(['prefix' => 'maintenance'], function(){
 
 		Route::post('material-zipper/destroy', 'MaterialZipperController@delete_zipper');
 
+		Route::post('material-zipper/update', 'MaterialZipperController@update_zipper');
+
 	Route::resource('material-hookandeye', 'MaterialHookAndEyeController');
 
 		Route::post('material-hookandeye/destroy', 'MaterialHookAndEyeController@delete_hookeye');

@@ -10,9 +10,9 @@ class Zipper extends Model
 
 	protected $primaryKey = 'intZipperID';
 
-	protected $fillable = ['strZipperBrand', 'strZipperSize',
+	protected $fillable = array('intZipperID','strZipperBrand', 'strZipperSize',
 							'strZipperColor', 'txtZipperDesc',
 							'strZipperImage', 
 							'strZipperInactiveReason',
-							'boolIsActive'];
+							'boolIsActive');
 }

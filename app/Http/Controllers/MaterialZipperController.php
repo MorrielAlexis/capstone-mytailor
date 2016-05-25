@@ -53,7 +53,35 @@ class MaterialZipperController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $file = $request->input('addImage');
+        $destinationPath = 'imgMaterialZippers';
+
+                if($file == '' || $file == null){
+                $zipper = Zipper::create(array(
+                    'intZipperID' => $request->input('addZipperID'),
+                    'strZipperBrand' => trim($request->input('addZipperBrand')),
+                    'strZipperColor' => trim($request->input('addZipperColor')),
+                    'strZipperSize' => trim($request->input('addZipperSize')),
+                    'txtZipperDesc' => trim($request->input('addZipperDesc')),
+                    'boolIsActive' => 1
+                    ));
+                }else{
+                    $request->file('addImg')->move($destinationPath);
+
+                    $zipper = Zipper::create(array(
+                    'intZipperipperID' => $request->input('addZipperID'),
+                    'strZipperBrand' => trim($request->input('addZipperBrand')),
+                    'strZipperColor' => trim($request->input('addZipperColor')),
+                     'strZipperSize' => trim($request->input('addZipperSize')),
+                    'txtZipperDesc' => trim($request->input('addZipperDesc')),
+                    'strZipperImage' => 'imgMaterialZippers/'.$file,
+                    'boolIsActive' => 1
+                        ));
+                }
+                $zipper ->save();
+
+                return redirect('maintenance/material-zipper');
+
     }
 
     /**
@@ -99,6 +127,34 @@ class MaterialZipperController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    function update_zipper(Request $request)
+    {
+        $isAdded = FALSE;
+
+        $id = $request->input('editZipperID');
+        $zipper = Zipper::find($id);
+
+               if($request->input('editZipperImage') == $zipper->strZipperImage){
+                    $zipper->strZipperBrand = trim($request->input('editZipperBrand'));
+                    $zipper->strZipperColor = trim($request->input('editZipperColor'));
+                    $zipper->strZipperSize = trim($request->input('editZipperSize'));
+                    $zipper->txtZipperDesc = trim($request->input('editZipperDesc'));    
+                }else{  
+                    $destinationPath = 'imgMaterialZippers';
+                    $request->file('editImg')->move($destinationPath);
+
+                    $zipper->strZipperBrand = trim($request->input('editZipperBrand'));
+                    $zipper->strZipperColor = trim($request->input('editZipperColor'));
+                     $zipper->strZipperSize = trim($request->input('editZipperSize'));
+                    $zipper->txtZipperDesc = trim($request->input('editZipperDesc'));
+                    $zipper->strZipperImage = 'imgMaterialZippers/'.$file;
+                }
+                $zipper->save();
+                return redirect('maintenance/material-zipper');  
+
+                
     }
 
     function delete_zipper(Request $request)

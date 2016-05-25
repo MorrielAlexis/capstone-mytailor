@@ -125,41 +125,41 @@
                         <td>{{$zipper->txtZipperDesc}}</td>
                         <td><img class="materialboxed" width="650" src="{{URL::asset($zipper->strZipperImage)}}"></td>
                         <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit zipper detail" href="#edit{{$zipper->intZipperID}}"><i class="mdi-editor-mode-edit"></i></a></td>
-                        <td><a style="color:black" class="modal-trigger btn tooltipped btn-red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of zipper detail from the table" href="#del{{$zipper->intZipperID}}"><i class="mdi-action-delete"></i></a></td>
+                        <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of zipper detail from the table" href="#del{{$zipper->intZipperID}}"><i class="mdi-action-delete"></i></a></td>
                             
                           <div id="edit{{$zipper->intZipperID}}" class="modal modal-fixed-footer">
                             <h5><font color = "#1b5e20"><center>EDIT ZIPPER</center> </font> </h5>
                             
-                            {!! Form::open(['url' => 'editZipper']) !!}
+                            {!! Form::open(['url' => 'maintenance/material-zipper/update', 'files' => 'true']) !!}
                               <div class="divider" style="height:2px"></div>
                               <div class="modal-content col s12"> 
 
                                 <div class="input-field">
-                                  <input id="editZipperID" name = "editZipperID" value = "{{$zipper->strMaterialZipperID}}" type="hidden">
+                                  <input id="editZipperID" name = "editZipperID" value = "{{$zipper->intZipperID}}" type="hidden">
                                 </div>
                           
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                 <div class="input-field col s12">
-                                  <input required id="editZipperName" name = "editZipperName" value = "{{$zipper->strZipperBrand}}" type="text" class="validateName">
-                                  <label for="Zipper_Name"> *Zipper Name </label>
+                                  <input required id="editZipperBrand" name = "editZipperBrand" pattern="^[a-zA-Z\-'`\s]{2,}$" value = "{{$zipper->strZipperBrand}}" type="text" class="validateName">
+                                  <label for="Zipper_Name"> Zipper Brand <span class="red-text"><b>*</b></span></label>
                                 </div>
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                 <div class="input-field col s6">
-                                  <input required id="editZipperSize" name = "editZipperSize" value = "{{$zipper->strZipperSize}}" type="text" class="validateSize">
-                                  <label for="Zipper_Size"> *Zipper Size </label>
+                                  <input required id="editZipperSize" name = "editZipperSize" value = "{{$zipper->strZipperSize}}" type="text" class="validate" pattern="^[a-zA-Z\-'`\s]{2,}$">
+                                  <label for="Zipper_Size"> Zipper Size <span class="red-text"><b>*</b></span></label>
                                 </div>
 
                                 <div class="input-field col s6">
-                                  <input required id="editZipperColor" name = "editZipperColor" value = "{{$zipper->strZipperColor}}" type="text" class="validateColor">
-                                  <label for="Zipper_Color"> *Zipper Color </label>
+                                  <input required id="editZipperColor" name = "editZipperColor" value = "{{$zipper->strZipperColor}}" type="text" class="validate" pattern="^[a-zA-Z\-'`\s]{2,}$">
+                                  <label for="Zipper_Color"> Zipper Color <span class="red-text"><b>*</b></span></label>
                                 </div>
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                 <div class="input-field">
-                                  <input required id="editZipperDesc" name = "editZipperDesc" value = "{{$zipper->txtZipperDesc}}" type="text" class="validateDesc">
+                                  <input required id="editZipperDesc" name = "editZipperDesc" value = "{{$zipper->txtZipperDesc}}" type="text" class="validate">
                                   <label for="Zipper_Desc"> Description </label>
                                 </div>
                           </div>
@@ -266,7 +266,7 @@
   <div id="addZipper" class="modal modal-fixed-footer">
     <h5><font color = "#1b5e20"><center>ADD NEW ZIPPER</center> </font> </h5>
     
-    {!! Form::open(['url' => 'addZipper']) !!}
+    {!! Form::open(['url' => 'maintenance/material-zipper' , 'method' => 'post', 'files' => 'true']) !!}
       <div class="divider" style="height:2px"></div>
       <div class="modal-content col s12">
     
@@ -276,26 +276,26 @@
         
       <div class = "col s12" style="padding:15px;  border:3px solid white;">            
         <div class="input-field col s12">
-          <input required id="addZipperName" name = "addZipperName" type="text" class="validateName">
-          <label for="Zipper_Name"> *Zipper Name </label>
+          <input required id="addZipperBrand" name = "addZipperBrand" type="text" class="validate" pattern="^[a-zA-Z\-'`\s]{2,}$">
+          <label for="Zipper_Name"> Zipper Brand <span class="red-text"><b>*</b></span></label>
         </div>
       </div>
 
       <div class = "col s12" style="padding:15px;  border:3px solid white;">
         <div class="input-field col s6">
-          <input required id="addZipperSize" name = "addZipperSize" type="text" class="validateSize">
-          <label for="Zipper_Size"> *Zipper Size </label>
+          <input required id="addZipperSize" name = "addZipperSize" type="text" class="validate" pattern="^[a-zA-Z\-'`\s]{2,}$">
+          <label for="Zipper_Size"> Zipper Size <span class="red-text"><b>*</b></span></label>
         </div>
 
         <div class="input-field col s6">
-          <input required id="addZipperColor" name = "addZipperColor" type="text" class="validateColor">
-          <label for="Zipper_Color"> *Zipper Color </label>
+          <input required id="addZipperColor" name = "addZipperColor" type="text" class="validate" pattern="^[a-zA-Z\-'`\s]{2,}$">
+          <label for="Zipper_Color"> Zipper Color <span class="red-text"><b>*</b></span></label>
         </div>
       </div>
 
       <div class = "col s12" style="padding:15px;  border:3px solid white;">
         <div class="input-field col s12">
-          <input required id="addZipperDesc" name = "addZipperDesc" type="text" class="validateDesc">
+          <input id="addZipperDesc" name = "addZipperDesc" type="text" class="validateDesc">
           <label for="Zipper_Desc"> Description </label>
         </div>
       </div>
@@ -317,7 +317,7 @@
       <!--MODAL FOOTER-->
       <div class="modal-footer col s12" style="background-color:#26a69a">
         <button type="submit" class="modal-action  waves-effect waves-green btn-flat">Save</button>
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
+        <button href="#!" type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
       </div>
     {!! Form::close() !!}
   </div>

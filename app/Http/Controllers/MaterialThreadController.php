@@ -54,7 +54,7 @@ class MaterialThreadController extends Controller
     public function store(Request $request)
     { 
         $file = $request->input('addImage');
-        $destinationPath = 'imgThreads';
+        $destinationPath = 'imgMaterialThreads';
 
                 if($file == '' || $file == null){
                 $thread = Thread::create(array(
