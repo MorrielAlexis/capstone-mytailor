@@ -57,7 +57,7 @@
 											</div>
 
 											<div class="modal-footer col s12" style="background-color:red; opacity:0.85">
-								                <button class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-company-ustomize-orders')}}"><font color="white">Yes</font></button>
+								                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-company-customize-orders')}}"><font color="white">Yes</font></a>
 								                <a href="{{URL::to('transaction/walkin-company-customize-orders')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="white">No</font></a>
 								            </div>
 										{!! Form::close() !!}
@@ -83,7 +83,7 @@
 									                        <div class="divider" style="height:2px"></div>
 									                        <div class="modal-content col s12">
 									                        	<div class="col s1" style="margin-top:60px">
-									                        		<input type="checkbox" class="filled-in" id="pattern1" />
+									                        		<input type="radio" class="filled-in" id="pattern1" />
 									                        		<label for="pattern1"></label>
 									                        	</div>
 									                        	 <div class="col s11">
@@ -103,7 +103,7 @@
 															      </div>
 
 															    <div class="col s1" style="margin-top:60px">
-									                        		<input type="checkbox" class="filled-in" id="pattern2" />
+									                        		<input type="radio" class="filled-in" id="pattern2" />
 									                        		<label for="pattern2"></label>
 									                        	</div>
 															      <div class="col s11">
@@ -124,7 +124,7 @@
 
 
 															    <div class="col s1" style="margin-top:60px">
-									                        		<input type="checkbox" class="filled-in" id="pattern3" />
+									                        		<input type="radio" class="filled-in" id="pattern3" />
 									                        		<label for="pattern3"></label>
 									                        	</div>
 															      <div class="col s11">
@@ -147,8 +147,8 @@
 
 
 														<div class="modal-footer col s12" style="background-color:#26a69a">
-								                          <button type="submit" class="waves-effect waves-green btn-flat">OK</button>
-								                          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+								                          <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-company-customize-orders')}}">OK</a>
+								                          <a href="{{URL::to('transaction/walkin-company-customize-orders')}}" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
 								                        </div>
 									                      {!! Form::close() !!}
 													</div>
@@ -169,7 +169,7 @@
 									                        <div class="divider" style="height:2px"></div>
 									                        <div class="modal-content col s12">
 									                        	<div class="col s1" style="margin-top:60px">
-									                        		<input type="checkbox" class="filled-in" id="fabric1" />
+									                        		<input type="radio" class="filled-in" id="fabric1" />
 									                        		<label for="fabric1"></label>
 									                        	</div>
 									                        	 <div class="col s11">
@@ -189,7 +189,7 @@
 															      </div>
 
 															    <div class="col s1" style="margin-top:60px">
-									                        		<input type="checkbox" class="filled-in" id="fabric2" />
+									                        		<input type="radio" class="filled-in" id="fabric2" />
 									                        		<label for="fabric2"></label>
 									                        	</div>
 															      <div class="col s11">
@@ -210,7 +210,7 @@
 
 
 															    <div class="col s1" style="margin-top:60px">
-									                        		<input type="checkbox" class="filled-in" id="fabric3" />
+									                        		<input type="radio" class="filled-in" id="fabric3" />
 									                        		<label for="fabric3"></label>
 									                        	</div>
 															      <div class="col s11">
@@ -233,8 +233,8 @@
 
 
 														<div class="modal-footer col s12" style="background-color:#26a69a">
-								                          <button type="submit" class="waves-effect waves-green btn-flat">OK</button>
-								                          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+								                          <button href="{{URL::to('transaction/walkin-company-customize-orders')}}" class="waves-effect waves-green btn-flat">OK</button>
+								                          <a href="{{URL::to('transaction/walkin-company-customize-orders')}}" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
 								                        </div>
 									                      {!! Form::close() !!}
 													</div>
@@ -293,7 +293,7 @@
 									                        <div class="divider" style="height:2px"></div>
 									                        <div class="modal-content col s12">
 									                        	<div class="col s1" style="margin-top:60px">
-									                        		<input type="checkbox" class="filled-in" id="pattern1" />
+									                        		<input type="radio" class="filled-in" id="pattern1" />
 									                        		<label for="pattern1"></label>
 									                        	</div>
 									                        	 <div class="col s11">
@@ -313,7 +313,7 @@
 															      </div>
 
 															    <div class="col s1" style="margin-top:60px">
-									                        		<input type="checkbox" class="filled-in" id="pattern2" />
+									                        		<input type="radio" class="filled-in" id="pattern2" />
 									                        		<label for="pattern2"></label>
 									                        	</div>
 															      <div class="col s11">
@@ -334,7 +334,7 @@
 
 
 															    <div class="col s1" style="margin-top:60px">
-									                        		<input type="checkbox" class="filled-in" id="pattern3" />
+									                        		<input type="radio" class="filled-in" id="pattern3" />
 									                        		<label for="pattern3"></label>
 									                        	</div>
 															      <div class="col s11">
@@ -380,7 +380,7 @@
 									                        <div class="divider" style="height:2px"></div>
 									                        <div class="modal-content col s12">
 									                        	<div class="col s1" style="margin-top:60px">
-									                        		<input type="checkbox" class="filled-in" id="pattern1" />
+									                        		<input type="radio" class="filled-in" id="pattern1" />
 									                        		<label for="pattern1"></label>
 									                        	</div>
 									                        	 <div class="col s11">
@@ -400,7 +400,7 @@
 															      </div>
 
 															    <div class="col s1" style="margin-top:60px">
-									                        		<input type="checkbox" class="filled-in" id="pattern2" />
+									                        		<input type="radio" class="filled-in" id="pattern2" />
 									                        		<label for="pattern2"></label>
 									                        	</div>
 															      <div class="col s11">
@@ -421,7 +421,7 @@
 
 
 															    <div class="col s1" style="margin-top:60px">
-									                        		<input type="checkbox" class="filled-in" id="pattern3" />
+									                        		<input type="radio" class="filled-in" id="pattern3" />
 									                        		<label for="pattern3"></label>
 									                        	</div>
 															      <div class="col s11">
@@ -504,7 +504,7 @@
 									                        <div class="divider" style="height:2px"></div>
 									                        <div class="modal-content col s12">
 									                        	<div class="col s1" style="margin-top:60px">
-									                        		<input type="checkbox" class="filled-in" id="pattern1" />
+									                        		<input type="radio" class="filled-in" id="pattern1" />
 									                        		<label for="pattern1"></label>
 									                        	</div>
 									                        	 <div class="col s11">
@@ -524,7 +524,7 @@
 															      </div>
 
 															    <div class="col s1" style="margin-top:60px">
-									                        		<input type="checkbox" class="filled-in" id="pattern2" />
+									                        		<input type="radio" class="filled-in" id="pattern2" />
 									                        		<label for="pattern2"></label>
 									                        	</div>
 															      <div class="col s11">
@@ -545,7 +545,7 @@
 
 
 															    <div class="col s1" style="margin-top:60px">
-									                        		<input type="checkbox" class="filled-in" id="pattern3" />
+									                        		<input type="radio" class="filled-in" id="pattern3" />
 									                        		<label for="pattern3"></label>
 									                        	</div>
 															      <div class="col s11">
@@ -591,7 +591,7 @@
 									                        <div class="divider" style="height:2px"></div>
 									                        <div class="modal-content col s12">
 									                        	<div class="col s1" style="margin-top:60px">
-									                        		<input type="checkbox" class="filled-in" id="pattern1" />
+									                        		<input type="radio" class="filled-in" id="pattern1" />
 									                        		<label for="pattern1"></label>
 									                        	</div>
 									                        	 <div class="col s11">
@@ -611,7 +611,7 @@
 															      </div>
 
 															    <div class="col s1" style="margin-top:60px">
-									                        		<input type="checkbox" class="filled-in" id="pattern2" />
+									                        		<input type="radio" class="filled-in" id="pattern2" />
 									                        		<label for="pattern2"></label>
 									                        	</div>
 															      <div class="col s11">
@@ -632,7 +632,7 @@
 
 
 															    <div class="col s1" style="margin-top:60px">
-									                        		<input type="checkbox" class="filled-in" id="pattern3" />
+									                        		<input type="radio" class="filled-in" id="pattern3" />
 									                        		<label for="pattern3"></label>
 									                        	</div>
 															      <div class="col s11">
