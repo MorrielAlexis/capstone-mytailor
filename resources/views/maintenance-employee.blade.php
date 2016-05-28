@@ -357,7 +357,7 @@
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s12">
                     <label for="empID">Employee ID </label>
-                    <input value="{{$newID}}" id="addEmpID" name="addEmpID" type="text" class="" readonly>                      
+                    <input value="{{$newID}}" id="addEmpID" name="addEmpID" type="text" class="" readonly>                    
                   </div>
               </div>
 

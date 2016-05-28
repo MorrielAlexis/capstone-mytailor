@@ -10,12 +10,12 @@ class Company extends Model
 
     protected $primaryKey = 'strCompanyID';
 
-    protected $fillable = ['strCompanyName', 'strCompanyBuildingNo',
+    protected $fillable = array('strCompanyID','strCompanyName', 'strCompanyBuildingNo',
     					'strCompanyStreet', 'strCompanyBarangay',
     					'strCompanyCity', 'strCompanyProvince',
     					'strCompanyZipCode', 'strContactPerson',
     					'strCompanyEmailAddress', 'strCompanyTelNumber',
     					'strCompanyCPNumber', 'strCompanyCPNumberAlt',
     					'strCompanyFaxNumber', 'boolIsActive',
-    					'strCompanyInactiveReason'];   
+    					'strCompanyInactiveReason');   
 }

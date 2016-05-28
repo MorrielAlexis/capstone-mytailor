@@ -311,7 +311,8 @@
             </div>  
     
             <div id="addCom" class="modal modal-fixed-footer">
-             <div class = "label"> <h5><font color = "#1b5e20"><center>ADD NEW COMPANY CUSTOMER PROFILE</center> </font> </h5>                      
+             <div class = "label"> 
+             <h5><font color = "#1b5e20"><center>ADD NEW COMPANY CUSTOMER PROFILE</center> </font> </h5>                      
                 
                 {!! Form::open(['url' => 'maintenance/company' , 'method' => 'post']) !!}
                   <div class="divider" style="height:2px"></div>
@@ -420,18 +421,6 @@
 @section('scripts') 
     {!! Html::script('js/customer_validation.js'); !!}
 
-
-   <!--  <script>
-      function clearData(){
-          document.getElementById("addComName").value = "";
-          document.getElementById("addConPerson").value = "";
-          document.getElementById("addAddress").value = "";
-          document.getElementById("addCel").value = "";
-          document.getElementById("addPhone").value = "";
-          document.getElementById("addComEmailAdd").value = "";
-          document.getElementById("addFax").value = "";
-      }
-    </script> -->
 
       <!--DATA TABLE SCRIPT-->
     <script type="text/javascript">
