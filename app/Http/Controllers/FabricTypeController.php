@@ -66,6 +66,9 @@ class FabricTypeController extends Controller
 
             $fabricType->save();
 
+
+        \Session::flash('flash_message','Fabric type successfully added.');
+
         return redirect('maintenance/fabric-type');
     }
 

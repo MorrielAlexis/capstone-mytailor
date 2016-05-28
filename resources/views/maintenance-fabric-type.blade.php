@@ -15,15 +15,17 @@
   
 
       <!--Add Fabric Type-->
-         @if (Input::get('success') == 'true')
-        <div class="row" id="success-message">
+         @if(Session::has('flash_message'))
+        <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
             <div class="card-panel yellow">
-              <span class="black-text" style="color:black">Successfully added fabric type!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+              <span class="alert alert-success"> <i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+             <em> {!! session('flash_message') !!}</em>
             </div>
           </div>
         </div>
       @endif
+
 
 
       <!--Edit Fabric Type-->
@@ -311,7 +313,7 @@
           $('select').material_select();
 
           setTimeout(function () {
-            $('#success-message').hide();
+            $('#flash_message').hide();
         }, 5000);
 
       } );
