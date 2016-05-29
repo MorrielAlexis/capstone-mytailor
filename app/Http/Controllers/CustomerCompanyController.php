@@ -76,6 +76,8 @@ class CustomerCompanyController extends Controller
 
                 $company->save();
 
+        \Session::flash('flash_message','Customer successfully added.'); //flash message
+
         return redirect('maintenance/company');
     }
 
@@ -144,6 +146,8 @@ class CustomerCompanyController extends Controller
 
                 $company->save();
 
+        \Session::flash('flash_message_update','Customer detail/s successfully updated.');
+
         return redirect('maintenance/company');
     }
 
@@ -154,6 +158,8 @@ class CustomerCompanyController extends Controller
         $company->strCompanyInactiveReason = trim($request->input('delInactiveComp'));
         $company->boolIsActive = 0;
         $company->save();
+
+        \Session::flash('flash_message_delete','Customer successfully deactivated.');
 
         return redirect('maintenance/company');
     }

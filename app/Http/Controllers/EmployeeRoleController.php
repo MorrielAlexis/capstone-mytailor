@@ -65,6 +65,8 @@ class EmployeeRoleController extends Controller
             ));
         $added = $role->save();
 
+         \Session::flash('flash_message','Employee role successfully added.'); //flash message
+
         return redirect('maintenance/employee-role?success=true');
     }
 
@@ -122,6 +124,8 @@ class EmployeeRoleController extends Controller
                $role->strEmpRoleDesc = trim($request->input('editRoleDescription'));
         $role->save();
 
+         \Session::flash('flash_message_update','Employee role detail/s successfully updated.'); //flash message
+
          return redirect('maintenance/employee-role');
         
        
@@ -136,6 +140,8 @@ class EmployeeRoleController extends Controller
         $role->boolIsActive = 0;
 
         $role->save();
+
+         \Session::flash('flash_message_delete','Customer successfully deactivated.'); //flash message
         
         return redirect('maintenance/employee-role');
     }

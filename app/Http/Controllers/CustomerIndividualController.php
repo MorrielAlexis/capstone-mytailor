@@ -76,6 +76,8 @@ class CustomerIndividualController extends Controller
 
                 $individual->save();
 
+         \Session::flash('flash_message','Customer successfully added.');
+
         return redirect('maintenance/individual');
     }
 
@@ -144,6 +146,8 @@ class CustomerIndividualController extends Controller
 
         $individual->save();
 
+         \Session::flash('flash_message_update','Customer detail/s successfully updated.');
+
         return redirect('maintenance/individual');
     }
 
@@ -154,6 +158,8 @@ class CustomerIndividualController extends Controller
         $individual->strIndivInactiveReason = trim($request->input('delInactiveReason'));
         $individual->boolIsActive = 0;
         $individual->save();
+
+         \Session::flash('flash_message_delete','Customer successfully deactivated.');
 
         return redirect('maintenance/individual');
     }
