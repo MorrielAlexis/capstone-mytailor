@@ -18,7 +18,7 @@
          @if(Session::has('flash_message'))
         <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
-            <div class="card-panel yellow">
+            <div class="card-panel green accent-1">
               <span class="alert alert-success"> <i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
              <em> {!! session('flash_message') !!}</em>
             </div>
@@ -29,11 +29,12 @@
 
 
       <!--Edit Fabric Type-->
-      @if (Input::get('successEdit') == 'true')
-        <div class="row" id="success-message">
+      @if (Session::has('flash_message_update'))
+        <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
-            <div class="card-panel yellow">
-              <span class="black-text" style="color:black">Successfully edited fabric type!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+            <div class="card-panel blue accent-1">
+              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              <em> {!! session('flash_message_update') !!}</em>
             </div>
           </div>
         </div>
@@ -41,11 +42,12 @@
 
 
       <!--Delete Fabric Type-->
-      @if (Input::get('successDel') == 'true')
-        <div class="row" id="success-message">
+      @if (Session::has('flash_message_delete'))
+        <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
-            <div class="card-panel yellow">
-              <span class="black-text" style="color:black">Successfully deactivated fabric type!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+            <div class="card-panel red accent-2">
+              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+               <em> {!! session('flash_message_delete') !!}</em>
             </div>
           </div>
         </div>

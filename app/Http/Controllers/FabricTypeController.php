@@ -129,7 +129,9 @@ class FabricTypeController extends Controller
 
                 $fabricType->save();
 
-                return redirect('maintenance/fabric-type');
+        \Session::flash('flash_message_update','Fabric type successfully updated.');
+
+        return redirect('maintenance/fabric-type');
 
     }
 
@@ -142,6 +144,8 @@ class FabricTypeController extends Controller
             $fabricType->strFabricTypeInactiveReason = trim($request->input('delInactiveFabricType'));
             $fabricType->boolIsActive = 0;
             $fabricType->save();
+
+        \Session::flash('flash_message_delete','Fabric type successfully deactivate.');
 
         return redirect('maintenance/fabric-type');
 
