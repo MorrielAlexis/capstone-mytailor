@@ -15,108 +15,77 @@
               @endif
   
 
-             <!--Add Measurement Info-->
-              @if (Input::get('successHead') == 'true')
-                <div class="row" id="success-message">
-                  <div class="col s12 m12 l12">
-                    <div class="card-panel yellow">
-                      <span class="black-text" style="color:black">Successfully added measurement information!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
-                    </div>
-                  </div>
-                </div>
-              @endif
-
-
-             <!--Edit Measurement Info-->
-             @if (Input::get('successHeadEdit') == 'true')
-                <div class="row" id="success-message">
-                  <div class="col s12 m12 l12">
-                    <div class="card-panel yellow">
-                      <span class="black-text" style="color:black">Successfully edited measurement information!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
-                    </div>
-                  </div>
-                </div>
-              @endif 
-
-
-              <!--Delete Measurement Info-->
-              @if (Input::get('successHeadDel') == 'true')
-                <div class="row" id="success-message">
-                  <div class="col s12 m12 l12">
-                    <div class="card-panel yellow">
-                      <span class="black-text" style="color:black">Successfully deactivated measurement information!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
-                    </div>
-                  </div>
-                </div>
-              @endif
-
-              <!--Add Measurement Part-->
-                 @if (Input::get('successPart') == 'true')
-                    <div class="row" id="success-message">
-                      <div class="col s12 m12 l12">
-                        <div class="card-panel yellow">
-                          <span class="black-text" style="color:black">Successfully added measurement part!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
-                        </div>
-                      </div>
-                    </div>
-                  @endif
-
-                <!--Edit Measurement Part-->
-                @if (Input::get('successPartEdit') == 'true')
-                    <div class="row" id="success-message">
-                      <div class="col s12 m12 l12">
-                        <div class="card-panel yellow">
-                          <span class="black-text" style="color:black">Successfully edited measurement part!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
-                        </div>
-                      </div>
-                    </div>
-                  @endif
-
-                  <!--Delete Measurement Part-->
-                  @if (Input::get('successPartDel') == 'true')
-                    <div class="row" id="success-message">
-                      <div class="col s12 m12 l12">
-                        <div class="card-panel yellow">
-                          <span class="black-text" style="color:black">Successfully deactivated measurement part!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
-                        </div>
-                      </div>
-                    </div>
-                  @endif
-
-                  <!--  <Duplicate Error Message>   -->
-                  @if (Input::get('successHead') == 'duplicate')
-                      <div class="row" id="success-message">
-                        <div class="col s12 m12 l12">
-                          <div class="card-panel red">
-                            <span class="black-text" style="color:black">Record already exists!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
-                          </div>
-                        </div>
-                      </div>
-                    @endif
-
-                    <!--  <Duplicate Error Message>   -->
-                    @if (Input::get('successPart') == 'duplicate')
-                        <div class="row" id="success-message">
-                          <div class="col s12 m12 l12">
-                            <div class="card-panel red">
-                              <span class="black-text" style="color:black">Record already exists!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
-                            </div>
-                          </div>
-                        </div>
-                      @endif
-
-
-                       <!--  <Data Dependency Message> -->
-       @if (Input::get('success') == 'beingUsed')
-        <div class="row" id="success-message">
+                 <!--Add -->
+        @if(Session::has('flash_message'))
+        <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
-            <div class="card-panel red">
-              <span class="black-text" style="color:black">Sorry! Cannot deactivate garment category. It's still being used!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+            <div class="card-panel yellow accent-1">
+              <span class="alert alert-success"> <i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+             <em> {!! session('flash_message') !!}</em>
             </div>
           </div>
         </div>
       @endif
-  
+
+     <!--Edit -->
+      @if (Session::has('flash_message_update'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel blue accent-1">
+              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              <em> {!! session('flash_message_update') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif
+
+
+      <!--Delete -->
+      @if (Session::has('flash_message_delete'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red accent-2">
+              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+               <em> {!! session('flash_message_delete') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif
+
+                  <!--  <Duplicate Error Message>   -->
+            @if (Input::get('successHead') == 'duplicate')
+                <div class="row" id="success-message">
+                  <div class="col s12 m12 l12">
+                    <div class="card-panel red">
+                      <span class="black-text" style="color:black">Record already exists!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+                    </div>
+                  </div>
+                </div>
+              @endif
+
+              <!--  <Duplicate Error Message>   -->
+              @if (Input::get('successPart') == 'duplicate')
+                  <div class="row" id="success-message">
+                    <div class="col s12 m12 l12">
+                      <div class="card-panel red">
+                        <span class="black-text" style="color:black">Record already exists!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+                      </div>
+                    </div>
+                  </div>
+                @endif
+
+
+                 <!--  <Data Dependency Message> -->
+    @if (Input::get('success') == 'beingUsed')
+    <div class="row" id="success-message">
+    <div class="col s12 m12 l12">
+      <div class="card-panel red">
+        <span class="black-text" style="color:black">Sorry! Cannot deactivate garment category. It's still being used!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+      </div>
+    </div>
+    </div>
+    @endif
+
 
   <br><br><br>
  <!--<p><h4 style="lightpink">Measurement Details</h4></p>-->
@@ -487,7 +456,7 @@
           $('select').material_select();
           
           setTimeout(function () {
-            $('#success-message').hide();
+            $('#flash_message').hide();
         }, 5000);
       } );
     </script>

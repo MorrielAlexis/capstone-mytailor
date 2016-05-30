@@ -15,41 +15,42 @@
       @endif
   
 
-        <!--Add Employee-->
-         @if (Input::get('success') == 'true')
-        <div class="row" id="success-message">
+        <!--Add -->
+        @if(Session::has('flash_message'))
+        <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
-            <div class="card-panel yellow">
-              <span class="black-text" style="color:black">Successfully added employee!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+            <div class="card-panel yellow accent-1">
+              <span class="alert alert-success"> <i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+             <em> {!! session('flash_message') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif
+
+     <!--Edit-->
+      @if (Session::has('flash_message_update'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel blue accent-1">
+              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              <em> {!! session('flash_message_update') !!}</em>
             </div>
           </div>
         </div>
       @endif
 
 
-      <!--Edit Employee-->
-      @if (Input::get('successEdit') == 'true')
-        <div class="row" id="success-message">
+      <!--Delete-->
+      @if (Session::has('flash_message_delete'))
+        <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
-            <div class="card-panel yellow">
-              <span class="black-text" style="color:black">Successfully edited employee!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+            <div class="card-panel red accent-2">
+              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+               <em> {!! session('flash_message_delete') !!}</em>
             </div>
           </div>
         </div>
       @endif
-
-
-      <!--Delete Employee-->
-     @if (Input::get('successDel') == 'true')
-        <div class="row" id="success-message">
-          <div class="col s12 m12 l12">
-            <div class="card-panel yellow">
-              <span class="black-text" style="color:black">Successfully deleted employee!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
-            </div>
-          </div>
-        </div>
-      @endif
-
 
       <!--Reactivate Employee-->
       @if (Input::get('successRec') == 'true')
@@ -162,7 +163,7 @@
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s4">
-                            <input required id="editFirstName" name="editFirstName" placeholder="Hope" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2">
+                            <input required value="{{"$employee->strEmpFName"}}" id="editFirstName" name="editFirstName" placeholder="Hope" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2">
                             <label for="first_name">First Name <span class="red-text"><b>*</b></span> </label>
                           </div>
 
@@ -527,7 +528,7 @@
           $('select').material_select();
 
           setTimeout(function () {
-            $('#success-message').hide();
+            $('#flash_message').hide();
         }, 5000);
 
       } );

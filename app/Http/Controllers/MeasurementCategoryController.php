@@ -87,6 +87,8 @@ class MeasurementCategoryController extends Controller
 
         $meas_category->save();
 
+        \Session::flash('flash_message','Measurement category successfully added.'); //flash message
+
         return redirect('maintenance/measurement-category');
     }
 
@@ -142,6 +144,8 @@ class MeasurementCategoryController extends Controller
         $meas_category->strMeasCatInactiveReason = trim($request->input('delInactiveHead'));
         $meas_category->boolIsActive = 0;
         $meas_category->save();
+
+        \Session::flash('flash_message_update','Measurement category successfully deactivated.'); //flash message
 
         return redirect('maintenance/measurement-category');
     }

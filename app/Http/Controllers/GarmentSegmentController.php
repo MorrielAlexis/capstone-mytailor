@@ -75,6 +75,8 @@ class GarmentSegmentController extends Controller
 
              $segment->save();
 
+         \Session::flash('flash_message','Segment successfully added.'); //flash message
+
         return redirect('maintenance/garment-segment');   
     }
 
@@ -133,6 +135,8 @@ class GarmentSegmentController extends Controller
                 
                 $segment->save();
 
+         \Session::flash('flash_message_update','Segment detail/s successfully updated.'); //flash message
+
          return redirect('maintenance/garment-segment');      
     }
 
@@ -143,6 +147,8 @@ class GarmentSegmentController extends Controller
         $segment->strSegInactiveReason = trim($request->input('delInactiveSegment'));
         $segment->boolIsActive = 0;
         $segment->save();
+
+         \Session::flash('flash_message_delete','Segment successfully deactivated.'); //flash message
 
        return redirect('maintenance/garment-segment');
     }

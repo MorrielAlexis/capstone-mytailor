@@ -52,6 +52,9 @@ class MeasurementDetailController extends Controller
 
             $detail->save();
 
+        
+         \Session::flash('flash_message','Measurement part successfully added.'); //flash message
+
         return redirect ('maintenance/measurement-detail');
 
 
@@ -106,6 +109,8 @@ class MeasurementDetailController extends Controller
 
         $detail->save();
 
+        \Session::flash('flash_message_update','Measurement part successfully updated.'); //flash message
+
         return redirect('maintenance/measurement-detail');
 
     }
@@ -119,6 +124,8 @@ class MeasurementDetailController extends Controller
         $detail->strMeasDetInactiveReason = trim($request->input('delInactiveDetail'));
         $detail->boolIsActive = 0;
         $detail-> save();
+
+        \Session::flash('flash_message_delete','Measurement part successfully deactivated.'); //flash message
 
         return redirect('maintenance/measurement-detail');
             

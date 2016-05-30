@@ -14,73 +14,42 @@
               @endif
   
 
-             <!--Add Measurement Info-->
-              @if (Input::get('successHead') == 'true')
-                <div class="row" id="success-message">
-                  <div class="col s12 m12 l12">
-                    <div class="card-panel yellow">
-                      <span class="black-text" style="color:black">Successfully added measurement information!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
-                    </div>
-                  </div>
-                </div>
-              @endif
+            <!--Add -->
+        @if(Session::has('flash_message'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel yellow accent-1">
+              <span class="alert alert-success"> <i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+             <em> {!! session('flash_message') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif
+
+     <!--Edit -->
+      @if (Session::has('flash_message_update'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel blue accent-1">
+              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              <em> {!! session('flash_message_update') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif
 
 
-             <!--Edit Measurement Info-->
-             @if (Input::get('successHeadEdit') == 'true')
-                <div class="row" id="success-message">
-                  <div class="col s12 m12 l12">
-                    <div class="card-panel yellow">
-                      <span class="black-text" style="color:black">Successfully edited measurement information!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
-                    </div>
-                  </div>
-                </div>
-              @endif 
-
-
-              <!--Delete Measurement Info-->
-              @if (Input::get('successHeadDel') == 'true')
-                <div class="row" id="success-message">
-                  <div class="col s12 m12 l12">
-                    <div class="card-panel yellow">
-                      <span class="black-text" style="color:black">Successfully deactivated measurement information!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
-                    </div>
-                  </div>
-                </div>
-              @endif
-
-              <!--Add Measurement Part-->
-                 @if (Input::get('successPart') == 'true')
-                    <div class="row" id="success-message">
-                      <div class="col s12 m12 l12">
-                        <div class="card-panel yellow">
-                          <span class="black-text" style="color:black">Successfully added measurement part!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
-                        </div>
-                      </div>
-                    </div>
-                  @endif
-
-                <!--Edit Measurement Part-->
-                @if (Input::get('successPartEdit') == 'true')
-                    <div class="row" id="success-message">
-                      <div class="col s12 m12 l12">
-                        <div class="card-panel yellow">
-                          <span class="black-text" style="color:black">Successfully edited measurement part!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
-                        </div>
-                      </div>
-                    </div>
-                  @endif
-
-                  <!--Delete Measurement Part-->
-                  @if (Input::get('successPartDel') == 'true')
-                    <div class="row" id="success-message">
-                      <div class="col s12 m12 l12">
-                        <div class="card-panel yellow">
-                          <span class="black-text" style="color:black">Successfully deactivated measurement part!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
-                        </div>
-                      </div>
-                    </div>
-                  @endif
+      <!--Delete -->
+      @if (Session::has('flash_message_delete'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red accent-2">
+              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+               <em> {!! session('flash_message_delete') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif
 
                   <!--  <Duplicate Error Message>   -->
                   @if (Input::get('successHead') == 'duplicate')
@@ -133,7 +102,7 @@
     <!--Tab Contents-->
     <!--Measurement Category-->
         <div class="col s1 left">
-             <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="left" data-delay="50"  data-tooltip="Click to add a new measurement information to the table" href="#addMeasurementInfo" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
+             <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="bottom" data-delay="50"  data-tooltip="Click to add a new measurement information to the table" href="#addMeasurementInfo" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
           </div>
         </div> 
     </div> <!--DIV CLASS MAIN WRAPPER-->       
@@ -553,7 +522,7 @@
           $('select').material_select();
           
           setTimeout(function () {
-            $('#success-message').hide();
+            $('#flash_message').hide();
         }, 5000);
       } );
     </script>

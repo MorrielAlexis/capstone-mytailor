@@ -87,6 +87,8 @@ class EmployeeController extends Controller
             ));
             $employee->save();
 
+         \Session::flash('flash_message','Employee detail successfully added.'); //flash message
+
         return redirect('maintenance/employee');
     }
 
@@ -159,6 +161,8 @@ class EmployeeController extends Controller
 
             $employee->save();
 
+            \Session::flash('flash_message_update','Employee detail/s successfully updated.'); //flash message
+
             return redirect('maintenance/employee');
 
     }
@@ -171,6 +175,8 @@ class EmployeeController extends Controller
         $employee->boolIsActive = 0;
 
         $employee->save();
+
+        \Session::flash('flash_message_delete','Employee detail successfully deactivated.'); //flash message
         
         return redirect('maintenance/employee');
     }

@@ -62,6 +62,9 @@ class GarmentCategoryController extends Controller
                 ));
 
          $garment->save();
+
+        \Session::flash('flash_message','Garment category successfully added.'); //flash message
+
         return redirect('maintenance/garment-category');
            
     }
@@ -119,6 +122,8 @@ class GarmentCategoryController extends Controller
             $garment->textGarmentCategoryDesc = trim($request->input('editGarmentDescription'));
             $garment ->save();
 
+        \Session::flash('flash_message_update','Garment category detail/s successfully updated.'); //flash message
+
         return  redirect('maintenance/garment-category');
 
         
@@ -132,19 +137,22 @@ class GarmentCategoryController extends Controller
         $garment = GarmentCategory::find($request->input('delGarmentID'));
     
 
-        $count = \DB::table('tblSegment')
-                ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
-                ->select('tblGarmentCategory.*')
-                ->where('tblGarmentCategory.strGarmentCategoryID','=', $request)
-                ->count();
+        // $count = \DB::table('tblSegment')
+        //         ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
+        //         ->select('tblGarmentCategory.*')
+        //         ->where('tblGarmentCategory.strGarmentCategoryID','=', $request)
+        //         ->count();
 
-        if ($count == 0 ) {
-               $garment->strGarmentCategoryInactiveReason = trim($request->input('delInactiveGarment'));
+        // if ($count == 0 ) {
+        //        $garment->strGarmentCategoryInactiveReason = trim($request->input('delInactiveGarment'));
         $garment->boolIsActive = 0;
+
         $garment ->save();
 
-        return  redirect('maintenance/garment-category?successDel=true');
-         } else return redirect('/maintenance/garment-category?success=beingUsed');
+         \Session::flash('flash_message','Garment category successfully deactivated.'); //flash message
+
+        return  redirect('maintenance/garment-category');
+         
 
         
    

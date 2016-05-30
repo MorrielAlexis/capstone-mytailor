@@ -95,6 +95,8 @@ class SegmentPatternController extends Controller
                 }
 
             $pattern->save();
+
+             \Session::flash('flash_message','Segment pattern successfully added.'); //flash message
             
             return redirect('/maintenance/segment-pattern');
 
@@ -169,6 +171,8 @@ class SegmentPatternController extends Controller
 
                 $pattern->save();
 
+            \Session::flash('flash_message_update','Segment pattern detail/s successfully updated.'); //flash message      
+
             
             return redirect('maintenance/segment-pattern');
                
@@ -184,6 +188,9 @@ class SegmentPatternController extends Controller
         $pattern->strSegPInactiveReason = trim($request->input('delInactivePattern'));
         $pattern->boolIsActive = 0;
         $pattern->save();
+
+
+       \Session::flash('flash_message_delete','Segment pattern successfully deactivated.'); //flash message
 
         return redirect('maintenance/segment-pattern');
     }
