@@ -75,7 +75,9 @@ class SwatchNameController extends Controller
             ));
         $added = $swatchnamemainte->save();
 
-        return redirect('maintenance/swatch-name?success=true');
+        \Session::flash('flash_message','Swatch name successfully added.'); //flash message
+
+        return redirect('maintenance/swatch-name');
     }
 
     /**
@@ -132,6 +134,8 @@ class SwatchNameController extends Controller
                $swatchnamemainte->txtSwatchNameDesc = trim($request->input('editSwatchNameDesc'));
         $swatchnamemainte->save();
 
+        \Session::flash('flash_message_update','Swatch name successfully updated.'); //flash message
+
          return redirect('maintenance/swatch-name');
     }
 
@@ -142,6 +146,8 @@ class SwatchNameController extends Controller
         $swatchnamemainte->strSwatchNameInactiveReason = trim($request->input('delInactiveSwatchName'));
         $swatchnamemainte->boolIsActive = 0;
         $swatchnamemainte->save();
+
+        \Session::flash('flash_message_delete','Swatch name successfully deactivated.'); //flash message
 
         return redirect('maintenance/swatch-name');
     }

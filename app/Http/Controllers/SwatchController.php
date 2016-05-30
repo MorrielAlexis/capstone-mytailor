@@ -93,6 +93,8 @@ class SwatchController extends Controller
                 }
 
             $swatch->save();
+
+            \Session::flash('flash_message','Swatch successfully added.'); //flash message
             
             return redirect('/maintenance/swatch');
     }
@@ -165,6 +167,7 @@ class SwatchController extends Controller
 
                 $swatch->save();
 
+            \Session::flash('flash_message_update','Swatch detail/s successfully update.'); //flash message    
             
             return redirect('maintenance/segment-pattern');
     }
@@ -177,6 +180,8 @@ class SwatchController extends Controller
         $swatch->strSwatchInactiveReason = trim($request->input('delInactiveSwatch'));
         $swatch->boolIsActive = 0;
         $swatch->save();
+
+        \Session::flash('flash_message_delete','Swatch successfully deactivated.'); //flash message
 
         return redirect('maintenance/swatch');
     }

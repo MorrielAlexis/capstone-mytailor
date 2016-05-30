@@ -15,35 +15,38 @@
       @endif
   
 
-      <!--Add Fabric Swatch-->
-         @if (Input::get('success') == 'true')
-        <div class="row" id="success-message">
+     <!--Add -->
+        @if(Session::has('flash_message'))
+        <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
-            <div class="card-panel yellow">
-              <span class="black-text" style="color:black">Successfully added fabric swatch!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+            <div class="card-panel yellow accent-1">
+              <span class="alert alert-success"> <i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+             <em> {!! session('flash_message') !!}</em>
             </div>
           </div>
         </div>
       @endif
 
-      <!--Edit Fabric Swatch-->
-      @if (Input::get('successEdit') == 'true')
-        <div class="row" id="success-message">
+     <!--Edit -->
+      @if (Session::has('flash_message_update'))
+        <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
-            <div class="card-panel yellow">
-              <span class="black-text" style="color:black">Successfully edited fabric swatch!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+            <div class="card-panel blue accent-1">
+              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              <em> {!! session('flash_message_update') !!}</em>
             </div>
           </div>
         </div>
       @endif
 
 
-      <!--Deleted Fabric Swatch-->
-      @if (Input::get('successDel') == 'true')
-        <div class="row" id="success-message">
+      <!--Delete -->
+      @if (Session::has('flash_message_delete'))
+        <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
-            <div class="card-panel yellow">
-              <span class="black-text" style="color:black">Successfully deleted fabric swatch!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+            <div class="card-panel red accent-2">
+              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+               <em> {!! session('flash_message_delete') !!}</em>
             </div>
           </div>
         </div>
@@ -407,7 +410,7 @@
           $('select').material_select();
 
           setTimeout(function () {
-            $('#success-message').hide();
+            $('#flash_message').hide();
         }, 5000);
 
       } );

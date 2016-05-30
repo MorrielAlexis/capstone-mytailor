@@ -14,8 +14,8 @@
       @endif
   
 
-      <!--Add Fabric Type-->
-         @if(Session::has('flash_message'))
+       <!--Add -->
+        @if(Session::has('flash_message'))
         <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
             <div class="card-panel yellow accent-1">
@@ -26,9 +26,7 @@
         </div>
       @endif
 
-
-
-      <!--Edit Fabric Type-->
+     <!--Edit -->
       @if (Session::has('flash_message_update'))
         <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
@@ -41,7 +39,7 @@
       @endif
 
 
-      <!--Delete Fabric Type-->
+      <!--Delete -->
       @if (Session::has('flash_message_delete'))
         <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
