@@ -10,12 +10,13 @@
     </div>
   </div>
 
-  <!--Reactivate Garment Segment-->
-      @if (Input::get('successRec') == 'true')
-        <div class="row" id="success-message">
+   <!--Inacive Data-->
+        @if(Session::has('flash_message_inactive'))
+        <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
-            <div class="card-panel yellow">
-              <span class="black-text" style="color:black">Successfully added back record!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+            <div class="card-panel yellow accent-1">
+              <span class="alert alert-success"> <i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+             <em> {!! session('flash_message_inactive') !!}</em>
             </div>
           </div>
         </div>
@@ -1053,4 +1054,14 @@
       $('ul.tabs').tabs();
     });
     </script>
+
+        <script type="text/javascript">
+          setTimeout(function () {
+            $('#flash_message').hide();
+        }, 5000);
+
+      } );
+    </script>
 @stop
+
+  

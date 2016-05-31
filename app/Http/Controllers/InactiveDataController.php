@@ -165,6 +165,8 @@ class InactiveDataController extends Controller
         $individual->boolIsActive = 1;
         $individual->save();
 
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
+
         return redirect('utilities/inactive-data');
     }
 
@@ -180,6 +182,8 @@ class InactiveDataController extends Controller
 
         $company->boolIsActive = 1;
         $company->save();
+
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
 
         return redirect('utilities/inactive-data');
     }
@@ -197,6 +201,8 @@ class InactiveDataController extends Controller
         $role->boolIsActive = 1;
         $role->save();
 
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
+
         return redirect('utilities/inactive-data');
     }
 
@@ -212,6 +218,8 @@ class InactiveDataController extends Controller
 
         $employee->boolIsActive = 1;
         $employee->save();
+
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
 
         return redirect('utilities/inactive-data');
     }
@@ -229,6 +237,8 @@ class InactiveDataController extends Controller
         $catalogue->boolIsActive = 1;
         $catalogue->save();
 
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
+
         return redirect('utilities/inactive-data');
     }
 
@@ -244,6 +254,8 @@ class InactiveDataController extends Controller
 
         $alteration->boolIsActive = 1;
         $alteration->save();
+
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
 
         return redirect('utilities/inactive-data');
     }
@@ -261,6 +273,8 @@ class InactiveDataController extends Controller
         $category->boolIsActive = 1;
         $category->save();
 
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
+
         return redirect('utilities/inactive-data');
     }
 
@@ -276,6 +290,8 @@ class InactiveDataController extends Controller
 
         $segment->boolIsActive = 1;
         $segment->save();
+
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
 
         return redirect('utilities/inactive-data');
     }
@@ -293,6 +309,8 @@ class InactiveDataController extends Controller
         $pattern->boolIsActive = 1;
         $pattern->save();
 
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
+
         return redirect('utilities/inactive-data');
     }
 
@@ -308,6 +326,8 @@ class InactiveDataController extends Controller
 
         $head->boolIsActive = 1;
         $head->save();
+
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
 
         return redirect('utilities/inactive-data');
     }
@@ -325,6 +345,8 @@ class InactiveDataController extends Controller
         $detail->boolIsActive = 1;
         $detail->save();
 
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
+
         return redirect('utilities/inactive-data');
     }
 
@@ -340,6 +362,8 @@ class InactiveDataController extends Controller
 
         $fabricType->boolIsActive = 1;
         $fabricType->save();
+
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
 
         return redirect('utilities/inactive-data');
     }
@@ -357,6 +381,8 @@ class InactiveDataController extends Controller
         $swatch->boolIsActive = 1;
         $swatch->save();
 
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
+
         return redirect('utilities/inactive-data');
     }
 
@@ -372,6 +398,8 @@ class InactiveDataController extends Controller
 
         $swatchname->boolIsActive = 1;
         $swatchname->save();
+
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
 
         return redirect('utilities/inactive-data');
     }
@@ -389,6 +417,8 @@ class InactiveDataController extends Controller
         $thread->boolIsActive = 1;
         $thread->save();
 
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
+
         return redirect('utilities/inactive-data');
     }
 
@@ -404,6 +434,8 @@ class InactiveDataController extends Controller
 
         $needle->boolIsActive = 1;
         $needle->save();
+
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
 
         return redirect('utilities/inactive-data');
     }
@@ -421,6 +453,8 @@ class InactiveDataController extends Controller
         $button->boolIsActive = 1;
         $button->save();
 
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
+
         return redirect('utilities/inactive-data');
     }
 
@@ -437,6 +471,8 @@ class InactiveDataController extends Controller
         $zipper->boolIsActive = 1;
         $zipper->save();
 
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
+
         return redirect('utilities/inactive-data');
     }
 
@@ -452,6 +488,8 @@ class InactiveDataController extends Controller
 
         $hook->boolIsActive = 1;
         $hook->save();
+
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
 
         return redirect('utilities/inactive-data');
     }
