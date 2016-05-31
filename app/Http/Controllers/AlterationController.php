@@ -67,6 +67,8 @@ class AlterationController extends Controller
             ));
         $added = $alteration->save();
 
+          \Session::flash('flash_message','Alteration detail successfully added.'); //flash message
+
         return redirect('maintenance/alteration?success=true');
     }
 
@@ -126,6 +128,8 @@ class AlterationController extends Controller
 
         $alteration->save();
 
+          \Session::flash('flash_message_update','Alteration detail  successfully updated.'); //flash message
+
          return redirect('maintenance/alteration');
         
        
@@ -139,6 +143,8 @@ class AlterationController extends Controller
         $alteration->strAlterationInactiveReason = trim($request->input('delInactiveAlteration'));
         $alteration->boolIsActive = 0;
         $alteration->save();
+
+          \Session::flash('flash_message_delete','Alteration successfully deactivated.'); //flash message
         
         return redirect('maintenance/alteration');
     }

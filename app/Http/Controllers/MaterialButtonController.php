@@ -80,6 +80,8 @@ class MaterialButtonController extends Controller
                 }
                 $button ->save();
 
+                \Session::flash('flash_message','Button successfully added.'); //flash message
+
                 return redirect('maintenance/material-button');
         
     }
@@ -137,6 +139,8 @@ class MaterialButtonController extends Controller
         $button->boolIsActive = 0;
         $button->save();
 
+        \Session::flash('flash_message_delete','Button successfully deactivated.'); //flash message
+
         return redirect('maintenance/material-button');
     }
 
@@ -165,6 +169,8 @@ class MaterialButtonController extends Controller
                    
                 }
                 $button ->save();
+
+                \Session::flash('flash_message_update','Button successfully updated.'); //flash message
 
                 return redirect('maintenance/material-button');
 

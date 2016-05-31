@@ -78,6 +78,8 @@ class MaterialThreadController extends Controller
                 }
                 $thread ->save();
 
+                 \Session::flash('flash_message','Thread successfully added.'); //flash message
+
                 return redirect('maintenance/material-thread');
     
     }
@@ -151,6 +153,9 @@ class MaterialThreadController extends Controller
                     $thread->strThreadImage = 'imgMaterialThreads/'.$file;
                 }
                 $thread->save();
+
+                 \Session::flash('flash_message_update','Thread successfully updated.'); //flash message
+
                 return redirect('maintenance/material-thread');
     }
 
@@ -163,6 +168,8 @@ class MaterialThreadController extends Controller
         $thread->boolIsActive = 0;
 
         $thread->save();
+
+         \Session::flash('flash_message_delete','Thread successfully deactivated.'); //flash message
 
         return redirect('maintenance/material-thread');
     }

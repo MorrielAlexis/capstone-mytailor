@@ -78,6 +78,8 @@ class MaterialNeedleController extends Controller
                 }
                 $Needle ->save();
 
+                \Session::flash('flash_message','Needle successfully added.'); //flash message
+
                 return redirect('/maintenance/material-needle');
     }
 
@@ -151,6 +153,9 @@ class MaterialNeedleController extends Controller
                     $needle->strNeedleImage = 'imgMaterialNeedles/'.$file;
                 }
                 $needle->save();
+
+                \Session::flash('flash_message_update','Needle successfully updated.'); //flash message
+
                 return redirect('/maintenance/material-needle');
     }
 
@@ -163,6 +168,8 @@ class MaterialNeedleController extends Controller
         $Needle->boolIsActive = 0;
 
         $Needle->save();
+
+        \Session::flash('flash_message_delete','Needle successfully deactivated.'); //flash message
 
         return redirect('maintenance/material-needle');
     }

@@ -12,36 +12,38 @@
         </div>
       @endif
   
- <!--Add Garment Category-->
-         @if (Input::get('success') == 'true')
-        <div class="row" id="success-message">
+ <!--Add Fabric-->
+        @if(Session::has('flash_message'))
+        <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
-            <div class="card-panel yellow">
-              <span class="black-text" style="color:black">Successfully added material!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+            <div class="card-panel yellow accent-1">
+              <span class="alert alert-success"> <i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+             <em> {!! session('flash_message') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif
+
+     <!--Edit Fabric-->
+      @if (Session::has('flash_message_update'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel blue accent-1">
+              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              <em> {!! session('flash_message_update') !!}</em>
             </div>
           </div>
         </div>
       @endif
 
 
-      <!--Edit Garment Category-->
-      @if (Input::get('successEdit') == 'true')
-        <div class="row" id="success-message">
+      <!--Delete Fabric-->
+      @if (Session::has('flash_message_delete'))
+        <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
-            <div class="card-panel yellow">
-              <span class="black-text" style="color:black">Successfully edited material!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
-            </div>
-          </div>
-        </div>
-      @endif
-
-
-      <!--Delete Garment Category-->
-      @if (Input::get('successDel') == 'true')
-        <div class="row" id="success-message">
-          <div class="col s12 m12 l12">
-            <div class="card-panel yellow">
-              <span class="black-text" style="color:black">Successfully deactivated material!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+            <div class="card-panel red accent-2">
+              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+               <em> {!! session('flash_message_delete') !!}</em>
             </div>
           </div>
         </div>
@@ -158,7 +160,7 @@
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                 <div class="input-field col s12">
-                                  <input required id="editButtonDesc" name = "editButtonDesc" value = "{{$button->strButtonDesc}}" type="text" class="validateDesc">
+                                  <input  id="editButtonDesc" name = "editButtonDesc" value = "{{$button->strButtonDesc}}" type="text" class="validateDesc">
                                   <label for="Button_Color"> Description </label>
                                 </div>
                           </div>
@@ -294,7 +296,7 @@
 
       <div class = "col s12" style="padding:15px;  border:3px solid white;">
         <div class="input-field col s12">
-          <input required id="addButtonDesc" name = "addButtonDesc" type="text" class="validateDesc">
+          <input id="addButtonDesc" name = "addButtonDesc" type="text" class="validateDesc">
           <label for="Button_Desc"> Description </label>
         </div>
       </div>
@@ -430,15 +432,11 @@
           <!--DATA TABLE SCRIPT-->
     <script type="text/javascript">
       $(document).ready(function() {
-          $('.data-thread').DataTable();
-          $('.data-needle').DataTable();
           $('.data-button').DataTable();
-          $('.data-zipper').DataTable();
-          $('.data-hook').DataTable();
           $('select').material_select();
           
           setTimeout(function () {
-            $('#success-message').hide();
+            $('#flash_message').hide();
         }, 5000);
       } );
     </script>

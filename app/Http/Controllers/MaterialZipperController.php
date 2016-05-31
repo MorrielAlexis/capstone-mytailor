@@ -80,6 +80,8 @@ class MaterialZipperController extends Controller
                 }
                 $zipper ->save();
 
+                \Session::flash('flash_message','Zipper successfully added.'); //flash message
+
                 return redirect('maintenance/material-zipper');
 
     }
@@ -152,6 +154,9 @@ class MaterialZipperController extends Controller
                     $zipper->strZipperImage = 'imgMaterialZippers/'.$file;
                 }
                 $zipper->save();
+
+                \Session::flash('flash_message_update','Zipper successfully updated.'); //flash message
+
                 return redirect('maintenance/material-zipper');  
 
                 
@@ -164,6 +169,8 @@ class MaterialZipperController extends Controller
         $zipper->strZipperInactiveReason = trim($request->input('delInactiveZipper'));
         $zipper->boolIsActive = 0;
         $zipper->save();
+
+        \Session::flash('flash_message_delete','Zipper successfully deactivated.'); //flash message
 
         return redirect('maintenance/material-zipper');
     }

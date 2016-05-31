@@ -81,6 +81,8 @@ class MaterialHookAndEyeController extends Controller
                 }
                 $hook ->save();
 
+                \Session::flash('flash_message','Hook and eye successfully added.'); //flash message
+
                 return redirect('maintenance/material-hookandeye');
     }
 
@@ -137,6 +139,8 @@ class MaterialHookAndEyeController extends Controller
         $hook->boolIsActive = 0;
         $hook->save();
 
+        \Session::flash('flash_message_delete','Hook and eye successfully deactivated.'); //flash message
+
         return redirect('maintenance/material-hookandeye');
     }
 
@@ -164,6 +168,8 @@ class MaterialHookAndEyeController extends Controller
                    
                 }
                 $hook ->save();
+
+                \Session::flash('flash_message_update','Hook and eye successfully updated.'); //flash message
 
                 return redirect('maintenance/material-hookandeye');
 

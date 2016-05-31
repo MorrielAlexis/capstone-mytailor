@@ -91,6 +91,8 @@ class CatalogueController extends Controller
                 }
             $catalogue->save();
 
+              \Session::flash('flash_message','Catalogue successfully added.'); //flash message
+
             return redirect('maintenance/catalogue');
     }
 
@@ -162,6 +164,8 @@ class CatalogueController extends Controller
 
                 $catalogue->save();
 
+
+              \Session::flash('flash_message_update','Catalogue successfully updated.'); //flash message    
             
             return redirect('maintenance/catalogue');
     }
@@ -174,6 +178,8 @@ class CatalogueController extends Controller
         $catalogue->strCatalogueInactiveReason = trim($request->input('delInactiveCatalogue'));
         $catalogue->boolIsActive = 0;
         $catalogue->save();
+
+        \Session::flash('flash_message_delete','Catalogue successfully deactivated.'); //flash message
 
         return redirect('maintenance/catalogue');
     }
