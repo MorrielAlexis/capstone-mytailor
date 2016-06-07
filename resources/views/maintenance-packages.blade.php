@@ -132,7 +132,7 @@
                     <div id="edit{{ $packages->strPackageID }}" class="modal modal-fixed-footer">                     
                         <h5><font color = "#1b5e20"><center>EDIT SEGMENT PATTERN</center> </font> </h5>                        
 
-                      {!! Form::open(['url' => 'maintenance/segment-pattern/update', 'files' => 'true']) !!}
+                      {!! Form::open(['url' => 'maintenance/packages/update', 'files' => 'true']) !!}
                         <div class="divider" style="height:2px"></div>
                         <div class="modal-content col s12">
                           
@@ -140,14 +140,14 @@
                             <input value= "{{ $packages->strPackageID }}" id="editPatternID" name= "editPatternID" type="hidden">
                           </div>
 
-                      <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                     <!--  <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s6">                                                    
                             <select class="browser-default editCategory" id="{{ $packages->strPackageID }}" name='editCategory'>
-                              @foreach($category as $cat)
-                                @if($packages->strSegPCategoryFK == $cat->strGarmentCategoryID && $cat->boolIsActive == 1)
-                                  <option selected value="{{ $cat->strGarmentCategoryID }}">{{ $cat->strGarmentCategoryName }}</option>
-                                @elseif($cat->boolIsActive == 1)
-                                  <option value="{{ $cat->strGarmentCategoryID }}">{{ $cat->strGarmentCategoryName }}</option>
+                              @foreach($packages as $pack)
+                                @if($packages->strPackageSeg1FK == $pack->strSegmentID && $pack->boolIsActive == 1)
+                                  <option selected value="{{ $pack->strSegmentID }}">{{ $pack->strSegmentName }}</option>
+                                @elseif($pack->boolIsActive == 1)
+                                  <option value="{{ $pack->strSegmentID }}">{{ $pack->strSegmentName }}</option>
                                 @endif
                               @endforeach
                             </select>    
@@ -185,7 +185,7 @@
                             </div>
                           </div>
                       </div>
-                      </div>
+                      </div> -->
 
                         <div class="modal-footer col s12" style="background-color:#26a69a">
                           <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Update</button>
@@ -206,7 +206,7 @@
                           <input value= "{{ $packages->strPackageID }}" id="delPatternID" name= "delPatternID" type="hidden">
                         </div>
 
-                    <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                   <!--  <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s6">                                                    
                             <input type="text" value="{{$packages->strGarmentCategoryName}}" readonly>
                           <label>Category</label>
@@ -233,7 +233,7 @@
                     <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                           
                     </div>
-                    </div>              
+                    </div>               -->
 
                       <div class="modal-footer col s12" style="background-color:#26a69a">
                         <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">OK</button>
@@ -266,7 +266,7 @@
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}" />
                 <input value = "{{$newID}}" id="addPatternID" name= "addPatternID" type="hidden">
 
-            <div class = "col s12" style="padding:15px;  border:3px solid white;">
+           <!--  <div class = "col s12" style="padding:15px;  border:3px solid white;">
                 <div class="input-field col s6">
                   <select  class="browser-default"  name="addCategory" id="addCategory" required>
                       @foreach($category as $category)
@@ -274,11 +274,11 @@
                           <option value="{{ $category->strGarmentCategoryID }}">{{ $category->strGarmentCategoryName }}</option>
                         @endif
                       @endforeach
-                  </select> 
+                  </select>  -->
                   <!-- <label>Garment Category<span class="red-text"><b>*</b></span></label>   -->
                 </div> 
 
-
+<!-- 
                 <div class="input-field col s6">
                   <select class="browser-default" required id="addSegment" name="addSegment">
                         @foreach($segment as $segment)
@@ -305,13 +305,13 @@
                     <span>Upload Image</span>
                     <input id="addImg" name="addImg" type="file" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*">
                   </div>
-                
-                  <div class="file-path-wrapper">
+                 -->
+                  <!-- <div class="file-path-wrapper">
                     <input id="addImage" name="addImage" class="file-path validate" type="text" readonly="readonly">
                   </div>
                 </div>
             </div>
-            </div>
+            </div> -->
 
               <div class="modal-footer col s12" style="background-color:#26a69a">
                 <button type="submit" id="send" name"send" class=" modal-action  waves-effect waves-green btn-flat">Add</button>

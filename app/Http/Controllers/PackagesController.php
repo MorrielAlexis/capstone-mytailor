@@ -33,27 +33,27 @@ class PackagesController extends Controller
         $segment =  GarmentSegment::all();
 
         $packages = \DB::table('tblPackages')
-            ->join('tblSegment', 'tblPackages.strPackage-Seg1FK', '=', 'tblSegment.strSegmentID')
+            ->join('tblSegment', 'tblPackages.strPackageSeg1FK', '=', 'tblSegment.strSegmentID')
             ->select('tblPackages.*', 'tblSegment.strSegmentName')
             ->get();
 
         $packages = \DB::table('tblPackages')
-            ->join('tblSegment', 'tblPackages.strPackage-Seg2FK', '=', 'tblSegment.strSegmentID')
+            ->join('tblSegment', 'tblPackages.strPackageSeg2FK', '=', 'tblSegment.strSegmentID')
             ->select('tblPackages.*', 'tblSegment.strSegmentName')
             ->get();
 
         $packages = \DB::table('tblPackages')
-            ->join('tblSegment', 'tblPackages.strPackage-Seg3FK', '=', 'tblSegment.strSegmentID')
+            ->join('tblSegment', 'tblPackages.strPackageSeg3FK', '=', 'tblSegment.strSegmentID')
             ->select('tblPackages.*', 'tblSegment.strSegmentName')
             ->get();
 
         $packages = \DB::table('tblPackages')
-            ->join('tblSegment', 'tblPackages.strPackage-Seg4FK', '=', 'tblSegment.strSegmentID')
+            ->join('tblSegment', 'tblPackages.strPackageSeg4FK', '=', 'tblSegment.strSegmentID')
             ->select('tblPackages.*', 'tblSegment.strSegmentName')
             ->get();
 
         $packages = \DB::table('tblPackages')
-            ->join('tblSegment', 'tblPackages.strPackage-Seg5FK', '=', 'tblSegment.strSegmentID')
+            ->join('tblSegment', 'tblPackages.strPackageSeg5FK', '=', 'tblSegment.strSegmentID')
             ->select('tblPackages.*', 'tblSegment.strSegmentName')
             ->get();
         //load the view and pass the employees

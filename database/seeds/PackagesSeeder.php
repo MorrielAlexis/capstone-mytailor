@@ -16,11 +16,11 @@ class PackagesSeeder extends Seeder
 
         			'strPackageID' => 'PACK0001',
         			'strPackageName' =>  'Generic Package A (Male)',
-  					'strPackage-Seg1FK' =>  'SEGM001',
-					'strPackage-Seg2FK' =>  'SEGM002',
-					'strPackage-Seg3FK' =>  'SEGM003',
-					'strPackage-Seg4FK' =>  'SEGM002',
-					'strPackage-Seg5FK' =>  'SEGM001',
+  					'strPackageSeg1FK' =>  'SEGM001',
+					'strPackageSeg2FK' =>  'SEGM002',
+					'strPackageSeg3FK' =>  'SEGM003',
+					'strPackageSeg4FK' =>  'SEGM002',
+					'strPackageSeg5FK' =>  'SEGM001',
 					'strPackageImage' =>  '',
 					'strPackageDesc' =>  'Package for male fre',
 					'boolIsActive'  =>  '1'      
@@ -29,11 +29,11 @@ class PackagesSeeder extends Seeder
         			array(
         			'strPackageID' => 'PACK0002',
         			'strPackageName' =>  'Generic Package B (Female)',
-  					'strPackage-Seg1FK' =>  'SEGM002',
-					'strPackage-Seg2FK' =>  'SEGM002',
-					'strPackage-Seg3FK' =>  'SEGM004',
-					'strPackage-Seg4FK' =>  'SEGM004',
-					'strPackage-Seg5FK' =>  'SEGM006',
+  					'strPackageSeg1FK' =>  'SEGM002',
+					'strPackageSeg2FK' =>  'SEGM002',
+					'strPackageSeg3FK' =>  'SEGM004',
+					'strPackageSeg4FK' =>  'SEGM004',
+					'strPackageSeg5FK' =>  'SEGM006',
 					'strPackageImage' =>  '',
 					'strPackageDesc' =>  'Package for female fre',
 					'boolIsActive'  =>  '1'     
