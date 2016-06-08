@@ -215,12 +215,16 @@ Route::get('/acceptIndividual','OnlineCustomerIndividualController@accept');
 Route::get('/acceptCompany','OnlineCustomerCompanyController@accept');
 
 Route::get('transaction/walkin-individual-customize-orders', 'WalkInIndividualController@customize');
+Route::get('transaction/walkin-individual-catalogue-designs', 'WalkInIndividualController@catalogueDesign');
 Route::get('transaction/walkin-individual-payment-customer-info', 'WalkInIndividualController@information');
 Route::get('transaction/walkin-individual-payment-payment-info', 'WalkInIndividualController@payment');
 Route::get('transaction/walkin-individual-payment-measure-detail', 'WalkInIndividualController@measurement');
 
 Route::get('transaction/walkin-company-customize-orders', 'WalkInCompanyController@customize');
+Route::get('transaction/walkin-company-customize-orders-package', 'WalkInCompanyController@customPackage');
+Route::get('transaction/walkin-company-catalogue-designs', 'WalkInCompanyController@catalogueDesign');
 Route::get('transaction/walkin-company-payment-customer-info', 'WalkInCompanyController@information');
+Route::get('transaction/walkin-company-add-employees', 'WalkInCompanyController@addEmployee');
 Route::get('transaction/walkin-company-payment-payment-info', 'WalkInCompanyController@payment');
 Route::get('transaction/walkin-company-payment-measure-detail', 'WalkInCompanyController@measurement');
 

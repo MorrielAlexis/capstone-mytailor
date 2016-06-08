@@ -25,9 +25,9 @@
 							<div class="col s6">
 								<div class="input-field col s12">
 										<select>
-										    <option value="1" data-icon="#!" class="circle">Uniform</option>
-										    <option value="2" data-icon="#!" class="circle">Suit</option>
-										    <option value="3" data-icon="#!" class="circle">Uniform</option>
+										    <option value="1" class="circle">Uniform</option>
+										    <option value="2" class="circle">Suit</option>
+										    <option value="3" class="circle">Uniform</option>
 										</select>
 								</div>
 							</div>
@@ -38,15 +38,15 @@
 		      							<label for="label"><font size="+0.5">Show garments for:</font></label>
 		      				</div>
 							<div class="col s3">
-				          				<input type="checkbox" class="filled-in" id="male" />
+				          				<input type="radio" class="filled-in" id="male" />
 		      							<label for="male">Male Only</label>
 		      				</div>
 		      				<div class="col s3">
-				          				<input type="checkbox" class="filled-in" id="female" />
+				          				<input type="radio" class="filled-in" id="female" />
 		      							<label for="female">Female Only</label>
 		      				</div>
 		      				<div class="col s3">
-				          				<input type="checkbox" class="filled-in" id="all" checked/>
+				          				<input type="radio" class="filled-in" id="all" checked/>
 		      							<label for="all">All</label>
 		      				</div>
 						</div>
@@ -56,9 +56,13 @@
 						<div class="col s12" style="margin-top:15px">
 							<div class="divider" style="margin-bottom:40px; height:2px"></div>
 							<div class="col s4">
-				          				<input type="checkbox" class="filled-in" id="polo" style="padding:5px"/>
-		      							<label for="polo" ><font size="+1">Polo</font></label>
-								<img src="{{URL::to('img/female-uniform-plain.jpeg')}}" style="height:170px; width:210px; padding-left:10px">
+									<div class="center col s12">
+				          				<input type="checkbox" class="filled-in" id="polo-male" style="padding:5px"/>
+		      							<label for="polo-male" ><font size="+1">Polo</font></label>
+		      							<label for="polo-male" ><font color="gray">Male</font></label>
+		      						</div>
+									<div class="center col s12"><img src="{{URL::to('img/male-uniform-plain.jpg')}}" style="height:200px; width:250px; padding-left:10px; border:3px gray solid"></div>
+								
 								<center><h6>Quantity</h6></center>
 				                  <div class="row">
 				                    <div class="col s3 center"><i class="small mdi-content-add-circle" style="color:teal"></i></div>
@@ -69,9 +73,13 @@
 				                  </div>
 							</div>
 							<div class="col s4">
-										<input type="checkbox" class="filled-in" id="pants" style="padding:5px" />
-		      							<label for="pants"><font size="+1">Pants</font></label>
-								<img src="{{URL::to('img/male-uniform-pants-plain.jpg')}}" style="height:170px; width:210px; padding-left:10px">
+									<div class="center col s12">
+										<input type="checkbox" class="filled-in" id="pants-male" style="padding:5px" />
+		      							<label for="pants-male"><font size="+1">Pants</font></label>
+		      							<label for="pants-male" ><font color="gray">Male</font></label>
+		      						</div>
+									<div class="center col s12"><img src="{{URL::to('img/male-uniform-pants-plain.jpg')}}" style="height:200px; width:250px; padding-left:10px; border:3px gray solid"></div>
+								
 								<center><h6>Quantity</h6></center>
 				                  <div class="row">
 				                    <div class="col s3 center"><i class="small mdi-content-add-circle" style="color:teal"></i></div>
@@ -82,9 +90,13 @@
 				                  </div>
 							</div>
 							<div class="col s4">
-										<input type="checkbox" class="filled-in" id="shorts" style="padding:5px"/>
-		      							<label for="shorts"><font size="+1">Shorts</font></label>
-								<img src="{{URL::to('img/male-uniform-shorts-plain.jpg')}}" style="height:170px; width:200px; padding-left:10px">
+									<div class="center col s12">
+										<input type="checkbox" class="filled-in" id="shorts-male" style="padding:5px"/>
+		      							<label for="shorts-male"><font size="+1">Shorts</font></label>
+		      							<label for="shorts-male" ><font color="gray">Male</font></label>
+		      						</div>
+									<div class="center col s12"><img src="{{URL::to('img/male-uniform-shorts-plain.jpg')}}" style="height:200px; width:250px; padding-left:10px; border:3px gray solid"></div>
+								
 								<center><h6>Quantity</h6></center>
 				                  <div class="row">
 				                    <div class="col s3 center"><i class="small mdi-content-add-circle" style="color:teal"></i></div>
@@ -94,6 +106,62 @@
 				                    <div class="col s3 center"><i class="small mdi-content-remove-circle" style="color:teal"></i></div>
 				                  </div>
 							</div>
+
+							<div class="col s4">
+									<div class="center col s12">
+				          				<input type="checkbox" class="filled-in" id="polo-female" style="padding:5px"/>
+		      							<label for="polo-female" ><font size="+1">Polo</font></label>
+		      							<label for="polo-female" ><font color="gray">Female</font></label>
+		      						</div>
+									<div class="center col s12"><img src="{{URL::to('img/female-uniform-plain.jpeg')}}" style="height:200px; width:250px; padding-left:10px; border:3px gray solid"></div>
+								
+								<center><h6>Quantity</h6></center>
+				                  <div class="row">
+				                    <div class="col s3 center"><i class="small mdi-content-add-circle" style="color:teal"></i></div>
+				                    <div class="input-field col s6" style="margin-top:-2px;">
+				                      <input class="center" id="quantity" value="1" type="text" readonly>
+				                    </div>
+				                    <div class="col s3 center"><i class="small mdi-content-remove-circle" style="color:teal"></i></div>
+				                  </div>
+							</div>
+
+							<div class="col s4">
+									<div class="center col s12">
+										<input type="checkbox" class="filled-in" id="pants-female" style="padding:5px" />
+		      							<label for="pants-female"><font size="+1">Pants</font></label>
+		      							<label for="pants-female" ><font color="gray">Female</font></label>
+		      						</div>
+									<div class="center col s12"><img src="{{URL::to('img/female-uniform-pants.jpg')}}" style="height:200px; width:250px; padding-left:10px; border:3px gray solid"></div>
+								
+								<center><h6>Quantity</h6></center>
+				                  <div class="row">
+				                    <div class="col s3 center"><i class="small mdi-content-add-circle" style="color:teal"></i></div>
+				                    <div class="input-field col s6" style="margin-top:-2px;">
+				                      <input class="center" id="quantity" value="1" type="text" readonly>
+				                    </div>
+				                    <div class="col s3 center"><i class="small mdi-content-remove-circle" style="color:teal"></i></div>
+				                  </div>
+							</div>
+
+							<div class="col s4">
+									<div class="center col s12">
+										<input type="checkbox" class="filled-in" id="skirt-female" style="padding:5px"/>
+		      							<label for="skirt-female"><font size="+1">Skirt</font></label>
+		      							<label for="skirt-female" ><font color="gray">Female</font></label>
+		      						</div>
+									<div class="center col s12"><img src="{{URL::to('img/female-uniform-skirt.jpg')}}" style="height:200px; width:250px; padding-left:10px; border:3px gray solid"></div>
+								
+								<center><h6>Quantity</h6></center>
+				                  <div class="row">
+				                    <div class="col s3 center"><i class="small mdi-content-add-circle" style="color:teal"></i></div>
+				                    <div class="input-field col s6" style="margin-top:-2px;">
+				                      <input class="center" id="quantity" value="1" type="text" readonly>
+				                    </div>
+				                    <div class="col s3 center"><i class="small mdi-content-remove-circle" style="color:teal"></i></div>
+				                  </div>
+							</div>
+
+
 						</div>
 
 						<div class="col s12">

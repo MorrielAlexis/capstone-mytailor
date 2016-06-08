@@ -24,6 +24,11 @@ class WalkInIndividualController extends Controller
         return view('walkin-individual-customize-order');
     }
 
+    public function catalogueDesign()
+    {
+        return view('walkin-individual-catalogue-design');
+    }
+
     public function information()
     {
         return view('walkin-individual-checkout-info');

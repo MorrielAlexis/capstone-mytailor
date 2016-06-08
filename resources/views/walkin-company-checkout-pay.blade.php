@@ -60,14 +60,29 @@
 			          			<tr>
 				                  <th data-field="product">Product</th>         
 				                  <th data-field="quantity">Quantity</th>
-				                  <th data-field="price">Price</th>
+				                  <th data-field="design">Design</th>
+				                  <th data-field="fabric">Fabric</th>
+				                  <th data-field="price">Unit Price</th>
+				                  <th data-field="price">Total Price</th>
 				              	</tr>
 			              	</thead>
 			              	<tbody>
 					            <tr>
-					               <td>Polo</td>
-					               <td>2</td>
-					               <td>800.00</td>
+					               <td>Uniform, Polo</td>
+					               <td>1</td>
+					               <td>No-fit</td>
+					               <td>Traditional Cotton</td>
+					               <td>800.00 PHP</td>
+					               <td>800.00 PHP</td>
+					            </tr>
+
+					             <tr>
+					               <td>Uniform, Polo</td>
+					               <td>1</td>
+					               <td>Slim-fit</td>
+					               <td>Remarkable Cotton</td>
+					               <td>850.00 PHP</td>
+					               <td>850.00 PHP</td>
 					            </tr>
 					        </tbody>
 					    </table>

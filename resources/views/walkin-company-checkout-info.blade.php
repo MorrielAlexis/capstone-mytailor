@@ -44,10 +44,76 @@
                         </div>
 	            	</div>
             
-	            	<div class="col s2">
-	            		<!--<img class="col s12" src="#!" style="height:180px; width:200px; margin-left:150px">-->
-	            		<i class="mdi-maps-directions-walk" style="font-size:120px; margin-left:40px; color:teal" ></i>	           		
-	            	</div>
+	            	<a id="cancelTransac" href="#cancel-order" class="btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel transaction and go back to homepage" style="margin-top:60px; margin-left:40px; padding:10px; padding-bottom:45px; background-color:teal; color:white">Cancel</a>
+	            			<div id="cancel-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:80px">
+								<h5><font color="red"><center><b>Warning!</b></center></font></h5>
+									
+									{!! Form::open() !!}
+										<div class="divider" style="height:2px"></div>
+										<div class="modal-content col s12">
+											<div class="center col s4"><i class="mdi-alert-warning" style="color:red; font-size:60px"></i></div>
+											<div class="col s8"><p style="font-size:18px">Are you sure? Doing this will delete current transaction.</p></div>
+										</div>
+
+										<div class="modal-footer col s12">
+							                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-company')}}"><font color="black">Yes</font></a>
+							                <a href="{{URL::to('/transaction/walkin-company-payment-customer-info')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+							            </div>
+									{!! Form::close() !!}
+							</div>
+	            	<a id="addPayment" href="#summary-of-order" class="btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-top:60px; margin-left:40px; padding:10px; padding-bottom:45px; background-color:teal; color:white">Save and Proceed</a>
+	            			<div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
+									<h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
+										
+										{!! Form::open() !!}
+											<div class="divider" style="height:2px"></div>
+											<div class="modal-content col s12">
+												<label>This is a summary of orders:</label>
+														<div class="container">
+									                        <table class = "table centered order-summary" border = "1">
+											       				<thead style="color:gray">
+												          			<tr>
+													                  <th data-field="product">Package</th>         
+													                  <th data-field="quantity">Quantity</th>
+													                  <th data-field="price">Unit Price</th>
+													                  <th data-field="price">Total Price</th>
+													              	</tr>
+												              	</thead>
+												              	<tbody>
+														            <tr>
+														               <td>Men Set A</td>
+														               <td>100</td>
+														               <td>1,800.00 PHP</td>
+														               <td>180,000.00 PHP</td>
+														            </tr>
+
+														             <tr>
+														               <td>Unisex Set A</td>
+														               <td>50</td>
+														               <td>2,500.00 PHP</td>
+														               <td>125,000.00 PHP</td>
+														            </tr>
+
+														        </tbody>
+														    </table>
+											      		</div>
+
+											      		<div class="divider"></div>
+											      		<div class="divider"></div>
+
+												      	<div class="col s12" style="margin-bottom:50px" >
+															<div class="col s6"><p style="color:gray">Estimated time to finish all orders:<p style="color:black">60 days</p></p></div>
+															<div class="col s6"><p style="color:gray">Total Amoun to Pay:<p style="color:black">305,000.00 PHP</p></p></div>
+														</div>
+													</div>
+
+											<div class="modal-footer col s12">
+												<p class="left" style="margin-left:10px; color:gray;">Continue to payment?</p>
+								                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-company-payment-payment-info')}}"><font color="black">Yes</font></a>
+								                <a href="{{URL::to('/transaction/walkin-company-payment-customer-info')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+								            </div>
+										{!! Form::close() !!}
+							</div>
 
 	            	<div class="col s4" style="margin-top:45px">
 	            		 <div class="fixed-action-btn vertical" style="bottom: 45px; right: 24px;">
@@ -58,25 +124,7 @@
       						    </ul>
 						        </div>
 	            		
-	            		<a id="addPayment" href="#summary-of-order" class="btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-top:28px; margin-left:9px; padding:10px; padding-bottom:45px; background-color:teal; color:white">Continue Process</a>
-	            			<div id="summary-of-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:30px">
-											<h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
-												
-												{!! Form::open() !!}
-													<div class="divider" style="height:2px"></div>
-													<div class="modal-content col s12">
-														<p>This is a summary of orders</p>
-
-												
-														<p style="color:red; position:bottom">Continue to payment?</p>
-													</div>
-
-													<div class="modal-footer col s12">
-										                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-company-payment-payment-info')}}"><font color="black">Yes</font></a>
-										                <a href="{{URL::to('/transaction/walkin-company-payment-customer-info')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
-										            </div>
-												{!! Form::close() !!}
-										</div>
+	            		
 	            	</div>
 
 
@@ -153,153 +201,16 @@
                             <label style="color:black" for="tel"> Fax Number </label>
                         </div>
 
-                        <div style="color:black; padding-left:200px" class="input-field col s6">
-                            <input id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt" maxlength="11">
-                            <label style="color:black" for="cellphone"> *Number of Employees</label>
+                        <div style="color:black; padding-left:200px" class="input-field col s12">
+                        	<div class="container">
+                            	<input id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt" maxlength="11">
+                            	<label style="color:black" for="cellphone"> *Number of Employees</label>
+                        	</div>
                         </div>
 
-                        <div style="color:black;" class="input-field col s6">
-                            <div class="modal-trigger btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to edit data for company employees" href="#edit-employee" style="font-size:15px; color:black"><!--<i class="mdi-navigation-cancel" style="font-size:20px;">-->  Edit Employees<!--</i>--></div>
-									<div id="edit-employee" class="modal modal-fixed-footer" style="width:1000px">
-										<h5><center><b>List of Employees</b></center></h5>	
-										{!! Form::open() !!}
-												<div class="divider" style="height:2px"></div>
-												<div class="modal-content col s12">
-												<div class="col s12" style="margin-bottom:50px">
-													<div class="col s12">
-														<table class = "table centered order-summary" border = "1">
-										       				<thead style="color:gray">
-											          			<tr>
-												                  <th data-field="first_name" class="col s3">First Name</th>         
-												                  <th data-field="middle_name" class="col s2">Middle Name</th>
-												                  <th data-field="last_name" class="col s3">Last Name</th>
-												                  <th data-field="gender" class="col s1">Sex</th>
-												                  <th data-field="package" class="col s2">Package</th>
-												                  <th data-field="delete" c;ass="col s1"> 
-												                  
-												              	</tr>
-											              	</thead>
-													    </table>
-													</div>
-													<div style="color:black" class="input-field col s3">
-							                            <input id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt">		           
-							                        </div>
-							                        <div style="color:black" class="input-field col s2">
-							                            <input id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt">		           
-							                        </div>
-							                        <div style="color:black" class="input-field col s3">
-							                            <input id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt">		           
-							                        </div>
-							                        <div style="color:black" class="input-field col s1">
-														<select>
-														    <option value="1">F</option>
-														    <option value="2">M</option>
-														</select>
-													</div>
-													<div style="color:black" class="input-field col s2">
-														<select>
-														    <option value="1">Package for Male</option>
-														    <option value="2">Package for Female</option>
-														</select>
-													</div>
+ 
 
-													<div style="color:black" class="col s1">
-														<a style="color:black; margin-top:20px" class="modal-trigger btn tooltipped red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of employee from list" href="#!"><i class="mdi-action-delete" style="font-size:30px; color:white"></i></a>
-													</div>
-
-													<div style="color:black" class="input-field col s3">
-							                            <input id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt">		           
-							                        </div>
-							                        <div style="color:black" class="input-field col s2">
-							                            <input id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt">		           
-							                        </div>
-							                        <div style="color:black" class="input-field col s3">
-							                            <input id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt">		           
-							                        </div>
-							                        <div style="color:black" class="input-field col s1">
-														<select>
-														    <option value="1">F</option>
-														    <option value="2">M</option>
-														</select>
-													</div>
-													<div style="color:black" class="input-field col s2">
-														<select>
-														    <option value="1">Package for Male</option>
-														    <option value="2">Package for Female</option>
-														</select>
-													</div>
-
-													<div style="color:black" class="col s1">
-														<a style="color:black; margin-top:20px" class="modal-trigger btn tooltipped red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of employee from list" href="#!"><i class="mdi-action-delete" style="font-size:30px; color:white"></i></a>
-													</div>
-
-													<div style="color:black" class="input-field col s3">
-							                            <input id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt">		           
-							                        </div>
-							                        <div style="color:black" class="input-field col s2">
-							                            <input id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt">		           
-							                        </div>
-							                        <div style="color:black" class="input-field col s3">
-							                            <input id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt">		           
-							                        </div>
-							                        <div style="color:black" class="input-field col s1">
-														<select>
-														    <option value="1">F</option>
-														    <option value="2">M</option>
-														</select>
-													</div>
-													<div style="color:black" class="input-field col s2">
-														<select>
-														    <option value="1">Package for Male</option>
-														    <option value="2">Package for Female</option>
-														</select>
-													</div>
-
-													<div style="color:black" class="col s1">
-														<a style="color:black; margin-top:20px" class="modal-trigger btn tooltipped red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of employee from list" href="#!"><i class="mdi-action-delete" style="font-size:30px; color:white"></i></a>
-													</div>
-
-													<div style="color:black" class="input-field col s3">
-							                            <input id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt">		           
-							                        </div>
-							                        <div style="color:black" class="input-field col s2">
-							                            <input id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt">		           
-							                        </div>
-							                        <div style="color:black" class="input-field col s3">
-							                            <input id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt">		           
-							                        </div>
-							                        <div style="color:black" class="input-field col s1">
-														<select>
-														    <option value="1">F</option>
-														    <option value="2">M</option>
-														</select>
-													</div>
-													<div style="color:black" class="input-field col s2">
-														<select>
-														    <option value="1">Package for Male</option>
-														    <option value="2">Package for Female</option>
-														</select>
-													</div>
-
-													<div style="color:black" class="col s1">
-														<a style="color:black; margin-top:20px" class="modal-trigger btn tooltipped red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of employee from list" href="#!"><i class="mdi-action-delete" style="font-size:30px; color:white"></i></a>
-													</div>
-													
-
-													<div class="col s12" style="margin-top:40px">
-														<a class="left btn tooltipped blue" data-position="bottom" data-delay="50" data-tooltip="Click to add additional data fields for more employees" href="#!" ><i class="medium mdi-content-add" style="font-size:30px; color:white"></i></a>	
-														<a href="#!" style="margin-top:150px; margin-left:20px"><u>Add more fields for employee data</u></a>
-													</div>
-												</div>
-											</div>
-
-												<div class="modal-footer col s12">
-									                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-company-payment-customer-info')}}"><font color="black">Save</font></a>
-									                <a href="{{URL::to('transaction/walkin-company-payment-customer-info')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Cancel</font></a>
-									            </div>
-											{!! Form::close() !!}
-									</div>
-                        </div>
+                        
 
                     </div>
 	       		</div>

@@ -47,37 +47,51 @@
                         </div>
                     </div>
 
+
                     <label style="font-size:15px; color:black"><center>Order Summary</center></label>
-                    <div class="container">
                         <table class = "table centered order-summary" border = "1">
 		       				<thead style="color:gray">
 			          			<tr>
 				                  <th data-field="product">Product</th>         
 				                  <th data-field="quantity">Quantity</th>
-				                  <th data-field="price">Price</th>
+				                  <th data-field="design">Design</th>
+				                  <th data-field="fabric">Fabric</th>
+				                  <th data-field="price">Unit Price</th>
+				                  <th data-field="price">Total Price</th>
 				              	</tr>
 			              	</thead>
 			              	<tbody>
 					            <tr>
-					               <td>Polo</td>
-					               <td>2</td>
-					               <td>800.00</td>
+					               <td>Uniform, Polo</td>
+					               <td>1</td>
+					               <td>No-fit</td>
+					               <td>Traditional Cotton</td>
+					               <td>800.00 PHP</td>
+					               <td>800.00 PHP</td>
+					            </tr>
+
+					             <tr>
+					               <td>Uniform, Polo</td>
+					               <td>1</td>
+					               <td>Slim-fit</td>
+					               <td>Remarkable Cotton</td>
+					               <td>850.00 PHP</td>
+					               <td>850.00 PHP</td>
 					            </tr>
 					        </tbody>
 					    </table>
-		      		</div>
 
+					<div class="divider" style="margin-bottom:30px"></div>
 		      		<div class="container">
-		      			<div class="container">
 			      			<div style="color:gray; padding-left:140px;" class="input-field col s12">                 
 	                          <input value="" id="transac_no" name="transac_no" type="text" class="" readonly>
 	                          <label style="color:red" for="transac_no">Total Amount: </label>
 	                        </div>
-	                        <div class="col s6">
+	                        <div class="center col s6">
 			          				<input type="checkbox" class="filled-in" id="half_pay" />
-	      							<label for="half_pay">Half-payment</label>
+	      							<label for="half_pay">Half-payment (Pay first 50%)</label>
 		      				</div>
-		      				<div class="col s6">
+		      				<div class="center col s6">
 				          			<input type="checkbox" class="filled-in" id="full_pay" />
 		      						<label for="full_pay">Full-payment</label>
 		      				</div>
@@ -87,16 +101,30 @@
 	                        </div>
 		      				<div style="color:gray; padding-left:140px;" class="input-field col s12">                 
 	                          <input value="" id="transac_no" name="transac_no" type="text" class="" readonly>
-	                          <label style="color:red" for="transac_no">Balance: </label>
+	                          <label style="color:red" for="transac_no">Remaining Balance: </label>
 	                        </div>
-                    	</div>
                     </div>
 
                     <div class="container">
                     	
                     		<a href="{{URL::to('transaction/walkin-individual-payment-measure-detail')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save payment information and get measured" style="background-color:teal; padding:9.5px; padding-bottom:45px; margin-top:20px;"><label style="font-size:15px; color:white">Start Measurement</label></a>
-                    		<a href="{{URL::to('transaction/walkin-individual')}}" class="left btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to cancel current unsaved transaction and be transfered back to the shop" style="background-color:teal; padding:9.5px; padding-bottom:45px; margin-top:20px;"><label style="font-size:15px; color:white">Cancel Transaction</label></a>
-                    	
+                    		<a href="#cancel-order" class="left btn modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Click to cancel current unsaved transaction and be transfered back to the shop" style="background-color:teal; padding:9.5px; padding-bottom:45px; margin-top:20px;"><label style="font-size:15px; color:white">Cancel Transaction</label></a>
+                    			<div id="cancel-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:80px">
+									<h5><font color="red"><center><b>Warning!</b></center></font></h5>
+										
+										{!! Form::open() !!}
+											<div class="divider" style="height:2px"></div>
+											<div class="modal-content col s12">
+												<div class="center col s4"><i class="mdi-alert-warning" style="color:red; font-size:60px"></i></div>
+												<div class="col s8"><p style="font-size:18px">Are you sure? Doing this will delete current transaction.</p></div>
+											</div>
+
+											<div class="modal-footer col s12">
+								                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-individual')}}"><font color="black">Yes</font></a>
+								                <a href="{{URL::to('/transaction/walkin-individual-payment-payment-info')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+								            </div>
+										{!! Form::close() !!}
+								</div>
                     </div>
 
 

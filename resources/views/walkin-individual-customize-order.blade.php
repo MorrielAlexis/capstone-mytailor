@@ -27,19 +27,61 @@
 								<div class="col s6"><p><h5><b>Customize Order</b></h5></p></div>							
 									<div class="right col s1"><a style="margin-top:15px; background-color:teal" type="submit" class="waves-effect waves-green btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to go back to ordering" href="{{URL::to('/transaction/walkin-individual')}}"><i class="mdi-action-work" style="color:white; opacity:0.90; font-size:30px;"></i></a></div>
 									<div class="right col s5"><a style="margin-top:15px; background-color:teal" type="submit" class="right waves-effect waves-green btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to proceed to payment of orders" href="#summary-of-order"><font color="white" size="+1"><!--<i class="mdi-action-payment" style="font-size:20px;">-->  Proceed to Checkout<!--</i>--></font></a>
-										<div id="summary-of-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:30px">
+										<div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
 											<h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
 												
 												{!! Form::open() !!}
 													<div class="divider" style="height:2px"></div>
 													<div class="modal-content col s12">
-														<p>This is a summary of orders</p>
+														<label>This is a summary of orders:</label>
+														<div class="container">
+									                        <table class = "table centered order-summary" border = "1">
+											       				<thead style="color:gray">
+												          			<tr>
+													                  <th data-field="product">Product</th>         
+													                  <th data-field="quantity">Quantity</th>
+													                  <th data-field="design">Design</th>
+													                  <th data-field="fabric">Fabric</th>
+													                  <th data-field="price">Unit Price</th>
+													                  <th data-field="price">Total Price</th>
+													              	</tr>
+												              	</thead>
+												              	<tbody>
+														            <tr>
+														               <td>Uniform, Polo</td>
+														               <td>1</td>
+														               <td>No-fit</td>
+														               <td>Traditional Cotton</td>
+														               <td>800.00 PHP</td>
+														               <td>800.00 PHP</td>
+														            </tr>
 
-												
-														<p style="color:red; position:bottom">Continue to payment?</p>
+														             <tr>
+														               <td>Uniform, Polo</td>
+														               <td>1</td>
+														               <td>Slim-fit</td>
+														               <td>Remarkable Cotton</td>
+														               <td>850.00 PHP</td>
+														               <td>850.00 PHP</td>
+														            </tr>
+
+														        </tbody>
+														    </table>
+											      		</div>
+
+											      		<div class="divider"></div>
+											      		<div class="divider"></div>
+
+												      	<div class="col s12" style="margin-bottom:50px" >
+															<div class="col s6"><p style="color:gray">Estimated time to finish all orders:<p style="color:black">10 days</p></p></div>
+															<div class="col s6"><p style="color:gray">Total Amoun to Pay:<p style="color:black">1,650.00 PHP</p></p></div>
+														</div>
 													</div>
 
+
+
 													<div class="modal-footer col s12">
+										                <p class="left" style="margin-left:10px; color:gray;">Continue to payment?</p>
 										                <a class="waves-effect waves-green btn-flat" href="{{URL::to('/transaction/walkin-individual-payment-customer-info')}}"><font color="black">Yes</font></a>
 										                <a href="{{URL::to('/transaction/walkin-individual-customize-orders')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
 										            </div>
@@ -74,22 +116,20 @@
 								            </div>
 										{!! Form::close() !!}
 								</div>
-							<center><img src="{{URL::to('img/male-uniform-plain.jpg')}}" style="height:450px; width:450px;"></center>
-								<center><label>Garment Category: Uniform</label></center>
-								<center><label>Garment Segment: Polo</label></center>
-								<center><label>Sex: Male</label></center>
+							<center><img src="{{URL::to('img/male-uniform-plain.jpg')}}" style="height:450px; width:450px; border:3px gray solid"></center>
+								
 
                   			
 							</div>
 
 								<br>
 								<div class="col s6">
-								<div class="col s12" style="margin-top:90px">
+								<div class="col s6" style="margin-top:50px">
 								<label>Choose your design:</label>
 											<div class="file-field input-field">
 												<a style="color:black" class="modal-trigger btn tooltipped btn-floating teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a segment pattern" href="#editDesign"><i class="mdi-editor-mode-edit"></i></a>
 													<div id="editDesign" class="modal modal-fixed-footer">
-														<h5><font color = "#1b5e20"><center>Segment Patterns</center> </font> </h5>
+														<h5><font color = "#1b5e20"><center>List of Available Designs</center> </font> </h5>
                         
 									                      {!! Form::open() !!} 
 									                        <div class="divider" style="height:2px"></div>
@@ -158,9 +198,10 @@
 															</div>
 
 
-														<div class="modal-footer col s12" style="background-color:#26a69a">
-								                          <a href="{{URL::to('transaction/walkin-individual-customize-orders')}}" class="waves-effect waves-green btn-flat">OK</a>
-								                          <a href="{{URL::to('transaction/walkin-individual-customize-orders')}}" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+														<div class="modal-footer col s12">
+															<a href="{{URL::to('transaction/walkin-individual-catalogue-designs')}}" class="left btn-flat" style="background-color:teal; color:white">Check designs from catalogue</a>
+								                          	<a href="{{URL::to('transaction/walkin-individual-customize-orders')}}" class="right waves-effect waves-green btn-flat">OK</a>
+								                          	<a href="{{URL::to('transaction/walkin-individual-customize-orders')}}" class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
 								                        </div>
 									                      {!! Form::close() !!}
 													</div>
@@ -170,12 +211,12 @@
 											</div>
 								</div>
 								
-								<div class="col s12" style="margin-top:30px">
+								<div class="col s6" style="margin-top:50px">
 								<label>Choose your fabric:</label>
 											<div class="file-field input-field">	
 												<a style="color:black" class="modal-trigger btn tooltipped btn-floating teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#editFabric"><i class="mdi-editor-mode-edit"></i></a>
                      								<div id="editFabric" class="modal modal-fixed-footer">
-                     								<h5><font color = "#1b5e20"><center>Fabric</center> </font> </h5>
+                     								<h5><font color = "#1b5e20"><center>List of Available Fabrics</center> </font> </h5>
                         
 									                      {!! Form::open() !!} 
 									                        <div class="divider" style="height:2px"></div>
@@ -244,9 +285,9 @@
 															</div>
 
 
-														<div class="modal-footer col s12" style="background-color:#26a69a">
-								                          <a href="{{URL::to('transaction/walkin-individual-customize-orders')}}" class="waves-effect waves-green btn-flat">OK</a>
-								                          <a href="{{URL::to('transaction/walkin-individual-customize-orders')}}" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+														<div class="modal-footer col s12" >
+								                          <a href="{{URL::to('transaction/walkin-individual-customize-orders')}}" class="right waves-effect waves-green btn-flat">OK</a>
+								                          <a href="{{URL::to('transaction/walkin-individual-customize-orders')}}" class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
 								                        </div>
 									                      {!! Form::close() !!}
 													</div>
@@ -255,6 +296,26 @@
 												</div>
 											</div>
 								</div>
+
+								<!--Garment Description Here-->
+								<div class="col s12" style="margin-top:10px; color:gray"><p>Garment description below:</p></div>
+								<div class="col s12" style="margin-left:130px">
+									<div class="col s4" style="color:teal;"><p><b>Garment Category:</b></p></div>
+									<div class="col s8"><p>Uniform</p></div>
+
+									<div class="col s4" style="color:teal;"><p><b>Garment Segment:</b></p></div>
+									<div class="col s8"><p>Polo</p></div>
+
+									<div class="col s4" style="color:teal;"><p><b>Sex(Applicable):</b></p></div>
+									<div class="col s8"><p>Male</p></div>
+
+									<div class="col s4" style="color:teal;"><p><b>Price starts from:</b></p></div>
+									<div class="col s8" style="color:red"><p>800.00 PHP</p></div>
+
+									<div class="col s4" style="color:teal;"><p><b>Time to finish(min):</b></p></div>
+									<div class="col s8" style="color:red"><p>3 days</p></div>
+								</div>
+
 							</div>
 						</div>
 
@@ -283,17 +344,14 @@
 								            </div>
 										{!! Form::close() !!}
 								</div>
-							<center><img src="{{URL::to('img/female-uniform-plain.jpeg')}}" style="height:450px; width:450px;"></center>
-								<center><label>Garment Category: Uniform</label></center>
-								<center><label>Garment Segment: Polo</label></center>
-								<center><label>Sex: Female</label></center>
-
+							<center><img src="{{URL::to('img/female-uniform-plain.jpeg')}}" style="height:450px; width:450px; border:3px gray solid"></center>
+								
                   			
 							</div>
 
 								<br>
 								<div class="col s6">
-								<div class="col s12" style="margin-top:120px">
+								<div class="col s6" style="margin-top:50px">
 								<label>Choose your design:</label>
 											<div class="file-field input-field">
 												<a style="color:black" class="modal-trigger btn tooltipped btn-floating teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a segment pattern" href="#editDesign"><i class="mdi-editor-mode-edit"></i></a>
@@ -380,7 +438,7 @@
 												</div>
 									</div>
 								
-								<div class="col s12" style="margin-top:30px">
+								<div class="col s6" style="margin-top:50px">
 								<label>Choose your fabric:</label>
 											<div class="file-field input-field">
 												<a style="color:black" class="modal-trigger btn tooltipped btn-floating teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#editFabric"><i class="mdi-editor-mode-edit"></i></a>
@@ -466,6 +524,26 @@
 												</div>
 											</div>
 								</div>
+
+								<!--Garment Description Here-->
+								<div class="col s12" style="margin-top:10px; color:gray"><p>Garment description below:</p></div>
+								<div class="col s12" style="margin-left:130px">
+									<div class="col s4" style="color:teal;"><p><b>Garment Category:</b></p></div>
+									<div class="col s8"><p>Uniform</p></div>
+
+									<div class="col s4" style="color:teal;"><p><b>Garment Segment:</b></p></div>
+									<div class="col s8"><p>Polo</p></div>
+
+									<div class="col s4" style="color:teal;"><p><b>Sex(Applicable):</b></p></div>
+									<div class="col s8"><p>Female</p></div>
+
+									<div class="col s4" style="color:teal;"><p><b>Price starts from:</b></p></div>
+									<div class="col s8" style="color:red"><p>950.00 PHP</p></div>
+
+									<div class="col s4" style="color:teal;"><p><b>Time to finish(min):</b></p></div>
+									<div class="col s8" style="color:red"><p>4 days</p></div>
+								</div>
+
 							</div>
 						</div>
 						</div><!--Col s12-->

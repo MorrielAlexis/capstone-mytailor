@@ -24,9 +24,24 @@ class WalkInCompanyController extends Controller
         return view('walkin-company-customize-order');
     }
 
+    public function customPackage()
+    {
+        return view('walkin-company-customize-order-package');
+    }
+
+    public function catalogueDesign()
+    {
+        return view('walkin-company-catalogue-design');
+    }
+
     public function information()
     {
         return view('walkin-company-checkout-info');
+    }
+
+    public function addEmployee()
+    {
+        return view('walkin-company-add-employee');
     }
  
     public function payment()

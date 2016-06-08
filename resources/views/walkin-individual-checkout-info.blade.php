@@ -43,11 +43,27 @@
                         </div>
 	            	</div>
             
-	            	<div class="col s2">
-	            		<!--<img class="col s12" src="#!" style="height:180px; width:200px; margin-left:150px">-->
-	            		<i class="mdi-maps-directions-walk" style="font-size:120px; margin-left:40px; color:teal" ></i>	           		
-	            	</div>
+	            	
+                  <a id="cancelTransac" href="#cancel-order" class="btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel transaction and go back to homepage" style="margin-top:60px; margin-left:40px; padding:10px; padding-bottom:45px; background-color:teal; color:white">Cancel</a>  	            		
+                  <div id="cancel-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:80px">
+                      <h5><font color="red"><center><b>Warning!</b></center></font></h5>
+                        
+                        {!! Form::open() !!}
+                          <div class="divider" style="height:2px"></div>
+                          <div class="modal-content col s12">
+                            <div class="center col s4"><i class="mdi-alert-warning" style="color:red; font-size:60px"></i></div>
+                            <div class="col s8"><p style="font-size:18px">Are you sure? Doing this will delete current transaction.</p></div>
+                          </div>
 
+                          <div class="modal-footer col s12">
+                                    <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-individual')}}"><font color="black">Yes</font></a>
+                                    <a href="{{URL::to('/transaction/walkin-individual-payment-customer-info')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+                                </div>
+                        {!! Form::close() !!}
+                    </div>
+                  <a id="addPayment" href="{{URL::to('transaction/walkin-individual-payment-payment-info')}}" class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-top:60px; margin-left:40px; padding:10px; padding-bottom:45px; background-color:teal; color:white">Save and Proceed</a> 
+
+	            	
 	            	<div class="col s4" style="margin-top:45px">
 	            		 <div class="fixed-action-btn vertical" style="bottom: 45px; right: 24px;">
 						        <a class="mdi-maps-store-mall-directory btn-floating btn-large red " style="font-size:40px; height:70px; width:70px; padding:5px; padding-bottom:3px; margin-right:40px" ></a>
@@ -57,7 +73,7 @@
       						    </ul>
 						        </div>
 	            		
-	            		<a id="addPayment" href="{{URL::to('transaction/walkin-individual-payment-payment-info')}}" class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-top:28px; margin-left:9px; padding:10px; padding-bottom:45px; background-color:teal; color:white">Continue Process</a>
+	            		
 	            	</div>
 
 
