@@ -53,52 +53,30 @@
         
         /* ADMIN PROFILE */
 
-        .small.material-icons{
-            color: #1a237e;
-        }
-
-        .user{
-            background: #00695C;
-        }
-
-        #admin{
-            background: #00695C;
-        }
-        
-        #admin :hover{
-           background: #00695C;
-        }
-
-        .admin-background{
-            background: #00695C;
-            color: #1a237e;
-            height: 125px;
-        }
-
         /* SIDENAV CONTENT */
 
-        #ul{
+        #sidenav-ul{
             list-style-type: none;
             background: #00695C;
         }
 
-        #ul li{
+        #sidenav-ul li{
             background: #26A69A;
         }
 
-        #ul li li{
+        #sidenav-ul li li{
             background: #26A69A;
         }
 
-        #ul :hover{
+        #sidenav-ul :hover{
             background: #00897B;
         }
 
-        #ul :visited{
+        #sidenav-ul :visited{
            background: #00897B;
         }
 
-        #ul :active{
+        #sidenav-ul :active{
             background: #26A69A;
 
         }

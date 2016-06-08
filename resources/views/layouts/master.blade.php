@@ -22,28 +22,25 @@
     </header>
 
       <nav id="slide-out" class="side-nav fixed" style="position fixed; top: 0; padding-top:0px; margin-top:0px; background: #26A69A; width:310px;"> 
-        <ul id="ul">
-          <li id="admin" class="admin-background" align="center" style="background: #00695C;">
-            <div class="row">
-              <div style="height:20px"></div>
-              <div class="col s12 center">
-                <img src="../img/honeybabe.jpg" alt="" class="circle responsive-img valign profile-image center" style="height:130px; width:130px; background: #00695C;">
-              </div>
-            </div>
-          </li>
-
+        <div class="row">
+          <div style="height:20px"></div>
           <div class="col s12 center">
-            <ul id="profile-dropdown" class="dropdown-content">
-              <li><a href="#"><i class="small mdi-action-face-unlock" style="font-size:15px; margin-top:20px;margin-left:0px;"> Profile</i></a></li>
-              <li><a href="#"><i class="small mdi-action-settings" style="font-size:15px; margin-top:20px;margin-left:0px;"> Utils</i></a></li>
-              <li><a href="#"><i class="small mdi-communication-live-help"style="font-size:15px; margin-top:20px;margin-left:0px;"> Help</i></a></li>
-              <li class="divider"></li>
-              <li><a href="#"><i class="small mdi-action-lock-outline"style="font-size:15px;margin-top:20px;margin-left:0px;"> Lock</i></a></li>
-              <li><a href="{{URL::to('logout')}}"><i class="small mdi-hardware-keyboard-tab"style="font-size:15px;margin-top:20px;margin-left:0px;"> Logout</i></a></li>
-            </ul>
-            <a class="btn-flat dropdown-button waves-effect waves-light profile-btn" href="#" data-activates="profile-dropdown"><span class="user" style="color:white; padding-bottom:5px"><b>{{Session::get('user')}}<b></span></a>
+            <img src="../img/honeybabe.jpg" alt="" class="circle responsive-img valign profile-image center" style="height:130px; width:130px;">
           </div>
-            
+        </div>
+        <div class="col s12 container" style="margin-top:-40px;">
+          <a class='dropdown-button btn btn-flat waves-effect waves-light profile-btn white-txt' href="#!" style="background-color: #26A69A;" data-activates='profile-dropdown'>Honey May</a>
+          <ul id="profile-dropdown" class="dropdown-content">
+            <li><a href="#!"><i class="mdi-action-face-unlock" style="font-size:20px; margin-top:20px;margin-left:0px;"> Profile</i></a></li>
+            <li><a href="#!"><i class="mdi-action-settings" style="font-size:20px; margin-top:20px;margin-left:0px;"> Utils</i></a></li>
+            <li><a href="#!"><i class="mdi-communication-live-help" style="font-size:20px; margin-top:20px;margin-left:0px;"> Help</i></a></li>
+            <li class="divider"></li>
+            <li><a href="#!"><i class="mdi-action-lock-outline" style="font-size:20px;margin-top:20px;margin-left:0px;"> Lock</i></a></li>
+            <li><a href="{{URL::to('logout')}}"><i class="mdi-hardware-keyboard-tab" style="font-size:20px;margin-top:20px;margin-left:0px;"> Logout</i></a></li>
+          </ul>
+        </div>
+
+        <ul id="sidenav-ul">
 
           <!--<div class="divider" style="background-color:black"></div>-->
 

@@ -226,4 +226,9 @@ Route::get('transaction/walkin-company-payment-measure-detail', 'WalkInCompanyCo
 
 Route::get('/transaction-alterationwalkIn-newtransaction','AlterationWalkInController@newTrans');
 
+Route::get('transaction-modifyindividualorders-modifyorder','ModifyIndividualOrdersController@modify');
+Route::get('transaction-modifycompanyorders-modifyorder','ModifyCompanyOrdersController@modify');
+Route::get('transaction-modifycompanyorders-modifyemployee','ModifyCompanyOrdersController@employee');
+
+
 

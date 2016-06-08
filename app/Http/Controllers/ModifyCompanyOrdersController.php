@@ -19,6 +19,16 @@ class ModifyCompanyOrdersController extends Controller
         return view('transaction-modifycompanyorders');
     }
 
+    public function modify()
+    {
+        return view('transaction-modifycompanyorders-modifyorder');
+    }
+
+    public function employee()
+    {
+        return view('transaction-modifycompanyorders-modifyemployee');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
