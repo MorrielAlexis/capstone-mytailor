@@ -148,21 +148,23 @@
 			<h4 style="color:#1b5e20" class="center">Employees</h4>
 			<div class="divider container" style="margin-bottom:20px;"></div>
 
+			<div class="row">
 			<table style="margin-bottom:10px;">
 			    <table class = "table centered order-summary" border = "1">
        				<thead style="color:gray">
 	          			<tr>
-		                  	<th>Employee Name</th>
-		                  	<th>Sex</th>
-		                  	<th>Package</th>
-		                  	<th>Order Details</th>
-		                  	<th>
-								<a class="btn tooltipped purple accent-1" data-position="bottom" data-delay="50" data-tooltip="Edit Employee Details" href="{{URL::to('transaction-modifycompanyorders-modifyemployee')}}" style="margin-top:20px;"><i class="mdi-editor-border-color"></i></a>	
+		                  	<th class="col s4">Employee Name</th>
+		                  	<th class="col s2">Sex</th>
+		                  	<th class="col s1">Package</th>
+		                  	<th class="col s3">Order Details</th>
+		                  	<th class="col s2">
+								<a style="margin-bottom:10px;" class="btn tooltipped purple accent-1" data-position="bottom" data-delay="50" data-tooltip="Edit Employee Details" href="{{URL::to('transaction-modifycompanyorders-modifyemployee')}}"><i class="mdi-editor-border-color"></i></a>	
 		                  	</th>
 		              	</tr>
 	              	</thead>
 			    </table>
 			</table>
+			</div>
 			<div class="row">
 		        <div>
     		        <ul class="collapsible z-depth-0" data-collapsible="accordion" style="border:none;">
