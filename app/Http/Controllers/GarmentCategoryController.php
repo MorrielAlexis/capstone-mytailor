@@ -140,18 +140,22 @@ class GarmentCategoryController extends Controller
         // $count = \DB::table('tblSegment')
         //         ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
         //         ->select('tblGarmentCategory.*')
-        //         ->where('tblGarmentCategory.strGarmentCategoryID','=', $request)
+        //         ->where('tblGarmentCategory.strGarmentCategoryID','=', $garment)
         //         ->count();
 
-        // if ($count == 0 ) {
-        //        $garment->strGarmentCategoryInactiveReason = trim($request->input('delInactiveGarment'));
-        $garment->boolIsActive = 0;
+        //         dd(count);
 
+
+        // if ($count == 0 ) {
+        //        $garment->strGarmentCategoryInactiveReason = trim($request->input('delInactiveGarment')); //dito yung para sana sa being used pa kaso may aberya pa
+
+        $garment->boolIsActive = 0;
         $garment ->save();
 
          \Session::flash('flash_message','Garment category successfully deactivated.'); //flash message
 
         return  redirect('maintenance/garment-category');
+    }else return redirect('maintenance/garments?success=beingUsed');
          
 
         

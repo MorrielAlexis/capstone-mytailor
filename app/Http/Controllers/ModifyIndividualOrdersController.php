@@ -19,6 +19,11 @@ class ModifyIndividualOrdersController extends Controller
         return view('transaction-modifyindividualorders');
     }
 
+    public function modify()
+    {
+        return view('transaction-modifyindividualorders-modifyorder');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

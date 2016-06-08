@@ -142,6 +142,13 @@ Route::group(['prefix' => 'maintenance'], function(){
 		Route::post('catalogue/destroy','CatalogueController@delete_catalogue');
 });
 
+Route::group(['prefix' => 'maintenance'], function(){
+	Route::resource('packages', 'PackagesController');
+
+		Route::post('packages/update','PackagesController@update_package');
+		Route::post('packages/destroy','PackagesController@delete_package');
+});
+
 Route::group(['prefix' => 'transaction'], function(){
 	Route::resource('walkin-individual', 'WalkInIndividualController');
 
@@ -229,5 +236,10 @@ Route::get('transaction/walkin-company-payment-payment-info', 'WalkInCompanyCont
 Route::get('transaction/walkin-company-payment-measure-detail', 'WalkInCompanyController@measurement');
 
 Route::get('/transaction-alterationwalkIn-newtransaction','AlterationWalkInController@newTrans');
+
+Route::get('transaction-modifyindividualorders-modifyorder','ModifyIndividualOrdersController@modify');
+Route::get('transaction-modifycompanyorders-modifyorder','ModifyCompanyOrdersController@modify');
+Route::get('transaction-modifycompanyorders-modifyemployee','ModifyCompanyOrdersController@employee');
+
 
 

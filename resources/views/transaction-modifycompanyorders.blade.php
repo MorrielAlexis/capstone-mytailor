@@ -5,44 +5,40 @@
 <div class="main-wrapper"  style="margin-top:30px">
 
   	<div class="row">
-    	<div class="col s6">
-        	<span class="page-title"><h4>Company Orders</h4></span>
-      	</div>
-      	<div class="col s6">
-      		<font size="+2"><ul style="margin-right:25px;" class="right section table-of-contents">
-        		<li><a class="white-text" href="#walkinorders">Walk In Orders</a></li>
-        		<li><a class="white-text" href="#onlineorders">Online Orders</a></li>
-      		</ul></font>
- 	 	</div>
+      <div class="col s12 m12 l12">
+        <span class="page-title"><h4>Company Customers</h4></span>
+      </div>
     </div>
 
 	<div class="row">
 	    <div class="col s12 m12 l12">
 	    	<div class="card-panel">
-				
-				<!--WALK IN ORDERS-->
-				<div  id="walkinorders" class="container" style="background-color:#ef5350; border-radius:180px; width:95%;"><h5 style="color:#1b5e20; padding:20px;"><center><b>Walk In Orders</b></center></h5></div>
+		        <span class="card-title"><h5 style="color:#1b5e20"><center>Orders</center></h5></span>
 		        <div class="divider" style="margin-bottom:30px;"></div>
 
 		        <ul class="collapsible popout" data-collapsible="accordion" style="border:none;">
 			    
 			    <li style="margin-bottom:10px;">
-			        <div class="collapsible-header">
-			        	<div class="row">
-			        		<div class="col s1">
-			        			<div style="margin-top:25px;"><i class="mdi-maps-directions-walk" style="font-size:50px;"></i></div>
-			        		</div>
-			        		<div class="col s11">
-			        			<p>CUSTOMER NAME</P>
-			        		</div>
-			        	</div>
+			        <div class="collapsible-header" style="padding:10px;">
+			        	{!! Form::open() !!}
+	        			<div class="input-field row">
+	        				<div class="input-field col s6">
+					        	<input placeholder="001" id="order_name" type="text" class="validate" readonly>
+					          	<label style="color:black; margin-top:20px;" for="order_name">Company ID</label>
+					        </div>
+					        <div class="input-field col s6">
+					        	<input placeholder="Little Mix" id="customer_name" type="text" class="validate" readonly>
+					          	<label style="color:black; margin-top:20px;" for="customer_name">Company Name</label>
+					        </div>
+	        			</div>
+	        			{!! Form::close() !!}
 			        </div>
 
 					<div class="collapsible-body">
 						<div class="row">
 							<div class="col s12">
 								<div class="col s10">
-									<h5 style="color:#1b5e20; margin-left:20px;">Order Specification</h5>
+									<h5 style="color:#1b5e20; margin-left:20px;">Package Details</h5>
 								</div>
 								<div class="col s2">
 									<div class="btn modal-trigger red lighten-1" href="#employeesmodal" style="margin-top:20px;"><font color="#ffebee">Employees</font></div>
@@ -60,173 +56,31 @@
 						    				<th>Garment Image</th>
 						    				<th>Garment Segment</th>
 						    				<th>Segment Pattern</th>
-						    				<th>Quantity</th>
 						    				<th>Fabric Type</th>
 						    				<th>Swatch Pattern</th>
 						    				<th></th>
-						    			</tr>
-						    		</thead>
-						    		<tbody>
-						    			<tr style="border:2px solid red">
-						    				<td class="input-field">
-												<select>
-												    <option value="1" data-icon="#!" class="circle">Uniform</option>
-												    <option value="2" data-icon="#!" class="circle">Suit</option>
-												    <option value="3" data-icon="#!" class="circle">Gown</option>
-												</select>
-											</td>
-						    				<td class="file-field"><img class="img hoverable" src="../img/uniform3.jpg"></td>
-						    				<td class="input-field">
-												<select>
-												    <option value="1" data-icon="#!" class="circle">Skirt</option>
-												    <option value="2" data-icon="#!" class="circle">Pants</option>
-												    <option value="3" data-icon="#!" class="circle">Polo</option>
-												    <option value="4" data-icon="#!" class="circle">Shorts</option>
-												</select>
-											</td>
-						    				<td class="input-field">
-												<select>
-												    <option value="1" data-icon="#!" class="circle">Pencil Cut</option>
-												    <option value="2" data-icon="#!" class="circle">Balloon</option>
-												</select>
-											</td>
-						    				<td><a class="btn modal-trigger" href="#orderQuantity">1</a></td>
-						    				<td><a class="btn modal-trigger" href="#fabrictype">Linen</a></td>
-						    				<td><img class="img hoverable modal-trigger" href="#swatchpattern" src="../imgSwatches/citadel alpine.jpg"></td>
-						    				<td><a class="btn modal-trigger tooltipped circle red" href="#removeOrder" data-position="top" data-delay="50" data-tooltip="Delete Order" style="border-radius:180px;"><i class="mdi-content-clear"></i></a></td>
-						    			</tr>
-						    			<tr>
-						    				<td class="input-field">
-												<select>
-												    <option value="1" data-icon="#!" class="circle">Uniform</option>
-												    <option value="2" data-icon="#!" class="circle">Suit</option>
-												    <option value="3" data-icon="#!" class="circle">Gown</option>
-												</select>
-											</td>
-						    				<td><img class="img hoverable" src="../img/gown2.jpg"></td>
-						    				<td class="input-field">
-												<select>
-												    <option value="1" data-icon="#!" class="circle">Skirt</option>
-												    <option value="2" data-icon="#!" class="circle">Pants</option>
-												    <option value="3" data-icon="#!" class="circle">Polo</option>
-												    <option value="4" data-icon="#!" class="circle">Shorts</option>
-												</select>
-											</td>
-						    				<td class="input-field">
-												<select>
-												    <option value="1" data-icon="#!" class="circle">Pencil Cut</option>
-												    <option value="2" data-icon="#!" class="circle">Balloon</option>
-												</select>
-											</td>
-						    				<td><a class="btn modal-trigger" href="#orderQuantity">1</a></td>
-						    				<td><a class="btn modal-trigger" href="#fabrictype">Cotton</a></td>
-						    				<td><img class="img hoverable modal-trigger" href="#swatchpattern" src="../imgSwatches/citadel grape.jpg"></td>
-						    				<td><a class="btn modal-trigger tooltipped circle red" href="#removeOrder" data-position="top" data-delay="50" data-tooltip="Delete Order" style="border-radius:180px;"><i class="mdi-content-clear"></i></a></td>
-						    			</tr>
-						    		</tbody>
-						    	</table>
-						    </div>
-				                  
-				            <div class = "clearfix"></div>
-				        </div>
-
-					</div>
-			    </li>
-			    <li style="margin-bottom:10px;">
-			        <div class="collapsible-header">
-			        	<div class="row">
-			        		<div class="col s1">
-			        			<div style="margin-top:25px;"><i class="mdi-maps-directions-walk" style="font-size:50px;"></i></div>
-			        		</div>
-			        		<div class="col s11">
-			        			<p>CUSTOMER NAME</P>
-			        		</div>
-			        	</div>
-			        </div>
-
-					<div class="collapsible-body">
-						<div class="row">
-							<div class="col s12">
-								<div class="col s10">
-									<h5 style="color:#1b5e20; margin-left:20px;">Order Specification</h5>
-								</div>
-								<div class="col s2">
-									<div class="btn modal-trigger red lighten-1" href="#employeesmodal" style="margin-top:20px;"><font color="#ffebee">Employees</font></div>
-								</div>
-							</div>
-						</div>
-
-						<div class = "row">
-
-						    <div class="col s12 m12 l12 overflow-x">
-						    	<table class = "centered">
-						    		<thead>
-						    			<tr>
-						    				<th>Garment Type</th>
-						    				<th>Garment Image</th>
-						    				<th>Garment Segment</th>
-						    				<th>Segment Pattern</th>
-						    				<th>Quantity</th>
-						    				<th>Fabric Type</th>
-						    				<th>Swatch Pattern</th>
 						    				<th></th>
 						    			</tr>
 						    		</thead>
 						    		<tbody>
 						    			<tr>
-						    				<td class="input-field">
-												<select>
-												    <option value="1" data-icon="#!" class="circle">Uniform</option>
-												    <option value="2" data-icon="#!" class="circle">Suit</option>
-												    <option value="3" data-icon="#!" class="circle">Gown</option>
-												</select>
-											</td>
-						    				<td class="file-field"><img class="img hoverable" src="../img/uniform3.jpg"></td>
-						    				<td class="input-field">
-												<select>
-												    <option value="1" data-icon="#!" class="circle">Skirt</option>
-												    <option value="2" data-icon="#!" class="circle">Pants</option>
-												    <option value="3" data-icon="#!" class="circle">Polo</option>
-												    <option value="4" data-icon="#!" class="circle">Shorts</option>
-												</select>
-											</td>
-						    				<td class="input-field">
-												<select>
-												    <option value="1" data-icon="#!" class="circle">Pencil Cut</option>
-												    <option value="2" data-icon="#!" class="circle">Balloon</option>
-												</select>
-											</td>
-						    				<td><a class="btn modal-trigger" href="#orderQuantity">1</a></td>
-						    				<td><a class="btn modal-trigger" href="#fabrictype">Linen</a></td>
-						    				<td><img class="img hoverable modal-trigger" href="#swatchpattern" src="../imgSwatches/citadel alpine.jpg"></td>
+						    				<td>Uniform</td>
+						    				<td><img src="{{URL::to('img/female-uniform-plain.jpeg')}}"></td>
+						    				<td>Polo</td>
+						    				<td>Pencil Cut</td>
+						    				<td>Linen</td>
+						    				<td><img src="../imgSwatches/citadel alpine.jpg"></td>
+						    				<td><a class=" btn modal-trigger tooltipped" href="{{URL::to('transaction-modifycompanyorders-modifyorder')}}" data-position="top" data-delay="50" data-tooltip="Edit/Modify Order"><i class="mdi-editor-border-color"></i></a></td>
 						    				<td><a class="btn modal-trigger tooltipped circle red" href="#removeOrder" data-position="top" data-delay="50" data-tooltip="Delete Order" style="border-radius:180px;"><i class="mdi-content-clear"></i></a></td>
 						    			</tr>
 						    			<tr>
-						    				<td class="input-field">
-												<select>
-												    <option value="1" data-icon="#!" class="circle">Uniform</option>
-												    <option value="2" data-icon="#!" class="circle">Suit</option>
-												    <option value="3" data-icon="#!" class="circle">Gown</option>
-												</select>
-											</td>
-						    				<td><img class="img hoverable" src="../img/gown2.jpg"></td>
-						    				<td class="input-field">
-												<select>
-												    <option value="1" data-icon="#!" class="circle">Skirt</option>
-												    <option value="2" data-icon="#!" class="circle">Pants</option>
-												    <option value="3" data-icon="#!" class="circle">Polo</option>
-												    <option value="4" data-icon="#!" class="circle">Shorts</option>
-												</select>
-											</td>
-						    				<td class="input-field">
-												<select>
-												    <option value="1" data-icon="#!" class="circle">Pencil Cut</option>
-												    <option value="2" data-icon="#!" class="circle">Balloon</option>
-												</select>
-											</td>
-						    				<td><a class="btn modal-trigger" href="#orderQuantity">1</a></td>
-						    				<td><a class="btn modal-trigger" href="#fabrictype">Cotton</a></td>
-						    				<td><img class="img hoverable modal-trigger" href="#swatchpattern" src="../imgSwatches/citadel grape.jpg"></td>
+						    				<td>Uniform</td>
+						    				<td><img src="{{URL::to('img/male-uniform-pants-plain.jpg')}}"></td>
+						    				<td>Pants</td>
+						    				<td>Pencil Cut</td>
+						    				<td>Linen</td>
+						    				<td><img src="../imgSwatches/citadel grape.jpg"></td>
+						    				<td><a class=" btn modal-trigger tooltipped" href="{{URL::to('transaction-modifycompanyorders-modifyorder')}}" data-position="top" data-delay="50" data-tooltip="Edit/Modify Order"><i class="mdi-editor-border-color"></i></a></td>
 						    				<td><a class="btn modal-trigger tooltipped circle red" href="#removeOrder" data-position="top" data-delay="50" data-tooltip="Delete Order" style="border-radius:180px;"><i class="mdi-content-clear"></i></a></td>
 						    			</tr>
 						    		</tbody>
@@ -234,542 +88,39 @@
 						    </div>
 				                  
 				            <div class = "clearfix"></div>
+
+				            <div class="divider container" style="width:95%; margin-bottom:20px;"></div>
+
+				            <div class="col s12">
+					            <div class="input-field col s3">
+						        	<input placeholder="" id="delivery_date" type="text" class="validate" readonly>
+						          	<label style="color:black" for="package_name">Package Name</label>
+						        </div>
+					            <div class="input-field col s3">
+						        	<input style="color:black" placeholder="" id="delivery_date" type="text" class="validate" readonly>
+						          	<label style="color:black" for="quantity_package">Quantity per Package</label>
+						        </div>
+						        <div class="col s2">
+						        	<h5></h5>
+						        </div>
+						        <div class="input-field col s4">
+						        	<input style="color:black" placeholder="07 / 07 / 2016" id="delivery_date" type="text" class="validate" readonly>
+						          	<label style="color:black" for="delivery_date">Estimated Delivery Date</label>
+						        </div>
+					        </div>
+
 				        </div>
 
 					</div>
 			    </li>
-				</ul>
-
-				<!--ONLINE ORDERS-->
-				<div id="onlineorders" class="container" style="background-color:#ef5350; border-radius:180px; width:95%;"><h5 style="color:#1b5e20; padding:20px;"><center><b>Online Orders</b></center></h5></div>
-		        <div class="divider" style="margin-bottom:30px;"></div>
-
-		        <ul class="collapsible popout" data-collapsible="accordion" style="border:none;">
-			    <li style="margin-bottom:10px;">
-			        <div class="collapsible-header">
-			        	<div class="row">
-			        		<div class="col s1">
-			        			<div style="margin-top:25px;"><i class="mdi-hardware-computer" style="font-size:50px;"></i></div>
-			        		</div>
-			        		<div class="col s11">
-			        			<p>CUSTOMER NAME</P>
-			        		</div>
-			        	</div>
-			        </div>
-
-					<div class="collapsible-body">
-						<div class="row">
-							<div class="col s12">
-								<div class="col s10">
-									<h5 style="color:#1b5e20; margin-left:20px;">Order Specification</h5>
-								</div>
-								<div class="col s2">
-									<div class="btn modal-trigger red lighten-1" href="#employeesmodal" style="margin-top:20px;"><font color="#ffebee">Employees</font></div>
-								</div>
-							</div>
-						</div>
-
-						<div class = "row">
-
-						    <div class="col s12 m12 l12 overflow-x">
-						    	<table class = "centered">
-						    		<thead>
-						    			<tr>
-						    				<th>Garment Type</th>
-						    				<th>Garment Image</th>
-						    				<th>Garment Segment</th>
-						    				<th>Segment Pattern</th>
-						    				<th>Quantity</th>
-						    				<th>Fabric Type</th>
-						    				<th>Swatch Pattern</th>
-						    				<th></th>
-						    			</tr>
-						    		</thead>
-						    		<tbody>
-						    			<tr>
-						    				<td class="input-field">
-												<select>
-												    <option value="1" data-icon="#!" class="circle">Uniform</option>
-												    <option value="2" data-icon="#!" class="circle">Suit</option>
-												    <option value="3" data-icon="#!" class="circle">Gown</option>
-												</select>
-											</td>
-						    				<td class="file-field"><img class="img hoverable" src="../img/uniform3.jpg"></td>
-						    				<td class="input-field">
-												<select>
-												    <option value="1" data-icon="#!" class="circle">Skirt</option>
-												    <option value="2" data-icon="#!" class="circle">Pants</option>
-												    <option value="3" data-icon="#!" class="circle">Polo</option>
-												    <option value="4" data-icon="#!" class="circle">Shorts</option>
-												</select>
-											</td>
-						    				<td class="input-field">
-												<select>
-												    <option value="1" data-icon="#!" class="circle">Pencil Cut</option>
-												    <option value="2" data-icon="#!" class="circle">Balloon</option>
-												</select>
-											</td>
-						    				<td><a class="btn modal-trigger" href="#orderQuantity">1</a></td>
-						    				<td><a class="btn modal-trigger" href="#fabrictype">Linen</a></td>
-						    				<td><img class="img hoverable modal-trigger" href="#swatchpattern" src="../imgSwatches/citadel alpine.jpg"></td>
-						    				<td><a class="btn modal-trigger tooltipped circle red" href="#removeOrder" data-position="top" data-delay="50" data-tooltip="Delete Order" style="border-radius:180px;"><i class="mdi-content-clear"></i></a></td>
-						    			</tr>
-						    			<tr>
-						    				<td class="input-field">
-												<select>
-												    <option value="1" data-icon="#!" class="circle">Uniform</option>
-												    <option value="2" data-icon="#!" class="circle">Suit</option>
-												    <option value="3" data-icon="#!" class="circle">Gown</option>
-												</select>
-											</td>
-						    				<td><img class="img hoverable" src="../img/gown2.jpg"></td>
-						    				<td class="input-field">
-												<select>
-												    <option value="1" data-icon="#!" class="circle">Skirt</option>
-												    <option value="2" data-icon="#!" class="circle">Pants</option>
-												    <option value="3" data-icon="#!" class="circle">Polo</option>
-												    <option value="4" data-icon="#!" class="circle">Shorts</option>
-												</select>
-											</td>
-						    				<td class="input-field">
-												<select>
-												    <option value="1" data-icon="#!" class="circle">Pencil Cut</option>
-												    <option value="2" data-icon="#!" class="circle">Balloon</option>
-												</select>
-											</td>
-						    				<td><a class="btn modal-trigger" href="#orderQuantity">1</a></td>
-						    				<td><a class="btn modal-trigger" href="#fabrictype">Cotton</a></td>
-						    				<td><img class="img hoverable modal-trigger" href="#swatchpattern" src="../imgSwatches/citadel grape.jpg"></td>
-						    				<td><a class="btn modal-trigger tooltipped circle red" href="#removeOrder" data-position="top" data-delay="50" data-tooltip="Delete Order" style="border-radius:180px;"><i class="mdi-content-clear"></i></a></td>
-						    			</tr>d
-						    		</tbody>
-						    	</table>
-						    </div>
-				                  
-				            <div class = "clearfix"></div>
-				        </div>
-
-					</div>
-			    </li>
-			    <li style="margin-bottom:10px;">
-			        <div class="collapsible-header">
-			        	<div class="row">
-			        		<div class="col s1">
-			        			<div style="margin-top:25px;"><i class="mdi-hardware-computer" style="font-size:50px;"></i></div>
-			        		</div>
-			        		<div class="col s11">
-			        			<p>CUSTOMER NAME</P>
-			        		</div>
-			        	</div>
-			        </div>
-
-					<div class="collapsible-body">
-						<div class="row">
-							<div class="col s12">
-								<div class="col s10">
-									<h5 style="color:#1b5e20; margin-left:20px;">Order Specification</h5>
-								</div>
-								<div class="col s2">
-									<div class="btn modal-trigger red lighten-1" href="#employeesmodal" style="margin-top:20px;"><font color="#ffebee">Employees</font></div>
-								</div>
-							</div>
-						</div>
-
-						<div class = "row">
-
-						    <div class="col s12 m12 l12 overflow-x">
-						    	<table class = "centered">
-						    		<thead>
-						    			<tr>
-						    				<th>Garment Type</th>
-						    				<th>Garment Image</th>
-						    				<th>Garment Segment</th>
-						    				<th>Segment Pattern</th>
-						    				<th>Quantity</th>
-						    				<th>Fabric Type</th>
-						    				<th>Swatch Pattern</th>
-						    				<th></th>
-						    			</tr>
-						    		<tbody>
-						    			<tr>
-						    				<td class="input-field">
-												<select>
-												    <option value="1" data-icon="#!" class="circle">Uniform</option>
-												    <option value="2" data-icon="#!" class="circle">Suit</option>
-												    <option value="3" data-icon="#!" class="circle">Gown</option>
-												</select>
-											</td>
-						    				<td class="file-field"><img class="img hoverable" src="../img/uniform3.jpg"></td>
-						    				<td class="input-field">
-												<select>
-												    <option value="1" data-icon="#!" class="circle">Skirt</option>
-												    <option value="2" data-icon="#!" class="circle">Pants</option>
-												    <option value="3" data-icon="#!" class="circle">Polo</option>
-												    <option value="4" data-icon="#!" class="circle">Shorts</option>
-												</select>
-											</td>
-						    				<td class="input-field">
-												<select>
-												    <option value="1" data-icon="#!" class="circle">Pencil Cut</option>
-												    <option value="2" data-icon="#!" class="circle">Balloon</option>
-												</select>
-											</td>
-						    				<td><a class="btn modal-trigger" href="#orderQuantity">1</a></td>
-						    				<td><a class="btn modal-trigger" href="#fabrictype">Linen</a></td>
-						    				<td><img class="img hoverable modal-trigger" href="#swatchpattern" src="../imgSwatches/citadel alpine.jpg"></td>
-						    				<td><a class="btn modal-trigger tooltipped circle red" href="#removeOrder" data-position="top" data-delay="50" data-tooltip="Delete Order" style="border-radius:180px;"><i class="mdi-content-clear"></i></a></td>
-						    			</tr>
-						    			<tr>
-						    				<td class="input-field">
-												<select>
-												    <option value="1" data-icon="#!" class="circle">Uniform</option>
-												    <option value="2" data-icon="#!" class="circle">Suit</option>
-												    <option value="3" data-icon="#!" class="circle">Gown</option>
-												</select>
-											</td>
-						    				<td><img class="img hoverable" src="../img/gown2.jpg"></td>
-						    				<td class="input-field">
-												<select>
-												    <option value="1" data-icon="#!" class="circle">Skirt</option>
-												    <option value="2" data-icon="#!" class="circle">Pants</option>
-												    <option value="3" data-icon="#!" class="circle">Polo</option>
-												    <option value="4" data-icon="#!" class="circle">Shorts</option>
-												</select>
-											</td>
-						    				<td class="input-field">
-												<select>
-												    <option value="1" data-icon="#!" class="circle">Pencil Cut</option>
-												    <option value="2" data-icon="#!" class="circle">Balloon</option>
-												</select>
-											</td>
-						    				<td><a class="btn modal-trigger" href="#orderQuantity">1</a></td>
-						    				<td><a class="btn modal-trigger" href="#fabrictype">Cotton</a></td>
-						    				<td><img class="img hoverable modal-trigger" href="#swatchpattern" src="../imgSwatches/citadel grape.jpg"></td>
-						    				<td><a class="btn modal-trigger tooltipped circle red" href="#removeOrder" data-position="top" data-delay="50" data-tooltip="Delete Order" style="border-radius:180px;"><i class="mdi-content-clear"></i></a></td>
-						    			</tr>
-						    		</tbody>
-						    	</table>
-						    </div>
-				                  
-				            <div class = "clearfix"></div>
-				        </div>
-
-					</div>
-			    </li>
+			    
+			    </ul>
 
 		    </div>
 		</div>
 	</div>
 
 
-	<!--Quantity Modal-->
-	<div id="orderQuantity" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
-		<h5><font color="#42a5f5"><center><b>Quantity</b></center></font></h5>
-		<div class="divider" style="height:2px"></div>
-		<div class="modal-content">
-			<div class="row container">
-			    <div class="input-field container">
-			      	<input value="1" id="quantity" type="text" class="validate center">
-			    </div>
-			</div>
-		</div>
-		<div class="modal-footer col s12" style="background-color:#42a5f5; opacity:0.85">
-            <button type="submit" class="waves-effect waves-green btn-flat" href="#!"><font color="black">Save</font></button>
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Cancel</font></a>
-        </div>
-	</div>
-
-	<!--Fabric Type button Modal-->
-	<div id="fabrictype" class="modal modal-fixed-footer">
-		<h5><font color = "#1b5e20"><center>Fabric</center> </font> </h5>
-
-        <div class="row">
-            <div class="divider" style="height:2px"></div>
-            <div class="modal-content col s12">
-            	<div class="col s1" style="margin-top:60px">
-            		<input type="checkbox" class="filled-in" id="fabric1" />
-            		<label for="fabric1"></label>
-            	</div>
-            	 <div class="col s11">
-			        <div class="card-panel grey lighten-5 z-depth-1">
-			          <div class="row valign-wrapper">
-			            <div class="col s4">
-			              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-			            </div>
-			            <div class="col s7"> 
-			              <p>COTTON CHENES</p> <!-- This will be the name of the pattern -->
-			              <span class="black-text">
-			                This is a square image. Add the "circle" class to it to make it appear circular.
-			              </span>
-			            </div>
-			          </div>
-			        </div>
-			      </div>
-
-			    <div class="col s1" style="margin-top:60px">
-            		<input type="checkbox" class="filled-in" id="fabric2" />
-            		<label for="fabric2"></label>
-            	</div>
-			      <div class="col s11">
-			        <div class="card-panel grey lighten-5 z-depth-1">
-			          <div class="row valign-wrapper">
-			            <div class="col s4">
-			              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-			            </div>
-			            <div class="col s7">
-			            	<p>REGULAR COTTON</p>
-			              <span class="black-text">
-			                This is a square image. Add the "circle" class to it to make it appear circular.
-			              </span>
-			            </div>
-			          </div>
-			        </div>
-			      </div>
-
-
-			    <div class="col s1" style="margin-top:60px">
-            		<input type="checkbox" class="filled-in" id="fabric3" />
-            		<label for="fabric3"></label>
-            	</div>
-			      <div class="col s11">
-			        <div class="card-panel grey lighten-5 z-depth-1">
-			          <div class="row valign-wrapper">
-			            <div class="col s4">
-			              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-			            </div>
-			            <div class="col s7">
-			            	<p>REMARKABLE COTTON</p>
-			              <span class="black-text">
-			                This is a square image. Add the "circle" class to it to make it appear circular.
-			              </span>
-			            </div>
-			          </div>
-			        </div>
-			      </div>
-			<div style="margin:570px"></div>
-			</div>
-
-
-		<div class="modal-footer col s12" style="background-color:#26a69a">
-          <button type="submit" class="waves-effect waves-green btn-flat">OK</button>
-          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-        </div>
-        </div>
-	</div>
-
-	<!--Swatch button Modal-->
-	<div id="swatchpattern" class="modal modal-fixed-footer">
-		<div class="modal-content">
-			<h4 style="color:#1b5e20" class="center">Swatches</h4>
-			<div class="divider container" style="margin-bottom:40px;"></div>
-		
-			<div class="row">
-				<div class="center">
-				<div class="col s3">
-					<div style="margin-bottom:20px;">
-						<div>
-							<center><img class="img-hoverable materialboxed" width="50" src="#!"></center>
-							<label><font size="+1">Swatch name</font></label>
-						</div>
-						<div>
-							{!! Form::open() !!}
-								<input type="checkbox" class="filled-in" id="fabric3" />
-		            			<label for="fabric3"></label>
-							{!! Form::close() !!}
-						</div>
-					</div>
-					<div style="margin-bottom:20px;">
-						<div>
-							<center><img class="img-hoverable materialboxed" width="50" src="#!"></center>
-							<label><font size="+1">Swatch name</font></label>
-						</div>
-						<div>
-							{!! Form::open() !!}
-								<input type="checkbox" class="filled-in" id="fabric3" />
-		            			<label for="fabric3"></label>
-							{!! Form::close() !!}
-						</div>
-					</div>
-					<div style="margin-bottom:20px;">
-						<div>
-							<center><img class="img-hoverable materialboxed" width="50" src="#!"></center>
-							<label><font size="+1">Swatch name</font></label>
-						</div>
-						<div>
-							{!! Form::open() !!}
-								<input type="checkbox" class="filled-in" id="fabric3" />
-		            			<label for="fabric3"></label>
-							{!! Form::close() !!}
-						</div>
-					</div>
-				</div>
-				<div class="col s3">
-					<div style="margin-bottom:20px;">
-						<div>
-							<center><img class="img-hoverable materialboxed" width="50" src="#!"></center>
-							<label><font size="+1">Swatch name</font></label>
-						</div>
-						<div>
-							{!! Form::open() !!}
-								<input type="checkbox" class="filled-in" id="fabric3" />
-		            			<label for="fabric3"></label>
-							{!! Form::close() !!}
-						</div>
-					</div>
-					<div style="margin-bottom:20px;">
-						<div>
-							<center><img class="img-hoverable materialboxed" width="50" src="#!"></center>
-							<label><font size="+1">Swatch name</font></label>
-						</div>
-						<div>
-							{!! Form::open() !!}
-								<input type="checkbox" class="filled-in" id="fabric3" />
-		            			<label for="fabric3"></label>
-							{!! Form::close() !!}
-						</div>
-					</div>
-					<div style="margin-bottom:20px;">
-						<div>
-							<center><img class="img-hoverable materialboxed" width="50" src="#!"></center>
-							<label><font size="+1">Swatch name</font></label>
-						</div>
-						<div>
-							{!! Form::open() !!}
-								<input type="checkbox" class="filled-in" id="fabric3" />
-		            			<label for="fabric3"></label>
-							{!! Form::close() !!}
-						</div>
-					</div>
-				</div>
-				<div class="col s3">
-					<div style="margin-bottom:20px;">
-						<div>
-							<center><img class="img-hoverable materialboxed" width="50" src="#!"></center>
-							<label><font size="+1">Swatch name</font></label>
-						</div>
-						<div>
-							{!! Form::open() !!}
-								<input type="checkbox" class="filled-in" id="fabric3" />
-		            			<label for="fabric3"></label>
-							{!! Form::close() !!}
-						</div>
-					</div>
-					<div style="margin-bottom:20px;">
-						<div>
-							<center><img class="img-hoverable materialboxed" width="50" src="#!"></center>
-							<label><font size="+1">Swatch name</font></label>
-						</div>
-						<div>
-							{!! Form::open() !!}
-								<input type="checkbox" class="filled-in" id="fabric3" />
-		            			<label for="fabric3"></label>
-							{!! Form::close() !!}
-						</div>
-					</div>
-					<div style="margin-bottom:20px;">
-						<div>
-							<center><img class="img-hoverable materialboxed" width="50" src="#!"></center>
-							<label><font size="+1">Swatch name</font></label>
-						</div>
-						<div>
-							{!! Form::open() !!}
-								<input type="checkbox" class="filled-in" id="fabric3" />
-		            			<label for="fabric3"></label>
-							{!! Form::close() !!}
-						</div>
-					</div>
-				</div>
-				<div class="col s3">
-					<div>
-						<div>
-							<center><img class="img-hoverable materialboxed" width="50" src="#!"></center>
-							<label><font size="+1">Swatch name</font></label>
-						</div>
-						<div>
-							{!! Form::open() !!}
-								<input type="checkbox" class="filled-in" id="fabric3" />
-		            			<label for="fabric3"></label>
-							{!! Form::close() !!}
-						</div>
-					</div>
-					<div>
-						<div>
-							<center><img class="img-hoverable materialboxed" width="50" src="#!"></center>
-							<label><font size="+1">Swatch name</font></label>
-						</div>
-						<div>
-							{!! Form::open() !!}
-								<input type="checkbox" class="filled-in" id="fabric3" />
-		            			<label for="fabric3"></label>
-							{!! Form::close() !!}
-						</div>
-					</div>
-					<div>
-						<div>
-							<center><img class="img-hoverable materialboxed" width="50" src="#!"></center>
-							<label><font size="+1">Swatch name</font></label>
-						</div>
-						<div>
-							{!! Form::open() !!}
-								<input type="checkbox" class="filled-in" id="fabric3" />
-		            			<label for="fabric3"></label>
-							{!! Form::close() !!}
-						</div>
-					</div>
-				</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="modal-footer" style="background-color:#26a69a">
-			<a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-			<a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
-		</div>
-	</div>
-
-	<!--Measurement button Modal-->
-	<div id="measurementmodal" class="modal modal-fixed-footer">
-		<div class="modal-content">
-			<h4 style="color:#1b5e20" class="center">Measurements</h4>
-			<div class="divider container" style="margin-bottom:20px;"></div>
-			<div class="row">
-				<div class="col s6">
-					<div class="input-field">
-	                  	<input id ="measurement" type="text" class="validate">
-	                  	<label for="measurement">Measurement</label>
-	                </div>
-	                <div class="input-field">
-	                  	<input id ="measurement" type="text" class="validate">
-	                  	<label for="measurement">Measurement</label>
-	                </div>
-	                <div class="input-field">
-	                  	<input id ="measurement" type="text" class="validate">
-	                  	<label for="measurement">Measurement</label>
-	                </div>
-				</div>
-				<div class="col s6">
-					<div class="input-field">
-	                  	<input id ="measurement" type="text" class="validate">
-	                  	<label for="measurement">Measurement</label>
-	                </div>
-	                <div class="input-field">
-	                  	<input id ="measurement" type="text" class="validate">
-	                  	<label for="measurement">Measurement</label>
-	                </div>
-	                <div class="input-field">
-	                  	<input id ="measurement" type="text" class="validate">
-	                  	<label for="measurement">Measurement</label>
-	                </div>
-				</div>
-			</div>
-
-		</div>
-
-		<div class="modal-footer" style="background-color:#26a69a">
-			<a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-			<a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
-		</div>
-	</div>
 
 	<!--Remove Order Modal-->
 	<div id="removeOrder" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
@@ -797,20 +148,23 @@
 			<h4 style="color:#1b5e20" class="center">Employees</h4>
 			<div class="divider container" style="margin-bottom:20px;"></div>
 
+			<div class="row">
 			<table style="margin-bottom:10px;">
 			    <table class = "table centered order-summary" border = "1">
        				<thead style="color:gray">
 	          			<tr>
-		                  <th data-field="first_name" class="col s3">First Name</th>         
-		                  <th data-field="middle_name" class="col s3">Middle Name</th>
-		                  <th data-field="last_name" class="col s3">Last Name</th>
-		                  <th data-field="gender" class="col s1">Sex</th>
-		                  <th data-field="package" class="col s1">Package</th>
-		                  <th></th>
+		                  	<th class="col s4">Employee Name</th>
+		                  	<th class="col s2">Sex</th>
+		                  	<th class="col s1">Package</th>
+		                  	<th class="col s3">Order Details</th>
+		                  	<th class="col s2">
+								<a style="margin-bottom:10px;" class="btn tooltipped purple accent-1" data-position="bottom" data-delay="50" data-tooltip="Edit Employee Details" href="{{URL::to('transaction-modifycompanyorders-modifyemployee')}}"><i class="mdi-editor-border-color"></i></a>	
+		                  	</th>
 		              	</tr>
 	              	</thead>
 			    </table>
 			</table>
+			</div>
 			<div class="row">
 		        <div>
     		        <ul class="collapsible z-depth-0" data-collapsible="accordion" style="border:none;">
@@ -818,30 +172,21 @@
 					    <li>
 					        <div class="collapsible-header" style="background-color:#ffebee;">
 								<div class="row">
-									<div style="color:black" class="input-field col s3">
-			                            <input value="Klare Desteen" id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt" maxlength="11">		           
+									<div style="color:black" class="input-field col s4">
+			                            <input value="Klare Desteen T. Montefalco" id="empname" type="text">		           
 			                        </div>
-			                        <div style="color:black" class="input-field col s3">
-			                            <input value="Ty" id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt" maxlength="11">		           
-			                        </div>
-			                        <div style="color:black" class="input-field col s3">
-			                            <input value="Montefalco" id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt" maxlength="11">		           
+			                        <div style="color:black" class="input-field col s2">
+			                            <input class="center" value="Female" id="sex" type="text">		           
 			                        </div>
 			                        <div style="color:black" class="input-field col s1">
-										<select>
-										    <option value="1">F</option>
-										    <option value="2">M</option>
-										</select>
-									</div>
-									<div style="color:black" class="input-field col s1">
-										<select>
-										    <option value="1">A</option>
-										    <option value="2">B</option>
-										</select>
-									</div>
+			                            <input class="center" value="A" id="package" type="text">		           
+			                        </div>
+			                        <div style="color:black" class="input-field col s4">
+			                            <input class="left" value="Package A for Female" id="orderdetails" type="text">		           
+			                        </div>
 
 									<div style="color:black" class="col s1">
-										<a style="color:black; margin-top:20px" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of employee from list" href="#!"><i class="mdi-action-delete"></i></a>
+										<a style="color:black; margin-top:20px" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of employee from list" href="#!"><i class="mdi-action-delete center"></i></a>
 									</div>
 								</div>
 							</div>
@@ -881,27 +226,18 @@
 						<li>
 					        <div class="collapsible-header" style="background-color:#e1f5fe;">
 								<div class="row">
-									<div style="color:black" class="input-field col s3">
-			                            <input value="Elijah Riley" id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt" maxlength="11">		           
+									<div style="color:black" class="input-field col s4">
+			                            <input value="Elijah Riley V. Montefalco" id="empname" type="text">		           
 			                        </div>
-			                        <div style="color:black" class="input-field col s3">
-			                            <input value="-" id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt" maxlength="11">		           
-			                        </div>
-			                        <div style="color:black" class="input-field col s3">
-			                            <input value="Montefalco" id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt" maxlength="11">		           
+			                        <div style="color:black" class="input-field col s2">
+			                            <input class="center" value="Male" id="sex" type="text">		           
 			                        </div>
 			                        <div style="color:black" class="input-field col s1">
-										<select>
-										    <option value="1">F</option>
-										    <option value="2">M</option>
-										</select>
-									</div>
-									<div style="color:black" class="input-field col s1">
-										<select>
-										    <option value="1">A</option>
-										    <option value="2">B</option>
-										</select>
-									</div>
+			                            <input class="center" value="none" id="package" type="text">		           
+			                        </div>
+			                        <div style="color:black" class="input-field col s4">
+			                            <input value="1 pc pants, 2 pc polo" id="orderdetails" type="text">		           
+			                        </div>
 
 									<div style="color:black" class="col s1">
 										<a style="color:black; margin-top:20px" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of employee from list" href="#!"><i class="mdi-action-delete"></i></a>
