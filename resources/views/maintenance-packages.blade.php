@@ -147,15 +147,38 @@
                                 <input value="{{ $packages->strPackageID }}" id="editSegmentID" name="editSegmentID" type="hidden"> 
                               </div>
 
+                                <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                              <div class="input-field col s12">
+                                <input required value="{{ $packages->strPackageName }}" id="editPackageName" name= "editPackageName" type="text" class="validateSegName">
+                                <label for="segment_name">Package Name <span class="red-text"><b>*</b></span></label>
+                    <span id="left"></span></label>
+                              </div>
+                          </div>
+
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">                                                    
-                                <select class="browser-default" id="editCategory" name="editCategory"required>
-                                  <option value="" disabled selected>Choose garment category</option>
-                                  @foreach($garment as $garm)
-                                    @if($packages->strSegCategoryFK == $garm->strGarmentCategoryID && $garm->boolIsActive == 1)
-                                      <option selected value="{{ $garm->strGarmentCategoryID }}">{{ $garm->strGarmentCategoryName }}</option>
-                                    @elseif($garm->boolIsActive == 1)
-                                      <option value="{{ $garm->strGarmentCategoryID }}">{{ $garm->strGarmentCategoryName }}</option>
+                                <select class="browser-default" id="editSegment1" name="editSegment1"required>
+                                  <option value="" disabled selected>Choose a segment:</option>
+                                  @foreach($segment as $segment_1)
+                                    @if($packages->strPackageSeg1FK == $segment_1->strSegmentID && $segment_1->boolIsActive == 1)
+                                      <option selected value="{{ $segment_1->strSegmentID }}">{{ $segment_1->strSegmentName }}</option>
+                                    @elseif($segment_1->boolIsActive == 1)
+                                      <option value="{{ $segment_1->strSegmentID }}">{{ $segment_1->strSegmentName }}</option>
+                                    @endif
+                                  @endforeach
+                                </select>   
+                              </div>  
+                          </div> 
+
+                          <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                              <div class="input-field col s12">                                                    
+                                <select class="browser-default" id="editSegment2" name="editSegment2"required>
+                                  <option value="" disabled selected>Choose a segment:</option>
+                                  @foreach($segment as $segment_2)
+                                    @if($packages->strPackageSeg2FK == $segment_2->strSegmentID && $segment_2->boolIsActive == 1)
+                                      <option selected value="{{ $segment_2->strSegmentID }}">{{ $segment_2->strSegmentName }}</option>
+                                    @elseif($segment_2->boolIsActive == 1)
+                                      <option value="{{ $segment_2->strSegmentID }}">{{ $segment_2->strSegmentName }}</option>
                                     @endif
                                   @endforeach
                                 </select>   
@@ -163,19 +186,78 @@
                           </div> 
                         
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                              <div class="input-field col s12">
-                                <input required value="{{ $segment->strSegmentName }}" id="editSegmentName" name= "editSegmentName" type="text" class="validateSegName">
-                                <label for="segment_name">*Segment Name </label>
-                              </div>
+                              <div class="input-field col s12">                                                    
+                                <select class="browser-default" id="editSegment3" name="editSegment3"required>
+                                  <option value="" disabled selected>Choose a segment:</option>
+                                  @foreach($segment as $segment_3)
+                                    @if($packages->strPackageSeg3FK == $segment_3->strSegmentID && $segment_3->boolIsActive == 1)
+                                      <option selected value="{{ $segment_3->strSegmentID }}">{{ $segment_3->strSegmentName }}</option>
+                                    @elseif($segment_3->boolIsActive == 1)
+                                      <option value="{{ $segment_3->strSegmentID }}">{{ $segment_3->strSegmentName }}</option>
+                                    @endif
+                                  @endforeach
+                                </select>   
+                              </div>  
+                          </div> 
+
+                          <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                              <div class="input-field col s12">                                                    
+                                <select class="browser-default" id="editSegment4" name="editSegment4"required>
+                                  <option value="" disabled selected>Choose a segment:</option>
+                                  @foreach($segment as $segment_4)
+                                    @if($packages->strPackageSeg4FK == $segment_4->strSegmentID && $segment_4->boolIsActive == 1)
+                                      <option selected value="{{ $segment_4->strSegmentID }}">{{ $segment_4->strSegmentName }}</option>
+                                    @elseif($segment_4->boolIsActive == 1)
+                                      <option value="{{ $segment_4->strSegmentID }}">{{ $segment_4->strSegmentName }}</option>
+                                    @endif
+                                  @endforeach
+                                </select>   
+                              </div>  
+                          </div> 
+
+                          <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                              <div class="input-field col s12">                                                    
+                                <select class="browser-default" id="editSegment5" name="editSegment5"required>
+                                  <option value="" disabled selected>Choose a segment:</option>
+                                  @foreach($segment as $segment_5)
+                                    @if($packages->strPackageSeg5FK == $segment_5->strSegmentID && $segment_5->boolIsActive == 1)
+                                      <option selected value="{{ $segment_5->strSegmentID }}">{{ $segment_5->strSegmentName }}</option>
+                                    @elseif($segment_5->boolIsActive == 1)
+                                      <option value="{{ $segment_5->strSegmentID }}">{{ $segment_5->strSegmentName }}</option>
+                                    @endif
+                                  @endforeach
+                                </select>   
+                              </div>  
+                          </div> 
+
+                          <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                          <div class="input-field col s12">
+                            <input required value = "{{ $packages->strPackageDesc }}" id="editPackageDesc" name= "editPackageDesc" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$">
+                            <label for="package_name">Package Description </label>
                           </div>
+                      </div>
+
+                      <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
+                          <div class="file-field input-field col s12">
+                            <div style="color:black" class="btn tooltipped btn-small center-text light-green lighten-2" data-position="bottom" data-delay="50" data-tooltip="May upload jpg, png, gif, bmp, tif, tiff files">
+                              <span>Upload Image</span>
+                              <input id="editImg" name="editImg" type="file" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*">
+                            </div>
+                          
+                            <div class="file-path-wrapper">
+                              <input value="{{$packages->strPackageImage}}" id="editImage" name="editImage" class="file-path validate" type="text" readonly="readonly">
+                            </div>
+                          </div>
+                      </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                               <div class="input-field col s12">
-                                <input  value="{{ $segment->textSegmentDesc }}" id="SegmentDesc" name = "editSegmentDesc" type="text" class="validate">
-                               <label for="segment_description">*Segment Description</label>
+                                <input  value="{{ $packages->strPackageDesc }}" id="editPackageDesc" name = "editPackageDesc" type="text" class="validate">
+                               <label for="package_description">Package Description</label>
                               </div>
                           </div>
                           </div>
+
 
                           <div class="modal-footer col s12" style="background-color:#26a69a">
                             <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Update</button>
@@ -184,41 +266,36 @@
                         {!! Form::close() !!}
                       </div>
                     <!--***************************Soft Delete********************************-->
-                      <div id="del{{ $segment->strSegmentID }}" class="modal modal-fixed-footer">
-                        <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS GARMENT SEGMENT?</center> </font> </h5>
+                      <div id="del{{ $packages->strPackageID }}" class="modal modal-fixed-footer">
+                        <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS PACKAGE?</center> </font> </h5>
                           
-                          {!! Form::open(['url' => 'maintenance/garment-segment/destroy']) !!}
+                          {!! Form::open(['url' => 'maintenance/packages/destroy']) !!}
                             <div class="divider" style="height:2px"></div>
                             <div class="modal-content col s12"> 
 
                               <div class="input-field">
-                                <input value="{{ $segment->strSegmentID }}" id="delSegmentID" name="delSegmentID" type="hidden">
+                                <input value="{{ $packages->strPackageID }}" id="delPackageID" name="delPackageID" type="hidden">
                               </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">                                                    
-                                  <input type="text" value="{{$segment->strGarmentCategoryName}}">
-                                  <label>Category Name</label>
+                                  <input type="text" value="{{$packages->strPackageName}}" readonly>
+                                  <label>Package Name</label>
                               </div>   
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input value="{{ $segment->strSegmentName }}"type="text" readonly>
-                                <label for="segment_name">Segment Name </label>
+                                <input value="{{ $packages->strPackageDesc }}"type="text" readonly>
+                                <label for="package_desc">Package Description </label>
                               </div>
                           </div>
 
-                          <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                              <div class="input-field col s12">
-                                <input value="{{ $segment->textSegmentDesc }}" type="text" readonly>
-                                <label for="segment_description">Segment Description </label>
-                              </div>
-                          </div>
+
 
                               <div class="input-field col s12">
                                 <label for="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span> </label>
-                                <input required value="{{ $segment->strSegInactiveReason }}" id="delInactiveSegment" name="delInactiveSegment" type="text">
+                                <input required value="{{ $packages->strPackageInactiveReason }}" id="delInactivePackage" name="delInactivePackage" type="text">
                               </div>
 
                               <div class = "col s12" style="padding:15px;  border:3px solid white;">
@@ -248,24 +325,31 @@
 
 
               <div id="addSegment" class="modal modal-fixed-footer">
-                <h5><font color = "#1b5e20"><center>ADD NEW GARMENT SEGMENT</center> </font> </h5> 
+                <h5><font color = "#1b5e20"><center>CREATE NEW PACKAGE</center> </font> </h5> 
                 
-                {!! Form::open(['url' => 'maintenance/garment-segment', 'method' => 'post' ]) !!}
+                {!! Form::open(['url' => 'maintenance/packages', 'method' => 'post', 'files' => 'true' ]) !!}
                   <div class="divider" style="height:2px"></div>
                   <div class="modal-content col s12">
 
 
                       <div class="input-field">
-                        <input value="{{ $newID }}" id="addSegmentID" name="addSegmentID" type="hidden">
+                        <input value="{{ $newID }}" id="addPackageID" name="addPackageID" type="hidden">
                       </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <select class="browser-default" name='addCategory' id='addCategory' required>
-                          <option value="" disabled selected>Choose garment category</option>
-                          @foreach($garment as $garment_1)
-                            @if($garment_1->boolIsActive == 1) 
-                              <option value="{{ $garment_1->strGarmentCategoryID }}">{{ $garment_1->strGarmentCategoryName }}</option>
+                        <input required id="addPackageName" name= "addPackageName" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" class="active"  >
+                        <label for="segment_name">Package Name<span class="red-text"><b>*</b></span></label>
+                      </div>
+                  </div>
+
+                  <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                      <div class="input-field col s12">
+                        <select class="browser-default" name='addSegment1' id='addSegment1' required>
+                          <option value="" disabled selected>Choose a segment for your package:</option>
+                          @foreach($segment as $segment_1)
+                            @if($segment_1->boolIsActive == 1) 
+                              <option value="{{ $segment_1->strSegmentID }}">{{ $segment_1->strSegmentName }}</option>
                             @endif                       
                           @endforeach
                         </select> 
@@ -274,9 +358,54 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input required id="addSegmentName" name= "addSegmentName" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" class="active"  >
-                        <label for="segment_name">Segment Name<span class="red-text"><b>*</b></span></label>
-                      </div>
+                        <select class="browser-default" name='addSegment2' id='addSegment2' required>
+                          <option value="" disabled selected>Choose a segment for your package:</option>
+                          @foreach($segment as $segment_2)
+                            @if($segment_2->boolIsActive == 1) 
+                              <option value="{{ $segment_2->strSegmentID }}">{{ $segment_2->strSegmentName }}</option>
+                            @endif                       
+                          @endforeach
+                        </select> 
+                      </div>  
+                  </div>
+
+                  <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                      <div class="input-field col s12">
+                        <select class="browser-default" name='addSegment3' id='addSegment3' required>
+                          <option value="" disabled selected>Choose a segment for your package:</option>
+                          @foreach($segment as $segment_3)
+                            @if($segment_3->boolIsActive == 1) 
+                              <option value="{{ $segment_3->strSegmentID }}">{{ $segment_3->strSegmentName }}</option>
+                            @endif                       
+                          @endforeach
+                        </select> 
+                      </div>  
+                  </div>
+
+                  <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                      <div class="input-field col s12">
+                        <select class="browser-default" name='addSegment4' id='addSegment4' required>
+                          <option value="" disabled selected>Choose a segment for your package:</option>
+                          @foreach($segment as $segment_4)
+                            @if($segment_4->boolIsActive == 1) 
+                              <option value="{{ $segment_4->strSegmentID }}">{{ $segment_4->strSegmentName }}</option>
+                            @endif                       
+                          @endforeach
+                        </select> 
+                      </div>  
+                  </div>
+
+                  <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                      <div class="input-field col s12">
+                        <select class="browser-default" name='addSegment5' id='addSegment5' required>
+                          <option value="" disabled selected>Choose a segment for your package:</option>
+                          @foreach($segment as $segment_5)
+                            @if($segment_5->boolIsActive == 1) 
+                              <option value="{{ $segment_5->strSegmentID }}">{{ $segment_5->strSegmentName }}</option>
+                            @endif                       
+                          @endforeach
+                        </select> 
+                      </div>  
                   </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
@@ -285,6 +414,20 @@
                         <label for="segment_description">Segment Description </label>
                       </div>
                   </div>
+
+                  <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
+                <div class="file-field input-field col s12">
+                  <div style="color:black" class="btn tooltipped btn-small center-text light-green lighten-2" data-position="bottom" data-delay="50" data-tooltip="May upload jpg, png, gif, bmp, tif, tiff files">
+                    <span>Upload Image</span>
+                    <input id="addImg" name="addImg" type="file" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*">
+                  </div>
+                
+                  <div class="file-path-wrapper">
+                    <input id="addImage" name="addImage" class="file-path validate" type="text" readonly="readonly">
+                  </div>
+                </div>
+            </div>
+
                   </div>
 
                   <div class="modal-footer col s12" style="background-color:#26a69a">

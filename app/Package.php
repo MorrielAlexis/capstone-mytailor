@@ -17,6 +17,7 @@ class Package extends Model
 								'strPackageSeg5FK',
 								'strPackageImage',
 								'strPackageDesc',
+								'strPackageInactiveReason',
 								'boolIsActive'
 								//
 								);
