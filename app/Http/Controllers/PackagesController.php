@@ -61,6 +61,7 @@ class PackagesController extends Controller
                     ->with('packages', $packages)
                     ->with('segment', $segment)
                     ->with('newID', $newID);
+                    
     }
 
     /**
