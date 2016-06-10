@@ -92,7 +92,7 @@
     </div>
 
       <div class="col s6 left">
-         <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="bottom" data-delay="50"  data-tooltip="Click to create new package to the table" href="#addSegment" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
+         <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="bottom" data-delay="50"  data-tooltip="Click to create new package to the table" href="#addPackage" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
       </div>
     </div>
 
@@ -324,7 +324,7 @@
               </div>
 
 
-              <div id="addSegment" class="modal modal-fixed-footer">
+              <div id="addPackage" class="modal modal-fixed-footer">
                 <h5><font color = "#1b5e20"><center>CREATE NEW PACKAGE</center> </font> </h5> 
                 
                 {!! Form::open(['url' => 'maintenance/packages', 'method' => 'post', 'files' => 'true' ]) !!}
@@ -410,8 +410,8 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                       <div class="input-field col s12">
-                        <input id="addSegmentDesc" name = "addSegmentDesc" type="text" class="validate"  data-position="bottom" >
-                        <label for="segment_description">Segment Description </label>
+                        <input id="addPackageDesc" name = "addPackageDesc" type="text" class="validate"  data-position="bottom" >
+                        <label for="segment_description">Package Description </label>
                       </div>
                   </div>
 

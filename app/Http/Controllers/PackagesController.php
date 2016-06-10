@@ -82,7 +82,44 @@ class PackagesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $file = $request->input('addImage');
+        $destinationPath = 'imgPackages';
+
+            if($file == '' || $file == null){
+                $packages = Package::create(array(
+                'strPackageID' => $request->input('addPackageID'),
+                 'strPackageName' => trim($request->input('addPackageName')),
+                'strPackageSeg1FK' => $request->input('addSegment1'),
+                'strPackageSe2FK' => $request->input('addSegment2'),
+                'strPackageSeg3FK' => $request->input('addSegment3'),
+                 'strPackageSeg4FK' => $request->input('addSegment4'),
+                 'strPackageSeg5FK' => $request->input('addSegment5'),
+               'strPackageDesc' => trim($request->input('addPackageDesc')),
+                'boolIsActive' => 1
+                ));     
+                }else{
+                    $request->file('addImg')->move($destinationPath, $file);
+
+                    $packages = Package::create(array(
+                        'strPackageID' => $request->input('addPackageID'),
+                 'strPackageName' => trim($request->input('addPackageName')),
+                'strPackageSeg1FK' => $request->input('addSegment1'),
+                'strPackageSeg2FK' => $request->input('addSegment2'),
+                'strPackageSeg3FK' => $request->input('addSegment3'),
+                 'strPackageSeg4FK' => $request->input('addSegment4'),
+                 'strPackageSeg5FK' => $request->input('addSegment5'),
+               'strPackageDesc' => trim($request->input('addPackageDesc')),
+                        'strPackageImage' => 'imgPackages/'.$file,
+                        'boolIsActive' => 1
+                    )); 
+                }
+
+            $packages->save();
+
+             \Session::flash('flash_message','Package successfully created.'); //flash message
+            
+            return redirect('/maintenance/packages');
+
     }
 
     /**
