@@ -205,6 +205,20 @@ class PackagesController extends Controller
             return redirect('maintenance/packages');
     }
 
+    function delete_package(Request $request)
+    {
+        $packages = Package::find($request->input('delPackageID'));
+
+        $packages->strPackageInactiveReason = trim($request->input('delInactivePackage'));
+        $packages->boolIsActive = 0;
+        $packages->save();
+
+
+       \Session::flash('flash_message_delete','Package was successfully deactivated.'); //flash message
+
+        return redirect('maintenance/packages');
+    }
+
     public function smartCounter($id)
     {   
 
