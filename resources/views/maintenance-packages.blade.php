@@ -139,12 +139,12 @@
                       <div id="edit{{ $packages->strPackageID }}" class="modal modal-fixed-footer">
                         <h5><font color = "#1b5e20"><center>EDIT PACKAGE DETAILS</center> </font> </h5>
                           
-                          {!! Form::open(['url' => 'maintenance/packages/update']) !!}
+                          {!! Form::open(['url' => 'maintenance/packages/update', 'files' => 'true']) !!}
                             <div class="divider" style="height:2px"></div>
                             <div class="modal-content col s12">
 
                               <div class="input-field">
-                                <input value="{{ $packages->strPackageID }}" id="editSegmentID" name="editSegmentID" type="hidden"> 
+                                <input value="{{ $packages->strPackageID }}" id="editPackageID" name="editPackageID" type="hidden"> 
                               </div>
 
                                 <div class = "col s12" style="padding:15px;  border:3px solid white;">

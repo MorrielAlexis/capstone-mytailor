@@ -167,6 +167,44 @@ class PackagesController extends Controller
         //
     }
 
+    function update_package(Request $request)
+    {
+         $packages = Package::find($request->input('editPackageID'));
+
+        $file = $request->input('editImage');
+        $destinationPath = 'imgPackages';
+
+                if($file == $packages->strPackageImage)
+                {
+                    $packages->strPackageName = trim($request->input('editPackageName'));
+                    $packages->strPackageSeg1FK = $request->input('editSegment1');
+                    $packages->strPackageSeg2FK = $request->input('editSegment2');
+                    $packages->strPackageSeg3FK = $request->input('editSegment3');
+                    $packages->strPackageSeg4FK = $request->input('editSegment4');
+                    $packages->strPackageSeg5FK = $request->input('editSegment5');
+                    $packages->strPackageDesc = trim($request->input('editPackageDesc'));
+                    
+                }else{
+                    $request->file('editImg')->move($destinationPath);
+
+                    $packages->strPackageName = trim($request->input('editPackageName'));
+                    $packages->strPackageSeg1FK = $request->input('editSegment1');
+                    $packages->strPackageSeg2FK = $request->input('editSegment2');
+                    $packages->strPackageSeg3FK = $request->input('editSegment3');
+                    $packages->strPackageSeg4FK = $request->input('editSegment4');
+                    $packages->strPackageSeg5FK = $request->input('editSegment5');
+                    $packages->strPackageDesc = trim($request->input('editPackageDesc'));
+                    $packages->strPackageImage = 'imgPackages/'.$file;
+                }           
+
+                $packages->save();
+
+            \Session::flash('flash_message_update','Package successfully updated.'); //flash message      
+
+            
+            return redirect('maintenance/packages');
+    }
+
     public function smartCounter($id)
     {   
 
