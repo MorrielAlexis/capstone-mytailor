@@ -147,7 +147,7 @@
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s12">
-                          <input required id="editComName" name = "editComName" value = "{{$company->strCompanyName}}" placeholder="Company Name" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2">
+                          <input required id="editComName" name = "editComName" value = "{{$company->strCompanyName}}" placeholder="Company Name" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s\d]{2,}$" maxlength="30" minlength="2">
                           <label for="company_name">Company Name <span class="red-text"><b>*</b></span></label>
                         </div>
                     </div>
@@ -329,7 +329,7 @@
 
           <div class = "col s12" style="padding:15px;  border:3px solid white;">
               <div class="input-field col s12">
-                <input required id="addComName" name = "addComName" placeholder="Company Name" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2">
+                <input required id="addComName" name = "addComName" placeholder="Company Name" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s\d]{2,}$" maxlength="30" minlength="2">
                 <label for="company_name"> Company Name <span class="red-text"><b>*</b></span></label>
               </div>
           </div>

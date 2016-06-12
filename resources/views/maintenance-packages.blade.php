@@ -139,18 +139,18 @@
                       <div id="edit{{ $packages->strPackageID }}" class="modal modal-fixed-footer">
                         <h5><font color = "#1b5e20"><center>EDIT PACKAGE DETAILS</center> </font> </h5>
                           
-                          {!! Form::open(['url' => 'maintenance/packages/update']) !!}
+                          {!! Form::open(['url' => 'maintenance/packages/update', 'files' => 'true']) !!}
                             <div class="divider" style="height:2px"></div>
                             <div class="modal-content col s12">
 
                               <div class="input-field">
-                                <input value="{{ $packages->strPackageID }}" id="editSegmentID" name="editSegmentID" type="hidden"> 
+                                <input value="{{ $packages->strPackageID }}" id="editPackageID" name="editPackageID" type="hidden"> 
                               </div>
 
                                 <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input required value="{{ $packages->strPackageName }}" id="editPackageName" name= "editPackageName" type="text" class="validateSegName">
-                                <label for="segment_name">Package Name <span class="red-text"><b>*</b></span></label>
+                                <input required value="{{ $packages->strPackageName }}" pattern="[A-Za-z\s]+" id="editPackageName" name= "editPackageName" type="text" class="">
+                                <label for="segment_name">Package Name </label>
                     <span id="left"></span></label>
                               </div>
                           </div>
@@ -286,7 +286,7 @@
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input value="{{ $packages->strPackageDesc }}"type="text" readonly>
+                                <input value="{{ $packages->strPackageDesc }}" type="text" class="" readonly>
                                 <label for="package_desc">Package Description </label>
                               </div>
                           </div>
