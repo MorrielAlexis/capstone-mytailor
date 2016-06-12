@@ -34,12 +34,12 @@
 	                <div class="col s6">       
                         <div style="color:black; padding-left:140px" class="input-field col s12">                 
                           <input value="" id="addIndiID" name="addIndiID" type="text" class="">
-                          <label style="color:black">Individual ID </label>
+                          <label style="color:gray"><b>Individual ID </b></label>
                         </div>
 
                         <div style="color:black; padding-left:140px; margin-left:1px" class="input-field col s12">                 
                           <input value="" id="dateToday" name="dateToday" type="text" class="">
-                          <label style="color:black">Transaction No. </label>
+                          <label style="color:gray"><b>Transaction No. </b></label>
                         </div>
 	            	</div>
             
@@ -83,87 +83,96 @@
                 <div class="col s12" style="margin-top:30px">
                 	<div class="divider" style="margin-bottom:30px"></div>
 	            	
+                    <span class="col s12" style="color:teal;"><b>Customer Detail</b></span>
+                    <div class="card-panel col s12" style="border:3px solid gray; padding:15px;">
                         <div style="color:black" class="input-field col s4">                 
                           <input value="" id="first_name" name="first_name" type="text" class="">
-                          <label style="color:black" for="first_name">*First Name </label>
+                          <label style="color:gray" for="first_name"><b>*First Name</b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s4">                 
                           <input value="" id="middle_name" name="middle_name" type="text" class="">
-                          <label style="color:black" for="middle_name">Middle Name </label>
+                          <label style="color:gray" for="middle_name"><b>Middle Name</b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s4">                 
                           <input value="" id="last_name" name="last_name" type="text" class="">
-                          <label style="color:black" for="last_name">*Last Name </label>
+                          <label style="color:gray" for="last_name"><b>*Last Name </b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s6">
-							<p> Gender</p>
-							<select>
-								<option value="0"></option>
-							    <option value="1">Female</option>
-							    <option value="2">Male</option>
-							</select>
-						</div>
+            							<p style="color:gray"><b> Gender</b></p>
+            							<select>
+            								<option value="0"></option>
+            							    <option value="1">Female</option>
+            							    <option value="2">Male</option>
+            							</select>
+            						</div>
 
-						<div style="color:black" class="input-field col s6">
-                        	<p>Date of Birth</p>
+						            <div style="color:black" class="input-field col s6">
+                        	<p style="color:gray"><b>Date of Birth</b></p>
                         	<input class="datepicker" id="editDtEmpBday" name="editDtEmpBday" type="date" placeholder="May 3, 1997">	
                         </div>
+                    </div>
 
+                    <span class="col s12" style="color:teal; margin-top:20px"><b>Customer Address</b></span>
+                    <div class="card-panel col s12" style="border:3px solid gray; padding:15px">
                         <div style="color:black" class="input-field col s4">
                             <input required id="addCustPrivHouseNo" name="addCustPrivHouseNo" type="text" class="validateHouseNo">
-                            <label style="color:black" for="house_no">*House No. </label>
+                            <label style="color:gray" for="house_no"><b>*House No. </b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s4">
                             <input required id="addCustPrivStreet" name="addCustPrivStreet" type="text" class="validateStreet">
-                            <label style="color:black" for=" Street">*Street </label>
+                            <label style="color:gray" for=" Street"><b>*Street </b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s4">
                             <input  id="addCustPrivBarangay" name="addCustPrivBarangay" type="text" class="validateBarangay">
-                            <label style="color:black" for=" Brgy">Barangay/Subd </label>
+                            <label style="color:gray" for=" Brgy"><b>Barangay/Subd </b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s4">
                             <input required id="addCustPrivCity" name="addCustPrivCity" type="text" class="validateCity">
-                            <label style="color:black" for=" City">*City/Municipality </label>
+                            <label style="color:gray" for=" City"><b>*City/Municipality </b></label>
                         </div>
 
 
                         <div style="color:black" class="input-field col s4">
                             <input id="addCustPrivProvince" name="addCustPrivProvince" type="text" class="validateProvince">
-                            <label style="color:black" for=" Province">Province/Region </label>
+                            <label style="color:gray" for=" Province"><b>Province/Region </b></label>
 	                    </div>
 
                         <div style="color:black" class="input-field col s4">
                             <input id="addCustPrivZipCode" name="addCustPrivZipCode" type="text" class="validateZip">
-                            <label style="color:black" for=" Zip Code">Zip Code </label>
+                            <label style="color:gray" for=" Zip Code"><b>Zip Code </b></label>
 	                    </div>
+                  </div>
 
+                  <span class="col s12" style="color:teal; margin-top:20px"><b>Customer Contact Information</b></span>
+                    <div class="card-panel col s12" style="border:3px solid gray; padding:15px">
 	                    <div style="color:black" class="input-field col s6">
                             <input required id="addEmail" name = "addEmail" type="text" class="validateEmail">
-                            <label style="color:black" for="email"> *Email Address </label>
+                            <label style="color:gray" for="email"><b> *Email Address </b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s6">
                             <input id="addPhone" name = "addPhone" type="text" class="validatePhone" maxlength="10">
-                            <label style="color:black" for="tel"> Telephone Number </label>
+                            <label style="color:gray" for="tel"><b> Telephone Number </b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s6">
                             <input required id="addCel" name = "addCel" type="text" class="validateCell" maxlength="11">
-                            <label style="color:black" for="cellphone"> *Cellphone Number </label>
+                            <label style="color:gray" for="cellphone"><b> *Cellphone Number </b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s6">
                             <input id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt" maxlength="11">
-                            <label style="color:black" for="cellphone"> Cellphone Number (alternate)</label>
+                            <label style="color:gray" for="cellphone"><b> Cellphone Number (alternate)</b></label>
                         </div>
-
                     </div>
+
+                </div>
 	       		</div>
 
 	       		 		<div style="color:gray; margin-top:30px; margin-left:20px" class="col s12">

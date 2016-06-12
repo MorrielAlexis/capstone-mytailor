@@ -120,13 +120,13 @@
 			           				</div>
 			         			</div>
 	                  			
-			         			<div class="col s12" style="margin-top:10px; margin-left:20px">
+			         			<div class="col s12" style="margin-top:10px; margin-left:20px;">
 				         			<center><a class="btn" href="" style="background-color:teal">Customize Package</a></center>
 				         		</div>
 
 								</div>
 
-								<div class="col s12"  style="margin-bottom:60px"></div>
+								<div class="col s12"  style="margin-bottom:40px"></div>
 
 								<div class="col s6">
 								<a style="color:black; margin-left:50px" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#removeOrder"><i class="mdi-navigation-close"></i></a>
@@ -174,8 +174,20 @@
 					</div>
 				</div>
 
-							
-							<div class="divider" style="height:2px; margin-top:50px"></div>      	
+						<div class="divider" style="height:1px; background-color:teal; margin-top:40px"></div>
+						<div class="col s12" style="padding:30px">
+							<div class="col s6">
+								<a href="" class="btn" style="color:black; border:3px teal solid"><b>Cancel Transaction</b></a>
+							</div>	
+							<div class="col s6">
+								<a href="" class="right btn" style="color:black; margin-left:20px; border:3px teal solid"><b>Add another package</b></a>
+								<a href="" class="right btn" style="color:black; border:3px teal solid"><b>Add a retail order</b></a>
+							</div>
+						</div>
+
+
+							<div class="divider" style="height:2px; margin-top:50px"></div>    
+							<div class="divider" style="height:2px; margin-top:50px"></div>   	
 				      		<center><p><font color="gray">End of list of packages purchased</font></p></center>
 						
 						</div>
