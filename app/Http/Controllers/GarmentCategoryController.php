@@ -135,28 +135,24 @@ class GarmentCategoryController extends Controller
     {
     
         $garment = GarmentCategory::find($request->input('delGarmentID'));
-    
 
-        // $count = \DB::table('tblSegment')
-        //         ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
-        //         ->select('tblGarmentCategory.*')
-        //         ->where('tblGarmentCategory.strGarmentCategoryID','=', $garment)
-        //         ->count();
+        $count = \DB::table('tblSegment')
+                ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
+                ->select('tblGarmentCategory.*')
+                ->where('tblGarmentCategory.strGarmentCategoryID','=', $garment)
+                ->count();
 
-        //         dd(count);
-
-
-        // if ($count == 0 ) {
-        //        $garment->strGarmentCategoryInactiveReason = trim($request->input('delInactiveGarment')); //dito yung para sana sa being used pa kaso may aberya pa
-
-        $garment->boolIsActive = 0;
-        $garment ->save();
+        if ($count != 0 ) {
+               $garment->strGarmentCategoryInactiveReason = trim($request->input('delInactiveGarment')); //dito yung para sana sa being used pa kaso may aberya pa
+            $garment->boolIsActive = 0;
+            $garment ->save();
+            return  redirect('maintenance/garment-category');
+        }
 
          \Session::flash('flash_message','Garment category successfully deactivated.'); //flash message
 
-        return  redirect('maintenance/garment-category');
-    }
     // }else return redirect('maintenance/garments?success=beingUsed');
+    }
          
 
         
