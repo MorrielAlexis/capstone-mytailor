@@ -50,6 +50,18 @@
         </div>
       @endif
 
+      <!--Delete -->
+      @if (Session::has('flash_message_beingused'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red accent-2">
+              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+               <em> {!! session('flash_message_delete') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif
+
 
       <!--Reactivate Garment Category-->
       @if (Input::get('successRec') == 'true')
