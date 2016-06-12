@@ -142,7 +142,7 @@ class GarmentCategoryController extends Controller
                 ->where('tblGarmentCategory.strGarmentCategoryID','=', $garment)
                 ->count();
 
-        if ($count == 0 ) {
+        if ($count != 0 ) {
                $garment->strGarmentCategoryInactiveReason = trim($request->input('delInactiveGarment')); //dito yung para sana sa being used pa kaso may aberya pa
             $garment->boolIsActive = 0;
             $garment ->save();
