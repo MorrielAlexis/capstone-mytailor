@@ -113,6 +113,7 @@ class GarmentCategoryController extends Controller
     {
         //
     }
+
     function updateGarmentCategory(Request $request)
     {
     
@@ -125,15 +126,11 @@ class GarmentCategoryController extends Controller
         \Session::flash('flash_message_update','Garment category detail/s successfully updated.'); //flash message
 
         return  redirect('maintenance/garment-category');
-
-        
-   
     }
 
 
     function deleteGarmentCategory(Request $request)
     {
-    
         $garment = GarmentCategory::find($request->input('delGarmentID'));
 
         $count = \DB::table('tblSegment')
@@ -143,22 +140,22 @@ class GarmentCategoryController extends Controller
                 ->count();
 
         if ($count != 0 ) {
-               $garment->strGarmentCategoryInactiveReason = trim($request->input('delInactiveGarment')); //dito yung para sana sa being used pa kaso may aberya pa
+            return redirect('maintenance/garment-category');
+            \Session::flash('flash_message','Garment category is still being used.'); //flash message
+        }else {
+            $garment->strGarmentCategoryInactiveReason = trim($request->input('delInactiveGarment')); //dito yung para sana sa being used pa kaso may aberya pa
             $garment->boolIsActive = 0;
-            $garment ->save();
-            return  redirect('maintenance/garment-category');
+            $garment->save();
+            return redirect('maintenance/garment-category');
+            \Session::flash('flash_message','Garment category successfully deactivated.'); //flash message
         }
-
-         \Session::flash('flash_message','Garment category successfully deactivated.'); //flash message
-
-    // }else return redirect('maintenance/garments?success=beingUsed');
     }
          
 
         
    
     
-     public function smartCounter($id)
+    public function smartCounter($id)
     {   
 
         $lastID = str_split($id);
