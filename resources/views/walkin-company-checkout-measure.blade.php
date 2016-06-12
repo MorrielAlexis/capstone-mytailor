@@ -136,12 +136,11 @@
 				</div>-->
 	        	</div>
 
-	        	<div class="container">
-                    		<a class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to edit data for company employees" href="{{URL::to('transaction/walkin-company-add-employees')}}" style="padding:10px; color:white; background-color:teal; padding-bottom:45px; margin-top:80px;"><!--<i class="mdi-navigation-cancel" style="font-size:20px;">--> <label style="font-size:15px; color:white"> Add Employees Now</label><!--</i>--></a>
-                    		<a href="{{URL::to('transaction/walkin-company')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to go back to home and start shopping!" style="background-color:#1976d2; padding:9.5px; padding-bottom:45px; margin-top:80px;"><label style="font-size:15px; color:white">Go Back to Shopping</label></a>
-                    		<a href="{{URL::to('transaction/walkin-company')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Transfers you back home and clears current unsaved transaction" style="background-color:#d32f2f; padding:9.5px; padding-bottom:45px; margin-right:30px; margin-top:80px;"><label style="font-size:15px; color:white">Cancel Transaction</label></a>
+
+                    		<a class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to edit data for company employees" href="{{URL::to('transaction/walkin-company-add-employees')}}" style="margin-left:30px; padding:10px; color:white; background-color:#03a9f4; padding-bottom:45px; margin-top:80px;"><!--<i class="mdi-navigation-cancel" style="font-size:20px;">--> <label style="font-size:15px; color:white"> Add Employees Now</label><!--</i>--></a>
+                    		<a href="{{URL::to('transaction/walkin-company')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to go back to home and start shopping!" style="background-color:#1976d2; padding:9.5px; padding-bottom:45px; margin-top:80px; margin-right:30px"><label style="font-size:15px; color:white">Go Back to Shopping</label></a>
+                    		<a href="{{URL::to('transaction/walkin-company')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Transfers you back home and clears current unsaved transaction" style="background-color:#26a69a; padding:9.5px; padding-bottom:45px; margin-right:30px; margin-top:80px;"><label style="font-size:15px; color:white">Cancel Transaction</label></a>
                     	
-                </div>
 
 
 

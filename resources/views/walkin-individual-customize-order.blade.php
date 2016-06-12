@@ -25,7 +25,7 @@
 							<div class="col s12">
 								
 								<div class="col s6"><p><h5><b>Customize Order</b></h5></p></div>							
-									<div class="right col s1"><a style="margin-top:15px; background-color:teal" type="submit" class="waves-effect waves-green btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to go back to ordering" href="{{URL::to('/transaction/walkin-individual')}}"><i class="mdi-action-work" style="color:white; opacity:0.90; font-size:30px;"></i></a></div>
+									<div class="right col s1"><a style="margin-top:15px; background-color:teal" type="submit" class="waves-effect waves-green btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to go back home" href="{{URL::to('/transaction/walkin-individual')}}"><i class="mdi-action-home" style="color:white; opacity:0.90; font-size:30px;"></i></a></div>
 									<div class="right col s5"><a style="margin-top:15px; background-color:teal" type="submit" class="right waves-effect waves-green btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to proceed to payment of orders" href="#summary-of-order"><font color="white" size="+1"><!--<i class="mdi-action-payment" style="font-size:20px;">-->  Proceed to Checkout<!--</i>--></font></a>
 										<div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
 											<h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
@@ -135,7 +135,7 @@
 									                        <div class="divider" style="height:2px"></div>
 									                        <div class="modal-content col s12">
 									                        	<div class="col s1" style="margin-top:60px">
-									                        		<input type="radio" class="filled-in" id="pattern1" />
+									                        		<input name="garmentDesign" type="radio" class="filled-in" id="pattern1" />
 									                        		<label for="pattern1"></label>
 									                        	</div>
 									                        	 <div class="col s11">
@@ -155,7 +155,7 @@
 															      </div>
 
 															    <div class="col s1" style="margin-top:60px">
-									                        		<input type="radio" class="filled-in" id="pattern2" />
+									                        		<input name="garmentDesign" type="radio" class="filled-in" id="pattern2" />
 									                        		<label for="pattern2"></label>
 									                        	</div>
 															      <div class="col s11">
@@ -176,7 +176,7 @@
 
 
 															    <div class="col s1" style="margin-top:60px">
-									                        		<input type="radio" class="filled-in" id="pattern3" />
+									                        		<input name="garmentDesign" type="radio" class="filled-in" id="pattern3" />
 									                        		<label for="pattern3"></label>
 									                        	</div>
 															      <div class="col s11">
@@ -222,7 +222,7 @@
 									                        <div class="divider" style="height:2px"></div>
 									                        <div class="modal-content col s12">
 									                        	<div class="col s1" style="margin-top:60px">
-									                        		<input type="radio" class="filled-in" id="fabric1" />
+									                        		<input name="garmentFabrics" type="radio" class="filled-in" id="fabric1" />
 									                        		<label for="fabric1"></label>
 									                        	</div>
 									                        	 <div class="col s11">
@@ -242,7 +242,7 @@
 															      </div>
 
 															    <div class="col s1" style="margin-top:60px">
-									                        		<input type="radio" class="filled-in" id="fabric2" />
+									                        		<input name="garmentFabrics" type="radio" class="filled-in" id="fabric2" />
 									                        		<label for="fabric2"></label>
 									                        	</div>
 															      <div class="col s11">
@@ -263,7 +263,7 @@
 
 
 															    <div class="col s1" style="margin-top:60px">
-									                        		<input type="radio" class="filled-in" id="fabric3" />
+									                        		<input name="garmentFabrics" type="radio" class="filled-in" id="fabric3" />
 									                        		<label for="fabric3"></label>
 									                        	</div>
 															      <div class="col s11">
@@ -548,6 +548,18 @@
 						</div>
 						</div><!--Col s12-->
 
+							<div class="divider" style="height:2px;margin-top:40px"></div>
+							<div class="col s12" style="padding:30px">
+								<div class="col s6">
+									<a href="{{URL::to('transaction/walkin-individual')}}" class="btn" style="color:white; background-color:teal; border:3px teal solid">Cancel Transaction</a>
+								</div>	
+								<div class="col s6">
+									<a href="{{URL::to('transaction/walkin-individual')}}" class="right btn" style="color:white; background-color:teal; margin-left:20px; border:3px teal solid">Add another set</a>
+									<a href="{{URL::to('transaction/walkin-individual-retail-products')}}" class="right btn" style="color:white; background-color:teal; border:3px teal solid">Add a retail order</a>
+								</div>
+							</div>
+
+							<div class="divider" style="height:2px; margin-top:50px"></div> 
 							<div class="divider" style="height:2px; margin-top:50px"></div>      	
 				      		<center><p><font color="gray">End of order list wanting to purchase</font></p></center>
 						

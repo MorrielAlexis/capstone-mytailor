@@ -95,15 +95,15 @@
 	                          <label style="color:red" for="transac_no">Total Amount: </label>
 	                        </div>
 	                        <div class="col s4">
-			          				<input type="checkbox" class="filled-in" id="half_pay" />
+			          				<input name="modePayment" type="radio" class="filled-in" id="half_pay" />
 	      							<label for="half_pay">Pay first 50%</label>
 		      				</div>
 		      				<div class="col s4">
-			          				<input type="checkbox" class="filled-in" id="half_pay" />
-	      							<label for="half_pay">Pay up to 90%</label>
+			          				<input name="modePayment" type="radio" class="filled-in" id="partial_full" />
+	      							<label for="partial_full">Pay up to 90%</label>
 		      				</div>
 		      				<div class="col s4">
-				          			<input type="checkbox" class="filled-in" id="full_pay" />
+				          			<input name="modePayment" type="radio" class="filled-in" id="full_pay" />
 		      						<label for="full_pay">Full-payment</label>
 		      				</div>
 		      				<div style="color:gray; padding-left:140px;" class="input-field col s12">                 

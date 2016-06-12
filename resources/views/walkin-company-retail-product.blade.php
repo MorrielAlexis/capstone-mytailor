@@ -5,7 +5,7 @@
 	<div class="row">
       <div class="col s12 m12 l12">
         <span class="page-title"><center><h3><b>Welcome to <font color="white">MyTailor</font></b></h3></center></span>
-        <center><h5>Walk-in Individual - Order Process</h5></center>
+        <center><h5>Walk-in Company - Order Process</h5></center>
       </div>
     </div>
 
@@ -51,17 +51,71 @@
 		      				</div>
 						</div>
 
+
 						<div class="col s12">
 							<div class="divider"></div>
-								<a class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize orders" style="margin-top:30px; font-size:15px; color:white; background-color: teal; opacity:0.90" href="{{URL::to('/transaction/walkin-individual-customize-orders')}}"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Reset Order<!--</i>--></a>
-								<a class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to add orders to cart " style="margin-top:30px; background-color: teal; font-size:15px; color:white" href="#!"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  View Cart<!--</i>--></a>							
+								<a class="left btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize orders" style="margin-top:30px; font-size:15px; color:white; background-color: teal; opacity:0.90" href="#reset-order"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Reset Order<!--</i>--></a>
+									<div id="reset-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:120px;">
+										<h5><font color="red"><center><b>Warning!</b></center></font></h5>	
+										{!! Form::open() !!}
+												<div class="divider" style="height:2px"></div>
+												<div class="modal-content col s12">
+													<div class="col s3">
+														<i class="mdi-alert-error" style="font-size:50px; color:red"></i>
+													</div>
+													<div class="col s9">
+														<p><font size="+1">Doing this will clear all orders made!</font></p>
+													</div>
+												</div>
+
+												<div class="modal-footer col s12" style="background-color:red; opacity:0.85">
+									                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-company-retail-products')}}"><font color="white">OK</font></a>
+									                <a href="{{URL::to('transaction/walkin-company-retail-products')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="white">Cancel</font></a>
+									            </div>
+											{!! Form::close() !!}
+									</div>
+								<a class="right btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to add orders to cart " style="margin-top:30px; background-color: teal; font-size:15px; color:white" href="#view-cart"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  View Cart<!--</i>--></a>							
+									<div id="view-cart" class="modal modal-fixed-footer">
+										<h5><font color="teal"><center><b>List of Products Added to Cart</b></center></font></h5>	
+										{!! Form::open() !!}
+												<div class="divider" style="height:2px"></div>
+												<div class="modal-content col s12" style="padding-top:30px; padding-bottom:50px">
+							
+									                        <table class = "table centered order-summary" border = "2">
+											       				<thead style="color:red">
+												          			<tr>													                  
+													                  <th data-field="product">Product</th>
+													                  <th data-field="quantity">Quantity</th>
+													                  <th data-field="remove">Remove</th>
+													                </tr>
+													            </thead>
+													            <tbody>
+													            	<tr>
+													            		<td>Blazer</td>
+													            		<td>19</td>
+													            		<td><input type="checkbox" class="filled-in" id="remove"/><label for="remove"></label></td>
+													            	</tr>
+													            </tbody>
+													        </table>
+													    
+												</div>
+
+												<div class="modal-footer col s12">
+									                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-company-retail-products')}}"><font color="teal"><b>OK</b></font></a>
+									                <a href="{{URL::to('transaction/walkin-company-retail-products')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="teal"><b>Cancel</b></font></a>
+									            </div>
+											{!! Form::close() !!}
+									</div>
+
 						</div>
 
 						<div class="col s12" style="margin-bottom:20px"></div>
 
 						<div class="col s12" style="margin-top:15px">
-							<div class="divider" style="margin-bottom:40px; height:2px"></div>
-							<p class="center-align" style="color:teal; margin-bottom:40px"><b>CHOOSE AMONG AVAILABLE PRODUCTS</b></p>
+							<div class="divider"></div>
+							<div class="divider"></div>
+							<div class="divider"></div>
+							<p class="center-align" style="color:teal; margin-bottom:40px"><b>CHOOSE AMONG AVAILABLE RETAIL PRODUCTS</b></p>
 							<div class="col s4">
 									<div class="center col s12">
 				          				<input type="checkbox" class="filled-in" id="polo-male" style="padding:5px"/>
@@ -176,10 +230,11 @@
 						<div>
 
 							<div class="col s12">
-								<a class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize orders" style="margin-left:40px; margin-top:30px; font-size:15px; color:white; background-color: teal; opacity:0.90" href="{{URL::to('/transaction/walkin-individual-customize-orders')}}"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Customize Orders<!--</i>--></a>
+								<a class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize orders" style="margin-left:40px; margin-top:30px; font-size:15px; color:white; background-color: teal; opacity:0.90" href="{{URL::to('/transaction/walkin-company-customize-orders')}}"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Customize Orders<!--</i>--></a>
 								<a class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to add orders to cart " style="margin-top:30px; background-color: teal; font-size:15px; color:white" href="#!"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Add to Cart<!--</i>--></a>
-								<a class="left tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to clear all orders made from cart" href="#resetOrder" style=" margin-top:30px; font-size:18px;"><i class="mdi-navigation-arrow-back"></i><b><u>Switch to Bulk Orderings</u></b></a>
+								<a href="{{URL::to('transaction/walkin-company')}}" class="left" style="margin-top:30px; font-size:18px"><i class="mdi-navigation-arrow-back"></i><b><u>Switch to sets</u></b></a>								
 							</div>
+
 						</div>
 
 					</div>
@@ -193,16 +248,14 @@
 
 		</div>
 	</div>
-
-</div>
-</div>
-
+		</div>
+	</div>
 
 @stop
 
 @section('scripts')
 
-	<script type="text/javascript">
+	<script>
 	  $('.modal-trigger').leanModal({
 	      dismissible: true, // Modal can be dismissed by clicking outside of the modal
 	      opacity: .5, // Opacity of modal background
@@ -219,5 +272,10 @@
 	  });
 	</script>	        
 
+	<script>
+	 $(document).ready(function(){
+		$('.tooltipped').tooltip({delay: 50});
+	 });
+	</script>
 
 @stop

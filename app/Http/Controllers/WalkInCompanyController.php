@@ -19,6 +19,11 @@ class WalkInCompanyController extends Controller
         return view('transaction-walkin-company');
     }
 
+    public function retailProduct()
+    {
+        return view('walkin-company-retail-product');
+    }
+
     public function customize()
     {
         return view('walkin-company-customize-order');

@@ -44,24 +44,8 @@
                         </div>
 	            	</div>
             
-	            	<a id="cancelTransac" href="#cancel-order" class="btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel transaction and go back to homepage" style="margin-top:60px; margin-left:40px; padding:10px; padding-bottom:45px; background-color:teal; color:white">Cancel</a>
-	            			<div id="cancel-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:80px">
-								<h5><font color="red"><center><b>Warning!</b></center></font></h5>
-									
-									{!! Form::open() !!}
-										<div class="divider" style="height:2px"></div>
-										<div class="modal-content col s12">
-											<div class="center col s4"><i class="mdi-alert-warning" style="color:red; font-size:60px"></i></div>
-											<div class="col s8"><p style="font-size:18px">Are you sure? Doing this will delete current transaction.</p></div>
-										</div>
 
-										<div class="modal-footer col s12">
-							                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-company')}}"><font color="black">Yes</font></a>
-							                <a href="{{URL::to('/transaction/walkin-company-payment-customer-info')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
-							            </div>
-									{!! Form::close() !!}
-							</div>
-	            	<a id="addPayment" href="#summary-of-order" class="btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-top:60px; margin-left:40px; padding:10px; padding-bottom:45px; background-color:teal; color:white">Save and Proceed</a>
+	            	<a id="addPayment" href="#summary-of-order" class="btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-top:20px; margin-left:40px; padding:10px; padding-left:19px; padding-right:19px; padding-bottom:45px; background-color:teal; color:white"><b>Save and Proceed</b></a>
 	            			<div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
 									<h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
 										
@@ -82,16 +66,23 @@
 												              	<tbody>
 														            <tr>
 														               <td>Men Set A</td>
-														               <td>100</td>
-														               <td>1,800.00 PHP</td>
-														               <td>180,000.00 PHP</td>
+														               <td>19</td>
+														               <td>1,400.00 PHP</td>
+														               <td>26,600.00 PHP</td>
 														            </tr>
 
-														             <tr>
-														               <td>Unisex Set A</td>
-														               <td>50</td>
-														               <td>2,500.00 PHP</td>
-														               <td>125,000.00 PHP</td>
+														            <tr>
+														               <td>Women Set A</td>
+														               <td>38</td>
+														               <td>1,300.00 PHP</td>
+														               <td>49,400.00 PHP</td>
+														            </tr>
+
+														            <tr>
+														               <td>Blazer</td>
+														               <td>19</td>
+														               <td>900.00 PHP</td>
+														               <td>17,100.00 PHP</td>
 														            </tr>
 
 														        </tbody>
@@ -103,7 +94,7 @@
 
 												      	<div class="col s12" style="margin-bottom:50px" >
 															<div class="col s6"><p style="color:gray">Estimated time to finish all orders:<p style="color:black">60 days</p></p></div>
-															<div class="col s6"><p style="color:gray">Total Amoun to Pay:<p style="color:black">305,000.00 PHP</p></p></div>
+															<div class="col s6"><p style="color:gray">Total Amoun to Pay:<p style="color:black">93,100.00 PHP</p></p></div>
 														</div>
 													</div>
 
@@ -115,7 +106,25 @@
 										{!! Form::close() !!}
 							</div>
 
-	            	<div class="col s4" style="margin-top:45px">
+							<a id="cancelTransac" href="#cancel-order" class="btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel transaction and go back to homepage" style="margin-top:30px; margin-left:40px; padding:10px; padding-bottom:45px; background-color:teal; color:white"><b>Cancel Transaction</b></a>
+	            			<div id="cancel-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:80px">
+								<h5><font color="red"><center><b>Warning!</b></center></font></h5>
+									
+									{!! Form::open() !!}
+										<div class="divider" style="height:2px"></div>
+										<div class="modal-content col s12">
+											<div class="center col s4"><i class="mdi-alert-warning" style="color:red; font-size:60px"></i></div>
+											<div class="col s8"><p style="font-size:18px">Are you sure? Doing this will delete current transaction.</p></div>
+										</div>
+
+										<div class="modal-footer col s12">
+							                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-company')}}"><font color="black">Yes</font></a>
+							                <a href="{{URL::to('/transaction/walkin-company-payment-customer-info')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+							            </div>
+									{!! Form::close() !!}
+							</div>
+
+	            	<div class="col s4" style="margin-top:35px">
 	            		 <div class="fixed-action-btn vertical" style="bottom: 45px; right: 24px;">
 						        <a class="mdi-maps-store-mall-directory btn-floating btn-large red " style="font-size:40px; height:70px; width:70px; padding:5px; padding-bottom:3px; margin-right:40px" ></a>
 						          <ul>
@@ -126,7 +135,6 @@
 	            		
 	            		
 	            	</div>
-
 
 	            </div>
 
