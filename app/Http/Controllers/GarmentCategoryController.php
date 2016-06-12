@@ -139,24 +139,34 @@ class GarmentCategoryController extends Controller
                 ->where('tblGarmentCategory.strGarmentCategoryID','=', $garment)
                 ->count();
 
-        if ($count != 0 ) {
-            return redirect('maintenance/garment-category');
-            // \Session::flash('flash_message_beingused','Garment category is still being used.'); //flash message
-            return redirect()->back()->with('error', 'Garment category is being used.');
+                if ($count != 0){
+                   $garment->strGarmentCategoryInactiveReason = trim($request->input('delInactiveGarment')); 
+                $garment->boolIsActive = 0;
+                $garment->save();
+                \Session::flash('flash_message_delete','Garment category successfully deactivated.'); //flash message
+                return redirect('maintenance/garment-category'); 
+            }else return redirect('maintenance/garment-category?success=beingUsed');
 
-        }else {
-            $garment->strGarmentCategoryInactiveReason = trim($request->input('delInactiveGarment')); //dito yung para sana sa being used pa kaso may aberya pa
-            $garment->boolIsActive = 0;
-            $garment->save();
-            \Session::flash('flash_message_delete','Garment category successfully deactivated.'); //flash message
-            return redirect('maintenance/garment-category');
-            
-        }
-    }
-         
 
         
-   
+            //Daniel's Logic
+
+        // if ($count != 0 ) {
+        //     // \Session::flash('flash_message_beingused','Garment category is still being used.'); //flash message
+        //     return redirect('maintenance/garment-category?success=beingUsed');
+
+        // }else {
+        //     $garment->strGarmentCategoryInactiveReason = trim($request->input('delInactiveGarment')); 
+        //     $garment->boolIsActive = 0;
+        //     $garment->save();
+        //     \Session::flash('flash_message_delete','Garment category successfully deactivated.'); //flash message
+        //     return redirect('maintenance/garment-category');
+            
+        // }
+    }
+    
+    
+
     
     public function smartCounter($id)
     {   

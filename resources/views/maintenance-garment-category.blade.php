@@ -62,6 +62,18 @@
         </div>
       @endif
 
+      <!--Delete Garment Category-->
+      @if (Input::get('successDel') == 'true')
+        <div class="row" id="success-message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel yellow">
+              <span class="black-text" style="color:black">Successfully deactivated garment category!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+            </div>
+          </div>
+        </div>
+      @endif
+
+
 
       <!--Reactivate Garment Category-->
       @if (Input::get('successRec') == 'true')
