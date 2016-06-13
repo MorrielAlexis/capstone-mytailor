@@ -149,24 +149,7 @@ class GarmentCategoryController extends Controller
                 \Session::flash('flash_message_delete','Garment category successfully deactivated.'); //flash message
                 return redirect('maintenance/garment-category'); 
             }
-
-
-        
-            //Daniel's Logic
-
-        // if ($count != 0 ) {
-        //     // \Session::flash('flash_message_beingused','Garment category is still being used.'); //flash message
-        //     return redirect('maintenance/garment-category?success=beingUsed');
-
-        // }else {
-        //     $garment->strGarmentCategoryInactiveReason = trim($request->input('delInactiveGarment')); 
-        //     $garment->boolIsActive = 0;
-        //     $garment->save();
-        //     \Session::flash('flash_message_delete','Garment category successfully deactivated.'); //flash message
-        //     return redirect('maintenance/garment-category');
-            
-        // }
-    }
+         }
     
     
 
