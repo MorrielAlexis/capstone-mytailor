@@ -149,11 +149,9 @@ class GarmentCategoryController extends Controller
                     \Session::flash('flash_message_delete','Garment category successfully deactivated.'); //flash message
                     return redirect('maintenance/garment-category'); 
             }
-    }
-    
-    
 
-    
+    } 
+      
     public function smartCounter($id)
     {   
 
