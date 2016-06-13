@@ -41,7 +41,7 @@
 									<h5 style="color:#1b5e20; margin-left:20px;">Package Details</h5>
 								</div>
 								<div class="col s2">
-									<div class="btn modal-trigger red lighten-1" href="#employeesmodal" style="margin-top:20px;"><font color="#ffebee">Employees</font></div>
+									<a style="margin-top:20px;" class="btn tooltipped red lighten-1" data-position="bottom" data-delay="50" data-tooltip="Edit Employee Details" href="{{URL::to('transaction-modifycompanyorders-modifyemployee')}}"><font color="#ffebee">Employees</font></a>	
 								</div>
 							</div>
 						</div>

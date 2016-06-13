@@ -246,6 +246,7 @@ Route::get('/transaction-alterationwalkIn-newtransaction','AlterationWalkInContr
 Route::get('transaction-modifyindividualorders-modifyorder','ModifyIndividualOrdersController@modify');
 Route::get('transaction-modifycompanyorders-modifyorder','ModifyCompanyOrdersController@modify');
 Route::get('transaction-modifycompanyorders-modifyemployee','ModifyCompanyOrdersController@employee');
+Route::get('transaction-modifycompanyorders-modifyemployeeorder','ModifyCompanyOrdersController@package');
 
 
 

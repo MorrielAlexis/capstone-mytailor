@@ -29,6 +29,10 @@ class ModifyCompanyOrdersController extends Controller
         return view('transaction-modifycompanyorders-modifyemployee');
     }
 
+    public function package()
+    {
+        return view('transaction-modifycompanyorders-modifyemployeeorder');
+    }
     /**
      * Show the form for creating a new resource.
      *

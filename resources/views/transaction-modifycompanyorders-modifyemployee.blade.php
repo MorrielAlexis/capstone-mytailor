@@ -16,10 +16,11 @@
 					    <table class = "table centered order-summary" border = "1">
 		       				<thead style="color:gray">
 			          			<tr>
-				                  	<th class="col s4">Employee Name</th>
+				                  	<th class="col s3">Employee Name</th>
 				                  	<th class="col s2">Sex</th>
 				                  	<th class="col s1">Package</th>
 				                  	<th class="col s4">Order Details</th>
+				                  	<th class="col s1"></th>
 				                  	<th class="col s1"></th>
 				              	</tr>
 			              	</thead>
@@ -27,130 +28,72 @@
 					</table>
 					<div class="row">
 				        <div>
-		    		        <ul class="collapsible z-depth-0" data-collapsible="accordion" style="border:none;">
-				
-							    <li>
-							        <div class="collapsible-header" style="background-color:#ffebee;">
-										<div class="row">
-											<div style="color:black" class="input-field col s4">
-					                            <input value="Klare Desteen T. Montefalco" id="empname" type="text">		           
-					                        </div>
-					                        <div style="color:black" class="input-field col s2">
-												<select>
-												    <option value="1">Female</option>
-												    <option value="2">Male</option>
-												</select>
-											</div>
-											<div style="color:black" class="input-field col s1">
-												<select>
-												    <option value="1">A</option>
-												    <option value="2">B</option>
-												</select>
-											</div>
-					                        <div style="color:black" class="input-field col s4">
-					                            <input class="left" value="Package A for Female" id="orderdetails" type="text">		           
-					                        </div>
+					        <div style="background-color:#ffebee;">
+								<div class="row">
+									<div style="color:black" class="input-field col s3">
+			                            <input value="Klare Desteen T. Montefalco" id="empname" type="text">		           
+			                        </div>
+			                        <div style="color:black" class="input-field col s2">
+										<select>
+										    <option value="1">Female</option>
+										    <option value="2">Male</option>
+										</select>
+									</div>
+									<div style="color:black" class="input-field col s1">
+										<select>
+										    <option value="1">A</option>
+										    <option value="2">B</option>
+										    <option value="3">None</option>
+										</select>
+									</div>
+			                        <div style="color:black" class="input-field col s3">
+			                            <input class="left" value="Package A for Female" id="orderdetails" type="text">		           
+			                        </div>
+			
+									<div style="color:black" class="col s1">
+										<a style="margin-top:20px" class="btn btn-floating modal-trigger tooltipped" href="#measurementmodal" data-position=bottom data-delay="50" data-tooltip="Edit measurements"><i class="mdi-av-playlist-add"></i></a>
+									</div>
+									<div style="color:black" class="col s1">
+										<a style="margin-top:20px" class=" btn modal-trigger tooltipped btn-floating purple accent-1" href="{{URL::to('transaction-modifycompanyorders-modifyemployeeorder')}}" data-position="top" data-delay="50" data-tooltip="Edit/Modify Package"><i class="mdi-editor-border-color"></i></a>
+									</div>
+									<div style="color:black" class="col s1">
+										<a style="color:black; margin-top:20px" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of employee from list" href="#removeOrder"><i class="mdi-action-delete"></i></a>
+									</div>
+								</div>
+							</div>
+					        <div style="background-color:#e1f5fe;">
+								<div class="row">
+									<div style="color:black" class="input-field col s3">
+			                            <input value="Elijah Riley V. Montefalco" id="empname" type="text">		           
+			                        </div>
+			                        <div style="color:black" class="input-field col s2">
+										<select>
+										    <option value="1">Female</option>
+										    <option value="2">Male</option>
+										</select>
+									</div>
+									<div style="color:black" class="input-field col s1">
+										<select>
+										    <option value="1">A</option>
+										    <option value="2">B</option>
+										    <option value="3">None</option>
+										</select>
+									</div>
+			                        <div style="color:black" class="input-field col s3">
+			                            <input value="1 pc pants, 2 pc polo" id="orderdetails" type="text">		           
+			                        </div>
 
-											<div style="color:black" class="col s1">
-												<a style="color:black; margin-top:20px" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of employee from list" href="#!"><i class="mdi-action-delete center"></i></a>
-											</div>
-										</div>
+									<div style="color:black" class="col s1">
+										<a style="margin-top:20px" class="btn btn-floating modal-trigger tooltipped" href="#measurementmodal" data-position=bottom data-delay="50" data-tooltip="Edit measurements"><i class="mdi-av-playlist-add"></i></a>
 									</div>
-									<div class="collapsible-body" style="border:3px solid #ffebee; border-top:none;">
-										<div class="row">
-											<div class="col s6">
-												<div class="input-field">
-								                  	<input id ="measurement" type="text" class="validate">
-								                  	<label for="measurement">Measurement</label>
-								                </div>
-								                <div class="input-field">
-								                  	<input id ="measurement" type="text" class="validate">
-								                  	<label for="measurement">Measurement</label>
-								                </div>
-								                <div class="input-field">
-								                  	<input id ="measurement" type="text" class="validate">
-								                  	<label for="measurement">Measurement</label>
-								                </div>
-											</div>
-											<div class="col s6">
-												<div class="input-field">
-								                  	<input id ="measurement" type="text" class="validate">
-								                  	<label for="measurement">Measurement</label>
-								                </div>
-								                <div class="input-field">
-								                  	<input id ="measurement" type="text" class="validate">
-								                  	<label for="measurement">Measurement</label>
-								                </div>
-								                <div class="input-field">
-								                  	<input id ="measurement" type="text" class="validate">
-								                  	<label for="measurement">Measurement</label>
-								                </div>
-											</div>
-										</div>
+									<div style="color:black" class="col s1">
+										<a style="margin-top:20px" class=" btn modal-trigger tooltipped btn-floating purple accent-1" href="{{URL::to('transaction-modifycompanyorders-modifyemployeeorder')}}" data-position="top" data-delay="50" data-tooltip="Edit/Modify Package"><i class="mdi-editor-border-color"></i></a>
 									</div>
-								</li>
-								<li>
-							        <div class="collapsible-header" style="background-color:#e1f5fe;">
-										<div class="row">
-											<div style="color:black" class="input-field col s4">
-					                            <input value="Elijah Riley V. Montefalco" id="empname" type="text">		           
-					                        </div>
-					                        <div style="color:black" class="input-field col s2">
-												<select>
-												    <option value="1">Female</option>
-												    <option value="2">Male</option>
-												</select>
-											</div>
-											<div style="color:black" class="input-field col s1">
-												<select>
-												    <option value="1">A</option>
-												    <option value="2">B</option>
-												</select>
-											</div>
-					                        <div style="color:black" class="input-field col s4">
-					                            <input value="1 pc pants, 2 pc polo" id="orderdetails" type="text">		           
-					                        </div>
-
-											<div style="color:black" class="col s1">
-												<a style="color:black; margin-top:20px" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of employee from list" href="#!"><i class="mdi-action-delete"></i></a>
-											</div>
-										</div>
+									<div style="color:black" class="col s1">
+										<a style="color:black; margin-top:20px" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of employee from list" href="#removeOrder"><i class="mdi-action-delete"></i></a>
 									</div>
-									<div class="collapsible-body" style="border:3px solid #ffebee; border-top:none;">
-										<div class="row">
-											<div class="col s6">
-												<div class="input-field">
-								                  	<input id ="measurement" type="text" class="validate">
-								                  	<label for="measurement">Measurement</label>
-								                </div>
-								                <div class="input-field">
-								                  	<input id ="measurement" type="text" class="validate">
-								                  	<label for="measurement">Measurement</label>
-								                </div>
-								                <div class="input-field">
-								                  	<input id ="measurement" type="text" class="validate">
-								                  	<label for="measurement">Measurement</label>
-								                </div>
-											</div>
-											<div class="col s6">
-												<div class="input-field">
-								                  	<input id ="measurement" type="text" class="validate">
-								                  	<label for="measurement">Measurement</label>
-								                </div>
-								                <div class="input-field">
-								                  	<input id ="measurement" type="text" class="validate">
-								                  	<label for="measurement">Measurement</label>
-								                </div>
-								                <div class="input-field">
-								                  	<input id ="measurement" type="text" class="validate">
-								                  	<label for="measurement">Measurement</label>
-								                </div>
-											</div>
-										</div>
-									</div>
-								</li>
-
-							</ul>
+								</div>
+							</div>
 				        </div>
 				    </div>
 
@@ -187,6 +130,70 @@
             <a class="modal-action modal-close waves-effect waves-green btn-flat" href="{{URL::to('transaction/modifyCompany')}}"><font color="black">Yes</font></a>
         </div>
 	</div>	
+
+	<!--Measurement button Modal-->
+	<div id="measurementmodal" class="modal modal-fixed-footer">
+		<div class="modal-content">
+			<h4 style="color:#1b5e20" class="center">Measurements</h4>
+			<div class="divider container" style="margin-bottom:20px;"></div>
+			<div class="row">
+				<div class="col s6">
+					<div class="input-field">
+	                  	<input id ="measurement" type="text" class="validate">
+	                  	<label for="measurement">Hem</label>
+	                </div>
+	                <div class="input-field">
+	                  	<input id ="measurement" type="text" class="validate">
+	                  	<label for="measurement">Slim</label>
+	                </div>
+	                <div class="input-field">
+	                  	<input id ="measurement" type="text" class="validate">
+	                  	<label for="measurement">Sleeves</label>
+	                </div>
+				</div>
+				<div class="col s6">
+					<div class="input-field">
+	                  	<input id ="measurement" type="text" class="validate">
+	                  	<label for="measurement">Hips</label>
+	                </div>
+	                <div class="input-field">
+	                  	<input id ="measurement" type="text" class="validate">
+	                  	<label for="measurement">Circumference</label>
+	                </div>
+	                <div class="input-field">
+	                  	<input id ="measurement" type="text" class="validate">
+	                  	<label for="measurement">Slit</label>
+	                </div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="modal-footer" style="background-color:#26a69a">
+			<a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+			<a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+		</div>
+	</div>
+
+	<!--Remove Order Modal-->
+	<div id="removeOrder" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
+		<h5><font color="red"><center><b>Warning!</b></center></font></h5>
+		<div class="divider" style="height:2px"></div>
+		<div class="modal-content">
+			<div class="row">
+				<div class="col s3">
+					<i class="mdi-alert-warning" style="font-size:50px; color:yellow"></i>
+				</div>
+				<div class="col s9">
+					<p><font size="+1">Are you sure you want to delete this employee?</font></p>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer col s12" style="background-color:red; opacity:0.85">
+            <button type="submit" class="waves-effect waves-green btn-flat" href="#!"><font color="black">Yes</font></button>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+        </div>
+	</div>
 
 @stop
 
