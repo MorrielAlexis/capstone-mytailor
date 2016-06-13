@@ -140,12 +140,15 @@ class GarmentCategoryController extends Controller
                 ->count();
 
                 if ($count != 0){
+                    return redirect('maintenance/garment-category?success=beingUsed'); 
+                }else {
+
                    $garment->strGarmentCategoryInactiveReason = trim($request->input('delInactiveGarment')); 
                 $garment->boolIsActive = 0;
                 $garment->save();
                 \Session::flash('flash_message_delete','Garment category successfully deactivated.'); //flash message
                 return redirect('maintenance/garment-category'); 
-            }else return redirect('maintenance/garment-category?success=beingUsed');
+            }
 
 
         
