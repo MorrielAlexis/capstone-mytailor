@@ -99,7 +99,7 @@
 
     <!--  <Data Dependency Message> -->
        @if (Input::get('success') == 'beingUsed')
-        <div class="row" id="success-message">
+        <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
             <div class="card-panel red">
               <span class="black-text" style="color:black">Sorry! Cannot deactivate garment category. It's still being used!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>

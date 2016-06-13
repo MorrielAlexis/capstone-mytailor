@@ -139,7 +139,7 @@ class GarmentCategoryController extends Controller
                 ->select('tblGarmentCategory.*')
                 ->where('tblGarmentCategory.strGarmentCategoryID','=', $id)
                 ->count();
-                dd($count);
+                
                 if ($count != 0){
                     return redirect('maintenance/garment-category?success=beingUsed'); 
                 }else {
