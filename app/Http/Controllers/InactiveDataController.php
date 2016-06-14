@@ -23,6 +23,7 @@ use App\Zipper;
 use App\HookAndEye;
 use App\Catalogue;
 use App\Alteration;
+use App\Package;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -55,6 +56,7 @@ class InactiveDataController extends Controller
         $hook = HookAndEye::all();
         $catalogue = Catalogue::all();
         $alteration = Alteration::all();
+        $packages = Package::all();
 
         $newID = 0;
 
@@ -81,6 +83,7 @@ class InactiveDataController extends Controller
             ->with('hook', $hook)
             ->with('catalogue', $catalogue)
             ->with('alteration', $alteration)
+            ->with('packages', $packages)
 
             //->with('reason', $reason)
             ->with('newID', $newID);
@@ -444,10 +447,6 @@ class InactiveDataController extends Controller
     {
         $button = Button::find($request->input('reactID'));
 
-      //  $reas = $request->input('reactInactiveID');
-       // $indiv = \DB::table('tblCustIndividual')
-               // ->where('strIndivID', $individual)
-              //  ->update(array($individual->strIndivInactiveReason => null));
         $button->strButtonInactiveReason = null;
 
         $button->boolIsActive = 1;
@@ -461,14 +460,10 @@ class InactiveDataController extends Controller
     function reactivate_zipper(Request $request)
     {
         $zipper = Zipper::find($request->input('reactID'));
-
-      //  $reas = $request->input('reactInactiveID');
-       // $indiv = \DB::table('tblCustIndividual')
-               // ->where('strIndivID', $individual)
-              //  ->update(array($individual->strIndivInactiveReason => null));
         $zipper->strZipperInactiveReason = null;
 
         $zipper->boolIsActive = 1;
+
         $zipper->save();
 
         \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
@@ -479,15 +474,25 @@ class InactiveDataController extends Controller
     function reactivate_hookeye(Request $request)
     {
         $hook = HookAndEye::find($request->input('reactID'));
-
-      //  $reas = $request->input('reactInactiveID');
-       // $indiv = \DB::table('tblCustIndividual')
-               // ->where('strIndivID', $individual)
-              //  ->update(array($individual->strIndivInactiveReason => null));
         $hook->strHookInactiveReason = null;
 
         $hook->boolIsActive = 1;
         $hook->save();
+
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
+
+        return redirect('utilities/inactive-data');
+    }
+
+    function reactivate_package(Request $request)
+    {
+        $packages = Package::find($request->input('reactID'));
+        
+        $packages->strPackageInactiveReason = null;
+
+        $packages->boolIsActive = 1;
+        
+        $packages->save();
 
         \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
 

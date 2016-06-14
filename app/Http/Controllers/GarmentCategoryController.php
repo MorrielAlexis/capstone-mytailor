@@ -150,7 +150,7 @@ class GarmentCategoryController extends Controller
                     return redirect('maintenance/garment-category'); 
             }
 
-    } 
+    }    
       
     public function smartCounter($id)
     {   
@@ -193,3 +193,4 @@ class GarmentCategoryController extends Controller
         return $newID;
     }
 }
+
