@@ -32,6 +32,7 @@
         <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabMate">Materials</a></li>
         <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabCata">Catalogue</a></li>
         <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabAlte">Alteration</a></li>
+        <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabPackages">Packages</a></li>
         <div class="indicator white" style="z-index:1"></div>
       </ul>
 
@@ -993,7 +994,7 @@
     <div id="tabAlte" class="hue col s12" style="margin-top:45px; background-color: #80d8ff;">
     <div style="height:30px;"></div>
     
-      <!--Catalogue-->
+      <!--Alterations-->
       <p><h5 style="margin-left:20px"><b>Alteration</b></h5></p>
       <div class="row">
         <div class="col s12">
@@ -1040,10 +1041,61 @@
           </div>
         </div>
       </div>
+      </div>
 
+      <div id="tabPackages" class="hue col s12" style="margin-top:45px; background-color: #80d8ff;">
+    <div style="height:30px;"></div>
+
+            <!--Packages-->
+     <p><h5 style="margin-left:20px"><b>Alteration</b></h5></p>
+      <div class="row">
+        <div class="col s12">
+          <div class="card">
+            <div class="card-content">
+              <div class = "col s12 m12 l12 overflow-x">
+                <h5><font color = "#1b5e20"><center>Inactive Packages</center> </font> </h5>
+                <table class="centered" border="1">
+
+                  <thead>
+                    <tr>
+                      <!--<th data-field= "Catalogue ID">Catalogue ID</th>-->
+                      <th data-field="packageName">Name</th>
+                      <th data-field="packagetion">Description</th>
+                      <th data-field="packageImage">Image</th>
+                      <th data-field="React">Reason for Deactivation</th>
+                      <th data-field="React">Reactivate</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach($packages as $packages_1)
+                    @if($packages_1->boolIsActive == 0)
+                      <tr>
+                        <td>{{$packages_1->strPackageName}}</td>
+                        <td>{{$packages_1->strPackageDesc}}</td>
+                        <td><img class="materialboxed" width="650" src="{{URL::asset($packages_1->strPackageImage)}}"></td>
+                        <td>{{ $packages_1->strPackageInactiveReason }}</td>
+                        <td>
+                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-packages']) !!}
+                            <input type="hidden" value="{{ $packages_1->strPackageID}}" id="reactID" name="reactID">
+                            <input type="hidden" value="{{ $packages_1->strPackageID }}" id="reactInactivePackage" name="reactInactivePackage">
+                            <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of customer to the table">REACTIVATE</button>
+                          {!! Form::close() !!}
+                        </td>
+                      </tr>
+                      @endif
+                      @endforeach
+                  </tbody>
+                </table>
+              </div>
+              <div class = "clearfix"></div>
+
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
   </div>
+
 
 
 @stop
