@@ -67,7 +67,7 @@ class EmployeeRoleController extends Controller
 
          \Session::flash('flash_message','Employee role successfully added.'); //flash message
 
-        return redirect('maintenance/employee-role?success=true');
+        return redirect('maintenance/employee-role');
     }
 
     /**
@@ -134,16 +134,29 @@ class EmployeeRoleController extends Controller
     
     function deleteRole(Request $request)
     {
+        $id = $request->input('delRoleID');
         $role = EmployeeRole::find($request->input('delRoleID'));
 
-        $role->strRoleInactiveReason = trim($request->input('delInactiveRole'));
-        $role->boolIsActive = 0;
+        $count = \DB::table('tblEmployee')
+                ->join('tblEmployeeRole', 'tblEmployee.strRole', '=', 'tblEmployeeRole.strEmpRoleID')
+                ->select('tblEmployeeRole.*')
+                ->where('tblEmployeeRole.strEmpRoleID','=', $id)
+                ->count();
 
-        $role->save();
+            if ($count != 0){
+                    return redirect('maintenance/employee-role?success=beingUsed'); 
+                } else {
 
-         \Session::flash('flash_message_delete','Customer successfully deactivated.'); //flash message
-        
-        return redirect('maintenance/employee-role');
+                      $role->strRoleInactiveReason = trim($request->input('delInactiveRole'));
+                            $role->boolIsActive = 0;
+
+                            $role->save();
+
+                             \Session::flash('flash_message_delete','Employee role successfully deactivated.'); //flash message
+                            
+                            return redirect('maintenance/employee-role');
+
+        }
     }
 
 
