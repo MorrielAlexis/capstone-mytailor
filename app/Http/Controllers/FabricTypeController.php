@@ -138,8 +138,18 @@ class FabricTypeController extends Controller
 
     function delete_fabrictype(Request $request)
     {
-
+            $id = $request->input('delFabricID');
             $fabricType = FabricType::find($request-> input('delFabricID'));
+
+            $count = \DB::table('tblSwatchName')
+                ->join('tblFabricType', 'tblSwatchName.strSwatchNameTypeFK', '=', 'tblFabricType.strFabricTypeID')
+                ->select('tblFabricType.*')
+                ->where('tblFabricType.strFabricTypeID','=', $id)
+                ->count();
+
+            if ($count != 0){
+                    return redirect('maintenance/fabric-type?success=beingUsed'); 
+                }else {
 
             $fabricType->strFabricTypeInactiveReason = trim($request->input('delInactiveFabricType'));
             $fabricType->boolIsActive = 0;
@@ -148,6 +158,7 @@ class FabricTypeController extends Controller
         \Session::flash('flash_message_delete','Fabric type successfully deactivate.');
 
         return redirect('maintenance/fabric-type');
+        }
 
     }
 
