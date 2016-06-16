@@ -140,12 +140,12 @@ class GarmentCategoryController extends Controller
                 ->where('tblGarmentCategory.strGarmentCategoryID','=', $id)
                 ->count();
 
-        // $count2 = \DB::table('tblMeasurementCategory')
-        //         ->join('tblGarmentCategory', 'tblMeasurementCategory.strMeasGarFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
-        //         ->select('tblGarmentCategory.*')
-        //         ->where('tblGarmentCategory.strGarmentCategoryID','=', $id)
-        //         ->count2();
-                // dd($count2);
+        $count2 = \DB::table('tblMeasurementCategory')
+                ->join('tblGarmentCategory', 'tblMeasurementCategory.strMeasGarFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
+                ->select('tblGarmentCategory.*')
+                ->where('tblGarmentCategory.strGarmentCategoryID','=', $id)
+                ->count();
+                dd($count2);
                 
                 if ($count != 0){
                     return redirect('maintenance/garment-category?success=beingUsed'); 
