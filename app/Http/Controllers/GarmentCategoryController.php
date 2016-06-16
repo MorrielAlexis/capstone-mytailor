@@ -145,9 +145,9 @@ class GarmentCategoryController extends Controller
                 ->select('tblGarmentCategory.*')
                 ->where('tblGarmentCategory.strGarmentCategoryID','=', $id)
                 ->count();
-                dd($count2);
+                // dd($count2);
                 
-                if ($count != 0){
+                if ($count != 0 || $count2 != 0){
                     return redirect('maintenance/garment-category?success=beingUsed'); 
                 }else {
                     $garment->strGarmentCategoryInactiveReason = trim($request->input('delInactiveGarment')); 
