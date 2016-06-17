@@ -26,7 +26,8 @@ class RoleRequest extends Request
     public function rules()
     {
         return [
-            'addRoleName'    =>  'required|unique:tblEmployeeRole,strEmpRoleName'
+            'addRoleName'    =>  'required|unique:tblEmployeeRole,strEmpRoleName',
+            'editRoleName'   =>  'required|unique:tblEmployeeRole,strEmpRoleName'
         ];
     }
 
@@ -34,12 +35,16 @@ class RoleRequest extends Request
     {
         return [
             'addRoleName.unique'  =>  'Role already exists.',
-            'addRoleName.required' => 'Role name is required.'
+            'addRoleName.required' => 'Role name is required.',
+            'editRoleName.unique'  => 'Role name already exists'
         ];
+
     }
+
 
     protected function formatErrors(Validator $validator)
     {
         return $validator->errors()->all();
+
     }
 }

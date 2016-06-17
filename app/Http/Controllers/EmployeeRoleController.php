@@ -65,6 +65,8 @@ class EmployeeRoleController extends Controller
             ));
         $added = $role->save();
 
+
+
          \Session::flash('flash_message','Employee role successfully added.'); //flash message
 
         return redirect('maintenance/employee-role');
@@ -115,7 +117,7 @@ class EmployeeRoleController extends Controller
         //
     }
 
-    function updateRole(Request $request)
+    function updateRole(RoleRequest $request)
     {
 
         $role = EmployeeRole::find($request->input('editRoleID'));
