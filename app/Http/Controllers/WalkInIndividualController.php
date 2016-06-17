@@ -19,6 +19,41 @@ class WalkInIndividualController extends Controller
         return view('transaction-walkin-individual');
     }
 
+    public function bulkOrder()
+    {
+        return view('walkin-individual-bulk-order');
+    }
+
+    public function bulkOrderCustomize()
+    {
+        return view('walkin-individual-bulk-order-customize');
+    }
+
+    public function bulkOrderCustomizePerPiece()
+    {
+        return view('walkin-individual-bulk-order-customize-per-piece');
+    }
+
+    public function bulkOrderCustomerInfo()
+    {
+        return view('walkin-individual-bulk-order-checkout-info');
+    }
+
+    public function bulkOrderPayment()
+    {
+        return view('walkin-individual-bulk-order-checkout-pay');
+    }
+
+    public function bulkOrderMeasure()
+    {
+        return view('walkin-individual-bulk-order-checkout-measure');
+    }
+
+    public function bulkOrderMeasureNow()
+    {
+        return view('walkin-individual-bulk-order-checkout-measure-now');
+    }
+
     public function customize()
     {
         return view('walkin-individual-customize-order');

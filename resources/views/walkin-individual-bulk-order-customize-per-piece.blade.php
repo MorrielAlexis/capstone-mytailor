@@ -112,8 +112,8 @@
 
 														<div class="modal-footer col s12">
 															<a href="{{URL::to('transaction/walkin-company-catalogue-designs')}}" class="left btn-flat" style="background-color:teal; color:white">Check designs from catalogue</a>
-								                          	<a href="{{URL::to('transaction/walkin-company-customize-orders-package')}}" class="right waves-effect waves-green btn-flat">OK</a>
-								                          	<a href="{{URL::to('transaction/walkin-company-customize-orders-package')}}" class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+								                          	<a href="{{URL::to('transaction/walkin-individual-bulk-orders-customize-per-piece')}}" class="right waves-effect waves-green btn-flat">OK</a>
+								                          	<a href="{{URL::to('transaction/walkin-individual-bulk-orders-customize-per-piece')}}" class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
 								                        </div>
 									                      {!! Form::close() !!}
 													</div>
@@ -198,8 +198,8 @@
 
 
 														<div class="modal-footer col s12">
-								                          <a href="{{URL::to('transaction/walkin-company-customize-orders-package')}}" class="waves-effect waves-green btn-flat">OK</a>
-								                          <a href="{{URL::to('transaction/walkin-company-customize-orders-package')}}" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+								                          <a href="{{URL::to('transaction/walkin-individual-bulk-orders-customize-per-piece')}}" class="waves-effect waves-green btn-flat">OK</a>
+								                          <a href="{{URL::to('transaction/walkin-individual-bulk-orders-customize-per-piece')}}" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
 								                        </div>
 									                      {!! Form::close() !!}
 													</div>
@@ -313,8 +313,8 @@
 
 														<div class="modal-footer col s12">
 															<a href="" class="left btn-flat" style="background-color:teal; color:white">Check designs from catalogue</a>
-								                          	<a href="{{URL::to('transaction/walkin-company-customize-orders-package')}}" class="right waves-effect waves-green btn-flat">OK</a>
-								                          	<a href="{{URL::to('transaction/walkin-company-customize-orders-package')}}" class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+								                          	<a href="{{URL::to('transaction/walkin-individual-bulk-orders-customize-per-piece')}}" class="right waves-effect waves-green btn-flat">OK</a>
+								                          	<a href="{{URL::to('transaction/walkin-individual-bulk-orders-customize-per-piece')}}" class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
 								                        </div>
 									                      {!! Form::close() !!}
 													</div>
@@ -399,8 +399,8 @@
 
 
 														<div class="modal-footer col s12">
-								                          <a href="{{URL::to('transaction/walkin-company-customize-orders-package')}}" class="waves-effect waves-green btn-flat">OK</a>
-								                          <a href="{{URL::to('transaction/walkin-company-customize-orders-package')}}" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+								                          <a href="{{URL::to('transaction/walkin-individual-bulk-orders-customize-per-piece')}}" class="waves-effect waves-green btn-flat">OK</a>
+								                          <a href="{{URL::to('transaction/walkin-individual-bulk-orders-customize-per-piece')}}" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
 								                        </div>
 									                      {!! Form::close() !!}
 													</div>
@@ -431,9 +431,9 @@
 
 						<div class="col s12"><div class="divider" style="height:2px; margin-top:20px; margin-bottom:20px"></div></div>
 						<div class="col s12">
-							<a href="{{URL::to('transaction/walkin-company-catalogue-designs')}}" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Design the whole set once by choosing among the available designs in the catalogue" style="background-color:teal; color:white">Choose design from Catalogue</a>
-							<a class="right waves-effect waves-green btn" style="background-color:teal; margin-left:80px; margin-right:30px" href="{{URL::to('transaction/walkin-company-customize-orders')}}">Save</a>
-							<a href="{{URL::to('transaction/walkin-company-customize-orders')}}" class="right waves-effect waves-green btn" style="background-color:teal">Cancel</a>
+							<a href="{{URL::to('transaction/walkin-individual-catalogue-designs')}}" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Design the whole set once by choosing among the available designs in the catalogue" style="background-color:teal; color:white">Choose design from Catalogue</a>
+							<a class="right waves-effect waves-green btn" style="background-color:teal; margin-left:80px; margin-right:30px" href="{{URL::to('transaction/walkin-individual-bulk-orders-customize')}}">Save</a>
+							<a href="{{URL::to('transaction/walkin-individual-bulk-orders-customize')}}" class="right waves-effect waves-green btn" style="background-color:teal">Cancel</a>
 						</div>
 
 						<div class="col s12"><div class="divider" style="height:2px; margin-top:20px; margin-bottom:20px"></div></div>      	

@@ -225,6 +225,14 @@ Route::get('/acceptCompany','OnlineCustomerCompanyController@accept');
 
 Route::group(['prefix' => 'transaction'], function(){
 	
+	Route::get('walkin-individual-bulk-orders', 'WalkInIndividualController@bulkOrder');
+	Route::get('walkin-individual-bulk-orders-customize', 'WalkInIndividualController@bulkOrderCustomize');
+	Route::get('walkin-individual-bulk-orders-customize-per-piece', 'WalkInIndividualController@bulkOrderCustomizePerPiece');
+	Route::get('walkin-individual-bulk-orders-payment-customer-info', 'WalkInIndividualController@bulkOrderCustomerInfo');
+	Route::get('walkin-individual-bulk-orders-payment-payment-info', 'WalkInIndividualController@bulkOrderPayment');
+	Route::get('walkin-individual-bulk-orders-payment-measure-detail', 'WalkInIndividualController@bulkOrderMeasure');
+	Route::get('walkin-individual-bulk-orders-measure-now', 'WalkInIndividualController@bulkOrderMeasureNow');
+
 	Route::get('walkin-individual-customize-orders', 'WalkInIndividualController@customize');
 	Route::get('walkin-individual-catalogue-designs', 'WalkInIndividualController@catalogueDesign');
 	Route::get('walkin-individual-payment-customer-info', 'WalkInIndividualController@information');
