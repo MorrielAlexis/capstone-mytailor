@@ -22,7 +22,7 @@ class MeasurementDetail extends Model
 
 		// return $this->belongstoMany('App\GarmentCategory')->withPivot('tblGarment_Segment');
 		return $this->belongstoMany('App\MeasurementCategory','tblMetCategory_Detail', 'strMesCatIDfk', 'strMesDetIDfk');
-
+		return $this->hasMany('App\MeasurementCategory');
 	}
 
 }
