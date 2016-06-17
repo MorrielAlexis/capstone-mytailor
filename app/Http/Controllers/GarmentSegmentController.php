@@ -65,12 +65,6 @@ class GarmentSegmentController extends Controller
 
         $file = $request->input('addImage');
         $destinationPath = 'imgSegments';
-        
-        // foreach ($seg as $seg)
-        //     if(strcasecmp($seg->strSegmentName, trim(Input::get('addSegmentName'))) == 0 && 
-        //        strcasecmp($seg->strSegCategoryFK, Input::get('addCategory')) == 0)
-        //         $added = TRUE;
-        
 
         if($file == '' || $file == null){
             $segment = GarmentSegment::create(array(
@@ -97,9 +91,10 @@ class GarmentSegmentController extends Controller
                     'boolIsActive' => 1
 
             ));
-        }
+        } 
 
-             $added=$segment->save();
+             // $added=$segment->save();
+        $segment->save();
 
          \Session::flash('flash_message','Segment successfully added.'); //flash message
 

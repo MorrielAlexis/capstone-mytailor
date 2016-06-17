@@ -8,6 +8,7 @@ use App\SegmentPattern;
 use App\GarmentCategory;
 use App\GarmentSegment;
 use App\Http\Requests;
+use App\Http\Requests\SegmentPatternRequest;
 use App\Http\Controllers\Controller;
 
 class SegmentPatternController extends Controller
@@ -68,7 +69,7 @@ class SegmentPatternController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SegmentPatternRequest $request)
     {
         $file = $request->input('addImage');
         $destinationPath = 'imgDesignPatterns';
@@ -94,7 +95,9 @@ class SegmentPatternController extends Controller
                     )); 
                 }
 
-            $pattern->save();
+            // $pattern->save();
+                 $added = $pattern->save();
+
 
              \Session::flash('flash_message','Segment pattern successfully added.'); //flash message
             
@@ -147,7 +150,7 @@ class SegmentPatternController extends Controller
         //
     }
 
-    function update_segmentpattern(Request $request)
+    function update_segmentpattern(SegmentPatternRequest $request)
     {
 
         $pattern = SegmentPattern::find($request->input('editPatternID'));

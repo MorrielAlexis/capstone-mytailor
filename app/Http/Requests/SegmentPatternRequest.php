@@ -5,8 +5,7 @@ namespace App\Http\Requests;
 use App\Http\Requests\Request;
 use Illuminate\Contracts\Validation\Validator;
 
-
-class SegmentRequest extends Request
+class SegmentPatternRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,22 +25,21 @@ class SegmentRequest extends Request
     public function rules()
     {
         return [
-            'addSegmentName'    =>  'unique:tblSegment,strSegmentName',
-             'addImg'    =>  'image'
+            'addPatternName' => 'unique:tblSegmentPattern,strSegPName',
+            'addImg' => 'image',
+            'editPatternName' => 'unique:tblSegmentPattern,strSegPName'
         ];
     }
 
-     public function messages()
+    public function messages()
     {
         return [
-
-            'addSegmentName.unique'  =>  'Segment already exists.',
-            'addImg.image'  =>  'The file you uploaded is not an image.'
-           
-            // 'strSegmentName.required'  =>  'Segment name is required.'
-           
-           
+            'addPatternName.unique'  =>  'Pattern already exists.',
+            'addImg.image' => 'The file you uploaded is not an image.',
+            'editPatternName.unique' => 'Pattern already exists.'
+            
         ];
+
     }
 
     protected function formatErrors(Validator $validator)
