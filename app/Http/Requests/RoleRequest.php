@@ -27,7 +27,7 @@ class RoleRequest extends Request
     {
         return [
             'addRoleName'    =>  'required|unique:tblEmployeeRole,strEmpRoleName',
-            'editRoleName'   =>  'required|unique:tblEmployeeRole,strEmpRoleName'
+            'editRoleName'   =>  'unique:tblEmployeeRole,strEmpRoleName'
         ];
     }
 
@@ -36,7 +36,7 @@ class RoleRequest extends Request
         return [
             'addRoleName.unique'  =>  'Role already exists.',
             'addRoleName.required' => 'Role name is required.',
-            'editRoleName.unique'  => 'Role name already exists'
+            'editRoleName.unique'  => 'Role name already exists.'
         ];
 
     }

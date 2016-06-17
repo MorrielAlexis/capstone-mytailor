@@ -85,6 +85,23 @@
         </div>
       @endif
 
+
+      <!-- Errors -->
+        @if ($errors->any())
+           <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red">
+              <span class="black-text" style="color:black"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </div>
+          </div>
+        </div>
+      @endif
+
+     <!--  End of flash messages -->
+
     <div class="row">
       <div class="col s12 m12 l12">
         <span class="page-title"><h4>Garment Segment</h4></span>
@@ -285,7 +302,7 @@
     			    <div id="addSegment" class="modal modal-fixed-footer">
                 <h5><font color = "#1b5e20"><center>ADD NEW GARMENT SEGMENT</center> </font> </h5> 
                 
-                {!! Form::open(['url' => 'maintenance/garment-segment', 'method' => 'post' ]) !!}
+                {!! Form::open(['url' => 'maintenance/garment-segment', 'method' => 'post', 'files' => 'true' ]) !!}
                   <div class="divider" style="height:2px"></div>
                   <div class="modal-content col s12">
 

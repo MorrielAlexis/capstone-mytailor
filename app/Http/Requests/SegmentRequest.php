@@ -3,10 +3,10 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
-
 use Illuminate\Contracts\Validation\Validator;
 
-class GarmentCategoryRequest extends Request
+
+class SegmentRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,18 +26,25 @@ class GarmentCategoryRequest extends Request
     public function rules()
     {
         return [
-            'addGarmentName'    =>  'required|unique:tblGarmentCategory,strGarmentCategoryName',
-            'editGarmentName'   =>  'unique:tblGarmentCategory,strGarmentCategoryName'
+            'addSegmentName'    =>  'required|unique:tblSegment,strSegmentName',
+            'editSegmentName' => 'unique:tblSegment,strSegmentName'
+           
+
+            
+
+            // 'editGarmentName'   =>  'required|unique:tblGarmentCategory,strGarmentCategoryName'
         ];
     }
 
-    public function messages()
+     public function messages()
     {
         return [
 
-            'addGarmentName.unique'  =>  'Garment already exists.',
-            'addGarmentName.required'  =>  'Garment name is required.',
+            'addSegmentName.unique'  =>  'Segment already exists.',
+            'addSegmentName.required' => 'Segment name is required.',
+            // 'strSegmentName.required'  =>  'Segment name is required.'
             'editGarmentName.unique'  => 'Garment already exists.'
+           
         ];
     }
 
