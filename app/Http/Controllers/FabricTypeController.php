@@ -147,7 +147,13 @@ class FabricTypeController extends Controller
                 ->where('tblFabricType.strFabricTypeID','=', $id)
                 ->count();
 
-            if ($count != 0){
+            $count2 = \DB::table('tblSwatch')
+                ->join('tblFabricType', 'tblSwatch.strSwatchTypeFK', '=', 'tblFabricType.strFabricTypeID')
+                ->select('tblFabricType.*')
+                ->where('tblFabricType.strFabricTypeID','=', $id)
+                ->count();
+
+            if ($count != 0 || $count2 != 0){
                     return redirect('maintenance/fabric-type?success=beingUsed'); 
                 }else {
 

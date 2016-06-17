@@ -146,8 +146,20 @@ class GarmentCategoryController extends Controller
                 ->where('tblGarmentCategory.strGarmentCategoryID','=', $id)
                 ->count();
                 // dd($count2);
+
+        $count3 = \DB::table('tblSegmentPattern')
+                ->join('tblGarmentCategory', 'tblSegmentPattern.strSegPCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
+                ->select('tblGarmentCategory.*')
+                ->where('tblGarmentCategory.strGarmentCategoryID','=', $id)
+                ->count();
+
+        $count4 = \DB::table('tblCatalogue')
+                ->join('tblGarmentCategory', 'tblCatalogue.strCatalogueCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
+                ->select('tblGarmentCategory.*')
+                ->where('tblGarmentCategory.strGarmentCategoryID','=', $id)
+                ->count();
                 
-                if ($count != 0 || $count2 != 0){
+                if ($count != 0 || $count2 != 0 || $count3 != 0 || $count4 != 0 ) {
                     return redirect('maintenance/garment-category?success=beingUsed'); 
                 }else {
                     $garment->strGarmentCategoryInactiveReason = trim($request->input('delInactiveGarment')); 

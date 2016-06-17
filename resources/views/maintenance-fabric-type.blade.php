@@ -63,17 +63,6 @@
       @endif
 
 
-      <!--Reactivate Fabric Type-->
-      @if (Input::get('successRec') == 'true')
-        <div class="row" id="success-message">
-          <div class="col s12 m12 l12">
-            <div class="card-panel yellow">
-              <span class="black-text" style="color:black">Successfully added back fabric type!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
-            </div>
-          </div>
-        </div>
-      @endif
-
              <!--  <Duplicate Error Message>   -->
     @if (Input::get('success') == 'duplicate')
         <div class="row" id="success-message">
