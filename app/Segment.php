@@ -11,6 +11,7 @@ class Segment extends Model
 	protected $fillable = array('strSegmentID',
 								'strSegCategoryFK',
 								'strSegmentName',
+								'strSegGender',
 								'textSegmentDesc',
 								'strSegInactiveReason',
 								'boolIsActive'

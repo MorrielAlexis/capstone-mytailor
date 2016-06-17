@@ -110,6 +110,7 @@
               			<!--<th data-field="id">Garment Details ID</th>-->
              		   	<th data-field="name">Category Name</th>
                     <th data-field="name">Segment Name</th>
+                    <th data-field="gender">Gender</th>
               			<th data-field="address">Segment Description</th>
                     <th data-field="Edit">Actions</th>
                     
@@ -122,6 +123,7 @@
                   <tr>
              		  <td>{{ $segment->strGarmentCategoryName }}</td>
                     <td>{{ $segment->strSegmentName }}</td>
+                     <td>{{ $segment->strSegGender }}</td>
               		  <td>{{ $segment->textSegmentDesc }}</td>
               		  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of segment" href="#edit{{ $segment->strSegmentID }}"><i class="mdi-editor-mode-edit"></i></a> 
                     <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of segment from table" href="#del{{ $segment->strSegmentID }}"><i class="mdi-action-delete"></i></a></td>
@@ -155,14 +157,23 @@
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
                                 <input required value="{{ $segment->strSegmentName }}" id="editSegmentName" name= "editSegmentName" type="text" class="validateSegName">
-                                <label for="segment_name">*Segment Name </label>
+                                <label for="segment_name">Segment Name <span class="red-text"><b>*</b></span></label>
                               </div>
+                          </div>
+
+                          <div class="input-field col s12" style="margin-top: 40px !important;">
+                              <select required class="browser-default" name="editSegmentGender" id="editSegmentGender">
+                                <option value="" disabled selected>Gender</option>
+                                <option value="{{$segment->strSegGender}}">Male</option>
+                                <option value="{{$segment->strSegGender}}">Female</option>
+                              </select>
+                              <label for="strSegGender" class="active">Gender<span class="red-text">*</span></label>
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                               <div class="input-field col s12">
                                 <input  value="{{ $segment->textSegmentDesc }}" id="SegmentDesc" name = "editSegmentDesc" type="text" class="validate">
-                               <label for="segment_description">*Segment Description</label>
+                               <label for="segment_description">Segment Description</label>
                               </div>
                           </div>
                           </div>
@@ -197,6 +208,20 @@
                                 <input value="{{ $segment->strSegmentName }}"type="text" readonly>
                                 <label for="segment_name">Segment Name </label>
                               </div>
+                          </div>
+
+                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                              <div class="input-field col s12">                                                    
+                                  <input type="text" value="{{$segment->strSegGender}}">
+                                  <label>Gender</label>
+                              </div>   
+                          </div>
+
+                            <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                              <div class="input-field col s12">                                                    
+                                  <input type="text" value="{{$segment->strSegGender}}">
+                                  <label>Gender</label>
+                              </div>   
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
@@ -236,6 +261,8 @@
 
               </div>
 
+             <!--  Create New Segment -->
+
 
     			    <div id="addSegment" class="modal modal-fixed-footer">
                 <h5><font color = "#1b5e20"><center>ADD NEW GARMENT SEGMENT</center> </font> </h5> 
@@ -267,6 +294,15 @@
                         <input required id="addSegmentName" name= "addSegmentName" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" class="active"  >
                         <label for="segment_name">Segment Name<span class="red-text"><b>*</b></span></label>
                       </div>
+                  </div>
+
+                  <div class="input-field col s12" style="margin-top: 40px !important;">
+                              <select required class="browser-default" name="addSegmentGender" id="addSegmentGender">
+                                <option value="" disabled selected>Gender</option>
+                                <option value="{{$segment->strSegGender}}">Male</option>
+                                <option value="{{$segment->strSegGender}}">Female</option>
+                              </select>
+                              <label for="Gender" class="active">Gender<span class="red-text">*</span></label>
                   </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">

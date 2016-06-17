@@ -68,6 +68,7 @@ class GarmentSegmentController extends Controller
                     'strSegmentID' => $request->input('addSegmentID'),
                     'strSegCategoryFK' =>$request->input('addCategory'),
                     'strSegmentName' =>trim($request->input('addSegmentName')),
+                    'strSegmentID' => $request->input('addSegmentGender'),
                     'textSegmentDesc' => trim($request->input('addSegmentDesc')),
                     'boolIsActive' => 1
 
@@ -131,6 +132,7 @@ class GarmentSegmentController extends Controller
 
                 $segment->strSegCategoryFK = $request->input('editCategory'); 
                 $segment->strSegmentName = trim($request->input('editSegmentName'));  
+                $segment->strSegGender = $request->input('editSegmentGender'); 
                 $segment->textSegmentDesc = trim($request->input('editSegmentDesc'));
                 
                 $segment->save();
