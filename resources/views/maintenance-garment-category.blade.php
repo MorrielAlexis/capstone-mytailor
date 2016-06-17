@@ -12,6 +12,20 @@
           </div>
         </div>
       @endif
+
+      <!-- Errors -->
+        @if ($errors->any())
+           <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red">
+              <span class="black-text" style="color:black"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </div>
+          </div>
+        </div>
+      @endif
       
        <!--Add -->
         @if(Session::has('flash_message'))
@@ -107,21 +121,6 @@
           </div>
         </div>
       @endif
-
-   @if (count($errors) > 0)
-    <div class="row" id="success-message">
-          <div class="col s12 m12 l12">
-            <div class="card-panel red">
-              <span class="black-text" style="color:black">
-                @foreach ($errors->all() as $error)
-                  {{ $error }}
-                @endforeach
-                <i class="material-icons right" onclick="$('#success-message').hide()">clear</i>
-              </span>
-            </div>
-          </div>
-        </div>
-  @endif
 
 
     <div class="row">

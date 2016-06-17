@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\GarmentCategory;
 use App\Http\Requests;
+use App\Http\Requests\GarmentCategoryRequest;
+
 use App\Http\Controllers\Controller;
 
 class GarmentCategoryController extends Controller
@@ -51,7 +53,7 @@ class GarmentCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GarmentCategoryRequest $request)
     {
         $garms = GarmentCategory::get();
             $garment = GarmentCategory::create(array(
@@ -61,7 +63,8 @@ class GarmentCategoryController extends Controller
                 'boolIsActive' => 1
                 ));
 
-         $garment->save();
+         $added=$garment->save();
+          
 
         \Session::flash('flash_message','Garment category successfully added.'); //flash message
 
@@ -114,7 +117,7 @@ class GarmentCategoryController extends Controller
         //
     }
 
-    function updateGarmentCategory(Request $request)
+    function updateGarmentCategory(GarmentCategoryRequest $request)
     {
     
         $garment = GarmentCategory::find($request->input('editGarmentID'));
