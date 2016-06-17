@@ -43,8 +43,9 @@
                         </div>
 	            	</div>
             
-	            	
-                  <a id="cancelTransac" href="#cancel-order" class="btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel transaction and go back to homepage" style="margin-top:60px; margin-left:40px; padding:10px; padding-bottom:45px; background-color:teal; color:white">Cancel</a>  	            		
+
+                  <a id="addPayment" href="{{URL::to('transaction/walkin-individual-payment-payment-info')}}" class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-top:20px; margin-left:40px; padding:10px; padding-left:19px; padding-right:19px; padding-bottom:45px; background-color:teal; color:white">Save and Proceed</a>                                
+                  <a id="cancelTransac" href="#cancel-order" class="btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel transaction and go back to homepage" style="margin-top:30px; margin-left:40px; padding:10px; padding-bottom:45px; background-color:teal; color:white">Cancel Transaction</a>                   
                   <div id="cancel-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:80px">
                       <h5><font color="red"><center><b>Warning!</b></center></font></h5>
                         
@@ -61,8 +62,6 @@
                                 </div>
                         {!! Form::close() !!}
                     </div>
-                  <a id="addPayment" href="{{URL::to('transaction/walkin-individual-payment-payment-info')}}" class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-top:60px; margin-left:40px; padding:10px; padding-bottom:45px; background-color:teal; color:white">Save and Proceed</a> 
-
 	            	
 	            	<div class="col s4" style="margin-top:45px">
 	            		 <div class="fixed-action-btn vertical" style="bottom: 45px; right: 24px;">

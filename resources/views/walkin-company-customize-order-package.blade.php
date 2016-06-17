@@ -46,6 +46,19 @@
 									                      {!! Form::open() !!} 
 									                        <div class="divider" style="height:2px"></div>
 									                        <div class="modal-content col s12">
+									                        	
+									                        	<div class="col s12" style="margin-bottom:20px; background-color:white">
+															        <nav class="white">
+															            <div class="input-field col s12" style="padding-top:20px;">
+															                <input id="search" type="search" required="" placeholder="Search for any available designs (ex. slim-fit, etc..)">
+															                <label for="search"><i class="large mdi-action-search" style="color:gray"></i></label>
+															                <i class="mdi-navigation-close"></i>
+															            </div>
+															        </nav>
+																</div>
+
+																<div class="col s12"><div class="divider" style="height:2px; background-color:gray; margin:20px"></div></div>
+
 									                        	<div class="col s1" style="margin-top:60px">
 									                        		<input name="garmentDesigns" type="radio" class="filled-in" id="pattern1" />
 									                        		<label for="pattern1"></label>
@@ -133,6 +146,18 @@
 									                      {!! Form::open() !!} 
 									                        <div class="divider" style="height:2px"></div>
 									                        <div class="modal-content col s12">
+									                        	<div class="col s12" style="margin-bottom:20px; background-color:white">
+															        <nav class="white">
+															            <div class="input-field col s12" style="padding-top:20px;">
+															                <input id="search" type="search" required="" placeholder="Search for any available fabrics (ex. cotton, etc..)">
+															                <label for="search"><i class="large mdi-action-search" style="color:gray"></i></label>
+															                <i class="mdi-navigation-close"></i>
+															            </div>
+															        </nav>
+																</div>
+
+																<div class="col s12"><div class="divider" style="height:2px; background-color:gray; margin:20px"></div></div>
+
 									                        	<div class="col s1" style="margin-top:60px">
 									                        		<input name="garmentFabrics" type="radio" class="filled-in" id="fabric1" />
 									                        		<label for="fabric1"></label>

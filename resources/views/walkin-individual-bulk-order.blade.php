@@ -21,35 +21,41 @@
 					<div class="card-content">
 						<div class="row">
 						<div class="col s12">
-							<div class="col s6"><p>Choose your garment type</p></div>
-							<div class="col s6">
-								<div class="input-field col s12">
-										<select>
+							<div class="col s4">
+								<div class="input-field col s12" style="background-color:teal">
+										<select class="browser-default">
+											<option value="" readonly style="color:gray">Choose a garment category...</option>
 										    <option value="1" class="circle">Uniform</option>
 										    <option value="2" class="circle">Suit</option>
-										    <option value="3" class="circle">Uniform</option>
+										    <option value="3" class="circle">Gown</option>
 										</select>
 								</div>
 							</div>
+						
+
+							<div class="col s4" style="margin-bottom:20px">
+								<div class="input-field col s12" style="background-color:teal">
+										<select class="browser-default">
+											<option value="" readonly style="color:gray">Show garments for...</option>
+										    <option value="1" class="circle">Male</option>
+										    <option value="2" class="circle">Female</option>
+										    <option value="3" class="circle">All</option>
+										</select>
+										
+								</div>
+							</div>
+
+							<div class="col s4" style="margin-bottom:20px; background-color:white">
+						        <nav class="white" style="border: 2px black inset">
+						            <div class="input-field col s12" style="padding-top:20px;">
+						                <input id="search" type="search" required="" placeholder="Search...">
+						                <label for="search"><i class="large mdi-action-search" style="color:gray"></i></label>
+						                <i class="mdi-navigation-close"></i>
+						            </div>
+						        </nav>
+							</div>
 						</div>
 
-						<div class="col s12" style="margin-bottom:20px">
-							<div class="col s3">
-		      							<label for="label"><font size="+0.5">Show garments for:</font></label>
-		      				</div>
-							<div class="col s3">
-				          				<input name="garmentsFor" type="radio" class="filled-in" id="male" />
-		      							<label for="male">Male Only</label>
-		      				</div>
-		      				<div class="col s3">
-				          				<input name="garmentsFor" type="radio" class="filled-in" id="female" />
-		      							<label for="female">Female Only</label>
-		      				</div>
-		      				<div class="col s3">
-				          				<input name="garmentsFor" type="radio" class="filled-in" id="all" checked/>
-		      							<label for="all">All</label>
-		      				</div>
-						</div>
 
 						<div class="col s12" style="margin-bottom:20px">
 							<div class="divider"></div>
