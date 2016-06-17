@@ -181,7 +181,7 @@
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input required value="{{ $garment->strGarmentCategoryName }}" id="editGarmentName" name="editGarmentName"type="text" class="validate" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2" >
+                                <input required value="{{ $garment->strGarmentCategoryName }}" id="editGarmentName" name="editGarmentName"type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2" >
                                 <label for="garment_name"> Garment Name   <span class="red-text"><b>*</b></span></label>
                               </div>
                           </div>
@@ -214,7 +214,7 @@
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input required pattern="[A-Za-z\s]+" value="{{ $garment->strGarmentCategoryName }}" type="text" class="" readonly>
+                                <input required pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" value="{{ $garment->strGarmentCategoryName }}" type="text" class="" readonly>
                                 <label for="garment_name">Garment Name </label>
                               </div>
                           </div>
@@ -272,7 +272,7 @@
 
                 <div class = "col s12" style="padding:15px;  border:3px solid white;">
                     <div class="input-field col s12">
-                      <input required id="addGarmentName" name="addGarmentName" type="text" class="validateG" pattern="^[a-zA-Z\-'`\s]{2,}$">
+                      <input required id="addGarmentName" name="addGarmentName" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                       <label for="garment_name">Garment Name<span class="red-text"><b>*</b></span> </label>
                     </div>
                 </div>

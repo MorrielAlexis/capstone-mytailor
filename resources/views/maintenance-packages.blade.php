@@ -149,8 +149,8 @@
 
                                 <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input required value="{{ $packages->strPackageName }}" pattern="[A-Za-z\s]+" id="editPackageName" name= "editPackageName" type="text" class="">
-                                <label for="segment_name">Package Name </label>
+                                <input required value="{{ $packages->strPackageName }}" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" id="editPackageName" name= "editPackageName" type="text" class="validate">
+                                <label for="segment_name">Package Name <span class="red-text"><b>*</b></span></label>
                     <span id="left"></span></label>
                               </div>
                           </div>
@@ -338,7 +338,7 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input required id="addPackageName" name= "addPackageName" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" class="active"  >
+                        <input required id="addPackageName" name= "addPackageName" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" class="active"  >
                         <label for="segment_name">Package Name<span class="red-text"><b>*</b></span></label>
                       </div>
                   </div>

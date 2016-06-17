@@ -119,7 +119,7 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s12">
-                          <input required value = "{{$swatchnamemainte->strSName}}" id="editSName" name = "editSName" type="text" pattern="^[a-zA-Z\-'`\s]{2,}$" class="validate" required data-position="bottom">
+                          <input required value = "{{$swatchnamemainte->strSName}}" id="editSName" name = "editSName" type="text" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" class="validate" required data-position="bottom">
                           <label for="swatch_name">Swatch Name <span class="red-text"><b>*</b></span> </label>
                         </div>
                   </div>
@@ -225,7 +225,7 @@
 
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s12">
-                    <input required id="addSwatchName" name = "addSwatchName" type="text" class="validate" required data-position="bottom" pattern="[0-9a-zA-Z\-\s]+$" placeholder="Nickel">
+                    <input required id="addSwatchName" name = "addSwatchName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" placeholder="Nickel">
                     <label for="swatch_name">Swatch Name <span class="red-text"><b>*</b></span></label>
                   </div>
               </div>    

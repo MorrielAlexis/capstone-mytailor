@@ -123,7 +123,7 @@
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                             <input required id="editRoleName" name="editRoleName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2" value="{{$role->strEmpRoleName}}">
+                             <input required id="editRoleName" name="editRoleName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2" value="{{$role->strEmpRoleName}}">
                             <label for="role_name">Role Name<span class="red-text"><b>*</b></span> </label>
                           </div>
                       </div>
@@ -214,9 +214,12 @@
                         
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s12">
-                    <input required id="addRoleName" name="addRoleName" type="text" class="validate" placeholder="Sewer" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2">
-                    <label for="addRoleName" class="active">Role Name <span class="red-text"><b>*</b></span></label>
-                  </div>
+                    <input required id="addRoleName" name="addRoleName" type="text" class="validate" placeholder="Sewer" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
+                    <label for="addRoleName" class="validate" >Role Name <span class="red-text"><b>*</b></span></label>
+                  </div>  
+                  <!-- [A-Za-z]+(\s[A-Za-z]+)?
+                  ^[a-zA-Z\-'`\s]{2,}$ -->
+                 
               </div>
 
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
@@ -277,6 +280,12 @@
       } );
 
       $('.validate').blur('input', function() {
+        var name = $(this).val();
+        $(this).val(name.trim());
+      }); 
+
+      //Kapag whitespace
+      $('.validateRole').blur('input', function() {
         var name = $(this).val();
         $(this).val(name.trim());
       }); 

@@ -162,7 +162,7 @@
                           </div> 
 
                               <div class="input-field col s6">
-                                <input required value="{{$swatch->strSwatchCode}}" id="editSwatchCode" name = "editSwatchCode" type="text" class="validateSwatchCode">
+                                <input required value="{{$swatch->strSwatchCode}}" id="editSwatchCode" name = "editSwatchCode" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                                 <label for="swatch_code">Swatch Code <span class="red-text"><b>*</b></span></label>
                               </div>
                         </div>
@@ -265,7 +265,7 @@
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                     <div class="input-field col s12">
                       <select class="browser-default" name='addFabric' id='addFabric' required>
-                         <option disabled selected value="">Choose Swatch Type:</option>
+                         <option disabled selected value="">Choose Swatch Name:</option>
                           @foreach($fabricType as $fab)
                             @if($fab->boolIsActive == 1)
                               <option value="{{ $fab->strFabricTypeID }}">{{ $fab->strFabricTypeName }}</option>
@@ -293,7 +293,7 @@
                 <div class = "col s12" style="padding:15px;  border:3px solid white;">   
 
                     <div class="input-field col s12">
-                      <input required id="addSwatchCode" name = "addSwatchCode" type="text" class="validateSwatchCode">
+                      <input required id="addSwatchCode" name = "addSwatchCode" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                       <label for="swatch_code">Swatch Code <span class="red-text"><b>*</b></span></label>
                     </div>
                 </div>

@@ -154,15 +154,15 @@
                           
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                 <div class="input-field col s12">
-                                  <input id="editThreadBrand" name = "editThreadBrand" value = "{{ $thread->strThreadBrand }}" type="text" class="validateName">
-                                  <label for="Thread_Brand"> *Thread Brand </label>
+                                  <input id="editThreadBrand" name = "editThreadBrand" value = "{{ $thread->strThreadBrand }}" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
+                                  <label for="Thread_Brand"> Thread Brand  <span class="red-text"><b>*</b></span></label>
                                 </div>
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                 <div class="input-field col s12">
-                                  <input id="editThreadColor" name = "editThreadColor" value = "{{ $thread->strThreadColor }}" type="text" class="validateColor">
-                                  <label for="Thread_Color"> *Thread Color </label>
+                                  <input id="editThreadColor" name = "editThreadColor" value = "{{ $thread->strThreadColor }}" type="text" class="validateColor" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
+                                  <label for="Thread_Color"> Thread Color  <span class="red-text"><b>*</b></span></label>
                                 </div>
                           </div>
 
@@ -345,7 +345,6 @@
                                 </div>
                                 </div>    
 
-<<<<<<< HEAD
                                 <div class="modal-footer col s12" style="background-color:#26a69a">
                                     <button type="submit" class="modal-action  waves-effect waves-green btn-flat">Update</button>
                                     <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
@@ -353,15 +352,7 @@
                               {!! Form::close() !!}
                               </div> <!-- End of modal content for edit needle-->
                         
-                        
-=======
-                              <div class="modal-footer col s12" style="background-color:#26a69a">
-                                <button type="submit" class="modal-action  waves-effect waves-green btn-flat">Update</button>
-                                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
-                              </div>
-                            {!! Form::close() !!}
-                          </div>
->>>>>>> 34b249cb988496ddc85c8772d6d99e025e76fd7e
+                      
 
                           <div id="del{{ $needle->intNeedleID }}" class="modal modal-fixed-footer">
                             <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS NEEDLE?</center> </font> </h5> 

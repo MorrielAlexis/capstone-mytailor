@@ -147,19 +147,19 @@
                           
                             <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                 <div class="input-field col s12">
-                                  <input id="editHookBrand" name = "editHookBrand" value = "{{$hook->strHookBrand}}" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" >
+                                  <input id="editHookBrand" name = "editHookBrand" value = "{{$hook->strHookBrand}}" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
                                   <label for="HookEye_Name"> Hook and Eye Brand <span class="red-text"><b>*</b></span></label>
                                 </div>
                             </div>
 
                             <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                 <div class="input-field col s6">
-                                  <input id="editHookSize" name = "editHookSize" value = "{{$hook->strHookSize}}" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" >
+                                  <input id="editHookSize" name = "editHookSize" value = "{{$hook->strHookSize}}" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
                                   <label for="HookEye_Size"> Hook and Eye Size <span class="red-text"><b>*</b></span></label>
                                 </div>
 
                                 <div class="input-field col s6">
-                                  <input id="editHookColor" name = "editHookColor" value = "{{$hook->strHookColor}}" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" >
+                                  <input id="editHookColor" name = "editHookColor" value = "{{$hook->strHookColor}}" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
                                   <label for="Hookeye_Color"> Hook and Eye Color <span class="red-text"><b>*</b></span></label>
                                 </div>
                             </div>
@@ -282,19 +282,19 @@
           
       <div class = "col s12" style="padding:15px;  border:3px solid white;">          
         <div class="input-field col s12">
-          <input required id="addHookEyeBrand" name = "addHookEyeBrand" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" >
+          <input required id="addHookEyeBrand" name = "addHookEyeBrand" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
           <label for="HookEye_Name"> Hook and Eye Brand <span class="red-text"><b>*</b></span></label>
         </div>
       </div>
 
       <div class = "col s12" style="padding:15px;  border:3px solid white;">
         <div class="input-field col s6">
-          <input required id="addHookEyeSize" name = "addHookEyeSize" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" >
+          <input required id="addHookEyeSize" name = "addHookEyeSize" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
           <label for="HookEye_Size"> Hook and Eye Size <span class="red-text"><b>*</b></span></label>
         </div>
 
         <div class="input-field col s6">
-          <input required id="addHookEyeColor" name = "addHookEyeColor" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" >
+          <input required id="addHookEyeColor" name = "addHookEyeColor" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
           <label for="Hookeye_Color"> Hook and Eye Color <span class="red-text"><b>*</b></span></label>
         </div>
       </div>

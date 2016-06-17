@@ -141,19 +141,19 @@
                           
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                 <div class="input-field col s12">
-                                  <input required id="editZipperBrand" name = "editZipperBrand" pattern="^[a-zA-Z\-'`\s]{2,}$" value = "{{$zipper->strZipperBrand}}" type="text" class="validateName">
+                                  <input required id="editZipperBrand" name = "editZipperBrand" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" value = "{{$zipper->strZipperBrand}}" type="text" class="validate">
                                   <label for="Zipper_Name"> Zipper Brand <span class="red-text"><b>*</b></span></label>
                                 </div>
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                 <div class="input-field col s6">
-                                  <input required id="editZipperSize" name = "editZipperSize" value = "{{$zipper->strZipperSize}}" type="text" class="validate" pattern="^[a-zA-Z\-'`\s]{2,}$">
+                                  <input required id="editZipperSize" name = "editZipperSize" value = "{{$zipper->strZipperSize}}" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                                   <label for="Zipper_Size"> Zipper Size <span class="red-text"><b>*</b></span></label>
                                 </div>
 
                                 <div class="input-field col s6">
-                                  <input required id="editZipperColor" name = "editZipperColor" value = "{{$zipper->strZipperColor}}" type="text" class="validate" pattern="^[a-zA-Z\-'`\s]{2,}$">
+                                  <input required id="editZipperColor" name = "editZipperColor" value = "{{$zipper->strZipperColor}}" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                                   <label for="Zipper_Color"> Zipper Color <span class="red-text"><b>*</b></span></label>
                                 </div>
                           </div>
@@ -277,19 +277,19 @@
         
       <div class = "col s12" style="padding:15px;  border:3px solid white;">            
         <div class="input-field col s12">
-          <input required id="addZipperBrand" name = "addZipperBrand" type="text" class="validate" pattern="^[a-zA-Z\-'`\s]{2,}$">
+          <input required id="addZipperBrand" name = "addZipperBrand" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
           <label for="Zipper_Name"> Zipper Brand <span class="red-text"><b>*</b></span></label>
         </div>
       </div>
 
       <div class = "col s12" style="padding:15px;  border:3px solid white;">
         <div class="input-field col s6">
-          <input required id="addZipperSize" name = "addZipperSize" type="text" class="validate" pattern="^[a-zA-Z\-'`\s]{2,}$">
+          <input required id="addZipperSize" name = "addZipperSize" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
           <label for="Zipper_Size"> Zipper Size <span class="red-text"><b>*</b></span></label>
         </div>
 
         <div class="input-field col s6">
-          <input required id="addZipperColor" name = "addZipperColor" type="text" class="validate" pattern="^[a-zA-Z\-'`\s]{2,}$">
+          <input required id="addZipperColor" name = "addZipperColor" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
           <label for="Zipper_Color"> Zipper Color <span class="red-text"><b>*</b></span></label>
         </div>
       </div>

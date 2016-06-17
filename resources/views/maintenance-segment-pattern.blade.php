@@ -160,7 +160,7 @@
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input required value = "{{ $pattern->strSegPName }}" id="editPatternName" name= "editPatternName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$">
+                            <input required value = "{{ $pattern->strSegPName }}" id="editPatternName" name= "editPatternName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                             <label for="pattern_name">Pattern Name </label>
                           </div>
                       </div>
@@ -284,7 +284,7 @@
 
             <div class = "col s12" style="padding:15px;  border:3px solid white;">
                 <div class="input-field col s12">
-                  <input required id="addPatternName" name= "addPatternName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$">
+                  <input required id="addPatternName" name= "addPatternName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                   <label for="pattern_name">Pattern Name <span class="red-text"><b>*</b></span></label>
                     <span id="left"></span></label>
                 </div>

@@ -134,7 +134,7 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s12">
-                          <input required value = "{{ $fabricType->strFabricTypeName }}" id="editFabricTypeName" name = "editFabricTypeName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$">
+                          <input required value = "{{ $fabricType->strFabricTypeName }}" id="editFabricTypeName" name = "editFabricTypeName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                           <label for="fabrictype_name">Fabric Type Name <span class="red-text"><b>*</b></span> </label>
                         </div>
                   </div>
@@ -223,7 +223,7 @@
 
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s12">
-                    <input required id="addFabricTypeName" name = "addFabricTypeName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" >
+                    <input required id="addFabricTypeName" name = "addFabricTypeName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
                     <label for="fabrictype_name">Fabric Name <span class="red-text"><b>*</b></span></label>
                   </div              </div>
 

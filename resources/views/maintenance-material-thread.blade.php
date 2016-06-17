@@ -144,21 +144,21 @@
 			                          
 			                          <div class = "col s12" style="padding:15px;  border:3px solid white;">
 			                                <div class="input-field col s12">
-			                                  <input id="editThreadBrand" name = "editThreadBrand" value = "{{ $thread->strThreadBrand }}" type="text" class="validateName">
+			                                  <input id="editThreadBrand" name = "editThreadBrand" value = "{{ $thread->strThreadBrand }}" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
 			                                  <label for="Thread_Brand"> Thread Brand <span class="red-text"><b>*</b></span></label>
 			                                </div>
 			                          </div>
 
 			                          <div class = "col s12" style="padding:15px;  border:3px solid white;">
 			                                <div class="input-field col s12">
-			                                  <input id="editThreadColor" name = "editThreadColor" value = "{{ $thread->strThreadColor }}" type="text" class="validateColor">
+			                                  <input id="editThreadColor" name = "editThreadColor" value = "{{ $thread->strThreadColor }}" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
 			                                  <label for="Thread_Color"> Thread Color <span class="red-text"><b>*</b></span></label>
 			                                </div>
 			                          </div>
 
 			                          <div class = "col s12" style="padding:15px;  border:3px solid white;">
 			                                <div class="input-field col s12">
-			                                  <input id="editThreadDesc" name = "editThreadDesc" value = "{{ $thread->strThreadDesc }}" type="text" class="validateDesc">
+			                                  <input id="editThreadDesc" name = "editThreadDesc" value = "{{ $thread->strThreadDesc }}" type="text" class="validate">
 			                                  <label for="Thread_Color"> Description </label>
 			                                </div>
 			                          </div>
@@ -267,14 +267,14 @@
 									       
 									    <div class = "col s12" style="padding:15px;  border:3px solid white;">             
 									        <div class="input-field col s12">
-									          <input required id="addThreadBrand" name = "addThreadBrand" type="text" class="validate" placeholder="Sew Essens">
+									          <input required id="addThreadBrand" name = "addThreadBrand" type="text" class="validate" placeholder="Sew Essens" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
 									          <label for="Thread_Name"> Thread Brand <span class="red-text"><b>*</b></span></label>
 									        </div>
 									    </div>
 
 									    <div class = "col s12" style="padding:15px;  border:3px solid white;">
 									        <div class="input-field col s12">
-									          <input required id="addThreadColor" name = "addThreadColor" type="text" class="validate" placeholder="Blue">
+									          <input required id="addThreadColor" name = "addThreadColor" type="text" class="validate" placeholder="Blue" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
 									          <label for="Thread_Color"> Thread Color <span class="red-text"><b>*</b></span></label>
 									        </div>
 									    </div>

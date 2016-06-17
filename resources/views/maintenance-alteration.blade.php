@@ -104,7 +104,7 @@
 
                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input required value = "{{$alteration->strAlterationName}}" id="editAlterationName" name = "editAlterationName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" >
+                            <input required value = "{{$alteration->strAlterationName}}" id="editAlterationName" name = "editAlterationName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
                             <label for="alteration_name">Alteration Name <span class="red-text"><b>*</b></span> </label>
                           </div>
                         </div>
@@ -208,7 +208,7 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input required id="addAlterationName" name = "addAlterationName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$"  placeholder="Skinny Cut">
+                        <input required id="addAlterationName" name = "addAlterationName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?"  placeholder="Skinny Cut">
                         <label for="alteration_name">Alteration Name <span class="red-text"><b>*</b></span></label>
                       </div>
                   </div>    
