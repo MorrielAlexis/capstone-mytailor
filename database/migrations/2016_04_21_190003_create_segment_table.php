@@ -17,6 +17,7 @@ class CreateSegmentTable extends Migration
             $table->string('strSegCategoryFK');//fk
             $table->string('strSegmentName');
             $table->string('strSegmentSex');
+            $table->string('strSegmentImage')->nullable();
             $table->text('textSegmentDesc')->nullable();
             $table->string('strSegInactiveReason')->nullable()->default(null);
             $table->boolean('boolIsActive');

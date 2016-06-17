@@ -112,6 +112,7 @@
                     <th data-field="name">Segment Name</th>
                     <th data-field="address">Segment Description</th>
                     <th data-field="Sex">Sex </th>
+                    <th data-field="Image">Image</th>
                     <th data-field="Edit">Actions</th>
                     
               		</tr>
@@ -129,13 +130,14 @@
                       @elseif($segment->strSegmentSex == 'F') For women
                       @endif
                     </td>
+                    <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($segment->strSegmentImage)}}"></td>
               		  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of segment" href="#edit{{ $segment->strSegmentID }}"><i class="mdi-editor-mode-edit"></i></a> 
                     <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of segment from table" href="#del{{ $segment->strSegmentID }}"><i class="mdi-action-delete"></i></a></td>
        
                       <div id="edit{{ $segment->strSegmentID }}" class="modal modal-fixed-footer">
                         <h5><font color = "#1b5e20"><center>EDIT GARMENT SEGMENT</center> </font> </h5>
                           
-                          {!! Form::open(['url' => 'maintenance/garment-segment/update']) !!}
+                          {!! Form::open(['url' => 'maintenance/garment-segment/update', 'files' => 'true']) !!}
                             <div class="divider" style="height:2px"></div>
                             <div class="modal-content col s12">
 
@@ -165,6 +167,13 @@
                               </div>
                           </div>
 
+                          <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
+                              <div class="input-field col s12">
+                                <input  value="{{ $segment->textSegmentDesc }}" id="SegmentDesc" name = "editSegmentDesc" type="text" class="validate">
+                               <label for="segment_description">Segment Description</label>
+                              </div>
+                          </div>
+
                           <div class="input-field col s12" style="margin-top: 40px !important;">
                               <select required class="browser-default" name="editSegmentSex" id="editSegmentSex">
                                 <option value="" disabled selected>Sex</option>
@@ -173,13 +182,18 @@
                               </select>
                               <label for="strSegmentSex" class="active">Sex<span class="red-text">*</span></label>
                           </div>
-
                           <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
-                              <div class="input-field col s12">
-                                <input  value="{{ $segment->textSegmentDesc }}" id="SegmentDesc" name = "editSegmentDesc" type="text" class="validate">
-                               <label for="segment_description">Segment Description</label>
-                              </div>
+                          <div class="file-field input-field col s12">
+                            <div style="color:black" class="btn tooltipped btn-small center-text light-green lighten-2" data-position="bottom" data-delay="50" data-tooltip="May upload jpg, png, gif, bmp, tif, tiff files">
+                              <span>Upload Image</span>
+                              <input id="editImg" name="editImg" type="file" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*">
+                            </div>
+                          
+                            <div class="file-path-wrapper">
+                              <input value="{{$segment->strSegmentImage}}" id="editImage" name="editImage" class="file-path validate" type="text" readonly="readonly">
+                            </div>
                           </div>
+                      </div>
                           </div>
 
                           <div class="modal-footer col s12" style="background-color:#26a69a">
@@ -315,6 +329,19 @@
                         <label for="segment_description">Segment Description </label>
                       </div>
                   </div>
+                  
+                  <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
+                <div class="file-field input-field col s12">
+                  <div style="color:black" class="btn tooltipped btn-small center-text light-green lighten-2" data-position="bottom" data-delay="50" data-tooltip="May upload jpg, png, gif, bmp, tif, tiff files">
+                    <span>Upload Image</span>
+                    <input id="addImg" name="addImg" type="file" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*">
+                  </div>
+                
+                  <div class="file-path-wrapper">
+                    <input id="addImage" name="addImage" class="file-path validate" type="text" readonly="readonly">
+                  </div>
+                </div>
+            </div>
                   </div>
 
                   <div class="modal-footer col s12" style="background-color:#26a69a">

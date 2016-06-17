@@ -61,8 +61,12 @@ class GarmentSegmentController extends Controller
      */
     public function store(Request $request)
     {
-        $seg = GarmentSegment::get();
 
+        $file = $request->input('addImage');
+        $destinationPath = 'imgSegments';
+        
+
+        if($file == '' || $file == null){
             $segment = GarmentSegment::create(array(
 
                     'strSegmentID' => $request->input('addSegmentID'),
@@ -73,6 +77,21 @@ class GarmentSegmentController extends Controller
                     'boolIsActive' => 1
 
             ));
+        }else{
+
+            $request->file('addImg')->move($destinationPath, $file);
+            $segment = GarmentSegment::create(array(
+
+                    'strSegmentID' => $request->input('addSegmentID'),
+                    'strSegCategoryFK' =>$request->input('addCategory'),
+                    'strSegmentName' =>trim($request->input('addSegmentName')),
+                    'strSegmentSex' => $request->input('addSegmentSex'),
+                    'textSegmentDesc' => trim($request->input('addSegmentDesc')),
+                    'strSegmentImage' => 'imgSegments/'.$file,
+                    'boolIsActive' => 1
+
+            ));
+        }
 
              $segment->save();
 
@@ -130,11 +149,24 @@ class GarmentSegmentController extends Controller
     {
         $segment = GarmentSegment::find($request->input('editSegmentID'));
 
+        $file = $request->input('editImage');
+        $destinationPath = 'imgSegments';
+
+            if($file == $segment->strSegmentImage)
+            {
+
                 $segment->strSegCategoryFK = $request->input('editCategory'); 
                 $segment->strSegmentName = trim($request->input('editSegmentName'));  
                 $segment->strSegmentSex = $request->input('editSegmentSex'); 
                 $segment->textSegmentDesc = trim($request->input('editSegmentDesc'));
-                
+            }else{
+                    $request->file('editImg')->move($destinationPath);
+                    $segment->strSegCategoryFK = $request->input('editCategory'); 
+                    $segment->strSegmentName = trim($request->input('editSegmentName'));  
+                    $segment->strSegmentSex = $request->input('editSegmentSex'); 
+                    $segment->textSegmentDesc = trim($request->input('editSegmentDesc'));
+                    $segment->strSegmentImage = 'imgSegments/'.$file;
+            }
                 $segment->save();
 
          \Session::flash('flash_message_update','Segment detail/s successfully updated.'); //flash message

@@ -163,17 +163,17 @@
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s4">
-                            <input required value="{{"$employee->strEmpFName"}}" id="editFirstName" name="editFirstName" placeholder="Hope" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2">
+                            <input required value="{{"$employee->strEmpFName"}}" id="editFirstName" name="editFirstName" placeholder="Hope" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
                             <label for="first_name">First Name <span class="red-text"><b>*</b></span> </label>
                           </div>
 
                           <div class="input-field col s4">
-                            <input value="{{$employee->strEmpMName}}" id="editMiddleName" name="editMiddleName" placeholder="Elizabeth" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2">
+                            <input value="{{$employee->strEmpMName}}" id="editMiddleName" name="editMiddleName" placeholder="Elizabeth" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
                             <label for="middle_name">Middle Name </label>
                           </div>
 
                           <div class="input-field col s4">
-                            <input required value="{{$employee->strEmpLName}}" id="editLastName" name="editLastName" placeholder="Soberano" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2">
+                            <input required value="{{$employee->strEmpLName}}" id="editLastName" name="editLastName" placeholder="Soberano" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
                             <label for="LastName">Last Name <span class="red-text"><b>*</b></span></label>
                           </div>
                       </div>
