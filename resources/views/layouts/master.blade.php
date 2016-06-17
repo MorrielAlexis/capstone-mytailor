@@ -50,7 +50,7 @@
 
       
               <!-- <div class="divider"></div> -->
-              <li class="bold"><a class="collapsible-header waves-effect waves-white" style="color:#212121"><i style="font-size:30px" class="small mdi-action-dashboard" style="color:#ccff90;"></i> Dashboard</a></li>
+              <li class="bold"><a class="collapsible-header waves-effect waves-white" style="color:#212121"><i style="font-size:30px" class="small mdi-action-dashboard" style="color:#ccff90;"></i><b>Dashboard</b></a></li>
               <!--<div class="divider"></div>-->
               <li class="bold"><a class="collapsible-header waves-effect waves-white {{ Request::is('maintenance/*') ? 'active' : '' }}" style="color:#212121"><i style="font-size:30px" class="mdi-action-settings" style="color:#ccff90"></i><b>Maintenance</b></a>
 
@@ -171,11 +171,11 @@
                         </li>
                         <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('transaction/orderProgress')}}"><b>Job Order Progress</b></a><li>
                         <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('transaction/materialPurchasing')}}"><b>Material Purchasing</b></a><li>
-                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('transaction/billingPayment') || Request::is('transaction/billingCollection') ? 'active' : '' }}"><b>Billing & Collection</b></a>
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('transaction/billing-payment') || Request::is('transaction/billing-collection') ? 'active' : '' }}"><b>Billing & Collection</b></a>
                             <div class="collapsible-body">
                                 <ul>  
-                                  <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('transaction/billingPayment')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Billing</font></i></a></li>
-                                  <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('transaction/billingCollection')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Collection</font></i></a></li>
+                                  <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('transaction/billing-payment')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Billing</font></i></a></li>
+                                  <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('transaction/billing-collection')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Collection</font></i></a></li>
                                   <div class="divider"></div>
                                 </ul>
                           </div>

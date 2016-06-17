@@ -2,92 +2,315 @@
 
 @section('content')
 
-	<div class = "main-wrapper" style="margin-top:30px">	
-		<div class="row">
-	      <div class="col s12 m12 l12">
-	      	<span class="page-title"><h4>Collection</h4></span>
-	      </div>
-    	</div>
-  	</div>
 
-  	<div div class = "col s12 m12 l12" style="background:#80d8ff; opacity:0.75; margin-top:20px; margin-right:15px; margin-left:10px; padding:25px;">
-  		<label style="color:black; margin-left:40px"><font size="+0.90">Block</font></label><label style="color:red"><font size="+0.90" style="margin-left:5px">3</font></label>
-  		<label style="color:black; margin-left:50px"><font size="+0.90">Billing Month</label><label style="color:red"><font size="+0.90" style="margin-left:5px">MARCH</font></label>
-  		<label style="color:black; margin-left:50px"><font size="+0.90">Billing Year</label><label style="color:red"><font size="+0.90" style="margin-left:5px">2016</font></label>
-  		<label style="color:black; margin-left:50px"><font size="+0.90">Billing Date</label><label style="color:red"><font size="+0.90" style="margin-left:5px">3/12/2016</font></label>
-  		<label style="color:black; margin-left:50px"><font size="+0.90">Total No. of Customer</label><label style="color:red"><font size="+0.90" style="margin-left:5px">3</font></label>
-  	</div>
+	<div class="row">
+      <div class="col s12 m12 l12">
+        <span class="page-title"><center><h3><b>Welcome to <font color="white">MyTailor</font></b></h3></center></span>
+        <center><h5>Billing and Collection - Collection</h5></center>
+      </div>
+    </div>
 
-  	<div class = "col s12 m12 l12" style="background:white; margin-top:20px; margin-right:15px; margin-left:10px; padding:25px;  border:3px outset gray;">			
-		<label style="color:black"><font size="+2">Record Data</font></label>	
-			<div class="input-field col s12" style="padding-left:10px">
-				<div class="col s12" style="margin-top:5px; background:white; padding-top:20px; padding-bottom:25px;">
-					<table class = "table centered" border = "10px">
-					<div class="divider"></div>
-	       				<thead>
-		          			<tr>
-		          				 <th data-field="cust_id">Customer ID</th>
-		                 		 <th data-field="name">Name</th>  
-		                 		 <th data-field="cust_type">Customer Type</th>
-		                 		 <th data-field="payment_type">Payment Type</th>
-		                 		 <th data-field="total_amount">Total Amount</th>
-		                 		 <th data-field="downpayment">Downpayment</th>
-		                 		 <th data-field="amount_paid">Amount Paid</th>
-		                 		 <th data-field="balance">Balance</th>
-		                 		 <th data-field="amount_tendered">Amount Tendered</th>
-		                 		 <th data-field="date">Date of Payment</th>
-		                 	</tr>
-	                 	</thead>
-	                 	<tbody>
-	                 		<tr>
-	                 			<td>IND 001</td>
-	                 			<td>Honey May Buenavides</td>
-	                 			<td>Individual</td>
-	                 			<td>Cash</td>
-	                 			<td>2,000.00</td>
-	                 			<td>1,000.00</td>
-	                 			<td>1,000.00</td>
-	                 			<td>1,000.00</td>
-	                 			<td>2,000.00</td>
-	                 			<td>2016-12-3</td>
-	                 		</tr>
-	                 		<tr>
-	                 			<td>COM 002</td>
-	                 			<td>Nestle</td>
-	                 			<td>Company</td>
-	                 			<td>Check</td>
-	                 			<td>12,000.00</td>
-	                 			<td>6,000.00</td>
-	                 			<td>12,000.00</td>
-	                 			<td>0.00</td>
-	                 			<td>12,000.00</td>
-	                 			<td>2016-12-3</td>
-	                 		</tr>
-	                 		<tr>
-	                 			<td>COM 002</td>
-	                 			<td>Twitter</td>
-	                 			<td>Company</td>
-	                 			<td>Check</td>
-	                 			<td>16,000.00</td>
-	                 			<td>8,000.00</td>
-	                 			<td>9,000.00</td>
-	                 			<td>5,000.00</td>
-	                 			<td>10,000.00</td>
-	                 			<td>2016-12-3</td>
-	                 		</tr>
-	                 	</tbody>
-                 	</table> 
-	  			</div>
+    <div class="row" style="margin-top:50px">
+		<div class="col s12 m12 l12">
+
+			<div class="col s12">
+				<ul class="tabs transparent" style="margin-top:15px">
+					<li class="tab col s12" style="border-top-left-radius: 20px; border-top-right-radius: 20px; background-color: #00b0ff;"><a style="color:black; padding-top:5px; opacity:0.80" href="#shoppingCart"></a></li>	
+					<div class="indicator white" style="z-index:1"></div>
+	            </ul>
+				<div id="shoppingCart" class="card-panel">
+					<div class="card-content">
+						<div class="row">
+						<div class="col s12">
+							<div class="col s4">
+								<select class="browser-default">
+									<option value="" style="color:gray">Customer Type</option>
+									<option value="1">All</option>
+									<option value="2">Individual</option>
+									<option value="3">Company</option>
+								</select>
+							</div>
+							<div class="col s4">
+								<select class="browser-default">
+									<option value="" style="color:gray">Status</option>
+									<option value="1">All</option>
+									<option value="2">Paid</option>
+									<option value="3">Partial</option>
+									<option value="4">Canceled</option>
+								</select>
+							</div>
+							<div class="col s4">
+								<select class="browser-default">
+									<option value="" style="color:gray">Payment Type</option>
+									<option value="1">All</option>
+									<option value="2">Cash</option>
+									<option value="3">Cheque</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="col s12">
+							<div class="col s6" style="margin-top:25px">
+								<label for="billing-date"><font size="+0.8" color="gray">Billing Date</font></label>
+								<input id="billing-date" type="date" class="datepicker">			
+							</div>
+							<div class="col s6" style="margin-top:25px">
+								<label for="due-date"><font size="+0.8" color="gray">Due Date</font></label>
+								<input id="due-date" type="date" class="datepicker">			
+							</div>
+						</div>
+
+						<div class="col s12" style="margin-top:20px">
+							<a href="" class="left btn" style="background-color:teal; color:white; margin-left:10px">Cancel</a>
+							<a href="" class="right btn" style="background-color:teal; color:white; margin-right:10px">Save</a>
+							<a href="" class="right btn" style="background-color:teal; color:white; margin-right:40px">Edit</a>
+						</div>
+
+
+						</div>
+					</div>
+				</div>
+
+				<div id="data-record" class="card-panel">
+					<div class="card-content">
+						<div class="row">
+						<div class="col s12">
+
+							<center><h5 style="color:teal"><b>Record of Data from Customers of MyTailor Store</b></h5></center>
+							<div class="col s12" style="margin-top:40px">
+								<div class="divider"></div>
+								<div class="divider"></div>
+							</div>
+							<table>
+								<thead>
+									<tr>
+										<th class="center" style="color:gray">ID</th>
+										<th class="center" style="color:gray">Customer Name</th>
+										<th class="center" style="color:gray">Customer Type</th>
+										<th class="center" style="color:gray">Payment Type</th>
+										<th class="center" style="color:red">Total Amount</th>
+										<th class="center" style="color:gray">Downpayment (50%)</th>
+										<th class="center" style="color:gray">Amount Paid</th>
+										<th class="center" style="color:gray">Outstanding Balance</th>
+										<th class="center" style="color:red">Due Date</th>
+										<th class="center" style="color:gray">Date of Payment</th>
+										<th class="center" style="color:green">Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr >
+										<td class="center"><a href="#view-detail" class="modal-trigger"><b><u>COMP002</u></b></a></td>
+										<td class="center">Walang Tulugan Inc.</td>
+										<td class="center">Company</td>
+										<td class="center">Cheque</td>
+										<td class="center" style="color:red">130,000.00 Php</td>
+										<td class="center">65,000.00 Php</td>
+										<td class="center">70,000.00 Php</td>
+										<td class="center">60,000.00 Php</td>
+										<td class="center" style="color:red">2016-06-18</td>
+										<td class="center">2016-06-17</td>
+										<td class="center" style="color:green"><i>Paid</i></td>
+									</tr>
+
+									<tr>
+										<td class="center"><a href="#!"><b><u>COMP001</u></b></a></td>
+										<td class="center">Sabog Na Ko Co.</td>
+										<td class="center">Company</td>
+										<td class="center">Cheque</td>
+										<td class="center" style="color:red">100,000.00 Php</td>
+										<td class="center">50,000.00 Php</td>
+										<td class="center">50,000.00 Php</td>
+										<td class="center">50,000.00 Php</td>
+										<td class="center" style="color:red">2016-06-18</td>
+										<td class="center">2016-06-17</td>
+										<td class="center" style="color:green"><i>Partial</i></td>
+									</tr>
+								</tbody>
+							</table>
+
+							<div id="view-detail" class="modal modal-fixed-footer">
+								{!! Form::open() !!}
+									<div class="divider" style="height:2px"></div>
+									<div class="modal-content col s12" style="padding:30px">
+											
+											<div class="col s6">
+									          	<input id="customer-name" type="text" class="validate" placeholder="Customer Name">	          
+					      					</div>
+					      					<div class="col s6">
+									          <input id="customer-id" type="text" class="validate" placeholder="Customer ID">
+					      					</div>
+
+					      					<div class="col s12">
+					      						<div class="container">
+					      						<table class = "table centered order-summary" border = "1">
+								       				<center><h6 style="color:teal"><b>Order Summary</b></h6></center>
+								       				<thead style="color:gray">
+									          			<tr>
+										                  <th data-field="product">Package</th>         
+										                  <th data-field="quantity">Quantity</th>
+										                  <th data-field="price">Unit Price</th>
+										                  <th data-field="price">Total Price</th>
+										              	</tr>
+									              	</thead>
+									              	<tbody>
+											            <tr>
+											               <td>Men Set A</td>
+											               <td>19</td>
+											               <td>1,400.00 PHP</td>
+											               <td>26,600.00 PHP</td>
+											            </tr>
+
+											            <tr>
+											               <td>Women Set A</td>
+											               <td>38</td>
+											               <td>1,300.00 PHP</td>
+											               <td>49,400.00 PHP</td>
+											            </tr>
+
+											        </tbody>
+											    </table>
+											</div>
+					      					</div>
+
+					      					<div class="col s12"><div class="divider" style="margin-bottom:40px"></div></div>
+
+					      					<div class="col s12">
+					      						<div class="container">
+					      						<table class = "table centered order-summary" border = "1">
+								       				<center><h6 style="color:red"><b>Payment Details</b></h6></center>
+								       				<thead style="color:gray">
+									          			<tr>
+										                  <th data-field="product">Amount Paid</th>         
+										                  <th data-field="quantity">Outstanding Balance</th>
+										                  <th data-field="price">Payment Date</th>
+										                  <th data-field="status">Assisted By</th>
+										              	</tr>
+									              	</thead>
+									              	<tbody>
+											            <tr>
+											               <td>5,000.00 Php</td>
+											               <td>10,000.00 Php</td>
+											               <td>2016-06-17</td>
+											               <td>Wakalu Papito</td>
+											            </tr>
+
+											            <tr>
+											               <td>3,000.00 Php</td>
+											               <td>37,000.00 Php</td>
+											               <td>2016-06-17</td>
+											               <td>Wakalu Papito</td>
+											            </tr>
+
+											        </tbody>
+											    </table>
+											</div>
+					      					</div>
+
+					      					<div class="col s12"><div class="divider" style="margin-bottom:10px"></div></div>
+
+					      					<div class="col s12">
+					      						<div class="col s6" style="margin-top:25px; color:red">
+													<label for="due-date"><font size="+0.8" color="red"><b>Due Date</b></font></label>
+													<input id="due-date" type="date" class="datepicker" readonly>			
+												</div>
+												<div class="col s6" style="margin-top:48px; color:red">
+													<input readonly id="status" type="text" class="validate" placeholder="Current Status">
+												</div>
+					      					</div>
+
+					      					<div class="col s12" style="margin-top:40px">					      							
+										        <a href="" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Send email to remind customer of due date" style="background-color:red; margin-right:15px"><i class="mdi-communication-quick-contacts-dialer" style="font-size:30px"></i></a>
+										        <a href="" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Send SMS to remind customer of due date" style="background-color:red"><i class="mdi-communication-quick-contacts-mail" style="font-size:30px"></i></a>
+										        <a href="" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Print this data and have a personal copy" style="background-color:teal">Print a copy</a>
+										        <a href="" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Send a copy of this data through email" style="background-color:teal">Send a copy</a>
+										        <a href="" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Save this data in a PDF format" style="background-color:teal">Save as PDF</a>
+					      					</div>
+
+									</div>
+
+									<div class="modal-footer col s12">
+						                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/billing-collection')}}"><font color="black">OK</font></a>
+						                <a href="{{URL::to('transaction/billing-collection')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Cancel</font></a>
+						            </div>
+								{!! Form::close() !!}
+
+							</div>
+
+							<div class="col s12" style="margin-top:60px">
+								<div class="divider" style="margin-bottom:20px"></div>
+								<a href="" class="left btn" style="background-color:teal; color:white"><i class="large mdi-editor-insert-chart" style="padding-right:15px"></i>View Summary Report</a>
+								<a href="" class="right btn" style="background-color:teal; color:white;"><i class="large mdi-editor-insert-drive-file" style="padding-right:15px"></i>Export as PDF</a>
+								<a href="" class="right btn" style="background-color:teal; color:white; margin-right:50px"><i class="large mdi-action-print" style="padding-right:15px"></i>Print a copy</a>
+							</div>
+
+						</div>
+						</div>
+					</div>
+				</div>
 
 			</div>
 
-			<div class="divider"></div>
-
-			<div class="modal-footer" style="margin-left:600px; margin-top:50px">
-  				<button class="waves-effect waves-dark btn light-green accent-1" style="color:black;  margin-right:25px"><i class="material-icons left">system_update_alt</i>Print</button>
-	  			<button class="waves-effect waves-dark btn light-green accent-1" style="color:black;"><i class="material-icons left">delete</i>Remove Data</button>
-  			</div>
 		</div>
+	</div>
+
+
+@stop
+
+@section('scripts')
+
+	<script type="text/javascript">
+	  $('.modal-trigger').leanModal({
+	      dismissible: true, // Modal can be dismissed by clicking outside of the modal
+	      opacity: .5, // Opacity of modal background
+	      in_duration: 300, // Transition in duration
+	      out_duration: 200, // Transition out duration
+	      width:400,
+	    }
+	  );
+	</script>
+
+	<script>
+	  $(document).ready(function() {
+	    $('select').material_select();
+	  });
+	</script>	
+
+	<script>
+		$(document).ready(function() {
+			$('.datepicker').pickdate();
+		});			
+	</script>
+
+	<script>
+	$(document).ready(function(){
+    	$('body').on('load', 'ul.tabs', function() {
+   	 	$('ul.tabs').tabs();
+		});
+  		
+  		$("#addMeasurementDetail").on('click', function(){
+/*  			setTimeout(function(){
+  				$('ul.tabs').tabs();
+  				$('#tabMeasurementDetail').style('display', 'block');
+  			}, 2000);
+*/  		});
+
+  	});
+
+	</script>
+
+	<script>
+	function tabInit() {
+    $('ul.tabs').tabs();
+	}
+
+	$.ajax({
+	    type: "GET",
+	    //Url to the XML-file
+	    url: "transaction/walkInIndividualCheckout",
+	    dataType: "blade.php",
+	    success: tabInit
+	});
+	</script>
 
 
 @stop
