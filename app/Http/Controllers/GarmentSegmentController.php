@@ -60,7 +60,7 @@ class GarmentSegmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SegmentRequest $request)
+    public function store(Request $request)
     {
 
         $file = $request->input('addImage');

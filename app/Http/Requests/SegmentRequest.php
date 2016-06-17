@@ -26,13 +26,8 @@ class SegmentRequest extends Request
     public function rules()
     {
         return [
-            'addSegmentName'    =>  'required|unique:tblSegment,strSegmentName',
-            'editSegmentName' => 'unique:tblSegment,strSegmentName'
-           
-
-            
-
-            // 'editGarmentName'   =>  'required|unique:tblGarmentCategory,strGarmentCategoryName'
+            'addSegmentName'    =>  'unique:tblSegment,strSegmentName',
+            'editSegmentName'   =>  'unique:tblSegment,strSegmentName'
         ];
     }
 
@@ -41,9 +36,10 @@ class SegmentRequest extends Request
         return [
 
             'addSegmentName.unique'  =>  'Segment already exists.',
-            'addSegmentName.required' => 'Segment name is required.',
+            'editSegmentName.unique'  =>  'Segment already exists.'
+           
             // 'strSegmentName.required'  =>  'Segment name is required.'
-            'editGarmentName.unique'  => 'Garment already exists.'
+           
            
         ];
     }
