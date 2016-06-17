@@ -120,8 +120,7 @@
                         <tr>
                           <th data-field="Garmentcategory">Garment Category</th>
                           <th data-field="Garmentcategory">Segment</th>
-                          <th data-field="MeasurementName">Measurement Name</th>
-                          <th data-field="MeasurementName">Actions</th>
+                          <th data-field="MeasurementName">Action</th>
                           
                         </tr>
                       </thead>
@@ -132,111 +131,36 @@
                         <tr>   
                           <td>{{ $head->strGarmentCategoryName }}</td>
                           <td>{{ $head->strSegmentName }}</td>
-                          <td>{{ $head->strMeasurementDetailName }}</td> 
-                          <td><a style = "color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement information" href="#edit{{$head->strMeasCatID}}"><i class="mdi-editor-mode-edit"></i></a>
-                          <a style = "color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement information" href="#del{{$head->strMeasCatID}}"><i class="mdi-action-delete"></i></a>
+                          <td><a style = "color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement information" href="#{{$head->strMeasCatID}}{{$head->strMeasSegmentFK}}"><i class="mdi-editor-mode-edit"></i></a>                         
                         
-                          <div id="edit{{$head->strMeasCatID}}" class="modal modal-fixed-footer">
+                          <div id="{{$head->strMeasCatID}}{{$head->strMeasSegmentFK}}" class="modal modal-fixed-footer">
                             <h5><font color = "#1b5e20"><center>EDIT MEASUREMENT INFORMATION</center> </font> </h5>
-                              {!! Form::open(['url' => 'editMeasurementCategory']) !!}
-                                <div class="divider" style="height:2px"></div>
-                                <div class="modal-content col s12"> 
- 
-                                    <div class="input-field">
-                                      <input value="{{ $head->strMeasCatID }}" id="editMeasurementID" name="editMeasurementID" type="hidden" readonly>                                 
-                                    </div>
-
-                              <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                                    <div class="input-field col s6">                                                    
-                                      <select class="browser-default editCategory" name="editCategory" id="{{ $head->strMeasCatID}}"> 
-                                        @foreach($category as $cat)
-                                            @if($head->strMeasGarFK == $cat->strGarmentCategoryID && $cat->boolIsActive == 1) 
-                                              <option value="{{ $cat->strGarmentCategoryID }}" selected>{{ $cat->strGarmentCategoryName }}</option> 
-                                            @elseif($cat->boolIsActive == 1)
-                                              <option value="{{ $cat->strGarmentCategoryID }}">{{ $cat->strGarmentCategoryName }}</option>
-                                            @endif 
-                                        @endforeach                                  
-                                      </select>    
-                                    </div>       
-                                      
-                                    <div class="input-field col s6">                                                    
-                                      <select class="browser-default editSegment" required name='editSegment' id="{{ $head->strMeasCatID}}">
-                                        @foreach($segment as $seg)
-                                          @if($head->strMeasSegmentFK == $seg->strGarmentSegmentID && $seg->boolIsActive == 1)
-                                            <option value="{{ $seg->strGarmentSegmentID }}" class="{{ $seg->strCategory }}" selected>{{ $seg->strSegmentName }}</option>
-                                          @elseif($seg->boolIsActive == 1)
-                                            <option value="{{ $seg->strGarmentSegmentID }}" class="{{ $seg->strCategory }}">{{ $seg->strSegmentName }}</option>
-                                          @endif
-                                        @endforeach
-                                      </select>    
-                                    </div> 
-                                </div>    
-    
-                                <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
-                                    <div class="input-field col s12">                                                                               
-                                       <select class="browser-default" name="editDetail" id="editDetail" required>
-                                           @foreach($detailList as $dl)
-                                              @if($head->strMeasDetFK == $dl->strMeasurementDetailID && $dl->boolIsActive == 1)
-                                                <option selected value ="{{ $dl->strMeasurementDetailID }}">{{$dl->strMeasurementDetailName}}</option>
-                                              @elseif($dl->boolIsActive == 1)
-                                                <option value ="{{ $dl->strMeasurementDetailID }}">{{$dl->strMeasurementDetailName}}</option>
-                                              @endif  
-                                           @endforeach
-                                       </select>   
-                                     </div>
-                                  </div>
-                                </div> 
-
-                                <div class="modal-footer col s12" style="background-color:#26a69a">
-                                  <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Update</button>
-                                  <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
-                                </div>
-                              {!! Form::close() !!}
-                            </div>
-
-                         
-
-                          <div id="del{{$head->strMeasCatID}}" class="modal modal-fixed-footer">
-                            <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS MEASUREMENT INFORMATION?</center> </font> </h5>
                             
-                            {!! Form::open(['url' => 'maintenance/measurement-category/destroy']) !!}
                               <div class="divider" style="height:2px"></div>
                               <div class="modal-content col s12">
-                                
-                                  <div class="input-field">
-                                      <input value="{{ $head->strMeasCatID }}" id="delMeasurementID" name="delMeasurementID" type="hidden" readonly>                                 
-                                    </div>
+                                  <table class = "table centered" align = "center" border = "1">
+                                    <thead>
+                                      <tr>
+                                        <th data-field="MeasurementName">Measurement Name</th>
+                                        <th data-field="MeasurementName">Action</th>
+                                      </tr>
+                                    </thead>
 
-                            <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                                  <div class="input-field col s6">
-                                    <input value="{{ $head->strGarmentCategoryName }}" type="text" readonly>
-                                    <label for="measurement_id">Garment Category </label>
-                                  </div>
-
-                                  <div class="input-field col s6">
-                                    <input value="{{ $head->strSegmentName }}" type="text" readonly>
-                                    <label for="measurement_name">Segment </label>
-                                  </div>
-                            </div>
-
-                            <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                                  <div class="input-field col s12">
-                                    <input value="{{ $head->strMeasurementDetailName }}" type="text" readonly>
-                                    <label for="measurement_desc">Measurement Name </label>
-                                  </div>
-                            </div>
-
-                                  <div class="input-field col s12">
-                                    <label for="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span> </label>
-                                      <input value="{{ $head->strMeasCatInactiveReason}}" id="delInactiveHead" name="delInactiveHead" type="text">                                 
-                                  </div>
-                            </div>
-
-                              <div class="modal-footer col s12" style="background-color:#26a69a">
-                                <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">OK</button>
-                                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
+                                    <tbody>
+                                        <tr>
+                                          <td>{{ $head->strMeasurementDetailName }}</td> 
+                                          <td>
+                                            <a style = "color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement information" href="#del{{$head->strMeasCatID}}"><i class="mdi-action-delete"></i></a>
+                                          </td>
+                                        </tr>
+                                    </tbody>
+                                  </table>
                               </div>
-                            {!! Form::close() !!}
+                              
+                              <div class="modal-footer col s12" style="background-color:#26a69a">
+                                <button type="button" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</button>  
+                              </div>
+
                           </div>
                         </td>
                         </tr>

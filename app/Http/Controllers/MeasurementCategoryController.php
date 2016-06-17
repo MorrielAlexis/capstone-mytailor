@@ -45,7 +45,8 @@ class MeasurementCategoryController extends Controller
             ->leftJoin('tblSegment AS c', 'a.strMeasSegmentFK', '=', 'c.strSegmentID')
             ->leftJoin('tblMeasurementDetail AS d', 'a.strMeasDetFK', '=', 'd.strMeasurementDetailID')
             ->select('a.*', 'b.strGarmentCategoryName','c.strSegmentName', 'd.strMeasurementDetailName')
-            ->orderBy('created_at') 
+            ->orderBy('a.strMeasGarFK')
+            ->orderBy('a.strMeasSegmentFK') 
             ->get();
 
         //load the view and pass the employees
