@@ -3,10 +3,10 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
-
 use Illuminate\Contracts\Validation\Validator;
 
-class RoleRequest extends Request
+
+class SegmentRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,21 +26,23 @@ class RoleRequest extends Request
     public function rules()
     {
         return [
-            'addRoleName'    =>  'required|unique:tblEmployeeRole,strEmpRoleName',
-            'editRoleName'   =>  'unique:tblEmployeeRole,strEmpRoleName'
+            'addSegmentName'    =>  'unique:tblSegment,strSegmentName',
+             'addImg'    =>  'image'
         ];
     }
 
-    public function messages()
+     public function messages()
     {
         return [
-            'addRoleName.unique'  =>  'Role already exists.',
-            'addRoleName.required' => 'Role name is required.',
-            'editRoleName.unique'  => 'Role name already exists.'
+
+            'addSegmentName.unique'  =>  'Segment already exists.',
+            'addImg.image'  =>  'The file you uploaded is not an image.'
+           
+            // 'strSegmentName.required'  =>  'Segment name is required.'
+           
+           
         ];
-
     }
-
 
     protected function formatErrors(Validator $validator)
     {

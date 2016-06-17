@@ -15,6 +15,7 @@ class GarmentSegment extends Model
     						'strSegmentName',
                             'strSegmentSex',
     						'textSegmentDesc', 
+                            'strSegmentImage',
     						'strSegInactiveReason',
     						'boolIsActive');   
 

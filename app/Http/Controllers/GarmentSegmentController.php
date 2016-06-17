@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\SegmentRequest;
 
 use App\GarmentCategory;
 use App\GarmentSegment;
@@ -64,7 +65,6 @@ class GarmentSegmentController extends Controller
 
         $file = $request->input('addImage');
         $destinationPath = 'imgSegments';
-        
 
         if($file == '' || $file == null){
             $segment = GarmentSegment::create(array(
@@ -79,7 +79,7 @@ class GarmentSegmentController extends Controller
             ));
         }else{
 
-            $request->file('addImg')->move($destinationPath, $file);
+            $request->file('addImg')->move($destinationPath);
             $segment = GarmentSegment::create(array(
 
                     'strSegmentID' => $request->input('addSegmentID'),
@@ -91,9 +91,10 @@ class GarmentSegmentController extends Controller
                     'boolIsActive' => 1
 
             ));
-        }
+        } 
 
-             $segment->save();
+             // $added=$segment->save();
+        $segment->save();
 
          \Session::flash('flash_message','Segment successfully added.'); //flash message
 
@@ -168,6 +169,7 @@ class GarmentSegmentController extends Controller
                     $segment->strSegmentImage = 'imgSegments/'.$file;
             }
                 $segment->save();
+                
 
          \Session::flash('flash_message_update','Segment detail/s successfully updated.'); //flash message
 

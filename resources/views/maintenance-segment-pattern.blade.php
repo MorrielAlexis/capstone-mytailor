@@ -14,6 +14,20 @@
         </div>
       @endif
 
+
+      <!-- Errors -->
+        @if ($errors->any())
+           <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red">
+              <span class="black-text" style="color:black"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </div>
+          </div>
+        </div>
+      @endif
        
       <!--Add -->
         @if(Session::has('flash_message'))
@@ -124,7 +138,7 @@
                     <div id="edit{{ $pattern->strSegPatternID }}" class="modal modal-fixed-footer">                     
                         <h5><font color = "#1b5e20"><center>EDIT SEGMENT PATTERN</center> </font> </h5>                        
 
-                      {!! Form::open(['url' => 'maintenance/segment-pattern/update', 'files' => 'true']) !!}
+                      {!! Form::open(['url' => 'maintenance/segment-pattern/update', 'files' => true]) !!}
                         <div class="divider" style="height:2px"></div>
                         <div class="modal-content col s12">
                           
@@ -251,7 +265,7 @@
             <div id="addDesign" class="modal modal-fixed-footer">
               <h5><font color = "#1b5e20"><center>ADD NEW SEGMENT PATTERN</center> </font> </h5> 
                 
-              {!! Form::open(['url' => 'maintenance/segment-pattern', 'method' => 'post', 'files' => 'true']) !!}
+              {!! Form::open(['url' => 'maintenance/segment-pattern', 'method' => 'post', 'files' => true]) !!}
                 <div class="divider" style="height:2px"></div>
                 <div class="modal-content col s12">
                 
@@ -299,7 +313,7 @@
                   </div>
                 
                   <div class="file-path-wrapper">
-                    <input id="addImage" name="addImage" class="file-path validate" type="text" readonly="readonly">
+                    <input id="addImage" name="addImage" class="file-path validate" type="text">
                   </div>
                 </div>
             </div>

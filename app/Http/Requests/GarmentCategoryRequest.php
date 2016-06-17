@@ -27,7 +27,7 @@ class GarmentCategoryRequest extends Request
     {
         return [
             'addGarmentName'    =>  'required|unique:tblGarmentCategory,strGarmentCategoryName',
-            'editGarmentName'   =>  'required|unique:tblGarmentCategory,strGarmentCategoryName'
+            'editGarmentName'   =>  'unique:tblGarmentCategory,strGarmentCategoryName'
         ];
     }
 
@@ -36,8 +36,8 @@ class GarmentCategoryRequest extends Request
         return [
 
             'addGarmentName.unique'  =>  'Garment already exists.',
-            'addGarmentName.required' => 'Garment name is required.',
-            // 'editGarmentName.unique'  => 'Garment already exists.'
+            'addGarmentName.required'  =>  'Garment name is required.',
+            'editGarmentName.unique'  => 'Garment already exists.'
         ];
     }
 

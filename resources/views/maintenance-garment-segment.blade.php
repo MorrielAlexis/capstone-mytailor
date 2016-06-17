@@ -85,6 +85,23 @@
         </div>
       @endif
 
+
+      <!-- Errors -->
+        @if ($errors->any())
+           <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red">
+              <span class="black-text" style="color:black"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </div>
+          </div>
+        </div>
+      @endif
+
+     <!--  End of flash messages -->
+
     <div class="row">
       <div class="col s12 m12 l12">
         <span class="page-title"><h4>Garment Segment</h4></span>
@@ -285,14 +302,14 @@
     			    <div id="addSegment" class="modal modal-fixed-footer">
                 <h5><font color = "#1b5e20"><center>ADD NEW GARMENT SEGMENT</center> </font> </h5> 
                 
-                {!! Form::open(['url' => 'maintenance/garment-segment', 'method' => 'post' ]) !!}
+                {!! Form::open(['url' => 'maintenance/garment-segment', 'method' => 'post', 'files' => true ]) !!}
                   <div class="divider" style="height:2px"></div>
                   <div class="modal-content col s12">
 
 
-                      <div class="input-field">
-                        <input value="{{ $newID }}" id="addSegmentID" name="addSegmentID" type="hidden">
-                      </div>
+
+                      <input type="hidden" name="_token" value="{!! csrf_token() !!}" />
+                <input value = "{{$newID}}" id="addSegmentID" name= "addSegmentID" type="hidden">
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
@@ -314,22 +331,22 @@
                       </div>
                   </div>
 
-                  <div class="input-field col s12" style="margin-top: 40px !important;">
+                   <div class="input-field col s12" style="margin-top: 40px !important;">
                               <select required class="browser-default" name="addSegmentSex" id="addSegmentSex">
                                 <option value="" disabled selected>Sex</option>
                                 <option value="{{$segment->strSegmentSex}}">Male</option>
                                 <option value="{{$segment->strSegmentSex}}">Female</option>
                               </select>
                               <label for="Sex" class="active">Sex<span class="red-text">*</span></label>
-                  </div>
+                  </div> 
 
-                  <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
+                   <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                       <div class="input-field col s12">
                         <input id="addSegmentDesc" name = "addSegmentDesc" type="text" class="validate"  data-position="bottom" >
                         <label for="segment_description">Segment Description </label>
                       </div>
                   </div>
-                  
+
                   <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                 <div class="file-field input-field col s12">
                   <div style="color:black" class="btn tooltipped btn-small center-text light-green lighten-2" data-position="bottom" data-delay="50" data-tooltip="May upload jpg, png, gif, bmp, tif, tiff files">
@@ -338,11 +355,11 @@
                   </div>
                 
                   <div class="file-path-wrapper">
-                    <input id="addImage" name="addImage" class="file-path validate" type="text" readonly="readonly">
+                    <input id="addImage" name="addImage" class="file-path validate" type="text">
                   </div>
                 </div>
+            </div>              
             </div>
-                  </div>
 
                   <div class="modal-footer col s12" style="background-color:#26a69a">
                     <button type="submit" name="send" id="send" class=" modal-action  waves-effect waves-green btn-flat">Add</button>

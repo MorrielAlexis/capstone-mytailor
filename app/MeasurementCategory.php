@@ -18,11 +18,11 @@ class MeasurementCategory extends Model
 								//
 								);
 
-	public function measurementdetails()
+	public function measurementDetails()
 	{
 
 		// return $this->belongstoMany('App\GarmentCategory')->withPivot('tblGarment_Segment');
-		return $this->belongstoMany('App\MeasurementCategory');
+		return $this->belongstoMany('App\MeasurementDetail');
 
 	}
 

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\GarmentCategory;
+
 class WalkInIndividualController extends Controller
 {
     /**
@@ -15,8 +17,17 @@ class WalkInIndividualController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('transaction-walkin-individual');
+    {   
+        $categories = GarmentCategory::all();
+
+        $garments = \DB::table('tblSegment AS a')
+                    ->leftJoin('tblGarmentCategory AS b', 'a.strSegCategoryFK', '=', 'b.strGarmentCategoryID')
+                    ->select('a.*', 'b.strGarmentCategoryName')
+                    ->get();
+
+        return view('transaction-walkin-individual')
+                    ->with('garments', $garments)
+                    ->with('categories', $categories);
     }
 
     public function bulkOrder()

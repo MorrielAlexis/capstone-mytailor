@@ -23,24 +23,24 @@
 						<div class="col s12">
 
 							<div class="col s5">
-								<div class="input-field col s12" style="background-color:teal">
-										<select class="browser-default">
-											<option value="" readonly style="color:gray">Choose a garment category...</option>
-										    <option value="1" class="circle">Uniform</option>
-										    <option value="2" class="circle">Suit</option>
-										    <option value="3" class="circle">Gown</option>
+								<div class="input-field col s12">
+										<select>
+											<option disabled>Choose a garment category...</option>
+										    @foreach($categories as $category)
+										    	<option value="{{ $category->strGarmentCategoryID }}" class="circle">{{ $category->strGarmentCategoryName }}</option>
+											@endforeach
 										</select>
 								</div>
 							</div>
 						
 
 							<div class="col s5" style="margin-bottom:20px">
-								<div class="input-field col s12" style="background-color:teal">
-										<select class="browser-default">
-											<option value="" readonly style="color:gray">Show garments for...</option>
-										    <option value="1" class="circle">Male</option>
-										    <option value="2" class="circle">Female</option>
-										    <option value="3" class="circle">All</option>
+								<div class="input-field col s12">
+										<select>
+											<option disabled>Show garments for...</option>
+										    <option value="M" class="circle">Male</option>
+										    <option value="F" class="circle">Female</option>
+										    <option value="A" selected class="circle">All</option>
 										</select>
 										
 								</div>
@@ -63,65 +63,18 @@
 						<div class="col s12" style="margin-top:15px">
 							<div class="divider" style="margin-bottom:40px; height:2px"></div>
 							<p class="center-align" style="color:teal; margin-bottom:40px"><b>CHOOSE AMONG AVAILABLE PRODUCTS</b></p>
+							
+						@foreach($garments as $garment)
 							<div class="col s4">
 									<div class="center col s12">
-				          				<input type="checkbox" class="filled-in" id="polo-male" style="padding:5px"/>
-		      							<label for="polo-male" ><font size="+1">Polo</font></label>
-		      							<label for="polo-male" ><font color="gray">Male</font></label>
+				          				<input type="checkbox" class="filled-in" id="{{ $garment->strSegmentID }}" style="padding:5px"/>
+		      							<label for="{{ $garment->strSegmentID }}"><font size="+1">{{ $garment->strSegmentName }}</font></label>
+		      							@if($garment->strSegmentSex == 'M')<label for="{{ $garment->strSegmentID }}"><font color="gray">Male</font></label>
+		      							@elseif($garment->strSegmentSex == 'F')<label for="{{ $garment->strSegmentID }}"><font color="gray">Female</font></label>
+		      							@endif
 		      						</div>
-									<div class="center col s12"><img src="{{URL::to('img/male-uniform-plain.jpg')}}" style="height:200px; width:250px; padding:10px; border:3px gray solid"></div>
-								
-								<center><h6>Quantity</h6></center>
-				                  <div class="row">
-				                    <div class="col s3 center"><i class="small mdi-content-add-circle" style="color:teal"></i></div>
-				                    <div class="input-field col s6" style="margin-top:-2px;">
-				                      <input class="center" id="quantity" value="1" type="text" readonly>
-				                    </div>
-				                    <div class="col s3 center"><i class="small mdi-content-remove-circle" style="color:teal"></i></div>
-				                  </div>
-							</div>
-							<div class="col s4">
-									<div class="center col s12">
-										<input type="checkbox" class="filled-in" id="pants-male" style="padding:5px" />
-		      							<label for="pants-male"><font size="+1">Pants</font></label>
-		      							<label for="pants-male" ><font color="gray">Male</font></label>
-		      						</div>
-									<div class="center col s12"><img src="{{URL::to('img/male-uniform-pants-plain.jpg')}}" style="height:200px; width:250px; padding:10px; border:3px gray solid"></div>
-								
-								<center><h6>Quantity</h6></center>
-				                  <div class="row">
-				                    <div class="col s3 center"><i class="small mdi-content-add-circle" style="color:teal"></i></div>
-				                    <div class="input-field col s6" style="margin-top:-2px;">
-				                      <input class="center" id="quantity" value="1" type="text" readonly>
-				                    </div>
-				                    <div class="col s3 center"><i class="small mdi-content-remove-circle" style="color:teal"></i></div>
-				                  </div>
-							</div>
-							<div class="col s4">
-									<div class="center col s12">
-										<input type="checkbox" class="filled-in" id="shorts-male" style="padding:5px"/>
-		      							<label for="shorts-male"><font size="+1">Shorts</font></label>
-		      							<label for="shorts-male" ><font color="gray">Male</font></label>
-		      						</div>
-									<div class="center col s12"><img src="{{URL::to('img/male-uniform-shorts-plain.jpg')}}" style="height:200px; width:250px; padding:30px; border:3px gray solid"></div>
-								
-								<center><h6>Quantity</h6></center>
-				                  <div class="row">
-				                    <div class="col s3 center"><i class="small mdi-content-add-circle" style="color:teal"></i></div>
-				                    <div class="input-field col s6" style="margin-top:-2px;">
-				                      <input class="center" id="quantity" value="1" type="text" readonly>
-				                    </div>
-				                    <div class="col s3 center"><i class="small mdi-content-remove-circle" style="color:teal"></i></div>
-				                  </div>
-							</div>
 
-							<div class="col s4">
-									<div class="center col s12">
-				          				<input type="checkbox" class="filled-in" id="polo-female" style="padding:5px"/>
-		      							<label for="polo-female" ><font size="+1">Polo</font></label>
-		      							<label for="polo-female" ><font color="gray">Female</font></label>
-		      						</div>
-									<div class="center col s12"><img src="{{URL::to('img/female-uniform-plain.jpeg')}}" style="height:200px; width:250px; padding:10px; border:3px gray solid"></div>
+									<div class="center col s12"><img src="{{URL::asset($garment->strSegmentImage)}}" style="height:200px; width:250px; padding:10px; border:3px gray solid"></div>
 								
 								<center><h6>Quantity</h6></center>
 				                  <div class="row">
@@ -132,44 +85,7 @@
 				                    <div class="col s3 center"><i class="small mdi-content-remove-circle" style="color:teal"></i></div>
 				                  </div>
 							</div>
-
-							<div class="col s4">
-									<div class="center col s12">
-										<input type="checkbox" class="filled-in" id="pants-female" style="padding:5px" />
-		      							<label for="pants-female"><font size="+1">Pants</font></label>
-		      							<label for="pants-female" ><font color="gray">Female</font></label>
-		      						</div>
-									<div class="center col s12"><img src="{{URL::to('img/female-uniform-pants.jpg')}}" style="height:200px; width:250px; padding:10px; border:3px gray solid"></div>
-								
-								<center><h6>Quantity</h6></center>
-				                  <div class="row">
-				                    <div class="col s3 center"><i class="small mdi-content-add-circle" style="color:teal"></i></div>
-				                    <div class="input-field col s6" style="margin-top:-2px;">
-				                      <input class="center" id="quantity" value="1" type="text" readonly>
-				                    </div>
-				                    <div class="col s3 center"><i class="small mdi-content-remove-circle" style="color:teal"></i></div>
-				                  </div>
-							</div>
-
-							<div class="col s4">
-									<div class="center col s12">
-										<input type="checkbox" class="filled-in" id="skirt-female" style="padding:5px"/>
-		      							<label for="skirt-female"><font size="+1">Skirt</font></label>
-		      							<label for="skirt-female" ><font color="gray">Female</font></label>
-		      						</div>
-									<div class="center col s12"><img src="{{URL::to('img/female-uniform-skirt.jpg')}}" style="height:200px; width:250px; padding:30px; border:3px gray solid"></div>
-								
-								<center><h6>Quantity</h6></center>
-				                  <div class="row">
-				                    <div class="col s3 center"><i class="small mdi-content-add-circle" style="color:teal"></i></div>
-				                    <div class="input-field col s6" style="margin-top:-2px;">
-				                      <input class="center" id="quantity" value="1" type="text" readonly>
-				                    </div>
-				                    <div class="col s3 center"><i class="small mdi-content-remove-circle" style="color:teal"></i></div>
-				                  </div>
-							</div>
-
-
+						@endforeach
 						</div>
 
 						<div class="col s12">
