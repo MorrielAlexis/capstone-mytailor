@@ -133,7 +133,7 @@
                   <td>{{ $employee->dtEmpBday }} </td>
                   <td>
                     @if($employee->strSex == 'M') Male
-                    @else Female
+                    @elseif($employee->strSex == 'F') Female
                     @endif
                   </td>
                   <td>{{ $employee->strEmpHouseNo }} {{ $employee->strEmpStreet }} {{ $employee->strEmpBarangay }} {{ $employee->strEmpCity }} {{ $employee->strEmpProvince }}  {{ $employee->strEmpZipCode }} </td>

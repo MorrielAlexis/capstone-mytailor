@@ -13,6 +13,7 @@ class GarmentSegment extends Model
     protected $fillable = array('strSegmentID',
                             'strSegCategoryFK', 
     						'strSegmentName',
+                            'strSegmentSex',
     						'textSegmentDesc', 
     						'strSegInactiveReason',
     						'boolIsActive');   

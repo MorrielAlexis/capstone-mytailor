@@ -110,8 +110,8 @@
               			<!--<th data-field="id">Garment Details ID</th>-->
              		   	<th data-field="name">Category Name</th>
                     <th data-field="name">Segment Name</th>
-                    <th data-field="gender">Gender</th>
-              			<th data-field="address">Segment Description</th>
+                    <th data-field="address">Segment Description</th>
+                    <th data-field="Sex">Sex </th>
                     <th data-field="Edit">Actions</th>
                     
               		</tr>
@@ -121,10 +121,14 @@
                   @foreach($segment as $segment)
                   @if($segment->boolIsActive == 1)
                   <tr>
-             		  <td>{{ $segment->strGarmentCategoryName }}</td>
+             		    <td>{{ $segment->strGarmentCategoryName }}</td>
                     <td>{{ $segment->strSegmentName }}</td>
-                     <td>{{ $segment->strSegGender }}</td>
               		  <td>{{ $segment->textSegmentDesc }}</td>
+                    <td>
+                      @if($segment->strSegmentSex == 'M') For men
+                      @elseif($segment->strSegmentSex == 'F') For women
+                      @endif
+                    </td>
               		  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of segment" href="#edit{{ $segment->strSegmentID }}"><i class="mdi-editor-mode-edit"></i></a> 
                     <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of segment from table" href="#del{{ $segment->strSegmentID }}"><i class="mdi-action-delete"></i></a></td>
        
@@ -162,12 +166,12 @@
                           </div>
 
                           <div class="input-field col s12" style="margin-top: 40px !important;">
-                              <select required class="browser-default" name="editSegmentGender" id="editSegmentGender">
-                                <option value="" disabled selected>Gender</option>
-                                <option value="{{$segment->strSegGender}}">Male</option>
-                                <option value="{{$segment->strSegGender}}">Female</option>
+                              <select required class="browser-default" name="editSegmentSex" id="editSegmentSex">
+                                <option value="" disabled selected>Sex</option>
+                                <option value="{{$segment->strSegmentSex}}">Male</option>
+                                <option value="{{$segment->strSegmentSex}}">Female</option>
                               </select>
-                              <label for="strSegGender" class="active">Gender<span class="red-text">*</span></label>
+                              <label for="strSegmentSex" class="active">Sex<span class="red-text">*</span></label>
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
@@ -212,15 +216,15 @@
 
                          <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">                                                    
-                                  <input type="text" value="{{$segment->strSegGender}}">
-                                  <label>Gender</label>
+                                  <input type="text" value="{{$segment->strSegmentSex}}">
+                                  <label>Sex</label>
                               </div>   
                           </div>
 
                             <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">                                                    
-                                  <input type="text" value="{{$segment->strSegGender}}">
-                                  <label>Gender</label>
+                                  <input type="text" value="{{$segment->strSegmentSex}}">
+                                  <label>Sex</label>
                               </div>   
                           </div>
 
@@ -297,12 +301,12 @@
                   </div>
 
                   <div class="input-field col s12" style="margin-top: 40px !important;">
-                              <select required class="browser-default" name="addSegmentGender" id="addSegmentGender">
-                                <option value="" disabled selected>Gender</option>
-                                <option value="{{$segment->strSegGender}}">Male</option>
-                                <option value="{{$segment->strSegGender}}">Female</option>
+                              <select required class="browser-default" name="addSegmentSex" id="addSegmentSex">
+                                <option value="" disabled selected>Sex</option>
+                                <option value="{{$segment->strSegmentSex}}">Male</option>
+                                <option value="{{$segment->strSegmentSex}}">Female</option>
                               </select>
-                              <label for="Gender" class="active">Gender<span class="red-text">*</span></label>
+                              <label for="Sex" class="active">Sex<span class="red-text">*</span></label>
                   </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
