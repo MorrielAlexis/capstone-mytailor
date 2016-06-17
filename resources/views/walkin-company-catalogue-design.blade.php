@@ -21,7 +21,7 @@
 					<div class="card-content">
 						<div class="row">
 						<div class="col s12">
-							<div class="col s3">
+							<div class="col s4">
 								<div class="input-field col s12" style="background-color:teal">
 										<select class="browser-default">
 											<option value="" readonly style="color:gray">Select a category...</option>
@@ -55,14 +55,8 @@
 								</div>
 							</div>
 
-							<div class="col s3" style="margin-bottom:20px; background-color:white">
-						        <nav class="white" style="border: 2px black inset">
-						            <div class="input-field col s12" style="padding-top:20px;">
-						                <input id="search" type="search" required="" placeholder="Search...">
-						                <label for="search"><i class="large mdi-action-search" style="color:gray"></i></label>
-						                <i class="mdi-navigation-close"></i>
-						            </div>
-						        </nav>
+							<div class="col s2" style="margin-bottom:20px; background-color:white">
+						        <a href="#!" class="btn" style="background-color:#26a69a; color:white; margin-top:20px; margin-left:20px">Search</a>
 							</div>
 
 						</div>

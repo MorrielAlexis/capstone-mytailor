@@ -20,48 +20,45 @@
 				<div id="catalogue-design" class="card-panel">
 					<div class="card-content">
 						<div class="row">
-						<div class="col s6">
-							<div class="col s6"><p>Choose your garment type</p></div>
-							<div class="col s6">
-								<div class="input-field col s12">
-										<select>
+						<div class="col s12">
+							<div class="col s4">
+								<div class="input-field col s12" style="background-color:teal">
+										<select class="browser-default">
+											<option value="" readonly style="color:gray">Select a category...</option>
 										    <option value="1" class="circle">Uniform</option>
 										    <option value="2" class="circle">Suit</option>
-										    <option value="3" class="circle">Uniform</option>
+										    <option value="3" class="circle">Gown</option>
 										</select>
 								</div>
 							</div>
-						</div>
-
-						<div class="col s6">
-							<div class="col s6"><p>Choose your garment segment</p></div>
-							<div class="col s6">
-								<div class="input-field col s12">
-										<select>
+						
+							<div class="col s3">
+								<div class="input-field col s12" style="background-color:teal">
+										<select class="browser-default">
+											<option value="" readonly style="color:gray">Select a segment...</option>
 										    <option value="1" class="circle">Polo</option>
 										    <option value="2" class="circle">Pants</option>
 										    <option value="3" class="circle">Skirt</option>
 										</select>
 								</div>
 							</div>
-						</div>
 
-						<div class="col s12" style="margin-bottom:20px">
-							<div class="col s3">
-		      							<label for="label"><font size="+0.5">Show garments for:</font></label>
-		      				</div>
-							<div class="col s3">
-				          				<input name="garmentsFor" type="radio" class="filled-in" id="male" />
-		      							<label for="male">Male Only</label>
-		      				</div>
-		      				<div class="col s3">
-				          				<input name="garmentsFor" type="radio" class="filled-in" id="female" />
-		      							<label for="female">Female Only</label>
-		      				</div>
-		      				<div class="col s3">
-				          				<input name="garmentsFor" type="radio" class="filled-in" id="all" checked/>
-		      							<label for="all">All</label>
-		      				</div>
+							<div class="col s3" style="margin-bottom:20px">
+								<div class="input-field col s12" style="background-color:teal">
+										<select class="browser-default">
+											<option value="" readonly style="color:gray">Show garments for...</option>
+										    <option value="1" class="circle">Male</option>
+										    <option value="2" class="circle">Female</option>
+										    <option value="3" class="circle">All</option>
+										</select>
+										
+								</div>
+							</div>
+
+							<div class="col s2" style="margin-bottom:20px; background-color:white">
+						        <a href="#!" class="btn" style="background-color:#26a69a; color:white; margin-top:20px; margin-left:20px">Search</a>
+							</div>
+							
 						</div>
 
 						<div class="divider"></div>
