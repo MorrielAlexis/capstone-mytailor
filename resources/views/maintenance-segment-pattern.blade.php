@@ -138,7 +138,7 @@
                     <div id="edit{{ $pattern->strSegPatternID }}" class="modal modal-fixed-footer">                     
                         <h5><font color = "#1b5e20"><center>EDIT SEGMENT PATTERN</center> </font> </h5>                        
 
-                      {!! Form::open(['url' => 'maintenance/segment-pattern/update', 'files' => 'true']) !!}
+                      {!! Form::open(['url' => 'maintenance/segment-pattern/update', 'files' => true]) !!}
                         <div class="divider" style="height:2px"></div>
                         <div class="modal-content col s12">
                           
@@ -265,7 +265,7 @@
             <div id="addDesign" class="modal modal-fixed-footer">
               <h5><font color = "#1b5e20"><center>ADD NEW SEGMENT PATTERN</center> </font> </h5> 
                 
-              {!! Form::open(['url' => 'maintenance/segment-pattern', 'method' => 'post', 'files' => 'true']) !!}
+              {!! Form::open(['url' => 'maintenance/segment-pattern', 'method' => 'post', 'files' => true]) !!}
                 <div class="divider" style="height:2px"></div>
                 <div class="modal-content col s12">
                 
@@ -313,7 +313,7 @@
                   </div>
                 
                   <div class="file-path-wrapper">
-                    <input id="addImage" name="addImage" class="file-path validate" type="text" readonly="readonly">
+                    <input id="addImage" name="addImage" class="file-path validate" type="text">
                   </div>
                 </div>
             </div>

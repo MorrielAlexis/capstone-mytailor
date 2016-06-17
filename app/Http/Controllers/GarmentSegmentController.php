@@ -79,7 +79,7 @@ class GarmentSegmentController extends Controller
             ));
         }else{
 
-            $request->file('addImg')->move($destinationPath, $file);
+            $request->file('addImg')->move($destinationPath);
             $segment = GarmentSegment::create(array(
 
                     'strSegmentID' => $request->input('addSegmentID'),
@@ -169,6 +169,7 @@ class GarmentSegmentController extends Controller
                     $segment->strSegmentImage = 'imgSegments/'.$file;
             }
                 $segment->save();
+                
 
          \Session::flash('flash_message_update','Segment detail/s successfully updated.'); //flash message
 
