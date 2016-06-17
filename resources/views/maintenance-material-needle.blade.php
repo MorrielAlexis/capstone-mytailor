@@ -139,21 +139,21 @@
                           
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                 <div class="input-field col s12">
-                                  <input required id="editNeedleBrand" name = "editNeedleBrand" value = "{{$needle->strNeedleBrand}}" type="text" class="validateName">
+                                  <input required id="editNeedleBrand" name = "editNeedleBrand" value = "{{$needle->strNeedleBrand}}" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                                   <label for="Needle_Brand"> Needle Brand <span class="red-text"><b>*</b></span></label>
                                 </div>
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                 <div class="input-field col s12">
-                                  <input required id="editNeedleSize" name = "editNeedleSize" value = "{{$needle->strNeedleSize}}" type="text" class="validateSize">
+                                  <input required id="editNeedleSize" name = "editNeedleSize" value = "{{$needle->strNeedleSize}}" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                                   <label for="Needle_Size"> Needle Size <span class="red-text"><b>*</b></span></label>
                                 </div>
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                 <div class="input-field col s12">
-                                  <input  id="editNeedleDesc" name = "editNeedleDesc" value = "{{$needle->strNeedleDesc}}" type="text" class="validateDesc">
+                                  <input  id="editNeedleDesc" name = "editNeedleDesc" value = "{{$needle->strNeedleDesc}}" type="text" class="validate">
                                   <label for="Needle_Size"> Description </label>
                                 </div>
                           </div>
@@ -263,14 +263,14 @@
          
         <div class = "col s12" style="padding:15px;  border:3px solid white;">           
           <div class="input-field col s12">
-            <input required id="addNeedleBrandtttttttttttttttttttttttttttttttt" name = "addNeedleBrandtttttttttttttttttttttttttttttttt"  type="text" class="validateName">
+            <input required id="addNeedleBrand" name = "addNeedleBrand"  type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
             <label for="Needle_Name"> Needle Name<span class="red-text"><b>*</b></span> </label>
           </div>
         </div>
 
         <div class = "col s12" style="padding:15px;  border:3px solid white;">
           <div class="input-field col s12">
-            <input required  id="addNeedleSize" name = "addNeedleSize" type="text" class="validateSize">
+            <input required  id="addNeedleSize" name = "addNeedleSize" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
             <label for="Needle_Size"> Needle Size <span class="red-text"><b>*</b></span></label>
           </div>
         </div>

@@ -135,7 +135,7 @@
 
                               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                     <div class="input-field col s12">
-                                      <input required value="{{ $detail->strMeasurementDetailName }}" id="editDetailName" name = "editDetailName" type="text" class="validate">
+                                      <input required value="{{ $detail->strMeasurementDetailName }}" id="editDetailName" name = "editDetailName" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                                       <label for="measurement_name"> Measurement Name <span class="red-text"><b>*</b></span></label>
                                     </div>
                               </div>
@@ -226,7 +226,7 @@
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input required id="addDetailName" name= "addDetailName" type="text" class="validate" pattern="^[a-zA-Z\-'`\s]{2,}$" placeholder="Chest">
+                            <input required id="addDetailName" name= "addDetailName" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" placeholder="Chest">
                             <label for="measurement_name"> Measurement Name <span class="red-text"><b>*</b></span></label>
                           </div>
                       </div>

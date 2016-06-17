@@ -143,17 +143,17 @@
 
                                 <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                   <div class="input-field col s4">
-                                    <input required id="editFName" name = "editFName" value = "{{$individual->strIndivFName}}" placeholder="Hope" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2">
+                                    <input required id="editFName" name = "editFName" value = "{{$individual->strIndivFName}}" placeholder="Hope" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
                                     <label for="first_name"> First Name <span class="red-text"><b>*</b></span></label>
                                   </div>
 
                                   <div class="input-field col s4">
-                                    <input  id="editMName" name = "editMName" value = "{{$individual->strIndivMName}}" placeholder="Elizabeth" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2">
+                                    <input  id="editMName" name = "editMName" value = "{{$individual->strIndivMName}}" placeholder="Elizabeth" type="text" class="validate" data-position="bottom" pattern="^^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
                                     <label for="middle_name"> Middle Name </label>
                                   </div>
 
                                   <div class="input-field col s4">
-                                    <input required id="editLName" name = "editLName" value = "{{$individual->strIndivLName}}" placeholder="Soberano" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2">
+                                    <input required id="editLName" name = "editLName" value = "{{$individual->strIndivLName}}" placeholder="Soberano" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
                                     <label for="last_name"> Last Name <span class="red-text"><b>*</b></span></label>
                                   </div>
                                 </div>
@@ -170,19 +170,19 @@
                                   </div>
 
                                   <div class="input-field col s3">
-                                    <input value="{{$individual->strIndivBarangay}}" id="editCustPrivBarangay" name="editCustPrivBarangay" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$" type="text" placeholder="Daang Bakal" class="validate">
+                                    <input value="{{$individual->strIndivBarangay}}" id="editCustPrivBarangay" name="editCustPrivBarangay" pattern="^[a-zA-Z0-9\'\-\.]+([a-zA-Z0-9\'\-\.]+)*$" type="text" placeholder="Daang Bakal" class="validate">
                                     <label for=" Brgy">Barangay </label>
                                   </div>
 
                                   <div class="input-field col s3">
-                                    <input required value="{{$individual->strIndivCity}}" id="editCustPrivCity" name="editCustPrivCity" pattern="^[a-zA-Z\'\-]+( [a-zA-Z\'\-]+)*$" type="text" placeholder="Mandaluyong" class="validate">
+                                    <input required value="{{$individual->strIndivCity}}" id="editCustPrivCity" name="editCustPrivCity" pattern="^[a-zA-Z\'\-]+([a-zA-Z\'\-]+)*$" type="text" placeholder="Mandaluyong" class="validate">
                                     <label for=" City">City/Municipality <span class="red-text"><b>*</b></label>
                                   </div>
                                 </div>
 
                                 <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                   <div class="input-field col s6">
-                                    <input value="{{$individual->strIndivProvince}}" id="editCustPrivProvince" name="editCustPrivProvince" pattern="^[a-zA-Z\'\-\.]+( [a-zA-Z\'\-\.]+)*$" type="text" placeholder="Pampanga" class="validate">
+                                    <input value="{{$individual->strIndivProvince}}" id="editCustPrivProvince" name="editCustPrivProvince" pattern="^[a-zA-Z\'\-\.]+([a-zA-Z\'\-\.]+)*$" type="text" placeholder="Pampanga" class="validate">
                                     <label for=" Province">Province </label>
                                   </div>
 
@@ -304,17 +304,17 @@
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s4">
-                          <input required id="addFName" name = "addFName" placeholder="Hope" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2">
+                          <input required id="addFName" name = "addFName" placeholder="Hope" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
                           <label for="first_name" > First Name <span class="red-text"><b>*</b></label>
                         </div>
 
                         <div class="input-field col s4">
-                          <input id="addMName" name = "addMName" placeholder="Elizabeth" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2">
+                          <input id="addMName" name = "addMName" placeholder="Elizabeth" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
                           <label for="middle_name"> Middle Name </label>
                         </div>
 
                         <div class="input-field col s4">
-                          <input required id="addLName" name = "addLName" placeholder="Soberano" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2">
+                          <input required id="addLName" name = "addLName" placeholder="Soberano" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
                           <label for="last_name"> Last Name <span class="red-text"><b>*</b></label>
                         </div>
                       </div>
@@ -326,9 +326,10 @@
                           </div>
 
                            <div class="input-field col s3">
-                            <input required id="addCustPrivStreet" name="addCustPrivStreet" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$" type="text" placeholder="Malunggay" class="validate">
+                            <input required id="addCustPrivStreet" name="addCustPrivStreet" pattern="^[a-zA-Z0-9\'\-\.]+([a-zA-Z0-9\'\-\.]+)*$" type="text" placeholder="Malunggay" class="validate">
                             <label for=" Street">Street <span class="red-text"><b>*</b></label>
-                          </div>
+                          </div><!-- ^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)? -->
+                         <!--  ^[a-zA-Z0-9\'\-\.]+(\s[a-zA-Z0-9\'\-\.]+)*$ -->
 
                           <div class="input-field col s3">
                             <input  id="addCustPrivBarangay" name="addCustPrivBarangay" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$" type="text" placeholder="Daang Bakal" class="validate">
@@ -336,14 +337,14 @@
                           </div>
 
                           <div class="input-field col s3">
-                            <input required id="addCustPrivCity" name="addCustPrivCity" pattern="^[a-zA-Z\'\-]+( [a-zA-Z\'\-]+)*$" type="text" placeholder="Mandaluyong" class="validate">
+                            <input required id="addCustPrivCity" name="addCustPrivCity" pattern="^[a-zA-Z\'\-]+( \s[a-zA-Z\'\-]+)*$" type="text" placeholder="Mandaluyong" class="validate">
                             <label for=" City">City/Municipality <span class="red-text"><b>*</b></label>
                           </div>
                       </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s6">
-                            <input id="addCustPrivProvince" name="addCustPrivProvince" pattern="^[a-zA-Z\'\-\.]+( [a-zA-Z\'\-\.]+)*$" type="text" placeholder="Pampanga" class="validate">
+                            <input id="addCustPrivProvince" name="addCustPrivProvince" pattern="^[a-zA-Z\'\-\.]+( \s[a-zA-Z\'\-\.]+)*$" type="text" placeholder="Pampanga" class="validate">
                             <label for=" Province">Province/Region </label>
                           </div>
 

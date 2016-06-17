@@ -141,26 +141,26 @@
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                 <div class="input-field col s12">
-                                  <input required id="editButtonBrand" name = "editButtonBrand" value = "{{$button->strButtonBrand}}" type="text" class="validateName">
+                                  <input required id="editButtonBrand" name = "editButtonBrand" value = "{{$button->strButtonBrand}}" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                                   <label for="Button_Name"> Button Brand <span class="red-text"><b>*</b></span></label>
                                 </div>
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                 <div class="input-field col s6">
-                                  <input required id="editButtonSize" name = "editButtonSize" value = "{{$button->strButtonSize}}" type="text" class="validateSize">
+                                  <input required id="editButtonSize" name = "editButtonSize" value = "{{$button->strButtonSize}}" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                                   <label for="Button_Size"> Button Size <span class="red-text"><b>*</b></span></label>
                                 </div>
 
                                 <div class="input-field col s6">
-                                  <input required id="editButtonColor" name = "editButtonColor" value = "{{$button->strButtonColor}}" type="text" class="validateColor">
+                                  <input required id="editButtonColor" name = "editButtonColor" value = "{{$button->strButtonColor}}" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                                   <label for="Button_Color"> Button Color <span class="red-text"><b>*</b></span></label>
                                 </div>
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                 <div class="input-field col s12">
-                                  <input  id="editButtonDesc" name = "editButtonDesc" value = "{{$button->strButtonDesc}}" type="text" class="validateDesc">
+                                  <input  id="editButtonDesc" name = "editButtonDesc" value = "{{$button->strButtonDesc}}" type="text" class="validate">
                                   <label for="Button_Color"> Description </label>
                                 </div>
                           </div>
@@ -277,26 +277,26 @@
         
       <div class = "col s12" style="padding:15px;  border:3px solid white;">            
         <div class="input-field col s12">
-          <input required  id="addButtonBrand" name = "addButtonBrand" type="text" class="validate">
+          <input required  id="addButtonBrand" name = "addButtonBrand" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
           <label for="Button_Name"> Button Name <span class="red-text"><b>*</b></span></label>
         </div>
       </div>
 
       <div class = "col s12" style="padding:15px;  border:3px solid white;">
         <div class="input-field col s6">
-          <input required id="addButtonSize" name = "addButtonSize" type="text" class="validate">
+          <input required id="addButtonSize" name = "addButtonSize" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
           <label for="Button_Size"> Button Size <span class="red-text"><b>*</b></span></label>
         </div>
 
         <div class="input-field col s6">
-          <input required id="addButtonColor" name = "addButtonColor" type="text" class="validateColor">
+          <input required id="addButtonColor" name = "addButtonColor" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
           <label for="Button_Color"> Button Color <span class="red-text"><b>*</b></span></label>
         </div>
       </div>
 
       <div class = "col s12" style="padding:15px;  border:3px solid white;">
         <div class="input-field col s12">
-          <input id="addButtonDesc" name = "addButtonDesc" type="text" class="validateDesc">
+          <input id="addButtonDesc" name = "addButtonDesc" type="text" class="validate">
           <label for="Button_Desc"> Description </label>
         </div>
       </div>

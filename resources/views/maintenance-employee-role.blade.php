@@ -5,6 +5,21 @@
   <div class="main-wrapper" style="margin-top:30px">
 
 
+
+  <!-- Errors -->
+        @if ($errors->any())
+           <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red">
+              <span class="black-text" style="color:black"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </div>
+          </div>
+        </div>
+      @endif
+
      <!--  <Data Dependency Message> -->
        @if (Input::get('success') == 'beingUsed')
         <div class="row" id="success-message">
@@ -49,18 +64,6 @@
             <div class="card-panel red accent-2">
               <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
                <em> {!! session('flash_message_delete') !!}</em>
-            </div>
-          </div>
-        </div>
-      @endif
-
-
-     <!--  <Duplicate Error Message>   -->
-    @if (Input::get('success') == 'duplicate')
-        <div class="row" id="success-message">
-          <div class="col s12 m12 l12">
-            <div class="card-panel red">
-              <span class="black-text" style="color:black">Record already exists!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
             </div>
           </div>
         </div>
@@ -120,7 +123,7 @@
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                             <input required id="editRoleName" name="editRoleName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2" value="{{$role->strEmpRoleName}}">
+                             <input required id="editRoleName" name="editRoleName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2" value="{{$role->strEmpRoleName}}">
                             <label for="role_name">Role Name<span class="red-text"><b>*</b></span> </label>
                           </div>
                       </div>
@@ -211,15 +214,18 @@
                         
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s12">
-                    <input required id="addRoleName" name="addRoleName" type="text" class="validate" placeholder="Sewer" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2">
-                    <label for="addRoleName" class="active">Role Name <span class="red-text"><b>*</b></span></label>
-                  </div>
+                    <input required id="addRoleName" name="addRoleName" type="text" class="validate" placeholder="Sewer" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
+                    <label for="addRoleName" class="validate" >Role Name <span class="red-text"><b>*</b></span></label>
+                  </div>  
+                  <!-- [A-Za-z]+(\s[A-Za-z]+)?
+                  ^[a-zA-Z\-'`\s]{2,}$ -->
+                 
               </div>
 
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s12">
-                    <input  id="addRoleDescription" name="addRoleDescription" type="text" class="validate" placeholder="In charge in manufacturing garments." 
-                    <label for="addRoleDescription" class="active">Role Description </label>
+                    <input  id="addRoleDescription" name="addRoleDescription" type="text" class="validate" placeholder="In charge in manufacturing garments.">
+                    <label for="addRoleName" class="active">Role Description</label>
                   </div>
               </div>
               </div>
@@ -274,6 +280,12 @@
       } );
 
       $('.validate').blur('input', function() {
+        var name = $(this).val();
+        $(this).val(name.trim());
+      }); 
+
+      //Kapag whitespace
+      $('.validateRole').blur('input', function() {
         var name = $(this).val();
         $(this).val(name.trim());
       }); 
