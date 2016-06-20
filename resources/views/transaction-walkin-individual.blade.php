@@ -21,7 +21,6 @@
 					<div class="card-content">
 						<div class="row">
 						<div class="col s12">
-
 							<div class="col s5">
 								<div class="input-field col s12">
 										<select>
@@ -51,40 +50,41 @@
 							</div>
 
 					</div>
-
+					{!! Form::open(['url' => 'transaction/walkin-individual']) !!}
 						<div class="col s12">
 							<div class="divider"></div>
 								<a class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize orders" style="margin-top:30px; font-size:15px; color:white; background-color: teal; opacity:0.90" href="{{URL::to('/transaction/walkin-individual-customize-orders')}}"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Reset Order<!--</i>--></a>
-								<a class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to add orders to cart " style="margin-top:30px; background-color: teal; font-size:15px; color:white" href="#!"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  View Cart<!--</i>--></a>							
+								<button type="submit" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to add orders to cart " style="margin-top:30px; background-color: teal; font-size:15px; color:white" href="#!"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  View Cart<!--</i>--></a>							
 						</div>
 
 						<div class="col s12" style="margin-bottom:20px"></div>
-
+				
 						<div class="col s12" style="margin-top:15px">
 							<div class="divider" style="margin-bottom:40px; height:2px"></div>
 							<p class="center-align" style="color:teal; margin-bottom:40px"><b>CHOOSE AMONG AVAILABLE PRODUCTS</b></p>
-							
+						
 						@foreach($garments as $garment)
-							<div class="col s4">
-									<div class="center col s12">
-				          				<input type="checkbox" class="filled-in" id="{{ $garment->strSegmentID }}" style="padding:5px"/>
-		      							<label for="{{ $garment->strSegmentID }}"><font size="+1">{{ $garment->strSegmentName }}</font></label>
-		      							@if($garment->strSegmentSex == 'M')<label for="{{ $garment->strSegmentID }}"><font color="gray">Male</font></label>
-		      							@elseif($garment->strSegmentSex == 'F')<label for="{{ $garment->strSegmentID }}"><font color="gray">Female</font></label>
-		      							@endif
-		      						</div>
+							
+								<div class="col s4">
+										<div class="center col s12">
+					          				<input type="checkbox" name="cbx-segment-name[]"  class="filled-in" id="{{ $garment->strSegmentID }}" value="{{ $garment->strSegmentID }}" style="padding:5px"/>
+			      							<label for="{{ $garment->strSegmentID }}"><font size="+1">{{ $garment->strSegmentName }}</font></label>
+			      							@if($garment->strSegmentSex == 'M')<label for="{{ $garment->strSegmentID }}"><font color="gray">Male</font></label>
+			      							@elseif($garment->strSegmentSex == 'F')<label for="{{ $garment->strSegmentID }}"><font color="gray">Female</font></label>
+			      							@endif
+			      						</div>
 
-									<div class="center col s12"><img src="{{URL::asset($garment->strSegmentImage)}}" style="height:200px; width:250px; padding:10px; border:3px gray solid"></div>
-								
-								<center><h6>Quantity</h6></center>
-				                  <div class="row">
-				                    <div class="col s3 center"><i class="small mdi-content-add-circle" style="color:teal"></i></div>
-				                    <div class="input-field col s6" style="margin-top:-2px;">
-				                      <input class="center" id="quantity" value="1" type="text" readonly>
-				                    </div>
-				                    <div class="col s3 center"><i class="small mdi-content-remove-circle" style="color:teal"></i></div>
-				                  </div>
-							</div>
+										<div class="center col s12"><img src="{{URL::asset($garment->strSegmentImage)}}" style="height:200px; width:250px; padding:10px; border:3px gray solid"></div>
+									
+									<center><h6>Quantity</h6></center>
+					                  <div class="row">
+					                    <div class="col s3 center"><i class="small mdi-content-add-circle" style="color:teal"></i></div>
+					                    <div class="input-field col s6" style="margin-top:-2px;">
+					                      <input class="center" name="int-segment-qty[]" id="quantity" value="1" type="number">
+					                    </div>
+					                    <div class="col s3 center"><i class="small mdi-content-remove-circle" style="color:teal"></i></div>
+					                  </div>
+								</div>
 						@endforeach
 						</div>
 
@@ -100,7 +100,7 @@
 						</div>
 
 					</div>
-
+					{!! Form::close() !!}
 					<div class="col s12">
 						<div class="divider" style="height:2px; margin-top:30px"></div>      	
 		      			<center><p><font color="gray">End of product list for MyTailor</font></p></center>

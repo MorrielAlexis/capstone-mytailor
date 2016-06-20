@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Session;
 
 use App\GarmentCategory;
 
@@ -107,8 +108,14 @@ class WalkInIndividualController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        $data_segment = $request->input('cbx-segment-name');
+        $data_quantity = $request->input('int-segment-qty');
+
+        session(['segment_value' => $data_segment]);
+        session(['segment_quantity' => $data_quantity]);
+    
+        return redirect('transaction/walkin-individual');   
     }
 
     /**
