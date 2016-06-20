@@ -129,6 +129,7 @@
                     <th data-field="name">Segment Name</th>
                     <th data-field="address">Segment Description</th>
                     <th data-field="Sex">Sex </th>
+                    <th data-field="days">Min Production Days</th>
                     <th data-field="Image">Image</th>
                     <th data-field="Edit">Actions</th>
                     
@@ -147,6 +148,7 @@
                       @elseif($segment->strSegmentSex == 'F') For women
                       @endif
                     </td>
+                    <td>{{ $segment->intMinDays }}</td>
                     <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($segment->strSegmentImage)}}"></td>
               		  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of segment" href="#edit{{ $segment->strSegmentID }}"><i class="mdi-editor-mode-edit"></i></a> 
                     <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of segment from table" href="#del{{ $segment->strSegmentID }}"><i class="mdi-action-delete"></i></a></td>
@@ -199,6 +201,14 @@
                               </select>
                               <label for="strSegmentSex" class="active">Sex<span class="red-text">*</span></label>
                           </div>
+
+                          <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                              <div class="input-field col s6">
+                                <input required value="{{ $segment->intMinDays }}" id="editMinDays" name= "editMinDays" type="text" class="validate" pattern="^[0-9]*$">
+                                <label for="segment_name">Minimum Production Days:<span class="red-text"><b>*</b></span></label>
+                              </div>
+                          </div>
+
                           <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                           <div class="file-field input-field col s12">
                             <div style="color:black" class="btn tooltipped btn-small center-text light-green lighten-2" data-position="bottom" data-delay="50" data-tooltip="May upload jpg, png, gif, bmp, tif, tiff files">
@@ -261,6 +271,13 @@
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
+                                <input value="{{ $segment->intMinDays }}" type="text" readonly>
+                                <label for="Prod Days">Min Production Days: </label>
+                              </div>
+                          </div>
+
+                          <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                              <div class="input-field col s12">
                                 <input value="{{ $segment->textSegmentDesc }}" type="text" readonly>
                                 <label for="segment_description">Segment Description </label>
                               </div>
@@ -300,7 +317,7 @@
 
 
     			    <div id="addSegment" class="modal modal-fixed-footer">
-                <h5><font color = "#1b5e20"><center>ADD NEW GARMENT SEGMENT</center> </font> </h5> 
+                <h5><font color = "#1b5e20"><center>CREATE NEW GARMENT SEGMENT</center> </font> </h5> 
                 
                 {!! Form::open(['url' => 'maintenance/garment-segment', 'method' => 'post', 'files' => true ]) !!}
                   <div class="divider" style="height:2px"></div>
@@ -340,6 +357,13 @@
                               <label for="Sex" class="active">Sex<span class="red-text">*</span></label>
                   </div> 
 
+                  <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                              <div class="input-field col s6">
+                                <input required id="addMinDays" name= "addMinDays" type="text" class="validate" pattern="^[0-9]*$">
+                                <label for="min days">Minimum Production Days:<span class="red-text"><b>*</b></span></label>
+                              </div>
+                  </div>
+
                    <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                       <div class="input-field col s12">
                         <input id="addSegmentDesc" name = "addSegmentDesc" type="text" class="validate"  data-position="bottom" >
@@ -362,7 +386,7 @@
             </div>
 
                   <div class="modal-footer col s12" style="background-color:#26a69a">
-                    <button type="submit" name="send" id="send" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
+                    <button type="submit" name="send" id="send" class=" modal-action  waves-effect waves-green btn-flat">Create</button>
                     <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
                   </div>
                 {!! Form::close() !!}

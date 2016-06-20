@@ -14,6 +14,7 @@ class GarmentSegment extends Model
                             'strSegCategoryFK', 
     						'strSegmentName',
                             'strSegmentSex',
+                            'intMinDays',
     						'textSegmentDesc', 
                             'strSegmentImage',
     						'strSegInactiveReason',
