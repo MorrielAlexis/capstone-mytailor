@@ -1,6 +1,7 @@
  @extends('layouts.master')
 
 @section('content')
+
   <div class="main-wrapper" style="margin-top:30px">
      <!--Input Validation-->
       @if (Input::get('input') == 'invalid')
