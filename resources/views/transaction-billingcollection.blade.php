@@ -22,6 +22,10 @@
 					<div class="card-content">
 						<div class="row">
 						<div class="col s12">
+							<center><p style="color:gray">Filter data records with the following:</p></center>
+							<div class="divider" style="color:gray; height:2px; margin-bottom:20px"></div>
+						</div>
+						<div class="col s12">
 							<div class="col s4">
 								<select class="browser-default">
 									<option value="" style="color:gray">Customer Type</option>
@@ -62,7 +66,7 @@
 
 						<div class="col s12" style="margin-top:20px">
 							<a href="" class="left btn" style="background-color:teal; color:white; margin-left:10px">Cancel</a>
-							<a href="" class="right btn" style="background-color:teal; color:white; margin-right:10px">Save</a>
+							<a href="" class="right btn" style="background-color:teal; color:white; margin-right:10px">Search</a>
 							<a href="" class="right btn" style="background-color:teal; color:white; margin-right:40px">Edit</a>
 						</div>
 
@@ -123,7 +127,7 @@
 										<td class="center">50,000.00 Php</td>
 										<td class="center" style="color:red">2016-06-18</td>
 										<td class="center">2016-06-17</td>
-										<td class="center" style="color:green"><i>Partial</i></td>
+										<td class="center" style="color:green"><i>Pending</i></td>
 									</tr>
 								</tbody>
 							</table>
@@ -183,7 +187,7 @@
 										                  <th data-field="product">Amount Paid</th>         
 										                  <th data-field="quantity">Outstanding Balance</th>
 										                  <th data-field="price">Payment Date</th>
-										                  <th data-field="status">Assisted By</th>
+										                  <th data-field="status">Made By</th>
 										              	</tr>
 									              	</thead>
 									              	<tbody>
