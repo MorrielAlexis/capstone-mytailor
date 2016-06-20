@@ -205,7 +205,7 @@
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s6">
-                                <input required value="{{ $segment->intMinDays }}" id="editMinDays" name= "editMinDays" type="text" class="validate" pattern="^[0-9]*$">
+                                <input required value="{{ $segment->intMinDays }}" id="editMinDays" name= "editMinDays" type="text" class="validate" pattern="^[0-9]*$" maxlength="2">
                                 <label for="segment_name">Minimum Production Days:<span class="red-text"><b>*</b></span></label>
                               </div>
                           </div>
@@ -360,7 +360,7 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s6">
-                                <input required id="addMinDays" name= "addMinDays" type="text" class="validate" pattern="^[0-9]*$">
+                                <input required id="addMinDays" name= "addMinDays" type="text" class="validate" pattern="^[0-9]*$" maxlength="2">
                                 <label for="min days">Minimum Production Days:<span class="red-text"><b>*</b></span></label>
                               </div>
                   </div>
