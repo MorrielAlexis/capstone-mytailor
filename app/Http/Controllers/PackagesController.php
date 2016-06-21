@@ -37,22 +37,22 @@ class PackagesController extends Controller
             ->select('tblPackages.*', 'tblSegment.strSegmentName')
             ->get();
 
-        $packages2 = \DB::table('tblPackages')
+        $packages = \DB::table('tblPackages')
             ->join('tblSegment', 'tblPackages.strPackageSeg2FK', '=', 'tblSegment.strSegmentID')
             ->select('tblPackages.*', 'tblSegment.strSegmentName')
             ->get();
 
-        $packages3 = \DB::table('tblPackages')
+        $packages = \DB::table('tblPackages')
             ->join('tblSegment', 'tblPackages.strPackageSeg3FK', '=', 'tblSegment.strSegmentID')
             ->select('tblPackages.*', 'tblSegment.strSegmentName')
             ->get();
 
-        $packages4 = \DB::table('tblPackages')
+        $packages = \DB::table('tblPackages')
             ->join('tblSegment', 'tblPackages.strPackageSeg4FK', '=', 'tblSegment.strSegmentID')
             ->select('tblPackages.*', 'tblSegment.strSegmentName')
             ->get();
 
-        $packages5 = \DB::table('tblPackages')
+        $packages = \DB::table('tblPackages')
             ->join('tblSegment', 'tblPackages.strPackageSeg5FK', '=', 'tblSegment.strSegmentID')
             ->select('tblPackages.*', 'tblSegment.strSegmentName')
             ->get();
@@ -90,7 +90,7 @@ class PackagesController extends Controller
                 'strPackageID' => $request->input('addPackageID'),
                  'strPackageName' => trim($request->input('addPackageName')),
                 'strPackageSeg1FK' => $request->input('addSegment1'),
-                'strPackageSe2FK' => $request->input('addSegment2'),
+                'strPackageSeg2FK' => $request->input('addSegment2'),
                 'strPackageSeg3FK' => $request->input('addSegment3'),
                  'strPackageSeg4FK' => $request->input('addSegment4'),
                  'strPackageSeg5FK' => $request->input('addSegment5'),
