@@ -25,17 +25,17 @@ class ThreadRequest extends Request
     public function rules()
     {
         return [
-            'addThreadBrand'    =>  'required|unique:tblThread,strThreadBrand',
-            'editThreadBrand'   =>  'unique:tblThread,strThreadBrand'
+            'strThreadBrand'    =>  'required|unique_with:tblThread,strThreadColor'
+            // 'editThreadBrand'   =>  'unique:tblThread,strThreadBrand'
         ];
     }
 
     public function messages()
     {
         return [
-            'addThreadBrand.unique'  =>  'Thread already exists.',
-            'addThreadBrand.required' => 'Thread name is required.',
-            'editThreadBrand.unique'  => 'Thread name already exists.'
+            'strThreadBrand.unique'  =>  'Thread already exists.',
+            'strThreadBrand.required' => 'Thread name is required.'
+            // 'editThreadBrand.unique'  => 'Thread name already exists.'
         ];
 
     }
