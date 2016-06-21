@@ -6,7 +6,7 @@
 
 
 
-  <!-- Errors -->
+  <!-- Errors Messages -->
         @if ($errors->any())
            <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
@@ -127,6 +127,10 @@
                             <label for="role_name">Role Name<span class="red-text"><b>*</b></span> </label>
                           </div>
                       </div>
+                      
+                      <!-- ^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?
+                      <!-- ^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$ -->
+                      
 
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">

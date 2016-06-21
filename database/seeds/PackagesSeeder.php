@@ -21,6 +21,7 @@ class PackagesSeeder extends Seeder
 					'strPackageSeg3FK' =>  'SEGM003',
 					'strPackageSeg4FK' =>  'SEGM002',
 					'strPackageSeg5FK' =>  'SEGM001',
+                    'intPackageMinDays' => '60',
 					'strPackageImage' =>  '',
 					'strPackageDesc' =>  'Package for male fre',
 					'boolIsActive'  =>  '1'      
@@ -34,6 +35,7 @@ class PackagesSeeder extends Seeder
 					'strPackageSeg3FK' =>  'SEGM004',
 					'strPackageSeg4FK' =>  'SEGM004',
 					'strPackageSeg5FK' =>  'SEGM006',
+                    'intPackageMinDays' => '60',
 					'strPackageImage' =>  '',
 					'strPackageDesc' =>  'Package for female fre',
 					'boolIsActive'  =>  '1'     

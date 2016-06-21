@@ -16,6 +16,7 @@ class Package extends Model
 								'strPackageSeg4FK',
 								'strPackageSeg5FK',
 								'strPackageImage',
+								'intPackageMinDays',
 								'strPackageDesc',
 								'strPackageInactiveReason',
 								'boolIsActive'

@@ -73,6 +73,7 @@ class GarmentSegmentController extends Controller
                     'strSegCategoryFK' =>$request->input('addCategory'),
                     'strSegmentName' =>trim($request->input('addSegmentName')),
                     'strSegmentSex' => $request->input('addSegmentSex'),
+                    'intMinDays' =>trim($request->input('addMinDays')),
                     'textSegmentDesc' => trim($request->input('addSegmentDesc')),
                     'boolIsActive' => 1
 
@@ -86,6 +87,7 @@ class GarmentSegmentController extends Controller
                     'strSegCategoryFK' =>$request->input('addCategory'),
                     'strSegmentName' =>trim($request->input('addSegmentName')),
                     'strSegmentSex' => $request->input('addSegmentSex'),
+                    'intMinDays' =>trim($request->input('addMinDays')),
                     'textSegmentDesc' => trim($request->input('addSegmentDesc')),
                     'strSegmentImage' => 'imgSegments/'.$file,
                     'boolIsActive' => 1
@@ -159,12 +161,14 @@ class GarmentSegmentController extends Controller
                 $segment->strSegCategoryFK = $request->input('editCategory'); 
                 $segment->strSegmentName = trim($request->input('editSegmentName'));  
                 $segment->strSegmentSex = $request->input('editSegmentSex'); 
+                $segment->intMinDays = trim($request->input('editMinDays')); 
                 $segment->textSegmentDesc = trim($request->input('editSegmentDesc'));
             }else{
                     $request->file('editImg')->move($destinationPath);
                     $segment->strSegCategoryFK = $request->input('editCategory'); 
                     $segment->strSegmentName = trim($request->input('editSegmentName'));  
                     $segment->strSegmentSex = $request->input('editSegmentSex'); 
+                    $segment->intMinDays = trim($request->input('editMinDays'));
                     $segment->textSegmentDesc = trim($request->input('editSegmentDesc'));
                     $segment->strSegmentImage = 'imgSegments/'.$file;
             }
