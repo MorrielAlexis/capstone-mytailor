@@ -259,4 +259,7 @@ Route::get('transaction-modifycompanyorders-modifyemployee','ModifyCompanyOrders
 Route::get('transaction-modifycompanyorders-modifyemployeeorder','ModifyCompanyOrdersController@package');
 
 
+Route::group(['prefix' => 'transaction'], function(){
+	Route::get('billing-payment-bill-customer', 'BillingPaymentController@billCustomer');
+});
 

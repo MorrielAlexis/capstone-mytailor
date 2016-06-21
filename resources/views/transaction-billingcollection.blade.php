@@ -66,6 +66,7 @@
 
 						<div class="col s12" style="margin-top:20px">
 							<a href="" class="left btn" style="background-color:teal; color:white; margin-left:10px">Cancel</a>
+							<a href="{{URL::to('/transaction/billing-payment')}}" class="left btn" style="background-color:teal; color:white; margin-left:10px">Go to Billing</a>
 							<a href="" class="right btn" style="background-color:teal; color:white; margin-right:10px">Search</a>
 							<a href="" class="right btn" style="background-color:teal; color:white; margin-right:40px">Edit</a>
 						</div>
@@ -146,8 +147,8 @@
 
 					      					<div class="col s12">
 					      						<div class="container">
-					      						<table class = "table centered order-summary" border = "1">
-								       				<center><h6 style="color:teal"><b>Order Summary</b></h6></center>
+					      						<table class = "table centered order-summary" border = "1" style="border:1px gray solid">
+								       				<center><h6 style="color:teal"><b>ORDER SUMMARY</b></h6></center>
 								       				<thead style="color:gray">
 									          			<tr>
 										                  <th data-field="product">Package</th>         
@@ -180,8 +181,8 @@
 
 					      					<div class="col s12">
 					      						<div class="container">
-					      						<table class = "table centered order-summary" border = "1">
-								       				<center><h6 style="color:red"><b>Payment Details</b></h6></center>
+					      						<table class = "table centered order-summary" border = "1" style="border:1px gray solid">
+								       				<center><h6 style="color:black"><b>PAYMENT HISTORY</b></h6></center>
 								       				<thead style="color:gray">
 									          			<tr>
 										                  <th data-field="product">Amount Paid</th>         
@@ -210,7 +211,7 @@
 											</div>
 					      					</div>
 
-					      					<div class="col s12"><div class="divider" style="margin-bottom:10px"></div></div>
+					      					<div class="col s12" style="margin-top:20px"><div class="divider" style="height:3px; margin-bottom:10px"></div></div>
 
 					      					<div class="col s12">
 					      						<div class="col s6" style="margin-top:25px; color:red">
@@ -225,9 +226,9 @@
 					      					<div class="col s12" style="margin-top:40px">					      							
 										        <a href="" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Send email to remind customer of due date" style="background-color:red; margin-right:15px"><i class="mdi-communication-quick-contacts-dialer" style="font-size:30px"></i></a>
 										        <a href="" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Send SMS to remind customer of due date" style="background-color:red"><i class="mdi-communication-quick-contacts-mail" style="font-size:30px"></i></a>
-										        <a href="" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Print this data and have a personal copy" style="background-color:teal">Print a copy</a>
-										        <a href="" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Send a copy of this data through email" style="background-color:teal">Send a copy</a>
-										        <a href="" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Save this data in a PDF format" style="background-color:teal">Save as PDF</a>
+										        <a href="" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Print this data and have a personal copy" style="background-color:teal;">Print a copy</a>
+										        <a href="" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Send a copy of this data through email" style="background-color:teal; margin-right:8px;">Send a copy</a>
+										        <a href="" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Save this data in a PDF format" style="background-color:teal; margin-right:8px">Save as PDF</a>
 					      					</div>
 
 									</div>
