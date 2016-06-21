@@ -37,22 +37,22 @@ class PackagesController extends Controller
             ->select('tblPackages.*', 'tblSegment.strSegmentName')
             ->get();
 
-        $packages = \DB::table('tblPackages')
+        $packages2 = \DB::table('tblPackages')
             ->join('tblSegment', 'tblPackages.strPackageSeg2FK', '=', 'tblSegment.strSegmentID')
             ->select('tblPackages.*', 'tblSegment.strSegmentName')
             ->get();
 
-        $packages = \DB::table('tblPackages')
+        $packages3 = \DB::table('tblPackages')
             ->join('tblSegment', 'tblPackages.strPackageSeg3FK', '=', 'tblSegment.strSegmentID')
             ->select('tblPackages.*', 'tblSegment.strSegmentName')
             ->get();
 
-        $packages = \DB::table('tblPackages')
+        $packages4 = \DB::table('tblPackages')
             ->join('tblSegment', 'tblPackages.strPackageSeg4FK', '=', 'tblSegment.strSegmentID')
             ->select('tblPackages.*', 'tblSegment.strSegmentName')
             ->get();
 
-        $packages = \DB::table('tblPackages')
+        $packages5 = \DB::table('tblPackages')
             ->join('tblSegment', 'tblPackages.strPackageSeg5FK', '=', 'tblSegment.strSegmentID')
             ->select('tblPackages.*', 'tblSegment.strSegmentName')
             ->get();

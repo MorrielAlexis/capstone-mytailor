@@ -114,6 +114,7 @@
                     <th data-field="name">Segment 3</th>
                     <th data-field="name">Segment 4</th>
                     <th data-field="name">Segment 5</th>
+                    <th data-field="days">Production Time (Days)</th>
                     <th data-field="name">Image</th>
                     <th data-field="address">Description</th>
                     <th data-field="Edit">Actions</th>
@@ -130,7 +131,7 @@
                     <td>{{ $packages->strSegmentName }}</td>
                     <td>{{ $packages->strSegmentName }}</td>
                     <td>{{ $packages->strSegmentName }}</td>
-                    <td>{{ $packages->strSegmentName }}</td>
+                    <td> {{ $packages->intPackageMinDays }}</td>
                     <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($packages->strPackageImage)}}"></td>
                     <td>{{ $packages->strPackageDesc }}</td>
                     <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of segment" href="#edit{{ $packages->strPackageID }}"><i class="mdi-editor-mode-edit"></i></a> 
@@ -147,13 +148,14 @@
                                 <input value="{{ $packages->strPackageID }}" id="editPackageID" name="editPackageID" type="hidden"> 
                               </div>
 
-                                <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                              <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
                                 <input required value="{{ $packages->strPackageName }}" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" id="editPackageName" name= "editPackageName" type="text" class="validate">
                                 <label for="segment_name">Package Name <span class="red-text"><b>*</b></span></label>
                     <span id="left"></span></label>
                               </div>
-                          </div>
+                              </div>
+                          
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">                                                    
@@ -237,6 +239,13 @@
                           </div>
                       </div>
 
+                      <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                          <div class="input-field col s12">
+                            <input required value = "{{ $packages->intPackageMinDays }}" id="editPackageMinDays" name= "editPackageMinDays" type="text" class="validate" required data-position="bottom" pattern="^[0-9]*$" maxlength="2">
+                            <label for="days">Production Time (Days):</label>
+                          </div>
+                      </div>
+
                       <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                           <div class="file-field input-field col s12">
                             <div style="color:black" class="btn tooltipped btn-small center-text light-green lighten-2" data-position="bottom" data-delay="50" data-tooltip="May upload jpg, png, gif, bmp, tif, tiff files">
@@ -269,6 +278,7 @@
                       <div id="del{{ $packages->strPackageID }}" class="modal modal-fixed-footer">
                         <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS PACKAGE?</center> </font> </h5>
                           
+
                           {!! Form::open(['url' => 'maintenance/packages/destroy']) !!}
                             <div class="divider" style="height:2px"></div>
                             <div class="modal-content col s12"> 
@@ -304,7 +314,7 @@
                           </div>
 
                           <div class="modal-footer col s12" style="background-color:#26a69a">
-                            <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">OK</button>
+                            <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Deactivate</button>
                             <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
                           </div>
                         {!! Form::close() !!}
@@ -408,6 +418,13 @@
                       </div>  
                   </div>
 
+                  <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                          <div class="input-field col s12">
+                            <input required  id="addPackageMinDays" name= "addPackageMinDays" type="text" class="validate" required data-position="bottom" pattern="^[0-9]*$" maxlength="2">
+                            <label for="days">Production Time (Days):</label>
+                          </div>
+                  </div>
+
                   <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                       <div class="input-field col s12">
                         <input id="addPackageDesc" name = "addPackageDesc" type="text" class="validate"  data-position="bottom" >
@@ -431,7 +448,7 @@
                   </div>
 
                   <div class="modal-footer col s12" style="background-color:#26a69a">
-                    <button type="submit" name="send" id="send" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
+                    <button type="submit" name="send" id="send" class=" modal-action  waves-effect waves-green btn-flat">Create</button>
                     <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
                   </div>
                 {!! Form::close() !!}
