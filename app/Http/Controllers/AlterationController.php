@@ -59,10 +59,10 @@ class AlterationController extends Controller
     public function store(Request $request)
     {
         $alteration = Alteration::create(array(
-                'strAlterationID' => $request->input('addAlterationNameID'),
-                'strAlterationName' =>trim($request->input('addAlterationName')),
-                'txtAlterationDesc' => trim($request->input('addAlterationDesc')),  
-                'dblAlterationPrice' => trim($request->input('addAlterationPrice')),  
+                'strAlterationID' => $request->input('strAlterationID'),
+                'strAlterationName' =>trim($request->input('strAlterationName')),
+                'txtAlterationDesc' => trim($request->input('txtAlterationDesc')),  
+                'dblAlterationPrice' => trim($request->input('dblAlterationPrice')),  
                 'boolIsActive' => 1
             ));
         $added = $alteration->save();

@@ -257,7 +257,8 @@
 
             </div>
              
-         
+             <!-- Create Garment Category
+          -->
             <div id="addGCategory" class="modal modal-fixed-footer">
               <h5><font color = "#1b5e20"><center>ADD NEW GARMENT CATEGORY</center> </font> </h5>
               
@@ -266,19 +267,19 @@
                 <div class="modal-content col s12">
   
                   <div class="input-field">
-                    <input value="{{ $newID }}" id="addGarmentID" name="addGarmentID" type="hidden">
+                    <input value="{{ $newID }}" id="strGarmentCategoryID" name="strGarmentCategoryID" type="hidden">
                   </div>
 
                 <div class = "col s12" style="padding:15px;  border:3px solid white;">
                     <div class="input-field col s12">
-                      <input required id="addGarmentName" name="addGarmentName" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
+                      <input required id="strGarmentCategoryName" name="strGarmentCategoryName" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                       <label for="garment_name">Garment Name<span class="red-text"><b>*</b></span> </label>
                     </div>
                 </div>
 
                 <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                     <div class="input-field">
-                      <input  id="addGarmentDesc" name="addGarmentDesc" type="text" class="validate">
+                      <input  id="textGarmentCategoryDesc" name="textGarmentCategoryDesc" type="text" class="validate">
                       <label for="garment_description">Garment Desription </label>
                     </div>
                 </div>

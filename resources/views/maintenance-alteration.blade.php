@@ -195,7 +195,7 @@
 
             <!--********ADD******-->
             <div id="addFabricType" class="modal modal-fixed-footer">                  
-              <h5><font color = "#1b5e20"><center>ADD NEW ALTERATION NAME</center> </font> </h5> 
+              <h5><font color = "#1b5e20"><center>CREATE ALTERATION NAME</center> </font> </h5> 
               
              {!! Form::open(['url' => 'maintenance/alteration', 'method' => 'post']) !!}
               <div class="divider" style="height:2px"></div>
@@ -203,33 +203,33 @@
                           
 
                   <div class="input-field">
-                    <input value = "{{$newID}}" id="addAlterationNameID" name = "addAlterationNameID" type="hidden">
+                    <input value = "{{$newID}}" id="strAlterationID" name = "strAlterationID" type="hidden">
                   </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input required id="addAlterationName" name = "addAlterationName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?"  placeholder="Skinny Cut">
+                        <input required id="strAlterationName" name = "strAlterationName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?"  placeholder="Skinny Cut">
                         <label for="alteration_name">Alteration Name <span class="red-text"><b>*</b></span></label>
                       </div>
                   </div>    
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input  id="addAlterationDesc" name = "addAlterationDesc" type="text" class="validate" placeholder="Alteration type for modifying pants cuff.">
+                        <input  id="txtAlterationDesc" name = "txtAlterationDesc" type="text" class="validate" placeholder="Alteration type for modifying pants cuff.">
                         <label for="alteration_description">Alteration Description</label>
                       </div>
                   </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                       <div class="input-field col s12">
-                        <input required id="addAlterationPrice" name = "addAlterationPrice" type="text" class="validate">
+                        <input required id="strAlterationPrice" name = "strAlterationPrice" type="text" class="validate">
                         <label for="alteration_Price">Alteration Price <span class="red-text"><b>*</b></span></label>
                       </div>
                   </div>
                 </div>
 
                 <div class="modal-footer col s12" style="background-color:#26a69a">
-                  <button type="submit" id="send" name="send" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
+                  <button type="submit" id="send" name="send" class=" modal-action  waves-effect waves-green btn-flat">Create</button>
                   <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
                 </div>
                   {!! Form::close() !!}

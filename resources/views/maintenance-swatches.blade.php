@@ -252,7 +252,7 @@
 
                 <!--    <Modal Structure for Add swatches> -->
             <div id="addSwatches" class="modal modal-fixed-footer">
-             <h5><font color = "#1b5e20"><center>ADD NEW FABRIC SWATCH</center> </font> </h5>
+             <h5><font color = "#1b5e20"><center>CREATE NEW FABRIC SWATCH</center> </font> </h5>
               
               {!! Form::open(['url' => 'maintenance/swatch', 'method' => 'post', 'files' => 'true']) !!}
                 <div class="divider" style="height:2px"></div>

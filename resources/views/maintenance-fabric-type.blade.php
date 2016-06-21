@@ -208,9 +208,9 @@
 
               </div>  
 
-            <!--********ADD******-->
+            <!--********CREATE******-->
              <div id="addFabricType" class="modal modal-fixed-footer">                  
-                <h5><font color = "#1b5e20"><center>ADD NEW FABRIC TYPE</center> </font> </h5> 
+                <h5><font color = "#1b5e20"><center>CREATE NEW FABRIC TYPE</center> </font> </h5> 
                 
                 {!! Form::open(['url' => 'maintenance/fabric-type']) !!}
                   <div class="divider" style="height:2px"></div>
@@ -218,25 +218,25 @@
                             
 
                   <div class="input-field">
-                    <input value = "{{$newID}}" id="addFabricTypeID" name = "addFabricTypeID" type="hidden">
+                    <input value = "{{$newID}}" id="strFabricTypeID" name = "strFabricTypeID" type="hidden">
                   </div>
 
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s12">
-                    <input required id="addFabricTypeName" name = "addFabricTypeName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
+                    <input required id="strFabricTypeName" name = "strFabricTypeName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
                     <label for="fabrictype_name">Fabric Name <span class="red-text"><b>*</b></span></label>
                   </div              </div>
 
               <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                   <div class="input-field col s12">
-                    <input  id="addFabricTypeDesc" name = "addFabricTypeDesc" type="text" class="validateTypeDesc">
+                    <input  id="txtFabricTypeDesc" name = "txtFabricTypeDesc" type="text" class="validateTypeDesc">
                     <label for="fabrictype_description">Fabric Desription </label>
                   </div>
               </div>
               </div>
 
                   <div class="modal-footer col s12" style="background-color:#26a69a">
-                    <button type="submit" id="send" name="send" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
+                    <button type="submit" id="send" name="send" class=" modal-action  waves-effect waves-green btn-flat">CREATE</button>
                     <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
                   </div>
                 {!! Form::close() !!}

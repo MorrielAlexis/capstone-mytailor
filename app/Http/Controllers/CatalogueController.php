@@ -69,22 +69,21 @@ class CatalogueController extends Controller
 
             if($file == '' || $file == null){
                 $catalogue = Catalogue::create(array(
-                'strCatalogueID' => $request->input('addCatalogueID'),
-                'strCatalogueCategoryFK' => $request->input('addCategory'),
-                'strCatalogueName' => trim($request ->input('addCatalogueName')),
-                'strCatalogueDesc' => trim($request->input('addCatalogueDesc')),
-                'strCatalogueImage' => 'imgCatalogue/' .$file,
+                'strCatalogueID' => $request->input('strCatalogueID'),
+                'strCatalogueCategoryFK' => $request->input('strCatalogueCategoryFK'),
+                'strCatalogueName' => trim($request ->input('strCatalogueName')),
+                'strCatalogueDesc' => trim($request->input('strCatalogueDesc')),
                 'boolIsActive' => 1
                 ));     
                 }else{
                     $request->file('addImg')->move($destinationPath, $file);
 
                     $catalogue = Catalogue::create(array(
-                        'strCatalogueID' => $request->input('addCatalogueID'),
-                        'strCatalogueCategoryFK' => $request->input('addCategory'),
-                        'strCatalogueName' => $request->input('addCatalogueName'),
-                        'strCatalogueDesc' => trim($request->input('addCatalogueDesc')),
-                        'strCatalogueImage' => 'imgDesignPatterns/'.$file,
+                        'strCatalogueID' => $request->input('strCatalogueID'),
+                        'strCatalogueCategoryFK' => $request->input('strCatalogueCategoryFK'),
+                        'strCatalogueName' => $request->input('strCatalogueName'),
+                        'strCatalogueDesc' => trim($request->input('strCatalogueDesc')),
+                        'strCatalogueImage' => 'imgCatalogue/'.$file,
                         'boolIsActive' => 1
                     )); 
 

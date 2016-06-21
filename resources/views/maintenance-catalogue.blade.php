@@ -235,19 +235,19 @@
   
                <!-- ADD DESIGN IN CATALOGUE -->
           <div id="addCatalogue" class="modal modal-fixed-footer">            
-            <h5><font color = "#1b5e20"><center>ADD NEW CATALOGUE DESIGN</center> </font> </h5>               
+            <h5><font color = "#1b5e20"><center>CREATE CATALOGUE DESIGN</center> </font> </h5>               
               
               {!! Form::open(['url' => 'maintenance/catalogue', 'method' => 'post', 'files' => 'true']) !!}
               <div class="divider" style="height:2px"></div>
               <div class="modal-content col s12">               
 
               <div class="input-field">
-                <input value="{{$newID}}" id="addCatalogueID" name="addCatalogueID" type="hidden"> 
+                <input value="{{$newID}}" id="strCatalogueID" name="strCatalogueID" type="hidden"> 
               </div>
 
           <div class = "col s12" style="padding:15px;  border:3px solid white;">
               <div class="input-field col s12">
-                <select class="browser-default" id="addCategory" name="addCategory">
+                <select class="browser-default" id="strCatalogueCategoryFK" name="strCatalogueCategoryFK">
                     <option disabled selected value="">Choose Category</option>
                     @foreach($category as $cat)
                         @if($cat->boolIsActive == 1)
@@ -261,14 +261,14 @@
 
           <div class = "col s12" style="padding:15px;  border:3px solid white;">
               <div class="input-field col s12">
-                <input required id="addCatalogueName" name = "addCatalogueName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
+                <input required id="strCatalogueName" name = "strCatalogueName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                 <label for="Catalogue_Name"> Catalogue Name <span class="red-text"><b>*</b></span></label>
               </div>
           </div>
 
           <div class = "col s12" style="padding:15px;  border:3px solid white;">
               <div class="input-field col s12">
-                <input  id="addCatalogueDesc" name="addCatalogueDesc" type="text" class="validate">
+                <input  id="strCatalogueDesc" name="strCatalogueDesc" type="text" class="validate">
                 <label for="Category_Desc">Category Description </label>
               </div>
           </div>

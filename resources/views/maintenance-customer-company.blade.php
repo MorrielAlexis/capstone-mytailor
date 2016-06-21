@@ -322,84 +322,84 @@
 
           <div class = "col s12" style="padding:15px;  border:3px solid white;">
               <div class="input-field col s12">                 
-                <input value="{{$newID}}" id="addComID" name="addComID" type="text" class="" readonly>
+                <input value="{{$newID}}" id="strCompanyID" name="strCompanyID" type="text" class="" readonly>
                 <label for="company_id">Company ID </label>
               </div>
           </div>
 
           <div class = "col s12" style="padding:15px;  border:3px solid white;">
               <div class="input-field col s12">
-                <input required id="addComName" name = "addComName" placeholder="Company Name" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s\d]{2,}$" maxlength="30" minlength="2">
+                <input required id="strCompanyName" name = "strCompanyName" placeholder="Company Name" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s\d]{2,}$" maxlength="30" minlength="2">
                 <label for="company_name"> Company Name <span class="red-text"><b>*</b></span></label>
               </div>
           </div>
 
           <div class = "col s12" style="padding:15px;  border:3px solid white;">
               <div class="input-field col s3">
-                  <input required id="addCustCompanyHouseNo" name="addCustCompanyHouseNo" pattern="[0-9a-zA-Z\-\s]+$" name="addEmpHouseNo" type="text" placeholder="1-A" class="validate">
+                  <input required id="strCompanyBuildingNo" name="strCompanyBuildingNo" pattern="[0-9a-zA-Z\-\s]+$" name="addEmpHouseNo" type="text" placeholder="1-A" class="validate">
                   <label for="House No">Building No. <span class="red-text"><b>*</b></span></label>
               </div>
 
                <div class="input-field col s3">
-                <input  required id="addCustCompanyStreet" name="addCustCompanyStreet" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$" type="text" placeholder="Malunggay"class="validate">
+                <input  required id="strCompanyStreet" name="strCompanyStreet" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$" type="text" placeholder="Malunggay" class="validate">
                 <label for=" Street">Street <span class="red-text"><b>*</b></span></label>
               </div>
 
               <div class="input-field col s3">
-                <input id="addCustCompanyBarangay" name="addCustCompanyBarangay" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$" type="text" placeholder="Daang Bakal" class="validate">
+                <input id="strCompanyBarangay" name="strCompanyBarangay" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$" type="text" placeholder="Daang Bakal" class="validate">
                 <label for=" Brgy">Barangay/Subd </label>
               </div>
 
               <div class="input-field col s3">
-                <input required="" id="addCustCompanyCity" name="addCustCompanyCity" pattern="^[a-zA-Z\'\-]+( [a-zA-Z\'\-]+)*$" type="text" placeholder="Mandaluyong" class="validate">
+                <input required="" id="strCompanyCity" name="strCompanyCity" pattern="^[a-zA-Z\'\-]+( [a-zA-Z\'\-]+)*$" type="text" placeholder="Mandaluyong" class="validate">
                 <label for=" City">City/Municipality <span class="red-text"><b>*</b></span></label>
               </div>
           </div>
 
           <div class = "col s12" style="padding:15px;  border:3px solid white;">
               <div class="input-field col s6">
-                <input id="addCustCompanyProvince" name="addCustCompanyProvince" pattern="^[a-zA-Z\'\-\.]+( [a-zA-Z\'\-\.]+)*$" type="text" placeholder="Pampanga" class="validate">
+                <input id="strCompanyProvince" name="strCompanyProvince" pattern="^[a-zA-Z\'\-\.]+( [a-zA-Z\'\-\.]+)*$" type="text" placeholder="Pampanga" class="validate">
                 <label for=" Province">Province </label>
               </div>
 
                <div class="input-field col s6">
-                <input id="addCustCompanyZipCode" name="addCustCompanyZipCode" pattern="^[0-9]+$" type="text" placeholder="1001" class="validate">
+                <input id="strCompanyZipCode" name="strCompanyZipCode" pattern="^[0-9]+$" type="text" placeholder="1001" class="validate">
                 <label for=" Zip Code">Zip Code </label>
               </div>
           </div>
 
           <div class = "col s12" style="padding:15px;  border:3px solid white;">
               <div class="input-field col s6">
-                <input required id="addConPerson" name = "addConPerson" placeholder="Contact Person" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2">
+                <input required id="strContactPerson" name = "strContactPerson" placeholder="Contact Person" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2">
                 <label for="company_name"> Contact Person <span class="red-text"><b>*</b></span></label>
               </div>
 
               <div class="input-field col s6">
-                <input required id="addComEmailAdd" name = "addComEmailAddress" type="email" class="validate">
+                <input required id="strCompanyEmailAddress" name = "strCompanyEmailAddress" type="email" class="validate">
                 <label for="com_email_address"> Company Email Address <span class="red-text"><b>*</b></span></label>
               </div>
           </div>
 
           <div class = "col s12" style="padding:15px;  border:3px solid white;">
               <div class="input-field col s6">
-                <input required id="addCel" name = "addCel" pattern="^[0-9]{11,11}$" type="text" class="validate" placeholder="09361234567" maxlength="11">
+                <input required id="strCompanyCPNumber" name = "strCompanyCPNumber" pattern="^[0-9]{11,11}$" type="text" class="validate" placeholder="09361234567" maxlength="11">
                 <label for="cellphone"> Cellphone Number <span class="red-text"><b>*</b></span></label>
               </div>
 
               <div class="input-field col s6">
-                <input id="addCelAlt" name = "addCelAlt" pattern="^[0-9]{11,11}$" type="text" class="validate" placeholder="09361234567" maxlength="11">
+                <input id="strCompanyCPNumberAlt" name = "strCompanyCPNumberAlt" pattern="^[0-9]{11,11}$" type="text" class="validate" placeholder="09361234567" maxlength="11">
                 <label for="cellphone"> Cellphone Number (alternate)</label>
               </div>
           </div>
 
           <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
               <div class="input-field col s6">
-                <input  id="addPhone" name = "addPhone" placeholder="5351673" pattern="^[0-9]{6,10}$" type="text" class="validate" maxlength="10">
+                <input  id="strCompanyTelNumber" name = "strCompanyTelNumber" placeholder="5351673" pattern="^[0-9]{6,10}$" type="text" class="validate" maxlength="10">
                 <label for="tel"> Telephone Number </label>
               </div>
 
               <div class="input-field col s6">
-                <input id="addFax" name = "addFax" placeholder="5351673" pattern="^[0-9]{6,10}$" type="text" class="validate" maxlength="9" minlength="9">
+                <input id="strCompanyFaxNumber" name = "strCompanyFaxNumber" placeholder="5351673" pattern="^[0-9]{6,10}$" type="text" class="validate" maxlength="9" minlength="9">
                 <label for="fax"> Fax Number </label>
               </div>
           </div>
@@ -407,7 +407,7 @@
               </div>
 
             <div class="modal-footer col s12" style="background-color:#26a69a">
-              <button type="submit" class=" waves-effect waves-green btn-flat">Add</button>  
+              <button type="submit" name="send" id="send" class=" waves-effect waves-green btn-flat">CREATE</button>  
               <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button>
             </div>
             {!! Form::close() !!}

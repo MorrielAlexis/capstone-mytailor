@@ -213,12 +213,12 @@
                 <div class="modal-content col s12">
 
                   <div class="input-field">
-                    <input value="{{$newID}}" id="addRoleID" name="addRoleID" type="hidden">
+                    <input value="{{$newID}}" id="strEmpRoleID" name="strEmpRoleID" type="hidden">
                   </div>
                         
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s12">
-                    <input required id="addRoleName" name="addRoleName" type="text" class="validate" placeholder="Sewer" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
+                    <input required id="strEmpRoleName" name="strEmpRoleName" type="text" class="validate" placeholder="Sewer" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
                     <label for="addRoleName" class="validate" >Role Name <span class="red-text"><b>*</b></span></label>
                   </div>  
                   <!-- [A-Za-z]+(\s[A-Za-z]+)?
@@ -228,7 +228,7 @@
 
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s12">
-                    <input  id="addRoleDescription" name="addRoleDescription" type="text" class="validate" placeholder="In charge in manufacturing garments.">
+                    <input  id="strEmpRoleDesc" name="strEmpRoleDesc" type="text" class="validate" placeholder="In charge in manufacturing garments.">
                     <label for="addRoleName" class="active">Role Description</label>
                   </div>
               </div>

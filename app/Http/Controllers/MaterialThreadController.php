@@ -131,14 +131,14 @@ class MaterialThreadController extends Controller
     }
 
 
-     function editThread(ThreadRequest $request)
+     function editThread(Request $request)
     {
         $thread = Thread::find($request->input('editThreadID'));
 
-        $file = $request->input('editThreadImage');
+        $file = $request->input('strThreadImage');
         $destinationPath = 'imgMaterialThreads';
 
-                if($file == $thread->strThreadImage)
+                if($file == $thread->editThreadImage)
                 
                 {
                     $thread->strThreadBrand = trim($request->input('editThreadBrand'));
