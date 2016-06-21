@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Thread;
 
 use App\Http\Requests;
+use App\Http\Requests\ThreadRequest;
 use App\Http\Controllers\Controller;
 
 class MaterialThreadController extends Controller
@@ -51,7 +52,7 @@ class MaterialThreadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ThreadRequest $request)
     { 
         $file = $request->input('addImage');
         $destinationPath = 'imgMaterialThreads';
@@ -130,7 +131,7 @@ class MaterialThreadController extends Controller
     }
 
 
-     function editThread(Request $request)
+     function editThread(ThreadRequest $request)
     {
         $thread = Thread::find($request->input('editThreadID'));
 

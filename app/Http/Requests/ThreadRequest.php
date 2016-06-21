@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use Illuminate\Contracts\Validation\Validator;
 
 class ThreadRequest extends Request
 {
@@ -13,7 +14,7 @@ class ThreadRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,25 @@ class ThreadRequest extends Request
     public function rules()
     {
         return [
-            //
+            'addThreadBrand'    =>  'required|unique:tblThread,strThreadBrand',
+            'editThreadBrand'   =>  'unique:tblThread,strThreadBrand'
         ];
+    }
+
+    public function messages()
+    {
+        return [
+            'addThreadBrand.unique'  =>  'Thread already exists.',
+            'addThreadBrand.required' => 'Thread name is required.',
+            'editThreadBrand.unique'  => 'Thread name already exists.'
+        ];
+
+    }
+
+
+    protected function formatErrors(Validator $validator)
+    {
+        return $validator->errors()->all();
+
     }
 }

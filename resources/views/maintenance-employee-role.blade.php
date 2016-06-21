@@ -6,7 +6,7 @@
 
 
 
-  <!-- Errors -->
+  <!-- Errors Messages -->
         @if ($errors->any())
            <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
