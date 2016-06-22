@@ -57,20 +57,20 @@ class CustomerIndividualController extends Controller
         $ind = Individual::get();
 
         $individual = Individual::create(array(
-                    'strIndivID' => $request->input('addIndiID'),
-                    'strIndivFName' => trim($request->input('addFName')),     
-                    'strIndivMName' => trim($request->input('addMName')),
-                    'strIndivLName' => trim($request->input('addLName')),
-                    'strIndivHouseNo' => trim($request->input('addCustPrivHouseNo')), 
-                    'strIndivStreet' => trim($request->input('addCustPrivStreet')),
-                    'strIndivBarangay' => trim($request->input('addCustPrivBarangay')),   
-                    'strIndivCity' => trim($request->input('addCustPrivCity')),   
-                    'strIndivProvince' => trim($request->input('addCustPrivProvince')),
-                    'strIndivZipCode' => trim($request->input('addCustPrivZipCode')),
-                    'strIndivLandlineNumber' => trim($request->input('addPhone')),
-                    'strIndivCPNumber' => trim($request->input('addCel')), 
-                    'strIndivCPNumberAlt' => trim($request->input('addCelAlt')),
-                    'strIndivEmailAddress' => trim($request->input('addEmail')),
+                    'strIndivID' => $request->input('strIndivID'),
+                    'strIndivFName' => trim($request->input('strIndivFName')),     
+                    'strIndivMName' => trim($request->input('strIndivMName')),
+                    'strIndivLName' => trim($request->input('strIndivLName')),
+                    'strIndivHouseNo' => trim($request->input('strIndivHouseNo')), 
+                    'strIndivStreet' => trim($request->input('strIndivStreet')),
+                    'strIndivBarangay' => trim($request->input('strIndivBarangay')),   
+                    'strIndivCity' => trim($request->input('strIndivCity')),   
+                    'strIndivProvince' => trim($request->input('strIndivProvince')),
+                    'strIndivZipCode' => trim($request->input('strIndivZipCode')),
+                    'strIndivLandlineNumber' => trim($request->input('strIndivLandlineNumber')),
+                    'strIndivCPNumber' => trim($request->input('strIndivCPNumber')), 
+                    'strIndivCPNumberAlt' => trim($request->input('strIndivCPNumberAlt')),
+                    'strIndivEmailAddress' => trim($request->input('strIndivEmailAddress')),
                     'boolIsActive' => 1
                     ));
 

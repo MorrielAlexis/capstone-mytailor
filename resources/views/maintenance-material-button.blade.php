@@ -86,9 +86,7 @@
 	<div class="main-wrapper"  style="margin-top:30px">
 
       <!--BUTTONS-->
-      <div id="tabButton" class="hue col s12" style="margin-top:45px; background-color: #80d8ff;">
-        <div style="height:30px;"></div>
-
+      
       <div class="row">
         <div class="col s12 m12 l12">
             <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to add a new button detail to the table" href="#addButton" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
@@ -265,38 +263,38 @@
 
   <!--MODAL: add Button-->
   <div id="addButton" class="modal modal-fixed-footer">
-    <h5><font color = "#1b5e20"><center>ADD NEW BUTTON</center> </font> </h5>
+    <h5><font color = "#1b5e20"><center>CREATE NEW BUTTON</center> </font> </h5>
       
     {!! Form::open(['url' => 'maintenance/material-button', 'files' => 'true' , 'method' => 'post']) !!}
       <div class="divider" style="height:2px"></div>
       <div class="modal-content col s12">
     
         <div class="input-field">
-          <input id="addButtonID" name = "addButtonID" value = "{{$newButtonID}}" type="hidden">
+          <input id="intButtonID" name = "intButtonID" value = "{{$newButtonID}}" type="hidden">
         </div>
         
       <div class = "col s12" style="padding:15px;  border:3px solid white;">            
         <div class="input-field col s12">
-          <input required  id="addButtonBrand" name = "addButtonBrand" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
-          <label for="Button_Name"> Button Name <span class="red-text"><b>*</b></span></label>
+          <input required  id="strButtonBrand" name = "strButtonBrand" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
+          <label for="Button_Name"> Button Brand <span class="red-text"><b>*</b></span></label>
         </div>
       </div>
 
       <div class = "col s12" style="padding:15px;  border:3px solid white;">
         <div class="input-field col s6">
-          <input required id="addButtonSize" name = "addButtonSize" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
+          <input required id="strButtonSize" name = "strButtonSize" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
           <label for="Button_Size"> Button Size <span class="red-text"><b>*</b></span></label>
         </div>
 
         <div class="input-field col s6">
-          <input required id="addButtonColor" name = "addButtonColor" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
+          <input required id="strButtonColor" name = "strButtonColor" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
           <label for="Button_Color"> Button Color <span class="red-text"><b>*</b></span></label>
         </div>
       </div>
 
       <div class = "col s12" style="padding:15px;  border:3px solid white;">
         <div class="input-field col s12">
-          <input id="addButtonDesc" name = "addButtonDesc" type="text" class="validate">
+          <input id="strButtonDesc" name = "strButtonDesc" type="text" class="validate">
           <label for="Button_Desc"> Description </label>
         </div>
       </div>
@@ -316,7 +314,7 @@
     
       <!--MODAL FOOTER-->
       <div class="modal-footer col s12" style="background-color:#26a69a">
-        <button type="submit" class="modal-action  waves-effect waves-green btn-flat">Save</button>
+        <button type="submit" id="send" name="send" class="modal-action  waves-effect waves-green btn-flat">Save</button>
         <button type="reset" value="Reset" href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
       </div>
     {!! Form::close() !!}

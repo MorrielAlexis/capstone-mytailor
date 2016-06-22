@@ -57,9 +57,9 @@ class GarmentCategoryController extends Controller
     {
         $garms = GarmentCategory::get();
             $garment = GarmentCategory::create(array(
-                'strGarmentCategoryID' => $request->input('addGarmentID'),
-                'strGarmentCategoryName' => trim($request->input('addGarmentName')),
-                'textGarmentCategoryDesc' => trim($request->input('addGarmentDesc')),
+                'strGarmentCategoryID' => $request->input('strGarmentCategoryID'),
+                'strGarmentCategoryName' => trim($request->input('strGarmentCategoryName')),
+                'textGarmentCategoryDesc' => trim($request->input('textGarmentCategoryDesc')),
                 'boolIsActive' => 1
                 ));
 

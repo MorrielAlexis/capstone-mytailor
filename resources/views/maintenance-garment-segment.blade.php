@@ -327,11 +327,11 @@
 
 
                       <input type="hidden" name="_token" value="{!! csrf_token() !!}" />
-                <input value = "{{$newID}}" id="addSegmentID" name= "addSegmentID" type="hidden">
+                <input value = "{{$newID}}" id="strSegmentID" name= "strSegmentID" type="hidden">
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <select class="browser-default" name='addCategory' id='addCategory' required>
+                        <select class="browser-default" name='strSegCategoryFK' id='strSegCategoryFK' required>
                           <option value="" disabled selected>Choose garment category</option>
                           @foreach($garment as $garment_1)
                             @if($garment_1->boolIsActive == 1) 
@@ -344,13 +344,13 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input required id="addSegmentName" name= "addSegmentName" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" class="active"  >
+                        <input required id="strSegmentName" name= "strSegmentName" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" class="active"  >
                         <label for="segment_name">Segment Name<span class="red-text"><b>*</b></span></label>
                       </div>
                   </div>
 
                    <div class="input-field col s12" style="margin-top: 40px !important;">
-                              <select required class="browser-default" name="addSegmentSex" id="addSegmentSex">
+                              <select required class="browser-default" name="strSegmentSex" id="strSegmentSex">
                                 <option value="" disabled selected>Sex</option>
                                 <option value="{{$segment->strSegmentSex}}">Male</option>
                                 <option value="{{$segment->strSegmentSex}}">Female</option>
@@ -360,14 +360,14 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s6">
-                                <input required id="addMinDays" name= "addMinDays" type="text" class="validate" pattern="^[0-9]*$" maxlength="2">
+                                <input required id="intMinDays" name= "intMinDays" type="text" class="validate" pattern="^[0-9]*$" maxlength="2">
                                 <label for="min days">Minimum Production Days:<span class="red-text"><b>*</b></span></label>
                               </div>
                   </div>
 
                    <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                       <div class="input-field col s12">
-                        <input id="addSegmentDesc" name = "addSegmentDesc" type="text" class="validate"  data-position="bottom" >
+                        <input id="textSegmentDesc" name = "textSegmentDesc" type="text" class="validate"  data-position="bottom" >
                         <label for="segment_description">Segment Description </label>
                       </div>
                   </div>

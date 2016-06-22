@@ -290,99 +290,99 @@
              
 
             <div id="addCusIndi" class="modal modal-fixed-footer">
-              <div class = "label"><h5><font color = "#1b5e20"><center>ADD NEW INDIVIDUAL CUSTOMER PROFILE </center> </font> </h5>
+              <div class = "label"><h5><font color = "#1b5e20"><center>CREATE NEW INDIVIDUAL CUSTOMER PROFILE </center> </font> </h5>
                 {!! Form::open(['url' => 'maintenance/individual' , 'method' => 'post']) !!}
                   <div class="divider" style="height:2px"></div>
                   <div class="modal-content col s12">
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s12">                 
-                          <input value = "{{$newID}}" id="addIndiID" name="addIndiID" type="text" class="" readonly>
+                          <input value = "{{$newID}}" id="strIndivID" name="strIndivID" type="text" class="" readonly>
                           <label for="indi_id">Individual ID </label>
                         </div>
                     </div>
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s4">
-                          <input required id="addFName" name = "addFName" placeholder="Hope" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
+                          <input required id="strIndivFName" name = "strIndivFName" placeholder="Hope" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
                           <label for="first_name" > First Name <span class="red-text"><b>*</b></label>
                         </div>
 
                         <div class="input-field col s4">
-                          <input id="addMName" name = "addMName" placeholder="Elizabeth" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
+                          <input id="strIndivMName" name = "strIndivMName" placeholder="Elizabeth" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
                           <label for="middle_name"> Middle Name </label>
                         </div>
 
                         <div class="input-field col s4">
-                          <input required id="addLName" name = "addLName" placeholder="Soberano" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
+                          <input required id="strIndivLName" name = "strIndivLName" placeholder="Soberano" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
                           <label for="last_name"> Last Name <span class="red-text"><b>*</b></label>
                         </div>
                       </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s3">
-                            <input required id="addCustPrivHouseNo" name="addCustPrivHouseNo" pattern="[0-9a-zA-Z\-\s]+$" type="text" placeholder="1-A" class="validate">
+                            <input required id="strIndivHouseNo" name="strIndivHouseNo" pattern="[0-9a-zA-Z\-\s]+$" type="text" placeholder="1-A" class="validate">
                             <label for="House No">House No. <span class="red-text"><b>*</b></label>
                           </div>
 
                            <div class="input-field col s3">
-                            <input required id="addCustPrivStreet" name="addCustPrivStreet" pattern="^[a-zA-Z0-9\'\-\.]+([a-zA-Z0-9\'\-\.]+)*$" type="text" placeholder="Malunggay" class="validate">
+                            <input required id="strIndivStreet" name="strIndivStreet" pattern="^[a-zA-Z0-9\'\-\.]+([a-zA-Z0-9\'\-\.]+)*$" type="text" placeholder="Malunggay" class="validate">
                             <label for=" Street">Street <span class="red-text"><b>*</b></label>
                           </div><!-- ^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)? -->
                          <!--  ^[a-zA-Z0-9\'\-\.]+(\s[a-zA-Z0-9\'\-\.]+)*$ -->
 
                           <div class="input-field col s3">
-                            <input  id="addCustPrivBarangay" name="addCustPrivBarangay" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$" type="text" placeholder="Daang Bakal" class="validate">
+                            <input  id="strIndivBarangay" name="strIndivBarangay" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$" type="text" placeholder="Daang Bakal" class="validate">
                             <label for=" Brgy">Barangay/Subd </label>
                           </div>
 
                           <div class="input-field col s3">
-                            <input required id="addCustPrivCity" name="addCustPrivCity" pattern="^[a-zA-Z\'\-]+( \s[a-zA-Z\'\-]+)*$" type="text" placeholder="Mandaluyong" class="validate">
+                            <input required id="strIndivCity" name="strIndivCity" pattern="^[a-zA-Z\'\-]+( \s[a-zA-Z\'\-]+)*$" type="text" placeholder="Mandaluyong" class="validate">
                             <label for=" City">City/Municipality <span class="red-text"><b>*</b></label>
                           </div>
                       </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s6">
-                            <input id="addCustPrivProvince" name="addCustPrivProvince" pattern="^[a-zA-Z\'\-\.]+( \s[a-zA-Z\'\-\.]+)*$" type="text" placeholder="Pampanga" class="validate">
+                            <input id="strIndivProvince" name="strIndivProvince" pattern="^[a-zA-Z\'\-\.]+( \s[a-zA-Z\'\-\.]+)*$" type="text" placeholder="Pampanga" class="validate">
                             <label for=" Province">Province/Region </label>
                           </div>
 
                            <div class="input-field col s6">
-                            <input id="addCustPrivZipCode" name="addCustPrivZipCode" type="text" pattern="^[0-9]+$"  placeholder="1001" class="validate">
+                            <input id="strIndivZipCode" name="strIndivZipCode" type="text" pattern="^[0-9]+$"  placeholder="1001" class="validate">
                             <label for=" Zip Code">Zip Code </label>
                           </div>
                       </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input required id="addEmail" name = "addEmail" type="email" class="validate">
+                            <input required id="strIndivEmailAddress" name = "strIndivEmailAddress" type="email" class="validate">
                             <label for="email"> Email Address <span class="red-text"><b>*</b></label>
                           </div>
                       </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s6">
-                            <input required id="addCel" name = "addCel" pattern="^[0-9]{11,11}$" type="text" class="validate" placeholder="09361234567" maxlength="11">
+                            <input required id="strIndivCPNumber" name = "strIndivCPNumber" pattern="^[0-9]{11,11}$" type="text" class="validate" placeholder="09361234567" maxlength="11">
                             <label for="cellphone"> Cellphone Number <span class="red-text"><b>*</b></label>
                           </div>
 
                           <div class="input-field col s6">
-                            <input id="addCelAlt" name = "addCelAlt" pattern="^[0-9]{11,11}$" type="text" class="validate" placeholder="09361234567" maxlength="11">
+                            <input id="strIndivCPNumberAlt" name = "strIndivCPNumberAlt" pattern="^[0-9]{11,11}$" type="text" class="validate" placeholder="09361234567" maxlength="11">
                             <label for="cellphone"> Cellphone Number (alternate)</label>
                           </div>
                       </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                           <div class="input-field col s12">
-                            <input id="addPhone" name = "addPhone" placeholder="5351673" pattern="^[0-9]{6,10}$" type="text" class="validate" maxlength="10">
+                            <input id="strIndivLandlineNumber" name = "strIndivLandlineNumber" placeholder="5351673" pattern="^[0-9]{6,10}$" type="text" class="validate" maxlength="10">
                             <label for="tel"> Telephone Number </label>
                           </div>
                       </div>
                 </div>
 
               <div class="modal-footer col s12" style="background-color:#26a69a">
-                <button type="submit" class="waves-effect waves-green btn-flat">Save</button> 
+                <button type="submit" name="send" id="send" class="waves-effect waves-green btn-flat">Create</button> 
                 <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button>  
               </div>
             {!! Form::close() !!}

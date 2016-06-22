@@ -349,7 +349,7 @@
                 
 
     			<div id="newemp" class="modal modal-fixed-footer">              
-            <h5><font color = "#1b5e20"><center>ADD NEW EMPLOYEE PROFILE</center> </font> </h5>
+            <h5><font color = "#1b5e20"><center>CREATE NEW EMPLOYEE PROFILE</center> </font> </h5>
               
               {!! Form::open(['url' => 'maintenance/employee', 'method' => 'post']) !!}
                 <div class="divider" style="height:2px"></div>
@@ -358,23 +358,23 @@
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s12">
                     <label for="empID">Employee ID </label>
-                    <input value="{{$newID}}" id="addEmpID" name="addEmpID" type="text" class="" readonly>                    
+                    <input value="{{$newID}}" id="strEmployeeID" name="strEmployeeID" type="text" class="" readonly>                    
                   </div>
               </div>
 
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s4">
-                      <input name="addFirstName" placeholder="Hope" id="addFirstName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2">
-                      <label for="addFirstName" class="active">First Name<span class="red-text"><b>*</b></span></label>
+                      <input name="strEmpFName" placeholder="Hope" id="strEmpFName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2">
+                      <label for="strEmpFName" class="active">First Name<span class="red-text"><b>*</b></span></label>
                   </div>
 
                   <div class="input-field col s4">
-                    <input name="addMiddleName" placeholder="Elizabeth" id="addMiddleName" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="15" minlength="2">
+                    <input name="strEmpMName" placeholder="Elizabeth" id="strEmpMName" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="15" minlength="2">
                     <label for="strMiddleName" class="active">Middle Name</label>
                   </div>
 
                   <div class="input-field col s4">
-                    <input name="addLastName" placeholder="Soberano" id="addLastName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="15" minlength="2">
+                    <input name="strEmpLName" placeholder="Soberano" id="strEmpLName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="15" minlength="2">
                     <label for="strLastName" class="active">Last Name<span class="red-text"><b>*</b></span></label>
                   </div>
               </div>
@@ -382,11 +382,11 @@
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="col s6">
                     <p><font size = "-1" color = "gray">Date of Birth<span class="red-text"><b>*</b></span></font></p>
-                    <input id="addDtEmpBday" name="addDtEmpBday" type="date" class = "datepicker" value="January/1/1996" placeholder="January 1, 1996" >
+                    <input id="dtEmpBday" name="dtEmpBday" type="date" class = "datepicker" value="January/1/1996" placeholder="January 1, 1996" >
                   </div>
 
                   <div class="input-field col s6" style="margin-top:47px">
-                    <select value="" name='addSex' id='addSex' required>
+                    <select value="" name='strSex' id='strSex' required>
                       <option value="M">Male</option>
                       <option value="F">Female</option>
                     </select>    
@@ -396,41 +396,41 @@
 
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s3">
-                    <input required id="addEmpHouseNo." pattern="[0-9a-zA-Z\-\s]+$" name="addEmpHouseNo" type="text" placeholder="1-A" class="validate">
+                    <input required id="strEmpHouseNo." pattern="[0-9a-zA-Z\-\s]+$" name="strEmpHouseNo" type="text" placeholder="1-A" class="validate">
                     <label for="Emp House No">House No.<span class="red-text"><b>*</b></span></label>
                   </div>
 
                    <div class="input-field col s3">
-                    <input required id="addEmpStreet" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$" name="addEmpStreet" type="text" placeholder="Malunggay"class="validate">
+                    <input required id="strEmpStreet" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$" name="strEmpStreet" type="text" placeholder="Malunggay"class="validate">
                     <label for="Emp Street">Street<span class="red-text"><b>*</b></span></label>
                   </div>
 
                   <div class="input-field col s3">
-                    <input  id="addEmpBarangay" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$" name="addEmpBarangay" type="text" placeholder="Daang Bakal" class="validate">
+                    <input  id="strEmpBarangay" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$" name="strEmpBarangay" type="text" placeholder="Daang Bakal" class="validate">
                     <label for="Emp Brgy">Barangay/Subd.</label>
                   </div>
 
                   <div class="input-field col s3">
-                    <input required id="addEmpCity" pattern="^[a-zA-Z\'\-]+( [a-zA-Z\'\-]+)*$" name="addEmpCity" type="text" placeholder="Mandaluyong" class="validate">
+                    <input required id="strEmpCity" pattern="^[a-zA-Z\'\-]+( [a-zA-Z\'\-]+)*$" name="strEmpCity" type="text" placeholder="Mandaluyong" class="validate">
                     <label for="Emp City">City/Municipality<span class="red-text"><b>*</b></span></label>
                   </div>
               </div>
 
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s6">
-                    <input id="addEmpProvince" pattern="^[a-zA-Z\'\-\.]+( [a-zA-Z\'\-\.]+)*$" name="addEmpProvince" type="text" placeholder="Pampanga" class="validate">
+                    <input id="strEmpProvince" pattern="^[a-zA-Z\'\-\.]+( [a-zA-Z\'\-\.]+)*$" name="strEmpProvince" type="text" placeholder="Pampanga" class="validate">
                     <label for="Emp Province">Province</label>
                   </div>
 
                    <div class="input-field col s6">
-                    <input  id="addEmpZipCode" pattern="^[0-9]+$"name="addEmpZipCode" type="text" placeholder="1001" class="validate">
+                    <input  id="strEmpZipCode" pattern="^[0-9]+$" name="strEmpZipCode" type="text" placeholder="1001" class="validate">
                     <label for="Emp Zip Code">Zip Code</label>
                   </div>
               </div>
 
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s12">
-                    <select name='addRoles' id='addRoles' required>
+                    <select name='strRole' id='strRole' required>
                       @foreach($roles as $role)
                         @if($role->boolIsActive == 1)
                           <option value="{{ $role->strEmpRoleID }}" selected>{{ $role->strEmpRoleName }}</option>
@@ -443,13 +443,13 @@
                 
               <div class = "col s12" style="padding:15px;  border:3px solid white;">   
                   <div class="input-field col s6">
-                    <input required id="addCellNo" pattern="^[0-9]{11,11}$" name="addCellNo" type="text" class="validate" placeholder="09361234567" maxlength="11">
+                    <input required id="strCellNo" pattern="^[0-9]{11,11}$" name="strCellNo" type="text" class="validate" placeholder="09361234567" maxlength="11">
                     <label for="cellphone_number">Cellphone Number <span class="red-text"><b>*</b></span></label>
                     <span id="left"></span>
                   </div>
 
                   <div class="input-field col s6">
-                    <input id="addCellNoAlt" pattern="^[0-9]{11,11}$" name="addCellNoAlt" type="text" class="validate" placeholder="09361234567" maxlength="11">
+                    <input id="strCellNoAlt" pattern="^[0-9]{11,11}$" name="strCellNoAlt" type="text" class="validate" placeholder="09361234567" maxlength="11">
                     <label for="cellphone_number">Cellphone Number (Alt)</label>
                     <span id="left"></span>
                   </div>
@@ -457,21 +457,21 @@
 
               <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                   <div class="input-field col s6">
-                    <input id="addPhoneNo" placeholder="5351673" pattern="^[0-9]{6,10}$" name="addPhoneNo" type="text" class="validate" maxlength="10">
+                    <input id="strPhoneNo" placeholder="5351673" pattern="^[0-9]{6,10}$" name="strPhoneNo" type="text" class="validate" maxlength="10">
                     <label for="landline_number">Landline Number </label>
                   </div>
                 </div>  
 
               <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">   
                   <div class="input-field col s6">
-                    <input required id="addEmail" placeholder="capstone_email@gmail.com" name="addEmail" type="email" class="validate">
+                    <input required id="strEmailAdd" placeholder="capstone_email@gmail.com" name="strEmailAdd" type="email" class="validate">
                     <label for="email" data-error="wrong" data-success="right">Email Address <span class="red-text"><b>*</b></span></label>
                   </div> 
               </div>
               </div>
 
               <div class="modal-footer col s12" style="background-color:#26a69a">
-                <button type="submit" id="send" name="send" class="modal-action waves-effect waves-green btn-flat">Add</button>
+                <button type="submit" id="send" name="send" class="modal-action waves-effect waves-green btn-flat">Create</button>
                 <button type="reset" value="Reset" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</button>
               </div>
             {!! Form::close() !!}

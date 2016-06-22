@@ -58,22 +58,22 @@ class MaterialButtonController extends Controller
 
                 if($file == '' || $file == null){
                 $button = Button::create(array(
-                    'intButtonID' => $request->input('addButtonID'),
-                    'strButtonBrand' => trim($request->input('addButtonBrand')),
-                    'strButtonSize' => trim($request->input('addButtonSize')),
-                    'strButtonColor' => trim($request->input('addButtonColor')),
-                    'strButtonDesc' => trim($request->input('addButtonDesc')),
+                    'intButtonID' => $request->input('intButtonID'),
+                    'strButtonBrand' => trim($request->input('strButtonBrand')),
+                    'strButtonSize' => trim($request->input('strButtonSize')),
+                    'strButtonColor' => trim($request->input('strButtonColor')),
+                    'strButtonDesc' => trim($request->input('strButtonDesc')),
                     'boolIsActive' => 1
                     ));
                 }else{
                     $request->file('addImg')->move($destinationPath);
 
                     $button = Button::create(array(
-                    'intButtonID' => $request->input('addButtonID'),
-                    'strButtonBrand' => trim($request->input('addButtonBrand')),
-                    'strButtonSize' => trim($request->input('addButtonSize')),
-                     'strButtonColor' => trim($request->input('addButtonColor')),
-                    'strButtonDesc' => trim($request->input('addButtonDesc')),
+                    'intButtonID' => $request->input('intButtonID'),
+                    'strButtonBrand' => trim($request->input('strButtonBrand')),
+                    'strButtonSize' => trim($request->input('strButtonSize')),
+                     'strButtonColor' => trim($request->input('strButtonColor')),
+                    'strButtonDesc' => trim($request->input('strButtonDesc')),
                     'strButtonImage' => 'imgMaterialButtons/'.$file,
                     'boolIsActive' => 1
                         ));

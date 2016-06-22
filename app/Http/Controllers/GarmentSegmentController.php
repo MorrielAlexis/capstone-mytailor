@@ -69,12 +69,12 @@ class GarmentSegmentController extends Controller
         if($file == '' || $file == null){
             $segment = GarmentSegment::create(array(
 
-                    'strSegmentID' => $request->input('addSegmentID'),
-                    'strSegCategoryFK' =>$request->input('addCategory'),
-                    'strSegmentName' =>trim($request->input('addSegmentName')),
-                    'strSegmentSex' => $request->input('addSegmentSex'),
-                    'intMinDays' =>trim($request->input('addMinDays')),
-                    'textSegmentDesc' => trim($request->input('addSegmentDesc')),
+                    'strSegmentID' => $request->input('strSegmentID'),
+                    'strSegCategoryFK' =>$request->input('strSegCategoryFK'),
+                    'strSegmentName' =>trim($request->input('strSegmentName')),
+                    'strSegmentSex' => $request->input('strSegmentSex'),
+                    'intMinDays' =>trim($request->input('intMinDays')),
+                    'textSegmentDesc' => trim($request->input('textSegmentDesc')),
                     'boolIsActive' => 1
 
             ));
@@ -83,12 +83,12 @@ class GarmentSegmentController extends Controller
             $request->file('addImg')->move($destinationPath);
             $segment = GarmentSegment::create(array(
 
-                    'strSegmentID' => $request->input('addSegmentID'),
-                    'strSegCategoryFK' =>$request->input('addCategory'),
-                    'strSegmentName' =>trim($request->input('addSegmentName')),
-                    'strSegmentSex' => $request->input('addSegmentSex'),
-                    'intMinDays' =>trim($request->input('addMinDays')),
-                    'textSegmentDesc' => trim($request->input('addSegmentDesc')),
+                    'strSegmentID' => $request->input('strSegmentID'),
+                    'strSegCategoryFK' =>$request->input('strSegCategoryFK'),
+                    'strSegmentName' =>trim($request->input('strSegmentName')),
+                    'strSegmentSex' => $request->input('strSegmentSex'),
+                    'intMinDays' =>trim($request->input('intMinDays')),
+                    'textSegmentDesc' => trim($request->input('textSegmentDesc')),
                     'strSegmentImage' => 'imgSegments/'.$file,
                     'boolIsActive' => 1
 

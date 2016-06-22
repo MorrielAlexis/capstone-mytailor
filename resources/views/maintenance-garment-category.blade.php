@@ -180,7 +180,7 @@
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input required value="{{ $garment->strGarmentCategoryName }}" id="editGarmentName" name="editGarmentName"type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2" >
+                                <input required value="{{ $garment->strGarmentCategoryName }}" id="editGarmentName" name="editGarmentName" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2" >
                                 <label for="garment_name"> Garment Name   <span class="red-text"><b>*</b></span></label>
                               </div>
                           </div>
@@ -260,7 +260,7 @@
              <!-- Create Garment Category
           -->
             <div id="addGCategory" class="modal modal-fixed-footer">
-              <h5><font color = "#1b5e20"><center>ADD NEW GARMENT CATEGORY</center> </font> </h5>
+              <h5><font color = "#1b5e20"><center>CREATE NEW GARMENT CATEGORY</center> </font> </h5>
               
               {!! Form::open(['url' => 'maintenance/garment-category', 'method' => 'post']) !!}
                 <div class="divider" style="height:2px"></div>
