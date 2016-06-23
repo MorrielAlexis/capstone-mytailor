@@ -23,7 +23,7 @@ class WalkInIndividualController extends Controller
 
         $garments = \DB::table('tblSegment AS a')
                     ->leftJoin('tblGarmentCategory AS b', 'a.strSegCategoryFK', '=', 'b.strGarmentCategoryID')
-                    ->select('a.*', 'b.strGarmentCategoryName')
+                    ->select('a.*', 'b.strGarmentCategoryName') 
                     ->get();
 
         return view('transaction-walkin-individual')
@@ -111,6 +111,8 @@ class WalkInIndividualController extends Controller
     {   
         $data_segment = $request->input('cbx-segment-name');
         $data_quantity = $request->input('int-segment-qty');
+
+        dd($data_segment, $data_quantity);
 
         session(['segment_value' => $data_segment]);
         session(['segment_quantity' => $data_quantity]);
