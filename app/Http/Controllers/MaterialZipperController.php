@@ -58,22 +58,22 @@ class MaterialZipperController extends Controller
 
                 if($file == '' || $file == null){
                 $zipper = Zipper::create(array(
-                    'intZipperID' => $request->input('addZipperID'),
-                    'strZipperBrand' => trim($request->input('addZipperBrand')),
-                    'strZipperColor' => trim($request->input('addZipperColor')),
-                    'strZipperSize' => trim($request->input('addZipperSize')),
-                    'txtZipperDesc' => trim($request->input('addZipperDesc')),
+                    'intZipperID' => $request->input('intZipperID'),
+                    'strZipperBrand' => trim($request->input('strZipperBrand')),
+                    'strZipperColor' => trim($request->input('strZipperColor')),
+                    'strZipperSize' => trim($request->input('strZipperSize')),
+                    'txtZipperDesc' => trim($request->input('txtZipperDesc')),
                     'boolIsActive' => 1
                     ));
                 }else{
                     $request->file('addImg')->move($destinationPath);
 
                     $zipper = Zipper::create(array(
-                    'intZipperipperID' => $request->input('addZipperID'),
-                    'strZipperBrand' => trim($request->input('addZipperBrand')),
-                    'strZipperColor' => trim($request->input('addZipperColor')),
-                     'strZipperSize' => trim($request->input('addZipperSize')),
-                    'txtZipperDesc' => trim($request->input('addZipperDesc')),
+                    'intZipperipperID' => $request->input('intZipperID'),
+                    'strZipperBrand' => trim($request->input('strZipperBrand')),
+                    'strZipperColor' => trim($request->input('strZipperColor')),
+                     'strZipperSize' => trim($request->input('strZipperSize')),
+                    'txtZipperDesc' => trim($request->input('txtZipperDesc')),
                     'strZipperImage' => 'imgMaterialZippers/'.$file,
                     'boolIsActive' => 1
                         ));

@@ -86,10 +86,6 @@
 
 	<div class="main-wrapper"  style="margin-top:30px">
 
-      <!--NEEDLES-->
-      <div id="tabNeedle" class="hue col s12" style="margin-top:45px; background-color: #80d8ff;">
-        <div style="height:30px;"></div>
-
       <div class="row">
         <div class="col s12 m12 l12">
             <a style="color:black; margin-right:35px; margin-left: 20px" class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1"style="color:black"  data-position="bottom" data-delay="50" data-tooltip="Click to add a new needle detail to the table" href="#addNeedle"><i class="large mdi-content-add"></i></a>
@@ -217,12 +213,6 @@
                                     <label for="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span></label>
                                     <input required value="{{$needle->strNeedleInactiveReason}}" id="delInactiveNeedle" name="delInactiveNeedle" type="text">
                                   </div>
-
-                              <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
-                                  <!--<div class="input-field col s12">
-                                    <input id="delInactiveReason" name = "delInactiveReason" value="{{$needle->strNeedleInactiveReason}}" type="text" class="validate" required>
-                                    <label for="Needle_Reason"> *Reason for Deactivation </label>-->
-                                  </div>
                               </div>
                               
 
@@ -251,33 +241,33 @@
 
     <!--MODAL: add Needle-->
   <div id="addNeedle" class="modal modal-fixed-footer">
-    <h5><font color = "#1b5e20"><center>ADD NEW NEEDLE</center> </font> </h5>   
+    <h5><font color = "#1b5e20"><center>CREATE NEW NEEDLE</center> </font> </h5>   
         
       {!! Form::open(['url' => 'maintenance/material-needle', 'method' => 'post', 'files' => 'true']) !!}
         <div class="divider" style="height:2px"></div>
         <div class="modal-content col s12"> 
 
         <div class="input-field">
-           <input id="addNeedleID" name = "addNeedleID" value = "{{$newNeedleID}}" type="hidden">
+           <input id="intNeedleID" name = "intNeedleID" value = "{{$newNeedleID}}" type="hidden">
          </div>
          
         <div class = "col s12" style="padding:15px;  border:3px solid white;">           
           <div class="input-field col s12">
-            <input required id="addNeedleBrand" name = "addNeedleBrand"  type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
+            <input required id="strNeedleBrand" name = "strNeedleBrand"  type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
             <label for="Needle_Name"> Needle Name<span class="red-text"><b>*</b></span> </label>
           </div>
         </div>
 
         <div class = "col s12" style="padding:15px;  border:3px solid white;">
           <div class="input-field col s12">
-            <input required  id="addNeedleSize" name = "addNeedleSize" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
+            <input required  id="strNeedleSize" name = "strNeedleSize" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
             <label for="Needle_Size"> Needle Size <span class="red-text"><b>*</b></span></label>
           </div>
         </div>
               
         <div class = "col s12" style="padding:15px;  border:3px solid white;">      
           <div class="input-field col s12">
-            <input  id="addNeedleDesc" name = "addNeedleDesc" type="text" class="validateDesc">
+            <input  id="strNeedleDesc" name = "strNeedleDesc" type="text" class="validateDesc">
             <label for="Needle_Desc"> Description </label>
           </div>
         </div>

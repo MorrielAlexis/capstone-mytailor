@@ -265,38 +265,38 @@
 
 	  <!--MODAL: add Zipper-->
   <div id="addZipper" class="modal modal-fixed-footer">
-    <h5><font color = "#1b5e20"><center>ADD NEW ZIPPER</center> </font> </h5>
+    <h5><font color = "#1b5e20"><center>CREATE NEW ZIPPER</center> </font> </h5>
     
     {!! Form::open(['url' => 'maintenance/material-zipper' , 'method' => 'post', 'files' => 'true']) !!}
       <div class="divider" style="height:2px"></div>
       <div class="modal-content col s12">
     
         <div class="input-field">
-          <input id="addZipperID" name = "addZipperID" value = "{{$newZipperID}}" type="hidden">
+          <input id="intZipperID" name = "intZipperID" value = "{{$newZipperID}}" type="hidden">
         </div>
         
       <div class = "col s12" style="padding:15px;  border:3px solid white;">            
         <div class="input-field col s12">
-          <input required id="addZipperBrand" name = "addZipperBrand" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
+          <input required id="strZipperBrand" name = "strZipperBrand" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
           <label for="Zipper_Name"> Zipper Brand <span class="red-text"><b>*</b></span></label>
         </div>
       </div>
 
       <div class = "col s12" style="padding:15px;  border:3px solid white;">
         <div class="input-field col s6">
-          <input required id="addZipperSize" name = "addZipperSize" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
+          <input required id="strZipperSize" name = "strZipperSize" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
           <label for="Zipper_Size"> Zipper Size <span class="red-text"><b>*</b></span></label>
         </div>
 
         <div class="input-field col s6">
-          <input required id="addZipperColor" name = "addZipperColor" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
+          <input required id="strZipperColor" name = "strZipperColor" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
           <label for="Zipper_Color"> Zipper Color <span class="red-text"><b>*</b></span></label>
         </div>
       </div>
 
       <div class = "col s12" style="padding:15px;  border:3px solid white;">
         <div class="input-field col s12">
-          <input id="addZipperDesc" name = "addZipperDesc" type="text" class="validateDesc">
+          <input id="txtZipperDesc" name = "txtZipperDesc" type="text" class="validateDesc">
           <label for="Zipper_Desc"> Description </label>
         </div>
       </div>

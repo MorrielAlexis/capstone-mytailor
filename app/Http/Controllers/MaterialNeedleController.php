@@ -58,20 +58,20 @@ class MaterialNeedleController extends Controller
 
                 if($file == '' || $file == null){
                 $Needle = Needle::create(array(
-                    'strNeedleID' => $request->input('addNeedleID'),
-                    'strNeedleBrand' => trim($request->input('addNeedleBrand')),
-                    'strNeedleSize' => trim($request->input('addNeedleSize')),
-                    'strNeedleDesc' => trim($request->input('addNeedleDesc')),
+                    'strNeedleID' => $request->input('strNeedleID'),
+                    'strNeedleBrand' => trim($request->input('strNeedleBrand')),
+                    'strNeedleSize' => trim($request->input('strNeedleSize')),
+                    'strNeedleDesc' => trim($request->input('strNeedleDesc')),
                     'boolIsActive' => 1
                     ));
                 }else{
                     $request->file('addImg')->move($destinationPath);
 
                     $Needle = Needle::create(array(
-                    'strNeedleID' => $request->input('addNeedleID'),
-                    'strNeedleBrand' => trim($request->input('addNeedleBrand')),
-                    'strNeedleSize' => trim($request->input('addNeedleSize')),
-                    'strNeedleDesc' => trim($request->input('addNeedleDesc')),
+                    'strNeedleID' => $request->input('strNeedleID'),
+                    'strNeedleBrand' => trim($request->input('strNeedleBrand')),
+                    'strNeedleSize' => trim($request->input('strNeedleSize')),
+                    'strNeedleDesc' => trim($request->input('strNeedleDesc')),
                     'strNeedleImage' => 'imgMaterialNeedles/'.$file,
                     'boolIsActive' => 1
                         ));

@@ -59,22 +59,22 @@ class MaterialHookAndEyeController extends Controller
 
                 if($file == '' || $file == null){
                 $hook = HookAndEye::create(array(
-                    'intHookID' => $request->input('addHookEyeID'),
-                    'strHookBrand' => trim($request->input('addHookEyeBrand')),
-                    'strHookSize' => trim($request->input('addHookEyeSize')),
-                    'strHookColor' => trim($request->input('addHookEyeColor')),
-                    'textHookDesc' => trim($request->input('addHookEyeDesc')),
+                    'intHookID' => $request->input('intHookID'),
+                    'strHookBrand' => trim($request->input('strHookBrand')),
+                    'strHookSize' => trim($request->input('strHookSize')),
+                    'strHookColor' => trim($request->input('strHookColor')),
+                    'textHookDesc' => trim($request->input('textHookDesc')),
                     'boolIsActive' => 1
                     ));
                 }else{
                     $request->file('addImg')->move($destinationPath);
 
                     $hook = HookAndEye::create(array(
-                    'intHookID' => $request->input('addHookEyeID'),
-                    'strHookBrand' => trim($request->input('addHookEyeBrand')),
-                    'strHookSize' => trim($request->input('addHookEyeSize')),
-                    'strHookColor' => trim($request->input('addHookEyeColor')),
-                    'textHookDesc' => trim($request->input('addHookEyeDesc')),
+                    'intHookID' => $request->input('intHookID'),
+                    'strHookBrand' => trim($request->input('strHookBrand')),
+                    'strHookSize' => trim($request->input('strHookSize')),
+                    'strHookColor' => trim($request->input('strHookColor')),
+                    'textHookDesc' => trim($request->input('textHookDesc')),
                     'strHookImage' => 'imgMaterialHooks/'.$file,
                     'boolIsActive' => 1
                         ));

@@ -11,8 +11,8 @@ class Needle extends Model
 
 	protected $primaryKey = 'intNeedleID';
 
-	protected $fillable = ['strNeedleBrand', 'strNeedleSize',
+	protected $fillable = array('strNeedleBrand', 'strNeedleSize',
 							'strNeedleDesc', 'strNeedleImage',
 							'strNeedleInactiveReason',
-							'boolIsActive'];
+							'boolIsActive');
 }

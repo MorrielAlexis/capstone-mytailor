@@ -87,10 +87,6 @@
 
 	<div class="main-wrapper"  style="margin-top:30px">
 
-      <!--HOOK&EYE-->
-      <div id="tabHook" class="hue col s12" style="margin-top:45px; background-color: #80d8ff;">
-        <div style="height:30px;"></div>
-
        <div class="row">
         <div class="col s12 m12 l12">
             <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="left" data-delay="50" data-tooltip="Click to add a new hook and eye detail to the table" href="#addHookEye" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
@@ -268,40 +264,40 @@
 
 	</div>
 
-	  <!--MODAL: add HookEye-->
+	  <!--MODAL: CREATE HookEye-->
   <div id="addHookEye" class="modal modal-fixed-footer">
-    <h5><font color = "#1b5e20"><center>ADD NEW HOOK AND EYE</center> </font> </h5>
+    <h5><font color = "#1b5e20"><center>CREATE NEW HOOK AND EYE</center> </font> </h5>
       
     {!! Form::open(['url' => 'maintenance/material-hookandeye', 'method' => 'post', 'files' => 'true']) !!}
       <div class="divider" style="height:2px"></div>
       <div class="modal-content col s12">
     
         <div class="input-field">
-          <input id="addHookEyeID" name = "addHookEyeID" value = "{{$newHookID}}" type="hidden">
+          <input id="intHookID" name = "intHookID" value = "{{$newHookID}}" type="hidden">
         </div>
           
       <div class = "col s12" style="padding:15px;  border:3px solid white;">          
         <div class="input-field col s12">
-          <input required id="addHookEyeBrand" name = "addHookEyeBrand" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
+          <input required id="strHookBrand" name = "strHookBrand" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
           <label for="HookEye_Name"> Hook and Eye Brand <span class="red-text"><b>*</b></span></label>
         </div>
       </div>
 
       <div class = "col s12" style="padding:15px;  border:3px solid white;">
         <div class="input-field col s6">
-          <input required id="addHookEyeSize" name = "addHookEyeSize" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
+          <input required id="strHookSize" name = "strHookSize" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
           <label for="HookEye_Size"> Hook and Eye Size <span class="red-text"><b>*</b></span></label>
         </div>
 
         <div class="input-field col s6">
-          <input required id="addHookEyeColor" name = "addHookEyeColor" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
+          <input required id="strHookColor" name = "strHookColor" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
           <label for="Hookeye_Color"> Hook and Eye Color <span class="red-text"><b>*</b></span></label>
         </div>
       </div>
 
       <div class = "col s12" style="padding:15px;  border:3px solid white;">
          <div class="input-field col s12">
-          <input id="addHookEyeDesc" name = "addHookEyeDesc" type="text" class="validate">
+          <input id="textHookDesc" name = "textHookDesc" type="text" class="validate">
           <label for="Hookeye_Desc"> Description </label>
         </div>
       </div>
