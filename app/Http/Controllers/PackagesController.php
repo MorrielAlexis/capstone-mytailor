@@ -38,7 +38,7 @@ class PackagesController extends Controller
             ->join('tblSegment as tblSegment3', 'tblPackages.strPackageSeg3FK', '=', 'tblSegment3.strSegmentID')
             ->join('tblSegment as tblSegment4', 'tblPackages.strPackageSeg4FK', '=', 'tblSegment4.strSegmentID')
             ->join('tblSegment as tblSegment5', 'tblPackages.strPackageSeg5FK', '=', 'tblSegment5.strSegmentID')
-            ->select('tblPackages.*', 'tblSegment1.strSegmentName','tblSegment2.strSegmentName','tblSegment3.strSegmentName','tblSegment4.strSegmentName','tblSegment5.strSegmentName')
+            ->select('tblPackages.*', 'tblSegment1.strSegmentName as strSegmentName1','tblSegment2.strSegmentName as strSegmentName2','tblSegment3.strSegmentName as strSegmentName3','tblSegment4.strSegmentName as strSegmentName4','tblSegment5.strSegmentName as strSegmentName5')
             ->get();
 
 
