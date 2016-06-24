@@ -128,7 +128,8 @@
               			<!--<th data-field="id">Garment Details ID</th>-->
              		   	<th data-field="name">Category Name</th>
                     <th data-field="name">Segment Name</th>
-                    <th data-field="address">Segment Description</th>
+                    <th data-field="name">Starting Price</th>
+                    <th data-field="description">Segment Description</th>
                     <th data-field="Sex">Sex </th>
                     <th data-field="days">Min Production Days</th>
                     <th data-field="Image">Image</th>
@@ -143,6 +144,7 @@
                   <tr>
              		    <td>{{ $segment->strGarmentCategoryName }}</td>
                     <td>{{ $segment->strSegmentName }}</td>
+                    <td>{{ $segment->dblSegmentPrice }}</td>
               		  <td>{{ $segment->textSegmentDesc }}</td>
                     <td>
                       @if($segment->strSegmentSex == 'M') For men
@@ -184,6 +186,13 @@
                               <div class="input-field col s12">
                                 <input required value="{{ $segment->strSegmentName }}" id="editSegmentName" name= "editSegmentName" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                                 <label for="segment_name">Segment Name <span class="red-text"><b>*</b></span></label>
+                              </div>
+                          </div>
+
+                          <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                              <div class="input-field col s12">
+                                <input required value="{{ $segment->dblAlterationPrice }}" id="editSegmentPrice" name= "editSegmentPrice" type="text" class="validate" pattern="^[1-9]\d{0,7}(?:\.\d{1,4})?|\.\d{1,4}$">
+                                <label for="segment_name">Starting Price: <span class="red-text"><b>*</b></span></label>
                               </div>
                           </div>
 
@@ -255,6 +264,14 @@
                                 <label for="segment_name">Segment Name </label>
                               </div>
                           </div>
+
+                          <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                              <div class="input-field col s12">
+                                <input value="{{ $segment->dblSegmentPrice }}"type="text" readonly>
+                                <label for="segment_name">Starting Price:</label>
+                              </div>
+                          </div>
+
 
                          <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">                                                    
@@ -344,8 +361,15 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input required id="strSegmentName" name= "strSegmentName" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" class="active"  >
+                        <input required id="strSegmentName" name= "strSegmentName" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" class="active"  placeholder="Dress">
                         <label for="segment_name">Segment Name<span class="red-text"><b>*</b></span></label>
+                      </div>
+                  </div>
+
+                  <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                      <div class="input-field col s12">
+                        <input required id="dblSegmentPrice" name= "dblSegmentPrice" type="text" class="validate" pattern="^[1-9]\d{0,7}(?:\.\d{1,4})?|\.\d{1,4}$" placeholder="Php500.00">
+                        <label for="segment_name">Starting Price: <span class="red-text"><b>*</b></span></label>
                       </div>
                   </div>
 

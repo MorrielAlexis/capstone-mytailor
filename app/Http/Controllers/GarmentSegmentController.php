@@ -78,6 +78,7 @@ class GarmentSegmentController extends Controller
                     'strSegmentID' => $request->input('strSegmentID'),
                     'strSegCategoryFK' =>$request->input('strSegCategoryFK'),
                     'strSegmentName' =>trim($request->input('strSegmentName')),
+                    'dblSegmentPrice' =>trim($request->input('dblSegmentPrice')),
                     'strSegmentSex' => $request->input('strSegmentSex'),
                     'intMinDays' =>trim($request->input('intMinDays')),
                     'textSegmentDesc' => trim($request->input('textSegmentDesc')),
@@ -92,6 +93,7 @@ class GarmentSegmentController extends Controller
                     'strSegmentID' => $request->input('strSegmentID'),
                     'strSegCategoryFK' =>$request->input('strSegCategoryFK'),
                     'strSegmentName' =>trim($request->input('strSegmentName')),
+                    'dblSegmentPrice' =>trim($request->input('dblSegmentPrice')),
                     'strSegmentSex' => $request->input('strSegmentSex'),
                     'intMinDays' =>trim($request->input('intMinDays')),
                     'textSegmentDesc' => trim($request->input('textSegmentDesc')),
@@ -165,7 +167,8 @@ class GarmentSegmentController extends Controller
             {
 
                 $segment->strSegCategoryFK = $request->input('editCategory'); 
-                $segment->strSegmentName = trim($request->input('editSegmentName'));  
+                $segment->strSegmentName = trim($request->input('editSegmentName'));
+                $segment->dblSegmentPrice = trim($request->input('editSegmentPrice'));    
                 $segment->strSegmentSex = $request->input('editSegmentSex'); 
                 $segment->intMinDays = trim($request->input('editMinDays')); 
                 $segment->textSegmentDesc = trim($request->input('editSegmentDesc'));
@@ -173,6 +176,7 @@ class GarmentSegmentController extends Controller
                     $request->file('editImg')->move($destinationPath);
                     $segment->strSegCategoryFK = $request->input('editCategory'); 
                     $segment->strSegmentName = trim($request->input('editSegmentName'));  
+                    $segment->dblSegmentPrice = trim($request->input('editSegmentPrice')); 
                     $segment->strSegmentSex = $request->input('editSegmentSex'); 
                     $segment->intMinDays = trim($request->input('editMinDays'));
                     $segment->textSegmentDesc = trim($request->input('editSegmentDesc'));

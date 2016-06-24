@@ -255,8 +255,11 @@
                             <label for="cellphone_number">Cellphone Number <span class="red-text"><b>*</b></span></label>
                           </div>
 
+                          <div class="input-field col s1">
+                              <label style="margin-left: -3px; margin-top: 15px !important;" for="contact">(+63)</label>
+                          </div>
                           <div class="input-field col s6">
-                            <input value="{{$employee->strCellNoAlt}}" id="editCellNoAlt" name="editCellNoAlt" pattern="^[0-9]{11,11}$" type="text" class="validate" placeholder="09361234567" maxlength="11">
+                            <input value="{{$employee->strCellNoAlt}}" id="editCellNoAlt" name="editCellNoAlt" pattern="^[0-9]{10,10}$" type="text" class="validate" placeholder="9361234567" maxlength="10">
                             <label for="cellphone_number">Cellphone Number (alternate)</label>
                           </div>
                         </div>
@@ -439,17 +442,21 @@
                     </select>   
                     <label>Role<span class="red-text"><b>*</b></span></label>
                   </div>
-              </div>      
-                
-              <div class = "col s12" style="padding:15px;  border:3px solid white;">   
+              </div>
+
+               <div class = "col s12" style="padding:15px;  border:3px solid white;">  
+                  <div class="input-field col s1">
+                              <label style="margin-left: -3px; margin-top: 15px !important;" for="contact">(+63)</label>
+                  </div>   
                   <div class="input-field col s6">
-                    <input required id="strCellNo" pattern="^[0-9]{11,11}$" name="strCellNo" type="text" class="validate" placeholder="09361234567" maxlength="11">
+                    <input required id="strCellNo" pattern="^[0-9]{10,10}$" name="strCellNo" type="text" class="validate" placeholder="09361234567" maxlength="10">
                     <label for="cellphone_number">Cellphone Number <span class="red-text"><b>*</b></span></label>
                     <span id="left"></span>
                   </div>
 
+                 
                   <div class="input-field col s6">
-                    <input id="strCellNoAlt" pattern="^[0-9]{11,11}$" name="strCellNoAlt" type="text" class="validate" placeholder="09361234567" maxlength="11">
+                    <input id="strCellNoAlt" pattern="^[0-9]{10,10}$" name="strCellNoAlt" type="text" class="validate" placeholder="09361234567" maxlength="10">
                     <label for="cellphone_number">Cellphone Number (Alt)</label>
                     <span id="left"></span>
                   </div>

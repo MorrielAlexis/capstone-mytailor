@@ -16,6 +16,7 @@ class CreateSegmentTable extends Migration
             $table->string('strSegmentID')->primary();
             $table->string('strSegCategoryFK');//fk
             $table->string('strSegmentName');
+            $table->double('dblSegmentPrice');
             $table->string('strSegmentSex');
             $table->integer('intMinDays');
             $table->string('strSegmentImage')->nullable();
