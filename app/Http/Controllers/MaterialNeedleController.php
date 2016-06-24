@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Needle;
 
 use App\Http\Requests;
+use App\Http\Requests\MaintenanceNeedleRequest;
 use App\Http\Controllers\Controller;
 
 class MaterialNeedleController extends Controller
@@ -57,7 +58,7 @@ class MaterialNeedleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MaintenanceNeedleRequest $request)
     {
         $file = $request->input('addImage');
         $destinationPath = 'imgNeedles';
