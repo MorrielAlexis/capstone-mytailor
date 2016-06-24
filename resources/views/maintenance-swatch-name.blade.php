@@ -198,20 +198,20 @@
 
             <!--********ADD******-->
              <div id="addFabricType" class="modal modal-fixed-footer">                  
-                <h5><font color = "#1b5e20"><center>ADD NEW SWATCH NAME</center> </font> </h5> 
+                <h5><font color = "#1b5e20"><center>CREATE SWATCH NAME</center> </font> </h5> 
                   {!! Form::open(['url' => 'maintenance/swatch-name', 'method' => 'post']) !!} 
                 <div class="divider" style="height:2px"></div>
                   <div class="modal-content col s12">
                             
 
                   <div class="input-field">
-                    <input value = "{{$newID}}" id="addSwatchNameID" name = "addSwatchNameID" type="hidden">
+                    <input value = "{{$newID}}" id="strSwatchNameID" name = "strSwatchNameID" type="hidden">
                   </div>
 
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                      <select class="browser-default" id="addCategory" name="addCategory"required>
+                      <select class="browser-default" id="strSwatchNameTypeFK" name="strSwatchNameTypeFK" required>
                                       <option value="" disabled selected>Choose fabric type:</option>
                                         @foreach($fabricType as $fabricType_1)
                                         @if($fabricType_1->boolIsActive == 1) 
@@ -225,21 +225,21 @@
 
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s12">
-                    <input required id="addSwatchName" name = "addSwatchName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" placeholder="Nickel">
+                    <input required id="strSName" name = "strSName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" placeholder="Nickel">
                     <label for="swatch_name">Swatch Name <span class="red-text"><b>*</b></span></label>
                   </div>
               </div>    
 
               <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                   <div class="input-field col s12">
-                    <input id="addSwatchDesc" name = "addSwatchDesc" type="text" class="validate" placeholder="Smooth and reddish like version of citadel.">
+                    <input id="txtSwatchNameDesc" name = "txtSwatchNameDesc" type="text" class="validate" placeholder="Smooth and reddish like version of citadel.">
                     <label for="swatch_description">Swatch Description </label>
                   </div>
               </div>
               </div>
 
                   <div class="modal-footer col s12" style="background-color:#26a69a">
-                    <button type="submit" id="send" name="send" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
+                    <button type="submit" id="send" name="send" class=" modal-action  waves-effect waves-green btn-flat">Create</button>
                     <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
                   </div>
                     {!! Form::close() !!}

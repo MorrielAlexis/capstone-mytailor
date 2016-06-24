@@ -58,9 +58,9 @@ class FabricTypeController extends Controller
         $fabrics = FabricType::get();
 
             $fabricType = FabricType::create(array(
-            'strFabricTypeID' => $request->input('addFabricTypeID'),
-            'strFabricTypeName' => trim($request->input('addFabricTypeName')),
-            'txtFabricTypeDesc' => trim($request->input('addFabricTypeDesc')),
+            'strFabricTypeID' => $request->input('strFabricTypeID'),
+            'strFabricTypeName' => trim($request->input('strFabricTypeName')),
+            'txtFabricTypeDesc' => trim($request->input('txtFabricTypeDesc')),
             'boolIsActive' => 1
             ));
 

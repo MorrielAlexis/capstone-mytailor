@@ -214,26 +214,26 @@
                   </div>
           
                 <div id="addMeasurementPart" class="modal modal-fixed-footer">
-                  <h5><font color = "#1b5e20"><center>ADD NEW MEASUREMENT PART</center> </font> </h5>
+                  <h5><font color = "#1b5e20"><center>CREATE MEASUREMENT PART</center> </font> </h5>
                       
                     {!! Form::open(['url' => 'maintenance/measurement-detail', 'method' => 'post']) !!}
                       <div class="divider" style="height:2px"></div>
                       <div class="modal-content col s12">
                         
                           <div class="input-field">
-                            <input value="{{$detailNewID}}" id="addDetailID" name="addDetailID" type="text"  hidden>
+                            <input value="{{$detailNewID}}" id="strMeasurementDetailID" name="strMeasurementDetailID" type="text"  hidden>
                           </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input required id="addDetailName" name= "addDetailName" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" placeholder="Chest">
+                            <input required id="strMeasurementDetailName" name= "strMeasurementDetailName" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" placeholder="Chest">
                             <label for="measurement_name"> Measurement Name <span class="red-text"><b>*</b></span></label>
                           </div>
                       </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                           <div class="input-field col s12">
-                            <input  id="addDetailDesc" name ="addDetailDesc" type="text" class="validate" placeholder="Front portion to be measured">
+                            <input  id="txtMeasurementDetailDesc" name ="txtMeasurementDetailDesc" type="text" class="validate" placeholder="Front portion to be measured">
                             <label for="measurement_desc">Measurement Description </label>
                           </div>
                       </div>

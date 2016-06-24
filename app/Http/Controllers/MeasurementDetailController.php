@@ -44,9 +44,9 @@ class MeasurementDetailController extends Controller
              $det = MeasurementDetail::get();
     
                 $detail = MeasurementDetail::create(array(
-                'strMeasurementDetailID' =>$request->input('addDetailID'),
-                'strMeasurementDetailName' =>trim($request->input('addDetailName')),
-                'txtMeasurementDetailDesc' =>trim($request->input('addDetailDesc')),
+                'strMeasurementDetailID' =>$request->input('strMeasurementDetailID'),
+                'strMeasurementDetailName' =>trim($request->input('strMeasurementDetailName')),
+                'txtMeasurementDetailDesc' =>trim($request->input('txtMeasurementDetailDesc')),
                 'boolIsActive' => 1
                 ));
 

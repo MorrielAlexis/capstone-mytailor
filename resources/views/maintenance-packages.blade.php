@@ -343,19 +343,19 @@
 
 
                       <div class="input-field">
-                        <input value="{{ $newID }}" id="addPackageID" name="addPackageID" type="hidden">
+                        <input value="{{ $newID }}" id="strPackageID" name="strPackageID" type="hidden">
                       </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input required id="addPackageName" name= "addPackageName" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" class="active"  >
+                        <input required id="strPackageName" name= "strPackageName" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" class="active"  >
                         <label for="segment_name">Package Name<span class="red-text"><b>*</b></span></label>
                       </div>
                   </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <select class="browser-default" name='addSegment1' id='addSegment1' required>
+                        <select class="browser-default" name='strPackageSeg1FK' id='strPackageSeg1FK' required>
                           <option value="" disabled selected>Choose a segment for your package:</option>
                           @foreach($segment as $segment_1)
                             @if($segment_1->boolIsActive == 1) 
@@ -368,7 +368,7 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <select class="browser-default" name='addSegment2' id='addSegment2' required>
+                        <select class="browser-default" name='strPackageSeg2FK' id='strPackageSeg2FK' required>
                           <option value="" disabled selected>Choose a segment for your package:</option>
                           @foreach($segment as $segment_2)
                             @if($segment_2->boolIsActive == 1) 
@@ -381,7 +381,7 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <select class="browser-default" name='addSegment3' id='addSegment3' required>
+                        <select class="browser-default" name='strPackageSeg3FK' id='strPackageSeg3FK' required>
                           <option value="" disabled selected>Choose a segment for your package:</option>
                           @foreach($segment as $segment_3)
                             @if($segment_3->boolIsActive == 1) 
@@ -394,7 +394,7 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <select class="browser-default" name='addSegment4' id='addSegment4' required>
+                        <select class="browser-default" name='strPackageSeg4FK' id='strPackageSeg4FK' required>
                           <option value="" disabled selected>Choose a segment for your package:</option>
                           @foreach($segment as $segment_4)
                             @if($segment_4->boolIsActive == 1) 
@@ -407,7 +407,7 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <select class="browser-default" name='addSegment5' id='addSegment5' required>
+                        <select class="browser-default" name='strPackageSeg5FK' id='strPackageSeg5FK' required>
                           <option value="" disabled selected>Choose a segment for your package:</option>
                           @foreach($segment as $segment_5)
                             @if($segment_5->boolIsActive == 1) 
@@ -420,14 +420,14 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input required  id="addPackageMinDays" name= "addPackageMinDays" type="text" class="validate" required data-position="bottom" pattern="^[0-9]*$" maxlength="2">
+                            <input required  id="intPackageMinDays" name= "intPackageMinDays" type="text" class="validate" required data-position="bottom" pattern="^[0-9]*$" maxlength="2">
                             <label for="days">Production Time (Days):</label>
                           </div>
                   </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                       <div class="input-field col s12">
-                        <input id="addPackageDesc" name = "addPackageDesc" type="text" class="validate"  data-position="bottom" >
+                        <input id="strPackageDesc" name = "strPackageDesc" type="text" class="validate"  data-position="bottom" >
                         <label for="segment_description">Package Description </label>
                       </div>
                   </div>

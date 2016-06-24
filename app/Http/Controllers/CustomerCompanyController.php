@@ -57,20 +57,20 @@ class CustomerCompanyController extends Controller
         $comp = Company::get();
 
         $company = Company::create(array(
-                    'strCompanyID' => $request->input('addComID'),
-                    'strCompanyName' => trim($request->input('addComName')),     
-                    'strCompanyBuildingNo' => trim($request->input('addCustCompanyHouseNo')),   
-                    'strCompanyStreet' => trim($request->input('addCustCompanyStreet')),
-                    'strCompanyBarangay' => trim($request->input('addCustCompanyBarangay')), 
-                    'strCompanyCity' => trim($request->input('addCustCompanyCity')), 
-                    'strCompanyProvince' => trim($request->input('addCustCompanyProvince')),
-                    'strCompanyZipCode' => trim($request->input('addCustCompanyZipCode')),
-                    'strContactPerson' => trim($request->input('addConPerson')),
-                    'strCompanyEmailAddress' => trim($request->input('addComEmailAddress')),         
-                    'strCompanyCPNumber' => trim($request->input('addCel')), 
-                    'strCompanyCPNumberAlt' => trim($request->input('addCelAlt')), 
-                    'strCompanyTelNumber' => trim($request->input('addPhone')),
-                    'strCompanyFaxNumber' => trim($request->input('addFax')),
+                    'strCompanyID' => $request->input('strCompanyID'),
+                    'strCompanyName' => trim($request->input('strCompanyName')),     
+                    'strCompanyBuildingNo' => trim($request->input('strCompanyBuildingNo')),   
+                    'strCompanyStreet' => trim($request->input('strCompanyStreet')),
+                    'strCompanyBarangay' => trim($request->input('strCompanyBarangay')), 
+                    'strCompanyCity' => trim($request->input('strCompanyCity')), 
+                    'strCompanyProvince' => trim($request->input('strCompanyProvince')),
+                    'strCompanyZipCode' => trim($request->input('strCompanyZipCode')),
+                    'strContactPerson' => trim($request->input('strContactPerson')),
+                    'strCompanyEmailAddress' => trim($request->input('strCompanyEmailAddress')),         
+                    'strCompanyCPNumber' => trim($request->input('strCompanyCPNumber')), 
+                    'strCompanyCPNumberAlt' => trim($request->input('strCompanyCPNumberAlt')), 
+                    'strCompanyTelNumber' => trim($request->input('strCompanyTelNumber')),
+                    'strCompanyFaxNumber' => trim($request->input('strCompanyFaxNumber')),
                     'boolIsActive' => 1
                     ));
 

@@ -76,20 +76,20 @@ class SegmentPatternController extends Controller
 
             if($file == '' || $file == null){
                 $pattern = SegmentPattern::create(array(
-                'strSegPatternID' => $request->input('addPatternID'),
-                'strSegPCategoryFK' => $request->input('addCategory'),
-                'strSegPNameFK' => $request->input('addSegment'),
-                'strSegPName' => trim($request->input('addPatternName')),
+                'strSegPatternID' => $request->input('strSegPatternID'),
+                'strSegPCategoryFK' => $request->input('strSegPCategoryFK'),
+                'strSegPNameFK' => $request->input('strSegPNameFK'),
+                'strSegPName' => trim($request->input('strSegPName')),
                 'boolIsActive' => 1
                 ));     
                 }else{
                     $request->file('addImg')->move($destinationPath, $file);
 
                     $pattern = SegmentPattern::create(array(
-                        'strSegPatternID' => $request->input('addPatternID'),
-                        'strSegPCategoryFK' => $request->input('addCategory'),
-                        'strSegPNameFK' => $request->input('addSegment'),
-                        'strSegPName' => trim($request->input('addPatternName')),
+                        'strSegPatternID' => $request->input('strSegPatternID'),
+                        'strSegPCategoryFK' => $request->input('strSegPCategoryFK'),
+                        'strSegPNameFK' => $request->input('strSegPNameFK'),
+                        'strSegPName' => trim($request->input('strSegPName')),
                         'strSegPImage' => 'imgDesignPatterns/'.$file,
                         'boolIsActive' => 1
                     )); 

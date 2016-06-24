@@ -263,18 +263,18 @@
            
 
             <div id="addDesign" class="modal modal-fixed-footer">
-              <h5><font color = "#1b5e20"><center>ADD NEW SEGMENT PATTERN</center> </font> </h5> 
+              <h5><font color = "#1b5e20"><center>CREATE SEGMENT PATTERN</center> </font> </h5> 
                 
               {!! Form::open(['url' => 'maintenance/segment-pattern', 'method' => 'post', 'files' => true]) !!}
                 <div class="divider" style="height:2px"></div>
                 <div class="modal-content col s12">
                 
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}" />
-                <input value = "{{$newID}}" id="addPatternID" name= "addPatternID" type="hidden">
+                <input value = "{{$newID}}" id="strSegPatternID" name= "strSegPatternID" type="hidden">
 
             <div class = "col s12" style="padding:15px;  border:3px solid white;">
                 <div class="input-field col s6">
-                  <select  class="browser-default"  name="addCategory" id="addCategory" required>
+                  <select  class="browser-default"  name="strSegPCategoryFK" id="strSegPCategoryFK" required>
                       @foreach($category as $category)
                         @if($category->boolIsActive == 1)
                           <option value="{{ $category->strGarmentCategoryID }}">{{ $category->strGarmentCategoryName }}</option>
@@ -286,7 +286,7 @@
 
 
                 <div class="input-field col s6">
-                  <select class="browser-default" required id="addSegment" name="addSegment">
+                  <select class="browser-default" required id="strSegPNameFK" name="strSegPNameFK">
                         @foreach($segment as $segment)
                           @if($segment->boolIsActive == 1)
                             <option value="{{ $segment->strSegmentID }}" class="{{ $segment->strSegCategoryFK }}">{{ $segment->strSegmentName }}</option>
@@ -298,7 +298,7 @@
 
             <div class = "col s12" style="padding:15px;  border:3px solid white;">
                 <div class="input-field col s12">
-                  <input required id="addPatternName" name= "addPatternName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
+                  <input required id="strSegPName" name= "strSegPName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                   <label for="pattern_name">Pattern Name <span class="red-text"><b>*</b></span></label>
                     <span id="left"></span></label>
                 </div>
@@ -342,10 +342,10 @@
       $(document).ready(function () {
 
         // Get jQuery object for element with ID as 'category' (first select element)
-        var categoryElement = $('#addCategory');
+        var categoryElement = $('#strSegPCategoryFK');
 
         // Get jQuery object for element with ID as 'types' (second select element)
-        var typesElement = $('#addSegment');
+        var typesElement = $('#strSegPNameFK');
 
         // Get children elements of typesElement
         var typeOptions = typesElement.children();

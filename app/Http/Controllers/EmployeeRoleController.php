@@ -58,9 +58,9 @@ class EmployeeRoleController extends Controller
     public function store(RoleRequest $request)
     {        
             $role = EmployeeRole::create(array(
-                'strEmpRoleID' => $request->input('addRoleID'),
-                'strEmpRoleName' =>trim($request->input('addRoleName')),
-                'strEmpRoleDesc' => trim($request->input('addRoleDescription')),  
+                'strEmpRoleID' => $request->input('strEmpRoleID'),
+                'strEmpRoleName' =>trim($request->input('strEmpRoleName')),
+                'strEmpRoleDesc' => trim($request->input('strEmpRoleDesc')),  
                 'boolIsActive' => 1
             ));
         $added = $role->save();

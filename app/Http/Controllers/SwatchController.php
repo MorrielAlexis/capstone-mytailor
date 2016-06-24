@@ -73,9 +73,9 @@ class SwatchController extends Controller
 
             if($file == '' || $file == null){
                 $swatch = Swatch::create(array(
-                'strSwatchID' => $request->input('addSwatchID'),
-                'strSwatchTypeFK' => $request->input('addFabric'),
-                'strSwatchNameFK' => $request->input('addSwatchName'),
+                'strSwatchID' => $request->input('strSwatchID'),
+                'strSwatchTypeFK' => $request->input('strSwatchTypeFK'),
+                'strSwatchNameFK' => $request->input('strSwatchNameFK'),
                 'strSwatchCode' => trim($request->input('addSwatchCode')),
                 'boolIsActive' => 1
                 ));     
@@ -83,10 +83,10 @@ class SwatchController extends Controller
                     $request->file('addImg')->move($destinationPath, $file);
 
                     $swatch = Swatch::create(array(
-                        'strSwatchID' => $request->input('addSwatchID'),
-                        'strSwatchTypeFK' => $request->input('addFabric'),
-                        'strSwatchNameFK' => $request->input('addSwatchName'),
-                        'strSwatchCode' => trim($request->input('addSwatchCode')),
+                        'strSwatchID' => $request->input('strSwatchID'),
+                        'strSwatchTypeFK' => $request->input('strSwatchTypeFK'),
+                        'strSwatchNameFK' => $request->input('strSwatchNameFK'),
+                        'strSwatchCode' => trim($request->input('strSwatchCode')),
                         'strSwatchImage' => 'imgSwatches/'.$file,
                         'boolIsActive' => 1
                     )); 

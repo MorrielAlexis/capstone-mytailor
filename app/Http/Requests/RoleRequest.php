@@ -26,17 +26,17 @@ class RoleRequest extends Request
     public function rules()
     {
         return [
-            'addRoleName'    =>  'required|unique:tblEmployeeRole,strEmpRoleName',
-            'editRoleName'   =>  'unique:tblEmployeeRole,strEmpRoleName'
+            'strEmpRoleName'    =>  'required|unique:tblEmployeeRole,strEmpRoleName'
+            
         ];
     }
 
     public function messages()
     {
         return [
-            'addRoleName.unique'  =>  'Role already exists.',
-            'addRoleName.required' => 'Role name is required.',
-            'editRoleName.unique'  => 'Role name already exists.'
+            'strEmpRoleName.unique'  =>  'Role already exists.',
+            'strEmpRoleName.required' => 'Role name is required.'
+            
         ];
 
     }

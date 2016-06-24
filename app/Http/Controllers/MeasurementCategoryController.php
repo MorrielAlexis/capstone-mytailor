@@ -77,10 +77,10 @@ class MeasurementCategoryController extends Controller
     public function store(Request $request)
     {
         $meas_category = MeasurementCategory::create(array(
-                'strMeasCatID' => $request->input('addMeasurementID'),
-                'strMeasGarFK' => $request->input('addCategory'),
-                'strMeasSegmentFK' => $request->input('addSegment'),
-                'strMeasDetFK' => $request->input('addDetail'),
+                'strMeasCatID' => $request->input('strMeasCatID'),
+                'strMeasGarFK' => $request->input('strMeasGarFK'),
+                'strMeasSegmentFK' => $request->input('strMeasSegmentFK'),
+                'strMeasDetFK' => $request->input('strMeasDetFK'),
                 'strMeasCatInactiveReason' => null,
                 'boolIsActive' => 1
             ));

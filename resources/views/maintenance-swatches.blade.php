@@ -259,13 +259,13 @@
                 <div class="modal-content col s12">
  
                     <div class="input-field">
-                      <input value = "{{$newID}}" id="addSwatchID" name= "addSwatchID" type="hidden">
+                      <input value = "{{$newID}}" id="strSwatchID" name= "strSwatchID" type="hidden">
                     </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                     <div class="input-field col s12">
-                      <select class="browser-default" name='addFabric' id='addFabric' required>
-                         <option disabled selected value="">Choose Swatch Name:</option>
+                      <select class="browser-default" name='strSwatchTypeFK' id='strSwatchTypeFK' required>
+                         <option disabled selected value="">Choose Swatch Category:</option>
                           @foreach($fabricType as $fab)
                             @if($fab->boolIsActive == 1)
                               <option value="{{ $fab->strFabricTypeID }}">{{ $fab->strFabricTypeName }}</option>
@@ -278,22 +278,22 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                     <div class="input-field col s12">
-                      <select class="browser-default" name='addSwatchName' id='addSwatchName' required>
-                         <option disabled selected value="">Choose Swatch Category:</option>
-                          @foreach($swatchnamemainte as $snmainte)
-                            @if($snmainte->boolIsActive == 1)
-                              <option value="{{ $snmainte->strSwatchNameID }}">{{ $snmainte->strSName }}</option>
+                      <select class="browser-default" name='strSwatchNameFK' id='strSwatchNameFK' required>
+                         <option disabled selected value="">Choose Swatch Name:</option>
+                          @foreach($swatchnamemainte as $swatchnamemainte_1)
+                            @if($swatchnamemainte_1->boolIsActive == 1)
+                              <option value="{{ $swatchnamemainte_1->strSwatchNameID }}">{{ $swatchnamemainte_1->strSName }}</option>
                             @endif
                           @endforeach
                       </select>
-                      <!--<label>*Fabric Type</label>-->
                     </div> 
                   </div> 
+
 
                 <div class = "col s12" style="padding:15px;  border:3px solid white;">   
 
                     <div class="input-field col s12">
-                      <input required id="addSwatchCode" name = "addSwatchCode" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
+                      <input required id="strSwatchCode" name = "strSwatchCode" type="text" class="validate" pattern="^[a-zA-Z\-'`\d]+(\s[a-zA-Z\-'`\d]+)?">
                       <label for="swatch_code">Swatch Code <span class="red-text"><b>*</b></span></label>
                     </div>
                 </div>
@@ -313,8 +313,8 @@
                 </div>
 
                 <div class="modal-footer col s12" style="background-color:#26a69a">
-                  <button type="submit" id="send" name="send" class=" modal-action waves-effect waves-green btn-flat">Add</button>
-                  <button type="button" onclick="clearData()" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
+                  <button type="submit" id="send" name="send" class=" modal-action waves-effect waves-green btn-flat">Create</button>
+                  <button type="button" type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
                 </div>           
               {!! Form::close() !!}
             </div>
@@ -333,7 +333,6 @@
       });
     </script>
 
-    
     <script>
       $(document).ready(function(){
     $('.materialboxed').materialbox();
@@ -341,13 +340,6 @@
     </script>
 
 
-    <script>
-      function clearData(){
-        document.getElementById('addSwatchName').value = "";
-        document.getElementById('addSwatchCode').value = "";
-        document.getElementById('addImage').value = "";
-      }
-    </script>
 
     <script type="text/javascript">
       $('.validateSwatchName').on('input', function() {

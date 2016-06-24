@@ -89,12 +89,12 @@ class PackagesController extends Controller
                 $packages = Package::create(array(
                  'strPackageID' => $request->input('addPackageID'),
                  'strPackageName' => trim($request->input('addPackageName')),
-                 'strPackageSeg1FK' => $request->input('addSegment1'),
-                 'strPackageSeg2FK' => $request->input('addSegment2'),
-                 'strPackageSeg3FK' => $request->input('addSegment3'),
-                 'strPackageSeg4FK' => $request->input('addSegment4'),
-                 'strPackageSeg5FK' => $request->input('addSegment5'),
-                 'strPackageDesc' => trim($request->input('addPackageDesc')),
+                 'strPackageSeg1FK' => $request->input('strPackageSeg1FK'),
+                 'strPackageSeg2FK' => $request->input('strPackageSeg2FK'),
+                 'strPackageSeg3FK' => $request->input('strPackageSeg3FK'),
+                 'strPackageSeg4FK' => $request->input('strPackageSeg4FK'),
+                 'strPackageSeg5FK' => $request->input('strPackageSeg5FK'),
+                 'strPackageDesc' => trim($request->input('strPackageDesc')),
                 'boolIsActive' => 1
                 ));     
             }else{
@@ -103,12 +103,12 @@ class PackagesController extends Controller
                 $packages = Package::create(array(
                 'strPackageID' => $request->input('addPackageID'),
                 'strPackageName' => trim($request->input('addPackageName')),
-                'strPackageSeg1FK' => $request->input('addSegment1'),
-                'strPackageSeg2FK' => $request->input('addSegment2'),
-                'strPackageSeg3FK' => $request->input('addSegment3'),
-                'strPackageSeg4FK' => $request->input('addSegment4'),
-                'strPackageSeg5FK' => $request->input('addSegment5'),
-                'strPackageDesc' => trim($request->input('addPackageDesc')),
+                'strPackageSeg1FK' => $request->input('strPackageSeg1FK'),
+                'strPackageSeg2FK' => $request->input('strPackageSeg2FK'),
+                'strPackageSeg3FK' => $request->input('strPackageSeg3FK'),
+                'strPackageSeg4FK' => $request->input('strPackageSeg4FK'),
+                'strPackageSeg5FK' => $request->input('strPackageSeg5FK'),
+                'strPackageDesc' => trim($request->input('strPackageDesc')),
                 'strPackageImage' => 'imgPackages/'.$file,
                 'boolIsActive' => 1
                 )); 

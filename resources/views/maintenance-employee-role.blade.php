@@ -206,7 +206,7 @@
           </div>
         
     			<div id="addRole" class="modal">
-            <h5><font color = "#1b5e20"><center>ADD NEW EMPLOYEE ROLE</center> </font> </h5>
+            <h5><font color = "#1b5e20"><center>CREATE EMPLOYEE ROLE</center> </font> </h5>
                 
               {!! Form::open(['url' => 'maintenance/employee-role', 'method' => 'post']) !!}
                 <div class="divider" style="height:2px"></div>

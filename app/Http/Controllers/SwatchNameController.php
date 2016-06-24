@@ -67,10 +67,10 @@ class SwatchNameController extends Controller
     public function store(Request $request)
     {
         $swatchnamemainte = SwatchNameMaintenance::create(array(
-                'strSwatchNameID' => $request->input('addSwatchNameID'),
-                'strSwatchNameTypeFK' =>$request->input('addCategory'),
-                'strSName' =>trim($request->input('addSwatchName')),
-                'txtSwatchNameDesc' => trim($request->input('addSwatchDesc')),  
+                'strSwatchNameID' => $request->input('strSwatchNameID'),
+                'strSwatchNameTypeFK' =>$request->input('strSwatchNameTypeFK'),
+                'strSName' =>trim($request->input('strSName')),
+                'txtSwatchNameDesc' => trim($request->input('txtSwatchNameDesc')),  
                 'boolIsActive' => 1
             ));
         $added = $swatchnamemainte->save();
