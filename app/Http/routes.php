@@ -233,7 +233,7 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::get('walkin-individual-bulk-orders-payment-measure-detail', 'WalkInIndividualController@bulkOrderMeasure');
 	Route::get('walkin-individual-bulk-orders-measure-now', 'WalkInIndividualController@bulkOrderMeasureNow');
 
-	Route::get('walkin-individual-customize-orders', 'WalkInIndividualController@customize');
+	Route::post('walkin-individual-customize-orders', 'WalkInIndividualController@customize');
 	Route::get('walkin-individual-catalogue-designs', 'WalkInIndividualController@catalogueDesign');
 	Route::get('walkin-individual-payment-customer-info', 'WalkInIndividualController@information');
 	Route::get('walkin-individual-payment-payment-info', 'WalkInIndividualController@payment');

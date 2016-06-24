@@ -21,19 +21,19 @@
 					<div class="card-content">
 						<div class="row">
 						<div class="col s12">
-							<div class="col s5">
+							<div class="col s6">
 								<div class="input-field col s12">
-										<select class = "gc">
-											<option disabled>Choose a garment category...</option>
+										<select class = "garment-category" id = "garment-category">
 										    @foreach($categories as $category)
 										    	<option value="{{ $category->strGarmentCategoryID }}" class="circle">{{ $category->strGarmentCategoryName }}</option>
 											@endforeach
 										</select>
+										<label><font size="3" color="Red">Choose a garment category</font></label>
 								</div>
 							</div>
 						
 
-							<div class="col s5" style="margin-bottom:20px">
+							<div class="col s6" style="margin-bottom:20px">
 								<div class="input-field col s12">
 										<select>
 											<option disabled>Show garments for...</option>
@@ -45,12 +45,8 @@
 								</div>
 							</div>
 
-							<div class="col s2" style="margin-bottom:20px; background-color:white">
-						       <a href="#!" class="btn try" style="background-color:#26a69a; color:white; margin-top:20px; margin-left:20px">Search</a>
-							</div>
-
 					</div>
-					{!! Form::open(['url' => 'transaction/walkin-individual']) !!}
+					{!! Form::open(['url' => 'transaction/walkin-individual-customize-orders', 'method' => 'POST']) !!}
 						<div class="col s12">
 							<div class="divider"></div>
 								<a class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize orders" style="margin-top:30px; font-size:15px; color:white; background-color: teal; opacity:0.90" href="{{URL::to('/transaction/walkin-individual-customize-orders')}}"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Reset Order<!--</i>--></a>
@@ -64,8 +60,8 @@
 							<p class="center-align" style="color:teal; margin-bottom:40px"><b>CHOOSE AMONG AVAILABLE PRODUCTS</b></p>
 						
 						@foreach($garments as $garment)
-								{{ $garment->strGarmentCategoryName }}
-								<div class="col s4 hide {{ $garment->strGarmentCategoryName }}">
+
+								<div class="col s4 {{ $garment->strGarmentCategoryName }}">
 										<div class="center col s12">
 					          				<input type="checkbox" name="cbx-segment-name[]"  class="filled-in" id="{{ $garment->strSegmentID }}" value="{{ $garment->strSegmentID }}" style="padding:5px"/>
 			      							<label for="{{ $garment->strSegmentID }}"><font size="+1">{{ $garment->strSegmentName }}</font></label>
@@ -80,7 +76,7 @@
 					                  <div class="row">
 					                    <div class="col s3 center"><i class="small mdi-content-add-circle" style="color:teal"></i></div>
 					                    <div class="input-field col s6" style="margin-top:-2px;">
-					                      <input class="center" name="int-segment-qty[]" id="quantity" value="1" type="number">
+					                      <input class="center" name="int-segment-qty[]" id="{{ $garment->strSegmentID }}" type="number">
 					                    </div>
 					                    <div class="col s3 center"><i class="small mdi-content-remove-circle" style="color:teal"></i></div>
 					                  </div>
@@ -93,8 +89,7 @@
 						<div>
 
 							<div class="col s12">
-								<button type="submit">Add</button>
-								<a class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize orders" style="margin-left:40px; margin-top:30px; font-size:15px; color:white; background-color: teal; opacity:0.90" href="{{URL::to('/transaction/walkin-individual-customize-orders')}}"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Customize Orders<!--</i>--></a>
+								<button type="submit" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize orders" style="margin-left:40px; margin-top:30px; font-size:15px; color:white; background-color: teal; opacity:0.90"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Customize Orders<!--</i>--></button>
 								<a class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to add orders to cart " style="margin-top:30px; background-color: teal; font-size:15px; color:white" href="#!"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Add to Cart<!--</i>--></a>
 								<a class="left tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to see available package 5sets" href="{{URL::to('/transaction/walkin-individual-bulk-orders')}}" style=" margin-top:30px; font-size:18px;"><i class="mdi-navigation-arrow-back"></i><b><u>Go to Bulk Orders</u></b></a>
 							</div>
@@ -119,25 +114,19 @@
 @stop
 
 @section('scripts')
+
 	<script type="text/javascript">
-		$(".try").click(function(){
+		$(".garment-category").change(function(){
+			$garmentClass = $(".garment-category option:selected").text();
 
- 			$(".Uniforms").removeClass("hide");
+ 			$("." + $garmentClass).removeClass("hide");
 		});
-
-
 	</script>
 
-
-	<script type="text/javascript">
-	  $('.modal-trigger').leanModal({
-	      dismissible: true, // Modal can be dismissed by clicking outside of the modal
-	      opacity: .5, // Opacity of modal background
-	      in_duration: 300, // Transition in duration
-	      out_duration: 200, // Transition out duration
-	      width:400,
-	    }
-	  );
+	<script>
+		$("#" + document.getElementById('{{ $garment->strSegmentID }}').value).click(function(){
+			alert("hm");
+		})
 	</script>
 
 	<script>

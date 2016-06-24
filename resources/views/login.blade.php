@@ -3,8 +3,8 @@
 	<head>
 		<title>Fashion Collection</title>
 		  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
 		  	<!-- Style Here --> 
+			  <link rel="shortcut icon" href="{{{ asset('img/logo.png') }}}">
 		  	  {!! Html::style('css/materialize.min.css'); !!}
 		      {!! Html::style('css/materialize.min.css'); !!}
 	</head>

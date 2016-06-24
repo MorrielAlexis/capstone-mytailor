@@ -66,8 +66,17 @@ class WalkInIndividualController extends Controller
         return view('walkin-individual-bulk-order-checkout-measure-now');
     }
 
-    public function customize()
-    {
+    public function customize(Request $request)
+    {   
+        $data_segment = $request->input('cbx-segment-name');
+        $data_quantity = $request->input('int-segment-qty');
+
+        dd($data_segment, $data_quantity);
+
+        session(['segment_value' => $data_segment]);
+        session(['segment_quantity' => $data_quantity]);
+    
+
         return view('walkin-individual-customize-order');
     }
 
@@ -109,15 +118,7 @@ class WalkInIndividualController extends Controller
      */
     public function store(Request $request)
     {   
-        $data_segment = $request->input('cbx-segment-name');
-        $data_quantity = $request->input('int-segment-qty');
 
-        dd($data_segment, $data_quantity);
-
-        session(['segment_value' => $data_segment]);
-        session(['segment_quantity' => $data_quantity]);
-    
-        return redirect('transaction/walkin-individual');   
     }
 
     /**

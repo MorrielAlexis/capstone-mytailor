@@ -5,6 +5,7 @@
       <title>Fashion Collection</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link rel="shortcut icon" href="{{{ asset('img/logo.png') }}}">
 
       {!! Html::style('css/materialize.min.css'); !!}
       {!! Html::style('css/style.css'); !!}

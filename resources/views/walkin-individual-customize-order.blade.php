@@ -83,7 +83,7 @@
 													<div class="modal-footer col s12">
 										                <p class="left" style="margin-left:10px; color:gray;">Continue to payment?</p>
 										                <a class="waves-effect waves-green btn-flat" href="{{URL::to('/transaction/walkin-individual-payment-customer-info')}}"><font color="black">Yes</font></a>
-										                <a href="{{URL::to('/transaction/walkin-individual-customize-orders')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+										                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
 										            </div>
 												{!! Form::close() !!}
 										</div>
@@ -112,7 +112,7 @@
 
 											<div class="modal-footer col s12" style="background-color:red; opacity:0.85">
 								                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-individual-customize-orders')}}"><font color="white">Yes</font></a>
-								                <a href="{{URL::to('transaction/walkin-individual-customize-orders')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="white">No</font></a>
+								                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="white">No</font></a>
 								            </div>
 										{!! Form::close() !!}
 								</div>
@@ -579,26 +579,12 @@
 @section('scripts')
 
 	<script>
-	  $('.modal-trigger').leanModal({
-	      dismissible: true, // Modal can be dismissed by clicking outside of the modal
-	      opacity: .5, // Opacity of modal background
-	      in_duration: 300, // Transition in duration
-	      out_duration: 200, // Transition out duration
-	      width:400,
-	    }
-	  );
-	</script>
 
-	<script>
 	  $(document).ready(function() {
 	    $('select').material_select();
-	  });
-	</script>	        
-
-	<script>
-	 $(document).ready(function(){
 		$('.tooltipped').tooltip({delay: 50});
-	 });
+	  });
+	  
 	</script>
 
 @stop
