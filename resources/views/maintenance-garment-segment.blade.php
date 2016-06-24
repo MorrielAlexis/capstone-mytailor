@@ -144,7 +144,7 @@
                   <tr>
              		    <td>{{ $segment->strGarmentCategoryName }}</td>
                     <td>{{ $segment->strSegmentName }}</td>
-                    <td>{{ $segment->dblSegmentPrice }}</td>
+                    <td>{{ "Php". $segment->dblSegmentPrice }}</td>
               		  <td>{{ $segment->textSegmentDesc }}</td>
                     <td>
                       @if($segment->strSegmentSex == 'M') For men
