@@ -24,6 +24,7 @@
 							<div class="col s6">
 								<div class="input-field col s12">
 										<select class = "garment-category" id = "garment-category">
+												<option value="All" class="circle" selected>All</option>
 										    @foreach($categories as $category)
 										    	<option value="{{ $category->strGarmentCategoryID }}" class="circle">{{ $category->strGarmentCategoryName }}</option>
 											@endforeach
@@ -61,7 +62,7 @@
 						
 						@foreach($garments as $garment)
 
-								<div class="col s4 {{ $garment->strGarmentCategoryName }}">
+								<div class="col s4 segment-general {{ $garment->strGarmentCategoryName }}">
 										<div class="center col s12">
 					          				<input type="checkbox" name="cbx-segment-name[]"  class="filled-in" id="{{ $garment->strSegmentID }}" value="{{ $garment->strSegmentID }}" style="padding:5px"/>
 			      							<label for="{{ $garment->strSegmentID }}"><font size="+1">{{ $garment->strSegmentName }}</font></label>
@@ -116,17 +117,21 @@
 @section('scripts')
 
 	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".segment-general").removeClass("hide");
+		});
+
 		$(".garment-category").change(function(){
 			$garmentClass = $(".garment-category option:selected").text();
 
- 			$("." + $garmentClass).removeClass("hide");
-		});
-	</script>
+			if($garmentClass == "All"){
+				$(".segment-general").removeClass("hide");
+			}else{
+				$(".segment-general").addClass("hide");
+				$("." + $garmentClass).removeClass("hide");			
+			}
 
-	<script>
-		$("#" + document.getElementById('{{ $garment->strSegmentID }}').value).click(function(){
-			alert("hm");
-		})
+		});
 	</script>
 
 	<script>

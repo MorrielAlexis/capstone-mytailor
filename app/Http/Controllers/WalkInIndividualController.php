@@ -75,15 +75,14 @@ class WalkInIndividualController extends Controller
     public function customize(Request $request)
     {   
         $data_segment = $request->input('cbx-segment-name');
-        $data_quantity = $request->input('int-segment-qty');
-
-        dd($data_segment, $data_quantity);
+        $data_quantity = array_slice(array_filter($request->input('int-segment-qty')), 0);
 
         session(['segment_value' => $data_segment]);
         session(['segment_quantity' => $data_quantity]);
-    
 
-        return view('walkin-individual-customize-order');
+        return view('walkin-individual-customize-order')
+                ->with('segments', session()->get('segment_value'))
+                ->with('quantities', session()->get('segment_quantity'));
     }
 
     public function catalogueDesign()
