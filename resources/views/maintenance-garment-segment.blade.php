@@ -191,7 +191,7 @@
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input required value="{{ $segment->dblAlterationPrice }}" id="editSegmentPrice" name= "editSegmentPrice" type="text" class="validate" pattern="^[1-9]\d{0,7}(?:\.\d{1,4})?|\.\d{1,4}$">
+                                <input required value="{{ $segment->dblSegmentPrice }}" id="editSegmentPrice" name= "editSegmentPrice" type="text" class="validate" pattern="^[1-9]\d{0,7}(?:\.\d{1,4})?|\.\d{1,4}$">
                                 <label for="segment_name">Starting Price: <span class="red-text"><b>*</b></span></label>
                               </div>
                           </div>
