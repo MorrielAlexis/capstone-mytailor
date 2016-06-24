@@ -97,6 +97,8 @@
 							<div class="divider" style="margin-bottom:30px"></div>
 							<div class="divider" style="margin-bottom:30px"></div>
 							<div class="divider" style="margin-bottom:30px; height:3px"></div>
+
+<!-- END OF LOOP -->		@foreach($segments as $segment)
 							<div class="col s6">
 							<a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#removeOrder"><i class="mdi-navigation-close"></i></a>
 								<div id="removeOrder" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
@@ -114,13 +116,13 @@
 											</div>
 
 											<div class="modal-footer col s12" style="background-color:red; opacity:0.85">
-								                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-individual-customize-orders')}}"><font color="white">Yes</font></a>
+								                <a class="waves-effect waves-green btn-flat" ><font color="white">Yes</font></a>
 								                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="white">No</font></a>
 								            </div>
 										{!! Form::close() !!}
 								</div>
-							
-							<center><img src="{{URL::to('img/male-uniform-plain.jpg')}}" style="height:450px; width:450px; border:3px gray solid"></center>								          	
+
+							<center><img src="{{URL::asset($segment->strSegmentImage)}}" style="height:450px; width:450px; border:3px gray solid"></center>								          	
 							</div>
 							
 								<br>
@@ -155,54 +157,14 @@
 															        </div>
 															      </div>
 
-															    <div class="col s1" style="margin-top:60px">
-									                        		<input name="garmentDesign" type="radio" class="filled-in" id="pattern2" />
-									                        		<label for="pattern2"></label>
-									                        	</div>
-															      <div class="col s11">
-															        <div class="card-panel grey lighten-5 z-depth-1">
-															          <div class="row valign-wrapper">
-															            <div class="col s4">
-															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-															            </div>
-															            <div class="col s7">
-															            	<p>SPECIAL PATTERN</p>
-															              <span class="black-text">
-															                This is a square image. Add the "circle" class to it to make it appear circular.
-															              </span>
-															            </div>
-															          </div>
-															        </div>
-															      </div>
-
-
-															    <div class="col s1" style="margin-top:60px">
-									                        		<input name="garmentDesign" type="radio" class="filled-in" id="pattern3" />
-									                        		<label for="pattern3"></label>
-									                        	</div>
-															      <div class="col s11">
-															        <div class="card-panel grey lighten-5 z-depth-1">
-															          <div class="row valign-wrapper">
-															            <div class="col s4">
-															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-															            </div>
-															            <div class="col s7">
-															            	<p>JUST ANOTHER PATTERN</p>
-															              <span class="black-text">
-															                This is a square image. Add the "circle" class to it to make it appear circular.
-															              </span>
-															            </div>
-															          </div>
-															        </div>
-															      </div>
 															<div style="margin:570px"></div>
 															</div>
 
 
 														<div class="modal-footer col s12">
 															<a href="{{URL::to('transaction/walkin-individual-catalogue-designs')}}" class="left btn-flat" style="background-color:teal; color:white">Check designs from catalogue</a>
-								                          	<a href="{{URL::to('transaction/walkin-individual-customize-orders')}}" class="right waves-effect waves-green btn-flat">OK</a>
-								                          	<a href="{{URL::to('transaction/walkin-individual-customize-orders')}}" class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+								                          	<a class="right waves-effect waves-green btn-flat">OK</a>
+								                          	<a class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
 								                        </div>
 									                      {!! Form::close() !!}
 													</div>
@@ -242,53 +204,13 @@
 															        </div>
 															      </div>
 
-															    <div class="col s1" style="margin-top:60px">
-									                        		<input name="garmentFabrics" type="radio" class="filled-in" id="fabric2" />
-									                        		<label for="fabric2"></label>
-									                        	</div>
-															      <div class="col s11">
-															        <div class="card-panel grey lighten-5 z-depth-1">
-															          <div class="row valign-wrapper">
-															            <div class="col s4">
-															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-															            </div>
-															            <div class="col s7">
-															            	<p>REGULAR COTTON</p>
-															              <span class="black-text">
-															                This is a square image. Add the "circle" class to it to make it appear circular.
-															              </span>
-															            </div>
-															          </div>
-															        </div>
-															      </div>
-
-
-															    <div class="col s1" style="margin-top:60px">
-									                        		<input name="garmentFabrics" type="radio" class="filled-in" id="fabric3" />
-									                        		<label for="fabric3"></label>
-									                        	</div>
-															      <div class="col s11">
-															        <div class="card-panel grey lighten-5 z-depth-1">
-															          <div class="row valign-wrapper">
-															            <div class="col s4">
-															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-															            </div>
-															            <div class="col s7">
-															            	<p>REMARKABLE COTTON</p>
-															              <span class="black-text">
-															                This is a square image. Add the "circle" class to it to make it appear circular.
-															              </span>
-															            </div>
-															          </div>
-															        </div>
-															      </div>
 															<div style="margin:570px"></div>
 															</div>
 
 
 														<div class="modal-footer col s12" >
-								                          <a href="{{URL::to('transaction/walkin-individual-customize-orders')}}" class="right waves-effect waves-green btn-flat">OK</a>
-								                          <a href="{{URL::to('transaction/walkin-individual-customize-orders')}}" class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+								                          <a  class="right waves-effect waves-green btn-flat">OK</a>
+								                          <a  class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
 								                        </div>
 									                      {!! Form::close() !!}
 													</div>
@@ -302,19 +224,21 @@
 								<div class="col s12" style="margin-top:10px; color:gray"><p>Garment description below:</p></div>
 								<div class="col s12" style="margin-left:130px">
 									<div class="col s4" style="color:teal;"><p><b>Garment Category:</b></p></div>
-									<div class="col s8"><p>Uniform</p></div>
+									<div class="col s8"><p>{{ $segment->strGarmentCategoryName }}</p></div>
 
 									<div class="col s4" style="color:teal;"><p><b>Garment Segment:</b></p></div>
-									<div class="col s8"><p>Polo</p></div>
+									<div class="col s8"><p>{{ $segment->strSegmentName }}</p></div>
 
 									<div class="col s4" style="color:teal;"><p><b>Sex(Applicable):</b></p></div>
-									<div class="col s8"><p>Male</p></div>
+									@if($segment->strSegmentSex == 'M') <div class="col s8"><p>Male</p></div>
+			                        @elseif($segment->strSegmentSex == 'F') <div class="col s8"><p>Female</p></div>
+			                        @endif
 
 									<div class="col s4" style="color:teal;"><p><b>Price starts from:</b></p></div>
-									<div class="col s8" style="color:red"><p>800.00 PHP</p></div>
+									<div class="col s8" style="color:red"><p>200.00 PHP</p></div>
 
 									<div class="col s4" style="color:teal;"><p><b>Time to finish(min):</b></p></div>
-									<div class="col s8" style="color:red"><p>3 days</p></div>
+									<div class="col s8" style="color:red"><p>{{ $segment->intMinDays }} days</p></div>
 								</div>
 
 							</div>
@@ -325,13 +249,14 @@
 							</div>
 						<br>
 						<div class="divider" style="height:2px;margin-top:40px"></div>
+<!-- END OF LOOP -->	@endforeach
 <!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--> 
 <!--/////////////////////////////////////////// END OF AN ITERATION  ////////////////////////////////////////////////////////-->
 <!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--> 
 
 							<div class="col s12" style="padding:30px">
 								<div class="col s6">
-									<a href="{{URL::to('transaction/walkin-individual')}}" class="btn" style="color:white; background-color:teal; border:3px teal solid">Cancel Transaction</a>
+									<a class="btn" style="color:white; background-color:teal; border:3px teal solid">Cancel Transaction</a>
 								</div>	
 								<div class="col s6">
 									<a href="{{URL::to('transaction/walkin-individual')}}" class="right btn" style="color:white; background-color:teal; margin-left:20px; border:3px teal solid">Add another set</a>

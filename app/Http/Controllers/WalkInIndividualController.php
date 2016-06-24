@@ -80,8 +80,14 @@ class WalkInIndividualController extends Controller
         session(['segment_value' => $data_segment]);
         session(['segment_quantity' => $data_quantity]);
 
+        $segments = \DB::table('tblSegment AS a')
+                    ->leftJoin('tblGarmentCategory AS b', 'a.strSegCategoryFK', '=', 'b.strGarmentCategoryID')
+                    ->select('a.*', 'b.strGarmentCategoryName') 
+                    ->whereIn('a.strSegmentID', session()->get('segment_value'))
+                    ->get();
+
         return view('walkin-individual-customize-order')
-                ->with('segments', session()->get('segment_value'))
+                ->with('segments', $segments)
                 ->with('quantities', session()->get('segment_quantity'));
     }
 
