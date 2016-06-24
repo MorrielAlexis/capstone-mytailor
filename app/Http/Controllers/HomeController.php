@@ -25,7 +25,7 @@ class HomeController extends Controller
             // Authentication passed...
             return redirect()->intended('/dashboard');
         }else{
-            return redirect('/');
+            return redirect('/')->with('flash_message', 'Invalid Credentials.');
         }
     }
 

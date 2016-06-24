@@ -93,3 +93,8 @@ header, main, footer {
 .input-field .prefix.active {
   color: #1E88E5 !important;
 }
+
+.flash {
+  padding: 1em;
+  border: 1px dotted black;
+}

@@ -23,6 +23,12 @@
 	         			</div>
 	         		</div>
 
+	         		@if(Session::get('flash_message'))
+	         			<div class = "flash">
+	         				{{ Session::get('flash_message') }}
+	         			</div>
+	         		@endif
+
 	    	 		<!-- Content form input -->
 				    <div class="form-group" style="padding-left:20px; padding-right:20px">
 				        <div class="row margin">
