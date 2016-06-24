@@ -29,14 +29,16 @@
           </div>
         </div>
         <div class="col s12 container" style="margin-top:-40px;">
-          <a class='dropdown-button btn btn-flat waves-effect waves-light profile-btn white-txt' href="#!" style="background-color: #26A69A;" data-activates='profile-dropdown'>Honey May</a>
+          @if(Auth::check())
+          <a class='dropdown-button btn btn-flat waves-effect waves-light profile-btn white-txt' href="#!" style="background-color: #26A69A;" data-activates='profile-dropdown'>{{ Auth::user()->name }}</a>
+          @endif
           <ul id="profile-dropdown" class="dropdown-content">
             <li><a href="#!"><i class="mdi-action-face-unlock" style="font-size:20px; margin-top:20px;margin-left:0px;"> Profile</i></a></li>
             <li><a href="#!"><i class="mdi-action-settings" style="font-size:20px; margin-top:20px;margin-left:0px;"> Utils</i></a></li>
             <li><a href="#!"><i class="mdi-communication-live-help" style="font-size:20px; margin-top:20px;margin-left:0px;"> Help</i></a></li>
             <li class="divider"></li>
             <li><a href="#!"><i class="mdi-action-lock-outline" style="font-size:20px;margin-top:20px;margin-left:0px;"> Lock</i></a></li>
-            <li><a href="{{URL::to('logout')}}"><i class="mdi-hardware-keyboard-tab" style="font-size:20px;margin-top:20px;margin-left:0px;"> Logout</i></a></li>
+            <li><a href="{{URL::to('/logout')}}"><i class="mdi-hardware-keyboard-tab" style="font-size:20px;margin-top:20px;margin-left:0px;"> Logout</i></a></li>
           </ul>
         </div>
 

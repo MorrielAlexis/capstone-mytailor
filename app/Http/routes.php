@@ -17,6 +17,9 @@ Route::get('/', function () {
 
 Route::get('/', 'HomeController@showWelcome');
 Route::post('/login', 'HomeController@LogIn');
+Route::get('/logout', 'HomeController@LogOut');
+
+Route::get('/dashboard', 'DashboardController@dash');
 
 
 Route::group(['prefix' => 'maintenance'], function(){

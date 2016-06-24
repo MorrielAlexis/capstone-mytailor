@@ -28,8 +28,8 @@
 				        <div class="row margin">
 		          			<div class="input-field col s12">
 		           				<i class="mdi-social-person-outline prefix"></i>
-		           				<input class="validate" id="username" type="text" name="username">
-		           				<label for="email" data-error="wrong" data-success="right" class="center-align">Username</label>
+		           				<input class="validate" id="email" type="email" name="email">
+		           				<label for="email" data-error="wrong" data-success="right" class="center-align">Email</label>
 		       				</div>
 	        			</div>
 
