@@ -16,6 +16,12 @@ class PackagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         
@@ -33,29 +39,15 @@ class PackagesController extends Controller
         $segment =  GarmentSegment::all();
 
         $packages = \DB::table('tblPackages')
-            ->join('tblSegment', 'tblPackages.strPackageSeg1FK', '=', 'tblSegment.strSegmentID')
-            ->select('tblPackages.*', 'tblSegment.strSegmentName')
+            ->join('tblSegment as tblSegment1', 'tblPackages.strPackageSeg1FK', '=', 'tblSegment1.strSegmentID')
+            ->join('tblSegment as tblSegment2', 'tblPackages.strPackageSeg2FK', '=', 'tblSegment2.strSegmentID')
+            ->join('tblSegment as tblSegment3', 'tblPackages.strPackageSeg3FK', '=', 'tblSegment3.strSegmentID')
+            ->join('tblSegment as tblSegment4', 'tblPackages.strPackageSeg4FK', '=', 'tblSegment4.strSegmentID')
+            ->join('tblSegment as tblSegment5', 'tblPackages.strPackageSeg5FK', '=', 'tblSegment5.strSegmentID')
+            ->select('tblPackages.*', 'tblSegment1.strSegmentName as strSegmentName1','tblSegment2.strSegmentName as strSegmentName2','tblSegment3.strSegmentName as strSegmentName3','tblSegment4.strSegmentName as strSegmentName4','tblSegment5.strSegmentName as strSegmentName5')
             ->get();
 
-        $packages = \DB::table('tblPackages')
-            ->join('tblSegment', 'tblPackages.strPackageSeg2FK', '=', 'tblSegment.strSegmentID')
-            ->select('tblPackages.*', 'tblSegment.strSegmentName')
-            ->get();
 
-        $packages = \DB::table('tblPackages')
-            ->join('tblSegment', 'tblPackages.strPackageSeg3FK', '=', 'tblSegment.strSegmentID')
-            ->select('tblPackages.*', 'tblSegment.strSegmentName')
-            ->get();
-
-        $packages = \DB::table('tblPackages')
-            ->join('tblSegment', 'tblPackages.strPackageSeg4FK', '=', 'tblSegment.strSegmentID')
-            ->select('tblPackages.*', 'tblSegment.strSegmentName')
-            ->get();
-
-        $packages = \DB::table('tblPackages')
-            ->join('tblSegment', 'tblPackages.strPackageSeg5FK', '=', 'tblSegment.strSegmentID')
-            ->select('tblPackages.*', 'tblSegment.strSegmentName')
-            ->get();
         //load the view and pass the employees
         return view('maintenance-packages')
                     ->with('packages', $packages)

@@ -126,11 +126,11 @@
                   @if($packages->boolIsActive == 1)
                   <tr>
                   <td>{{ $packages->strPackageName }}</td>
-                    <td>{{ $packages->strSegmentName }}</td>
-                    <td>{{ $packages->strSegmentName }}</td>
-                    <td>{{ $packages->strSegmentName }}</td>
-                    <td>{{ $packages->strSegmentName }}</td>
-                    <td>{{ $packages->strSegmentName }}</td>
+                    <td>{{ $packages->strSegmentName1 }}</td>
+                    <td>{{ $packages->strSegmentName2 }}</td>
+                    <td>{{ $packages->strSegmentName3 }}</td>
+                    <td>{{ $packages->strSegmentName4 }}</td>
+                    <td>{{ $packages->strSegmentName5 }}</td>
                     <td> {{ $packages->intPackageMinDays }}</td>
                     <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($packages->strPackageImage)}}"></td>
                     <td>{{ $packages->strPackageDesc }}</td>
