@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Button;
 
 use App\Http\Requests;
+use App\Http\Requests\MaintenanceButtonRequest;
 use App\Http\Controllers\Controller;
 
 class MaterialButtonController extends Controller
@@ -57,7 +58,7 @@ class MaterialButtonController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MaterialButtonRequest $request)
     {
          $file = $request->input('addImage');
         $destinationPath = 'imgMaterialButtons';
