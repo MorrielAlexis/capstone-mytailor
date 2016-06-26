@@ -15,6 +15,7 @@ class Package extends Model
 								'strPackageSeg3FK',
 								'strPackageSeg4FK',
 								'strPackageSeg5FK',
+								'dblPackagePrice',
 								'strPackageImage',
 								'intPackageMinDays',
 								'strPackageDesc',

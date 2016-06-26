@@ -14,8 +14,7 @@ class CreateZipperTable extends Migration
     {
         Schema::create('tblZipper', function (Blueprint $table) {
             $table->increments('intZipperID');
-             $table->string('strZipperBrand');
-            $table->string('strZipperSize');
+            $table->string('strZipperBrand');
             $table->string('strZipperColor');
             $table->text('txtZipperDesc')->nullable();
             $table->string('strZipperImage')->nullable();

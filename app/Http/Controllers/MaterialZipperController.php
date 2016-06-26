@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Zipper;
 
 use App\Http\Requests;
+use App\Http\Requests\MaintenanceZipperRequest;
 use App\Http\Controllers\Controller;
 
 class MaterialZipperController extends Controller
@@ -57,7 +58,7 @@ class MaterialZipperController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MaintenanceZipperRequest $request)
     {
         $file = $request->input('addImage');
         $destinationPath = 'imgMaterialZippers';
