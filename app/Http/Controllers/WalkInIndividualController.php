@@ -81,9 +81,15 @@ class WalkInIndividualController extends Controller
         $data_quantity = array_slice(array_filter($request->input('int-segment-qty')), 0);
         $values = [];
 
+         $segments = \DB::table('tblSegment AS a')
+                    ->leftJoin('tblGarmentCategory AS b', 'a.strSegCategoryFK', '=', 'b.strGarmentCategoryID')
+                    ->select('a.*', 'b.strGarmentCategoryName') 
+                    ->whereIn('a.strSegmentID', $data_segment)
+                    ->get();        
+
         for($i = 0; $i < count($data_segment); $i++){
             for($j = 0; $j < $data_quantity[$i]; $j++){
-                $values[] = $data_segment[$i];
+                $values[] = $segments[$i];
             }
         }
 
@@ -91,21 +97,12 @@ class WalkInIndividualController extends Controller
         session(['segment_quantity' => $data_quantity]);
         session(['segment_values' => $values]);
 
-        for($i = 0; $i < count($values); $i++){
-            $segments[] = \DB::table('tblSegment AS a')
-                            ->leftJoin('tblGarmentCategory AS b', 'a.strSegCategoryFK', '=', 'b.strGarmentCategoryID')
-                            ->select('a.*', 'b.strGarmentCategoryName') 
-                            ->where('a.strSegmentID', $values[$i])
-                            ->get();        
-        }
-
-        dd($segments);
 
         $fabrics = FabricType::all();
         $segmentPatterns = SegmentPattern::all();
 
         return view('walkin-individual-customize-order')
-                ->with('segments', $segments)
+                ->with('segments', $values)
                 ->with('quantities', session()->get('segment_quantity'))
                 ->with('fabrics', $fabrics);
     }
