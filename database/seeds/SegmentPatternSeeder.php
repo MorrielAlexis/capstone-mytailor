@@ -17,7 +17,6 @@ class SegmentPatternSeeder extends Seeder
         $tblSegmentPattern = array (
             array(
                 'strSegPatternID' => 'SPAT001',
-                'strSegPCategoryFK' => 'GARM001',
                 'strSegPNameFK' => 'SEGM001',
                 'strSegPName' =>'Pencil Cut',
                 'strSegPImage' => '',
@@ -26,8 +25,7 @@ class SegmentPatternSeeder extends Seeder
 
             array(
                 'strSegPatternID' => 'SPAT002',
-                'strSegPCategoryFK' => 'GARM002',
-                'strSegPNameFK' => 'SEGM001',
+                'strSegPNameFK' => 'SEGM002',
                 'strSegPName'=>'Slim Fit',
                 'strSegPImage' => '',
                 'boolIsActive' => '1'

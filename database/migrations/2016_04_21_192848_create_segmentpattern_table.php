@@ -14,7 +14,6 @@ class CreateSegmentpatternTable extends Migration
     {
         Schema::create('tblSegmentPattern', function (Blueprint $table) {
             $table->string('strSegPatternID')->primary();
-            $table->string('strSegPCategoryFK')->index();//fk
             $table->string('strSegPNameFK')->index();//fk
             $table->string('strSegPName');
             $table->string('strSegPImage')->nullable();
@@ -22,9 +21,6 @@ class CreateSegmentpatternTable extends Migration
             $table->string('strSegPInactiveReason')->nullable();
             $table->timestamps();
 
-            $table->foreign('strSegPCategoryFK')
-                  ->references('strGarmentCategoryID')
-                  ->on('tblGarmentCategory');
             $table->foreign('strSegPNameFK')->references('strSegmentID')->on('tblSegment');
         });
     }

@@ -38,23 +38,19 @@ class SegmentPatternController extends Controller
         $ID = $ids["0"]->strSegPatternID;
         $newID = $this->smartCounter($ID);  
 
-        $category = GarmentCategory::all();
-
         $segment = GarmentSegment::all();
 
         // $pattern = SegmentPattern::all();
 
         $pattern = \DB::table('tblSegmentPattern')
-                ->join('tblGarmentCategory', 'tblSegmentPattern.strSegPCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
                 ->join('tblSegment', 'tblSegmentPattern.strSegPNameFK', '=', 'tblSegment.strSegmentID')
-                ->select('tblSegmentPattern.*', 'tblGarmentCategory.strGarmentCategoryName', 'tblSegment.strSegmentName') 
+                ->select('tblSegmentPattern.*','tblSegment.strSegmentName') 
                 ->orderBy('strSegPatternID')
                 ->get();
         
         //load the view and pass the pattern
         return view('maintenance-segment-pattern')
                     ->with('pattern', $pattern)
-                    ->with('category', $category)
                     ->with('segment', $segment)
                     ->with('newID', $newID);
     }
@@ -83,7 +79,6 @@ class SegmentPatternController extends Controller
             if($file == '' || $file == null){
                 $pattern = SegmentPattern::create(array(
                 'strSegPatternID' => $request->input('strSegPatternID'),
-                'strSegPCategoryFK' => $request->input('strSegPCategoryFK'),
                 'strSegPNameFK' => $request->input('strSegPNameFK'),
                 'strSegPName' => trim($request->input('strSegPName')),
                 'boolIsActive' => 1
@@ -93,7 +88,7 @@ class SegmentPatternController extends Controller
 
                     $pattern = SegmentPattern::create(array(
                         'strSegPatternID' => $request->input('strSegPatternID'),
-                        'strSegPCategoryFK' => $request->input('strSegPCategoryFK'),
+    
                         'strSegPNameFK' => $request->input('strSegPNameFK'),
                         'strSegPName' => trim($request->input('strSegPName')),
                         'strSegPImage' => 'imgDesignPatterns/'.$file,
@@ -166,13 +161,11 @@ class SegmentPatternController extends Controller
 
                 if($file == $pattern->strSegPImage)
                 {
-                    $pattern->strSegPCategoryFK = $request->input('editCategory');
                     $pattern->strSegPNameFK = $request->input('editSegment');
                     $pattern->strSegPName = trim($request->input('editPatternName'));
                 }else{
                     $request->file('editImg')->move($destinationPath);
 
-                    $pattern->strSegPCategoryFK = $request->input('editCategory');
                     $pattern->strSegPNameFK = $request->input('editSegment');
                     $pattern->strSegPName = trim($request->input('editPatternName'));
                     $pattern->strSegPImage = 'imgDesignPatterns/'.$file;
