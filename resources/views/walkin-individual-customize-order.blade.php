@@ -129,6 +129,7 @@
 									                      {!! Form::open() !!} 
 									                        <div class="divider" style="height:2px"></div>
 									                        <div class="modal-content col s12">
+									                        	@foreach($patterns as $pattern)
 									                        	<div class="col s1" style="margin-top:60px">
 									                        		<input name="garmentDesign" type="radio" class="filled-in" id="pattern1" />
 									                        		<label for="pattern1"></label>
@@ -149,7 +150,8 @@
 															        </div>
 															      </div>
 
-															<div style="margin:570px"></div>
+																@endforeach
+															<div style="margin:50px"></div>
 															</div>
 
 
