@@ -61,7 +61,6 @@
 							<p class="center-align" style="color:teal; margin-bottom:40px"><b>CHOOSE AMONG AVAILABLE PRODUCTS</b></p>
 						
 						@foreach($garments as $garment)
-
 								<div class="col s4 segment-general {{ $garment->strGarmentCategoryName }}">
 										<div class="center col s12">
 					          				<input type="checkbox" name="cbx-segment-name[]"  class="filled-in cbx-segment-name" id="{{ $garment->strSegmentID }}" value="{{ $garment->strSegmentID }}" style="padding:5px"/>
@@ -128,8 +127,10 @@
 					if(a[i].id == b[j].id){
 						if($('#' + a[i].id).is(":checked")){
 							$('.' + b[j].id).removeAttr('disabled');
+							$('.' + b[j].id).val(1);
 						}else{
 							$('.' + b[j].id).attr('disabled', true);
+							$('.' + b[j].id).val('');
 						}
 					}
 				}

@@ -104,7 +104,8 @@ class WalkInIndividualController extends Controller
         return view('walkin-individual-customize-order')
                 ->with('segments', $values)
                 ->with('quantities', session()->get('segment_quantity'))
-                ->with('fabrics', $fabrics);
+                ->with('fabrics', $fabrics)
+                ->with('patterns', $segmentPatterns);
     }
 
     public function catalogueDesign()
