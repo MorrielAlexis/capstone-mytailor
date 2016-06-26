@@ -21,7 +21,7 @@
 				<div class="card-panel">
 					<div class="card-content">
 						<div class="row">
-						<div class="col s12">
+						<div class="col s12"> <!--start of list-->
 							<div class="col s12">
 								
 								<div class="col s6"><p><h5><b>Customize Order</b></h5></p></div>							
@@ -238,7 +238,7 @@
 								</div>
 
 							</div>
-						</div>
+						<!--dati dito yung div-->
 
 							<div class="col s12" >
 								<div class="divider" style="margin-bottom:30px; margin-top:30px; height:5px"></div>
@@ -250,7 +250,7 @@
 <!--/////////////////////////////////////////// END OF AN ITERATION  ////////////////////////////////////////////////////////-->
 <!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--> 
 
-							<div class="col s12" style="padding:30px">
+							<div class="col s12" style="padding:10px">
 								<div class="col s6">
 									<a class="btn" style="color:white; background-color:teal; border:3px teal solid">Cancel Transaction</a>
 								</div>	
@@ -259,11 +259,12 @@
 									<a href="{{URL::to('transaction/walkin-individual-retail-products')}}" class="right btn" style="color:white; background-color:teal; border:3px teal solid">Add a retail order</a>
 								</div>
 							</div>
+						</div> <!--end of list-->
 
-							<div class="divider" style="height:2px; margin-top:50px"></div> 
-							<div class="divider" style="height:2px; margin-top:50px"></div>      	
+						<div class="col s12">
+							<div class="divider" style="height:2px; margin-top:30px"></div>      	
 				      		<center><p><font color="gray">End of order list wanting to purchase</font></p></center>
-						
+						</div>
 						</div>
 					</div>
 				</div>
