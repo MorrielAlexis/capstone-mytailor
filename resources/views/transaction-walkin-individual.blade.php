@@ -64,7 +64,7 @@
 
 								<div class="col s4 segment-general {{ $garment->strGarmentCategoryName }}">
 										<div class="center col s12">
-					          				<input type="checkbox" name="cbx-segment-name[]"  class="filled-in" id="{{ $garment->strSegmentID }}" value="{{ $garment->strSegmentID }}" style="padding:5px"/>
+					          				<input type="checkbox" name="cbx-segment-name[]"  class="filled-in cbx-segment-name" id="{{ $garment->strSegmentID }}" value="{{ $garment->strSegmentID }}" style="padding:5px"/>
 			      							<label for="{{ $garment->strSegmentID }}"><font size="+1">{{ $garment->strSegmentName }}</font></label>
 			      							@if($garment->strSegmentSex == 'M')<label for="{{ $garment->strSegmentID }}"><font color="gray">Male</font></label>
 			      							@elseif($garment->strSegmentSex == 'F')<label for="{{ $garment->strSegmentID }}"><font color="gray">Female</font></label>
@@ -77,7 +77,7 @@
 					                  <div class="row">
 					                    <div class="col s3 center"><i class="small mdi-content-add-circle" style="color:teal"></i></div>
 					                    <div class="input-field col s6" style="margin-top:-2px;">
-					                      <input class="center" name="int-segment-qty[]" id="{{ $garment->strSegmentID }}" type="number">
+					                      <input class="center int-segment-qty {{ $garment->strSegmentID }}" disabled="true" name="int-segment-qty[]" id="{{ $garment->strSegmentID }}" type="number">
 					                    </div>
 					                    <div class="col s3 center"><i class="small mdi-content-remove-circle" style="color:teal"></i></div>
 					                  </div>
@@ -117,6 +117,26 @@
 @section('scripts')
 
 	<script type="text/javascript">
+		$(".cbx-segment-name").change(function(){
+			var a = document.getElementsByClassName('cbx-segment-name');
+			var b = document.getElementsByClassName('int-segment-qty');
+
+			var i, j;
+
+			for(i = 0; i < a.length; i++){
+				for(j = 0; j < b.length; j++){
+					if(a[i].id == b[j].id){
+						if($('#' + a[i].id).is(":checked")){
+							$('.' + b[j].id).removeAttr('disabled');
+						}else{
+							$('.' + b[j].id).attr('disabled', true);
+						}
+					}
+				}
+			}
+
+		});
+
 		$(document).ready(function(){
 			$(".segment-general").removeClass("hide");
 		});

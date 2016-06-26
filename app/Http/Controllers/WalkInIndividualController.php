@@ -86,6 +86,9 @@ class WalkInIndividualController extends Controller
                     ->whereIn('a.strSegmentID', session()->get('segment_value'))
                     ->get();
 
+        $fabrics = FabricType::all();
+        $segmentPatterns = SegmentPattern::all();
+
         return view('walkin-individual-customize-order')
                 ->with('segments', $segments)
                 ->with('quantities', session()->get('segment_quantity'));
