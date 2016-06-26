@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use Session;
 
 use App\GarmentCategory;
+use App\FabricType;
+use App\SegmentPattern;
 
 class WalkInIndividualController extends Controller
 {
@@ -30,6 +32,7 @@ class WalkInIndividualController extends Controller
         $garments = \DB::table('tblSegment AS a')
                     ->leftJoin('tblGarmentCategory AS b', 'a.strSegCategoryFK', '=', 'b.strGarmentCategoryID')
                     ->select('a.*', 'b.strGarmentCategoryName') 
+                    ->orderBy('a.strSegmentID')
                     ->get();
 
         return view('transaction-walkin-individual')
@@ -76,22 +79,35 @@ class WalkInIndividualController extends Controller
     {   
         $data_segment = $request->input('cbx-segment-name');
         $data_quantity = array_slice(array_filter($request->input('int-segment-qty')), 0);
+        $values = [];
 
-        session(['segment_value' => $data_segment]);
+        for($i = 0; $i < count($data_segment); $i++){
+            for($j = 0; $j < $data_quantity[$i]; $j++){
+                $values[] = $data_segment[$i];
+            }
+        }
+
+        session(['segment_data' => $data_segment]);
         session(['segment_quantity' => $data_quantity]);
+        session(['segment_values' => $values]);
 
-        $segments = \DB::table('tblSegment AS a')
-                    ->leftJoin('tblGarmentCategory AS b', 'a.strSegCategoryFK', '=', 'b.strGarmentCategoryID')
-                    ->select('a.*', 'b.strGarmentCategoryName') 
-                    ->whereIn('a.strSegmentID', session()->get('segment_value'))
-                    ->get();
+        for($i = 0; $i < count($values); $i++){
+            $segments[] = \DB::table('tblSegment AS a')
+                            ->leftJoin('tblGarmentCategory AS b', 'a.strSegCategoryFK', '=', 'b.strGarmentCategoryID')
+                            ->select('a.*', 'b.strGarmentCategoryName') 
+                            ->where('a.strSegmentID', $values[$i])
+                            ->get();        
+        }
+
+        dd($segments);
 
         $fabrics = FabricType::all();
         $segmentPatterns = SegmentPattern::all();
 
         return view('walkin-individual-customize-order')
                 ->with('segments', $segments)
-                ->with('quantities', session()->get('segment_quantity'));
+                ->with('quantities', session()->get('segment_quantity'))
+                ->with('fabrics', $fabrics);
     }
 
     public function catalogueDesign()

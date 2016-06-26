@@ -183,6 +183,7 @@
                         
 									                      {!! Form::open() !!} 
 									                        <div class="divider" style="height:2px"></div>
+                     							@foreach($fabrics as $fabric)
 									                        <div class="modal-content col s12">
 									                        	<div class="col s1" style="margin-top:60px">
 									                        		<input name="garmentFabrics" type="radio" class="filled-in" id="fabric1" />
@@ -206,6 +207,7 @@
 
 															<div style="margin:570px"></div>
 															</div>
+												@endforeach
 
 
 														<div class="modal-footer col s12" >
