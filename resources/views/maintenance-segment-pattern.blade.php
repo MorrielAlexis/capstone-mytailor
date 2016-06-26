@@ -115,7 +115,6 @@
        				<thead>
           			<tr>
                   <!--<th data-field= "Catalog ID">Segment Pattern ID</th>-->
-                  <th data-field="Category Name">Category Name </th>
               		<th data-field="Garment Name">Segment Name </th>
              		  <th data-field="Pattern Name">Pattern Name</th>
               		<th data-field="Pattern Image">Pattern Image</th>
@@ -128,7 +127,6 @@
                 @if($pattern->boolIsActive == 1)
                 <tr>
              		<!--<td>{{ $pattern->strSegPatternID }}</td>-->
-                  <td>{{ $pattern->strGarmentCategoryName }}</td>
                   <td>{{ $pattern->strSegmentName }}</td>
               		<td>{{ $pattern->strSegPName }}</td>
                   <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($pattern->strSegPImage)}}"></td>
@@ -146,20 +144,9 @@
                             <input value= "{{ $pattern->strSegPatternID }}" id="editPatternID" name= "editPatternID" type="hidden">
                           </div>
 
-                      <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                          <div class="input-field col s6">                                                    
-                            <select class="browser-default editCategory" id="{{ $pattern->strSegPatternID }}" name='editCategory'>
-                              @foreach($category as $cat)
-                                @if($pattern->strSegPCategoryFK == $cat->strGarmentCategoryID && $cat->boolIsActive == 1)
-                                  <option selected value="{{ $cat->strGarmentCategoryID }}">{{ $cat->strGarmentCategoryName }}</option>
-                                @elseif($cat->boolIsActive == 1)
-                                  <option value="{{ $cat->strGarmentCategoryID }}">{{ $cat->strGarmentCategoryName }}</option>
-                                @endif
-                              @endforeach
-                            </select>    
-                          </div>  
+                      <div class = "col s12" style="padding:15px;  border:3px solid white;"> 
 
-                          <div class="input-field col s6">                                                    
+                          <div class="input-field col s6">                                                   
                             <select class="browser-default editSegment" id="{{ $pattern->strSegPatternID }}" name='editSegment'>
                                   @foreach($segment as $segment_1)
                                     @if($pattern->strSegPNameFK == $segment_1->strSegmentID && $segment_1->boolIsActive == 1)
@@ -213,10 +200,6 @@
                         </div>
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                        <div class="input-field col s6">                                                    
-                            <input type="text" value="{{$pattern->strGarmentCategoryName}}" readonly>
-                          <label>Category</label>
-                        </div> 
 
                         <div class="input-field col s6">                                                    
                             <input type="text" value="{{$pattern->strSegmentName}}" readonly>
@@ -273,18 +256,6 @@
                 <input value = "{{$newID}}" id="strSegPatternID" name= "strSegPatternID" type="hidden">
 
             <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                <div class="input-field col s6">
-                  <select  class="browser-default"  name="strSegPCategoryFK" id="strSegPCategoryFK" required>
-                      @foreach($category as $category)
-                        @if($category->boolIsActive == 1)
-                          <option value="{{ $category->strGarmentCategoryID }}">{{ $category->strGarmentCategoryName }}</option>
-                        @endif
-                      @endforeach
-                  </select> 
-                  <!-- <label>Garment Category<span class="red-text"><b>*</b></span></label>   -->
-                </div> 
-
-
                 <div class="input-field col s6">
                   <select class="browser-default" required id="strSegPNameFK" name="strSegPNameFK">
                         @foreach($segment as $segment)
