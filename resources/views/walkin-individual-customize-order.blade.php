@@ -47,24 +47,16 @@
 													              	</tr>
 												              	</thead>
 												              	<tbody>
+												              		@foreach($segments as $segment)
 														            <tr>
-														               <td>Uniform, Polo</td>
+														               <td>{{ $segment->strGarmentCategoryName }}, {{ $segment->strSegmentName }}</td>
 														               <td>1</td>
 														               <td>No-fit</td>
 														               <td>Traditional Cotton</td>
-														               <td>800.00 PHP</td>
+														               <td> {{ number_format($segment->dblSegmentPrice, 2) }} PHP</td>
 														               <td>800.00 PHP</td>
 														            </tr>
-
-														             <tr>
-														               <td>Uniform, Polo</td>
-														               <td>1</td>
-														               <td>Slim-fit</td>
-														               <td>Remarkable Cotton</td>
-														               <td>850.00 PHP</td>
-														               <td>850.00 PHP</td>
-														            </tr>
-
+																	@endforeach
 														        </tbody>
 														    </table>
 											      		</div>
@@ -237,7 +229,7 @@
 			                        @endif
 
 									<div class="col s4" style="color:teal;"><p><b>Price starts from:</b></p></div>
-									<div class="col s8" style="color:red"><p>200.00 PHP</p></div>
+									<div class="col s8" style="color:red"><p>{{ number_format($segment->dblSegmentPrice, 2) }} PHP</p></div>
 
 									<div class="col s4" style="color:teal;"><p><b>Time to finish(min):</b></p></div>
 									<div class="col s8" style="color:red"><p>{{ $segment->intMinDays }} days</p></div>
