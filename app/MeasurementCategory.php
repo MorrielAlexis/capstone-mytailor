@@ -10,7 +10,6 @@ class MeasurementCategory extends Model
 
 	protected $primaryKey = 'strMeasCatID';
 	protected $fillable = array('strMeasCatID',
-								'strMeasGarFK',
 								'strMeasSegmentFK',
 								'strMeasDetFK',
 								'strMeasCatInactiveReason',

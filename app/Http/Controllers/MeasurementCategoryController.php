@@ -39,25 +39,21 @@ class MeasurementCategoryController extends Controller
         $ID = $ids["0"]->strMeasCatID;
         $newID = $this->smartCounter($ID);
 
-        $category =  GarmentCategory::all();
-
         $segment = GarmentSegment::all();
 
         $detailList = MeasurementDetail::all();
 
 
         $head = \DB::table('tblMeasurementCategory AS a')
-            ->leftJoin('tblGarmentCategory AS b', 'a.strMeasGarFK', '=', 'b.strGarmentCategoryID')
-            ->leftJoin('tblSegment AS c', 'a.strMeasSegmentFK', '=', 'c.strSegmentID')
-            ->leftJoin('tblMeasurementDetail AS d', 'a.strMeasDetFK', '=', 'd.strMeasurementDetailID')
-            ->select('a.*', 'b.strGarmentCategoryName','c.strSegmentName', 'd.strMeasurementDetailName')
+            ->leftJoin('tblSegment AS b', 'a.strMeasSegmentFK', '=', 'b.strSegmentID')
+            ->leftJoin('tblMeasurementDetail AS c', 'a.strMeasDetFK', '=', 'c.strMeasurementDetailID')
+            ->select('a.*','b.strSegmentName', 'c.strMeasurementDetailName')
             ->orderBy('created_at') 
             ->get();
 
         //load the view and pass the employees
         return view('maintenance-measurement-category')
                     ->with('head', $head)
-                    ->with('category', $category)
                     ->with('segment', $segment)
                     ->with('detailList', $detailList)
                     ->with('newID', $newID);
@@ -84,7 +80,6 @@ class MeasurementCategoryController extends Controller
     {
         $meas_category = MeasurementCategory::create(array(
                 'strMeasCatID' => $request->input('strMeasCatID'),
-                'strMeasGarFK' => $request->input('strMeasGarFK'),
                 'strMeasSegmentFK' => $request->input('strMeasSegmentFK'),
                 'strMeasDetFK' => $request->input('strMeasDetFK'),
                 'strMeasCatInactiveReason' => null,

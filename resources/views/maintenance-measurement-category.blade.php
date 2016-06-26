@@ -118,7 +118,6 @@
                     <table class = "table centered data-measHead" align = "center" border = "1">
                       <thead>
                         <tr>
-                          <th data-field="Garmentcategory">Garment Category</th>
                           <th data-field="Garmentcategory">Segment</th>
                           <th data-field="MeasurementName">Measurement Name</th>
                           <th data-field="MeasurementName">Actions</th>
@@ -130,7 +129,6 @@
                             @foreach($head as $head) 
                             @if($head->boolIsActive == 1) 
                         <tr>   
-                          <td>{{ $head->strGarmentCategoryName }}</td>
                           <td>{{ $head->strSegmentName }}</td>
                           <td>{{ $head->strMeasurementDetailName }}</td> 
                           <td><a style = "color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement information" href="#edit{{$head->strMeasCatID}}"><i class="mdi-editor-mode-edit"></i></a>
@@ -146,18 +144,7 @@
                                       <input value="{{ $head->strMeasCatID }}" id="editMeasurementID" name="editMeasurementID" type="hidden" readonly>                                 
                                     </div>
 
-                              <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                                    <div class="input-field col s6">                                                    
-                                      <select class="browser-default editCategory" name="editCategory" id="{{ $head->strMeasCatID}}"> 
-                                        @foreach($category as $cat)
-                                            @if($head->strMeasGarFK == $cat->strGarmentCategoryID && $cat->boolIsActive == 1) 
-                                              <option value="{{ $cat->strGarmentCategoryID }}" selected>{{ $cat->strGarmentCategoryName }}</option> 
-                                            @elseif($cat->boolIsActive == 1)
-                                              <option value="{{ $cat->strGarmentCategoryID }}">{{ $cat->strGarmentCategoryName }}</option>
-                                            @endif 
-                                        @endforeach                                  
-                                      </select>    
-                                    </div>       
+                              <div class = "col s12" style="padding:15px;  border:3px solid white;">     
                                       
                                     <div class="input-field col s6">                                                    
                                       <select class="browser-default editSegment" required name='editSegment' id="{{ $head->strMeasCatID}}">
@@ -208,11 +195,7 @@
                                     </div>
 
                             <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                                  <div class="input-field col s6">
-                                    <input value="{{ $head->strGarmentCategoryName }}" type="text" readonly>
-                                    <label for="measurement_id">Garment Category </label>
-                                  </div>
-
+                            
                                   <div class="input-field col s6">
                                     <input value="{{ $head->strSegmentName }}" type="text" readonly>
                                     <label for="measurement_name">Segment </label>
@@ -261,18 +244,8 @@
                           <input value="{{ $newID }}" id="strMeasCatID" name="strMeasCatID" type="text" hidden>
                           
 
-                      <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                          <div class="input-field col s6">                                                    
-                              <select class="browser-default" required id="strMeasGarFK" name="strMeasGarFK">                                      
-                                  @foreach($category as $category_1)
-                                    @if($category_1->boolIsActive == 1)  
-                                      <option value="{{ $category_1->strGarmentCategoryID }}">{{ $category_1->strGarmentCategoryName }}</option>
-                                    @endif
-                                  @endforeach
-                              </select>    
-                          </div>        
-                
-                          <div class="input-field col s6">                                                    
+                      <div class = "col s12" style="padding:15px;  border:3px solid white;">       
+                           <div class="input-field col s6">                                                    
                             <select class="browser-default" required id="strMeasSegmentFK" name="strMeasSegmentFK">
                                 @foreach($segment as $segment_1)
                                   @if($segment_1->boolIsActive == 1)
