@@ -114,8 +114,9 @@
                     <th data-field="name">Segment 3</th>
                     <th data-field="name">Segment 4</th>
                     <th data-field="name">Segment 5</th>
+                     <th data-field="price">Package Price:</th>
                     <th data-field="days">Production Time (Days)</th>
-                    <th data-field="name">Image</th>
+                    <th data-field="image">Image</th>
                     <th data-field="address">Description</th>
                     <th data-field="Edit">Actions</th>
                   </tr>
@@ -131,6 +132,7 @@
                     <td>{{ $packages->strSegmentName3 }}</td>
                     <td>{{ $packages->strSegmentName4 }}</td>
                     <td>{{ $packages->strSegmentName5 }}</td>
+                    <td>{{ $packages->dblPackagePrice }}</td>
                     <td> {{ $packages->intPackageMinDays }}</td>
                     <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($packages->strPackageImage)}}"></td>
                     <td>{{ $packages->strPackageDesc }}</td>

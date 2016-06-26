@@ -18,7 +18,6 @@ class MaterialZipperSeeder extends Seeder
             array(
                 'intZipperID' => '001',
                 'strZipperBrand' => 'Zigzag',
-                'strZipperSize' => 'Small',
                 'strZipperColor' => 'Gray',
                 'txtZipperDesc' => 'For Pants',
                 'strZipperImage' => '',
@@ -28,7 +27,6 @@ class MaterialZipperSeeder extends Seeder
             array(
                 'intZipperID' => '002',
                 'strZipperBrand' => 'Straight',
-                'strZipperSize' => 'Medium',
                 'strZipperColor' => 'Blue',
                 'txtZipperDesc' => 'Zipper for pockets',
                 'strZipperImage' => '',

@@ -11,6 +11,20 @@
           </div>
         </div>
       @endif
+
+       <!-- Errors -->
+        @if ($errors->any())
+           <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red">
+              <span class="black-text" style="color:black"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </div>
+          </div>
+        </div>
+      @endif
   
  <!--Add Fabric-->
         @if(Session::has('flash_message'))
@@ -106,7 +120,6 @@
                       <tr>
                         <!--<th date-field= "Zipper ID">Zipper ID</th>-->
                         <th data-field="Zipper Brand">Zipper Brand</th>
-                        <th data-field="Zipper Size">Zipper Size</th>
                         <th data-field="Zipper Color">Zipper Color</th>
                         <th data-field="Zipper Desc">Description</th>
                         <th data-field="ZipperImage">Image</th>
@@ -121,7 +134,6 @@
                       <tr>
                         <!--<td>{{$zipper->strMaterialZipperID}}</td>-->
                         <td>{{$zipper->strZipperBrand}}</td>
-                        <td>{{$zipper->strZipperSize}}</td>
                         <td>{{$zipper->strZipperColor}}</td>
                         <td>{{$zipper->txtZipperDesc}}</td>
                         <td><img class="materialboxed" width="650" src="{{URL::asset($zipper->strZipperImage)}}"></td>
@@ -147,11 +159,6 @@
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                                <div class="input-field col s6">
-                                  <input required id="editZipperSize" name = "editZipperSize" value = "{{$zipper->strZipperSize}}" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
-                                  <label for="Zipper_Size"> Zipper Size <span class="red-text"><b>*</b></span></label>
-                                </div>
-
                                 <div class="input-field col s6">
                                   <input required id="editZipperColor" name = "editZipperColor" value = "{{$zipper->strZipperColor}}" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                                   <label for="Zipper_Color"> Zipper Color <span class="red-text"><b>*</b></span></label>
@@ -207,10 +214,6 @@
                               </div>
 
                               <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                                  <div class="input-field col s6">
-                                    <label for="Zipper_Size">Zipper Size </label>
-                                    <input value="{{$zipper->strZipperSize}}" id="delZipperSize" name="delZipperSize" type="text" readonly>
-                                  </div>
 
                                   <div class="input-field col s6">
                                     <label for="Zipper_Color">Zipper Color </label>
@@ -283,11 +286,6 @@
       </div>
 
       <div class = "col s12" style="padding:15px;  border:3px solid white;">
-        <div class="input-field col s6">
-          <input required id="strZipperSize" name = "strZipperSize" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
-          <label for="Zipper_Size"> Zipper Size <span class="red-text"><b>*</b></span></label>
-        </div>
-
         <div class="input-field col s6">
           <input required id="strZipperColor" name = "strZipperColor" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
           <label for="Zipper_Color"> Zipper Color <span class="red-text"><b>*</b></span></label>
