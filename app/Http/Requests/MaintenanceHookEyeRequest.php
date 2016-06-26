@@ -3,12 +3,11 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
-
 use Illuminate\Contracts\Validation\Validator;
 
-class GarmentCategoryRequest extends Request
+class MaintenanceHookEyeRequest extends Request
 {
-    /**
+/**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
@@ -23,22 +22,24 @@ class GarmentCategoryRequest extends Request
      *
      * @return array
      */
-    public function rules()
+     public function rules()
     {
         return [
-            'strGarmentCategoryName'    =>  'required|unique:tblGarmentCategory,strGarmentCategoryName'
+            'strHookBrand'    =>  'required|unique_with:tblHookEye,strHookColor,strHookSize',
+            // 'editThreadBrand'   =>  'unique:tblThread,strThreadBrand'
         ];
     }
 
     public function messages()
     {
         return [
-
-            'strGarmentCategoryName.unique'  =>  'Garment already exists.',
-            'strGarmentCategoryName.required'  =>  'Garment name is required.'
-            
+            'strHookBrand.unique'  =>  'Hook and eye already exists.',
+            'strHookBrand.required' => 'Hook and eye name is required.'
+            // 'editThreadBrand.unique'  => 'Thread name already exists.'
         ];
+
     }
+
 
     protected function formatErrors(Validator $validator)
     {

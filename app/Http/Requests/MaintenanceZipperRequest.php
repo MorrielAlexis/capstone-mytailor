@@ -25,7 +25,7 @@ class MaintenanceZipperRequest extends Request
      public function rules()
     {
         return [
-            'strZipperBrand'    =>  'required|unique_with:tblZipper,strZipperColor'
+            'strZipperBrand'    =>  'required|unique_with:tblZipper,strZipperColor,strZipperSize'
             // 'editThreadBrand'   =>  'unique:tblThread,strThreadBrand'
         ];
     }
