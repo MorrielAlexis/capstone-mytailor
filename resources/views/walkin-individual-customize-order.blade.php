@@ -126,13 +126,12 @@
 													<div id="editDesign" class="modal modal-fixed-footer">
 														<h5><font color = "#1b5e20"><center>List of Available Designs</center> </font> </h5>
                         
-									                    {!! Form::open() !!} 
-														@foreach($patterns as $pattern)
+									                      {!! Form::open() !!} 
 									                        <div class="divider" style="height:2px"></div>
 									                        <div class="modal-content col s12">
 									                        	<div class="col s1" style="margin-top:60px">
-									                        		<input name="garmentDesign" type="radio" class="filled-in" id="segment-pattern[]" />
-									                        		<label for="segment-pattern[]"></label>
+									                        		<input name="garmentDesign" type="radio" class="filled-in" id="pattern1" />
+									                        		<label for="pattern1"></label>
 									                        	</div>
 									                        	 <div class="col s11">
 															        <div class="card-panel grey lighten-5 z-depth-1">
@@ -141,7 +140,10 @@
 															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
 															            </div>
 															            <div class="col s7"> 
-															              <p>{{ $pattern->strSegPName }}</p> <!-- This will be the name of the pattern -->
+															              <p>STRAIGHT-CUT</p> <!-- This will be the name of the pattern -->
+															              <span class="black-text">
+															                This is a square image. Add the "circle" class to it to make it appear circular.
+															              </span>
 															            </div>
 															          </div>
 															        </div>
@@ -149,8 +151,8 @@
 
 															<div style="margin:570px"></div>
 															</div>
-														@endforeach
-														
+
+
 														<div class="modal-footer col s12">
 															<a href="{{URL::to('transaction/walkin-individual-catalogue-designs')}}" class="left btn-flat" style="background-color:teal; color:white">Check designs from catalogue</a>
 								                          	<a class="right waves-effect waves-green btn-flat">OK</a>
@@ -176,8 +178,8 @@
                      							@foreach($fabrics as $fabric)
 									                        <div class="modal-content col s12">
 									                        	<div class="col s1" style="margin-top:60px">
-									                        		<input name="garmentFabrics" type="radio" class="filled-in" id="fabric-type[]" />
-									                        		<label for="fabric-type[]"></label>
+									                        		<input name="garmentFabrics" type="radio" class="filled-in" id="fabric1" />
+									                        		<label for="fabric1"></label>
 									                        	</div>
 									                        	 <div class="col s11">
 															        <div class="card-panel grey lighten-5 z-depth-1">
@@ -186,14 +188,13 @@
 															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
 															            </div>
 															            <div class="col s7"> 
-															              <p>{{ $fabric->strFabricTypeName }}</p> <!-- This will be the name of the pattern -->
+															              <p>COTTON CHENES</p> <!-- This will be the name of the pattern -->
 															              <span class="black-text">
-															                {{ $fabric->txtFabricTypeDesc }}
+															                This is a square image. Add the "circle" class to it to make it appear circular.
 															              </span>
 															            </div>
 															          </div>
 															        </div>
-															        <br>
 															      </div>
 
 															<div style="margin:570px"></div>
@@ -277,7 +278,6 @@
 @section('scripts')
 
 	<script>
-
 	  $(document).ready(function() {
 	    $('select').material_select();
 		$('.tooltipped').tooltip({delay: 50});
