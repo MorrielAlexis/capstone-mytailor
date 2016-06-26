@@ -127,7 +127,6 @@
 					if(a[i].id == b[j].id){
 						if($('#' + a[i].id).is(":checked")){
 							$('.' + b[j].id).removeAttr('disabled');
-							$('.' + b[j].id).val(1);
 						}else{
 							$('.' + b[j].id).attr('disabled', true);
 							$('.' + b[j].id).val('');

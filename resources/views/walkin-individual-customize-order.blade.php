@@ -43,7 +43,7 @@
 													                  <th data-field="design">Design</th>
 													                  <th data-field="fabric">Fabric</th>
 													                  <th data-field="price">Unit Price</th>
-													                  <th data-field="price">Total Price</th>
+													                  <!--<th data-field="price">Total Price</th>-->
 													              	</tr>
 												              	</thead>
 												              	<tbody>
@@ -54,7 +54,7 @@
 														               <td>No-fit</td>
 														               <td>Traditional Cotton</td>
 														               <td> {{ number_format($segment->dblSegmentPrice, 2) }} PHP</td>
-														               <td>800.00 PHP</td>
+														               <!--<td> </td>-->
 														            </tr>
 																	@endforeach
 														        </tbody>
@@ -65,8 +65,8 @@
 											      		<div class="divider"></div>
 
 												      	<div class="col s12" style="margin-bottom:50px" >
-															<div class="col s6"><p style="color:gray">Estimated time to finish all orders:<p style="color:black">10 days</p></p></div>
-															<div class="col s6"><p style="color:gray">Total Amount to Pay:<p style="color:black">1,650.00 PHP</p></p></div>
+															<div class="col s6"><p style="color:gray">Estimated time to finish all orders:<p style="color:black" id="total-time"></p></p></div>
+															<div class="col s6"><p style="color:gray">Total Amount to Pay:<p style="color:black" id="total-price"></p></p></div>
 														</div>
 													</div>
 
@@ -230,9 +230,11 @@
 
 									<div class="col s4" style="color:teal;"><p><b>Price starts from:</b></p></div>
 									<div class="col s8" style="color:red"><p>{{ number_format($segment->dblSegmentPrice, 2) }} PHP</p></div>
+									<input type="hidden" class="price-per-segment" id="{{ $segment->dblSegmentPrice }}">
 
 									<div class="col s4" style="color:teal;"><p><b>Time to finish(min):</b></p></div>
-									<div class="col s8" style="color:red"><p>{{ $segment->intMinDays }} days</p></div>
+									<div class="col s8 " style="color:red" ><p>{{ $segment->intMinDays }} days</p></div>
+									<input type="hidden" class="time-to-finish" id="{{ $segment->intMinDays }}">
 								</div>
 
 							</div>
@@ -276,6 +278,26 @@
 @stop
 
 @section('scripts')
+	
+	<script>
+		$(document).ready(function(){
+			var a = document.getElementsByClassName('time-to-finish');
+			var b = document.getElementsByClassName('price-per-segment');
+
+			var totalTime = 0;
+			var totalAmount = 0.0;
+
+			for(var i = 0; i < a.length; i++){
+				totalTime += parseInt(a[i].id);
+				totalAmount += parseFloat(b[i].id);
+			}
+
+			$('#total-time').text(totalTime + ' days');  
+			$('#total-price').text(totalAmount.toFixed(2) + ' PHP')
+
+		});
+
+	</script>
 
 	<script>
 	  $(document).ready(function() {
