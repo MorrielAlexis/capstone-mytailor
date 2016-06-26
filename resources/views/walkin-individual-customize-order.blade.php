@@ -174,9 +174,9 @@
                      								<h5><font color = "#1b5e20"><center>List of Available Fabrics</center> </font> </h5>
                         
 									                      {!! Form::open() !!} 
-									                        <div class="divider" style="height:2px"></div>
-                     							@foreach($fabrics as $fabric)
+									                        <div class="divider" style="height:2px"></div>				
 									                        <div class="modal-content col s12">
+									                        	@foreach($fabrics as $fabric)
 									                        	<div class="col s1" style="margin-top:60px">
 									                        		<input name="garmentFabrics" type="radio" class="filled-in" id="fabric1" />
 									                        		<label for="fabric1"></label>
@@ -196,12 +196,11 @@
 															          </div>
 															        </div>
 															      </div>
-
-															<div style="margin:570px"></div>
+															@endforeach
+															<div style="margin:50px"></div>
+															
 															</div>
-												@endforeach
-
-
+												
 														<div class="modal-footer col s12" >
 								                          <a  class="right waves-effect waves-green btn-flat">OK</a>
 								                          <a  class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
