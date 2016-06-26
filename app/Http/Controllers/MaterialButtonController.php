@@ -58,7 +58,7 @@ class MaterialButtonController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MaterialButtonRequest $request)
+    public function store(MaintenanceButtonRequest $request)
     {
          $file = $request->input('addImage');
         $destinationPath = 'imgMaterialButtons';

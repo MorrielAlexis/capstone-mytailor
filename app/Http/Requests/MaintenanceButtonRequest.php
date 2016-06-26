@@ -24,7 +24,7 @@ class MaintenanceButtonRequest extends Request
     public function rules()
     {
         return [
-            'strButtonBrand'    =>  'required|unique_with:tblButton,strButtonSize'
+            'strButtonBrand'    =>  'required|unique_with:tblButton,strButtonSize,strButtonColor'
             // 'editThreadBrand'   =>  'unique:tblThread,strThreadBrand'
         ];
     }

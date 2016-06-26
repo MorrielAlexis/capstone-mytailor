@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\HookAndEye;
 
 use App\Http\Requests;
+use App\Http\Requests\MaintenanceHookEyeRequest;
 use App\Http\Controllers\Controller;
 
 class MaterialHookAndEyeController extends Controller
@@ -57,7 +58,7 @@ class MaterialHookAndEyeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MaintenanceHookEyeRequest $request)
     {
        
        $file = $request->input('addImage');
