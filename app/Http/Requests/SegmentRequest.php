@@ -26,8 +26,8 @@ class SegmentRequest extends Request
     public function rules()
     {
         return [
-            'addSegmentName'    =>  'unique:tblSegment,strSegmentName',
-             'addImg'    =>  'image'
+            'strSegmentName'    =>  'required|unique_with:tblSegment,strSegCategoryFK'
+    
         ];
     }
 
@@ -35,10 +35,8 @@ class SegmentRequest extends Request
     {
         return [
 
-            'addSegmentName.unique'  =>  'Segment already exists.',
-            'addImg.image'  =>  'The file you uploaded is not an image.'
-           
-            // 'strSegmentName.required'  =>  'Segment name is required.'
+            'strSegmentName.unique'  =>  'Segment already exists.',
+            'strSegmentName.required'  =>  'Segment name is required.'
            
            
         ];
