@@ -146,7 +146,7 @@
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;"> 
 
-                          <div class="input-field col s6">                                                   
+                          <div class="input-field col s12">                                                   
                             <select class="browser-default editSegment" id="{{ $pattern->strSegPatternID }}" name='editSegment'>
                                   @foreach($segment as $segment_1)
                                     @if($pattern->strSegPNameFK == $segment_1->strSegmentID && $segment_1->boolIsActive == 1)
@@ -256,7 +256,7 @@
                 <input value = "{{$newID}}" id="strSegPatternID" name= "strSegPatternID" type="hidden">
 
             <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                <div class="input-field col s6">
+                <div class="input-field col s12">
                   <select class="browser-default" required id="strSegPNameFK" name="strSegPNameFK">
                         @foreach($segment as $segment)
                           @if($segment->boolIsActive == 1)
@@ -308,7 +308,7 @@
 @section('scripts')
     <script src="js/jquery-1.12.0.min.js"></script>
     <script src="js/jquery-migrate-1.2.1.min.js"></script>
-    <script>
+    {{-- <script>
       // $(document).ready() executes this script AFTER the whole page loads
       $(document).ready(function () {
 
@@ -362,7 +362,7 @@
           if (defaultType != '') typesElement.val(defaultType);
         }
       });
-    </script>
+    </script> --}}
     
     <script>
     $(document).ready(function () {
