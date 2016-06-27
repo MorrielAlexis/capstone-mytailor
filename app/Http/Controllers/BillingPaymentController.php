@@ -30,6 +30,7 @@ class BillingPaymentController extends Controller
         return view('transaction-billingpayment-billcustomer');
     }
 
+
     /**
      * Show the form for creating a new resource.
      *

@@ -193,6 +193,7 @@ Route::group(['prefix' => 'transaction'], function(){
 Route::group(['prefix' => 'transaction'], function(){
 	Route::resource('billing-payment', 'BillingPaymentController',
 		['only' => ['index']]);
+
 	Route::resource('billing-collection', 'BillingCollectionController',
 		['only' => ['index']]);
 });
@@ -268,3 +269,4 @@ Route::group(['prefix' => 'transaction'], function(){
 
 
 Route::get('pdf', 'PdfController@invoice');
+Route::get('billing/pdf', 'BillingPaymentController@generatePdf');
