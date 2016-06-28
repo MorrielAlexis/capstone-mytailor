@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use Illuminate\Contracts\Validation\Validator;
 
 class MaintenanceSwatchesRequest extends Request
 {
@@ -13,7 +14,7 @@ class MaintenanceSwatchesRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,10 +22,31 @@ class MaintenanceSwatchesRequest extends Request
      *
      * @return array
      */
-    public function rules()
+     public function rules()
     {
         return [
-            //
+            'strSwatchCode' => 'required|unique_with:tblSwatch,strSwatchTypeFK,
+strSwatchNameFK'
+            
+            
         ];
+    }
+
+    public function messages()
+    {
+        return [
+            'strSwatchCode.unique'  =>  'Swatch code already exists.',
+            'strSwatchCode.required'  =>  'Swatch code is required.'
+            
+            
+            
+        ];
+
+    }
+
+    protected function formatErrors(Validator $validator)
+    {
+        return $validator->errors()->all();
+
     }
 }

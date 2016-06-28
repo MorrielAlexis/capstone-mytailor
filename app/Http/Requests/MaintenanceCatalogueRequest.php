@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Requests;
+use Illuminate\Contracts\Validation\Validator;
 
 use App\Http\Requests\Request;
 
@@ -13,7 +14,7 @@ class MaintenanceCatalogueRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,10 +22,30 @@ class MaintenanceCatalogueRequest extends Request
      *
      * @return array
      */
-    public function rules()
+   public function rules()
     {
         return [
-            //
+            'strCatalogueName' => 'required|unique_with:tblCatalogue,strCatalogueCategoryFK'
+            
+            
         ];
+    }
+
+    public function messages()
+    {
+        return [
+            'strCatalogueName.unique'  =>  'Catalogue name already exists.',
+            'strCatalogueName.required'  =>  'Catalogue name is required.'
+            
+            
+            
+        ];
+
+    }
+
+    protected function formatErrors(Validator $validator)
+    {
+        return $validator->errors()->all();
+
     }
 }
