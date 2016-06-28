@@ -3,6 +3,9 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use Illuminate\Contracts\Validation\Validator;
+
+
 
 class MaintenanceSwatchNameRequest extends Request
 {
@@ -13,7 +16,7 @@ class MaintenanceSwatchNameRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,10 +24,30 @@ class MaintenanceSwatchNameRequest extends Request
      *
      * @return array
      */
-    public function rules()
+   public function rules()
     {
         return [
-            //
+            'strSName' => 'required|unique_with:tblSwatchName,strSwatchNameTypeFK'
+            
+            
         ];
+    }
+
+    public function messages()
+    {
+        return [
+            'strSName.unique'  =>  'Swatch name already exists.',
+            'strSName.required'  =>  'Swatch name name is required.'
+            
+            
+            
+        ];
+
+    }
+
+    protected function formatErrors(Validator $validator)
+    {
+        return $validator->errors()->all();
+
     }
 }

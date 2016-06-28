@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\FabricType;
 use App\Http\Requests;
+use App\Http\Requests\MaintenanceFabricTypeRequest;
 use App\Http\Controllers\Controller;
 
 class FabricTypeController extends Controller
@@ -59,7 +60,7 @@ class FabricTypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MaintenanceFabricTypeRequest $request)
     {
         $fabrics = FabricType::get();
 

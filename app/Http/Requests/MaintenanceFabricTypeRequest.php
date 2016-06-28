@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use Illuminate\Contracts\Validation\Validator;
 
 class MaintenanceFabricTypeRequest extends Request
 {
@@ -13,7 +14,7 @@ class MaintenanceFabricTypeRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,25 @@ class MaintenanceFabricTypeRequest extends Request
     public function rules()
     {
         return [
-            //
+            'strFabricTypeName'    =>  'required|unique:tblFabricType,strFabricTypeName'
+            // 'strFabricTypeName' => 'regex:/^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?/''
         ];
+    }
+
+    public function messages()
+    {
+        return [
+
+            'strFabricTypeName.unique'  =>  'Fabric type already exists.',
+            'strFabricTypeName.required'  =>  'Fabric type name is required.',
+            'strFabricTypeName.regex'     =>  'Invalid garment name format.'
+            
+        ];
+    }
+
+    protected function formatErrors(Validator $validator)
+    {
+        return $validator->errors()->all();
+
     }
 }

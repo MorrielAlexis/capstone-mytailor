@@ -27,7 +27,7 @@ class GarmentCategoryRequest extends Request
     {
         return [
             'strGarmentCategoryName'    =>  'required|unique:tblGarmentCategory,strGarmentCategoryName',
-            'strGarmentCategoryName' => 'regex:/^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?/''
+            // 'strGarmentCategoryName' => 'regex:/^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?/''
         ];
     }
 
