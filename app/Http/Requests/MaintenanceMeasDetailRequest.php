@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use Illuminate\Contracts\Validation\Validator;
 
 class MaintenanceMeasDetailRequest extends Request
 {
@@ -13,7 +14,7 @@ class MaintenanceMeasDetailRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,27 @@ class MaintenanceMeasDetailRequest extends Request
     public function rules()
     {
         return [
-            //
+            'strMeasurementDetailName' => 'required|unique:tblMeasurementDetail,strMeasurementDetailName'
+            
+            
         ];
+    }
+
+    public function messages()
+    {
+        return [
+            'strMeasurementDetailName.unique'  =>  'Measurement detail name already exists.',
+            'strMeasurementDetailName.required'  =>  'Measurement detail name is required.'
+            
+            
+            
+        ];
+
+    }
+
+    protected function formatErrors(Validator $validator)
+    {
+        return $validator->errors()->all();
+
     }
 }

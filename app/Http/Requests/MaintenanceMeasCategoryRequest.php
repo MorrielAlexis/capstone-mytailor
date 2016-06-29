@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use Illuminate\Contracts\Validation\Validator;
+
 
 class MaintenanceMeasCategoryRequest extends Request
 {
@@ -13,7 +15,7 @@ class MaintenanceMeasCategoryRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +26,26 @@ class MaintenanceMeasCategoryRequest extends Request
     public function rules()
     {
         return [
-            //
+            'strMeasDetFK' => 'required|unique_with:tblMeasurementCategory,strMeasSegmentFK'
+            
+            
         ];
     }
-}
+
+    public function messages()
+    {
+        return [
+            'strMeasDetFK.unique'  =>  'Measurement detail name already exists.',
+            'strMeasDetFK.required'  =>  'Measurement detail name is required.'
+            
+            
+            
+        ];
+
+    }
+
+    protected function formatErrors(Validator $validator)
+    {
+        return $validator->errors()->all();
+
+    }

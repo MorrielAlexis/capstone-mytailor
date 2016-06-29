@@ -10,6 +10,7 @@ use App\GarmentSegment;
 use App\MeasurementDetail;
 
 use App\Http\Requests;
+use App\Http\Requests\MaintenanceMeasCategoryRequest;
 use App\Http\Controllers\Controller;
 
 class MeasurementCategoryController extends Controller
@@ -76,7 +77,7 @@ class MeasurementCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MaintenanceMeasCategoryRequest $request)
     {
         $meas_category = MeasurementCategory::create(array(
                 'strMeasCatID' => $request->input('strMeasCatID'),

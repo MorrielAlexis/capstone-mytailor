@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\MeasurementDetail;
 use App\Http\Requests;
+use App\Http\Requests\MaintenanceMeasDetailRequest;
 use App\Http\Controllers\Controller;
 
 class MeasurementDetailController extends Controller
@@ -44,7 +45,7 @@ class MeasurementDetailController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(MaintenanceMeasDetailRequest $request)
     {
 
              $det = MeasurementDetail::get();
