@@ -79,7 +79,7 @@
 
               <div class="col s12 m12 l12 overflow-x">
 
-       				<table class = "table centered data-swatchName" align = "center" border = "1">
+       				<table class = "table centered data-swatchname" align = "center" border = "1">
                 <thead>
                   <tr>
               		  <!--<th data-field="fabricID">Fabric Type ID</th>-->
@@ -326,7 +326,7 @@
 
       $(document).ready(function() {
 
-          $('.data-fabricName').DataTable();
+          $('.data-swatchname').DataTable();
           $('select').material_select();
 
           setTimeout(function () {
