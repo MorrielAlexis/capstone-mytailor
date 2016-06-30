@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use Illuminate\Contracts\Validation\Validator;
 
 class MaintenancePackagesRequest extends Request
 {
@@ -13,7 +14,7 @@ class MaintenancePackagesRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,10 +22,28 @@ class MaintenancePackagesRequest extends Request
      *
      * @return array
      */
-    public function rules()
+      public function rules()
     {
         return [
-            //
+            'strPackageName'    =>  'required'
+            // 'strGarmentCategoryName' => 'regex:/^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?/''
         ];
+    }
+
+    public function messages()
+    {
+        return [
+
+            // 'strPackageName.unique'  =>  'Garment already exists.',
+            'strPackageName.required'  =>  'Garment name is required.'
+           
+            
+        ];
+    }
+
+    protected function formatErrors(Validator $validator)
+    {
+        return $validator->errors()->all();
+
     }
 }

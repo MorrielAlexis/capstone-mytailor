@@ -13,6 +13,20 @@
         </div>
       @endif
 
+      <!-- Errors -->
+        @if ($errors->any())
+           <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red">
+              <span class="black-text" style="color:black"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </div>
+          </div>
+        </div>
+      @endif
+
       <!--Add -->
         @if(Session::has('flash_message'))
         <div class="row" id="flash_message">
@@ -152,7 +166,7 @@
 
                               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input required value="{{ $packages->strPackageName }}" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" id="editPackageName" name= "editPackageName" type="text" class="validate">
+                                <input required value="{{ $packages->strPackageName }}" pattern="^[a-zA-Z\-'`\s]{2,}$" id="editPackageName" name= "editPackageName" type="text" class="validate">
                                 <label for="segment_name">Package Name <span class="red-text"><b>*</b></span></label>
                     <span id="left"></span></label>
                               </div>
@@ -234,16 +248,18 @@
                               </div>  
                           </div> 
 
-                          <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                          <div class="input-field col s12">
-                            <input required value = "{{ $packages->strPackageDesc }}" id="editPackageDesc" name= "editPackageDesc" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$">
-                            <label for="package_name">Package Description </label>
-                          </div>
-                      </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input required value = "{{ $packages->intPackageMinDays }}" id="editPackageMinDays" name= "editPackageMinDays" type="text" class="validate" required data-position="bottom" pattern="^[0-9]*$" maxlength="2">
+                            <input required value = "{{ $packages->dblPackagePrice }}" id="editPackagePrice" name= "editPackagePrice" type="text" class="validate"  data-position="bottom" pattern="^[1-9]\d{0,7}(?:\.\d{1,4})?|\.\d{1,4}$" minlength="2">
+                            <label for="days">Package Price:</label>
+                          </div>
+                      </div>
+                      
+
+                      <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                          <div class="input-field col s12">
+                            <input required value = "{{ $packages->intPackageMinDays }}" id="editPackageMinDays" name= "editPackageMinDays" type="text" class="validate"  data-position="bottom" pattern="^[0-9]*$" maxlength="2">
                             <label for="days">Production Time (Days):</label>
                           </div>
                       </div>
@@ -263,7 +279,7 @@
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                               <div class="input-field col s12">
-                                <input  value="{{ $packages->strPackageDesc }}" id="editPackageDesc" name = "editPackageDesc" type="text" class="validate">
+                                <input  value="{{ $packages->strPackageDesc }}" id="editPackageDesc" name = "editPackageDesc" type="text" class="validate" >
                                <label for="package_description">Package Description</label>
                               </div>
                           </div>
@@ -350,7 +366,7 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input required id="strPackageName" name= "strPackageName" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" class="active"  >
+                        <input required id="strPackageName" name= "strPackageName" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" class="active"  >
                         <label for="segment_name">Package Name<span class="red-text"><b>*</b></span></label>
                       </div>
                   </div>
@@ -419,6 +435,13 @@
                         </select> 
                       </div>  
                   </div>
+
+                  <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                          <div class="input-field col s12">
+                            <input required  id="dblPackagePrice" name= "dblPackagePrice" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" minlength="2">
+                            <label for="days">Package Price:</label>
+                          </div>
+                      </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
