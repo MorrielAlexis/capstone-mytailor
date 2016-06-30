@@ -438,14 +438,14 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input required  id="dblPackagePrice" name= "dblPackagePrice" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" minlength="2">
+                            <input required  id="dblPackagePrice" name= "dblPackagePrice" type="text" class="validate"  data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" minlength="2">
                             <label for="days">Package Price:</label>
                           </div>
                       </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input required  id="intPackageMinDays" name= "intPackageMinDays" type="text" class="validate" required data-position="bottom" pattern="^[0-9]*$" maxlength="2">
+                            <input required  id="intPackageMinDays" name= "intPackageMinDays" type="text" class="validate"  data-position="bottom" pattern="^[0-9]*$" maxlength="2">
                             <label for="days">Production Time (Days):</label>
                           </div>
                   </div>
