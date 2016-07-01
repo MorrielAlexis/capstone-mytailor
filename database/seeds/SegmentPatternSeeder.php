@@ -19,6 +19,7 @@ class SegmentPatternSeeder extends Seeder
                 'strSegPatternID' => 'SPAT001',
                 'strSegPNameFK' => 'SEGM001',
                 'strSegPName' =>'Pencil Cut',
+                'strSegPDesc' => '',
                 'strSegPImage' => '',
                 'boolIsActive' => '1'
             ),
@@ -27,6 +28,7 @@ class SegmentPatternSeeder extends Seeder
                 'strSegPatternID' => 'SPAT002',
                 'strSegPNameFK' => 'SEGM002',
                 'strSegPName'=>'Slim Fit',
+                'strSegPDesc' => '',
                 'strSegPImage' => '',
                 'boolIsActive' => '1'
             )

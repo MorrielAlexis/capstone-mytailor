@@ -25,7 +25,7 @@ class SegmentPatternRequest extends Request
     public function rules()
     {
         return [
-            'strSegPName' => 'required|unique_with:tblSegmentPattern,strSegPNameFK',
+            'strSegPName' => 'unique_with:tblSegmentPattern,strSegPNameFK',
             'strSegPImage' => 'image'
             
         ];
@@ -35,7 +35,7 @@ class SegmentPatternRequest extends Request
     {
         return [
             'strSegPName.unique'  =>  'Pattern already exists.',
-            'strSegPName.required'  =>  'Pattern name is required.',
+            // 'strSegPName.required'  =>  'Pattern name is required.',
             'strSegPImage.image' => 'The file you uploaded is not an image.'
             
             
