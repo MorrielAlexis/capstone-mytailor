@@ -15,11 +15,16 @@ class CreateTblAlteration extends Migration
         Schema::create('tblAlteration', function (Blueprint $table) {
             $table->string('strAlterationID')->primary();
             $table->string('strAlterationName');
+            $table->string('strAlterationSegmentFK')->index();//fk
             $table->text('txtAlterationDesc')->nullable();
             $table->double('dblAlterationPrice');
             $table->string('strAlterationInactiveReason')->nullable();
             $table->boolean('boolIsActive');
             $table->timestamps();
+
+            $table->foreign('strAlterationSegmentFK')
+                  ->references('strSegmentID')
+                  ->on('tblSegment');
         });
     }
 

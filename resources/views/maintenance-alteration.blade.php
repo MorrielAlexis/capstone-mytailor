@@ -86,6 +86,7 @@
                   <tr>
               		  <!--<th data-field="fabricID">Fabric Type ID</th>-->
                     <th data-field="alterationName">Name</th>
+                     <th data-field="alterationDescription">Segment</th>
               		  <th data-field="alterationDescription">Description</th>
                     <th data-field="alterationPrice">Price</th>
                     <th data-field="Edit">Actions</th>
@@ -98,8 +99,8 @@
                   @foreach($alteration as $alteration)
                     @if($alteration->boolIsActive == 1)
                   <tr>
-              		 
                     <td>{{$alteration->strAlterationName}}</td>
+                    <td>{{$alteration->strSegmentName}}</td>
               		  <td>{{$alteration->txtAlterationDesc}}</td>
                     <td>{{"Php" . $alteration->dblAlterationPrice}}</td>
               		  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of alteration name" href="#edit{{$alteration->strAlterationID}}"><i class="mdi-editor-mode-edit"></i></a>
@@ -118,7 +119,7 @@
 
                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input required value = "{{$alteration->strAlterationName}}" id="editAlterationName" name = "editAlterationName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
+                            <input required value = "{{$alteration->strAlterationName}}" id="editAlterationName" name = "editAlterationName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s\d]{2,}${{-- ^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)? --}}" >
                             <label for="alteration_name">Alteration Name <span class="red-text"><b>*</b></span> </label>
                           </div>
                         </div>
@@ -222,7 +223,7 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input required id="strAlterationName" name = "strAlterationName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?"  placeholder="Skinny Cut">
+                        <input required id="strAlterationName" name = "strAlterationName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s\d]{2,}$"  placeholder="Skinny Cut">
                         <label for="alteration_name">Alteration Name <span class="red-text"><b>*</b></span></label>
                       </div>
                   </div>    

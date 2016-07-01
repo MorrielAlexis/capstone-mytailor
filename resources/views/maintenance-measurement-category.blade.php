@@ -305,7 +305,7 @@
     <script src="js/jquery-1.12.0.min.js"></script>
     <script src="js/jquery-migrate-1.2.1.min.js"></script>
 
-    <script>
+    {{-- <script>
       // $(document).ready() executes this script AFTER the whole page loads
       $(document).ready(function () {
         // Get jQuery object for element with ID as 'category' (first select element)
@@ -358,7 +358,7 @@
           if (defaultType != '') typesElement.val(defaultType);
         }
       });
-    </script>
+    </script> --}}
 
     <script>
     $(document).ready(function () {
