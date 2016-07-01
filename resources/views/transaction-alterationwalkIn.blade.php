@@ -22,25 +22,32 @@
                 <div class="col s6" style="margin-top:10px;">
                       {{-- start of garment category dropdown --}}
                       <div class="input-field col s12" style="padding:20px;">
-                        <select>
-                          <option value="" disabled selected>Choose your garment</option>
-                          <option value="1">Uniform</option>
-                          <option value="2">Gown</option>
-                          <option value="3">Suit</option>
-                        </select>
-                        <label>Garment Type</label>
+                        <select class = "garment-category" id = "garment-category">
+                        <option value="All" class="circle" selected>All</option>
+                        @foreach($categories as $category)
+                          <option value="{{ $category->strGarmentCategoryID }}" class="circle">{{ $category->strGarmentCategoryName }}</option>
+                      @endforeach
+                    </select>
+                        <label><font size="3" color="Red">Choose a garment category</font></label>
                       </div>
                      {{--  end of garment category dropdown --}}
 
                       {{-- < Start of Segment> --}}
                       <div class="input-field col s12" style="padding:20px;">
-                        <select>
-                          <option value="" disabled selected>Choose your segment</option>
-                          <option value="1">Polo</option>
-                          <option value="2">Shorts</option>
-                          <option value="3">Pants</option>
-                        </select>
-                        <label>Garment Segment</label>
+                      <select class = "garment-segment" id = "garment-segment">
+                        <option value="All" class="circle" selected>All</option>
+                        @foreach($alterations  as $alteration )
+                          <option value="{{ $alteration->strAlterationID }}" class="circle">{{ $alteration->strSegmentName }}</option>
+                      @endforeach
+                    </select>
+                         {{--  <select class="alteration-segment"  id="alteration-segment" name="alteration-segment">
+                        @foreach($alterations as $alteration)
+                            <option value="{{ $alteration->strAlterationID }}" class="{{ $alteration->strAlterationSegmentFK }}">{{ $alteration->strSegmentName }}</option>
+                          @endif
+                        @endforeach
+                  </select> --}}
+
+                        <label><font size="3" color="Red">Choose a segment:</font></label>
                       </div>
                       {{-- end of segment dropdown --}}
 
@@ -48,13 +55,13 @@
 
                       {{-- start of alteration dropdown --}}
                         <div class="col s10">
-                            <select multiple>
-                              <option value="" disabled selected>What to alter?</option>
-                              <option value="1">Hem</option>
-                              <option value="2">Slim</option>
-                              <option value="3">Sleeves</option>
-                            </select>
-                            <label>Alteration Type</label>
+                            <select class = "alteration-type" id = "alteration-type">
+                        <option value="All" class="circle" selected>All</option>
+                        @foreach($alterations  as $alteration )
+                          <option value="{{ $alteration->strAlterationID }}" class="circle">{{ $alteration->strAlterationName }}</option>
+                      @endforeach
+                          </select>
+                            <label><font size="3" color="Red">Choose an alteration type:</font></label>
                         </div>
                         {{-- end of alteration dropdown --}}
 
@@ -63,7 +70,8 @@
                         </div>
                       </div>
                 </div>
-                <div class="col s6 container">
+
+                {{-- <div class="col s6 container">
                     <center><img class="responsive-img" src="#!" style="height:250px; width:250px;"></center>
                     <form action="#">
                         <div class="file-field input-field">
@@ -77,7 +85,8 @@
                         </div>
                     </form>
                 </div>
-            
+             --}}
+
             <div class="col s12" style="margin-top:25px;">
               <div class="divider"></div>
               <a class="left btn tooltipped modal-trigger" data-position="bottom" data-delay="50" data-tooltip="Click to reset order" style="margin-top:30px; font-size:15px; color:white; background-color: teal; opacity:0.90" href="#resetOrder">RESET ORDER</a>

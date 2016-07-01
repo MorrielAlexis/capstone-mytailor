@@ -28,6 +28,7 @@ class AlterationWalkInController extends Controller
     public function index()
     {
          $categories = GarmentCategory::all();
+         
          $alterations = \DB::table('tblAlteration AS a')
                     ->leftJoin('tblSegment AS b', 'a.strAlterationSegmentFK', '=', 'b.strSegmentID')
                     ->select('a.*', 'b.strSegmentName') 
