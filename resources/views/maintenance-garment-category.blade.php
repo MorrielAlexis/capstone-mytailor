@@ -175,19 +175,19 @@
                               <div class="modal-content col s12">
                                 
                               <div class="input-field">
-                                <input value="{{ $garment->strGarmentCategoryID }}" id="editGarmentID" name="editGarmentID" type="hidden">
+                                <input value="{{ $garment->strGarmentCategoryID }}" id="strGarmentCategoryID" name="strGarmentCategoryID" type="hidden">
                               </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input required value="{{ $garment->strGarmentCategoryName }}" id="editGarmentName" name="editGarmentName" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2" >
+                                <input required value="{{ $garment->strGarmentCategoryName }}" id="strGarmentCategoryName" name="strGarmentCategoryName" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2" >
                                 <label for="garment_name"> Garment Name   <span class="red-text"><b>*</b></span></label>
                               </div>
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                               <div class="input-field col s12">
-                                <input  value= "{{ $garment->textGarmentCategoryDesc }}" id="editGarmentDescription" name="editGarmentDescription" name="GarmentDescription" type="text" class="validate">
+                                <input  value= "{{ $garment->textGarmentCategoryDesc }}" id="textGarmentCategoryDesc" name="textGarmentCategoryDesc" name="GarmentDescription" type="text" class="validate">
                                 <label for="garment_description"> Garment Desription </label>
                               </div>
                           </div>

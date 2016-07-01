@@ -26,7 +26,7 @@ class GarmentCategoryRequest extends Request
     public function rules()
     {
         return [
-            'strGarmentCategoryName'    =>  'required|unique:tblGarmentCategory',
+            'strGarmentCategoryName'    =>  'unique:tblGarmentCategory',
             // 'strGarmentCategoryName' => 'regex:/^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?/''
         ];
     }
@@ -36,7 +36,7 @@ class GarmentCategoryRequest extends Request
         return [
 
             'strGarmentCategoryName.unique'  =>  'Garment already exists.',
-            'strGarmentCategoryName.required'  =>  'Garment name is required.',
+            // 'strGarmentCategoryName.required'  =>  'Garment name is required.',
             'strGarmentCategoryName.regex'     =>  'Invalid garment name format.'
             
         ];
