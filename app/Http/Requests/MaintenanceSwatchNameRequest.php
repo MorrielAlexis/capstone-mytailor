@@ -36,7 +36,7 @@ class MaintenanceSwatchNameRequest extends Request
     public function messages()
     {
         return [
-            'strSName.unique'  =>  'Swatch name already exists.',
+            'strSName.unique_with'  =>  'Swatch name already exists.',
             'strSName.required'  =>  'Swatch name name is required.'
             
             

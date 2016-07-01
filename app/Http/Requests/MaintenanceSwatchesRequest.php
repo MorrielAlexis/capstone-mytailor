@@ -35,7 +35,7 @@ strSwatchNameFK'
     public function messages()
     {
         return [
-            'strSwatchCode.unique'  =>  'Swatch code already exists.',
+            'strSwatchCode.unique_with'  =>  'Swatch code already exists.',
             'strSwatchCode.required'  =>  'Swatch code is required.'
             
             
