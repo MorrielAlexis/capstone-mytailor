@@ -26,8 +26,8 @@ class SegmentRequest extends Request
     public function rules()
     {
         return [
-            'strSegmentName'    =>  'required|unique_with:tblSegment,strSegCategoryFK'
-    
+            'strSegmentName'    =>  'required|unique_with:tblSegment,strSegCategoryFK',
+            'dblSegmentPrice'   => 'numeric|required'
         ];
     }
 
@@ -35,8 +35,10 @@ class SegmentRequest extends Request
     {
         return [
 
-            'strSegmentName.unique'  =>  'Segment already exists.',
-            'strSegmentName.required'  =>  'Segment name is required.'
+            'strSegmentName.unique_with'  =>  'Segment already exists.',
+            'strSegmentName.required'  =>  'Segment name is required.',
+            'dblSegmentPrice.numeric'     =>  'Invalid price format. Only numbers are allowed.',
+            'dblSegmentPrice.required'     =>  'Segment price is required.'
            
            
         ];

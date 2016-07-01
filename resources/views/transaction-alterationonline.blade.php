@@ -4,10 +4,9 @@
 
 <div class="main-wrapper"  style="margin-top:30px">
 
-	<div class="row">
+  	<div class="row">
       <div class="col s12 m12 l12">
-        <span class="page-title"><center><h3><b>Welcome to <font color="white">MyTailor</font></b></h3></center></span>
-        <center><h5>Online Alteration </h5></center>
+        <span class="page-title"><h4>Online Alteration Customers</h4></span>
       </div>
     </div>
 
@@ -15,7 +14,7 @@
         <div class="col s12 m12 l12">
         	<div class="card-panel">
 
-                <span class="card-title"><h5 style="color:#1b5e20"><center>Alteration Orders</center></h5></span>
+                <span class="card-title"><h5 style="color:#1b5e20"><center>Orders</center></h5></span>
                 <div class="divider" style="margin-bottom:50px;"></div>
 
    		        <div class="row">
@@ -64,7 +63,7 @@
 								<table class="centered">
 								    <tbody>
 								        <tr>
-								        	<td><a class="btn modal-trigger" href="{{URL::to('/acceptIndividual')}}"><i class="mdi-action-done"></i>Accept</a></td>
+								        	<td><a class="btn modal-trigger" href="{{URL::to('/acceptAlteration')}}"><i class="mdi-action-done"></i>Accept</a></td>
 								        	<td><a class="btn modal-trigger" href="#rejectmodal"><i class="mdi-content-clear"></i>Reject</a></td>
 								        </tr>
 								    </tbody>

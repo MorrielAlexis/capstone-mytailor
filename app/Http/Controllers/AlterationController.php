@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Alteration;
+use App\GarmentSegment;
 
 use App\Http\Requests;
 use App\Http\Requests\MaintenanceAlterationRequest;
@@ -36,12 +37,20 @@ class AlterationController extends Controller
 
         $ID = $ids["0"]->strAlterationID;
         $newID = $this->smartCounter($ID);  
-        $alteration = Alteration::all();
+
+        $segment = GarmentSegment::all();
+        $alteration = \DB::table('tblAlteration')
+                    ->join('tblSegment', 'tblAlteration.strAlterationSegmentFK', '=', 'tblSegment.strSegmentID')
+                    ->select('tblAlteration.*','tblSegment.strSegmentName') 
+                    ->orderBy('strAlterationID')
+                    ->get();
+
 
        //  load the view and pass the fabric types
 
          return view('maintenance-alteration')
                     ->with('alteration', $alteration)
+                    ->with('segment', $segment)
                     ->with('newID', $newID);
     
         
@@ -67,6 +76,7 @@ class AlterationController extends Controller
     {
         $alteration = Alteration::create(array(
                 'strAlterationID' => $request->input('strAlterationID'),
+                'strAlterationSegmentFK' => $request->input('strAlterationSegmentFK'),
                 'strAlterationName' =>trim($request->input('strAlterationName')),
                 'txtAlterationDesc' => trim($request->input('txtAlterationDesc')),  
                 'dblAlterationPrice' => trim($request->input('dblAlterationPrice')),  
@@ -130,6 +140,7 @@ class AlterationController extends Controller
         $alteration = Alteration::find($request->input('editAlterationNameID'));
 
                $alteration->strAlterationName = trim($request->input('editAlterationName'));
+               $alteration->strAlterationSegmentFK =  $request->input('editSegment');
                $alteration->txtAlterationDesc = trim($request->input('editAlterationDesc'));
                $alteration->dblAlterationPrice = trim($request->input('editAlterationPrice'));
 

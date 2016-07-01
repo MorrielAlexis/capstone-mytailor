@@ -132,7 +132,7 @@ class SwatchNameController extends Controller
         //
     }
 
-    function update_swatchname(Request $request)
+    function update_swatchname(MaintenanceSwatchNameRequest $request)
     {
          $swatchnamemainte = SwatchNameMaintenance::find($request->input('editSwatchNameID'));
                 $swatchnamemainte->strSwatchNameTypeFK = trim($request->input('editCategory'));

@@ -130,7 +130,7 @@
              		<!--<td>{{ $pattern->strSegPatternID }}</td>-->
                   <td>{{ $pattern->strSegmentName }}</td>
               		<td>{{ $pattern->strSegPName }}</td>
-                  <td>{{ $pattern->strSegPDesc }}</td>
+                  <td>{{ $pattern->txtSegPDesc }}</td>
                   <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($pattern->strSegPImage)}}"></td>
               		<td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of pattern" href="#edit{{ $pattern->strSegPatternID }}"><i class="mdi-editor-mode-edit"></i></a>
                   <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="CLick to remove data of pattern from table" href="#del{{ $pattern->strSegPatternID }}"><i class="mdi-action-delete"></i></a></td>
@@ -171,7 +171,7 @@
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                               <div class="input-field col s12">
-                                <input  value="{{ $pattern->strSegPDesc }}" id="editSegPDesc" name = "editSegPDesc" type="text" class="validate">
+                     <input  value="{{ $pattern->txtSegPDesc }}" id="editSegPDesc" name = "editSegPDesc" type="text" class="validate">
                                <label for="segment_description">Pattern Description</label>
                               </div>
                           </div>
@@ -226,7 +226,7 @@
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s12">
-                          <input value = "{{ $pattern->strSegPDesc }}" type="text" class="validate" readonly>
+                          <input value = "{{ $pattern->txtSegPDesc }}" type="text" class="validate" readonly>
                           <label for="pattern_name">Pattern Description: </label>
                         </div>
                     </div>
@@ -286,11 +286,17 @@
 
             <div class = "col s12" style="padding:15px;  border:3px solid white;">
                 <div class="input-field col s12">
-                  <input required id="strSegPDesc" name= "strSegPDesc" type="text" class="validate"  data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
+                  <input required id="strSegPName" name= "strSegPName" type="text" class="validate"  data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                   <label for="pattern_name">Pattern Name <span class="red-text"><b>*</b></span></label>
-                    <span id="left"></span></label>
                 </div>
             </div>
+
+             <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                        <div class="input-field col s12">
+                          <input id="txtSegPDesc" name="txtSegPDesc" type="text" class="validate" readonly>
+                          <label for="pattern_name">Pattern Description: </label>
+                        </div>
+                    </div>
           
             
 

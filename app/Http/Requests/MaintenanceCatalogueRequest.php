@@ -34,7 +34,7 @@ class MaintenanceCatalogueRequest extends Request
     public function messages()
     {
         return [
-            'strCatalogueName.unique'  =>  'Catalogue name already exists.',
+            'strCatalogueName.unique_with'  =>  'Catalogue name already exists.',
             'strCatalogueName.required'  =>  'Catalogue name is required.'
             
             

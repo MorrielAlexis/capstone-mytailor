@@ -167,9 +167,9 @@ Route::group(['prefix' => 'transaction'], function(){
 });
 
 Route::group(['prefix' => 'transaction'], function(){
-	Route::resource('alterationWalkIn', 'AlterationWalkInController',
+	Route::resource('alteration-walkin', 'AlterationWalkInController',
 		['only' => ['index']]);
-	Route::resource('alterationOnline', 'AlterationOnlineController',
+	Route::resource('alteration-online', 'AlterationOnlineController',
 		['only' => ['index']]);
 });
 
@@ -223,6 +223,7 @@ Route::group(['prefix' => 'utilities'], function(){
 		
 });
 
+Route::get('/acceptAlteration','AlterationOnlineController@accept');
 Route::get('/acceptIndividual','OnlineCustomerIndividualController@accept');
 Route::get('/acceptCompany','OnlineCustomerCompanyController@accept');
 
