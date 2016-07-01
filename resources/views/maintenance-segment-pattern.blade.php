@@ -117,6 +117,7 @@
                   <!--<th data-field= "Catalog ID">Segment Pattern ID</th>-->
               		<th data-field="Garment Name">Segment Name </th>
              		  <th data-field="Pattern Name">Pattern Name</th>
+                  <th data-field="Pattern Image">Pattern Description</th>
               		<th data-field="Pattern Image">Pattern Image</th>
                   <th data-field="Edit">Actions</th>
               	</tr>
@@ -129,6 +130,7 @@
              		<!--<td>{{ $pattern->strSegPatternID }}</td>-->
                   <td>{{ $pattern->strSegmentName }}</td>
               		<td>{{ $pattern->strSegPName }}</td>
+                  <td>{{ $pattern->strSegPDesc }}</td>
                   <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($pattern->strSegPImage)}}"></td>
               		<td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of pattern" href="#edit{{ $pattern->strSegPatternID }}"><i class="mdi-editor-mode-edit"></i></a>
                   <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="CLick to remove data of pattern from table" href="#del{{ $pattern->strSegPatternID }}"><i class="mdi-action-delete"></i></a></td>
@@ -161,10 +163,18 @@
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input required value = "{{ $pattern->strSegPName }}" id="editPatternName" name= "editPatternName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
+                            <input required value = "{{ $pattern->strSegPName }}" id="editPatternName" name= "editPatternName" type="text" class="validate"  data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                             <label for="pattern_name">Pattern Name </label>
                           </div>
                       </div>
+
+
+                      <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
+                              <div class="input-field col s12">
+                                <input  value="{{ $segment->strSegPDesc }}" id="SegmentDesc" name = "editSegmentDesc" type="text" class="validate">
+                               <label for="segment_description">Segment Description</label>
+                              </div>
+                          </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                           <div class="file-field input-field col s12">
@@ -203,14 +213,21 @@
 
                         <div class="input-field col s6">                                                    
                             <input type="text" value="{{$pattern->strSegmentName}}" readonly>
-                          <label>Segment</label>
+                          <label>Segment:</label>
                         </div>  
                     </div> 
   
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s12">
                           <input value = "{{ $pattern->strSegPName }}" type="text" class="validate" readonly>
-                          <label for="pattern_name">Pattern Name </label>
+                          <label for="pattern_name">Pattern Name: </label>
+                        </div>
+                    </div>
+
+                    <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                        <div class="input-field col s12">
+                          <input value = "{{ $pattern->strSegPDesc }}" type="text" class="validate" readonly>
+                          <label for="pattern_name">Pattern Description: </label>
                         </div>
                     </div>
 
@@ -274,6 +291,7 @@
                     <span id="left"></span></label>
                 </div>
             </div>
+          
             
 
             <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
