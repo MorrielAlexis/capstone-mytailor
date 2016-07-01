@@ -20,6 +20,7 @@
 
             <div class="row">
                 <div class="col s6" style="margin-top:10px;">
+                      {{-- start of garment category dropdown --}}
                       <div class="input-field col s12" style="padding:20px;">
                         <select>
                           <option value="" disabled selected>Choose your garment</option>
@@ -29,6 +30,9 @@
                         </select>
                         <label>Garment Type</label>
                       </div>
+                     {{--  end of garment category dropdown --}}
+
+                      {{-- < Start of Segment> --}}
                       <div class="input-field col s12" style="padding:20px;">
                         <select>
                           <option value="" disabled selected>Choose your segment</option>
@@ -38,7 +42,11 @@
                         </select>
                         <label>Garment Segment</label>
                       </div>
+                      {{-- end of segment dropdown --}}
+
                       <div class="input-field col s12" style="padding:20px;">
+
+                      {{-- start of alteration dropdown --}}
                         <div class="col s10">
                             <select multiple>
                               <option value="" disabled selected>What to alter?</option>
@@ -48,6 +56,8 @@
                             </select>
                             <label>Alteration Type</label>
                         </div>
+                        {{-- end of alteration dropdown --}}
+
                         <div class="col s2">
                             <a class="btn modal-trigger tooltipped" href="#measurementmodal" data-position="top" data-delay="50" data-tooltip="Supply measurements"><i class="mdi-av-playlist-add"></i></a>
                         </div>
