@@ -1047,7 +1047,7 @@
     <div style="height:30px;"></div>
 
             <!--Packages-->
-     <p><h5 style="margin-left:20px"><b>Alteration</b></h5></p>
+     <p><h5 style="margin-left:20px"><b>Packages</b></h5></p>
       <div class="row">
         <div class="col s12">
           <div class="card">

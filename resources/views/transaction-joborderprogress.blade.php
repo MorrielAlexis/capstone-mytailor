@@ -184,20 +184,6 @@
                 </div> 
               </div>
 
-              <div class ="row">
-                <div class = "col s3" style="margin-top:20px;">
-                  <label><font size = "+2">Progress Bar:</font></label>
-                </div>
-
-                <div class="col s9">
-                  <form action="#">
-                    <p class="range-field">
-                      <input type="range" id="test5" min="0" max="100" />
-                    </p>
-                  </form>
-                </div>
-              </div>
-
             </div>
           </li>
 

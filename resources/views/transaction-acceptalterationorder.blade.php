@@ -121,20 +121,20 @@
 									<thead>
 									  <tr style="background-color:grey lighten-3;">
 									    <th class="left-align"><font size="-1">PRODUCT</font></th>
-									    <th class="center"><font size="-1">QUANTITY</font></th>
+									    <th class="center"><font size="-1">Alteration Type</font></th>
 									    <th class="right-align"><font size="-1">PRICE</font></th>
 									  </tr>
 									</thead>
 									<tbody>
 									  <tr>
 									    <td>Women's Uniform</td>
-									    <td class="center">1</td>
-									    <td class="right">1,700.00</td>
+									    <td class="center">Hem</td>
+									    <td class="right">700.00</td>
 									  </tr>
 									  <tr>
 									    <td>Gown</td>
-									    <td class="center">1</td>
-									    <td class="right">2,400.00</td>
+									    <td class="center">Length</td>
+									    <td class="right">400.00</td>
 									  </tr>
 									</tbody>
 								</table>
@@ -144,7 +144,7 @@
 							<div class="row" style="margin-top:10px; margin-bottom:10px;">
 								<p class="col s6"><b>Downpayment</b></p>
 								<p class = "col s6 input-field" style="margin-top:-1px;">
-								  <input class="center" id = "subtotal" value = "P 2,050.00" name = "subtotal" type = "text" readonly>
+								  <input class="center" id = "subtotal" value = "P 550.00" name = "subtotal" type = "text" readonly>
 								</p>
 							</div>
 							
@@ -153,7 +153,7 @@
 							<div class="row" style="margin-top:10px; margin-bottom:10px;">
 								<p class="col s6 green-text darken-1"><font size="+1"><b>TOTAL</b></font></p>
 								<p class = "col s6 input-field" style="margin-top:-0px;">
-								  	<b><input class="center red-text darken-1" id = "total" value = "P 4,100.00" name = "total" type = "text" readonly></b>
+								  	<b><input class="center red-text darken-1" id = "total" value = "P 1,100.00" name = "total" type = "text" readonly></b>
 								</p>
 							</div>
 
@@ -183,7 +183,7 @@
 				    </div>
 					</center>
 
-            	<div><a class="btn green white-text container" style="width:100%; height:50px; margin-top:20px;" href="{{URL::to('transaction/online-customer-individual')}}"><i class="mdi-action-lock"></i>SAVE</a></div>
+            	<div><a class="btn green white-text container" style="width:100%; height:50px; margin-top:20px;" href="{{URL::to('transaction/alterationOnline')}}"><i class="mdi-action-lock"></i>SAVE</a></div>
 
 				</div>
 			</div>

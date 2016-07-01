@@ -69,7 +69,7 @@
                 </div>
         	</div>
 
-            <center><div><a class="btn green white-text container" style="height:50px; margin-top:20px; padding-top:5px;" href="{{URL::to('/transaction/walkin-individual-payment-customer-info')}}"><font color="black" size="+1">Proceed to CHECKOUT</font></a></div></center>
+            <center><div><a class="btn modal-trigger green white-text container" style="height:50px; margin-top:20px; padding-top:5px;" href="#summary-of-order"><font color="black" size="+1">Proceed to CHECKOUT</font></a></div></center>
 
             </div>
         </div>
@@ -124,6 +124,56 @@
             <a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
             <a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
         </div>
+    </div>
+
+
+    <!--PROCEED TO CHECKOUT-->
+    <div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
+      <h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
+        
+        {!! Form::open() !!}
+          <div class="divider" style="height:2px"></div>
+          <div class="modal-content col s12">
+            <label>This is a summary of orders:</label>
+            <div class="container">
+                          <table class = "table centered order-summary" border = "1">
+                    <thead style="color:gray">
+                        <tr>
+                            <th data-field="garment">Garment</th>         
+                            <th data-field="segment">Segment</th>
+                            <th data-field="alterationtype">Alteration Type</th>
+                            <th data-field="price">Unit Price</th>
+                            <!--<th data-field="price">Total Price</th>-->
+                          </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                           <td>Uniform</td>
+                           <td>Skirt</td>
+                           <td>Slim</td>
+                           <td>PHP</td>
+                           <!--<td> </td>-->
+                        </tr>
+                </table>
+                </div>
+
+                <div class="divider"></div>
+                <div class="divider"></div>
+
+                <div class="col s12" style="margin-bottom:50px" >
+              <div class="col s6"><p style="color:gray">Estimated time to finish all orders:<p style="color:black" id="total-time"></p></p></div>
+              <div class="col s6"><p style="color:gray">Total Amount to Pay:<p style="color:black" id="total-price"></p></p></div>
+            </div>
+          </div>
+
+
+
+          <div class="modal-footer col s12">
+                    <p class="left" style="margin-left:10px; color:gray;">Continue to payment?</p>
+                    <a class="waves-effect waves-green btn-flat" href="{{URL::to('/transaction/walkin-individual-payment-customer-info')}}"><font color="black">Yes</font></a>
+                    <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+                </div>
+        {!! Form::close() !!}
     </div>
  @stop
 
