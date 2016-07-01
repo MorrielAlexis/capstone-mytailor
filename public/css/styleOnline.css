@@ -1,0 +1,89 @@
+html {
+    font-family: Trebuchet, sans-serif;
+}
+
+<!--MASTER_BLADE-->
+body{
+  font-family: Trebuchet, sans-serif;
+}
+nav{
+  background-color: transparent;
+  box-shadow: 0px 0px;
+  padding: 0;
+}
+.verticalLine{
+  border-left: thick solid pink;
+}
+.btn{
+  background: #cccccc;
+
+}
+
+#shoppingcart :hover{
+	background: none;
+}
+
+<!--ORDER TRACKING-->
+#progress {
+ width: 500px;   
+ border: 1px solid black;
+ position: relative;
+ padding: 3px;
+}
+
+#percent {
+ position: absolute;   
+ left: 50%;
+}
+
+#bar {
+ height: 20px;
+ background-color: teal;
+ width: 60%;
+}
+
+#downdown :hover{
+	background: lavender;
+}
+
+#down :hover{
+	background: lavender;
+}
+
+#alter :hover{
+	background: lavender;
+}
+
+#bs{
+	 background-size: cover;
+	 background-repeat: no-repeat;
+	 background-image: url("../img/uniformheader.jpg");
+}
+#gownheader{
+	 background-size: cover;
+	 background-repeat: no-repeat;
+	 background-image: url("../img/gowny.jpg");
+}
+#suitheader{
+	 background-size: cover;
+	 background-repeat: no-repeat;
+	 background-image: url("../img/suitheader.jpg");
+}
+
+#backyy{
+	 background-size: cover;
+	 background-repeat: no-repeat;
+}
+
+.tab .active{
+	background-color: #00bfa5;
+}
+
+.tab :selected{
+	background-color: #00bfa5;
+}
+
+#video-wrap { 
+	float: right; margin: 0 20px 50px 0; 
+}
+

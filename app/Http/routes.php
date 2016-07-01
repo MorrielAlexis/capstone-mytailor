@@ -268,3 +268,59 @@ Route::group(['prefix' => 'transaction'], function(){
 
 
 Route::get('pdf', 'PdfController@invoice');
+
+
+/*---------------------------------------------ONLINE---------------------------------------------------*/
+
+
+Route::resource('online-home', 'OnlineHomeController',
+		['only' => ['index']]);
+
+Route::resource('online-alteration', 'OnlineAlterationController',
+		['only' => ['index']]);
+Route::get('online-alteration-transact', 'OnlineAlterationController@transac');
+
+Route::get('online-customer-profile-individual', 'OnlineCustomerProfileController@indiv');
+Route::get('online-customer-profile-company', 'OnlineCustomerProfileController@comp');
+
+Route::resource('online-garment-gown', 'OnlineGarmentGownController',
+		['only' => ['index']]);
+
+Route::resource('online-garment-suit', 'OnlineGarmentSuitController',
+		['only' => ['index']]);
+
+Route::get('online-garment-uniform-male', 'OnlineGarmentUniformController@male');
+Route::get('online-garment-uniform-female', 'OnlineGarmentUniformController@female');
+
+Route::resource('online-how-it-works', 'OnlineHowItWorksController',
+		['only' => ['index']]);
+
+Route::resource('online-measuring-tutorial', 'OnlineMeasuringTutorialController',
+		['only' => ['index']]);
+
+Route::resource('online-men-fullprof-tutorial', 'OnlineMenFullProfileTutorialController',
+		['only' => ['index']]);
+
+Route::resource('online-men-pants-tutorial', 'OnlineMenPantsTutorialController',
+		['only' => ['index']]);
+
+Route::resource('online-men-shirt-tutorial', 'OnlineMenShirtTutorialController',
+		['only' => ['index']]);
+
+Route::resource('online-order-now', 'OnlineOrderNowController',
+		['only' => ['index']]);
+Route::get('online-check-out', 'OnlineOrderNowController@out');
+Route::get('online-customize-order', 'OnlineOrderNowController@custom');
+Route::get('online-measurement', 'OnlineOrderNowController@meas');
+
+Route::resource('online-order-tracking', 'OnlineOrderTrackingController',
+		['only' => ['index']]);
+
+Route::resource('online-women-fullprof-tutorial', 'OnlineWomenFullProfileTutorialController',
+		['only' => ['index']]);
+
+Route::resource('online-women-pants-skirt-tutorial', 'OnlineWomenPantsAndSkirtTutorialController',
+		['only' => ['index']]);
+
+Route::resource('online-women-shirt-tutorial', 'OnlineWomenShirtTutorialController',
+		['only' => ['index']]);
