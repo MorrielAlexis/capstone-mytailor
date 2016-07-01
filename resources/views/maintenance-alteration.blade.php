@@ -86,8 +86,9 @@
                   <tr>
               		  <!--<th data-field="fabricID">Fabric Type ID</th>-->
                     <th data-field="alterationName">Name</th>
-                     <th data-field="alterationDescription">Segment</th>
+                    <th data-field="alterationDescription">Segment</th>
               		  <th data-field="alterationDescription">Description</th>
+                    <th data-field="alteration MinDays">Min. Days of Production</th>
                     <th data-field="alterationPrice">Price</th>
                     <th data-field="Edit">Actions</th>
                     
@@ -102,6 +103,7 @@
                     <td>{{$alteration->strAlterationName}}</td>
                     <td>{{$alteration->strSegmentName}}</td>
               		  <td>{{$alteration->txtAlterationDesc}}</td>
+                    <td>{{$alteration->intAlterationMinDays}}</td>
                     <td>{{"Php" . $alteration->dblAlterationPrice}}</td>
               		  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of alteration name" href="#edit{{$alteration->strAlterationID}}"><i class="mdi-editor-mode-edit"></i></a>
                     <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of alteration name from the table" href="#del{{$alteration->strAlterationID}}"><i class="mdi-action-delete"></i></a></td>
@@ -146,12 +148,21 @@
                           </div>  
                         </div>
 
+                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                              <div class="input-field col s6">
+                                <input required value="{{ $alteration->intAlterationMinDays }}" id="editMinDays" name= "editMinDays" type="text" class="validate" pattern="^[0-9]*$" maxlength="2">
+                                <label for="segment_name">Minimum Production Days:<span class="red-text"><b>*</b></span></label>
+                              </div>
+                          </div>
+
                         <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                           <div class="input-field col s12">
                             <input required value = "{{$alteration->dblAlterationPrice}}" id="editAlterationPrice" name = "editAlterationPrice" type="text" class="validate">
                             <label for="alteration_price">Alteration Price <span class="red-text"><b>*</b></span> </label>
                           </div>  
                         </div>
+
+
 
                       </div>
 
@@ -261,6 +272,14 @@
                         <input  id="txtAlterationDesc" name = "txtAlterationDesc" type="text" class="validate" placeholder="Alteration type for modifying pants cuff.">
                         <label for="alteration_description">Alteration Description</label>
                       </div>
+                  </div>
+
+                  
+                  <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                              <div class="input-field col s6">
+                                <input required id="intAlterationMinDays" name= "intAlterationMinDays" type="text" class="validate" pattern="^[0-9]*$" maxlength="2">
+                                <label for="min days">Minimum Production Days:<span class="red-text"><b>*</b></span></label>
+                              </div>
                   </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">

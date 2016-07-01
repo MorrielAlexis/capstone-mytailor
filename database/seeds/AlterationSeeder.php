@@ -19,6 +19,7 @@ class AlterationSeeder extends Seeder
                 'strAlterationID' => 'ALTE0001',
                 'strAlterationName' => 'Pants Hem',
                 'strAlterationSegmentFK' => 'SEGM001',
+                'intAlterationMinDays' => '3 days', 
                 'txtAlterationDesc' =>'Use for modifying pants cuff size of pants.',
                 'dblAlterationPrice' => 100.00,
                 'boolIsActive' => '1'
@@ -28,6 +29,7 @@ class AlterationSeeder extends Seeder
                 'strAlterationID' => 'ALTE0002',
                 'strAlterationName' => 'Shorten Sleeves',
                 'strAlterationSegmentFK' => 'SEGM004',
+                'intAlterationMinDays' => '2 days', 
                 'txtAlterationDesc' =>'Use in almost all classes of shirt for resizing.',
                 'dblAlterationPrice' => 200.00,
                 'boolIsActive' => '1'

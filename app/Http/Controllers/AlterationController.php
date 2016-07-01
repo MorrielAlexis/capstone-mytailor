@@ -79,6 +79,7 @@ class AlterationController extends Controller
                 'strAlterationSegmentFK' => $request->input('strAlterationSegmentFK'),
                 'strAlterationName' =>trim($request->input('strAlterationName')),
                 'txtAlterationDesc' => trim($request->input('txtAlterationDesc')),  
+                'intAlterationMinDays' => trim($request->input('intAlterationMinDays')),  
                 'dblAlterationPrice' => trim($request->input('dblAlterationPrice')),  
                 'boolIsActive' => 1
             ));
@@ -142,6 +143,7 @@ class AlterationController extends Controller
                $alteration->strAlterationName = trim($request->input('editAlterationName'));
                $alteration->strAlterationSegmentFK =  $request->input('editSegment');
                $alteration->txtAlterationDesc = trim($request->input('editAlterationDesc'));
+               $alteration->intAlterationMinDays = trim($request->input('editMinDays'));
                $alteration->dblAlterationPrice = trim($request->input('editAlterationPrice'));
 
         $alteration->save();

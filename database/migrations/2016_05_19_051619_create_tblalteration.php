@@ -16,6 +16,7 @@ class CreateTblAlteration extends Migration
             $table->string('strAlterationID')->primary();
             $table->string('strAlterationName');
             $table->string('strAlterationSegmentFK')->index();//fk
+            $table->integer('intAlterationMinDays');
             $table->text('txtAlterationDesc')->nullable();
             $table->double('dblAlterationPrice');
             $table->string('strAlterationInactiveReason')->nullable();

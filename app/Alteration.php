@@ -12,6 +12,7 @@ class Alteration extends Model
 	protected $fillable = array('strAlterationID',
 								'strAlterationName',
 								'strAlterationSegmentFK',
+								'intAlterationMinDays',
 								'txtAlterationDesc',
 								'dblAlterationPrice',
 								'boolIsActive'
