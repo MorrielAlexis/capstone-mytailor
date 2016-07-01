@@ -126,10 +126,13 @@ class GarmentCategoryController extends Controller
     function updateGarmentCategory(GarmentCategoryRequest $request)
     {
     
-        $garment = GarmentCategory::find($request->input('editGarmentID'));
-            $garment->strGarmentCategoryName = trim($request->input('editGarmentName'));
+        // $garment = GarmentCategory::find($request->input('editGarmentID'));
+        $garment = GarmentCategory::find($request->input('strGarmentCategoryID'));
+            // $garment->strGarmentCategoryName = trim($request->input('editGarmentName'));
+            $garment->strGarmentCategoryName = trim($request->input('strGarmentCategoryName'));
 
-            $garment->textGarmentCategoryDesc = trim($request->input('editGarmentDescription'));
+            // $garment->textGarmentCategoryDesc = trim($request->input('editGarmentDescription'));
+             $garment->textGarmentCategoryDesc = trim($request->input('textGarmentCategoryDesc'));
             $garment ->save();
 
         \Session::flash('flash_message_update','Garment category detail/s successfully updated.'); //flash message

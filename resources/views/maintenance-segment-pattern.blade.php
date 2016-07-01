@@ -171,8 +171,13 @@
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                               <div class="input-field col s12">
+<<<<<<< HEAD
                                 <input  value="{{ $segment->strSegPDesc }}" id="SegmentDesc" name = "editSegmentDesc" type="text" class="validate">
                                <label for="segment_description">Segment Description</label>
+=======
+                                <input  value="{{ $pattern->strSegPDesc }}" id="editSegPDesc" name = "editSegPDesc" type="text" class="validate">
+                               <label for="segment_description">Pattern Description</label>
+>>>>>>> 5ac6b3af4ac87034c9290db6a901febc3281fb25
                               </div>
                           </div>
 
@@ -286,7 +291,7 @@
 
             <div class = "col s12" style="padding:15px;  border:3px solid white;">
                 <div class="input-field col s12">
-                  <input required id="strSegPName" name= "strSegPName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
+                  <input required id="strSegPDesc" name= "strSegPDesc" type="text" class="validate"  data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                   <label for="pattern_name">Pattern Name <span class="red-text"><b>*</b></span></label>
                     <span id="left"></span></label>
                 </div>

@@ -175,7 +175,7 @@
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">                                                    
-                                <select class="browser-default" id="editSegment1" name="editSegment1"required>
+                                <select class="browser-default" id="editSegment1" name="editSegment1" required>
                                   <option value="" disabled selected>Choose a segment:</option>
                                   @foreach($segment as $segment_1)
                                     @if($packages->strPackageSeg1FK == $segment_1->strSegmentID && $segment_1->boolIsActive == 1)
@@ -438,7 +438,7 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input required  id="dblPackagePrice" name= "dblPackagePrice" type="text" class="validate"  data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" minlength="2">
+                            <input required  id="dblPackagePrice" name= "dblPackagePrice" type="text" class="validate"  data-position="bottom" pattern="^[0-9]*$" minlength="2">
                             <label for="days">Package Price:</label>
                           </div>
                       </div>

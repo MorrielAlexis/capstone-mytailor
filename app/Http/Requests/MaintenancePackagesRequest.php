@@ -25,7 +25,9 @@ class MaintenancePackagesRequest extends Request
       public function rules()
     {
         return [
-            'strPackageName'    =>  'required'
+            'strPackageName'    =>  'required|unique:tblPackages'
+
+           
             // 'strGarmentCategoryName' => 'regex:/^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?/''
         ];
     }
@@ -35,7 +37,8 @@ class MaintenancePackagesRequest extends Request
         return [
 
             // 'strPackageName.unique'  =>  'Garment already exists.',
-            'strPackageName.required'  =>  'Garment name is required.'
+            'strPackageName.required'  =>  'Package name is required.',
+            'strPackageName.unique'  =>  'Package name alrady exists.'
            
             
         ];
