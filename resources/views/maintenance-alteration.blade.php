@@ -124,6 +124,21 @@
                           </div>
                         </div>
 
+                          <div class = "col s12" style="padding:15px;  border:3px solid white;"> 
+
+                          <div class="input-field col s12">                                                   
+                            <select class="browser-default editSegment" id="{{ $alteration->strAlterationID }}" name='editSegment'>
+                                  @foreach($segment as $segment_1)
+                                    @if($alteration->strAlterationSegmentFK == $segment_1->strSegmentID && $segment_1->boolIsActive == 1)
+                                      <option selected value="{{ $segment_1->strSegmentID }}" class="{{$segment_1->strAlterationSegmentFK  }}">{{ $segment_1->strSegmentName }}</option>
+                                    @elseif($segment_1->boolIsActive == 1)
+                                      <option value="{{ $segment_1->strSegmentID }}" class="{{$segment_1->strAlterationSegmentFK  }}">{{ $segment_1->strSegmentName }}</option>
+                                    @endif
+                                  @endforeach
+                            </select>    
+                          </div> 
+                      </div>  
+
                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
                             <input  value = "{{$alteration->txtAlterationDesc}}" id="editAlterationDesc" name = "editAlterationDesc" type="text" class="validateDesc">
@@ -226,7 +241,20 @@
                         <input required id="strAlterationName" name = "strAlterationName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s\d]{2,}$"  placeholder="Skinny Cut">
                         <label for="alteration_name">Alteration Name <span class="red-text"><b>*</b></span></label>
                       </div>
-                  </div>    
+                  </div> 
+
+                      <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                <div class="input-field col s12">
+                  <select class="browser-default" required id="strAlterationSegmentFK" name="strAlterationSegmentFK">
+                        @foreach($segment as $segment)
+                          @if($segment->boolIsActive == 1)
+                            <option value="{{ $segment->strSegmentID }}" class="{{ $segment->strAlterationSegmentFK }}">{{ $segment->strSegmentName }}</option>
+                          @endif
+                            @endforeach
+                      </select>
+                    </div>  
+                </div> 
+   
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">

@@ -76,6 +76,7 @@ class AlterationController extends Controller
     {
         $alteration = Alteration::create(array(
                 'strAlterationID' => $request->input('strAlterationID'),
+                'strAlterationSegmentFK' => $request->input('strAlterationSegmentFK'),
                 'strAlterationName' =>trim($request->input('strAlterationName')),
                 'txtAlterationDesc' => trim($request->input('txtAlterationDesc')),  
                 'dblAlterationPrice' => trim($request->input('dblAlterationPrice')),  
@@ -139,6 +140,7 @@ class AlterationController extends Controller
         $alteration = Alteration::find($request->input('editAlterationNameID'));
 
                $alteration->strAlterationName = trim($request->input('editAlterationName'));
+               $alteration->strAlterationSegmentFK =  $request->input('editSegment');
                $alteration->txtAlterationDesc = trim($request->input('editAlterationDesc'));
                $alteration->dblAlterationPrice = trim($request->input('editAlterationPrice'));
 
