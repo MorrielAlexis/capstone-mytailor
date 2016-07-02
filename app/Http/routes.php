@@ -223,6 +223,7 @@ Route::group(['prefix' => 'utilities'], function(){
 		
 });
 
+Route::get('/acceptAlteration','AlterationOnlineController@accept');
 Route::get('/acceptIndividual','OnlineCustomerIndividualController@accept');
 Route::get('/acceptCompany','OnlineCustomerCompanyController@accept');
 
