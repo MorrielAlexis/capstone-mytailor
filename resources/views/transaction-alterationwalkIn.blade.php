@@ -262,4 +262,61 @@
           });
     </script>
 
+
+    <script>
+      // $(document).ready() executes this script AFTER the whole page loads
+      $(document).ready(function () {
+
+        // Get jQuery object for element with ID as 'category' (first select element)
+        var categoryElement = $('#strAlterationSegmentFK');
+
+        // Get jQuery object for element with ID as 'types' (second select element)
+        var typesElement = $('#strAlterationName');
+
+        // Get children elements of typesElement
+        var typeOptions = typesElement.children();
+
+        // Invoke updateValue() once with initial category value for initial page load
+        updateValue(categoryElement.val());
+
+        // Listen for changes on the categoryElement
+        categoryElement.on('change', function () {
+          // Invoke updateValue() with currently selected category as parameter
+          updateValue(categoryElement.val());
+        });
+
+        // Define default current type
+        var defaultType = '';
+
+        // updateValue function definition
+        function updateValue(category) {
+          // On update, show everything first
+          typeOptions.show();
+
+          // Set default type to empty string for All
+          defaultType = '';
+
+          // If the selected category is all, do not hide anything
+          if (category == 'All') return;
+
+          // Iterate over options (children elements of typesElement)
+          for (var i = 0; i < typeOptions.length; i++) {
+            // Return each child as jQuery object
+            var optionElement = $(typeOptions[i]);
+
+            // Check class of optionElement, hide it if it's not equal to the current selected category
+            if (!optionElement.hasClass(category)) optionElement.hide();
+
+            // Check class of optionElement if it matches currently selected category AND if defaultType is an empty string,
+            // if the evaluation is true, set defaultType to optionElement value. We do this to set the default value
+            // when we pick another category
+            if (optionElement.hasClass(category) && defaultType == '') defaultType = optionElement.attr('value');
+          }
+
+          // If defaultType is not empty string, set it as typesElement value
+          if (defaultType != '') typesElement.val(defaultType);
+        }
+      });
+    </script>
+
 @stop
