@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Session;
+
+use App\GarmentCategory;
+use App\SegmentPattern;
+
 
 class AlterationWalkInController extends Controller
 {
@@ -22,7 +27,16 @@ class AlterationWalkInController extends Controller
     
     public function index()
     {
-        return view('transaction-alterationwalkin');
+         $categories = GarmentCategory::all();
+         $alterations = \DB::table('tblAlteration AS a')
+                    ->leftJoin('tblSegment AS b', 'a.strAlterationSegmentFK', '=', 'b.strSegmentID')
+                    ->select('a.*', 'b.strSegmentName') 
+                    ->orderBy('a.strAlterationID')
+                    ->get();
+
+        return view('transaction-alterationwalkin')
+                    ->with('alterations', $alterations)
+                    ->with('categories', $categories);
     }
 
     // public function newTrans()

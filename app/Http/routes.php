@@ -167,8 +167,8 @@ Route::group(['prefix' => 'transaction'], function(){
 });
 
 Route::group(['prefix' => 'transaction'], function(){
-	Route::resource('alteration-walkin', 'AlterationWalkInController',
-		['only' => ['index']]);
+	Route::resource('alteration-walkin', 'AlterationWalkInController');
+		
 	Route::resource('alteration-online', 'AlterationOnlineController',
 		['only' => ['index']]);
 });
