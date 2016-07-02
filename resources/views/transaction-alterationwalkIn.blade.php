@@ -67,11 +67,71 @@
                         </div>
                     </form>
                 </div>
+            
+            <div class="col s12" style="margin-top:25px;">
+              <div class="divider"></div>
+              <a class="left btn tooltipped modal-trigger" data-position="bottom" data-delay="50" data-tooltip="Click to reset order" style="margin-top:30px; font-size:15px; color:white; background-color: teal; opacity:0.90" href="#resetOrder">RESET ORDER</a>
+              <button type="submit" class="right btn tooltipped modal-trigger" data-position="bottom" data-delay="50" data-tooltip="Click to save order" style="margin-top:30px; background-color: teal; font-size:15px; color:white" href="#saveOrder">SAVE</a>              
+            </div>
+
         	</div>
 
-            <center><div><a class="btn modal-trigger green white-text container" style="height:50px; margin-top:20px; padding-top:5px;" href="#summary-of-order"><font color="black" size="+1">Proceed to CHECKOUT</font></a></div></center>
-
+ 
             </div>
+        </div>
+    </div>
+
+  <!--Reset Order Modal-->
+  <div id="resetOrder" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
+    <h5><font color="red"><center><b>Warning!</b></center></font></h5>
+    <div class="divider" style="height:2px"></div>
+    <div class="modal-content">
+      <div class="row">
+        <div class="col s3">
+          <i class="mdi-alert-warning" style="font-size:50px; color:red"></i>
+        </div>
+        <div class="col s9">
+          <p><font size="+1">Are you sure you want to reset your order?</font></p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer col s12" style="background-color:red; opacity:0.85">
+      <button type="submit" class="waves-effect waves-green btn-flat" href="#!"><font color="black">Yes</font></button>
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+    </div>
+  </div>  
+
+  <!--Save Modal-->
+  <div id="saveOrder" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
+    <h5><font color="green"><center><b>Save Order</b></center></font></h5>
+    <div class="divider" style="height:2px"></div>
+    <div class="modal-content">
+      <div class="row">
+        <div class="col s3">
+          <i class="mdi-alert-warning" style="font-size:50px; color:yellow"></i>
+        </div>
+        <div class="col s9">
+          <p><font size="+1">Are you sure you want to save your order?</font></p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer col s12" style="background-color:green; opacity:0.85">
+      <a class="modal-action modal-close waves-effect waves-green btn-flat" href="#!"><font color="black">Cancel</font></a>
+      <a class="modal-action modal-close waves-effect waves-green btn-flat" href="#!"><font color="black">No</font></a>
+      <a class="modal-action modal-close waves-effect waves-green btn-flat modal-trigger" href="#savednotif"><font color="black">Yes</font></a>
+    </div>
+  </div>  
+
+  <!--Saved notif-->
+   <div id="savednotif" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
+        <div class="modal-content">
+          <h5 style="color:#1b5e20; margin-top:50px;" class="center">ORDER SUCCESSFULLY SAVED</h5>
+          <div class="divider container" style="height:2px;"></div>
+        </div>
+
+        <div class="modal-footer" style="background-color:#26a69a">
+            <a href="{{URL::to('transaction/alterationWalkIn')}}" class="left modal-action modal-close waves-effect waves-green btn-flat">add another order</a>
+            <a href="#summary-of-order" class="right modal-action modal-close waves-effect waves-green btn-flat modal-trigger">Proceed to checkout</a>
         </div>
     </div>
 
@@ -166,13 +226,11 @@
             </div>
           </div>
 
-
-
           <div class="modal-footer col s12">
-                    <p class="left" style="margin-left:10px; color:gray;">Continue to payment?</p>
-                    <a class="waves-effect waves-green btn-flat" href="{{URL::to('/transaction/walkin-individual-payment-customer-info')}}"><font color="black">Yes</font></a>
-                    <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
-                </div>
+            <p class="left" style="margin-left:10px; color:gray;">Continue to payment?</p>
+            <a class="waves-effect waves-green btn-flat" href="{{URL::to('/transaction/walkin-individual-payment-customer-info')}}"><font color="black">Yes</font></a>
+            <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+          </div>
         {!! Form::close() !!}
     </div>
  @stop
