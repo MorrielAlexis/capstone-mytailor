@@ -11,6 +11,8 @@ class Alteration extends Model
 	protected $primaryKey = 'strAlterationID';
 	protected $fillable = array('strAlterationID',
 								'strAlterationName',
+								'strAlterationSegmentFK',
+								'intAlterationMinDays',
 								'txtAlterationDesc',
 								'dblAlterationPrice',
 								'boolIsActive'

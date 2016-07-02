@@ -34,7 +34,7 @@ class SegmentPatternRequest extends Request
     public function messages()
     {
         return [
-            'strSegPName.unique'  =>  'Pattern already exists.',
+            'strSegPName.unique_with'  =>  'Pattern already exists.',
             // 'strSegPName.required'  =>  'Pattern name is required.',
             'strSegPImage.image' => 'The file you uploaded is not an image.'
             

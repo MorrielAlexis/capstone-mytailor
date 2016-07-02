@@ -16,6 +16,7 @@ class UserSeeder extends Seeder
             array(
                 'id' => '001',
                 'name' => 'Honey Mae Buenavides',
+                'type'=> 'employee',
                 'email' =>'honeymae@ganda.com',
                 'password' => bcrypt('admin01')
             ),
@@ -23,8 +24,17 @@ class UserSeeder extends Seeder
             array(
                 'id' => '002',
                 'name' => 'Morriel Aquino',
+                'type'=> 'employee',
                 'email' =>'morrielaquino@yahoo.com',
                 'password' =>bcrypt('admin02')
+            ),
+
+            array(
+                'id' => '003',
+                'name' => 'Cassandra Bennete',
+                'type'=> 'customer',
+                'email' =>'cassdee@yahoo.com',
+                'password' =>bcrypt('cust01')
             )
 
         );

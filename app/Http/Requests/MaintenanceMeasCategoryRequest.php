@@ -35,7 +35,7 @@ class MaintenanceMeasCategoryRequest extends Request
     public function messages()
     {
         return [
-            'strMeasDetFK.unique'  =>  'Measurement detail name already exists.',
+            'strMeasDetFK.unique_with'  =>  'Measurement detail name already exists.',
             'strMeasDetFK.required'  =>  'Measurement detail name is required.'
             
             

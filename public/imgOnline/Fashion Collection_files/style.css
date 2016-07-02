@@ -1,0 +1,194 @@
+        /* MASTER-BLADE */
+
+        header, main, footer {
+        padding-left: 250px;
+        }
+
+        @media only screen and (max-width : 992px) {
+            header, main, footer {
+            padding-left: 0;
+            }
+        }
+
+        .btn{
+            background: #1de9b6;
+        }
+
+        *{
+            font-family: 'Century Gothic';
+            
+        }
+
+        header{
+            background-color: #CFD8DC;
+            opacity: 0.95;
+            width: 100%;
+            height: 50px;
+        } 
+
+        body{
+            font-family: 'Century Gothic';
+            background-image: url("../img/hehehe.jpg");
+            background-color: #3D5AFE;
+        }
+        
+        /* ADMIN PROFILE */
+
+        .small.material-icons{
+            color: #1a237e;
+        }
+
+        .user{
+            background: #00695C;
+        }
+
+        #admin{
+            background: #00695C;
+        }
+        
+        #admin :hover{
+           background: #00695C;
+        }
+
+        .admin-background{
+            background: #00695C;
+            color: #1a237e;
+            height: 125px;
+        }
+
+        /* SIDENAV CONTENT */
+
+        #ul{
+            list-style-type: none;
+            background: #00695C;
+        }
+
+        #ul li{
+            background: #26A69A;
+        }
+
+        #ul li li{
+            background: #26A69A;
+        }
+
+        #ul :hover{
+            background: #00897B;
+        }
+
+        #ul :visited{
+           background: #00897B;
+        }
+
+        #ul :active{
+            background: #26A69A;
+
+        }
+
+        #slide-out{
+            margin-top: 60px;
+            background: #69f0ae;
+        }
+
+        #slide-out:hover{
+            background: #69f0ae;
+        }
+
+        #slide-out:active{
+            background: #69f0ae;
+        }
+
+        #slide-out > li ul li :active{
+            background: #26A69A;
+        }
+
+        #slide-out > li ul li :visited{
+            background: #26A69A;
+        }
+        
+        #slide-out > li ul li :hover{
+            background: #26A69A;        
+        }
+
+
+        /* REAL TIME INPUT VALIDATION */
+
+        .error{
+            display: none;
+            margin-left: 10px;
+        }       
+
+        .error_show{
+            color: red;
+            margin-left: 10px;
+        }
+
+        input.invalid, textarea.invalid{
+            border: 2px solid red;
+        }
+
+        input.valid, textarea.valid{
+            border: 2px solid yellow;
+        }
+        
+        /* END REAL TIME INPUT VALIDATION STYLE */
+
+        h4{
+            color: black;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+
+        img{
+            height: 70px;
+            width: 70px;
+        }
+        
+
+        /* TABS IN MEASUREMENT-BLADE */
+
+        #detailTab{
+            border: teal;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 60px;
+        }   
+        
+        #categoryTab{
+            border: teal;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 60px;
+        }
+
+        .tab{
+            border: gray;
+        }   
+
+        .tab:hover{
+            color: #1a237e;
+        }
+
+        .hue{
+            width: col s12; 
+            height: auto;
+        }
+
+        .tab .active{
+            background: #ce93d8;
+        }
+
+        .tab :selected{
+            background-color: #ce93d8;
+        }
+        /* END OF TABS IN MEASUREMENT-BLADE */
+
+        .modal{
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            left: 0;
+            top: 0;
+            overflow: auto; /* Enable scroll if needed */
+        }
+
+        .overflow-x {
+        overflow-x: auto;
+        }
+

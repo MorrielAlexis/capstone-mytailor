@@ -25,10 +25,10 @@ class AlterationWalkInController extends Controller
         return view('transaction-alterationwalkin');
     }
 
-    public function newTrans()
-    {
-        return view('transaction-alterationwalkIn-newtransaction');
-    }
+    // public function newTrans()
+    // {
+    //     return view('transaction-alterationwalkIn-newtransaction');
+    // }
 
     /**
      * Show the form for creating a new resource.

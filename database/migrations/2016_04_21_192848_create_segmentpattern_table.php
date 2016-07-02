@@ -17,7 +17,7 @@ class CreateSegmentpatternTable extends Migration
             $table->string('strSegPNameFK')->index();//fk
             $table->string('strSegPName');
             $table->string('strSegPImage')->nullable();
-            $table->string('strSegPDesc')->nullable();
+            $table->text('txtSegPDesc')->nullable();
             $table->boolean('boolIsActive');
             $table->string('strSegPInactiveReason')->nullable();
             $table->timestamps();

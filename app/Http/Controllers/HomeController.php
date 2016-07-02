@@ -23,7 +23,12 @@ class HomeController extends Controller
 
         if (Auth::attempt(['email' => $user, 'password' => $pass])) {
             // Authentication passed...
-            return redirect()->intended('/dashboard');
+            if(Auth::user()->type == 'employee'){
+                return redirect()->intended('/dashboard');
+            }else if(Auth::user()->type == 'customer'){
+                return redirect()->intended('/online-home');
+            }
+            
         }else{
             return redirect('/')->with('flash_message', 'Invalid Credentials.');
         }
