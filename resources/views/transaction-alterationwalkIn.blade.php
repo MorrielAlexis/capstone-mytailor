@@ -136,8 +136,7 @@
     </div>
     <div class="modal-footer col s12" style="background-color:green; opacity:0.85">
       <a class="modal-action modal-close waves-effect waves-green btn-flat" href="#!"><font color="black">Cancel</font></a>
-      <a class="modal-action modal-close waves-effect waves-green btn-flat" href="#!"><font color="black">No</font></a>
-      <a class="modal-action modal-close waves-effect waves-green btn-flat modal-trigger" href="#savednotif"><font color="black">Yes</font></a>
+      <a class="modal-action modal-close waves-effect waves-green btn-flat modal-trigger" href="#savednotif"><font color="black">Save</font></a>
     </div>
   </div>  
 
@@ -149,8 +148,8 @@
         </div>
 
         <div class="modal-footer" style="background-color:#26a69a">
-            <a href="{{URL::to('transaction/alterationWalkIn')}}" class="left modal-action modal-close waves-effect waves-green btn-flat">add another order</a>
-            <a href="#summary-of-order" class="right modal-action modal-close waves-effect waves-green btn-flat modal-trigger">Proceed to checkout</a>
+            <a href="{{URL::to('transaction/alteration-walkin')}}" class="left modal-action modal-close waves-effect waves-green btn-flat">Add Another Order</a>
+            <a href="#summary-of-order" class="right modal-action modal-close waves-effect waves-green btn-flat modal-trigger">Proceed to Checkout</a>
         </div>
     </div>
 
