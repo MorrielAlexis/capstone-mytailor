@@ -100,20 +100,19 @@
 																<th data-field="due-date">Due Date</th>
 															</thead>
 															<tbody>
-																<tr>
+																@if(isset($payments))
+																@foreach($payments as $payment)
+																@if($payment->boolIsActive == 1)
+																<tr>																
 																	<td><a href="#summary-of-order" class="modal-trigger tooltipped" data-position="bottom" data-delay"50" data-tooltip="Click to view summary of orders"><u>ORN 0001</u></a></td>
-																	<td>2016-05-03</td>
-																	<td>P 20, 000.00</td>
-																	<td>P 10, 000.00</td>
-																	<td>2016-07-25</td>
+																	<td>{{ $payment->dtTransacDate }}</td>
+																	<td>Php {{ number_format($payment->dblAmtPayable, 2) }}</td>
+																	<td>Php {{ number_format($payment->dblOustandingBal, 2) }}</td>
+																	<td>{{ $payment->dtDueDate}}</td>
 																</tr>
-																<tr>
-																	<td><a href="#summary-of-order" class="modal-trigger tooltipped" data-position="bottom" data-delay"50" data-tooltip="Click to view summary of orders"><u>ORN 0002</u></a></td>
-																	<td>2016-06-16</td>
-																	<td>P 20, 000.00</td>
-																	<td>P 10, 000.00</td>
-																	<td>2016-07-25</td>
-																</tr>
+																@endif
+																@endforeach
+																@endif
 															</tbody>
 														</table>
 													</div>
@@ -194,7 +193,7 @@
 							</div>
 
 									<div class="col s12" style="margin-top:30px">
-										<button type="submit" href="" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to print a copy of pending payments" style="background-color:teal; margin-right:10px"><i class="medium mdi-action-print" style="margin-right:15px;"></i>Print a copy</button>
+										<a href="{{URL::to('pdf')}}" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to print a copy of pending payments" style="background-color:teal; margin-right:10px"><i class="medium mdi-action-print" style="margin-right:15px;"></i>Print a copy</a>
 										<a href="" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to clear all fields" style="background-color:teal"><i class="medium mdi-editor-format-clear" style="margin-right:15px;"></i>Clear view</a>
 										<a href="{{URL::to('/transaction/billing-payment-bill-customer')}}" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to proceeed to billing process" style="background-color:teal"><i class="medium mdi-action-payment" style="margin-right:15px;"></i>Bill Customer</a>
 									</div>
@@ -248,7 +247,7 @@
 		var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
 
 		var newDate = new Date();
-		newDate.setDate(newDate.getDate() + 1);    
+		newDate.setDate(newDate.getDate());    
 		$('#Date').html(dayNames[newDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
 	
 	</script>
@@ -288,19 +287,19 @@
 		});
 	</script>
 
-	<script type="text/javascript">
-		$(document).ready(function() {
+	 <script type="text/javascript">
+	 	$(document).ready(function() {
 
-			var cust_type = {!! json_encode($types) !!};
+	 		var cust_type = {!! json_encode($types) !!};
 
-				if(cust_type == "ind") {
-					$("#cust_type").text("Individual");
-				}
-				else if(cust_type == "comp") {
+	 			if(cust_type == "ind") {
+	 				$("#cust_type").text("Individual");
+	 			}
+	 			else if(cust_type == "comp") {
 					$("#cust_type").text("Company");
-				}
-		});
-	</script>
+	 			}
+	 	});
+	 </script>
 
 	<script>
 	function tabInit() {

@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SwatchNameSeeder::class);
         $this->call(SwatchSeeder::class);
         $this->call(PackagesSeeder::class);
+        $this->call(PaymentSeeder::class);
 
         Model::reguard();
     }

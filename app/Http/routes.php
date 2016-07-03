@@ -269,8 +269,10 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::get('billing-payment-bill-customer', 'BillingPaymentController@billCustomer');
 });
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////------ PDF GENERATOR (temp) -------/////////////////////////////////////////////////////////////
 
-Route::get('pdf', 'PdfController@invoice');
+Route::get('/pdf', 'PdfController@converToPdf');
 
 
 
