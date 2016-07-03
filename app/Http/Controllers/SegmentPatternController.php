@@ -81,6 +81,7 @@ class SegmentPatternController extends Controller
                 'strSegPatternID' => $request->input('strSegPatternID'),
                 'strSegPNameFK' => $request->input('strSegPNameFK'),
                 'strSegPName' => trim($request->input('strSegPName')),
+                'txtSegPDesc' => trim($request->input('txtSegPDesc')),
                 'boolIsActive' => 1
                 ));     
                 }else{
@@ -91,6 +92,7 @@ class SegmentPatternController extends Controller
     
                         'strSegPNameFK' => $request->input('strSegPNameFK'),
                         'strSegPName' => trim($request->input('strSegPName')),
+                         'txtSegPDesc' => trim($request->input('txtSegPDesc')),
                         'strSegPImage' => 'imgDesignPatterns/'.$file,
                         'boolIsActive' => 1
                     )); 
@@ -163,11 +165,13 @@ class SegmentPatternController extends Controller
                 {
                     $pattern->strSegPNameFK = $request->input('editSegment');
                     $pattern->strSegPName = trim($request->input('editPatternName'));
+                    $pattern->strSegPDesc = trim($request->input('editSegPDesc'));
                 }else{
                     $request->file('editImg')->move($destinationPath);
 
                     $pattern->strSegPNameFK = $request->input('editSegment');
                     $pattern->strSegPName = trim($request->input('editPatternName'));
+                    $pattern->txtSegPDesc = trim($request->input('editSegPDesc'));
                     $pattern->strSegPImage = 'imgDesignPatterns/'.$file;
                 }           
 

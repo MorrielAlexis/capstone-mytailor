@@ -183,7 +183,7 @@
 				    </div>
 					</center>
 
-            	<div class="btn green white-text container" style="width:100%; height:50px; margin-top:20px;" href="#!"><i class="mdi-action-lock"></i>SAVE</div>
+            	<div><a class="btn green white-text container" style="width:100%; height:50px; margin-top:20px;" href="{{URL::to('transaction/online-customer-individual')}}"><i class="mdi-action-lock"></i>SAVE</a></div>
 
 				</div>
 			</div>

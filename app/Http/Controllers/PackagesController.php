@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\MaintenancePackagesRequest;
 use App\Package;
 use App\GarmentSegment;
 use App\Http\Controllers\Controller;
@@ -72,20 +73,22 @@ class PackagesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MaintenancePackagesRequest $request)
     {
         $file = $request->input('addImage');
         $destinationPath = 'imgPackages';
 
             if($file == '' || $file == null){
                 $packages = Package::create(array(
-                 'strPackageID' => $request->input('addPackageID'),
-                 'strPackageName' => trim($request->input('addPackageName')),
+                 'strPackageID' => $request->input('strPackageID'),
+                 'strPackageName' => trim($request->input('strPackageName')),
                  'strPackageSeg1FK' => $request->input('strPackageSeg1FK'),
                  'strPackageSeg2FK' => $request->input('strPackageSeg2FK'),
                  'strPackageSeg3FK' => $request->input('strPackageSeg3FK'),
                  'strPackageSeg4FK' => $request->input('strPackageSeg4FK'),
                  'strPackageSeg5FK' => $request->input('strPackageSeg5FK'),
+                 'dblPackagePrice' => trim($request->input('dblPackagePrice')),
+                 'intPackageMinDays' => trim($request->input('intPackageMinDays')),
                  'strPackageDesc' => trim($request->input('strPackageDesc')),
                 'boolIsActive' => 1
                 ));     
@@ -100,6 +103,8 @@ class PackagesController extends Controller
                 'strPackageSeg3FK' => $request->input('strPackageSeg3FK'),
                 'strPackageSeg4FK' => $request->input('strPackageSeg4FK'),
                 'strPackageSeg5FK' => $request->input('strPackageSeg5FK'),
+                'dblPackagePrice' => trim($request->input('dblPackagePrice')),
+                'intPackageMinDays' => trim($request->input('intPackageMinDays')),
                 'strPackageDesc' => trim($request->input('strPackageDesc')),
                 'strPackageImage' => 'imgPackages/'.$file,
                 'boolIsActive' => 1
@@ -174,6 +179,8 @@ class PackagesController extends Controller
                     $packages->strPackageSeg3FK = $request->input('editSegment3');
                     $packages->strPackageSeg4FK = $request->input('editSegment4');
                     $packages->strPackageSeg5FK = $request->input('editSegment5');
+                    $packages->dblPackagePrice = trim($request->input('editPackagePrice'));
+                    $packages->intPackageMinDays = trim($request->input('editPackageMinDays'));
                     $packages->strPackageDesc = trim($request->input('editPackageDesc'));
                     
                 }else{
@@ -185,6 +192,8 @@ class PackagesController extends Controller
                     $packages->strPackageSeg3FK = $request->input('editSegment3');
                     $packages->strPackageSeg4FK = $request->input('editSegment4');
                     $packages->strPackageSeg5FK = $request->input('editSegment5');
+                    $packages->dblPackagePrice = trim($request->input('editPackagePrice'));
+                    $packages->intPackageMinDays = trim($request->input('editPackageMinDays'));
                     $packages->strPackageDesc = trim($request->input('editPackageDesc'));
                     $packages->strPackageImage = 'imgPackages/'.$file;
                 }           

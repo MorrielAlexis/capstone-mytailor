@@ -8,6 +8,7 @@ use App\Swatch;
 use App\FabricType;
 use App\SwatchNameMaintenance;
 use App\Http\Requests;
+use App\Http\Requests\MaintenanceSwatchesRequest;
 use App\Http\Controllers\Controller;
 
 class SwatchController extends Controller
@@ -72,7 +73,7 @@ class SwatchController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MaintenanceSwatchesRequest $request)
     {
          $file = $request->input('addImage');
         $destinationPath = 'imgSwatches';

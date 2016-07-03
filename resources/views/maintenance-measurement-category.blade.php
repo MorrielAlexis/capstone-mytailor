@@ -12,6 +12,20 @@
                   </div>
                 </div>
               @endif
+
+          <!-- Errors -->
+        @if ($errors->any())
+           <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red">
+              <span class="black-text" style="color:black"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </div>
+          </div>
+        </div>
+      @endif
   
 
             <!--Add -->
@@ -291,7 +305,7 @@
     <script src="js/jquery-1.12.0.min.js"></script>
     <script src="js/jquery-migrate-1.2.1.min.js"></script>
 
-    <script>
+    {{-- <script>
       // $(document).ready() executes this script AFTER the whole page loads
       $(document).ready(function () {
         // Get jQuery object for element with ID as 'category' (first select element)
@@ -344,7 +358,7 @@
           if (defaultType != '') typesElement.val(defaultType);
         }
       });
-    </script>
+    </script> --}}
 
     <script>
     $(document).ready(function () {

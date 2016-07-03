@@ -27,7 +27,42 @@
 								<div class="col s6"><p><h5><b>Customize Order</b></h5></p></div>							
 									<div class="right col s1"><a style="margin-top:15px; background-color:teal" type="submit" class="waves-effect waves-green btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to go back home" href="{{URL::to('/transaction/walkin-individual')}}"><i class="mdi-action-home" style="color:white; opacity:0.90; font-size:30px;"></i></a></div>
 									<div class="right col s5"><a style="margin-top:15px; background-color:teal" type="submit" class="right waves-effect waves-green btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to proceed to payment of orders" href="#summary-of-order"><font color="white" size="+1"><!--<i class="mdi-action-payment" style="font-size:20px;">-->  Proceed to Checkout<!--</i>--></font></a>
-										<div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
+										<div id="removeOrder" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
+											<h5><font color="red"><center><b>Warning!</b></center></font></h5>
+												
+												{!! Form::open() !!}
+													<div class="divider" style="height:2px"></div>
+													<div class="modal-content col s12">
+														<div class="col s3">
+															<i class="mdi-alert-warning" style="font-size:50px; color:red"></i>
+														</div>
+														<div class="col s9">
+															<p><font size="+1">Are you sure to remove this order from cart?</font></p>
+														</div>
+													</div>
+
+													<div class="modal-footer col s12" style="background-color:red; opacity:0.85">
+										                <a class="waves-effect waves-green btn-flat" ><font color="white">Yes</font></a>
+										                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="white">No</font></a>
+										            </div>
+												{!! Form::close() !!}
+										</div>
+										
+									</div>													
+										
+							</div>
+
+<!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--> 
+<!--/////////////////////////////////////////// START OF AN ITERATION  ////////////////////////////////////////////////////////-->
+<!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--> 		
+							<div class="divider" style="margin-bottom:30px"></div>
+							<div class="divider" style="margin-bottom:30px"></div>
+							<div class="divider" style="margin-bottom:30px; height:3px"></div>
+
+<!-- END OF LOOP -->		@foreach($segments as $segment)
+							<div class="col s6">
+							<a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#removeOrder"><i class="mdi-navigation-close"></i></a>
+								<div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
 											<h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
 												
 												{!! Form::open() !!}
@@ -79,40 +114,6 @@
 										            </div>
 												{!! Form::close() !!}
 										</div>
-									</div>													
-										
-							</div>
-
-<!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--> 
-<!--/////////////////////////////////////////// START OF AN ITERATION  ////////////////////////////////////////////////////////-->
-<!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--> 		
-							<div class="divider" style="margin-bottom:30px"></div>
-							<div class="divider" style="margin-bottom:30px"></div>
-							<div class="divider" style="margin-bottom:30px; height:3px"></div>
-
-<!-- END OF LOOP -->		@foreach($segments as $segment)
-							<div class="col s6">
-							<a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#removeOrder"><i class="mdi-navigation-close"></i></a>
-								<div id="removeOrder" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
-									<h5><font color="red"><center><b>Warning!</b></center></font></h5>
-										
-										{!! Form::open() !!}
-											<div class="divider" style="height:2px"></div>
-											<div class="modal-content col s12">
-												<div class="col s3">
-													<i class="mdi-alert-warning" style="font-size:50px; color:red"></i>
-												</div>
-												<div class="col s9">
-													<p><font size="+1">Are you sure to remove this order from cart?</font></p>
-												</div>
-											</div>
-
-											<div class="modal-footer col s12" style="background-color:red; opacity:0.85">
-								                <a class="waves-effect waves-green btn-flat" ><font color="white">Yes</font></a>
-								                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="white">No</font></a>
-								            </div>
-										{!! Form::close() !!}
-								</div>
 
 							<center><img src="{{URL::asset($segment->strSegmentImage)}}" style="height:450px; width:450px; border:3px gray solid"></center>								          	
 							</div>

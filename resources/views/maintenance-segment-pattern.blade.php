@@ -117,6 +117,7 @@
                   <!--<th data-field= "Catalog ID">Segment Pattern ID</th>-->
               		<th data-field="Garment Name">Segment Name </th>
              		  <th data-field="Pattern Name">Pattern Name</th>
+                  <th data-field="Pattern Image">Pattern Description</th>
               		<th data-field="Pattern Image">Pattern Image</th>
                   <th data-field="Edit">Actions</th>
               	</tr>
@@ -129,6 +130,7 @@
              		<!--<td>{{ $pattern->strSegPatternID }}</td>-->
                   <td>{{ $pattern->strSegmentName }}</td>
               		<td>{{ $pattern->strSegPName }}</td>
+                  <td>{{ $pattern->txtSegPDesc }}</td>
                   <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($pattern->strSegPImage)}}"></td>
               		<td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of pattern" href="#edit{{ $pattern->strSegPatternID }}"><i class="mdi-editor-mode-edit"></i></a>
                   <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="CLick to remove data of pattern from table" href="#del{{ $pattern->strSegPatternID }}"><i class="mdi-action-delete"></i></a></td>
@@ -146,7 +148,7 @@
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;"> 
 
-                          <div class="input-field col s6">                                                   
+                          <div class="input-field col s12">                                                   
                             <select class="browser-default editSegment" id="{{ $pattern->strSegPatternID }}" name='editSegment'>
                                   @foreach($segment as $segment_1)
                                     @if($pattern->strSegPNameFK == $segment_1->strSegmentID && $segment_1->boolIsActive == 1)
@@ -161,10 +163,18 @@
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input required value = "{{ $pattern->strSegPName }}" id="editPatternName" name= "editPatternName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
+                            <input required value = "{{ $pattern->strSegPName }}" id="editPatternName" name= "editPatternName" type="text" class="validate"  data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                             <label for="pattern_name">Pattern Name </label>
                           </div>
                       </div>
+
+
+                      <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
+                              <div class="input-field col s12">
+                     <input  value="{{ $pattern->txtSegPDesc }}" id="editSegPDesc" name = "editSegPDesc" type="text" class="validate">
+                               <label for="segment_description">Pattern Description</label>
+                              </div>
+                          </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                           <div class="file-field input-field col s12">
@@ -203,14 +213,21 @@
 
                         <div class="input-field col s6">                                                    
                             <input type="text" value="{{$pattern->strSegmentName}}" readonly>
-                          <label>Segment</label>
+                          <label>Segment:</label>
                         </div>  
                     </div> 
   
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s12">
                           <input value = "{{ $pattern->strSegPName }}" type="text" class="validate" readonly>
-                          <label for="pattern_name">Pattern Name </label>
+                          <label for="pattern_name">Pattern Name: </label>
+                        </div>
+                    </div>
+
+                    <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                        <div class="input-field col s12">
+                          <input value = "{{ $pattern->txtSegPDesc }}" type="text" class="validate" readonly>
+                          <label for="pattern_name">Pattern Description: </label>
                         </div>
                     </div>
 
@@ -256,7 +273,7 @@
                 <input value = "{{$newID}}" id="strSegPatternID" name= "strSegPatternID" type="hidden">
 
             <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                <div class="input-field col s6">
+                <div class="input-field col s12">
                   <select class="browser-default" required id="strSegPNameFK" name="strSegPNameFK">
                         @foreach($segment as $segment)
                           @if($segment->boolIsActive == 1)
@@ -269,11 +286,18 @@
 
             <div class = "col s12" style="padding:15px;  border:3px solid white;">
                 <div class="input-field col s12">
-                  <input required id="strSegPName" name= "strSegPName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
+                  <input required id="strSegPName" name= "strSegPName" type="text" class="validate"  data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                   <label for="pattern_name">Pattern Name <span class="red-text"><b>*</b></span></label>
-                    <span id="left"></span></label>
                 </div>
             </div>
+
+             <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                        <div class="input-field col s12">
+                          <input id="txtSegPDesc" name="txtSegPDesc" type="text" class="validate" readonly>
+                          <label for="pattern_name">Pattern Description: </label>
+                        </div>
+                    </div>
+          
             
 
             <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
@@ -308,7 +332,7 @@
 @section('scripts')
     <script src="js/jquery-1.12.0.min.js"></script>
     <script src="js/jquery-migrate-1.2.1.min.js"></script>
-    <script>
+    {{-- <script>
       // $(document).ready() executes this script AFTER the whole page loads
       $(document).ready(function () {
 
@@ -362,7 +386,7 @@
           if (defaultType != '') typesElement.val(defaultType);
         }
       });
-    </script>
+    </script> --}}
     
     <script>
     $(document).ready(function () {

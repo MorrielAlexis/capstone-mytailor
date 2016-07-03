@@ -15,353 +15,307 @@
         <div class="col s12 m12 l12">
         	<div class="card-panel">
 
-	          <div class="row">
-	            <div class=" container left input-field col s4">
-	              <i class="medium mdi-action-search prefix"></i>
-	              <input id="icon_prefix" type="text" class="validate">
-	              <label for="icon_prefix">Transaction Code</label>
-	            </div>
-	            <div class="col s8">
-					<a class="btn-floating tooltipped purple accent-1" data-position="bottom" data-delay="50" data-tooltip="Create new transaction" href="{{URL::to('/transaction-alterationwalkIn-newtransaction')}}" style="margin-top:15px;"><i class="large mdi-social-person-add"></i></a>	
-	            </div>
-	          </div>
+                <span class="card-title"><h5 style="color:#1b5e20"><center>Alteration Order</center></h5></span>
+                <div class="divider" style="margin-bottom:50px;"></div>
 
-	        <!--Individual order-->
-	        <div class="card">
-				<div class="card-content container" style="width:90%;">	
-					
-					<!--CUSTOMER details-->
-					<div class="divider" style="margin-top:20px;"></div>
-					<h5 style="color:#1b5e20; margin-left:20px;">Customer Details</h5>
-					<div class="divider" style="margin-bottom:20px;"></div>
+            <div class="row">
+                <div class="col s6" style="margin-top:10px;">
+                      {{-- start of garment category dropdown --}}
+                      <div class="input-field col s12" style="padding:20px;">
+                        <select class = "garment-category" id = "garment-category">
+                        <option value="All" class="circle" selected>All</option>
+                        @foreach($categories as $category)
+                          <option value="{{ $category->strGarmentCategoryID }}" class="circle">{{ $category->strGarmentCategoryName }}</option>
+                      @endforeach
+                    </select>
+                        <label><font size="3" color="Red">Choose a garment category</font></label>
+                      </div>
+                     {{--  end of garment category dropdown --}}
 
-					<div class="row container" style="width:90%;">
-						<div class="col s12">
-							<div class="col s6">       
-		                        <div style="color:black; padding-left:140px" class="input-field col s12">                 
-		                          <input value="" id="addIndiID" name="addIndiID" type="text" class="">
-		                          <label style="color:black">Individual ID </label>
-		                        </div>
+                      {{-- < Start of Segment> --}}
+                      <div class="input-field col s12" style="padding:20px;">
+                      <select class = "garment-segment" id = "garment-segment">
+                        <option value="All" class="circle" selected>All</option>
+                        @foreach($alterations  as $alteration )
+                          <option value="{{ $alteration->strAlterationID }}" class="circle">{{ $alteration->strSegmentName }}</option>
+                      @endforeach
+                    </select>
+                         {{--  <select class="alteration-segment"  id="alteration-segment" name="alteration-segment">
+                        @foreach($alterations as $alteration)
+                            <option value="{{ $alteration->strAlterationID }}" class="{{ $alteration->strAlterationSegmentFK }}">{{ $alteration->strSegmentName }}</option>
+                          @endif
+                        @endforeach
+                  </select> --}}
 
-		                        <div style="color:black; padding-left:140px; margin-left:1px" class="input-field col s12">                 
-		                          <input value="" id="dateToday" name="dateToday" type="text" class="">
-		                          <label style="color:black">Transaction No. </label>
-		                        </div>
-			            	</div>
-			            </div>
+                        <label><font size="3" color="Red">Choose a segment:</font></label>
+                      </div>
+                      {{-- end of segment dropdown --}}
 
-			            <div class="col s12 container">
-			            	<div style="color:black; padding-left:140px" class="input-field col s12">                 
-		                        <input value="" id="addIndiID" name="addIndiID" type="text" class="">
-		                        <label style="color:black">Customer Name </label>
-		                    </div>
-	                        <div style="color:black; padding-left:140px" class="input-field col s12">                 
-		                        <input value="" id="addIndiID" name="addIndiID" type="text" class="">
-		                        <label style="color:black">Complete Address </label>
-		                    </div>
-			            </div>
-			        </div>
+                      <div class="input-field col s12" style="padding:20px;">
 
-			        <!--ORDER details-->
-			        <div class="divider" style="margin-top:20px;"></div>
-					<h5 style="color:#1b5e20; margin-left:20px;">Order Details</h5>
-					<div class="divider" style="margin-bottom:20px;"></div>
+                      {{-- start of alteration dropdown --}}
+                        <div class="col s10">
+                            <select class = "alteration-type" id = "alteration-type">
+                        <option value="All" class="circle" selected>All</option>
+                        @foreach($alterations  as $alteration )
+                          <option value="{{ $alteration->strAlterationID }}" class="circle">{{ $alteration->strAlterationName }}</option>
+                      @endforeach
+                          </select>
+                            <label><font size="3" color="Red">Choose an alteration type:</font></label>
+                        </div>
+                        {{-- end of alteration dropdown --}}
 
-					<div class = "row">
-					    <div class="col s12 m12 l12 overflow-x">
-					    	<table class = "centered striped">
-					    		<thead>
-					    			<tr>
-					    				<th>Garment Type</th>
-					    				<th>Garment Image</th>
-					    				<th>Quantity</th>
-					    				<th>Fabric Type</th>
-					    				<th>Swatch Pattern</th>
-					    				<th>Garment Segment</th>
-					    				<th>Alteration Type</th>
-					    				<th></th>
-					    			</tr>
-					    		</thead>
-					    		<tbody>
-					    			<tr>
-					    				<td>Uniform</td>
-					    				<td><img class="img hoverable" src="../img/uniform3.jpg"></td>
-					    				<td>1</td>
-					    				<td>Linen</td>
-					    				<td><img class="img hoverable modal-trigger" href="#swatchpattern" src="../imgSwatches/citadel alpine.jpg"></td>
-					    				<td class="input-field">
-											<select>
-											    <option value="1" data-icon="#!" class="circle">Skirt</option>
-											    <option value="2" data-icon="#!" class="circle">Pants</option>
-											    <option value="3" data-icon="#!" class="circle">Polo</option>
-											    <option value="4" data-icon="#!" class="circle">Shorts</option>
-											</select>
-										</td>
-					    				<td class="input-field col s12">
-										    <select multiple>
-										    	<option value="" disabled selected>What to alter..</option>
-										      	<option value="1">Hem</option>
-										      	<option value="2">Sleeves</option>
-										      	<option value="3">Slim</option>
-										    </select>
-										</td>
-					    				<td><a class=" btn modal-trigger tooltipped" href="#measurementmodal" data-position="top" data-delay="50" data-tooltip="Supply measurements"><i class="mdi-av-playlist-add"></i></a></td>
-					    			</tr>
-					    			<tr>
-					    				<td>Gown</td>
-					    				<td><img class="img hoverable" src="../img/gown2.jpg"></td>
-					    				<td>1</td>
-					    				<td>Cotton</td>
-					    				<td><img class="img hoverable modal-trigger" href="#swatchpattern" src="../imgSwatches/citadel grape.jpg"></td>
-					    				<td class="input-field">
-											<select>
-											    <option value="1" data-icon="#!" class="circle">Skirt</option>
-											    <option value="2" data-icon="#!" class="circle">Pants</option>
-											    <option value="3" data-icon="#!" class="circle">Polo</option>
-											    <option value="4" data-icon="#!" class="circle">Shorts</option>
-											</select>
-										</td>
-					    				<td class="input-field col s12">
-										    <select multiple>
-										    	<option value="" disabled selected>What to alter..</option>
-										      	<option value="1">Hem</option>
-										      	<option value="2">Sleeves</option>
-										      	<option value="3">Slim</option>
-										    </select>
-										</td>
-										<td><a class="btn modal-trigger tooltipped" href="#measurementmodal" data-position="top" data-delay="50" data-tooltip="Supply measurements"><i class="mdi-av-playlist-add"></i></a></td>
-					    			</tr>
-					    		</tbody>
-					    	</table>
-					    </div>
-			                  
-			            <div class = "clearfix"></div>
-			        </div>
+                        <div class="col s2">
+                            <a class="btn modal-trigger tooltipped" href="#measurementmodal" data-position="top" data-delay="50" data-tooltip="Supply measurements"><i class="mdi-av-playlist-add"></i></a>
+                        </div>
+                      </div>
+                </div>
 
-		            <center><div class="btn green white-text container" style="padding-top:5px; height:50px; margin-top:20px;" href="{{URL::to('/transaction-walkInindividualcheckout')}}"><font color="black" size="+1">Proceed to CHECKOUT</font></div></center>
+                {{-- <div class="col s6 container">
+                    <center><img class="responsive-img" src="#!" style="height:250px; width:250px;"></center>
+                    <form action="#">
+                        <div class="file-field input-field">
+                            <div class="btn">
+                                <span>File</span>
+                                <input type="file">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+             --}}
 
-            	</div>
+            <div class="col s12" style="margin-top:25px;">
+              <div class="divider"></div>
+              <a class="left btn tooltipped modal-trigger" data-position="bottom" data-delay="50" data-tooltip="Click to reset order" style="margin-top:30px; font-size:15px; color:white; background-color: teal; opacity:0.90" href="#resetOrder">RESET ORDER</a>
+              <button type="submit" class="right btn tooltipped modal-trigger" data-position="bottom" data-delay="50" data-tooltip="Click to save order" style="margin-top:30px; background-color: teal; font-size:15px; color:white" href="#saveOrder">SAVE</a>              
             </div>
 
-            <!--COMPANY order-->
-            <div class="card">
-				<div class="card-content container" style="width:90%;">	
-					
-					<!--CUSTOMER details-->
-					<div class="divider" style="margin-top:20px;"></div>
-					<h5 style="color:#1b5e20; margin-left:20px;">Customer Details</h5>
-					<div class="divider" style="margin-bottom:20px;"></div>
+        	</div>
 
-					<div class="row container" style="width:90%;">
-						<div class="col s12">
-							<div class="col s6">       
-		                        <div style="color:black; padding-left:140px" class="input-field col s12">                 
-		                          <input value="" id="addIndiID" name="addIndiID" type="text" class="">
-		                          <label style="color:black">Company ID </label>
-		                        </div>
-
-		                        <div style="color:black; padding-left:140px; margin-left:1px" class="input-field col s12">                 
-		                          <input value="" id="dateToday" name="dateToday" type="text" class="">
-		                          <label style="color:black">Transaction No. </label>
-		                        </div>
-			            	</div>
-			            </div>
-
-			            <div class="col s12 container" style="padding:15px;">
-			            	<label style="padding:20px;">EMPLOYEE NAME</label>
-			            	<table class = "table centered order-summary" border = "1">
-			       				<thead style="color:gray">
-				          			<tr>
-					                  <th data-field="first_name" class="col s3">First Name</th>         
-					                  <th data-field="middle_name" class="col s3">Middle Name</th>
-					                  <th data-field="last_name" class="col s3">Last Name</th>
-					                  <th data-field="gender" class="col s1">Sex</th>
-					                  <th data-field="package" class="col s1">Package</th>
-					              	</tr>
-				              	</thead>
-						    </table>
-						    <div style="color:black" class="input-field col s3">
-	                            <input id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt" maxlength="11">		           
-	                        </div>
-	                        <div style="color:black" class="input-field col s3">
-	                            <input id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt" maxlength="11">		           
-	                        </div>
-	                        <div style="color:black" class="input-field col s3">
-	                            <input id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt" maxlength="11">		           
-	                        </div>
-	                        <div style="color:black" class="input-field col s1">
-								<select>
-								    <option value="1">F</option>
-								    <option value="2">M</option>
-								</select>
-							</div>
-							<div style="color:black" class="input-field col s1">
-								<select>
-								    <option value="1">A</option>
-								    <option value="2">B</option>
-								</select>
-							</div>
-			            </div>
-			        </div>
-
-			        <!--ORDER details-->
-			        <div class="divider" style="margin-top:20px;"></div>
-					<h5 style="color:#1b5e20; margin-left:20px;">Order Details</h5>
-					<div class="divider" style="margin-bottom:20px;"></div>
-
-					<div class = "row">
-					    <div class="col s12 m12 l12 overflow-x">
-					    	<table class = "centered striped">
-					    		<thead>
-					    			<tr>
-					    				<th>Garment Type</th>
-					    				<th>Garment Image</th>
-					    				<th>Quantity</th>
-					    				<th>Fabric Type</th>
-					    				<th>Swatch Pattern</th>
-					    				<th>Garment Segment</th>
-					    				<th>Alteration Type</th>
-					    				<th></th>
-					    			</tr>
-					    		</thead>
-					    		<tbody>
-					    			<tr>
-					    				<td>Uniform</td>
-					    				<td><img class="img hoverable" src="../img/uniform3.jpg"></td>
-					    				<td>1</td>
-					    				<td>Linen</td>
-					    				<td><img class="img hoverable modal-trigger" href="#swatchpattern" src="../imgSwatches/citadel alpine.jpg"></td>
-					    				<td class="input-field">
-											<select>
-											    <option value="1" data-icon="#!" class="circle">Skirt</option>
-											    <option value="2" data-icon="#!" class="circle">Pants</option>
-											    <option value="3" data-icon="#!" class="circle">Polo</option>
-											    <option value="4" data-icon="#!" class="circle">Shorts</option>
-											</select>
-										</td>
-					    				<td class="input-field col s12">
-										    <select multiple>
-										    	<option value="" disabled selected>What to alter..</option>
-										      	<option value="1">Hem</option>
-										      	<option value="2">Sleeves</option>
-										      	<option value="3">Slim</option>
-										    </select>
-										</td>
-					    				<td><a class=" btn modal-trigger tooltipped" href="#measurementmodal" data-position="top" data-delay="50" data-tooltip="Supply measurements"><i class="mdi-av-playlist-add"></i></a></td>
-					    			</tr>
-					    			<tr>
-					    				<td>Gown</td>
-					    				<td><img class="img hoverable" src="../img/gown2.jpg"></td>
-					    				<td>1</td>
-					    				<td>Cotton</td>
-					    				<td><img class="img hoverable modal-trigger" href="#swatchpattern" src="../imgSwatches/citadel grape.jpg"></td>
-					    				<td class="input-field">
-											<select>
-											    <option value="1" data-icon="#!" class="circle">Skirt</option>
-											    <option value="2" data-icon="#!" class="circle">Pants</option>
-											    <option value="3" data-icon="#!" class="circle">Polo</option>
-											    <option value="4" data-icon="#!" class="circle">Shorts</option>
-											</select>
-										</td>
-					    				<td class="input-field col s12">
-										    <select multiple>
-										    	<option value="" disabled selected>What to alter..</option>
-										      	<option value="1">Hem</option>
-										      	<option value="2">Sleeves</option>
-										      	<option value="3">Slim</option>
-										    </select>
-										</td>
-										<td><a class="btn modal-trigger tooltipped" href="#measurementmodal" data-position="top" data-delay="50" data-tooltip="Supply measurements"><i class="mdi-av-playlist-add"></i></a></td>
-					    			</tr>
-					    		</tbody>
-					    	</table>
-					    </div>
-			                  
-			            <div class = "clearfix"></div>
-			        </div>
-
-	            	<center><div class="btn green white-text container" style="padding-top:5px; height:50px; margin-top:20px;" href="{{URL::to('/transaction-walkIncompanycheckout')}}"><font color="black" size="+1">Proceed to CHECKOUT</font></div></center>
-
-            	</div>
+ 
             </div>
-
-          	</div>
         </div>
     </div>
 
-</div>
+  <!--Reset Order Modal-->
+  <div id="resetOrder" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
+    <h5><font color="red"><center><b>Warning!</b></center></font></h5>
+    <div class="divider" style="height:2px"></div>
+    <div class="modal-content">
+      <div class="row">
+        <div class="col s3">
+          <i class="mdi-alert-warning" style="font-size:50px; color:red"></i>
+        </div>
+        <div class="col s9">
+          <p><font size="+1">Are you sure you want to reset your order?</font></p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer col s12" style="background-color:red; opacity:0.85">
+      <button type="submit" class="waves-effect waves-green btn-flat" href="#!"><font color="black">Yes</font></button>
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+    </div>
+  </div>  
 
-	<!--Measurement button Modal-->
-	<div id="measurementmodal" class="modal modal-fixed-footer">
-		<div class="modal-content">
-			<h4 style="color:#1b5e20" class="center">Measurements</h4>
-			<div class="divider container" style="margin-bottom:20px;"></div>
-			<div class="row">
-				<div class="col s6">
-					<div class="input-field">
-	                  	<input id ="measurement" type="text" class="validate">
-	                  	<label for="measurement">Measurement</label>
-	                </div>
-	                <div class="input-field">
-	                  	<input id ="measurement" type="text" class="validate">
-	                  	<label for="measurement">Measurement</label>
-	                </div>
-	                <div class="input-field">
-	                  	<input id ="measurement" type="text" class="validate">
-	                  	<label for="measurement">Measurement</label>
-	                </div>
-				</div>
-				<div class="col s6">
-					<div class="input-field">
-	                  	<input id ="measurement" type="text" class="validate">
-	                  	<label for="measurement">Measurement</label>
-	                </div>
-	                <div class="input-field">
-	                  	<input id ="measurement" type="text" class="validate">
-	                  	<label for="measurement">Measurement</label>
-	                </div>
-	                <div class="input-field">
-	                  	<input id ="measurement" type="text" class="validate">
-	                  	<label for="measurement">Measurement</label>
-	                </div>
-				</div>
-			</div>
+  <!--Save Modal-->
+  <div id="saveOrder" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
+    <h5><font color="green"><center><b>Save Order</b></center></font></h5>
+    <div class="divider" style="height:2px"></div>
+    <div class="modal-content">
+      <div class="row">
+        <div class="col s3">
+          <i class="mdi-alert-warning" style="font-size:50px; color:yellow"></i>
+        </div>
+        <div class="col s9">
+          <p><font size="+1">Are you sure you want to save your order?</font></p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer col s12" style="background-color:green; opacity:0.85">
+      <a class="modal-action modal-close waves-effect waves-green btn-flat" href="#!"><font color="black">Cancel</font></a>
+      <a class="modal-action modal-close waves-effect waves-green btn-flat modal-trigger" href="#savednotif"><font color="black">Save</font></a>
+    </div>
+  </div>  
 
-			<h4 style="color:#1b5e20" class="center">Note</h4>
-			<div class="divider container" style="margin-bottom:20px;"></div>
-			    <div class="input-field col s12">
-		          	<textarea id="textarea" class="textarea"></textarea>
-		          	<label for="textarea"></label>
-		        </div>
+  <!--Saved notif-->
+   <div id="savednotif" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
+        <div class="modal-content">
+          <h5 style="color:#1b5e20; margin-top:50px;" class="center">ORDER SUCCESSFULLY SAVED</h5>
+          <div class="divider container" style="height:2px;"></div>
+        </div>
 
-		</div>
+        <div class="modal-footer" style="background-color:#26a69a">
+            <a href="{{URL::to('transaction/alteration-walkin')}}" class="left modal-action modal-close waves-effect waves-green btn-flat">Add Another Order</a>
+            <a href="#summary-of-order" class="right modal-action modal-close waves-effect waves-green btn-flat modal-trigger">Proceed to Checkout</a>
+        </div>
+    </div>
 
-		<div class="modal-footer" style="background-color:#26a69a">
-			<a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-			<a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
-		</div>
-	</div>
-	
+    <!--Measurement button Modal-->
+    <div id="measurementmodal" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4 style="color:#1b5e20" class="center">Measurements</h4>
+            <div class="divider container" style="margin-bottom:20px;"></div>
+            <div class="row">
+                <div class="col s6">
+                    <div class="input-field">
+                        <input id ="measurement" type="text" class="validate">
+                        <label for="measurement">Measurement</label>
+                    </div>
+                    <div class="input-field">
+                        <input id ="measurement" type="text" class="validate">
+                        <label for="measurement">Measurement</label>
+                    </div>
+                    <div class="input-field">
+                        <input id ="measurement" type="text" class="validate">
+                        <label for="measurement">Measurement</label>
+                    </div>
+                </div>
+                <div class="col s6">
+                    <div class="input-field">
+                        <input id ="measurement" type="text" class="validate">
+                        <label for="measurement">Measurement</label>
+                    </div>
+                    <div class="input-field">
+                        <input id ="measurement" type="text" class="validate">
+                        <label for="measurement">Measurement</label>
+                    </div>
+                    <div class="input-field">
+                        <input id ="measurement" type="text" class="validate">
+                        <label for="measurement">Measurement</label>
+                    </div>
+                </div>
+            </div>
 
-@stop
+            <h4 style="color:#1b5e20" class="center">Note</h4>
+            <div class="divider container" style="margin-bottom:20px;"></div>
+                <div class="input-field col s12">
+                    <textarea id="textarea" class="textarea"></textarea>
+                    <label for="textarea"></label>
+                </div>
 
-@section('scripts')
+        </div>
 
-	<script>
-		  $(document).ready(function() {
-		    $('select').material_select();
-		  });
-	</script>
+        <div class="modal-footer" style="background-color:#26a69a">
+            <a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+            <a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+        </div>
+    </div>
 
-	<script>
-	  $('.modal-trigger').leanModal({
-	      dismissible: true, // Modal can be dismissed by clicking outside of the modal
-	      opacity: .5, // Opacity of modal background
-	      in_duration: 300, // Transition in duration
-	      out_duration: 200, // Transition out duration
-	      width:400,
-	    }
-	  );
-	</script>
+
+    <!--PROCEED TO CHECKOUT-->
+    <div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
+      <h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
+        
+        {!! Form::open() !!}
+          <div class="divider" style="height:2px"></div>
+          <div class="modal-content col s12">
+            <label>This is a summary of orders:</label>
+            <div class="container">
+                          <table class = "table centered order-summary" border = "1">
+                    <thead style="color:gray">
+                        <tr>
+                            <th data-field="garment">Garment</th>         
+                            <th data-field="segment">Segment</th>
+                            <th data-field="alterationtype">Alteration Type</th>
+                            <th data-field="price">Unit Price</th>
+                            <!--<th data-field="price">Total Price</th>-->
+                          </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                           <td>Uniform</td>
+                           <td>Skirt</td>
+                           <td>Slim</td>
+                           <td>PHP</td>
+                           <!--<td> </td>-->
+                        </tr>
+                </table>
+                </div>
+
+                <div class="divider"></div>
+                <div class="divider"></div>
+
+                <div class="col s12" style="margin-bottom:50px" >
+              <div class="col s6"><p style="color:gray">Estimated time to finish all orders:<p style="color:black" id="total-time"></p></p></div>
+              <div class="col s6"><p style="color:gray">Total Amount to Pay:<p style="color:black" id="total-price"></p></p></div>
+            </div>
+          </div>
+
+          <div class="modal-footer col s12">
+            <p class="left" style="margin-left:10px; color:gray;">Continue to payment?</p>
+            <a class="waves-effect waves-green btn-flat" href="{{URL::to('/transaction/walkin-individual-payment-customer-info')}}"><font color="black">Yes</font></a>
+            <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+          </div>
+        {!! Form::close() !!}
+    </div>
+ @stop
+
+ @section('scripts')
+
+    <script>
+          $(document).ready(function() {
+            $('select').material_select();
+          });
+    </script>
+
+
+    <script>
+      // $(document).ready() executes this script AFTER the whole page loads
+      $(document).ready(function () {
+
+        // Get jQuery object for element with ID as 'category' (first select element)
+        var categoryElement = $('#strAlterationSegmentFK');
+
+        // Get jQuery object for element with ID as 'types' (second select element)
+        var typesElement = $('#strAlterationName');
+
+        // Get children elements of typesElement
+        var typeOptions = typesElement.children();
+
+        // Invoke updateValue() once with initial category value for initial page load
+        updateValue(categoryElement.val());
+
+        // Listen for changes on the categoryElement
+        categoryElement.on('change', function () {
+          // Invoke updateValue() with currently selected category as parameter
+          updateValue(categoryElement.val());
+        });
+
+        // Define default current type
+        var defaultType = '';
+
+        // updateValue function definition
+        function updateValue(category) {
+          // On update, show everything first
+          typeOptions.show();
+
+          // Set default type to empty string for All
+          defaultType = '';
+
+          // If the selected category is all, do not hide anything
+          if (category == 'All') return;
+
+          // Iterate over options (children elements of typesElement)
+          for (var i = 0; i < typeOptions.length; i++) {
+            // Return each child as jQuery object
+            var optionElement = $(typeOptions[i]);
+
+            // Check class of optionElement, hide it if it's not equal to the current selected category
+            if (!optionElement.hasClass(category)) optionElement.hide();
+
+            // Check class of optionElement if it matches currently selected category AND if defaultType is an empty string,
+            // if the evaluation is true, set defaultType to optionElement value. We do this to set the default value
+            // when we pick another category
+            if (optionElement.hasClass(category) && defaultType == '') defaultType = optionElement.attr('value');
+          }
+
+          // If defaultType is not empty string, set it as typesElement value
+          if (defaultType != '') typesElement.val(defaultType);
+        }
+      });
+    </script>
 
 @stop

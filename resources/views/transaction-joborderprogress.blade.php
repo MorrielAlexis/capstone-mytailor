@@ -73,26 +73,17 @@
                     </thead>
 
                     <tbody>
-
+                      
+                    <form id= "checkboxes" action = "#">
                       <tr>
                         <td>Uniform</td>
                         <td>Women's Uniform</td>
                         <td>Longsleeve</td>
                         <td>1</td>
                         <td> Made to Order</td>
-                        <td>
-                          <form action="gr1">
-                            <div class = "row">
-                              <div class = "col s6">
-                                <input name="group1" type="radio" id="gr1finished" checked= "checked"/>
-                                <label for="gr1finished">Finished</label>
-                              </div>
-                              <div class = "col s6">
-                                <input name="group1" type="radio" id="gr1unfinished" />
-                                <label for="gr1unfinished">Unfinished</label>
-                              </div>
-                            </div>  
-                          </form>
+                        <td>                      
+                          <input type = "checkbox" id="chkbx1"  class = "chkbx"/>
+                          <label for="chkbx1">Finished</label>                         
                         </td>
                       </tr>
 
@@ -102,19 +93,9 @@
                         <td>Skirt</td>
                         <td>1</td>
                         <td> Made to Order</td>
-                        <td>
-                          <form action="gr2">
-                            <div class = "row">
-                              <div class = "col s6">
-                                <input name="group2" type="radio" id="gr2finished" />
-                                <label for="gr2finished">Finished</label>
-                              </div>
-                              <div class = "col s6">
-                                <input name="group2" type="radio" id="gr2unfinished" checked= "checked" />
-                                <label for="gr2unfinished">Unfinished</label>
-                              </div>
-                            </div>  
-                          </form>
+                        <td> 
+                            <input type="checkbox" id="chkbx2" class = "chkbx" />
+                            <label for="chkbx2">Finished</label>                              
                         </td>
                       </tr>
 
@@ -125,18 +106,8 @@
                         <td>1</td>
                         <td> Made to Order</td>
                         <td>
-                          <form action="gr3">
-                            <div class = "row">
-                              <div class = "col s6">
-                                <input name="group3" type="radio" id="gr3finished" />
-                                <label for="gr3finished">Finished</label>
-                              </div>
-                              <div class = "col s6">
-                                <input name="group3" type="radio" id="gr3unfinished" checked= "checked"/>
-                                <label for="gr3unfinished">Unfinished</label>
-                              </div>
-                            </div>  
-                          </form>
+                          <input type="checkbox" id="chkbx3" class = "chkbx" />
+                          <label for="chkbx3">Finished</label>
                         </td>
                       </tr>
 
@@ -147,55 +118,30 @@
                         <td>1</td>
                         <td> Made to Order</td>
                         <td>
-                          <form action="gr4">
-                            <div class = "row">
-                              <div class = "col s6">
-                                <input name="group4" type="radio" id="gr4finished" />
-                                <label for="gr4finished">Finished</label>
-                              </div>
-                              <div class = "col s6">
-                                <input name="group4" type="radio" id="gr4unfinished" checked= "checked" />
-                                <label for="gr4unfinished">Unfinished</label>
-                              </div>
-                            </div>  
-                          </form>
+                          <input type="checkbox" id="chkbx4" class = "chkbx"/>
+                          <label for="chkbx4">Finished</label>
                         </td>
                       </tr>
+                    </form>
 
                     </tbody>
                   </table>  
                 </div>
-                          
-                <div class = "clearfix"></div> 
-              </div>
-
-              <div class ="row">
-                <div class = "col s12">
-                  <label><font size = "+2">Progress Bar:</font></label>
+                
+                <div class ="row">
+                  <div class = "col s12">
+                    <label><font size = "+2">Progress Bar: &#09</font></label>
+                    <label id= "lbl"></label>
+                  </div>
                 </div>
 
-                <div class = "col s2"> &nbsp </div>
-                <div class = "col s8">
-                  <br>
-                  <div id="progress">
-                        <span id="percent">25%</span>
-                        <div id="bar"></div>
+                <div class = "clearfix"></div>
+                <div class="progress" style= "height: 30px;">
+                  <div class="determinate" style="width: 0%" >
+                    <span id="span" style = "padding-left: 558px;"></span>
                   </div>
                 </div> 
-              </div>
 
-              <div class ="row">
-                <div class = "col s3" style="margin-top:20px;">
-                  <label><font size = "+2">Progress Bar:</font></label>
-                </div>
-
-                <div class="col s9">
-                  <form action="#">
-                    <p class="range-field">
-                      <input type="range" id="test5" min="0" max="100" />
-                    </p>
-                  </form>
-                </div>
               </div>
 
             </div>
@@ -217,6 +163,50 @@
   <script>
     $(document).ready(function() {
       $('select').material_select();
+      var checked = 0;
+      var allItems = $('.chkbx').length;
+      $('.chkbx').each(function () {
+        checked += this.checked ? 1 : 0;
+      });
+      
+      var progress = checked > 0 ? ((checked/allItems) * 100) : 0;
+      
+      console.log('progress', progress);
+      
+      $('.determinate').css('width', progress + '%');
+
+      var lbl = document.getElementById("lbl");
+      lbl.style.fontSize = "2em";
+      lbl.innerHTML = progress + '%';
+
+      var span = document.getElementById("span");
+      span.style.fontSize = "1em";
+      span.innerHTML = progress + '%';
+    });
+  </script>
+
+
+  <script type="text/javascript">
+    $('.chkbx').on('change', function () {
+      var checked = 0;
+      var allItems = $('.chkbx').length;
+      $('.chkbx').each(function () {
+        checked += this.checked ? 1 : 0;
+      });
+      
+      var progress = checked > 0 ? ((checked/allItems) * 100) : 0;
+      
+      console.log('progress', progress);
+      
+      $('.determinate').css('width', progress + '%');
+
+      var lbl = document.getElementById("lbl");
+      lbl.style.fontSize = "2em";
+      lbl.innerHTML = progress + '%';
+
+      var span = document.getElementById("span");
+      span.style.fontSize = "1em";
+      span.innerHTML = progress + '%';
     });
   </script>
 

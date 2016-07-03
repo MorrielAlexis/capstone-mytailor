@@ -4,6 +4,20 @@
   <div class="main-wrapper" style="margin-top:30px">  <!-- Main Wrapper  -->   
       <!--Input Validation-->
 
+       <!-- Errors -->
+        @if ($errors->any())
+           <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red">
+              <span class="black-text" style="color:black"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </div>
+          </div>
+        </div>
+      @endif
+
    <!--Add Fabric Type-->
         @if(Session::has('flash_message'))
         <div class="row" id="flash_message">
@@ -67,12 +81,14 @@
 
               <div class="col s12 m12 l12 overflow-x">
 
-       				<table class = "table centered data-alterationName" align = "center" border = "1">
+       				<table class = "table centered data-alteration" align = "center" border = "1">
                 <thead>
                   <tr>
               		  <!--<th data-field="fabricID">Fabric Type ID</th>-->
                     <th data-field="alterationName">Name</th>
+                    <th data-field="alterationDescription">Segment</th>
               		  <th data-field="alterationDescription">Description</th>
+                    <th data-field="alteration MinDays">Min. Days of Production</th>
                     <th data-field="alterationPrice">Price</th>
                     <th data-field="Edit">Actions</th>
                     
@@ -84,9 +100,10 @@
                   @foreach($alteration as $alteration)
                     @if($alteration->boolIsActive == 1)
                   <tr>
-              		 
                     <td>{{$alteration->strAlterationName}}</td>
+                    <td>{{$alteration->strSegmentName}}</td>
               		  <td>{{$alteration->txtAlterationDesc}}</td>
+                    <td>{{$alteration->intAlterationMinDays}}</td>
                     <td>{{"Php" . $alteration->dblAlterationPrice}}</td>
               		  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of alteration name" href="#edit{{$alteration->strAlterationID}}"><i class="mdi-editor-mode-edit"></i></a>
                     <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of alteration name from the table" href="#del{{$alteration->strAlterationID}}"><i class="mdi-action-delete"></i></a></td>
@@ -104,10 +121,25 @@
 
                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input required value = "{{$alteration->strAlterationName}}" id="editAlterationName" name = "editAlterationName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
+                            <input required value = "{{$alteration->strAlterationName}}" id="editAlterationName" name = "editAlterationName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s\d]{2,}${{-- ^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)? --}}" >
                             <label for="alteration_name">Alteration Name <span class="red-text"><b>*</b></span> </label>
                           </div>
                         </div>
+
+                          <div class = "col s12" style="padding:15px;  border:3px solid white;"> 
+
+                          <div class="input-field col s12">                                                   
+                            <select class="browser-default editSegment" id="{{ $alteration->strAlterationID }}" name='editSegment'>
+                                  @foreach($segment as $segment_1)
+                                    @if($alteration->strAlterationSegmentFK == $segment_1->strSegmentID && $segment_1->boolIsActive == 1)
+                                      <option selected value="{{ $segment_1->strSegmentID }}" class="{{$segment_1->strAlterationSegmentFK  }}">{{ $segment_1->strSegmentName }}</option>
+                                    @elseif($segment_1->boolIsActive == 1)
+                                      <option value="{{ $segment_1->strSegmentID }}" class="{{$segment_1->strAlterationSegmentFK  }}">{{ $segment_1->strSegmentName }}</option>
+                                    @endif
+                                  @endforeach
+                            </select>    
+                          </div> 
+                      </div>  
 
                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
@@ -116,12 +148,21 @@
                           </div>  
                         </div>
 
+                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                              <div class="input-field col s6">
+                                <input required value="{{ $alteration->intAlterationMinDays }}" id="editMinDays" name= "editMinDays" type="text" class="validate" pattern="^[0-9]*$" maxlength="2">
+                                <label for="segment_name">Minimum Production Days:<span class="red-text"><b>*</b></span></label>
+                              </div>
+                          </div>
+
                         <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                           <div class="input-field col s12">
                             <input required value = "{{$alteration->dblAlterationPrice}}" id="editAlterationPrice" name = "editAlterationPrice" type="text" class="validate">
                             <label for="alteration_price">Alteration Price <span class="red-text"><b>*</b></span> </label>
                           </div>  
                         </div>
+
+
 
                       </div>
 
@@ -208,16 +249,37 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input required id="strAlterationName" name = "strAlterationName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?"  placeholder="Skinny Cut">
+                        <input required id="strAlterationName" name = "strAlterationName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s\d]{2,}$"  placeholder="Skinny Cut">
                         <label for="alteration_name">Alteration Name <span class="red-text"><b>*</b></span></label>
                       </div>
-                  </div>    
+                  </div> 
+
+                      <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                <div class="input-field col s12">
+                  <select class="browser-default" required id="strAlterationSegmentFK" name="strAlterationSegmentFK">
+                        @foreach($segment as $segment)
+                          @if($segment->boolIsActive == 1)
+                            <option value="{{ $segment->strSegmentID }}" class="{{ $segment->strAlterationSegmentFK }}">{{ $segment->strSegmentName }}</option>
+                          @endif
+                            @endforeach
+                      </select>
+                    </div>  
+                </div> 
+   
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
                         <input  id="txtAlterationDesc" name = "txtAlterationDesc" type="text" class="validate" placeholder="Alteration type for modifying pants cuff.">
                         <label for="alteration_description">Alteration Description</label>
                       </div>
+                  </div>
+
+                  
+                  <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                              <div class="input-field col s6">
+                                <input required id="intAlterationMinDays" name= "intAlterationMinDays" type="text" class="validate" pattern="^[0-9]*$" maxlength="2">
+                                <label for="min days">Minimum Production Days:<span class="red-text"><b>*</b></span></label>
+                              </div>
                   </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
@@ -302,7 +364,7 @@
 
       $(document).ready(function() {
 
-          $('.data-fabricName').DataTable();
+          $('.data-alteration').DataTable();
           $('select').material_select();
 
           setTimeout(function () {

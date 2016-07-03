@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\SwatchNameMaintenance;
 use App\FabricType;
 use App\Http\Requests;
+use App\Http\Requests\MaintenanceSwatchNameRequest;
 use App\Http\Controllers\Controller;
 
 class SwatchNameController extends Controller
@@ -70,7 +71,7 @@ class SwatchNameController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MaintenanceSwatchNameRequest $request)
     {
         $swatchnamemainte = SwatchNameMaintenance::create(array(
                 'strSwatchNameID' => $request->input('strSwatchNameID'),
@@ -131,7 +132,7 @@ class SwatchNameController extends Controller
         //
     }
 
-    function update_swatchname(Request $request)
+    function update_swatchname(MaintenanceSwatchNameRequest $request)
     {
          $swatchnamemainte = SwatchNameMaintenance::find($request->input('editSwatchNameID'));
                 $swatchnamemainte->strSwatchNameTypeFK = trim($request->input('editCategory'));

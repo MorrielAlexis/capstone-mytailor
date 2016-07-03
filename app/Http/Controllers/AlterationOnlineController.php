@@ -25,6 +25,11 @@ class AlterationOnlineController extends Controller
         return view('transaction-alterationonline');
     }
 
+    public function accept()
+    {
+        return view('transaction-acceptalterationorder');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

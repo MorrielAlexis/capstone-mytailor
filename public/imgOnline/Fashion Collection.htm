@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+      <title>Fashion Collection</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <link href="Fashion%20Collection_files/icon.css" rel="stylesheet">
+
+      <link media="all" type="text/css" rel="stylesheet" href="Fashion%20Collection_files/materialize.css">
+
+      <link media="all" type="text/css" rel="stylesheet" href="Fashion%20Collection_files/style.css">
+
+      <link media="all" type="text/css" rel="stylesheet" href="Fashion%20Collection_files/jquery.css">
+
+
+    </head>
+
+    <body>
+
+    <header>
+        <div class="col s9 right" style="padding-top:7px">
+          <font style="margin-right:20px; margin-top:5px" color="black" size="+2">Tailoring Management System</font>
+        </div>
+    </header>
+
+      <nav id="slide-out" class="side-nav fixed" style="position fixed; top: 0; padding-top:0px; margin-top:0px; background: #26A69A"> 
+        <ul id="ul">
+          <li id="admin" class="admin-background" align="center" style="background: #00695C;">
+            <div class="row">
+              <div style="height:20px"></div>
+              <div class="col s12 center">
+                <img src="Fashion%20Collection_files/honeybabe.htm" alt="" class="circle responsive-img valign profile-image center" style="height:130px; width:130px; background: #00695C;">
+              </div>
+            </div>
+          </li>
+
+          <div class="col s12 center">
+            
+            <a class="btn-flat dropdown-button waves-effect waves-light profile-btn" href="#" data-activates="profile-dropdown"><span class="user" style="color:white; padding-bottom:5px"><b><b></b></b></span></a><ul id="profile-dropdown" class="dropdown-content">
+              <li><a href="#"><i class="small mdi-action-face-unlock" style="font-size:15px; margin-top:20px;margin-left:0px;"> Profile</i></a></li>
+              <li><a href="#"><i class="small mdi-action-settings" style="font-size:15px; margin-top:20px;margin-left:0px;"> Utils</i></a></li>
+              <li><a href="#"><i class="small mdi-communication-live-help" style="font-size:15px; margin-top:20px;margin-left:0px;"> Help</i></a></li>
+              <li class="divider"></li>
+              <li><a href="#"><i class="small mdi-action-lock-outline" style="font-size:15px;margin-top:20px;margin-left:0px;"> Lock</i></a></li>
+              <li><a href="#"><i class="small mdi-hardware-keyboard-tab" style="font-size:15px;margin-top:20px;margin-left:0px;"> Logout</i></a></li>
+            </ul><b><b>
+          </b></b></div><b><b>
+            
+
+          <!--<div class="divider" style="background-color:black"></div>-->
+
+          <div style="padding-top:10px"></div>
+          <li class="no-padding">
+            <ul class="collapsible collapsible-accordion">
+
+      
+             <!-- <div class="divider"></div> -->
+              <li class="bold"><a class="collapsible-header waves-effect waves-white" style="color:#212121"><i style="font-size:30px" class="small mdi-action-dashboard"></i> Dashboard</a></li>
+              <!--<div class="divider"></div>-->
+              <li class="bold"><a class="collapsible-header waves-effect waves-white" style="color:#212121"><i style="font-size:30px" class="small mdi-action-settings"></i><b>Maintenance</b></a> 
+
+                <div class="collapsible-body" position="fixed" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+                  <ul>
+                    <li class="no-padding">
+                      <ul class="collapsible collapsible-accordion">
+
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white"><b>Customer Profile</b></a>
+                          <div style="" class="collapsible-body">
+                            <ul>
+                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white " href="http://localhost/SADTAILORING/public/maintenance/customerIndividual">Individual</a></li>
+                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="http://localhost/SADTAILORING/public/maintenance/customerCompany">Company</a></li>
+
+                             <div class="divider"></div>
+                            </ul>
+                          </div>
+                        </li>
+
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white"><b>Employee</b></a>
+                          <div style="" class="collapsible-body">
+                            <ul>  
+                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="http://localhost/SADTAILORING/public/maintenance/employeeRole">Employee Roles</a></li>
+                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="http://localhost/SADTAILORING/public/maintenance/employee">Employee Profile</a></li>
+                              <div class="divider"></div>
+                            </ul>
+                           </div>
+                        </li>
+
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white"><b>Garments</b></a>
+                          <div style="" class="collapsible-body">
+                            <ul>  
+                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="http://localhost/SADTAILORING/public/maintenance/garments">Category</a></li>
+                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="http://localhost/SADTAILORING/public/maintenance/garmentsDetails">Segment</a></li>
+                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="http://localhost/SADTAILORING/public/maintenance/designPattern">Segment Pattern</a></li>
+                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="http://localhost/SADTAILORING/public/maintenance/measurements">Measurements</a></li> 
+                              <div class="divider"></div>
+                            </ul>
+                          </div>
+                        </li>
+
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white"><b>Fabrics &amp; Materials</b></a>
+                          <div style="" class="collapsible-body">
+                            <ul>  
+                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="http://localhost/SADTAILORING/public/maintenance/fabricAndMaterialsFabricType">Fabric Types</a></li>
+                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="http://localhost/SADTAILORING/public/maintenance/fabricAndMaterialsSwatches">Swatches</a></li>
+                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="http://localhost/SADTAILORING/public/maintenance/fabricAndMaterialsMaterials">Materials</a></li>
+                              <div class="divider"></div>
+                            </ul>
+                          </div>
+                        </li>
+
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href="http://localhost/SADTAILORING/public/maintenance/catalogue"><b>Catalogue</b></a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+    
+              <!--<div class="divider"></div>-->
+              <li class="bold"><a class="collapsible-header waves-effect waves-white" style="color:#212121"><i style="font-size:30px" class="small mdi-editor-attach-money"></i><b>Transaction</b></a>
+                <div class="collapsible-body" position="fixed" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+                  <ul>
+                    <li class="no padding">
+                       <ul class="collapsible collapsible-accordion">
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white"><b>Job Order</b></a>
+                          <div style="" class="collapsible-body">
+                            <ul>
+                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white " href="http://localhost/SADTAILORING/public/transaction/walk">Walk In Customer</a></li>
+                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="http://localhost/SADTAILORING/public/transaction/online">Online Customer</a></li>
+
+                             <div class="divider"></div>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                      <ul class="collapsible collapsible-accordion">
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href="http://localhost/SADTAILORING/public/transaction/orderProgress"><font size="-1"><b>Job Order Progress</b></font></a></li><li>
+                      </li></ul>
+                      <ul class="collapsible collapsible-accordion">
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href="http://localhost/SADTAILORING/public/transaction/materials"><font size="-1"><b>Materials Purchasing</b></font></a></li><li>
+                      </li></ul>
+                      <ul class="collapsible collapsible-accordion">
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href="http://localhost/SADTAILORING/public/transaction/billing"><font size="-1"><b>Billing and Collection</b></font></a></li><li>
+                      </li></ul>
+                    </li>
+                  </ul>
+                </div>
+
+              </li>
+              <!--<div class="divider"></div>-->
+              <li class="bold"><a class="collapsible-header waves-effect waves-white" style="color:#212121"><i style="font-size:30px" class="small mdi-action-assessment"></i><b>Queries</b></a></li>
+              <!--<div class="divider"></div>-->
+              <li class="bold"><a class="collapsible-header waves-effect waves-white" style="color:#212121"><i style="font-size:30px" class="small mdi-action-trending-up"></i><b>Reports</b></a></li>
+              <!--<div class="divider"></div>-->
+              
+              <li class="bold"><a class="collapsible-header waves-effect waves-white" style="color:#212121"><i style="font-size:30px" class="small mdi-action-perm-contact-cal"></i><b>Utilities</b></a>
+                <div class="collapsible-body" position="fixed" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+                  <ul>
+                    <li class="no-padding">
+                      <ul class="collapsible collapsible-accordion">
+
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href="http://localhost/SADTAILORING/public/utilities/inactiveData"><b>Inactive Data</b></a></li>
+
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            
+            </ul>
+          </li>
+        </b></b></ul><b><b>
+      </b></b></nav><b><b>
+
+
+      <main>
+        
+	<div class="main-wrapper">	
+		<div class="row">
+	      <div class="col s12 m12 l12">
+	      	<span class="page-title"><h4>Company Customer</h4></span>
+	      </div>
+    	</div>
+  	</div>
+
+  	<div class="container">
+	  	<div class="row">
+	      	<div class="col s12 m12 l12">
+		        <div class="card-panel">
+		          	<div class="card-content">
+						<form action="http://localhost/SADTAILORING/public/addCustCompany" method="POST">
+					      <div class="input-field">                 
+					        <input value="CCUS001" id="addComID" name="addComID" class="" readonly="readonly" type="text">
+					        <label class="active" for="company_id">Company ID: </label>
+					      </div>
+
+					      <div class="input-field">
+					        <input required="" id="addComName" name="addComName" class="validateComName" type="text">
+					        <label for="company_name"> *Company Name: </label>
+					      </div>
+
+					      <div class="input-field">
+					        <input required="" id="addAddress" name="addAddress" class="validateAddress" type="text">
+					        <label for="address"> *Address: </label>
+					      </div>
+
+					      <div class="input-field">
+					        <input required="" id="addConPerson" name="addConPerson" class="validateConPerson" type="text">
+					        <label for="company_name"> *Contact Person: </label>
+					      </div>
+
+					      <div class="input-field">
+					        <input required="" id="addComEmailAdd" name="addComEmailAddress" class="validateEmail" type="text">
+					        <label for="com_email_address"> *Company Email Address: </label>
+					      </div>
+
+					      <div class="input-field">
+					        <input required="" id="addCel" name="addCel" class="validateCell" maxlength="11" minlength="11" type="text">
+					        <label for="cellphone"> *Cellphone Number: </label>
+					      </div>
+
+					      <div class="input-field">
+					        <input id="addCelAlt" name="addCelAlt" class="validateCellAlt" maxlength="11" minlength="11" type="text">
+					        <label for="cellphone"> Cellphone Number: (alternate)</label>
+					      </div>
+
+					      <div class="input-field">
+					        <input id="addPhone" name="addPhone" class="validatePhone" maxlength="10" minlength="10" type="text">
+					        <label for="tel"> Telephone Number: </label>
+					      </div>
+
+					      <div class="input-field">
+					        <input id="addFax" name="addFax" class="validateFax" maxlength="9" minlength="9" type="text">
+					        <label for="fax"> Fax Number: </label>
+					      </div>
+					      <br>
+					    </form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+						
+
+      </main>
+
+      <script src="Fashion%20Collection_files/jquery-2.js"></script>
+
+      <script src="Fashion%20Collection_files/materialize.js"></script>
+
+      <script src="Fashion%20Collection_files/jquery.js"></script>
+
+      
+      <script>
+        $(document).ready(function(){
+        $('.button-collapse').sideNav({
+          menuWidth: 240, // Default is 240
+          edge: 'right', // Choose the horizontal origin
+          closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+        });
+        $('.collapsible').collapsible();
+            // Show sideNav
+        $('.button-collapse').sideNav('show');
+            // Hide sideNav
+        $('.button-collapse').sideNav('hide');     
+
+        $('ul.tabs').tabs();
+
+        });
+
+      $(document).ready(function(){
+      // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+      $('.modal-trigger').leanModal({
+          dismissible: false
+        });
+      });
+
+
+      $(document).ready(function(){
+        $('.collapsible').collapsible({
+          accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+        });
+      });
+          
+      </script>
+
+        	<script type="text/javascript">
+      $('.validateComName').on('input', function() {
+        var input=$(this);
+        var is_name=input.val();
+        if(is_name){input.removeClass("invalid").addClass("valid");}
+        else{input.removeClass("valid").addClass("invalid");}
+      });
+
+      $('.validateComName').blur('input', function() {
+        var input=$(this);
+        var is_name=input.val();
+        if(is_name){input.removeClass("invalid").addClass("valid");}
+        else{input.removeClass("valid").addClass("invalid");}
+      }); 
+
+      $('.validateAddress').on('input', function() {
+        var input=$(this);
+        var is_name=input.val();
+        if(is_name){input.removeClass("invalid").addClass("valid");}
+        else{input.removeClass("valid").addClass("invalid");}
+      });
+
+      //Validate Blank
+      $('.validateAddress').blur('input', function() {
+        var input=$(this);
+        var is_name=input.val();
+        if(is_name){input.removeClass("invalid").addClass("valid");}
+        else{input.removeClass("valid").addClass("invalid");}
+      });     
+
+      $('.validateConPerson').on('input', function() {
+        var input=$(this);
+        var is_name=input.val();
+        if(is_name){input.removeClass("invalid").addClass("valid");}
+        else{input.removeClass("valid").addClass("invalid");}
+      });
+
+      $('.validateConPerson').blur('input', function() {
+        var input=$(this);
+        var is_name=input.val();
+        if(is_name){input.removeClass("invalid").addClass("valid");}
+        else{input.removeClass("valid").addClass("invalid");}
+      });
+
+      $('.validateEmail').on('input', function() {
+        var input=$(this);
+        var re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        var is_email=re.test(input.val());
+        if(is_email){input.removeClass("invalid").addClass("valid");}
+        else{input.removeClass("valid").addClass("invalid");}
+      });
+
+      $('.validateCell').on('input', function() {
+        var input=$(this);
+        var is_name=input.val();
+        if(is_name){input.removeClass("invalid").addClass("valid");}
+        else{input.removeClass("valid").addClass("invalid");}
+      });
+
+      $('.validateCell').keyup(function() {
+        var numbers = $(this).val();
+        $(this).val(numbers.replace(/\D/, ''));
+      });
+
+      $('.validateCellAlt').on('input', function() {
+        var input=$(this);
+        var is_name=input.val();
+        if(is_name){input.removeClass("invalid").addClass("valid");}
+        else{input.removeClass("valid").addClass("invalid");}
+      });
+
+      $('.validateCellAlt').keyup(function() {
+        var numbers = $(this).val();
+        $(this).val(numbers.replace(/\D/, ''));
+      });
+
+      //Validate Blank
+      $('.validateCell').blur('input', function() {
+        var input=$(this);
+        var is_name=input.val();
+        if(is_name){input.removeClass("invalid").addClass("valid");}
+        else{input.removeClass("valid").addClass("invalid");}
+      });
+
+       $('.validateCell').keyup(function() {
+        var numbers = $(this).val();
+        $(this).val(numbers.replace(/\D/, ''));
+        $(this).val($(this).val().replace(/(\d{4})\-?(\d{3})\-?(\d{4})/,'($1)-$2-$3'))
+      });
+
+       $('.validateCellAlt').keyup(function() {
+        var numbers = $(this).val();
+        $(this).val(numbers.replace(/\D/, ''));
+        $(this).val($(this).val().replace(/(\d{4})\-?(\d{3})\-?(\d{4})/,'($1)-$2-$3'))
+      });
+
+       $('.validatePhone').keyup(function() {
+        var numbers = $(this).val();
+        $(this).val(numbers.replace(/\D/, ''));
+      });
+
+       $('.validatePhone').keyup(function() {
+        var numbers = $(this).val();
+        $(this).val(numbers.replace(/\D/, ''));
+        $(this).val($(this).val().replace(/(\d{3})\-?(\d{3})\-?(\d{4})/,'($1)-$2-$3'))
+      }); 
+
+       $('.validateFax').keyup(function() {
+        var numbers = $(this).val();
+        $(this).val(numbers.replace(/\D/, ''));
+      });
+
+       $('.validateFax').keyup(function() {
+      var numbers = $(this).val();
+      $(this).val(numbers.replace(/\D/, ''));
+      $(this).val($(this).val().replace(/(\d{2})\-?(\d{3})\-?(\d{4})/,'($1)-$2-$3'))
+      }); 
+
+
+    </script>
+    
+
+</b></b><div class="hiddendiv common"></div></body></html>

@@ -11,6 +11,7 @@ class SegmentPattern extends Model
 	protected $fillable = array('strSegPatternID',
 								'strSegPNameFK',
 								'strSegPName',
+								'strSegPDesc',
 								'strSegPImage',
 								'strSegPInactiveReason',
 								'boolIsActive'

@@ -18,6 +18,7 @@ class CreateJoborderGarmentTable extends Migration
             $table->string('strJOSegmentID')->index();//fk
             $table->primary('strJobOrderID', 'strJOCategoryID', 'strJOSegmentID');//primary keys
             $table->boolean('boolIsActive');
+            $table->boolean('boolIsFinish');
             $table->timestamps();
 
             $table->foreign('strJobOrderID')

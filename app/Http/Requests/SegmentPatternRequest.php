@@ -25,18 +25,19 @@ class SegmentPatternRequest extends Request
     public function rules()
     {
         return [
-            'addPatternName' => 'unique:tblSegmentPattern,strSegPName',
-            'addImg' => 'image',
-            'editPatternName' => 'unique:tblSegmentPattern,strSegPName'
+            'strSegPName' => 'unique_with:tblSegmentPattern,strSegPNameFK',
+            'strSegPImage' => 'image'
+            
         ];
     }
 
     public function messages()
     {
         return [
-            'addPatternName.unique'  =>  'Pattern already exists.',
-            'addImg.image' => 'The file you uploaded is not an image.',
-            'editPatternName.unique' => 'Pattern already exists.'
+            'strSegPName.unique_with'  =>  'Pattern already exists.',
+            // 'strSegPName.required'  =>  'Pattern name is required.',
+            'strSegPImage.image' => 'The file you uploaded is not an image.'
+            
             
         ];
 

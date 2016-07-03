@@ -17,6 +17,9 @@ class CreateJoborderSegmentpatternTable extends Migration
             $table->string('strSegPatternID')->index();//fk
             $table->primary('strJobOrderID', 'strSegPatternID');//primary key
             $table->boolean('boolIsActive');
+            $table->boolean('boolIsFinish');
+            
+
             $table->timestamps();
 
             $table->foreign('strJobOrderID')

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Catalogue;
 use App\GarmentCategory;
 use App\Http\Requests;
+use App\Http\Requests\MaintenanceCatalogueRequest;
 use App\Http\Controllers\Controller;
 
 class CatalogueController extends Controller
@@ -68,7 +69,7 @@ class CatalogueController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MaintenanceCatalogueRequest $request)
     {
         $file = $request->input('addImage');
         $destinationPath = 'imgCatalogue';

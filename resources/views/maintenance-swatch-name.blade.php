@@ -4,6 +4,20 @@
   <div class="main-wrapper" style="margin-top:30px">  <!-- Main Wrapper  -->   
       <!--Input Validation-->
 
+      <!-- Errors -->
+        @if ($errors->any())
+           <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red">
+              <span class="black-text" style="color:black"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </div>
+          </div>
+        </div>
+      @endif
+
      <!--Add -->
         @if(Session::has('flash_message'))
         <div class="row" id="flash_message">
@@ -65,7 +79,7 @@
 
               <div class="col s12 m12 l12 overflow-x">
 
-       				<table class = "table centered data-swatchName" align = "center" border = "1">
+       				<table class = "table centered data-swatchname" align = "center" border = "1">
                 <thead>
                   <tr>
               		  <!--<th data-field="fabricID">Fabric Type ID</th>-->
@@ -312,7 +326,7 @@
 
       $(document).ready(function() {
 
-          $('.data-fabricName').DataTable();
+          $('.data-swatchname').DataTable();
           $('select').material_select();
 
           setTimeout(function () {
