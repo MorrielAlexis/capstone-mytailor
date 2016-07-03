@@ -191,8 +191,9 @@ Route::group(['prefix' => 'transaction'], function(){
 });
 
 Route::group(['prefix' => 'transaction'], function(){
-	Route::resource('billing-payment', 'BillingPaymentController',
-		['only' => ['index']]);
+	Route::resource('billing-payment', 'BillingPaymentController');
+
+		Route::post('billing-payment/result', 'BillingPaymentController@search');
 
 	Route::resource('billing-collection', 'BillingCollectionController',
 		['only' => ['index']]);

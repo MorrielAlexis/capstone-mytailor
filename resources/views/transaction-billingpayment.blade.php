@@ -30,24 +30,62 @@
 									</div>
 
 									<div class="col s12">
-										<div class="right col s6" style="border: 3px black solid">
-											<p>This will be the time display</p>
+										<div class="right col s6" style="border: 1px white solid">
+											<div id="clock" class="center" style="background-color: teal; font-size:23px; color:white; padding:10px;"></div>
 										</div>
-										<div class="left col s6" style="border: 3px black solid">
-											<p>This will be the date display</p>
+										<div class="left col s6" style="border: 1px white solid">
+											<div id="Date" class="center" style="background-color: #00b0ff; font-size:23px; color:white; padding:10px;"></div>
 										</div>	
 									</div>
 
 									<div class="col s12" style="margin-top:30px">
-										<div style="color:black" class="input-field col s12">                 
-				                          <div class="container"><input style="margin-left:10px; margin-right:50px; border:3px teal solid; padding:5px; padding-left:10px" name="customer-name" type="text" class="" placeholder="ex. Honey Buenavides"></div>
-				                          <label style="color:teal; margin-top:5px"><b>CUSTOMER NAME:</b></label>
-				                        </div>
+										{!! Form::open(['method' => 'POST', 'url' => 'transaction/billing-payment/result']) !!}
+										<div class="col s4">
+											<div class="input-field col s12"  class="customer_type" id="customer_type">
+												<select class="customer_type" id="customer_type">
+													<option disabled>Choose Customer Type</option>
+												    <option value="ind" class="circle">Individual</option>
+												    <option value="comp" class="circle">Company</option>
+												</select>
+												<label for="customer_type" style="color:red"><b>*Customer Type</b></label>			
+											</div>
+										</div>
+
+										
+										<div style="color:black" class="input-field col s8">                   
+				                          
+				                          <div class="container">  		                          	
+				                          	<input style="margin-left:50px; border:3px teal solid; padding:5px; padding-left:10px" id="name" name="search_query" type="text" class="form-control" placeholder="ex. Honey Buenavides">
+				                          	        	
+				                          </div>
+				                         			                          	
+				                          	<label style="color:teal; margin-top:5px"><b>CUSTOMER NAME:</b></label>
+				                          	<div>
+				                        	</div>
+				                         </div>
+
+				                         <button class="right btn" type="submit" id="getCustomer" style="background-color:teal; margin-right:40px">Search</button> 
+				                        	{!! Form::close() !!}
+				                        	
 									</div>
 
 									<div class="col s12" style="margin-top:30px"><div class="divider" style="height:3px; color:gray"></div></div>
 
-									<div class="col s12" style="margin-top:30px">
+									<div class="col s12" style="padding:10px; padding-left:20px">
+										<p style="color:teal; font-size:20px"><b>Customer Name: </b>
+											@if(isset($customers))
+											@foreach($customers as $customer)
+												{{ $customer->fullname }}
+											@endforeach
+											@endif
+										</p>
+										<p style="color:teal; font-size:20px">
+											<b>Customer Type:</b>
+											<p id="cust_type"></p>
+										</p>
+									</div>
+
+									<div class="col s12">
 										<center><h5 style="color:black"><b>List of Pending Payments</b></h5></center>
 										<div class="card-panel" style="border: 4px black inset">
 											<div class="card-content">
@@ -150,7 +188,7 @@
 													</div>
 
 											<div class="modal-footer col s12">	
-								                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/billing-payment')}}"><font color="black">OK</font></a>								                
+								                <button type="submit" href="" class="waves-effect waves-green btn-flat"><font color="black">OK</font></button>								                
 								            </div>
 										{!! Form::close() !!}
 							</div>
@@ -204,27 +242,64 @@
 	  });
 	</script>	
 
-	<script>
-		$(document).ready(function() {
-			$('.datepicker').pickdate();
-		});			
+	<script type="text/javascript">
+		var monthNames = [ "January", "February", "March", "April", "May", "June",
+	    "July", "August", "September", "October", "November", "December" ];
+		var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+
+		var newDate = new Date();
+		newDate.setDate(newDate.getDate() + 1);    
+		$('#Date').html(dayNames[newDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
+	
 	</script>
 
-	<script>
-	$(document).ready(function(){
-    	$('body').on('load', 'ul.tabs', function() {
-   	 	$('ul.tabs').tabs();
+	<script type="text/javascript">
+		function updateClock ( )
+		 	{
+		 	var currentTime = new Date ( );
+		  	var currentHours = currentTime.getHours ( );
+		  	var currentMinutes = currentTime.getMinutes ( );
+		  	var currentSeconds = currentTime.getSeconds ( );
+
+		  	// Pad the minutes and seconds with leading zeros, if required
+		  	currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
+		  	currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
+
+		  	// Choose either "AM" or "PM" as appropriate
+		  	var timeOfDay = ( currentHours < 12 ) ? "AM" : "PM";
+
+		  	// Convert the hours component to 12-hour format if needed
+		  	currentHours = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
+
+		  	// Convert an hours component of "0" to "12"
+		  	currentHours = ( currentHours == 0 ) ? 12 : currentHours;
+
+		  	// Compose the string for display
+		  	var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
+		  	
+		  	
+		   	$("#clock").html(currentTimeString);
+		   	  	
+		 }
+
+		$(document).ready(function()
+		{
+		   setInterval('updateClock()', 1000);
 		});
-  		
-  		$("#addMeasurementDetail").on('click', function(){
-/*  			setTimeout(function(){
-  				$('ul.tabs').tabs();
-  				$('#tabMeasurementDetail').style('display', 'block');
-  			}, 2000);
-*/  		});
+	</script>
 
-  	});
+	<script type="text/javascript">
+		$(document).ready(function() {
 
+			var cust_type = {!! json_encode($types) !!};
+
+				if(cust_type == "ind") {
+					$("#cust_type").text("Individual");
+				}
+				else if(cust_type == "comp") {
+					$("#cust_type").text("Company");
+				}
+		});
 	</script>
 
 	<script>
@@ -239,12 +314,6 @@
 	    dataType: "blade.php",
 	    success: tabInit
 	});
-	</script>
-
-	<script>
-		$(document).ready(function(){
-   		$('.scrollspy').scrollSpy();
- 	});
 	</script>
 
 
