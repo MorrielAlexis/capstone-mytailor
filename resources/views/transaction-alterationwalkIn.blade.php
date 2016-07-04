@@ -5,12 +5,13 @@
 <div class="main-wrapper"  style="margin-top:30px">
 
 	<div class="row">
-      <div class="col s12 m12 l12">
-        <span class="page-title"><center><h3><b>Welcome to <font color="white">MyTailor</font></b></h3></center></span>
-        <center><h5>Walk-in Alteration </h5></center>
-      </div>
+    <div class="col s12 m12 l12">
+      <span class="page-title"><center><h3><b>Welcome to <font color="white">MyTailor</font></b></h3></center></span>
+      <center><h5>Walk-in Alteration </h5></center>
     </div>
+  </div>
 
+    <div class="container">
     <div class="row">
         <div class="col s12 m12 l12">
         	<div class="card-panel">
@@ -71,7 +72,7 @@
                       </div>
                 </div>
 
-                {{-- <div class="col s6 container">
+                {{-- <div class="col s6">
                     <center><img class="responsive-img" src="#!" style="height:250px; width:250px;"></center>
                     <form action="#">
                         <div class="file-field input-field">
@@ -95,6 +96,7 @@
 
         	</div>
 
+          </div>
  
             </div>
         </div>

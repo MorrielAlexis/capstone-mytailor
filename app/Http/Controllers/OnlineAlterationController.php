@@ -29,6 +29,16 @@ class OnlineAlterationController extends Controller
     {
         return View::make('online.alterationtransaction');
     }
+
+    public function newcust()
+    {
+        return View::make('online.alterationtransaction-newcustomer');
+    }
+
+    public function oldcust()
+    {
+        return View::make('online.alterationtransaction-patron');
+    }
     /**
      * Show the form for creating a new resource.
      *

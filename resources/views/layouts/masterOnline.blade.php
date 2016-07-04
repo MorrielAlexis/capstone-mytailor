@@ -23,6 +23,9 @@
           background: #cccccc;
           padding: 0;
         }
+        .fixed-footer{
+          margin-bottom: -30px;
+        }
       </style>
     </head>
 
@@ -90,7 +93,7 @@
                 <li><div class="divider" style="margin-top:20px; width:1px; height:25px;"></div></li>
                 <li><a class="btn-flat" style="padding-left:10px; padding-right:10px; margin:0px; color: white" href="{{URL::to('/online-how-it-works')}}"><b>HOW IT WORKS</b></a></li>                
               </ul>
-              <ul id="shoppingcart" class="right" style="margin-right:-140px; margin-top:10px;">
+              <ul id="shoppingcart" class="right" style="margin-right:10px;">
                 <li><a href="{{URL::to('/online-order-now')}}" style="margin:0; padding:0;" class="btn-flat white-text">Shopping Cart</a></li>
                 <li><a href="{{URL::to('/online-order-now')}}" style="margin:0; padding:0;" class="btn-flat"><i class="white-text mdi-action-shopping-cart" style="font-size:30px; margin-top:-15px;"></i></a></li>
               </ul>

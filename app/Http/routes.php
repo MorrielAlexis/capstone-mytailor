@@ -284,6 +284,9 @@ Route::resource('online-alteration', 'OnlineAlterationController',
 		['only' => ['index']]);
 Route::get('online-alteration-transact', 'OnlineAlterationController@transac');
 
+Route::get('online-alterationtransaction-newcustomer', 'OnlineAlterationController@newcust');
+Route::get('online-alterationtransaction-patron', 'OnlineAlterationController@oldcust');
+
 Route::get('online-customer-profile-individual', 'OnlineCustomerProfileController@indiv');
 Route::get('online-customer-profile-company', 'OnlineCustomerProfileController@comp');
 
