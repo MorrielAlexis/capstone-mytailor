@@ -19,7 +19,7 @@
                 <div class="divider" style="margin-bottom:50px;"></div>
 
             <div class="row">
-                <div class="col s6" style="margin-top:10px;">
+                <div class="col s12" style="margin-top:10px;">
                       {{-- start of garment category dropdown --}}
                       <div class="input-field col s12" style="padding:20px;">
                         <select class = "garment-category" id = "garment-category">
@@ -54,7 +54,7 @@
                       <div class="input-field col s12" style="padding:20px;">
 
                       {{-- start of alteration dropdown --}}
-                        <div class="col s10">
+                        <div class="col s12">
                             <select class = "alteration-type" id = "alteration-type">
                         <option value="All" class="circle" selected>All</option>
                         @foreach($alterations  as $alteration )
@@ -63,11 +63,23 @@
                           </select>
                             <label><font size="3" color="Red">Choose an alteration type:</font></label>
                         </div>
+                        
                         {{-- end of alteration dropdown --}}
-
+{{-- 
                         <div class="col s2">
                             <a class="btn modal-trigger tooltipped" href="#measurementmodal" data-position="top" data-delay="50" data-tooltip="Supply measurements"><i class="mdi-av-playlist-add"></i></a>
+                        </div> --}}
+                        
+
+                       {{--  //notes area --}}
+                       
+                        <h4 style="color:#1b5e20" class="center">Note</h4>
+                    <div class="divider container" style="margin-bottom:20px;"></div>
+                        <div class="input-field col s12">
+                            <textarea id="textarea" class="textarea"></textarea>
+                            <label for="textarea"></label>
                         </div>
+                         {{--  //end of notes area --}}
                       </div>
                 </div>
 
@@ -224,14 +236,17 @@
                             <!--<th data-field="price">Total Price</th>-->
                           </tr>
                         </thead>
-                        <tbody>
+                    {{--     <tbody>
+                            @foreach($alteration as $alteration_1)
                         <tr>
-                           <td>Uniform</td>
-                           <td>Skirt</td>
-                           <td>Slim</td>
-                           <td>PHP</td>
+                           <td>{{ $alteration_1->strGarmentCategoryName }}</td>
+                           <td>{{ $alteration_1->strSegmentName }}</td>
+                           <td>{{ $alteration_1->strAlterationName }}</td>
+                           <td> {{ number_format($alteration_1->dblAlterationPrice, 2) }} PHP</td>
                            <!--<td> </td>-->
                         </tr>
+                          @endforeach
+                        </tbody> --}}
                 </table>
                 </div>
 
