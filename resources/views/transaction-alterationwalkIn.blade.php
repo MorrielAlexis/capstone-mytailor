@@ -22,7 +22,7 @@
                 <div class="col s12" style="margin-top:10px;">
                       {{-- start of garment category dropdown --}}
                       <div class="input-field col s12" style="padding:20px;">
-                        <select class = "garment-category" id = "garment-category">
+                        <select class = "filled-in garment-category" id = "garment-category" name="garment-category[]">
                         <option value="All" class="circle" selected>All</option>
                         @foreach($categories as $category)
                           <option value="{{ $category->strGarmentCategoryID }}" class="circle">{{ $category->strGarmentCategoryName }}</option>
@@ -34,7 +34,7 @@
 
                       {{-- < Start of Segment> --}}
                       <div class="input-field col s12" style="padding:20px;">
-                      <select class = "garment-segment" id = "garment-segment">
+                      <select class = "filled-in garment-segment" id = "garment-segment" name="garment-segment[]">
                         <option value="All" class="circle" selected>All</option>
                         @foreach($alterations  as $alteration )
                           <option value="{{ $alteration->strAlterationID }}" class="circle">{{ $alteration->strSegmentName }}</option>
@@ -55,7 +55,7 @@
 
                       {{-- start of alteration dropdown --}}
                         <div class="col s12">
-                            <select class = "alteration-type" id = "alteration-type">
+                            <select class = "filled-in alteration-type" id = "alteration-type" name="alteration-type[]">
                         <option value="All" class="circle" selected>All</option>
                         @foreach($alterations  as $alteration )
                           <option value="{{ $alteration->strAlterationID }}" class="circle">{{ $alteration->strAlterationName }}</option>
@@ -236,17 +236,17 @@
                             <!--<th data-field="price">Total Price</th>-->
                           </tr>
                         </thead>
-                    {{--     <tbody>
-                            @foreach($alteration as $alteration_1)
+                        <tbody>
+                            @foreach($alterations as $alteration_1)
                         <tr>
-                           <td>{{ $alteration_1->strGarmentCategoryName }}</td>
+                           <{{-- td>{{ $alteration_1->strGarmentCategoryName }}</td> --}}
                            <td>{{ $alteration_1->strSegmentName }}</td>
                            <td>{{ $alteration_1->strAlterationName }}</td>
                            <td> {{ number_format($alteration_1->dblAlterationPrice, 2) }} PHP</td>
                            <!--<td> </td>-->
                         </tr>
                           @endforeach
-                        </tbody> --}}
+                        </tbody>
                 </table>
                 </div>
 
