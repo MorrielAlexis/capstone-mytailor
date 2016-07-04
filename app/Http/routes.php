@@ -168,10 +168,13 @@ Route::group(['prefix' => 'transaction'], function(){
 
 Route::group(['prefix' => 'transaction'], function(){
 	Route::resource('alteration-walkin', 'AlterationWalkInController');
+
+		Route::get('alteration-walkin-payment-info', 'AlterationWalkInController@payment');
 		
 	Route::resource('alteration-online', 'AlterationOnlineController',
 		['only' => ['index']]);
 });
+
 
 Route::group(['prefix' => 'transaction'], function(){
 	Route::resource('modifyIndividual', 'ModifyIndividualOrdersController',
@@ -225,6 +228,7 @@ Route::group(['prefix' => 'utilities'], function(){
 		
 });
 
+//acceptance of order from online module
 Route::get('/acceptAlteration','AlterationOnlineController@accept');
 Route::get('/acceptIndividual','OnlineCustomerIndividualController@accept');
 Route::get('/acceptCompany','OnlineCustomerCompanyController@accept');
@@ -258,8 +262,6 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::get('walkin-company-payment-payment-info', 'WalkInCompanyController@payment');
 	Route::get('walkin-company-payment-measure-detail', 'WalkInCompanyController@measurement');
 });
-
-Route::get('/transaction-alterationwalkIn-newtransaction','AlterationWalkInController@newTrans');
 
 Route::get('transaction-modifyindividualorders-modifyorder','ModifyIndividualOrdersController@modify');
 Route::get('transaction-modifycompanyorders-modifyorder','ModifyCompanyOrdersController@modify');
