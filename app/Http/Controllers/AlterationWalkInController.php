@@ -40,6 +40,13 @@ class AlterationWalkInController extends Controller
                     ->with('categories', $categories);
     }
 
+    public function saveOrder()
+    {
+        
+    }
+
+
+
     // public function newTrans()
     // {
     //     return view('transaction-alterationwalkIn-newtransaction');
