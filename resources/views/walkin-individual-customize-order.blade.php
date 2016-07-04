@@ -27,12 +27,15 @@
 								<div class="col s6"><p><h5><b>Customize Order</b></h5></p></div>							
 									<div class="right col s1"><a style="margin-top:15px; background-color:teal" type="submit" class="waves-effect waves-green btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to go back home" href="{{URL::to('/transaction/walkin-individual')}}"><i class="mdi-action-home" style="color:white; opacity:0.90; font-size:30px;"></i></a></div>
 									<div class="right col s5"><a style="margin-top:15px; background-color:teal" type="submit" class="right waves-effect waves-green btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to proceed to payment of orders" href="#summary-of-order"><font color="white" size="+1"><!--<i class="mdi-action-payment" style="font-size:20px;">-->  Proceed to Checkout<!--</i>--></font></a>
-										<div id="removeOrder" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
+										@foreach($segments as $i => $segment)
+										<div id="remove{{ $i+1 }}" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
 											<h5><font color="red"><center><b>Warning!</b></center></font></h5>
 												
-												{!! Form::open() !!}
+												{!! Form::open(['url' => 'transaction/walkin-individual-remove-item', 'method' => 'post']) !!}
 													<div class="divider" style="height:2px"></div>
 													<div class="modal-content col s12">
+
+														<input type="hidden" value="{{ $i+1 }}" name="delete-item-id">
 														<div class="col s3">
 															<i class="mdi-alert-warning" style="font-size:50px; color:red"></i>
 														</div>
@@ -42,12 +45,12 @@
 													</div>
 
 													<div class="modal-footer col s12" style="background-color:red; opacity:0.85">
-										                <a class="waves-effect waves-green btn-flat" ><font color="white">Yes</font></a>
+										                <button type="submit" class=" modal-action modal-close waves-effect waves-green btn-flat" ><font color="white">Yes</font></button>
 										                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="white">No</font></a>
 										            </div>
 												{!! Form::close() !!}
 										</div>
-										
+										@endforeach
 									</div>													
 										
 							</div>
@@ -58,10 +61,6 @@
 							<div class="divider" style="margin-bottom:30px"></div>
 							<div class="divider" style="margin-bottom:30px"></div>
 							<div class="divider" style="margin-bottom:30px; height:3px"></div>
-
-<!-- END OF LOOP -->		@foreach($segments as $segment)
-							<div class="col s6">
-							<a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#removeOrder"><i class="mdi-navigation-close"></i></a>
 								<div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
 											<h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
 												
@@ -105,8 +104,6 @@
 														</div>
 													</div>
 
-
-
 													<div class="modal-footer col s12">
 										                <p class="left" style="margin-left:10px; color:gray;">Continue to payment?</p>
 										                <a class="waves-effect waves-green btn-flat" href="{{URL::to('/transaction/walkin-individual-payment-customer-info')}}"><font color="black">Yes</font></a>
@@ -115,25 +112,28 @@
 												{!! Form::close() !!}
 										</div>
 
+<!-- END OF LOOP -->		@foreach($segments as $i => $segment)
+							<div class="col s6">
+							<a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#remove{{ $i+1 }}"><i class="mdi-navigation-close"></i></a>
+
 							<center><img src="{{URL::asset($segment->strSegmentImage)}}" style="height:450px; width:450px; border:3px gray solid"></center>								          	
 							</div>
 							
-								<br>
-								<div class="col s6">
+							<br>
+							<div class="col s6">
 								<div class="col s6" style="margin-top:50px">
 								<label>Choose your design:</label>
 											<div class="file-field input-field">
-												<a style="color:black" class="modal-trigger btn tooltipped btn-floating teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a segment pattern" href="#editDesign"><i class="mdi-editor-mode-edit"></i></a>
-													<div id="editDesign" class="modal modal-fixed-footer">
+												<a style="color:black" class="modal-trigger btn tooltipped btn-floating teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a segment pattern" href="#pattern{{ $i+1 }}"><i class="mdi-editor-mode-edit"></i></a>
+													<div id="pattern{{ $i+1 }}" class="modal modal-fixed-footer">
 														<h5><font color = "#1b5e20"><center>List of Available Designs</center> </font> </h5>
-                        
-									                      {!! Form::open() !!} 
+                        	
 									                        <div class="divider" style="height:2px"></div>
 									                        <div class="modal-content col s12">
-									                        	@foreach($patterns as $pattern)
+									                        	@foreach($patterns as $j => $pattern)
 									                        	<div class="col s1" style="margin-top:60px">
-									                        		<input name="garmentDesign" type="radio" class="filled-in" id="pattern1" />
-									                        		<label for="pattern1"></label>
+									                        		<input name="rdb-pattern" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegTypeID }}{{ $i+1 }}{{ $j+1 }}" />
+									                        		<label for="{{ $pattern->strSegTypeID }}{{ $i+1 }}{{ $j+1 }}"></label>
 									                        	</div>
 									                        	 <div class="col s11">
 															        <div class="card-panel grey lighten-5 z-depth-1">
@@ -142,9 +142,9 @@
 															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
 															            </div>
 															            <div class="col s7"> 
-															              <p>STRAIGHT-CUT</p> <!-- This will be the name of the pattern -->
+															              <p>{{ $pattern->strSegPName }}</p> <!-- This will be the name of the pattern -->
 															              <span class="black-text">
-															                This is a square image. Add the "circle" class to it to make it appear circular.
+															                {{ $pattern->txtSegPDesc }}
 															              </span>
 															            </div>
 															          </div>
@@ -161,7 +161,6 @@
 								                          	<a class="right waves-effect waves-green btn-flat">OK</a>
 								                          	<a class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
 								                        </div>
-									                      {!! Form::close() !!}
 													</div>
 												<div class="file-path-wrapper">
 													<input class="file-path validate" type="text">
@@ -172,17 +171,16 @@
 								<div class="col s6" style="margin-top:50px">
 								<label>Choose your fabric:</label>
 											<div class="file-field input-field">	
-												<a style="color:black" class="modal-trigger btn tooltipped btn-floating teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#editFabric"><i class="mdi-editor-mode-edit"></i></a>
-                     								<div id="editFabric" class="modal modal-fixed-footer">
+												<a style="color:black" class="modal-trigger btn tooltipped btn-floating teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#fabric{{ $i+1 }}"><i class="mdi-editor-mode-edit"></i></a>
+                     								<div id="fabric{{ $i+1 }}" class="modal modal-fixed-footer">
                      								<h5><font color = "#1b5e20"><center>List of Available Fabrics</center> </font> </h5>
                         
-									                      {!! Form::open() !!} 
 									                        <div class="divider" style="height:2px"></div>				
 									                        <div class="modal-content col s12">
-									                        	@foreach($fabrics as $fabric)
+									                        	@foreach($fabrics as $k => $fabric)
 									                        	<div class="col s1" style="margin-top:60px">
-									                        		<input name="garmentFabrics" type="radio" class="filled-in" id="fabric1" />
-									                        		<label for="fabric1"></label>
+									                        		<input name="garmentFabrics" type="radio" class="filled-in" value="{{ $fabric->strFabricTypeID }}" id="{{ $fabric->strFabricTypeID }}{{ $i+1 }}{{ $j+1 }}" />
+									                        		<label for="{{ $fabric->strFabricTypeID }}{{ $i+1 }}{{ $j+1 }}"></label>
 									                        	</div>
 									                        	 <div class="col s11">
 															        <div class="card-panel grey lighten-5 z-depth-1">
@@ -191,9 +189,9 @@
 															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
 															            </div>
 															            <div class="col s7"> 
-															              <p>COTTON CHENES</p> <!-- This will be the name of the pattern -->
+															              <p>{{ $fabric->strFabricTypeName }}</p> <!-- This will be the name of the pattern -->
 															              <span class="black-text">
-															                This is a square image. Add the "circle" class to it to make it appear circular.
+															                {{ $fabric->txtFabricTypeDesc }}
 															              </span>
 															            </div>
 															          </div>
@@ -208,7 +206,6 @@
 								                          <a  class="right waves-effect waves-green btn-flat">OK</a>
 								                          <a  class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
 								                        </div>
-									                      {!! Form::close() !!}
 													</div>
 												<div class="file-path-wrapper">
 													<input class="file-path validate" type="text">

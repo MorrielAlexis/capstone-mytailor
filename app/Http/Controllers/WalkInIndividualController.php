@@ -80,11 +80,11 @@ class WalkInIndividualController extends Controller
         $data_segment = $request->input('cbx-segment-name');
         $data_quantity = array_slice(array_filter($request->input('int-segment-qty')), 0);
         $values = [];
-
-         $segments = \DB::table('tblSegment AS a')
+        $segments = \DB::table('tblSegment AS a')
                     ->leftJoin('tblGarmentCategory AS b', 'a.strSegCategoryFK', '=', 'b.strGarmentCategoryID')
                     ->select('a.*', 'b.strGarmentCategoryName') 
                     ->whereIn('a.strSegmentID', $data_segment)
+                    ->orderBy('a.strSegmentID')
                     ->get();        
 
         for($i = 0; $i < count($data_segment); $i++){
@@ -96,7 +96,6 @@ class WalkInIndividualController extends Controller
         session(['segment_data' => $data_segment]);
         session(['segment_quantity' => $data_quantity]);
         session(['segment_values' => $values]);
-
 
         $fabrics = FabricType::all();
         $segmentPatterns = SegmentPattern::all();
@@ -126,6 +125,24 @@ class WalkInIndividualController extends Controller
     public function measurement()
     {
         return view('walkin-individual-checkout-measure');
+    }
+
+    public function removeItem(Request $request)
+    {
+        $to_be_deleted = ((int)$request->input('delete-item-id') - 1);
+        $values = session()->get('segment_values');
+
+        unset($values[$to_be_deleted]);
+        $values = array_slice($values, 0);
+        
+        $fabrics = FabricType::all();
+        $segmentPatterns = SegmentPattern::all();
+
+        return view('walkin-individual-customize-order')
+                ->with('segments', $values)
+                ->with('quantities', session()->get('segment_quantity'))
+                ->with('fabrics', $fabrics)
+                ->with('patterns', $segmentPatterns);
     }
 
     /**
