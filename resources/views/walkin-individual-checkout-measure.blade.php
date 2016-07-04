@@ -13,8 +13,8 @@
 	<div class="row" style="padding:30px">
         
         <ul class="col s12 breadcrumb">
-			<li><a style="padding-left:200px" href="{{URL::to('transaction/walkin-individual-payment-customer-info')}}"><b>1.FILL-UP FORM</b></a></li>
-			<li><a style="padding-left:200px" href="{{URL::to('transaction/walkin-individual-payment-payment-info')}}"><b>2.PAYMENT</b></a></li>
+			<li><a style="padding-left:200px"><b>1.FILL-UP FORM</b></a></li>
+			<li><a style="padding-left:200px"><b>2.PAYMENT</b></a></li>
 			<li><a class="active" style="padding-left:200px" href="#measure-detail"><b>3.ADD MEASUREMENT DETAIL</b></a></li>
 		</ul>
 

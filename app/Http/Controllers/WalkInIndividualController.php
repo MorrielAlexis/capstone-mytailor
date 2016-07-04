@@ -131,8 +131,12 @@ class WalkInIndividualController extends Controller
     }
 
     public function payment()
-    {
-        return view('walkin-individual-checkout-pay');
+    {   
+
+        $values = session()->get('segment_values');
+
+        return view('walkin-individual-checkout-pay')
+                    ->with('segments', $values);
     }
 
     public function measurement()

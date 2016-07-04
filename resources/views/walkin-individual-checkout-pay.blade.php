@@ -13,9 +13,9 @@
 	<div class="row" style="padding:30px">
         
         <ul class="col s12 breadcrumb">
-			<li><a style="padding-left:200px" href="{{URL::to('transaction/walkin-individual-payment-customer-info')}}"><b>1.FILL-UP FORM</b></a></li>
+			<li><a style="padding-left:200px"><b>1.FILL-UP FORM</b></a></li>
 			<li><a class="active" style="padding-left:200px" href="#payment-info"><b>2.PAYMENT</b></a></li>
-			<li><a style="padding-left:200px" href="{{URL::to('transaction/walkin-individual-payment-measure-detail')}}"><b>3.ADD MEASUREMENT DETAIL</b></a></li>
+			<li><a style="padding-left:200px"><b>3.ADD MEASUREMENT DETAIL</b></a></li>
 		</ul>
 
 		<!-- Tab for Payment-->
@@ -52,56 +52,45 @@
                         <table class = "table centered order-summary" border = "1">
 		       				<thead style="color:gray">
 			          			<tr>
-				                  <th data-field="product">Product</th>         
-				                  <th data-field="quantity">Quantity</th>
+				                  <th data-field="product">Product</th>    
 				                  <th data-field="design">Design</th>
 				                  <th data-field="fabric">Fabric</th>
 				                  <th data-field="price">Unit Price</th>
-				                  <th data-field="price">Total Price</th>
 				              	</tr>
 			              	</thead>
 			              	<tbody>
+			              		@foreach($segments as $segment)
 					            <tr>
-					               <td>Uniform, Polo</td>
-					               <td>1</td>
-					               <td>No-fit</td>
-					               <td>Traditional Cotton</td>
-					               <td>800.00 PHP</td>
-					               <td>800.00 PHP</td>
+					               <td>{{ $segment->strGarmentCategoryName }}, {{ $segment->strSegmentName }}</td>
+					               <td> </td>
+					               <td> </td>
+					               <td>{{ number_format($segment->dblSegmentPrice, 2) }} PHP</td>
 					            </tr>
-
-					             <tr>
-					               <td>Uniform, Polo</td>
-					               <td>1</td>
-					               <td>Slim-fit</td>
-					               <td>Remarkable Cotton</td>
-					               <td>850.00 PHP</td>
-					               <td>850.00 PHP</td>
-					            </tr>
+					            @endforeach
 					        </tbody>
 					    </table>
 
 					<div class="divider" style="margin-bottom:30px"></div>
+					{!! Form::open() !!}
 		      		<div class="container">
 			      			<div style="color:gray; padding-left:140px;" class="input-field col s12">                 
-	                          <input value="" id="transac_no" name="transac_no" type="text" class="" readonly>
-	                          <label style="color:red" for="transac_no">Total Amount: </label>
+	                          <input id="total-price" name="total-price" type="text" class="" readonly>
+	                          <label style="color:red" for="total-price">Total Amount: </label>
 	                        </div>
-	                        <div class="center col s6">
-			          				<input name="modePayment" type="radio" class="filled-in" id="half_pay" />
+	                        <div class="left col s12" id="mode-of-payment">
+			          				<input name="modePayment" type="radio" class="filled-in payment" id="half_pay" />
 	      							<label for="half_pay">Half-payment (Pay first 50%)</label>
-		      				</div>
-		      				<div class="center col s6">
-				          			<input name="modePayment" type="radio" class="filled-in" id="full_pay" />
+
+				          			<input name="modePayment" type="radio" class="filled-in payment" id="full_pay" />
 		      						<label for="full_pay">Full-payment</label>
 		      				</div>
 		      				<div style="color:gray; padding-left:140px;" class="input-field col s12">                 
-	                          <input value="" id="transac_no" name="transac_no" type="text" class="" readonly>
-	                          <label style="color:red" for="transac_no">Amount Payable: </label>
+	                          <input value="" id="amount-payable" name="amount-payable" type="text" class="" readonly>
+	                          <label style="color:red" for="amount-payable">Amount Payable: </label>
 	                        </div>
 		      				<div style="color:gray; padding-left:140px;" class="input-field col s12">                 
-	                          <input value="" id="transac_no" name="transac_no" type="text" class="" readonly>
-	                          <label style="color:red" for="transac_no">Remaining Balance: </label>
+	                          <input value="" id="balance" name="balance" type="text" class="" readonly>
+	                          <label style="color:red" for="balance">Remaining Balance: </label>
 	                        </div>
                     </div>
 
@@ -112,7 +101,6 @@
                     			<div id="cancel-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:80px">
 									<h5><font color="red"><center><b>Warning!</b></center></font></h5>
 										
-										{!! Form::open() !!}
 											<div class="divider" style="height:2px"></div>
 											<div class="modal-content col s12">
 												<div class="center col s4"><i class="mdi-alert-warning" style="color:red; font-size:60px"></i></div>
@@ -123,9 +111,9 @@
 								                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-individual')}}"><font color="black">Yes</font></a>
 								                <a href="{{URL::to('/transaction/walkin-individual-payment-payment-info')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
 								            </div>
-										{!! Form::close() !!}
 								</div>
                     </div>
+					{!! Form::close() !!}
 
 
 	            </div>
@@ -146,14 +134,45 @@
 @section('scripts')
 
 	<script type="text/javascript">
-	  $('.modal-trigger').leanModal({
-	      dismissible: true, // Modal can be dismissed by clicking outside of the modal
-	      opacity: .5, // Opacity of modal background
-	      in_duration: 300, // Transition in duration
-	      out_duration: 200, // Transition out duration
-	      width:400,
-	    }
-	  );
+		$(document).ready(function(){
+
+			var a = {!! json_encode($segments) !!};
+			var totalAmount = 0.00;
+
+			for(var i = 0; i < a.length; i++)
+				totalAmount += a[i].dblSegmentPrice;
+			
+			$('#total-price').val(totalAmount.toFixed(2) + ' PHP');
+
+		});
+	</script>
+
+	<script>
+			$('.payment').change(function(){
+				if($('#half_pay').prop("checked")){
+
+					var a = {!! json_encode($segments) !!};
+					var totalAmount = 0.00;
+
+					for(var i = 0; i < a.length; i++)
+						totalAmount += a[i].dblSegmentPrice;
+					
+					$('#amount-payable').val((totalAmount/2).toFixed(2) + ' PHP');
+					$('#balance').val((totalAmount - (totalAmount/2)).toFixed(2) + 'PHP');
+				}
+
+				if($('#full_pay').prop("checked")){
+
+					var a = {!! json_encode($segments) !!};
+					var totalAmount = 0.00;
+
+					for(var i = 0; i < a.length; i++)
+						totalAmount += a[i].dblSegmentPrice;
+					
+					$('#amount-payable').val(totalAmount.toFixed(2) + ' PHP');
+					$('#balance').val((totalAmount - totalAmount).toFixed(2) + 'PHP');
+				}
+		});
 	</script>
 
 	<script>

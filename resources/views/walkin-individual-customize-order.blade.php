@@ -293,7 +293,7 @@
 			}
 
 			$('#total-time').text(totalTime + ' days');  
-			$('#total-price').text(totalAmount.toFixed(2) + ' PHP')
+			$('#total-price').text(totalAmount.toFixed(2) + ' PHP');
 
 		});
 
