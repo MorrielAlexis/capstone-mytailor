@@ -11,6 +11,7 @@ use Session;
 use App\GarmentCategory;
 use App\FabricType;
 use App\SegmentPattern;
+use App\Individual;
 
 class WalkInIndividualController extends Controller
 {
@@ -80,11 +81,11 @@ class WalkInIndividualController extends Controller
         $data_segment = $request->input('cbx-segment-name');
         $data_quantity = array_slice(array_filter($request->input('int-segment-qty')), 0);
         $values = [];
-
-         $segments = \DB::table('tblSegment AS a')
+        $segments = \DB::table('tblSegment AS a')
                     ->leftJoin('tblGarmentCategory AS b', 'a.strSegCategoryFK', '=', 'b.strGarmentCategoryID')
                     ->select('a.*', 'b.strGarmentCategoryName') 
                     ->whereIn('a.strSegmentID', $data_segment)
+                    ->orderBy('a.strSegmentID')
                     ->get();        
 
         for($i = 0; $i < count($data_segment); $i++){
@@ -94,16 +95,13 @@ class WalkInIndividualController extends Controller
         }
 
         session(['segment_data' => $data_segment]);
-        session(['segment_quantity' => $data_quantity]);
         session(['segment_values' => $values]);
-
 
         $fabrics = FabricType::all();
         $segmentPatterns = SegmentPattern::all();
 
         return view('walkin-individual-customize-order')
                 ->with('segments', $values)
-                ->with('quantities', session()->get('segment_quantity'))
                 ->with('fabrics', $fabrics)
                 ->with('patterns', $segmentPatterns);
     }
@@ -114,18 +112,57 @@ class WalkInIndividualController extends Controller
     }
 
     public function information()
-    {
-        return view('walkin-individual-checkout-info');
+    {  
+        //get all the individuals
+        $ids = \DB::table('tblCustIndividual')
+            ->select('strIndivID')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('strIndivID', 'desc')
+            ->take(1)
+            ->get();
+
+        $ID = $ids["0"]->strIndivID;
+        $newID = $this->smartCounter($ID);  
+
+        $individual = Individual::all();                   
+
+        return view('walkin-individual-checkout-info')
+                    ->with('newID', $newID);;
     }
 
     public function payment()
-    {
-        return view('walkin-individual-checkout-pay');
+    {   
+
+        $values = session()->get('segment_values');
+
+        return view('walkin-individual-checkout-pay')
+                    ->with('segments', $values);
     }
 
     public function measurement()
     {
         return view('walkin-individual-checkout-measure');
+    }
+
+    public function removeItem(Request $request)
+    {
+        $to_be_deleted = ((int)$request->input('delete-item-id') - 1);
+        $values = session()->get('segment_values');
+
+        unset($values[$to_be_deleted]);
+        $values = array_slice($values, 0);
+        
+        session()->forget('segment_values');
+        session(['segment_values' => $values]);
+
+        $fabrics = FabricType::all();
+        $segmentPatterns = SegmentPattern::all();
+
+        return view('walkin-individual-customize-order')
+                ->with('segments', $values)
+                ->with('quantities', session()->get('segment_quantity'))
+                ->with('fabrics', $fabrics)
+                ->with('patterns', $segmentPatterns);
     }
 
     /**
@@ -193,4 +230,47 @@ class WalkInIndividualController extends Controller
     {
         //
     }
+
+    public function smartCounter($id)
+    {   
+
+        $lastID = str_split($id);
+
+        $ctr = 0;
+        $tempID = "";
+        $tempNew = [];
+        $newID = "";
+        $add = TRUE;
+
+        for($ctr = count($lastID)-1; $ctr >= 0; $ctr--){
+
+            $tempID = $lastID[$ctr];
+
+            if($add){
+                if(is_numeric($tempID) || $tempID == '0'){
+                    if($tempID == '9'){
+                        $tempID = '0';
+                        $tempNew[$ctr] = $tempID;
+
+                    }else{
+                        $tempID = $tempID + 1;
+                        $tempNew[$ctr] = $tempID;
+                        $add = FALSE;
+                    }
+                }else{
+                    $tempNew[$ctr] = $tempID;
+                }           
+            }
+            $tempNew[$ctr] = $tempID;   
+        }
+
+        
+        for($ctr = 0; $ctr < count($lastID); $ctr++){
+            $newID = $newID . $tempNew[$ctr];
+        }
+
+        return $newID;
+    }
+
 }
+

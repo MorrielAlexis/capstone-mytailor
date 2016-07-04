@@ -40,6 +40,28 @@ class AlterationWalkInController extends Controller
                     ->with('categories', $categories);
     }
 
+    public function saveOrder(Request $request)
+    {
+            $data_garment = $request->input('garment-category');
+            $data_segment = $request->input('garment-segment');
+            $data_alterationtype = $request->input('alteration-type');
+            $values = [];
+
+            $alterations = \DB::table('tblAlteration AS a')
+                    ->leftJoin('tblSegment AS b', 'a.strAlterationSegmentFK', '=', 'b.strSegmentID')
+                    ->select('a.*', 'b.strSegmentName') 
+                    ->whereIn('a.strAlterationID', $data_alterationtype)
+                    ->whereIn('b.strSegmentID', $data_segment)
+                    ->orderBy('a.strAlterationID')
+                    ->get();
+
+            
+        session(['segment_data' => $data_segment]);
+        session(['segment_values' => $values]);
+    }
+
+
+
     // public function newTrans()
     // {
     //     return view('transaction-alterationwalkIn-newtransaction');

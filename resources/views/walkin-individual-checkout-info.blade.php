@@ -14,8 +14,8 @@
         
         <ul class="col s12 breadcrumb">
 			<li><a class="active" style="padding-left:200px" href="#customer-info"><b>1.FILL-UP FORM</b></a></li>
-			<li><a style="padding-left:200px" href="{{URL::to('transaction/walkin-individual-payment-payment-info')}}"><b>2.PAYMENT</b></a></li>
-			<li><a style="padding-left:200px" href="{{URL::to('transaction/walkin-individual-payment-measure-detail')}}"><b>3.ADD MEASUREMENT DETAIL</b></a></li>
+			<li><a style="padding-left:200px"><b>2.PAYMENT</b></a></li>
+			<li><a style="padding-left:200px"><b>3.ADD MEASUREMENT DETAIL</b></a></li>
 		</ul>
 
 		<!-- Tab for Customer Info -->
@@ -33,12 +33,12 @@
 	            <div class="col s12">    
 	                <div class="col s6">       
                         <div style="color:black; padding-left:140px" class="input-field col s12">                 
-                          <input value="" id="addIndiID" name="addIndiID" type="text" class="">
-                          <label style="color:gray"><b>Individual ID </b></label>
+                          <input value="{{ $newID }}" id="addIndiID" name="addIndiID" type="text" readonly>
+                          <label for="addIndiID" style="color:gray"><b>Individual ID </b></label>
                         </div>
 
                         <div style="color:black; padding-left:140px; margin-left:1px" class="input-field col s12">                 
-                          <input value="" id="dateToday" name="dateToday" type="text" class="">
+                          <input value="" id="dateToday" name="dateToday" type="text" readonly>
                           <label style="color:gray"><b>Transaction No. </b></label>
                         </div>
 	            	</div>
@@ -100,7 +100,7 @@
                         </div>
 
                         <div style="color:black" class="input-field col s6">
-            							<p style="color:gray"><b> Gender</b></p>
+            							<p style="color:gray"><b>Sex</b></p>
             							<select>
             								<option value="0"></option>
             							    <option value="1">Female</option>
@@ -191,17 +191,6 @@
 @stop
 
 @section('scripts')
-
-	<script type="text/javascript">
-	  $('.modal-trigger').leanModal({
-	      dismissible: true, // Modal can be dismissed by clicking outside of the modal
-	      opacity: .5, // Opacity of modal background
-	      in_duration: 300, // Transition in duration
-	      out_duration: 200, // Transition out duration
-	      width:400,
-	    }
-	  );
-	</script>
 
 	<script>
 	  $(document).ready(function() {

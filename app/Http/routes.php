@@ -168,10 +168,13 @@ Route::group(['prefix' => 'transaction'], function(){
 
 Route::group(['prefix' => 'transaction'], function(){
 	Route::resource('alteration-walkin', 'AlterationWalkInController');
+
+		Route::get('alteration-walkin-payment-info', 'AlterationWalkInController@payment');
 		
 	Route::resource('alteration-online', 'AlterationOnlineController',
 		['only' => ['index']]);
 });
+
 
 Route::group(['prefix' => 'transaction'], function(){
 	Route::resource('modifyIndividual', 'ModifyIndividualOrdersController',
@@ -225,6 +228,7 @@ Route::group(['prefix' => 'utilities'], function(){
 		
 });
 
+//acceptance of order from online module
 Route::get('/acceptAlteration','AlterationOnlineController@accept');
 Route::get('/acceptIndividual','OnlineCustomerIndividualController@accept');
 Route::get('/acceptCompany','OnlineCustomerCompanyController@accept');
@@ -240,8 +244,10 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::get('walkin-individual-bulk-orders-measure-now', 'WalkInIndividualController@bulkOrderMeasureNow');
 
 	Route::post('walkin-individual-customize-orders', 'WalkInIndividualController@customize');
+	Route::post('walkin-individual-payment-customer-info', 'WalkInIndividualController@information');
+	Route::post('walkin-individual-remove-item', 'WalkInIndividualController@removeItem');
+
 	Route::get('walkin-individual-catalogue-designs', 'WalkInIndividualController@catalogueDesign');
-	Route::get('walkin-individual-payment-customer-info', 'WalkInIndividualController@information');
 	Route::get('walkin-individual-payment-payment-info', 'WalkInIndividualController@payment');
 	Route::get('walkin-individual-payment-measure-detail', 'WalkInIndividualController@measurement');
 });
@@ -257,8 +263,6 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::get('walkin-company-payment-measure-detail', 'WalkInCompanyController@measurement');
 });
 
-Route::get('/transaction-alterationwalkIn-newtransaction','AlterationWalkInController@newTrans');
-
 Route::get('transaction-modifyindividualorders-modifyorder','ModifyIndividualOrdersController@modify');
 Route::get('transaction-modifycompanyorders-modifyorder','ModifyCompanyOrdersController@modify');
 Route::get('transaction-modifycompanyorders-modifyemployee','ModifyCompanyOrdersController@employee');
@@ -269,8 +273,10 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::get('billing-payment-bill-customer', 'BillingPaymentController@billCustomer');
 });
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////------ PDF GENERATOR (temp) -------/////////////////////////////////////////////////////////////
 
-Route::get('pdf', 'PdfController@invoice');
+Route::get('/pdf', 'PdfController@converToPdf');
 
 
 

@@ -15,10 +15,10 @@ class CreatePaymentTable extends Migration
         Schema::create('tblPayment', function (Blueprint $table) {
             $table->string('strPaymentID')->primary();
             $table->string('strCustomerIdFK')->index();//fk
-            $table->datetime('dtTransacDate');
+            $table->date('dtTransacDate');
             $table->double('dblAmtPayable');
             $table->double('dblOustandingBal');
-            $table->datetime('dtDueDate');
+            $table->date('dtDueDate');
             $table->boolean('boolIsActive');
             $table->timestamps();
 
