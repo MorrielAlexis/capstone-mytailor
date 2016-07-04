@@ -11,6 +11,7 @@ use Session;
 use App\GarmentCategory;
 use App\FabricType;
 use App\SegmentPattern;
+use App\Individual;
 
 class WalkInIndividualController extends Controller
 {
@@ -94,7 +95,6 @@ class WalkInIndividualController extends Controller
         }
 
         session(['segment_data' => $data_segment]);
-        session(['segment_quantity' => $data_quantity]);
         session(['segment_values' => $values]);
 
         $fabrics = FabricType::all();
@@ -102,7 +102,6 @@ class WalkInIndividualController extends Controller
 
         return view('walkin-individual-customize-order')
                 ->with('segments', $values)
-                ->with('quantities', session()->get('segment_quantity'))
                 ->with('fabrics', $fabrics)
                 ->with('patterns', $segmentPatterns);
     }
@@ -113,8 +112,22 @@ class WalkInIndividualController extends Controller
     }
 
     public function information()
-    {
-        return view('walkin-individual-checkout-info');
+    {  
+        //get all the individuals
+        $ids = \DB::table('tblCustIndividual')
+            ->select('strIndivID')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('strIndivID', 'desc')
+            ->take(1)
+            ->get();
+
+        $ID = $ids["0"]->strIndivID;
+        $newID = $this->smartCounter($ID);  
+
+        $individual = Individual::all();                   
+
+        return view('walkin-individual-checkout-info')
+                    ->with('newID', $newID);;
     }
 
     public function payment()
@@ -135,6 +148,9 @@ class WalkInIndividualController extends Controller
         unset($values[$to_be_deleted]);
         $values = array_slice($values, 0);
         
+        session()->forget('segment_values');
+        session(['segment_values' => $values]);
+
         $fabrics = FabricType::all();
         $segmentPatterns = SegmentPattern::all();
 
@@ -210,4 +226,47 @@ class WalkInIndividualController extends Controller
     {
         //
     }
+
+    public function smartCounter($id)
+    {   
+
+        $lastID = str_split($id);
+
+        $ctr = 0;
+        $tempID = "";
+        $tempNew = [];
+        $newID = "";
+        $add = TRUE;
+
+        for($ctr = count($lastID)-1; $ctr >= 0; $ctr--){
+
+            $tempID = $lastID[$ctr];
+
+            if($add){
+                if(is_numeric($tempID) || $tempID == '0'){
+                    if($tempID == '9'){
+                        $tempID = '0';
+                        $tempNew[$ctr] = $tempID;
+
+                    }else{
+                        $tempID = $tempID + 1;
+                        $tempNew[$ctr] = $tempID;
+                        $add = FALSE;
+                    }
+                }else{
+                    $tempNew[$ctr] = $tempID;
+                }           
+            }
+            $tempNew[$ctr] = $tempID;   
+        }
+
+        
+        for($ctr = 0; $ctr < count($lastID); $ctr++){
+            $newID = $newID . $tempNew[$ctr];
+        }
+
+        return $newID;
+    }
+
 }
+

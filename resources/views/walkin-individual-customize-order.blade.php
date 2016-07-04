@@ -64,7 +64,7 @@
 								<div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
 											<h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
 												
-												{!! Form::open() !!}
+												{!! Form::open(['url' => 'transaction/walkin-individual-payment-customer-info', 'method' => 'post']) !!}
 													<div class="divider" style="height:2px"></div>
 													<div class="modal-content col s12">
 														<label>This is a summary of orders:</label>
@@ -106,7 +106,7 @@
 
 													<div class="modal-footer col s12">
 										                <p class="left" style="margin-left:10px; color:gray;">Continue to payment?</p>
-										                <a class="waves-effect waves-green btn-flat" href="{{URL::to('/transaction/walkin-individual-payment-customer-info')}}"><font color="black">Yes</font></a>
+										                <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Yes</font></button>
 										                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
 										            </div>
 												{!! Form::close() !!}

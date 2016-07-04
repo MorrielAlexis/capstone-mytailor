@@ -33,12 +33,12 @@
 	            <div class="col s12">    
 	                <div class="col s6">       
                         <div style="color:black; padding-left:140px" class="input-field col s12">                 
-                          <input value="" id="addIndiID" name="addIndiID" type="text" class="">
-                          <label style="color:gray"><b>Individual ID </b></label>
+                          <input value="{{ $newID }}" id="addIndiID" name="addIndiID" type="text" readonly>
+                          <label for="addIndiID" style="color:gray"><b>Individual ID </b></label>
                         </div>
 
                         <div style="color:black; padding-left:140px; margin-left:1px" class="input-field col s12">                 
-                          <input value="" id="dateToday" name="dateToday" type="text" class="">
+                          <input value="" id="dateToday" name="dateToday" type="text" readonly>
                           <label style="color:gray"><b>Transaction No. </b></label>
                         </div>
 	            	</div>
@@ -100,7 +100,7 @@
                         </div>
 
                         <div style="color:black" class="input-field col s6">
-            							<p style="color:gray"><b> Gender</b></p>
+            							<p style="color:gray"><b>Sex</b></p>
             							<select>
             								<option value="0"></option>
             							    <option value="1">Female</option>
