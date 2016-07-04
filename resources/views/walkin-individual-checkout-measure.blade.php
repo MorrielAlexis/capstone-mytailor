@@ -75,59 +75,59 @@
 
 									<div class="col s12" style="margin-left:30px">
 										<div class="col s6">
-											<input type="checkbox" class="filled-in" id="shoulder"/>
+											<input type="checkbox" class="filled-in" name="shoulder" id="shoulder"/>
 			      							<label for="shoulder">Shoulder</label>
 			      						</div>
 			      						<div class="col s6">
-											<input type="checkbox" class="filled-in" id="bust"/>
+											<input type="checkbox" class="filled-in" name="bust" id="bust"/>
 			      							<label for="bust">Bust</label>
 			      						</div>
 			      						<div class="col s6">
-											<input type="checkbox" class="filled-in" id="waist"/>
+											<input type="checkbox" class="filled-in" name="waist" id="waist"/>
 			      							<label for="waist">Waist</label>
 			      						</div>
 			      						<div class="col s6">
-											<input type="checkbox" class="filled-in" id="hip"/>
+											<input type="checkbox" class="filled-in" name="hip" id="hip"/>
 			      							<label for="hip">Hip</label>
 			      						</div>
 			      						<div class="col s6">
-											<input type="checkbox" class="filled-in" id="armhole"/>
+											<input type="checkbox" class="filled-in" name="armhole" id="armhole"/>
 			      							<label for="armhole">Armhole</label>
 			      						</div>
 			      						<div class="col s6">
-											<input type="checkbox" class="filled-in" id="circumference"/>
+											<input type="checkbox" class="filled-in" name="circumference" id="circumference"/>
 			      							<label for="circumference">Circumference</label>
 			      						</div>
 			      						<div class="col s6">
-											<input type="checkbox" class="filled-in" id="length_sleeves"/>
+											<input type="checkbox" class="filled-in" name="length_sleeves" id="length_sleeves"/>
 			      							<label for="length_sleeves">Length of Sleeves</label>
 			      						</div>
 			      						<div class="col s6">
-											<input type="checkbox" class="filled-in" id="length_polo"/>
+											<input type="checkbox" class="filled-in" name="length_polo" id="length_polo"/>
 			      							<label for="length_polo">Length of Polo</label>
 			      						</div>
 			      						<div class="col s6">
-											<input type="checkbox" class="filled-in" id="neck"/>
+											<input type="checkbox" class="filled-in" name="neck" id="neck"/>
 			      							<label for="neck">Neck</label>
 			      						</div>
 			      						<div class="col s6">
-											<input type="checkbox" class="filled-in" id="thigh"/>
+											<input type="checkbox" class="filled-in" name="thigh" id="thigh"/>
 			      							<label for="thigh">Thigh</label>
 			      						</div>
 			      						<div class="col s6">
-											<input type="checkbox" class="filled-in" id="knee"/>
+											<input type="checkbox" class="filled-in" name="knee" id="knee"/>
 			      							<label for="knee">Knee</label>
 			      						</div>
 			      						<div class="col s6">
-											<input type="checkbox" class="filled-in" id="cuffs"/>
+											<input type="checkbox" class="filled-in" name="cuffs" id="cuffs"/>
 			      							<label for="cuffs">Cuffs</label>
 			      						</div>
 			      						<div class="col s6">
-											<input type="checkbox" class="filled-in" id="crotch"/>
+											<input type="checkbox" class="filled-in" name="crotch" id="crotch"/>
 			      							<label for="crotch">Crotch</label>
 			      						</div>
 			      						<div class="col s6">
-											<input type="checkbox" class="filled-in" id="length"/>
+											<input type="checkbox" class="filled-in" name="length" id="length"/>
 			      							<label for="length">Length</label>
 			      						</div>
 			      					</div>
@@ -137,8 +137,8 @@
 									<div class="modal-footer col s12">									
 										<div class="col s12">
 											<div class="col s4" style="padding-left:10px; color:red; padding-top:10px">
-												<input type="checkbox" class="left filled-in" id="select-all"></input>
-												<label for="select-all" style="color:red">Select All</label>
+												<input type="checkbox" class="left filled-in" name="select_all" id="select_all"></input>
+												<label for="select_all" style="color:red">Select All</label>
 											</div>
 											<div class="col s8">
 												<a href="{{URL::to('transaction/walkin-individual-payment-measure-detail')}}" class="right waves-effect waves-green btn-flat">Cancel</a>
@@ -238,100 +238,11 @@
                     </div>
                     </div>
 
-                    <div class="col s12"><div class="divider" style="height:5px; color:gray; margin-top:15px; margin-bottom:30px"></div></div>
-
-                    	       		<div class="container">
-	            <div class="col s12"> 
-
-		      		
-	            	<div id="for_top" class="col s12" style="color:black">
-	            		<h5><b>Parts to be measured</b></h5>
-	            	   	<div style="color:black; padding-left:140px" class="input-field col s6">                 
-                          <input value="" id="shoulder" name="shoulder" type="text" class="">
-                          <label style="color:teal" for="shoulder">Shoulder: </label>
-                        </div>
-                        <div style="color:black; padding-left:140px" class="input-field col s6">                 
-                          <input value="" id="bust" name="bust" type="text" class="">
-                          <label style="color:teal" for="bust">Bust: </label>
-                        </div>
-                        <div style="color:black; padding-left:140px" class="input-field col s6">                 
-                          <input value="" id="waist" name="waist" type="text" class="">
-                          <label style="color:teal" for="waist">Waist: </label>
-                        </div>
-                        <div style="color:black; padding-left:140px" class="input-field col s6">                 
-                          <input value="" id="hip" name="hip" type="text" class="">
-                          <label style="color:teal" for="hip">Hip: </label>
-                        </div>
-                        <div style="color:black; padding-left:140px" class="input-field col s6">                 
-                          <input value="" id="armhole" name="armhole" type="text" class="">
-                          <label style="color:teal" for="armhole">Armhole: </label>
-                        </div>
-                        <div style="color:black; padding-left:140px" class="input-field col s6">                 
-                          <input value="" id="circumference" name="circumference" type="text" class="">
-                          <label style="color:teal" for="circumference">Circumference: </label>
-                        </div>
-                        <div style="color:black; padding-left:140px" class="input-field col s6">                 
-                          <input value="" id="length_sleeves" name="length_sleeves" type="text" class="">
-                          <label style="color:teal" for="length_sleeves">Length of Sleeves: </label>
-                        </div>
-                        <div style="color:black; padding-left:140px" class="input-field col s6">                 
-                          <input value="" id="length_polo" name="length_polo" type="text" class="">
-                          <label style="color:teal" for="length_polo">Length of Polo: </label>
-                        </div>
-                        <div style="color:black; padding-left:140px" class="input-field col s6">                 
-                          <input value="" id="neck" name="neck" type="text" class="">
-                          <label style="color:teal" for="neck">Neck: </label>
-                        </div>
-                        <div style="color:black; padding-left:140px" class="input-field col s6">                 
-                          <input value="" id="thigh" name="thigh" type="text" class="">
-                          <label style="color:teal" for="thigh">Thigh: </label>
-                        </div>
-                        <div style="color:black; padding-left:140px" class="input-field col s6">                 
-                          <input value="" id="knee" name="knee" type="text" class="">
-                          <label style="color:teal" for="knee">Knee: </label>
-                        </div>
-                        <div style="color:black; padding-left:140px" class="input-field col s6">                 
-                          <input value="" id="cuffs" name="cuffs" type="text" class="">
-                          <label style="color:teal" for="cuffs">Cuffs: </label>
-                        </div>
-                        <div style="color:black; padding-left:140px" class="input-field col s6">                 
-                          <input value="" id="crotch" name="crotch" type="text" class="">
-                          <label style="color:teal" for="crotch">Crotch: </label>
-                        </div>
-                        <div style="color:black; padding-left:140px" class="input-field col s6">                 
-                          <input value="" id="length" name="length" type="text" class="">
-                          <label style="color:teal" for="length">Length: </label>
-                        </div>
-                    </div>
+                    <div class="col s12"><div class="divider" style="height:5px; color:gray; margin-top:15px; margin-bottom:15px"></div></div>
 
 
-	            </div>
-	        	</div>
-                   
-
-                    <div class="col s12">
-
-                    	<div class="container">
-                    		<p style="color:red">In case of multiple measurements</p>
-                    	<div style="color:black;" class="input-field col s8">                 
-                          <input value="" id="length" name="length" type="text" class="">
-                          <label style="color:gray" for="length">Target Customer: </label>
-                    	</div>
-
-                    	<div style="color:gray" class="input-field col s4">                 
-                          <select>
-						    <option value="" disabled selected color="red">Sex</option>
-						    <option value="1">Female</option>
-						    <option value="2">Male</option>
-						  </select>
-                    	</div>
-                    </div>
-                    </div>
-
-
-                    <div class="col s12"><div class="divider"></div></div>
-                    <a href="{{URL::to('transaction/walkin-individual')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Transfers you back home and clears current unsaved transaction" style="background-color:teal; padding:9.5px; padding-bottom:45px; margin-right:50px; margin-top:20px; color:white">Cancel Transaction</a>
-                    <a href="#save-transaction" class="right modal-trigger btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save measurement information and go back to shop" style="background-color:teal; margin-right:50px; padding:9.5px; padding-bottom:45px; margin-top:20px; color:white"><!--<i class="mdi-action-done"> -->Save Measurements<!--</i>--></a>
+                    <a href="{{URL::to('transaction/walkin-individual')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Transfers you back home and clears current unsaved transaction" style="background-color:teal; padding:9.5px; padding-bottom:45px; margin-right:50px; color:white">Cancel Transaction</a>
+                    <a href="#save-transaction" class="right modal-trigger btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save measurement information and go back to shop" style="background-color:teal; margin-right:50px; padding:9.5px; padding-bottom:45px; color:white"><!--<i class="mdi-action-done"> -->Save Measurements<!--</i>--></a>
                     	<div id="save-transaction" class="modal modal-fixed-footer" style="height:200px; width:500px; margin-top:150px">
 										
 								{!! Form::open() !!}
@@ -355,7 +266,7 @@
 
 	        </div>
 
-	        <div class="divider" style="height:2px; margin-bottom:20px; margin-top:50px"></div>
+	        <div class="divider" style="height:2px; margin-bottom:20px; margin-top:30px"></div>
 	      	
 	      		<center><p><font color="gray">End of Measurement Form</font></p></center>
 	

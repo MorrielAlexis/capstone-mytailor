@@ -37,10 +37,9 @@
 	            <div class="col s12"> 
 
 	            	<div class="col s12" style="margin-bottom:20px">
-	            	   <div style="color:gray; padding-left:140px;" class="input-field col s6">                 
-                          <input value="" id="transac_no" name="transac_no" type="text" class="" readonly>
-                          <label style="color:gray" for="transac_no">Transaction #: </label>
-                        </div>
+	            		<div class="col s3" style="color:gray;padding-left:50px;padding-top:15px"><p>Transaction No.:</p></div>
+			      		<div class="col s3" style="color:red;"><p><input value="" id="transac_no" name="transac_no" type="text" class="" readonly></p></div>
+                        
                         <div style="color:gray; padding-left:140px;" class="input-field col s6">                 
                           <input value="" id="transac_date" name="transac_date" type="date" class="datepicker">
                           <label style="color:gray" for="transac_date">Date and Time: </label>
@@ -73,25 +72,25 @@
 					<div class="divider" style="margin-bottom:30px"></div>
 					{!! Form::open() !!}
 		      		<div class="container">
-			      			<div style="color:gray; padding-left:140px;" class="input-field col s12">                 
-	                          <input id="total-price" name="total-price" type="text" class="" readonly>
-	                          <label style="color:red" for="total-price">Total Amount: </label>
-	                        </div>
-	                        <div class="left col s12" id="mode-of-payment">
-			          				<input name="modePayment" type="radio" class="filled-in payment" id="half_pay" />
-	      							<label for="half_pay">Half-payment (Pay first 50%)</label>
+			      			<div class="col s4" style="color:teal"><p><b>Total Amount</b></p></div>
+			      			<div class="col s8" style="color:red;"><p><input id="total-price" name="total-price" type="text" class="" readonly></p></div>
 
+	                        <div class="left col s12" id="mode-of-payment" style="margin-bottom:20px">
+	                        	<div class="col s6">
+			          				<input name="modePayment" type="radio" class="filled-in payment" id="half_pay" />
+	      							<label for="half_pay">Half-payment</label>
+								</div>
+								<div class="col s6">
 				          			<input name="modePayment" type="radio" class="filled-in payment" id="full_pay" />
 		      						<label for="full_pay">Full-payment</label>
+		      					</div>
 		      				</div>
-		      				<div style="color:gray; padding-left:140px;" class="input-field col s12">                 
-	                          <input value="" id="amount-payable" name="amount-payable" type="text" class="" readonly>
-	                          <label style="color:red" for="amount-payable">Amount Payable: </label>
-	                        </div>
-		      				<div style="color:gray; padding-left:140px;" class="input-field col s12">                 
-	                          <input value="" id="balance" name="balance" type="text" class="" readonly>
-	                          <label style="color:red" for="balance">Remaining Balance: </label>
-	                        </div>
+
+		      				<div class="col s4" style="color:teal"><p><b>Amount Payable:</b></p></div>
+		      				<div class="col s8" style="color:red;"><p><input value="" id="amount-payable" name="amount-payable" type="text" class="" readonly></p></div>
+
+		      				<div class="col s4" style="color:teal"><p><b>Remaining Balance:</b></p></div>
+		      				<div class="col s8" style="color:red;"><p><input value="" id="balance" name="balance" type="text" class="" readonly></p></div>
                     </div>
 
                     <div class="container">

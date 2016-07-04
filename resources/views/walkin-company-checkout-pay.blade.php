@@ -43,10 +43,9 @@
 	            <div class="col s12"> 
 
 	            	<div class="col s12" style="margin-bottom:20px">
-	            	   <div style="color:gray; padding-left:140px;" class="input-field col s6">                 
-                          <input value="" id="transac_no" name="transac_no" type="text" class="" readonly>
-                          <label style="color:gray" for="transac_no">Transaction #: </label>
-                        </div>
+	            		<div class="col s3" style="color:gray;padding-left:50px;padding-top:15px"><p>Transaction No.:</p></div>
+			      		<div class="col s3" style="color:red;"><p><input value="" id="transac_no" name="transac_no" type="text" class="" readonly></p></div>
+
                         <div style="color:gray; padding-left:140px;" class="input-field col s6">                 
                           <input value="" id="transac_date" name="transac_date" type="date" class="datepicker">
                           <label style="color:gray" for="transac_date">Date and Time: </label>
@@ -89,55 +88,44 @@
 		      		</div>
 
 		      		<div class="container">
-		      		
-			      			<div style="color:gray; padding-left:140px;" class="input-field col s12">                 
-	                          <input value="" id="transac_no" name="transac_no" type="text" class="" readonly>
-	                          <label style="color:red" for="transac_no">Total Amount: </label>
-	                        </div>
-	                        <div class="col s4">
-			          				<input name="modePayment" type="radio" class="filled-in" id="half_pay" />
-	      							<label for="half_pay">Pay first 50%</label>
-		      				</div>
-		      				<div class="col s4">
-			          				<input name="modePayment" type="radio" class="filled-in" id="partial_full" />
-	      							<label for="partial_full">Pay up to 90%</label>
-		      				</div>
-		      				<div class="col s4">
-				          			<input name="modePayment" type="radio" class="filled-in" id="full_pay" />
+			      			<div class="col s4" style="color:teal"><p><b>Total Amount</b></p></div>
+			      			<div class="col s8" style="color:red;"><p><input id="total-price" name="total-price" type="text" class="" readonly></p></div>
+
+	                        <div class="left col s12" id="mode-of-payment" style="margin-bottom:20px">
+	                        	<div class="col s6">
+			          				<input name="modePayment" type="radio" class="filled-in payment" id="half_pay" />
+	      							<label for="half_pay">Half-payment</label>
+								</div>
+								<div class="col s6">
+				          			<input name="modePayment" type="radio" class="filled-in payment" id="full_pay" />
 		      						<label for="full_pay">Full-payment</label>
+		      					</div>
 		      				</div>
-		      				<div style="color:gray; padding-left:140px;" class="input-field col s12">                 
-	                          <input value="" id="transac_no" name="transac_no" type="text" class="" readonly>
-	                          <label style="color:red" for="transac_no">Amount Payable: </label>
-	                        </div>
-		      				<div style="color:gray; padding-left:140px;" class="input-field col s12">                 
-	                          <input value="" id="transac_no" name="transac_no" type="text" class="" readonly>
-	                          <label style="color:red" for="transac_no">Balance: </label>
-	                        </div>
-                    	
+
+		      				<div class="col s4" style="color:teal"><p><b>Amount Payable:</b></p></div>
+		      				<div class="col s8" style="color:red;"><p><input value="" id="amount-payable" name="amount-payable" type="text" class="" readonly></p></div>
+
+		      				<div class="col s4" style="color:teal"><p><b>Remaining Balance:</b></p></div>
+		      				<div class="col s8" style="color:red;"><p><input value="" id="balance" name="balance" type="text" class="" readonly></p></div>
                     </div>
 
                     <div class="col s12" style="border:4px solid teal; padding:5px">
 							<left><p style="padding-left:40px"><font size="+1"><b>CHEQUE DETAILS</b></font><font color="gray" style="padding-left:30px">In case payment is made through cheque</font></p></left> 
 							
 							<div class="divider" style="height:2px; background-color:teal; margin-left:30px; margin-right:30px"></div>        
+								
+								<div class="col s4" style="color:teal; padding-top:20px; padding-left:30px"><p>Account Number:</p></div>
+		      					<div class="col s8" style="color:black; padding-right:50px"><p><input value="" id="account_no" name="account_no" type="text" class=""></p></div>
+							
+								<div class="col s4" style="color:teal; padding-top:20px; padding-left:30px"><p>Account Name:</p></div>
+		      					<div class="col s8" style="color:black; padding-right:50px"><p><input value="" id="account_name" name="account_name" type="text" class=""></p></div>
 
-								<div style="color:gray; padding-left:140px;" class="input-field col s12">                 
-		                          <input value="" id="transac_no" name="transac_no" type="text" class="">
-		                          <label style="color:black" for="transac_no">Account Number: </label>
-		                        </div>
-		                        <div style="color:gray; padding-left:140px;" class="input-field col s12">                 
-		                          <input value="" id="transac_no" name="transac_no" type="text" class="">
-		                          <label style="color:black" for="transac_no">Account Name: </label>
-		                        </div>  
-		                        <div style="color:gray; padding-left:140px;" class="input-field col s12">                 
-		                          <input value="" id="transac_no" name="transac_no" type="text" class="">
-		                          <label style="color:black" for="transac_no">Check No.: </label>
-		                        </div>       
-		                        <div style="padding-left:140px;" class="input-field col s6">                 
-		                          <input value="" id="transac_date" name="transac_date" type="date" class="datepicker">
-		                          <label style="color:black" for="transac_date">Date and Time: </label>
-		                        </div>	
+		      					<div class="col s4" style="color:teal; padding-top:20px; padding-left:30px"><p>Check Number:</p></div>
+		      					<div class="col s8" style="color:black; padding-right:50px"><p><input value="" id="check_no" name="check_no" type="text" class=""></p></div>
+
+		      					<div class="col s4" style="color:teal; padding-top:20px; padding-left:30px"><p>Date:</p></div>
+		      					<div class="col s8" style="color:black; padding-right:50px"><p><input value="" id="transac_date" name="transac_date" type="date" class="datepicker"></p></div>
+    
 
                      </div>
 
