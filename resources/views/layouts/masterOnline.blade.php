@@ -69,7 +69,7 @@
             <div style="border-bottom:1px solid grey" class="nav-wrapper">
 
               <ul class="container">
-                <li><a class="btn-flat" style="padding-left:10px; padding-right:10px; margin:0px; color: white;" href="/online-home"><b>HOME</b></a></li>
+                <li><a class="btn-flat" style="padding-left:10px; padding-right:10px; margin:0px; color: white;" href="{{URL::to('/online-home')}}"><b>HOME</b></a></li>
                 <li><div class="divider" style="margin-top:20px; width:1px; height:25px;"></div></li>
                 <li>
                   <a style="color: white; padding-left:15px; padding-right:15px; margin:0px;" class="dropdown-button btn-flat" data-beloworigin="true" href="#" data-activates="downdown"><b>GARMENTS</b></a>
