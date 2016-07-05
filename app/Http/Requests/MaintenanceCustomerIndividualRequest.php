@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use Illuminate\Contracts\Validation\Validator;
 
 class MaintenanceCustomerIndividualRequest extends Request
 {
@@ -13,7 +14,7 @@ class MaintenanceCustomerIndividualRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,10 +22,37 @@ class MaintenanceCustomerIndividualRequest extends Request
      *
      * @return array
      */
-    public function rules()
+       public function rules()
     {
         return [
-            //
+            'strIndivFName' => 'unique_with:tblCustIndividual,strIndivMName,strIndivLName',
+
+            'strIndivCPNumber' => 'unique|regex:/^\d{11}/',
+
+            'strIndivEmailAddress' => 'unique|email'
+            
         ];
+    }
+
+    public function messages()
+    {
+        return [
+            'strIndivFName.required'     =>  'First name is required.',
+            'strIndivFName.unique_with'  =>  'Name already exists.',
+            'strIndivLName.required'      =>  'Last name is required.',
+            'strIndivCPNumber.regex'    =>  'Invalid contact number format.',
+
+            'strIndivEmailAddress.unique' => 'Email address already exists!Please enter your correct email address.'
+            'strIndivEmailAddress.email' => 'Invalid email address format.'
+            
+            
+        ];
+
+    }
+
+    protected function formatErrors(Validator $validator)
+    {
+        return $validator->errors()->all();
+
     }
 }
