@@ -5,7 +5,8 @@
 		  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		  	<!-- Style Here --> 
 			  <link rel="shortcut icon" href="{{{ asset('img/logo.png') }}}">
-			  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">		  	  {!! Html::style('css/materialize.min.css'); !!}
+			  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+			  {!! Html::style('css/materialize.min.css'); !!}
 		      {!! Html::style('css/materialize.min.css'); !!}
 	</head>
 
@@ -105,26 +106,26 @@
 	        <div class="modal-content row" style="padding:20px;">
 	      	<h3><font color="green"><b>SIGN UP</b></font></h3>
 	        	<div class="col s12">
-			        <div class="input-field col s6" style="background-color:white; border-radius:5px;">
+			        <div class="input-field col s6" style="border-radius:5px;">
 			          	<input placeholder="First Name" id="first_name" type="text" class="validate">
 			        </div>
 			        <div class="col s1"><h1></h1></div>
-			        <div class="input-field col s5" style="background-color:white; border-radius:5px;">
+			        <div class="input-field col s5" style="border-radius:5px;">
 			          	<input placeholder="Last Name" id="last_name" type="text" class="validate">
 			        </div>			        
 	        	</div>
 	        	<div class="col s12">
-	        		<div class="input-field" style="padding:5px; background-color:white; border-radius:5px;">
+	        		<div class="input-field" style="padding:5px; border-radius:5px;">
 			          	<input placeholder="Email Address" id="email" type="email" class="validate">
 			        </div>
 		        </div>
 	        	<div class="col s12">
-	        		<div class="input-field" style="padding:5px; background-color:white; border-radius:5px;">
+	        		<div class="input-field" style="padding:5px; border-radius:5px;">
 			          	<input placeholder="Password" id="password" type="password" class="validate">
 			        </div>
 		        </div>
 	        	<div class="col s12">
-	        		<div class="input-field" style="padding:5px; background-color:white; border-radius:5px;">
+	        		<div class="input-field" style="padding:5px; border-radius:5px;">
 			          	<input placeholder="Re-type Password" id="retype" type="password" class="validate">
 			        </div>
 		        </div>
@@ -146,26 +147,26 @@
 	        <div class="modal-content row" style="padding:20px;">
 	      	<h3><font color="green"><b>SIGN UP</b></font></h3>
 	        	<div class="col s12">
-			        <div class="input-field col s6" style="background-color:white; border-radius:5px;">
+			        <div class="input-field col s6" style="border-radius:5px;">
 			          	<input placeholder="Company Name" id="company_name" type="text" class="validate">
 			        </div>
 			        <div class="col s1"><h1></h1></div>
-			        <div class="input-field col s5" style="background-color:white; border-radius:5px;">
+			        <div class="input-field col s5" style="border-radius:5px;">
 			          	<input placeholder="Contact Person" id="contact_person" type="text" class="validate">
 			        </div>			        
 	        	</div>
 	        	<div class="col s12">
-	        		<div class="input-field" style="padding:5px; background-color:white; border-radius:5px;">
+	        		<div class="input-field" style="padding:5px; border-radius:5px;">
 			          	<input placeholder="Company Email Address" id="email" type="email" class="validate">
 			        </div>
 		        </div>
 	        	<div class="col s12">
-	        		<div class="input-field" style="padding:5px; background-color:white; border-radius:5px;">
+	        		<div class="input-field" style="padding:5px; border-radius:5px;">
 			          	<input placeholder="Password" id="password" type="password" class="validate">
 			        </div>
 		        </div>
 	        	<div class="col s12">
-	        		<div class="input-field" style="padding:5px; background-color:white; border-radius:5px;">
+	        		<div class="input-field" style="padding:5px; border-radius:5px;">
 			          	<input placeholder="Re-type Password" id="retype" type="password" class="validate">
 			        </div>
 		        </div>

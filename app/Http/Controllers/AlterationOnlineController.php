@@ -22,12 +22,12 @@ class AlterationOnlineController extends Controller
     
     public function index()
     {
-        return view('transaction-alterationonline');
+        return view('alteration.online-transaction');
     }
 
     public function accept()
     {
-        return view('transaction-acceptalterationorder');
+        return view('alteration.acceptorder');
     }
 
     /**

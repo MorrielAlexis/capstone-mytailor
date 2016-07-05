@@ -35,10 +35,36 @@ class AlterationWalkInController extends Controller
                     ->orderBy('a.strAlterationID')
                     ->get();
 
-        return view('transaction-alterationwalkin')
+        return view('alteration.walkin-transaction')
                     ->with('alterations', $alterations)
                     ->with('categories', $categories);
     }
+
+    public function newcust()
+    {
+        return view('alteration.walkin-newcustomer');
+    }
+
+    public function oldcust()
+    {
+        return view('alteration.walkin-oldcustomer');
+    }
+
+    public function info()
+    {
+        return view('alteration.checkout-info');
+    }
+
+    public function pay()
+    {
+        return view('alteration.checkout-payment');
+    }
+
+    public function measuredetails()
+    {
+        return view('alteration.checkout-measurement');
+    }
+
 
     public function saveOrder(Request $request)
     {

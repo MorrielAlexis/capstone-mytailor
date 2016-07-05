@@ -166,15 +166,6 @@ Route::group(['prefix' => 'transaction'], function(){
 		['only' => ['index']]);
 });
 
-Route::group(['prefix' => 'transaction'], function(){
-	Route::resource('alteration-walkin', 'AlterationWalkInController');
-
-		Route::get('alteration-walkin-payment-info', 'AlterationWalkInController@payment');
-		
-	Route::resource('alteration-online', 'AlterationOnlineController',
-		['only' => ['index']]);
-});
-
 
 Route::group(['prefix' => 'transaction'], function(){
 	Route::resource('modifyIndividual', 'ModifyIndividualOrdersController',
@@ -229,7 +220,6 @@ Route::group(['prefix' => 'utilities'], function(){
 });
 
 //acceptance of order from online module
-Route::get('/acceptAlteration','AlterationOnlineController@accept');
 Route::get('/acceptIndividual','OnlineCustomerIndividualController@accept');
 Route::get('/acceptCompany','OnlineCustomerCompanyController@accept');
 
@@ -277,6 +267,16 @@ Route::group(['prefix' => 'transaction'], function(){
 /////////////////////////------ PDF GENERATOR (temp) -------/////////////////////////////////////////////////////////////
 
 Route::get('/pdf', 'PdfController@converToPdf');
+
+/*-----------------------------------------ALTERATION---------------------------------------------------*/
+		Route::get('alteration-online-transaction', 'AlterationOnlineController@index');
+		Route::get('alteration-acceptorder', 'AlterationOnlineController@accept');
+		Route::get('alteration-walkin-transaction', 'AlterationWalkInController@index');
+		Route::get('alteration-walkin-newcustomer', 'AlterationWalkInController@newcust');
+		Route::get('alteration-walkin-oldcustomer', 'AlterationWalkInController@oldcust');
+		Route::get('alteration-checkout-info', 'AlterationWalkInController@info');
+		Route::get('alteration-checkout-payment', 'AlterationWalkInController@pay');
+		Route::get('alteration-checkout-measurement', 'AlterationWalkInController@measuredetails');
 
 
 
