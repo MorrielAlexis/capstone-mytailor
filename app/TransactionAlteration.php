@@ -10,5 +10,10 @@ class TransactionAlteration extends Model
 
     public $primaryKey = 'strAltTransacID';
 
-    public $fillable = array('strAltTransacID', 'strAltTransacSegFK', 'strAltTransacAltTypeFK', 'strAltTransacCustomeridFK', 'dblAltTransacPrice', 'intAltTransacMinDays');
+    public $fillable = array('strAltTransacID', 
+    						'strAltTransacSegFK', 
+    						'strAltTransacAltTypeFK', 
+    						'strAltTransacCustomeridFK', 
+    						'dblAltTransacPrice', 
+    						'intAltTransacMinDays');
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Individual;
 use App\Http\Requests;
+use App\Http\Requests\MaintenanceCustomerIndividualRequest;
 use App\Http\Controllers\Controller;
 
 class CustomerIndividualController extends Controller
@@ -58,7 +59,7 @@ class CustomerIndividualController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MaintenanceCustomerIndividualRequest $request)
     {
         $ind = Individual::get();
 
