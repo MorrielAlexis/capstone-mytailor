@@ -8,7 +8,7 @@
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
       {!! Html::style('css/materialize.min.css') !!}
-      {!! Html::style('css/styleOnline.css') !!}
+      {!! Html::style('css/styleOnline.css'); !!}
 
       <style>
         body{

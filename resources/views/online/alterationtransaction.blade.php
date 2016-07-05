@@ -8,7 +8,7 @@
     <div class="container divider"></div>
   </div>
 
-    <div class="row section white container" style="height:300px; border:2px solid grey;">
+    <div class="row section transparent container" style="height:300px;">
 
       <div class="col s12" style="padding:80px;">
         <div class="col s6">
