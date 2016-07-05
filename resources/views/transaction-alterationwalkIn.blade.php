@@ -21,32 +21,27 @@
 
             <div class="row">
                 <div class="col s12" style="margin-top:10px;">
+
                       {{-- start of garment category dropdown --}}
-                      <div class="input-field col s12" style="padding:20px;">
-                        <select class = "filled-in garment-category" id = "garment-category" name="garment-category[]">
+                      {{-- <div class="input-field col s12" style="padding:20px;">
+                        <select class = "filled-in garment-category" id = "selectedGarment" name="garment-category[]">
                         <option value="All" class="circle" selected>All</option>
                         @foreach($categories as $category)
                           <option value="{{ $category->strGarmentCategoryID }}" class="circle">{{ $category->strGarmentCategoryName }}</option>
                       @endforeach
                     </select>
                         <label><font size="3" color="Red">Choose a garment category</font></label>
-                      </div>
+                      </div> --}}
                      {{--  end of garment category dropdown --}}
 
                       {{-- < Start of Segment> --}}
                       <div class="input-field col s12" style="padding:20px;">
-                      <select class = "filled-in garment-segment" id = "garment-segment" name="garment-segment[]">
+                      <select class = "selectedSegment" id = "segment" name="selectedSegment">
                         <option value="All" class="circle" selected>All</option>
                         @foreach($alterations  as $alteration )
                           <option value="{{ $alteration->strAlterationID }}" class="circle">{{ $alteration->strSegmentName }}</option>
                       @endforeach
                     </select>
-                         {{--  <select class="alteration-segment"  id="alteration-segment" name="alteration-segment">
-                        @foreach($alterations as $alteration)
-                            <option value="{{ $alteration->strAlterationID }}" class="{{ $alteration->strAlterationSegmentFK }}">{{ $alteration->strSegmentName }}</option>
-                          @endif
-                        @endforeach
-                  </select> --}}
 
                         <label><font size="3" color="Red">Choose a segment:</font></label>
                       </div>
@@ -56,7 +51,7 @@
 
                       {{-- start of alteration dropdown --}}
                         <div class="col s12">
-                            <select class = "filled-in alteration-type" id = "alteration-type" name="alteration-type[]">
+                            <select class = "selectedType" id = "type" name="selectedType">
                         <option value="All" class="circle" selected>All</option>
                         @foreach($alterations  as $alteration )
                           <option value="{{ $alteration->strAlterationID }}" class="circle">{{ $alteration->strAlterationName }}</option>
@@ -103,7 +98,7 @@
             <div class="col s12" style="margin-top:25px;">
               <div class="divider"></div>
               <a class="left btn tooltipped modal-trigger" data-position="bottom" data-delay="50" data-tooltip="Click to reset order" style="margin-top:30px; font-size:15px; color:white; background-color: teal; opacity:0.90" href="#resetOrder">RESET ORDER</a>
-              <button type="submit" class="right btn tooltipped modal-trigger" data-position="bottom" data-delay="50" data-tooltip="Click to save order" style="margin-top:30px; background-color: teal; font-size:15px; color:white" href="#summary-of-order">SAVE & PROCEED TO CHECKOUT</a>              
+              <button type="submit" class="right btn tooltipped modal-trigger" data-position="bottom" data-delay="50" data-tooltip="Click to save order" style="margin-top:30px; background-color: teal; font-size:15px; color:white" href="#summary-of-order">ADD TO CART</a>              
             </div>
 
         	</div>
@@ -230,8 +225,7 @@
             <div class="container">
                           <table class = "table centered order-summary" border = "1">
                     <thead style="color:gray">
-                        <tr>
-                            <th data-field="garment">Garment</th>         
+                        <tr>      
                             <th data-field="segment">Segment</th>
                             <th data-field="alterationtype">Alteration Type</th>
                             <th data-field="price">Unit Price</th>
@@ -239,15 +233,13 @@
                           </tr>
                         </thead>
                         <tbody>
-                            @foreach($alterations as $alteration_1)
+                           {{--  @foreach($alterations as $alteration_1) --}}
                         <tr>
-                           <{{-- td>{{ $alteration_1->strGarmentCategoryName }}</td> --}}
-                           <td>{{ $alteration_1->strSegmentName }}</td>
-                           <td>{{ $alteration_1->strAlterationName }}</td>
-                           <td> {{ number_format($alteration_1->dblAlterationPrice, 2) }} PHP</td>
+                           <td><i id = selectedSegment></i></td>
+                            <td><i id = selectedType></i></td>                           {{-- <td> {{ number_format($alteration_1->dblAlterationPrice, 2) }} PHP</td> --}}
                            <!--<td> </td>-->
                         </tr>
-                          @endforeach
+                      {{--     @endforeach --}}
                         </tbody>
                 </table>
                 </div>
@@ -277,6 +269,17 @@
             $('select').material_select();
           });
     </script>
+
+    <script>
+      $('.modal-trigger').on('click', function () {
+        $('#selectedGarment').text($('#garment').val());
+        $('#selectedSegment').text($('#segment').val());
+        $('#selectedType').text($('#type').val() + ' ' + $('#segment').val());
+  });
+});
+    </script>
+
+  
 
 
     <script>

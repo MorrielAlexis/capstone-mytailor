@@ -64,21 +64,21 @@
 								<div class="col s4 segment-general {{ $garment->strGarmentCategoryName }}">
 										<div class="center col s12">
 					          				<input type="checkbox" name="cbx-segment-name[]"  class="filled-in cbx-segment-name" id="{{ $garment->strSegmentID }}" value="{{ $garment->strSegmentID }}" style="padding:5px"/>
-			      							<label for="{{ $garment->strSegmentID }}"><font size="+1">{{ $garment->strSegmentName }}</font></label>
-			      							@if($garment->strSegmentSex == 'M')<label for="{{ $garment->strSegmentID }}"><font color="gray">Male</font></label>
-			      							@elseif($garment->strSegmentSex == 'F')<label for="{{ $garment->strSegmentID }}"><font color="gray">Female</font></label>
+			      							<label for="{{ $garment->strSegmentID }}"><font size="+1"><b>{{ $garment->strSegmentName }}</b></font></label>
+			      							@if($garment->strSegmentSex == 'M')<label for="{{ $garment->strSegmentID }}"><font color="red">Male</font></label>
+			      							@elseif($garment->strSegmentSex == 'F')<label for="{{ $garment->strSegmentID }}"><font color="red">Female</font></label>
 			      							@endif
 			      						</div>
 
 										<div class="center col s12"><img src="{{URL::asset($garment->strSegmentImage)}}" style="height:200px; width:250px; padding:10px; border:3px gray solid"></div>
 									
-									<center><h6>Quantity</h6></center>
-					                  <div class="row">
-					                    <div class="col s3 center"><i class="small mdi-content-add-circle" style="color:teal"></i></div>
-					                    <div class="input-field col s6" style="margin-top:-2px;">
-					                      <input class="center int-segment-qty {{ $garment->strSegmentID }}" disabled="true" name="int-segment-qty[]" id="{{ $garment->strSegmentID }}" type="number">
+									<center><h6 style="color:darkgray"><b>Quantity</b></h6></center>
+					                  <div class="container"> 
+					                  	<div class="container">
+					                    <div class="input-field col s12" style="margin-top:-2px;">
+					                      <center><input class="center int-segment-qty {{ $garment->strSegmentID }}" disabled="true" name="int-segment-qty[]" id="{{ $garment->strSegmentID }}" type="number" value="1">
 					                    </div>
-					                    <div class="col s3 center"><i class="small mdi-content-remove-circle" style="color:teal"></i></div>
+					                    </div>
 					                  </div>
 								</div>
 						@endforeach

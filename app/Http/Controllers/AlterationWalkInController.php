@@ -42,13 +42,13 @@ class AlterationWalkInController extends Controller
 
     public function saveOrder(Request $request)
     {
-            $data_garment = $request->input('garment-category');
-            $data_segment = $request->input('garment-segment');
-            $data_alterationtype = $request->input('alteration-type');
+            // $data_garment = $request->input('');
+            $data_segment = $request->input('selectedSegment');
+            $data_alterationtype = $request->input('selectedType');
             $values = [];
 
             $alterations = \DB::table('tblAlteration AS a')
-                    ->leftJoin('tblSegment AS b', 'a.strAlterationSegmentFK', '=', 'b.strSegmentID')
+                    ->leftJoin('tblSegment AS b', 'a.strAlterationSegmentFK', '=', 'b.strSegmentID',  'tblGarmentCategory as c','c. str')
                     ->select('a.*', 'b.strSegmentName') 
                     ->whereIn('a.strAlterationID', $data_alterationtype)
                     ->whereIn('b.strSegmentID', $data_segment)
