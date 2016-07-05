@@ -18,7 +18,7 @@
 		}
 	</style>
 
-	<body id="dabadehh" background="img/futu.jpg">
+	<body id="dabadehh" background="img/footer.jpg">
 
 		<div id="login-page" class="section transparent" style="margin-left:3%; margin-right:69%; margin-top:10px;">
 			<div>

@@ -66,8 +66,8 @@
       
       <div class="divider" style="margin-bottom:20px; margin-top:40px;"></div>
 
-      <a class="waves-effect waves-green btn-flat white-text" style="background-color:teal; margin-right:30px" href="#!">CANCEL</a>
-      <a class="right waves-effect waves-green btn-flat white-text" href="{{URL::to('/ordernow')}}" style="background-color:teal">SAVE</a>
+      <a class="waves-effect waves-green btn-flat white-text" style="background-color:teal; margin-right:30px" href="{{URL::to('/online-order-now')}}">CANCEL</a>
+      <a class="right waves-effect waves-green btn-flat white-text modal-trigger" href="#savemodal" style="background-color:teal">SAVE</a>
     </div>
 
            
@@ -258,6 +258,26 @@
     </div>
   </div>
 
+  <!--Save Modal-->
+  <div id="savemodal" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
+    <h5><font color="green"><center><b>Save Changes?</b></center></font></h5>
+    <div class="divider" style="height:2px"></div>
+    <div class="modal-content">
+      <div class="row">
+        <div class="col s3">
+          <i class="mdi-alert-warning" style="font-size:50px; color:yellow"></i>
+        </div>
+        <div class="col s9">
+          <p><font size="+1">Are you sure you want to save the changes made?</font></p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer col s12" style="background-color:green; opacity:0.85">
+      <a class="modal-action modal-close waves-effect waves-green btn-flat" href="#!"><font color="black">Cancel</font></a>
+            <a class="modal-action modal-close waves-effect waves-green btn-flat" href="{{URL::to('/online-order-now')}}"><font color="black">No</font></a>
+            <a class="modal-action modal-close waves-effect waves-green btn-flat" href="{{URL::to('/online-order-now')}}"><font color="black">Yes</font></a>
+        </div>
+  </div>
 @stop
 
 

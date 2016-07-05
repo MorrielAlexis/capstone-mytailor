@@ -25,9 +25,19 @@ class OnlineOrderNowController extends Controller
         return View::make('online.ordernow');
     }
 
-    public function out()
+    public function info()
     {
         return View::make('online.checkout');
+    }
+
+    public function payment()
+    {
+        return View::make('online.checkout-payment');
+    }
+
+    public function measuredetails()
+    {
+        return View::make('online.checkout-measurement');
     }
     
     public function custom()

@@ -17,17 +17,26 @@
 			<div class="row">
 
 				<div class="col s4 center" style="padding:20px;">
-		            <img class = "responsive-img" src="imgOnlineUniform/female-uniform-pants.jpg">
+                    <figure>
+                        <img class = "responsive-img" src="imgOnlineUniform/female-uniform-pants.jpg">
+                        <figcaption style="background-color:#ede7f6">Price starts at Php 2000.00</figcaption>
+                    </figure>		            
 	            	<div><a class="red darken-1 container" href="{{URL::to('/online-order-now')}}" style="border:1px solid white; padding:10px;"><font color= "white">ADD TO CART </font><i style="font-size:17px;" class="white-text mdi-action-shopping-cart"></i></a></div>
 				</div>
 
 				<div class="col s4 center" style="padding:20px;">
-		            <img class = "responsive-img" src="imgOnlineUniform/female-uniform-skirt.jpg">
+                    <figure>
+                        <img class = "responsive-img" src="imgOnlineUniform/female-uniform-skirt.jpg">
+                        <figcaption style="background-color:#ede7f6">Price starts at Php 2000.00</figcaption>
+                    </figure>			            
 	            	<div><a class="red darken-1 container" href="{{URL::to('/online-order-now')}}" style="border:1px solid white; padding:10px;"><font color= "white">ADD TO CART </font><i style="font-size:17px;" class="white-text mdi-action-shopping-cart"></i></a></div>
 				</div>
 
 				<div class="col s4 center" style="padding:20px;">
-		            <img class = "responsive-img" src="imgOnlineUniform/female-uniform-plain.jpg">
+                    <figure>
+                        <img class = "responsive-img" src="imgOnlineUniform/female-uniform-plain.jpg">
+                        <figcaption style="background-color:#ede7f6">Price starts at Php 2000.00</figcaption>
+                    </figure>		
 	            	<div><a class="red darken-1 container" href="{{URL::to('/online-order-now')}}" style="border:1px solid white; padding:10px;"><font color= "white">ADD TO CART </font><i style="font-size:17px;" class="white-text mdi-action-shopping-cart"></i></a></div>
 				</div>
 

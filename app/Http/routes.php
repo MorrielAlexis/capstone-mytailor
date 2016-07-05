@@ -322,7 +322,9 @@ Route::resource('online-men-shirt-tutorial', 'OnlineMenShirtTutorialController',
 
 Route::resource('online-order-now', 'OnlineOrderNowController',
 		['only' => ['index']]);
-Route::get('online-check-out', 'OnlineOrderNowController@out');
+Route::get('online-check-out', 'OnlineOrderNowController@info');
+Route::get('online-checkout-payment', 'OnlineOrderNowController@payment');
+Route::get('online-checkout-measurement', 'OnlineOrderNowController@measuredetails');
 Route::get('online-customize-order', 'OnlineOrderNowController@custom');
 Route::get('online-measurement', 'OnlineOrderNowController@meas');
 

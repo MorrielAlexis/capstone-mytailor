@@ -1,240 +1,178 @@
 @extends('layouts.masterOnline')
 
-
 @section('content')
 
-  <div class="section" style="margin-top:20px; margin-bottom:20px;">
-    <div class="row">
-      <div class="col s12">
-        <ul class="tabs teal">
-          <li id="tabLogin" class="tab col s4 active"><a href="#login"><font color="white" size="+1">1. LOGIN</font></a></li>
-          <li id="tabdelivery" class="tab col s4"><a href="#delivery"><font color="white" size="+1">2. delivery</font></a></li>
-          <li id="tabPayment" class="tab col s4"><a href="#payment"><font color="white" size="+1">3. PAYMENT</font></a></li>
-              <div class="indicator teal accent-4" style="z-index:1"></div>
-        </ul>
-      </div>
+  <div style="height:150px;">
+    <div style="height:20px;"></div>
+    <center><h2 style="color:white; font-family:'Playfair Display','Times';">Checkout</h2></center>
+    <div class="container divider"></div>
+  </div>
+  
+  <div class="container">
+    <div class="section white" style="padding:20px; margin-bottom:20px;"> 
 
-      <!--LOGIN TAB-->
-      <div id="login" class="col s12 white" style="border: 1px solid #00bfa5;">
-        <div style="height:20px;"></div>
-
-        <div class="container">
-          <div style="padding:5px; border: 1px solid #00bfa5; margin-bottom:20px;">
-            <h6 style="margin-left:20px;"><b>Login</b></h6>
-            <div class="divider"></div>
-            
-            <div class="container" style="margin-top:40px; margin-bottom:40px;">
-              <div class="container">
-                <div class="input-field">
-                  <input id ="email" type="text" class="validate">
-                  <label for="email">Enter your email address</label>
-                </div>
-                <div class="input-field">
-                  <input id ="password" type="text" class="validate">
-                  <label for="password">Password</label>
-                </div>
-                <p class="right-align blue-text">Lost your password?</p>
-                <div class="btn red darken-1 white-text container" style="width:100%;" href="#tabdelivery">CONTINUE</div>
-
-              </div>
+          <div class="row">
+            <div class="col s12 m12 l12">
+              <span class="page-title" style="margin:15px"><center><h5><b>Customer's Personal Information</b></h5></center></span>
+              <div class="divider" style="height:1px; background-color:#80d8ff"></div>
+              <div class="divider" style="height:1px; background-color:#80d8ff"></div>
             </div>
           </div>
+
+          <div class="row" style="background-color:white;">
+            <div class="container">
+              <div class="col s12">    
+                <div class="col s6">       
+                  <div style="color:black; padding-left:140px" class="input-field col s12">                 
+                    <input value="" id="addIndiID" name="addIndiID" type="text" readonly>
+                    <label for="addIndiID" style="color:gray"><b>Individual ID </b></label>
+                  </div>
+
+                  <div style="color:black; padding-left:140px; margin-left:1px" class="input-field col s12">    
+                    <input value="" id="dateToday" name="dateToday" type="text" readonly>
+                    <label style="color:gray"><b>Transaction No. </b></label>
+                  </div>
+                </div>
+
+                <a id="addPayment" href="{{URL::to('/online-checkout-payment')}}" class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-top:20px; margin-left:40px; padding:10px; padding-left:19px; padding-right:19px; padding-bottom:45px; background-color:teal; color:white">Save and Proceed</a>                                
+                <a id="cancelTransac" href="#cancel-order" class="btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel transaction and go back to homepage" style="margin-top:30px; margin-left:40px; padding:10px; padding-bottom:45px; background-color:teal; color:white">Cancel Transaction</a>
+              </div>
+            </div>
+          </div>       
+
+      <div class="row">
+        <div class="col s12" style="margin-top:30px">
+          <div class="divider" style="margin-bottom:30px"></div>
+        
+            <span class="col s12" style="color:teal;"><b>Customer Detail</b></span>
+            <div class="card-panel col s12" style="border:3px solid gray; padding:15px;">
+                <div style="color:black" class="input-field col s4">                 
+                  <input value="" id="first_name" name="first_name" type="text" class="">
+                  <label style="color:gray" for="first_name"><b>*First Name</b></label>
+                </div>
+
+                <div style="color:black" class="input-field col s4">                 
+                  <input value="" id="middle_name" name="middle_name" type="text" class="">
+                  <label style="color:gray" for="middle_name"><b>Middle Name</b></label>
+                </div>
+
+                <div style="color:black" class="input-field col s4">                 
+                  <input value="" id="last_name" name="last_name" type="text" class="">
+                  <label style="color:gray" for="last_name"><b>*Last Name </b></label>
+                </div>
+
+                <div style="color:black" class="input-field col s6">
+                  <p style="color:gray"><b>Sex</b></p>
+                  <select>
+                    <option value="0"></option>
+                      <option value="1">Female</option>
+                      <option value="2">Male</option>
+                  </select>
+                </div>
+
+                <div style="color:black" class="input-field col s6">
+                  <p style="color:gray"><b>Date of Birth</b></p>
+                  <input class="datepicker" id="editDtEmpBday" name="editDtEmpBday" type="date" placeholder="May 3, 1997">  
+                </div>
+            </div>
+
+            <span class="col s12" style="color:teal; margin-top:20px"><b>Customer Address</b></span>
+            <div class="card-panel col s12" style="border:3px solid gray; padding:15px">
+                <div style="color:black" class="input-field col s4">
+                    <input required id="addCustPrivHouseNo" name="addCustPrivHouseNo" type="text" class="validateHouseNo">
+                    <label style="color:gray" for="house_no"><b>*House No. </b></label>
+                </div>
+
+                <div style="color:black" class="input-field col s4">
+                    <input required id="addCustPrivStreet" name="addCustPrivStreet" type="text" class="validateStreet">
+                    <label style="color:gray" for=" Street"><b>*Street </b></label>
+                </div>
+
+                <div style="color:black" class="input-field col s4">
+                    <input  id="addCustPrivBarangay" name="addCustPrivBarangay" type="text" class="validateBarangay">
+                    <label style="color:gray" for=" Brgy"><b>Barangay/Subd </b></label>
+                </div>
+
+                <div style="color:black" class="input-field col s4">
+                    <input required id="addCustPrivCity" name="addCustPrivCity" type="text" class="validateCity">
+                    <label style="color:gray" for=" City"><b>*City/Municipality </b></label>
+                </div>
+
+
+                <div style="color:black" class="input-field col s4">
+                    <input id="addCustPrivProvince" name="addCustPrivProvince" type="text" class="validateProvince">
+                    <label style="color:gray" for=" Province"><b>Province/Region </b></label>
+              </div>
+
+                <div style="color:black" class="input-field col s4">
+                    <input id="addCustPrivZipCode" name="addCustPrivZipCode" type="text" class="validateZip">
+                    <label style="color:gray" for=" Zip Code"><b>Zip Code </b></label>
+              </div>
+          </div>
+
+          <span class="col s12" style="color:teal; margin-top:20px"><b>Customer Contact Information</b></span>
+            <div class="card-panel col s12" style="border:3px solid gray; padding:15px">
+              <div style="color:black" class="input-field col s6">
+                    <input required id="addEmail" name = "addEmail" type="text" class="validateEmail">
+                    <label style="color:gray" for="email"><b> *Email Address </b></label>
+                </div>
+
+                <div style="color:black" class="input-field col s6">
+                    <input id="addPhone" name = "addPhone" type="text" class="validatePhone" maxlength="10">
+                    <label style="color:gray" for="tel"><b> Telephone Number </b></label>
+                </div>
+
+                <div style="color:black" class="input-field col s6">
+                    <input required id="addCel" name = "addCel" type="text" class="validateCell" maxlength="11">
+                    <label style="color:gray" for="cellphone"><b> *Cellphone Number </b></label>
+                </div>
+
+                <div style="color:black" class="input-field col s6">
+                    <input id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt" maxlength="11">
+                    <label style="color:gray" for="cellphone"><b> Cellphone Number (alternate)</b></label>
+                </div>
+            </div>
         </div>
       </div>
-      <!--END OF LOGIN TAB-->
 
-      <!--delivery TAB-->
-      <div id="delivery" class="col s12 white" style="border: 1px solid #00bfa5;">
-        <div style="height:20px;"></div>
-
-          <div class="container">
-            <div style="padding:5px; border: 1px solid #00bfa5; margin-bottom:20px;">
-              <h6 style="margin-left:20px;"><b>Your delivery address</b></h6>
-              <div class="divider"></div>
-              
-              <div class="container" style="margin-top:40px; margin-bottom:40px;">
-                <div class="input-field">
-                  <input id ="name" type="text" class="validate">
-                  <label for="name">First & Last Name</label>
-                </div>
-                <div class="input-field">
-                  <input id ="address" type="text" class="validate">
-                  <label for="address">Complete Address</label>
-                </div>
-                <div class="input-field">
-                  <input id ="province" type="text" class="validate">
-                  <label for="province">Province</label>
-                </div>
-                <div class="input-field">
-                  <input id ="city" type="text" class="validate">
-                  <label for="city">City / Municipality</label>
-                </div>
-                <div class="input-field">
-                  <input id ="brgy" type="text" class="validate">
-                  <label for="brgy">Barangay</label>
-                </div>
-                <div class="input-field">
-                  <input id ="number" type="text" class="validate">
-                  
-                  <label for="number">Mobile Number</label>
-                </div>
-                <form action="#">
-                  <p>
-                    <input type="checkbox" id="employee" />
-                    <label for="employee">If this order is under a transaction from a company please indicate the name and address below before proceeding.</label>
-                  </p>
-                </form>
-                <div class="input-field">
-                  <input disabled id ="companyname" type="text" class="validate">
-                  <label for="companyname">Company Name</label>
-                </div>
-                <div class="input-field">
-                  <input disabled id ="companyadd" type="text" class="validate">
-                  <label for="companyadd">Company Address</label>
-                </div>
-
-                <div class="container">
-                  <center><h5 style="color:#e53935">Estimated Delivery</h5></center>
-                  <p class = "input-field">
-                    <input class="center" placeholder="days / weeks" id = "deliverydate" type = "text" class="validate">
-                  </p>
-                </div>
-
-                <div class="divider"></div>
-
-                  <form action="#">
-                    <p class="center">
-                      <input type="checkbox" id="delivernot" />
-                      <label for="delivernot"><b><font size="+1" style="color:black">Pick-up order at MyTailor shop</font></b></label>
-                    </p>
-                  </form>
-
-                <div class="btn red darken-1 white-text container" style=" margin-top:20px; width:100%; padding:5px; height:50px;" href="#tabPayment">CONTINUE</div>
-              </div>
-
-            </div>
-
-          </div>
+      <div style="color:gray; margin-top:30px; margin-left:20px" class="col s12">
+        <h6>IMPORTANT NOTE: Fields with asterisk (*) must not be left blank.</h6>
       </div>
-      <!--END OF delivery TAB-->
-
-      <!--PAYMENT TAB-->
-      <div id="payment" class="col s12 white" style="border: 1px solid #00bfa5;">
-        <div style="height:20px;"></div>
-
-        <div class="row">
-          <div class="col s4">
-            <div style="border: 1px solid #00bfa5; margin-bottom:20px;">
-              <h6 style="margin-left:20px;"><b>Delivery and Billing address</b><span class="blue-text" href="#!">  Edit</span></h6>
-              <div class="divider"></div>
-              
-              <div class="container" style="margin-top:40px; margin-bottom:40px;">
-                <div class="input-field">
-                  <p><input class="center" placeholder="Full Name" id = "name" value = "" name = "name" type = "text" readonly></p>
-                  <input class="center" placeholder="Complete Address" id = "completeaddress" value = "" name = "completeaddress" type = "text" readonly>
-                  <input class="center" placeholder="Province - City - Brgy" id = "address" value = "" name = "address" type = "text" readonly>
-                  <input class="center" placeholder="Mobile Number" id = "mobilenumber" value = "" name = "mobilenumber" type = "text" readonly>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="col s8">
-            <div style="padding:5px; border: 1px solid #00bfa5;">
-              <h6 class="green-text"><b>Order Summary</b> (2 items)</h6>
-              <div class="divider"></div>
-              <table class="responsive-table scrollable" style="margin-top:10px; margin-bottom:10px;">
-                <thead>
-                  <tr style="background-color:grey lighten-3;">
-                    <th class="left-align"><font size="-1">PRODUCT</font></th>
-                    <th class="center"><font size="-1">QUANTITY</font></th>
-                    <th class="right-align"><font size="-1">PRICE</font></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Women's Uniform</td>
-                    <td class="center">1</td>
-                    <td class="right">1,700.00</td>
-                  </tr>
-                  <tr>
-                    <td>Gown</td>
-                    <td class="center">1</td>
-                    <td class="right">2,400.00</td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <div class="divider"></div>
-              <div class="row" style="margin-top:10px; margin-bottom:10px;">
-                <p class="col s6"><b>Downpayment</b></p>
-                <p class = "col s6 input-field" style="margin-top:-1px;">
-                  <input class="center" id = "subtotal" value = "P 2,050.00" name = "subtotal" type = "text" readonly>
-                </p>
-              </div>
-              <div class="divider"></div>
-              <div class="row" style="margin-top:10px;">
-                <h6 class="col s6 blue-text"><b>Estimated Delivery</b></h6>
-                  <p class = "col s6 input-field" style="margin-top:-1px;">
-                    <b><input class="center" id = "deliverydate" value = "14 Mar - 15 Mar" name = "deliverydate" type = "text" readonly></b>
-                  </p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-          <div class="row container">
-            <div class="col s12">
-
-              <div class="row" style="margin-top:70px;">
-                
-                <div class="col s12">
-                  <div class="col s4">
-                    <div class="divider grey"></div>
-                  </div>
-
-                  <div class="col s4" style="margin-top:-30px;">
-                    <center><span style="font-size:35px; color: #e53935; font-family:'Playfair Display','Times';">Total amount to pay</span></center>
-                  </div>
-
-                  <div class="col s4">
-                    <div class="divider grey"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="container">
-                <div class="container" style="font-family:'Playfair Display','Times';""><center><h3><b>Php 4,100.00</b></h3></center></div>
-                <form action="#">
-                  <p class="center">
-                    <input type="checkbox" id="terms" />
-                    <label for="terms">I have read and accepted the terms and conditions. - <font color="#40c4ff">View our terms (popup) here.</font></label>
-                  </p>
-                </form>
-                <center><div class="btn red darken-1 white-text container" style="width:70%; height:40px; margin-top:20px;" href="{{URL::to('/online-home')}}"><i class="mdi-action-lock" style="margin-right:5px;"></i>PLACE YOUR ORDER</div></center>
-
-
-              </div>
-            </div>
-          </div>
-
-
-      </div>
-      <!--END OF PAYMENT TAB-->
-
+      <div class="divider" style="height:2px; margin-bottom:20px; margin-top:50px"></div>        
+      <center><p><font color="gray">End of Customer Profile Information Form</font></p></center>
 
     </div>
   </div>
 
+    <!--CANCEL-ORDER-->
+    <div id="cancel-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:80px">
+      <h5><font color="red"><center><b>Warning!</b></center></font></h5>
+        {!! Form::open() !!}
+          <div class="divider" style="height:2px"></div>
+          <div class="modal-content col s12">
+            <div class="center col s4"><i class="mdi-alert-warning" style="color:red; font-size:60px"></i></div>
+            <div class="col s8"><p style="font-size:18px">Are you sure? Doing this will delete current transaction.</p></div>
+          </div>
+
+          <div class="modal-footer col s12">
+              <a class="waves-effect waves-green btn-flat" href="{{URL::to('/online-order-now')}}"><font color="black">Yes</font></a>
+              <a href="{{URL::to('/online-checkout')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+          </div>
+        {!! Form::close() !!}
+    </div>
 
 @stop
 
-@section('scripts') 
+@section('scripts')
+
   <script>
-    $(document).ready(function(){
-      $('ul.tabs').tabs();
+
+  </script>
+
+  <script>
+    $(document).ready(function() {
+      $('select').material_select();
     });
-    </script>
+  </script> 
+
 @stop
