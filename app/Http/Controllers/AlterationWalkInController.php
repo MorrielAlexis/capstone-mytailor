@@ -10,6 +10,9 @@ use Session;
 
 use App\GarmentCategory;
 use App\SegmentPattern;
+use App\GarmentSegment; 
+use App\Alteration; 
+
 
 
 class AlterationWalkInController extends Controller
@@ -27,22 +30,39 @@ class AlterationWalkInController extends Controller
     
     public function index()
     {
-         $categories = GarmentCategory::all();
+         $segment = GarmentSegment::all();
+
+         $alteration = Alteration::all();
          
-         $alterations = \DB::table('tblAlteration AS a')
-                    ->leftJoin('tblSegment AS b', 'a.strAlterationSegmentFK', '=', 'b.strSegmentID')
-                    ->select('a.*', 'b.strSegmentName') 
-                    ->orderBy('a.strAlterationID')
+         $alterationtransac = \DB::table('tblAlterationTransaction AS a')
+                    ->leftJoin('tblAlteration AS b', 'a.strAltTransacAltTypeFK', '=', 'b.strAlterationID')
+                    ->select('a.*', 'b.strAlterationName') 
+                    ->orderBy('a.strAltTransacID')
                     ->get();
 
         return view('alteration.walkin-transaction')
-                    ->with('alterations', $alterations)
-                    ->with('categories', $categories);
+                    ->with('segment', $segment)
+                    ->with('alteration', $alteration)
+                    ->with('alterationtransac', $alterationtransac);
     }
 
     public function newcust()
-    {
-        return view('alteration.walkin-newcustomer');
+    {  
+         $segment = GarmentSegment::all();
+
+         $alteration = Alteration::all();
+         
+         $alterationtransac = \DB::table('tblAlterationTransaction AS a')
+                    ->leftJoin('tblAlteration AS b', 'a.strAltTransacAltTypeFK', '=', 'b.strAlterationID')
+                    ->select('a.*', 'b.strAlterationName') 
+                    ->orderBy('a.strAltTransacID')
+                    ->get();
+
+        return view('alteration.walkin-newcustomer')
+                    ->with('segment', $segment)
+                    ->with('alteration', $alteration)
+                    ->with('alterationtransac', $alterationtransac);
+     
     }
 
     public function oldcust()

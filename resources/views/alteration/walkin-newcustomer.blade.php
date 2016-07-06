@@ -30,19 +30,21 @@
                     <th>Segment</th>
                     <th>Alteration Type</th>
                     <th>Price</th>
-                    <th>Description</th>
+                    <th>Description</th>z
                     <th></th>
                 </tr>
               </thead>
 
               <tbody>
+              {{--   @foreach($alterationtransac as $alterationtransac) --}}
                 <tr>
                   <td>Skirt</td>
-                  <td>zipper</td>
+                  <td>Zipper</td>
                   <td>$0.87</td>
-                  <td>sira yung zipper bes</td>
+                 {{--  <td>{{ $alterationtransac->strAlterationName}}</td> --}}
                   <td><a class="btn modal-trigger tooltipped circle red" href="#removeOrder" data-position="top" data-delay="50" data-tooltip="Delete Order" style="border-radius:180px;"><i class="mdi-content-clear"></i></a></td>
                 </tr>
+               {{--  @endforeach --}}
               </tbody>
             </table>
           </div>
@@ -153,7 +155,7 @@
         
         {!! Form::open() !!}
         <div class="input-field col s12" style="padding:20px;">
-          <select>
+          <select required id= "">
             <option value="" disabled selected>All</option>
             <option value="1">Option 1</option>
             <option value="2">Option 2</option>
@@ -161,15 +163,18 @@
           </select>
           <label><font size="3">Choose a garment category:</font></label>
         </div>
+
          <div class="input-field col s12" style="padding:20px;">
-          <select>
-            <option value="" disabled selected>All</option>
-            <option value="1">Option 1</option>
-            <option value="2">Option 2</option>
-            <option value="3">Option 3</option>
+          <select id = "addSegment" name = "addSegment">
+            @foreach($segment as $segment)
+                @if($segment->boolIsActive == 1)
+                  <option value="{{ $segment->strSegmentID }}" class="{{ $segment->strAltTransacSegFK }}">{{ $segment->strSegmentName }}</option>
+                @endif
+              @endforeach
           </select>
           <label><font size="3">Choose a segment:</font></label>
         </div>
+
          <div class="input-field col s12" style="padding:20px;">
           <select>
             <option value="" disabled selected>All</option>
