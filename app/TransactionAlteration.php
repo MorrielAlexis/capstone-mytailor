@@ -15,5 +15,6 @@ class TransactionAlteration extends Model
     						'strAltTransacAltTypeFK', 
     						'strAltTransacCustomeridFK', 
     						'dblAltTransacPrice', 
+    						'txtAltTransacDesc',
     						'intAltTransacMinDays');
 }

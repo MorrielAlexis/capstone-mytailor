@@ -17,6 +17,7 @@ class CreateTblAlterationTransaction extends Migration
             $table->string('strAltTransacSegFK')->index();
             $table->string('strAltTransacAltTypeFK')->index();
             $table->string('strAltTransacCustomeridFK')->index(); 
+            $table->text('txtAltTransacDesc');
             $table->double('dblAltTransacPrice');
             $table->integer('intAltTransacMinDays');
             $table->timestamps();
