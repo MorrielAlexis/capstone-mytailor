@@ -55,18 +55,17 @@
 										
 							</div>
 
-<!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--> 
-<!--/////////////////////////////////////////// START OF AN ITERATION  ////////////////////////////////////////////////////////-->
-<!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--> 		
+
+							<!--/// START OF AN ITERATION  ///-->
 							<div class="divider" style="margin-bottom:30px"></div>
 							<div class="divider" style="margin-bottom:30px"></div>
 							<div class="divider" style="margin-bottom:30px; height:3px"></div>
 								<div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
 											<h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
 												
-												{!! Form::open(['url' => 'transaction/walkin-individual-payment-customer-info', 'method' => 'post']) !!}
 													<div class="divider" style="height:2px"></div>
 													<div class="modal-content col s12">
+												{!! Form::open(['url' => 'transaction/walkin-individual-payment-customer-info', 'method' => 'post']) !!}
 														<label>This is a summary of orders:</label>
 														<div class="container">
 									                        <table class = "table centered order-summary" border = "1">
@@ -109,7 +108,7 @@
 										                <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Yes</font></button>
 										                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
 										            </div>
-												{!! Form::close() !!}
+												
 										</div>
 
 <!-- END OF LOOP -->		@foreach($segments as $i => $segment)
@@ -132,7 +131,7 @@
 									                        <div class="modal-content col s12">
 									                        	@foreach($patterns as $j => $pattern)
 									                        	<div class="col s1" style="margin-top:60px">
-									                        		<input name="rdb-pattern" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegTypeID }}{{ $i+1 }}{{ $j+1 }}" />
+									                        		<input name="rdb-pattern[]" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegTypeID }}{{ $i+1 }}{{ $j+1 }}" />
 									                        		<label for="{{ $pattern->strSegTypeID }}{{ $i+1 }}{{ $j+1 }}"></label>
 									                        	</div>
 									                        	 <div class="col s11">
@@ -158,7 +157,7 @@
 
 														<div class="modal-footer col s12">
 															<a href="{{URL::to('transaction/walkin-individual-catalogue-designs')}}" class="left btn-flat" style="background-color:teal; color:white">Check designs from catalogue</a>
-								                          	<a class="right waves-effect waves-green btn-flat">OK</a>
+								                          	<a class="right modal-action modal-close waves-effect waves-green btn-flat">OK</a>
 								                          	<a class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
 								                        </div>
 													</div>
@@ -235,7 +234,6 @@
 									<div class="col s8 " style="color:red" ><p>{{ $segment->intMinDays }} days</p></div>
 									<input type="hidden" class="time-to-finish" id="{{ $segment->intMinDays }}">
 								</div>
-
 							</div>
 						<!--dati dito yung div-->
 
@@ -245,9 +243,9 @@
 						<br>
 						<div class="divider" style="height:2px;margin-top:40px"></div>
 <!-- END OF LOOP -->	@endforeach
-<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--> 
-<!--/////////////////////////////////////////// END OF AN ITERATION  ////////////////////////////////////////////////////////-->
-<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--> 
+						{!! Form::close() !!}
+						<!--/// END OF AN ITERATION  ///-->
+
 
 							<div class="col s12" style="padding:10px">
 								<div class="col s6">

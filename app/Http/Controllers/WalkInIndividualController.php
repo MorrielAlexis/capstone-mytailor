@@ -111,8 +111,14 @@ class WalkInIndividualController extends Controller
         return view('walkin-individual-catalogue-design');
     }
 
-    public function information()
-    {  
+    public function information(Request $request)
+    {   
+        $a = [];
+        for($i = 0; $i < count(session()->get('segment_values')); $i++){
+            $a[$i] = $request->input('rdb-pattern' . strval($i+1));
+            var_dump($i+1);
+        }
+        
         //get all the individuals
         $ids = \DB::table('tblCustIndividual')
             ->select('strIndivID')
@@ -132,7 +138,6 @@ class WalkInIndividualController extends Controller
 
     public function payment()
     {   
-
         $values = session()->get('segment_values');
 
         return view('walkin-individual-checkout-pay')
@@ -140,8 +145,25 @@ class WalkInIndividualController extends Controller
     }
 
     public function measurement()
-    {
-        return view('walkin-individual-checkout-measure');
+    {   
+        $values = session()->get('segment_values');
+        $data = session()->get('segment_data');
+
+
+        /*$measurements = \DB::table('tblSegment AS a')
+                    ->leftJoin('tblMeasurementCategory AS b', 'a.strSegmentID', '=', 'strMeasSegmentFK')
+                    ->leftJoin('tblMeasurementDetail AS c', 'b.strMeasDetFK', '=', 'c.strMeasurementDetailID')
+                    ->select('c.strMeasurementDetailName')
+                    ->whereIn('b.strMeasSegmentFK', $data)
+                    ->get();*/
+        $measurements = \DB::table('tblMeasurementCategory AS b')
+                    ->leftJoin('tblMeasurementDetail AS c', 'b.strMeasDetFK', '=', 'c.strMeasurementDetailID')
+                    ->select('b.strMeasCatID', 'b.strMeasSegmentFK', 'c.strMeasurementDetailName')
+                    ->get();
+
+        return view('walkin-individual-checkout-measure')
+                ->with('segments', $values)
+                ->with('measurements', $measurements);
     }
 
     public function removeItem(Request $request)
