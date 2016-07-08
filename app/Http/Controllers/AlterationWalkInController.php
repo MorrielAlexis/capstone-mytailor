@@ -31,20 +31,9 @@ class AlterationWalkInController extends Controller
     
     public function index()
     {
-        //  $segment = GarmentSegment::all();
-
-        //  $alteration = Alteration::all();
-         
-        //  $alterationtransac = \DB::table('tblAlterationTransaction AS a')
-        //             ->leftJoin('tblAlteration AS b', 'a.strAltTransacAltTypeFK', '=', 'b.strAlterationID')
-        //             ->select('a.*', 'b.strAlterationName') 
-        //             ->orderBy('a.strAltTransacID')
-        //             ->get();
-
+       
         return view('alteration.walkin-transaction');
-                    // ->with('segment', $segment)
-                    // ->with('alteration', $alteration)
-                    // ->with('alterationtransac', $alterationtransac);
+             
     }
 
     public function newcust()
@@ -74,6 +63,33 @@ class AlterationWalkInController extends Controller
      
     }
 
+
+ public function addOrder(Request $request)
+    {
+        $alterationtransacs = TransactionAlteration::get();
+    
+            $alterationtransac = TransactionAlteration::create(array(
+                'strAltTransacSegFK' => $request->input('strAltTransacSegFK'),
+                'strAltTransacAltTypeFK' => $request->input('strAltTransacAltTypeFK'),
+                'txtAltTransacDesc' => trim($request->input('txtAltTransacDesc'))
+                ));
+
+        $alteration = Alteration::all();
+        $segment = GarmentSegment::all();
+
+        // $added=$alterationtransacs->save();
+
+
+        session(['altOrder' => $alterationtransac]);
+
+        return view('alteration.walkin-newcustomer')
+                ->with('alterationtransac', session()->get('altOrder'));
+            
+
+       
+    }
+
+
     public function oldcust()
     {
         return view('alteration.walkin-oldcustomer');
@@ -93,30 +109,6 @@ class AlterationWalkInController extends Controller
     {
         return view('alteration.checkout-measurement');
     }
-
-
-    public function saveOrder(Request $request)
-    {
-        $alterationtransacs = TransactionAlteration::get();
-    
-            $alterationtransacs = TransactionAlteration::create(array(
-                'strAltTransacSegFK' => $request->input('strAltTransacSegFK'),
-                'strAltTransacAltTypeFK' => $request->input('strAltTransacAltTypeFK'),
-                'txtAltTransacDesc' => trim($request->input('txtAltTransacDesc'))
-                ));
-
-        $alteration = Alteration::all();
-        $segment = GarmentSegment::all();
-
-        $added=$alterationtransacs->save();
-
-
-        // session(['alt-segment' => $alterationtransacs]);
-
-        return redirect('alteration-walkin-newcustomer');
-       
-    }
-
 
 
     // public function newTrans()

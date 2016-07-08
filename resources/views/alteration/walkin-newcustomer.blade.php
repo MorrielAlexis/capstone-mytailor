@@ -35,14 +35,14 @@
                                     </thead>
 
                                     <tbody>
-                                        {{-- @foreach($alterationtransac as $alterationtransacs)
+                                        @foreach($alterationtransac as $alterationtransacs)
                                       <tr>
                                         <td>{{ $alterationtransacs->strSegmentName}}</td>
                                         <td>{{ $alterationtransacs->strAlterationName}}</td>
                                         <td>{{ $alterationtransacs->txtAltTransacDesc}}</td>
                                         <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of garment from table" href="#removeOrder"><i class="mdi-action-delete"></i></a></td>
                                       </tr>
-                                      @endforeach --}}
+                                      @endforeach
                                     </tbody>
                                   </table>
                               </div>
