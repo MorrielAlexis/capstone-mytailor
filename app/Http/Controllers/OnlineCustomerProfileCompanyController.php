@@ -3,38 +3,41 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use View;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class OnlineCustomerProfileController extends Controller
+class OnlineCustomerProfileCompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
-        //
+        return view('customerprofile.company');
     }
 
-    public function indiv()
+    public function measure()
     {
-        return View::make('online.customerprofile-individual');
-    }
-
-    public function comp()
-    {
-        return View::make('online.customerprofile-company');
+        return view('customerprofile.company-measurement-details');
     }
     
+    public function order()
+    {
+        return view('customerprofile.company-order-details');
+    }
+
+    public function tracking()
+    {
+        return view('customerprofile.company-order-tracking');
+    }
+
+    public function pay()
+    {
+        return view('customerprofile.company-payment-history');
+    }
     /**
      * Show the form for creating a new resource.
      *
