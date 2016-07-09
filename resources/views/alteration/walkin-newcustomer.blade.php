@@ -48,14 +48,13 @@
                               </div>
 
                               <div class="row" style="padding:20px;">
-                                  <a href="#summary-of-order" class="teal right modal-trigger btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save transaction and proceed to checkout">CHECKOUT</a>
-                                  <a href="#resetOrder" class="teal left modal-trigger btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to reset order">Reset Order</a>
+                                  <a href="#summary-of-order" class="teal right modal-trigger btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save transaction and proceed to checkout">CHECKOUT</a>   
                               </div>
 
+                    </div>
+                  </div>
               </div>
-            </div>
-        </div>
-</div>
+          </div>
 
                     <!--Remove Order Modal-->
                        <div id="removeOrder" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
@@ -150,7 +149,7 @@
                                         <h5><font color="teal"><center><b>New Order</b></center></font></h5>
                                             <div class="divider container" style="margin-bottom:20px;"></div>
                                       
-                                          {!! Form::open(['url' => '/alteration-walkin-newcustomer-saveorder', 'method' => 'post']) !!}
+                                          {!! Form::open(['url' => '/alteration-walkin-newcustomer', 'method' => 'post']) !!}
 
                                             {{-- Dropdown for segment option --}}
 
@@ -190,6 +189,7 @@
 
                                       {!! Form::close() !!}
                                     </div>
+                                  </div>
                             </div>
 
  @stop
