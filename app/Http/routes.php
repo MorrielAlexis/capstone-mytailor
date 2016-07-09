@@ -273,7 +273,8 @@ Route::get('/pdf', 'PdfController@converToPdf');
 		Route::get('alteration-acceptorder', 'AlterationOnlineController@accept');
 
 		Route::get('alteration-walkin-transaction', 'AlterationWalkInController@index');
-		Route::get('alteration-walkin-newcustomer', 'AlterationWalkInController@newcust');
+		Route::get('alteration-walkin-newcustomer', 'AlterationWalkInController@addOrder');
+		Route::post('alteration-walkin-newcustomer', 'AlterationWalkInController@addOrder');
 		Route::get('alteration-walkin-oldcustomer', 'AlterationWalkInController@oldcust');
 		Route::get('alteration-checkout-info', 'AlterationWalkInController@info');
 		Route::get('alteration-checkout-payment', 'AlterationWalkInController@pay');
