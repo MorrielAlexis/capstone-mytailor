@@ -26,12 +26,12 @@
         <div class="row">
           <div style="height:20px"></div>
           <div class="col s12 center">
-            <img src="../img/honeybabe.jpg" alt="" class="circle responsive-img valign profile-image center" style="height:130px; width:130px;">
+          @if(Auth::check())
+            <img src="{{ Auth::user()->user_image }}" alt="" class="circle responsive-img valign profile-image center" style="height:130px; width:130px;">
           </div>
         </div>
         <div class="col s12 container" style="margin-top:-40px;">
-          @if(Auth::check())
-          <a class='dropdown-button btn btn-flat waves-effect waves-light profile-btn white-txt' href="#!" style="background-color: #C8E6C9;" data-activates='profile-dropdown'>{{ Auth::user()->name }}</a>
+          <a class='dropdown-button btn btn-flat waves-effect waves-light profile-btn white-txt' href="#!" style="background-color: #C8E6C9;" data-activates='profile-dropdown'>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</a>
           @endif
           <ul id="profile-dropdown" class="dropdown-content">
             <li><a href="#!"><i class="mdi-action-face-unlock" style="font-size:20px; margin-top:20px;margin-left:0px;"> Profile</i></a></li>

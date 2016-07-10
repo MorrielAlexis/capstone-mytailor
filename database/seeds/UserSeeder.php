@@ -14,27 +14,33 @@ class UserSeeder extends Seeder
         //
         $tblUsers = array (
             array(
-                'id' => '001',
-                'name' => 'Honey Mae Buenavides',
+                'id' => 'USER001',
+                'first_name' => 'Honey Mae',
+                'last_name' => 'Buenavides',
                 'type'=> 'employee',
                 'email' =>'honeymae@ganda.com',
-                'password' => bcrypt('admin01')
+                'password' => bcrypt('admin01'),
+                'user_image' => ''
             ),
 
             array(
-                'id' => '002',
-                'name' => 'Morriel Aquino',
+                'id' => 'USER002',
+                'first_name' => 'Morriel',
+                'last_name' => 'Aquino',
                 'type'=> 'employee',
                 'email' =>'morrielaquino@yahoo.com',
-                'password' =>bcrypt('admin02')
+                'password' =>bcrypt('admin02'),
+                'user_image' => ''
             ),
 
             array(
-                'id' => '003',
-                'name' => 'Cassandra Bennete',
+                'id' => 'USER003',
+                'first_name' => 'Cassandra Bennete',
+                'last_name' => 'De Asis',
                 'type'=> 'customer',
                 'email' =>'cassdee@yahoo.com',
-                'password' =>bcrypt('cust01')
+                'password' =>bcrypt('cust01'),
+                'user_image' => ''
             )
 
         );
