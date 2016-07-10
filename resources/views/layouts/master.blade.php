@@ -22,7 +22,7 @@
         </div>
     </header>
 
-      <nav id="slide-out" class="side-nav fixed" style="position fixed; top: 0; padding-top:0px; margin-top:0px; background: #c8e6c9; width:310px;"> 
+      <nav id="slide-out" class="side-nav fixed" style="position fixed; top: 0; padding-top:0px; margin-top:0px; background: #C8E6C9; width:310px;"> 
         <div class="row">
           <div style="height:20px"></div>
           <div class="col s12 center">
@@ -31,7 +31,7 @@
         </div>
         <div class="col s12 container" style="margin-top:-40px;">
           @if(Auth::check())
-          <a class='dropdown-button btn btn-flat waves-effect waves-light profile-btn white-txt' href="#!" style="background-color: #c8e6c9;" data-activates='profile-dropdown'>{{ Auth::user()->name }}</a>
+          <a class='dropdown-button btn btn-flat waves-effect waves-light profile-btn white-txt' href="#!" style="background-color: #C8E6C9;" data-activates='profile-dropdown'>{{ Auth::user()->name }}</a>
           @endif
           <ul id="profile-dropdown" class="dropdown-content">
             <li><a href="#!"><i class="mdi-action-face-unlock" style="font-size:20px; margin-top:20px;margin-left:0px;"> Profile</i></a></li>

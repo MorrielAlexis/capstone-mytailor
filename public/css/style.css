@@ -21,7 +21,7 @@
         }
 
         header{
-            background-color: #c8e6c9;
+            background-color:#4CAF50;
             opacity: 0.95;
             width: 100%;
             height: 80px;
@@ -30,7 +30,7 @@
         body{
             font-family: 'Century Gothic';
            /* background-image: url("../img/gradient.jpg");*/
-            background-color: #e8f5e9;
+            background-color: #C8E6C9;
         }
 
         #progress {
@@ -47,7 +47,7 @@
 
         #bar {
          height: 30px;
-         background-color: #c8e6c9 ;
+         background-color: #C8E6C9 ;
          width: 25%;
         }
         
@@ -61,11 +61,11 @@
         }*/
 
         #sidenav-ul li{
-            background: #e8f5e9;
+            background: #C8E6C9;
         }
 
         #sidenav-ul li li{
-            background: #e8f5e9;
+            background: #C8E6C9;
         }
 
         #sidenav-ul :hover{
@@ -264,3 +264,13 @@
         .breadcrumb li a.active:after{
             border-left-color: hsla(186, 95%, 11%, 1) !important;
         }
+
+
+  .dark-primary-color    { background: #388E3C; }
+.default-primary-color { background: #4CAF50; }
+.light-primary-color   { background: #C8E6C9; }
+.text-primary-color    { color: #FFFFFF; }
+.accent-color          { background: #8BC34A; }
+.primary-text-color    { color: #212121; }
+.secondary-text-color  { color: #727272; }
+.divider-color         { border-color: #B6B6B6; }
