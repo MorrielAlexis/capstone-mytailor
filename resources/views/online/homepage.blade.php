@@ -20,81 +20,81 @@
         </ul>
     </div>
 
-    <div class="section container grey lighten-2" style="margin-top:20px; margin-bottom:20px; width:95%; height:70px;">
+    <div class="section container grey lighten-2" style="margin-top:20px; margin-bottom:100px; width:95%; height:70px;">
         <center><h5 style="font-family:'Playfair Display','Times'; margin:0px;"><b>FREE delivery</b></h5></center>
         <center><p style="margin:0px;">also with free alteration on every purchased item!</p></center>
     </div>
 
     <div class="row">
         <div class="col s6 center">
-            <h2 class="white-text" style="font-family:'Playfair Display','Times';">Custom Uniform</h2>
-            <img style="width:90%; height:250px;" class="responsive-img" src="imgOnline/uniform3.jpg">
-            <p class="center-align white-text" style="font-size:20px;">
-                From different designs and options to choose from,
-                personalize uniforms for an exclusive style and
-                distinction.
-            </p>
+            <section id="gallery">
+                <h2><a style="background-color:transparent; color:white; font-weight:normal" href="{{URL::to('/online-garment-uniform-female')}}"><u>Custom Uniform</u></a></h2>
+                <img alt="" src="imgOnline/uniform3.jpg">
+                <p class="center-align white-text">
+                    From different designs and options to choose from,
+                    personalize uniforms for an exclusive style and
+                    distinction.
+                </p>          
+                <a class="waves-effect waves-green btn-flat" href="{{URL::to('/online-garment-uniform-female')}}">PROCEED TO UNIFORM</a>
+            </section>
         </div>
         
         <div class="col s6 center">
-            <h2 class="white-text" style="font-family:'Playfair Display','Times';">Custom Gown</h2>
-            <img style="width:90%; height:250px;" class="responsive-img" src="imgOnline/gowns.jpg">
-            <p class="center-align white-text" style="font-size:20px;">
-                Be the eye-catcher in special occasions with custom
-                designed gowns and dresses. Choose from a variety
-                of fabrics, colors and designs for a truly unique
-                style!
-            </p>
-    </div>
-    </div>
-    <div class="row">
-        <div class="col s6 center">
-            <div><a class="waves-effect waves-green btn-flat teal-text" href="{{URL::to('/online-garment-uniform-female')}}" style="background-color:#ede7f6;">PROCEED TO UNIFORM</a></div>
-        </div>
-        <div class="col s6 center">
-            <div><a class="waves-effect waves-green btn-flat teal-text" href="{{URL::to('/online-garment-gown')}}" style="background-color:#ede7f6;">PROCEED TO GOWNS</a></div>
+            <section id="gallery">
+                <h2><a style="background-color:transparent; color:white; font-weight:normal" href="{{URL::to('/online-garment-gown')}}"><u>Custom Gown</u></a></h2>
+                <img alt="" src="imgOnline/gowns.jpg">
+                <p class="center-align white-text">
+                    Be the eye-catcher in events with custom
+                    designed gowns and dresses. Choose from a variety
+                    of fabrics!
+                </p>         
+                <a class="waves-effect waves-green btn-flat" href="{{URL::to('/online-garment-gown')}}">PROCEED TO GOWNS</a>
+            </section>
         </div>
     </div>
 
+    <div class="col s12" style="margin:75px"></div>
+
     <div class="row">
         <div class="col s6 center">
-            <h2 class="white-text" style="font-family:'Playfair Display','Times';">Custom Suits</h2>
-            <img style="width:90%; height:250px;" class="responsive-img" src="imgOnline/suits.jpg">
-            <p class="center-align white-text" style="font-size:20px;">
-                Always look the best in a custom suit that
-                will fit you perfectly. Our hand tailored
-                suits come in a collection of high quality
-                fabrics and materials that you can choose from.
-            </p>
+            <section id="gallery">
+                <h2><a style="background-color:transparent; color:white; font-weight:normal" href="{{URL::to('/online-garment-suit')}}"><u>Custom Suits</u></a></h2>
+                <img alt="" src="imgOnline/suits.jpg">
+                <p class="center-align white-text">
+                    Look your best in a custom suit made 
+                    with high quality fabrics & materials!
+                </p>        
+                <a class="waves-effect waves-green btn-flat" href="{{URL::to('/online-garment-suit')}}">PROCEED TO SUITS</a>
+            </section>
         </div>
         
         <div class="col s6 center">
-            <h2 class="white-text" style="font-family:'Playfair Display','Times';">Order Tracking</h2>
-            <img style="width:90%; height:250px;" class="responsive-img" src="imgOnline/ordertrack1.jpg">
-            <p class="center-align white-text" style="font-size:20px;">
-                Experience made more personal with Order Tracking.
-                Monitor your orders' progress here!
-            </p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col s6 center">
-            <div><a class="waves-effect waves-green btn-flat teal-text" href="{{URL::to('/online-garment-suit')}}" style="background-color:#ede7f6;">PROCEED TO SUITS</a></div>
-        </div>
-        <div class="col s6 center">
-            <div><a class="waves-effect waves-green btn-flat teal-text" href="{{URL::to('/online-order-tracking')}}" style="background-color:#ede7f6;">TRACK YOURS HERE</a></div>
+            <section id="gallery">
+                <h2><a style="background-color:transparent; color:white; font-weight:normal" href="{{URL::to('/online-order-tracking')}}"><u>Order Tracking</u></a></h2>
+                <img alt="" src="imgOnline/ordertrack1.jpg">
+                <p class="center-align white-text" style="padding-left:60px; padding-right:60px">
+                    Experience made more personal with
+                    this feature that let's you monitor 
+                    order progress in real-time.
+                </p>           
+                <a class="waves-effect waves-green btn-flat" href="{{URL::to('/online-order-tracking')}}">TRACK YOURS HERE</a>
+            </section>
         </div>
     </div>
 
+    <div class="col s12" style="margin:75px"></div>
+    <!-- 
     <div class="row container">        
         <div class="container center">
-            <h2 class="white-text" style="font-family:'Playfair Display','Times';">How It Works</h2>
-            <img style="width:90%; height:250px;" class="responsive-img" src="imgOnline/howitwork.jpg">
-            <p class="center-align white-text" style="font-size:20px;">
-                Easy steps to follow for a perfect fit.
-                In just a couple of minutes, the measurements
-                for perfect fitting will be ready for the garments! 
-            </p>
+            <div class="container">
+                <h2 class="white-text" style="font-family:'Playfair Display','Times';">How It Works</h2>
+                <img style="width:100%; height:300px;" class="responsive-img" src="imgOnline/howitwork.jpg">
+                <p class="center-align white-text" style="font-size:20px;">
+                    Easy steps to follow for a perfect fit.
+                    In just a couple of minutes, the measurements
+                    for perfect fitting will be ready for the garments! 
+                </p>
+            </div>
         </div>
     </div>
     <div class="row container">
@@ -102,7 +102,7 @@
             <div><a class="waves-effect waves-green btn-flat teal-text" href="{{URL::to('/online-how-it-works')}}" style="background-color:#ede7f6;">MEASURE ON YOUR OWN</a></div>
         </div>
     </div>
-    
+    -->
       
     @stop
 
