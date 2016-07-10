@@ -49,10 +49,10 @@
     </div>
     <div class="row">
         <div class="col s6 center">
-            <div><a href="{{URL::to('/garmentUniform')}}" class="container white" style="border:1px solid black; padding:10px;">PROCEED TO UNIFORMS</a></div>
+            <div><a class="waves-effect waves-green btn-flat teal-text" href="{{URL::to('/online-garment-uniform-female')}}" style="background-color:#ede7f6;">PROCEED TO UNIFORM</a></div>
         </div>
         <div class="col s6 center">
-            <div><a href="{{URL::to('/online-garment-gown')}}" class="container white" style="border:1px solid black; padding:10px;">PROCEED TO GOWNS</a></div>
+            <div><a class="waves-effect waves-green btn-flat teal-text" href="{{URL::to('/online-garment-gown')}}" style="background-color:#ede7f6;">PROCEED TO GOWNS</a></div>
         </div>
     </div>
 
@@ -79,10 +79,10 @@
     </div>
     <div class="row">
         <div class="col s6 center">
-            <div><a href="{{URL::to('/online-garment-suit')}}" class="container white" style="border:1px solid black; padding:10px;">PROCEED TO SUITS</a></div>
+            <div><a class="waves-effect waves-green btn-flat teal-text" href="{{URL::to('/online-garment-suit')}}" style="background-color:#ede7f6;">PROCEED TO SUITS</a></div>
         </div>
         <div class="col s6 center">
-            <div><a href="{{URL::to('/online-order-tracking')}}" class="container white" style="border:1px solid black; padding:10px;">TRACK YOURS HERE</a></div>
+            <div><a class="waves-effect waves-green btn-flat teal-text" href="{{URL::to('/online-order-tracking')}}" style="background-color:#ede7f6;">TRACK YOURS HERE</a></div>
         </div>
     </div>
 
@@ -99,7 +99,7 @@
     </div>
     <div class="row container">
         <div class="container center">
-            <div><a href="{{URL::to('/online-how-it-works')}}" class="container white" style="border:1px solid black; padding:10px;">MEASURE ON YOUR OWN</a></div>
+            <div><a class="waves-effect waves-green btn-flat teal-text" href="{{URL::to('/online-how-it-works')}}" style="background-color:#ede7f6;">MEASURE ON YOUR OWN</a></div>
         </div>
     </div>
     

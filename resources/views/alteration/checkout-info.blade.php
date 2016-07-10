@@ -1,15 +1,22 @@
-@extends('layouts.masterOnline')
+@extends('layouts.master')
 
 @section('content')
 
-  <div style="height:150px;">
-    <div style="height:20px;"></div>
-    <center><h2 style="color:white; font-family:'Playfair Display','Times';">Checkout</h2></center>
-    <div class="container divider"></div>
-  </div>
-  
-  <div class="container">
-    <div class="section white" style="padding:20px; margin-bottom:20px;"> 
+	<div class="row">
+      <div class="col s12 m12 l12">
+        <span class="page-title"><center><h3><b>Welcome to <font color="white">MyTailor</font></b></h3></center></span>
+        <center><h5>Walk-in Individual - Payout</h5></center>
+      </div>
+    </div>
+
+	<div class="row white" style="margin:40px;">
+      <div style="padding:30px">
+
+    <ul class="col s12 breadcrumb">
+			<li><a class="active" style="padding-left:200px" href="#customer-info"><b>1.FILL-UP FORM</b></a></li>
+			<li><a style="padding-left:200px"><b>2.PAYMENT</b></a></li>
+			<li><a style="padding-left:200px"><b>3.ADD MEASUREMENT DETAIL</b></a></li>
+		</ul>
 
           <div class="row">
             <div class="col s12 m12 l12">
@@ -34,7 +41,7 @@
                   </div>
                 </div>
 
-                <a id="addPayment" href="{{URL::to('/online-checkout-payment')}}" class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-top:20px; margin-left:40px; padding:10px; padding-left:19px; padding-right:19px; padding-bottom:45px; background-color:teal; color:white">Save and Proceed</a>                                
+                <a id="addPayment" href="{{URL::to('/alteration-checkout-payment')}}" class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-top:20px; margin-left:40px; padding:10px; padding-left:19px; padding-right:19px; padding-bottom:45px; background-color:teal; color:white">Save and Proceed</a>                                
                 <a id="cancelTransac" href="#cancel-order" class="btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel transaction and go back to homepage" style="margin-top:30px; margin-left:40px; padding:10px; padding-bottom:45px; background-color:teal; color:white">Cancel Transaction</a>
               </div>
             </div>
@@ -145,7 +152,7 @@
   </div>
 
     <!--CANCEL-ORDER-->
-    <div id="cancel-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:80px">
+    <div id="cancel-order" class="modal modal-fixed-footer row" style="height:250px; width:500px; margin-top:80px">
       <h5><font color="red"><center><b>Warning!</b></center></font></h5>
         {!! Form::open() !!}
           <div class="divider" style="height:2px"></div>
@@ -155,8 +162,8 @@
           </div>
 
           <div class="modal-footer col s12">
-              <a class="waves-effect waves-green btn-flat" href="{{URL::to('/online-order-now')}}"><font color="black">Yes</font></a>
-              <a href="{{URL::to('/online-checkout')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+              <a class="waves-effect waves-green btn-flat" href="{{URL::to('/alteration-walkin-newcustomer')}}"><font color="black">Yes</font></a>
+              <a href="{{URL::to('/alteration-checkout-info')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
           </div>
         {!! Form::close() !!}
     </div>

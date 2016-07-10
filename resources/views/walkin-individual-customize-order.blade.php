@@ -252,8 +252,8 @@
 									<a class="btn" style="color:white; background-color:teal; border:3px teal solid">Cancel Transaction</a>
 								</div>	
 								<div class="col s6">
-									<a href="{{URL::to('transaction/walkin-individual')}}" class="right btn" style="color:white; background-color:teal; margin-left:20px; border:3px teal solid">Add another set</a>
-									<a href="{{URL::to('transaction/walkin-individual-retail-products')}}" class="right btn" style="color:white; background-color:teal; border:3px teal solid">Add a retail order</a>
+									<a href="{{URL::to('transaction/walkin-individual-bulk-orders')}}" class="right btn" style="color:white; background-color:teal; margin-left:20px; border:3px teal solid">Add another set</a>
+									<a href="{{URL::to('transaction/walkin-individual')}}" class="right btn" style="color:white; background-color:teal; border:3px teal solid">Add a retail order</a>
 								</div>
 							</div>
 						</div> <!--end of list-->

@@ -9,18 +9,18 @@
         <div class="col s4">
           <div class="divider grey" style="margin-bottom:5px;"></div>
           <div class="divider grey"></div>
-          </div>
+        </div>
 
-          <div class="col s4" style="margin-top:-30px;">
-            <center><span style="font-size:40px; color: #757575; font-family:'Playfair Display','Times';">Shopping Cart</span></center>
-          </div>
+        <div class="col s4" style="margin-top:-30px;">
+          <center><span style="font-size:40px; color: #757575; font-family:'Playfair Display','Times';">Shopping Cart</span></center>
+        </div>
 
-          <div class="col s4">
+        <div class="col s4">
           <div class="divider grey" style="margin-bottom:5px;"></div>
           <div class="divider grey"></div>
-          </div>
         </div>
       </div>
+    </div>
 
   <div class="row">
     <div class="col s12">
@@ -67,7 +67,7 @@
                             <div class="col s5" style="color:red"><p>3 days</p></div>
                           </div>
                         </div>
-                        <span class="right" style="margin-top:40px; font-size:17px; color: #00bfa5;">Plain Long Sleeves for Women<a class="btn-floating teal accent-4 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize and add measurement to order" href="{{URL::to('/online-customize-order')}}" style="margin-left:10px;"><i class="mdi-editor-border-color"></i></a></span>
+                        <span class="right" style="margin-top:40px; font-size:17px; color: #00bfa5;">Plain Long Sleeves for Women<a class="btn-floating teal accent-4 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize order" href="{{URL::to('/online-customize-order')}}" style="margin-left:10px;"><i class="mdi-editor-border-color"></i></a></span>
                       </div>
                     </div>
                   </div>
@@ -118,7 +118,7 @@
                             <div class="col s5" style="color:red"><p>3 days</p></div>
                           </div>
                         </div>
-                        <span class="right" style="margin-top:40px; font-size:17px; color: #00bfa5;">Plain Skirt for Women<a class="btn-floating teal accent-4 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize and add measurement to order" href="{{URL::to('/online-customize-order')}}" style="margin-left:10px;"><i class="mdi-editor-border-color"></i></a></span>
+                        <span class="right" style="margin-top:40px; font-size:17px; color: #00bfa5;">Plain Skirt for Women<a class="btn-floating teal accent-4 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize order" href="{{URL::to('/online-customize-order')}}" style="margin-left:10px;"><i class="mdi-editor-border-color"></i></a></span>
                       </div>
                   </div>
                 </div>
@@ -171,7 +171,7 @@
                             <div class="col s5" style="color:red"><p>3 days</p></div>
                           </div>
                         </div>
-                        <span class="right" style="margin-top:40px; font-size:17px; color: #00bfa5;">Plain Pants for Men<a class="btn-floating teal accent-4 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize and add measurement to order" href="{{URL::to('/online-customize-order')}}" style="margin-left:10px;"><i class="mdi-editor-border-color"></i></a></span>
+                        <span class="right" style="margin-top:40px; font-size:17px; color: #00bfa5;">Plain Pants for Men<a class="btn-floating teal accent-4 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize order" href="{{URL::to('/online-customize-order')}}" style="margin-left:10px;"><i class="mdi-editor-border-color"></i></a></span>
                       </div>
                   </div>
                 </div>
@@ -185,7 +185,7 @@
 
   <div class="divider"></div>
   <div class="col s12" style="padding:30px">
-      <a href="{{URL::to('transaction/walkin-individual')}}" class="btn-flat white-text" style="color:white; background-color:teal;">Cancel Transaction</a>
+      <a href="{{URL::to('/online-order-now')}}" class="btn-flat white-text" style="color:white; background-color:teal;">Cancel Transaction</a>
       <a href="{{URL::to('/online-check-out')}}" class="right btn-flat white-text red" style="color:white; background-color:teal;">Proceed to CHECKOUT</a>
   </div>
 

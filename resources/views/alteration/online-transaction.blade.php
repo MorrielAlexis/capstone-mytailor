@@ -63,7 +63,7 @@
 								<table class="centered">
 								    <tbody>
 								        <tr>
-								        	<td><a class="btn modal-trigger" href="{{URL::to('/acceptAlteration')}}"><i class="mdi-action-done"></i>Accept</a></td>
+								        	<td><a class="btn modal-trigger" href="{{URL::to('/alteration-acceptorder')}}"><i class="mdi-action-done"></i>Accept</a></td>
 								        	<td><a class="btn modal-trigger" href="#rejectmodal"><i class="mdi-content-clear"></i>Reject</a></td>
 								        </tr>
 								    </tbody>

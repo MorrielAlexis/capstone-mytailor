@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use View;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class AlterationOnlineController extends Controller
+class OnlineCustomerProfileIndividualController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,17 +19,32 @@ class AlterationOnlineController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
-        return view('alteration.online-transaction');
+        return view('customerprofile.individual');
     }
 
-    public function accept()
+    public function measure()
     {
-        return view('alteration.acceptorder');
+        return View::make('customerprofile.individual-measurement-details');
+    }
+    
+    public function order()
+    {
+        return view('customerprofile.individual-order-details');
     }
 
+    public function tracking()
+    {
+        return view('customerprofile.individual-order-tracking');
+    }
+
+    public function pay()
+    {
+        return view('customerprofile.individual-payment-history');
+    }
+    
     /**
      * Show the form for creating a new resource.
      *

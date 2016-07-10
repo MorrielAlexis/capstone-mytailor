@@ -6,7 +6,7 @@
 
   <div class="row">
       <div class="col s12 m12 l12">
-        <span class="page-title"><center><h3><b>Welcome to <font color="white">MyTailor</font></b></h3></center></span>
+        <span class="page-title"><center><h3><b>WALK IN OLD CUSTOMER</b></h3></center></span>
         <center><h5>Walk-in Alteration </h5></center>
       </div>
     </div>

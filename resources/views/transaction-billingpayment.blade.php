@@ -42,7 +42,7 @@
 										{!! Form::open(['method' => 'POST', 'url' => 'transaction/billing-payment/result']) !!}
 										<div class="col s4">
 											<div class="input-field col s12"  class="customer_type" id="customer_type">
-												<select class="customer_type" id="customer_type">
+												<select class="customer_type" id="customer_type" name="customer_type">
 													<option disabled>Choose Customer Type</option>
 												    <option value="ind" class="circle">Individual</option>
 												    <option value="comp" class="circle">Company</option>
@@ -79,10 +79,10 @@
 											@endforeach
 											@endif
 										</p>
-										<p style="color:teal; font-size:20px">
-											<b>Customer Type:</b>
-											<p id="cust_type"></p>
-										</p>
+										<div style="color:teal; font-size:20px">
+											<label style="color:teal; font-size:20px"><b>Customer Type:</b></label>
+											 <label id="cust_type" style="color:teal; font-size:20px"></label>
+										</div>
 									</div>
 
 									<div class="col s12">

@@ -166,12 +166,6 @@ Route::group(['prefix' => 'transaction'], function(){
 		['only' => ['index']]);
 });
 
-Route::group(['prefix' => 'transaction'], function(){
-	Route::resource('alteration-walkin', 'AlterationWalkInController');
-		
-	Route::resource('alteration-online', 'AlterationOnlineController',
-		['only' => ['index']]);
-});
 
 Route::group(['prefix' => 'transaction'], function(){
 	Route::resource('modifyIndividual', 'ModifyIndividualOrdersController',
@@ -225,7 +219,7 @@ Route::group(['prefix' => 'utilities'], function(){
 		
 });
 
-Route::get('/acceptAlteration','AlterationOnlineController@accept');
+//acceptance of order from online module
 Route::get('/acceptIndividual','OnlineCustomerIndividualController@accept');
 Route::get('/acceptCompany','OnlineCustomerCompanyController@accept');
 
@@ -259,8 +253,6 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::get('walkin-company-payment-measure-detail', 'WalkInCompanyController@measurement');
 });
 
-Route::get('/transaction-alterationwalkIn-newtransaction','AlterationWalkInController@newTrans');
-
 Route::get('transaction-modifyindividualorders-modifyorder','ModifyIndividualOrdersController@modify');
 Route::get('transaction-modifycompanyorders-modifyorder','ModifyCompanyOrdersController@modify');
 Route::get('transaction-modifycompanyorders-modifyemployee','ModifyCompanyOrdersController@employee');
@@ -276,6 +268,18 @@ Route::group(['prefix' => 'transaction'], function(){
 
 Route::get('/pdf', 'PdfController@converToPdf');
 
+/*---------------------------------------ADMIN TRANSACTION ALTERATION--------------------------------------------------*/
+		Route::get('alteration-online-transaction', 'AlterationOnlineController@index');
+		Route::get('alteration-acceptorder', 'AlterationOnlineController@accept');
+
+		Route::get('alteration-walkin-transaction', 'AlterationWalkInController@index');
+		Route::get('alteration-walkin-newcustomer', 'AlterationWalkInController@addOrder');
+		Route::post('alteration-walkin-newcustomer', 'AlterationWalkInController@addOrder');
+		Route::get('alteration-walkin-oldcustomer', 'AlterationWalkInController@oldcust');
+		Route::get('alteration-checkout-info', 'AlterationWalkInController@info');
+		Route::get('alteration-checkout-payment', 'AlterationWalkInController@pay');
+		Route::get('alteration-checkout-measurement', 'AlterationWalkInController@measuredetails');
+
 
 
 /*---------------------------------------------ONLINE---------------------------------------------------*/
@@ -288,8 +292,8 @@ Route::resource('online-alteration', 'OnlineAlterationController',
 		['only' => ['index']]);
 Route::get('online-alteration-transact', 'OnlineAlterationController@transac');
 
-Route::get('online-customer-profile-individual', 'OnlineCustomerProfileController@indiv');
-Route::get('online-customer-profile-company', 'OnlineCustomerProfileController@comp');
+Route::get('online-alterationtransaction-newcustomer', 'OnlineAlterationController@newcust');
+Route::get('online-alterationtransaction-patron', 'OnlineAlterationController@oldcust');
 
 Route::resource('online-garment-gown', 'OnlineGarmentGownController',
 		['only' => ['index']]);
@@ -317,7 +321,9 @@ Route::resource('online-men-shirt-tutorial', 'OnlineMenShirtTutorialController',
 
 Route::resource('online-order-now', 'OnlineOrderNowController',
 		['only' => ['index']]);
-Route::get('online-check-out', 'OnlineOrderNowController@out');
+Route::get('online-check-out', 'OnlineOrderNowController@info');
+Route::get('online-checkout-payment', 'OnlineOrderNowController@payment');
+Route::get('online-checkout-measurement', 'OnlineOrderNowController@measuredetails');
 Route::get('online-customize-order', 'OnlineOrderNowController@custom');
 Route::get('online-measurement', 'OnlineOrderNowController@meas');
 
@@ -333,3 +339,17 @@ Route::resource('online-women-pants-skirt-tutorial', 'OnlineWomenPantsAndSkirtTu
 Route::resource('online-women-shirt-tutorial', 'OnlineWomenShirtTutorialController',
 		['only' => ['index']]);
 
+
+/*-------------------------------------------ONLINE CUSTOMER PROFILE---------------------------------------------------*/
+
+	Route::get('customerprofile-individual', 'OnlineCustomerProfileIndividualController@index');
+	Route::get('customerprofile-individual-measurement-details', 'OnlineCustomerProfileIndividualController@measure');
+	Route::get('customerprofile-individual-order-details', 'OnlineCustomerProfileIndividualController@order');
+	Route::get('customerprofile-individual-order-tracking', 'OnlineCustomerProfileIndividualController@tracking');
+	Route::get('customerprofile-individual-payment-history', 'OnlineCustomerProfileIndividualController@pay');
+
+	Route::get('customerprofile-company', 'OnlineCustomerProfileCompanyController@index');
+	Route::get('customerprofile-company-measurement-details', 'OnlineCustomerProfileCompanyController@measure');
+	Route::get('customerprofile-company-order-details', 'OnlineCustomerProfileCompanyController@order');
+	Route::get('customerprofile-company-order-tracking', 'OnlineCustomerProfileCompanyController@tracking');
+	Route::get('customerprofile-company-payment-history', 'OnlineCustomerProfileCompanyController@pay');

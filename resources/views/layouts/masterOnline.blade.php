@@ -8,7 +8,7 @@
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
       {!! Html::style('css/materialize.min.css') !!}
-      {!! Html::style('css/styleOnline.css') !!}
+      {!! Html::style('css/styleOnline.css'); !!}
 
       <style>
         body{
@@ -22,6 +22,9 @@
         .btn{
           background: #cccccc;
           padding: 0;
+        }
+        .fixed-footer{
+          margin-bottom: -30px;
         }
       </style>
     </head>
@@ -38,7 +41,9 @@
         </div>
 
         <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-          <a class="btn-floating btn-large red accent-3 tooltipped" data-position="left" data-delay="50" data-tooltip="Hi, Honey May">
+          @if(Auth::check())
+          <a class="btn-floating btn-large red accent-3 tooltipped" data-position="left" data-delay="50" data-tooltip="Hi, {{ Auth::user()->name }}">
+            @endif
             <i class="large mdi-action-perm-identity" style="font-size:30px;"></i>
           </a>
           <ul>
@@ -53,7 +58,7 @@
               </a>
             </li>
             <li>
-              <a class="btn-floating yellow tooltipped" href="{{URL::to('/customerprofile')}}" data-position="left" data-delay="50" data-tooltip="Profile">
+              <a class="btn-floating yellow tooltipped" href="{{URL::to('/customerprofile-individual')}}" data-position="left" data-delay="50" data-tooltip="Profile">
               <i class="tiny mdi-action-info-outline" style="font-size:25px;"></i>
               </a>
             </li>
@@ -66,10 +71,10 @@
             <div style="border-bottom:1px solid grey" class="nav-wrapper">
 
               <ul class="container">
-                <li><a class="btn-flat" style="padding-left:10px; padding-right:10px; margin:0px; color: white;" href="/online-home"><b>HOME</b></a></li>
-                <li><div class="divider" style="margin-top:20px; width:1px; height:25px;"></div></li>
+                <li><a class="btn-flat" style="color: white;" href="{{URL::to('/online-home')}}"><b>HOME</b></a></li>
+                <li><div class="divider" style="margin-top:20px; width:1px; height:30px;"></div></li>
                 <li>
-                  <a style="color: white; padding-left:15px; padding-right:15px; margin:0px;" class="dropdown-button btn-flat" data-beloworigin="true" href="#" data-activates="downdown"><b>GARMENTS</b></a>
+                  <a style="color: white;" class="dropdown-button btn-flat" data-beloworigin="true" data-activates="downdown"><b>GARMENTS</b></a>
                   <ul id="downdown" class="dropdown-content">
                     <li><a href="{{URL::to('/online-garment-suit')}}">SUITS</a></li>
                     <li><a href="{{URL::to('/online-garment-gown')}}">GOWNS</a></li>
@@ -77,20 +82,18 @@
                     <li><a href="{{URL::to('/online-garment-uniform-female')}}">UNIFORMS for FEMALE</a></li>
                   </ul>
                 </li>
-                <li><div class="divider" style="margin-top:20px; width:1px; height:25px;"></div></li>
+                <li><div class="divider" style="margin-top:20px; width:1px; height:30px;"></div></li>
                 <li>
-                  <a style="color: white; padding-left:15px; padding-right:15px; margin:0px;" class="dropdown-button btn-flat" data-beloworigin="true" href="#" data-activates="alter"><b>ALTERATION</b></a>
+                  <a style="color: white;" class="dropdown-button btn-flat" data-beloworigin="true" href="#" data-activates="alter"><b>ALTERATION</b></a>
                   <ul id="alter" class="dropdown-content">
                     <li><a href="{{URL::to('/online-alteration')}}">SERVICES</a></li>
                     <li><a href="{{URL::to('/online-alteration-transact')}}">TRANSACTION</a></li>
                   </ul>
                 </li>
-                <li><div class="divider" style="margin-top:20px; width:1px; height:25px;"></div></li>
-                <li><a class="btn-flat" style="padding-left:10px; padding-right:10px; margin:0px; color: white" href="{{URL::to('/online-order-tracking')}}"><b>ORDER TRACKING</b></a></li>
-                <li><div class="divider" style="margin-top:20px; width:1px; height:25px;"></div></li>
-                <li><a class="btn-flat" style="padding-left:10px; padding-right:10px; margin:0px; color: white" href="{{URL::to('/online-how-it-works')}}"><b>HOW IT WORKS</b></a></li>                
+                <li><div class="divider" style="margin-top:20px; width:1px; height:30px;"></div></li>
+                <li><a class="btn-flat" style="color: white" href="{{URL::to('/online-how-it-works')}}"><b>HOW IT WORKS</b></a></li>                
               </ul>
-              <ul id="shoppingcart" class="right" style="margin-right:-140px; margin-top:10px;">
+              <ul id="shoppingcart" class="right" style="margin-right:10px;">
                 <li><a href="{{URL::to('/online-order-now')}}" style="margin:0; padding:0;" class="btn-flat white-text">Shopping Cart</a></li>
                 <li><a href="{{URL::to('/online-order-now')}}" style="margin:0; padding:0;" class="btn-flat"><i class="white-text mdi-action-shopping-cart" style="font-size:30px; margin-top:-15px;"></i></a></li>
               </ul>

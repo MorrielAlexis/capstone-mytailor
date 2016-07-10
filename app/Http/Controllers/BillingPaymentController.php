@@ -40,8 +40,6 @@ class BillingPaymentController extends Controller
                     ->where(\DB::raw('CONCAT(b.strIndivFName, " ", b.strIndivMName, " ", b.strIndivLName)'), $search_query)
                     ->get();
 
-        // $payments = Payment::all();
-
         $payments = \DB::table('tblPayment AS a')
                     ->leftJoin('tblCustIndividual AS b', 'a.strCustomerIdFK', '=', 'b.strIndivID')
                     ->select('a.*', \DB::raw('CONCAT(b.strIndivFName, " ", b.strIndivMName, " ", b.strIndivLName) AS fullname'))
