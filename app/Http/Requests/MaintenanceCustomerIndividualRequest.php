@@ -27,9 +27,9 @@ class MaintenanceCustomerIndividualRequest extends Request
         return [
             'strIndivFName' => 'unique_with:tblCustIndividual,strIndivMName,strIndivLName',
 
-            'strIndivCPNumber' => 'unique|regex:/^\d{11}/',
+            'strIndivCPNumber' => 'regex:/^\d{11}/',
 
-            'strIndivEmailAddress' => 'unique|email'
+            // 'strIndivEmailAddress' => 'unique|email'
             
         ];
     }
@@ -40,10 +40,10 @@ class MaintenanceCustomerIndividualRequest extends Request
             'strIndivFName.required'     =>  'First name is required.',
             'strIndivFName.unique_with'  =>  'Name already exists.',
             'strIndivLName.required'      =>  'Last name is required.',
-            'strIndivCPNumber.regex'    =>  'Invalid contact number format.',
+            'strIndivCPNumber.regex'    =>  'Invalid contact number format.'
 
-            'strIndivEmailAddress.unique' => 'Email address already exists!Please enter your correct email address.'
-            'strIndivEmailAddress.email' => 'Invalid email address format.'
+            // 'strIndivEmailAddress.unique' => 'Email address already exists!Please enter your correct email address.',
+            // 'strIndivEmailAddress.email' => 'Invalid email address format.'
             
             
         ];

@@ -20,7 +20,7 @@
 
                               <div class="col s12">
                                   <label style="margin-left:10px;"><font size="+2" color="teal">Your Order:</font></label>
-                                  <div style="margin-right:20px; margin-top:-30px;"><a class="red accent-2 btn-flat modal-trigger right tooltipped white-text" href="#create-order" data-position="bottom" data-delay="50" data-tooltip="Click to create a new order">CREATE ORDER</a></div>
+                                  <div style="margin-right:20px; margin-top:-30px;"><button class="red accent-2 btn-flat modal-trigger right tooltipped white-text" href="#create-order" data-position="bottom" data-delay="50" data-tooltip="Click to create a new order">CREATE ORDER</button></button></div>
                               </div>
 
                               <div style="padding:20px;">
@@ -154,7 +154,7 @@
                                             {{-- Dropdown for segment option --}}
 
                                              <div class="input-field col s12" style="padding:20px;">
-                                                  <select id = "strAltTransacSegFK" name = "strAltTransacSegFK">
+                                                  <select id = "alte-segment" name = "alte-segment">
                                                       @foreach($segment as $segments)
                                                           @if($segments->boolIsActive == 1)
                                                             <option value="{{ $segments->strSegmentID }}" class="{{ $segments->strAltTransacSegFK }}">{{ $segments->strSegmentName }}</option>
@@ -167,7 +167,7 @@
                                             {{-- End of Dropdown for segment option --}}
 
                                             <div class="input-field col s12" style="padding:20px;">
-                                              <select id="strAltTransacAltTypeFK" name="strAltTransacAltTypeFK">
+                                              <select id="alte-type" name="alte-type">
                                                     @foreach($alteration as $alterations)
                                                       <option value="{{ $alterations->strAlterationID }}" class="{{ $alterations->strAltTransacAltTypeFK }}">{{ $alterations->strAlterationName }}</option>
                                                     @endforeach
@@ -175,12 +175,12 @@
                                                   <label><font size="3">Choose an alteration type:</font></label>
                                             </div>
 
-
                                       
                                             <div class="input-field">
-                                               <input  id="txtAltTransacDesc" name="txtAltTransacDesc" type="text" class="validate">
+                                               <input  id="alte-desc" name="alte-desc" type="text" class="validate">
                                                <label for="garment_description">Order Description:</label>
                                             </div>
+                                           </div> 
                                             
                                         <div class="modal-footer col s12 teal">
                                           <button type="submit" name="send" id="send" class="waves-effect waves-green btn-flat white-text">Save</button>
@@ -190,7 +190,7 @@
                                       {!! Form::close() !!}
                                     </div>
                                   </div>
-                            </div>
+                                </div>
 
  @stop
 
