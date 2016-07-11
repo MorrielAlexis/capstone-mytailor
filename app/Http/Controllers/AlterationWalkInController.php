@@ -36,66 +36,31 @@ class AlterationWalkInController extends Controller
              
     }
 
-    public function addOrder(Request $request)
-    {
-        // $alterationTransacs = TransactionAlteration::get();
-    
-            $alterationTransac = TransactionAlteration::create(array(
-                'strAltTransacSegFK' => $request->input('strAltTransacSegFK'),
-                'strAltTransacAltTypeFK' => $request->input('strAltTransacAltTypeFK'),
-                'txtAltTransacDesc' => trim($request->input('txtAltTransacDesc'))
-                ));
-            $values = [];
-
-           $alterationtransac = \DB::table('tblAlterationTransaction AS a')
-                    ->leftJoin('tblAlteration AS b', 'a.strAltTransacAltTypeFK', '=', 'b.strAlterationID')
-                    ->leftJoin('tblSegment AS c', 'a.strAltTransacSegFK', '=', 'c.strSegmentID')
-                    ->select('a.*', 'b.strAlterationName', 'c.strSegmentName') 
-                    ->orderBy('a.strAltTransacID')
-                    ->get();
-
-            $alteration = Alteration::all();
-            $segment = GarmentSegment::all();
-
-        // $added=$alterationtransacs->save();
-
-
-        session(['altOrder' => $alterationTransac]);
-
-        return view('alteration.walkin-newcustomer')
-                ->with('alterationTransac', session()->get('altOrder'))
-                ->with('segment', $segment)
-                ->with('alteration', $alteration)
-                ->with('alterationtransac', $alterationtransac);
-            
-
-       
-    }
-
     // public function addOrder(Request $request)
     // {
-    //     $data_segment = $request->input('strAltTransacSegFK');
-    //     $data_alteType = $request->input('strAltTransacAltTypeFK');
-    //     $data_alteDesc = $request->input('txtAltTransacDesc');
+    //     // $alterationTransacs = TransactionAlteration::get();
+    
+    //         $alterationTransac = TransactionAlteration::create(array(
+    //             'strAltTransacSegFK' => $request->input('strAltTransacSegFK'),
+    //             'strAltTransacAltTypeFK' => $request->input('strAltTransacAltTypeFK'),
+    //             'txtAltTransacDesc' => trim($request->input('txtAltTransacDesc'))
+    //             ));
+    //         $values = [];
 
-    //     $values = [];
-
-    //     $alterationtransac = \DB::table('tblAlterationTransaction AS a')
+    //        $alterationtransac = \DB::table('tblAlterationTransaction AS a')
     //                 ->leftJoin('tblAlteration AS b', 'a.strAltTransacAltTypeFK', '=', 'b.strAlterationID')
     //                 ->leftJoin('tblSegment AS c', 'a.strAltTransacSegFK', '=', 'c.strSegmentID')
     //                 ->select('a.*', 'b.strAlterationName', 'c.strSegmentName') 
-    //                 // ->whereIn('b.strAlterationID', $data_alteType)
-    //                 // ->whereIn('c.strSegmentID', $data_segment)
     //                 ->orderBy('a.strAltTransacID')
     //                 ->get();
 
-
-    //     session(['altOrder' => $alterationtransac]);   
-    //     session(['orders' => $values]);
-
+    //         $alteration = Alteration::all();
     //         $segment = GarmentSegment::all();
 
-    //         $alteration = Alteration::all();
+    //     // $added=$alterationtransacs->save();
+
+
+    //     session(['altOrder' => $alterationTransac]);
 
     //     return view('alteration.walkin-newcustomer')
     //             ->with('alterationTransac', session()->get('altOrder'))
@@ -103,7 +68,40 @@ class AlterationWalkInController extends Controller
     //             ->with('alteration', $alteration)
     //             ->with('alterationtransac', $alterationtransac);
             
+
+       
     // }
+
+    public function addOrder(Request $request)
+    {
+        $data_segment = $request->input('alte-segment');
+        $data_alteType = $request->input('alte-type');
+        $data_alteDesc = $request->input('alte-desc');
+
+        $values = [];
+
+        $alterationtransac = \DB::table('tblAlterationTransaction AS a')
+                    ->leftJoin('tblAlteration AS b', 'a.strAltTransacAltTypeFK', '=', 'b.strAlterationID')
+                    ->leftJoin('tblSegment AS c', 'a.strAltTransacSegFK', '=', 'c.strSegmentID')
+                    ->select('a.*', 'b.strAlterationName', 'c.strSegmentName') 
+                    ->orderBy('a.strAltTransacID')
+                    ->get();
+
+
+        session(['altOrder' => $alterationtransac]);   
+        session(['orders' => $values]);
+
+            $segment = GarmentSegment::all();
+
+            $alteration = Alteration::all();
+
+        return view('alteration.walkin-newcustomer')
+                ->with('alterationtransac', session()->get('altOrder'))
+                ->with('segment', $segment)
+                ->with('alteration', $alteration)
+                ->with('alterationtransac', $alterationtransac);
+            
+    }
 
 
     public function oldcust()
