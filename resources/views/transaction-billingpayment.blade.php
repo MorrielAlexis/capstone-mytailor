@@ -187,14 +187,14 @@
 													</div>
 
 											<div class="modal-footer col s12">	
-								                <button type="submit" href="" class="waves-effect waves-green btn-flat"><font color="black">OK</font></button>								                
+								                <a href="" class="waves-effect waves-green btn-flat"><font color="black">OK</font></a>								                
 								            </div>
 										{!! Form::close() !!}
 							</div>
 
 									<div class="col s12" style="margin-top:30px">
 										<a href="{{URL::to('pdf')}}" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to print a copy of pending payments" style="background-color:teal; margin-right:10px"><i class="medium mdi-action-print" style="margin-right:15px;"></i>Print a copy</a>
-										<a href="" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to clear all fields" style="background-color:teal"><i class="medium mdi-editor-format-clear" style="margin-right:15px;"></i>Clear view</a>
+										<a href="{{URL::to('/transaction/billing-payment')}}" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to clear all fields" style="background-color:teal"><i class="medium mdi-editor-format-clear" style="margin-right:15px;"></i>Clear view</a>
 										<a href="{{URL::to('/transaction/billing-payment-bill-customer')}}" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to proceeed to billing process" style="background-color:teal"><i class="medium mdi-action-payment" style="margin-right:15px;"></i>Bill Customer</a>
 									</div>
 

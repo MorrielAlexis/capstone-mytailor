@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Session;
 use DB;
 use App\Payment;
 use App\Http\Requests;
@@ -46,11 +47,13 @@ class BillingPaymentController extends Controller
                     ->where(\DB::raw('CONCAT(b.strIndivFName, " ", b.strIndivMName, " ", b.strIndivLName)'), $search_query)
                     ->get();
 
+
         return view('transaction-billingpayment')
                 ->with('customers', $customers)
                 ->with('types', $types)
                 ->with('payments', $payments);
     }
+
 
 
     public function billCustomer()
