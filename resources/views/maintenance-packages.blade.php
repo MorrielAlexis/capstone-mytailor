@@ -146,7 +146,8 @@
                     <td>{{ $sets->strSegmentName3 }}</td>
                     <td>{{ $sets->strSegmentName4 }}</td>
                     <td>{{ $sets->strSegmentName5 }}</td>
-                    <td>{{ $sets->dblPackagePrice }}</td>
+                    <td>{{ number_format($sets->dblPackagePrice
+                      , 2) . ' PHP' }}</td>
                     <td> {{ $sets->intPackageMinDays }}</td>
                     <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($sets->strPackageImage)}}"></td>
                     <td>{{ $sets->strPackageDesc }}</td>

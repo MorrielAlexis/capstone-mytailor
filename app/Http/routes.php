@@ -276,9 +276,9 @@ Route::group(['prefix' => 'transaction'], function(){
 		Route::get('alteration-walkin-newcustomer', 'AlterationWalkInController@showCart');
 		Route::post('alteration-walkin-newcustomer', 'AlterationWalkInController@addOrder');
 		Route::get('alteration-walkin-oldcustomer', 'AlterationWalkInController@oldcust');
-		Route::get('alteration-checkout-info', 'AlterationWalkInController@info');
-		Route::get('alteration-checkout-payment', 'AlterationWalkInController@pay');
-		Route::get('alteration-checkout-measurement', 'AlterationWalkInController@measuredetails');
+		Route::get('alteration-checkout-info', 'AlterationWalkInController@checkoutCustInfo');
+		Route::get('alteration-checkout-payment', 'AlterationWalkInController@checkoutPayment');
+		Route::get('alteration-checkout-measurement', 'AlterationWalkInController@checkoutAddMeasurement');
 });
 
 

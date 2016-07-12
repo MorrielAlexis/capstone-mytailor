@@ -41,7 +41,7 @@
                   </div>
                 </div>
 
-                <a id="addPayment" href="{{URL::to('/alteration-checkout-payment')}}" class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-top:20px; margin-left:40px; padding:10px; padding-left:19px; padding-right:19px; padding-bottom:45px; background-color:teal; color:white">Save and Proceed</a>                                
+                <a id="addPayment" href="{{URL::to('transaction/alteration-checkout-payment')}}" class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-top:20px; margin-left:40px; padding:10px; padding-left:19px; padding-right:19px; padding-bottom:45px; background-color:teal; color:white">Save and Proceed</a>                                
                 <a id="cancelTransac" href="#cancel-order" class="btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel transaction and go back to homepage" style="margin-top:30px; margin-left:40px; padding:10px; padding-bottom:45px; background-color:teal; color:white">Cancel Transaction</a>
               </div>
             </div>

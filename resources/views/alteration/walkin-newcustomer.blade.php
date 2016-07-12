@@ -96,6 +96,8 @@
 
                               <!--PROCEED TO CHECKOUT-->
                               <div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
+
+
                                 <h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
                                   
                                     <div class="divider" style="height:2px"></div>
@@ -134,11 +136,12 @@
 
                                     <div class="modal-footer col s12">
                                       <p class="left" style="margin-left:10px; color:gray;">Continue to payment?</p>
-                                      <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Yes</font></a>
+                                      <a href="{{URL::to('transaction/alteration-checkout-info')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Yes</font></a>
                                       <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
                                     </div>
                               </div>
                             {!! Form::open(['url' => 'transaction/alteration-walkin-newcustomer', 'method' => 'POST']) !!}
+
                               <!--CREATE ORDER MODAL-->
                               <div id="create-order" class="modal modal-fixed-footer" style="width:800px;">
                                     <div class="modal-content" style="padding:20px;">

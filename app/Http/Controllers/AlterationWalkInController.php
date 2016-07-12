@@ -88,17 +88,17 @@ class AlterationWalkInController extends Controller
         return view('alteration.walkin-oldcustomer');
     }
 
-    public function info()
+    public function checkoutCustInfo()
     {
         return view('alteration.checkout-info');
     }
 
-    public function pay()
+    public function checkoutPayment()
     {
         return view('alteration.checkout-payment');
     }
 
-    public function measuredetails()
+    public function checkoutAddMeasurement()
     {
         return view('alteration.checkout-measurement');
     }
