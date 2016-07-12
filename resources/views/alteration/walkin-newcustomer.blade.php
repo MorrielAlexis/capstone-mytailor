@@ -34,14 +34,15 @@
                                       </tr>
                                     </thead>
                                     <tbody>
-                                      @foreach($alterations as$i => $alteration)
+                                      @for($i = 0; $i < count($alterations); $i++)
                                       <tr>
-                                        <td>{{ $alteration[$i++] }}</td>
-
+                                        <td>{!! $alterations[$i][0] !!}</td>
+                                        <td>{!! $alterations[$i][1] !!}</td>
+                                        <td>{!! $alterations[$i][2] !!}</td>
                                         <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of garment from table" href="#removeOrder"><i class="mdi-action-delete"></i></a></td>
                                       </tr>
+                                      @endfor
                                     </tbody>
-                                      @endforeach
                                   </table>
                               </div>
 

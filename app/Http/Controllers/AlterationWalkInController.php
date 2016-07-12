@@ -62,16 +62,16 @@ class AlterationWalkInController extends Controller
         $data_alteType = $request->input('alte-type');
         $data_alteDesc = $request->input('alte-desc');
 
-        $values = [];
+        $values;
 
         for($i = 0; $i < count($data_segment); $i++){
-            $values[0][$i] = $data_segment;
-            $values[1][$i] = $data_alteType;
-            $values[2][$i] = $data_alteDesc;
+            $values[$i][0] = $data_segment;
+            $values[$i][1] = $data_alteType;
+            $values[$i][2] = $data_alteDesc;
         }
 
-        $request->session()->push('orders', $values);
-
+        $request->session()->push('orders', $values[0]);
+        var_dump(session()->get('orders'));
         $segment = GarmentSegment::all();
         $alteration = Alteration::all();
 
