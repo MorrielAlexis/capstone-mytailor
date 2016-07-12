@@ -36,41 +36,33 @@ class AlterationWalkInController extends Controller
              
     }
 
-    // public function addOrder(Request $request)
-    // {
-    //     // $alterationTransacs = TransactionAlteration::get();
-    
-    //         $alterationTransac = TransactionAlteration::create(array(
-    //             'strAltTransacSegFK' => $request->input('strAltTransacSegFK'),
-    //             'strAltTransacAltTypeFK' => $request->input('strAltTransacAltTypeFK'),
-    //             'txtAltTransacDesc' => trim($request->input('txtAltTransacDesc'))
-    //             ));
-    //         $values = [];
+    public function newCust()
+    {
+        return view('alteration.walkin-newcustomer');
+    }
 
-    //        $alterationtransac = \DB::table('tblAlterationTransaction AS a')
-    //                 ->leftJoin('tblAlteration AS b', 'a.strAltTransacAltTypeFK', '=', 'b.strAlterationID')
-    //                 ->leftJoin('tblSegment AS c', 'a.strAltTransacSegFK', '=', 'c.strSegmentID')
-    //                 ->select('a.*', 'b.strAlterationName', 'c.strSegmentName') 
-    //                 ->orderBy('a.strAltTransacID')
-    //                 ->get();
+    public function showCart()
+    {       
+            //put return view('aleration.walkin-newcustomer') here.
+            //can't have two routes of different methods calling the same function.
 
-    //         $alteration = Alteration::all();
-    //         $segment = GarmentSegment::all();
+            $alterationtransacs = \DB::table('tblAlterationTransaction AS a')
+                    ->leftJoin('tblAlteration AS b', 'a.strAltTransacAltTypeFK', '=', 'b.strAlterationID')
+                    ->leftJoin('tblSegment AS c', 'a.strAltTransacSegFK', '=', 'c.strSegmentID')
+                    ->select('a.*', 'b.strAlterationName', 'c.strSegmentName') 
+                    ->orderBy('a.strAltTransacID')
+                    ->get();
 
-    //     // $added=$alterationtransacs->save();
+            $segment = GarmentSegment::all();
 
+            $alteration = Alteration::all();
 
-    //     session(['altOrder' => $alterationTransac]);
-
-    //     return view('alteration.walkin-newcustomer')
-    //             ->with('alterationTransac', session()->get('altOrder'))
-    //             ->with('segment', $segment)
-    //             ->with('alteration', $alteration)
-    //             ->with('alterationtransac', $alterationtransac);
-            
-
-       
-    // }
+        return view('alteration.walkin-newcustomer')
+                ->with('segment', $segment)
+                ->with('alteration', $alteration)
+                ->with('alterationtransacs', $alterationtransacs)
+                ->with('alterationtransacs', session()->get('altOrder'));
+    }
 
     public function addOrder(Request $request)
     {
@@ -78,9 +70,10 @@ class AlterationWalkInController extends Controller
         $data_alteType = $request->input('alte-type');
         $data_alteDesc = $request->input('alte-desc');
 
+        // dd($data_segment, $data_alteType, $data_alteDesc);
         $values = [];
 
-        $alterationtransac = \DB::table('tblAlterationTransaction AS a')
+        $alterationtransacs = \DB::table('tblAlterationTransaction AS a')
                     ->leftJoin('tblAlteration AS b', 'a.strAltTransacAltTypeFK', '=', 'b.strAlterationID')
                     ->leftJoin('tblSegment AS c', 'a.strAltTransacSegFK', '=', 'c.strSegmentID')
                     ->select('a.*', 'b.strAlterationName', 'c.strSegmentName') 
@@ -88,18 +81,18 @@ class AlterationWalkInController extends Controller
                     ->get();
 
 
-        session(['altOrder' => $alterationtransac]);   
+        session(['altOrder' => $alterationtransacs]);   
         session(['orders' => $values]);
 
             $segment = GarmentSegment::all();
 
             $alteration = Alteration::all();
 
-        return view('alteration.walkin-newcustomer')
+        return redirect('alteration.walkin-newcustomer')
                 ->with('alterationtransac', session()->get('altOrder'))
                 ->with('segment', $segment)
                 ->with('alteration', $alteration)
-                ->with('alterationtransac', $alterationtransac);
+                ->with('alterationtransacs', $alterationtransacs);
             
     }
 
@@ -124,11 +117,6 @@ class AlterationWalkInController extends Controller
         return view('alteration.checkout-measurement');
     }
 
-
-    // public function newTrans()
-    // {
-    //     return view('transaction-alterationwalkIn-newtransaction');
-    // }
 
     /**
      * Show the form for creating a new resource.
@@ -194,8 +182,9 @@ class AlterationWalkInController extends Controller
     public function destroy($id)
     {
         //
-    }
+    
 
+    }
 
     public function smartCounter($id)
     {   
