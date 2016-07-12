@@ -6,7 +6,7 @@
 	<div class="row">
       <div class="col s12 m12 l12">
         <span class="page-title"><center><h3><b>Welcome to <font color="white">MyTailor</font></b></h3></center></span>
-        <center><h5>Billing and Collection - Collection</h5></center>
+        <center><h5>Payment and Collection - Collection</h5></center>
       </div>
     </div>
 
@@ -55,7 +55,7 @@
 
 						<div class="col s12">
 							<div class="col s6" style="margin-top:25px">
-								<label for="billing-date"><font size="+0.8" color="gray">Billing Date</font></label>
+								<label for="billing-date"><font size="+0.8" color="gray">Payment Date</font></label>
 								<input id="billing-date" type="date" class="datepicker">			
 							</div>
 							<div class="col s6" style="margin-top:25px">

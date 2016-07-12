@@ -174,10 +174,10 @@
                         </li>
                         <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('transaction/orderProgress')}}"><b>Job Order Progress</b></a><li>
                         <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('transaction/materialPurchasing')}}"><b>Material Purchasing</b></a><li>
-                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('transaction/billing-payment') || Request::is('transaction/billing-collection') ? 'active' : '' }}"><b>Billing & Collection</b></a>
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('transaction/billing-payment') || Request::is('transaction/billing-collection') ? 'active' : '' }}"><b>Payment & Collection</b></a>
                             <div class="collapsible-body">
                                 <ul>  
-                                  <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('transaction/billing-payment')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Billing</font></i></a></li>
+                                  <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('transaction/billing-payment')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Payment</font></i></a></li>
                                   <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('transaction/billing-collection')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Collection</font></i></a></li>
                                   <div class="divider"></div>
                                 </ul>

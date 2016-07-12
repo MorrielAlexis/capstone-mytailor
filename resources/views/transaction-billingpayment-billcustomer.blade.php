@@ -6,7 +6,7 @@
 	<div class="row">
       <div class="col s12 m12 l12">
         <span class="page-title"><center><h3><b>Welcome to <font color="white">MyTailor</font></b></h3></center></span>
-        <center><h5>Billing and Collection - Billing</h5></center>
+        <center><h5>Payment and Collection - Payment</h5></center>
       </div>
     </div>
 
@@ -25,7 +25,7 @@
 							<div class="card-content">
 								<div class="row">
 									<div class="col s12">
-										<center><p style="color:gray"><b>MyTailor Store</b> Billing Process - Step 2</p></center>
+										<center><p style="color:gray"><b>MyTailor Store</b> Payment Process - Step 2</p></center>
 										<div class="divider" style="color:gray; height:2px; margin-bottom:20px"></div>
 									</div>
 
@@ -54,7 +54,7 @@
 										<label style="color:teal; margin-top:5px;"><b>Choose a transaction date to bill:</b></label>
 										</div>
 										<div class="col s3">
-											<a href="" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to start billing customer" style="background-color:teal; margin-left:45px; margin-top:20px; padding:20px; padding-top:0px">Begin Billing</a>
+											<a href="" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to start billing customer" style="background-color:teal; margin-left:45px; margin-top:20px; padding:20px; padding-top:0px">Begin Payment</a>
 										</div>
 									</div>
 
@@ -296,7 +296,7 @@
 
 
 					<div class="col hide-on-small-only m3 l2" style="margin-top:60px">
-				    	<a href="{{URL::to('/transaction/billing-payment')}}" class="btn tooltipped" data-position="bottom" data-delay"50" data-tooltip="Click to bill a new customer" style="padding-left:7px; padding-right:7px; background-color:#fb8c00; margin-bottom:30px"><b>Bill New Customer</b></a>
+				    	<a href="{{URL::to('/transaction/billing-payment')}}" class="btn tooltipped" data-position="bottom" data-delay"50" data-tooltip="Click to bill a new customer" style="padding-left:7px; padding-right:7px; background-color:#fb8c00; margin-bottom:30px"><b>New Customer Payment</b></a>
 				    	<a href="{{URL::to('/transaction/billing-collection')}}" class="btn tooltipped" data-position="bottom" data-delay"50" data-tooltip="Click to view collections" style="padding-left:10px; padding-right:10px; background-color:#fb8c00; margin-bottom:30px"><b>View Collections</b></a>
 				    	<a href="" class="btn tooltipped" data-position="bottom" data-delay"50" data-tooltip="Click to check for incoming deadlines" style="padding-left:13.5px; padding-right:13.5px; background-color:#fb8c00"><b>Review Deadlines</b></a>
 				    </div>

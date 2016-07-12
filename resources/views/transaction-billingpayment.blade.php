@@ -6,7 +6,7 @@
 	<div class="row">
       <div class="col s12 m12 l12">
         <span class="page-title"><center><h3><b>Welcome to <font color="white">MyTailor</font></b></h3></center></span>
-        <center><h5>Billing and Collection - Billing</h5></center>
+        <center><h5>Payment and Collection - Payment</h5></center>
       </div>
     </div>
 
@@ -25,7 +25,7 @@
 							<div class="card-content">
 								<div class="row">
 									<div class="col s12">
-										<center><p style="color:gray"><b>MyTailor Store</b> Billing Process - Step 1</p></center>
+										<center><p style="color:gray"><b>MyTailor Store</b> Payment Process - Step 1</p></center>
 										<div class="divider" style="color:gray; height:2px; margin-bottom:20px"></div>
 									</div>
 
@@ -195,7 +195,7 @@
 									<div class="col s12" style="margin-top:30px">
 										<a href="{{URL::to('pdf')}}" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to print a copy of pending payments" style="background-color:teal; margin-right:10px"><i class="medium mdi-action-print" style="margin-right:15px;"></i>Print a copy</a>
 										<a href="{{URL::to('/transaction/billing-payment')}}" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to clear all fields" style="background-color:teal"><i class="medium mdi-editor-format-clear" style="margin-right:15px;"></i>Clear view</a>
-										<a href="{{URL::to('/transaction/billing-payment-bill-customer')}}" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to proceeed to billing process" style="background-color:teal"><i class="medium mdi-action-payment" style="margin-right:15px;"></i>Bill Customer</a>
+										<a href="{{URL::to('/transaction/billing-payment-bill-customer')}}" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to proceeed to billing process" style="background-color:teal"><i class="medium mdi-action-payment" style="margin-right:15px;"></i>Proceed to Payment</a>
 									</div>
 
 
