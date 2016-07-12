@@ -48,7 +48,7 @@
 					        <div class="row margin">
 			          			<div class="input-field col s12">
 			           				<i class="mdi-social-person-outline prefix"></i>
-			           				<input class="" id="email" type="email" name="email">
+			           				<input class="" id="email" type="email" name="email" value="{{ old('email') }}">
 			           				<label for="email" data-error="wrong" data-success="right" class="center-align">Email</label>
 			       				</div>
 		        			</div>
@@ -56,7 +56,7 @@
 						    <div class="row margin">
 			          			<div class="input-field col s9">
 			           				<i class="mdi-action-lock-outline prefix"></i>
-			           				<input id="password" type="password" name="password">
+			           				<input id="password" type="password" name="password" value="{{ old('password') }}">
 		           					<label for="password">Password</label>
 			       				</div>
 			       				<div class="col s3" style="margin-top:14px;">

@@ -30,7 +30,8 @@ class HomeController extends Controller
             }
             
         }else{
-            return redirect('/')->with('flash_message', 'Invalid Credentials.');
+            return redirect('/')->with('flash_message', 'Invalid Credentials.')
+                    ->withInput(Input::except('password'));
         }
     }
 
