@@ -96,3 +96,84 @@ nav{
 	background-color: #b2dfdb;
 	font-size:18px;
 }
+
+<!--For Homepage-->
+
+#gallery {
+	max-width:100%;
+	height:auto;
+}
+
+#gallery img{
+
+	width:75%;
+}
+
+#gallery h2{
+
+	font-family:'Playfair Display','Times'; 
+	position: absolute; 
+	display: inline-block; 
+	margin-top:250px; 
+	padding:20px; 
+	color:white; 
+	background-color:teal;
+}
+
+#gallery p{
+
+	font-size:20px; 
+	padding-left:50px; 
+	padding-right:50px;
+}
+
+#gallery a{
+
+	background-color:#ede7f6;
+	color:teal;
+	font-weight: bold;
+}
+
+<!--For Individual Customer Profile-->
+
+#ind_cust_profile {
+
+	background-color: #ffffff;
+
+} 
+
+#ind_header span{
+
+	font-size:40px; 
+	color: #FFFFFF; 
+	font-family:'Playfair Display','Times';
+}
+
+#ind_header p{
+
+	width:80%;
+	color:#ebebeb;
+}
+
+#head h3{
+
+	color:#757575; 
+	margin-left:15px;
+}
+
+#head span{
+
+	margin:20px; 
+	color:teal
+}
+
+#head a{
+
+	margin-left: 20px;
+}
+
+#details h5{
+
+	color: #757575; 
+	font-family:'Playfair Display','Times';
+}

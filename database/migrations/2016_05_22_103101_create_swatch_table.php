@@ -17,6 +17,7 @@ class CreateSwatchTable extends Migration
             $table->string('strSwatchTypeFK')->index();//fk
             $table->string('strSwatchNameFK')->index();//fk
             $table->string('strSwatchCode');
+            $table->double('dblSwatchPrice');
             $table->string('strSwatchImage')->nullable();
             $table->string('strSwatchInactiveReason')->nullable();
             $table->boolean('boolIsActive');

@@ -119,6 +119,7 @@
               			<th data-field="Swatch Type">Swatch Type</th>
              		  	<th data-field="SwatchName">Swatch Name</th>
                     <th data-field="SwatchCode">Swatch Code</th>
+                    <th data-field="SwatchPrice">Price</th>
               			<th data-field="SwatchImage">Image</th>
                     <th data-field="Edit">Actions</th>
                  	</tr>
@@ -131,6 +132,7 @@
                     <td>{{ $swatch->strFabricTypeName }}</td>
                     <td>{{ $swatch->strSName }}</td>
                     <td>{{ $swatch->strSwatchCode }}</td>
+                    <td>{{ number_format($swatch->dblSwatchPrice, 2) . ' PHP' }}</td>
                     <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($swatch->strSwatchImage)}}"></td>
               		  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit swatch detail" href="#edit{{ $swatch->strSwatchID }}"><i class="mdi-editor-mode-edit"></i></a>
                     <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of swatch from the table" href="#del{{ $swatch->strSwatchID }}"><i class="mdi-action-delete"></i></a></td>
@@ -180,6 +182,15 @@
                                 <input required value="{{$swatch->strSwatchCode}}" id="editSwatchCode" name = "editSwatchCode" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                                 <label for="swatch_code">Swatch Code <span class="red-text"><b>*</b></span></label>
                               </div>
+
+
+                            <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                              <div class="input-field col s12">
+                                <input required value="{{ $swatch->dblSwatchPrice }}" id="editSwatchPrice" name= "editSwatchPrice" type="text" class="validate" pattern="^[1-9]\d{0,7}(?:\.\d{1,4})?|\.\d{1,4}$">
+                                <label for="swatch_name">Starting Price: <span class="red-text"><b>*</b></span></label>
+                              </div>
+                          </div>
+
                         </div>
 
                         <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
@@ -311,6 +322,13 @@
                       <input required id="strSwatchCode" name = "strSwatchCode" type="text" class="validate" pattern="^[a-zA-Z\-'`\d]+(\s[a-zA-Z\-'`\d]+)?">
                       <label for="swatch_code">Swatch Code <span class="red-text"><b>*</b></span></label>
                     </div>
+                </div>
+
+                <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                      <div class="input-field col s12">
+                        <input required id="dblSwatchPrice" name= "dblSwatchPrice" type="text" class="validate" pattern="^[1-9]\d{0,7}(?:\.\d{1,4})?|\.\d{1,4}$" placeholder="Php500.00">
+                        <label for="segment_name">Starting Price: <span class="red-text"><b>*</b></span></label>
+                      </div>
                 </div>
 
                 <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">

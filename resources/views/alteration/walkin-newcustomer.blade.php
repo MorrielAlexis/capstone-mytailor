@@ -34,16 +34,16 @@
                                       </tr>
                                     </thead>
 
-                                    <tbody>
-                                        @foreach($alterationtransac as $alterationtransacs)
+                                    {{-- <tbody>
+                                        @foreach($alterationtransacs as $alterationtransac)
                                       <tr>
-                                        <td>{{ $alterationtransacs->strSegmentName}}</td>
-                                        <td>{{ $alterationtransacs->strAlterationName}}</td>
-                                        <td>{{ $alterationtransacs->txtAltTransacDesc}}</td>
+                                        <td>{{ $alterationtransac->strSegmentName}}</td>
+                                        <td>{{ $alterationtransac->strAlterationName}}</td>
+                                        <td>{{ $alterationtransac->txtAltTransacDesc}}</td>
                                         <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of garment from table" href="#removeOrder"><i class="mdi-action-delete"></i></a></td>
                                       </tr>
                                       @endforeach
-                                    </tbody>
+                                    </tbody> --}}
                                   </table>
                               </div>
 
@@ -100,7 +100,6 @@
                               <div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
                                 <h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
                                   
-                                  {!! Form::open() !!}
                                     <div class="divider" style="height:2px"></div>
                                     <div class="modal-content col s12">
                                       <label>This is a summary of orders:</label>
@@ -140,17 +139,13 @@
                                       <a class="waves-effect waves-green btn-flat" href="{{URL::to('/alteration-checkout-info')}}"><font color="black">Yes</font></a>
                                       <a class="modal-action modal-close waves-effect waves-green btn-flat" href=""><font color="black">No</font></a>
                                     </div>
-                                  {!! Form::close() !!}
                               </div>
-
+                            {!! Form::open(['url' => 'transaction/alteration-walkin-newcustomer', 'method' => 'POST']) !!}
                               <!--CREATE ORDER MODAL-->
                               <div id="create-order" class="modal modal-fixed-footer" style="width:800px;">
                                     <div class="modal-content" style="padding:20px;">
                                         <h5><font color="teal"><center><b>New Order</b></center></font></h5>
                                             <div class="divider container" style="margin-bottom:20px;"></div>
-                                      
-                                          {!! Form::open(['url' => '/alteration-walkin-newcustomer', 'method' => 'post']) !!}
-
                                             {{-- Dropdown for segment option --}}
 
                                              <div class="input-field col s12" style="padding:20px;">
@@ -169,7 +164,7 @@
                                             <div class="input-field col s12" style="padding:20px;">
                                               <select id="alte-type" name="alte-type">
                                                     @foreach($alteration as $alterations)
-                                                      <option value="{{ $alterations->strAlterationID }}" class="{{ $alterations->strAltTransacAltTypeFK }}">{{ $alterations->strAlterationName }}</option>
+                                                      <option value="{{ $alterations->strAlterationID }}">{{ $alterations->strAlterationName }}</option>
                                                     @endforeach
                                               </select>
                                                   <label><font size="3">Choose an alteration type:</font></label>
@@ -187,7 +182,7 @@
                                           <button type="button" class="modal-action modal-close waves-effect waves-green btn-flat left white-text">Cancel</button>
                                         </div>
 
-                                      {!! Form::close() !!}
+                           {!! Form::close() !!}
                                     </div>
                                   </div>
                                 </div>

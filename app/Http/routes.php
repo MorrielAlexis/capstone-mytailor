@@ -146,10 +146,10 @@ Route::group(['prefix' => 'maintenance'], function(){
 });
 
 Route::group(['prefix' => 'maintenance'], function(){
-	Route::resource('packages', 'PackagesController');
+	Route::resource('sets', 'PackagesController');
 
-		Route::post('packages/update','PackagesController@update_package');
-		Route::post('packages/destroy','PackagesController@delete_package');
+		Route::post('sets/update','PackagesController@update_package');
+		Route::post('sets/destroy','PackagesController@delete_package');
 });
 
 Route::group(['prefix' => 'transaction'], function(){
@@ -271,9 +271,8 @@ Route::get('/pdf', 'PdfController@converToPdf');
 /*---------------------------------------ADMIN TRANSACTION ALTERATION--------------------------------------------------*/
 		Route::get('alteration-online-transaction', 'AlterationOnlineController@index');
 		Route::get('alteration-acceptorder', 'AlterationOnlineController@accept');
-
 		Route::get('alteration-walkin-transaction', 'AlterationWalkInController@index');
-		Route::get('alteration-walkin-newcustomer', 'AlterationWalkInController@addOrder');
+		Route::get('alteration-walkin-newcustomer', 'AlterationWalkInController@showCart');
 		Route::post('alteration-walkin-newcustomer', 'AlterationWalkInController@addOrder');
 		Route::get('alteration-walkin-oldcustomer', 'AlterationWalkInController@oldcust');
 		Route::get('alteration-checkout-info', 'AlterationWalkInController@info');

@@ -39,7 +39,7 @@ class PackagesController extends Controller
 
         $segment =  GarmentSegment::all();
 
-        $packages = \DB::table('tblPackages')
+        $sets = \DB::table('tblPackages')
             ->join('tblSegment as tblSegment1', 'tblPackages.strPackageSeg1FK', '=', 'tblSegment1.strSegmentID')
             ->join('tblSegment as tblSegment2', 'tblPackages.strPackageSeg2FK', '=', 'tblSegment2.strSegmentID')
             ->join('tblSegment as tblSegment3', 'tblPackages.strPackageSeg3FK', '=', 'tblSegment3.strSegmentID')
@@ -51,7 +51,7 @@ class PackagesController extends Controller
 
         //load the view and pass the employees
         return view('maintenance-packages')
-                    ->with('packages', $packages)
+                    ->with('sets', $sets)
                     ->with('segment', $segment)
                     ->with('newID', $newID);
                     
@@ -79,7 +79,7 @@ class PackagesController extends Controller
         $destinationPath = 'imgPackages';
 
             if($file == '' || $file == null){
-                $packages = Package::create(array(
+                $sets = Package::create(array(
                  'strPackageID' => $request->input('strPackageID'),
                  'strPackageName' => trim($request->input('strPackageName')),
                  'strPackageSeg1FK' => $request->input('strPackageSeg1FK'),
@@ -95,7 +95,7 @@ class PackagesController extends Controller
             }else{
                 $request->file('addImg')->move($destinationPath, $file);
 
-                $packages = Package::create(array(
+                $sets = Package::create(array(
                 'strPackageID' => $request->input('addPackageID'),
                 'strPackageName' => trim($request->input('addPackageName')),
                 'strPackageSeg1FK' => $request->input('strPackageSeg1FK'),
@@ -111,11 +111,11 @@ class PackagesController extends Controller
                 )); 
                 }
 
-            $packages->save();
+            $sets->save();
 
-             \Session::flash('flash_message','Package successfully created.'); //flash message
+             \Session::flash('flash_message','Set successfully created.'); //flash message
             
-            return redirect('/maintenance/packages');
+            return redirect('/maintenance/sets');
 
     }
 
@@ -166,58 +166,58 @@ class PackagesController extends Controller
 
     function update_package(Request $request)
     {
-         $packages = Package::find($request->input('editPackageID'));
+         $sets = Package::find($request->input('editPackageID'));
 
         $file = $request->input('editImage');
         $destinationPath = 'imgPackages';
 
-                if($file == $packages->strPackageImage)
+                if($file == $sets->strPackageImage)
                 {
-                    $packages->strPackageName = trim($request->input('editPackageName'));
-                    $packages->strPackageSeg1FK = $request->input('editSegment1');
-                    $packages->strPackageSeg2FK = $request->input('editSegment2');
-                    $packages->strPackageSeg3FK = $request->input('editSegment3');
-                    $packages->strPackageSeg4FK = $request->input('editSegment4');
-                    $packages->strPackageSeg5FK = $request->input('editSegment5');
-                    $packages->dblPackagePrice = trim($request->input('editPackagePrice'));
-                    $packages->intPackageMinDays = trim($request->input('editPackageMinDays'));
-                    $packages->strPackageDesc = trim($request->input('editPackageDesc'));
+                    $sets->strPackageName = trim($request->input('editPackageName'));
+                    $sets->strPackageSeg1FK = $request->input('editSegment1');
+                    $sets->strPackageSeg2FK = $request->input('editSegment2');
+                    $sets->strPackageSeg3FK = $request->input('editSegment3');
+                    $sets->strPackageSeg4FK = $request->input('editSegment4');
+                    $sets->strPackageSeg5FK = $request->input('editSegment5');
+                    $sets->dblPackagePrice = trim($request->input('editPackagePrice'));
+                    $sets->intPackageMinDays = trim($request->input('editPackageMinDays'));
+                    $sets->strPackageDesc = trim($request->input('editPackageDesc'));
                     
                 }else{
                     $request->file('editImg')->move($destinationPath);
 
-                    $packages->strPackageName = trim($request->input('editPackageName'));
-                    $packages->strPackageSeg1FK = $request->input('editSegment1');
-                    $packages->strPackageSeg2FK = $request->input('editSegment2');
-                    $packages->strPackageSeg3FK = $request->input('editSegment3');
-                    $packages->strPackageSeg4FK = $request->input('editSegment4');
-                    $packages->strPackageSeg5FK = $request->input('editSegment5');
-                    $packages->dblPackagePrice = trim($request->input('editPackagePrice'));
-                    $packages->intPackageMinDays = trim($request->input('editPackageMinDays'));
-                    $packages->strPackageDesc = trim($request->input('editPackageDesc'));
-                    $packages->strPackageImage = 'imgPackages/'.$file;
+                    $sets->strPackageName = trim($request->input('editPackageName'));
+                    $sets->strPackageSeg1FK = $request->input('editSegment1');
+                    $sets->strPackageSeg2FK = $request->input('editSegment2');
+                    $sets->strPackageSeg3FK = $request->input('editSegment3');
+                    $sets->strPackageSeg4FK = $request->input('editSegment4');
+                    $sets->strPackageSeg5FK = $request->input('editSegment5');
+                    $sets->dblPackagePrice = trim($request->input('editPackagePrice'));
+                    $sets->intPackageMinDays = trim($request->input('editPackageMinDays'));
+                    $sets->strPackageDesc = trim($request->input('editPackageDesc'));
+                    $sets->strPackageImage = 'imgPackages/'.$file;
                 }           
 
-                $packages->save();
+                $sets->save();
 
-            \Session::flash('flash_message_update','Package successfully updated.'); //flash message      
+            \Session::flash('flash_message_update','Set was successfully updated.'); //flash message      
 
             
-            return redirect('maintenance/packages');
+            return redirect('maintenance/sets');
     }
 
     function delete_package(Request $request)
     {
-        $packages = Package::find($request->input('delPackageID'));
+        $sets = Package::find($request->input('delPackageID'));
 
-        $packages->strPackageInactiveReason = trim($request->input('delInactivePackage'));
-        $packages->boolIsActive = 0;
-        $packages->save();
+        $sets->strPackageInactiveReason = trim($request->input('delInactivePackage'));
+        $sets->boolIsActive = 0;
+        $sets->save();
 
 
-       \Session::flash('flash_message_delete','Package was successfully deactivated.'); //flash message
+       \Session::flash('flash_message_delete','Set was successfully deactivated.'); //flash message
 
-        return redirect('maintenance/packages');
+        return redirect('maintenance/sets');
     }
 
     public function smartCounter($id)
