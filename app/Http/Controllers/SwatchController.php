@@ -84,6 +84,7 @@ class SwatchController extends Controller
                 'strSwatchTypeFK' => $request->input('strSwatchTypeFK'),
                 'strSwatchNameFK' => $request->input('strSwatchNameFK'),
                 'strSwatchCode' => trim($request->input('addSwatchCode')),
+                'dblSwatchPrice' => trim($request->input('dblSwatchPrice')),
                 'boolIsActive' => 1
                 ));     
                 }else{
@@ -94,6 +95,7 @@ class SwatchController extends Controller
                         'strSwatchTypeFK' => $request->input('strSwatchTypeFK'),
                         'strSwatchNameFK' => $request->input('strSwatchNameFK'),
                         'strSwatchCode' => trim($request->input('strSwatchCode')),
+                        'dblSwatchPrice' => trim($request->input('dblSwatchPrice')),
                         'strSwatchImage' => 'imgSwatches/'.$file,
                         'boolIsActive' => 1
                     )); 
@@ -163,12 +165,14 @@ class SwatchController extends Controller
                     $swatch->strSwatchTypeFK = $request->input('editFabric');
                     $swatch->strSwatchNameFK = $request->input('editSwatchName');
                     $swatch->strSwatchCode = trim($request->input('editSwatchCode'));
+                    $swatch->dblSwatchPrice = trim($request->input('editSwatchPrice'));
                 }else{
                     $request->file('editImg')->move($destinationPath);
 
                     $swatch->strSwatchTypeFK = $request->input('editFabric');
                     $swatch->strSwatchNameFK = $request->input('editSwatchName');
                     $swatch->strSwatchCode = trim($request->input('editSwatchCode'));
+                    $swatch->dblSwatchPrice = trim($request->input('editSwatchPrice'));
                     $swatch->strSegPImage = 'imgSwatches/'.$file;
                 }        
 

@@ -13,6 +13,7 @@ class Swatch extends Model
 								'strSwatchTypeFK',
 								'strSwatchNameFK',
 								'strSwatchCode',
+								'dblSwatchPrice',
 								'strSwatchImage',
 								'strSwatchInactiveReason',
 								'boolIsActive'
