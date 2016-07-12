@@ -31,7 +31,7 @@
           </div>
         </div>
         <div class="col s12 container" style="margin-top:-40px;">
-          <a class='dropdown-button btn btn-flat waves-effect waves-light profile-btn white-txt' href="#!" style="background-color: #C8E6C9;" data-activates='profile-dropdown'>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</a>
+          <a class='dropdown-button btn btn-flat waves-effect waves-light profile-btn black-txt' href="#!" style="background-color: #C8E6C9;" data-activates='profile-dropdown'>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</a>
           @endif
           <ul id="profile-dropdown" class="dropdown-content">
             <li><a href="#!"><i class="mdi-action-face-unlock" style="font-size:16px; margin-top:20px;margin-left:0px;"> Profile</i></a></li>
