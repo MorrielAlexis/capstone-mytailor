@@ -15,7 +15,6 @@ use App\Alteration;
 use App\TransactionAlteration;
 
 
-
 class AlterationWalkInController extends Controller
 {
     /**
@@ -58,20 +57,30 @@ class AlterationWalkInController extends Controller
 
     public function addOrder(Request $request)
     {
-        $data_segment = $request->input('alte-segment');
-        $data_alteType = $request->input('alte-type');
-        $data_alteDesc = $request->input('alte-desc');
+        $segment = $request->input('alte-segment');
+        $alteType = $request->input('alte-type');
+        $alteDesc = $request->input('alte-desc');
+        
+        $data_segment = \DB::table('tblSegment')
+                    ->select('strSegmentName')
+                    ->where('strSegmentID', $segment)
+                    ->pluck('segment');
+
+        $data_alteType = \DB::table('tblAlteration')
+                    ->select('strAlterationName')
+                    ->where('strAlterationID', $alteType)
+                    ->pluck('alteration');
 
         $values;
 
         for($i = 0; $i < count($data_segment); $i++){
             $values[$i][0] = $data_segment;
             $values[$i][1] = $data_alteType;
-            $values[$i][2] = $data_alteDesc;
+            $values[$i][2] = $alteDesc;
         }
 
         $request->session()->push('orders', $values[0]);
-        var_dump(session()->get('orders'));
+
         $segment = GarmentSegment::all();
         $alteration = Alteration::all();
 
