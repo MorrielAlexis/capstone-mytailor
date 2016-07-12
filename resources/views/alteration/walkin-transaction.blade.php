@@ -16,11 +16,11 @@
 
       <div class="col s12" style="padding:40px; margin-top:30px;">
         <div class="col s6">
-          <center><div><a class="btn waves-effect waves-teal container" href="{{URL::to('/alteration-walkin-newcustomer')}}" style="height:100px; padding:10px;"><font size="+5">NEW CUSTOMER</font></a></div></center>
+          <center><div><a class="btn waves-effect waves-teal container" href="{{URL::to('transaction/alteration-walkin-newcustomer')}}" style="height:100px; padding:10px;"><font size="+5">NEW CUSTOMER</font></a></div></center>
         </div>
 
         <div class="col s6">
-          <center><div><a class="btn waves-effect waves-teal container" href="{{URL::to('/alteration-walkin-oldcustomer')}}" style="height:100px; padding:10px;"><font size="+5">OLD CUSTOMER</font></a></div></center>
+          <center><div><a class="btn waves-effect waves-teal container" href="{{URL::to('transaction/alteration-walkin-oldcustomer')}}" style="height:100px; padding:10px;"><font size="+5">OLD CUSTOMER</font></a></div></center>
         </div>
       </div>
 

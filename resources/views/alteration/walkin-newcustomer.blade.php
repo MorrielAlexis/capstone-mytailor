@@ -30,27 +30,24 @@
                                           <th>Segment</th>
                                           <th>Alteration Type</th>
                                           <th>Description</th>
-                                          <th></th>
+                                          <th>Remove Order</th>
                                       </tr>
                                     </thead>
-
-                                    {{-- <tbody>
-                                        @foreach($alterationtransacs as $alterationtransac)
+                                    <tbody>
+                                      @foreach($alterations as$i => $alteration)
                                       <tr>
-                                        <td>{{ $alterationtransac->strSegmentName}}</td>
-                                        <td>{{ $alterationtransac->strAlterationName}}</td>
-                                        <td>{{ $alterationtransac->txtAltTransacDesc}}</td>
+                                        <td>{{ $alteration[$i++] }}</td>
+
                                         <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of garment from table" href="#removeOrder"><i class="mdi-action-delete"></i></a></td>
                                       </tr>
+                                    </tbody>
                                       @endforeach
-                                    </tbody> --}}
                                   </table>
                               </div>
 
                               <div class="row" style="padding:20px;">
                                   <a href="#summary-of-order" class="teal right modal-trigger btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save transaction and proceed to checkout">CHECKOUT</a>   
                               </div>
-
                     </div>
                   </div>
               </div>
@@ -116,9 +113,9 @@
                                                   <tbody>
                                                      {{--  @foreach($alterations as $alteration_1) --}}
                                                   <tr>
-                                                     <td><i id = selectedSegment></i></td>
-                                                      <td><i id = selectedType></i></td>                           {{-- <td> {{ number_format($alteration_1->dblAlterationPrice, 2) }} PHP</td> --}}
-                                                     <!--<td> </td>-->
+                                                    <td><i id = "selectedSegment"></i></td>
+                                                    <td><i id = "selectedType"></i></td>                           
+                                                    <td> </td>
                                                   </tr>
                                                 {{--     @endforeach --}}
                                                   </tbody>
@@ -136,8 +133,8 @@
 
                                     <div class="modal-footer col s12">
                                       <p class="left" style="margin-left:10px; color:gray;">Continue to payment?</p>
-                                      <a class="waves-effect waves-green btn-flat" href="{{URL::to('/alteration-checkout-info')}}"><font color="black">Yes</font></a>
-                                      <a class="modal-action modal-close waves-effect waves-green btn-flat" href=""><font color="black">No</font></a>
+                                      <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Yes</font></a>
+                                      <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
                                     </div>
                               </div>
                             {!! Form::open(['url' => 'transaction/alteration-walkin-newcustomer', 'method' => 'POST']) !!}
@@ -150,9 +147,9 @@
 
                                              <div class="input-field col s12" style="padding:20px;">
                                                   <select id = "alte-segment" name = "alte-segment">
-                                                      @foreach($segment as $segments)
-                                                          @if($segments->boolIsActive == 1)
-                                                            <option value="{{ $segments->strSegmentID }}" class="{{ $segments->strAltTransacSegFK }}">{{ $segments->strSegmentName }}</option>
+                                                      @foreach($segments as $segment)
+                                                          @if($segment->boolIsActive == 1)
+                                                            <option value="{{ $segment->strSegmentID }}" class="{{ $segment->strAltTransacSegFK }}">{{ $segment->strSegmentName }}</option>
                                                           @endif
                                                         @endforeach
                                                   </select>
@@ -163,8 +160,8 @@
 
                                             <div class="input-field col s12" style="padding:20px;">
                                               <select id="alte-type" name="alte-type">
-                                                    @foreach($alteration as $alterations)
-                                                      <option value="{{ $alterations->strAlterationID }}">{{ $alterations->strAlterationName }}</option>
+                                                    @foreach($alte_types as $alte_type)
+                                                      <option value="{{ $alte_type->strAlterationID }}">{{ $alte_type->strAlterationName }}</option>
                                                     @endforeach
                                               </select>
                                                   <label><font size="3">Choose an alteration type:</font></label>

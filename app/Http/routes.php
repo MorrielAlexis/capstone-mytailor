@@ -269,6 +269,7 @@ Route::group(['prefix' => 'transaction'], function(){
 Route::get('/pdf', 'PdfController@converToPdf');
 
 /*---------------------------------------ADMIN TRANSACTION ALTERATION--------------------------------------------------*/
+Route::group(['prefix' => 'transaction'], function(){		
 		Route::get('alteration-online-transaction', 'AlterationOnlineController@index');
 		Route::get('alteration-acceptorder', 'AlterationOnlineController@accept');
 		Route::get('alteration-walkin-transaction', 'AlterationWalkInController@index');
@@ -278,7 +279,7 @@ Route::get('/pdf', 'PdfController@converToPdf');
 		Route::get('alteration-checkout-info', 'AlterationWalkInController@info');
 		Route::get('alteration-checkout-payment', 'AlterationWalkInController@pay');
 		Route::get('alteration-checkout-measurement', 'AlterationWalkInController@measuredetails');
-
+});
 
 
 /*---------------------------------------------ONLINE---------------------------------------------------*/

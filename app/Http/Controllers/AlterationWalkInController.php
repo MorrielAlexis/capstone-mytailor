@@ -43,25 +43,17 @@ class AlterationWalkInController extends Controller
 
     public function showCart()
     {       
-            //put return view('aleration.walkin-newcustomer') here.
-            //can't have two routes of different methods calling the same function.
+        $segment = GarmentSegment::all();
+        $alteration = Alteration::all();
 
-            $alterationtransacs = \DB::table('tblAlterationTransaction AS a')
-                    ->leftJoin('tblAlteration AS b', 'a.strAltTransacAltTypeFK', '=', 'b.strAlterationID')
-                    ->leftJoin('tblSegment AS c', 'a.strAltTransacSegFK', '=', 'c.strSegmentID')
-                    ->select('a.*', 'b.strAlterationName', 'c.strSegmentName') 
-                    ->orderBy('a.strAltTransacID')
-                    ->get();
-
-            $segment = GarmentSegment::all();
-
-            $alteration = Alteration::all();
+        $values = [];
+    
+        session(['orders' => $values]);
 
         return view('alteration.walkin-newcustomer')
-                ->with('segment', $segment)
-                ->with('alteration', $alteration)
-                ->with('alterationtransacs', $alterationtransacs)
-                ->with('alterationtransacs', session()->get('altOrder'));
+                ->with('segments', $segment)
+                ->with('alte_types', $alteration)
+                ->with('alterations', session()->get('orders'));
     }
 
     public function addOrder(Request $request)
@@ -70,29 +62,23 @@ class AlterationWalkInController extends Controller
         $data_alteType = $request->input('alte-type');
         $data_alteDesc = $request->input('alte-desc');
 
-        // dd($data_segment, $data_alteType, $data_alteDesc);
         $values = [];
 
-        $alterationtransacs = \DB::table('tblAlterationTransaction AS a')
-                    ->leftJoin('tblAlteration AS b', 'a.strAltTransacAltTypeFK', '=', 'b.strAlterationID')
-                    ->leftJoin('tblSegment AS c', 'a.strAltTransacSegFK', '=', 'c.strSegmentID')
-                    ->select('a.*', 'b.strAlterationName', 'c.strSegmentName') 
-                    ->orderBy('a.strAltTransacID')
-                    ->get();
+        for($i = 0; $i < count($data_segment); $i++){
+            $values[0][$i] = $data_segment;
+            $values[1][$i] = $data_alteType;
+            $values[2][$i] = $data_alteDesc;
+        }
 
+        $request->session()->push('orders', $values);
 
-        session(['altOrder' => $alterationtransacs]);   
-        session(['orders' => $values]);
+        $segment = GarmentSegment::all();
+        $alteration = Alteration::all();
 
-            $segment = GarmentSegment::all();
-
-            $alteration = Alteration::all();
-
-        return redirect('alteration.walkin-newcustomer')
-                ->with('alterationtransac', session()->get('altOrder'))
-                ->with('segment', $segment)
-                ->with('alteration', $alteration)
-                ->with('alterationtransacs', $alterationtransacs);
+        return view('alteration.walkin-newcustomer')
+                ->with('segments', $segment)
+                ->with('alte_types', $alteration)
+                ->with('alterations', session()->get('orders'));
             
     }
 
