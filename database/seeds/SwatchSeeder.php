@@ -20,6 +20,7 @@ class SwatchSeeder extends Seeder
                 'strSwatchTypeFK' => 'FAB001',
                 'strSwatchNameFK' =>'SWNAM0001',
                 'strSwatchCode' =>'LINK01',
+                'dblSwatchPrice' => '100.00',
                 'strSwatchImage' => '',
                 'boolIsActive' => '1'
             ),
@@ -29,6 +30,7 @@ class SwatchSeeder extends Seeder
                 'strSwatchTypeFK' => 'FAB002',
                 'strSwatchNameFK' =>'SWNAM0002',
                 'strSwatchCode' =>'CKJK01',
+                 'dblSwatchPrice' => '200.00',
                 'strSwatchImage' => '',
                 'boolIsActive' => '1'
             )

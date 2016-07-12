@@ -146,10 +146,10 @@ Route::group(['prefix' => 'maintenance'], function(){
 });
 
 Route::group(['prefix' => 'maintenance'], function(){
-	Route::resource('packages', 'PackagesController');
+	Route::resource('sets', 'PackagesController');
 
-		Route::post('packages/update','PackagesController@update_package');
-		Route::post('packages/destroy','PackagesController@delete_package');
+		Route::post('sets/update','PackagesController@update_package');
+		Route::post('sets/destroy','PackagesController@delete_package');
 });
 
 Route::group(['prefix' => 'transaction'], function(){
