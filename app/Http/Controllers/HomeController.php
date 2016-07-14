@@ -43,4 +43,14 @@ class HomeController extends Controller
             return redirect('/');
         }
     }
+
+    public function indiv()
+    {
+        return view('signup-individual');
+    }
+
+    public function comp()
+    {
+        return view('signup-company');
+    }
 }

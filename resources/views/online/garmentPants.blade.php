@@ -4,10 +4,10 @@
 
 	<div class="section">	
 
-		<div id="femaleuniform" style="height:500px; margin-top: -15px;">
+		<div id="maleuniform" style="height:500px; margin-top: -15px;">
 	  		<div style="height:70px"></div>
-	  		<center><h1 style="color:white; font-family:'Playfair Display','Times';">Custom tailored uniforms</h1></center>
-	  		<center><a style="margin-top:45px; padding-top:15px; padding-left:5px; padding-right:5px; width:250px; height:70px; background:rgb(236, 59, 65);" class="white-text modal-trigger waves-effect waves-light btn btn-small center-text" href="{{URL::to('/customize-womens')}}"><font size="+1">CUSTOMIZE YOURS NOW!</font></a></center>
+	  		<center><h1 style="color:white; font-family:'Playfair Display','Times';">Custom tailored pants</h1></center>
+	  		<center><a style="margin-top:45px; padding-top:15px; padding-left:5px; padding-right:5px; width:250px; height:70px; background:rgb(236, 59, 65);" class="white-text modal-trigger waves-effect waves-light btn btn-small center-text" href="{{URL::to('/customize-pants')}}"><font size="+1">CUSTOMIZE YOURS NOW!</font></a></center>
 		</div>
 
 		<div style= "height:20px;"></div>
@@ -18,23 +18,23 @@
 
 				<div class="col s4 center" style="padding:20px;">
                     <figure>
-                        <img class = "responsive-img" src="imgOnlineUniform/female-uniform-pants.jpg">
-                        <figcaption style="background-color:#ede7f6">Price starts at Php 2000.00</figcaption>
-                    </figure>		            
-				</div>
-
-				<div class="col s4 center" style="padding:20px;">
-                    <figure>
-                        <img class = "responsive-img" src="imgOnlineUniform/female-uniform-skirt.jpg">
-                        <figcaption style="background-color:#ede7f6">Price starts at Php 2000.00</figcaption>
-                    </figure>			            
-				</div>
-
-				<div class="col s4 center" style="padding:20px;">
-                    <figure>
-                        <img class = "responsive-img" src="imgOnlineUniform/female-uniform-plain.jpg">
+                        <img class = "responsive-img" src="imgOnlineUniform/male-uniform-pants-plain.jpg">
                         <figcaption style="background-color:#ede7f6">Price starts at Php 2000.00</figcaption>
                     </figure>		
+				</div>
+
+				<div class="col s4 center" style="padding:20px;">
+                    <figure>
+                        <img class = "responsive-img" src="imgOnlineUniform/male-uniform-shorts-plain.jpg">
+                        <figcaption style="background-color:#ede7f6">Price starts at Php 2000.00</figcaption>
+                    </figure>	
+				</div>
+
+				<div class="col s4 center" style="padding:20px;">
+                    <figure>
+                        <img class = "responsive-img" src="imgOnlineUniform/male-uniform-plain.jpg">
+                        <figcaption style="background-color:#ede7f6">Price starts at Php 2000.00</figcaption>
+                    </figure>	
 				</div>
 
 			</div>

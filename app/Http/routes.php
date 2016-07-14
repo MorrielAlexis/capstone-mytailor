@@ -19,6 +19,9 @@ Route::get('/', 'HomeController@showWelcome');
 Route::post('/login', 'HomeController@LogIn');
 Route::get('/logout', 'HomeController@LogOut');
 
+Route::get('/signup-individual', 'HomeController@indiv');
+Route::get('/signup-company', 'HomeController@comp');
+
 Route::get('/dashboard', 'DashboardController@dash');
 
 
@@ -237,6 +240,8 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::post('walkin-individual-payment-customer-info', 'WalkInIndividualController@information');
 	Route::post('walkin-individual-remove-item', 'WalkInIndividualController@removeItem');
 
+	Route::get('walkin-individual-show-customize-orders', 'WalkInIndividualController@showCustomizeOrder');
+
 	Route::get('walkin-individual-catalogue-designs', 'WalkInIndividualController@catalogueDesign');
 	Route::get('walkin-individual-payment-payment-info', 'WalkInIndividualController@payment');
 	Route::get('walkin-individual-payment-measure-detail', 'WalkInIndividualController@measurement');
@@ -274,7 +279,9 @@ Route::group(['prefix' => 'transaction'], function(){
 		Route::get('alteration-acceptorder', 'AlterationOnlineController@accept');
 		Route::get('alteration-walkin-transaction', 'AlterationWalkInController@index');
 		Route::get('alteration-walkin-newcustomer', 'AlterationWalkInController@showCart');
-		Route::post('alteration-walkin-newcustomer', 'AlterationWalkInController@addOrder');
+		Route::post('alteration-walkin-newcustomer', 'AlterationWalkInController@addValues');
+		Route::post('alteration-walkin-newcustomer-delete', 'AlterationWalkInController@deleteOrder');
+		Route::get('alteration-walkin-newcustomer-update', 'AlterationWalkInController@updateCart');
 		Route::get('alteration-walkin-oldcustomer', 'AlterationWalkInController@oldcust');
 		Route::get('alteration-checkout-info', 'AlterationWalkInController@checkoutCustInfo');
 		Route::get('alteration-checkout-payment', 'AlterationWalkInController@checkoutPayment');
@@ -299,6 +306,9 @@ Route::resource('online-garment-gown', 'OnlineGarmentGownController',
 		['only' => ['index']]);
 
 Route::resource('online-garment-suit', 'OnlineGarmentSuitController',
+		['only' => ['index']]);
+
+Route::resource('online-garment-pants', 'OnlineGarmentPantsController',
 		['only' => ['index']]);
 
 Route::get('online-garment-uniform-male', 'OnlineGarmentUniformController@male');
@@ -353,3 +363,11 @@ Route::resource('online-women-shirt-tutorial', 'OnlineWomenShirtTutorialControll
 	Route::get('customerprofile-company-order-details', 'OnlineCustomerProfileCompanyController@order');
 	Route::get('customerprofile-company-order-tracking', 'OnlineCustomerProfileCompanyController@tracking');
 	Route::get('customerprofile-company-payment-history', 'OnlineCustomerProfileCompanyController@pay');
+
+/*-------------------------------------------ONLINE CUSTOMIZE GARMENTS---------------------------------------------------*/
+
+	Route::get('customize-suit', 'OnlineCustomizeController@suit');
+	Route::get('customize-gown', 'OnlineCustomizeController@gown');
+	Route::get('customize-mens', 'OnlineCustomizeController@mens');
+	Route::get('customize-womens', 'OnlineCustomizeController@womens');
+	Route::get('customize-pants', 'OnlineCustomizeController@pants');

@@ -46,16 +46,20 @@ class AlterationWalkInController extends Controller
         $alteration = Alteration::all();
 
         $values = [];
-    
+        $totalDays = 0;
+        $totalPrice = 0.00;
+
         session(['orders' => $values]);
 
         return view('alteration.walkin-newcustomer')
                 ->with('segments', $segment)
                 ->with('alte_types', $alteration)
-                ->with('alterations', session()->get('orders'));
+                ->with('alterations', session()->get('orders'))
+                ->with('total_days', $totalDays)
+                ->with('total_price', $totalPrice);
     }
 
-    public function addOrder(Request $request)
+    public function addValues(Request $request)
     {
         $segment = $request->input('alte-segment');
         $alteType = $request->input('alte-type');
@@ -71,26 +75,67 @@ class AlterationWalkInController extends Controller
                     ->where('strAlterationID', $alteType)
                     ->pluck('alteration');
 
+        $alte_price = \DB::table('tblAlteration')
+                    ->select('dblAlterationPrice')
+                    ->where('strAlterationID', $alteType)
+                    ->pluck('alteration_price');
+
+        $alte_days = \DB::table('tblAlteration')
+                    ->select('intAlterationMinDays')
+                    ->where('strAlterationID', $alteType)
+                    ->pluck('alteration_days');
+
         $values;
 
         for($i = 0; $i < count($data_segment); $i++){
             $values[$i][0] = $data_segment;
             $values[$i][1] = $data_alteType;
             $values[$i][2] = $alteDesc;
+            $values[$i][3] = $alte_price;
+            $values[$i][4] = $alte_days;
         }
 
         $request->session()->push('orders', $values[0]);
 
+        return redirect('transaction/alteration-walkin-newcustomer-update');
+    }
+
+    public function updateCart()
+    {
         $segment = GarmentSegment::all();
         $alteration = Alteration::all();
+
+        $values = session()->get('orders');
+        $totalPrice = 0.00;
+        $totalDays = 0;
+
+        for($i = 0; $i < count($values); $i++){
+            $totalPrice += $values[$i][3];
+            $totalDays  += $values[$i][4];
+        }
 
         return view('alteration.walkin-newcustomer')
                 ->with('segments', $segment)
                 ->with('alte_types', $alteration)
-                ->with('alterations', session()->get('orders'));
+                ->with('alterations', $values)
+                ->with('total_price', $totalPrice)
+                ->with('total_days', $totalDays);
             
     }
 
+    public function deleteOrder(Request $request)
+    {
+        $to_be_deleted = ((int)$request->input('delete-item-id'));
+        $values = session()->get('orders');
+
+        unset($values[$to_be_deleted]);
+        $values = array_slice($values, 0);
+
+        session()->forget('orders');
+        session(['orders' => $values]);
+
+        return redirect('transaction/alteration-walkin-newcustomer-update');
+    }
 
     public function oldcust()
     {
@@ -102,7 +147,7 @@ class AlterationWalkInController extends Controller
         return view('alteration.checkout-info');
     }
 
-    public function checkoutPayment()
+    public function checkoutPayment()   
     {
         return view('alteration.checkout-payment');
     }

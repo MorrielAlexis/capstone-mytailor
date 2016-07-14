@@ -12,7 +12,7 @@
 
       <style>
         body{
-          background: url('img/gradient.jpg');
+          background: #C8E6C9;
           background-size: cover;
         }
         nav{
@@ -32,7 +32,7 @@
     <body>
 
       <nav>
-        <div class="navbar teal">
+        <div class="navbar" style="background:#009688;">
           <nav style="height:40px">
             <div class="nav-wrapper">
               <img src="../imgOnline/logo.jpg"  alt="" class="circle responsive-img valign profile-image center" style="height:90px; width:100px; margin-top:5px; margin-left:30px;">
@@ -78,8 +78,10 @@
                   <ul id="downdown" class="dropdown-content">
                     <li><a href="{{URL::to('/online-garment-suit')}}">SUITS</a></li>
                     <li><a href="{{URL::to('/online-garment-gown')}}">GOWNS</a></li>
-                    <li><a href="{{URL::to('/online-garment-uniform-male')}}">UNIFORMS for MALE</a></li>
-                    <li><a href="{{URL::to('/online-garment-uniform-female')}}">UNIFORMS for FEMALE</a></li>
+                    <li><a href="{{URL::to('/online-garment-uniform-male')}}">MEN'S SHIRT</a></li>
+                    <li><a href="{{URL::to('/online-garment-uniform-female')}}">WOMEN'S SHIRT</a></li>
+                    <li><a href="{{URL::to('/online-garment-pants')}}">PANTS</a></li>
+                    <li><a href="{{URL::to('')}}">SETS</a></li>
                   </ul>
                 </li>
                 <li><div class="divider" style="margin-top:20px; width:1px; height:30px;"></div></li>
@@ -91,7 +93,9 @@
                   </ul>
                 </li>
                 <li><div class="divider" style="margin-top:20px; width:1px; height:30px;"></div></li>
-                <li><a class="btn-flat" style="color: white" href="{{URL::to('/online-how-it-works')}}"><b>HOW IT WORKS</b></a></li>                
+                <li><a class="btn-flat" style="color: white" href="{{URL::to('/online-how-it-works')}}"><b>HOW IT WORKS</b></a></li>
+                <li><div class="divider" style="margin-top:20px; width:1px; height:30px;"></div></li>
+                <li><a class="btn-flat" style="color: white" href="{{URL::to('')}}"><b>CATALOGUE</b></a></li>
               </ul>
               <ul id="shoppingcart" class="right" style="margin-right:10px;">
                 <li><a href="{{URL::to('/online-order-now')}}" style="margin:0; padding:0;" class="btn-flat white-text">Shopping Cart</a></li>
@@ -177,7 +181,7 @@
       $(document).ready(function(){
         $('.dropdown-button').dropdown({
           inDuration: 500,
-          outDuration: 300,
+          outDuration: 500,
           constrain_width: false, // Does not change width of dropdown to that of the activator
           hover: true, // Activate on hover
           gutter: 0, // Spacing from edge

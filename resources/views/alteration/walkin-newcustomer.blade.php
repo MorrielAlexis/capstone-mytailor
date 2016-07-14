@@ -39,7 +39,7 @@
                                         <td>{!! $alterations[$i][0] !!}</td>
                                         <td>{!! $alterations[$i][1] !!}</td>
                                         <td>{!! $alterations[$i][2] !!}</td>
-                                        <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of garment from table" href="#removeOrder"><i class="mdi-action-delete"></i></a></td>
+                                        <td><a href="#remove{!! $i !!}" style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order from table"><i class="mdi-action-delete"></i></a></td>
                                       </tr>
                                       @endfor
                                     </tbody>
@@ -49,30 +49,35 @@
                               <div class="row" style="padding:20px;">
                                   <a href="#summary-of-order" class="teal right modal-trigger btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save transaction and proceed to checkout">CHECKOUT</a>   
                               </div>
+                          </div>
+                        </div>
                     </div>
-                  </div>
-              </div>
-          </div>
+                </div>
 
                     <!--Remove Order Modal-->
-                       <div id="removeOrder" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
+                    @for($i = 0; $i < count($alterations); $i++)
+                      {!! Form::open(['url' => 'transaction/alteration-walkin-newcustomer-delete', 'method' => 'post']) !!}
+                        <div id="remove{!! $i !!}" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
                           <h5><font color="red"><center><b>Warning!</b></center></font></h5>
                               <div class="divider" style="height:2px"></div>
                                 <div class="modal-content">
                                   <div class="row">
                                     <div class="col s3">
-                                      <i class="mdi-alert-warning" style="font-size:50px; color:yellow"></i>
+                                      <i class="mdi-alert-warning" style="font-size:50px; color:red"></i>
                                         </div>
+                                          <input type="hidden" value="{!! $i !!}" name="delete-item-id">
                                           <div class="col s9">
-                                           <p><font size="+1">Are you sure you want to remove this order?</font></p>
+                                            <p><font size="+1">Are you sure you want to remove this order?</font></p>
                                          </div>
-                                     </div>
+                                  </div>
                                 </div>
                                 <div class="modal-footer col s12" style="background-color:red; opacity:0.85">
-                                        <button type="submit" class="waves-effect waves-green btn-flat" href="#!"><font color="black">Yes</font></button>
-                                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+                                  <button type="submit" class="waves-effect waves-green btn-flat"><font color="black">Yes</font></button>
+                                  <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
                                 </div>
-                       </div>
+                          </div>
+                        {!! Form::close() !!}
+                      @endfor
 
                         <!--Reset Order Modal-->
                         <div id="resetOrder" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
@@ -96,41 +101,38 @@
 
                               <!--PROCEED TO CHECKOUT-->
                               <div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
-
-
                                 <h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
                                   
                                     <div class="divider" style="height:2px"></div>
                                     <div class="modal-content col s12">
                                       <label>This is a summary of orders:</label>
                                       <div class="container">
-                                                    <table class = "table centered order-summary" border = "1">
-                                              <thead style="color:gray">
-                                                  <tr>      
-                                                      <th data-field="segment">Segment</th>
-                                                      <th data-field="alterationtype">Alteration Type</th>
-                                                      <th data-field="price">Unit Price</th>
-                                                      <!--<th data-field="price">Total Price</th>-->
-                                                    </tr>
-                                                  </thead>
-                                                  <tbody>
-                                                     {{--  @foreach($alterations as $alteration_1) --}}
-                                                  <tr>
-                                                    <td><i id = "selectedSegment"></i></td>
-                                                    <td><i id = "selectedType"></i></td>                           
-                                                    <td> </td>
-                                                  </tr>
-                                                {{--     @endforeach --}}
-                                                  </tbody>
+                                          <table class = "table centered order-summary" border = "1">
+                                              <thead>
+                                                <tr>
+                                                    <th>Segment</th>
+                                                    <th>Alteration Type</th>
+                                                    <th>Unit Price</th>
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                              @for($i = 0; $i < count($alterations); $i++)
+                                                <tr>
+                                                  <td>{!! $alterations[$i][0] !!}</td>
+                                                  <td>{!! $alterations[$i][1] !!}</td>
+                                                  <td>{!! $alterations[$i][3] !!}</td>
+                                                </tr>
+                                              @endfor
+                                              </tbody>
                                           </table>
-                                          </div>
+                                        </div>
 
                                           <div class="divider"></div>
                                           <div class="divider"></div>
 
                                           <div class="col s12" style="margin-bottom:50px" >
-                                        <div class="col s6"><p style="color:gray">Estimated time to finish all orders:<p style="color:black" id="total-time"></p></p></div>
-                                        <div class="col s6"><p style="color:gray">Total Amount to Pay:<p style="color:black" id="total-price"></p></p></div>
+                                        <div class="col s6"><p style="color:gray">Estimated time to finish all orders:    <font color="red" size=+1> {{ $total_days }} days</font><p style="color:black" id="total-time"></p></p></div>
+                                        <div class="col s6"><p style="color:gray">Total Amount to Pay:    <font color="red" size=+1>P{{ number_format($total_price, 2) }}</font><p style="color:black" id="total-price"></p></p></div>
                                       </div>
                                     </div>
 
@@ -253,7 +255,7 @@
         }
       });
     </script>
-
+s
 
 
 
