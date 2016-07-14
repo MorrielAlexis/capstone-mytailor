@@ -101,7 +101,7 @@
 
 				 <div class="row">
 				      <div class="col s12 m12 l12">
-				        <span class="page-title"><h4><center>Thread Maintenance</center></h4></span>
+				        <span class="page-title"><h4>Materials Maintenance - Thread</h4></span>
 				      </div>
 				 </div>
 

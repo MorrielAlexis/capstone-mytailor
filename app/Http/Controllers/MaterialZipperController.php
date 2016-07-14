@@ -68,7 +68,6 @@ class MaterialZipperController extends Controller
                     'intZipperID' => $request->input('intZipperID'),
                     'strZipperBrand' => trim($request->input('strZipperBrand')),
                     'strZipperColor' => trim($request->input('strZipperColor')),
-                    'strZipperSize' => trim($request->input('strZipperSize')),
                     'txtZipperDesc' => trim($request->input('txtZipperDesc')),
                     'boolIsActive' => 1
                     ));
@@ -79,7 +78,6 @@ class MaterialZipperController extends Controller
                     'intZipperipperID' => $request->input('intZipperID'),
                     'strZipperBrand' => trim($request->input('strZipperBrand')),
                     'strZipperColor' => trim($request->input('strZipperColor')),
-                     'strZipperSize' => trim($request->input('strZipperSize')),
                     'txtZipperDesc' => trim($request->input('txtZipperDesc')),
                     'strZipperImage' => 'imgMaterialZippers/'.$file,
                     'boolIsActive' => 1

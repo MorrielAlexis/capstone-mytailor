@@ -26,7 +26,7 @@ class SegmentPatternRequest extends Request
     {
         return [
             'strSegPName' => 'unique_with:tblSegmentPattern,strSegPNameFK',
-            'strSegPImage' => 'image'
+            'addImg' => 'image'
             
         ];
     }
@@ -36,7 +36,7 @@ class SegmentPatternRequest extends Request
         return [
             'strSegPName.unique_with'  =>  'Pattern already exists.',
             // 'strSegPName.required'  =>  'Pattern name is required.',
-            'strSegPImage.image' => 'The file you uploaded is not an image.'
+            'addImg.image' => 'The file you uploaded is not an image.'
             
             
         ];

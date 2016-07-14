@@ -101,6 +101,12 @@
 
 	<div class="main-wrapper"  style="margin-top:30px">
 
+     <div class="row">
+        <div class="col s12 m12 l12">
+        <span class="page-title"><h4>Materials Maintenance - Needle</h4></span>
+        </div>
+     </div>
+
       <div class="row">
         <div class="col s12 m12 l12">
             <a style="color:black; margin-right:35px; margin-left: 20px" class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1"style="color:black"  data-position="bottom" data-delay="50" data-tooltip="Click to add a new needle detail to the table" href="#addNeedle"><i class="large mdi-content-add"></i></a>

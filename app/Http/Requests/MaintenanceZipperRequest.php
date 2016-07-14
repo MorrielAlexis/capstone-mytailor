@@ -25,17 +25,19 @@ class MaintenanceZipperRequest extends Request
      public function rules()
     {
         return [
-            'strZipperBrand'    =>  'required|unique_with:tblZipper,strZipperColor,strZipperSize'
-            // 'editThreadBrand'   =>  'unique:tblThread,strThreadBrand'
+            'strZipperBrand'    =>  'required|unique_with:tblZipper,strZipperColor',
+            'addImg'            => 'image'
+         
         ];
     }
 
     public function messages()
     {
         return [
-            'strZipperBrand.unique'  =>  'Zipper already exists.',
-            'strZipperBrand.required' => 'Zipper name is required.'
-            // 'editThreadBrand.unique'  => 'Thread name already exists.'
+            'strZipperBrand.unique'   =>  'Zipper already exists.',
+            'strZipperBrand.required' => 'Zipper name is required.',
+            'addImg.image'            => 'The file you uploaded is not an image.'  
+            
         ];
 
     }
