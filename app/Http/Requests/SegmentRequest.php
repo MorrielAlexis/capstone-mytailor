@@ -27,7 +27,8 @@ class SegmentRequest extends Request
     {
         return [
             'strSegmentName'    =>  'required|unique_with:tblSegment,strSegCategoryFK',
-            'dblSegmentPrice'   => 'numeric|required'
+            'dblSegmentPrice'   => 'numeric|required',
+            'addImg' =>    'image'
         ];
     }
 
@@ -36,9 +37,10 @@ class SegmentRequest extends Request
         return [
 
             'strSegmentName.unique_with'  =>  'Segment already exists.',
-            'strSegmentName.required'  =>  'Segment name is required.',
+            'strSegmentName.required'     =>  'Segment name is required.',
             'dblSegmentPrice.numeric'     =>  'Invalid price format. Only numbers are allowed.',
-            'dblSegmentPrice.required'     =>  'Segment price is required.'
+            'dblSegmentPrice.required'    =>  'Segment price is required.',
+            'addImg.image'       => 'The file you uploaded is not an image.'
            
            
         ];

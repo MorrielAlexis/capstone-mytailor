@@ -99,8 +99,13 @@
 	<div class="main-wrapper"  style="margin-top:30px">
 
 		      <!--ZIPPERS-->
-      <div id="tabZipper" class="hue col s12" style="margin-top:45px; background-color: #80d8ff;">
-        <div style="height:30px;"></div>
+
+    <div class="row">
+      <div class="col s12 m12 l12">
+      <span class="page-title"><h4>Materials Maintenance - Zipper</h4></span>
+      </div>
+    </div>
+    
 
     <div class="row">
         <div class="col s12 m12 l12">

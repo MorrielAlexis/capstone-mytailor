@@ -14,7 +14,7 @@
 
 			<div class="col s12">
 				<ul class="tabs transparent" style="margin-top:15px">
-					<li class="tab col s12" style="border-top-left-radius: 20px; border-top-right-radius: 20px; background-color: #00b0ff;"><a style="color:black; padding-top:5px; opacity:0.80" href="#shoppingCart"></a></li>	
+					<li class="tab col s12" style="border-top-left-radius: 20px; border-top-right-radius: 20px; background-color: white;"><a style="color:black; padding-top:5px; opacity:0.80" href="#shoppingCart"></a></li>	
 					<div class="indicator white" style="z-index:1"></div>
 	            </ul>
 				<div id="shoppingCart" class="card-panel">
