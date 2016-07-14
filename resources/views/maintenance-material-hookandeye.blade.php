@@ -126,7 +126,7 @@
                       <tr>
                         <!--<th date-field="Hook and Eye ID">Hook and Eye ID</th>-->
                         <th data-field="Hook and Eye Name"> Hook Brand</th>
-                        <th data-field="Hook and Eye s"> Style </th>
+                        <th data-field="Hook and Eyes"> Style </th>
                         <th data-field="Hook and Eye Color"> Hook Color</th>
                         <th data-field="Hook and Eye Desc">Description</th>
                         <th data-field="Image">Image</th>
@@ -141,7 +141,7 @@
                       <tr>
                        <!-- <td>{{$hook->intHookID}}</td>-->
                         <td>{{$hook->strHookBrand}}</td>
-                        <td>{{$hook->strHooks}}</td>
+                        <td>{{$hook->strHookSize}}</td>
                         <td>{{$hook->strHookColor}}</td>
                         <td>{{$hook->textHookDesc}}</td>
                         <td><img class="materialboxed" width="650" src="{{URL::asset($hook->strHookImage)}}"></td>
