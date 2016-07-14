@@ -126,7 +126,7 @@
                       <tr>
                         <!--<th date-field="Hook and Eye ID">Hook and Eye ID</th>-->
                         <th data-field="Hook and Eye Name"> Hook Brand</th>
-                        <th data-field="Hook and Eye Size"> Hook Size</th>
+                        <th data-field="Hook and Eye s"> Style </th>
                         <th data-field="Hook and Eye Color"> Hook Color</th>
                         <th data-field="Hook and Eye Desc">Description</th>
                         <th data-field="Image">Image</th>
@@ -141,7 +141,7 @@
                       <tr>
                        <!-- <td>{{$hook->intHookID}}</td>-->
                         <td>{{$hook->strHookBrand}}</td>
-                        <td>{{$hook->strHookSize}}</td>
+                        <td>{{$hook->strHooks}}</td>
                         <td>{{$hook->strHookColor}}</td>
                         <td>{{$hook->textHookDesc}}</td>
                         <td><img class="materialboxed" width="650" src="{{URL::asset($hook->strHookImage)}}"></td>
@@ -170,8 +170,8 @@
 
                             <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                 <div class="input-field col s6">
-                                  <input id="editHookSize" name = "editHookSize" value = "{{$hook->strHookSize}}" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
-                                  <label for="HookEye_Size"> Hook and Eye Size <span class="red-text"><b>*</b></span></label>
+                                  <input id="editHooks" name = "editHooks" value = "{{$hook->strHooks}}" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
+                                  <label for="HookEye_s"> Hook and Eye Style<span class="red-text"><b>*</b></span></label>
                                 </div>
 
                                 <div class="input-field col s6">
@@ -229,8 +229,8 @@
 
                               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                   <div class="input-field col s6">
-                                    <label for="Hook_Size">Hook and Eye Size </label>
-                                    <input value="{{$hook->strHookSize}}" id="delHookSize" name="delHookSize" type="text" readonly>
+                                    <label for="Hook_s">Hook and Eye Style </label>
+                                    <input value="{{$hook->strHooks}}" id="delHooks" name="delHooks" type="text" readonly>
                                   </div>
 
                                   <div class="input-field col s6">
@@ -305,8 +305,8 @@
 
       <div class = "col s12" style="padding:15px;  border:3px solid white;">
         <div class="input-field col s6">
-          <input required id="strHookSize" name = "strHookSize" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
-          <label for="HookEye_Size"> Hook and Eye Size <span class="red-text"><b>*</b></span></label>
+          <input required id="strHooks" name = "strHooks" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
+          <label for="HookEye_s"> Hook and Eye Style <span class="red-text"><b>*</b></span></label>
         </div>
 
         <div class="input-field col s6">
@@ -377,7 +377,7 @@
         else{input.removeClass("valid").addClass("invalid");}
       }); 
 
-      $('.validateSize').on('input', function() {
+      $('.validates').on('input', function() {
           var input=$(this);
           var $re = /^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$/;
           var is_name=re.test(input.val());
@@ -386,12 +386,12 @@
         });
 
       //Kapag whitespace
-      $('.validateSize').blur('input', function() {
+      $('.validates').blur('input', function() {
         var name = $(this).val();
         $(this).val(name.trim());
       });
 
-      $('.validateSize').blur('input', function() {
+      $('.validates').blur('input', function() {
         var input=$(this);
         var re = /^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$/;
         var is_name=re.test(input.val());

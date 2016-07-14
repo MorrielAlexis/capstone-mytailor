@@ -26,16 +26,16 @@ class MaintenanceHookEyeRequest extends Request
     {
         return [
             'strHookBrand'    =>  'required|unique_with:tblHookEye,strHookColor,strHookSize',
-            // 'editThreadBrand'   =>  'unique:tblThread,strThreadBrand'
+            'addImg'          =>  'image'
         ];
     }
 
     public function messages()
     {
         return [
-            'strHookBrand.unique'  =>  'Hook and eye already exists.',
-            'strHookBrand.required' => 'Hook and eye name is required.'
-            // 'editThreadBrand.unique'  => 'Thread name already exists.'
+            'strHookBrand.unique'   => 'Hook and eye already exists.',
+            'strHookBrand.required' => 'Hook and eye name is required.',
+            'addImg.image'          => 'The file you uploaded is not an image'
         ];
 
     }
