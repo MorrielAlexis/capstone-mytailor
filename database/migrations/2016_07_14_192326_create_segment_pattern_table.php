@@ -14,15 +14,16 @@ class CreateSegmentpatternTable extends Migration
     {
         Schema::create('tblSegmentPattern', function (Blueprint $table) {
             $table->string('strSegPatternID')->primary();
-            $table->string('strSegPNameFK')->index();//fk
+            $table->string('strSegPStyleCategoryFK')->index();//fk
             $table->string('strSegPName');
             $table->string('strSegPImage')->nullable();
+            $table->double('dblPatternPrice');
             $table->text('txtSegPDesc')->nullable();
             $table->boolean('boolIsActive');
             $table->string('strSegPInactiveReason')->nullable();
             $table->timestamps();
 
-            $table->foreign('strSegPNameFK')->references('strSegmentID')->on('tblSegment');
+            $table->foreign('strSegPStyleCategoryFK')->references('strSegStyleCatID')->on('tblSegmentStyleCategory');
         });
     }
 

@@ -9,8 +9,9 @@ class SegmentPattern extends Model
     protected $table = 'tblSegmentPattern';
 	protected $primaryKey = 'strSegPatternID';
 	protected $fillable = array('strSegPatternID',
-								'strSegPNameFK',
+								'strSegPStyleCategoryFK',
 								'strSegPName',
+								'dblPatternPrice'
 								'strSegPDesc',
 								'strSegPImage',
 								'strSegPInactiveReason',

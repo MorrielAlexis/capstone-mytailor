@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\SegmentPattern;
 use App\GarmentCategory;
 use App\GarmentSegment;
+use App\MaintenanceSegmentStyle;
 use App\Http\Requests;
 use App\Http\Requests\SegmentPatternRequest;
 use App\Http\Controllers\Controller;
@@ -38,20 +39,20 @@ class SegmentPatternController extends Controller
         $ID = $ids["0"]->strSegPatternID;
         $newID = $this->smartCounter($ID);  
 
-        $segment = GarmentSegment::all();
+        $segmentStyle = MaintenanceSegmentStyle::all();
 
         // $pattern = SegmentPattern::all();
 
         $pattern = \DB::table('tblSegmentPattern')
-                ->join('tblSegment', 'tblSegmentPattern.strSegPNameFK', '=', 'tblSegment.strSegmentID')
-                ->select('tblSegmentPattern.*','tblSegment.strSegmentName') 
+                ->join('tblSegmentStyleCategory', 'tblSegmentPattern.strSegPStyleCategoryFK', '=', 'tblSegmentStyleCategory.strSegStyleCatID')
+                ->select('tblSegmentPattern.*','tblSegmentStyleCategory.strSegStyleName') 
                 ->orderBy('strSegPatternID')
                 ->get();
         
         //load the view and pass the pattern
         return view('maintenance-segment-pattern')
                     ->with('pattern', $pattern)
-                    ->with('segment', $segment)
+                    ->with('segmentStyle', $segmentStyle)
                     ->with('newID', $newID);
     }
 
@@ -79,8 +80,9 @@ class SegmentPatternController extends Controller
             if($file == '' || $file == null){
                 $pattern = SegmentPattern::create(array(
                 'strSegPatternID' => $request->input('strSegPatternID'),
-                'strSegPNameFK' => $request->input('strSegPNameFK'),
+                'strSegPStyleCategoryFK' => $request->input('strSegPStyleCategoryFK'),
                 'strSegPName' => trim($request->input('strSegPName')),
+                'dblPatternPrice' => trim($request->input('dblPatternPrice')),
                 'txtSegPDesc' => trim($request->input('txtSegPDesc')),
                 'boolIsActive' => 1
                 ));     
@@ -90,9 +92,10 @@ class SegmentPatternController extends Controller
                     $pattern = SegmentPattern::create(array(
                         'strSegPatternID' => $request->input('strSegPatternID'),
     
-                        'strSegPNameFK' => $request->input('strSegPNameFK'),
+                        'strSegPStyleCategoryFK' => $request->input('strSegPStyleCategoryFK'),
                         'strSegPName' => trim($request->input('strSegPName')),
-                         'txtSegPDesc' => trim($request->input('txtSegPDesc')),
+                        'dblPatternPrice' => trim($request->input('dblPatternPrice')),
+                        'txtSegPDesc' => trim($request->input('txtSegPDesc')),
                         'strSegPImage' => 'imgDesignPatterns/'.$file,
                         'boolIsActive' => 1
                     )); 
@@ -163,14 +166,17 @@ class SegmentPatternController extends Controller
 
                 if($file == $pattern->strSegPImage)
                 {
-                    $pattern->strSegPNameFK = $request->input('editSegment');
+                    $pattern->strSegPStyleCategoryFK = $request->input('editSegmentStyle');
                     $pattern->strSegPName = trim($request->input('editPatternName'));
+                    $pattern->dblPatternPrice = trim($request->input('editPatternPrice'));
                     $pattern->strSegPDesc = trim($request->input('editSegPDesc'));
-                }else{
-                    $request->file('editImg')->move($destinationPath);
 
-                    $pattern->strSegPNameFK = $request->input('editSegment');
+                }else{
+
+                    $request->file('editImg')->move($destinationPath);
+                    $pattern->strSegPStyleCategoryFK = $request->input('editSegmentStyle');
                     $pattern->strSegPName = trim($request->input('editPatternName'));
+                    $pattern->dblPatternPrice = trim($request->input('editPatternPrice'));
                     $pattern->txtSegPDesc = trim($request->input('editSegPDesc'));
                     $pattern->strSegPImage = 'imgDesignPatterns/'.$file;
                 }           
