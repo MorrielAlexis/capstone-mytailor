@@ -35,4 +35,5 @@ class FabricThreadCountSeeder extends Seeder
 
         DB::table('tblThreadCount')->insert($tblThreadCount);
     }
+    
 }

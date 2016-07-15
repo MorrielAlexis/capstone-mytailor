@@ -87,8 +87,8 @@ Route::group(['prefix' => 'maintenance'], function(){
 Route::group(['prefix' => 'maintenance'], function(){
 	Route::resource('fabric-type', 'FabricTypeController');
 		
-		Route::post('fabric-type/update','FabricTypeController@update_fabrictype');
-		Route::post('fabric-type/destroy','FabricTypeController@delete_fabrictype');
+		Route::post('fabric-type/update','FabricTypeController@update_fabricType');
+		Route::post('fabric-type/destroy','FabricTypeController@delete_fabricType');
 
 
 	Route::resource('fabric-thread-count', 'FabricThreadCountController');
@@ -96,13 +96,23 @@ Route::group(['prefix' => 'maintenance'], function(){
 		Route::post('fabric-thread-count/update','FabricThreadCountController@update_threadCount');
 		Route::post('fabric-thread-count/destroy','FabricThreadCountController@delete_threadCount');
 
+	Route::resource('fabric-pattern', 'FabricPatternController');
 
-	Route::resource('swatch', 'SwatchController');
+		Route::post('fabric-pattern/update','FabricPatternController@update_fabricPattern');
+		Route::post('fabric-pattern/destroy','FabricPatternController@delete_fabricPattern');
+
+	Route::resource('fabric-color', 'FabricColorController');
+
+		Route::post('fabric-color/update','FabricColorController@update_fabriColor');
+		Route::post('fabric-color/destroy','FabricColorController@delete_fabricColor');
 
 
-		Route::post('swatch/update','SwatchController@update_swatch');
-	
-		Route::post('swatch/destroy', 'SwatchController@delete_swatch');
+	Route::resource('fabrics', 'FabricMaintenanceController');
+
+		Route::post('fabrics/update','FabricMaintenanceController@update_fabrics');
+		Route::post('fabrics/destroy','FabricMaintenanceController@delete_fabrics');
+
+
 
 });
 

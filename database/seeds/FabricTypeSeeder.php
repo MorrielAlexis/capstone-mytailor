@@ -16,15 +16,23 @@ class FabricTypeSeeder extends Seeder
 
         $tblFabricType = array (
             array(
-                'strFabricTypeID' => 'FAB001',
+                'strFabricTypeID' => 'FABTYPE001',
                 'strFabricTypeName' => 'Linen',
                 'txtFabricTypeDesc' =>'Use for making lapels in tuxedo.',
                 'boolIsActive' => '1'
             ),
 
             array(
-                'strFabricTypeID' => 'FAB002',
+                'strFabricTypeID' => 'FABTYPE002',
                 'strFabricTypeName' => 'Cotton',
+                'txtFabricTypeDesc' =>'Use in almost all classes of shirt.',
+                'boolIsActive' => '1'
+            ),
+
+
+             array(
+                'strFabricTypeID' => 'FABTYPE003',
+                'strFabricTypeName' => 'Silk',
                 'txtFabricTypeDesc' =>'Use in almost all classes of shirt.',
                 'boolIsActive' => '1'
             )
