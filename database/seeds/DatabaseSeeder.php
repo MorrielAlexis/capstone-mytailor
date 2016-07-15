@@ -33,8 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MeasurementDetailSeeder::class);
         $this->call(MeasurementCategorySeeder::class);
         $this->call(AlterationSeeder::class);
-        $this->call(SwatchNameSeeder::class);
-        $this->call(SwatchSeeder::class);
+        $this->call(FabricThreadCountSeeder::class);
         $this->call(PackagesSeeder::class);
         $this->call(PaymentSeeder::class);
 

@@ -56,7 +56,7 @@
       @endif
     <div class="row">
       <div class="col s12 m12 l12">
-        <span class="page-title"><h4>Swatch Name</h4></span>
+        <span class="page-title"><h4>Maintenance - Fabric Thread Count</h4></span>
       </div> 
     </div>
 
@@ -73,18 +73,17 @@
     	<div class="col s12 m12 l12">  <!-- col s12 m12 l12 -->
 
     		<div class="card-panel">  <!-- card-panel -->
-   		    <span class="card-title"><h5 style="color:#1b5e20"><center>Swatch Name</center></h5></span>
+   		    <span class="card-title"><h5 style="color:#1b5e20"><center>Fabric Thread Count Details</center></h5></span>
    				<div class="divider"> </div>
             <div class="card-content"><!-- card-content  --> 
 
               <div class="col s12 m12 l12 overflow-x">
 
-       				<table class = "table centered data-swatchname" align = "center" border = "1">
+       				<table class = "table centered data-threadcount" align = "center" border = "1">
                 <thead>
                   <tr>
               		  <!--<th data-field="fabricID">Fabric Type ID</th>-->
-                    <th data-field="swatchNameType">Type</th>
-                    <th data-field="swatchName">Name</th>
+                    <th data-field="swatchName">Thread Count Name</th>
               		  <th data-field="swatchDescription">Description</th>
                     <th data-field="Edit">Actions</th>
                     
@@ -93,96 +92,76 @@
                 </thead>
               
                 <tbody>
-                   @foreach($swatchnamemainte as $swatchnamemainte)
-                     @if($swatchnamemainte->boolIsActive == 1)
+                   @foreach($threadCount as $threadCount)
+                     @if($threadCount->boolIsActive == 1)
                   <tr>
-                    <td>{{ $swatchnamemainte->strFabricTypeName}}</td>
-               		  <td>{{ $swatchnamemainte->strSName}}</td>
-              		  <td>{{ $swatchnamemainte->txtSwatchNameDesc}}</td>
-              		  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of swatch name" href="#edit{{$swatchnamemainte->strSwatchNameID}}"><i class="mdi-editor-mode-edit"></i></a>
-                    <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of swatch name from the table" href="#del{{$swatchnamemainte->strSwatchNameID}}"><i class="mdi-action-delete"></i></a></td>
+               		  <td>{{ $threadCount->strThreadCountName}}</td>
+              		  <td>{{ $threadCount->txtThreadCountDesc}}</td>
+              		  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to update data of thread count" href="#edit{{$threadCount->strThreadCountID}}"><i class="mdi-editor-mode-edit"></i></a>
+                    <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of thread count from the table" href="#del{{$threadCount->strThreadCountID}}"><i class="mdi-action-delete"></i></a></td>
               	
-                    <div id="edit{{$swatchnamemainte->strSwatchNameID}}" class="modal modal-fixed-footer"> <!-- editFabricType  --> 
-                      <h5><font color = "#1b5e20"><center>EDIT SWATCH NAME</center> </font> </h5>
-                        {!! Form::open(['url' => 'maintenance/swatch-name/update']) !!}
-                        <div class="divider" style="height:2px"></div>
-                        <div class="modal-content col s12">
+                    <div id="edit{{$threadCount->strThreadCountID}}" class="modal modal-fixed-footer"> <!-- editFabricType  --> 
+                      <h5><font color = "#1b5e20"><center>UPDATE THREAD COUNT</center> </font> </h5>
+                        {!! Form::open(['url' => 'maintenance/fabric-thread-count/update']) !!}
+                          <div class="divider" style="height:2px"></div>
+                              <div class="modal-content col s12">
                         
-                        <div class="input-field">
-                          <input value = "{{$swatchnamemainte->strSwatchNameID}}" id="editSwatchNameID" name = "editSwatchNameID" type="hidden">
+                                <div class="input-field">
+                                      <input value = "{{$threadCount->strThreadCountID}}" id="editThreadCount" name = "editThreadCount" type="hidden">
+                                </div>
+
+                              <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                                      <div class="input-field col s12">
+                                            <input required value = "{{$threadCount->strThreadCountName}}" id="editSName" name = "editSName" type="text" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?" class="validate" required data-position="bottom">
+                                            <label for="swatch_name">Thread Count Name <span class="red-text"><b>*</b></span> </label>
+                                      </div>
+                                </div>
+
+                                <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
+                                      <div class="input-field col s12">
+                                            <input  value = "{{$threadCount->txtThreadCountDesc}}" id="editSwatchNameDesc" name = "editSwatchNameDesc" type="text" class="validate">
+                                            <label for="swatch_description">Thread Count Description </label>
+                                      </div>  
+                                </div>
                         </div>
-
-                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                              <div class="input-field col s12">                                                    
-                                <select class="browser-default" id="editCategory" name="editCategory"required>
-                                  <option value="" disabled selected>Choose fabric type:</option>
-                                  @foreach($fabricType as $fab)
-                                    @if($swatchnamemainte->strSwatchNameTypeFK == $fab->strFabricTypeID && $fab->boolIsActive == 1)
-                                      <option selected value="{{ $fab->strFabricTypeID }}">{{ $fab->strFabricTypeName }}</option>
-                                    @elseif($fab->boolIsActive == 1)
-                                      <option value="{{ $fab->strFabricTypeID }}">{{ $fab->strFabricTypeName }}</option>
-                                    @endif
-                                  @endforeach
-                                </select>  
-                                <!-- <label >Type<span class="red-text"><b>*</b></span></label>  -->
-                              </div>  
-                          </div> 
-
-
-
-
-                  <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                        <div class="input-field col s12">
-                          <input required value = "{{$swatchnamemainte->strSName}}" id="editSName" name = "editSName" type="text" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" class="validate" required data-position="bottom">
-                          <label for="swatch_name">Swatch Name <span class="red-text"><b>*</b></span> </label>
-                        </div>
-                  </div>
-
-                  <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
-                        <div class="input-field col s12">
-                          <input  value = "{{$swatchnamemainte->txtSwatchNameDesc}}" id="editSwatchNameDesc" name = "editSwatchNameDesc" type="text" class="validate">
-                          <label for="swatch_description">Swatch Desription </label>
-                        </div>  
-                  </div>
-                  </div>
 
                       <div class="modal-footer col s12" style="background-color:#26a69a">
                         <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Update</button>
                         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" button type="reset" value="Reset">Cancel</a> 
                       </div>
                       {!! Form::close() !!}
-                    </div> <!-- editFabricType  -->    
+            </div> <!-- editFabricType  -->    
                   
 
               <!--**********DELETE***********-->
-              <div id="del{{$swatchnamemainte->strSwatchNameID}}" class="modal modal-fixed-footer">                     
-                <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS SWATCH NAME?</center> </font> </h5>                       
-                   {!! Form::open(['url' => 'maintenance/swatch-name/destroy']) !!}  
+              <div id="del{{$threadCount->strThreadCountID}}" class="modal modal-fixed-footer">                     
+                <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS THREAD COUNT?</center> </font> </h5>                       
+                   {!! Form::open(['url' => 'maintenance/fabric-thread-count/destroy']) !!}  
                   
                     <div class="divider" style="height:2px"></div>
                     <div class="modal-content col s12">
                       
                           <div class="input-field">
-                            <input value="{{$swatchnamemainte->strSwatchNameID}}" id="delSwatchNameID" name="delSwatchNameID" type="hidden">
+                            <input value="{{$threadCount->strThreadCountID}}" id="delThreadCountID" name="delThreadCountID" type="hidden">
                           </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <label for="swatch_name">Swatch Name </label>
-                            <input value="{{$swatchnamemainte->strSName}}" id="delSwatchName" name="delSwatchName" type="text" readonly>
+                            <label for="thread count name">Thread Count Name </label>
+                            <input value="{{$threadCount->strThreadCountName}}" id="delThreadCountName" name="delThreadCountName" type="text" readonly>
                           </div>
                       </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <label for="swatch_desc">Swatch Desription </label>
-                            <input value="{{$swatchnamemainte->txtSwatchNameDesc}}" id="delSwatchDesc" name="delSwatchDesc" type="text" readonly>
+                            <label for="swatch_desc">Thread Count Desription </label>
+                            <input value="{{$threadCount->txtThreadCountDesc}}" id="delThreadCountDesc" name="delThreadCountDesc" type="text" readonly>
                           </div>
                       </div>
 
                           <div class="input-field col s12">
                             <label for="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span> </label>
-                            <input value="{{$swatchnamemainte->strSwatchNameInactiveReason}}" id="delInactiveSwatchName" name="delInactiveSwatchName" type="text" required>
+                            <input value="{{$threadCount->strThreadCountInactiveReason}}" id="delInactiveThreadCount" name="delInactiveThreadCount" type="text" required>
                           </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
@@ -212,42 +191,27 @@
 
             <!--********ADD******-->
              <div id="addFabricType" class="modal modal-fixed-footer">                  
-                <h5><font color = "#1b5e20"><center>CREATE SWATCH NAME</center> </font> </h5> 
-                  {!! Form::open(['url' => 'maintenance/swatch-name', 'method' => 'post']) !!} 
+                <h5><font color = "#1b5e20"><center>CREATE THREAD COUNT</center> </font> </h5> 
+                  {!! Form::open(['url' => 'maintenance/fabric-thread-count', 'method' => 'post']) !!} 
                 <div class="divider" style="height:2px"></div>
                   <div class="modal-content col s12">
                             
 
                   <div class="input-field">
-                    <input value = "{{$newID}}" id="strSwatchNameID" name = "strSwatchNameID" type="hidden">
+                    <input value = "{{$newID}}" id="strThreadCountID" name = "strThreadCountID" type="hidden">
                   </div>
-
-
-                  <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                      <div class="input-field col s12">
-                      <select class="browser-default" id="strSwatchNameTypeFK" name="strSwatchNameTypeFK" required>
-                                      <option value="" disabled selected>Choose fabric type:</option>
-                                        @foreach($fabricType as $fabricType_1)
-                                        @if($fabricType_1->boolIsActive == 1) 
-                                          <option value="{{ $fabricType_1->strFabricTypeID }}">{{ $fabricType_1->strFabricTypeName
-                                       }}</option>
-                                    @endif                       
-                                  @endforeach
-                                </select>  
-                              </div>  
-                          </div> 
-
+                
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s12">
-                    <input required id="strSName" name = "strSName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" placeholder="Nickel">
-                    <label for="swatch_name">Swatch Name <span class="red-text"><b>*</b></span></label>
+                      <input required id="strThreadCountName" name = "strThreadCountName" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?" placeholder="60s">
+                      <label for="swatch_name">Thread Count Name <span class="red-text"><b>*</b></span></label>
                   </div>
               </div>    
 
               <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                   <div class="input-field col s12">
-                    <input id="txtSwatchNameDesc" name = "txtSwatchNameDesc" type="text" class="validate" placeholder="Smooth and reddish like version of citadel.">
-                    <label for="swatch_description">Swatch Description </label>
+                    <input id="txtThreadCountDesc" name = "txtThreadCountDesc" type="text" class="validate" placeholder="Use for bed sheets.">
+                    <label for="swatch_description">Thread Count Description </label>
                   </div>
               </div>
               </div>
@@ -326,7 +290,7 @@
 
       $(document).ready(function() {
 
-          $('.data-swatchname').DataTable();
+          $('.data-threadcount').DataTable();
           $('select').material_select();
 
           setTimeout(function () {

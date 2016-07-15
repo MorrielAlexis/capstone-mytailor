@@ -91,10 +91,10 @@ Route::group(['prefix' => 'maintenance'], function(){
 		Route::post('fabric-type/destroy','FabricTypeController@delete_fabrictype');
 
 
-	Route::resource('swatch-name', 'SwatchNameController');
+	Route::resource('fabric-thread-count', 'FabricThreadCountController');
 
-		Route::post('swatch-name/update','SwatchNameController@update_swatchname');
-		Route::post('swatch-name/destroy','SwatchNameController@delete_swatchname');
+		Route::post('fabric-thread-count/update','FabricThreadCountController@update_threadCount');
+		Route::post('fabric-thread-count/destroy','FabricThreadCountController@delete_threadCount');
 
 
 	Route::resource('swatch', 'SwatchController');

@@ -7,7 +7,7 @@ use Illuminate\Contracts\Validation\Validator;
 
 
 
-class MaintenanceSwatchNameRequest extends Request
+class MaintenanceThreadCountRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,7 +27,7 @@ class MaintenanceSwatchNameRequest extends Request
    public function rules()
     {
         return [
-            'strSName' => 'required|unique_with:tblSwatchName,strSwatchNameTypeFK'
+            'strThreadCountName' => 'required|unique:tblThreadCount'
             
             
         ];
@@ -36,8 +36,8 @@ class MaintenanceSwatchNameRequest extends Request
     public function messages()
     {
         return [
-            'strSName.unique_with'  =>  'Swatch name already exists.',
-            'strSName.required'  =>  'Swatch name name is required.'
+            'strThreadCountName.unique'  =>  'Thread count  already exists.',
+            'strThreadCountName.required'  =>  'Thread count  name is required.'
             
             
             
