@@ -380,8 +380,17 @@ Route::resource('online-women-shirt-tutorial', 'OnlineWomenShirtTutorialControll
 
 /*-------------------------------------------ONLINE CUSTOMIZE GARMENTS---------------------------------------------------*/
 
-	Route::get('customize-suit', 'OnlineCustomizeController@suit');
-	Route::get('customize-gown', 'OnlineCustomizeController@gown');
-	Route::get('customize-mens', 'OnlineCustomizeController@mens');
-	Route::get('customize-womens', 'OnlineCustomizeController@womens');
-	Route::get('customize-pants', 'OnlineCustomizeController@pants');
+	Route::get('customize-suit-fabric', 'OnlineCustomizeController@fabricsuit');
+	Route::get('customize-suit-style', 'OnlineCustomizeController@stylesuit');
+
+	Route::get('customize-gown-fabric', 'OnlineCustomizeController@fabricgown');
+	Route::get('customize-gown-style', 'OnlineCustomizeController@stylegown');
+
+	Route::get('customize-mens-fabric', 'OnlineCustomizeController@fabricmens');
+	Route::get('customize-mens-style', 'OnlineCustomizeController@stylemens');
+
+	Route::get('customize-womens-fabric', 'OnlineCustomizeController@fabricwomens');
+	Route::get('customize-womens-style', 'OnlineCustomizeController@stylewomens');
+
+	Route::get('customize-pants-fabric', 'OnlineCustomizeController@fabricpants');
+	Route::get('customize-pants-style', 'OnlineCustomizeController@stylepants');
