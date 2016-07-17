@@ -15,7 +15,7 @@ class FabricColorSeeder extends Seeder
             array(
                 'strFabricColorID' => 'FABCLR001',
                 'strFabricColorName' => 'Blue',
-                'txtFabricColorDesc' => '',
+                'txtFabricColorDesc' => 'Perfect color for summer.',
                 'strFabricColorInactiveReason' =>'',
                 'boolIsActive' => '1'
             ),
@@ -23,7 +23,7 @@ class FabricColorSeeder extends Seeder
             array(
                 'strFabricColorID' => 'FABCLR002',
                 'strFabricColorName' => 'Teal',
-                'txtFabricColorDesc' => '',
+                'txtFabricColorDesc' => 'Perfect pallette for autumn.',
                 'strFabricColorInactiveReason' =>'',
                 'boolIsActive' => '1'
             ),
@@ -31,7 +31,7 @@ class FabricColorSeeder extends Seeder
             array(
                 'strFabricColorID' => 'FABCLR003',
                 'strFabricColorName' => 'Yellow',
-                'txtFabricColorDesc' => '',
+                'txtFabricColorDesc' => 'Perfect pallette for spring.',
                 'strFabricColorInactiveReason' =>'',
                 'boolIsActive' => '1'
             )

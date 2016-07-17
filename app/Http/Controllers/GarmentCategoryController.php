@@ -126,13 +126,13 @@ class GarmentCategoryController extends Controller
     function updateGarmentCategory(GarmentCategoryRequest $request)
     {
     
-        // $garment = GarmentCategory::find($request->input('editGarmentID'));
-        $garment = GarmentCategory::find($request->input('strGarmentCategoryID'));
-            // $garment->strGarmentCategoryName = trim($request->input('editGarmentName'));
-            $garment->strGarmentCategoryName = trim($request->input('strGarmentCategoryName'));
+        $garment = GarmentCategory::find($request->input('editGarmentID'));
+        // $garment = GarmentCategory::find($request->input('strGarmentCategoryID'));
+            $garment->strGarmentCategoryName = trim($request->input('editGarmentName'));
+            // $garment->strGarmentCategoryName = trim($request->input('strGarmentCategoryName'));
 
-            // $garment->textGarmentCategoryDesc = trim($request->input('editGarmentDescription'));
-             $garment->textGarmentCategoryDesc = trim($request->input('textGarmentCategoryDesc'));
+            $garment->textGarmentCategoryDesc = trim($request->input('editGarmentDescription'));
+            // $garment->textGarmentCategoryDesc = trim($request->input('textGarmentCategoryDesc'));
             $garment ->save();
 
         \Session::flash('flash_message_update','Garment category detail/s successfully updated.'); //flash message
@@ -152,18 +152,18 @@ class GarmentCategoryController extends Controller
                 ->where('tblGarmentCategory.strGarmentCategoryID','=', $id)
                 ->count();
 
-        $count2 = \DB::table('tblMeasurementCategory')
-                ->join('tblGarmentCategory', 'tblMeasurementCategory.strMeasGarFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
-                ->select('tblGarmentCategory.*')
-                ->where('tblGarmentCategory.strGarmentCategoryID','=', $id)
-                ->count();
-                // dd($count2);
+        // $count2 = \DB::table('tblMeasurementCategory')
+        //         ->join('tblGarmentCategory', 'tblMeasurementCategory.strMeasGarFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
+        //         ->select('tblGarmentCategory.*')
+        //         ->where('tblGarmentCategory.strGarmentCategoryID','=', $id)
+        //         ->count();
+        //         // dd($count2);
 
-        $count3 = \DB::table('tblSegmentPattern')
-                ->join('tblGarmentCategory', 'tblSegmentPattern.strSegPCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
-                ->select('tblGarmentCategory.*')
-                ->where('tblGarmentCategory.strGarmentCategoryID','=', $id)
-                ->count();
+        // $count3 = \DB::table('tblSegmentPattern')
+        //         ->join('tblGarmentCategory', 'tblSegmentPattern.strSegPCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
+        //         ->select('tblGarmentCategory.*')
+        //         ->where('tblGarmentCategory.strGarmentCategoryID','=', $id)
+        //         ->count();
 
         $count4 = \DB::table('tblCatalogue')
                 ->join('tblGarmentCategory', 'tblCatalogue.strCatalogueCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
@@ -171,7 +171,7 @@ class GarmentCategoryController extends Controller
                 ->where('tblGarmentCategory.strGarmentCategoryID','=', $id)
                 ->count();
                 
-                if ($count != 0 || $count2 != 0 || $count3 != 0 || $count4 != 0 ) {
+                if ($count != 0 || $count4 != 0 ) {
                     return redirect('maintenance/garment-category?success=beingUsed'); 
                 }else {
                     $garment->strGarmentCategoryInactiveReason = trim($request->input('delInactiveGarment')); 

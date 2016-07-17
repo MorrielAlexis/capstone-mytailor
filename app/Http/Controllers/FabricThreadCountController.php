@@ -129,16 +129,16 @@ class FabricThreadCountController extends Controller
 
     {   
        
-        $threadCount = FabricThreadCountMaintenance::find($request->input('editFabricTypeID'));
+        $threadCount = FabricThreadCountMaintenance::find($request->input('editThreadCount'));
 
-                $threadCount->strThreadCountName = trim($request->get('editFabricTypeName'));    
-                $threadCount->txtThreadCountDesc = trim($request->get('editFabricTypeDesc'));
+                $threadCount->strThreadCountName = trim($request->get('editThreadCountName'));    
+                $threadCount->txtThreadCountDesc = trim($request->get('editThreadCountDesc'));
 
                 $threadCount->save();
 
         \Session::flash('flash_message_update','Thread count successfully updated.');
 
-        return redirect('maintenance/fabric-type');
+        return redirect('maintenance/fabric-thread-count');
 
     }
 
@@ -164,7 +164,7 @@ class FabricThreadCountController extends Controller
             //         return redirect('maintenance/fabric-type?success=beingUsed'); 
             //     }else {
 
-            $threadCount->strFabricTypeInactiveReason = trim($request->input('delInactiveFabricType'));
+            $threadCount->strThreadCountInactiveReason = trim($request->input('delInactiveThreadCount'));
             $threadCount->boolIsActive = 0;
             $threadCount->save();
 

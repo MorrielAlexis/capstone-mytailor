@@ -18,7 +18,7 @@ class FabricsMaintenance extends Model
 								'dblFabricPrice',
 								'strFabricCode',
 								'strFabricImage',
-								'strFabricDesc',
+								'txtFabricDesc',
 								'strFabricInactiveReason',
 								'boolIsActive'
 								//

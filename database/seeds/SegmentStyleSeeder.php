@@ -18,7 +18,7 @@ class SegmentStyleSeeder extends Seeder
                 'strSegStyleCatID' => 'SEGSTY001',
                 'strSegmentFK' 	   => 'SEGM002',
                 'strSegStyleName'  =>'Lapel',
-                'strSegStyleCatDesc' => 'Lapels are the folded flaps of cloth on the front of a jacket or coat, and are most commonly found on formal clothing and suit jackets.',
+                'txtSegStyleCatDesc' => 'Lapels are the folded flaps of cloth on the front of a jacket or coat, and are most commonly found on formal clothing and suit jackets.',
                 'strSegStyleCatInactiveReason' => '',
                 'boolIsActive' => '1'
             ),
@@ -27,7 +27,7 @@ class SegmentStyleSeeder extends Seeder
                 'strSegStyleCatID' => 'SEGSTY002',
                 'strSegmentFK' => 'SEGM002',
                 'strSegStyleName' =>'Cuff',
-                'strSegStyleCatDesc' => 'A fold or band serving as a trimming or finish for the bottom of a sleeve',
+                'txtSegStyleCatDesc' => 'A fold or band serving as a trimming or finish for the bottom of a sleeve',
                 'strSegStyleCatInactiveReason' => '',
                 'boolIsActive' => '1'
             ),
@@ -36,7 +36,7 @@ class SegmentStyleSeeder extends Seeder
                 'strSegStyleCatID' => 'SEGSTY003',
                 'strSegmentFK' => 'SEGM004',
                 'strSegStyleName' =>'Collar',
-                'strSegStyleCatDesc' => 'The part of a garment that encircles the neck, especially when raised or folded.',
+                'txtSegStyleCatDesc' => 'The part of a garment that encircles the neck, especially when raised or folded.',
                 'strSegStyleCatInactiveReason' => '',
                 'boolIsActive' => '1'
             ),
@@ -45,7 +45,7 @@ class SegmentStyleSeeder extends Seeder
                 'strSegStyleCatID' => 'SEGSTY004',
                 'strSegmentFK' => 'SEGM004',
                 'strSegStyleName' =>'Shirt Pocket',
-                'strSegStyleCatDesc' => 'Perfect pairing for casual pants',
+                'txtSegStyleCatDesc' => 'Perfect pairing for casual pants',
                 'strSegStyleCatInactiveReason' => '',
                 'boolIsActive' => '1'
             ),
@@ -54,7 +54,7 @@ class SegmentStyleSeeder extends Seeder
                 'strSegStyleCatID' => 'SEGSTY005',
                 'strSegmentFK' => 'SEGM006',
                 'strSegStyleName' =>'Fit',
-                'strSegStyleCatDesc' => 'Either normal, slim or loose fit.',
+                'txtSegStyleCatDesc' => 'Either normal, slim or loose fit.',
                 'strSegStyleCatInactiveReason' => '',
                 'boolIsActive' => '1'
             ),
@@ -63,7 +63,7 @@ class SegmentStyleSeeder extends Seeder
                 'strSegStyleCatID' => 'SEGSTY006',
                 'strSegmentFK' => 'SEGM006',
                 'strSegStyleName' =>'Slacks Pleat',
-                'strSegStyleCatDesc' => 'Stylish detail for pants/trousers',
+                'txtSegStyleCatDesc' => 'Stylish detail for pants/trousers',
                 'strSegStyleCatInactiveReason' => '',
                 'boolIsActive' => '1'
             ),
@@ -72,7 +72,7 @@ class SegmentStyleSeeder extends Seeder
                 'strSegStyleCatID' => 'SEGSTY007',
                 'strSegmentFK' => 'SEGM006',
                 'strSegStyleName' =>'Slack Pockets',
-                'strSegStyleCatDesc' => 'Either be vertical or sliced pockets.',
+                'txtSegStyleCatDesc' => 'Either be vertical or sliced pockets.',
                 'strSegStyleCatInactiveReason' => '',
                 'boolIsActive' => '1'
             ),
@@ -81,7 +81,7 @@ class SegmentStyleSeeder extends Seeder
                 'strSegStyleCatID' => 'SEGSTY008',
                 'strSegmentFK' => 'SEGM002',
                 'strSegStyleName' =>'Single Breasted',
-                'strSegStyleCatDesc' => 'Widely use for business and formal events. ',
+                'txtSegStyleCatDesc' => 'Widely use for business and formal events. ',
                 'strSegStyleCatInactiveReason' => '',
                 'boolIsActive' => '1'
             ),
@@ -91,7 +91,7 @@ class SegmentStyleSeeder extends Seeder
                 'strSegStyleCatID' => 'SEGSTY009',
                 'strSegmentFK' => 'SEGM002',
                 'strSegStyleName' =>'Double Breasted',
-                'strSegStyleCatDesc' => 'Widely use for business and formal events. ',
+                'txtSegStyleCatDesc' => 'Widely use for business and formal events. ',
                 'strSegStyleCatInactiveReason' => '',
                 'boolIsActive' => '1'
             ),
@@ -101,7 +101,7 @@ class SegmentStyleSeeder extends Seeder
                 'strSegStyleCatID' => 'SEGSTY010',
                 'strSegmentFK' => 'SEGM002',
                 'strSegStyleName' =>'Vents',
-                'strSegStyleCatDesc' => 'Stylish accent on the back side of the jacket.  ',
+                'txtSegStyleCatDesc' => 'Stylish accent on the back side of the jacket.  ',
                 'strSegStyleCatInactiveReason' => '',
                 'boolIsActive' => '1'
             ),
@@ -110,7 +110,7 @@ class SegmentStyleSeeder extends Seeder
                 'strSegStyleCatID' => 'SEGSTY011',
                 'strSegmentFK' => 'SEGM002',
                 'strSegStyleName' =>'Chest pocket',
-                'strSegStyleCatDesc' => 'Stylish accent on the chest side of the jacket.  ',
+                'txtSegStyleCatDesc' => 'Stylish accent on the chest side of the jacket.  ',
                 'strSegStyleCatInactiveReason' => '',
                 'boolIsActive' => '1'
             ),
@@ -119,7 +119,7 @@ class SegmentStyleSeeder extends Seeder
                 'strSegStyleCatID' => 'SEGSTY012',
                 'strSegmentFK' => 'SEGM002',
                 'strSegStyleName' =>'Chest pocket',
-                'strSegStyleCatDesc' => 'Stylish accent on the chest side of the jacket.  ',
+                'txtSegStyleCatDesc' => 'Stylish accent on the chest side of the jacket.  ',
                 'strSegStyleCatInactiveReason' => '',
                 'boolIsActive' => '1'
             )

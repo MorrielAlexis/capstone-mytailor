@@ -123,6 +123,7 @@
                   <tr>
                     <!--<th data-field="id">Garment Details ID</th>-->
                     <th data-field="name">Set Name</th>
+                    <th data-field="name">Sex</th>
                     <th data-field="name">Segment 1</th>
                     <th data-field="name">Segment 2</th>
                     <th data-field="name">Segment 3</th>
@@ -140,7 +141,8 @@
                   @foreach($sets as $sets)
                   @if($sets->boolIsActive == 1)
                   <tr>
-                  <td>{{ $sets->strPackageName }}</td>
+                    <td>{{ $sets->strPackageName }}</td>
+                    <td>{{ $sets->strPackageSex }}</td>
                     <td>{{ $sets->strSegmentName1 }}</td>
                     <td>{{ $sets->strSegmentName2 }}</td>
                     <td>{{ $sets->strSegmentName3 }}</td>
@@ -165,13 +167,29 @@
                                 <input value="{{ $sets->strPackageID }}" id="editPackageID" name="editPackageID" type="hidden"> 
                               </div>
 
+
                               <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                              <div class="input-field col s12">
-                                <input required value="{{ $sets->strPackageName }}" pattern="^[a-zA-Z\-'`\s]{2,}$" id="editPackageName" name= "editPackageName" type="text" class="validate">
-                                <label for="segment_name">Set Name <span class="red-text"><b>*</b></span></label>
-                    <span id="left"></span></label>
+                                    <div class="input-field col s12">
+                                            <input required value="{{ $sets->strPackageName }}" pattern="^[a-zA-Z\-'`\s]{2,}$" id="editPackageName" name= "editPackageName" type="text" class="validate">
+                                            <label for="segment_name">Set Name <span class="red-text"><b>*</b></span></label>
+                                        <span id="left"></span></label>
+                                    </div>
                               </div>
-                              </div>
+
+
+                            <div class="input-field col s12" style="margin-top:47px">                                                    
+                                <select required name='editSex'>
+                                      <option disabled>Sex</option>
+                                          @if($sets->strPackageSex == "M")
+                                              <option selected value="{{$sets->strPackageSex}}">Male</option>
+                                              <option value="F">Female</option>
+                                          @else
+                                              <option value="M">Male</option>
+                                              <option selected value="{{$sets->strPackageSex}}">Female</option>
+                                          @endif
+                                </select>    
+                                <label>Sex</label>
+                            </div>  
                           
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
@@ -284,7 +302,7 @@
                                <label for="package_description">Set Description</label>
                               </div>
                           </div>
-                          </div>
+                        </div>
 
 
                           <div class="modal-footer col s12" style="background-color:#26a69a">
@@ -293,6 +311,7 @@
                           </div>
                         {!! Form::close() !!}
                       </div>
+
                     <!--***************************Soft Delete********************************-->
                       <div id="del{{ $sets->strPackageID }}" class="modal modal-fixed-footer">
                         <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS PACKAGE?</center> </font> </h5>
@@ -373,6 +392,16 @@
                   </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                    <div class="input-field col s12" style="margin-top:47px">
+                        <select value="" name='strPackageSex' id='strPackageSex' required>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </select>    
+                      <label>Sex</label>
+                    </div>
+                  </div>
+
+                  <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
                         <select class="browser-default" name='strPackageSeg1FK' id='strPackageSeg1FK' required>
                           <option value="" disabled selected>Choose a segment for your set:</option>
@@ -400,7 +429,7 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <select class="browser-default" name='strPackageSeg3FK' id='strPackageSeg3FK' required>
+                        <select class="browser-default" name='strPackageSeg3FK' id='strPackageSeg3FK'>
                           <option value="" disabled selected>Choose a segment for your set:</option>
                           @foreach($segment as $segment_3)
                             @if($segment_3->boolIsActive == 1) 
@@ -413,7 +442,7 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <select class="browser-default" name='strPackageSeg4FK' id='strPackageSeg4FK' required>
+                        <select class="browser-default" name='strPackageSeg4FK' id='strPackageSeg4FK' >
                           <option value="" disabled selected>Choose a segment for your set:</option>
                           @foreach($segment as $segment_4)
                             @if($segment_4->boolIsActive == 1) 
@@ -426,7 +455,7 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <select class="browser-default" name='strPackageSeg5FK' id='strPackageSeg5FK' required>
+                        <select class="browser-default" name='strPackageSeg5FK' id='strPackageSeg5FK'>
                           <option value="" disabled selected>Choose a segment for your set:</option>
                           @foreach($segment as $segment_5)
                             @if($segment_5->boolIsActive == 1) 
@@ -440,14 +469,14 @@
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
                             <input required  id="dblPackagePrice" name= "dblPackagePrice" type="text" class="validate"  data-position="bottom" pattern="^[0-9]*$" minlength="2">
-                            <label for="days">Set Price:</label>
+                            <label for="days"><span class="red-text"><b>*</b></span>Set Price:</label>
                           </div>
                       </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
                             <input required  id="intPackageMinDays" name= "intPackageMinDays" type="text" class="validate"  data-position="bottom" pattern="^[0-9]*$" maxlength="2">
-                            <label for="days">Production Time (Days):</label>
+                            <label for="days"><span class="red-text"><b>*</b></span>Production Time (Days):</label>
                           </div>
                   </div>
 

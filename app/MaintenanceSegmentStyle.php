@@ -11,7 +11,7 @@ class MaintenanceSegmentStyle extends Model
 	protected $fillable = array('strSegStyleCatID',
 								'strSegmentFK',
 								'strSegStyleName',
-								'strSegStyleCatDesc',
+								'txtSegStyleCatDesc',
 								'strSegStyleCatInactiveReason',
 								'boolIsActive'
 								);

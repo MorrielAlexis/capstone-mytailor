@@ -119,7 +119,7 @@
             <div class="card">
               <div class="card-content">
                 <div class = "col s12 m12 l12 overflow-x">
-                  <h5><font color = "#1b5e20"><center>Hook & Eye</center> </font> </h5>
+                  <h5><font color = "#1b5e20"><center>List of Hook & Eyes and Velcros</center> </font> </h5>
                   <table class = "table centered data-hook" border = "1">
 
                     <thead>

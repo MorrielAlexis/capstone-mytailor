@@ -22,7 +22,7 @@ class FabricsSeeder extends Seeder
                 'dblFabricPrice' => '150',
                 'strFabricCode' => 'FC01',
                 'strFabricImage' => '',
-                'strFabricDesc' => 'Use for school uniforms and costumes.',
+                'txtFabricDesc' => 'Use for school uniforms and costumes.',
                 'strFabricInactiveReason' => '',
                 'boolIsActive' => '1'
             ),
@@ -37,7 +37,7 @@ class FabricsSeeder extends Seeder
                 'dblFabricPrice' => '200',
                 'strFabricCode' => 'FC02',
                 'strFabricImage' => '',
-                'strFabricDesc' => 'Use for customize shirts and polos.',
+                'txtFabricDesc' => 'Use for customize shirts and polos.',
                 'strFabricInactiveReason' => '',
                 'boolIsActive' => '1'
             ),
@@ -53,7 +53,7 @@ class FabricsSeeder extends Seeder
                 'dblFabricPrice' => '200',
                 'strFabricCode' => 'FC03',
                 'strFabricImage' => '',
-                'strFabricDesc' => 'Use for customize gowns and costumes.',
+                'txtFabricDesc' => 'Use for customize gowns and costumes.',
                 'strFabricInactiveReason' => '',
                 'boolIsActive' => '1'
             ),

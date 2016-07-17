@@ -22,7 +22,7 @@ class CreateFabricsTable extends Migration
             $table->double('dblFabricPrice');
             $table->string('strFabricCode');
             $table->string('strFabricImage')->nullable();
-            $table->string('strFabricDesc')->nullable();
+            $table->text('txtFabricDesc')->nullable();
             $table->string('strFabricInactiveReason')->nullable();
             $table->boolean('boolIsActive');
             $table->timestamps();

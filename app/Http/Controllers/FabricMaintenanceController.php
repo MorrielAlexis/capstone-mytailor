@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\
+use App\FabricsMaintenance;
+use App\FabricType;
+use App\FabricColorMaintenance;
+use App\FabricPatternMaintenance;
+use App\FabricThreadCountMaintenance;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 

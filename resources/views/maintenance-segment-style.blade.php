@@ -106,7 +106,7 @@
   <div class="row">
     <div class="col s12 m12 l12">
     	<div class="card-panel">
-        <span class="card-title"><h5 style="color:#1b5e20"><center>Segment Style Details</center></h5></span>
+        <span class="card-title"><h5 style="color:#1b5e20"><center>List of Segment Style</center></h5></span>
         <div class="divider"></div>
 
     		<div class="card-content"> 
@@ -129,7 +129,7 @@
              		
                   <td>{{ $segmentStyle->strSegmentName }}</td>
               		<td>{{ $segmentStyle->strSegStyleName }}</td>
-                  <td>{{ $segmentStyle->strSegStyleCatDesc }}</td>
+                  <td>{{ $segmentStyle->txtSegStyleCatDesc }}</td>
               		<td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to update segment style data" href="#edit{{ $segmentStyle->strSegStyleCatID }}"><i class="mdi-editor-mode-edit"></i></a>
                   <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="CLick to remove segment style data from the table" href="#del{{ $segmentStyle->strSegStyleCatID }}"><i class="mdi-action-delete"></i></a></td>
                       
@@ -167,7 +167,7 @@
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                             <div class="input-field col s12">
-                                  <input  value="{{ $segmentStyle->strSegStyleCatDesc }}" id="editStyleDesc" name = "editStyleDesc" type="text" class="validate">
+                                  <input  value="{{ $segmentStyle->txtSegStyleCatDesc }}" id="editStyleDesc" name = "editStyleDesc" type="text" class="validate">
                                <label for="segment_description">Style Description</label>
                             </div>
                       </div>
@@ -208,7 +208,7 @@
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s12">
-                            <input value = "{{ $segmentStyle->strSegStyleCatDesc }}" type="text" class="validate" readonly>
+                            <input value = "{{ $segmentStyle->txtSegStyleCatDesc }}" type="text" class="validate" readonly>
                             <label for="segmentStyle_name">Style Description: </label>
                         </div>
                     </div>
@@ -272,7 +272,7 @@
 
              <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s12">
-                        <input id="strSegStyleCatDesc" name="strSegStyleCatDesc" type="text" class="validate">
+                        <input id="txtSegStyleCatDesc" name="txtSegStyleCatDesc" type="text" class="validate">
                         <label for="Style Desc">Style Description <span class="red-text"><b>*</b></span></label>
                   </div>
              </div>

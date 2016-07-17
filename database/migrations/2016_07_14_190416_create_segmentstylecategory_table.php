@@ -16,7 +16,7 @@ class CreateSegmentStyleCategoryTable extends Migration
             $table->string('strSegStyleCatID')->primary();
             $table->string('strSegmentFK')->index();
             $table->string('strSegStyleName');
-            $table->string('strSegStyleCatDesc')->nullable();
+            $table->text('txtSegStyleCatDesc')->nullable();
             $table->string('strSegStyleCatInactiveReason')->nullable()->default(null);
             $table->boolean('boolIsActive');
             $table->timestamps();
