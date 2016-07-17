@@ -18,9 +18,13 @@ Route::get('/', function () {
 Route::get('/', 'HomeController@showWelcome');
 Route::post('/login', 'HomeController@LogIn');
 Route::get('/logout', 'HomeController@LogOut');
-
-Route::get('/signup-individual', 'HomeController@indiv');
-Route::get('/signup-company', 'HomeController@comp');
+Route::post('/signup/individual', 'RegisterIndividualController@store');
+Route::get('/register/profile/individual', 'HomeController@indiv');
+Route::post('/register/profile/individual/success', 'HomeController@saveDetailsIndiv');
+Route::post('/signup/individual', 'RegisterCompanyController@store');
+Route::get('/register/profile/company', 'HomeController@comp');
+Route::post('/register/profile/company/success', 'HomeController@saveDetailsComp');
+Route::get('/register/verify/{confirmationCode}', 'RegisterIndividualController@confirm');
 
 Route::get('/dashboard', 'DashboardController@dash');
 

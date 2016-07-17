@@ -15,7 +15,7 @@
 	    <div class="row	" style="margin:50px;">
 			<div class="container z-depth-5" style="background-color:#eeeeee;">
 				
-            	<h5 style="padding:20px;"><font color = "#1b5e20"><center>NEW COMPANY CUSTOMER PROFILE </center> </font> </h5>
+            	<h5 style="padding:20px;"><font color = "#1b5e20"><center>COMPANY PROFILE</center> </font> </h5>
                 <div class="divider" style="height:2px"></div>
 					
 				<div class="col s12" style="background-color:#eeeeee;">

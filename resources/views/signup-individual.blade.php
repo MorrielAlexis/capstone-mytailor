@@ -11,17 +11,26 @@
 	</head>
 
 	<body background="img/footer.jpg">
-
+        @if(Session::has('flash_message'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel yellow accent-1">
+              <span class="alert alert-success"> <i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+             <em> {!! session('flash_message') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif
 	    <div class="row	" style="margin:50px;">
 			<div class="container z-depth-5" style="background-color:#eeeeee;">
 				
-            	<h5 style="padding:20px;"><font color = "#1b5e20"><center>NEW INDIVIDUAL CUSTOMER PROFILE </center> </font> </h5>
+            	<h5 style="padding:20px;"><font color = "#1b5e20"><center>CUSTOMER PROFILE</center> </font> </h5>
                 <div class="divider" style="height:2px"></div>
-					
+					{!! Form::open(['url' => '/register/profile/individual/success' , 'method' => 'post']) !!}
 				<div class="col s12" style="background-color:#eeeeee;">
 					<div class = "col s12" style="padding:15px;">
                         <div class="input-field col s12">                 
-                          	<input value = "" id="strIndivID" name="strIndivID" type="text" class="" readonly>
+                          	<input value = "{{$newID}}" id="strIndivID" name="strIndivID" type="text" class="" readonly>
                           	<label for="indi_id">Individual ID </label>
                         </div>
                     </div>
@@ -106,8 +115,9 @@
                     
                     <div class="col s12" style="margin-bottom:20px;">
 			            <div><a href="" class="left waves-effect waves-green teal white-text btn-large btn-flat">Cancel</a></div>
-			            <div><a href="" class="right waves-effect waves-green green white-text btn-large btn-flat"><b><font size="+1">Submit</font></b></a></div>
+			            <div><button type="submit" class="right waves-effect waves-green green white-text btn-large btn-flat"><b><font size="+1">Submit</font></b></button></div>
 			        </div>
+                    {!! Form::close() !!}
 				</div>
 
 			</div>

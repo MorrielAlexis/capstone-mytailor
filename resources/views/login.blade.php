@@ -20,6 +20,26 @@
 	</style>
 
 	<body id="dabadehh" background="img/footer.jpg">
+	@if(Session::has('flash_message'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel yellow accent-1">
+              <span class="alert alert-success"> <i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+             <em> {!! session('flash_message') !!}</em>
+            </div>
+          </div>
+        </div>
+    @endif
+
+    @if (count($errors->register) > 0)
+		<div class="alert alert-danger">
+			<ul>
+				@foreach ($errors->register->all() as $error)
+					<P>{{ $error }}</p>
+				@endforeach
+			</ul>
+		</div>
+	@endif
 
 		<div id="login-page" class="section transparent" style="margin-left:3%; margin-right:69%; margin-top:10px;">
 			<div>
@@ -35,14 +55,7 @@
 			      	<div class="collapsible-header center white-text teal lighten-2" style="border-radius:5px; border:0px; padding:7px;"><font size="+2">LOG IN</font></div>
 
 			      	<div class="collapsible-body row white" style="border:0px;">
-				      	{!! Form::open(['url' => 'login']) !!}
-
-		         		@if(Session::get('flash_message'))
-		         			<div class = "flash">
-		         				{{ Session::get('flash_message') }}
-		         			</div>
-		         		@endif
-
+				      	{!! Form::open(['url' => 'login']) !!}   		
 		    	 		<!-- Content form input -->
 			      		<div class="form-group" style="padding-left:20px; padding-right:20px">
 					        <div class="row margin">
@@ -102,41 +115,45 @@
 		<!--INDIVIDUAL-->
 	    <div id="individualsignup" class="modal" style="width:35%; margin-top:40px; background-color:#eeeeee;">
 	        
-	        {!! Form::open() !!}
+	        {!! Form::open(['url' => '/signup/individual' , 'method' => 'post']) !!}
 	        <div class="modal-content row" style="padding:20px;">
 	      	<h3><font color="green"><b>SIGN UP</b></font></h3>
+	        		<div class="input-field col s6" style="border-radius:5px;">
+			          	<input placeholder="First Name" value="{{$newUserId}}" name="userId" id="userId" type="text" class="validate">
+			        </div>
 	        	<div class="col s12">
 			        <div class="input-field col s6" style="border-radius:5px;">
-			          	<input placeholder="First Name" id="first_name" type="text" class="validate">
+			          	<input placeholder="First Name" id="userFName" value="{{ old('userFName') }}" name="userFName" type="text" class="validate">
 			        </div>
 			        <div class="col s1"><h1></h1></div>
 			        <div class="input-field col s5" style="border-radius:5px;">
-			          	<input placeholder="Last Name" id="last_name" type="text" class="validate">
+			          	<input placeholder="Last Name" id="userLName" value="{{ old('userLName') }}" name="userLName" type="text" class="validate">
 			        </div>			        
 	        	</div>
 	        	<div class="col s12">
 	        		<div class="input-field" style="padding:5px; border-radius:5px;">
-			          	<input placeholder="Email Address" id="email" type="email" class="validate">
+			          	<input placeholder="Email Address" name="email" id="email" value="{{ old('email') }}" type="email" class="validate">
 			        </div>
 		        </div>
 	        	<div class="col s12">
 	        		<div class="input-field" style="padding:5px; border-radius:5px;">
-			          	<input placeholder="Password" id="password" type="password" class="validate">
+			          	<input placeholder="Password" name="password" id="password" value="{{ old('password') }}" type="password" class="validate">
 			        </div>
 		        </div>
 	        	<div class="col s12">
 	        		<div class="input-field" style="padding:5px; border-radius:5px;">
-			          	<input placeholder="Re-type Password" id="retype" type="password" class="validate">
+			          	<input placeholder="Re-type Password" name="password_confirmation" id="password_confirmation" value="{{ old('password_confirmation') }}" type="password" class="validate">
 			        </div>
 		        </div>
 
 	        </div>
-	        {!! Form::close() !!}
 
 	       	<div class="modal-footer" style="background-color:#eeeeee;">
 	            <div><a href="" class="left modal-action modal-close waves-effect waves-green teal white-text btn-large btn-flat">Cancel</a></div>
-	            <div><a href="{{URL::to('/signup-individual')}}" class="right modal-action modal-close waves-effect waves-green green white-text btn-large btn-flat"><b><font size="+1">Sign up</font></b></a></div>
+	            <div><button type="submit" class="right modal-action modal-close waves-effect waves-green green white-text btn-large btn-flat"><b><font size="+1">Sign up</font></b></button></div>
 	        </div>
+	        
+	        {!! Form::close() !!}
 
 	    </div>
 
