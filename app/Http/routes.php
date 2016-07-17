@@ -65,6 +65,10 @@ Route::group(['prefix' => 'maintenance'], function(){
 		Route::post('garment-segment/update','GarmentSegmentController@updateGarmentSegment');
 		Route::post('garment-segment/destroy','GarmentSegmentController@deleteGarmentSegment');
 		
+	Route::resource('segment-style', 'MaintenanceSegmentStyleController');
+
+		Route::post('segment-style/update','MaintenanceSegmentStyleController@updateSegmentStyle');
+		Route::post('segment-style/destroy','MaintenanceSegmentStyleController@deleteSegmentStyle');
 
 
 	Route::resource('segment-pattern', 'SegmentPatternController');
@@ -87,22 +91,32 @@ Route::group(['prefix' => 'maintenance'], function(){
 Route::group(['prefix' => 'maintenance'], function(){
 	Route::resource('fabric-type', 'FabricTypeController');
 		
-		Route::post('fabric-type/update','FabricTypeController@update_fabrictype');
-		Route::post('fabric-type/destroy','FabricTypeController@delete_fabrictype');
+		Route::post('fabric-type/update','FabricTypeController@update_fabricType');
+		Route::post('fabric-type/destroy','FabricTypeController@delete_fabricType');
 
 
-	Route::resource('swatch-name', 'SwatchNameController');
+	Route::resource('fabric-thread-count', 'FabricThreadCountController');
 
-		Route::post('swatch-name/update','SwatchNameController@update_swatchname');
-		Route::post('swatch-name/destroy','SwatchNameController@delete_swatchname');
+		Route::post('fabric-thread-count/update','FabricThreadCountController@update_threadCount');
+		Route::post('fabric-thread-count/destroy','FabricThreadCountController@delete_threadCount');
+
+	Route::resource('fabric-pattern', 'FabricPatternController');
+
+		Route::post('fabric-pattern/update','FabricPatternController@update_fabricPattern');
+		Route::post('fabric-pattern/destroy','FabricPatternController@delete_fabricPattern');
+
+	Route::resource('fabric-color', 'FabricColorController');
+
+		Route::post('fabric-color/update','FabricColorController@update_fabricColor');
+		Route::post('fabric-color/destroy','FabricColorController@delete_fabricColor');
 
 
-	Route::resource('swatch', 'SwatchController');
+	Route::resource('fabrics', 'FabricMaintenanceController');
+
+		Route::post('fabrics/update','FabricMaintenanceController@update_fabrics');
+		Route::post('fabrics/destroy','FabricMaintenanceController@delete_fabrics');
 
 
-		Route::post('swatch/update','SwatchController@update_swatch');
-	
-		Route::post('swatch/destroy', 'SwatchController@delete_swatch');
 
 });
 

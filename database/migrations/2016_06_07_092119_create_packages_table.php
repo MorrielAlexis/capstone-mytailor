@@ -15,6 +15,7 @@ class CreatePackagesTable extends Migration
         Schema::create('tblPackages', function (Blueprint $table) {
             $table->string('strPackageID')->primary();
             $table->string('strPackageName');
+            $table->string('strPackageSex');
             $table->string('strPackageSeg1FK')->index();//fk
             $table->string('strPackageSeg2FK')->index();//fk
             $table->string('strPackageSeg3FK')->index();//fk

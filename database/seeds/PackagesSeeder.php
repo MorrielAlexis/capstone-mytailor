@@ -16,31 +16,33 @@ class PackagesSeeder extends Seeder
 
         			'strPackageID' => 'PACK0001',
         			'strPackageName' =>  'Generic Package A (Male)',
-  					'strPackageSeg1FK' =>  'SEGM001',
-					'strPackageSeg2FK' =>  'SEGM002',
-					'strPackageSeg3FK' =>  'SEGM003',
-					'strPackageSeg4FK' =>  'SEGM002',
-					'strPackageSeg5FK' =>  'SEGM001',
-                    'dblPackagePrice' => '2500.00',
-                    'intPackageMinDays' => '60',
-					'strPackageImage' =>  '',
-					'strPackageDesc' =>  'Package for male fre',
-					'boolIsActive'  =>  '1'      
+              'strPackageSex' =>  'M',
+  					  'strPackageSeg1FK' =>  'SEGM001',
+    					'strPackageSeg2FK' =>  'SEGM002',
+    					'strPackageSeg3FK' =>  'SEGM003',
+    					'strPackageSeg4FK' =>  'SEGM002',
+    					'strPackageSeg5FK' =>  'SEGM001',
+              'dblPackagePrice' => '2500.00',
+              'intPackageMinDays' => '60',
+    					'strPackageImage' =>  '',
+    					'strPackageDesc' =>  'Package for male fre',
+    					'boolIsActive'  =>  '1'      
         			),
 
         			array(
         			'strPackageID' => 'PACK0002',
         			'strPackageName' =>  'Generic Package B (Female)',
-  					'strPackageSeg1FK' =>  'SEGM002',
-					'strPackageSeg2FK' =>  'SEGM002',
-					'strPackageSeg3FK' =>  'SEGM004',
-					'strPackageSeg4FK' =>  'SEGM004',
-					'strPackageSeg5FK' =>  'SEGM006',
-                    'dblPackagePrice' => '2500.00',
-                    'intPackageMinDays' => '60',
-					'strPackageImage' =>  '',
-					'strPackageDesc' =>  'Package for female fre',
-					'boolIsActive'  =>  '1'     
+              'strPackageSex' =>  'F',
+        			'strPackageSeg1FK' =>  'SEGM002',
+				    	'strPackageSeg2FK' =>  'SEGM002',
+      		  	'strPackageSeg3FK' =>  'SEGM004',
+      		  	'strPackageSeg4FK' =>  'SEGM004',
+      		  	'strPackageSeg5FK' =>  'SEGM006',
+              'dblPackagePrice' => '2500.00',
+              'intPackageMinDays' => '60',
+					    'strPackageImage' =>  '',
+					    'strPackageDesc' =>  'Package for female fre',
+					    'boolIsActive'  =>  '1'     
 					)
 
         );

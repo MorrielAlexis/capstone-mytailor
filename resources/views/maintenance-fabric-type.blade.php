@@ -90,7 +90,7 @@
 
     <div class="row">
       <div class="col s12 m12 l12">
-        <span class="page-title"><h4>Fabric Type</h4></span>
+        <span class="page-title"><h4>Maintenance - Fabric Type</h4></span>
       </div> 
     </div>
 
@@ -107,7 +107,7 @@
     	<div class="col s12 m12 l12">  <!-- col s12 m12 l12 -->
 
     		<div class="card-panel">  <!-- card-panel -->
-   		    <span class="card-title"><h5 style="color:#1b5e20"><center>Fabric Type</center></h5></span>
+   		    <span class="card-title"><h5 style="color:#1b5e20"><center>List of Fabric Types</center></h5></span>
    				<div class="divider"> </div>
             <div class="card-content"><!-- card-content  --> 
 

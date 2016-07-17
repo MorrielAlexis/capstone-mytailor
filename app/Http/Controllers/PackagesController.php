@@ -82,6 +82,7 @@ class PackagesController extends Controller
                 $sets = Package::create(array(
                  'strPackageID' => $request->input('strPackageID'),
                  'strPackageName' => trim($request->input('strPackageName')),
+                 'strPackageSex' => $request->input('strPackageSex'),
                  'strPackageSeg1FK' => $request->input('strPackageSeg1FK'),
                  'strPackageSeg2FK' => $request->input('strPackageSeg2FK'),
                  'strPackageSeg3FK' => $request->input('strPackageSeg3FK'),
@@ -98,6 +99,7 @@ class PackagesController extends Controller
                 $sets = Package::create(array(
                 'strPackageID' => $request->input('addPackageID'),
                 'strPackageName' => trim($request->input('addPackageName')),
+                'strPackageSex' => $request->input('strPackageSex'),
                 'strPackageSeg1FK' => $request->input('strPackageSeg1FK'),
                 'strPackageSeg2FK' => $request->input('strPackageSeg2FK'),
                 'strPackageSeg3FK' => $request->input('strPackageSeg3FK'),
@@ -174,6 +176,7 @@ class PackagesController extends Controller
                 if($file == $sets->strPackageImage)
                 {
                     $sets->strPackageName = trim($request->input('editPackageName'));
+                    $sets->strPackageSex = $request->input('editSex');
                     $sets->strPackageSeg1FK = $request->input('editSegment1');
                     $sets->strPackageSeg2FK = $request->input('editSegment2');
                     $sets->strPackageSeg3FK = $request->input('editSegment3');
@@ -187,6 +190,7 @@ class PackagesController extends Controller
                     $request->file('editImg')->move($destinationPath);
 
                     $sets->strPackageName = trim($request->input('editPackageName'));
+                    $sets->strPackageSex = $request->input('editSex');
                     $sets->strPackageSeg1FK = $request->input('editSegment1');
                     $sets->strPackageSeg2FK = $request->input('editSegment2');
                     $sets->strPackageSeg3FK = $request->input('editSegment3');
