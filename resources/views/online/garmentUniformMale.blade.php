@@ -7,7 +7,7 @@
 		<div id="maleuniform" style="height:500px; margin-top: -15px;">
 	  		<div style="height:70px"></div>
 	  		<center><h1 style="color:white; font-family:'Playfair Display','Times';">Custom tailored uniforms</h1></center>
-	  		<center><a style="margin-top:45px; padding-top:15px; padding-left:5px; padding-right:5px; width:250px; height:70px; background:rgb(236, 59, 65);" class="white-text modal-trigger waves-effect waves-light btn btn-small center-text" href="{{URL::to('/customize-mens')}}"><font size="+1">CUSTOMIZE YOURS NOW!</font></a></center>
+	  		<center><a style="margin-top:45px; padding-top:15px; padding-left:5px; padding-right:5px; width:250px; height:70px; background:rgb(236, 59, 65);" class="white-text modal-trigger waves-effect waves-light btn btn-small center-text" href="{{URL::to('/customize-mens-fabric')}}"><font size="+1">CUSTOMIZE YOURS NOW!</font></a></center>
 		</div>
 
 		<div style= "height:20px;"></div>

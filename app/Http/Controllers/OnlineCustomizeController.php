@@ -14,29 +14,54 @@ class OnlineCustomizeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function suit()
+    public function fabricsuit()
     {
-        return view('customize.suit');
+        return view('customize.suit-fabric');
     }
 
-    public function gown()
+    public function stylesuit()
     {
-        return view('customize.gown');
+        return view('customize.suit-style');
+    }    
+
+    public function fabricgown()
+    {
+        return view('customize.gown-fabric');
     }
 
-    public function mens()
+    public function stylegown()
     {
-        return view('customize.mens');
+        return view('customize.gown-style');
     }
 
-    public function womens()
+    public function fabricmens()
     {
-        return view('customize.womens');
+        return view('customize.mens-fabric');
     }
 
-    public function pants()
+    public function stylemens()
     {
-        return view('customize.pants');
+        return view('customize.mens-style');
+    }
+
+    public function fabricwomens()
+    {
+        return view('customize.womens-fabric');
+    }
+
+    public function stylewomens()
+    {
+        return view('customize.womens-style');
+    }
+
+    public function fabricpants()
+    {
+        return view('customize.pants-fabric');
+    }    
+
+    public function stylepants()
+    {
+        return view('customize.pants-style');
     }    
 
     /**
