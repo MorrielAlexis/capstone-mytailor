@@ -54,7 +54,7 @@ class SegmentSeeder extends Seeder
               array(
                 'strSegmentID' => 'SEGM004',
                 'strSegCategoryFK' => 'GARM001',    
-                'strSegmentName' =>'Polo Shirt',
+                'strSegmentName' =>'Polo',
                 'dblSegmentPrice' => '500.00',
                 'strSegmentSex' => 'M',
                 'intMinDays' => '5',

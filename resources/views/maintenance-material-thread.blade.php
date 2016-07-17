@@ -118,7 +118,7 @@
 			            <div class="card">
 			              <div class="card-content">
 			                <div class = "col s12 m12 l12 overflow-x">
-			                  <h5 class="thin white-text"><font color = "#1b5e20"><center>Threads</center> </font> </h5>
+			                  <h5 class="thin white-text"><font color = "#1b5e20"><center>List of Thread</center> </font> </h5>
 			                  <table class = "table centered data-thread" border = "1" cellspacing="0" width="100%">
 
 			                    <thead>

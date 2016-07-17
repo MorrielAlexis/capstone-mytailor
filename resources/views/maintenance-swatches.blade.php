@@ -108,7 +108,7 @@
   <div class="row">
     <div class="col s12 m12 l12">
     	<div class="card-panel">
-        <span class="card-title"><h5 style="color:#1b5e20"><center>Swatch Details</center></h5></span>
+        <span class="card-title"><h5 style="color:#1b5e20"><center>List of Swatches</center></h5></span>
         <div class="divider"></div>
         <div class="card-content">
             <div class="col s12 m12 l12 overflow-x">

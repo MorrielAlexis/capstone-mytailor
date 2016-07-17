@@ -24,8 +24,29 @@ class GarmentCategorySeeder extends Seeder
 
             array(
                 'strGarmentCategoryID' => 'GARM002',
-                'strGarmentCategoryName' => 'Tuxedo', 
-                'textGarmentCategoryDesc' =>'Formal essential for men.',
+                'strGarmentCategoryName' => 'Suits', 
+                'textGarmentCategoryDesc' =>'Formal wear essential for men.',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strGarmentCategoryID' => 'GARM003',
+                'strGarmentCategoryName' => 'Men Shirt', 
+                'textGarmentCategoryDesc' =>'Combination of casual and formal shirts.',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strGarmentCategoryID' => 'GARM004',
+                'strGarmentCategoryName' => 'Pants', 
+                'textGarmentCategoryDesc' =>'Customize and perfect fit pants.',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strGarmentCategoryID' => 'GARM005',
+                'strGarmentCategoryName' => 'Women Shirt', 
+                'textGarmentCategoryDesc' =>'Combination of casual and formal shirts for women.',
                 'boolIsActive' => '1'
             )
 

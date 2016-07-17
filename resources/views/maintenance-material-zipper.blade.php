@@ -118,7 +118,7 @@
             <div class="card">
               <div class="card-content">
                 <div class = "col s12 m12 l12 overflow-x">
-                  <h5><font color = "#1b5e20"><center>Zippers</center> </font> </h5>
+                  <h5><font color = "#1b5e20"><center>List of Zipper</center> </font> </h5>
                   <table class = "table centered data-zipper" border="1">
 
                     <thead>

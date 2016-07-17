@@ -192,15 +192,26 @@ class GarmentSegmentController extends Controller
 
     function deleteGarmentSegment(Request $request)
     {
+
+       $id = $request->input('delSegmentID');
         $segment = GarmentSegment::find($request->input('delSegmentID'));
 
-        $segment->strSegInactiveReason = trim($request->input('delInactiveSegment'));
-        $segment->boolIsActive = 0;
-        $segment->save();
+        $count = \DB::table('tblSegmentStyleCategory')
+                ->join('tblSegment', 'tblSegmentStyleCategory.strSegmentFK', '=', 'tblSegment.strSegmentID')
+                ->select('tblSegment.*')
+                ->where('tblSegment.strSegmentID','=', $id)
+                ->count();
+                
+                if ($count != 0 ) {
+                    return redirect('maintenance/garment-segment?success=beingUsed'); 
+                }else {
+                    $segment->strSegInactiveReason = trim($request->input('delInactiveSegment')); 
+                    $segment->boolIsActive = 0;
+                    $segment->save();
+                    \Session::flash('flash_message_delete','Segment successfully deactivated.'); //flash message
+                    return redirect('maintenance/garment-segment'); 
+            }
 
-         \Session::flash('flash_message_delete','Segment successfully deactivated.'); //flash message
-
-       return redirect('maintenance/garment-segment');
     }
 
 

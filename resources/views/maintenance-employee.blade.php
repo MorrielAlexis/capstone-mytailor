@@ -88,7 +88,7 @@
 
     <div class="row">
       <div class="col s12 m12 l12">
-        <span class="page-title"><h4>Employee Profile</h4></span>
+        <span class="page-title"><h4>Maintenance - Employee Profile</h4></span>
       </div>
     </div>
 
@@ -103,7 +103,7 @@
     <div class="row">
     	<div class="col s12 m12 l12">
     		<div class="card-panel">
-   		    <span class="card-title"><h5 style="color:#1b5e20"><center>Employee Profile</center></h5></span>
+   		    <span class="card-title"><h5 style="color:#1b5e20"><center>List of Employee Profiles</center></h5></span>
    				<div class="divider"></div>
     			<div class="card-content">
             <div class="col s12 m12 l12 overflow-x">
@@ -444,19 +444,16 @@
                   </div>
               </div>
 
-               <div class = "col s12" style="padding:15px;  border:3px solid white;">  
-                  <div class="input-field col s1">
-                              <label style="margin-left: -3px; margin-top: 15px !important;" for="contact">(+63)</label>
-                  </div>   
+               <div class = "col s12" style="padding:15px;  border:3px solid white;">    
                   <div class="input-field col s6">
-                    <input required id="strCellNo" pattern="^[0-9]{10,10}$" name="strCellNo" type="text" class="validate" placeholder="09361234567" maxlength="10">
+                    <input required id="strCellNo" pattern="^[0-9]{11,11}$" name="strCellNo" type="text" class="validate" placeholder="09361234567" maxlength="10">
                     <label for="cellphone_number">Cellphone Number <span class="red-text"><b>*</b></span></label>
                     <span id="left"></span>
                   </div>
 
                  
                   <div class="input-field col s6">
-                    <input id="strCellNoAlt" pattern="^[0-9]{10,10}$" name="strCellNoAlt" type="text" class="validate" placeholder="09361234567" maxlength="10">
+                    <input id="strCellNoAlt" pattern="^[0-9]{11,11}$" name="strCellNoAlt" type="text" class="validate" placeholder="09361234567" maxlength="10">
                     <label for="cellphone_number">Cellphone Number (Alt)</label>
                     <span id="left"></span>
                   </div>

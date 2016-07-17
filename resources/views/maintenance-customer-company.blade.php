@@ -77,7 +77,7 @@
 
     <div class="row">
       <div class="col s12 m12 l12">
-      <span class="page-title"><h4>Customer Company</h4></span>
+      <span class="page-title"><h4>Maintenance - Customer (Company)</h4></span>
       </div>
     </div>
 
@@ -90,7 +90,7 @@
     <div class="row">
       <div class="col s12 m12 l12">
         <div class="card-panel">
-          <span class="card-title"><h5 style="color:#1b5e20"><center>Customer Profile - (Company)</center></h5></span>
+          <span class="card-title"><h5 style="color:#1b5e20"><center>List of Company Profiles</center></h5></span>
           <div class="divider"></div>
           <div class="card-content">
 

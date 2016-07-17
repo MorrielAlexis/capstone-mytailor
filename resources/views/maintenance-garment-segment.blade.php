@@ -118,7 +118,7 @@
     <div class="row">
     	<div class="col s12 m12 l12">
     		<div class="card-panel">
-   		    <span class="card-title"><h5 style="color:#1b5e20"><center>Garment Segments</center></h5></span>
+   		    <span class="card-title"><h5 style="color:#1b5e20"><center>List of Garment Segments</center></h5></span>
    				<div class="divider"></div>
     			<div class="card-content">
               <div class="col s12 m12 l12 overflow-x">
@@ -169,7 +169,7 @@
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">                                                    
-                                <select class="browser-default" id="editCategory" name="editCategory"required>
+                                <select class="browser-default" id="editCategory" name="editCategory" required>
                                   <option value="" disabled selected>Choose garment category</option>
                                   @foreach($garment as $garm)
                                     @if($segment->strSegCategoryFK == $garm->strGarmentCategoryID && $garm->boolIsActive == 1)
@@ -203,14 +203,20 @@
                               </div>
                           </div>
 
-                          <div class="input-field col s12" style="margin-top: 40px !important;">
-                              <select required class="browser-default" name="editSegmentSex" id="editSegmentSex">
-                                <option value="" disabled selected>Sex</option>
-                                <option value="{{$segment->strSegmentSex}}">Male</option>
-                                <option value="{{$segment->strSegmentSex}}">Female</option>
-                              </select>
-                              <label for="strSegmentSex" class="active">Sex<span class="red-text">*</span></label>
-                          </div>
+
+                          <div class="input-field col s6" style="margin-top:47px">                                                    
+                            <select required name='editSegmentSex' id="editSegmentSex">
+                              <option disabled>Sex</option>
+                                  @if($segment->strSegmentSex == "M")
+                                    <option selected value="{{$segment->strSegmentSex}}">Male</option>
+                                    <option value="F">Female</option>
+                                  @else
+                                    <option value="M">Male</option>
+                                    <option selected value="{{$segment->strSegmentSex}}">Female</option>
+                                  @endif
+                            </select>    
+                            <label>Sex</label>
+                          </div>  
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s6">
@@ -272,13 +278,6 @@
                               </div>
                           </div>
 
-
-                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                              <div class="input-field col s12">                                                    
-                                  <input type="text" value="{{$segment->strSegmentSex}}">
-                                  <label>Sex</label>
-                              </div>   
-                          </div>
 
                             <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">                                                    
@@ -373,14 +372,13 @@
                       </div>
                   </div>
 
-                   <div class="input-field col s12" style="margin-top: 40px !important;">
-                              <select required class="browser-default" name="strSegmentSex" id="strSegmentSex">
-                                <option value="" disabled selected>Sex</option>
-                                <option value="{{$segment->strSegmentSex}}">Male</option>
-                                <option value="{{$segment->strSegmentSex}}">Female</option>
-                              </select>
-                              <label for="Sex" class="active">Sex<span class="red-text">*</span></label>
-                  </div> 
+                  <div class="input-field col s12" style="margin-top:47px">
+                    <select value="" name='strSegmentSex' id='strSegmentSex' required>
+                      <option value="M">Male</option>
+                      <option value="F">Female</option>
+                    </select>    
+                    <label>Sex</label>
+                  </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s6">
