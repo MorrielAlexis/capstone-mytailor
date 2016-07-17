@@ -124,7 +124,7 @@
 								<label>Choose your design:</label>
 											<div class="file-field input-field">
 												<a style="color:black" class="modal-trigger btn tooltipped btn-floating teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a segment pattern" href="#pattern{{ $i+1 }}"><i class="mdi-editor-mode-edit"></i></a>
-													<div id="pattern{{ $i+1 }}" class="modal modal-fixed-footer">
+													<div id="pattern{{ $i+1 }}" class="modal modal-fixed-footer" style="width:1100px; height:900px">
 														<h5><font color = "#1b5e20"><center>List of Available Designs</center> </font> </h5>
                         	
 									                        <div class="divider" style="height:2px"></div>
@@ -238,7 +238,7 @@
 						<!--dati dito yung div-->
 
 							<div class="col s12" >
-								<div class="divider" style="margin-bottom:30px; margin-top:30px; height:5px"></div>
+								<div class="divider" style="margin-bottom:30px; margin-top:30px; height:3px"></div>
 							</div>
 						<br>
 						<div class="divider" style="height:2px;margin-top:40px"></div>
@@ -252,8 +252,8 @@
 									<a class="btn" style="color:white; background-color:teal; border:3px teal solid">Cancel Transaction</a>
 								</div>	
 								<div class="col s6">
-									<a href="{{URL::to('transaction/walkin-individual-bulk-orders')}}" class="right btn" style="color:white; background-color:teal; margin-left:20px; border:3px teal solid">Add another set</a>
-									<a href="{{URL::to('transaction/walkin-individual')}}" class="right btn" style="color:white; background-color:teal; border:3px teal solid">Add a retail order</a>
+									<!--<a href="{{URL::to('transaction/walkin-individual-bulk-orders')}}" class="right btn" style="color:white; background-color:teal; margin-left:20px; border:3px teal solid">Add another set</a>-->
+									<a href="{{URL::to('transaction/walkin-individual')}}" class="right btn" style="color:white; background-color:teal; border:3px teal solid">Add another garment</a>
 								</div>
 							</div>
 						</div> <!--end of list-->
