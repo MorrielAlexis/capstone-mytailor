@@ -68,7 +68,7 @@ class SegmentStyleSeeder extends Seeder
                 'boolIsActive' => '1'
             ),
 
-             array(
+            array(
                 'strSegStyleCatID' => 'SEGSTY007',
                 'strSegmentFK' => 'SEGM006',
                 'strSegStyleName' =>'Slack Pockets',
@@ -76,8 +76,56 @@ class SegmentStyleSeeder extends Seeder
                 'strSegStyleCatInactiveReason' => '',
                 'boolIsActive' => '1'
             ),
- 
 
+            array(
+                'strSegStyleCatID' => 'SEGSTY008',
+                'strSegmentFK' => 'SEGM002',
+                'strSegStyleName' =>'Single Breasted',
+                'strSegStyleCatDesc' => 'Widely use for business and formal events. ',
+                'strSegStyleCatInactiveReason' => '',
+                'boolIsActive' => '1'
+            ),
+
+
+            array(
+                'strSegStyleCatID' => 'SEGSTY009',
+                'strSegmentFK' => 'SEGM002',
+                'strSegStyleName' =>'Double Breasted',
+                'strSegStyleCatDesc' => 'Widely use for business and formal events. ',
+                'strSegStyleCatInactiveReason' => '',
+                'boolIsActive' => '1'
+            ),
+
+
+            array(
+                'strSegStyleCatID' => 'SEGSTY010',
+                'strSegmentFK' => 'SEGM002',
+                'strSegStyleName' =>'Vents',
+                'strSegStyleCatDesc' => 'Stylish accent on the back side of the jacket.  ',
+                'strSegStyleCatInactiveReason' => '',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strSegStyleCatID' => 'SEGSTY011',
+                'strSegmentFK' => 'SEGM002',
+                'strSegStyleName' =>'Chest pocket',
+                'strSegStyleCatDesc' => 'Stylish accent on the chest side of the jacket.  ',
+                'strSegStyleCatInactiveReason' => '',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strSegStyleCatID' => 'SEGSTY012',
+                'strSegmentFK' => 'SEGM002',
+                'strSegStyleName' =>'Chest pocket',
+                'strSegStyleCatDesc' => 'Stylish accent on the chest side of the jacket.  ',
+                'strSegStyleCatInactiveReason' => '',
+                'boolIsActive' => '1'
+            )
+ 
+ 
+ 
 
         );
 
