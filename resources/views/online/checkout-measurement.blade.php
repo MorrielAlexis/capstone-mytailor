@@ -2,11 +2,16 @@
 
 @section('content')
 
-  <div style="height:150px;">
-    <div style="height:20px;"></div>
-    <center><h2 style="color:white; font-family:'Playfair Display','Times';">Checkout</h2></center>
-    <div class="container divider"></div>
-  </div>
+    <div class="container" style="width:100%;">
+      <div class="row" style="margin:40px;">
+        <ul class="col s12 breadcrumb">
+          <li><a style="padding-left:100px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Select Fabric</b></a></li>
+          <li><a style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Choose Style</b></a></li>
+          <li><a style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Check Out</b></a></li>
+          <li><a class="active" style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Step 4: MEASUREMENT</b></a></li>
+        </ul>
+      </div>
+    </div>
   
   <div class="container">
     <div class="section white" style="padding:20px; margin-bottom:20px;"> 
