@@ -31,7 +31,7 @@ class CreateJobOrderIndividual extends Migration
             $table->timestamps();
 
 
-             $table->foreign('strJOI_CustomerFK')
+            $table->foreign('strJOI_CustomerFK')
                   ->references('strIndivID')
                   ->on('tblCustIndividual');
 
