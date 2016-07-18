@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\SegmentPattern;
 use App\GarmentCategory;
 use App\GarmentSegment;
-use App\MaintenanceSegmentStyle;
+use App\SegmentStyle;
 use App\Http\Requests;
 use App\Http\Requests\SegmentPatternRequest;
 use App\Http\Controllers\Controller;
@@ -39,7 +39,7 @@ class SegmentPatternController extends Controller
         $ID = $ids["0"]->strSegPatternID;
         $newID = $this->smartCounter($ID);  
 
-        $segmentStyle = MaintenanceSegmentStyle::all();
+        $segmentStyle = SegmentStyle::all();
 
         // $pattern = SegmentPattern::all();
 

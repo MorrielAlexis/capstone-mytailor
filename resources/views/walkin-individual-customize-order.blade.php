@@ -66,14 +66,13 @@
 									<!--Under each "style category" ay may mga segment pattern na pipiliin-->
 									<!--Check maintenance for a better understanding. Under Garments-->
 									@foreach($styles as $style)
-									<ul class="collapsible z-depth-2" data-collapsible="accordion" style="border:none;">
-									   @if($segment->strSegmentID == $style->strSegmentFK)
+									<ul class="collapsible z-depth-2" data-collapsible="accordion" style="border:none" @if($segment->strSegmentID != $style->strSegmentFK) hidden @endif>
 									    <li style="margin-bottom:10px;">
 									      	<div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $style->strSegStyleName }}</div>
 									      	<div class="collapsible-body overflow-x">
 											      	<p style="color:gray; margin-left:20px">*Choose one of your desired design</p>
 											      	@foreach($patterns as $j => $pattern)
-											      	<div class="col s6">
+											      	<div class="col s6" @if($pattern->strSegPStyleCategoryFK != $style->strSegStyleCatID) hidden @endif>
 							                        	<div class="center col s2 " style="margin-top:60px">
 							                        		<input name="rdb-pattern[]" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegTypeID }}{{ $i+1 }}{{ $j+1 }}" />
 							                        		<label for="{{ $pattern->strSegTypeID }}{{ $i+1 }}{{ $j+1 }}"></label>
@@ -99,7 +98,6 @@
 									      	</div>
 									    </li>
 									  </ul>
-										@endif
 									@endforeach
 									<!--End of Collapsible Accordion-->
 
