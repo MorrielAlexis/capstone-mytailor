@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateJobdescriptionTable extends Migration
+class CreateJoPqAddcharge extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,11 @@ class CreateJobdescriptionTable extends Migration
      */
     public function up()
     {
-        Schema::create('tblJobDescription', function (Blueprint $table) {
-            $table->string('strJobDescriptionID')->primary();
-            $table->string('strJobName');
-            $table->text('txtJobDescription');
+        Schema::create('tblJOPQAddCharge', function (Blueprint $table) {
+            $table->string('strAdditionalChargeID')->primary();
+            $table->string('strAdditionalChargeName');
+            $table->double('dblAdditionalChargeAmount');
+            $table->text('txtNote');
             $table->boolean('boolIsActive');
             $table->timestamps();
         });
@@ -28,6 +29,6 @@ class CreateJobdescriptionTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tblJobDescription');
+        Schema::drop('tblJOPQAddCharge');
     }
 }
