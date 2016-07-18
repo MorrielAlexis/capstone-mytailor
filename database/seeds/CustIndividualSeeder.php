@@ -31,6 +31,7 @@ class CustIndividualSeeder extends Seeder
                 'strIndivCPNumber' => '09156789678',
                 'strIndivCPNumberAlt' => '09122345678',
                 'strIndivEmailAddress' => 'melodyreyes@gmail.com',
+                'userId' => null,
                 'boolIsActive' => '1'
             ),
 
@@ -50,6 +51,7 @@ class CustIndividualSeeder extends Seeder
                 'strIndivCPNumber' => '09198761290',
                 'strIndivCPNumberAlt' => '09121236789',
                 'strIndivEmailAddress' => 'reychnayre@yahoo.com',
+                'userId' => null,
                 'boolIsActive' => '1'
             )
 

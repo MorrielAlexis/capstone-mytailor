@@ -17,11 +17,11 @@
 				
             	<h5 style="padding:20px;"><font color = "#1b5e20"><center>COMPANY PROFILE</center> </font> </h5>
                 <div class="divider" style="height:2px"></div>
-					
+					{!! Form::open(['url' => '/register/profile/company/success' , 'method' => 'post']) !!}
 				<div class="col s12" style="background-color:#eeeeee;">
 					<div class = "col s12" style="padding:15px;">
 			            <div class="input-field col s12">                 
-			                <input value="" id="strCompanyID" name="strCompanyID" type="text" class="" readonly>
+			                <input value="{{$newCompId}}" id="strCompanyID" name="strCompanyID" type="text" class="" readonly>
 			                <label for="company_id">Company ID </label>
 			            </div>
 			        </div>
@@ -105,8 +105,9 @@
                     
                     <div class="col s12" style="margin-bottom:20px;">
 			            <div><a href="" class="left waves-effect waves-green teal white-text btn-large btn-flat">Cancel</a></div>
-			            <div><a href="" class="right waves-effect waves-green green white-text btn-large btn-flat"><b><font size="+1">Submit</font></b></a></div>
+			            <div><button type="submit" class="right waves-effect waves-green green white-text btn-large btn-flat"><b><font size="+1">Submit</font></b></button></div>
 			        </div>
+			        {!! Form::close() !!}
 				</div>
 
 			</div>

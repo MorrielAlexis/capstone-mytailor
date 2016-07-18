@@ -21,7 +21,7 @@ Route::get('/logout', 'HomeController@LogOut');
 Route::post('/signup/individual', 'RegisterIndividualController@store');
 Route::get('/register/profile/individual', 'HomeController@indiv');
 Route::post('/register/profile/individual/success', 'HomeController@saveDetailsIndiv');
-Route::post('/signup/individual', 'RegisterCompanyController@store');
+Route::post('/signup/company', 'RegisterCompanyController@store');
 Route::get('/register/profile/company', 'HomeController@comp');
 Route::post('/register/profile/company/success', 'HomeController@saveDetailsComp');
 Route::get('/register/verify/{confirmationCode}', 'RegisterIndividualController@confirm');

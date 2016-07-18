@@ -28,8 +28,13 @@ class CreateCustCompanyTable extends Migration
             $table->string('strCompanyCPNumberAlt')->nullable();
             $table->string('strCompanyFaxNumber')->nullable();
             $table->string('strCompanyInactiveReason')->nullable();
+            $table->string('userId')->index()->nullable();
             $table->boolean('boolIsActive');
             $table->timestamps();
+        });
+
+        Schema::table('tblCustCompany', function (Blueprint $table){
+            $table->foreign('userId')->references('id')->on('users');
         });
     }
 
@@ -41,5 +46,8 @@ class CreateCustCompanyTable extends Migration
     public function down()
     {
         Schema::drop('tblCustCompany');
+        Schema::table('tblCustCompany', function ($table){
+            $table->dropColumn('userId');
+        });
     }
 }

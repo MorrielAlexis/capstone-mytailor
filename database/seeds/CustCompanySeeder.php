@@ -30,6 +30,7 @@ class CustCompanySeeder extends Seeder
                 'strCompanyCPNumber' => '09178901234',
                 'strCompanyCPNumberAlt' => '09171234567',
                 'strCompanyFaxNumber' => '4440102',
+                'userId' => null,
                 'boolIsActive' => '1'
             ),
 
@@ -48,6 +49,7 @@ class CustCompanySeeder extends Seeder
                 'strCompanyCPNumber' => '09222349876',
                 'strCompanyCPNumberAlt' => '0922345-6987',
                 'strCompanyFaxNumber' => '0031234',
+                'userId' => null,
                 'boolIsActive' => '1'
             )
 

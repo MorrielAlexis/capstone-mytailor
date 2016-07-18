@@ -30,7 +30,7 @@
 				<div class="col s12" style="background-color:#eeeeee;">
 					<div class = "col s12" style="padding:15px;">
                         <div class="input-field col s12">                 
-                          	<input value = "{{$newID}}" id="strIndivID" name="strIndivID" type="text" class="" readonly>
+                          	<input value = "{{$newID}}" id="strIndivID" name="strIndivID" type="hidden" class="" readonly>
                           	<label for="indi_id">Individual ID </label>
                         </div>
                     </div>

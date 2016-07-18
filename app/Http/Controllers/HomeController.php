@@ -6,6 +6,7 @@ use View;
 use Input;
 use App\User;
 use App\Individual;
+use App\Company;
 use Illuminate\Support\Facades\Mail;
 use Redirect;
 use Illuminate\Http\Request;
@@ -16,6 +17,11 @@ use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
     public function showWelcome()
     {
         $ids = \DB::table('users')
@@ -26,7 +32,7 @@ class HomeController extends Controller
             ->get();
 
         $ID = $ids["0"]->id;
-        $newUser = $this->smartCounter($ID); 
+        $newUser = $this->smartCounter($ID);  
 
     	return View::make('login')->with('newUserId', $newUser);
     }
@@ -68,7 +74,7 @@ class HomeController extends Controller
             }
             
         }else{
-            return redirect('/')->with('flash_message', 'Invalid Credentials.')
+            return redirect('/')->with('flash_message', 'Email and password do not match.')
                     ->withInput(Input::except('password'));
         }
     }
@@ -130,7 +136,45 @@ class HomeController extends Controller
 
     public function comp()
     {
-        return view('signup-company');
+        $ids = \DB::table('tblCustCompany')
+            ->select('strCompanyID')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('strCompanyID', 'desc')
+            ->take(1)
+            ->get();
+
+        $ID = $ids["0"]->strCompanyID;
+        $newComp = $this->smartCounter($ID);
+
+        return view('signup-company')->with('newCompId', $newComp);
+    }
+
+    public function saveDetailsComp(Request $request)
+    {
+        $comp = Company::get();
+
+        $company = Company::create(array(
+                    'strCompanyID' => $request->input('strCompanyID'),
+                    'strCompanyName' => trim($request->input('strCompanyName')),     
+                    'strCompanyBuildingNo' => trim($request->input('strCompanyBuildingNo')),   
+                    'strCompanyStreet' => trim($request->input('strCompanyStreet')),
+                    'strCompanyBarangay' => trim($request->input('strCompanyBarangay')), 
+                    'strCompanyCity' => trim($request->input('strCompanyCity')), 
+                    'strCompanyProvince' => trim($request->input('strCompanyProvince')),
+                    'strCompanyZipCode' => trim($request->input('strCompanyZipCode')),
+                    'strContactPerson' => trim($request->input('strContactPerson')),
+                    'strCompanyEmailAddress' => trim($request->input('strCompanyEmailAddress')),         
+                    'strCompanyCPNumber' => trim($request->input('strCompanyCPNumber')), 
+                    'strCompanyCPNumberAlt' => trim($request->input('strCompanyCPNumberAlt')), 
+                    'strCompanyTelNumber' => trim($request->input('strCompanyTelNumber')),
+                    'strCompanyFaxNumber' => trim($request->input('strCompanyFaxNumber')),
+                    'boolIsActive' => 1
+                    ));
+
+                $company->save();
+
+        \Session::flash('flash_message','Profile updated.');
+        return redirect('/')->with('flash_message', 'Thank you for signing up! Please check your email first to activate your account.');
     }
 
     public function smartCounter($id)

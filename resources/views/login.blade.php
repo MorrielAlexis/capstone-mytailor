@@ -119,15 +119,11 @@
 	        <div class="modal-content row" style="padding:20px;">
 	      	<h3><font color="green"><b>SIGN UP</b></font></h3>
 	        		<div class="input-field col s6" style="border-radius:5px;">
-			          	<input placeholder="First Name" value="{{$newUserId}}" name="userId" id="userId" type="text" class="validate">
+			          	<input placeholder="ID" value="{{$newUserId}}" name="userId" id="userId" type="hidden" class="validate">
 			        </div>
 	        	<div class="col s12">
 			        <div class="input-field col s6" style="border-radius:5px;">
-			          	<input placeholder="First Name" id="userFName" value="{{ old('userFName') }}" name="userFName" type="text" class="validate">
-			        </div>
-			        <div class="col s1"><h1></h1></div>
-			        <div class="input-field col s5" style="border-radius:5px;">
-			          	<input placeholder="Last Name" id="userLName" value="{{ old('userLName') }}" name="userLName" type="text" class="validate">
+			          	<input placeholder="Name" id="userName" value="{{ old('userName') }}" name="userName" type="text" class="validate">
 			        </div>			        
 	        	</div>
 	        	<div class="col s12">
@@ -160,42 +156,40 @@
 	    <!--COMPANY-->
 	    <div id="companysignup" class="modal" style="width:35%; margin-top:40px; background-color:#eeeeee;">
 	        
-	        {!! Form::open() !!}
+	        {!! Form::open(['url' => '/signup/company' , 'method' => 'post']) !!}
 	        <div class="modal-content row" style="padding:20px;">
 	      	<h3><font color="green"><b>SIGN UP</b></font></h3>
+	      	<div class="input-field col s6" style="border-radius:5px;">
+			          	<input placeholder="ID" value="{{$newUserId}}" name="userId" id="userId" type="hidden" class="validate">
+			        </div>
 	        	<div class="col s12">
 			        <div class="input-field col s6" style="border-radius:5px;">
-			          	<input placeholder="Company Name" id="company_name" type="text" class="validate">
-			        </div>
-			        <div class="col s1"><h1></h1></div>
-			        <div class="input-field col s5" style="border-radius:5px;">
-			          	<input placeholder="Contact Person" id="contact_person" type="text" class="validate">
+			          	<input placeholder="Company Name" name="compName" id="compName" value="{{ old('compName')}}" type="text" class="validate">
 			        </div>			        
 	        	</div>
 	        	<div class="col s12">
 	        		<div class="input-field" style="padding:5px; border-radius:5px;">
-			          	<input placeholder="Company Email Address" id="email" type="email" class="validate">
+			          	<input placeholder="Company Email Address" name="email" id="email" value="{{ old('email')}}" type="email" class="validate">
 			        </div>
 		        </div>
 	        	<div class="col s12">
 	        		<div class="input-field" style="padding:5px; border-radius:5px;">
-			          	<input placeholder="Password" id="password" type="password" class="validate">
+			          	<input placeholder="Password" name="password" id="password" value="{{ old('password')}}" type="password" class="validate">
 			        </div>
 		        </div>
 	        	<div class="col s12">
 	        		<div class="input-field" style="padding:5px; border-radius:5px;">
-			          	<input placeholder="Re-type Password" id="retype" type="password" class="validate">
+			          	<input placeholder="Re-type Password" name="password_confirmation" id="password_confirmation" value="{{ old('password_confirmation')}}" type="password" class="validate">
 			        </div>
 		        </div>
 
 	        </div>
-	        {!! Form::close() !!}
 
 	       	<div class="modal-footer" style="background-color:#eeeeee;">
 	            <div><a href="" class="left modal-action modal-close waves-effect waves-green teal white-text btn-large btn-flat">Cancel</a></div>
-	            <div><a href="{{URL::to('/signup-company')}}" class="right modal-action modal-close waves-effect waves-green green white-text btn-large btn-flat"><b><font size="+1">Sign up</font></b></a></div>
+	            <div><button type="submit" class="right modal-action modal-close waves-effect waves-green green white-text btn-large btn-flat"><b><font size="+1">Sign up</font></b></button></div>
 	        </div>
-
+	        {!! Form::close() !!}
 	    </div>
 
 		{!! Html::script('js/jquery-2.1.4.min.js'); !!}

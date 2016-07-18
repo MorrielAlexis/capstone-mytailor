@@ -42,7 +42,7 @@
 
         <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
           @if(Auth::check())
-          <a class="btn-floating btn-large red accent-3 tooltipped" data-position="left" data-delay="50" data-tooltip="Hi, {{ Auth::user()->first_name }}">
+          <a class="btn-floating btn-large red accent-3 tooltipped" data-position="left" data-delay="50" data-tooltip="Hi, {{ Auth::user()->name }}">
             @endif
             <i class="large mdi-action-perm-identity" style="font-size:30px;"></i>
           </a>

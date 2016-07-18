@@ -12,7 +12,7 @@ use Validator;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class RegisterIndividualController extends Controller
+class RegisterCompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -46,7 +46,7 @@ class RegisterIndividualController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
         $rules = [
             'email' => 'required|email|unique:users',
@@ -63,11 +63,11 @@ class RegisterIndividualController extends Controller
         }
 
         $confirmation_code = str_random(30);
-        $name = Input::get('userName');
+        $name = Input::get('compName');
 
         $user = new User;
             $user->id = Input::get('userId');
-            $user->name = Input::get('userName');
+            $user->name = Input::get('compName');
             $user->type = 'customer';
             $user->email = Input::get('email');
             $user->password = bcrypt(Input::get('password'));
@@ -87,10 +87,10 @@ class RegisterIndividualController extends Controller
         ]);*/
 
         Mail::send('emails.verify', ['name' => $name, 'confirmation_code' => $confirmation_code], function($message) {
-            $message->to(Input::get('email'), Input::get('userName'))->subject('Verify your email address');
+            $message->to(Input::get('email'), Input::get('compName'))->subject('Verify your email address');
         });
 
-        return redirect('/register/profile/individual');
+        return redirect('/register/profile/company');
     }
 
     /**
@@ -153,5 +153,4 @@ class RegisterIndividualController extends Controller
 
         return redirect('/')->with('flash_message', 'You have successfully verified your account.');
     }
-
 }
