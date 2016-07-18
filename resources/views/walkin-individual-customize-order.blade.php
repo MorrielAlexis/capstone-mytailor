@@ -29,7 +29,7 @@
 									<div class="right col s5"><a style="margin-top:15px; background-color:teal" type="submit" class="right waves-effect waves-green btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to proceed to payment of orders" href="#summary-of-order"><font color="white" size="+1"><!--<i class="mdi-action-payment" style="font-size:20px;">-->  Proceed to Checkout<!--</i>--></font></a>
 										@foreach($segments as $i => $segment)
 										<div id="remove{{ $i+1 }}" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
-											<h5><font color="red"><center><b>Warning!</b></center></font></h5>
+											<h5><font color="red"><center><b>{{$i+1}}Warning!</b></center></font></h5>
 												
 												{!! Form::open(['url' => 'transaction/walkin-individual-remove-item', 'method' => 'post']) !!}
 													<div class="divider" style="height:2px"></div>
@@ -54,7 +54,7 @@
 									</div>													
 										
 							</div>
-
+							@foreach($segments as $i => $segment)
 							<!--Modal for Choosing design-->
 							<div id="pattern{{ $i+1 }}" class="modal modal-fixed-footer" style="width:1100px; height:600px">
 								<h5><font color = "#1b5e20"><center>List of Available Designs</center> </font> </h5>
@@ -65,10 +65,11 @@
 									<!--This will be the "style categories" na ic-customize ni customer-->
 									<!--Under each "style category" ay may mga segment pattern na pipiliin-->
 									<!--Check maintenance for a better understanding. Under Garments-->
+									@foreach($styles as $style)
 									<ul class="collapsible z-depth-2" data-collapsible="accordion" style="border:none;">
-									   
+									   @if($segment->strSegmentID == $style->strSegmentFK)
 									    <li style="margin-bottom:10px;">
-									      	<div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Lapel</div>
+									      	<div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $style->strSegStyleName }}</div>
 									      	<div class="collapsible-body overflow-x">
 											      	<p style="color:gray; margin-left:20px">*Choose one of your desired design</p>
 											      	@foreach($patterns as $j => $pattern)
@@ -97,8 +98,9 @@
 													@endforeach
 									      	</div>
 									    </li>
-
 									  </ul>
+										@endif
+									@endforeach
 									<!--End of Collapsible Accordion-->
 
 									<div class="col s12" style="margin:20px"></div>
@@ -193,10 +195,11 @@
 										</div>
 							
 									<div class="modal-footer col s12">
-			                          <a  class="right waves-effect waves-green btn-flat">OK</a>
+			                          <a  class="right modal-action modal-close waves-effect waves-green btn-flat">OK</a>
 			                          <a  class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
 			                        </div>
 								</div>
+							@endforeach
 							<!--End of modal for choosing fabric-->
 
 							<!--/// START OF AN ITERATION  ///-->
@@ -386,12 +389,7 @@
 
 @stop
 
-@section('scripts')
-	<script>
-		$(document).ready(function(){
-	      $('.modal-trigger').leanModal();
-	    });
-	</script>
+@section('scripts')	
 
 	<script>
 		 $(document).ready(function(){

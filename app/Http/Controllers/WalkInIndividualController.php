@@ -10,8 +10,10 @@ use Session;
 
 use App\GarmentCategory;
 use App\FabricType;
-use App\SegmentPattern;
 use App\Individual;
+use App\Segment;
+use App\SegmentPattern;
+use App\SegmentStyle;
 
 class WalkInIndividualController extends Controller
 {
@@ -99,6 +101,7 @@ class WalkInIndividualController extends Controller
         session(['segment_data' => $data_segment]);
         session(['segment_values' => $values]);
 
+        $segment_style = 
         $fabrics = FabricType::all();
         $segmentPatterns = SegmentPattern::all();
 
@@ -110,11 +113,13 @@ class WalkInIndividualController extends Controller
         $values = session()->get('segment_values');
         $fabrics = FabricType::all();
         $segmentPatterns = SegmentPattern::all();
+        $segmentStyles = SegmentStyle::all();
 
         return view('walkin-individual-customize-order')
                 ->with('segments', $values)
                 ->with('fabrics', $fabrics)
-                ->with('patterns', $segmentPatterns); 
+                ->with('patterns', $segmentPatterns)
+                ->with('styles', $segmentStyles); 
     }
 
     public function catalogueDesign()
@@ -192,11 +197,7 @@ class WalkInIndividualController extends Controller
         $fabrics = FabricType::all();
         $segmentPatterns = SegmentPattern::all();
 
-        return view('walkin-individual-customize-order')
-                ->with('segments', $values)
-                ->with('quantities', session()->get('segment_quantity'))
-                ->with('fabrics', $fabrics)
-                ->with('patterns', $segmentPatterns);
+        return redirect('transaction/walkin-individual-show-customize-orders');
     }
 
     /**
