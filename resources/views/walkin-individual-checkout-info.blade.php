@@ -1,5 +1,4 @@
 @extends('layouts.master')
-
 @section('content')
 
 
@@ -30,57 +29,38 @@
 
 	       	<div class="row" style="background-color:white;">
 	       		<div class="container">
-	            <div class="col s12">    
-	                <div class="col s6">       
-                        <div style="color:black; padding-left:140px" class="input-field col s12">                 
-                          <input value="{{ $newID }}" id="addIndiID" name="addIndiID" type="text" readonly>
-                          <label for="addIndiID" style="color:gray"><b>Individual ID </b></label>
-                        </div>
 
-                        <div style="color:black; padding-left:140px; margin-left:1px" class="input-field col s12">                 
-                          <input value="" id="dateToday" name="dateToday" type="text" readonly>
-                          <label style="color:gray"><b>Transaction No. </b></label>
-                        </div>
-	            	</div>
-            
+              <!--Start of header with customer id and transaction no-->
+	            <div class="col s12">
 
-                  <a id="addPayment" href="{{URL::to('transaction/walkin-individual-payment-payment-info')}}" class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-top:20px; margin-left:40px; padding:10px; padding-left:19px; padding-right:19px; padding-bottom:45px; background-color:teal; color:white">Save and Proceed</a>                                
-                  <a id="cancelTransac" href="#cancel-order" class="btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel transaction and go back to homepage" style="margin-top:30px; margin-left:40px; padding:10px; padding-bottom:45px; background-color:teal; color:white">Cancel Transaction</a>                   
-                  <div id="cancel-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:80px">
-                      <h5><font color="red"><center><b>Warning!</b></center></font></h5>
-                        
-                        {!! Form::open() !!}
-                          <div class="divider" style="height:2px"></div>
-                          <div class="modal-content col s12">
-                            <div class="center col s4"><i class="mdi-alert-warning" style="color:red; font-size:60px"></i></div>
-                            <div class="col s8"><p style="font-size:18px">Are you sure? Doing this will delete current transaction.</p></div>
-                          </div>
-
-                          <div class="modal-footer col s12">
-                                    <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-individual')}}"><font color="black">Yes</font></a>
-                                    <a href="{{URL::to('/transaction/walkin-individual-payment-customer-info')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
-                                </div>
-                        {!! Form::close() !!}
-                    </div>
+	                <div class="col s12">
+                      <div class="col s6">       
+                        <div class="col s5" style="color:teal; font-size:17px"><p><b>Customer ID</b></p></div>
+                        <div class="col s7" style="color:red;"><p><input value="{{ $newID }}" id="addIndiID" name="addIndiID" type="text" readonly></p></div> 
+                      </div>
+                      <div class="col s6">
+                        <div class="col s5" style="color:teal; font-size:17px"><p><b>Transaction No.</b></p></div>
+                        <div class="col s7" style="color:red;"><p><input value="" id="dateToday" name="dateToday" type="text" readonly></p></div> 
+	            	      </div>
+                </div>
 	            	
-	            	<div class="col s4" style="margin-top:45px">
+                <!--Eto yung floating button sa gilid. Yung may home icon-->
+	            	<div class="col s4" style="margin-top:5px">
 	            		 <div class="fixed-action-btn vertical" style="bottom: 45px; right: 24px;">
 						        <a class="mdi-maps-store-mall-directory btn-floating btn-large red " style="font-size:40px; height:70px; width:70px; padding:5px; padding-bottom:3px; margin-right:40px" ></a>
 						          <ul>
       						      <li><a href="{{URL::to('transaction/walkin-individual')}}" class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="Forgot something? Click to go back shopping" style="margin-right:40px"><i class="mdi-action-shopping-basket"></i></a></li>
       						      <li><a href="{{URL::to('transaction/walkin-individual-customize-orders')}}" class="btn-floating yellow darken-1 tooltipped" data-position="left" data-delay="50" data-tooltip="Click to go back editing your order" style="margin-right:40px"><i class="mdi-action-description">Return to Customize Order</i></a></li>
       						    </ul>
-						        </div>
-	            		
-	            		
+						        </div>            		
 	            	</div>
-
-
+                <!--end nung sa floating button-->
 	            </div>
+              <!--end of header for customer id and transaction no-->
 
-
-                <div class="col s12" style="margin-top:30px">
-                	<div class="divider" style="margin-bottom:30px"></div>
+              <!-- Start of Customer Information-->
+                <div class="col s12" style="margin-top:10px">
+                	<div class="divider" style="height:2px; background-color:teal; margin-bottom:40px"></div>
 	            	
                     <span class="col s12" style="color:teal;"><b>Customer Detail</b></span>
                     <div class="card-panel col s12" style="border:3px solid gray; padding:15px;">
@@ -99,7 +79,7 @@
                           <label style="color:gray" for="last_name"><b><span class="red-text"><b>*</b></span>Last Name </b></label>
                         </div>
 
-                        <div style="color:black" class="input-field col s6">
+                        <div style="color:black" class="input-field col s12">
             							<p style="color:gray"><b>Sex</b></p>
             							<select>
             								<option value="0"></option>
@@ -107,11 +87,6 @@
             							    <option value="2">Male</option>
             							</select>
             						</div>
-
-						            <div style="color:black" class="input-field col s6">
-                        	<p style="color:gray"><b>Date of Birth</b></p>
-                        	<input class="datepicker" id="editDtEmpBday" name="editDtEmpBday" type="date" placeholder="May 3, 1997">	
-                        </div>
                     </div>
 
                     <span class="col s12" style="color:teal; margin-top:20px"><b>Customer Address</b></span>
@@ -172,13 +147,38 @@
                     </div>
 
                 </div>
+              <!--End of Customer Information-->
+              
+              <!--Start of bottom button-->
+              <div class="col s12" style="margin-top:30px">
+                  <a id="addPayment" href="{{URL::to('transaction/walkin-individual-payment-payment-info')}}" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-left:40px; background-color:#00695c; color:white"><b><i class="mdi-navigation-check" style="padding-right:10px"></i>Save</b></a>                                
+                  <a id="cancelTransac" href="#cancel-order" class="right btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel transaction and go back to homepage" style="background-color:#a7ffeb; color:black"><b><i class="mdi-navigation-close" style="padding-right:10px"></i>Cancel</b></a>                   
+                  <div id="cancel-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:80px">
+                      <h5><font color="red"><center><b>Warning!</b></center></font></h5>
+                        
+                        {!! Form::open() !!}
+                          <div class="divider" style="height:2px"></div>
+                          <div class="modal-content col s12">
+                            <div class="center col s4"><i class="mdi-alert-warning" style="color:red; font-size:60px"></i></div>
+                            <div class="col s8"><p style="font-size:18px">Are you sure? Doing this will delete current transaction.</p></div>
+                          </div>
+
+                          <div class="modal-footer col s12">
+                                    <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-individual')}}"><font color="black">Yes</font></a>
+                                    <a href="{{URL::to('/transaction/walkin-individual-payment-customer-info')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+                                </div>
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+                <!--End of bottom button-->
+
 	       		</div>
 
-	       		 		<div style="color:gray; margin-top:30px; margin-left:20px" class="col s12">
-                            <h6>IMPORTANT NOTE: Fields with asterisk (*) must not be left blank.</h6>
-                        </div>
+	       		 		<div style="color:gray; margin-top:10px; margin-left:20px" class="col s12">
+                      <h6>IMPORTANT NOTE: Fields with asterisk (*) must not be left blank.</h6>
+                </div>
 	       	</div>
-	      	<div class="divider" style="height:2px; margin-bottom:20px; margin-top:50px"></div>
+	      	<div class="divider" style="height:2px; margin-bottom:20px; margin-top:30px"></div>
 	      	
 	      		<center><p><font color="gray">End of Customer Profile Information Form</font></p></center>
 	    </div>

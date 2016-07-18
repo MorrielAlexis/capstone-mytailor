@@ -15,32 +15,35 @@ class UserSeeder extends Seeder
         $tblUsers = array (
             array(
                 'id' => 'USER001',
-                'first_name' => 'Honey Mae',
-                'last_name' => 'Buenavides',
+                'name' => 'Morriel Aquino',
                 'type'=> 'employee',
-                'email' =>'honeymae@ganda.com',
-                'password' => bcrypt('admin01'),
-                'user_image' => ''
+                'email' =>'morrielaquino@yahoo.com',
+                'password' =>bcrypt('adminpass'),
+                'confirmation_code' => null,
+                'confirmed' => 1,
+                'user_image' => null
             ),
 
             array(
                 'id' => 'USER002',
-                'first_name' => 'Morriel',
-                'last_name' => 'Aquino',
-                'type'=> 'employee',
-                'email' =>'morrielaquino@yahoo.com',
-                'password' =>bcrypt('admin02'),
-                'user_image' => ''
+                'name' => 'Honey Mae Buenavides',
+                'type'=> 'customer',
+                'email' =>'haniganda@gmail.com',
+                'password' =>bcrypt('custpass01'),
+                'confirmation_code' => null,
+                'confirmed' => 1,
+                'user_image' => null
             ),
 
             array(
                 'id' => 'USER003',
-                'first_name' => 'Cassandra Bennete',
-                'last_name' => 'De Asis',
+                'name' => 'Pfizer Phils',
                 'type'=> 'customer',
-                'email' =>'cassdee@yahoo.com',
-                'password' =>bcrypt('cust01'),
-                'user_image' => ''
+                'email' =>'pfizer@gmail.com',
+                'password' =>bcrypt('custpass02'),
+                'confirmation_code' => null,
+                'confirmed' => 1,
+                'user_image' => null
             )
 
         );
