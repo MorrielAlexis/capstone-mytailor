@@ -12,16 +12,12 @@ use Redirect;
 use Illuminate\Http\Request;
 use Validator;
 use Auth;
+use Session;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
-
     public function showWelcome()
     {
         $ids = \DB::table('users')
@@ -83,6 +79,7 @@ class HomeController extends Controller
     {
         if(Auth::check())
         {
+            Session::flush();
             Auth::logout();
             return redirect('/');
         }
