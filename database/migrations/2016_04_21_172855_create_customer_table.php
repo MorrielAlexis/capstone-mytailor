@@ -13,11 +13,29 @@ class CreateCustomerTable extends Migration
     public function up()
     {
         Schema::create('tblCustomer', function (Blueprint $table) {
-            $table->string('strCustID')->primary();
-            $table->boolean('boolHasAccount');
+            $table->string('strCustomerID');
+            $table->string('strCustomer_IndFK')->index();
+            $table->string('strCustomer_CompanyFK')->index();
+            $table->string('strCustomerAccountIDFK')->index();
+            $table->primary('strCustomer_IndFK','strCustomer_CompanyFK'); //primary key
             $table->boolean('boolIsActive');
             $table->string('strCustInactiveReason');
             $table->timestamps();
+
+            $table->foreign('strCustomer_IndFK')
+                  ->references('strIndivID')
+                  ->on('tblCustIndividual');
+
+            $table->foreign('strCustomer_CompanyFK')
+                  ->references('strCompanyID')
+                  ->on('tblCustCompany');
+
+
+            $table->foreign('strCustomerAccountIDFK')
+                  ->references('id')
+                  ->on('users');
+
+
         });
     }
 
