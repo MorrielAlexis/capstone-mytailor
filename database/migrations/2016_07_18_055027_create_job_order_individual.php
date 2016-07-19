@@ -20,7 +20,7 @@ class CreateJobOrderIndividual extends Migration
             $table->string('strTermsOfPayment');
             $table->string('strModeOfPayment');
             $table->integer('intJO_ItemQty');
-            $table->boolean('boolisOrderAccepted');
+            $table->boolean('boolIsOrderAccepted');
             $table->date('dtOrderDate');
             $table->date('dtOrderApproved');
             $table->date('dtOrderExpectedToBeDone');

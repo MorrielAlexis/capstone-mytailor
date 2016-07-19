@@ -237,6 +237,7 @@
 											      		</div>
 
 											      		<!--For the design summary-->
+													    @foreach($segments as $segment)
 											      		<div class="container">
 											      			<p style="color: white; padding-left:5px; margin-top:10px; background-color:teal; padding:3px;">Design for <b>{{ $segment->strGarmentCategoryName }}, {{ $segment->strSegmentName }}</b></p>
 									                        <div class="col s12 overflow-x" style="max-height:160px; background-color:white">
@@ -249,32 +250,16 @@
 														              	</tr>
 													              	</thead>
 													              	<tbody>
-													              		@foreach($segments as $segment)
 															            <tr>
 															               <td>Lapel</td>
 															               <td>Shawl Type</td>
 															               <!--<td> </td>-->
 															            </tr>
-															            <tr>
-															               <td>Lapel</td>
-															               <td>Shawl Type</td>
-															               <!--<td> </td>-->
-															            </tr>
-															            <tr>
-															               <td>Lapel</td>
-															               <td>Shawl Type</td>
-															               <!--<td> </td>-->
-															            </tr>
-															            <tr>
-															               <td>Lapel</td>
-															               <td>Shawl Type</td>
-															               <!--<td> </td>-->
-															            </tr>
-																		@endforeach
 															        </tbody>
 															    </table>
 											      			</div>
 											      		</div>
+														@endforeach
 											      		<!--End of design summary-->
 
 

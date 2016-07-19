@@ -29,9 +29,8 @@ class WalkInIndividualController extends Controller
     }
     
     public function index()
-    {   
+    {       
         $categories = GarmentCategory::all();
-
         $garments = \DB::table('tblSegment AS a')
                     ->leftJoin('tblGarmentCategory AS b', 'a.strSegCategoryFK', '=', 'b.strGarmentCategoryID')
                     ->select('a.*', 'b.strGarmentCategoryName') 
@@ -166,16 +165,11 @@ class WalkInIndividualController extends Controller
         $values = session()->get('segment_values');
         $data = session()->get('segment_data');
 
-
-        /*$measurements = \DB::table('tblSegment AS a')
+        $measurements = \DB::table('tblSegment AS a')
                     ->leftJoin('tblMeasurementCategory AS b', 'a.strSegmentID', '=', 'strMeasSegmentFK')
                     ->leftJoin('tblMeasurementDetail AS c', 'b.strMeasDetFK', '=', 'c.strMeasurementDetailID')
                     ->select('c.strMeasurementDetailName')
                     ->whereIn('b.strMeasSegmentFK', $data)
-                    ->get();*/
-        $measurements = \DB::table('tblMeasurementCategory AS b')
-                    ->leftJoin('tblMeasurementDetail AS c', 'b.strMeasDetFK', '=', 'c.strMeasurementDetailID')
-                    ->select('b.strMeasCatID', 'b.strMeasSegmentFK', 'c.strMeasurementDetailName')
                     ->get();
 
         return view('walkin-individual-checkout-measure')
