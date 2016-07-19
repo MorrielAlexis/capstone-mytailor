@@ -30,8 +30,13 @@ class CreateCustIndividualTable extends Migration
             $table->string('strIndivCPNumberAlt')->nullable();   
             $table->string('strIndivEmailAddress')->unique();
             $table->string('strIndivInactiveReason')->nullable();
+            $table->string('userId')->index()->nullable();
             $table->boolean('boolIsActive');
             $table->timestamps();
+        });
+
+        Schema::table('tblCustIndividual', function (Blueprint $table){
+            $table->foreign('userId')->references('id')->on('users');
         });
     }
 
@@ -43,5 +48,8 @@ class CreateCustIndividualTable extends Migration
     public function down()
     {
         Schema::drop('tblCustIndividual');
+        Schema::table('tblCustIndividual', function ($table){
+            $table->dropColumn('userId');
+        });
     }
 }

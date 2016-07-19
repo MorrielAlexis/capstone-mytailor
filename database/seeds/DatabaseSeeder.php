@@ -30,8 +30,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SegmentStyleSeeder::class);
         $this->call(SegmentPatternSeeder::class);
         $this->call(CatalogueSeeder::class);
-        $this->call(MeasurementDetailSeeder::class);
-        $this->call(MeasurementCategorySeeder::class);
         $this->call(AlterationSeeder::class);
         $this->call(FabricThreadCountSeeder::class);
         $this->call(PackagesSeeder::class);
@@ -39,6 +37,11 @@ class DatabaseSeeder extends Seeder
         $this->call(FabricPatternSeeder::class);
         $this->call(FabricColorSeeder::class);
         $this->call(FabricsSeeder::class);
+        $this->call(BodyPartCategorySeeder::class);
+        $this->call(BodyPartFormsSeeder::class);
+        $this->call(MeasurementCategorySeeder::class);
+        $this->call(StandardSizeCategorySeeder::class);
+        $this->call(MeasurementDetailMaintenanceSeeder::class); 
 
         Model::reguard();
     }

@@ -187,6 +187,7 @@
             left: 0;
             top: 0;
             overflow: auto; /* Enable scroll if needed */
+            max-height: 100% !important;
         }
 
         .overflow-x {
@@ -258,13 +259,13 @@
 
         .breadcrumb li a.active{
             background: hsla(186, 95%, 11%, 1);
-            color:white;
+            color: white;
         }
 
         .breadcrumb li a.active:after{
             border-left-color: hsla(186, 95%, 11%, 1) !important;
         }
-
+        
 
   .dark-primary-color    { background: #388E3C; }
 .default-primary-color { background: #4CAF50; }
