@@ -36,10 +36,10 @@
     <div class="container" style="width:100%;">
     <div class="section white" style="margin:40px; padding:40px;">
 
-      <div class="col s12" style="margin-top:20px; margin-bottom:20px; padding:20px;">
+      <div class="col s12" style="margin-bottom:20px; padding:20px; padding-top:0;">
 
         <div class="input-field col s3">
-          <select>
+          <select class="browser-default">
             <option value="" disabled selected>Fabric Type</option>
             <option value="1">Option 1</option>
             <option value="2">Option 2</option>
@@ -48,7 +48,7 @@
         </div>
 
         <div class="input-field col s3">
-          <select>
+          <select class="browser-default">
             <option value="" disabled selected>Fabric Pattern</option>
             <option value="1">Option 1</option>
             <option value="2">Option 2</option>
@@ -57,7 +57,7 @@
         </div>
 
         <div class="input-field col s3">
-          <select>
+          <select class="browser-default">
             <option value="" disabled selected>Color</option>
             <option value="1">Option 1</option>
             <option value="2">Option 2</option>
@@ -66,7 +66,7 @@
         </div>
 
         <div class="input-field col s3">
-          <select>
+          <select class="browser-default">
             <option value="" disabled selected>Thread Count</option>
             <option value="1">Option 1</option>
             <option value="2">Option 2</option>

@@ -394,3 +394,7 @@ Route::resource('online-women-shirt-tutorial', 'OnlineWomenShirtTutorialControll
 
 	Route::get('customize-pants-fabric', 'OnlineCustomizeController@fabricpants');
 	Route::get('customize-pants-style', 'OnlineCustomizeController@stylepants');
+
+	Route::get('customize-checkout-info', 'OnlineCheckoutController@info');
+	Route::get('customize-checkout-payment', 'OnlineCheckoutController@pay');
+	Route::get('customize-checkout-measurement', 'OnlineCheckoutController@measure');

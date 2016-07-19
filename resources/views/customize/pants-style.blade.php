@@ -129,7 +129,7 @@
         <div id="tabBottom" class="col s12 white" style="padding:20px; border 2px teal accent-4 white-text;">
 
           <div class="col s12">
-            <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/online-check-out')}}">Proceed to Checkout</a></div>
+            <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/customize-checkout-info')}}">Proceed to Checkout</a></div>
             <div><a class="left btn-flat teal accent-4 white-text" href="tabPockets">Previous step</a></div>
           </div>          
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
@@ -150,7 +150,7 @@
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12">
-            <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/online-check-out')}}">Proceed to Checkout</a></div>
+            <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/customize-checkout-info')}}">Proceed to Checkout</a></div>
             <div><a class="left btn-flat teal accent-4 white-text" href="tabPockets">Previous step</a></div>
           </div>
 

@@ -2,11 +2,16 @@
 
 @section('content')
 
-  <div style="height:150px;">
-    <div style="height:20px;"></div>
-    <center><h2 style="color:white; font-family:'Playfair Display','Times';">Checkout</h2></center>
-    <div class="container divider"></div>
-  </div>
+    <div class="container" style="width:100%;">
+      <div class="row" style="margin:40px;">
+        <ul class="col s12 breadcrumb">
+          <li><a style="padding-left:100px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Select Fabric</b></a></li>
+          <li><a style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Choose Style</b></a></li>
+          <li><a style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Check Out</b></a></li>
+          <li><a class="active" style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Step 4: MEASUREMENT</b></a></li>
+        </ul>
+      </div>
+    </div>
   
   <div class="container">
     <div class="section white" style="padding:20px; margin-bottom:20px;"> 
@@ -124,7 +129,7 @@
 
       <div class="row">
         <a href="#save-transaction" class="right modal-trigger btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save measurement information and go back to shop" style="background-color:teal; margin-right:50px; padding:9.5px; padding-bottom:45px; color:white">Save Measurements</a>
-        <a href="{{URL::to('/online-order-now')}}" class="left btn tooltipped" data-position="top" data-delay="50" data-tooltip="Transfers you back home and clears current unsaved transaction" style="background-color:teal; padding:9.5px; padding-bottom:45px; margin-left:50px; color:white">Cancel Transaction</a>
+        <a href="{{URL::to('/online-home')}}" class="left btn tooltipped" data-position="top" data-delay="50" data-tooltip="Transfers you back home and clears current unsaved transaction" style="background-color:teal; padding:9.5px; padding-bottom:45px; margin-left:50px; color:white">Cancel Transaction</a>
       </div>
 
     </div>
@@ -143,7 +148,7 @@
       </div>
 
       <div class="modal-footer col s12" style="background-color:green; opacity:0.85">
-        <a class="waves-effect waves-green btn-flat" href="{{URL::to('/online-order-now')}}"><font color="black">OK</font></a>
+        <a class="waves-effect waves-green btn-flat" href="{{URL::to('/online-home')}}"><font color="black">OK</font></a>
       </div>
     {!! Form::close() !!}
   </div>
@@ -251,8 +256,8 @@
         </div>
         {!! Form::close() !!}
         <div class="col s8">
-          <a href="{{URL::to('/online-checkout-measurement')}}" class="right waves-effect waves-green btn-flat">Cancel</a>
-          <a class="right waves-effect waves-green btn-flat" href="{{URL::to('/online-checkout-measurement')}}"><font color="black">OK</font></a>
+          <a href="{{URL::to('/customize-checkout-measurement')}}" class="right waves-effect waves-green btn-flat">Cancel</a>
+          <a class="right waves-effect waves-green btn-flat" href="{{URL::to('/customize-checkout-measurement')}}"><font color="black">OK</font></a>
         </div>
       </div>
     </div>
