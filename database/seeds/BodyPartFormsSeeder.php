@@ -16,7 +16,7 @@ class BodyPartFormsSeeder extends Seeder
                 'strBodyFormID' => 'BDYFORM001',
                 'strBodyPartFK' => 'BDYCAT003', 
                 'strBodyFormName' =>'Flat Stomach',
-                'strBodyFormImage' => 'imgBodyForms/flat-stomach',
+                'strBodyFormImage' => 'imgBodyForms/flat-stomach.jpg',
                 'txtBodyFormDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -26,7 +26,7 @@ class BodyPartFormsSeeder extends Seeder
                 'strBodyFormID' => 'BDYFORM002',
                 'strBodyPartFK' => 'BDYCAT003', 
                 'strBodyFormName' =>'Slight Stomach',
-                'strBodyFormImage' => 'imgBodyForms/slight-tummy',
+                'strBodyFormImage' => 'imgBodyForms/slight-tummy.jpg',
                 'txtBodyFormDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -35,7 +35,7 @@ class BodyPartFormsSeeder extends Seeder
                 'strBodyFormID' => 'BDYFORM003',
                 'strBodyPartFK' => 'BDYCAT003', 
                 'strBodyFormName' =>'Medium Stomach',
-                'strBodyFormImage' => 'imgBodyForms/medium-stomach',
+                'strBodyFormImage' => 'imgBodyForms/medium-stomach.jpg',
                 'txtBodyFormDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -44,7 +44,7 @@ class BodyPartFormsSeeder extends Seeder
                 'strBodyFormID' => 'BDYFORM004',
                 'strBodyPartFK' => 'BDYCAT003', 
                 'strBodyFormName' =>'Large Stomach',
-                'strBodyFormImage' => 'imgBodyForms/large-stomach',
+                'strBodyFormImage' => 'imgBodyForms/large-stomach.jpg',
                 'txtBodyFormDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -53,7 +53,7 @@ class BodyPartFormsSeeder extends Seeder
                 'strBodyFormID' => 'BDYFORM005',
                 'strBodyPartFK' => 'BDYCAT003', 
                 'strBodyFormName' =>'Hefty',
-                'strBodyFormImage' => 'imgBodyForms/hefty-stomach',
+                'strBodyFormImage' => 'imgBodyForms/hefty-stomach.jpg',
                 'txtBodyFormDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -63,7 +63,7 @@ class BodyPartFormsSeeder extends Seeder
                 'strBodyFormID' => 'BDYFORM006',
                 'strBodyPartFK' => 'BDYCAT002', 
                 'strBodyFormName' =>'Bent Back',
-                'strBodyFormImage' => 'imgBodyForms/bodymeasurementback1',
+                'strBodyFormImage' => 'imgBodyForms/bodymeasurementback1.gif',
                 'txtBodyFormDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -72,7 +72,7 @@ class BodyPartFormsSeeder extends Seeder
                 'strBodyFormID' => 'BDYFORM007',
                 'strBodyPartFK' => 'BDYCAT002', 
                 'strBodyFormName' =>'Average Back',
-                'strBodyFormImage' => 'imgBodyForms/bodymeasurementback2',
+                'strBodyFormImage' => 'imgBodyForms/bodymeasurementback2.gif',
                 'txtBodyFormDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -81,7 +81,7 @@ class BodyPartFormsSeeder extends Seeder
                 'strBodyFormID' => 'BDYFORM008',
                 'strBodyPartFK' => 'BDYCAT002', 
                 'strBodyFormName' =>'Straight Back',
-                'strBodyFormImage' => 'imgBodyForms/bodymeasurementback3',
+                'strBodyFormImage' => 'imgBodyForms/bodymeasurementback3.gif',
                 'txtBodyFormDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -90,7 +90,7 @@ class BodyPartFormsSeeder extends Seeder
                 'strBodyFormID' => 'BDYFORM009',
                 'strBodyPartFK' => 'BDYCAT001', 
                 'strBodyFormName' =>'Sloping',
-                'strBodyFormImage' => 'imgBodyForms/bodymeasurementshoulder1',
+                'strBodyFormImage' => 'imgBodyForms/bodymeasurementshoulder1.gif',
                 'txtBodyFormDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -99,7 +99,7 @@ class BodyPartFormsSeeder extends Seeder
                 'strBodyFormID' => 'BDYFORM010',
                 'strBodyPartFK' => 'BDYCAT001', 
                 'strBodyFormName' =>'Average',
-                'strBodyFormImage' => 'imgBodyForms/bodymeasurementshoulder2',
+                'strBodyFormImage' => 'imgBodyForms/bodymeasurementshoulder2.gif',
                 'txtBodyFormDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -108,7 +108,7 @@ class BodyPartFormsSeeder extends Seeder
                 'strBodyFormID' => 'BDYFORM011',
                 'strBodyPartFK' => 'BDYCAT001', 
                 'strBodyFormName' =>'Straight',
-                'strBodyFormImage' => 'imgBodyForms/bodymeasurementshoulder3',
+                'strBodyFormImage' => 'imgBodyForms/bodymeasurementshoulder3.gif',
                 'txtBodyFormDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -117,7 +117,7 @@ class BodyPartFormsSeeder extends Seeder
                 'strBodyFormID' => 'BDYFORM012',
                 'strBodyPartFK' => 'BDYCAT004', 
                 'strBodyFormName' =>'Slim',
-                'strBodyFormImage' => 'imgBodyForms/slim',
+                'strBodyFormImage' => 'imgBodyForms/slim.jpg',
                 'txtBodyFormDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -126,7 +126,7 @@ class BodyPartFormsSeeder extends Seeder
                 'strBodyFormID' => 'BDYFORM013',
                 'strBodyPartFK' => 'BDYCAT004', 
                 'strBodyFormName' =>'Well Built',
-                'strBodyFormImage' => 'imgBodyForms/well_built',
+                'strBodyFormImage' => 'imgBodyForms/well_built.jpg',
                 'txtBodyFormDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -135,7 +135,7 @@ class BodyPartFormsSeeder extends Seeder
                 'strBodyFormID' => 'BDYFORM014',
                 'strBodyPartFK' => 'BDYCAT004', 
                 'strBodyFormName' =>'Athletic',
-                'strBodyFormImage' => 'imgBodyForms/athletic',
+                'strBodyFormImage' => 'imgBodyForms/athletic.jpg',
                 'txtBodyFormDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -144,7 +144,7 @@ class BodyPartFormsSeeder extends Seeder
                 'strBodyFormID' => 'BDYFORM015',
                 'strBodyPartFK' => 'BDYCAT004', 
                 'strBodyFormName' =>'Regular',
-                'strBodyFormImage' => 'imgBodyForms/regular',
+                'strBodyFormImage' => 'imgBodyForms/regular.jpg',
                 'txtBodyFormDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -153,7 +153,7 @@ class BodyPartFormsSeeder extends Seeder
                 'strBodyFormID' => 'BDYFORM016',
                 'strBodyPartFK' => 'BDYCAT004', 
                 'strBodyFormName' =>'Hefty Body',
-                'strBodyFormImage' => 'imgBodyForms/hefty',
+                'strBodyFormImage' => 'imgBodyForms/hefty.jpg',
                 'txtBodyFormDesc' => '',
                 'boolIsActive' => '1'
             )
