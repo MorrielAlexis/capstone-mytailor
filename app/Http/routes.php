@@ -113,10 +113,10 @@ Route::group(['prefix' => 'maintenance'], function(){
 		Route::post('fabric-color/destroy','FabricColorController@delete_fabricColor');
 
 
-	Route::resource('fabrics', 'FabricMaintenanceController');
+	Route::resource('fabric', 'FabricController');
 
-		Route::post('fabrics/update','FabricMaintenanceController@update_fabrics');
-		Route::post('fabrics/destroy','FabricMaintenanceController@delete_fabrics');
+		Route::post('fabric/update','FabricController@update_fabric');
+		Route::post('fabric/destroy','FabricController@delete_fabric');
 
 
 

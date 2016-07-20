@@ -101,7 +101,7 @@
   
 
   <br><br><br>
- <p><h4 style="lightpink">Measurement Category</h4></p>
+ <p><h4 style="lightpink"> Maintenance - Measurement Category</h4></p>
     <div class="row" style="padding:20px">
     
 
@@ -124,7 +124,7 @@
           <div class="row">
             <div class="col s12 m12 l12">
               <div class="card-panel">
-                <span class="card-title"><h5><center>Measurement Category</center></h5></span>
+                <span class="card-title"><h5><center>List of Measurement Category</center></h5></span>
                 <div class="divider"></div>
                 <div class="card-content">
 
