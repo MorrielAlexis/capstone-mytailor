@@ -2,11 +2,16 @@
 
 @section('content')
 
-  <div style="height:150px;">
-    <div style="height:20px;"></div>
-    <center><h2 style="color:white; font-family:'Playfair Display','Times';">Checkout</h2></center>
-    <div class="container divider"></div>
-  </div>
+    <div class="container" style="width:100%;">
+      <div class="row" style="margin:40px;">
+        <ul class="col s12 breadcrumb">
+          <li><a style="padding-left:100px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Select Fabric</b></a></li>
+          <li><a style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Choose Style</b></a></li>
+          <li><a class="active" style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Step 3: CHECK OUT</b></a></li>
+          <li><a style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Measurement</b></a></li>
+        </ul>
+      </div>
+    </div>
   
   <div class="container">
     <div class="section white" style="padding:20px; margin-bottom:20px;"> 
@@ -136,7 +141,7 @@
                 </div>
 
                 <div class="container">
-                  <div class="container" style="font-family:'Playfair Display','Times';""><center><h3><b>Php 4,100.00</b></h3></center></div>
+                  <div class="container" style="font-family:'Playfair Display','Times"><center><h3><b>Php 4,100.00</b></h3></center></div>
                   <form action="#">
                     <p class="center">
                       <input type="checkbox" id="terms" />
@@ -145,7 +150,7 @@
                   </form>
                 </div>
                   <div>
-                    <a href="{{URL::to('/online-checkout-measurement')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save payment information and get measured" style="background-color:teal; margin-right:20px; padding:9.5px; padding-bottom:45px; margin-top:20px;"><label style="font-size:15px; color:white">Start Measurement</label></a>
+                    <a href="{{URL::to('/customize-checkout-measurement')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save payment information and get measured" style="background-color:teal; margin-right:20px; padding:9.5px; padding-bottom:45px; margin-top:20px;"><label style="font-size:15px; color:white">Start Measurement</label></a>
                     <a href="#cancel-order" class="left btn modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Click to cancel current unsaved transaction and be transfered back to the shop" style="background-color:teal; margin-left:20px; padding:9.5px; padding-bottom:45px; margin-top:20px;"><label style="font-size:15px; color:white">Cancel Transaction</label></a>
                   </div>
               </div>
@@ -165,8 +170,8 @@
       </div>
 
       <div class="modal-footer col s12">
-        <a class="waves-effect waves-green btn-flat" href="{{URL::to('/online-order-now')}}"><font color="black">Yes</font></a>
-        <a href="{{URL::to('/online-checkout-payment')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+        <a class="waves-effect waves-green btn-flat" href="{{URL::to('/online-home')}}"><font color="black">Yes</font></a>
+        <a href="{{URL::to('/customize-checkout-payment')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
       </div>
     </div>
 

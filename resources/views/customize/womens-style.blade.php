@@ -89,7 +89,7 @@
 
             <div class="col s3" style="padding:20px;">
               <div class="input-field" style="margin-top:70px;">
-                <select>
+                <select class="browser-default">
                   <option value="" disabled selected>Choose your option</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -100,7 +100,7 @@
 
             <div class="col s3" style="padding:20px;">
               <div class="input-field" style="margin-top:70px;">
-                <select>
+                <select class="browser-default">
                   <option value="" disabled selected>Choose your option</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -233,7 +233,7 @@
             <div class="col s2" style="padding:20px;">
               <p>Would you like coloured button threads?</p>
               <div class="input-field" style="margin-top:70px;">
-                <select>
+                <select class="browser-default">
                   <option value="" disabled selected>Choose your option</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -248,7 +248,7 @@
             <div class="col s2" style="padding:20px;">
               <p>Would you like coloured buttonholes?</p>
               <div class="input-field" style="margin-top:70px;">
-                <select>
+                <select class="browser-default">
                   <option value="" disabled selected>Choose your option</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -374,7 +374,7 @@
           <div class="col s12">
 
             <div class="input-field col s4">
-              <select>
+              <select class="browser-default">
                 <option value="" disabled selected>STANDARD</option>
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
@@ -429,7 +429,7 @@
         <div id="tabOthers" class="col s12 white" style="padding:20px; border 2px teal accent-4 white-text;">
           
           <div class="col s12">
-            <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/online-check-out')}}">Proceed to Checkout</a></div>
+            <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/customize-checkout-info')}}">Proceed to Checkout</a></div>
             <div><a class="left btn-flat teal accent-4 white-text" href="tabPocketMonogram">Previous step</a></div>
           </div>
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
@@ -573,7 +573,7 @@
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12">
-            <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/online-check-out')}}">Proceed to Checkout</a></div>
+            <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/customize-checkout-info')}}">Proceed to Checkout</a></div>
             <div><a class="left btn-flat teal accent-4 white-text" href="tabPocketMonogram">Previous step</a></div>
           </div>
 

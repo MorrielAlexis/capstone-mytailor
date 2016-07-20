@@ -36,10 +36,10 @@
     <div class="container" style="width:100%;">
     <div class="section white" style="margin:40px; padding:40px;">
 
-      <div class="col s12" style="margin-top:20px; margin-bottom:20px; padding:20px;">
+      <div class="col s12" style="margin-bottom:20px; padding:20px; padding-top:0;">
 
         <div class="input-field col s3">
-          <select>
+          <select class="browser-default">
             <option value="" disabled selected>Fabric Type</option>
             <option value="1">Option 1</option>
             <option value="2">Option 2</option>
@@ -48,7 +48,7 @@
         </div>
 
         <div class="input-field col s3">
-          <select>
+          <select class="browser-default">
             <option value="" disabled selected>Fabric Pattern</option>
             <option value="1">Option 1</option>
             <option value="2">Option 2</option>
@@ -57,7 +57,7 @@
         </div>
 
         <div class="input-field col s3">
-          <select>
+          <select class="browser-default">
             <option value="" disabled selected>Color</option>
             <option value="1">Option 1</option>
             <option value="2">Option 2</option>
@@ -66,7 +66,7 @@
         </div>
 
         <div class="input-field col s3">
-          <select>
+          <select class="browser-default">
             <option value="" disabled selected color="pink">Thread Count</option>
             <option value="1">Option 1</option>
             <option value="2">Option 2</option>
@@ -87,7 +87,7 @@
             <figcaption style="background-color:#ede7f6">Swatch Code</figcaption>
             <figcaption style="background-color:#ede7f6">Fabric Type</figcaption>
             <figcaption style="background-color:#ede7f6; color:red;">Price</figcaption>
-            <div><a class="btn teal accent-4 white-text" href="{{URL::to('/customize-pants-style')}}"><i class="mdi-action-shopping-cart">Choose this fabric</i></a></div>
+            <div><a class="btn teal accent-4 white-text" href="{{URL::to('/customize-pants-style')}}"><i class="mdi-action-shopping-cart"></i>Choose this fabric</a></div>
           </div>
         </div>
       </div>      

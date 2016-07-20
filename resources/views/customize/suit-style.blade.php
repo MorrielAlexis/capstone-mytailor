@@ -115,26 +115,9 @@
           </div>
 
           <div class="col s12" style="padding:20px;">
-            <div class="col s6"><h5><b>Canvas</b></h5></div>
             <div class="col s6"><h5><b>Contrast Lapel</b></h5></div>
           </div>
           <div class="col s12">
-
-            <div class="col s3">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Half Canvas</b></font></label>
-              </p>
-            </div>
-
-            <div class="col s3">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Full Canvas</b></font></label>
-              </p>
-            </div>
 
             <div class="col s3">
               <img class="materialboxed responsive-img" src="img/fabric.jpg">
@@ -242,7 +225,7 @@
               <h5><b>Thread Color</b></h5>
               <p>Would you like coloured button threads?</p>
               <div class="input-field" style="margin-top:70px;">
-                <select>
+                <select class="browser-default">
                   <option value="" disabled selected>Choose your option</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -251,7 +234,7 @@
               <h5><b>Buttonhole Color</b></h5>
               <p>Would you like buttonhole color? (cuffs only)</p>
               <div class="input-field" style="margin-top:70px;">
-                <select>
+                <select class="browser-default">
                   <option value="" disabled selected>Choose your option</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -358,7 +341,7 @@
             <div class="col s3">
               <h5><b>Additional Pants</b></h5>
               <div class="input-field" style="margin-top:70px;">
-                <select>
+                <select class="browser-default">
                   <option value="" disabled selected>Choose your option</option>
                   <option value="1">Option 1</option>
                 </select>
@@ -380,7 +363,7 @@
         <div id="tabMonogram" class="col s12 white" style="padding:20px; border 2px teal accent-4 white-text;">
 
           <div class="col s12">
-            <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/online-check-out')}}">Proceed to Checkout</a></div>
+            <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/customize-checkout-info')}}">Proceed to Checkout</a></div>
             <div><a class="left btn-flat teal accent-4 white-text" href="">Previous step</a></div>
           </div>
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
@@ -444,7 +427,7 @@
             <div class="col s12">
 
               <div class="input-field col s4">
-                <select>
+                <select class="browser-default">
                   <option value="" disabled selected>STANDARD</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -489,7 +472,7 @@
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12">
-            <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/online-check-out')}}">Proceed to Checkout</a></div>
+            <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/customize-checkout-info')}}">Proceed to Checkout</a></div>
             <div><a class="left btn-flat teal accent-4 white-text" href="">Previous step</a></div>
           </div>
 
