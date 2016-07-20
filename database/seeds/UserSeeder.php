@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
                 'password' =>bcrypt('adminpass'),
                 'confirmation_code' => null,
                 'confirmed' => 1,
-                'user_image' => null
+                'user_image' => 'imgUsers/Morriel IBITS Background.jpg'
             ),
 
             array(
@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
                 'password' =>bcrypt('custpass01'),
                 'confirmation_code' => null,
                 'confirmed' => 1,
-                'user_image' => null
+                'user_image' => 'imgUsers/honeybabe.jpg'
             ),
 
             array(
