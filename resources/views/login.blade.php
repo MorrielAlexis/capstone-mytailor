@@ -69,7 +69,7 @@
 						    <div class="row margin">
 			          			<div class="input-field col s9">
 			           				<i class="mdi-action-lock-outline prefix"></i>
-			           				<input id="password" type="password" name="password" value="{{ old('password') }}">
+			           				<input id="password" type="password" name="password" minlength="8" value="{{ old('password') }}">
 		           					<label for="password">Password</label>
 			       				</div>
 			       				<div class="col s3" style="margin-top:14px;">
