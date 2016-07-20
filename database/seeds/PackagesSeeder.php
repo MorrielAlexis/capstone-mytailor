@@ -15,35 +15,51 @@ class PackagesSeeder extends Seeder
         	array( 
 
         			'strPackageID' => 'PACK0001',
-        			'strPackageName' =>  'Generic Package A (Male)',
-              'strPackageSex' =>  'M',
-  					  'strPackageSeg1FK' =>  'SEGM001',
-    					'strPackageSeg2FK' =>  'SEGM002',
+        			'strPackageName' =>  'Generic FA',
+              'strPackageSex' =>  'F',
+  					  'strPackageSeg1FK' =>  'SEGM003',
+    					'strPackageSeg2FK' =>  'SEGM003',
     					'strPackageSeg3FK' =>  'SEGM003',
-    					'strPackageSeg4FK' =>  'SEGM002',
-    					'strPackageSeg5FK' =>  'SEGM001',
+    					'strPackageSeg4FK' =>  'SEGM005',
+    					'strPackageSeg5FK' =>  'SEGM005',
               'dblPackagePrice' => '2500.00',
               'intPackageMinDays' => '60',
-    					'strPackageImage' =>  '',
-    					'strPackageDesc' =>  'Package for male fre',
+    					'strPackageImage' =>  'imgPackages/Fset 1.1.png',
+    					'strPackageDesc' =>  '3 pairs of blouse and ladies slacks. ',
     					'boolIsActive'  =>  '1'      
         			),
 
         			array(
         			'strPackageID' => 'PACK0002',
-        			'strPackageName' =>  'Generic Package B (Female)',
+        			'strPackageName' =>  'Generic FB',
               'strPackageSex' =>  'F',
-        			'strPackageSeg1FK' =>  'SEGM002',
-				    	'strPackageSeg2FK' =>  'SEGM002',
-      		  	'strPackageSeg3FK' =>  'SEGM004',
-      		  	'strPackageSeg4FK' =>  'SEGM004',
-      		  	'strPackageSeg5FK' =>  'SEGM006',
-              'dblPackagePrice' => '2500.00',
+        			'strPackageSeg1FK' =>  'SEGM003',
+				    	'strPackageSeg2FK' =>  'SEGM003',
+      		  	'strPackageSeg3FK' =>  'SEGM005',
+      		  	'strPackageSeg4FK' =>  'SEGM005',
+      		  	'strPackageSeg5FK' =>  'SEGM007',
+              'dblPackagePrice' => '3500.00',
               'intPackageMinDays' => '60',
-					    'strPackageImage' =>  '',
-					    'strPackageDesc' =>  'Package for female fre',
+					    'strPackageImage' =>  'imgPackages/Fset 2.1.png',
+					    'strPackageDesc' =>  '2 pairs of slacks and blouse plus a dress.',
 					    'boolIsActive'  =>  '1'     
-					)
+					),
+
+              array(
+              'strPackageID' => 'PACK0003',
+              'strPackageName' =>  'Generic FC',
+              'strPackageSex' =>  'F',
+              'strPackageSeg1FK' =>  'SEGM007',
+              'strPackageSeg2FK' =>  'SEGM007',
+              'strPackageSeg3FK' =>  'SEGM007',
+              'strPackageSeg4FK' =>  'SEGM005',
+              'strPackageSeg5FK' =>  'SEGM003',
+              'dblPackagePrice' => '3500.00',
+              'intPackageMinDays' => '60',
+              'strPackageImage' =>  'imgPackages/Fset 3.1.png',
+              'strPackageDesc' =>  '3 pieces of dress and a ladies slacks and blouse.',
+              'boolIsActive'  =>  '1'     
+          )
 
         );
 
