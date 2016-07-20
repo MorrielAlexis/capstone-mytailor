@@ -36,11 +36,11 @@
 	                <div class="col s12">
                       <div class="col s6">       
                         <div class="col s5" style="color:teal; font-size:17px"><p><b>Customer ID</b></p></div>
-                        <div class="col s7" style="color:red;"><p><input value="{{ $newID }}" id="addIndiID" name="addIndiID" type="text" readonly></p></div> 
+                        <div class="col s7" style="color:red;"><p><input value="{{ $custID }}" id="addIndiID" name="addIndiID" type="text" readonly></p></div> 
                       </div>
                       <div class="col s6">
                         <div class="col s5" style="color:teal; font-size:17px"><p><b>Transaction No.</b></p></div>
-                        <div class="col s7" style="color:red;"><p><input value="" id="dateToday" name="dateToday" type="text" readonly></p></div> 
+                        <div class="col s7" style="color:red;"><p><input value="{{ $joID }}" id="addJOID" name="addJOID" type="text" readonly></p></div> 
 	            	      </div>
                 </div>
 	            	

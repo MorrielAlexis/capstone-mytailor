@@ -257,6 +257,8 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::post('walkin-individual-customize-orders', 'WalkInIndividualController@customize');
 	Route::post('walkin-individual-payment-customer-info', 'WalkInIndividualController@information');
 	Route::post('walkin-individual-remove-item', 'WalkInIndividualController@removeItem');
+	Route::post('walkin-individual-add-design', 'WalkInIndividualController@addDesign');
+
 
 	Route::get('walkin-individual-show-customize-orders', 'WalkInIndividualController@showCustomizeOrder');
 

@@ -14,6 +14,7 @@ use App\Individual;
 use App\Segment;
 use App\SegmentPattern;
 use App\SegmentStyle;
+use App\MeasurementCategoryMaintenance;
 
 class WalkInIndividualController extends Controller
 {
@@ -100,7 +101,6 @@ class WalkInIndividualController extends Controller
         session(['segment_data' => $data_segment]);
         session(['segment_values' => $values]);
 
-        $segment_style = 
         $fabrics = FabricType::all();
         $segmentPatterns = SegmentPattern::all();
 
@@ -121,6 +121,11 @@ class WalkInIndividualController extends Controller
                 ->with('styles', $segmentStyles); 
     }
 
+    public function addDesign(Request $request)
+    {   
+        return redirect('transaction/walkin-individual-show-customize-orders');
+    }
+
     public function catalogueDesign()
     {
         return view('walkin-individual-catalogue-design');
@@ -128,13 +133,20 @@ class WalkInIndividualController extends Controller
 
     public function information(Request $request)
     {   
-        $a = [];
+        $joID = \DB::table('tblJobOrderIndividual')
+            ->select('strJobOrderIndID')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('strJobOrderIndID', 'desc')
+            ->take(1)
+            ->get();
 
-        for($i = 0; $i < count(session()->get('segment_values')); $i++){
-            $a[$i] = $request->input('rdb-pattern' . strval($i+1));
-            var_dump($i+1);
+        if($joID == null){
+            $newID = $this->smartCounter("JOB000"); 
+        }else{
+            $ID = $joID["0"]->strJobOrderIndID;
+            $newID = $this->smartCounter($ID);  
         }
-        
+
         //get all the individuals
         $ids = \DB::table('tblCustIndividual')
             ->select('strIndivID')
@@ -144,12 +156,13 @@ class WalkInIndividualController extends Controller
             ->get();
 
         $ID = $ids["0"]->strIndivID;
-        $newID = $this->smartCounter($ID);  
+        $custID = $this->smartCounter($ID);  
 
         $individual = Individual::all();                   
 
         return view('walkin-individual-checkout-info')
-                    ->with('newID', $newID);;
+                    ->with('custID', $custID)
+                    ->with('joID', $newID);
     }
 
     public function payment()
@@ -165,16 +178,19 @@ class WalkInIndividualController extends Controller
         $values = session()->get('segment_values');
         $data = session()->get('segment_data');
 
-        $measurements = \DB::table('tblSegment AS a')
-                    ->leftJoin('tblMeasurementCategory AS b', 'a.strSegmentID', '=', 'strMeasSegmentFK')
-                    ->leftJoin('tblMeasurementDetail AS c', 'b.strMeasDetFK', '=', 'c.strMeasurementDetailID')
-                    ->select('c.strMeasurementDetailName')
-                    ->whereIn('b.strMeasSegmentFK', $data)
+        $measurements = \DB::table('tblMeasurementCategory AS a')
+                    ->leftJoin('tblMeasurementDetail AS b', 'a.strMeasurementCategoryID', '=', 'b.strMeasCategoryFK')
+                    ->leftJoin('tblSegment AS c', 'b.strMeasDetSegmentFK', '=', 'c.strSegmentID')
+                    ->select('b.*')
+                    ->whereIn('b.strMeasDetSegmentFK', $data)
                     ->get();
+
+        $measurementCategory = MeasurementCategoryMaintenance::all();
 
         return view('walkin-individual-checkout-measure')
                 ->with('segments', $values)
-                ->with('measurements', $measurements);
+                ->with('measurements', $measurements)
+                ->with('categories', $measurementCategory);
     }
 
     public function removeItem(Request $request)
