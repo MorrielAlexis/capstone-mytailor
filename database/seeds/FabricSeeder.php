@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class FabricsSeeder extends Seeder
+class FabricSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class FabricsSeeder extends Seeder
      */
     public function run()
     {
-        $tblFabrics = array (
+        $tblFabric = array (
             array(
                 'strFabricID' => 'FAB001',
                 'strFabricTypeFK' => 'FABTYPE001',
@@ -19,7 +19,7 @@ class FabricsSeeder extends Seeder
                 'strFabricColorFK' => 'FABCLR001',
                 'strFabricThreadCountFK' => 'THRDC002',
                 'strFabricName' => 'Calvary Pink Plain',
-                'dblFabricPrice' => '150',
+                'dblFabricPrice' => 150,
                 'strFabricCode' => 'FC01',
                 'strFabricImage' => 'imgFabrics/s-697-8-1323753168826.jpg',
                 'txtFabricDesc' => 'Use for school uniforms and costumes.',
@@ -34,7 +34,7 @@ class FabricsSeeder extends Seeder
                 'strFabricColorFK' => 'FABCLR002',
                 'strFabricThreadCountFK' => 'THRDC001',
                 'strFabricName' => 'Blue Striped Soft',
-                'dblFabricPrice' => '200',
+                'dblFabricPrice' => 200,
                 'strFabricCode' => 'FC02',
                 'strFabricImage' => 'imgFabrics/h2.jpg',
                 'txtFabricDesc' => 'Use for customize shirts and polos.',
@@ -50,7 +50,7 @@ class FabricsSeeder extends Seeder
                 'strFabricColorFK' => 'FABCLR003',
                 'strFabricThreadCountFK' => 'THRDC002',
                 'strFabricName' => 'Plain Yellow',
-                'dblFabricPrice' => '200',
+                'dblFabricPrice' => 200,
                 'strFabricCode' => 'FC03',
                 'strFabricImage' => 'imgFabrics/o37-b-1260944373495.jpg',
                 'txtFabricDesc' => 'Use for customize gowns and costumes.',
@@ -142,6 +142,6 @@ class FabricsSeeder extends Seeder
 
         );
 
-        DB::table('tblFabrics')->insert($tblFabrics);
+        DB::table('tblFabric')->insert($tblFabric);
     }
 }

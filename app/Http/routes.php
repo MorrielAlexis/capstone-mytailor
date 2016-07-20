@@ -77,7 +77,9 @@ Route::group(['prefix' => 'maintenance'], function(){
 		Route::post('segment-pattern/destroy','SegmentPatternController@delete_segmentpattern');
 
 	Route::resource('measurement-category', 'MeasurementCategoryController');
-		Route::post('measurement-category/destroy', 'MeasurementCategoryController@delete_measurementcategory');
+
+		Route::post('measurement-category/update', 'MeasurementCategoryController@updateMeasurementCategory');
+		Route::post('measurement-category/destroy', 'MeasurementCategoryController@deleteMeasurementCategory');
 
 	Route::resource('measurement-detail', 'MeasurementDetailController');
 
@@ -258,7 +260,7 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::post('walkin-individual-payment-customer-info', 'WalkInIndividualController@information');
 	Route::post('walkin-individual-remove-item', 'WalkInIndividualController@removeItem');
 	Route::post('walkin-individual-add-design', 'WalkInIndividualController@addDesign');
-
+	Route::post('walkin-individual-clear-order', 'WalkInIndividualController@clearOrder');
 
 	Route::get('walkin-individual-show-customize-orders', 'WalkInIndividualController@showCustomizeOrder');
 

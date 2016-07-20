@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBodyPartsFormsTable extends Migration
+class CreateBodyPartsFormTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateBodyPartsFormsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tblBodyPartForms', function (Blueprint $table) {
+        Schema::create('tblBodyPartForm', function (Blueprint $table) {
             $table->string('strBodyFormID')->primary();
             $table->string('strBodyPartFK');
             $table->string('strBodyFormName');
@@ -35,6 +35,6 @@ class CreateBodyPartsFormsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tblBodyPartForms');
+        Schema::drop('tblBodyPartForm');
     }
 }

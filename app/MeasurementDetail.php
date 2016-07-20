@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MeasurementDetailMaintenance extends Model
+class MeasurementDetail extends Model
 {
     protected $table = 'tblMeasurementDetail';
 	protected $primaryKey = 'strMeasurementDetailID';

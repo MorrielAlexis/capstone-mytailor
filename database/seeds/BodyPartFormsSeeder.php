@@ -161,6 +161,6 @@ class BodyPartFormsSeeder extends Seeder
 
          );
 
-        DB::table('tblBodyPartForms')->insert($tblBodyPartForms);
+        DB::table('tblBodyPartForm')->insert($tblBodyPartForms);
     }
 }

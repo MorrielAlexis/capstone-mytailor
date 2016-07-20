@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\FabricThreadCountMaintenance;
+use App\FabricThreadCount;
 use App\Http\Requests;
 use App\Http\Requests\MaintenanceThreadCountRequest;
 use App\Http\Controllers\Controller;
@@ -26,16 +26,16 @@ class FabricThreadCountController extends Controller
     {
          //get all the swatch names
 
-        $ids = \DB::table('tblThreadCount')
-            ->select('strThreadCountID')
+        $ids = \DB::table('tblFabricThreadCount')
+            ->select('strFabricThreadCountID')
             ->orderBy('created_at', 'desc')
-            ->orderBy('strThreadCountID', 'desc')
+            ->orderBy('strFabricThreadCountID', 'desc')
             ->take(1)
             ->get();
 
-        $ID = $ids["0"]->strThreadCountID;
+        $ID = $ids["0"]->strFabricThreadCountID;
         $newID = $this->smartCounter($ID);  
-        $threadCount = FabricThreadCountMaintenance::all();
+        $threadCount = FabricThreadCount::all();
 
 
         //load the view and pass the employees
@@ -63,12 +63,12 @@ class FabricThreadCountController extends Controller
      */
     public function store(MaintenanceThreadCountRequest $request)
     {
-        $threadCounts = FabricThreadCountMaintenance::get();
+        $threadCounts = FabricThreadCount::get();
 
-            $threadCount = FabricThreadCountMaintenance::create(array(
-            'strThreadCountID' => $request->input('strThreadCountID'),
-            'strThreadCountName' => trim($request->input('strThreadCountName')),
-            'txtThreadCountDesc' => trim($request->input('txtThreadCountDesc')),
+            $threadCount = FabricThreadCount::create(array(
+            'strFabricThreadCountID' => $request->input('strFabricThreadCountID'),
+            'strFabricThreadCountName' => trim($request->input('strFabricThreadCountName')),
+            'txtFabricThreadCountDesc' => trim($request->input('txtFabricThreadCountDesc')),
             'boolIsActive' => 1
             ));
 
@@ -129,7 +129,7 @@ class FabricThreadCountController extends Controller
 
     {   
        
-        $threadCount = FabricThreadCountMaintenance::find($request->input('editThreadCount'));
+        $threadCount = FabricThreadCount::find($request->input('editThreadCount'));
 
                 $threadCount->strThreadCountName = trim($request->get('editThreadCountName'));    
                 $threadCount->txtThreadCountDesc = trim($request->get('editThreadCountDesc'));
@@ -146,7 +146,7 @@ class FabricThreadCountController extends Controller
     function delete_threadCount(Request $request)
     {
             $id = $request->input('delThreadCountID');
-            $threadCount = FabricThreadCountMaintenance::find($request-> input('delThreadCountID'));
+            $threadCount = FabricThreadCount::find($request-> input('delThreadCountID'));
 
             // $count = \DB::table('tblSwatchName')
             //     ->join('tblFabricType', 'tblSwatchName.strSwatchNameTypeFK', '=', 'tblFabricType.strFabricTypeID')
@@ -164,7 +164,7 @@ class FabricThreadCountController extends Controller
             //         return redirect('maintenance/fabric-type?success=beingUsed'); 
             //     }else {
 
-            $threadCount->strThreadCountInactiveReason = trim($request->input('delInactiveThreadCount'));
+            $threadCount->strFabricThreadCountInactiveReason = trim($request->input('delInactiveThreadCount'));
             $threadCount->boolIsActive = 0;
             $threadCount->save();
 

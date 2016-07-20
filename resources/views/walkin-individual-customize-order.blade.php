@@ -127,7 +127,10 @@
 												<div class="col s3"><!--fabric type-->
 													<div class="input-field col s12">
 															<select class = "fabric-type" id = "fabric-type">
-																	<option value="All" class="circle" selected>All</option>
+																<option value="All" class="circle" selected>All</option>
+																@foreach($fabricTypes as $fabricType)
+																	<option value="{{ $fabricType->strFabricTypeID }}">{{ $fabricType->strFabricTypeName }}</option>
+																@endforeach
 															</select>
 															<label><font size="3" color="gray">Fabric Type</font></label>
 													</div>
@@ -136,7 +139,10 @@
 												<div class="col s3"><!--fabric color-->
 													<div class="input-field col s12">
 															<select class = "fabric-color" id = "fabric-color">
-																	<option value="All" class="circle" selected>All</option>
+																<option value="All" class="circle" selected>All</option>
+																@foreach($fabricColors as $fabricColor)
+																	<option value="{{ $fabricColor->strFabricColorID }}">{{ $fabricColor->strFabricColorName }}</option>
+																@endforeach
 															</select>
 															<label><font size="3" color="gray">Fabric Color</font></label>
 													</div>
@@ -145,7 +151,10 @@
 												<div class="col s3"><!--fabric pattern-->
 													<div class="input-field col s12">
 															<select class = "fabric-pattern" id = "fabric-pattern">
-																	<option value="All" class="circle" selected>All</option>
+																<option value="All" class="circle" selected>All</option>
+																@foreach($fabricPatterns as $fabricPattern)
+																	<option value="{{ $fabricPattern->strFabricPatternID }}">{{ $fabricPattern->strFabricPatternName }}</option>
+																@endforeach
 															</select>
 															<label><font size="3" color="gray">Fabric Pattern</font></label>
 													</div>
@@ -154,7 +163,10 @@
 												<div class="col s3"><!--fabric thread count-->
 													<div class="input-field col s12">
 															<select class = "fabric-thread-count" id = "fabric-thread-count">
-																	<option value="All" class="circle" selected>All</option>
+																<option value="All" class="circle" selected>All</option>
+																@foreach($fabricThreadCounts as $fabricThreadCount)
+																	<option value="{{ $fabricThreadCount->strFabricThreadCountID }}">{{ $fabricThreadCount->strFabricThreadCountName }}</option>
+																@endforeach
 															</select>
 															<label><font size="3" color="gray">Fabric Thread Count</font></label>
 													</div>
@@ -172,8 +184,8 @@
 					                        	@foreach($fabrics as $k => $fabric)
 					                        	<div class="col s6">
 					                        	<div class="center col s2" style="margin-top:60px">
-					                        		<input name="garmentFabrics" type="radio" class="filled-in" value="{{ $fabric->strFabricTypeID }}" id="{{ $fabric->strFabricTypeID }}{{ $i+1 }}{{ $j+1 }}" />
-					                        		<label for="{{ $fabric->strFabricTypeID }}{{ $i+1 }}{{ $j+1 }}"></label>
+					                        		<input name="garmentFabrics" type="radio" class="filled-in" value="{{ $fabric->strFabricID }}" id="{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}" />
+					                        		<label for="{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}"></label>
 					                        	</div>
 					                        	 <div class="col s10">
 											        <div class="card-panel teal lighten-4 z-depth-1">
@@ -182,9 +194,9 @@
 											              <img src="#!" alt="" class="responsive-img"> <!-- notice the "circle" class -->
 											            </div>
 											            <div class="col s6"> 
-											              <p><b>{{ $fabric->strFabricTypeName }}</b></p> <!-- This will be the name of the pattern -->
+											              <p><b>{{ $fabric->strFabricName }}</b></p> <!-- This will be the name of the pattern -->
 											              <span class="black-text">
-											                {{ $fabric->txtFabricTypeDesc }}
+											                {{ $fabric->txtFabricDesc }}
 											              </span>
 											            </div>
 											          </div>

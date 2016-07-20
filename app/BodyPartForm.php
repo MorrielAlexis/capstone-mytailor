@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BodyPartFormMaintenance extends Model
+class BodyPartForm extends Model
 {
-    protected $table = 'tblBodyPartForms';
+    protected $table = 'tblBodyPartForm';
     
 	protected $primaryKey = 'strBodyFormID';
 	protected $fillable = array('strBodyFormID',

@@ -95,31 +95,31 @@
                    @foreach($threadCount as $threadCount)
                      @if($threadCount->boolIsActive == 1)
                   <tr>
-               		  <td>{{ $threadCount->strThreadCountName}}</td>
-              		  <td>{{ $threadCount->txtThreadCountDesc}}</td>
-              		  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to update data of thread count" href="#edit{{$threadCount->strThreadCountID}}"><i class="mdi-editor-mode-edit"></i></a>
-                    <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of thread count from the table" href="#del{{$threadCount->strThreadCountID}}"><i class="mdi-action-delete"></i></a></td>
+               		  <td>{{ $threadCount->strFabricThreadCountName}}</td>
+              		  <td>{{ $threadCount->txtFabricThreadCountDesc}}</td>
+              		  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to update data of thread count" href="#edit{{$threadCount->strFabricThreadCountID}}"><i class="mdi-editor-mode-edit"></i></a>
+                    <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of thread count from the table" href="#del{{$threadCount->strFabricThreadCountID}}"><i class="mdi-action-delete"></i></a></td>
               	
-                    <div id="edit{{$threadCount->strThreadCountID}}" class="modal modal-fixed-footer"> <!-- editFabricType  --> 
+                    <div id="edit{{$threadCount->strFabricThreadCountID}}" class="modal modal-fixed-footer"> <!-- editFabricType  --> 
                       <h5><font color = "#1b5e20"><center>UPDATE THREAD COUNT</center> </font> </h5>
                         {!! Form::open(['url' => 'maintenance/fabric-thread-count/update']) !!}
                           <div class="divider" style="height:2px"></div>
                               <div class="modal-content col s12">
                         
                                 <div class="input-field">
-                                      <input value = "{{$threadCount->strThreadCountID}}" id="editThreadCount" name = "editThreadCount" type="hidden">
+                                      <input value = "{{$threadCount->strFabricThreadCountID}}" id="editThreadCount" name = "editThreadCount" type="hidden">
                                 </div>
 
                               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                       <div class="input-field col s12">
-                                            <input required value = "{{$threadCount->strThreadCountName}}" id="editThreadCountName" name = "editThreadCountName" type="text" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?" class="validate" required data-position="bottom">
+                                            <input required value = "{{$threadCount->strFabricThreadCountName}}" id="editThreadCountName" name = "editThreadCountName" type="text" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?" class="validate" required data-position="bottom">
                                             <label for="thread count name">Thread Count Name <span class="red-text"><b>*</b></span> </label>
                                       </div>
                                 </div>
 
                                 <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                                       <div class="input-field col s12">
-                                            <input  value = "{{$threadCount->txtThreadCountDesc}}" id="editThreadCountDesc" name = "editThreadCountDesc" type="text" class="validate">
+                                            <input  value = "{{$threadCount->txtFabricThreadCountDesc}}" id="editThreadCountDesc" name = "editThreadCountDesc" type="text" class="validate">
                                             <label for="swatch_description">Thread Count Description </label>
                                       </div>  
                                 </div>
@@ -134,7 +134,7 @@
                   
 
               <!--**********DELETE***********-->
-              <div id="del{{$threadCount->strThreadCountID}}" class="modal modal-fixed-footer">                     
+              <div id="del{{$threadCount->strFabricThreadCountID}}" class="modal modal-fixed-footer">                     
                 <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS THREAD COUNT?</center> </font> </h5>                       
                    {!! Form::open(['url' => 'maintenance/fabric-thread-count/destroy']) !!}  
                   
@@ -142,26 +142,26 @@
                     <div class="modal-content col s12">
                       
                           <div class="input-field">
-                            <input value="{{$threadCount->strThreadCountID}}" id="delThreadCountID" name="delThreadCountID" type="hidden">
+                            <input value="{{$threadCount->strFabricThreadCountID}}" id="delThreadCountID" name="delThreadCountID" type="hidden">
                           </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
                             <label for="thread count name">Thread Count Name </label>
-                            <input value="{{$threadCount->strThreadCountName}}" id="delThreadCountName" name="delThreadCountName" type="text" readonly>
+                            <input value="{{$threadCount->strFabricThreadCountName}}" id="delThreadCountName" name="delThreadCountName" type="text" readonly>
                           </div>
                       </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
                             <label for="swatch_desc">Thread Count Desription </label>
-                            <input value="{{$threadCount->txtThreadCountDesc}}" id="delThreadCountDesc" name="delThreadCountDesc" type="text" readonly>
+                            <input value="{{$threadCount->txtFabricThreadCountDesc}}" id="delThreadCountDesc" name="delThreadCountDesc" type="text" readonly>
                           </div>
                       </div>
 
                           <div class="input-field col s12">
                             <label for="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span> </label>
-                            <input value="{{$threadCount->strThreadCountInactiveReason}}" id="delInactiveThreadCount" name="delInactiveThreadCount" type="text" required>
+                            <input value="{{$threadCount->strFabricThreadCountInactiveReason}}" id="delInactiveThreadCount" name="delInactiveThreadCount" type="text" required>
                           </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">

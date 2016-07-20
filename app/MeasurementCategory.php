@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MeasurementCategoryMaintenance extends Model
+class MeasurementCategory extends Model
 {
     protected $table = 'tblMeasurementCategory';
 	protected $primaryKey = 'strSegStyleCatID';

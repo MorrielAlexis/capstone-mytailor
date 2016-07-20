@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class FabricPatternMaintenance extends Model
+class FabricPattern extends Model
 {
     protected $table = 'tblFabricPattern';
     

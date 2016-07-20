@@ -36,8 +36,7 @@ class MeasurementDetailController extends Controller
         $detailNewID = $this->smartCounter($ID);            
 
         $detail = MeasurementDetail::all();
-        
-        
+                
         //load the view and pass the individuals
         return view('maintenance-measurement-detail')
                     ->with('detail', $detail)

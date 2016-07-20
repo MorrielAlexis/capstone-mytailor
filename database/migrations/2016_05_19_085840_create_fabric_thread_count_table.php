@@ -12,11 +12,11 @@ class CreateFabricThreadCountTable extends Migration
      */
     public function up()
     {
-        Schema::create('tblThreadCount', function (Blueprint $table) {
-            $table->string('strThreadCountID')->primary();
-            $table->string('strThreadCountName');
-            $table->text('txtThreadCountDesc')->nullable();
-            $table->string('strThreadCountInactiveReason')->nullable();
+        Schema::create('tblFabricThreadCount', function (Blueprint $table) {
+            $table->string('strFabricThreadCountID')->primary();
+            $table->string('strFabricThreadCountName');
+            $table->text('txtFabricThreadCountDesc')->nullable();
+            $table->string('strFabricThreadCountInactiveReason')->nullable();
             $table->boolean('boolIsActive');
             $table->timestamps();
             
@@ -30,6 +30,6 @@ class CreateFabricThreadCountTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tblThreadCount');
+        Schema::drop('tblFabricThreadCount');
     }
 }

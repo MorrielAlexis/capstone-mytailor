@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class FabricsMaintenance extends Model
+class Fabric extends Model
 {
-    protected $table = 'tblFabrics';
+    protected $table = 'tblFabric';
     
 	protected $primaryKey = 'strFabricID';
 	protected $fillable = array('strFabricID',

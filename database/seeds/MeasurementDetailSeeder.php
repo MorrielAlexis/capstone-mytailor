@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class MeasurementDetailMaintenanceSeeder extends Seeder
+class MeasurementDetailSeeder extends Seeder
 {
     /**
      * Run the database seeds.

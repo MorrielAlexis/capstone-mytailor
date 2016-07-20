@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFabricsTable extends Migration
+class CreateFabricTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateFabricsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tblFabrics', function (Blueprint $table) {
+        Schema::create('tblFabric', function (Blueprint $table) {
             $table->string('strFabricID')->primary();   
             $table->string('strFabricTypeFK')->index();//fk
             $table->string('strFabricPatternFK')->index();//fk
@@ -40,8 +40,8 @@ class CreateFabricsTable extends Migration
                   ->on('tblFabricColor');
 
             $table->foreign('strFabricThreadCountFK')
-                  ->references('strThreadCountID')
-                  ->on('tblThreadCount');
+                  ->references('strFabricThreadCountID')
+                  ->on('tblFabricThreadCount');
  
         });
     }
@@ -53,6 +53,6 @@ class CreateFabricsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tblFabrics');
+        Schema::drop('tblFabric');
     }
 }

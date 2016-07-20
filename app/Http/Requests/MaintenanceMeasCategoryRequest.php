@@ -26,19 +26,16 @@ class MaintenanceMeasCategoryRequest extends Request
     public function rules()
     {
         return [
-            'strMeasDetFK' => 'required|unique_with:tblMeasurementCategory,strMeasSegmentFK'
-            
-            
+            'strMeasurementCategoryName' => 'required|unique_with:tblMeasurementCategory,strMeasurementCategoryName'
+              
         ];
     }
 
     public function messages()
     {
         return [
-            'strMeasDetFK.unique_with'  =>  'Measurement detail name already exists.',
-            'strMeasDetFK.required'  =>  'Measurement detail name is required.'
-            
-            
+            'strMeasurementCategoryName.unique_with'  =>  'Measurement detail name already exists.',
+            'strMeasurementCategoryName.required'  =>  'Measurement detail name is required.'
             
         ];
 
@@ -49,3 +46,4 @@ class MaintenanceMeasCategoryRequest extends Request
         return $validator->errors()->all();
 
     }
+} 

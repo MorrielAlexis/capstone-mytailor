@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BodyPartCategoryMaintenance extends Model
+class BodyPartCategory extends Model
 {
     protected $table = 'tblBodyPartCategory';
     

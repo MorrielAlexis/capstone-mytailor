@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\MeasurementCategory;
-use App\GarmentCategory;
-use App\GarmentSegment;
-use App\MeasurementDetail;
 
 use App\Http\Requests;
 use App\Http\Requests\MaintenanceMeasCategoryRequest;
@@ -29,34 +26,21 @@ class MeasurementCategoryController extends Controller
     public function index()
     {
         //get all the category
-
         $ids = \DB::table('tblMeasurementCategory')
-            ->select('strMeasCatID')
+            ->select('strMeasurementCategoryID')
             ->orderBy('created_at', 'desc')
-            ->orderBy('strMeasCatID', 'desc')
+            ->orderBy('strMeasurementCategoryID', 'desc')
             ->take(1)
             ->get();
 
-        $ID = $ids["0"]->strMeasCatID;
+        $ID = $ids["0"]->strMeasurementCategoryID;
         $newID = $this->smartCounter($ID);
 
-        $segment = GarmentSegment::all();
-
-        $detailList = MeasurementDetail::all();
-
-
-        $head = \DB::table('tblMeasurementCategory AS a')
-            ->leftJoin('tblSegment AS b', 'a.strMeasSegmentFK', '=', 'b.strSegmentID')
-            ->leftJoin('tblMeasurementDetail AS c', 'a.strMeasDetFK', '=', 'c.strMeasurementDetailID')
-            ->select('a.*','b.strSegmentName', 'c.strMeasurementDetailName')
-            ->orderBy('created_at') 
-            ->get();
+        $measurementCategory = MeasurementCategory::all();
 
         //load the view and pass the employees
         return view('maintenance-measurement-category')
-                    ->with('head', $head)
-                    ->with('segment', $segment)
-                    ->with('detailList', $detailList)
+                    ->with('measurement_categories', $measurementCategory)
                     ->with('newID', $newID);
 
     }
@@ -78,11 +62,11 @@ class MeasurementCategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(MaintenanceMeasCategoryRequest $request)
-    {
+    {   
         $meas_category = MeasurementCategory::create(array(
-                'strMeasCatID' => $request->input('strMeasCatID'),
-                'strMeasSegmentFK' => $request->input('strMeasSegmentFK'),
-                'strMeasDetFK' => $request->input('strMeasDetFK'),
+                'strMeasurementCategoryID' => $request->input('strMeasurementCategoryID'),
+                'strMeasurementCategoryName' => $request->input('strMeasurementCategoryName'),
+                'txtMeasurementCategoryDesc' => $request->input('txtMeasurementCategoryDesc'),
                 'strMeasCatInactiveReason' => null,
                 'boolIsActive' => 1
             ));
@@ -139,7 +123,20 @@ class MeasurementCategoryController extends Controller
         //
     }
 
-    function delete_measurementcategory(Request $request)
+    public function updateMeasurementCategory(Request $request)
+    {   
+        $measurementCategory = MeasurementCategory::find($request->input('editMeasurementCategoryID'));
+
+        $measurementCategory->strMeasurementCategoryName = trim($request->input('editMeasurementCategoryName'));
+        $measurementCategory->strMeasurementCategoryID = trim($request->input('editMeasurementCategoryDescription'));
+        $measurementCategory->save();
+
+        \Session::flash('flash_message_update','Measurement category successfully edited.'); //flash message
+
+        return redirect('maintenance/measurement-category');
+    }
+
+    public function deleteMeasurementCategory(Request $request)
     {
         $meas_category = MeasurementCategory::find($request->input('delMeasurementID'));
 

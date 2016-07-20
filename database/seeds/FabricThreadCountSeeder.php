@@ -14,26 +14,26 @@ class FabricThreadCountSeeder extends Seeder
     {   
         //DB::table('tblSwatch')->delete();
 
-        $tblThreadCount = array (
+        $tblFabricThreadCount = array (
             array(
-                'strThreadCountID' => 'THRDC001',
-                'strThreadCountName' => '80s',
-                'txtThreadCountDesc' => 'Use for bed sheets.',
-                'strThreadCountInactiveReason' =>'',
+                'strFabricThreadCountID' => 'THRDC001',
+                'strFabricThreadCountName' => '80s',
+                'txtFabricThreadCountDesc' => 'Use for bed sheets.',
+                'strFabricThreadCountInactiveReason' =>'',
                 'boolIsActive' => '1'
             ),
 
             array(
-                'strThreadCountID' => 'THRDC002',
-                'strThreadCountName' => '60s',
-                'txtThreadCountDesc' => 'Usually use for shirts and pants.',
-                'strThreadCountInactiveReason' =>'',
+                'strFabricThreadCountID' => 'THRDC002',
+                'strFabricThreadCountName' => '60s',
+                'txtFabricThreadCountDesc' => 'Usually use for shirts and pants.',
+                'strFabricThreadCountInactiveReason' =>'',
                 'boolIsActive' => '1'
             )
 
         );
 
-        DB::table('tblThreadCount')->insert($tblThreadCount);
+        DB::table('tblFabricThreadCount')->insert($tblFabricThreadCount);
     }
     
 }

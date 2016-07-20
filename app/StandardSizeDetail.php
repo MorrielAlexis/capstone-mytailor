@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class StandardSizeDetailMaintenance extends Model
+class StandardSizeDetail extends Model
 {
     protected $table = 'tblStandardSizeDetail';
     
