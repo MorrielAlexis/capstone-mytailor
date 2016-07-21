@@ -23,8 +23,8 @@
 						<div class="col s12">
 							<div class="col s6">
 								<div class="input-field col s12">
-										<select class = "garment-category" id = "garment-category">
-												<option value="All" class="circle" selected>All</option>
+										<select id = "garment-category">
+												<option value="CA" class="circle" selected>All</option>
 										    @foreach($categories as $category)
 										    	<option value="{{ $category->strGarmentCategoryID }}" class="circle">{{ $category->strGarmentCategoryName }}</option>
 											@endforeach
@@ -36,11 +36,11 @@
 
 							<div class="col s6" style="margin-bottom:20px">
 								<div class="input-field col s12">
-										<select class="garment-sex" id="garment-sex">
+										<select id="garment-sex">
 											<option disabled>Show garments for...</option>
+										    <option value="SA" selected class="circle">All</option>
 										    <option value="M" class="circle">Male</option>
 										    <option value="F" class="circle">Female</option>
-										    <option value="A" selected class="circle">All</option>
 										</select>
 										
 								</div>
@@ -61,7 +61,7 @@
 							<p class="center-align" style="color:teal; margin-bottom:40px"><b>CHOOSE AMONG AVAILABLE PRODUCTS</b></p>
 						
 						@foreach($garments as $garment)
-								<div class="col s4 segment-general {{ $garment->strGarmentCategoryName }} {{ $garment->strSegmentSex }}">
+								<div class="col s4 segment-general {{ $garment->strSegCategoryFK }} {{ $garment->strSegmentSex }}">
 										<div class="center col s12">
 					          				<input type="checkbox" name="cbx-segment-name[]"  class="filled-in cbx-segment-name" id="{{ $garment->strSegmentID }}" value="{{ $garment->strSegmentID }}" style="padding:5px"/>
 			      							<label for="{{ $garment->strSegmentID }}"><font size="+1"><b>{{ $garment->strSegmentName }}</b></font></label>
@@ -136,22 +136,36 @@
 			}
 
 		});
+	</script>
 
-		$(document).ready(function(){
-			$(".segment-general").removeClass("hide");
+	<script>
+		var category = $('#garment-category');
+		var sex = $('#garment-sex');
+
+		category.change(function () {
+		  updateUI();
 		});
 
-		$(".garment-category").change(function(){
-			$garmentClass = $(".garment-category option:selected").text();
-
-			if($garmentClass == "All"){
-				$(".segment-general").removeClass("hide");
-			}else{
-				$(".segment-general").addClass("hide");
-				$("." + $garmentClass).removeClass("hide");			
-			}
-
+		sex.change(function () {
+		  updateUI();
 		});
+
+		function updateUI () {
+		  $('.segment-general').hide();
+
+		  var categoryValue = category.val();
+		  var sexValue = sex.val();
+		  
+		  if (categoryValue == 'CA' && sexValue == 'SA') return $('.segment-general').show();
+		  
+		  var categoryClass = categoryValue == 'CA' ? '' : '.' + categoryValue;
+		  var sexClass = sexValue == 'SA' ? '' : '.' + sexValue;
+
+		  var classesToUpdate = categoryClass + sexClass;
+		  $(classesToUpdate).show();
+		}
+
+		updateUI();
 	</script>
 
 	<script>

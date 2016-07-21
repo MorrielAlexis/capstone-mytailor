@@ -13,9 +13,8 @@
       <div style="padding:30px">
 
     <ul class="col s12 breadcrumb">
-			<li><a class="active" style="padding-left:200px" href="#customer-info"><b>1.FILL-UP FORM</b></a></li>
-			<li><a style="padding-left:200px"><b>2.PAYMENT</b></a></li>
-			<li><a style="padding-left:200px"><b>3.ADD MEASUREMENT DETAIL</b></a></li>
+			<li><a class="active" style="padding-left:200px" href="#customer-info"><b>FILL-UP FORM</b></a></li>
+			<li><a style="padding-left:200px"><b>PAYMENT</b></a></li>
 		</ul>
 
           <div class="row">
