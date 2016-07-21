@@ -20,7 +20,7 @@ class CreateJoSpecificsInd extends Migration
             $table->text('txtMeasureNote');
             $table->integer('intQuantity');
             $table->double('dblUnitPrice');
-            $table->double('dblEstimatedDaystoFinish');
+            $table->integer('intEstimatedDaystoFinish');
             $table->boolean('boolIsActive');
             $table->timestamps();
 

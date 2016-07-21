@@ -135,18 +135,19 @@ class SegmentStyleController extends Controller
     function updatesegmentStyle(Request $request)
     {
     
-        $segmentStyle  = SegmentStyle::find($request->input('editGarmentID'));
-        // $garment = GarmentCategory::find($request->input('strGarmentCategoryID'));
-            $segmentStyle ->strGarmentCategoryName = trim($request->input('editGarmentName'));
-            // $garment->strGarmentCategoryName = trim($request->input('strGarmentCategoryName'));
+        $segmentStyle  = SegmentStyle::find($request->input('editSegmentStyleID'));
 
-            $segmentStyle ->textGarmentCategoryDesc = trim($request->input('editGarmentDescription'));
-            // $garment->textGarmentCategoryDesc = trim($request->input('textGarmentCategoryDesc'));
+            $segmentStyle ->strSegmentFK = $request->input('editSegmentStyle');
+            $segmentStyle ->strSegStyleName = trim($request->input('editSegmentStyleName'));
+            $segmentStyle ->txtSegStyleCatDesc = trim($request->input('editStyleDesc'));
+
             $segmentStyle  ->save();
 
-        \Session::flash('flash_message_update','Garment category detail/s successfully updated.'); //flash message
+        \Session::flash('flash_message_update','Segment style category detail/s successfully updated.'); //flash message
 
-        return  redirect('maintenance/segmentStyle -category');
+
+
+        return  redirect('maintenance/segment-style');
     }
 
        public function smartCounter($id)
