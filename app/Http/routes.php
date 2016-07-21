@@ -343,6 +343,7 @@ Route::group(['prefix' => 'transaction'], function(){
 		Route::post('alteration-walkin-newcustomer', 'AlterationWalkInController@addValues');
 		Route::post('alteration-walkin-newcustomer-delete', 'AlterationWalkInController@deleteOrder');
 		Route::post('alteration-walkin-add-newcustomer-info', 'AlterationWalkInController@addNewCustomer');
+		Route::post('alteration-walkin-newcustomer-save-transaction', 'AlterationWalkInController@saveTransaction');
 });
 
 

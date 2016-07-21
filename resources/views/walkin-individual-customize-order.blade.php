@@ -127,7 +127,7 @@
 												<div class="col s3"><!--fabric type-->
 													<div class="input-field col s12">
 															<select class = "fabric-type" id = "fabric-type">
-																<option value="All" class="circle" selected>All</option>
+																<option value="TA" class="circle" selected>All</option>
 																@foreach($fabricTypes as $fabricType)
 																	<option value="{{ $fabricType->strFabricTypeID }}">{{ $fabricType->strFabricTypeName }}</option>
 																@endforeach
@@ -139,7 +139,7 @@
 												<div class="col s3"><!--fabric color-->
 													<div class="input-field col s12">
 															<select class = "fabric-color" id = "fabric-color">
-																<option value="All" class="circle" selected>All</option>
+																<option value="CA" class="circle" selected>All</option>
 																@foreach($fabricColors as $fabricColor)
 																	<option value="{{ $fabricColor->strFabricColorID }}">{{ $fabricColor->strFabricColorName }}</option>
 																@endforeach
@@ -151,7 +151,7 @@
 												<div class="col s3"><!--fabric pattern-->
 													<div class="input-field col s12">
 															<select class = "fabric-pattern" id = "fabric-pattern">
-																<option value="All" class="circle" selected>All</option>
+																<option value="PA" class="circle" selected>All</option>
 																@foreach($fabricPatterns as $fabricPattern)
 																	<option value="{{ $fabricPattern->strFabricPatternID }}">{{ $fabricPattern->strFabricPatternName }}</option>
 																@endforeach
@@ -163,7 +163,7 @@
 												<div class="col s3"><!--fabric thread count-->
 													<div class="input-field col s12">
 															<select class = "fabric-thread-count" id = "fabric-thread-count">
-																<option value="All" class="circle" selected>All</option>
+																<option value="TCA" class="circle" selected>All</option>
 																@foreach($fabricThreadCounts as $fabricThreadCount)
 																	<option value="{{ $fabricThreadCount->strFabricThreadCountID }}">{{ $fabricThreadCount->strFabricThreadCountName }}</option>
 																@endforeach
@@ -182,7 +182,7 @@
 
 												
 					                        	@foreach($fabrics as $k => $fabric)
-					                        	<div class="col s6">
+					                        	<div class="col s6 fabric-general {{ $fabric->strFabricTypeFK }} {{ $fabric->strFabricPatternFK }} {{ $fabric->strFabricColorFK }} {{ $fabric->strFabricThreadCountFK }}">
 					                        	<div class="center col s2" style="margin-top:60px">
 					                        		<input name="garmentFabrics" type="radio" class="filled-in" value="{{ $fabric->strFabricID }}" id="{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}" />
 					                        		<label for="{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}"></label>
@@ -202,7 +202,7 @@
 											          </div>
 											        </div>
 											      </div>
-											      </div>
+											    </div>
 												@endforeach
 												
 											<div class="col s12" style="margin:20px"></div>
@@ -399,6 +399,54 @@
 		      accordion : true // A setting that changes the collapsible behavior to expandable instead of the default accordion style
 		    });
 		  });
+	</script>
+
+	<script>
+		var type = $('#fabric-type');
+		var color = $('#fabric-color');
+		var pattern = $('#fabric-pattern');
+		var threadCount = $('#fabric-thread-count');
+
+		type.change(function () {
+		  updateUI();
+		});
+
+		color.change(function () {
+		  updateUI();
+		});
+
+		pattern.change(function () {
+		  updateUI();
+		});
+
+		threadCount.change(function () {
+		  updateUI();
+		});
+
+
+		function updateUI () {
+		  $('.fabric-general').hide();
+
+		  var typeValue = type.val();
+		  var colorValue = color.val();
+		  var patternValue = pattern.val();
+		  var threadValue = threadCount.val();
+		  
+		  if (typeValue == 'TA' && colorValue == 'CA' && patternValue == 'PA' && threadValue == 'TCA'){
+		  	return $('.fabric-general').show();
+		  } 
+		  
+		  var typeClass = typeValue == 'TA' ? '' : '.' + typeValue;
+		  var colorClass = colorValue == 'CA' ? '' : '.' + colorValue;
+		  var patternClass = patternValue == 'PA' ? '' : '.' + patternValue;
+		  var threadClass = threadValue == 'TCA' ? '' : '.' + threadValue;
+
+		  var classesToUpdate = typeClass + colorClass + patternClass + threadClass;
+		  console.log('Fisher', classesToUpdate);
+		  $(classesToUpdate).show();
+		}
+
+		updateUI();
 	</script>
 
 	<script>

@@ -15,9 +15,9 @@ class CreateNewAlterationTransactionTable extends Migration
         Schema::create('tblNewAlteration', function (Blueprint $table) {
             $table->string('strNewAlterationID')->primary();
             $table->string('strCustomerIndFK')->index();
-            $table->string('strAlteGarmentCategoryFk')->index();
             $table->string('strAlteSegmentFk')->index(); 
             $table->string('strAlterationTypeFk')->index(); 
+            $table->double('dblAlterationPrice');
             // $table->string('strAltericeQuoteFK')->index(); 
             $table->integer('intAlteQty');
             $table->date('dtAlteDate');
@@ -29,10 +29,6 @@ class CreateNewAlterationTransactionTable extends Migration
                   ->references('strIndivID')
                   ->on('tblCustIndividual');
                   
-            $table->foreign('strAlteGarmentCategoryFk')
-                  ->references('strGarmentCategoryID')
-                  ->on('tblGarmentCategory');
-
             $table->foreign('strAlteSegmentFk')
                   ->references('strSegmentID')
                   ->on('tblSegment');

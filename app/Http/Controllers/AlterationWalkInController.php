@@ -166,6 +166,9 @@ class AlterationWalkInController extends Controller
             $custID = $this->smartCounter($ID);  
         }
 
+        session(['alteration_id' => $altID]);
+        session(['customer_id' => $custID]);    
+
         return view('alteration.checkout-info')
                 ->with('custID', $custID)
                 ->with('newID', $altID);
@@ -173,7 +176,19 @@ class AlterationWalkInController extends Controller
 
     public function addNewCustomer(Request $request)
     {   
+        return redirect('transaction/alteration-checkout-payment');
+    }
+
+    public function saveTransaction(Request $request)
+    {   
+
+    }
+
+    public function checkoutPayment()   
+    {   
         $values = session()->get('orders');
+        $alte_id = session()->get('alteration_id');
+
         $totalPrice = 0.00;
         $totalDays = 0;
 
@@ -184,13 +199,9 @@ class AlterationWalkInController extends Controller
 
         return view('alteration.checkout-payment')
                 ->with('alterations', $values)
+                ->with('alte_id', $alte_id)
                 ->with('total_price', $totalPrice)
                 ->with('total_days', $totalDays);
-    }
-
-    public function checkoutPayment()   
-    {   
-        return view('alteration.checkout-payment');
     }
 
     public function oldcust()
