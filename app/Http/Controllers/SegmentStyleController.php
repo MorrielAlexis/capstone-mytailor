@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\GarmentsegmentStyle;
-use App\segmentStyleStyle;
+use App\GarmentSegment;
+use App\SegmentStyle;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class segmentStyleStyleController extends Controller
+class SegmentStyleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,7 +26,7 @@ class segmentStyleStyleController extends Controller
     {
          //get all the segmentStyle style
 
-        $ids = \DB::table('tblsegmentStyleStyleCategory')
+        $ids = \DB::table('tblSegmentStyleCategory')
             ->select('strSegStyleCatID')
             ->orderBy('created_at', 'desc')
             ->orderBy('strSegStyleCatID', 'desc')
@@ -36,19 +36,19 @@ class segmentStyleStyleController extends Controller
         $ID = $ids["0"]->strSegStyleCatID;
         $newID = $this->smartCounter($ID);  
 
-        $segmentStyle = GarmentsegmentStyle::all();
+        $segment = GarmentSegment::all();
 
 
-        $segmentStyleStyle = \DB::table('tblsegmentStyleStyleCategory')
-                ->join('tblsegmentStyle', 'tblsegmentStyleStyleCategory.strsegmentStyleFK', '=', 'tblsegmentStyle.strsegmentStyleID')
-                ->select('tblsegmentStyleStyleCategory.*','tblsegmentStyle.strsegmentStyleName') 
+        $segmentStyle = \DB::table('tblSegmentStyleCategory')
+                ->join('tblSegment', 'tblSegmentStyleCategory.strSegmentFK', '=', 'tblSegment.strSegmentID')
+                ->select('tblSegmentStyleCategory.*','tblSegment.strSegmentName') 
                 ->orderBy('strSegStyleCatID')
                 ->get();
         
         //load the view and pass the style
-        return view('maintenance-segmentStyle-style')
-                    ->with('segmentStyleStyle', $segmentStyleStyle)
+        return view('maintenance-segment-style')
                     ->with('segmentStyle', $segmentStyle)
+                    ->with('segment', $segment)
                     ->with('newID', $newID);
     }
 
@@ -70,21 +70,21 @@ class segmentStyleStyleController extends Controller
      */
     public function store(Request $request)
     {
-        $styles = segmentStyleStyle::get();
-            $segmentStyleStyle = segmentStyleStyle::create(array(
+        $styles = SegmentStyle::get();
+            $segmentStyle = SegmentStyle::create(array(
                 'strSegStyleCatID' => $request->input('strSegStyleCatID'),
-                'strsegmentStyleFK' => $request->input('strsegmentStyleFK'),
+                'strSegmentFK' => $request->input('strSegmentFK'),
                 'strSegStyleName' => trim($request->input('strSegStyleName')),
                 'txtSegStyleCatDesc' => trim($request->input('txtSegStyleCatDesc')),
                 'boolIsActive' => 1
                 ));
 
-         $added=$segmentStyleStyle->save();
+         $added=$segmentStyle->save();
           
 
-        \Session::flash('flash_message','segmentStyle style  category successfully added.'); //flash message
+        \Session::flash('flash_message','Segment style  category successfully added.'); //flash message
 
-        return redirect('maintenance/garment-category');
+        return redirect('maintenance/segment-style');
     }
 
     /**
