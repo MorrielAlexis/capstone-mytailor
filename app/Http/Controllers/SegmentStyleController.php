@@ -132,6 +132,8 @@ class SegmentStyleController extends Controller
         //
     }
 
+
+
     function updatesegmentStyle(Request $request)
     {
     
@@ -148,6 +150,22 @@ class SegmentStyleController extends Controller
 
 
         return  redirect('maintenance/segment-style');
+    }
+
+    function deletesegmentStyle(Request $request)
+    {
+
+        $segmentStyle = SegmentStyle::find($request->input('delsegmentStyleID'));
+
+        $segmentStyle->strSegStyleCatInactiveReason = trim($request->input('delInactiveSegmentStyle'));
+        $segmentStyle->boolIsActive = 0;
+        $segmentStyle->save();
+
+
+       \Session::flash('flash_message_delete','Segment pattern successfully deactivated.'); //flash message
+
+        return redirect('maintenance/segment-style');
+
     }
 
        public function smartCounter($id)
