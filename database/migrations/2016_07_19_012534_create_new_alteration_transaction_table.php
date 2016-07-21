@@ -18,7 +18,7 @@ class CreateNewAlterationTransactionTable extends Migration
             $table->string('strAlteGarmentCategoryFk')->index();
             $table->string('strAlteSegmentFk')->index(); 
             $table->string('strAlterationTypeFk')->index(); 
-            $table->string('strAltericeQuoteFK')->index(); 
+            // $table->string('strAltericeQuoteFK')->index(); 
             $table->integer('intAlteQty');
             $table->date('strAlteDate');
             $table->text('txtAlteNotes');
@@ -41,9 +41,9 @@ class CreateNewAlterationTransactionTable extends Migration
                   ->references('strAlterationID')
                   ->on('tblAlteration');
 
-             $table->foreign('strAltericeQuoteFK')
-                  ->references('strJOPriceQuoteID')
-                  ->on('tblJOPriceQuotation');
+             // $table->foreign('strAltericeQuoteFK')
+             //      ->references('strJOPriceQuoteID')
+             //      ->on('tblJOPriceQuotation');
         });
     }
 
