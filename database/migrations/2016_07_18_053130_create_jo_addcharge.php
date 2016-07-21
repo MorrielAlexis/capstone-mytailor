@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateJoPqAddcharge extends Migration
+class CreateJoAddcharge extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateJoPqAddcharge extends Migration
      */
     public function up()
     {
-        Schema::create('tblJOPQAddCharge', function (Blueprint $table) {
+        Schema::create('tblJOAddCharge', function (Blueprint $table) {
             $table->string('strAdditionalChargeID')->primary();
             $table->string('strAdditionalChargeName');
             $table->double('dblAdditionalChargeAmount');

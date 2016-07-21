@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateJoSpecificsInd extends Migration
+class CreateJoSpecific extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,17 @@ class CreateJoSpecificsInd extends Migration
      */
     public function up()
     {
-        Schema::create('tblJOSpecificsInd', function (Blueprint $table) {
-            $table->string('strJOSpecificsID')->primary();
+        Schema::create('tblJOSpecific', function (Blueprint $table) {
+            $table->string('strJOSpecificID')->primary();
             $table->string('strJobOrderFK')->index();
-            $table->string('strJOIndSegmentFK')->index();
-            $table->string('strJOIndFabricFK')->index();
-            $table->text('txtMeasureNote');
+            $table->string('strJOSegmentFK')->index();
+            $table->string('strJOFabricFK')->index();
+            $table->string('strJOSegmentPatternFK')->index();
             $table->integer('intQuantity');
             $table->double('dblUnitPrice');
             $table->integer('intEstimatedDaystoFinish');
+            $table->string('strEmployeeNameFK')->index();
+            $table->date('dtDateModified');
             $table->boolean('boolIsActive');
             $table->timestamps();
 
@@ -28,13 +30,18 @@ class CreateJoSpecificsInd extends Migration
                   ->references('strJobOrderID')
                   ->on('tblJobOrder');
 
-            $table->foreign('strJOIndSegmentFK')
+            $table->foreign('strJOSegmentFK')
                   ->references('strSegmentID')
                   ->on('tblSegment');
 
-            $table->foreign('strJOIndFabricFK')
+            $table->foreign('strJOFabricFK')
                   ->references('strFabricID')
                   ->on('tblFabric');
+
+             $table->foreign('strJOSegmentPatternFK')
+                  ->references('strSegPatternID')
+                  ->on('tblSegmentPattern');
+
 
 
         });
