@@ -76,6 +76,34 @@ Route::group(['prefix' => 'maintenance'], function(){
 		Route::post('segment-pattern/update','SegmentPatternController@update_segmentpattern');
 		Route::post('segment-pattern/destroy','SegmentPatternController@delete_segmentpattern');
 
+
+	
+
+});
+
+Route::group(['prefix' => 'maintenance'], function(){
+	Route::resource('body-part-category', 'BodyPartCategoryController');
+		
+		Route::post('body-part-category/update','BodyPartCategoryController@update_fabricType');
+		Route::post('body-part-category/destroy','BodyPartCategoryController@delete_fabricType');
+
+
+	Route::resource('body-part-form', 'BodyPartFormController');
+
+		Route::post('body-part-form/update','BodyPartFormController@update_threadCount');
+		Route::post('body-part-form/destroy','BodyPartFormController@delete_threadCount');
+
+	Route::resource('standard-size-category', 'StandardSizeCategoryController');
+
+		Route::post('standard-size-category/update','StandardSizeCategoryController@update_fabricPattern');
+		Route::post('standard-size-category/destroy','StandardSizeCategoryController@delete_fabricPattern');
+
+	Route::resource('standard-size-detail', 'StandardSizeDetailController');
+
+		Route::post('standard-size-detail/update','StandardSizeDetailController@update_fabricColor');
+		Route::post('standard-size-detail/destroy','StandardSizeDetailController@delete_fabricColor');
+
+
 	Route::resource('measurement-category', 'MeasurementCategoryController');
 
 		Route::post('measurement-category/update', 'MeasurementCategoryController@updateMeasurementCategory');
@@ -86,7 +114,7 @@ Route::group(['prefix' => 'maintenance'], function(){
 		Route::post('measurement-detail/update','MeasurementDetailController@update_measurementdetail');
 		Route::post('measurement-detail/destroy','MeasurementDetailController@delete_measurementdetail');
 
-	
+
 
 });
 
