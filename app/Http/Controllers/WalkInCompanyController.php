@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Package;
+
 class WalkInCompanyController extends Controller
 {
     /**
@@ -21,18 +23,37 @@ class WalkInCompanyController extends Controller
     }
     
     public function index()
-    {
-        return view('transaction-walkin-company');
+    {   
+        $packages = Package::all();
+
+        return view('transaction-walkin-company')
+                ->with('packages', $packages);
+    }
+
+    public function showOrder()
+    {   
+        $values = \DB::table('tblPackages')
+                ->select('*')
+                ->whereIn('strPackageID', session()->get('segment_values'))
+                ->get();
+
+        return view('walkin-company-customize-order')
+                ->with('values', $values);
+    }
+
+    public function customize(Request $request)
+    {   
+        $data_segment = $request->input('cbx-package-name');
+        $data_quantity = array_slice(array_filter($request->input('int-package-qty')), 0);
+
+        session(['segment_values' => $data_segment]);
+
+        return redirect('transaction/walkin-company-show-order');
     }
 
     public function retailProduct()
     {
         return view('walkin-company-retail-product');
-    }
-
-    public function customize()
-    {
-        return view('walkin-company-customize-order');
     }
 
     public function customPackage()
