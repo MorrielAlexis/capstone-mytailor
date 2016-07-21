@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\GarmentSegment;
-use App\MaintenanceSegmentStyle;
+use App\SegmentStyle;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class MaintenanceSegmentStyleController extends Controller
+class SegmentStyleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -70,7 +70,21 @@ class MaintenanceSegmentStyleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $styles = SegmentStyle::get();
+            $segmentStyle = SegmentStyle::create(array(
+                'strSegStyleCatID' => $request->input('strSegStyleCatID'),
+                'strSegmentFK' => $request->input('strSegmentFK'),
+                'strSegStyleName' => trim($request->input('strSegStyleName')),
+                'txtSegStyleCatDesc' => trim($request->input('txtSegStyleCatDesc')),
+                'boolIsActive' => 1
+                ));
+
+         $added=$segmentStyle->save();
+          
+
+        \Session::flash('flash_message','Segment style  category successfully added.'); //flash message
+
+        return redirect('maintenance/garment-category');
     }
 
     /**
@@ -116,6 +130,23 @@ class MaintenanceSegmentStyleController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    function updateSegmentStyle(Request $request)
+    {
+    
+        $segment  = GarmentCategory::find($request->input('editGarmentID'));
+        // $garment = GarmentCategory::find($request->input('strGarmentCategoryID'));
+            $segment ->strGarmentCategoryName = trim($request->input('editGarmentName'));
+            // $garment->strGarmentCategoryName = trim($request->input('strGarmentCategoryName'));
+
+            $segment ->textGarmentCategoryDesc = trim($request->input('editGarmentDescription'));
+            // $garment->textGarmentCategoryDesc = trim($request->input('textGarmentCategoryDesc'));
+            $segment  ->save();
+
+        \Session::flash('flash_message_update','Garment category detail/s successfully updated.'); //flash message
+
+        return  redirect('maintenance/segment -category');
     }
 
        public function smartCounter($id)

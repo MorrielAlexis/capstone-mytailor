@@ -65,10 +65,10 @@ Route::group(['prefix' => 'maintenance'], function(){
 		Route::post('garment-segment/update','GarmentSegmentController@updateGarmentSegment');
 		Route::post('garment-segment/destroy','GarmentSegmentController@deleteGarmentSegment');
 		
-	Route::resource('segment-style', 'MaintenanceSegmentStyleController');
+	Route::resource('segment-style', 'SegmentStyleController');
 
-		Route::post('segment-style/update','MaintenanceSegmentStyleController@updateSegmentStyle');
-		Route::post('segment-style/destroy','MaintenanceSegmentStyleController@deleteSegmentStyle');
+		Route::post('segment-style/update','SegmentStyleController@updateSegmentStyle');
+		Route::post('segment-style/destroy','SegmentStyleController@deleteSegmentStyle');
 
 
 	Route::resource('segment-pattern', 'SegmentPatternController');

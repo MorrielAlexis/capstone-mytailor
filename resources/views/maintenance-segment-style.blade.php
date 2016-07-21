@@ -134,7 +134,7 @@
                   <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="CLick to remove segment style data from the table" href="#del{{ $segmentStyle->strSegStyleCatID }}"><i class="mdi-action-delete"></i></a></td>
                       
                     <div id="edit{{ $segmentStyle->strSegStyleCatID }}" class="modal modal-fixed-footer">                     
-                        <h5><font color = "#1b5e20"><center>EDIT SEGMENT STYLE</center> </font> </h5>                        
+                        <h5><font color = "#1b5e20"><center>UPDATE SEGMENT STYLE</center> </font> </h5>                        
 
                       {!! Form::open(['url' => 'maintenance/segment-style/update', 'files' => true]) !!}
                         <div class="divider" style="height:2px"></div>
@@ -246,11 +246,14 @@
               {!! Form::open(['url' => 'maintenance/segment-style', 'method' => 'post']) !!}
                 <div class="divider" style="height:2px"></div>
                 <div class="modal-content col s12">
-                
-                <input type="hidden" name="_token" value="{!! csrf_token() !!}" />
-                <input value = "{{$newID}}" id="strSegStyleCatID" name= "strSegStyleCatID" type="hidden">
 
-            <div class = "col s12" style="padding:15px;  border:3px solid white;">
+
+                
+                <div class="input-field">
+                    <input value="{{ $newID }}" id="strSegStyleCatID" name="strSegStyleCatID" type="hidden">
+                </div>
+
+              <div class = "col s12" style="padding:15px;  border:3px solid white;">
                 <div class="input-field col s12">
                   <select class="browser-default" required id="strSegmentFK" name="strSegmentFK">
                         @foreach($segment as $segment)
