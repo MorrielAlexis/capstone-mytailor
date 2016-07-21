@@ -13,7 +13,7 @@ class Individual extends Model
 
     protected $fillable = array('strIndivID','strIndivFName', 
                         'strIndivLName',
-    					'strIndivMName', 'strIndivGender',
+    					'strIndivMName', 'strIndivSex',
     					'strIndivHouseNo', 'strIndivStreet',
     					'strIndivBarangay', 'strIndivCity',
     					'strIndivProvince', 'strIndivZipCode',

@@ -6,15 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class TransactionAlteration extends Model
 {
-    public $table = 'tblAlterationTransaction';
+    public $table = 'tblNewAlteration';
 
-    public $primaryKey = 'strAltTransacID';
+    public $primaryKey = 'strNewAlterationID';
 
-    public $fillable = array('strAltTransacID', 
-    						'strAltTransacSegFK', 
-    						'strAltTransacAltTypeFK', 
-    						'strAltTransacCustomeridFK', 
-    						'dblAltTransacPrice', 
-    						'txtAltTransacDesc',
-    						'intAltTransacMinDays');
+    public $fillable = array('strNewAlterationID', 
+    						'strCustomerIndFK',
+    						'strAlteSegmentFK', 
+    						'strAlterationTypeFK', 
+    						'dblAlterationPrice', 
+    						'intAlteQty',
+    						'dtAlteDate',
+    						'txtAlteNotes',
+    						'boolIsActive');
 }

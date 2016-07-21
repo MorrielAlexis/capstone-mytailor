@@ -13,6 +13,7 @@ use App\SegmentPattern;
 use App\GarmentSegment; 
 use App\Alteration; 
 use App\TransactionAlteration;
+use App\Individual;
 
 
 class AlterationWalkInController extends Controller
@@ -175,13 +176,52 @@ class AlterationWalkInController extends Controller
     }
 
     public function addNewCustomer(Request $request)
-    {   
+    {           
+        $individual = Individual::create(array(
+                    'strIndivID' => $request->input('addIndiID'),
+                    'strIndivFName' => trim($request->input('first_name')),     
+                    'strIndivMName' => trim($request->input('middle_name')),
+                    'strIndivLName' => trim($request->input('last_name')),
+                    'strIndivSex' => $request->input('cust-sex'),
+                    'strIndivHouseNo' => trim($request->input('addCustPrivHouseNo')), 
+                    'strIndivStreet' => trim($request->input('addCustPrivStreet')),
+                    'strIndivBarangay' => trim($request->input('addCustPrivBarangay')),   
+                    'strIndivCity' => trim($request->input('addCustPrivCity')),   
+                    'strIndivProvince' => trim($request->input('addCustPrivProvince')),
+                    'strIndivZipCode' => trim($request->input('addCustPrivZipCode')),
+                    'strIndivLandlineNumber' => trim($request->input('addPhone')),
+                    'strIndivCPNumber' => trim($request->input('addCel')), 
+                    'strIndivCPNumberAlt' => trim($request->input('addCelAlt')),
+                    'strIndivEmailAddress' => trim($request->input('addEmail')),
+                    'boolIsActive' => 1
+                    ));
+
+            $individual->save();
+
         return redirect('transaction/alteration-checkout-payment');
     }
 
     public function saveTransaction(Request $request)
     {   
+        $values = session()->get('orders');
+        $transaction_date = $request->input('transaction_date');
 
+        for($i = 0; $i < count($values); $i++){
+            $alteration = TransactionAlteration::create(array(
+                    'strNewAlterationID' => $request->input('alteID'),
+                    'strCustomerIndFK' => session()->get('customer_id'),
+                    'strAlteSegmentFK' => $values[$i][0],
+                    'strAlterationTypeFK' => $values[$i][1],
+                    'dblAlterationPrice' => $values[$i][3],
+                    'dtAlteDate' => $transaction_date,
+                    'txtAlteNotes' => $values[$i][2],
+                    'boolIsActive' => 1
+            ));
+
+            $alteration->save();
+        }
+
+        return redirect('transaction/alteration-walkin-transaction');
     }
 
     public function checkoutPayment()   
