@@ -40,13 +40,13 @@
 						        <div class="divider" style="margin-bottom:5px; background-color:teal; height:2px"></div>
 						    </div>    
 						  
+							{!! Form::open(['url' => 'transaction/walkin-company-customize-orders', 'method' => 'POST']) !!}
 							@foreach($values as $value)
 							<div class="col s6">
 								<a style="color:black; margin-left:50px" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#removeOrder"><i class="mdi-navigation-close"></i></a>
 								<div id="removeOrder" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
 									<h5><font color="red"><center><b>Warning!</b></center></font></h5>
 										
-										{!! Form::open() !!}
 											<div class="divider" style="height:2px"></div>
 											<div class="modal-content col s12">
 												<div class="col s3">
@@ -61,9 +61,9 @@
 								                <button type="submit" class="waves-effect waves-green btn-flat" href="#!"><font color="black">Yes</font></button>
 								                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
 								            </div>
-										{!! Form::close() !!}
 								</div>
 								<div class="z-depth-2 card medium" style="margin-left:100px; margin-top:20px; height:350px; width:350px; border:3px gray solid">
+			           				<input type="hidden" name="hidden-package-id" value="{{ $value->strPackageID }}">
 			           				<div class="card-image">
 			              				<img class="responsive-img" height = "80%" src="{{URL::asset($value->strPackageImage)}}">
 			           				</div>
@@ -74,16 +74,18 @@
 			             						<p class="center-align" style="color:gray">{{ $value->strPackageDesc }}</p>
 			           				 	</p>
 			           				</div>
+			           				<div style="margin-top:20px">		
+				         				<center><button type="submit" class="center btn" style="font-size:15px; color:white; background-color: red; opacity:0.90"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Customize Orders<!--</i>--></button></center>
+			           				</div>
 			         			</div>
-	                  			
-			         			<div class="col s12" style="margin-top:10px; margin-left:20px;">
-				         			<center><a class="btn" href="" style="background-color:red">Customize Package</a></center>
-				         		</div>
+	           
 
 								</div>
 
 							@endforeach
-								<div class="col s12"  style="margin-bottom:40px"></div>
+							{!! Form::close() !!}
+
+							<div class="col s12"  style="margin-bottom:40px"></div>
 					</div>
 				</div>
 

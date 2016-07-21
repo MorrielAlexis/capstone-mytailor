@@ -126,7 +126,7 @@
 							<div class="divider"></div>
 							<p class="center-align" style="color:teal"><b>CHOOSE AMONG AVAILABLE PACKAGE SETS</b></p>
 					
-					{!! Form::open(['url' => 'transaction/walkin-company-customize-orders', 'method' => 'POST']) !!}
+					{!! Form::open(['url' => 'transaction/walkin-company-orders', 'method' => 'POST']) !!}
 						@foreach($packages as $package)
 						<div class="col s4" style="margin-top:20px; margin-bottom:20px">
 			           		 <div class="container">
