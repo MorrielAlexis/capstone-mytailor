@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\GarmentSegment;
-use App\SegmentStyle;
+use App\GarmentsegmentStyle;
+use App\segmentStyleStyle;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class SegmentStyleController extends Controller
+class segmentStyleStyleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,9 +24,9 @@ class SegmentStyleController extends Controller
 
     public function index()
     {
-         //get all the segment style
+         //get all the segmentStyle style
 
-        $ids = \DB::table('tblSegmentStyleCategory')
+        $ids = \DB::table('tblsegmentStyleStyleCategory')
             ->select('strSegStyleCatID')
             ->orderBy('created_at', 'desc')
             ->orderBy('strSegStyleCatID', 'desc')
@@ -36,19 +36,19 @@ class SegmentStyleController extends Controller
         $ID = $ids["0"]->strSegStyleCatID;
         $newID = $this->smartCounter($ID);  
 
-        $segment = GarmentSegment::all();
+        $segmentStyle = GarmentsegmentStyle::all();
 
 
-        $segmentStyle = \DB::table('tblSegmentStyleCategory')
-                ->join('tblSegment', 'tblSegmentStyleCategory.strSegmentFK', '=', 'tblSegment.strSegmentID')
-                ->select('tblSegmentStyleCategory.*','tblSegment.strSegmentName') 
+        $segmentStyleStyle = \DB::table('tblsegmentStyleStyleCategory')
+                ->join('tblsegmentStyle', 'tblsegmentStyleStyleCategory.strsegmentStyleFK', '=', 'tblsegmentStyle.strsegmentStyleID')
+                ->select('tblsegmentStyleStyleCategory.*','tblsegmentStyle.strsegmentStyleName') 
                 ->orderBy('strSegStyleCatID')
                 ->get();
         
         //load the view and pass the style
-        return view('maintenance-segment-style')
+        return view('maintenance-segmentStyle-style')
+                    ->with('segmentStyleStyle', $segmentStyleStyle)
                     ->with('segmentStyle', $segmentStyle)
-                    ->with('segment', $segment)
                     ->with('newID', $newID);
     }
 
@@ -70,19 +70,19 @@ class SegmentStyleController extends Controller
      */
     public function store(Request $request)
     {
-        $styles = SegmentStyle::get();
-            $segmentStyle = SegmentStyle::create(array(
+        $styles = segmentStyleStyle::get();
+            $segmentStyleStyle = segmentStyleStyle::create(array(
                 'strSegStyleCatID' => $request->input('strSegStyleCatID'),
-                'strSegmentFK' => $request->input('strSegmentFK'),
+                'strsegmentStyleFK' => $request->input('strsegmentStyleFK'),
                 'strSegStyleName' => trim($request->input('strSegStyleName')),
                 'txtSegStyleCatDesc' => trim($request->input('txtSegStyleCatDesc')),
                 'boolIsActive' => 1
                 ));
 
-         $added=$segmentStyle->save();
+         $added=$segmentStyleStyle->save();
           
 
-        \Session::flash('flash_message','Segment style  category successfully added.'); //flash message
+        \Session::flash('flash_message','segmentStyle style  category successfully added.'); //flash message
 
         return redirect('maintenance/garment-category');
     }
@@ -132,21 +132,21 @@ class SegmentStyleController extends Controller
         //
     }
 
-    function updateSegmentStyle(Request $request)
+    function updatesegmentStyle(Request $request)
     {
     
-        $segment  = GarmentCategory::find($request->input('editGarmentID'));
+        $segmentStyle  = SegmentStyle::find($request->input('editGarmentID'));
         // $garment = GarmentCategory::find($request->input('strGarmentCategoryID'));
-            $segment ->strGarmentCategoryName = trim($request->input('editGarmentName'));
+            $segmentStyle ->strGarmentCategoryName = trim($request->input('editGarmentName'));
             // $garment->strGarmentCategoryName = trim($request->input('strGarmentCategoryName'));
 
-            $segment ->textGarmentCategoryDesc = trim($request->input('editGarmentDescription'));
+            $segmentStyle ->textGarmentCategoryDesc = trim($request->input('editGarmentDescription'));
             // $garment->textGarmentCategoryDesc = trim($request->input('textGarmentCategoryDesc'));
-            $segment  ->save();
+            $segmentStyle  ->save();
 
         \Session::flash('flash_message_update','Garment category detail/s successfully updated.'); //flash message
 
-        return  redirect('maintenance/segment -category');
+        return  redirect('maintenance/segmentStyle -category');
     }
 
        public function smartCounter($id)

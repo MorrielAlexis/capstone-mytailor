@@ -13,17 +13,23 @@ class CreateJoSpecificsStandardSizeMeasure extends Migration
     public function up()
     {
         Schema::create('tblJOSpecStandardSizeMeasure', function (Blueprint $table) {
-            $table->string('strJoSpecificsFk')->index();
+            $table->string('strJoSpecificsIndFk')->index();
+            // $table->string('strJoSpecificsCompanyFk')->index();
             $table->string('strMeasurementProfileFk')->index();
             $table->string('strStandardSizeFk')->index();
             $table->string('strStandardSizeFitType');
             $table->text('txtNote');
             $table->timestamps();
-            $table->primary('strJoSpecificsFk');
+            $table->primary('strJoSpecificsIndFk','strMeasurementProfileFk');
 
-            $table->foreign('strJoSpecificsFk')
+            $table->foreign('strJoSpecificsIndFk')
                   ->references('strJOSpecificsID')
                   ->on('tblJOSpecificsInd');
+
+             // $table->foreign('strJoSpecificsCompanyFk')
+             //      ->references('strJoSpeficSetContent')
+             //      ->on('tblJoSpecificsSetContent');
+
   
             $table->foreign('strMeasurementProfileFk')
                   ->references('strMeasureProfileID')
