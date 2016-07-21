@@ -36,7 +36,7 @@
 
 							<div class="col s6" style="margin-bottom:20px">
 								<div class="input-field col s12">
-										<select>
+										<select class="garment-sex" id="garment-sex">
 											<option disabled>Show garments for...</option>
 										    <option value="M" class="circle">Male</option>
 										    <option value="F" class="circle">Female</option>
@@ -61,7 +61,7 @@
 							<p class="center-align" style="color:teal; margin-bottom:40px"><b>CHOOSE AMONG AVAILABLE PRODUCTS</b></p>
 						
 						@foreach($garments as $garment)
-								<div class="col s4 segment-general {{ $garment->strGarmentCategoryName }}">
+								<div class="col s4 segment-general {{ $garment->strGarmentCategoryName }} {{ $garment->strSegmentSex }}">
 										<div class="center col s12">
 					          				<input type="checkbox" name="cbx-segment-name[]"  class="filled-in cbx-segment-name" id="{{ $garment->strSegmentID }}" value="{{ $garment->strSegmentID }}" style="padding:5px"/>
 			      							<label for="{{ $garment->strSegmentID }}"><font size="+1"><b>{{ $garment->strSegmentName }}</b></font></label>

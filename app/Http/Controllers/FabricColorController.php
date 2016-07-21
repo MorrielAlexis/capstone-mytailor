@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\FabricColorMaintenance;
+use App\FabricColor;
 use App\Http\Requests;
 use App\Http\Requests\MaintenanceFabricColorRequest;
 use App\Http\Controllers\Controller;
@@ -29,7 +29,7 @@ class FabricColorController extends Controller
 
         $ID = $ids["0"]->strFabricColorID;
         $newID = $this->smartCounter($ID);  
-        $fabricColor = FabricColorMaintenance::all();
+        $fabricColor = FabricColor::all();
 
 
         //load the view and pass the employees
@@ -57,9 +57,9 @@ class FabricColorController extends Controller
      */
     public function store(MaintenanceFabricColorRequest $request)
     {
-        $fabricColors = FabricColorMaintenance::get();
+        $fabricColors = FabricColor::get();
 
-            $fabricColor = FabricColorMaintenance::create(array(
+            $fabricColor = FabricColor::create(array(
             'strFabricColorID' => $request->input('strFabricColorID'),
             'strFabricColorName' => trim($request->input('strFabricColorName')),
             'txtFabricColorDesc' => trim($request->input('txtFabricColorDesc')),
@@ -123,7 +123,7 @@ class FabricColorController extends Controller
 
     {   
        
-        $fabricColor = FabricColorMaintenance::find($request->input('editfabricColor'));
+        $fabricColor = FabricColor::find($request->input('editfabricColor'));
 
                 $fabricColor->strFabricColorName = trim($request->get('editColorName'));    
                 $fabricColor->txtFabricColorDesc = trim($request->get('editColorDesc'));
@@ -140,7 +140,7 @@ class FabricColorController extends Controller
     function delete_fabricColor(Request $request)
     {
             $id = $request->input('delfabricColorID');
-            $fabricColor = FabricColorMaintenance::find($request-> input('delfabricColorID'));
+            $fabricColor = FabricColor::find($request-> input('delfabricColorID'));
 
             // $count = \DB::table('tblSwatchName')
             //     ->join('tblFabricType', 'tblSwatchName.strSwatchNameTypeFK', '=', 'tblFabricType.strFabricTypeID')

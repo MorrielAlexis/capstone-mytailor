@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\FabricPatternMaintenance;
+use App\FabricPattern;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\MaintenanceFabricPatternRequest;
@@ -28,7 +28,7 @@ class FabricPatternController extends Controller
 
         $ID = $ids["0"]->strFabricPatternID;
         $newID = $this->smartCounter($ID);  
-        $fabricPattern = FabricPatternMaintenance::all();
+        $fabricPattern = FabricPattern::all();
 
 
         //load the view and pass the employees
@@ -55,9 +55,9 @@ class FabricPatternController extends Controller
      */
     public function store(MaintenanceFabricPatternRequest $request)
     {
-         $fabricPatterns = FabricPatternMaintenance::get();
+         $fabricPatterns = FabricPattern::get();
 
-            $fabricPattern = FabricPatternMaintenance::create(array(
+            $fabricPattern = FabricPattern::create(array(
             'strFabricPatternID' => $request->input('strFabricPatternID'),
             'strFabricPatternName' => trim($request->input('strFabricPatternName')),
             'txtFabricPatternDesc' => trim($request->input('txtFabricPatternDesc')),
@@ -121,7 +121,7 @@ class FabricPatternController extends Controller
 
     {   
        
-        $fabricPattern = FabricPatternMaintenance::find($request->input('editfabricColor'));
+        $fabricPattern = FabricPattern::find($request->input('editfabricPattern'));
 
                 $fabricPattern->strFabricPatternName = trim($request->get('editFabricPatternName'));    
                 $fabricPattern->txtFabricPatternDesc = trim($request->get('editFabricPatternDesc'));
@@ -137,7 +137,7 @@ class FabricPatternController extends Controller
     function delete_fabricPattern(Request $request)
     {
             $id = $request->input('delFabricPatternID');
-            $fabricPattern = FabricPatternMaintenance::find($request-> input('delFabricPatternID'));
+            $fabricPattern = FabricPattern::find($request-> input('delFabricPatternID'));
 
             // $count = \DB::table('tblSwatchName')
             //     ->join('tblFabricType', 'tblSwatchName.strSwatchNameTypeFK', '=', 'tblFabricType.strFabricTypeID')

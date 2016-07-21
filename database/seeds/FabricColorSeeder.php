@@ -34,6 +34,38 @@ class FabricColorSeeder extends Seeder
                 'txtFabricColorDesc' => 'Perfect pallette for spring.',
                 'strFabricColorInactiveReason' =>'',
                 'boolIsActive' => '1'
+            ),
+
+            array(
+                'strFabricColorID' => 'FABCLR004',
+                'strFabricColorName' => 'Rainbow',
+                'txtFabricColorDesc' => 'Perfect pallette for summer.',
+                'strFabricColorInactiveReason' =>'',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strFabricColorID' => 'FABCLR005',
+                'strFabricColorName' => 'Red',
+                'txtFabricColorDesc' => 'Perfect pallette for love season.',
+                'strFabricColorInactiveReason' =>'',
+                'boolIsActive' => '1'
+            ),
+
+             array(
+                'strFabricColorID' => 'FABCLR006',
+                'strFabricColorName' => 'Black',
+                'txtFabricColorDesc' => 'Perfect color for formal events.',
+                'strFabricColorInactiveReason' =>'',
+                'boolIsActive' => '1'
+            ),
+
+             array(
+                'strFabricColorID' => 'FABCLR007',
+                'strFabricColorName' => 'Gray',
+                'txtFabricColorDesc' => 'Perfect pallette for business attires.',
+                'strFabricColorInactiveReason' =>'',
+                'boolIsActive' => '1'
             )
 
         );

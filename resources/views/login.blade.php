@@ -66,7 +66,7 @@
 						    <div class="row margin">
 			          			<div class="input-field col s9">
 			           				<i class="mdi-action-lock-outline prefix"></i>
-			           				<input id="password" type="password" name="password" value="{{ old('password') }}">
+			           				<input id="password" type="password" name="password" minlength="8" value="{{ old('password') }}">
 		           					<label for="password">Password</label>
 			       				</div>
 			       				<div class="col s3" style="margin-top:14px;">
@@ -142,7 +142,7 @@
 	        </div>
 
 	       	<div class="modal-footer" style="background-color:#eeeeee;">
-	            <div><a href="" class="left modal-action modal-close waves-effect waves-green teal white-text btn-large btn-flat">Cancel</a></div>
+	            <div><a class="left modal-action modal-close waves-effect waves-green teal white-text btn-large btn-flat">Cancel</a></div>
 	            <div><button type="submit" class="right modal-action modal-close waves-effect waves-green green white-text btn-large btn-flat"><b><font size="+1">Sign up</font></b></button></div>
 	        </div>
 	        
@@ -183,7 +183,7 @@
 	        </div>
 
 	       	<div class="modal-footer" style="background-color:#eeeeee;">
-	            <div><a href="" class="left modal-action modal-close waves-effect waves-green teal white-text btn-large btn-flat">Cancel</a></div>
+	            <div><a class="left modal-action modal-close waves-effect waves-green teal white-text btn-large btn-flat">Cancel</a></div>
 	            <div><button type="submit" class="right modal-action modal-close waves-effect waves-green green white-text btn-large btn-flat"><b><font size="+1">Sign up</font></b></button></div>
 	        </div>
 	        {!! Form::close() !!}

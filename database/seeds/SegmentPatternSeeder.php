@@ -21,7 +21,7 @@ class SegmentPatternSeeder extends Seeder
                 'strSegPName' =>'Shawl Type',
                 'dblPatternPrice' => '50',
                 'txtSegPDesc' => 'Type of lapel, usually use in gala nights and formal events.',
-                'strSegPImage' => '',
+                'strSegPImage' => 'imgDesignPatterns/shawllapel.jpg',
                 'boolIsActive' => '1'
             ),
 
@@ -31,7 +31,7 @@ class SegmentPatternSeeder extends Seeder
                 'strSegPName'=>'Notch Type',
                 'dblPatternPrice' => '70',
                 'txtSegPDesc' => 'Lapel speacial used for every-day business suit, interview suit.',
-                'strSegPImage' => '',
+                'strSegPImage' => 'imgDesignPatterns/notchedlapel.jpg',
                 'boolIsActive' => '1'
             ),
 
@@ -41,7 +41,7 @@ class SegmentPatternSeeder extends Seeder
                 'strSegPName'=>'Peak Type',
                 'dblPatternPrice' => '80',
                 'txtSegPDesc' => 'Weddings, formal dinners, black tie events or simply whenever you want to dress up a bit while turning some heads.',
-                'strSegPImage' => '',
+                'strSegPImage' => 'imgDesignPatterns/peakedlapel.jpg',
                 'boolIsActive' => '1'
             ),
 
@@ -52,19 +52,41 @@ class SegmentPatternSeeder extends Seeder
                 'strSegPName'=>'Button Down',
                 'dblPatternPrice' => '70',
                 'txtSegPDesc' => 'A collar on a shirt that has the pointed ends fastened to the shirt by buttons',
-                'strSegPImage' => '',
+                'strSegPImage' => 'imgDesignPatterns/button-down.jpg',
                 'boolIsActive' => '1'
             ),
 
             array(
                 'strSegPatternID' => 'SPAT005',
                 'strSegPStyleCategoryFK' => 'SEGSTY003',
-                'strSegPName'=>'Classic Small',
+                'strSegPName'=>'Riley Collar',
                 'dblPatternPrice' => '70',
                 'txtSegPDesc' => 'Usually use as a collar for tuxedos.',
-                'strSegPImage' => '',
+                'strSegPImage' => 'imgDesignPatterns/1ButtonRileyCollar.jpg',
                 'boolIsActive' => '1'
             ),
+
+
+            array(
+                'strSegPatternID' => 'SPAT006',
+                'strSegPStyleCategoryFK' => 'SEGSTY003',
+                'strSegPName'=>' Band Collar',
+                'dblPatternPrice' => '70',
+                'txtSegPDesc' => 'Usually use as a collar for chinese formal wears.',
+                'strSegPImage' => 'imgDesignPatterns/band.jpg',
+                'boolIsActive' => '1'
+            ),
+
+
+            array(
+                'strSegPatternID' => 'SPAT007',
+                'strSegPStyleCategoryFK' => 'SEGSTY003',
+                'strSegPName'=>' Italian Collar',
+                'dblPatternPrice' => '70',
+                'txtSegPDesc' => 'Usually use as a collar for dress shirts.',
+                'strSegPImage' => 'imgDesignPatterns/italiancollar.jpg',
+                'boolIsActive' => '1'
+            )
 
         );
 

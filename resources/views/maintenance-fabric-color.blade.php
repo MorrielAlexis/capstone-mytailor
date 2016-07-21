@@ -121,7 +121,7 @@
 
                                 <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                                       <div class="input-field col s12">
-                                            <input  value = "{{$fabricColor->txtfabricColorDesc}}" id="editColorDesc" name = "editColorDesc" type="text" class="validate">
+                                            <input  value = "{{$fabricColor->txtFabricColorDesc}}" id="editColorDesc" name = "editColorDesc" type="text" class="validate">
                                             <label for="swatch_description">Color Description </label>
                                       </div>  
                                 </div>

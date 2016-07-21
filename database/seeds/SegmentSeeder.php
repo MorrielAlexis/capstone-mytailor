@@ -21,7 +21,7 @@ class SegmentSeeder extends Seeder
                 'dblSegmentPrice' => '500.00',
                 'strSegmentSex' => 'F',
                 'intMinDays' => '7',
-                'strSegmentImage' => '',
+                'strSegmentImage' => 'imgSegments/female-uniform-skirt.jpg',
                 'textSegmentDesc' => 'Pangibabang kasuotan sa babae.',
                 'boolIsActive' => '1'
             ),
@@ -33,7 +33,7 @@ class SegmentSeeder extends Seeder
                 'dblSegmentPrice' => '750.00',
                 'strSegmentSex' => 'M',
                 'intMinDays' => '7',
-                'strSegmentImage' => '',
+                'strSegmentImage' => 'imgSegments/blazer.jpg',
                 'textSegmentDesc' => 'Upper part wear for men.',
                 'boolIsActive' => '1'
             ),
@@ -45,7 +45,7 @@ class SegmentSeeder extends Seeder
                 'dblSegmentPrice' => '400.00',
                 'strSegmentSex' => 'F',
                 'intMinDays' => '4',
-                'strSegmentImage' => '',
+                'strSegmentImage' => 'imgSegments/female-uniform-pants.jpg',
                 'textSegmentDesc' => 'For ladies who prefered to wear pants instead of skirt.',
                 'boolIsActive' => '1'
             ),
@@ -53,11 +53,11 @@ class SegmentSeeder extends Seeder
               array(
                 'strSegmentID' => 'SEGM004',
                 'strSegCategoryFK' => 'GARM001',    
-                'strSegmentName' =>'Polo',
+                'strSegmentName' =>'Polo Shirt',
                 'dblSegmentPrice' => '500.00',
                 'strSegmentSex' => 'M',
                 'intMinDays' => '5',
-                'strSegmentImage' => '',
+                'strSegmentImage' => 'imgSegments/polo-1-col.jpg',
                 'textSegmentDesc' => 'Upper part wear for mens uniform.',
                 'boolIsActive' => '1'
             ),
@@ -65,11 +65,11 @@ class SegmentSeeder extends Seeder
                array(
                 'strSegmentID' => 'SEGM005',
                 'strSegCategoryFK' => 'GARM001',    
-                'strSegmentName' =>'Short Sleeve Blouse',
+                'strSegmentName' =>'Blouse',
                 'dblSegmentPrice' => '550.00',
                 'strSegmentSex' => 'F',
                 'intMinDays' => '4',
-                'strSegmentImage' => '',
+                'strSegmentImage' => 'imgSegments/female-uniform-plain-jpg',
                 'textSegmentDesc' => 'Upper part wear for womens`s uniform.',
                 'boolIsActive' => '1'
             ),
@@ -81,8 +81,20 @@ class SegmentSeeder extends Seeder
                 'dblSegmentPrice' => '700.00',
                 'strSegmentSex' => 'M',
                 'intMinDays' => '3',
-                'strSegmentImage' => '',
+                'strSegmentImage' => 'imgSegments/ia2375-1.jpg',
                 'textSegmentDesc' => 'Lower part wear for mens uniform.',
+                'boolIsActive' => '1'
+            ),
+
+             array(
+                'strSegmentID' => 'SEGM007',
+                'strSegCategoryFK' => 'GARM001',    
+                'strSegmentName' =>'Dress',
+                'dblSegmentPrice' => '600.00',
+                'strSegmentSex' => 'F',
+                'intMinDays' => '3',
+                'strSegmentImage' => 'imgSegments/dress1.jpg',
+                'textSegmentDesc' => 'Formal for womens uniform.',
                 'boolIsActive' => '1'
             )
 

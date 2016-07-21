@@ -27,7 +27,7 @@ class MaintenanceThreadCountRequest extends Request
    public function rules()
     {
         return [
-            'strThreadCountName' => 'required|unique:tblThreadCount'
+            'strFabricThreadCountName' => 'required|unique:tblFabricThreadCount'
             
             
         ];
@@ -36,8 +36,8 @@ class MaintenanceThreadCountRequest extends Request
     public function messages()
     {
         return [
-            'strThreadCountName.unique'  =>  'Thread count  already exists.',
-            'strThreadCountName.required'  =>  'Thread count  name is required.'
+            'strFabricThreadCountName.unique'  =>  'Thread count  already exists.',
+            'strFabricThreadCountName.required'  =>  'Thread count  name is required.'
             
             
             

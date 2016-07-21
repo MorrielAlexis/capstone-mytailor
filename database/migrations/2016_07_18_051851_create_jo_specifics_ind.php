@@ -34,7 +34,7 @@ class CreateJoSpecificsInd extends Migration
 
             $table->foreign('strJOSpecificsFabricFK')
                   ->references('strFabricID')
-                  ->on('tblFabrics');
+                  ->on('tblFabric');
 
 
         });

@@ -135,8 +135,6 @@ class EmployeeRoleController extends Controller
          \Session::flash('flash_message_update','Employee role detail/s successfully updated.'); //flash message
 
          return redirect('maintenance/employee-role');
-        
-       
     }
 
     

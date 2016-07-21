@@ -36,11 +36,11 @@
 	                <div class="col s12">
                       <div class="col s6">       
                         <div class="col s5" style="color:teal; font-size:17px"><p><b>Customer ID</b></p></div>
-                        <div class="col s7" style="color:red;"><p><input value="{{ $newID }}" id="addIndiID" name="addIndiID" type="text" readonly></p></div> 
+                        <div class="col s7" style="color:red;"><p><input value="{{ $custID }}" id="addIndiID" name="addIndiID" type="text" readonly></p></div> 
                       </div>
                       <div class="col s6">
                         <div class="col s5" style="color:teal; font-size:17px"><p><b>Transaction No.</b></p></div>
-                        <div class="col s7" style="color:red;"><p><input value="" id="dateToday" name="dateToday" type="text" readonly></p></div> 
+                        <div class="col s7" style="color:red;"><p><input value="{{ $joID }}" id="addJOID" name="addJOID" type="text" readonly></p></div> 
 	            	      </div>
                 </div>
 	            	
@@ -156,17 +156,17 @@
                   <div id="cancel-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:80px">
                       <h5><font color="red"><center><b>Warning!</b></center></font></h5>
                         
-                        {!! Form::open() !!}
+                        {!! Form::open(['url' => 'transaction/walkin-individual-clear-order', 'method' => 'POST']) !!}
                           <div class="divider" style="height:2px"></div>
-                          <div class="modal-content col s12">
-                            <div class="center col s4"><i class="mdi-alert-warning" style="color:red; font-size:60px"></i></div>
-                            <div class="col s8"><p style="font-size:18px">Are you sure? Doing this will delete current transaction.</p></div>
-                          </div>
+                            <div class="modal-content col s12">
+                              <div class="center col s4"><i class="mdi-alert-warning" style="color:red; font-size:60px"></i></div>
+                              <div class="col s8"><p style="font-size:18px">Are you sure? Doing this will delete current transaction.</p></div>
+                            </div>
 
                           <div class="modal-footer col s12">
-                                    <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-individual')}}"><font color="black">Yes</font></a>
-                                    <a href="{{URL::to('/transaction/walkin-individual-payment-customer-info')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
-                                </div>
+                              <button type="submit" class="waves-effect waves-green btn-flat"><font color="black">Yes</font></button>
+                              <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+                          </div>
                         {!! Form::close() !!}
                     </div>
                 </div>

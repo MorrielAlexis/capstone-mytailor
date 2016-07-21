@@ -34,7 +34,15 @@ class FabricPatternSeeder extends Seeder
                 'txtFabricPatternDesc' => 'Widely use for different types of garments.',
                 'strFabricPatternInactiveReason' =>'',
                 'boolIsActive' => '1'
-            )
+            ),
+
+            array(
+                'strFabricPatternID' => 'FBRCPAT004',
+                'strFabricPatternName' => 'Checkered',
+                'txtFabricPatternDesc' => 'Widely use for different types of polos and shorts.',
+                'strFabricPatternInactiveReason' =>'',
+                'boolIsActive' => '1'
+            ),
 
         );
 

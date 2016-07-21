@@ -19,8 +19,8 @@ class CreatePackagesTable extends Migration
             $table->string('strPackageSeg1FK')->index();//fk
             $table->string('strPackageSeg2FK')->index();//fk
             $table->string('strPackageSeg3FK')->index();//fk
-            $table->string('strPackageSeg4FK')->index();//fk
-            $table->string('strPackageSeg5FK')->index();//fk
+            $table->string('strPackageSeg4FK')->index()->nullable();//fk
+            $table->string('strPackageSeg5FK')->index()->nullable();//fk
             $table->double('dblPackagePrice');
             $table->string('strPackageImage')->index();
             $table->integer('intPackageMinDays');
