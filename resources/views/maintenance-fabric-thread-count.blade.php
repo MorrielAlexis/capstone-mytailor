@@ -198,19 +198,19 @@
                             
 
                   <div class="input-field">
-                    <input value = "{{$newID}}" id="strThreadCountID" name = "strThreadCountID" type="hidden">
+                    <input value = "{{$newID}}" id="strFabricThreadCountID" name = "strFabricThreadCountID" type="hidden">
                   </div>
                 
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s12">
-                      <input required id="strThreadCountName" name = "strThreadCountName" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?" placeholder="60s">
+                      <input required id="strFabricThreadCountName" name = "strFabricThreadCountName" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?" placeholder="60s">
                       <label for="swatch_name">Thread Count Name <span class="red-text"><b>*</b></span></label>
                   </div>
               </div>    
 
               <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                   <div class="input-field col s12">
-                    <input id="txtThreadCountDesc" name = "txtThreadCountDesc" type="text" class="validate" placeholder="Use for bed sheets.">
+                    <input id="txtFabricThreadCountDesc" name = "txtFabricThreadCountDesc" type="text" class="validate" placeholder="Use for bed sheets.">
                     <label for="swatch_description">Thread Count Description </label>
                   </div>
               </div>

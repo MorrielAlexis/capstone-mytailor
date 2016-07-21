@@ -121,7 +121,7 @@ class FabricPatternController extends Controller
 
     {   
        
-        $fabricPattern = FabricPattern::find($request->input('editfabricColor'));
+        $fabricPattern = FabricPattern::find($request->input('editfabricPattern'));
 
                 $fabricPattern->strFabricPatternName = trim($request->get('editFabricPatternName'));    
                 $fabricPattern->txtFabricPatternDesc = trim($request->get('editFabricPatternDesc'));

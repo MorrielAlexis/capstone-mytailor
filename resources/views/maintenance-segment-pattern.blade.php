@@ -92,7 +92,7 @@
 
     <div class="row">
       <div class="col s12 m12 l12">
-        <span class="page-title"><h4>Segment Pattern</h4></span>
+        <span class="page-title"><h4>Maintenance - Segment Pattern</h4></span>
       </div>
     </div>
 
