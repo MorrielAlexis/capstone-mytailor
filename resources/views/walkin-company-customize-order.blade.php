@@ -39,74 +39,83 @@
 						        <center><p style="color:gray">Click on each of the products purchased for customization</p></center>
 						        <div class="divider" style="margin-bottom:5px; background-color:teal; height:2px"></div>
 						    </div>    
+
 						    
 							<!--Modal for Remove Order-->
 							<div id="removeOrder" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
-									<h5><font color="red"><center><b>Warning!</b></center></font></h5>
-										
-										{!! Form::open() !!}
-											<div class="divider" style="height:2px"></div>
-											<div class="modal-content col s12">
-												<div class="col s3">
-													<i class="mdi-alert-warning" style="font-size:50px; color:red"></i>
-												</div>
-												<div class="col s9">
-													<p><font size="+1">Are you sure to remove this order from cart?</font></p>
-												</div>
+						  
+							{!! Form::open(['url' => 'transaction/walkin-company-customize-orders', 'method' => 'POST']) !!}
+							@foreach($values as $value)
+								<h5><font color="red"><center><b>Warning!</b></center></font></h5>
+									
+										<div class="divider" style="height:2px"></div>
+										<div class="modal-content col s12">
+											<div class="col s3">
+												<i class="mdi-alert-warning" style="font-size:50px; color:red"></i>
 											</div>
+											<div class="col s9">
+												<p><font size="+1">Are you sure to remove this order from cart?</font></p>
+											</div>
+										</div>
 
-											<div class="modal-footer col s12" style="background-color:red; opacity:0.85">
-								                <button type="submit" class="waves-effect waves-green btn-flat" href="#!"><font color="black">Yes</font></button>
-								                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
-								            </div>
-										{!! Form::close() !!}
-								</div>
+										<div class="modal-footer col s12" style="background-color:red; opacity:0.85">
+							                <button type="submit" class="waves-effect waves-green btn-flat" href="#!"><font color="black">Yes</font></button>
+							                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+							            </div>
+
+							</div>
 							<!--End of modal for remove order-->
 
+							<!--Package Detail-->
 							<div class="col s6">
 								<a style="color:black; margin-left:50px" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#removeOrder"><i class="mdi-navigation-close"></i></a>
 								
-								<div class="card medium z-depth-2" style="margin-left:100px; margin-top:20px; height:350px; width:350px; border:3px gray solid">
-				           				 <div class="card-image">
-				              				<img class="responsive-img" height = "80%" src="{{URL::to('img/mens-uniform.jpg')}}">
-				           				 </div>
-				            			<div class="card-content">
-				             				<p class="center-align">
-				             				 <span class="card-title" style="color:black"><b>Men Set <font color="red">A</font></b></span>
-				             					 <p class="center-align" style="color:teal">Package includes:</p>
-				             					 <p class="center-align" style="color:gray">1 x Polo, 1 x Pants</p>
-				           				 	</p>
-				           				</div>
-				         		</div>
+								<div class="z-depth-2 card medium" style="margin-left:100px; margin-top:20px; height:350px; width:350px; border:3px gray solid">
+			           				<input type="hidden" name="hidden-package-id" value="{{ $value->strPackageID }}">
+			           				<div class="card-image">
+			              				<img class="responsive-img" height = "80%" src="{{URL::asset($value->strPackageImage)}}">
+			           				</div>
+			            			<div class="card-content">
+			             				<p class="center-align">
+			             				 	<span class="card-title" style="color:black"><b>{{ $value->strPackageName }}</b></span>
+			             						<p class="center-align" style="color:teal">Package includes:</p>
+			             						<p class="center-align" style="color:gray">{{ $value->strPackageDesc }}</p>
+			           				 	</p>
+			           				</div>
+			           				<div style="margin-top:20px">		
+				         				<center><button type="submit" class="center btn" style="font-size:15px; color:white; background-color: red; opacity:0.90"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Customize Orders<!--</i>--></button></center>
+			           				</div>
+			         			</div>
 	                  			
-				         		<div class="col s12" style="margin-top:10px; margin-left:20px">
-				         			<center><a class="btn" href="{{URL::to('/transaction/walkin-company-customize-orders-package')}}" style="background-color:red">Customize Package</a></center>
-				         		</div>
-
-								</div>
-
-					</div>
-				</div>
-
-						<div class="divider" style="height:2px;margin-top:40px"></div>
-						<div class="col s12" style="padding:30px">
-							<div class="col s6">
-								<a href="{{URL::to('transaction/walkin-company')}}" class="btn" style="color:white; background-color:teal; border:3px teal solid">Cancel Transaction</a>
-							</div>	
-							<div class="col s6">
-								<a href="{{URL::to('transaction/walkin-company')}}" class="right btn" style="color:white; background-color:teal; margin-left:20px; border:3px teal solid">Add another set</a>
-								<a href="{{URL::to('transaction/walkin-company-retail-products')}}" class="right btn" style="color:white; background-color:teal; border:3px teal solid">Add a retail order</a>
 							</div>
+							@endforeach
+							{!! Form::close() !!}
+							<!--End of package detail-->
+        
+
 						</div>
+					</div>							
 
 
-							<div class="divider" style="height:2px; margin-top:50px"></div>    
-							<div class="divider" style="height:2px; margin-top:50px"></div>   	
-				      		<center><p><font color="gray">End of list of packages purchased</font></p></center>
-						
+					<div class="divider" style="height:2px;margin-top:40px"></div>
+					<div class="col s12" style="padding:30px">
+						<div class="col s6">
+							<a href="{{URL::to('transaction/walkin-company')}}" class="btn" style="color:white; background-color:teal; border:3px teal solid">Cancel Transaction</a>
+						</div>	
+						<div class="col s6">
+							<a href="{{URL::to('transaction/walkin-company')}}" class="right btn" style="color:white; background-color:teal; margin-left:20px; border:3px teal solid">Add another set</a>
+							<!--<a href="{{URL::to('transaction/walkin-company-retail-products')}}" class="right btn" style="color:white; background-color:teal; border:3px teal solid">Add a retail order</a>-->
 						</div>
 					</div>
+
+
+						<div class="divider" style="height:2px; margin-top:50px"></div>    
+						<div class="divider" style="height:2px; margin-top:50px"></div>   	
+			      		<center><p><font color="gray">End of list of packages purchased</font></p></center>
+					
 					</div>
+			</div>
+		</div>
 
 
 				<!-- END OF CUSTOMIZATION HERE-->

@@ -14,25 +14,25 @@ class CreateJoSpecificsInd extends Migration
     {
         Schema::create('tblJOSpecificsInd', function (Blueprint $table) {
             $table->string('strJOSpecificsID')->primary();
-            $table->string('strJOSpecificsGarmentFK')->index();
-            $table->string('strJOSpecificsSegmentFK')->index();
-            $table->string('strJOSpecificsFabricFK')->index();
+            $table->string('strJobOrderFK')->index();
+            $table->string('strJOIndSegmentFK')->index();
+            $table->string('strJOIndFabricFK')->index();
+            $table->text('txtMeasureNote');
             $table->integer('intQuantity');
             $table->double('dblUnitPrice');
-            $table->double('dblEstimatedDaystoFinish');
+            $table->integer('intEstimatedDaystoFinish');
             $table->boolean('boolIsActive');
             $table->timestamps();
 
-            $table->foreign('strJOSpecificsGarmentFK')
-                  ->references('strGarmentCategoryID')
-                  ->on('tblGarmentCategory');
+            $table->foreign('strJobOrderFK')
+                  ->references('strJobOrderID')
+                  ->on('tblJobOrder');
 
-            $table->foreign('strJOSpecificsSegmentFK')
+            $table->foreign('strJOIndSegmentFK')
                   ->references('strSegmentID')
                   ->on('tblSegment');
 
-
-            $table->foreign('strJOSpecificsFabricFK')
+            $table->foreign('strJOIndFabricFK')
                   ->references('strFabricID')
                   ->on('tblFabric');
 

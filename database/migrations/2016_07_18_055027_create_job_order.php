@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateJobOrderIndividual extends Migration
+class CreateJobOrder extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,11 @@ class CreateJobOrderIndividual extends Migration
      */
     public function up()
     {
-        Schema::create('tblJobOrderIndividual', function (Blueprint $table) {
-            $table->string('strJobOrderIndID')->primary();
-            $table->string('strJOI_CustomerFK')->index();
-            $table->string('strJOI_OrderDetailsFK')->index();
-            $table->string('strJOI_PriceQuotation')->index();
+        Schema::create('tblJobOrder', function (Blueprint $table) {
+            $table->string('strJobOrderID')->primary();
+            $table->string('strJO_CustomerFK')->index();
+            // $table->string('strJO_OrderDetailsFK')->index();
+            // $table->string('strJO_PriceQuotation')->index();
             $table->string('strTermsOfPayment');
             $table->string('strModeOfPayment');
             $table->integer('intJO_ItemQty');
@@ -30,18 +30,17 @@ class CreateJobOrderIndividual extends Migration
             $table->boolean('boolIsActive');
             $table->timestamps();
 
-
-            $table->foreign('strJOI_CustomerFK')
+            $table->foreign('strJO_CustomerFK')
                   ->references('strIndivID')
                   ->on('tblCustIndividual');
 
-            $table->foreign('strJOI_OrderDetailsFK')
-                  ->references('strJOSpecificsID')
-                  ->on('tblJOSpecificsInd');
+            // $table->foreign('strJOI_OrderDetailsFK')
+            //       ->references('strJOSpecificsID')
+            //       ->on('tblJOSpecificsInd');
 
-            $table->foreign('strJOI_PriceQuotation')
-                  ->references('strJOPriceQuoteID')
-                  ->on('tblJOPriceQuotation');
+            // $table->foreign('strJO_PriceQuotation')
+            //       ->references('strJOPriceQuoteID')
+            //       ->on('tblJOPriceQuotation');
 
 
         });
@@ -54,6 +53,6 @@ class CreateJobOrderIndividual extends Migration
      */
     public function down()
     {
-        Schema::drop('tblJobOrderIndividual');
+        Schema::drop('tblJobOrder');
     }
 }

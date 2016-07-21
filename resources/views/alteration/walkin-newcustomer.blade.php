@@ -120,7 +120,7 @@
                                                 <tr>
                                                   <td>{!! $alterations[$i][0] !!}</td>
                                                   <td>{!! $alterations[$i][1] !!}</td>
-                                                  <td>{!! $alterations[$i][3] !!}</td>
+                                                  <td>PHP {!! number_format($alterations[$i][3], 2) !!}</td>
                                                 </tr>
                                               @endfor
                                               </tbody>

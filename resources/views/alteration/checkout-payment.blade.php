@@ -13,9 +13,8 @@
       <div style="padding:30px">
 
     <ul class="col s12 breadcrumb">
-			<li><a style="padding-left:200px"><b>1.FILL-UP FORM</b></a></li>
-			<li><a class="active" style="padding-left:200px"><b>2.PAYMENT</b></a></li>
-			<li><a style="padding-left:200px"><b>3.ADD MEASUREMENT DETAIL</b></a></li>
+			<li><a style="padding-left:200px"><b>FILL-UP FORM</b></a></li>
+			<li><a class="active" style="padding-left:200px"><b>PAYMENT</b></a></li>
 		</ul>
 
           <div class="row">
@@ -27,43 +26,44 @@
           </div>
 
           <div class="row" style="background-color:white;">
-            <div class="container">
+            <div>
               <div class="col s12"> 
 
+              {!! Form::open(['url' => 'transaction/alteration-walkin-newcustomer-save-transaction', 'method' => 'POST']) !!}
                 <div class="col s12" style="margin-bottom:20px">
                   <div class="col s3" style="color:gray;padding-left:50px;padding-top:15px"><p>Transaction No.:</p></div>
-                  <div class="col s3" style="color:red;"><p><input value="" id="transac_no" name="transac_no" type="text" class="" readonly></p></div>
+                  <div class="col s3" style="color:red;"><p><input value="{{ $alte_id }}" id="alteID" name="alteID" type="text" class="" readonly></p></div>
                         
                   <div style="color:gray; padding-left:140px;" class="input-field col s6">                 
-                    <input value="" id="transac_date" name="transac_date" type="date" class="datepicker">
-                    <label style="color:gray" for="transac_date">Date and Time: </label>
+                      <div class="col s4" style="color:gray"><p>Date:</div>
+                      <div class="col s8" id="Date" style="padding:15px; color:teal;"></div>
+                      <input type="hidden" id="transaction_date" name="transaction_date">
                   </div>
                 </div>
 
                 <label style="font-size:15px; color:black"><center>Order Summary</center></label>
                 <table class = "table centered order-summary" border = "1">
-                  <thead style="color:gray">
-                    <tr>
-                      <th data-field="product">Product</th>    
-                      <th data-field="design">Design</th>
-                      <th data-field="fabric">Fabric</th>
-                      <th data-field="price">Unit Price</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                       <td> </td>
-                       <td> </td>
-                       <td> </td>
-                       <td> </td>
-                    </tr>
-                  </tbody>
+                    <thead>
+                      <tr>
+                        <th>Segment</th>
+                        <th>Alteration Type</th>
+                        <th>Unit Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for($i = 0; $i < count($alterations); $i++)
+                      <tr>
+                        <td>{!! $alterations[$i][0] !!}</td>
+                        <td>{!! $alterations[$i][1] !!}</td>
+                        <td>PHP {!! number_format($alterations[$i][3], 2) !!}</td>
+                       </tr>
+                       @endfor
+                    </tbody>
                 </table>
 
                 <div class="divider" style="margin-bottom:30px"></div>
-                {!! Form::open() !!}
                 <div>
-                  <div class="col s4" style="color:teal"><p><b>Total Amount</b></p></div>
+                  <div class="col s4" style="color:teal; font-size:15px"><p><b>Total Amount:</b></p></div>
                   <div class="col s8" style="color:red;"><p><input id="total-price" name="total-price" type="text" class="" readonly></p></div>
 
                   <div class="left col s12" id="mode-of-payment" style="margin-bottom:20px">
@@ -77,23 +77,22 @@
                     </div>
                   </div>
 
-                  <div class="col s4" style="color:teal"><p><b>Amount Payable:</b></p></div>
+                  <div class="col s4" style="color:gray; font-size:15px"><p><b>Amount Payable</b></p></div>
                   <div class="col s8" style="color:red;"><p><input value="" id="amount-payable" name="amount-payable" type="text" class="" readonly></p></div>
 
-                  <div class="col s4" style="color:teal"><p><b>Remaining Balance:</b></p></div>
-                  <div class="col s8" style="color:red;"><p><input value="" id="balance" name="balance" type="text" class="" readonly></p></div>
+                  <div class="col s4" style="color:gray; font-size:15px"><p><b>Remaining Balance</b></p></div>
+                  <div class="col s8" style="color:red;"><p><input value="" id="balance" name="balance" type="text" class="" readonly></p></div>  
                 </div>
-                {!! Form::close() !!}
 
                 <span class="col s12" style="color:teal; margin-top:20px"><b>Delivery Details</b></span>
-                <div class="card-panel col s12" style="border:3px solid gray; padding:15px">
-                  {!! Form::open() !!}
+                <div class="col s12" style="padding:15px">
+
                   <div class="row" style="padding:20px;">
                     <center><h5 style="color:#e53935">Estimated Delivery</h5></center>
                     <p class = "input-field container">
-                      <input class="center" placeholder="days / weeks" id = "deliverydate" type = "text" class="validate">
+                      <input class="center" readonly placeholder="days / weeks" name="deliveryDate" id = "deliveryDate" type = "text" class="validate">
                     </p>
-
+                    <!--
                     <p class="center">
                       <input type="checkbox" id="delivernot" />
                       <label for="delivernot"><b><font size="+1" style="color:black">Pick-up order at MyTailor shop</font></b></label>
@@ -113,9 +112,8 @@
                         <input disabled id ="companyadd" type="text" class="validate">
                         <label for="companyadd">Company Address</label>
                       </div>
-                    </div>
+                    </div>-->
                   </div>
-                  {!! Form::close() !!}
                 </div>
                     
               </div>
@@ -143,21 +141,15 @@
                 </div>
 
                 <div class="container">
-                  <div class="container" style="font-family:'Playfair Display','Times';""><center><h3><b>Php 4,100.00</b></h3></center></div>
-                  <form action="#">
-                    <p class="center">
-                      <input type="checkbox" id="terms" />
-                      <label for="terms">I have read and accepted the terms and conditions. - <font color="#40c4ff">View our terms (popup) here.</font></label>
-                    </p>
-                  </form>
+                  <div class="container" style="font-family:'Playfair Display','Times';"><center><h3><b>PHP {{ number_format($total_price, 2) }}</b></h3></center></div>
                 </div>
                   <div>
-                    <a href="{{URL::to('transaction/alteration-checkout-measurement')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save payment information and get measured" style="background-color:teal; margin-right:20px; padding:9.5px; padding-bottom:45px; margin-top:20px;"><label style="font-size:15px; color:white">Start Measurement</label></a>
+                    <button type="submit" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save payment information and get measured" style="background-color:teal; margin-right:20px; padding:9.5px; padding-bottom:45px; margin-top:20px;"><label style="font-size:15px; color:white">Save Transaction</label></button>
                     <a href="#cancel-order" class="left btn modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Click to cancel current unsaved transaction and be transfered back to the shop" style="background-color:teal; margin-left:20px; padding:9.5px; padding-bottom:45px; margin-top:20px;"><label style="font-size:15px; color:white">Cancel Transaction</label></a>
                   </div>
               </div>
             </div> 
-
+          {!! Form::close() !!}
     </div>
   </div>
 
@@ -182,7 +174,44 @@
 @section('scripts')
 
   <script>
+    $(document).ready(function(){
+        var totalAmount = {!! json_encode($total_price) !!};
+        var totalDays = {!! json_encode($total_days) !!};
+
+        $('#total-price').val(totalAmount.toFixed(2) + ' PHP');
+        $('#deliveryDate').val(totalDays + ' days');
+    });
 
   </script> 
 
+  <script type="text/javascript">
+    var monthNames = [ "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December" ];
+    var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+
+    var newDate = new Date();
+ 
+    $('#Date').html(dayNames[newDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
+    $('#transaction_date').val(newDate.getFullYear() + "-" +  (newDate.getMonth()+1) + "-" + newDate.getDate());
+  </script>
+
+  <script>
+      $('.payment').change(function(){
+        if($('#half_pay').prop("checked")){
+
+          var totalAmount = {!! json_encode($total_price) !!};
+          
+          $('#amount-payable').val((totalAmount/2).toFixed(2) + ' PHP');
+          $('#balance').val((totalAmount - (totalAmount/2)).toFixed(2) + 'PHP');
+        }
+
+        if($('#full_pay').prop("checked")){
+
+          var totalAmount = {!! json_encode($total_price) !!};
+          
+          $('#amount-payable').val(totalAmount.toFixed(2) + ' PHP');
+          $('#balance').val((totalAmount - totalAmount).toFixed(2) + 'PHP');
+        }
+    });
+  </script>
 @stop

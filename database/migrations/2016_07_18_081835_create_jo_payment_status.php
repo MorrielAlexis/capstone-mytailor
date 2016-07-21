@@ -13,15 +13,15 @@ class CreateJoPaymentStatus extends Migration
     public function up()
     {
         Schema::create('tblJO_PaymentStatus', function (Blueprint $table) {
-            $table->string('strJobOrderIndIDFK')->index();
+            $table->string('strJobOrderFK')->index();
             $table->string('strPaymentIDFK')->index();
             $table->string('strStatus');
             $table->timestamps();
-            $table->primary('strJobOrderIndIDFK', 'strPaymentIDFK');
+            $table->primary('strJobOrderFK');
 
-            $table->foreign('strJobOrderIndIDFK')
-                  ->references('strJobOrderIndID')
-                  ->on('tblJobOrderIndividual');
+            $table->foreign('strJobOrderFK')
+                  ->references('strJobOrderID')
+                  ->on('tblJobOrder');
 
             $table->foreign('strPaymentIDFK')
                   ->references('strPaymentID')

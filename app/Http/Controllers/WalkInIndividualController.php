@@ -165,17 +165,17 @@ class WalkInIndividualController extends Controller
 
     public function information(Request $request)
     {   
-        $joID = \DB::table('tblJobOrderIndividual')
-            ->select('strJobOrderIndID')
+        $joID = \DB::table('tblJobOrder')
+            ->select('strJobOrderID')
             ->orderBy('created_at', 'desc')
-            ->orderBy('strJobOrderIndID', 'desc')
+            ->orderBy('strJobOrderID', 'desc')
             ->take(1)
             ->get();
 
         if($joID == null){
             $newID = $this->smartCounter("JOB000"); 
         }else{
-            $ID = $joID["0"]->strJobOrderIndID;
+            $ID = $joID["0"]->strJobOrderID;
             $newID = $this->smartCounter($ID);  
         }
 
@@ -187,10 +187,12 @@ class WalkInIndividualController extends Controller
             ->take(1)
             ->get();
 
-        $ID = $ids["0"]->strIndivID;
-        $custID = $this->smartCounter($ID);  
-
-        $individual = Individual::all();                   
+        if($ids == null){
+            $custID = $this->smartCounter("CUSTP000"); 
+        }else{
+            $ID = $ids["0"]->strIndivID;
+            $custID = $this->smartCounter($ID);  
+        }             
 
         return view('walkin-individual-checkout-info')
                     ->with('custID', $custID)

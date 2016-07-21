@@ -145,7 +145,7 @@
 	        </div>
 
 	       	<div class="modal-footer" style="background-color:#eeeeee;">
-	            <div><a href="" class="left modal-action modal-close waves-effect waves-green teal white-text btn-large btn-flat">Cancel</a></div>
+	            <div><a class="left modal-action modal-close waves-effect waves-green teal white-text btn-large btn-flat">Cancel</a></div>
 	            <div><button type="submit" class="right modal-action modal-close waves-effect waves-green green white-text btn-large btn-flat"><b><font size="+1">Sign up</font></b></button></div>
 	        </div>
 	        
@@ -186,7 +186,7 @@
 	        </div>
 
 	       	<div class="modal-footer" style="background-color:#eeeeee;">
-	            <div><a href="" class="left modal-action modal-close waves-effect waves-green teal white-text btn-large btn-flat">Cancel</a></div>
+	            <div><a class="left modal-action modal-close waves-effect waves-green teal white-text btn-large btn-flat">Cancel</a></div>
 	            <div><button type="submit" class="right modal-action modal-close waves-effect waves-green green white-text btn-large btn-flat"><b><font size="+1">Sign up</font></b></button></div>
 	        </div>
 	        {!! Form::close() !!}

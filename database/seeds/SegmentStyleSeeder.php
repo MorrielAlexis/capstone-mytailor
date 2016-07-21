@@ -113,17 +113,9 @@ class SegmentStyleSeeder extends Seeder
                 'txtSegStyleCatDesc' => 'Stylish accent on the chest side of the jacket.  ',
                 'strSegStyleCatInactiveReason' => '',
                 'boolIsActive' => '1'
-            ),
-
-            array(
-                'strSegStyleCatID' => 'SEGSTY012',
-                'strSegmentFK' => 'SEGM002',
-                'strSegStyleName' =>'Chest pocket',
-                'txtSegStyleCatDesc' => 'Stylish accent on the chest side of the jacket.  ',
-                'strSegStyleCatInactiveReason' => '',
-                'boolIsActive' => '1'
             )
- 
+
+           
  
  
 

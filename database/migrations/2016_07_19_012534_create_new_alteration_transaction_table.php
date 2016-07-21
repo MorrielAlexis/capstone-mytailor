@@ -15,12 +15,12 @@ class CreateNewAlterationTransactionTable extends Migration
         Schema::create('tblNewAlteration', function (Blueprint $table) {
             $table->string('strNewAlterationID')->primary();
             $table->string('strCustomerIndFK')->index();
-            $table->string('strAlteGarmentCategoryFk')->index();
-            $table->string('strAlteSegmentFk')->index(); 
-            $table->string('strAlterationTypeFk')->index(); 
-            $table->string('strAltericeQuoteFK')->index(); 
+            $table->string('strAlteSegmentFK')->index(); 
+            $table->string('strAlterationTypeFK')->index(); 
+            $table->double('dblAlterationPrice');
+            // $table->string('strAltericeQuoteFK')->index(); 
             $table->integer('intAlteQty');
-            $table->date('strAlteDate');
+            $table->date('dtAlteDate');
             $table->text('txtAlteNotes');
             $table->boolean('boolIsActive');
             $table->timestamps();
@@ -29,21 +29,17 @@ class CreateNewAlterationTransactionTable extends Migration
                   ->references('strIndivID')
                   ->on('tblCustIndividual');
                   
-            $table->foreign('strAlteGarmentCategoryFk')
-                  ->references('strGarmentCategoryID')
-                  ->on('tblGarmentCategory');
-
-            $table->foreign('strAlteSegmentFk')
+            $table->foreign('strAlteSegmentFK')
                   ->references('strSegmentID')
                   ->on('tblSegment');
 
-            $table->foreign('strAlterationTypeFk')
+            $table->foreign('strAlterationTypeFK')
                   ->references('strAlterationID')
                   ->on('tblAlteration');
 
-             $table->foreign('strAltericeQuoteFK')
-                  ->references('strJOPriceQuoteID')
-                  ->on('tblJOPriceQuotation');
+             // $table->foreign('strAltericeQuoteFK')
+             //      ->references('strJOPriceQuoteID')
+             //      ->on('tblJOPriceQuotation');
         });
     }
 
