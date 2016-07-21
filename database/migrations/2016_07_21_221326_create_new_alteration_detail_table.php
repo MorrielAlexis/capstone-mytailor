@@ -21,7 +21,6 @@ class CreateNewAlterationDetailTable extends Migration
             $table->text('txtAlteNotes');
             $table->boolean('boolIsActive');
             $table->timestamps();
-
         
             $table->foreign('strNewAlterationIDFk')
                   ->references('strNewAlterationID')

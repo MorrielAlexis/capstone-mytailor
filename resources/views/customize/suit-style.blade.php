@@ -327,7 +327,7 @@
           <div class="col s12">
 
             <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
+              <img class="materialboxed responsive-img" src="img/fabric.jpg"/>
               <p>
                 <input class="with-gap" name="classic" type="radio" id="small" />
                 <label for="small"><font size="+1"><b>Classic Small</b></font></label>
@@ -347,6 +347,7 @@
                 </select>
               </div>
               <p>You can order two pants with the same characteristics.</p>
+            </div>
           </div>
 
 
