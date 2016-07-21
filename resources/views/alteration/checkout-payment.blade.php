@@ -42,28 +42,28 @@
 
                 <label style="font-size:15px; color:black"><center>Order Summary</center></label>
                 <table class = "table centered order-summary" border = "1">
-                  <thead style="color:gray">
-                    <tr>
-                      <th data-field="product">Product</th>    
-                      <th data-field="design">Design</th>
-                      <th data-field="fabric">Fabric</th>
-                      <th data-field="price">Unit Price</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                       <td> </td>
-                       <td> </td>
-                       <td> </td>
-                       <td> </td>
-                    </tr>
-                  </tbody>
+                    <thead>
+                      <tr>
+                        <th>Segment</th>
+                        <th>Alteration Type</th>
+                        <th>Unit Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for($i = 0; $i < count($alterations); $i++)
+                      <tr>
+                        <td>{!! $alterations[$i][0] !!}</td>
+                        <td>{!! $alterations[$i][1] !!}</td>
+                        <td>PHP {!! number_format($alterations[$i][3], 2) !!}</td>
+                       </tr>
+                       @endfor
+                    </tbody>
                 </table>
 
                 <div class="divider" style="margin-bottom:30px"></div>
                 {!! Form::open() !!}
                 <div>
-                  <div class="col s4" style="color:teal"><p><b>Total Amount</b></p></div>
+                  <div class="col s4" style="color:teal; font-size:15px"><p><b>Total Amount:</b></p></div>
                   <div class="col s8" style="color:red;"><p><input id="total-price" name="total-price" type="text" class="" readonly></p></div>
 
                   <div class="left col s12" id="mode-of-payment" style="margin-bottom:20px">
@@ -77,11 +77,11 @@
                     </div>
                   </div>
 
-                  <div class="col s4" style="color:teal"><p><b>Amount Payable:</b></p></div>
+                  <div class="col s4" style="color:gray; font-size:15px"><p><b>Amount Payable</b></p></div>
                   <div class="col s8" style="color:red;"><p><input value="" id="amount-payable" name="amount-payable" type="text" class="" readonly></p></div>
 
-                  <div class="col s4" style="color:teal"><p><b>Remaining Balance:</b></p></div>
-                  <div class="col s8" style="color:red;"><p><input value="" id="balance" name="balance" type="text" class="" readonly></p></div>
+                  <div class="col s4" style="color:gray; font-size:15px"><p><b>Remaining Balance</b></p></div>
+                  <div class="col s8" style="color:red;"><p><input value="" id="balance" name="balance" type="text" class="" readonly></p></div>  
                 </div>
                 {!! Form::close() !!}
 
@@ -143,7 +143,7 @@
                 </div>
 
                 <div class="container">
-                  <div class="container" style="font-family:'Playfair Display','Times';""><center><h3><b>Php 4,100.00</b></h3></center></div>
+                  <div class="container" style="font-family:'Playfair Display','Times';"><center><h3><b>Php 4,100.00</b></h3></center></div>
                   <form action="#">
                     <p class="center">
                       <input type="checkbox" id="terms" />
@@ -182,7 +182,32 @@
 @section('scripts')
 
   <script>
+    $(document).ready(function(){
+      var totalAmount = {!! json_encode($total_price) !!};
+      
+      $('#total-price').val(totalAmount.toFixed(2) + ' PHP');
+
+    });
 
   </script> 
+  
+  <script>
+      $('.payment').change(function(){
+        if($('#half_pay').prop("checked")){
 
+          var totalAmount = {!! json_encode($total_price) !!};
+          
+          $('#amount-payable').val((totalAmount/2).toFixed(2) + ' PHP');
+          $('#balance').val((totalAmount - (totalAmount/2)).toFixed(2) + 'PHP');
+        }
+
+        if($('#full_pay').prop("checked")){
+
+          var totalAmount = {!! json_encode($total_price) !!};
+          
+          $('#amount-payable').val(totalAmount.toFixed(2) + ' PHP');
+          $('#balance').val((totalAmount - totalAmount).toFixed(2) + 'PHP');
+        }
+    });
+  </script>
 @stop

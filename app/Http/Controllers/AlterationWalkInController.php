@@ -30,9 +30,7 @@ class AlterationWalkInController extends Controller
     
     public function index()
     {
-       
-        return view('alteration.walkin-transaction');
-             
+        return view('alteration.walkin-transaction');      
     }
 
     public function newCust()
@@ -137,19 +135,67 @@ class AlterationWalkInController extends Controller
         return redirect('transaction/alteration-walkin-newcustomer-update');
     }
 
-    public function oldcust()
-    {
-        return view('alteration.walkin-oldcustomer');
+    public function checkoutCustInfo()
+    {   
+        $ids = \DB::table('tblNewAlteration')
+            ->select('strNewAlterationID')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('strNewAlterationID', 'desc')
+            ->take(1)
+            ->get();
+
+        if($ids == null){
+            $altID = $this->smartCounter("ALTN000"); 
+        }else{
+            $ID = $ids["0"]->strNewAlterationID;
+            $altID = $this->smartCounter($ID);  
+        }
+
+        //get all the individuals
+        $ids = \DB::table('tblCustIndividual')
+            ->select('strIndivID')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('strIndivID', 'desc')
+            ->take(1)
+            ->get();
+
+        if($ids == null){
+            $custID = $this->smartCounter("CUSTP000"); 
+        }else{
+            $ID = $ids["0"]->strIndivID;
+            $custID = $this->smartCounter($ID);  
+        }
+
+        return view('alteration.checkout-info')
+                ->with('custID', $custID)
+                ->with('newID', $altID);
     }
 
-    public function checkoutCustInfo()
-    {
-        return view('alteration.checkout-info');
+    public function addNewCustomer(Request $request)
+    {   
+        $values = session()->get('orders');
+        $totalPrice = 0.00;
+        $totalDays = 0;
+
+        for($i = 0; $i < count($values); $i++){
+            $totalPrice += $values[$i][3];
+            $totalDays  += $values[$i][4];
+        }
+
+        return view('alteration.checkout-payment')
+                ->with('alterations', $values)
+                ->with('total_price', $totalPrice)
+                ->with('total_days', $totalDays);
     }
 
     public function checkoutPayment()   
-    {
+    {   
         return view('alteration.checkout-payment');
+    }
+
+    public function oldcust()
+    {
+        return view('alteration.walkin-oldcustomer');
     }
 
     public function checkoutAddMeasurement()

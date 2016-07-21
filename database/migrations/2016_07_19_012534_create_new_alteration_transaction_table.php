@@ -20,7 +20,7 @@ class CreateNewAlterationTransactionTable extends Migration
             $table->string('strAlterationTypeFk')->index(); 
             // $table->string('strAltericeQuoteFK')->index(); 
             $table->integer('intAlteQty');
-            $table->date('strAlteDate');
+            $table->date('dtAlteDate');
             $table->text('txtAlteNotes');
             $table->boolean('boolIsActive');
             $table->timestamps();

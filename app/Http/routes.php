@@ -306,13 +306,15 @@ Route::group(['prefix' => 'transaction'], function(){
 		Route::get('alteration-acceptorder', 'AlterationOnlineController@accept');
 		Route::get('alteration-walkin-transaction', 'AlterationWalkInController@index');
 		Route::get('alteration-walkin-newcustomer', 'AlterationWalkInController@showCart');
-		Route::post('alteration-walkin-newcustomer', 'AlterationWalkInController@addValues');
-		Route::post('alteration-walkin-newcustomer-delete', 'AlterationWalkInController@deleteOrder');
 		Route::get('alteration-walkin-newcustomer-update', 'AlterationWalkInController@updateCart');
 		Route::get('alteration-walkin-oldcustomer', 'AlterationWalkInController@oldcust');
 		Route::get('alteration-checkout-info', 'AlterationWalkInController@checkoutCustInfo');
 		Route::get('alteration-checkout-payment', 'AlterationWalkInController@checkoutPayment');
 		Route::get('alteration-checkout-measurement', 'AlterationWalkInController@checkoutAddMeasurement');
+
+		Route::post('alteration-walkin-newcustomer', 'AlterationWalkInController@addValues');
+		Route::post('alteration-walkin-newcustomer-delete', 'AlterationWalkInController@deleteOrder');
+		Route::post('alteration-walkin-add-newcustomer-info', 'AlterationWalkInController@addNewCustomer');
 });
 
 
