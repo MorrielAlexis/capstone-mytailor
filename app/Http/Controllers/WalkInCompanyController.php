@@ -41,7 +41,7 @@ class WalkInCompanyController extends Controller
                 ->with('values', $values);
     }
 
-    public function customize(Request $request)
+    public function listOfOrders(Request $request)
     {   
         $data_segment = $request->input('cbx-package-name');
         $data_quantity = array_slice(array_filter($request->input('int-package-qty')), 0);
@@ -51,14 +51,68 @@ class WalkInCompanyController extends Controller
         return redirect('transaction/walkin-company-show-order');
     }
 
+    public function showCustomizeOrder()
+    {   
+        $to_be_customized = session()->get('segment_customize');
+
+        $segment1 = \DB::table('tblPackages AS a')
+                ->leftJoin('tblSegment AS b', 'a.strPackageSeg1FK', '=', 'b.strSegmentID')
+                ->leftJoin('tblGarmentCategory AS c', 'b.strSegCategoryFK', '=', 'c.strGarmentCategoryID')
+                ->select('b.*', 'c.strGarmentCategoryName')
+                ->where('a.strPackageID', $to_be_customized)
+                ->get();
+
+        $segment2 = \DB::table('tblPackages AS a')
+                ->leftJoin('tblSegment AS b', 'a.strPackageSeg2FK', '=', 'b.strSegmentID')
+                ->leftJoin('tblGarmentCategory AS c', 'b.strSegCategoryFK', '=', 'c.strGarmentCategoryID')
+                ->select('b.*', 'c.strGarmentCategoryName')
+                ->where('a.strPackageID', $to_be_customized)
+                ->get();
+
+        $segment3 = \DB::table('tblPackages AS a')
+                ->leftJoin('tblSegment AS b', 'a.strPackageSeg3FK', '=', 'b.strSegmentID')
+                ->leftJoin('tblGarmentCategory AS c', 'b.strSegCategoryFK', '=', 'c.strGarmentCategoryID')
+                ->select('b.*', 'c.strGarmentCategoryName')
+                ->where('a.strPackageID', $to_be_customized)
+                ->get();
+
+        $segment4 = \DB::table('tblPackages AS a')
+                ->leftJoin('tblSegment AS b', 'a.strPackageSeg4FK', '=', 'b.strSegmentID')
+                ->leftJoin('tblGarmentCategory AS c', 'b.strSegCategoryFK', '=', 'c.strGarmentCategoryID')
+                ->select('b.*', 'c.strGarmentCategoryName')
+                ->where('a.strPackageID', $to_be_customized)
+                ->get();
+
+        $segment5 = \DB::table('tblPackages AS a')
+                ->leftJoin('tblSegment AS b', 'a.strPackageSeg5FK', '=', 'b.strSegmentID')
+                ->leftJoin('tblGarmentCategory AS c', 'b.strSegCategoryFK', '=', 'c.strGarmentCategoryID')
+                ->select('b.*', 'c.strGarmentCategoryName')
+                ->where('a.strPackageID', $to_be_customized)
+                ->get(); 
+
+        $segments = [$segment1, $segment2, $segment3, $segment4, $segment5];
+
+        $package = \DB::table('tblPackages')
+                ->select('*')
+                ->where('strPackageID', $to_be_customized)
+                ->get();
+
+        return view('walkin-company-customize-order-package')
+                ->with('segments', $segments)
+                ->with('package', $package);
+    }
+
+    public function customize(Request $request)
+    {   
+        $to_be_customized = $request->input('hidden-package-id');
+        session(['segment_customize' => $to_be_customized]);
+
+        return redirect('transaction/walkin-company-show-customize');
+    }
+
     public function retailProduct()
     {
         return view('walkin-company-retail-product');
-    }
-
-    public function customPackage()
-    {
-        return view('walkin-company-customize-order-package');
     }
 
     public function catalogueDesign()
