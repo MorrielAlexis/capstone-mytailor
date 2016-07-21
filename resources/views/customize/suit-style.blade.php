@@ -39,8 +39,8 @@
           <div class="indicator white" style="z-index:1"></div>
         </ul>
 
-        <!--JACKET TAB-->
-        <div id="tabJacket" class="col s12 white" style="padding:20px; border 2px teal accent-4 white-text;">
+        <!--TAB-->
+        <div id="tabJacket" class="col s12 white"style="padding:20px; border: 2px teal accent-4;">
 
           <div class="col s12"><a class="btn-flat right teal accent-4 white-text" href="tabCollarPocket">Next step</a></div>
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
@@ -129,13 +129,13 @@
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12"><a class="btn-flat right teal accent-4 white-text" href="tabCollarPocket">Next step</a></div>
-  
-        </div>
-        <!--END OF JACKET TAB-->
 
-        <!--COLLAR & POCKET TAB-->
-        <div id="tabCollarPocket" class="col s12 white" style="padding:20px; border 2px teal accent-4 white-text;">
-    
+        </div>
+        <!--END OF TAB-->
+
+        <!--TAB-->
+        <div id="tabCollarPocket" class="col s12 white"style="padding:20px; border: 2px teal accent-4;">
+
           <div class="col s12">
             <div><a class="right btn-flat teal accent-4 white-text" href="">Continue</a></div>
             <div><a class="left btn-flat teal accent-4 white-text" href="tabJacket">Previous step</a></div>
@@ -273,10 +273,10 @@
           </div>
 
         </div>
-        <!--END OF COLLAR & POCKET TAB-->
+        <!--END OF TAB-->
 
-        <!--PANTS TAB-->
-        <div id="tabPants" class="col s12 white" style="padding:20px; border 2px teal accent-4 white-text;">
+        <!--TAB-->
+        <div id="tabPants" class="col s12 white"style="padding:20px; border: 2px teal accent-4;">
 
           <div class="col s12">
             <div><a class="right btn-flat teal accent-4 white-text" href="tabMonogram">Next step</a></div>
@@ -347,6 +347,8 @@
                 </select>
               </div>
               <p>You can order two pants with the same characteristics.</p>
+            </div>
+
           </div>
 
 
@@ -357,10 +359,10 @@
           </div>
 
         </div>
-        <!--END OF PANTS TAB-->
+        <!--END OF TAB-->
 
-        <!--MONOGRAM TAB-->
-        <div id="tabMonogram" class="col s12 white" style="padding:20px; border 2px teal accent-4 white-text;">
+        <!--TAB-->
+        <div id="tabMonogram" class="col s12 white"style="padding:20px; border: 2px teal accent-4;">
 
           <div class="col s12">
             <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/customize-checkout-info')}}">Proceed to Checkout</a></div>
@@ -428,7 +430,7 @@
 
               <div class="input-field col s4">
                 <select class="browser-default">
-                  <option value="" disabled selected>STANDARD</option>
+                  <option value="" disabled selected></option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
                   <option value="3">Option 3</option>
@@ -477,7 +479,8 @@
           </div>
 
         </div>
-        <!--END OF MONOGRAM TAB-->
+        <!--END OF TAB-->
+
 
       </div>
     </div>
@@ -505,3 +508,4 @@
     });
 
   </script>
+

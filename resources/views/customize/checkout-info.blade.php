@@ -143,8 +143,6 @@
       <div style="color:gray; margin-top:30px; margin-left:20px" class="col s12">
         <h6>IMPORTANT NOTE: Fields with asterisk (*) must not be left blank.</h6>
       </div>
-      <div class="divider" style="height:2px; margin-bottom:20px; margin-top:50px"></div>        
-      <center><p><font color="gray">End of Customer Profile Information Form</font></p></center>
 
     </div>
   </div>

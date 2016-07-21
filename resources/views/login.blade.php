@@ -11,9 +11,6 @@
 	</head>
 
 	<style>
-		#peyj:hover {
-			background-color: #b2dfdb;
-		}
 		.signup:hover {
 			background-color: #b2dfdb;
 		}

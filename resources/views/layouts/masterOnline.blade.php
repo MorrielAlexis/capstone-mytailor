@@ -81,7 +81,7 @@
                     <li><a href="{{URL::to('/online-garment-uniform-male')}}">MEN'S SHIRT</a></li>
                     <li><a href="{{URL::to('/online-garment-uniform-female')}}">WOMEN'S SHIRT</a></li>
                     <li><a href="{{URL::to('/online-garment-pants')}}">PANTS</a></li>
-                    <li><a href="{{URL::to('')}}">SETS</a></li>
+                    <li><a href="{{URL::to('/online-garment-sets')}}">SETS</a></li>
                   </ul>
                 </li>
                 <li><div class="divider" style="margin-top:20px; width:1px; height:30px;"></div></li>

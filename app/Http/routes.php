@@ -323,6 +323,9 @@ Route::get('online-alterationtransaction-patron', 'OnlineAlterationController@ol
 Route::resource('online-garment-gown', 'OnlineGarmentGownController',
 		['only' => ['index']]);
 
+Route::resource('online-garment-sets', 'OnlineGarmentSetsController',
+		['only' => ['index']]);
+
 Route::resource('online-garment-suit', 'OnlineGarmentSuitController',
 		['only' => ['index']]);
 
