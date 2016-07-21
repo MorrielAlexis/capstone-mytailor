@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\BodyPartCategory;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -16,7 +17,21 @@ class BodyPartCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $ids = \DB::table('tblBodyPartCategory')
+            ->select('strBodyPartCategoryID')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('strBodyPartCategoryID', 'desc')
+            ->take(1)
+            ->get();
+
+        $ID = $ids["0"]->strBodyPartCategoryID;
+        $newID = $this->smartCounter($ID);  
+        $part = BodyPartCategory::all();
+       
+        return view('maintenance-measurement-body-cat')
+                    ->with('part', $part)
+                    ->with('newID', $newID);
+
     }
 
     /**
@@ -83,5 +98,46 @@ class BodyPartCategoryController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function smartCounter($id)
+    {   
+
+        $lastID = str_split($id);
+
+        $ctr = 0;
+        $tempID = "";
+        $tempNew = [];
+        $newID = "";
+        $add = TRUE;
+
+        for($ctr = count($lastID)-1; $ctr >= 0; $ctr--){
+
+            $tempID = $lastID[$ctr];
+
+            if($add){
+                if(is_numeric($tempID) || $tempID == '0'){
+                    if($tempID == '9'){
+                        $tempID = '0';
+                        $tempNew[$ctr] = $tempID;
+
+                    }else{
+                        $tempID = $tempID + 1;
+                        $tempNew[$ctr] = $tempID;
+                        $add = FALSE;
+                    }
+                }else{
+                    $tempNew[$ctr] = $tempID;
+                }           
+            }
+            $tempNew[$ctr] = $tempID;   
+        }
+
+        
+        for($ctr = 0; $ctr < count($lastID); $ctr++){
+            $newID = $newID . $tempNew[$ctr];
+        }
+
+        return $newID;
     }
 }
