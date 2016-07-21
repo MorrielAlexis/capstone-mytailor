@@ -65,10 +65,10 @@ Route::group(['prefix' => 'maintenance'], function(){
 		Route::post('garment-segment/update','GarmentSegmentController@updateGarmentSegment');
 		Route::post('garment-segment/destroy','GarmentSegmentController@deleteGarmentSegment');
 		
-	Route::resource('segment-style', 'MaintenanceSegmentStyleController');
+	Route::resource('segment-style', 'SegmentStyleController');
 
-		Route::post('segment-style/update','MaintenanceSegmentStyleController@updateSegmentStyle');
-		Route::post('segment-style/destroy','MaintenanceSegmentStyleController@deleteSegmentStyle');
+		Route::post('segment-style/update','SegmentStyleController@updateSegmentStyle');
+		Route::post('segment-style/destroy','SegmentStyleController@deleteSegmentStyle');
 
 
 	Route::resource('segment-pattern', 'SegmentPatternController');
@@ -77,7 +77,9 @@ Route::group(['prefix' => 'maintenance'], function(){
 		Route::post('segment-pattern/destroy','SegmentPatternController@delete_segmentpattern');
 
 	Route::resource('measurement-category', 'MeasurementCategoryController');
-		Route::post('measurement-category/destroy', 'MeasurementCategoryController@delete_measurementcategory');
+
+		Route::post('measurement-category/update', 'MeasurementCategoryController@updateMeasurementCategory');
+		Route::post('measurement-category/destroy', 'MeasurementCategoryController@deleteMeasurementCategory');
 
 	Route::resource('measurement-detail', 'MeasurementDetailController');
 
@@ -111,10 +113,10 @@ Route::group(['prefix' => 'maintenance'], function(){
 		Route::post('fabric-color/destroy','FabricColorController@delete_fabricColor');
 
 
-	Route::resource('fabrics', 'FabricMaintenanceController');
+	Route::resource('fabric', 'FabricController');
 
-		Route::post('fabrics/update','FabricMaintenanceController@update_fabrics');
-		Route::post('fabrics/destroy','FabricMaintenanceController@delete_fabrics');
+		Route::post('fabric/update','FabricController@update_fabric');
+		Route::post('fabric/destroy','FabricController@delete_fabric');
 
 
 
@@ -257,6 +259,8 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::post('walkin-individual-customize-orders', 'WalkInIndividualController@customize');
 	Route::post('walkin-individual-payment-customer-info', 'WalkInIndividualController@information');
 	Route::post('walkin-individual-remove-item', 'WalkInIndividualController@removeItem');
+	Route::post('walkin-individual-add-design', 'WalkInIndividualController@addDesign');
+	Route::post('walkin-individual-clear-order', 'WalkInIndividualController@clearOrder');
 
 	Route::get('walkin-individual-show-customize-orders', 'WalkInIndividualController@showCustomizeOrder');
 
@@ -398,3 +402,7 @@ Route::resource('online-women-shirt-tutorial', 'OnlineWomenShirtTutorialControll
 
 	Route::get('customize-pants-fabric', 'OnlineCustomizeController@fabricpants');
 	Route::get('customize-pants-style', 'OnlineCustomizeController@stylepants');
+
+	Route::get('customize-checkout-info', 'OnlineCheckoutController@info');
+	Route::get('customize-checkout-payment', 'OnlineCheckoutController@pay');
+	Route::get('customize-checkout-measurement', 'OnlineCheckoutController@measure');

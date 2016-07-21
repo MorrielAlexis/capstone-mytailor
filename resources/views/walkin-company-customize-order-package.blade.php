@@ -35,203 +35,184 @@
 								</div>
 							</div>
 
-							<div class="col s6" style="margin-bottom:30px">
-								<div class="col s6" style="margin-top:30px">
-								<label>Choose your design:</label>
-											<div class="file-field input-field">
-												<a style="color:black" class="modal-trigger btn tooltipped btn-floating teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a segment pattern" href="#editDesign"><i class="mdi-editor-mode-edit"></i></a>
-													<div id="editDesign" class="modal modal-fixed-footer">
-														<h5><font color = "#1b5e20"><center>List of Available Designs</center> </font> </h5>
-                        
-									                      {!! Form::open() !!} 
-									                        <div class="divider" style="height:2px"></div>
-									                        <div class="modal-content col s12">
-									                        	
-									                        	<div class="col s12" style="margin-bottom:20px; background-color:white">
-															        <nav class="white">
-															            <div class="input-field col s12" style="padding-top:20px;">
-															                <input id="search" type="search" required="" placeholder="Search for any available designs (ex. slim-fit, etc..)">
-															                <label for="search"><i class="large mdi-action-search" style="color:gray"></i></label>
-															                <i class="mdi-navigation-close"></i>
-															            </div>
-															        </nav>
-																</div>
+							<!--Modal for Choosing Design-->
+							<div id="editDesign" class="modal modal-fixed-footer" style="width:1100px; height:600px">
+								<h5><font color = "#1b5e20"><center>List of Available Designs</center> </font> </h5>
+				                        <div class="divider" style="height:2px"></div>
+				                        <div class="modal-content col s12">
+										<span style="color:#ff8a80; margin-left:5px">Click on the part to be customized.</span>
+										<!--Collapsible Accordion-->
+										<!--This will be the "style categories" na ic-customize ni customer-->
+										<!--Under each "style category" ay may mga segment pattern na pipiliin-->
+										<!--Check maintenance for a better understanding. Under Garments-->
+										<ul class="collapsible z-depth-2" data-collapsible="accordion" style="border:none">
+										    <li style="margin-bottom:10px;">
+										      	<div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px"></div>
+										      	<div class="collapsible-body overflow-x">
+												      	<p style="color:gray; margin-left:20px">*Choose one of your desired design</p>
+												      	
+												      	<div class="col s6">
+								                        	<div class="center col s2" style="margin-top:60px">
+								                        		<input name="rdb-pattern" type="radio" class="filled-in" value = "" id="" />
+								                        		<label for=""></label>
+								                        	</div>
+								                        	 <div class="col s10">
+														        <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
+														          <div class="row valign-wrapper">
+														            <div class="center col s4">
+														              <img src="#!" alt="" class="responsive-img">
+														            </div>
+														            <div class="col s6"> 
+														              <span><b></b></span> <!-- This will be the name of the pattern -->
+														              <br/>
+														              <span class="black-text">
+														              </span>
+														            </div>
+														          </div>
+														        </div>
+														     </div>
+														</div>
+														
+										      	</div>
+										    </li>
+										  </ul>
+									</div>										
+									<!--End of Collapsible Accordion-->
 
-																<div class="col s12"><div class="divider" style="height:2px; background-color:gray; margin:20px"></div></div>
+									<div class="col s12" style="margin:20px"></div>
 
-									                        	<div class="col s1" style="margin-top:60px">
-									                        		<input name="garmentDesigns" type="radio" class="filled-in" id="pattern1" />
-									                        		<label for="pattern1"></label>
-									                        	</div>
-									                        	 <div class="col s11">
-															        <div class="card-panel grey lighten-5 z-depth-1">
-															          <div class="row valign-wrapper">
-															            <div class="col s4">
-															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-															            </div>
-															            <div class="col s7"> 
-															              <p>STRAIGHT-CUT</p> <!-- This will be the name of the pattern -->
-															              <span class="black-text">
-															                This is a square image. Add the "circle" class to it to make it appear circular.
-															              </span>
-															            </div>
-															          </div>
-															        </div>
-															      </div>
+									<div class="modal-footer col s12">
+			                          <a  class="right modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+			                          <a  class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+			                        </div>
+							</div>
+							<!--End of modal for choosing design-->
 
-															    <div class="col s1" style="margin-top:60px">
-									                        		<input name="garmentDesigns" type="radio" class="filled-in" id="pattern2" />
-									                        		<label for="pattern2"></label>
-									                        	</div>
-															      <div class="col s11">
-															        <div class="card-panel grey lighten-5 z-depth-1">
-															          <div class="row valign-wrapper">
-															            <div class="col s4">
-															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-															            </div>
-															            <div class="col s7">
-															            	<p>SPECIAL PATTERN</p>
-															              <span class="black-text">
-															                This is a square image. Add the "circle" class to it to make it appear circular.
-															              </span>
-															            </div>
-															          </div>
-															        </div>
-															      </div>
-
-
-															    <div class="col s1" style="margin-top:60px">
-									                        		<input name="garmentDesigns" type="radio" class="filled-in" id="pattern3" />
-									                        		<label for="pattern3"></label>
-									                        	</div>
-															      <div class="col s11">
-															        <div class="card-panel grey lighten-5 z-depth-1">
-															          <div class="row valign-wrapper">
-															            <div class="col s4">
-															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-															            </div>
-															            <div class="col s7">
-															            	<p>JUST ANOTHER PATTERN</p>
-															              <span class="black-text">
-															                This is a square image. Add the "circle" class to it to make it appear circular.
-															              </span>
-															            </div>
-															          </div>
-															        </div>
-															      </div>
-															<div style="margin:570px"></div>
-															</div>
-
-
-														<div class="modal-footer col s12">
-															<a href="{{URL::to('transaction/walkin-company-catalogue-designs')}}" class="left btn-flat" style="background-color:teal; color:white">Check designs from catalogue</a>
-								                          	<a href="{{URL::to('transaction/walkin-company-customize-orders-package')}}" class="right waves-effect waves-green btn-flat">OK</a>
-								                          	<a href="{{URL::to('transaction/walkin-company-customize-orders-package')}}" class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-								                        </div>
-									                      {!! Form::close() !!}
+							
+							<!--Modal for choosing fabric-->
+							<div id="editFabric" class="modal modal-fixed-footer" style="width:1100px; height:600px">
+								<h5><font color = "#1b5e20"><center>List of Available Fabrics</center> </font> </h5>
+	    
+					                        <div class="divider" style="height:2px"></div>				
+					                        <div class="modal-content col s12">
+												<!--Select-->
+												<div class="col s3"><!--fabric type-->
+													<div class="input-field col s12">
+															<select class = "fabric-type" id = "fabric-type">
+																<option value="All" class="circle" selected>All</option>
+																
+																	<option value="">[Something here]</option>
+																
+															</select>
+															<label><font size="3" color="gray">Fabric Type</font></label>
 													</div>
+												</div>
+
+												<div class="col s3"><!--fabric color-->
+													<div class="input-field col s12">
+															<select class = "fabric-color" id = "fabric-color">
+																<option value="All" class="circle" selected>All</option>
+																
+																	<option value="">[Something here]</option>
+																
+															</select>
+															<label><font size="3" color="gray">Fabric Color</font></label>
+													</div>
+												</div>
+
+												<div class="col s3"><!--fabric pattern-->
+													<div class="input-field col s12">
+															<select class = "fabric-pattern" id = "fabric-pattern">
+																<option value="All" class="circle" selected>All</option>
+																
+																	<option value="">[Something here]</option>
+																
+															</select>
+															<label><font size="3" color="gray">Fabric Pattern</font></label>
+													</div>
+												</div>
+
+												<div class="col s3"><!--fabric thread count-->
+													<div class="input-field col s12">
+															<select class = "fabric-thread-count" id = "fabric-thread-count">
+																<option value="All" class="circle" selected>All</option>
+																
+																	<option value=""></option>
+																
+															</select>
+															<label><font size="3" color="gray">Fabric Thread Count</font></label>
+													</div>
+												</div>
+												<!--end of select-->
+												
+												<div class="col s12" style="margin:20px">
+													<div class="divider" style="height:2px gray solid"></div>
+													<div class="divider" style="height:2px gray solid"></div>
+												</div> 
+												
+												<p style="color:gray; margin-left:20px">*Choose one of your desired fabric</p>
+
+												
+					                        	
+					                        	<div class="col s6">
+					                        	<div class="center col s2" style="margin-top:60px">
+					                        		<input name="garmentFabrics" type="radio" class="filled-in" value="" id="" />
+					                        		<label for=""></label>
+					                        	</div>
+					                        	 <div class="col s10">
+											        <div class="card-panel teal lighten-4 z-depth-1">
+											          <div class="row valign-wrapper">
+											            <div class="center col s4">
+											              <img src="#!" alt="" class="responsive-img"> <!-- notice the "circle" class -->
+											            </div>
+											            <div class="col s6"> 
+											              <p><b></b></p> <!-- This will be the name of the pattern -->
+											              <span class="black-text">
+											                
+											              </span>
+											            </div>
+											          </div>
+											        </div>
+											      </div>
+											      </div>
+											
+												
+											<div class="col s12" style="margin:20px"></div>
+											
+											</div>
+								
+										<div class="modal-footer col s12">
+				                          <a  class="right modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+				                          <a  class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+				                        </div>
+							</div>
+	
+							<!--End of Modal for choosing fabric-->
+
+
+
+							<div class="col s6">
+								<div class="col s6" style="margin-top:50px">
+											<a style="color:white; margin-top:10px" class="modal-trigger btn tooltipped teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a segment pattern" href="#editDesign"><i class="mdi-content-content-cut" style="padding-right:10px"></i>Choose Design</a>
+											
+											<!--<div class="file-field input-field">
+												<a style="color:black" class="modal-trigger btn tooltipped btn-floating teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a segment pattern" href="#editDesign"><i class="mdi-editor-mode-edit"></i></a>
+													
 												<div class="file-path-wrapper">
 													<input class="file-path validate" type="text">
 												</div>
-											</div>
+											</div>-->
 								</div>
 								
-								<div class="col s6" style="margin-top:30px;">
-								<label>Choose your fabric:</label>
-											<div class="file-field input-field">	
+								<div class="col s6" style="margin-top:50px;">
+											<a style="color:white; margin-top:10px" class="modal-trigger btn tooltipped teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#editFabric"><i class="mdi-maps-layers" style="padding-right:10px"></i>Choose Fabric</a>
+											<!--<div class="file-field input-field">	
 												<a style="color:black" class="modal-trigger btn tooltipped btn-floating teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#editFabric"><i class="mdi-editor-mode-edit"></i></a>
-                     								<div id="editFabric" class="modal modal-fixed-footer">
-                     								<h5><font color = "#1b5e20"><center>List of Available Fabrics</center> </font> </h5>
-                        
-									                      {!! Form::open() !!} 
-									                        <div class="divider" style="height:2px"></div>
-									                        <div class="modal-content col s12">
-									                        	<div class="col s12" style="margin-bottom:20px; background-color:white">
-															        <nav class="white">
-															            <div class="input-field col s12" style="padding-top:20px;">
-															                <input id="search" type="search" required="" placeholder="Search for any available fabrics (ex. cotton, etc..)">
-															                <label for="search"><i class="large mdi-action-search" style="color:gray"></i></label>
-															                <i class="mdi-navigation-close"></i>
-															            </div>
-															        </nav>
-																</div>
-
-																<div class="col s12"><div class="divider" style="height:2px; background-color:gray; margin:20px"></div></div>
-
-									                        	<div class="col s1" style="margin-top:60px">
-									                        		<input name="garmentFabrics" type="radio" class="filled-in" id="fabric1" />
-									                        		<label for="fabric1"></label>
-									                        	</div>
-									                        	 <div class="col s11">
-															        <div class="card-panel grey lighten-5 z-depth-1">
-															          <div class="row valign-wrapper">
-															            <div class="col s4">
-															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-															            </div>
-															            <div class="col s7"> 
-															              <p>COTTON CHENES</p> <!-- This will be the name of the pattern -->
-															              <span class="black-text">
-															                This is a square image. Add the "circle" class to it to make it appear circular.
-															              </span>
-															            </div>
-															          </div>
-															        </div>
-															      </div>
-
-															    <div class="col s1" style="margin-top:60px">
-									                        		<input name="garmentFabrics" type="radio" class="filled-in" id="fabric2" />
-									                        		<label for="fabric2"></label>
-									                        	</div>
-															      <div class="col s11">
-															        <div class="card-panel grey lighten-5 z-depth-1">
-															          <div class="row valign-wrapper">
-															            <div class="col s4">
-															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-															            </div>
-															            <div class="col s7">
-															            	<p>REGULAR COTTON</p>
-															              <span class="black-text">
-															                This is a square image. Add the "circle" class to it to make it appear circular.
-															              </span>
-															            </div>
-															          </div>
-															        </div>
-															      </div>
-
-
-															    <div class="col s1" style="margin-top:60px">
-									                        		<input name="garmentFabrics" type="radio" class="filled-in" id="fabric3" />
-									                        		<label for="fabric3"></label>
-									                        	</div>
-															      <div class="col s11">
-															        <div class="card-panel grey lighten-5 z-depth-1">
-															          <div class="row valign-wrapper">
-															            <div class="col s4">
-															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-															            </div>
-															            <div class="col s7">
-															            	<p>REMARKABLE COTTON</p>
-															              <span class="black-text">
-															                This is a square image. Add the "circle" class to it to make it appear circular.
-															              </span>
-															            </div>
-															          </div>
-															        </div>
-															      </div>
-															<div style="margin:570px"></div>
-															</div>
-
-
-														<div class="modal-footer col s12">
-								                          <a href="{{URL::to('transaction/walkin-company-customize-orders-package')}}" class="waves-effect waves-green btn-flat">OK</a>
-								                          <a href="{{URL::to('transaction/walkin-company-customize-orders-package')}}" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-								                        </div>
-									                      {!! Form::close() !!}
-													</div>
+                     								
 												<div class="file-path-wrapper">
 													<input class="file-path validate" type="text">
 												</div>
-											</div>
+											</div>-->
 								</div>
 
 								<!--Garment Description Here-->
@@ -254,202 +235,6 @@
 							<div class="col s12">
 								<div class="divider" style="margin-bottom:30px; height:3px"></div>
 							</div>
-
-							<div class="col s6">
-						    	<div class="container">
-									<center><img src="{{URL::to('img/male-uniform-pants-plain.jpg')}}" style="height:350px; width:350px; border: 3px gray solid"></center>
-								</div>
-							</div>
-
-							<div class="col s6" style="margin-bottom:30px">
-								<div class="col s6" style="margin-top:30px">
-								<label>Choose your design:</label>
-											<div class="file-field input-field">
-												<a style="color:black" class="modal-trigger btn tooltipped btn-floating teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a segment pattern" href="#editDesign"><i class="mdi-editor-mode-edit"></i></a>
-													<div id="editDesign" class="modal modal-fixed-footer">
-														<h5><font color = "#1b5e20"><center>List of Available Designs</center> </font> </h5>
-                        
-									                      {!! Form::open() !!} 
-									                        <div class="divider" style="height:2px"></div>
-									                        <div class="modal-content col s12">
-									                        	<div class="col s1" style="margin-top:60px">
-									                        		<input type="radio" class="filled-in" id="pattern1" />
-									                        		<label for="pattern1"></label>
-									                        	</div>
-									                        	 <div class="col s11">
-															        <div class="card-panel grey lighten-5 z-depth-1">
-															          <div class="row valign-wrapper">
-															            <div class="col s4">
-															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-															            </div>
-															            <div class="col s7"> 
-															              <p>STRAIGHT-CUT</p> <!-- This will be the name of the pattern -->
-															              <span class="black-text">
-															                This is a square image. Add the "circle" class to it to make it appear circular.
-															              </span>
-															            </div>
-															          </div>
-															        </div>
-															      </div>
-
-															    <div class="col s1" style="margin-top:60px">
-									                        		<input type="radio" class="filled-in" id="pattern2" />
-									                        		<label for="pattern2"></label>
-									                        	</div>
-															      <div class="col s11">
-															        <div class="card-panel grey lighten-5 z-depth-1">
-															          <div class="row valign-wrapper">
-															            <div class="col s4">
-															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-															            </div>
-															            <div class="col s7">
-															            	<p>SPECIAL PATTERN</p>
-															              <span class="black-text">
-															                This is a square image. Add the "circle" class to it to make it appear circular.
-															              </span>
-															            </div>
-															          </div>
-															        </div>
-															      </div>
-
-
-															    <div class="col s1" style="margin-top:60px">
-									                        		<input type="radio" class="filled-in" id="pattern3" />
-									                        		<label for="pattern3"></label>
-									                        	</div>
-															      <div class="col s11">
-															        <div class="card-panel grey lighten-5 z-depth-1">
-															          <div class="row valign-wrapper">
-															            <div class="col s4">
-															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-															            </div>
-															            <div class="col s7">
-															            	<p>JUST ANOTHER PATTERN</p>
-															              <span class="black-text">
-															                This is a square image. Add the "circle" class to it to make it appear circular.
-															              </span>
-															            </div>
-															          </div>
-															        </div>
-															      </div>
-															<div style="margin:570px"></div>
-															</div>
-
-
-														<div class="modal-footer col s12">
-															<a href="" class="left btn-flat" style="background-color:teal; color:white">Check designs from catalogue</a>
-								                          	<a href="{{URL::to('transaction/walkin-company-customize-orders-package')}}" class="right waves-effect waves-green btn-flat">OK</a>
-								                          	<a href="{{URL::to('transaction/walkin-company-customize-orders-package')}}" class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-								                        </div>
-									                      {!! Form::close() !!}
-													</div>
-												<div class="file-path-wrapper">
-													<input class="file-path validate" type="text">
-												</div>
-											</div>
-								</div>
-								
-								<div class="col s6" style="margin-top:30px;">
-								<label>Choose your fabric:</label>
-											<div class="file-field input-field">	
-												<a style="color:black" class="modal-trigger btn tooltipped btn-floating teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#editFabric"><i class="mdi-editor-mode-edit"></i></a>
-                     								<div id="editFabric" class="modal modal-fixed-footer">
-                     								<h5><font color = "#1b5e20"><center>List of Available Fabrics</center> </font> </h5>
-                        
-									                      {!! Form::open() !!} 
-									                        <div class="divider" style="height:2px"></div>
-									                        <div class="modal-content col s12">
-									                        	<div class="col s1" style="margin-top:60px">
-									                        		<input type="radio" class="filled-in" id="fabric1" />
-									                        		<label for="fabric1"></label>
-									                        	</div>
-									                        	 <div class="col s11">
-															        <div class="card-panel grey lighten-5 z-depth-1">
-															          <div class="row valign-wrapper">
-															            <div class="col s4">
-															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-															            </div>
-															            <div class="col s7"> 
-															              <p>COTTON CHENES</p> <!-- This will be the name of the pattern -->
-															              <span class="black-text">
-															                This is a square image. Add the "circle" class to it to make it appear circular.
-															              </span>
-															            </div>
-															          </div>
-															        </div>
-															      </div>
-
-															    <div class="col s1" style="margin-top:60px">
-									                        		<input type="radio" class="filled-in" id="fabric2" />
-									                        		<label for="fabric2"></label>
-									                        	</div>
-															      <div class="col s11">
-															        <div class="card-panel grey lighten-5 z-depth-1">
-															          <div class="row valign-wrapper">
-															            <div class="col s4">
-															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-															            </div>
-															            <div class="col s7">
-															            	<p>REGULAR COTTON</p>
-															              <span class="black-text">
-															                This is a square image. Add the "circle" class to it to make it appear circular.
-															              </span>
-															            </div>
-															          </div>
-															        </div>
-															      </div>
-
-
-															    <div class="col s1" style="margin-top:60px">
-									                        		<input type="radio" class="filled-in" id="fabric3" />
-									                        		<label for="fabric3"></label>
-									                        	</div>
-															      <div class="col s11">
-															        <div class="card-panel grey lighten-5 z-depth-1">
-															          <div class="row valign-wrapper">
-															            <div class="col s4">
-															              <img src="#!" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-															            </div>
-															            <div class="col s7">
-															            	<p>REMARKABLE COTTON</p>
-															              <span class="black-text">
-															                This is a square image. Add the "circle" class to it to make it appear circular.
-															              </span>
-															            </div>
-															          </div>
-															        </div>
-															      </div>
-															<div style="margin:570px"></div>
-															</div>
-
-
-														<div class="modal-footer col s12">
-								                          <a href="{{URL::to('transaction/walkin-company-customize-orders-package')}}" class="waves-effect waves-green btn-flat">OK</a>
-								                          <a href="{{URL::to('transaction/walkin-company-customize-orders-package')}}" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-								                        </div>
-									                      {!! Form::close() !!}
-													</div>
-												<div class="file-path-wrapper">
-													<input class="file-path validate" type="text">
-												</div>
-											</div>
-								</div>
-
-								<!--Garment Description Here-->
-								<div class="col s12" style="margin-top:10px; color:gray"><p>Garment description below:</p></div>
-									<div class="col s12" style="margin-left:130px">
-										<div class="col s4" style="color:teal;"><p><b>Garment Category:</b></p></div>
-										<div class="col s8"><p>Uniform</p></div>
-
-										<div class="col s4" style="color:teal;"><p><b>Garment Segment:</b></p></div>
-										<div class="col s8"><p>Pants</p></div>
-
-										<div class="col s4" style="color:teal;"><p><b>Price starts from:</b></p></div>
-										<div class="col s8" style="color:red"><p>1,000.00 PHP</p></div>
-									</div>
-								</div>
-							<!--End of Second Garment-->
-
 
 
 						</div>
@@ -477,6 +262,14 @@
 @stop
 
 @section('scripts')
+
+	<script>
+		 $(document).ready(function(){
+		    $('.collapsible').collapsible({
+		      accordion : true // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+		    });
+		  });
+	</script>
 
 	<script>
 	  $('.modal-trigger').leanModal({

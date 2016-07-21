@@ -18,6 +18,7 @@ use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
+
     public function showWelcome()
     {
         $ids = \DB::table('users')
@@ -30,7 +31,7 @@ class HomeController extends Controller
         $ID = $ids["0"]->id;
         $newUser = $this->smartCounter($ID);  
 
-    	return View::make('login')->with('newUserId', $newUser);
+    	return view('login')->with('newUserId', $newUser);
     }
 
     public function LogIn()
@@ -57,7 +58,7 @@ class HomeController extends Controller
             $user = User::where('email', '=', Input::get('email'))->first();
 
             if($user->confirmed == 1)
-            {
+            {   
                 if(Auth::user()->type == 'employee'){
                     return redirect()->intended('/dashboard');
                 }else if(Auth::user()->type == 'customer'){
@@ -76,16 +77,13 @@ class HomeController extends Controller
     }
 
     public function LogOut()
-    {
+    {    
         if(Auth::check())
-        {
-            Session::flush();
+        {   
             Auth::logout();
             return redirect('/');
         }
     }
-
-    
 
     public function indiv()
     {

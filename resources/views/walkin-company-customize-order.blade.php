@@ -40,10 +40,8 @@
 						        <div class="divider" style="margin-bottom:5px; background-color:teal; height:2px"></div>
 						    </div>    
 						    
-
-							<div class="col s6">
-								<a style="color:black; margin-left:50px" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#removeOrder"><i class="mdi-navigation-close"></i></a>
-								<div id="removeOrder" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
+							<!--Modal for Remove Order-->
+							<div id="removeOrder" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
 									<h5><font color="red"><center><b>Warning!</b></center></font></h5>
 										
 										{!! Form::open() !!}
@@ -63,7 +61,11 @@
 								            </div>
 										{!! Form::close() !!}
 								</div>
+							<!--End of modal for remove order-->
 
+							<div class="col s6">
+								<a style="color:black; margin-left:50px" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#removeOrder"><i class="mdi-navigation-close"></i></a>
+								
 								<div class="card medium z-depth-2" style="margin-left:100px; margin-top:20px; height:350px; width:350px; border:3px gray solid">
 				           				 <div class="card-image">
 				              				<img class="responsive-img" height = "80%" src="{{URL::to('img/mens-uniform.jpg')}}">
@@ -79,88 +81,6 @@
 	                  			
 				         		<div class="col s12" style="margin-top:10px; margin-left:20px">
 				         			<center><a class="btn" href="{{URL::to('/transaction/walkin-company-customize-orders-package')}}" style="background-color:red">Customize Package</a></center>
-				         		</div>
-
-								</div>
-
-
-								<div class="col s6">
-								<a style="color:black; margin-left:50px" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#removeOrder"><i class="mdi-navigation-close"></i></a>
-								<div id="removeOrder" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
-									<h5><font color="red"><center><b>Warning!</b></center></font></h5>
-										
-										{!! Form::open() !!}
-											<div class="divider" style="height:2px"></div>
-											<div class="modal-content col s12">
-												<div class="col s3">
-													<i class="mdi-alert-warning" style="font-size:50px; color:red"></i>
-												</div>
-												<div class="col s9">
-													<p><font size="+1">Are you sure to remove this order from cart?</font></p>
-												</div>
-											</div>
-
-											<div class="modal-footer col s12" style="background-color:red; opacity:0.85">
-								                <button type="submit" class="waves-effect waves-green btn-flat" href="#!"><font color="black">Yes</font></button>
-								                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
-								            </div>
-										{!! Form::close() !!}
-								</div>
-
-								<div class="z-depth-2 card medium" style="margin-left:100px; margin-top:20px; height:350px; width:350px; border:3px gray solid">
-			           				<div class="card-image">
-			              				<img class="responsive-img" height = "80%" src="{{URL::to('img/womens-uniform.jpg')}}">
-			           				</div>
-			            			<div class="card-content">
-			             				<p class="center-align">
-			             				 	<span class="card-title" style="color:black"><b>Women Set <font color="red">A</font></b></span>
-			             						<p class="center-align" style="color:teal">Package includes:</p>
-			             						<p class="center-align" style="color:gray">1 x Polo, 1 x Skirt</p>
-			           				 	</p>
-			           				</div>
-			         			</div>
-	                  			
-			         			<div class="col s12" style="margin-top:10px; margin-left:20px;">
-				         			<center><a class="btn" href="" style="background-color:red">Customize Package</a></center>
-				         		</div>
-
-								</div>
-
-								<div class="col s12"  style="margin-bottom:40px"></div>
-
-
-
-
-								<div class="col s6">
-								<a style="color:black; margin-left:50px" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#removeOrder"><i class="mdi-navigation-close"></i></a>
-								<div id="removeOrder" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
-									<h5><font color="red"><center><b>Warning!</b></center></font></h5>
-										
-										{!! Form::open() !!}
-											<div class="divider" style="height:2px"></div>
-											<div class="modal-content col s12">
-												<div class="col s3">
-													<i class="mdi-alert-warning" style="font-size:50px; color:red"></i>
-												</div>
-												<div class="col s9">
-													<p><font size="+1">Are you sure to remove this order from cart?</font></p>
-												</div>
-											</div>
-
-											<div class="modal-footer col s12" style="background-color:red; opacity:0.85">
-								                <button type="submit" class="waves-effect waves-green btn-flat" href="#!"><font color="black">Yes</font></button>
-								                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
-								            </div>
-										{!! Form::close() !!}
-								</div>
-
-								<div class="z-depth-2 card medium" style="margin-left:100px; margin-top:20px; height:350px; width:350px; border:3px gray solid">
-			           				<div class="center col s12"><img src="{{URL::to('img/blazer.jpg')}}" style="height:300px; width:300px; padding-top:20px; padding-right:30px; padding-left:30px;"></div>	
-			            			<center><span class="card-title" style="color:black; font-size:25px;"><b>Blazer</font></b></span></center>
-			         			 </div>
-	                  			
-			         			 <div class="col s12" style="margin-top:10px; margin-left:20px">
-				         			<center><a class="btn" href="" style="background-color:red">Customize Order</a></center>
 				         		</div>
 
 								</div>

@@ -40,15 +40,15 @@
 	      		<div class="divider"></div>
 	      	</div>-->
 
+			@foreach($segments as $segment)
 			<div class="col s12" style="margin-bottom:10px">
 				<div class="col s5">
 					<div class="col s4"><p style="color:gray"><b>Measurement Type</b></p></div>
-					<div class="col s8">
-						
+					<div class="col s8">		
 							<select class = "fabric-pattern" id = "fabric-pattern">
-									<option value="body-meas" class="circle" selected>Body Measurement</option>
-									<option value="cloth-meas" class="circle" >Clothing Measurement</option>
-									<option value="standard-meas" class="circle" >Standard Size Measurement</option>
+								@foreach($categories as $category)
+									<option value="{{ $category->strMeasurementCategoryID }}" class="circle">{{ $category->strMeasurementCategoryName }}</option>
+								@endforeach
 							</select>
 					</div>
 				</div>
@@ -64,69 +64,8 @@
 			<div class="col s12"><div class="divider" style="height:2px; background-color:gray"></div></div><!--divider-->
 
 
-			@foreach($segments as $segment)
 	       	<div class="row" style="background-color:white; margin-top:20px">
-	       		<!--
-	       		<div class="col s12" style="font-size:15px; color:red; margin-left:30px">
-						
-						<a class="modal-trigger tooltipped" href="#add-new-fields-measure" data-position="right" data-delay="50" data-tooltip="Click to add more measurement fields to accomodate multiple customers in a single transaction"><u>Add another fields for measurement</u></a>
-							<div id="add-new-fields-measure" class="modal modal-fixed-footer" style="height:400px; width:600px; margin-top:50px">
-										
-								{!! Form::open() !!}
-										
-								<div class="modal-content col s12">
-									<div class="col s12">
-										<div class="col s3" style="color:teal"><p>Category</p></div>
-										<div class="col s3" style="color:black">
-											<div class="input-field col s12">
-												<select>
-												    <option value="1" class="circle">Uniform</option>
-												    <option value="2" class="circle">Suit</option>
-												    <option value="3" class="circle">Gown</option>
-												</select>
-											</div>
-										</div>
 
-										<div class="col s3" style="color:teal"><p>Section</p></div>
-										<div class="col s3" style="color:black">
-											<div class="input-field col s12">
-												<select>
-												    <option value="1" class="circle">Top</option>
-												    <option value="2" class="circle">Bottom</option>
-												</select>
-											</div>
-										</div>
-
-										<div class="col s12" style="margin-bottom:30px; height:3px; background-color:teal"><div class="divider"></div></div>
-
-									<div class="col s12" style="margin-left:30px">
-										@foreach($measurements as $measurement)
-											<div class="col s6">
-												<input type="checkbox" class="filled-in" name="addtl-measurements[]" id="{{ $measurement->strMeasurementDetailName }}"/>
-				      							<label for="{{ $measurement->strMeasurementDetailName }}">{{ $measurement->strMeasurementDetailName }}</label>
-				      						</div>
-				      					@endforeach
-			      					</div>
-								</div>
-							</div>
-
-									<div class="modal-footer col s12">									
-										<div class="col s12">
-											<div class="col s4" style="padding-left:10px; color:red; padding-top:10px">
-												<input type="checkbox" class="left filled-in" name="select_all" id="select_all"></input>
-												<label for="select_all" style="color:red">Select All</label>
-											</div>
-											<div class="col s8">
-												<a class="modal-action modal-close right waves-effect waves-green btn-flat">Cancel</a>
-							                	<a class="modal-action modal-close right waves-effect waves-green btn-flat"><font color="black">OK</font></a>
-							            	</div>
-							            </div>
-							        </div>
-									{!! Form::close() !!}
-						</div>
-					
-				</div>
-				-->	
 
 					<div class="col s8" style="margin-left:20px;color:red">
 						<p><b>Unit of Measurement</b></p>
@@ -145,10 +84,10 @@
 		            		<h5><b>Parts to be measured</b></h5>
 		            		<div class="container"> 
 			            		@foreach($measurements as $measurement)
-			            			@if($measurement->strMeasSegmentFK == $segment->strSegmentID)
+			            			@if($measurement->strMeasDetSegmentFK == $segment->strSegmentID)
 				            	   	<div style="color:black; padding-left:140px" class="input-field col s6">                 
 			                          <input name="shoulder" type="text">
-			                          <label style="color:teal" for="shoulder">{{ $measurement->strMeasurementDetailName }}: </label>
+			                          <label style="color:teal" for="shoulder">{{ $measurement->strMeasDetailName }}: </label>
 			                        </div>
 			                        @endif
 		                        @endforeach
