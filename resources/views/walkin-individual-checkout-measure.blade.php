@@ -61,6 +61,8 @@
                 <div class="col s2"><a href="" class="btn" style="background-color:teal; color:white; margin-top:10px">Add</a></div>
 			</div>
 
+			<div class="col s12"><div class="divider" style="height:2px; background-color:gray"></div></div><!--divider-->
+
 
 			@foreach($segments as $segment)
 	       	<div class="row" style="background-color:white; margin-top:20px">
