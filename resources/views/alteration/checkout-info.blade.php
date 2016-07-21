@@ -70,16 +70,10 @@
 
                 <div style="color:black" class="input-field col s6">
                   <p style="color:gray"><b>Sex</b></p>
-                  <select>
-                    <option value="0"></option>
-                      <option value="1">Female</option>
-                      <option value="2">Male</option>
+                  <select name="cust-sex">
+                      <option value="F">Female</option>
+                      <option value="M">Male</option>
                   </select>
-                </div>
-
-                <div style="color:black" class="input-field col s6">
-                  <p style="color:gray"><b>Date of Birth</b></p>
-                  <input class="datepicker" id="editDtEmpBday" name="editDtEmpBday" type="date" placeholder="May 3, 1997">  
                 </div>
             </div>
 

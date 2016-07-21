@@ -37,6 +37,7 @@
                   <div style="color:gray; padding-left:140px;" class="input-field col s6">                 
                       <div class="col s4" style="color:gray"><p>Date:</div>
                       <div class="col s8" id="Date" style="padding:15px; color:teal;"></div>
+                      <input type="hidden" id="transaction_date" name="transaction_date">
                   </div>
                 </div>
 
@@ -179,7 +180,6 @@
 
         $('#total-price').val(totalAmount.toFixed(2) + ' PHP');
         $('#deliveryDate').val(totalDays + ' days');
-        $("#transac_date").datepicker().datepicker("setDate", new Date());
     });
 
   </script> 
@@ -190,9 +190,9 @@
     var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
 
     var newDate = new Date();
-    newDate.setDate(newDate.getDate());    
+ 
     $('#Date').html(dayNames[newDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
-  
+    $('#transaction_date').val(newDate.getFullYear() + "-" +  (newDate.getMonth()+1) + "-" + newDate.getDate());
   </script>
 
   <script>

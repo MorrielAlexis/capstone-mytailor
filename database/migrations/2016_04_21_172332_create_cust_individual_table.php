@@ -18,7 +18,7 @@ class CreateCustIndividualTable extends Migration
             $table->string('strIndivFName');
             $table->string('strIndivLName');
             $table->string('strIndivMName')->nullable();
-            $table->string('strIndivGender');
+            $table->string('strIndivSex');
             $table->string('strIndivHouseNo');
             $table->string('strIndivStreet');
             $table->string('strIndivBarangay')->nullable();
