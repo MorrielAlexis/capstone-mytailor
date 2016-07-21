@@ -222,20 +222,6 @@
                         </div>
                     </div>
 
-                    <span class="col s12" style="color:teal; margin-top:20px"><b>Additional Information</b></span>
-                    <div class="card-panel col s12" style="border:3px solid gray; padding:15px">
-                        <div style="color:black; padding-left:200px" class="input-field col s12">
-                        	<div class="container">
-                            	<input id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt" maxlength="11">
-                            	<label style="color:gray" for="cellphone"><b> *Number of Employees</b></label>
-                        	</div>
-                        </div>
-                    </div>
-
- 
-
-                        
-
                     </div>
 	       		</div>
 	       		        <div style="color:gray; margin-top:30px; margin-left:20px" class="col s12">

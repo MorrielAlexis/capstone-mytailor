@@ -33,7 +33,7 @@
 						@for($i = 0; $i < count($segments); $i++)
 						    <div class="col s6">
 						    	<div class="container">
-									<center><img src="{{URL::asset($segments[$i][0]->strSegmentImage)}}" style="height:350px; width:350px; border: 3px gray solid"></center>
+									<center><img src="{{URL::asset($segments[$i][0]->strSegmentImage)}}" style="margin-top:15px; height:350px; width:350px; border: 3px gray solid"></center>
 								</div>
 							</div>
 
@@ -249,11 +249,12 @@
 										<div class="col s8" style="color:red"><p>{{ number_format($segments[$i][0]->dblSegmentPrice, 2) }} PHP</p></div>
 									</div>
 								</div>
-							</div>
-							<!--End of First Garment-->
-						@endfor
+								<div class="col s12"><div class="divider" style="height:2px; margin-top:10px; margin-bottom:10px"></div></div>
+							@endfor
 						</div>
-						<div class="col s12"><div class="divider" style="height:2px; margin-top:20px; margin-bottom:20px"></div></div>
+							<!--End of First Garment-->
+						</div>
+
 						<div class="col s12">
 							<a href="{{URL::to('transaction/walkin-company-catalogue-designs')}}" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Design the whole set once by choosing among the available designs in the catalogue" style="background-color:teal; color:white">Choose design from Catalogue</a>
 							<a class="right waves-effect waves-green btn" style="background-color:teal; margin-left:80px; margin-right:30px" href="{{URL::to('transaction/walkin-company-customize-orders')}}">Save</a>
