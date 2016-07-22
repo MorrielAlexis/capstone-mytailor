@@ -19,6 +19,11 @@ class OnlineGarmentSetsController extends Controller
         return view('online.garmentSets');
     }
 
+    public function customize()
+    {
+        return view('customize.sets-customize-order');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

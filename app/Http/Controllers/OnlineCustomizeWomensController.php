@@ -7,61 +7,26 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class OnlineCustomizeController extends Controller
+class OnlineCustomizeWomensController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function fabricsuit()
+    public function index()
     {
-        return view('customize.suit-fabric');
-    }
-
-    public function stylesuit()
-    {
-        return view('customize.suit-style');
-    }    
-
-    public function fabricgown()
-    {
-        return view('customize.gown-fabric');
-    }
-
-    public function stylegown()
-    {
-        return view('customize.gown-style');
-    }
-
-    public function fabricmens()
-    {
-        return view('customize.mens-fabric');
-    }
-
-    public function stylemens()
-    {
-        return view('customize.mens-style');
+        //
     }
 
     public function fabricwomens()
     {
         return view('customize.womens-fabric');
-    }
+    } 
 
     public function stylewomens()
     {
         return view('customize.womens-style');
-    }
-
-    public function fabricpants()
-    {
-        return view('customize.pants-fabric');
-    }    
-
-    public function stylepants()
-    {
-        return view('customize.pants-style');
     }    
 
     /**

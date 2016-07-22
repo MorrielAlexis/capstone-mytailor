@@ -7,27 +7,27 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class OnlineCheckoutController extends Controller
+class OnlineCustomizeGownController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function info()
+    public function index()
     {
-        return view('customize.checkout-info');
+        //
     }
 
-    public function pay()
+    public function fabricgown()
     {
-        return view('customize.checkout-payment');
+        return view('customize.gown-fabric');
     }
 
-    public function measure()
+    public function stylegown()
     {
-        return view('customize.checkout-measurement');
-    }        
+        return view('customize.gown-style');
+    }
 
     /**
      * Show the form for creating a new resource.

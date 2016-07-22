@@ -3,7 +3,7 @@
 @section('content')
 
         
-    <div class="slider">
+    <div class="slider" style="margin-bottom:40px;">
         <ul class="slides">
             <li>
                 <img src="imgOnlineHomepageSlider/hmpgslider1.jpg">
@@ -20,15 +20,10 @@
         </ul>
     </div>
 
-    <div class="section container grey lighten-2" style="margin-top:20px; margin-bottom:100px; width:95%; height:70px;">
-        <center><h5 style="font-family:'Playfair Display','Times'; margin:0px;"><b>FREE delivery</b></h5></center>
-        <center><p style="margin:0px;">also with free alteration on every purchased item!</p></center>
-    </div>
-
     <div class="row">
         <div class="col s6 center">
             <section id="gallery">
-                <h2><a style="background-color:transparent; color:white; font-weight:normal" href="{{URL::to('/online-garment-uniform-female')}}">Custom Uniform</a></h2>
+                <h2><a style="background-color:transparent; color:grey; font-weight:normal" href="{{URL::to('/online-garment-uniform-female')}}">Custom Uniform</a></h2>
                 <img alt="" src="imgOnline/uniform3.jpg">
                 <p class="center-align white-text">
                     From different designs and options to choose from,
@@ -41,7 +36,7 @@
         
         <div class="col s6 center">
             <section id="gallery">
-                <h2><a style="background-color:transparent; color:white; font-weight:normal" href="{{URL::to('/online-garment-gown')}}">Custom Gown</a></h2>
+                <h2><a style="background-color:transparent; color:grey; font-weight:normal" href="{{URL::to('/online-garment-gown')}}">Custom Gown</a></h2>
                 <img alt="" src="imgOnline/gowns.jpg">
                 <p class="center-align white-text">
                     Be the eye-catcher in events with custom
@@ -58,7 +53,7 @@
     <div class="row">
         <div class="col s6 center">
             <section id="gallery">
-                <h2><a style="background-color:transparent; color:white; font-weight:normal" href="{{URL::to('/online-garment-suit')}}">Custom Suits</a></h2>
+                <h2><a style="background-color:transparent; color:grey; font-weight:normal" href="{{URL::to('/online-garment-suit')}}">Custom Suits</a></h2>
                 <img alt="" src="imgOnline/suits.jpg">
                 <p class="center-align white-text">
                     Look your best in a custom suit made 
@@ -70,7 +65,7 @@
         
         <div class="col s6 center">
             <section id="gallery">
-                <h2><a style="background-color:transparent; color:white; font-weight:normal" href="{{URL::to('/online-order-tracking')}}">Order Tracking</a></h2>
+                <h2><a style="background-color:transparent; color:grey; font-weight:normal" href="{{URL::to('/online-order-tracking')}}">Order Tracking</a></h2>
                 <img alt="" src="imgOnline/ordertrack1.jpg">
                 <p class="center-align white-text" style="padding-left:60px; padding-right:60px">
                     Experience made more personal with

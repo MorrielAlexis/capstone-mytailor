@@ -26,22 +26,23 @@
       <div class="row" style="margin:40px;">
         <ul class="col s12 breadcrumb">
           <li><a style="padding-left:100px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Select Fabric</b></a></li>
-          <li><a class="active"  style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Step 2: CHOOSE STYLE</b></a></li>
+          <li><a class="active"  style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Step 2: Choose Style</b></a></li>
           <li><a style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Check Out</b></a></li>
           <li><a style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Measurement</b></a></li>
         </ul>
 
         <ul class="tabs transparent" style="float:left; margin-top:40px;">
-          <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab active"><a style="color:black" href="#tabPleats">Pleats</a></li>
-          <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabPockets">Pockets</a></li>
-          <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabBottom">Bottom</a></li>
-          <div class="indicator white" style="z-index:1"></div>
+          <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab active"><a style="color:black" href="#tabJacket">Jacket Style</a></li>
+          <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Jacket Collar & Pockets</li>
+          <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Pants Style</li>
+          <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Monogram</li>
+          <div class="indicator teal accent-4" style="z-index:1"></div>
         </ul>
 
-        <!--PLEATS TAB-->
-        <div id="tabPleats" class="col s12 white" style="padding:20px; border 2px teal accent-4 white-text;">
-          
-          <div class="col s12"><a class="btn-flat right teal accent-4 white-text" href="tabPockets">Next step</a></div>
+        <!--JACKET TAB-->
+        <div id="tabJacket" class="col s12 white" style="padding:20px; border: 2px teal accent-4;">
+
+          <div class="col s12"><a class="btn-flat right teal accent-4 white-text" href="{{URL::to('/customize-suit-style-collar-pocket')}}">Next step</a></div>
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
           
           <div class="col s12" style="margin-top:10px;">
@@ -61,8 +62,7 @@
             </div>
           </div>
 
-          <div class="col s12" style="padding:20px;"><h4>Pant's Pleats</h4></div>
-
+          <div class="col s12" style="padding:20px;"><h5><b>Single Breasted</b></h5></div>
           <div class="col s12">
 
             <div class="col s2">
@@ -71,91 +71,68 @@
                 <input class="with-gap" name="classic" type="radio" id="small" />
                 <label for="small"><font size="+1"><b>Classic Small</b></font></label>
               </p>
+            </div>
+
+          </div>
+
+          <div class="col s12" style="padding:20px;"><h5><b>Double Breasted</b></h5></div>
+          <div class="col s12">
+
+            <div class="col s2">
+              <img class="materialboxed responsive-img" src="img/fabric.jpg">
+              <p>
+                <input class="with-gap" name="classic" type="radio" id="small" />
+                <label for="small"><font size="+1"><b>Classic Small</b></font></label>
+              </p>
+            </div>
+
+          </div>
+
+          <div class="col s12" style="padding:20px;"><h5><b>Jacket Bottom</b></h5></div>
+          <div class="col s12">
+
+            <div class="col s2">
+              <img class="materialboxed responsive-img" src="img/fabric.jpg">
+              <p>
+                <input class="with-gap" name="classic" type="radio" id="small" />
+                <label for="small"><font size="+1"><b>Classic Small</b></font></label>
+              </p>
+            </div>
+
+          </div>
+
+          <div class="col s12" style="padding:20px;"><h5><b>Vents</b></h5></div>
+          <div class="col s12">
+
+            <div class="col s2">
+              <img class="materialboxed responsive-img" src="img/fabric.jpg">
+              <p>
+                <input class="with-gap" name="classic" type="radio" id="small" />
+                <label for="small"><font size="+1"><b>No Vent</b></font></label>
+              </p>
+            </div>
+
+          </div>
+
+          <div class="col s12" style="padding:20px;">
+            <div class="col s6"><h5><b>Contrast Lapel</b></h5></div>
+          </div>
+          <div class="col s12">
+
+            <div class="col s3">
+              <img class="materialboxed responsive-img" src="img/fabric.jpg">
+              <label><a class="btn teal accent-4 white-text" href="{{URL::to('/customize-suit-fabric')}}"><font size="+1">Select Fabric</font>
+                \</a></label>
             </div>
 
           </div>
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
-          <div class="col s12"><a class="right btn-flat teal accent-4 white-text" href="tabPockets">Next step</a></div>
+          <div class="col s12"><a class="btn-flat right teal accent-4 white-text" href="{{URL::to('/customize-suit-style-collar-pocket')}}">Next step</a></div>
 
         </div>
-        <!--END OF PLEATS TAB-->
+        <!--END OF JACKET TAB-->
 
-        <!--POCKETS TAB-->
-        <div id="tabPockets" class="col s12 white" style="padding:20px; border 2px teal accent-4 white-text;">
-          
-          <div class="col s12">
-            <div><a class="right btn-flat teal accent-4 white-text" href="tabBottom">Next step</a></div>
-            <div><a class="left btn-flat teal accent-4 white-text" href="tabPleats">Previous step</a></div>
-          </div>
-          <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
-          
-          <div class="col s12" style="padding:20px;"><h4>Pant's Pockets</h4></div>
-          <div class="col s12">
-
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Classic Small</b></font></label>
-              </p>
-            </div>
-
-          </div>
-
-          <div class="col s12" style="padding:20px;"><h4>Backpockets</h4></div>
-          <div class="col s12">
-
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Classic Small</b></font></label>
-              </p>
-            </div>
-
-          </div>          
-
-          <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
-          <div class="col s12">
-            <div><a class="right btn-flat teal accent-4 white-text" href="tabBottom">Next step</a></div>
-            <div><a class="left btn-flat teal accent-4 white-text" href="tabPleats">Previous step</a></div>
-          </div>
-
-        </div>
-        <!--END OF POCKETS TAB-->
-
-        <!--BOTTOM TAB-->
-        <div id="tabBottom" class="col s12 white" style="padding:20px; border 2px teal accent-4 white-text;">
-
-          <div class="col s12">
-            <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/customize-checkout-info')}}">Proceed to Checkout</a></div>
-            <div><a class="left btn-flat teal accent-4 white-text" href="tabPockets">Previous step</a></div>
-          </div>          
-          <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
-
-          <div class="col s12" style="padding:20px;"><h4>Pant's Bottom</h4></div>
-
-          <div class="col s12">
-
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Classic Small</b></font></label>
-              </p>
-            </div>
-
-          </div>
-
-          <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
-          <div class="col s12">
-            <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/customize-checkout-info')}}">Proceed to Checkout</a></div>
-            <div><a class="left btn-flat teal accent-4 white-text" href="tabPockets">Previous step</a></div>
-          </div>
-
-        </div>
-        <!--END OF BOTTOM TAB-->
 
       </div>
     </div>
@@ -183,3 +160,4 @@
     });
 
   </script>
+

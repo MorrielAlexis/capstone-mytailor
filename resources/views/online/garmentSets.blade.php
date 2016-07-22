@@ -5,9 +5,8 @@
 	<div class="section">	
 
 		<div id="sets" style="height:500px; margin-top: -15px;">
-	  		<div style="height:70px"></div>
+	  		<div style="height:150px"></div>
 	  		<center><h1 style="color:white; font-family:'Playfair Display','Times';">Sets</h1></center>
-	  		<center><a style="margin-top:45px; padding-top:15px; padding-left:5px; padding-right:5px; width:250px; height:70px; background:rgb(236, 59, 65);" class="white-text modal-trigger waves-effect waves-light btn btn-small center-text" href="{{URL::to('/customize-pants-fabric')}}"><font size="+1">CUSTOMIZE YOURS NOW!</font></a></center>
 		</div>
 
 		<div style= "height:20px;"></div>
@@ -17,7 +16,7 @@
 			<div class="row">
 
 				<div class="col s4 center" style="padding:20px;">
-		     		<div class="container">
+		     		<div class="container"><a  href="{{URL::to('/customize-sets-customize-order')}}">
 		     			<div class="z-depth-1 card medium" style="border:3px gray solid">
 		       				<div class="card-image">
 		          				<img class="responsive-img" height = "50%" src="{{URL::to('img/womens-uniform.jpg')}}">
@@ -30,11 +29,11 @@
 		       				 	</p>
 		       				</div>
 		     			</div>
-		     		</div>
+		     		</div></a>
 				</div>
 
 				<div class="col s4 center" style="padding:20px;">
-	         		<div class="container">
+	         		<div class="container"><a  href="{{URL::to('/customize-sets-customize-order')}}">
 	         			<div class="z-depth13 card medium" style="border:3px gray solid">
 	           				<div class="card-image">
 	              				<img class="responsive-img" height = "50%" src="{{URL::to('img/unisex-uniform.jpg')}}">
@@ -47,11 +46,11 @@
 	           				 	</p>
 	           				</div>
 	           			</div>
-	         		</div>
+	         		</div></a>
 				</div>
 
 				<div class="col s4 center" style="padding:20px;">
-	         		<div class="container">
+	         		<div class="container"><a  href="{{URL::to('/customize-sets-customize-order')}}">
 	         			<div class="z-depth-1 card medium" style="border:3px gray solid">
 	           				<div class="card-image">
 	              				<img class="responsive-img" height = "50%" src="{{URL::to('img/mens-uniform.jpg')}}">
@@ -64,7 +63,7 @@
 	           				 	</p>
 	           				</div>
 	         			</div>
-	         		</div>
+	         		</div></a>
 				</div>
 
 			</div>

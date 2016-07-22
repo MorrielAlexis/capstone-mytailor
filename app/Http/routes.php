@@ -359,11 +359,7 @@ Route::resource('online-men-shirt-tutorial', 'OnlineMenShirtTutorialController',
 
 Route::resource('online-order-now', 'OnlineOrderNowController',
 		['only' => ['index']]);
-Route::get('online-check-out', 'OnlineOrderNowController@info');
-Route::get('online-checkout-payment', 'OnlineOrderNowController@payment');
-Route::get('online-checkout-measurement', 'OnlineOrderNowController@measuredetails');
-Route::get('online-customize-order', 'OnlineOrderNowController@custom');
-Route::get('online-measurement', 'OnlineOrderNowController@meas');
+Route::get('online-measurements', 'OnlineOrderNowController@meas');
 
 Route::resource('online-order-tracking', 'OnlineOrderTrackingController',
 		['only' => ['index']]);
@@ -377,7 +373,14 @@ Route::resource('online-women-pants-skirt-tutorial', 'OnlineWomenPantsAndSkirtTu
 Route::resource('online-women-shirt-tutorial', 'OnlineWomenShirtTutorialController',
 		['only' => ['index']]);
 
+Route::get('online-individual-checkout-info', 'OnlineCheckoutIndividualController@info');
+Route::get('online-individual-checkout-payment', 'OnlineCheckoutIndividualController@payment');
+Route::get('online-individual-checkout-measurement', 'OnlineCheckoutIndividualController@measuredetails');
 
+Route::get('online-company-checkout-info', 'OnlineCheckoutCompanyController@info');
+Route::get('online-company-checkout-payment', 'OnlineCheckoutCompanyController@payment');
+Route::get('online-company-checkout-measurement', 'OnlineCheckoutCompanyController@measuredetails');
+Route::get('online-company-checkout-employee-details', 'OnlineCheckoutCompanyController@emp');
 /*-------------------------------------------ONLINE CUSTOMER PROFILE---------------------------------------------------*/
 
 	Route::get('customerprofile-individual', 'OnlineCustomerProfileIndividualController@index');
@@ -394,21 +397,28 @@ Route::resource('online-women-shirt-tutorial', 'OnlineWomenShirtTutorialControll
 
 /*-------------------------------------------ONLINE CUSTOMIZE GARMENTS---------------------------------------------------*/
 
-	Route::get('customize-suit-fabric', 'OnlineCustomizeController@fabricsuit');
-	Route::get('customize-suit-style', 'OnlineCustomizeController@stylesuit');
+	Route::get('customize-suit-fabric', 'OnlineCustomizeSuitController@fabric');
+	Route::get('customize-suit-style-jacket', 'OnlineCustomizeSuitController@stylejacket');
+	Route::get('customize-suit-style-collar-pocket', 'OnlineCustomizeSuitController@stylecollarpocket');
+	Route::get('customize-suit-style-pants', 'OnlineCustomizeSuitController@stylepants');
+	Route::get('customize-suit-style-monogram', 'OnlineCustomizeSuitController@stylemonogram');
 
-	Route::get('customize-gown-fabric', 'OnlineCustomizeController@fabricgown');
-	Route::get('customize-gown-style', 'OnlineCustomizeController@stylegown');
+	Route::get('customize-gown-fabric', 'OnlineCustomizeGownController@fabricgown');
+	Route::get('customize-gown-style', 'OnlineCustomizeGownController@stylegown');
 
-	Route::get('customize-mens-fabric', 'OnlineCustomizeController@fabricmens');
-	Route::get('customize-mens-style', 'OnlineCustomizeController@stylemens');
+	Route::get('customize-mens-fabric', 'OnlineCustomizeMensController@fabric');
+	Route::get('customize-mens-style-collar', 'OnlineCustomizeMensController@stylecollar');
+	Route::get('customize-mens-style-cuffs', 'OnlineCustomizeMensController@stylecuffs');
+	Route::get('customize-mens-style-buttons', 'OnlineCustomizeMensController@stylebuttons');
+	Route::get('customize-mens-style-pocket-monogram', 'OnlineCustomizeMensController@stylepocketmonogram');
+	Route::get('customize-mens-style-others', 'OnlineCustomizeMensController@styleothers');
 
 	Route::get('customize-womens-fabric', 'OnlineCustomizeController@fabricwomens');
 	Route::get('customize-womens-style', 'OnlineCustomizeController@stylewomens');
 
-	Route::get('customize-pants-fabric', 'OnlineCustomizeController@fabricpants');
-	Route::get('customize-pants-style', 'OnlineCustomizeController@stylepants');
+	Route::get('customize-pants-fabric', 'OnlineCustomizePantsController@fabric');
+	Route::get('customize-pants-style-pleats', 'OnlineCustomizePantsController@stylepleats');
+	Route::get('customize-pants-style-pockets', 'OnlineCustomizePantsController@stylepockets');
+	Route::get('customize-pants-style-bottom', 'OnlineCustomizePantsController@stylebottom');
 
-	Route::get('customize-checkout-info', 'OnlineCheckoutController@info');
-	Route::get('customize-checkout-payment', 'OnlineCheckoutController@pay');
-	Route::get('customize-checkout-measurement', 'OnlineCheckoutController@measure');
+	Route::get('customize-sets-customize-order', 'OnlineGarmentSetsController@customize');

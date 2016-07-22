@@ -3,31 +3,45 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use View;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class OnlineOrderNowController extends Controller
+class OnlineCustomizeSuitController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
-        return View::make('online.ordernow');
+        //
     }
 
-    public function meas()
+    public function fabric()
     {
-        return View::make('online.measurements');
+        return view('customize.suit-fabric');
+    }
+
+    public function stylejacket()
+    {
+        return view('customize.suit-style-jacket');
+    }
+
+    public function stylecollarpocket()
+    {
+        return view('customize.suit-style-collar-pocket');
+    }
+
+    public function stylepants()
+    {
+        return view('customize.suit-style-pants');
+    }
+
+    public function stylemonogram()
+    {
+        return view('customize.suit-style-monogram');
     }
 
     /**

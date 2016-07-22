@@ -137,7 +137,7 @@
 										</div>
 
 										<div class="modal-footer col s12" style="background-color:green; opacity:0.85; color:white">
-							                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-individual')}}"><font color="white">OK</font></a>
+							                <a class="waves-effect waves-green btn-flat" href="{{URL::to('/online-home')}}"><font color="white">OK</font></a>
 							            </div>
 									{!! Form::close() !!}
 						</div>
@@ -153,8 +153,8 @@
 									</div>
 
 									<div class="modal-footer col s12">
-						                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-individual')}}"><font color="black">Yes</font></a>
-						                <a href="{{URL::to('/transaction/walkin-individual-payment-measure-detail')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+						                <a class="waves-effect waves-green btn-flat" href="{{URL::to('/online-home')}}"><font color="black">Yes</font></a>
+						                <a href="{{URL::to('/online-individual-checkout-measurement')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
 						            </div>
 						</div>
 				<!--end of bottom buttons-->

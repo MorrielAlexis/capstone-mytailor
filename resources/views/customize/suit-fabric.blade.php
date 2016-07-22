@@ -25,7 +25,7 @@
     <div class="container" style="width:100%;">
       <div class="row" style="margin:40px;">
         <ul class="col s12 breadcrumb">
-          <li><a class="active" style="padding-left:100px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Step 1: SELECT FABRIC</b></a></li>
+          <li><a class="active" style="padding-left:100px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Step 1: Select Fabric</b></a></li>
           <li><a style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Choose Style</b></a></li>
           <li><a style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Check Out</b></a></li>
           <li><a style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Measurement</b></a></li>
@@ -87,7 +87,7 @@
             <figcaption style="background-color:#ede7f6">Swatch Code</figcaption>
             <figcaption style="background-color:#ede7f6">Fabric Type</figcaption>
             <figcaption style="background-color:#ede7f6; color:red;">Price</figcaption>
-            <div><a class="btn teal accent-4 white-text" href="{{URL::to('/customize-suit-style')}}"><i class="mdi-action-shopping-cart"></i>Choose this fabric</a></div>
+            <div><a class="btn teal accent-4 white-text" href="{{URL::to('/customize-suit-style-jacket')}}"><i class="mdi-action-shopping-cart"></i>Choose this fabric</a></div>
           </div>
         </div>
       </div>      
