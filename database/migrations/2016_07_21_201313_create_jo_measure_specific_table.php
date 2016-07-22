@@ -13,6 +13,7 @@ class CreateJoMeasureSpecificTable extends Migration
     public function up()
     {
         Schema::create('tblJOMeasureSpecific', function (Blueprint $table) {
+            $table->string('strJOMeasureSpecificID')->primary();
             $table->string('strJobOrderSpecificFK')->index();
             $table->string('strMeasureProfileFk')->index();
             $table->string('strMeasureDetailFk')->index();
@@ -21,7 +22,6 @@ class CreateJoMeasureSpecificTable extends Migration
             $table->double('dblMeasureValue');
             $table->string('strUnitofMeasurement');
             $table->string('boolIsActive');
-            $table->primary('strJobOrderSpecificFK', 'strMeasureProfileFk');
             $table->timestamps();
 
             $table->foreign('strJobOrderSpecificFK')

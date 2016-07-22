@@ -17,7 +17,6 @@ class CreateJoSpecific extends Migration
             $table->string('strJobOrderFK')->index();
             $table->string('strJOSegmentFK')->index();
             $table->string('strJOFabricFK')->index();
-            $table->string('strJOSegmentPatternFK')->index();
             $table->integer('intQuantity');
             $table->double('dblUnitPrice');
             $table->integer('intEstimatedDaystoFinish');
@@ -38,11 +37,6 @@ class CreateJoSpecific extends Migration
                   ->references('strFabricID')
                   ->on('tblFabric');
 
-             $table->foreign('strJOSegmentPatternFK')
-                  ->references('strSegPatternID')
-                  ->on('tblSegmentPattern');
-
-
 
         });
     }
@@ -54,6 +48,6 @@ class CreateJoSpecific extends Migration
      */
     public function down()
     {
-        Schema::drop('tblJOSpecificsInd');
+        Schema::drop('tblJOSpecific');
     }
 }

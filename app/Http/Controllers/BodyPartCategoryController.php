@@ -26,10 +26,10 @@ class BodyPartCategoryController extends Controller
 
         $ID = $ids["0"]->strBodyPartCategoryID;
         $newID = $this->smartCounter($ID);  
-        $part = BodyPartCategory::all();
+        $bodyPartCategory = BodyPartCategory::all();
        
         return view('maintenance-measurement-body-cat')
-                    ->with('part', $part)
+                    ->with('bodyPartCategory', $bodyPartCategory)
                     ->with('newID', $newID);
 
     }
@@ -52,7 +52,20 @@ class BodyPartCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+          $bodyParts = BodyPartCategory::get();
+            $bodyPartCategory = BodyPartCategory::create(array(
+                'strBodyPartCategoryID' => $request->input('strBodyPartCategoryID'),
+                'strBodyPartCatName' => trim($request->input('strBodyPartCatName')),
+                'textBodyPartCatDesc' => trim($request->input('textBodyPartCatDesc')),
+                'boolIsActive' => 1
+                ));
+
+         $added=$bodyPartCategory->save();
+          
+
+        \Session::flash('flash_message','Body part category successfully added.'); //flash message
+
+        return redirect('maintenance/body-part-category');
     }
 
     /**

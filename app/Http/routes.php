@@ -84,8 +84,8 @@ Route::group(['prefix' => 'maintenance'], function(){
 Route::group(['prefix' => 'maintenance'], function(){
 	Route::resource('body-part-category', 'BodyPartCategoryController');
 		
-		Route::post('body-part-category/update','BodyPartCategoryController@update_fabricType');
-		Route::post('body-part-category/destroy','BodyPartCategoryController@delete_fabricType');
+		Route::post('body-part-category/update','BodyPartCategoryController@update_bodyPartCategory');
+		Route::post('body-part-category/destroy','BodyPartCategoryController@delete_bodyPartCategory');
 
 
 	Route::resource('body-part-form', 'BodyPartFormController');
