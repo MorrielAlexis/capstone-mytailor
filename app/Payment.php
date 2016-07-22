@@ -10,10 +10,10 @@ class Payment extends Model
 
     protected $primaryKey = 'strPaymentID';
 
-    protected $fillable = array('strCustomerIdFK',
-    					'dtTransacDate',
-    					'dblAmtPayable',
-    					'dblOustandingBal',
-    					'dtDueDate',
+    protected $fillable = array('strTransactionFK', 'strTransacAlterFk',
+    					'dblAmountTendered', 'dblAmountToPay'
+    					'dblOustandingBal', 'strReceivedByEmployeeNameFK', 
+    					'dtPaymentDate', 'dtPaymentDueDate',
+    					'strPaymentStatus', 'strAdditionalChargeFK'
     					'boolIsActive');   
 }
