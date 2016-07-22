@@ -77,15 +77,16 @@
       @endif
 
              <!--  <Duplicate Error Message>   -->
-    @if (Input::get('success') == 'duplicate')
-        <div class="row" id="success-message">
+      @if (Session::has('flash_message_duplicate'))
+        <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
-            <div class="card-panel red">
-              <span class="black-text" style="color:black">Record already exists!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+            <div class="card-panel red accent-1">
+              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              <em> {!! session('flash_message_duplicate') !!}</em>
             </div>
           </div>
         </div>
-      @endif
+      @endif  
 
 
       <!--  <Data Dependency Message> -->
@@ -411,7 +412,7 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input required  id="strFabricCode" name= "strFabricCode" type="text" class="validate"  data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="2">
+                            <input required  id="strFabricCode" name= "strFabricCode" type="text" class="validate"  data-position="bottom" pattern="^[a-zA-Z\-'`\s\d]{2,}$" >
                             <label for="days"><span class="red-text"><b>*</b></span>Fabric Code:</label>
                           </div>
                   </div>
