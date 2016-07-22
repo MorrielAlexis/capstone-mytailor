@@ -23,7 +23,7 @@ class DashboardController extends Controller
     public function dash()
     {
         //$user = Auth::user();
-        return View::make('layouts.master');
+        return view('dashboard');
             //->with('user', $user);
     }
 }

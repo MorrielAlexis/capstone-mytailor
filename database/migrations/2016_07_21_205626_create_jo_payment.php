@@ -21,8 +21,10 @@ class CreateJOPayment extends Migration
             $table->double('dblOustandingBal');
             $table->string('strReceivedByEmployeeNameFK')->index();
             $table->date('dtPaymentDate');
-            $table->date('dtPaymentStatus');
-            $table->string('strAdditionalChargeFK')->index();
+            $table->date('dtPaymentDueDate');
+            $table->string('strPaymentStatus');
+            $table->string('strAdditionalChargeFK')->index()->nullable();
+            $table->boolean('boolIsActive');
             $table->timestamps();
 
             $table->foreign('strTransactionFK')
