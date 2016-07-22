@@ -3,6 +3,137 @@
 @section('content')
 
   <div class="main-wrapper">
+
+          <!--Input Validation-->
+      @if (Input::get('input') == 'invalid')
+        <div class="row" id="success-message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red">
+              <span class="black-text" style="color:black">Invalid input!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+            </div>
+          </div>
+        </div>
+      @endif
+
+      <!-- Errors -->
+        @if ($errors->any())
+           <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red">
+              <span class="black-text" style="color:black"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </div>
+          </div>
+        </div>
+      @endif
+      
+       <!--Add -->
+        @if(Session::has('flash_message'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel yellow accent-1">
+              <span class="alert alert-success"> <i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+             <em> {!! session('flash_message') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif
+
+     <!--Edit -->
+      @if (Session::has('flash_message_update'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel blue accent-1">
+              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              <em> {!! session('flash_message_update') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif
+
+
+      <!--Delete -->
+      @if (Session::has('flash_message_delete'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red accent-2">
+              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+               <em> {!! session('flash_message_delete') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif
+
+      <!--Delete -->
+      @if (Session::has('flash_message_beingused'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red accent-2">
+              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+               <em> {!! session('flash_message_delete') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif
+
+      <!--Delete Garment Category-->
+      @if (Input::get('successDel') == 'true')
+        <div class="row" id="success-message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel yellow">
+              <span class="black-text" style="color:black">Successfully deactivated garment category!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+            </div>
+          </div>
+        </div>
+      @endif
+
+
+
+      <!--Reactivate Garment Category-->
+      @if (Input::get('successRec') == 'true')
+        <div class="row" id="success-message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel yellow">
+              <span class="black-text" style="color:black">Successfully added back garment category!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+            </div>
+          </div>
+        </div>
+      @endif
+
+    <!--  <Duplicate Error Message>   -->
+    @if (Input::get('success') == 'duplicate')
+        <div class="row" id="success-message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red">
+              <span class="black-text" style="color:black">Record already exists!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+            </div>
+          </div>
+        </div>
+      @endif
+
+     <!--  <Data Dependency Message> -->
+       @if (Input::get('success') == 'beingUsed')
+        <div class="row" id="success-message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red">
+              <span class="black-text" style="color:black">Sorry! Segment cannot be deactivated! Segment is still affiliated with other materials.<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+            </div>
+          </div>
+        </div>
+      @endif
+
+     <div class="row">
+      <div class="col s12 m12 l12">
+          <span class="page-title"><h4>Maintenance - Standard Size Category</h4></span>
+      </div>
+    </div>
+
+       <div class="col s6 left">
+         <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="bottom" data-delay="50"  data-tooltip="CLick to add a new standard size category to the table" href="#addStandardSizeCatInfo" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
+       </div>
+     </div>
                  
     <div class="row">
       <div class="col s12 m12 l12">
