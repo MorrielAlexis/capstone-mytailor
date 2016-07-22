@@ -18,9 +18,7 @@ class BodyPartFormController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
-        return view('maintenance-measurement-body-part-form');
-=======
+
         $ids = \DB::table('tblBodyPartForm')
             ->select('strBodyFormID')
             ->orderBy('created_at', 'desc')
@@ -42,11 +40,11 @@ class BodyPartFormController extends Controller
                 ->get();
         
         //load the view and pass the pattern
-        return view('maintenance-segment-pattern')
+       return view('maintenance-measurement-body-part-form')
                     ->with('bodyPartCategory', $bodyPartCategory)
                     ->with('bodyForm', $bodyForm)
                     ->with('newID', $newID);
->>>>>>> d0ac1699112971cf7b03c327c75c858ff51aaad3
+
     }
 
     /**

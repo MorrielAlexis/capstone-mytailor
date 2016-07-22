@@ -16,7 +16,7 @@ class StandardSizeDetailController extends Controller
      */
     public function index()
     {
-        //
+        return view('maintenance-measurement-standard-size-detail');
     }
 
     /**
