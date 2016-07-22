@@ -19,15 +19,36 @@ class OnlineCustomizeWomensController extends Controller
         //
     }
 
-    public function fabricwomens()
+    public function fabric()
     {
         return view('customize.womens-fabric');
     } 
 
-    public function stylewomens()
+    public function stylecollar()
     {
-        return view('customize.womens-style');
+        return view('customize.womens-style-collar');
     }    
+
+    public function stylecuffs()
+    {
+        return view('customize.womens-style-cuffs');
+    }    
+
+    public function stylebuttons()
+    {
+        return view('customize.womens-style-buttons');
+    }    
+
+    public function stylepocketmonogram()
+    {
+        return view('customize.womens-style-pocket-monogram');
+    }    
+
+    public function styleothers()
+    {
+        return view('customize.womens-style-others');
+    }    
+
 
     /**
      * Show the form for creating a new resource.
