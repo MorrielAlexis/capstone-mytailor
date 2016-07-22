@@ -152,11 +152,11 @@ class GarmentSegmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //($request->input('editSegmentDesc'));
     }
 
      function updateGarmentSegment(Request $request)
-    {   ($request->input('editSegmentDesc'));
+    {   
         $segment = GarmentSegment::find($request->input('editSegmentID'));
         $checkSegments = GarmentSegment::all();
 
