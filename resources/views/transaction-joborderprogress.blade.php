@@ -65,16 +65,16 @@
                               <td>@{{ jobOrderDetail.strGarmentCategoryName }}</td>
                               <td>@{{ jobOrderDetail.strSegmentName }}</td>
                               <td>@{{ jobOrderDetail.intQuantity }}</td>
-                              <td>                      
-                                <input type="input-field" value = "@{{ jobOrderDetail.intProgressAmount }}" id="progress" name = "progress{jobOrderDetail]"/>
-                                <label fontsize= "+2"></label>                     
-                              </td>
+                              <td>                     
+                                <input type="input-field" value = "@{{ jobOrderDetail.intProgressAmount }}" id="progress[jobOrderDetail]"/>
+                                <label for ="progress[jobOrderDetail]" fontsize= "+2"></label>                   
+                              </td>           
                             </tr>
                             <tr>
                               <td><b>TOTAL</b></td>
                               <td></td>
-                              <td>@{{getTotal()}}</td>
-                              <td>@{{getTotalProg()}}</td>
+                              <td><b>@{{getTotal()}}</b></td>
+                              <td><b>@{{getTotalProg()}}</b></td>
                             </tr>
                         </tbody>
                       </table>  
@@ -84,11 +84,11 @@
                       <div class = "col s12">
                         <div class = "col s6">
                           <br>
-                          <center><a class="waves-effect waves-light btn">Update</a></center>
+                          <center><button class="waves-effect waves-light btn" ng-click="update()">Update</button></center>
                         </div>
                         <div class = "col s6">
                           <br>
-                          <center><a class="waves-effect waves-light btn">Cancel</a></center>
+                          <center><button class="waves-effect waves-light btn" ng-click="cancel()">Cancel</button></center>
                         </div>  
                       </div>
                     </div>
@@ -128,8 +128,9 @@
   </script>
 
 <script type="text/javascript">
-  $("#progress").on("input propertychange",function(){
-   alert($(this).val()); 
+  $('.progress').on('input', function(){
+   alert($(this).val());
+   console.log($(this).val()); 
   });
 </script>
 
@@ -159,6 +160,12 @@
                 alert('No data found!');              
             });
       };
+      $scope.cancel = function(){
+        $scope.isEmpty=true;
+      }
+      $scope.update = function(user){
+        alert("ffffff")
+      }
       $scope.getTotal = function(){
         var total = 0;
         for(var i = 0; i < $scope.jobOrderDetails.length; i++){
@@ -194,7 +201,7 @@
         console.log(prog);
         $('.determinate').css('width', prog + '%');
 
-        return prog;
+        return prog.toFixed(2);
       }
     });   
   </script>
