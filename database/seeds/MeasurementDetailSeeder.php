@@ -18,8 +18,8 @@ class MeasurementDetailSeeder extends Seeder
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Chest',
                 'txtMeasDetailDesc' =>'',
-                'dblMeasDetailMinCm' =>'',
-                'dblMeasDetailMinInch' =>'',
+                'dblMeasDetailMinCm' =>'14.5',
+                'dblMeasDetailMinInch' =>'5.51',
                 'boolIsActive' => '1'
             ),
 
@@ -29,8 +29,8 @@ class MeasurementDetailSeeder extends Seeder
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Hips',
                 'txtMeasDetailDesc' =>'',
-                'dblMeasDetailMinCm' =>'',
-                'dblMeasDetailMinInch' =>'',
+                'dblMeasDetailMinCm' =>'37',
+                'dblMeasDetailMinInch' =>'28',
                 'boolIsActive' => '1'
             ),
 
@@ -40,8 +40,8 @@ class MeasurementDetailSeeder extends Seeder
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Back Length',
                 'txtMeasDetailDesc' =>'',
-                'dblMeasDetailMinCm' =>'',
-                'dblMeasDetailMinInch' =>'',
+                'dblMeasDetailMinCm' =>'28',
+                'dblMeasDetailMinInch' =>'19',
                 'boolIsActive' => '1'
             ),
 
@@ -51,8 +51,8 @@ class MeasurementDetailSeeder extends Seeder
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Shoulder',
                 'txtMeasDetailDesc' =>'',
-                'dblMeasDetailMinCm' =>'',
-                'dblMeasDetailMinInch' =>'',
+                'dblMeasDetailMinCm' =>'16',
+                'dblMeasDetailMinInch' =>'7',
                 'boolIsActive' => '1'
             ),
 
@@ -62,8 +62,8 @@ class MeasurementDetailSeeder extends Seeder
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Neck',
                 'txtMeasDetailDesc' =>'',
-                'dblMeasDetailMinCm' =>'',
-                'dblMeasDetailMinInch' =>'',
+                'dblMeasDetailMinCm' =>'14.5',
+                'dblMeasDetailMinInch' =>'5.51',
                 'boolIsActive' => '1'
             ),
 
@@ -74,8 +74,8 @@ class MeasurementDetailSeeder extends Seeder
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Bicep',
                 'txtMeasDetailDesc' =>'',
-                'dblMeasDetailMinCm' =>'',
-                'dblMeasDetailMinInch' =>'',
+                'dblMeasDetailMinCm' =>'11',
+                'dblMeasDetailMinInch' =>'2',
                 'boolIsActive' => '1'
             ),
 
@@ -86,8 +86,8 @@ class MeasurementDetailSeeder extends Seeder
                 'strMeasCategoryFK' =>'MEASCAT003',
                 'strMeasDetailName' =>'Half Waist',
                 'txtMeasDetailDesc' =>'',
-                'dblMeasDetailMinCm' =>'',
-                'dblMeasDetailMinInch' =>'',
+                'dblMeasDetailMinCm' =>'23',
+                'dblMeasDetailMinInch' =>'14',
                 'boolIsActive' => '1'
             ),
 
@@ -97,8 +97,8 @@ class MeasurementDetailSeeder extends Seeder
                 'strMeasCategoryFK' =>'MEASCAT003',
                 'strMeasDetailName' =>'Outseam',
                 'txtMeasDetailDesc' =>'',
-                'dblMeasDetailMinCm' =>'',
-                'dblMeasDetailMinInch' =>'',
+                'dblMeasDetailMinCm' =>'21',
+                'dblMeasDetailMinInch' =>'12',
                 'boolIsActive' => '1'
             ),
 
@@ -108,8 +108,8 @@ class MeasurementDetailSeeder extends Seeder
                 'strMeasCategoryFK' =>'MEASCAT003',
                 'strMeasDetailName' =>'Half Knee',
                 'txtMeasDetailDesc' =>'',
-                'dblMeasDetailMinCm' =>'',
-                'dblMeasDetailMinInch' =>'',
+                'dblMeasDetailMinCm' =>'15',
+                'dblMeasDetailMinInch' =>'7',
                 'boolIsActive' => '1'
             ),
 
@@ -120,8 +120,8 @@ class MeasurementDetailSeeder extends Seeder
                 'strMeasCategoryFK' =>'MEASCAT003',
                 'strMeasDetailName' =>'Half Thigh',
                 'txtMeasDetailDesc' =>'',
-                'dblMeasDetailMinCm' =>'',
-                'dblMeasDetailMinInch' =>'',
+                'dblMeasDetailMinCm' =>'20',
+                'dblMeasDetailMinInch' =>'11',
                 'boolIsActive' => '1'
             ),
 
@@ -131,8 +131,8 @@ class MeasurementDetailSeeder extends Seeder
                 'strMeasCategoryFK' =>'MEASCAT003',
                 'strMeasDetailName' =>'Back Rise',
                 'txtMeasDetailDesc' =>'',
-                'dblMeasDetailMinCm' =>'',
-                'dblMeasDetailMinInch' =>'',
+                'dblMeasDetailMinCm' =>'15',
+                'dblMeasDetailMinInch' =>'8',
                 'boolIsActive' => '1'
             ),
 
@@ -142,8 +142,8 @@ class MeasurementDetailSeeder extends Seeder
                 'strMeasCategoryFK' =>'MEASCAT003',
                 'strMeasDetailName' =>'Front Rise',
                 'txtMeasDetailDesc' =>'',
-                'dblMeasDetailMinCm' =>'',
-                'dblMeasDetailMinInch' =>'',
+                'dblMeasDetailMinCm' =>'16',
+                'dblMeasDetailMinInch' =>'7',
                 'boolIsActive' => '1'
             ),
 
@@ -153,8 +153,8 @@ class MeasurementDetailSeeder extends Seeder
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Crotch',
                 'txtMeasDetailDesc' =>'',
-                'dblMeasDetailMinCm' =>'',
-                'dblMeasDetailMinInch' =>'',
+                'dblMeasDetailMinCm' =>'26',
+                'dblMeasDetailMinInch' =>'17',
                 'boolIsActive' => '1'
             ),
 
@@ -164,8 +164,8 @@ class MeasurementDetailSeeder extends Seeder
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Jack Length',
                 'txtMeasDetailDesc' =>'',
-                'dblMeasDetailMinCm' =>'',
-                'dblMeasDetailMinInch' =>'',
+                'dblMeasDetailMinCm' =>'20',
+                'dblMeasDetailMinInch' =>'11',
                 'boolIsActive' => '1'
             ),
 
@@ -175,8 +175,8 @@ class MeasurementDetailSeeder extends Seeder
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Wrist',
                 'txtMeasDetailDesc' =>'',
-                'dblMeasDetailMinCm' =>'',
-                'dblMeasDetailMinInch' =>'',
+                'dblMeasDetailMinCm' =>'10',
+                'dblMeasDetailMinInch' =>'1',
                 'boolIsActive' => '1'
             )
 

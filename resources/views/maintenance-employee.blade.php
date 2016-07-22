@@ -4,6 +4,20 @@
 
   <div class="main-wrapper" style="margin-top:30px">
       <!--Input Validation-->
+      <!-- Errors -->
+        @if ($errors->any())
+           <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red">
+              <span class="black-text" style="color:black"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </div>
+          </div>
+        </div>
+      @endif
+      
       @if (Input::get('input') == 'invalid')
         <div class="row" id="success-message">
           <div class="col s12 m12 l12">
@@ -446,14 +460,14 @@
 
                <div class = "col s12" style="padding:15px;  border:3px solid white;">    
                   <div class="input-field col s6">
-                    <input required id="strCellNo" pattern="^[0-9]{11,11}$" name="strCellNo" type="text" class="validate" placeholder="09361234567" maxlength="10">
+                    <input required id="strCellNo" pattern="((\+63)|0)\d{10}" name="strCellNo" type="text" class="validate" placeholder="09361234567" maxlength="11">
                     <label for="cellphone_number">Cellphone Number <span class="red-text"><b>*</b></span></label>
                     <span id="left"></span>
                   </div>
 
                  
                   <div class="input-field col s6">
-                    <input id="strCellNoAlt" pattern="^[0-9]{11,11}$" name="strCellNoAlt" type="text" class="validate" placeholder="09361234567" maxlength="10">
+                    <input id="strCellNoAlt" pattern="^[0-9]{11,11}$" name="strCellNoAlt" type="text" class="validate" placeholder="09361234567" maxlength="11" pattern="((\+63)|0)\d{10}">
                     <label for="cellphone_number">Cellphone Number (Alt)</label>
                     <span id="left"></span>
                   </div>

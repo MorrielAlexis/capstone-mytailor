@@ -26,7 +26,7 @@ class MaintenanceNeedleRequest extends Request
     {
         return [
             'strNeedleBrand'    =>  'required|unique_with:tblNeedle,strNeedleSize'
-            // 'editThreadBrand'   =>  'unique:tblThread,strThreadBrand'
+            
         ];
     }
 
@@ -35,7 +35,7 @@ class MaintenanceNeedleRequest extends Request
         return [
             'strNeedleBrand.unique'  =>  'Needle already exists.',
             'strNeedleBrand.required' => 'Needle name is required.'
-            // 'editThreadBrand.unique'  => 'Thread name already exists.'
+           
         ];
 
     }

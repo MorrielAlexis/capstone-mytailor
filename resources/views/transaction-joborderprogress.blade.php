@@ -52,11 +52,10 @@
                       <table class = "centered">
                         <thead>
                           <tr>
-                            <td> <center>Garment Category Name</center></td>
-                            <td> <center>Segment Name</center></td>
-                            <td> <center>Segment Pattern Name</center></td>
-                            <td> <center>Quantity</center></td>
-                            <td> <center>No. of Finished Garment</center></td>
+                            <th> <center>Garment Category Name</center></th>
+                            <th> <center>Segment Name</center></th>
+                            <th> <center>Quantity</center></th>
+                            <th> <center>No. of Finished Garment</center></th>
                           </tr>
                         </thead>
 
@@ -65,12 +64,17 @@
                             <tr ng-repeat="jobOrderDetail in jobOrderDetails">
                               <td>@{{ jobOrderDetail.strGarmentCategoryName }}</td>
                               <td>@{{ jobOrderDetail.strSegmentName }}</td>
-                              <td>@{{ jobOrderDetail.strSegPName }}</td>
                               <td>@{{ jobOrderDetail.intQuantity }}</td>
                               <td>                      
-                                <input type="input-field" id="in1"/>
-                                <label id= "in1" fontsize= "+2"></label>                     
+                                <input type="input-field" value = "@{{ jobOrderDetail.intProgressAmount }}" id="progress" name = "progress{jobOrderDetail]"/>
+                                <label fontsize= "+2"></label>                     
                               </td>
+                            </tr>
+                            <tr>
+                              <td><b>TOTAL</b></td>
+                              <td></td>
+                              <td>@{{getTotal()}}</td>
+                              <td>@{{getTotalProg()}}</td>
                             </tr>
                         </tbody>
                       </table>  
@@ -92,13 +96,13 @@
                     <div class ="row">
                       <div class = "col s12">
                         <label><font size = "+2">Progress Bar: &#09</font></label>
-                        <label id= "lbl"></label>
+                        <label id= "lbl"> <font Size= "+2">@{{getProg()}} %</font></label>
                       </div>
                     </div>
 
                     <div class = "clearfix"></div>
                     <div class="progress" style= "height: 30px;">
-                      <div class="determinate" style="width: 0%" >
+                      <div class="determinate" style="@{{getProg()}}" >
                         <span id="span" style = "padding-left: 558px;"></span>
                       </div>
                     </div> 
@@ -120,52 +124,15 @@
   <script>
     $(document).ready(function() {
       $('select').material_select();
-      // var checked = 0;
-      // var allItems = $('.chkbx').length;
-      // $('.chkbx').each(function () {
-      //   checked += this.checked ? 1 : 0;
-      // });
-      
-      // var progress = checked > 0 ? ((checked/allItems) * 100) : 0;
-      
-      // console.log('progress', progress);
-      
-      // $('.determinate').css('width', progress + '%');
-
-      // var lbl = document.getElementById("lbl");
-      // lbl.style.fontSize = "2em";
-      // lbl.innerHTML = progress + '%';
-
-      // var span = document.getElementById("span");
-      // span.style.fontSize = "1em";
-      // span.innerHTML = progress + '%';
     });
   </script>
 
+<script type="text/javascript">
+  $("#progress").on("input propertychange",function(){
+   alert($(this).val()); 
+  });
+</script>
 
-  <script type="text/javascript">
-    // $('.chkbx').on('change', function () {
-    //   var checked = 0;
-    //   var allItems = $('.chkbx').length;
-    //   $('.chkbx').each(function () {
-    //     checked += this.checked ? 1 : 0;
-    // });
-      
-    //   var progress = checked > 0 ? ((checked/allItems) * 100) : 0;
-      
-    //   console.log('progress', progress);
-      
-    // $('.determinate').css('width', progress + '%');
-
-    //   var lbl = document.getElementById("lbl");
-    //   lbl.style.fontSize = "2em";
-    //   lbl.innerHTML = progress + '%';
-
-    //   var span = document.getElementById("span");
-    //   span.style.fontSize = "1em";
-    //   span.innerHTML = progress + '%';
-    // });
-  </script>
 
  <script type="text/javascript">
     var app = angular.module('tailoring', []);
@@ -192,13 +159,45 @@
                 alert('No data found!');              
             });
       };
+      $scope.getTotal = function(){
+        var total = 0;
+        for(var i = 0; i < $scope.jobOrderDetails.length; i++){
+            var jobOrderDetail = $scope.jobOrderDetails[i];
+            total += jobOrderDetail.intQuantity;
+        }
+        return total;
+      }
+      $scope.getTotalProg = function(){
+        var totalProg = 0;
+        for(var i = 0; i < $scope.jobOrderDetails.length; i++){
+            var jobOrderDetail = $scope.jobOrderDetails[i];
+            totalProg += jobOrderDetail.intProgressAmount;
+        }
+        return totalProg;
+      }
+      $scope.getProg = function(){
+        var prog = 0;
+        var total = 0;
+        var totalProg = 0;
+
+        for(var i = 0; i < $scope.jobOrderDetails.length; i++){
+            var jobOrderDetail = $scope.jobOrderDetails[i];
+            total += jobOrderDetail.intQuantity;
+        }
+
+        for(var i = 0; i < $scope.jobOrderDetails.length; i++){
+            var jobOrderDetail = $scope.jobOrderDetails[i];
+            totalProg += jobOrderDetail.intProgressAmount;
+        }
+
+        prog = (totalProg/total)*100;
+        console.log(prog);
+        $('.determinate').css('width', prog + '%');
+
+        return prog;
+      }
     });   
   </script>
 
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $('ul.tabs').tabs();
-    });
-  </script>
 
 @stop

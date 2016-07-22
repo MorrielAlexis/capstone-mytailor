@@ -88,6 +88,17 @@
         </div>
       @endif
 
+       @if (Session::has('flash_message_duplicate'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red accent-1">
+              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              <em> {!! session('flash_message_duplicate') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif  
+
 
 
       <!--Reactivate Garment Category-->
@@ -160,15 +171,16 @@
                           <a style = "color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement information" href="#edit{{ $bodyPartCategory->strBodyPartCategoryID }}"><i class="mdi-editor-mode-edit"></i></a>
                           <a style = "color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to delete measurement information" href="#del{{ $bodyPartCategory->strBodyPartCategoryID }}"><i class="mdi-action-delete"></i></a>
                       
-                          <div id="edit{{ $bodyPartCategory->strBodyPartCategoryID }}" class="modal modal-fixed-footer">
-                            <h5><font color = "#1b5e20"><center>EDIT BODY PART INFORMATION</center> </font> </h5>
+                          <div id="edit{{ $bodyPartCategory->strBodyPartCategoryID }}" class="modal modal-fixed-footer">  
+                            <h5><font color = "#1b5e20"><center>UPDATE BODY PART INFORMATION</center> </font> </h5>
                               {!! Form::open(['url' => 'maintenance/body-part-category/update', 'method' => 'post']) !!}
                             <div class="divider" style="height:2px"></div>
                             <div class="modal-content col s12"> 
 
                               <div class="input-field">
-                                <input value="" id="editBodyPartCatID" name="editBodyPartCatID" type="hidden" readonly>                                 
-                              </div>
+                                      <input value="{{ $bodyPartCategory->strBodyPartCategoryID
+                                       }}" id="editBodyPartCatID" name="editBodyPartCatID" type="hidden" readonly>                                 
+                                    </div>
 
                               <div class="input-field">
                                 <label for="editBodyPartCatName">Body Part Category Name</label>
@@ -179,14 +191,13 @@
                                 <label for="editBodyPartCatDesc">Body Part Category Description</label>
                                 <input value="{{ $bodyPartCategory->textBodyPartCatDesc }}" id="editBodyPartCatDesc" name="editBodyPartCatDesc" type="text">                        
                               </div>
-                                {!! Form::close() !!}
-
                             </div> 
 
                             <div class="modal-footer col s12" style="background-color:#26a69a">
                               <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Update</button>
                               <a class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
                             </div>
+                              {!! Form::close() !!}
                           </div>
 
                          

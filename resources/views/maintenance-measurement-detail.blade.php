@@ -121,8 +121,14 @@
                   <table class = "table centered data-measDet" align = "center" border = "1">
                     <thead>
                       <tr>
-                        <th data-field="name">Measurement Name</th>
-                        <th data-field="description">Measurement Description</th>
+                        <th data-field="MeasurementDetailID">Measurement Detail ID</th>
+                        <th data-field="MeasDetSegmentFK">Segment FK</th>
+                        <th data-field="MeasCategoryFK">Category FK</th>
+                        <th data-field="MeasDetailName">Measurement Detail Name</th>
+                        <th data-field="MeasDetailDesc">Description</th>
+                        <th data-field="MeasDetailMinCm">Cm</th>
+                        <th data-field="MeasDetailMinInch">Inch</th>
+                        <th data-field="MeasDetInactiveReason">Inactive Reason</th>
                         <th data-field="action">Actions</th>
                       </tr>
                     </thead>
@@ -149,15 +155,36 @@
 
                               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                     <div class="input-field col s12">
-                                      <input required value="{{ $detail->strMeasurementDetailName }}" id="editDetailName" name = "editDetailName" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
+                                      <input required value="{{ $detail->strMeasDetailName }}" id="editMeasDetailName" name = "editMeasDetailName" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                                       <label for="measurement_name"> Measurement Name <span class="red-text"><b>*</b></span></label>
                                     </div>
                               </div>
 
                               <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                                     <div class="input-field col s12">
-                                      <input  value="{{ $detail->txtMeasurementDetailDesc }}" id="editDetailDesc" name = "editDetailDesc" type="text" class="validate">
+                                      <input  value="{{ $detail->txtMeasDetailDesc }}" id="editMeasDetailDesc" name = "editMeasDetailDesc" type="text" class="validate">
                                       <label for="measurement_desc">Measurement Description</label>
+                                    </div>
+                              </div>
+
+                              <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                                    <div class="input-field col s12">
+                                      <input required value="{{ $detail->dblMeasDetailMinCm }}" id="editMeasDetailMinCm" MinCm = "editMeasDetailName" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
+                                      <label for="measurement_cm">Minimun Cm <span class="red-text"><b>*</b></span></label>
+                                    </div>
+                              </div>
+
+                              <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
+                                    <div class="input-field col s12">
+                                      <input  value="{{ $detail->dblMeasDetailMinInch }}" id="editMeasDetailMinInch" name = "editMeasDetailMinInch" type="text" class="validate">
+                                      <label for="measurement_inch">Minimun Inch</label>
+                                    </div>
+                              </div>
+
+                              <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
+                                    <div class="input-field col s12">
+                                      <input  value="{{ $detail->strMeasDetInactiveReason }}" id="editMeasDetInactiveReason" name = "editMeasDetInactiveReason" type="text" class="validate">
+                                      <label for="measurement_inactive">Inactive Reason</label>
                                     </div>
                               </div>
                               </div>
@@ -183,15 +210,29 @@
 
                             <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                   <div class="input-field col s12">
-                                    <input value="{{ $detail->strMeasurementDetailName }}" type="text"  readonly>
+                                    <input value="{{ $detail->strMeasDetailName }}" type="text"  readonly>
                                     <label for="measurement_name"> Measurement Name </label>
                                   </div>
                             </div>
 
                             <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                   <div class="input-field col s12">
-                                    <input value="{{ $detail->txtMeasurementDetailDesc }}"type="text"  readonly>
+                                    <input value="{{ $detail->txtMeasDetailDesc }}"type="text"  readonly>
                                     <label for="measurement_desc">Measurement Description </label>
+                                  </div>
+                            </div>
+
+                            <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                                  <div class="input-field col s12">
+                                    <input value="{{ $detail->dblMeasDetailMinCm }}" type="text"  readonly>
+                                    <label for="measurement_cm"> Minimum Cm </label>
+                                  </div>
+                            </div>
+
+                            <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                                  <div class="input-field col s12">
+                                    <input value="{{ $detail->dblMeasDetailMinInch }}"type="text"  readonly>
+                                    <label for="measurement_inch">Minimun Inch </label>
                                   </div>
                             </div>
 
@@ -240,17 +281,39 @@
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input required id="strMeasurementDetailName" name= "strMeasurementDetailName" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" placeholder="Chest">
+                            <input required id="strMeasDetailName" name= "strMeasDetailName" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" placeholder="Chest">
                             <label for="measurement_name"> Measurement Name <span class="red-text"><b>*</b></span></label>
                           </div>
                       </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                           <div class="input-field col s12">
-                            <input  id="txtMeasurementDetailDesc" name ="txtMeasurementDetailDesc" type="text" class="validate" placeholder="Front portion to be measured">
+                            <input  id="txtMeasDetailDesc" name ="txtMeasDetailDesc" type="text" class="validate" placeholder="Front portion to be measured">
                             <label for="measurement_desc">Measurement Description </label>
                           </div>
                       </div>
+
+                      <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                          <div class="input-field col s12">
+                            <input required id="dblMeasDetailMinCm" name= "dblMeasDetailMinCm" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" placeholder="Chest">
+                            <label for="measurement_cm"> Minimum Cm <span class="red-text"><b>*</b></span></label>
+                          </div>
+                      </div>
+
+                      <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
+                          <div class="input-field col s12">
+                            <input  id="dblMeasDetailMinInch" name ="dblMeasDetailMinInch" type="text" class="validate" placeholder="Front portion to be measured">
+                            <label for="measurement_inch">Minimum Inch </label>
+                          </div>
+                      </div>                      
+
+                      <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
+                          <div class="input-field col s12">
+                            <input  id="strMeasDetInactiveReason" name ="strMeasDetInactiveReason" type="text" class="validate" placeholder="Front portion to be measured">
+                            <label for="inactive_reason">Inactive Reason </label>
+                          </div>
+                      </div>                                            
+
                       </div>
 
                       <div class="modal-footer col s12" style="background-color:#26a69a">

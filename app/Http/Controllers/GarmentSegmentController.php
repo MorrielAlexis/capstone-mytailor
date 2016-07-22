@@ -156,7 +156,7 @@ class GarmentSegmentController extends Controller
     }
 
      function updateGarmentSegment(Request $request)
-    {   dd($request->input('editSegmentDesc'));
+    {   ($request->input('editSegmentDesc'));
         $segment = GarmentSegment::find($request->input('editSegmentID'));
         $checkSegments = GarmentSegment::all();
 
@@ -192,7 +192,6 @@ class GarmentSegmentController extends Controller
             }
                 $segment->save();
                 
-
             \Session::flash('flash_message_update','Segment detail/s successfully updated.'); //flash message   
         }else \Session::flash('flash_message_duplicate','Segment already exists.'); //flash message 
 
