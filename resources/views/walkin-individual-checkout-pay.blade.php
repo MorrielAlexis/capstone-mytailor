@@ -77,6 +77,7 @@
 						</div>
 
 					<!--For the design summary-->
+					@foreach($segments as $segment)
 						<div class="col s6" style="border-left:3px gray solid">
 			      			<p style="color: teal">Design for <b>{{ $segment->strGarmentCategoryName }} - {{ $segment->strSegmentName }}</b></p>
 	                        <table class = "table centered design-summary z-depth-1" border = "1">
@@ -88,38 +89,18 @@
 					              	</tr>
 				              	</thead>
 				              	<tbody>
-				              		@foreach($segments as $segment)
+
 						            <tr>
 						               <td>Lapel</td>
 						               <td>Shawl Type</td>
 						               <!--<td> </td>-->
 						            </tr>
-									@endforeach
 						        </tbody>
 						    </table>
 
 						    <div class="col s12"><div class="divider" style="height:2px"></div></div>
-
-						    <p style="color: teal">Design for <b>{{ $segment->strGarmentCategoryName }} - {{ $segment->strSegmentName }}</b></p>
-	                        <table class = "table centered design-summary z-depth-1" border = "1">
-			       				<thead style="color:gray">
-				          			<tr>
-					                  <th data-field="product">Style Category</th>         
-					                  <th data-field="quantity">Segment Pattern</th>
-					                  <!--<th data-field="price">Total Price</th>-->
-					              	</tr>
-				              	</thead>
-				              	<tbody>
-				              		@foreach($segments as $segment)
-						            <tr>
-						               <td>Lapel</td>
-						               <td>Shawl Type</td>
-						               <!--<td> </td>-->
-						            </tr>
-									@endforeach
-						        </tbody>
-						    </table>
 						</div>
+						@endforeach
 		      		<!--End of design summary-->
 		      		</div>
 

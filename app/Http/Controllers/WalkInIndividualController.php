@@ -165,6 +165,14 @@ class WalkInIndividualController extends Controller
 
     public function information(Request $request)
     {   
+        $values = session()->get('segment_values');
+        $segmentStyles = SegmentStyle::all();
+
+        foreach($segmentStyles as $segmentStyle){
+            var_dump($request->input('rdb_pattern' . $segmentStyle->strSegStyleCatID));
+        }
+
+        dd("");
         $joID = \DB::table('tblJobOrder')
             ->select('strJobOrderID')
             ->orderBy('created_at', 'desc')
