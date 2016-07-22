@@ -13,14 +13,14 @@
    <div class="row" style="margin-top:50px">
 		<div class="col s12 m12 l12">
 
-			<div class="col s12 m9 l10">
+			<div class="col s12 m9 l12" style="padding-left:5%; padding-right:5%">
 				<ul class="tabs transparent" style="margin-top:15px">
 					<li class="tab col s12" style="border-top-left-radius: 20px; border-top-right-radius: 20px; background-color: #00b0ff;"><a style="color:black; padding-top:5px; opacity:0.80" href="#shoppingCart"></a></li>	
 					<div class="indicator white" style="z-index:1"></div>
 	            </ul>
 	        </div>
 				<div class="row">
-				    <div class="col s12 m9 l10">
+				    <div class="col s12 m9 l12" style="padding-left:5%; padding-right:5%">
 				    	<div id="billCustomer" class="card-panel">
 							<div class="card-content">
 								<div class="row">
@@ -293,13 +293,6 @@
 					</div>
 
 
-
-
-					<div class="col hide-on-small-only m3 l2" style="margin-top:60px">
-				    	<a href="{{URL::to('/transaction/billing-payment')}}" class="btn tooltipped" data-position="bottom" data-delay"50" data-tooltip="Click to bill a new customer" style="padding-left:7px; padding-right:7px; background-color:#fb8c00; margin-bottom:30px"><b>New Customer Payment</b></a>
-				    	<a href="{{URL::to('/transaction/billing-collection')}}" class="btn tooltipped" data-position="bottom" data-delay"50" data-tooltip="Click to view collections" style="padding-left:10px; padding-right:10px; background-color:#fb8c00; margin-bottom:30px"><b>View Collections</b></a>
-				    	<a href="" class="btn tooltipped" data-position="bottom" data-delay"50" data-tooltip="Click to check for incoming deadlines" style="padding-left:13.5px; padding-right:13.5px; background-color:#fb8c00"><b>Review Deadlines</b></a>
-				    </div>
 				</div>
 
 			</div>

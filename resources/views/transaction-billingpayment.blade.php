@@ -96,23 +96,25 @@
 																<th data-field="order-no">Order No.</th>
 																<th data-field="transaction-date">Transaction Date</th>
 																<th data-field="total-amount-pay">Total Amount To Pay</th>
+																<th data-field="total-amount-paid">Total Amount Paid</th>
 																<th data-field="outstanding-bal">Outstanding Balance</th>
-																<th data-field="due-date">Due Date</th>
+																<th data-field="due-date" style="color:red">Due Date</th>
 															</thead>
 															<tbody>
-																@if(isset($pending_payments))
-																@foreach($pending_payments as $pending_payment)
+															@if(isset($pending_payments))
+															@foreach($pending_payments as $pending_payment)
 																@if($pending_payment->boolIsActive == 1)
 																<tr>																
 																	<td><a href="#summary-of-order" class="modal-trigger tooltipped" data-position="bottom" data-delay"50" data-tooltip="Click to view summary of orders"><u>{{ $pending_payment->strJobOrderID }}</u></a></td>
 																	<td>{{ $pending_payment->dtOrderDate }}</td>
 																	<td>Php {{ number_format($pending_payment->dblOrderTotalPrice, 2) }}</td>
+																	<td>Php {{ number_format($pending_payment->dblAmountToPay, 2) }}</td>
 																	<td>Php {{ number_format($pending_payment->dblOustandingBal, 2) }}</td>
-																	<td>{{ $pending_payment->dtPaymentDueDate}}</td>
+																	<td style="color:red">{{ $pending_payment->dtPaymentDueDate}}</td>
 																</tr>
 																@endif
-																@endforeach
-																@endif
+															@endforeach
+															@endif
 															</tbody>
 														</table>
 													</div>
@@ -128,66 +130,70 @@
 											<div class="divider" style="height:2px"></div>
 											<div class="modal-content col s12">
 												
+												
 												<div class="col s6" style="margin-top:20px;">
 												<label>This is a summary of orders:</label>
 												</div>
 
 												<div class="col s6">
 													<div class="col s6"><p style="color:gray">Date of Transaction:</p></div>
-													<div class="col s6"><h6 style="color:red; margin-top:15px"><b>May 3, 2016</b></h6></div>
+													@if(isset($pending_payments))
+									              	@foreach($pending_payments as $pending_payment)
+									              		@if($pending_payment->boolIsActive == 1)
+													<div class="col s6"><h6 style="color:red; margin-top:15px"><b>{{ $pending_payment->dtOrderDate }}</b></h6></div>
+														@endif
+													@endforeach
+													@endif
 												</div>
 
 														<div class="container">
 									                        <table class = "table centered order-summary" border = "1">
 											       				<thead style="color:gray">
 												          			<tr>
-													                  <th data-field="product">Package</th>         
+													                  <th data-field="product">Item</th>         
 													                  <th data-field="quantity">Quantity</th>
 													                  <th data-field="price">Unit Price</th>
 													                  <th data-field="price">Total Price</th>
 													              	</tr>
 												              	</thead>
 												              	<tbody>
+												              	@if(isset($or_summary))
+												              	@foreach($or_summary as $summary)
+												              		@if($ummary->boolIsActive == 1)
 														            <tr>
-														               <td>Men Set A</td>
-														               <td>19</td>
-														               <td>1,400.00 PHP</td>
-														               <td>26,600.00 PHP</td>
+														               <td>{{ $summary->strGarmentCategoryName }} , {{ $summary->strSegmentName }}</td>
+														               <td>{{ $summary->intQuantity }}</td>
+														               <td>{{ $summary->dblUnitPrice }}</td>
+														               <td>{{ $summary->dblUnitPrice*2 }}</td>
 														            </tr>
-
-														            <tr>
-														               <td>Women Set A</td>
-														               <td>38</td>
-														               <td>1,300.00 PHP</td>
-														               <td>49,400.00 PHP</td>
-														            </tr>
-
-														            <tr>
-														               <td>Blazer</td>
-														               <td>19</td>
-														               <td>900.00 PHP</td>
-														               <td>17,100.00 PHP</td>
-														            </tr>
-
+																	@endif
+																@endforeach
+																@endif
 														        </tbody>
 														    </table>
 											      		</div>
 
 											      		<div class="divider"></div>
 											      		<div class="divider"></div>
-
+														@if(isset($pending_payments))
+														@foreach($pending_payments as $pending_payment)
+														@if($pending_payment->boolIsActive == 1)
 												      	<div class="col s12">
 															<div class="col s6"><p style="color:gray">Estimated time to finish all orders:<p style="color:black">60 days</p></p></div>
-															<div class="col s6"><p style="color:gray">Total Amoun to Pay:<p style="color:black">93,100.00 PHP</p></p></div>
+															<div class="col s6"><p style="color:gray">Total Amoun to Pay:<p style="color:black">{{ $pending_payment->dblOrderTotalPrice }}</p></p></div>
 														</div>
 
 														<div class="col s12" style="margin-bottom:50px">
-															<p style="color:red"><b>Due date of payment (pay balance before or on the said date):</b> JULY 16, 2015</p>
+															<p style="color:red"><b>Due date of payment (pay balance before or on the said date):</b> {{ $pending_payment->dtPaymentDueDate }}</p>
 														</div>
+														@endif
+														@endforeach
+														@endif
+
 													</div>
 
 											<div class="modal-footer col s12">	
-								                <a href="" class="waves-effect waves-green btn-flat"><font color="black">OK</font></a>								                
+								                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">OK</font></a>								                
 								            </div>
 										{!! Form::close() !!}
 							</div>

@@ -49,26 +49,41 @@ class BillingPaymentController extends Controller
                     ->get();
         */
 
-        $customers = \DB::table('tblJobOrder AS a')
-                    ->leftJoin('tblCustIndividual AS b', 'a.strJO_CustomerFK', '=', 'b.strIndivID')
-                    ->select('a.*', \DB::raw('CONCAT(b.strIndivFName, " ", b.strIndivMName, " ", b.strIndivLName) AS fullname'))
-                    ->where(\DB::raw('CONCAT(b.strIndivFName, " ", b.strIndivMName, " ", b.strIndivLName)'), $search_query)
+        $customers = \DB::table('tblCustIndividual AS a')
+                    ->select(\DB::raw('CONCAT(a.strIndivFName, " ", a.strIndivMName, " ", a.strIndivLName) AS fullname'))
+                    ->where(\DB::raw('CONCAT(a.strIndivFName, " ", a.strIndivMName, " ", a.strIndivLName)'), $search_query)
                     ->get();
         
 
         $pending_payments = \DB::table('tblJOPayment AS a')
                     ->leftJoin('tblJobOrder AS b', 'a.strTransactionFK', '=', 'b.strJobOrderID')
                     ->leftJoin('tblCustIndividual AS c', 'b.strJO_CustomerFK', '=', 'c.strIndivID')
-                    ->select('b.*')
+                    ->select('a.*', 'b.*', \DB::raw('CONCAT(c.strIndivFName, " ", c.strIndivMName, " ", c.strIndivLName)'))
+                    ->where(\DB::raw('CONCAT(c.strIndivFName, " ", c.strIndivMName, " ", c.strIndivLName)'), $search_query)
                     ->where('a.strPaymentStatus', 'Pending')
                     ->get();
         //dd($pending_payments);
+
+        $or_summary = \DB::table('tblJobOrder AS a')
+                    ->leftJoin('tblJOSpecific AS b', 'b.strJobOrderFK', '=', 'a.strJobOrderID')
+                    ->select('a.*', 'b.*')
+                    ->where('b.strJobOrderFK', 'a.strJobOrderID')
+                    ->get();
+
+        /*$order_summary = \DB::table('tblJOSpecific AS a')
+                    ->leftJoin('tblJobOrder AS b', 'a.strJobOrderFK', '=', 'b.strJobOrderID')
+                    ->leftJoin('tblSegment AS c', 'a.strJOSegmentFK', '=', 'c.strSegmentID')
+                    ->leftJoin('tblGarmentCategory AS d', 'c.strSegCategoryFK', '=', 'd.strGarmentCategoryID')
+                    ->select('a.*', 'b.*', 'c.*', 'd.strGarmentCategoryName')
+                    ->where('a.strJOSpecificID', 'b.strJobOrderID')
+                    ->get();*/
         
 
         return view('transaction-billingpayment')
                 ->with('customers', $customers)
-                ->with('types', $types);
-                //->with('pending_payments', $pending_payments);
+                ->with('types', $types)
+                ->with('pending_payments', $pending_payments)
+                ->with('or_summary', $or_summary);
                 //->with('payments', $payments);
     }
 
