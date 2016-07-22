@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Fabric;
+use App\FabricType;
+use App\FabricColor;
+use App\FabricPattern;
+use App\FabricThreadCount;
+
 class OnlineCustomizeWomensController extends Controller
 {
     /**
@@ -14,6 +20,12 @@ class OnlineCustomizeWomensController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         //
@@ -21,7 +33,18 @@ class OnlineCustomizeWomensController extends Controller
 
     public function fabricwomens()
     {
-        return view('customize.womens-fabric');
+        $fabrics = Fabric::all();
+        $fabricThreadCounts = FabricThreadCount::all();
+        $fabricColors = FabricColor::all();
+        $fabricTypes = FabricType::all();
+        $fabricPatterns = FabricPattern::all();
+
+        return view('customize.womens-fabric')
+                ->with('fabrics', $fabrics)
+                ->with('fabricThreadCounts', $fabricThreadCounts)
+                ->with('fabricColors', $fabricColors)
+                ->with('fabricTypes', $fabricTypes)
+                ->with('fabricPatterns', $fabricPatterns);
     } 
 
     public function stylewomens()

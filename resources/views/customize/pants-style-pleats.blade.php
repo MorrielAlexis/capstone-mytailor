@@ -39,9 +39,10 @@
         </ul>
 
         <!--PLEATS TAB-->
+          {!! Form::open(['url' => 'customize-pants-style-pockets', 'method' => 'POST']) !!}
         <div id="tabPleats" class="col s12 white" style="padding:20px; border: 2px teal accent-4;">
           
-          <div class="col s12"><a class="btn-flat right teal accent-4 white-text" href="{{URL::to('/customize-pants-style-pockets')}}">Next step</a></div>
+          <div class="col s12"><button class="btn-flat right teal accent-4 white-text" type="submit">Next step</button></div>
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
           
           <div class="col s12" style="margin-top:10px;">
@@ -49,34 +50,40 @@
             <label class="col s5"><a class="btn teal accent-4 white-text" href="{{URL::to('/customize-mens-fabric')}}"><font size="+1">Edit / Change Fabric</font></a></label>
           </div>
           
+          @foreach($fabrics as $fabric)
           <div class="col s12">
             <div class="col s2">
-              <img class="responsive-img" src="img/fabric.jpg" style="">
+              <img class="responsive-img" src="{{ URL::asset($fabric->strFabricImage) }}" style="">
             </div>
+            
             <div class="col s5" style="background-color:#eeeeee;">
-              <p>Fabric Name</p>
-              <p>Swatch Code</p>
-              <p>Fabric Type</p>
-              <p>Price</p>
+                <p>Fabric Name: {{ $fabric->strFabricName }}</p>
+                <p>Swatch Code: {{ $fabric->strFabricCode }}</p>
+                <p>Fabric Type: {{ $fabric->strFabricTypeName }}</p>
+                <p>Price:       {{ number_format($fabric->dblFabricPrice, 2) }} PHP</p>
             </div>
           </div>
+          @endforeach
 
-          <div class="col s12" style="padding:20px;"><h4>Pant's Pleats</h4></div>
-
-          <div class="col s12">
-
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Classic Small</b></font></label>
-              </p>
+          <div class="col s12" style="padding:20px;"><h4>Pants' Pleats</h4></div>
+            @foreach($pleatsSegment as $pleatsSegment)
+            <div class="col s12">
+              @foreach($pattern as $pattern)
+              <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $pleatsSegment->strSegStyleCatID) hidden @endif>
+                <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
+                <p>
+                  <input name="rdb_pattern{{ $pleatsSegment->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
+                  <label for="{{$pattern->strSegPatternID}}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
+                </p>
+              </div>
+              @endforeach
             </div>
-
-          </div>
+            @endforeach
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
-          <div class="col s12"><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/customize-pants-style-pockets')}}">Next step</a></div>
+          <div class="col s12"><button class="right btn-flat teal accent-4 white-text" type="submit">Next step</button></div>
+
+          {!! Form::close() !!}
 
         </div>
         <!--END OF PLEATS TAB-->

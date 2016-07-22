@@ -50,82 +50,39 @@
             <label class="col s5"><a class="btn teal accent-4 white-text" href="{{URL::to('/customize-mens-fabric')}}"><font size="+1">Edit / Change Fabric</font></a></label>
           </div>
           
+          @foreach($fabrics as $fabric)
           <div class="col s12">
             <div class="col s2">
-              <img class="responsive-img" src="img/fabric.jpg" style="">
+              <img class="responsive-img" src="{{ URL::asset($fabric->strFabricImage) }}" style="">
             </div>
+            
             <div class="col s5" style="background-color:#eeeeee;">
-              <p>Fabric Name</p>
-              <p>Swatch Code</p>
-              <p>Fabric Type</p>
-              <p>Price</p>
+                <p>Fabric Name: {{ $fabric->strFabricName }}</p>
+                <p>Swatch Code: {{ $fabric->strFabricCode }}</p>
+                <p>Fabric Type: {{ $fabric->strFabricTypeName }}</p>
+                <p>Price:       {{ number_format($fabric->dblFabricPrice, 2) }} PHP</p>
             </div>
           </div>
+          @endforeach
 
-          <div class="col s12" style="padding:20px;"><h5><b>Single Breasted</b></h5></div>
-          <div class="col s12">
+        @foreach($segment as $segment)
 
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Classic Small</b></font></label>
-              </p>
+          @foreach($style as $style)
+          <div class="col s12 @if($style->strSegmentFK != $segment->strSegmentID) hidden @endif" style="padding:20px;"><h5><b>{{$style->strSegStyleName}}</b></h5></div>
+            <div class="col s12">
+              @foreach($segpattern as $pattern)
+                <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $style->strSegStyleCatID) hidden @endif>
+                  <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
+                  <p>
+                    <input class="with-gap" name="classic" type="radio" id="small" />
+                    <label for="{{$pattern->strSegPatternID}}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
+                  </p>
+                </div>
+              @endforeach
             </div>
+          @endforeach
 
-          </div>
-
-          <div class="col s12" style="padding:20px;"><h5><b>Double Breasted</b></h5></div>
-          <div class="col s12">
-
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Classic Small</b></font></label>
-              </p>
-            </div>
-
-          </div>
-
-          <div class="col s12" style="padding:20px;"><h5><b>Jacket Bottom</b></h5></div>
-          <div class="col s12">
-
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Classic Small</b></font></label>
-              </p>
-            </div>
-
-          </div>
-
-          <div class="col s12" style="padding:20px;"><h5><b>Vents</b></h5></div>
-          <div class="col s12">
-
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>No Vent</b></font></label>
-              </p>
-            </div>
-
-          </div>
-
-          <div class="col s12" style="padding:20px;">
-            <div class="col s6"><h5><b>Contrast Lapel</b></h5></div>
-          </div>
-          <div class="col s12">
-
-            <div class="col s3">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <label><a class="btn teal accent-4 white-text" href="{{URL::to('/customize-suit-fabric')}}"><font size="+1">Select Fabric</font>
-                \</a></label>
-            </div>
-
-          </div>
+        @endforeach
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12"><a class="btn-flat right teal accent-4 white-text" href="{{URL::to('/customize-suit-style-collar-pocket')}}">Next step</a></div>

@@ -3,9 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Session;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+
+use App\Fabric;
+use App\FabricType;
+use App\FabricColor;
+use App\FabricPattern;
+use App\FabricThreadCount;
+
+use App\SegmentStyle;
+use App\SegmentPattern;
+use App\GarmentCategory;
+use App\GarmentSegment;
 
 class OnlineCustomizeSuitController extends Controller
 {
@@ -14,6 +25,12 @@ class OnlineCustomizeSuitController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         //
@@ -21,12 +38,30 @@ class OnlineCustomizeSuitController extends Controller
 
     public function fabric()
     {
-        return view('customize.suit-fabric');
+        $fabrics = Fabric::all();
+        $fabricThreadCounts = FabricThreadCount::all();
+        $fabricColors = FabricColor::all();
+        $fabricTypes = FabricType::all();
+        $fabricPatterns = FabricPattern::all();
+
+        return view('customize.suit-fabric')
+                ->with('fabrics', $fabrics)
+                ->with('fabricThreadCounts', $fabricThreadCounts)
+                ->with('fabricColors', $fabricColors)
+                ->with('fabricTypes', $fabricTypes)
+                ->with('fabricPatterns', $fabricPatterns);
     }
 
-    public function stylejacket()
+    public function stylejacket(Request $request)
     {
-        return view('customize.suit-style-jacket');
+       $selectedFabric = \DB::table('tblFabric AS a')
+                    ->leftJoin('tblFabricType AS b', 'a.strFabricTypeFK', '=','b.strFabricTypeID')
+                    ->select('a.*', 'b.strFabricTypeName')
+                    ->where('a.strFabricID', $request->input('hidden_fabric_id'))
+                    ->get();
+
+        return view('customize.suit-style-jacket')
+            ->with('fabrics', $selectedFabric);
     }
 
     public function stylecollarpocket()

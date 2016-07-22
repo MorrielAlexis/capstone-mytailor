@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Fabric;
+use App\FabricType;
+use App\FabricColor;
+use App\FabricPattern;
+use App\FabricThreadCount;
+
+use App\SegmentPattern;
+use App\SegmentStyle;
+
 class OnlineCustomizePantsController extends Controller
 {
     /**
@@ -14,6 +23,12 @@ class OnlineCustomizePantsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         //
@@ -21,17 +36,55 @@ class OnlineCustomizePantsController extends Controller
 
     public function fabric()
     {
-        return view('customize.pants-fabric');
+        $fabrics = Fabric::all();
+        $fabricThreadCounts = FabricThreadCount::all();
+        $fabricColors = FabricColor::all();
+        $fabricTypes = FabricType::all();
+        $fabricPatterns = FabricPattern::all();
+
+        return view('customize.pants-fabric')
+                ->with('fabrics', $fabrics)
+                ->with('fabricThreadCounts', $fabricThreadCounts)
+                ->with('fabricColors', $fabricColors)
+                ->with('fabricTypes', $fabricTypes)
+                ->with('fabricPatterns', $fabricPatterns);
     }    
 
-    public function stylepleats()
+    public function stylepleats(Request $request)
     {
-        return view('customize.pants-style-pleats');
+        $pattern = SegmentPattern::all();
+        $selectedFabric = \DB::table('tblFabric AS a')
+                    ->leftJoin('tblFabricType AS b', 'a.strFabricTypeFK', '=','b.strFabricTypeID')
+                    ->select('a.*', 'b.strFabricTypeName')
+                    ->where('a.strFabricID', $request->input('hidden_fabric_id'))
+                    ->get();
+
+        $key = 'Pleats';
+
+        $pleatsSegment = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->where('strSegStyleName', 'LIKE', '%'.$key.'%')
+                    ->get();
+
+        return view('customize.pants-style-pleats')
+            ->with('pattern', $pattern)
+            ->with('pleatsSegment', $pleatsSegment)
+            ->with('fabrics', $selectedFabric);
     }   
 
     public function stylepockets()
     {
-        return view('customize.pants-style-pockets');
+        $pattern = SegmentPattern::all();
+        $key = 'Pocket';
+
+        $pocketSegment = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->where('strSegStyleName', 'LIKE', '%'.$key.'%')
+                    ->get();
+
+        return view('customize.pants-style-pockets')
+                    ->with('pattern', $pattern)
+                    ->with('pocketSegment', $pocketSegment);
     }   
 
     public function stylebottom()

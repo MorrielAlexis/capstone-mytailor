@@ -38,59 +38,74 @@
 
       <div class="col s12" style="margin-bottom:20px; padding:20px; padding-top:0;">
 
-        <div class="input-field col s3">
-          <select class="browser-default">
-            <option value="" disabled selected>Fabric Type</option>
-            <option value="1">Option 1</option>
-            <option value="2">Option 2</option>
-            <option value="3">Option 3</option>
-          </select>
+        <div class="col s3"><!--fabric type-->
+          <div class="input-field col s12">
+              <select class = "fabric-type" id = "fabric-type">
+                <option value="TA" class="circle" selected>All</option>
+                @foreach($fabricTypes as $fabricType)
+                  <option value="{{ $fabricType->strFabricTypeID }}">{{ $fabricType->strFabricTypeName }}</option>
+                @endforeach
+              </select>
+              <label><font size="3" color="gray">Fabric Type</font></label>
+          </div>
         </div>
 
-        <div class="input-field col s3">
-          <select class="browser-default">
-            <option value="" disabled selected>Fabric Pattern</option>
-            <option value="1">Option 1</option>
-            <option value="2">Option 2</option>
-            <option value="3">Option 3</option>
-          </select>
+        <div class="col s3"><!--fabric color-->
+          <div class="input-field col s12">
+              <select class = "fabric-color" id = "fabric-color">
+                <option value="CA" class="circle" selected>All</option>
+                @foreach($fabricColors as $fabricColor)
+                  <option value="{{ $fabricColor->strFabricColorID }}">{{ $fabricColor->strFabricColorName }}</option>
+                @endforeach
+              </select>
+              <label><font size="3" color="gray">Fabric Color</font></label>
+          </div>
         </div>
 
-        <div class="input-field col s3">
-          <select class="browser-default">
-            <option value="" disabled selected>Color</option>
-            <option value="1">Option 1</option>
-            <option value="2">Option 2</option>
-            <option value="3">Option 3</option>
-          </select>
+        <div class="col s3"><!--fabric pattern-->
+          <div class="input-field col s12">
+              <select class = "fabric-pattern" id = "fabric-pattern">
+                <option value="PA" class="circle" selected>All</option>
+                @foreach($fabricPatterns as $fabricPattern)
+                  <option value="{{ $fabricPattern->strFabricPatternID }}">{{ $fabricPattern->strFabricPatternName }}</option>
+                @endforeach
+              </select>
+              <label><font size="3" color="gray">Fabric Pattern</font></label>
+          </div>
         </div>
 
-        <div class="input-field col s3">
-          <select class="browser-default">
-            <option value="" disabled selected color="pink">Thread Count</option>
-            <option value="1">Option 1</option>
-            <option value="2">Option 2</option>
-            <option value="3">Option 3</option>
-          </select>
+        <div class="col s3"><!--fabric thread count-->
+          <div class="input-field col s12">
+              <select class = "fabric-thread-count" id = "fabric-thread-count">
+                <option value="TCA" class="circle" selected>All</option>
+                @foreach($fabricThreadCounts as $fabricThreadCount)
+                  <option value="{{ $fabricThreadCount->strFabricThreadCountID }}">{{ $fabricThreadCount->strFabricThreadCountName }}</option>
+                @endforeach
+              </select>
+              <label><font size="3" color="gray">Fabric Thread Count</font></label>
+          </div>
         </div>
+        <!--end of select-->
 
       </div>
      
       <center><span class="red-text"><font size="+1">Click fabric photo to view fabric in detail</font></span></center>
       <div class="col s12 divider dashed" style="height:4px; margin-top:10px;"></div>
 
-      <div class="col s12">
+      @foreach($fabrics as $fabric)
+      <div class="col s12 fabric-general {{ $fabric->strFabricTypeFK }} {{ $fabric->strFabricPatternFK }} {{ $fabric->strFabricColorFK }} {{ $fabric->strFabricThreadCountFK }}">
         <div class="col s3">
           <div style="padding:20px;">
-            <img class="materialboxed responsive-img" src="img/fabric.jpg">
-            <figcaption style="background-color:#ede7f6">Fabric Name</figcaption>
-            <figcaption style="background-color:#ede7f6">Swatch Code</figcaption>
-            <figcaption style="background-color:#ede7f6">Fabric Type</figcaption>
-            <figcaption style="background-color:#ede7f6; color:red;">Price</figcaption>
-            <div><a class="btn teal accent-4 white-text" href="{{URL::to('/customize-mens-style-collar')}}"><i class="mdi-action-shopping-cart"></i>Choose this fabric</a></div>
+            <img class="materialboxed responsive-img" src="{{URL::asset($fabric->strFabricImage)}}">
+            <figcaption style="background-color:#ede7f6">{{$fabric->strFabricName}}</figcaption>
+            <figcaption style="background-color:#ede7f6">{{$fabric->strFabricCode}}</figcaption>
+            <figcaption style="background-color:#ede7f6">{{$fabric->strFabricTypeName}}</figcaption>
+            <figcaption style="background-color:#ede7f6; color:red;">PHP {{$fabric->dblFabricPrice}}</figcaption>
+            <div><a class="btn green" type="button" value="{{$fabric->strFabricID}}"><i class="mdi-action-shopping-cart" style="font-size:22px;"> Choose this fabric</i></a></div>
           </div>
         </div>
-      </div>      
+      </div> 
+      @endforeach      
       
       <div class="col s12 divider dashed" style="height:4px; margin-bottom:10px;"></div>
       <center><span class="red-text"><font size="+1">Click fabric photo to view fabric in detail</font></span></center>
@@ -116,6 +131,54 @@
   </script>
 
   <script>
+    var type = $('#fabric-type');
+    var color = $('#fabric-color');
+    var pattern = $('#fabric-pattern');
+    var threadCount = $('#fabric-thread-count');
+
+    type.change(function () {
+      updateUI();
+    });
+
+    color.change(function () {
+      updateUI();
+    });
+
+    pattern.change(function () {
+      updateUI();
+    });
+
+    threadCount.change(function () {
+      updateUI();
+    });
+
+
+    function updateUI () {
+      $('.fabric-general').hide();
+
+      var typeValue = type.val();
+      var colorValue = color.val();
+      var patternValue = pattern.val();
+      var threadValue = threadCount.val();
+      
+      if (typeValue == 'TA' && colorValue == 'CA' && patternValue == 'PA' && threadValue == 'TCA'){
+        return $('.fabric-general').show();
+      } 
+      
+      var typeClass = typeValue == 'TA' ? '' : '.' + typeValue;
+      var colorClass = colorValue == 'CA' ? '' : '.' + colorValue;
+      var patternClass = patternValue == 'PA' ? '' : '.' + patternValue;
+      var threadClass = threadValue == 'TCA' ? '' : '.' + threadValue;
+
+      var classesToUpdate = typeClass + colorClass + patternClass + threadClass;
+      console.log(classesToUpdate);
+      $(classesToUpdate).show();
+    }
+
+    updateUI();
+  </script>
+
+  <script>
 
     $(document).ready(function() {
       $('select').material_select();
@@ -123,3 +186,4 @@
 
   </script>
 
+@stop
