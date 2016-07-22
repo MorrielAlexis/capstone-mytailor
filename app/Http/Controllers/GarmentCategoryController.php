@@ -75,6 +75,7 @@ class GarmentCategoryController extends Controller
         \Session::flash('flash_message','Garment category successfully added.'); //flash message
 
         return redirect('maintenance/garment-category');
+        
            
     }
 
