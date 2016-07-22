@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePaymentTable extends Migration
+class CreateNewAlterationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,20 +12,18 @@ class CreatePaymentTable extends Migration
      */
     public function up()
     {
-        Schema::create('tblPayment', function (Blueprint $table) {
-            $table->string('strPaymentID')->primary();
-            $table->string('strCustomerIdFK')->index();//fk
-            $table->date('dtTransacDate');
-            $table->double('dblAmtPayable');
-            $table->double('dblOustandingBal');
-            $table->date('dtDueDate');
+        Schema::create('tblNewAlteration', function (Blueprint $table) {
+            $table->string('strNewAlterationID')->primary();
+            $table->string('strCustomerIndFK')->index();
+            $table->integer('intAlteQty');
+            $table->date('dtAlteDate');
             $table->boolean('boolIsActive');
             $table->timestamps();
 
-            $table->foreign('strCustomerIdFK')
+            $table->foreign('strCustomerIndFK')
                   ->references('strIndivID')
                   ->on('tblCustIndividual');
-
+                  
         });
     }
 
@@ -36,6 +34,6 @@ class CreatePaymentTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tblPayment');
+        Schema::drop('tblAlterationTransaction');
     }
 }
