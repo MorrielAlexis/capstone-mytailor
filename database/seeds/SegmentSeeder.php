@@ -77,12 +77,12 @@ class SegmentSeeder extends Seeder
                 array(
                 'strSegmentID' => 'SEGM006',
                 'strSegCategoryFK' => 'GARM001',    
-                'strSegmentName' =>'Slacks',
+                'strSegmentName' =>'Pants',
                 'dblSegmentPrice' => '700.00',
                 'strSegmentSex' => 'M',
                 'intMinDays' => '3',
                 'strSegmentImage' => 'imgSegments/ia2375-1.jpg',
-                'textSegmentDesc' => 'Lower part wear for mens uniform.',
+                'textSegmentDesc' => 'Lower part wear.',
                 'boolIsActive' => '1'
             ),
 

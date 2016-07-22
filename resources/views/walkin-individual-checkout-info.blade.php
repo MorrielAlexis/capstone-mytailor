@@ -33,7 +33,8 @@
               <!--Start of header with customer id and transaction no-->
 	            <div class="col s12">
 
-	                <div class="col s12">
+            {!! Form::open(['url' => 'transaction/walkin-individual-save-customer', 'method' => 'POST']) !!}
+                  <div class="col s12">
                       <div class="col s6">       
                         <div class="col s5" style="color:teal; font-size:17px"><p><b>Customer ID</b></p></div>
                         <div class="col s7" style="color:red;"><p><input value="{{ $custID }}" id="addIndiID" name="addIndiID" type="text" readonly></p></div> 
@@ -41,23 +42,22 @@
                       <div class="col s6">
                         <div class="col s5" style="color:teal; font-size:17px"><p><b>Transaction No.</b></p></div>
                         <div class="col s7" style="color:red;"><p><input value="{{ $joID }}" id="addJOID" name="addJOID" type="text" readonly></p></div> 
-	            	      </div>
+                      </div>
                 </div>
-	            	
+                
                 <!--Eto yung floating button sa gilid. Yung may home icon-->
-	            	<div class="col s4" style="margin-top:5px">
-	            		 <div class="fixed-action-btn vertical" style="bottom: 45px; right: 24px;">
-						        <a class="mdi-maps-store-mall-directory btn-floating btn-large red " style="font-size:40px; height:70px; width:70px; padding:5px; padding-bottom:3px; margin-right:40px" ></a>
-						          <ul>
-      						      <li><a href="{{URL::to('transaction/walkin-individual')}}" class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="Forgot something? Click to go back shopping" style="margin-right:40px"><i class="mdi-action-shopping-basket"></i></a></li>
-      						      <li><a href="{{URL::to('transaction/walkin-individual-customize-orders')}}" class="btn-floating yellow darken-1 tooltipped" data-position="left" data-delay="50" data-tooltip="Click to go back editing your order" style="margin-right:40px"><i class="mdi-action-description">Return to Customize Order</i></a></li>
-      						    </ul>
-						        </div>            		
-	            	</div>
+                <div class="col s4" style="margin-top:5px">
+                   <div class="fixed-action-btn vertical" style="bottom: 45px; right: 24px;">
+                    <a class="mdi-maps-store-mall-directory btn-floating btn-large red " style="font-size:40px; height:70px; width:70px; padding:5px; padding-bottom:3px; margin-right:40px" ></a>
+                      <ul>
+                        <li><a href="{{URL::to('transaction/walkin-individual')}}" class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="Forgot something? Click to go back shopping" style="margin-right:40px"><i class="mdi-action-shopping-basket"></i></a></li>
+                        <li><a href="{{URL::to('transaction/walkin-individual-customize-orders')}}" class="btn-floating yellow darken-1 tooltipped" data-position="left" data-delay="50" data-tooltip="Click to go back editing your order" style="margin-right:40px"><i class="mdi-action-description">Return to Customize Order</i></a></li>
+                      </ul>
+                    </div>                
+                </div>
                 <!--end nung sa floating button-->
-	            </div>
+              </div>
               <!--end of header for customer id and transaction no-->
-
               <!-- Start of Customer Information-->
                 <div class="col s12" style="margin-top:10px">
                 	<div class="divider" style="height:2px; background-color:teal; margin-bottom:40px"></div>
@@ -65,26 +65,25 @@
                     <span class="col s12" style="color:teal;"><b>Customer Detail</b></span>
                     <div class="card-panel col s12" style="border:3px solid gray; padding:15px;">
                         <div style="color:black" class="input-field col s4">                 
-                          <input required value="" id="first_name" name="first_name" type="text" class="" placeholder="Hope Elizabeth">
+                          <input required value="" id="first_name" name="addIndiFirstName" type="text" class="" placeholder="Hope Elizabeth">
                           <label style="color:gray" for="first_name"><b><span class="red-text"><b>*</b></span>First Name</b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s4">                 
-                          <input value="" id="middle_name" name="middle_name" type="text" class="" placeholder="Soberano">
+                          <input value="" id="middle_name" name="addIndiMiddleName" type="text" class="" placeholder="Soberano">
                           <label style="color:gray" for="middle_name"><b>Middle Name</b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s4">                 
-                          <input required value="" id="last_name" name="last_name" type="text" class="" placeholder="Aquino">
+                          <input required value="" id="last_name" name="addIndiLastName" type="text" class="" placeholder="Aquino">
                           <label style="color:gray" for="last_name"><b><span class="red-text"><b>*</b></span>Last Name </b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s12">
             							<p style="color:gray"><b>Sex</b></p>
             							<select>
-            								<option value="0"></option>
-            							    <option value="1">Female</option>
-            							    <option value="2">Male</option>
+            							    <option value="F">Female</option>
+            							    <option value="M">Male</option>
             							</select>
             						</div>
                     </div>
@@ -147,12 +146,13 @@
                     </div>
 
                 </div>
+                  <button type="submit" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-left:40px; background-color:#00695c; color:white"><b><i class="mdi-navigation-check" style="padding-right:10px"></i>Save</b></button>                                
+                  <a id="cancelTransac" href="#cancel-order" class="right btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel transaction and go back to homepage" style="background-color:#a7ffeb; color:black"><b><i class="mdi-navigation-close" style="padding-right:10px"></i>Cancel</b></a>                   
+            {!! Form::close() !!}
               <!--End of Customer Information-->
               
               <!--Start of bottom button-->
               <div class="col s12" style="margin-top:30px">
-                  <a id="addPayment" href="{{URL::to('transaction/walkin-individual-payment-payment-info')}}" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-left:40px; background-color:#00695c; color:white"><b><i class="mdi-navigation-check" style="padding-right:10px"></i>Save</b></a>                                
-                  <a id="cancelTransac" href="#cancel-order" class="right btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel transaction and go back to homepage" style="background-color:#a7ffeb; color:black"><b><i class="mdi-navigation-close" style="padding-right:10px"></i>Cancel</b></a>                   
                   <div id="cancel-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:80px">
                       <h5><font color="red"><center><b>Warning!</b></center></font></h5>
                         

@@ -21,7 +21,7 @@ class CreateJoSpecific extends Migration
             $table->double('dblUnitPrice');
             $table->integer('intEstimatedDaystoFinish');
             $table->string('strEmployeeNameFK')->index();
-            $table->date('dtDateModified');
+            $table->date('dtDateModified')->nullable();
             $table->boolean('boolIsActive');
             $table->timestamps();
 
