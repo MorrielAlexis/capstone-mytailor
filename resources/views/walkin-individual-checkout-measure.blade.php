@@ -40,7 +40,6 @@
 	      		<div class="divider"></div>
 	      	</div>-->
 
-			@foreach($segments as $segment)
 			<div class="col s12" style="margin-bottom:10px">
 				<div class="col s5">
 					<div class="col s4"><p style="color:gray"><b>Measurement Type</b></p></div>
@@ -61,6 +60,7 @@
                 <div class="col s2"><a href="" class="btn" style="background-color:teal; color:white; margin-top:10px">Add</a></div>
 			</div>
 
+			@foreach($segments as $segment)
 			<div class="col s12"><div class="divider" style="height:2px; background-color:gray"></div></div><!--divider-->
 
 
@@ -88,10 +88,10 @@
 		            		<div class="container"> 
 			            		@foreach($measurements as $measurement)
 			            			@if($measurement->strMeasDetSegmentFK == $segment->strSegmentID)
-				            	   	<div style="color:black; padding-left:140px" class="input-field col s6">                 
-			                          <input name="shoulder" type="text">
-			                          <label style="color:teal" for="shoulder">{{ $measurement->strMeasDetailName }}: </label>
-			                        </div>
+					            	   	<div style="color:black; padding-left:140px" class="input-field col s6">                 
+				                          <input name="shoulder" type="text">
+				                          <label style="color:teal" for="shoulder">{{ $measurement->strMeasDetailName }}: </label>
+				                        </div>
 			                        @endif
 		                        @endforeach
 		                    </div>
@@ -101,8 +101,8 @@
 							<div class="col s12 z-depth-1" style="padding:20px">
 								<div class="container">
 									<div class="left col s6">
-										<center><img src="" style="height:200px; width:200px; border:3px gray solid"></center>	
-										<p><center>Garment Name Here</center></p>							          	
+										<center><img src="{{ URL::asset($segment->strSegmentImage) }}" style="height:200px; width:200px; border:3px gray solid"></center>	
+										<p><center>{{ $segment->strSegmentName }}</center></p>							          	
 									</div><!--this will be the garment detail-->
 
 									<div class="right col s6" style="margin-top:20px">
@@ -118,7 +118,9 @@
 										<div class="col s6"><p style="color:teal" for="standard_size">Choose Standard Size:</p></div>  		
 					            	   	<div style="color:black;" class="col s6">                 	
 				                          	<select>
-			    								<option value="">Small</option>
+				                          		@foreach($standard_categories as $standard_category)
+			    									<option value="{{ $standard_category->strStandardSizeCategoryID }}">{{ $standard_category->strStandardSizeCategoryName }}</option>
+		    									@endforeach
 		    								</select><!--Standard sizes for the specific Garment-->
 				                        </div>  
 				                    </div> 

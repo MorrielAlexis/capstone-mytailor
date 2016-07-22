@@ -23,6 +23,7 @@ use App\SegmentPattern;
 use App\SegmentStyle;
 
 use App\MeasurementCategory;
+use App\StandardSizeCategory;
 
 class WalkInIndividualController extends Controller
 {
@@ -258,11 +259,13 @@ class WalkInIndividualController extends Controller
                     ->get();
 
         $measurementCategory = MeasurementCategory::all();
+        $standardSizeCategory = StandardSizeCategory::all();
 
         return view('walkin-individual-checkout-measure')
                 ->with('segments', $values)
                 ->with('measurements', $measurements)
-                ->with('categories', $measurementCategory);
+                ->with('categories', $measurementCategory)
+                ->with('standard_categories', $standardSizeCategory);
     }
 
     public function removeItem(Request $request)
