@@ -74,6 +74,11 @@ nav{
 	 background-repeat: no-repeat;
 	 background-image: url("../imgOnline/suitheader.jpg");
 }
+#sets{
+     background-size: cover;
+     background-repeat: no-repeat;
+     background-image: url("../imgOnlineUniform/uni5.jpg");
+}
 
 #backyy{
 	 background-size: cover;

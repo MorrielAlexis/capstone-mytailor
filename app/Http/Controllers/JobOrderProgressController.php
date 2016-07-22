@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Input;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -22,7 +23,27 @@ class JobOrderProgressController extends Controller
     
     public function index()
     {
-        return view('transaction-joborderprogress');
+
+        $joborder = \DB::table('tblJobOrder')
+            ->leftjoin('tblcustindividual', 'tblJobOrder.strJo_CustomerFK', '=', 'tblcustindividual.strIndivID')
+            ->leftjoin('tblcustcompany', 'tblJobOrder.strJo_CustomerCompanyFK', '=', 'tblcustcompany.strCompanyID')
+            ->select('tblcustindividual.*', 'tblcustcompany.*', 'tblJobOrder.*')
+            ->get(); 
+
+        // $specifics = \DB::table('tbljospecific')
+        //     ->join('tbljoborder' , 'tbljoborder.strJobOrderID', '=', 'tbljospecific.strJobOrderFK')
+        //     ->join('tblSegment', 'tblSegment.strSegmentID', '=', 'tbljospecific.strJOSegmentFK')
+        //     ->join('tblGarmentCategory', 'tblGarmentCategory.strGarmentCategoryID', '=', 'tblSegment.strSegCategoryFK')
+        //     ->join('tblSegmentPattern', 'tblSegmentPattern.strSegPatternID', '=', 'tbljospecific.strJOSegmentPatternFK')
+        //     ->leftjoin('tblJobOrderProgress', 'tblJobOrderProgress.strJobOrderSpecificFK', '=', "tbljospecific.strJOSpecificID")
+        //     ->select('tbljospecific.*', 'tblGarmentCategory.strGarmentCategoryName', 'tblSegment.strSegmentName', 'tblSegmentPattern.strSegPName')
+        //     ->get(); 
+
+
+              //dd($specifics);              
+
+        return view('transaction-joborderprogress')
+            ->with('joborder', $joborder);
     }
 
     /**
@@ -30,6 +51,27 @@ class JobOrderProgressController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function jobdetails()
+    {
+      
+        $specifics = \DB::table('tbljospecific')
+            ->join('tbljoborder' , 'tbljoborder.strJobOrderID', '=', 'tbljospecific.strJobOrderFK')
+            ->join('tblSegment', 'tblSegment.strSegmentID', '=', 'tbljospecific.strJOSegmentFK')
+            ->join('tblGarmentCategory', 'tblGarmentCategory.strGarmentCategoryID', '=', 'tblSegment.strSegCategoryFK')
+            ->join('tblSegmentPattern', 'tblSegmentPattern.strSegPatternID', '=', 'tbljospecific.strJOSegmentPatternFK')
+            ->leftjoin('tblJobOrderProgress', 'tblJobOrderProgress.strJobOrderSpecificFK', '=', "tbljospecific.strJOSpecificID")
+            ->where('tbljospecific.strJobOrderFK', '=', Input::get('jobID'))
+            ->select('tbljospecific.*', 'tblGarmentCategory.strGarmentCategoryName', 'tblSegment.strSegmentName', 'tblSegmentPattern.strSegPName', 'tblJobOrderProgress.intProgressAmount', 'tbljoborder.strJobOrderID')
+            ->get();    
+
+
+            // dd($specifics);
+        return response()->json(array(
+            'job_order_details' => $specifics
+        ));
+    }
+
     public function create()
     {
         //

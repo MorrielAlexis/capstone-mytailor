@@ -12,7 +12,7 @@
         </div>
 
         <div class="col s4" style="margin-top:-30px;">
-          <center><span style="font-size:40px; color: #757575; font-family:'Playfair Display','Times';">Shopping Cart</span></center>
+          <center><span style="font-size:40px; color: #757575; font-family:'Playfair Display','Times';">WOMEN SET <font color="red">A</font></span></center>
         </div>
 
         <div class="col s4">
@@ -186,7 +186,7 @@
   <div class="divider"></div>
   <div class="col s12" style="padding:30px">
       <a href="{{URL::to('/online-order-now')}}" class="btn-flat white-text" style="color:white; background-color:teal;">Cancel Transaction</a>
-      <a href="{{URL::to('/online-individual-checkout-info')}}" class="right btn-flat white-text red" style="color:white; background-color:teal;">Proceed to CHECKOUT</a>
+      <a href="{{URL::to('/online-company-checkout-info')}}" class="right btn-flat white-text red" style="color:white; background-color:teal;">Proceed to CHECKOUT</a>
   </div>
 
     <div class="divider" style="margin-bottom:20px;"></div>
@@ -195,46 +195,6 @@
     </div>
             
     </div>
-
-    <!--EMPTY SHOPPING CART-->
-    <div class="section white" style="margin:40px; padding:40px;"> 
-
-    <div style="padding:40px;">
-      <div class="row">
-        <div class="col s12">
-          <div class="col s4">
-            <div class="divider grey" style="margin-bottom:5px;"></div>
-            <div class="divider grey"></div>
-          </div>
-
-          <div class="col s4" style="margin-top:-30px;">
-            <center><span style="font-size:40px; color: #757575; font-family:'Playfair Display','Times';">Shopping Cart</span></center>
-          </div>
-
-          <div class="col s4">
-            <div class="divider grey" style="margin-bottom:5px;"></div>
-            <div class="divider grey"></div>
-          </div>
-        </div>
-      </div>
-
-        <div class="row">
-            <div class="col s12">
-                <div class="card grey lighten-3 z-depth-0" style="border:1px solid pink; padding:2px;">
-                  <div class="card-content" style="border:1px solid pink;">
-                <center><p>Your shopping cart is currently empty.</p></center>
-                  </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="divider" style="margin-top:40px; margin-bottom:20px;"></div>
-    <div>
-      <a class="green-text" style="margin-left:20px;" href="{{URL::to('/online-home')}}"><i style="size:20px;" class="mdi-hardware-keyboard-arrow-left"></i>CONTINUE SHOPPING</a>
-    </div>
-  </div>
 
   <!--Remove Order Modal-->
   <div id="removeOrder" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">

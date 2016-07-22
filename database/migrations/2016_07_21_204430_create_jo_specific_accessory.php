@@ -15,7 +15,7 @@ class CreateJoSpecificAccessory extends Migration
         Schema::create('tblJOSpecificAccessory', function (Blueprint $table) {
             $table->string('strJobOrderSpecificFK')->index();
             // $table->string('strAccessoryFK')->index();-->wala pa sa maintenance 
-            $table->primary('strJobOrderSpecificFK');
+            //$table->primary('strJobOrderSpecificFK');
             $table->timestamps();
 
             $table->foreign('strJobOrderSpecificFK')

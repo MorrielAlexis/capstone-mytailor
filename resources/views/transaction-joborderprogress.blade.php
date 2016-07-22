@@ -2,7 +2,7 @@
 
 @section('content')
 
-  <div class="main-wrapper"  style="margin-top:30px">
+  <div class="main-wrapper"  style="margin-top:30px" ng-app="tailoring" ng-controller="JobOrderController">
 
     <div class="row">
       <div class="col s12 m12 l12">
@@ -11,60 +11,40 @@
     </div>
 
     <div class = "row">
-      <div class = "col s12">
-        <ul class = "tabs">
-          <li class = "tab col s6"><a href = "#indi"><b><font color = "black">Individual Job Order</font></b></a></li>
-          <li class = "tab col s6"><a href = "#com"><b><font color = "black">Company   Job Order</font></a></li>
-        </ul>          
-      </div>  
-    </div>
-    <div id = "indi" class = "col s12"> 
-      <div class="row">
-        <div class="col s12 m12 l12">
-          <div class="card-panel">
+      <div class="col s12 m12 l12">
+        <div class="card-panel">
 
-            <div class="row container left">
-              <div class="input-field col s6">
-                <i class="mdi-action-search prefix"></i>
-                <input id="icon_prefix" type="text" class="validate">
-                <label for="icon_prefix">Search Individual Job Order</label>
-              </div>
+          <div class="row container left">
+            <div class="input-field col s6">
+              <i class="mdi-action-search prefix"></i>
+              <input id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Search Job Order</label>
             </div>
+          </div>
 
-            <div class="row">
-              <div class="col s12">
-                <table class="centered">
-                  <thead>
+          <div class="row">
+            <div class="col s12">
+              <table class="centered">
+                <thead>
+                  <tr>
+                      <th style="color:#1b5e20">Track#</th>
+                      <th style="color:#1b5e20">Customer Name</th>
+                      <th style="color:#1b5e20">Due Date</th>
+                      <th style="color:#1b5e20">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach($joborder as $joborder)
                     <tr>
-                        <th style="color:#1b5e20">Track#</th>
-                        <th style="color:#1b5e20">Customer Name</th>
-                        <th style="color:#1b5e20">Due Date</th>
-                    </tr>
-                  </thead>
-                </table>
-              </div>
-            </div>
-
-            <ul class="collapsible z-depth-0" data-collapsible="accordion" style="border:none;">
-            
-              <li style="margin-bottom:10px;">
-                <div class="collapsible-header" style="background-color:#ffebee">
-                  <div class="row">
-                    <div class="col s12">
-                      <table class="centered">
-                          <tbody>
-                              <tr>
-                                <td>#001</td>
-                                <td>Terena Marqueta</td>
-                                <td>01/04/03</td>
-                              </tr>
-                          </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              
-                <div class="collapsible-body" style="border:3px solid #ffebee;">
+                      <td>{{$joborder->strJobOrderID}}</td>                        
+                      <td>{{$joborder->strCompanyName}}{{$joborder->strIndivFName}} {{$joborder->strIndivMName}} {{$joborder->strIndivLName}}</td>
+                      <td>{{$joborder->dtOrderExpectedToBeDone}}</td>
+                      <td><button class="waves-effect waves-light btn" ng-click="details('{!! $joborder->strJobOrderID !!}')">Show Details</button></td>
+                    </tr>                      
+                  @endforeach
+                </tbody>
+              </table>
+              <div class="col s12" style="border:3px solid #ffebee;" ng-hide="isEmpty">
                   <h3>Progress Update</h3>
 
                   <div class ="row">
@@ -72,66 +52,33 @@
                       <table class = "centered">
                         <thead>
                           <tr>
-                            <td> <center>Garment Type</center></td>
-                            <td> <center>Garment Name</center></td>
+                            <td> <center>Garment Category Name</center></td>
                             <td> <center>Segment Name</center></td>
+                            <td> <center>Segment Pattern Name</center></td>
                             <td> <center>Quantity</center></td>
-                            <td> <center>Transaction Type</center></td>
                             <td> <center>No. of Finished Garment</center></td>
                           </tr>
                         </thead>
 
                         <tbody>
                           
-                            <tr>
-                              <td>Uniform</td>
-                              <td>Women's Uniform</td>
-                              <td>Longsleeve</td>
-                              <td>1</td>
-                              <td> Made to Order</td>
+                            <tr ng-repeat="jobOrderDetail in jobOrderDetails">
+                              <td>@{{ jobOrderDetail.strGarmentCategoryName }}</td>
+                              <td>@{{ jobOrderDetail.strSegmentName }}</td>
+                              <td>@{{ jobOrderDetail.strSegPName }}</td>
+                              <td>@{{ jobOrderDetail.intQuantity }}</td>
                               <td>                      
-                                <input type="input-field" id="in1"/>
-                                <label id= "in1" fontsize= "+2"></label>                     
+                                <input type="input-field" value = "@{{ jobOrderDetail.intProgressAmount }}" id="progress[joborderDetail]"/>
+                                <label id= "progress[joborderDetail]" fontsize= "+2"></label>                     
                               </td>
                             </tr>
-
                             <tr>
-                              <td>Uniform</td>
-                              <td>Women's Uniform</td>
-                              <td>Skirt</td>
-                              <td>1</td>
-                              <td> Made to Order</td>
-                              <td> 
-                                <input type="input-field" id="in2"/>
-                                <label for="in2"></label>                              
-                              </td>
+                              <td><b>TOTAL</b></td>
+                              <td></td>
+                              <td></td>
+                              <td>@{{getTotal()}}</td>
+                              <td>@{{getTotalProg()}}</td>
                             </tr>
-
-                            <tr>
-                              <td>Gown</td>
-                              <td>Tube Cocktail</td>
-                              <td>Tube</td>
-                              <td>1</td>
-                              <td> Made to Order</td>
-                              <td>
-                                <input type="input-field" id="in3"/>
-                                <label for="in3"></label>
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td>Gown</td>
-                              <td>Tube Cocktail</td>
-                              <td>Cocktail</td>
-                              <td>1</td>
-                              <td> Made to Order</td>
-                              <td>
-                                <input type="input-field" id="in4"/>
-                                <label for="in4"></label>
-                              </td>
-                            </tr>
-                          
-
                         </tbody>
                       </table>  
                     </div>
@@ -152,188 +99,25 @@
                     <div class ="row">
                       <div class = "col s12">
                         <label><font size = "+2">Progress Bar: &#09</font></label>
-                        <label id= "lbl"></label>
+                        <label id= "lbl"> <font Size= "+2">@{{getProg()}} %</font></label>
                       </div>
                     </div>
 
                     <div class = "clearfix"></div>
                     <div class="progress" style= "height: 30px;">
-                      <div class="determinate" style="width: 0%" >
+                      <div class="determinate" style="@{{getProg()}}" >
                         <span id="span" style = "padding-left: 558px;"></span>
                       </div>
                     </div> 
 
                   </div>
 
-                </div>
-              </li>
-
-            </ul>
-
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
-    <div id = "com" class = "col s12"> 
-      <div class="row">
-        <div class="col s12 m12 l12">
-          <div class="card-panel">
-
-            <div class="row container left">
-              <div class="input-field col s6">
-                <i class="mdi-action-search prefix"></i>
-                <input id="icon_prefix" type="text" class="validate">
-                <label for="icon_prefix">Search Company Job Order</label>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col s12">
-                <table class="centered">
-                  <thead>
-                    <tr>
-                        <th style="color:#1b5e20">Track#</th>
-                        <th style="color:#1b5e20">Company Name</th>
-                        <th style="color:#1b5e20">Due Date</th>
-                    </tr>
-                  </thead>
-                </table>
-              </div>
-            </div>
-
-            <ul class="collapsible z-depth-0" data-collapsible="accordion" style="border:none;">
-            
-              <li style="margin-bottom:10px;">
-                <div class="collapsible-header" style="background-color:#ffebee">
-                  <div class="row">
-                    <div class="col s12">
-                      <table class="centered">
-                          <tbody>
-                              <tr>
-                                <td>#001</td>
-                                <td>Pfizer Company</td>
-                                <td>01/04/03</td>
-                              </tr>
-                          </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              
-                <div class="collapsible-body" style="border:3px solid #ffebee;">
-                  <h3>Progress Update</h3>
-
-                  <div class ="row">
-                    <div class="col s12 m12 l12 overflow-x">
-                      <table class = "centered">
-                        <thead>
-                          <tr>
-                            <td> <center>Garment Type</center></td>
-                            <td> <center>Garment Name</center></td>
-                            <td> <center>Segment Name</center></td>
-                            <td> <center>Quantity</center></td>
-                            <td> <center>Transaction Type</center></td>
-                            <td> <center>No. of Finished Garment</center></td>
-                          </tr>
-                        </thead>
-
-                        <tbody>
-                          
-                          
-                            <tr>
-                              <td>Uniform</td>
-                              <td>Women's Uniform</td>
-                              <td>Longsleeve</td>
-                              <td>1</td>
-                              <td> Made to Order</td>
-                              <td>                      
-                                <input type="input-field" id="in1"/>
-                                <label id= "in1" fontsize= "+2"></label>                     
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td>Uniform</td>
-                              <td>Women's Uniform</td>
-                              <td>Skirt</td>
-                              <td>1</td>
-                              <td> Made to Order</td>
-                              <td> 
-                                <input type="input-field" id="in2"/>
-                                <label for="in2"></label>                              
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td>Gown</td>
-                              <td>Tube Cocktail</td>
-                              <td>Tube</td>
-                              <td>1</td>
-                              <td> Made to Order</td>
-                              <td>
-                                <input type="input-field" id="in3"/>
-                                <label for="in3"></label>
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td>Gown</td>
-                              <td>Tube Cocktail</td>
-                              <td>Cocktail</td>
-                              <td>1</td>
-                              <td> Made to Order</td>
-                              <td>
-                                <input type="input-field" id="in4"/>
-                                <label for="in4"></label>
-                              </td>
-                            </tr>
-                          
-
-                        </tbody>
-                      </table>  
-                    </div>
-                    
-                    <div class ="row">
-                      <div class = "col s12">
-                        <div class = "col s6">
-                          <br>
-                          <center><a class="waves-effect waves-light btn">Update</a></center>
-                        </div>
-                        <div class = "col s6">
-                          <br>
-                          <center><a class="waves-effect waves-light btn">Cancel</a></center>
-                        </div>  
-                      </div>
-                    </div>
-
-                    <div class ="row">
-                      <div class = "col s12">
-                        <label><font size = "+2">Progress Bar: &#09</font></label>
-                        <label id= "lbl"></label>
-                      </div>
-                    </div>
-
-                    <div class = "clearfix"></div>
-                    <div class="progress" style= "height: 30px;">
-                      <div class="determinate" style="width: 0%" >
-                        <span id="span" style = "padding-left: 558px;"></span>
-                      </div>
-                    </div> 
-
-                  </div>
-
-                </div>
-              </li>
-
-            </ul>
-
-          </div>
-        </div>
-      </div>
-    </div>  
-
-
   </div>
 
 @stop
@@ -388,6 +172,71 @@
     //   span.style.fontSize = "1em";
     //   span.innerHTML = progress + '%';
     // });
+  </script>
+
+ <script type="text/javascript">
+    var app = angular.module('tailoring', []);
+
+    app.controller('JobOrderController', function($scope, $http) {
+      $scope.jobOrderDetails = [];
+      $scope.isEmpty = true;
+      // alert('Wahahahahaha');
+      $scope.details = function(jobID) {
+           $http.get('{!! url("details?jobID=") !!}' + jobID)
+            .then(function(response) {
+              var jobOrder = response.data.job_order_details;
+
+              console.log(jobOrder);
+              if(jobOrder.length > 0) {
+                $scope.isEmpty = false;
+
+                $scope.jobOrderDetails = jobOrder;
+              } else {
+                $scope.isEmpty = true;
+
+              }
+            }, function(response) {
+                alert('No data found!');              
+            });
+      };
+      $scope.getTotal = function(){
+        var total = 0;
+        for(var i = 0; i < $scope.jobOrderDetails.length; i++){
+            var jobOrderDetail = $scope.jobOrderDetails[i];
+            total += jobOrderDetail.intQuantity;
+        }
+        return total;
+      }
+      $scope.getTotalProg = function(){
+        var totalProg = 0;
+        for(var i = 0; i < $scope.jobOrderDetails.length; i++){
+            var jobOrderDetail = $scope.jobOrderDetails[i];
+            totalProg += jobOrderDetail.intProgressAmount;
+        }
+        return totalProg;
+      }
+      $scope.getProg = function(){
+        var prog = 0;
+        var total = 0;
+        var totalProg = 0;
+
+        for(var i = 0; i < $scope.jobOrderDetails.length; i++){
+            var jobOrderDetail = $scope.jobOrderDetails[i];
+            total += jobOrderDetail.intQuantity;
+        }
+
+        for(var i = 0; i < $scope.jobOrderDetails.length; i++){
+            var jobOrderDetail = $scope.jobOrderDetails[i];
+            totalProg += jobOrderDetail.intProgressAmount;
+        }
+
+        prog = (totalProg/total)*100;
+        console.log(prog);
+        $('.determinate').css('width', prog + '%');
+
+        return prog;
+      }
+    });   
   </script>
 
   <script type="text/javascript">

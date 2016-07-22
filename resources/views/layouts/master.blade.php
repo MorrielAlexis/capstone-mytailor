@@ -27,7 +27,7 @@
           <div style="height:20px"></div>
           <div class="col s12 center">
           @if(Auth::check())
-            <img src="{{ Auth::user()->user_image }}" alt="" class="circle responsive-img valign profile-image center" style="height:130px; width:130px;">
+            <img src="{{ Auth::user()->user_image }}" alt="" class="circle responsive-img valign profile-image center" style="height:130px; width:130px;"/>
           </div>
         </div>
         <div class="col s12 container" style="margin-top:-40px;">
@@ -238,6 +238,7 @@
       {!! Html::script('js/jquery-2.1.4.min.js'); !!}
       {!! Html::script('js/materialize.min.js'); !!}
       {!! Html::script('js/jquery.dataTables.min.js'); !!}
+      {!! Html::script('js/angular.min.js'); !!}
       
       <script>
         $(document).ready(function(){

@@ -26,7 +26,7 @@
       <div class="row" style="margin:40px;">
         <ul class="col s12 breadcrumb">
           <li><a style="padding-left:100px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Select Fabric</b></a></li>
-          <li><a class="active"  style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Step 2: CHOOSE STYLE</b></a></li>
+          <li><a class="active"  style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Step 2: Choose Style</b></a></li>
           <li><a style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Check Out</b></a></li>
           <li><a style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Measurement</b></a></li>
         </ul>
@@ -429,7 +429,7 @@
         <div id="tabOthers" class="col s12 white" style="padding:20px; border 2px teal accent-4 white-text;">
           
           <div class="col s12">
-            <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/customize-checkout-info')}}">Proceed to Checkout</a></div>
+            <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/online-order-now')}}">Go to Shopping Cart</a></div>
             <div><a class="left btn-flat teal accent-4 white-text" href="tabPocketMonogram">Previous step</a></div>
           </div>
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
@@ -573,7 +573,7 @@
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12">
-            <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/customize-checkout-info')}}">Proceed to Checkout</a></div>
+            <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/online-order-now')}}">Go to Shopping Cart</a></div>
             <div><a class="left btn-flat teal accent-4 white-text" href="tabPocketMonogram">Previous step</a></div>
           </div>
 

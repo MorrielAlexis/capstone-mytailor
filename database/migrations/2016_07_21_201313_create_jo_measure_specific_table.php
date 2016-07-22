@@ -16,10 +16,10 @@ class CreateJoMeasureSpecificTable extends Migration
             $table->string('strJOMeasureSpecificID')->primary();
             $table->string('strJobOrderSpecificFK')->index();
             $table->string('strMeasureProfileFk')->index();
-            $table->string('strMeasureDetailFk')->index();
-            $table->string('strBodyPartFormFK')->index();
-            $table->string('strStandardSizeFK')->index();
+            $table->string('strMeasureDetailFk')->index()->nullable();
+            $table->string('strStandardSizeFK')->index()->nullable();
             $table->double('dblMeasureValue');
+            $table->string('strBodyPartFormFK')->index();
             $table->string('strUnitofMeasurement');
             $table->string('boolIsActive');
             $table->timestamps();
