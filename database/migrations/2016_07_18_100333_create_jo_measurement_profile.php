@@ -14,8 +14,8 @@ class CreateJoMeasurementProfile extends Migration
     {
         Schema::create('tblJo_MeasureProfile', function (Blueprint $table) {
             $table->string('strJOMeasureProfileID')->primary();
-            $table->string('strMeasProfCustIndivFK')->index();
-            $table->string('strMeasProfCustCompanyFK')->index();
+            $table->string('strMeasProfCustIndivFK')->index()->nullable();
+            $table->string('strMeasProfCustCompanyFK')->index()->nullable();
             $table->string('strProfileName');
             $table->string('strSex');
             $table->boolean('boolIsActive');

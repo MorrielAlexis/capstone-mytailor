@@ -14,7 +14,8 @@ class CreateJOPayment extends Migration
     {
         Schema::create('tblJOPayment', function (Blueprint $table) {
             $table->string('strPaymentID')->primary();
-            $table->string('strTransactionFK')->index();//fk
+            $table->string('strTransactionFK')->index()->nullable();
+            $table->string('strTransacAlterFk')->index()->nullable();
             $table->double('dblAmountTendered');
             $table->double('dblAmountToPay');
             $table->double('dblOustandingBal');
@@ -28,6 +29,10 @@ class CreateJOPayment extends Migration
                   ->references('strJobOrderID')
                   ->on('tblJobOrder');
 
+            $table->foreign('strTransacAlterFk')
+                  ->references('strNonShopAlterID')
+                  ->on('tblNonShopAlteration');
+
             $table->foreign('strReceivedByEmployeeNameFK')
                  ->references('strEmployeeID')
                  ->on('tblEmployee');
@@ -36,10 +41,6 @@ class CreateJOPayment extends Migration
             $table->foreign('strAdditionalChargeFK')
                  ->references('strAdditionalChargeID')
                  ->on('tblJOAddCharge');
-
-
-
-
 
 
         });

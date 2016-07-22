@@ -15,7 +15,7 @@ class CreateJoSpecificMaterial extends Migration
         Schema::create('tblJOSpecificMaterial', function (Blueprint $table) {
             $table->string('strJOSpecificFK')->index();
             // $table->string('strMaterialFK')->index(); ->wala pang maintenance
-            $table->primary('strJOSpecificFK');
+            //$table->primary('strJOSpecificFK');
             $table->timestamps();
 
             $table->foreign('strJOSpecificFK')

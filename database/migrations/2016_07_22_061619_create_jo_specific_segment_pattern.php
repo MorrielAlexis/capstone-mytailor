@@ -15,7 +15,7 @@ class CreateJoSpecificSegmentPattern extends Migration
         Schema::create('tblJOSpecificSegmentPattern', function (Blueprint $table) {
             $table->string('strJobOrderSpecificFK')->index();
             $table->string('strSegmentPatternFK')->index();
-            $table->primary('strJobOrderSpecificFK');
+            //$table->primary('strJobOrderSpecificFK');
             $table->timestamps();
 
             $table->foreign('strJobOrderSpecificFK')

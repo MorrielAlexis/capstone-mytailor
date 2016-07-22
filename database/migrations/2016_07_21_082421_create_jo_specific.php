@@ -37,6 +37,10 @@ class CreateJoSpecific extends Migration
                   ->references('strFabricID')
                   ->on('tblFabric');
 
+            $table->foreign('strEmployeeNameFK')
+                  ->references('strEmployeeID')
+                  ->on('tblEmployee');
+
 
         });
     }

@@ -15,7 +15,8 @@ class CreateJoNoteForModifyTable extends Migration
         Schema::create('tblJONoteForModify', function (Blueprint $table) {
             $table->string('strJobOrderIDFK')->index();
             $table->text('txtUpdateNote');
-            $table->primary('strJobOrderIDFK');
+            $table->date('dtOrderModified');
+            //$table->primary('strJobOrderIDFK');
             $table->timestamps();
 
             $table->foreign('strJobOrderIDFK')
