@@ -25,6 +25,9 @@ use App\SegmentStyle;
 use App\MeasurementCategory;
 use App\StandardSizeCategory;
 
+use App\TransactionJobOrder;
+use App\TransactionJobOrderSpecifics;
+
 class WalkInIndividualController extends Controller
 {
     /**
@@ -109,15 +112,6 @@ class WalkInIndividualController extends Controller
                     ->orderBy('a.strSegmentID')
                     ->get();        
 
-/*        for($i = 0; $i < count($data_segment); $i++){
-            $values[$i][0] = $segments->strSegmentID;
-            $values[$i][1] = $segments->strSegmentName;
-            $values[$i][2] = $segments->dblSegmentPrice;
-            $values[$i][3] = $segments->strSegmentSex;
-            $values[$i][4] = $segments->strSegmentImage;
-            $values[$i][5] = $segments->strGarmentCategoryName;
-        }*/
-
        for($i = 0; $i < count($data_segment); $i++){
             for($j = 0; $j < $data_quantity[$i]; $j++){
                 $values[] = $segments[$i];
@@ -125,6 +119,7 @@ class WalkInIndividualController extends Controller
         }
 
         session(['segment_data' => $data_segment]);
+        session(['segment_quantity' => $data_quantity]);
         session(['segment_values' => $values]);
 
         return redirect('transaction/walkin-individual-show-customize-orders');
@@ -168,17 +163,22 @@ class WalkInIndividualController extends Controller
     {   
         $values = session()->get('segment_values');
         $segmentStyles = SegmentStyle::all();
+        $patterns = [];
         $i = 0;
 
         for($i = 0; $i < count($values); $i++){
             $segmentFabric[$i] = $request->input('fabrics' . ($i+1));
         }
 
-        foreach($segmentStyles as $i => $segmentStyle){
-            $tempPatterns[$i++] = $request->input('rdb_pattern' . $segmentStyle->strSegStyleCatID);
+        for($i = 0; $i < count($values); $i++){
+            for($j = 0; $j < count($segmentStyles); $j++){
+                $tempPatterns = $request->input('rdb_pattern' . $segmentStyles[$j]->strSegStyleCatID . ($i+1));
+                if($tempPatterns != null){
+                    $patterns[$i] = $tempPatterns;
+                } 
+            }
         }
 
-        $patterns = array_slice(array_filter($tempPatterns), 0);
 
         $sqlStyles = \DB::table('tblSegmentPattern AS a')
                 ->leftJoin('tblSegmentStyleCategory AS b', 'a.strSegPStyleCategoryFK', '=', 'b.strSegStyleCatID')
@@ -188,18 +188,34 @@ class WalkInIndividualController extends Controller
                 ->whereIn('a.strSegPatternID', $patterns)
                 ->get();
 
+        for($i = 0; $i < count($values); $i++){
+            for($j = 0; $j < count($sqlStyles); $j++){
+                if($patterns[$i] == $sqlStyles[$j]->strSegPatternID){
+                    $patterns[$i] = $sqlStyles[$j];
+                }
+            }
+        }
+
         $sqlFabric = \DB::table('tblFabric')
                 ->select('strFabricID', 'strFabricName', 'dblFabricPrice')
                 ->whereIn('strFabricID', $segmentFabric)
                 ->get();
 
         for($i = 0; $i < count($values); $i++){
-            $values[$i]->strFabricID = $sqlFabric[$i]->strFabricID;
-            $values[$i]->strFabricName = $sqlFabric[$i]->strFabricName;
-            $values[$i]->dblFabricPrice = $sqlFabric[$i]->dblFabricPrice;
+            for($j = 0; $j < count($sqlFabric); $j++){
+                if($segmentFabric[$i] == $sqlFabric[$j]->strFabricID){
+                    $segmentFabric[$i] = $sqlFabric[$j];
+                }
+            }
         }
 
-        session(['segment_design' => $sqlStyles]);
+        for($i = 0; $i < count($values); $i++){
+            $values[$i]->strFabricID = $segmentFabric[$i]->strFabricID;
+            $values[$i]->strFabricName = $segmentFabric[$i]->strFabricName;
+            $values[$i]->dblFabricPrice = $segmentFabric[$i]->dblFabricPrice;
+        }
+
+        session(['segment_design' => $patterns]);
 
         $joID = \DB::table('tblJobOrder')
             ->select('strJobOrderID')
@@ -230,6 +246,9 @@ class WalkInIndividualController extends Controller
             $custID = $this->smartCounter($ID);  
         }             
 
+        session(['custID' => $custID]);
+        session(['joID' => $newID]);
+
         return view('walkin-individual-checkout-info')
                     ->with('custID', $custID)
                     ->with('joID', $newID);
@@ -240,16 +259,23 @@ class WalkInIndividualController extends Controller
         $values = session()->get('segment_values');
         $styles = session()->get('segment_design');
         $fabrics = session()->get('segment_fabric');
+        $joID = session()->get('joID');
 
         return view('walkin-individual-checkout-pay')
                     ->with('segments', $values)
-                    ->with('styles', $styles);
+                    ->with('styles', $styles)
+                    ->with('joID', $joID);
     }
 
-    public function measurement()
+    public function measurement(Request $request)
     {   
         $values = session()->get('segment_values');
         $data = session()->get('segment_data');
+
+        session(['termsOfPayment' => $request->input('termsOfPayment')]);
+        session(['totalPrice' => $request->input('total_price')]);
+        session(['transaction_date' => $request->input('transaction_date')]);
+
 
         $measurements = \DB::table('tblMeasurementCategory AS a')
                     ->leftJoin('tblMeasurementDetail AS b', 'a.strMeasurementCategoryID', '=', 'b.strMeasCategoryFK')
@@ -266,6 +292,98 @@ class WalkInIndividualController extends Controller
                 ->with('measurements', $measurements)
                 ->with('categories', $measurementCategory)
                 ->with('standard_categories', $standardSizeCategory);
+    }
+
+    public function addCustomer(Request $request)
+    {
+        $individual = Individual::create(array(
+                    'strIndivID' => $request->input('addIndiID'),
+                    'strIndivFName' => trim($request->input('addIndiFirstName')),     
+                    'strIndivMName' => trim($request->input('addIndiMiddleName')),
+                    'strIndivLName' => trim($request->input('addIndiLastName')),
+                    'strIndivHouseNo' => trim($request->input('addCustPrivHouseNo')), 
+                    'strIndivStreet' => trim($request->input('addCustPrivStreet')),
+                    'strIndivBarangay' => trim($request->input('addCustPrivBarangay')),   
+                    'strIndivCity' => trim($request->input('addCustPrivCity')),   
+                    'strIndivProvince' => trim($request->input('addCustPrivProvince')),
+                    'strIndivZipCode' => trim($request->input('addCustPrivZipCode')),
+                    'strIndivLandlineNumber' => trim($request->input('addPhone')),
+                    'strIndivCPNumber' => trim($request->input('addCel')), 
+                    'strIndivCPNumberAlt' => trim($request->input('addCelAlt')),
+                    'strIndivEmailAddress' => trim($request->input('addEmail')),
+                    'boolIsActive' => 1
+                    ));
+
+                $individual->save();
+        return redirect('transaction/walkin-individual-payment-info');
+    }
+
+    public function saveOrder(Request $request)
+    {   
+        //tblJobOrder
+        $tempQuantity = session()->get('segment_quantity');
+        $totalQuantity = 0;
+
+        foreach($tempQuantity as $quantity)
+            $totalQuantity += $quantity; //tblJobOrder
+
+        $jobOrderID = session()->get('joID'); //tblJobOrder
+        $customerID = session()->get('custID'); //tblJobOrder
+        $termsOfPayment = session()->get('termsOfPayment'); //tblJobOrder
+        $modeOfPayment = "Cash"; //tblJobOrder
+        $totalPrice = (double)session()->get('totalPrice'); //tblJobOrder
+        $orderDate = session()->get('transaction_date'); //tblJobOrder
+
+        $jobOrder = TransactionJobOrder::create(array(
+                'strJobOrderID' => $jobOrderID,
+                'strJO_CustomerFK' => $customerID,
+                'strTermsOfPayment' => $termsOfPayment,
+                'strModeOfPayment' => $modeOfPayment,
+                'intJO_OrderQuantity' => $totalQuantity,
+                'dblOrderTotalPrice' => $totalPrice,
+                'dtOrderDate' => $orderDate,
+                'boolIsActive' => 1
+        ));
+
+        $jobOrder->save();
+
+        //tblJobSpecs
+        $segments = session()->get('segment_values'); //tblJobSpecs
+
+        for($i = 0; $i < count($segments); $i++){
+
+            $ids = \DB::table('tblJOSpecific')
+                ->select('strJOSpecificID')
+                ->orderBy('created_at', 'desc')
+                ->orderBy('strJOSpecificID', 'desc')
+                ->take(1)
+                ->get();
+
+            if($ids == null){
+                $jobSpecsID = $this->smartCounter("JOS000"); 
+            }else{
+                $ID = $ids["0"]->strJOSpecificID;
+                $jobSpecsID = $this->smartCounter($ID);  
+            }
+
+            $jobOrderSpecifics = TransactionJobOrderSpecifics::create(array(
+                    'strJOSpecificID' => $jobSpecsID,
+                    'strJobOrderFK' => $jobOrderID,
+                    'strJOSegmentFK' => $segments[$i]->strSegmentID,
+                    'strJOFabricFK' => $segments[$i]->strFabricID,
+                    'intQuantity' => 1,
+                    'dblUnitPrice' => $segments[$i]->dblSegmentPrice,
+                    'intEstimatedDaysToFinish' => $segments[$i]->intMinDays,
+                    'strEmployeeNameFK' => "EMPL001",
+                    'boolIsActive' => 1
+            ));
+
+            $jobOrderSpecifics->save();
+        }
+
+        $designs = session()->get('segment_design'); //tblJOSpecs_Design
+
+        dd("");
     }
 
     public function removeItem(Request $request)

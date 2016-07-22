@@ -39,12 +39,12 @@
 	      		<div class="divider"></div>
 	      		<div class="divider"></div>
 	      	</div>-->
-
+			{!! Form::open(['url' => 'transaction/walkin-individual-save-order', 'method' => 'POST']) !!}
 			<div class="col s12" style="margin-bottom:10px">
 				<div class="col s5">
 					<div class="col s4"><p style="color:gray"><b>Measurement Type</b></p></div>
 					<div class="col s8">		
-							<select class = "fabric-pattern" id = "fabric-pattern">
+							<select id = "measurement-category">
 								@foreach($categories as $category)
 									<option value="{{ $category->strMeasurementCategoryID }}" class="circle">{{ $category->strMeasurementCategoryName }}</option>
 								@endforeach
@@ -85,20 +85,20 @@
 		            		<h5><b>Parts to be measured</b></h5>
 		            		
 							<!--if Body and Cloth Measurement-->
-		            		<div class="container"> 
-			            		@foreach($measurements as $measurement)
-			            			@if($measurement->strMeasDetSegmentFK == $segment->strSegmentID)
-					            	   	<div style="color:black; padding-left:140px" class="input-field col s6">                 
+			            	@foreach($measurements as $measurement)
+			            		@if($measurement->strMeasDetSegmentFK == $segment->strSegmentID)
+		            				<div class="container measurement-general {{ $measurement->strMeasCategoryFK }}"> 
+					            	   	<div style="color:black; padding-left:140px" class="input-field col s6 ">                 
 				                          <input name="shoulder" type="text">
 				                          <label style="color:teal" for="shoulder">{{ $measurement->strMeasDetailName }}: </label>
 				                        </div>
-			                        @endif
-		                        @endforeach
-		                    </div>
+		                    		</div>
+			                    @endif
+		                    @endforeach
 							<!--End of Body and Cloth Measurement-->
 
 							<!--if Standard Size Measurement-->
-							<div class="col s12 z-depth-1" style="padding:20px">
+							<div class="col s12 z-depth-1 measurement-general MEASCAT001" style="padding:20px">
 								<div class="container">
 									<div class="left col s6">
 										<center><img src="{{ URL::asset($segment->strSegmentImage) }}" style="height:200px; width:200px; border:3px gray solid"></center>	
@@ -131,9 +131,6 @@
 							<!--End of standard size measurement-->
 
 	                    </div>
-	                    
-
-	                    
 
 	                    <p style="color:red">In case of multiple measurements</p>
 	                    	<div style="color:black; padding-left:160px" class="input-field col s5">                 
@@ -144,8 +141,8 @@
 	                    	<div style="color:gray" class="input-field col s3">                 
 	                          <select>
 							    <option value="" disabled selected color="red">Sex</option>
-							    <option value="1">Female</option>
-							    <option value="2">Male</option>
+							    <option value="M">Female</option>
+							    <option value="F">Male</option>
 							  </select>
 	                    	</div>
 
@@ -158,33 +155,13 @@
 
 	                    	<div class="col s1"><a href="#!" class="btn-floating" style="background-color:#a7ffeb; margin-top:20px"><i class="mdi-navigation-check" style="color:black;"></i></a></div>
 	            	</div>
-
                     <div class="col s12"><div class="divider" style="height:5px; color:gray; margin-top:15px; margin-bottom:15px"></div></div>
 				@endforeach
 
+                <button type="submit" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save info and begin processing" style="background-color:teal; margin-right:50px; padding:9.5px; padding-bottom:45px; color:white"><!--<i class="mdi-action-done"> -->Save Measurements<!--</i>--></button>
 
+				{!! Form::close() !!}
                     
-               	<!--bottom buttons-->
-                    <a href="#save-transaction" class="right modal-trigger btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save info and begin processing" style="background-color:teal; margin-right:50px; padding:9.5px; padding-bottom:45px; color:white"><!--<i class="mdi-action-done"> -->Save Measurements<!--</i>--></a>
-                    	<div id="save-transaction" class="modal modal-fixed-footer" style="height:200px; width:500px; margin-top:150px">
-										
-								{!! Form::open() !!}
-										
-										<div class="modal-content col s12">
-											<div class="col s3">
-												<i class="mdi-action-done" style="font-size:50px; color:green"></i>
-											</div>
-											<div class="col s9">
-												<p><font size="+1">Successfully saved measurement and transaction!</font></p>
-											</div>
-										</div>
-
-										<div class="modal-footer col s12" style="background-color:green; opacity:0.85; color:white">
-							                <a class="waves-effect waves-green btn-flat" href="{{URL::to('/online-home')}}"><font color="white">OK</font></a>
-							            </div>
-									{!! Form::close() !!}
-						</div>
-
 					<a href="#cancel-order" class="right btn modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Clears current transaction" style="background-color:teal; padding:9.5px; padding-bottom:45px; margin-right:50px; color:white">Cancel Transaction</a>
 						<div id="cancel-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:80px">
 							<h5><font color="red"><center><b>Warning!</b></center></font></h5>
@@ -219,25 +196,25 @@
 @section('scripts')
 	
 	<script>
-/*		$(document).ready(function(){
-			var a = {!! json_encode($segments) !!}
-
-				$('.' + strSegmentID).removeClass('hide');
-			}
-
+		$('#measurement-category').change(function(){
+			var measurementCat = $('#measurement-category').val();
+			updateUI(measurementCat);
 		});
-*/	</script>
+
+		function updateUI(category)
+		{
+			$('.measurement-general').hide();
+			$('.' + category).show();
+		}
+	</script>
 
 	<script>
 	  $(document).ready(function() {
-	    $('select').material_select();
-	  });
-	</script>	
+	  		$('.measurement-general').hide();
 
-	<script>
-	$(document).ready(function(){
-    	$('body').on('load', 'ul.tabs', function() {
-   	 	$('ul.tabs').tabs();
+		    $('select').material_select();
+	    	$('body').on('load', 'ul.tabs', function() {
+	   	 	$('ul.tabs').tabs();
 		});
   		
   		$("#addMeasurementDetail").on('click', function(){
@@ -247,9 +224,8 @@
   			}, 2000);
 */  		});
 
-  	});
-
-	</script>
+  		});
+	</script>	
 
 	<script>
 	function tabInit() {
