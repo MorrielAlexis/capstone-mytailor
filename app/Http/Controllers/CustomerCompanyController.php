@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Company;
 use App\Http\Requests;
+use App\Http\Requests\MaintenanceCustomerCompanyRequest;
 use App\Http\Controllers\Controller;
 
 class CustomerCompanyController extends Controller
@@ -58,7 +59,7 @@ class CustomerCompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MaintenanceCustomerCompanyRequest $request)
     {
         $comp = Company::get();
 

@@ -148,15 +148,42 @@ class EmployeeController extends Controller
     function updateEmployee(Request $request)
     {        
 
-        $checkEmployees = Employee::all();
+        
+         $checkEmployees = Employee::all();
         $isAdded=FALSE;
+        $count = 0; $count2 = 0;
 
-        foreach($checkGarments as $checkGarment)
-            if(!strcasecmp($checkGarment->strGarmentCategoryID, $request->input('editGarmentID')) == 0 &&
-                strcasecmp($checkGarment->strGarmentCategoryName, trim($request->input('editGarmentName'))) == 0)
-                $isAdded = TRUE;
+        if(!($employee->strEmailAdd == trim($request->input('editEmail')))) {    
+            $count = \DB::table('tblEmployee')
+                ->select('tblEmployee.strEmailAdd')
+                ->where('tblEmployee.strEmailAdd','=', trim($request->input('editEmail')))
+                ->count();
+        }
 
-            
+        if(!($employee->strCellNo == trim(Input::get('editCellNo')))) { 
+            $count2 = DB::table('tblEmployee')
+                ->select('tblEmployee.strCellNo')
+                ->where('tblEmployee.strCellNo','=', trim(Input::get('editCellNo')))
+                ->count();
+        }
+             if($count > 0 || $count2 > 0){
+            $isAdded = TRUE;
+
+        }else{
+
+
+
+            foreach($checkEmployees as $emp){
+            if(!strcasecmp($emp->strEmployeeID, $request->input('editEmpID')) == 0 &&
+                strcasecmp($emp->strEmpFName, trim($request->input('editFirstName'))) == 0 &&
+                strcasecmp($emp->strEmpMName, trim($request->input('editMiddleName'))) == 0 &&
+                strcasecmp($emp->strEmpLName, trim($request->input('editLastName'))) == 0){
+                    
+                    }    $isAdded = TRUE;
+                }
+            }
+
+            if(!$isAdded){
             $employee = Employee::find($request->input('editEmpID'));
 
                 $employee->strEmpFName = trim($request->input('editFirstName')); 
@@ -179,7 +206,7 @@ class EmployeeController extends Controller
             $employee->save();
 
             \Session::flash('flash_message_update','Employee detail/s successfully updated.'); //flash message
-
+        }else \Session::flash('flash_message_duplicate','Employee category already exists.'); //flash message
             return redirect('maintenance/employee');
 
     }

@@ -18,7 +18,7 @@ class MaintenanceCustomerIndividualRequest extends Request
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Get the validation rules that apply to the request.ind
      *
      * @return array
      */
@@ -26,9 +26,10 @@ class MaintenanceCustomerIndividualRequest extends Request
     {
         return [
             'strIndivFName' => 'unique_with:tblCustIndividual,strIndivMName,strIndivLName',
-
-            'strIndivCPNumber' => 'regex:/^\d{11}/',
-
+            'strIndivSex'            =>  'required',
+            'strIndivCPNumber'         =>  'unique:tblCustIndividual|regex:/^\d{11}/',
+            'strIndivEmailAddress'       =>  'unique:tblCustIndividual|email',
+            'strIndivLandlineNumber'     => 'unique:tblCustIndividual'
             // 'strIndivEmailAddress' => 'unique|email'
             
         ];
@@ -37,12 +38,17 @@ class MaintenanceCustomerIndividualRequest extends Request
     public function messages()
     {
         return [
-            'strIndivFName.required'     =>  'First name is required.',
-            'strIndivFName.unique_with'  =>  'Name already exists.',
-            'strIndivLName.required'      =>  'Last name is required.',
-            'strIndivCPNumber.regex'    =>  'Invalid contact number format.'
+                'strIndivFName.required'     =>  'First name is required.',
+                'strIndivFName.unique_with'  =>  'Name already exists.',
+                'strIndivLName.required'     >  'Last name is required.',
+                'strIndivCPNumber.regex'    =>  'Invalid contact number format.',
+                'strIndivCPNumber.unique'   => 'Contact number already exists!',
+            'strIndivEmailAddress.unique'   =>'Email address is already in use.',
+            'strIndivEmailAddress.email'         =>  'Invalid email format.', 
+            'strIndivSex.required'          =>'Sex is required.',
+            'strIndivLandlineNumber.unique'        =>'Landline number already exists.'
 
-            // 'strIndivEmailAddress.unique' => 'Email address already exists!Please enter your correct email address.',
+                // 'strIndivEmailAddress.unique' => 'Email address already exists!Please enter your correct email address.',
             // 'strIndivEmailAddress.email' => 'Invalid email address format.'
             
             
