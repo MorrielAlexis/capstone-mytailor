@@ -113,6 +113,58 @@ class BodyPartCategoryController extends Controller
         //
     }
 
+    function update_bodyPartCategory(Request $request)
+    {
+        $checkParts = BodyPartCategory::all();
+        $isAdded=FALSE;
+
+        foreach($checkParts as $checkPart)
+            if(!strcasecmp($checkPart->strBodyPartCategoryID, $request->input('editBodyPartCatID')) == 0 &&
+                strcasecmp($checkPart->strBodyPartCatName, trim($request->input('editBodyPartCatName'))) == 0)
+                $isAdded = TRUE;
+
+        if(!$isAdded){
+            $bodyPartCategory = BodyPartCategory::find($request->input('editBodyPartCatID'));
+            $bodyPartCategory->strBodyPartCatName = trim($request->input('editBodyPartCatName'));
+            $bodyPartCategory->textBodyPartCatDesc = trim($request->input('editBodyPartCatDesc'));
+
+            $bodyPartCategory ->save();
+
+
+          \Session::flash('flash_message_update','Body part category detail/s successfully updated.'); //flash message   
+        }else \Session::flash('flash_message_duplicate','Body part category already exists.'); //flash message
+
+        return  redirect('maintenance/body-part-category');
+
+    }
+
+
+
+    function delete_bodyPartCategory(Request $request)
+    {   
+        $id = $request->input('delGarmentID');
+        $bodyPartCategory = BodyPartCategory::find($request->input('delBodyPartCatID'));
+
+        $count = \DB::table('tblBodyPartForm')
+                ->join('tblBodyPartCategory', 'tblBodyPartForm.strBodyPartFK', '=', 'tblBodyPartCategory.strBodyPartCategoryID')
+
+                ->select('tblBodyPartCategory.*')
+
+                ->where('tblBodyPartCategory.strBodyPartCategoryID','=', $id)
+                ->count();
+                
+                if ($count != 0) {
+                    return redirect('maintenance/body-part-category?success=beingUsed'); 
+                }else {
+                    $bodyPartCategory->strBodyPartCategoryInactiveReason = trim($request->input('delBodyPartCatID')); 
+                    $bodyPartCategory->boolIsActive = 0;
+                    $bodyPartCategory->save();
+                    \Session::flash('flash_message_delete','Body part category successfully deactivated.'); //flash message
+                    return redirect('maintenance/body-part-category'); 
+            }
+
+    }
+
     public function smartCounter($id)
     {   
 
