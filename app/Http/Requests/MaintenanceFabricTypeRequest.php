@@ -26,7 +26,6 @@ class MaintenanceFabricTypeRequest extends Request
     {
         return [
             'strFabricTypeName'    =>  'required|unique:tblFabricType,strFabricTypeName'
-            // 'strFabricTypeName' => 'regex:/^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?/''
         ];
     }
 
@@ -35,8 +34,8 @@ class MaintenanceFabricTypeRequest extends Request
         return [
 
             'strFabricTypeName.unique'  =>  'Fabric type already exists.',
-            'strFabricTypeName.required'  =>  'Fabric type name is required.',
-            'strFabricTypeName.regex'     =>  'Invalid garment name format.'
+            'strFabricTypeName.required'  =>  'Fabric type name is required.'
+            
             
         ];
     }

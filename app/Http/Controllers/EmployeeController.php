@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Employee;
 use App\EmployeeRole;
 use App\Http\Requests;
+use App\Http\Requests\MaintenanceEmployeeProfileRequest;
 use App\Http\Controllers\Controller;
 
 class EmployeeController extends Controller
@@ -67,7 +68,7 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MaintenanceEmployeeProfileRequest $request)
     {
         $emp = Employee::get();
 
@@ -146,6 +147,16 @@ class EmployeeController extends Controller
 
     function updateEmployee(Request $request)
     {        
+
+        $checkEmployees = Employee::all();
+        $isAdded=FALSE;
+
+        foreach($checkGarments as $checkGarment)
+            if(!strcasecmp($checkGarment->strGarmentCategoryID, $request->input('editGarmentID')) == 0 &&
+                strcasecmp($checkGarment->strGarmentCategoryName, trim($request->input('editGarmentName'))) == 0)
+                $isAdded = TRUE;
+
+            
             $employee = Employee::find($request->input('editEmpID'));
 
                 $employee->strEmpFName = trim($request->input('editFirstName')); 
