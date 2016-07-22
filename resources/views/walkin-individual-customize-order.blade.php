@@ -163,7 +163,7 @@
 												      	@foreach($patterns as $k => $pattern)
 												      	<div class="col s6" @if($pattern->strSegPStyleCategoryFK != $style->strSegStyleCatID) hidden @endif>
 								                        	<div class="center col s2 " style="margin-top:60px">
-								                        		<input name="rdb_pattern{{ $style->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" />
+								                        		<input name="rdb_pattern{{ $style->strSegStyleCatID }}{{ $i+1 }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" />
 								                        		<label for="{{ $pattern->strSegPatternID }}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}"></label>
 								                        	</div>
 								                        	 <div class="col s10">

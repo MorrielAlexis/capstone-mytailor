@@ -122,8 +122,8 @@
                     <thead>
                       <tr>
                         <th data-field="MeasurementDetailID">Measurement Detail ID</th>
-                        <th data-field="MeasDetSegmentFK">Segment FK</th>
-                        <th data-field="MeasCategoryFK">Category FK</th>
+                        <th data-field="MeasDetSegmentFK">Segment</th>
+                        <th data-field="MeasCategoryFK">Category</th>
                         <th data-field="MeasDetailName">Measurement Detail Name</th>
                         <th data-field="MeasDetailDesc">Description</th>
                         <th data-field="MeasDetailMinCm">Cm</th>
@@ -137,8 +137,14 @@
                       @foreach($detail as $detail)
                       @if($detail->boolIsActive == 1)
                       <tr>
-                        <td>{{ $detail->strMeasurementDetailName }}</td>
-                        <td>{{ $detail->txtMeasurementDetailDesc }}</td>
+                        <td>{{ $detail->strMeasurementDetailID }}</td>
+                        <td>{{ $detail->strMeasDetSegmentFK }}</td>
+                        <td>{{ $detail->strMeasCategoryFK }}</td>
+                        <td>{{ $detail->strMeasDetailName }}</td>
+                        <td>{{ $detail->txtMeasDetailDesc }}</td>
+                        <td>{{ $detail->dblMeasDetailMinCm }}</td>
+                        <td>{{ $detail->dblMeasDetailMinInch }}</td>
+                        <td>{{ $detail->strMeasDetInactiveReason }}</td>
                         <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement detail" href="#edit{{ $detail->strMeasurementDetailID }}"><i class="mdi-editor-mode-edit"></i></a>
                         <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to deactivate measurement detail from the table" href="#del{{ $detail->strMeasurementDetailID }}"><i class="mdi-action-delete"></i></a></td>
 
