@@ -34,13 +34,11 @@ class JobOrderProgressController extends Controller
         //     ->join('tbljoborder' , 'tbljoborder.strJobOrderID', '=', 'tbljospecific.strJobOrderFK')
         //     ->join('tblSegment', 'tblSegment.strSegmentID', '=', 'tbljospecific.strJOSegmentFK')
         //     ->join('tblGarmentCategory', 'tblGarmentCategory.strGarmentCategoryID', '=', 'tblSegment.strSegCategoryFK')
-        //     ->join('tblSegmentPattern', 'tblSegmentPattern.strSegPatternID', '=', 'tbljospecific.strJOSegmentPatternFK')
         //     ->leftjoin('tblJobOrderProgress', 'tblJobOrderProgress.strJobOrderSpecificFK', '=', "tbljospecific.strJOSpecificID")
-        //     ->select('tbljospecific.*', 'tblGarmentCategory.strGarmentCategoryName', 'tblSegment.strSegmentName', 'tblSegmentPattern.strSegPName')
+        //     ->select('tbljospecific.*', 'tblGarmentCategory.strGarmentCategoryName', 'tblSegment.strSegmentName', 'tblJobOrderProgress.intProgressAmount')
         //     ->get(); 
 
-
-              //dd($specifics);              
+        //       dd($specifics);              
 
         return view('transaction-joborderprogress')
             ->with('joborder', $joborder);
@@ -54,16 +52,15 @@ class JobOrderProgressController extends Controller
 
     public function jobdetails()
     {
-      
+       
         $specifics = \DB::table('tbljospecific')
             ->join('tbljoborder' , 'tbljoborder.strJobOrderID', '=', 'tbljospecific.strJobOrderFK')
             ->join('tblSegment', 'tblSegment.strSegmentID', '=', 'tbljospecific.strJOSegmentFK')
             ->join('tblGarmentCategory', 'tblGarmentCategory.strGarmentCategoryID', '=', 'tblSegment.strSegCategoryFK')
-            ->join('tblSegmentPattern', 'tblSegmentPattern.strSegPatternID', '=', 'tbljospecific.strJOSegmentPatternFK')
             ->leftjoin('tblJobOrderProgress', 'tblJobOrderProgress.strJobOrderSpecificFK', '=', "tbljospecific.strJOSpecificID")
             ->where('tbljospecific.strJobOrderFK', '=', Input::get('jobID'))
-            ->select('tbljospecific.*', 'tblGarmentCategory.strGarmentCategoryName', 'tblSegment.strSegmentName', 'tblSegmentPattern.strSegPName', 'tblJobOrderProgress.intProgressAmount', 'tbljoborder.strJobOrderID')
-            ->get();    
+            ->select('tbljospecific.*', 'tblGarmentCategory.strGarmentCategoryName', 'tblSegment.strSegmentName', 'tblJobOrderProgress.intProgressAmount')
+            ->get();        
 
 
             // dd($specifics);
