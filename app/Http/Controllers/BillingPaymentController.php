@@ -89,9 +89,25 @@ class BillingPaymentController extends Controller
 
 
 
-    public function billCustomer()
+    public function billCustomer(Request $request)
     {
-        return view('transaction-billingpayment-billcustomer');
+        $search_query = $request->input('search_query');
+
+        $customers = \DB::table('tblCustIndividual AS a')
+                    ->select(\DB::raw('CONCAT(a.strIndivFName, " ", a.strIndivMName, " ", a.strIndivLName) AS fullname'))
+                    ->where(\DB::raw('CONCAT(a.strIndivFName, " ", a.strIndivMName, " ", a.strIndivLName)'), $search_query)
+                    ->get();
+
+        $transac_dates = \DB::table('tblJOPayment AS a')
+                    ->leftJoin('tblJobOrder AS b', 'a.strTransactionFK', '=', 'b.strJobOrderID')
+                    ->leftJoin('tblCustIndividual AS c', 'b.strJO_CustomerFK', '=', 'c.strIndivID')
+                    ->select('a.*', 'b.*', \DB::raw('CONCAT(c.strIndivFName, " ", c.strIndivMName, " ", c.strIndivLName)'))
+                    ->where(\DB::raw('CONCAT(c.strIndivFName, " ", c.strIndivMName, " ", c.strIndivLName)'), $search_query)
+                    ->where('a.strPaymentStatus', 'Pending')
+                    ->get();
+
+        return view('transaction-billingpayment-billcustomer')
+                ->with('transac_dates', $transac_dates);
     }
 
 

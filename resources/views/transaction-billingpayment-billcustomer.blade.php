@@ -44,11 +44,9 @@
 										<div class="input-field col s9">
 										<div class="container">
 											<select class="browser-default tooltipped" data-position="bottom" data-delay="50" data-tooltip="In case of multiple pending payments" style="margin-left:150px; border:3px teal solid; padding-left:10px">
-												<option disabled>Choose a transaction date...</option>
-											    <option value="date1">2016-05-03</option>
-											    <option value="date2">2016-06-16</option>
-											    <option value="date3">2016-09-21</option>
-											    <option value="A" selected class="circle">All</option>
+												@foreach($transac_dates as $transac_date)
+												<option disabled>{{ $transac_dates->dtOrderDate }}</option>
+												@endforeach
 											</select>
 										</div>
 										<label style="color:teal; margin-top:5px;"><b>Choose a transaction date to bill:</b></label>
