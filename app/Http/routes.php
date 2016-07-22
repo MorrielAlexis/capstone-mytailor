@@ -289,12 +289,14 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::post('walkin-individual-remove-item', 'WalkInIndividualController@removeItem');
 	Route::post('walkin-individual-add-design', 'WalkInIndividualController@addDesign');
 	Route::post('walkin-individual-clear-order', 'WalkInIndividualController@clearOrder');
-
+	Route::post('walkin-individual-save-order', 'WalkInIndividualController@saveOrder');
+	Route::post('walkin-individual-save-customer', 'WalkInIndividualController@addCustomer');
+	Route::post('walkin-individual-payment-measure-detail', 'WalkInIndividualController@measurement');
+	
 	Route::get('walkin-individual-show-customize-orders', 'WalkInIndividualController@showCustomizeOrder');
 
 	Route::get('walkin-individual-catalogue-designs', 'WalkInIndividualController@catalogueDesign');
-	Route::get('walkin-individual-payment-payment-info', 'WalkInIndividualController@payment');
-	Route::get('walkin-individual-payment-measure-detail', 'WalkInIndividualController@measurement');
+	Route::get('walkin-individual-payment-info', 'WalkInIndividualController@payment');
 });
 
 Route::group(['prefix' => 'transaction'], function(){

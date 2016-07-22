@@ -100,15 +100,15 @@
 																<th data-field="due-date">Due Date</th>
 															</thead>
 															<tbody>
-																@if(isset($payments))
-																@foreach($payments as $payment)
-																@if($payment->boolIsActive == 1)
+																@if(isset($pending_payments))
+																@foreach($pending_payments as $pending_payment)
+																@if($pending_payment->boolIsActive == 1)
 																<tr>																
-																	<td><a href="#summary-of-order" class="modal-trigger tooltipped" data-position="bottom" data-delay"50" data-tooltip="Click to view summary of orders"><u>ORN 0001</u></a></td>
-																	<td>{{ $payment->dtTransacDate }}</td>
-																	<td>Php {{ number_format($payment->dblAmtPayable, 2) }}</td>
-																	<td>Php {{ number_format($payment->dblOustandingBal, 2) }}</td>
-																	<td>{{ $payment->dtDueDate}}</td>
+																	<td><a href="#summary-of-order" class="modal-trigger tooltipped" data-position="bottom" data-delay"50" data-tooltip="Click to view summary of orders"><u>{{ $pending_payment->strJobOrderID }}</u></a></td>
+																	<td>{{ $pending_payment->dtOrderDate }}</td>
+																	<td>Php {{ number_format($pending_payment->dblOrderTotalPrice, 2) }}</td>
+																	<td>Php {{ number_format($pending_payment->dblOustandingBal, 2) }}</td>
+																	<td>{{ $pending_payment->dtPaymentDueDate}}</td>
 																</tr>
 																@endif
 																@endforeach

@@ -38,7 +38,7 @@
 	            	<div class="col s12" style="margin-bottom:20px">
 	            		<div class="col s6">
 	            			<div class="col s6" style="color:gray;padding-left:50px;padding-top:15px"><p>Transaction No.:</p></div>
-			      			<div class="col s6" style="color:red;"><p><input value="" id="transac_no" name="transac_no" type="text" class="" readonly></p></div>
+			      			<div class="col s6" style="color:red;"><p><input value="{{ $joID }}" id="transac_no" name="transac_no" type="text" class="" readonly></p></div>
                         </div>
 
                         <div class="col s6">              
@@ -85,6 +85,7 @@
 				          			<tr>
 					                  <th data-field="product">Style Category</th>         
 					                  <th data-field="quantity">Segment Pattern</th>
+					                  <th data-field="price">Style Price</th>
 					                  <!--<th data-field="price">Total Price</th>-->
 					              	</tr>
 				              	</thead>
@@ -94,7 +95,7 @@
 						            <tr>
 						               <td>{{ $style->strSegStyleName }}</td>
 						               <td>{{ $style->strSegPName }}</td>
-						               <!--<td> </td>-->
+						               <td>{{ number_format($style->dblPatternPrice, 2) }} PHP</td>
 						            </tr>
 						            @endif
 						         @endforeach
@@ -108,25 +109,27 @@
 		      		</div>
 
 					<div class="col s12" style="margin:10px"></div>
-					{!! Form::open() !!}
+					{!! Form::open(['url' => 'transaction/walkin-individual-payment-measure-detail', 'method' => 'POST']) !!}
 						<div class="col s6" style="border-right:2px gray solid">
 							<h5 style="color:teal"><b>Price Quotation*</b></h5>
 							<span>Determine terms of payment to get payment details</span>
 							<div class="col s12"><div class="divider" style="margin:15px"></div></div>
 			      			<div class="col s4" style="color:gray; font-size:15px"><p><b>Total Amount</b></p></div>
-			      			<div class="col s8" style="color:red;"><p><input id="total-price" name="total-price" type="text" class="" readonly></p></div>
+			      			<div class="col s8" style="color:red;"><p><input id="total_price" name="total_price" type="text" class="" readonly></p></div>
 
                         	<div class="col s4" style="color:gray; font-size:15px"><p><b>Terms of Payment</b></p></div>
                         	<div class="col s8" style="padding:18px; padding-top:30px">
 	                        	<div class="col s6">
-			          				<input name="termOfPayment" type="radio" class="filled-in payment" id="half_pay"/>
+			          				<input name="termsOfPayment" value="Half Payment" type="radio" class="filled-in payment" id="half_pay"/>
 	      							<label for="half_pay">Half (50-50)</label>
 								</div>
 								<div class="col s6">
-				          			<input name="termOfPayment" type="radio" class="filled-in payment" id="full_pay" />
+				          			<input name="termsOfPayment" value="Full Payment" type="radio" class="filled-in payment" id="full_pay" />
 		      						<label for="full_pay">Full (100)</label>
 		      					</div>
 	      					</div>
+							
+							<input type="hidden" id="transaction_date" name="transaction_date" />
 
 		      				<div class="col s4" style="color:gray; font-size:15px"><p><b>Amount Payable</b></p></div>
 		      				<div class="col s8" style="color:red;"><p><input value="" id="amount-payable" name="amount-payable" type="text" class="" readonly></p></div>
@@ -188,7 +191,7 @@
 
                     		<!--start of bottom button-->
                     		<div class="col s12" style="margin-top:20px">
-	                    		<a href="{{URL::to('transaction/walkin-individual-payment-measure-detail')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save payment information and get measured" style="background-color:#00695c; padding:9.5px; padding-bottom:45px; margin-top:20px; margin-left:30px"><label style="font-size:15px; color:white"><b>Start Measurement</b></label></a>
+	                    		<button type="submit" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save payment information and get measured" style="background-color:#00695c; padding:9.5px; padding-bottom:45px; margin-top:20px; margin-left:30px"><label style="font-size:15px; color:white"><b>Start Measurement</b></label></button>
 	                    		<a href="#cancel-order" class="right btn modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Click to cancel current unsaved transaction" style="background-color:#a7ffeb; padding:9.5px; padding-bottom:45px; margin-top:20px; margin-left:30px"><label style="font-size:15px; color:black"><b>Cancel Transaction</b></label></a>
 	                    			<div id="cancel-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:80px">
 										<h5><font color="red"><center><b>Warning!</b></center></font></h5>
@@ -245,14 +248,16 @@
 		  	});
 
 			var a = {!! json_encode($segments) !!};
+			var b = {!! json_encode($styles) !!};
 			var totalAmount = 0.00;
 
 			for(var i = 0; i < a.length; i++){
 				totalAmount += a[i].dblSegmentPrice;
 				totalAmount += a[i].dblFabricPrice;
+				totalAmount += b[i].dblPatternPrice;
 			}
 			
-			$('#total-price').val(totalAmount.toFixed(2));
+			$('#total_price').val(totalAmount.toFixed(2));
 		});
 	</script>
 
@@ -261,11 +266,13 @@
 				if($('#half_pay').prop("checked")){
 
 					var a = {!! json_encode($segments) !!};
+					var b = {!! json_encode($styles) !!};
 					var totalAmount = 0.00;
 
 					for(var i = 0; i < a.length; i++){
 						totalAmount += a[i].dblSegmentPrice;
 						totalAmount += a[i].dblFabricPrice;
+						totalAmount += b[i].dblPatternPrice;
 					}
 					
 					$('#amount-payable').val((totalAmount/2).toFixed(2) + ' PHP');
@@ -275,11 +282,13 @@
 				if($('#full_pay').prop("checked")){
 
 					var a = {!! json_encode($segments) !!};
+					var b = {!! json_encode($styles) !!};	
 					var totalAmount = 0.00;
 
 					for(var i = 0; i < a.length; i++){
 						totalAmount += a[i].dblSegmentPrice;
 						totalAmount += a[i].dblFabricPrice;
+						totalAmount += b[i].dblPatternPrice;
 					}
 					
 					$('#amount-payable').val(totalAmount.toFixed(2) + ' PHP');
@@ -293,13 +302,13 @@
 		});
 
 		$('#amount-to-pay').blur(function(){	
-			if($('#amount-to-pay').val() > $('#total-price').val()){
+			if($('#amount-to-pay').val() > $('#total_price').val()){
 				alert("You can't choose to pay more than the total.");
 				$('#amount-to-pay').val("");
 			}else{
 				var amountChange = $('#amount-tendered').val() - $('#amount-to-pay').val();
 				$('#amount-change').val(amountChange.toFixed(2) + ' PHP');	
-				$('#outstanding-bal').val(($('#total-price').val() - $('#amount-to-pay').val()).toFixed(2) + ' PHP');				
+				$('#outstanding-bal').val(($('#total_price').val() - $('#amount-to-pay').val()).toFixed(2) + ' PHP');				
 			}
 		});
 		
@@ -327,7 +336,8 @@
 		var newDate = new Date();
 		newDate.setDate(newDate.getDate());    
 		$('#Date').html(dayNames[newDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
-	
+   	 	$('#transaction_date').val(newDate.getFullYear() + "-" +  (newDate.getMonth()+1) + "-" + newDate.getDate());
+
 	</script>
 
 	<script type="text/javascript">
