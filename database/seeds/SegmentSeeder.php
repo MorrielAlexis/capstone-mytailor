@@ -69,7 +69,7 @@ class SegmentSeeder extends Seeder
                 'dblSegmentPrice' => '550.00',
                 'strSegmentSex' => 'F',
                 'intMinDays' => '4',
-                'strSegmentImage' => 'imgSegments/female-uniform-plain-jpg',
+                'strSegmentImage' => 'imgSegments/dress1.jpg',
                 'textSegmentDesc' => 'Upper part wear for womens`s uniform.',
                 'boolIsActive' => '1'
             ),
@@ -93,7 +93,7 @@ class SegmentSeeder extends Seeder
                 'dblSegmentPrice' => '600.00',
                 'strSegmentSex' => 'F',
                 'intMinDays' => '3',
-                'strSegmentImage' => 'imgSegments/dress1.jpg',
+                'strSegmentImage' => 'imgSegments/dressfinal.jpg',
                 'textSegmentDesc' => 'Formal for womens uniform.',
                 'boolIsActive' => '1'
             )

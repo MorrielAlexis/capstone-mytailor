@@ -16,7 +16,7 @@ class StandardSizeDetail extends Model
 								'strStanSizeDetailName',
 								'strStanSizeFitType',
 								'dblStanSizeInch',
-								'dblStanSizeCm',
+								// 'dblStanSizeCm',
 								'txtStanSizeDesc',
 								'boolIsActive'
 														
