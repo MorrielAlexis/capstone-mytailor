@@ -123,9 +123,10 @@ class GarmentCategoryController extends Controller
         //
     }
 
-    function updateGarmentCategory(GarmentCategoryRequest $request)
+    function updateGarmentCategory(Request $request)
     {
         $checkGarments = GarmentCategory::all();
+        $isAdded=FALSE;
 
         foreach($checkGarments as $checkGarment)
             if(!strcasecmp($checkGarment->strGarmentCategoryID, $request->input('editGarmentID')) == 0 &&

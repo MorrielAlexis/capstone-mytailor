@@ -156,7 +156,7 @@ class GarmentSegmentController extends Controller
     }
 
      function updateGarmentSegment(Request $request)
-    {   dd($request->input('editSegmentDesc'));
+    {   ($request->input('editSegmentDesc'));
         $segment = GarmentSegment::find($request->input('editSegmentID'));
         $checkSegments = GarmentSegment::all();
 
