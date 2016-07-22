@@ -11,10 +11,11 @@ class TransactionJobOrder extends Model
     public $primaryKey = 'strJobOrderID';
 
     public $fillable = array('strJobOrderID', 
-    						'strJO_CustomerFK', 
+    						'strJO_CustomerFK', 'strJO_CustomerCompanyFK', 
     						'strTermsOfPayment', 
     						'strModeOfPayment', 
-    						'intJO_ItemQty',
+    						'intJO_OrderQuantity',
+                            'dblOrderTotalPrice',
     						'boolIsOrderAccepted',
     						'dtOrderDate',
     						'dtOrderApproved',
