@@ -39,7 +39,22 @@ class StandardSizeCategorySeeder extends Seeder
                 'strStandardSizeCategoryName' => 'Large', 
                 'txtStandardSizeCategoryDesc' =>'For slight hefty body type.',
                 'boolIsActive' => '1'
-            )
+            ),
+
+             array(
+                'strStandardSizeCategoryID' => 'STDRSZE005',
+                'strStandardSizeCategoryName' => 'Extra Large', 
+                'txtStandardSizeCategoryDesc' =>'For hefty hefty body type.',
+                'boolIsActive' => '1'
+            ),
+
+
+             array(
+                'strStandardSizeCategoryID' => 'STDRSZE006',
+                'strStandardSizeCategoryName' => 'XX Large', 
+                'txtStandardSizeCategoryDesc' =>'For super hefty body type.',
+                'boolIsActive' => '1'
+            ),
 
           
         );
