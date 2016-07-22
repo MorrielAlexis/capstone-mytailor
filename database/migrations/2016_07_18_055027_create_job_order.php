@@ -14,8 +14,8 @@ class CreateJobOrder extends Migration
     {
         Schema::create('tblJobOrder', function (Blueprint $table) {
             $table->string('strJobOrderID')->primary();
-            $table->string('strJO_CustomerFK')->index();
-            $table->string('strJO_CustomerCompanyFK')->index();
+            $table->string('strJO_CustomerFK')->index()->nullable();
+            $table->string('strJO_CustomerCompanyFK')->index()->nullable();
             $table->string('strTermsOfPayment');
             $table->string('strModeOfPayment');
             $table->integer('intJO_OrderQuantity');
