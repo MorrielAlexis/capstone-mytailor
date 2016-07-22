@@ -43,17 +43,25 @@
 	            <div class="col s12"> 
 
 	            	<div class="col s12" style="margin-bottom:20px">
-	            		<div class="col s3" style="color:gray;padding-left:50px;padding-top:15px"><p>Transaction No.:</p></div>
-			      		<div class="col s3" style="color:red;"><p><input value="" id="transac_no" name="transac_no" type="text" class="" readonly></p></div>
-
-                        <div style="color:gray; padding-left:140px;" class="input-field col s6">                 
-                          <input value="" id="transac_date" name="transac_date" type="date" class="datepicker">
-                          <label style="color:gray" for="transac_date">Date and Time: </label>
+						<div class="col s6">
+	            			<div class="col s6" style="color:gray;padding-left:50px;padding-top:15px"><p>Transaction No.:</p></div>
+			      			<div class="col s6" style="color:red;"><p><input value="" id="transac_no" name="transac_no" type="text" class="" readonly></p></div>
                         </div>
+
+                        <div class="col s6">              
+	                        <div class="col s12">
+	                          <div class="col s4" style="color:gray"><p>Date:</div>
+	                          <div class="col s8" id="Date" style="padding:15px; color:teal;"></div>
+	                        </div>
+	                        <div class="col s12">
+	                           <div class="col s4" style="color:gray"><p>Time:</div>
+	                          <div class="col s8" id="clock" style="padding:15px; color:teal;"></div>
+	                        </div>
+	                    </div>
                     </div>
 
                     <label style="font-size:15px; color:black"><center>Order Summary</center></label>
-                    <div class="container">
+                    <div class="container overflow-x">
                         <table class = "table centered order-summary" border = "1">
 		       				<thead style="color:gray">
 			          			<tr>
@@ -191,6 +199,52 @@
 
   	});
 
+	</script>
+
+	<script type="text/javascript">
+		var monthNames = [ "January", "February", "March", "April", "May", "June",
+	    "July", "August", "September", "October", "November", "December" ];
+		var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+
+		var newDate = new Date();
+		newDate.setDate(newDate.getDate());    
+		$('#Date').html(dayNames[newDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
+	
+	</script>
+
+	<script type="text/javascript">
+		function updateClock ( )
+		 	{
+		 	var currentTime = new Date ( );
+		  	var currentHours = currentTime.getHours ( );
+		  	var currentMinutes = currentTime.getMinutes ( );
+		  	//var currentSeconds = currentTime.getSeconds ( );
+
+		  	// Pad the minutes and seconds with leading zeros, if required
+		  	currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
+		  	//currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
+
+		  	// Choose either "AM" or "PM" as appropriate
+		  	var timeOfDay = ( currentHours < 12 ) ? "AM" : "PM";
+
+		  	// Convert the hours component to 12-hour format if needed
+		  	currentHours = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
+
+		  	// Convert an hours component of "0" to "12"
+		  	currentHours = ( currentHours == 0 ) ? 12 : currentHours;
+
+		  	// Compose the string for display
+		  	var currentTimeString = currentHours + ":" + currentMinutes + " " + timeOfDay;
+		  	
+		  	
+		   	$("#clock").html(currentTimeString);
+		   	  	
+		 }
+
+		$(document).ready(function()
+		{
+		   setInterval('updateClock()', 1000);
+		});
 	</script>
 
 	<script>
