@@ -100,16 +100,16 @@
         </div>
       @endif
 
-    <!--  <Duplicate Error Message>   -->
-    @if (Input::get('success') == 'duplicate')
-        <div class="row" id="success-message">
+      @if (Session::has('flash_message_duplicate'))
+        <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
-            <div class="card-panel red">
-              <span class="black-text" style="color:black">Record already exists!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+            <div class="card-panel red accent-1">
+              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              <em> {!! session('flash_message_duplicate') !!}</em>
             </div>
           </div>
         </div>
-      @endif
+      @endif  
 
      <!--  <Data Dependency Message> -->
        @if (Input::get('success') == 'beingUsed')

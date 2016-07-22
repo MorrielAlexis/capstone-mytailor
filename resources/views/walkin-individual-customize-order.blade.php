@@ -442,7 +442,7 @@
 		  var threadClass = threadValue == 'TCA' ? '' : '.' + threadValue;
 
 		  var classesToUpdate = typeClass + colorClass + patternClass + threadClass;
-		  console.log('Fisher', classesToUpdate);
+		  console.log(classesToUpdate);
 		  $(classesToUpdate).show();
 		}
 
@@ -480,7 +480,6 @@
 			var fabricID = $('input[name=garmentFabrics]:checked').val();
 			var fabricClass = $('input[name=garmentFabrics]:checked').attr('class');
 			var fabricText = $('#fabricText' + fabricID).text();
-			console.log(fabricClass +" "+ fabricID);
 
 			for($i = 1; $i < ($segments.length) + 1; $i++){
 				$('#segmentFabricText' + $i).text(fabricText);
