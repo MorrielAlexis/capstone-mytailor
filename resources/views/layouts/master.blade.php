@@ -238,6 +238,7 @@
       {!! Html::script('js/jquery-2.1.4.min.js'); !!}
       {!! Html::script('js/materialize.min.js'); !!}
       {!! Html::script('js/jquery.dataTables.min.js'); !!}
+      {!! Html::script('js/angular.min.js'); !!}
       
       <script>
         $(document).ready(function(){
