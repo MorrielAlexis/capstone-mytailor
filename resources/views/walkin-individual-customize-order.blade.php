@@ -170,10 +170,10 @@
 														        <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
 														          <div class="row valign-wrapper">
 														            <div class="center col s4">
-														              <img src="#!" alt="" class="responsive-img">
+														              <img src="{{URL::asset($pattern->strSegPImage)}}" alt="" class="responsive-img">
 														            </div>
 														            <div class="col s6"> 
-														              <span><b>{{ $pattern->strSegPatternID }}</b></span> <!-- This will be the name of the pattern -->
+														              <span><b>{{ $pattern->strSegPName }}</b></span> <!-- This will be the name of the pattern -->
 														              <br/>
 														              <span class="black-text">
 														                {{ $pattern->txtSegPDesc }}
@@ -269,14 +269,14 @@
 					                        	@foreach($fabrics as $j => $fabric)
 					                        	<div class="col s6 fabric-general {{ $fabric->strFabricTypeFK }} {{ $fabric->strFabricPatternFK }} {{ $fabric->strFabricColorFK }} {{ $fabric->strFabricThreadCountFK }}">
 					                        	<div class="center col s2" style="margin-top:60px">
-					                        		<input name="garmentFabrics" type="radio" class="filled-in segmentFabric{{ $i+1 }}" value="{{ $fabric->strFabricID }}" id="{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}" />
+					                        		<input name="fabrics{{ $i+1 }}" type="radio" class="filled-in segmentFabric{{ $i+1 }}" value="{{ $fabric->strFabricID }}" id="{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}" />					                        	
 					                        		<label for="{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}"></label>
 					                        	</div>
 					                        	 <div class="col s10">
 											        <div class="card-panel teal lighten-4 z-depth-1">
 											          <div class="row valign-wrapper">
 											            <div class="center col s4">
-											              <img src="#!" alt="" class="responsive-img"> <!-- notice the "circle" class -->
+											              <img src="{{URL::asset($fabric->strFabricImage)}}"class="responsive-img"> <!-- notice the "circle" class -->
 											            </div>
 											            <div class="col s6"> 
 											              <p><b id="{{ 'fabricText'.$fabric->strFabricID }}">{{ $fabric->strFabricName }}</b></p> <!-- This will be the name of the pattern -->
@@ -449,7 +449,8 @@
 		$('.tooltipped').tooltip({delay: 50});
 
 		$segments = {!! json_encode($segments) !!};
-					 
+		
+
 		$('input[name=garmentFabrics]').on('change', function () {
 			var fabricID = $('input[name=garmentFabrics]:checked').val();
 			var fabricClass = $('input[name=garmentFabrics]:checked').attr('class');
@@ -459,8 +460,6 @@
 				$('#segmentFabricText' + $i).text(fabricText);
 			}	
 				
-			
-
 		});
 	  });
 	  

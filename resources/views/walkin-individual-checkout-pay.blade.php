@@ -66,11 +66,11 @@
 					              	</thead>
 					              	<tbody>
 					              		@foreach($segments as $segment)
-							            <tr>
-							               <td>{{ $segment->strGarmentCategoryName }}, {{ $segment->strSegmentName }}</td>
-							               <td> </td>
-							               <td>{{ number_format($segment->dblSegmentPrice, 2) }} PHP</td>
-							            </tr>
+								            <tr>
+								                <td>{{ $segment->strGarmentCategoryName }}, {{ $segment->strSegmentName }}</td>
+												<td>{{ $segment->strFabricName }}</td>
+								                <td>{{ number_format(($segment->dblSegmentPrice + $segment->dblFabricPrice) , 2) }} PHP</td>
+								            </tr>
 							            @endforeach
 							        </tbody>
 							    </table>
@@ -89,12 +89,15 @@
 					              	</tr>
 				              	</thead>
 				              	<tbody>
-
+								@foreach($styles as $style)
+									@if($style->strSegmentID == $segment->strSegmentID)
 						            <tr>
-						               <td>Lapel</td>
-						               <td>Shawl Type</td>
+						               <td>{{ $style->strSegStyleName }}</td>
+						               <td>{{ $style->strSegPName }}</td>
 						               <!--<td> </td>-->
 						            </tr>
+						            @endif
+						         @endforeach
 						        </tbody>
 						    </table>
 
@@ -116,7 +119,7 @@
                         	<div class="col s4" style="color:gray; font-size:15px"><p><b>Terms of Payment</b></p></div>
                         	<div class="col s8" style="padding:18px; padding-top:30px">
 	                        	<div class="col s6">
-			          				<input name="termOfPayment" type="radio" class="filled-in payment" id="half_pay" />
+			          				<input name="termOfPayment" type="radio" class="filled-in payment" id="half_pay"/>
 	      							<label for="half_pay">Half (50-50)</label>
 								</div>
 								<div class="col s6">
@@ -128,8 +131,8 @@
 		      				<div class="col s4" style="color:gray; font-size:15px"><p><b>Amount Payable</b></p></div>
 		      				<div class="col s8" style="color:red;"><p><input value="" id="amount-payable" name="amount-payable" type="text" class="" readonly></p></div>
 
-		      				<div class="col s4" style="color:gray; font-size:15px"><p><b>Additional Charge (*)</b></p></div>
-		      				<div class="col s8" style="color:red;"><p><input value="" id="add-charge" name="add-charge" type="text" class="" readonly></p></div>
+		      			<!--	<div class="col s4" style="color:gray; font-size:15px"><p><b>Additional Charge (*)</b></p></div>
+		      				<div class="col s8" style="color:red;"><p><input value="" id="add-charge" name="add-charge" type="text" class="" readonly></p></div> -->
 
 		      				<div class="col s4" style="color:gray; font-size:15px"><p><b>Remaining Balance</b></p></div>
 		      				<div class="col s8" style="color:red;"><p><input value="" id="balance" name="balance" type="text" class="" readonly></p></div>		
@@ -142,22 +145,22 @@
 							<div class="col s12"><div class="divider" style="margin:15px"></div></div>
 							<div style="color:black" class="col s12"> 
 								<div class="col s4"><p style="color:black; margin-top:5px; font-size:15px"><b>Amount Tendered:</b></p></div>                
-	                          	<div class="col s8"><input style="padding:5px; border:3px gray solid" name="amount-tendered" type="text" class="right"><right></right></div>	                          
+	                          	<div class="col s8"><input placeholder="How much you'll pay" style="padding:5px; border:3px gray solid" name="amount-tendered" id="amount-tendered" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="right"><right></right></div>	                          
 	                        </div>
 
 	                        <div style="color:black" class="col s12"> 
 								<div class="col s4"><p style="color:black; margin-top:5px; font-size:15px"><b>Amount To Pay:</b></p></div>                
-	                          	<div class="col s8"><input style="padding:5px; border:3px gray solid" name="amount-to-pay" type="text" class="right"></div>
+	                          	<div class="col s8"><input placeholder="How much want to pay from the total."  style="padding:5px; border:3px gray solid;" name="amount-to-pay" id="amount-to-pay" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="right"></div>
 	                        </div>
 
 	                        <div style="color:black" class="col s12"> 
 								<div class="col s4"><p style="color:red; margin-top:5px; font-size:15px"><b>Change*:</b></p></div>                
-	                          	<div class="col s8"><input style="padding:5px; border:3px gray solid" name="change" type="text" class="right"></div>
+	                          	<div class="col s8" style="color:red;"><input readonly style="padding:5px; border:3px gray solid" name="amount-change" id="amount-change" type="text" class="right"></div>
 	                        </div>
 
 	                        <div style="color:black" class="col s12"> 
 								<div class="col s4"><p style="color:red; margin-top:5px; font-size:15px"><b>Outstanding Balance*:</b></p></div>                
-	                          	<div class="col s8"><input style="padding:5px; border:3px gray solid" name="outstanding-bal" type="text" class="right"></div>
+	                          	<div class="col s8 style="color:red;""><input readonly style="padding:5px; border:3px gray solid" name="outstanding-bal" id="outstanding-bal" type="text" class="right"></div>
 	                        </div>
 
 	                        <div class="right col s12" style="padding:18px"><a style="margin-top:5px; background-color:red" type="submit" class="right waves-effect waves-green btn modal-trigger tooltipped z-depth-2" data-position="bottom" data-delay="50" data-tooltip="Click to continue payment process" href="#due-date"><font color="white" size="+1">Pay for Order</font></a>		
@@ -225,30 +228,48 @@
 
 	<script type="text/javascript">
 		$(document).ready(function(){
+			$('select').material_select();
+
+			$(document).ready(function(){
+		    	$('body').on('load', 'ul.tabs', function() {
+		   	 	$('ul.tabs').tabs();
+				});
+		  		
+		  		$("#addMeasurementDetail").on('click', function(){
+		/*  			setTimeout(function(){
+		  				$('ul.tabs').tabs();
+		  				$('#tabMeasurementDetail').style('display', 'block');
+		  			}, 2000);
+		*/  		});
+
+		  	});
 
 			var a = {!! json_encode($segments) !!};
 			var totalAmount = 0.00;
 
-			for(var i = 0; i < a.length; i++)
+			for(var i = 0; i < a.length; i++){
 				totalAmount += a[i].dblSegmentPrice;
+				totalAmount += a[i].dblFabricPrice;
+			}
 			
-			$('#total-price').val(totalAmount.toFixed(2) + ' PHP');
-
+			$('#total-price').val(totalAmount.toFixed(2));
 		});
 	</script>
 
 	<script>
-			$('.payment').change(function(){
+		$('.payment').change(function(){
 				if($('#half_pay').prop("checked")){
 
 					var a = {!! json_encode($segments) !!};
 					var totalAmount = 0.00;
 
-					for(var i = 0; i < a.length; i++)
+					for(var i = 0; i < a.length; i++){
 						totalAmount += a[i].dblSegmentPrice;
+						totalAmount += a[i].dblFabricPrice;
+					}
 					
 					$('#amount-payable').val((totalAmount/2).toFixed(2) + ' PHP');
-					$('#balance').val((totalAmount - (totalAmount/2)).toFixed(2) + 'PHP');
+					$('#balance').val((totalAmount - (totalAmount/2)).toFixed(2) + ' PHP');
 				}
 
 				if($('#full_pay').prop("checked")){
@@ -256,36 +277,32 @@
 					var a = {!! json_encode($segments) !!};
 					var totalAmount = 0.00;
 
-					for(var i = 0; i < a.length; i++)
+					for(var i = 0; i < a.length; i++){
 						totalAmount += a[i].dblSegmentPrice;
+						totalAmount += a[i].dblFabricPrice;
+					}
 					
 					$('#amount-payable').val(totalAmount.toFixed(2) + ' PHP');
-					$('#balance').val((totalAmount - totalAmount).toFixed(2) + 'PHP');
+					$('#balance').val((totalAmount - totalAmount).toFixed(2) + ' PHP');
 				}
 		});
-	</script>
 
-	<script>
-	  $(document).ready(function() {
-	    $('select').material_select();
-	  });
-	</script>	
-
-	<script>
-	$(document).ready(function(){
-    	$('body').on('load', 'ul.tabs', function() {
-   	 	$('ul.tabs').tabs();
+		$('#amount-tendered').blur(function(){	
+			var amountChange = $('#amount-tendered').val() - $('#amount-to-pay').val();
+			$('#amount-change').val(amountChange.toFixed(2) + ' PHP');
 		});
-  		
-  		$("#addMeasurementDetail").on('click', function(){
-/*  			setTimeout(function(){
-  				$('ul.tabs').tabs();
-  				$('#tabMeasurementDetail').style('display', 'block');
-  			}, 2000);
-*/  		});
 
-  	});
-
+		$('#amount-to-pay').blur(function(){	
+			if($('#amount-to-pay').val() > $('#total-price').val()){
+				alert("You can't choose to pay more than the total.");
+				$('#amount-to-pay').val("");
+			}else{
+				var amountChange = $('#amount-tendered').val() - $('#amount-to-pay').val();
+				$('#amount-change').val(amountChange.toFixed(2) + ' PHP');	
+				$('#outstanding-bal').val(($('#total-price').val() - $('#amount-to-pay').val()).toFixed(2) + ' PHP');				
+			}
+		});
+		
 	</script>
 
 	<script>
