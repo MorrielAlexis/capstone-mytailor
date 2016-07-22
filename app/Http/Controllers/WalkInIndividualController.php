@@ -165,6 +165,41 @@ class WalkInIndividualController extends Controller
 
     public function information(Request $request)
     {   
+        $values = session()->get('segment_values');
+        $segmentStyles = SegmentStyle::all();
+        $i = 0;
+
+        for($i = 0; $i < count($values); $i++){
+            $segmentFabric[$i] = $request->input('fabrics' . ($i+1));
+        }
+
+        foreach($segmentStyles as $i => $segmentStyle){
+            $tempPatterns[$i++] = $request->input('rdb_pattern' . $segmentStyle->strSegStyleCatID);
+        }
+
+        $patterns = array_slice(array_filter($tempPatterns), 0);
+
+        $sqlStyles = \DB::table('tblSegmentPattern AS a')
+                ->leftJoin('tblSegmentStyleCategory AS b', 'a.strSegPStyleCategoryFK', '=', 'b.strSegStyleCatID')
+                ->leftJoin('tblSegment AS c', 'b.strSegmentFK', '=', 'strSegmentID')
+                ->select('c.strSegmentID', 'a.strSegPStyleCategoryFK', 'a.strSegPatternID', 
+                         'a.strSegPName', 'b.strSegStyleName', 'a.dblPatternPrice')
+                ->whereIn('a.strSegPatternID', $patterns)
+                ->get();
+
+        $sqlFabric = \DB::table('tblFabric')
+                ->select('strFabricID', 'strFabricName', 'dblFabricPrice')
+                ->whereIn('strFabricID', $segmentFabric)
+                ->get();
+
+        for($i = 0; $i < count($values); $i++){
+            $values[$i]->strFabricID = $sqlFabric[$i]->strFabricID;
+            $values[$i]->strFabricName = $sqlFabric[$i]->strFabricName;
+            $values[$i]->dblFabricPrice = $sqlFabric[$i]->dblFabricPrice;
+        }
+
+        session(['segment_design' => $sqlStyles]);
+
         $joID = \DB::table('tblJobOrder')
             ->select('strJobOrderID')
             ->orderBy('created_at', 'desc')
@@ -202,9 +237,12 @@ class WalkInIndividualController extends Controller
     public function payment()
     {   
         $values = session()->get('segment_values');
+        $styles = session()->get('segment_design');
+        $fabrics = session()->get('segment_fabric');
 
         return view('walkin-individual-checkout-pay')
-                    ->with('segments', $values);
+                    ->with('segments', $values)
+                    ->with('styles', $styles);
     }
 
     public function measurement()

@@ -192,7 +192,6 @@ class GarmentSegmentController extends Controller
             }
                 $segment->save();
                 
-
             \Session::flash('flash_message_update','Segment detail/s successfully updated.'); //flash message   
         }else \Session::flash('flash_message_duplicate','Segment already exists.'); //flash message 
 
