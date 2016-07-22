@@ -75,7 +75,7 @@
 												      	@foreach($patterns as $k => $pattern)
 												      	<div class="col s6" @if($pattern->strSegPStyleCategoryFK != $style->strSegStyleCatID) hidden @endif>
 								                        	<div class="center col s2 " style="margin-top:60px">
-								                        		<input name="rdb-pattern" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" />
+								                        		<input name="rdb-pattern{{ $style->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" />
 								                        		<label for="{{ $pattern->strSegPatternID }}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}"></label>
 								                        	</div>
 								                        	 <div class="col s10">
@@ -184,7 +184,7 @@
 					                        	@foreach($fabrics as $k => $fabric)
 					                        	<div class="col s6 fabric-general {{ $fabric->strFabricTypeFK }} {{ $fabric->strFabricPatternFK }} {{ $fabric->strFabricColorFK }} {{ $fabric->strFabricThreadCountFK }}">
 					                        	<div class="center col s2" style="margin-top:60px">
-					                        		<input name="garmentFabrics" type="radio" class="filled-in" value="{{ $fabric->strFabricID }}" id="{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}" />
+					                        		<input name="garmentFabrics" type="radio" class="filled-in segmentFabric{{ $i+1 }}" value="{{ $fabric->strFabricID }}" id="{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}" />
 					                        		<label for="{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}"></label>
 					                        	</div>
 					                        	 <div class="col s10">
@@ -194,7 +194,7 @@
 											              <img src="#!" alt="" class="responsive-img"> <!-- notice the "circle" class -->
 											            </div>
 											            <div class="col s6"> 
-											              <p><b>{{ $fabric->strFabricName }}</b></p> <!-- This will be the name of the pattern -->
+											              <p><b id="{{ 'fabricText'.$fabric->strFabricID }}">{{ $fabric->strFabricName }}</b></p> <!-- This will be the name of the pattern -->
 											              <span class="black-text">
 											                {{ $fabric->txtFabricDesc }}
 											              </span>
@@ -242,11 +242,11 @@
 													              	</tr>
 												              	</thead>
 												              	<tbody>
-												              		@foreach($segments as $segment)
+												              		@foreach($segments as $i => $segment)
 														            <tr>
 														               <td>{{ $segment->strGarmentCategoryName }}, {{ $segment->strSegmentName }}</td>
 														               <td hidden>1</td>
-														               <td>Traditional Cotton</td>
+														               <td id="{{ 'segmentFabricText'.($i+1) }}"></td>
 														               <td> {{ number_format($segment->dblSegmentPrice, 2) }} PHP</td>
 														               <!--<td> </td>-->
 														            </tr>
@@ -442,7 +442,7 @@
 		  var threadClass = threadValue == 'TCA' ? '' : '.' + threadValue;
 
 		  var classesToUpdate = typeClass + colorClass + patternClass + threadClass;
-		  console.log('Fisher', classesToUpdate);
+		  console.log(classesToUpdate);
 		  $(classesToUpdate).show();
 		}
 
@@ -473,6 +473,21 @@
 	  $(document).ready(function() {
 	    $('select').material_select();
 		$('.tooltipped').tooltip({delay: 50});
+
+		$segments = {!! json_encode($segments) !!};
+					 
+		$('input[name=garmentFabrics]').on('change', function () {
+			var fabricID = $('input[name=garmentFabrics]:checked').val();
+			var fabricClass = $('input[name=garmentFabrics]:checked').attr('class');
+			var fabricText = $('#fabricText' + fabricID).text();
+
+			for($i = 1; $i < ($segments.length) + 1; $i++){
+				$('#segmentFabricText' + $i).text(fabricText);
+			}	
+				
+			
+
+		});
 	  });
 	  
 	</script>

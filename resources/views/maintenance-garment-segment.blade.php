@@ -64,15 +64,16 @@
       @endif
 
              <!--  <Duplicate Error Message>   -->
-    @if (Input::get('success') == 'duplicate')
-        <div class="row" id="success-message">
+      @if (Session::has('flash_message_duplicate'))
+        <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
-            <div class="card-panel red">
-              <span class="black-text" style="color:black">Record already exists!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+            <div class="card-panel red accent-1">
+              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              <em> {!! session('flash_message_duplicate') !!}</em>
             </div>
           </div>
         </div>
-      @endif
+      @endif  
 
 
       <!--  <Data Dependency Message> -->
@@ -204,15 +205,15 @@
                           </div>
 
 
-                          <div class="input-field col s6" style="margin-top:47px">                                                    
+                          <div class="input-field col s12" style="margin-top:47px">                                                    
                             <select required name='editSegmentSex' id="editSegmentSex">
                               <option disabled>Sex</option>
                                   @if($segment->strSegmentSex == "M")
-                                    <option selected value="{{$segment->strSegmentSex}}">Male</option>
+                                    <option selected value="M">Male</option>
                                     <option value="F">Female</option>
                                   @else
                                     <option value="M">Male</option>
-                                    <option selected value="{{$segment->strSegmentSex}}">Female</option>
+                                    <option selected value="F">Female</option>
                                   @endif
                             </select>    
                             <label>Sex</label>
