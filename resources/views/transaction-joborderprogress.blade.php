@@ -68,9 +68,16 @@
                               <td>@{{ jobOrderDetail.strSegPName }}</td>
                               <td>@{{ jobOrderDetail.intQuantity }}</td>
                               <td>                      
-                                <input type="input-field" id="in1"/>
-                                <label id= "in1" fontsize= "+2"></label>                     
+                                <input type="input-field" value = "@{{ jobOrderDetail.intProgressAmount }}" id="progress[joborderDetail]"/>
+                                <label id= "progress[joborderDetail]" fontsize= "+2"></label>                     
                               </td>
+                            </tr>
+                            <tr>
+                              <td><b>TOTAL</b></td>
+                              <td></td>
+                              <td></td>
+                              <td>@{{getTotal()}}</td>
+                              <td>@{{getTotalProg()}}</td>
                             </tr>
                         </tbody>
                       </table>  
@@ -92,13 +99,13 @@
                     <div class ="row">
                       <div class = "col s12">
                         <label><font size = "+2">Progress Bar: &#09</font></label>
-                        <label id= "lbl"></label>
+                        <label id= "lbl"> <font Size= "+2">@{{getProg()}} %</font></label>
                       </div>
                     </div>
 
                     <div class = "clearfix"></div>
                     <div class="progress" style= "height: 30px;">
-                      <div class="determinate" style="width: 0%" >
+                      <div class="determinate" style="@{{getProg()}}" >
                         <span id="span" style = "padding-left: 558px;"></span>
                       </div>
                     </div> 
@@ -192,6 +199,43 @@
                 alert('No data found!');              
             });
       };
+      $scope.getTotal = function(){
+        var total = 0;
+        for(var i = 0; i < $scope.jobOrderDetails.length; i++){
+            var jobOrderDetail = $scope.jobOrderDetails[i];
+            total += jobOrderDetail.intQuantity;
+        }
+        return total;
+      }
+      $scope.getTotalProg = function(){
+        var totalProg = 0;
+        for(var i = 0; i < $scope.jobOrderDetails.length; i++){
+            var jobOrderDetail = $scope.jobOrderDetails[i];
+            totalProg += jobOrderDetail.intProgressAmount;
+        }
+        return totalProg;
+      }
+      $scope.getProg = function(){
+        var prog = 0;
+        var total = 0;
+        var totalProg = 0;
+
+        for(var i = 0; i < $scope.jobOrderDetails.length; i++){
+            var jobOrderDetail = $scope.jobOrderDetails[i];
+            total += jobOrderDetail.intQuantity;
+        }
+
+        for(var i = 0; i < $scope.jobOrderDetails.length; i++){
+            var jobOrderDetail = $scope.jobOrderDetails[i];
+            totalProg += jobOrderDetail.intProgressAmount;
+        }
+
+        prog = (totalProg/total)*100;
+        console.log(prog);
+        $('.determinate').css('width', prog + '%');
+
+        return prog;
+      }
     });   
   </script>
 

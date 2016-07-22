@@ -35,9 +35,9 @@ class JobOrderProgressController extends Controller
         //     ->join('tblSegment', 'tblSegment.strSegmentID', '=', 'tbljospecific.strJOSegmentFK')
         //     ->join('tblGarmentCategory', 'tblGarmentCategory.strGarmentCategoryID', '=', 'tblSegment.strSegCategoryFK')
         //     ->join('tblSegmentPattern', 'tblSegmentPattern.strSegPatternID', '=', 'tbljospecific.strJOSegmentPatternFK')
-        //     ->where('tbljospecific.strJobOrderFK', '=', 'JO002')
+        //     ->leftjoin('tblJobOrderProgress', 'tblJobOrderProgress.strJobOrderSpecificFK', '=', "tbljospecific.strJOSpecificID")
         //     ->select('tbljospecific.*', 'tblGarmentCategory.strGarmentCategoryName', 'tblSegment.strSegmentName', 'tblSegmentPattern.strSegPName')
-        //     ->get();
+        //     ->get(); 
 
 
               //dd($specifics);              
@@ -60,8 +60,9 @@ class JobOrderProgressController extends Controller
             ->join('tblSegment', 'tblSegment.strSegmentID', '=', 'tbljospecific.strJOSegmentFK')
             ->join('tblGarmentCategory', 'tblGarmentCategory.strGarmentCategoryID', '=', 'tblSegment.strSegCategoryFK')
             ->join('tblSegmentPattern', 'tblSegmentPattern.strSegPatternID', '=', 'tbljospecific.strJOSegmentPatternFK')
+            ->leftjoin('tblJobOrderProgress', 'tblJobOrderProgress.strJobOrderSpecificFK', '=', "tbljospecific.strJOSpecificID")
             ->where('tbljospecific.strJobOrderFK', '=', Input::get('jobID'))
-            ->select('tbljospecific.*', 'tblGarmentCategory.strGarmentCategoryName', 'tblSegment.strSegmentName', 'tblSegmentPattern.strSegPName')
+            ->select('tbljospecific.*', 'tblGarmentCategory.strGarmentCategoryName', 'tblSegment.strSegmentName', 'tblSegmentPattern.strSegPName', 'tblJobOrderProgress.intProgressAmount', 'tbljoborder.strJobOrderID')
             ->get();    
 
 
