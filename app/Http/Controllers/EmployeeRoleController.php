@@ -126,14 +126,14 @@ class EmployeeRoleController extends Controller
     function updateRole(RoleRequest $request)
     {
 
-        $role = EmployeeRole::find($request->input('editRoleID'));
+            $role = EmployeeRole::find($request->input('editRoleID'));
 
                $role->strEmpRoleName = trim($request->input('editRoleName'));
                $role->strEmpRoleDesc = trim($request->input('editRoleDescription'));
-        $role->save();
+               $role->save();
 
-         \Session::flash('flash_message_update','Employee role detail/s successfully updated.'); //flash message
-
+        \Session::flash('flash_message_update','Employee role detail/s successfully updated.'); //flash message            
+        
          return redirect('maintenance/employee-role');
     }
 

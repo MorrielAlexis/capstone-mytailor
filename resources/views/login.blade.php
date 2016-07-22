@@ -4,7 +4,7 @@
 		<title>MyTailor</title>
 		  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		  	<!-- Style Here --> 
-			  <link rel="shortcut icon" href="{{{ asset('img/logo.png') }}}">
+			  <link rel="shortcut icon" href="{{{ asset('img/logo.jpg') }}}">
 			  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 			  {!! Html::style('css/materialize.min.css'); !!}
 		      {!! Html::style('css/materialize.min.css'); !!}
@@ -14,9 +14,13 @@
 		.signup:hover {
 			background-color: #b2dfdb;
 		}
+		body{
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
 	</style>
 
-	<body id="dabadehh" background="img/footer.jpg">
+	<body id="dabadehh" background="img/2.jpg">
 	@if(Session::has('flash_message'))
         <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
@@ -38,23 +42,23 @@
 		</div>
 	@endif
 
-		<div id="login-page" class="section transparent" style="margin-left:3%; margin-right:69%; margin-top:10px;">
+		<div id="login-page" class="section transparent" style="margin-left:5%; margin-right:69%; margin-top:5%;">
 			<div>
 				<img class="circle responsive-img" src="img/logo.jpg" style="padding-left:23%; padding-right:23%; margin-top:10px;">
 			</div>
 
-			<div style="color-background:grey; color:teal;">
-      			<p class="center" id="peyj"><b><font size="+3">TAILORING MANAGEMENT SYSTEM</font></b></p>
+			<div style="color-background:grey; color:#fafafa; text-shadow: 2px 2px 8px rgba(5, 5, 5, 0.62);">
+      			<p class="center"><b><font size="+3">TAILORING MANAGEMENT SYSTEM</font></b></p>
  			</div>
 
 		    <ul class="collapsible z-depth-0" style="margin:10px; border:0px;" data-collapsible="accordion">
 			    <li>
-			      	<div class="collapsible-header center white-text teal lighten-2" style="border-radius:5px; border:0px; padding:7px;"><font size="+2">LOG IN</font></div>
+			      	<div class="collapsible-header center" style="background-color:#b2dfdb; opacity:0.90; color:black; border-radius:5px; border:0px; padding:7px;"><font size="+1.75"><b>LOG IN</b></font></div>
 
-			      	<div class="collapsible-body row white" style="border:0px;">
+			      	<div class="collapsible-body row " style="border:0px;background-color: rgba(247, 247, 247, 0.80)">
 				      	{!! Form::open(['url' => 'login']) !!}   		
 		    	 		<!-- Content form input -->
-			      		<div class="form-group" style="padding-left:20px; padding-right:20px">
+			      		<div class="form-group" style="padding-left:20px; padding-right:20px;background-color: transparent">
 					        <div class="row margin">
 			          			<div class="input-field col s12">
 			           				<i class="mdi-social-person-outline prefix"></i>
@@ -80,13 +84,14 @@
 			    </li>
 
 			    <li style="margin-top:10px; padding:0;">
-			      	<div class="collapsible-header center white-text teal lighten-2" style="border-radius:5px; border:0px; padding:7px;"><font size="+2">SIGN UP</font></div>
+			      	<div class="collapsible-header center" style="background-color:#00897b; color:white; opacity:0.90; border-radius:5px; border:0px; padding:7px;"><font size="+1.75"><b>SIGN UP</b></font></div>
 
-			      	<div class="collapsible-body row white" style="border:0; padding-bottom:-10px;">
+			      	<div class="collapsible-body row w" style="border:0; padding-bottom:-10px;background-color: rgba(247, 247, 247, 0.80)">
 			      		<div style="padding:0; margin:0;">
+			      			<label color="gray" style="margin-left:15px; font-size:20px">Sign up as:</label>
 					        <div class="row margin signup" style="padding:0px; margin:0;">
 			          			<div class="col s8">
-			           				<p class="center"><b><font size="+1.5">INDIVIDUAL</font></b></p>
+			           				<p class="left"><b><font size="+1.5">INDIVIDUAL</font></b></p>
 			       				</div>
 			       				<div class="col s4" style="margin-top:23px;">
 			       					<button class="modal-trigger btn waves-effect waves-light" href="#individualsignup"><i class="mdi-social-person" style="font-size:30px;"></i></button>
@@ -95,7 +100,7 @@
 
 					        <div class="row margin signup" style="padding:0px; margin:0;">
 			          			<div class="col s8">
-			           				<p class="center"><b><font size="+1.5">COMPANY</font></b></p>
+			           				<p class="left"><b><font size="+1.5">COMPANY</font></b></p>
 			       				</div>
 			       				<div class="col s4" style="margin-top:23px;">
 			       					<button class="modal-trigger btn waves-effect waves-light" href="#companysignup"><i class="mdi-social-people" style="font-size:30px;"></i></button>
@@ -142,7 +147,7 @@
 	        </div>
 
 	       	<div class="modal-footer" style="background-color:#eeeeee;">
-	            <div><a class="left modal-action modal-close waves-effect waves-green teal white-text btn-large btn-flat">Cancel</a></div>
+	            <div><a href="" class="left modal-action modal-close waves-effect waves-green teal white-text btn-large btn-flat">Cancel</a></div>
 	            <div><button type="submit" class="right modal-action modal-close waves-effect waves-green green white-text btn-large btn-flat"><b><font size="+1">Sign up</font></b></button></div>
 	        </div>
 	        
@@ -183,7 +188,7 @@
 	        </div>
 
 	       	<div class="modal-footer" style="background-color:#eeeeee;">
-	            <div><a class="left modal-action modal-close waves-effect waves-green teal white-text btn-large btn-flat">Cancel</a></div>
+	            <div><a href="" class="left modal-action modal-close waves-effect waves-green teal white-text btn-large btn-flat">Cancel</a></div>
 	            <div><button type="submit" class="right modal-action modal-close waves-effect waves-green green white-text btn-large btn-flat"><b><font size="+1">Sign up</font></b></button></div>
 	        </div>
 	        {!! Form::close() !!}

@@ -68,45 +68,44 @@ class GarmentSegmentController extends Controller
      */
     public function store(SegmentRequest $request)
     {
-
         $file = $request->input('addImage');
         $destinationPath = 'imgSegments';
 
-        if($file == '' || $file == null){
-            $segment = GarmentSegment::create(array(
+            if($file == '' || $file == null){
+                $segment = GarmentSegment::create(array(
 
-                    'strSegmentID' => $request->input('strSegmentID'),
-                    'strSegCategoryFK' =>$request->input('strSegCategoryFK'),
-                    'strSegmentName' =>trim($request->input('strSegmentName')),
-                    'dblSegmentPrice' =>trim($request->input('dblSegmentPrice')),
-                    'strSegmentSex' => $request->input('strSegmentSex'),
-                    'intMinDays' =>trim($request->input('intMinDays')),
-                    'textSegmentDesc' => trim($request->input('textSegmentDesc')),
-                    'boolIsActive' => 1
+                        'strSegmentID' => $request->input('strSegmentID'),
+                        'strSegCategoryFK' =>$request->input('strSegCategoryFK'),
+                        'strSegmentName' =>trim($request->input('strSegmentName')),
+                        'dblSegmentPrice' =>trim($request->input('dblSegmentPrice')),
+                        'strSegmentSex' => $request->input('strSegmentSex'),
+                        'intMinDays' =>trim($request->input('intMinDays')),
+                        'textSegmentDesc' => trim($request->input('textSegmentDesc')),
+                        'boolIsActive' => 1
 
-            ));
-        }else{
+                ));
+            }else{
 
-            $request->file('addImg')->move($destinationPath);
-            $segment = GarmentSegment::create(array(
+                $request->file('addImg')->move($destinationPath);
+                $segment = GarmentSegment::create(array(
 
-                    'strSegmentID' => $request->input('strSegmentID'),
-                    'strSegCategoryFK' =>$request->input('strSegCategoryFK'),
-                    'strSegmentName' =>trim($request->input('strSegmentName')),
-                    'dblSegmentPrice' =>trim($request->input('dblSegmentPrice')),
-                    'strSegmentSex' => $request->input('strSegmentSex'),
-                    'intMinDays' =>trim($request->input('intMinDays')),
-                    'textSegmentDesc' => trim($request->input('textSegmentDesc')),
-                    'strSegmentImage' => 'imgSegments/'.$file,
-                    'boolIsActive' => 1
+                        'strSegmentID' => $request->input('strSegmentID'),
+                        'strSegCategoryFK' =>$request->input('strSegCategoryFK'),
+                        'strSegmentName' =>trim($request->input('strSegmentName')),
+                        'dblSegmentPrice' =>trim($request->input('dblSegmentPrice')),
+                        'strSegmentSex' => $request->input('strSegmentSex'),
+                        'intMinDays' =>trim($request->input('intMinDays')),
+                        'textSegmentDesc' => trim($request->input('textSegmentDesc')),
+                        'strSegmentImage' => 'imgSegments/'.$file,
+                        'boolIsActive' => 1
 
-            ));
-        } 
+                ));
+            } 
 
-             // $added=$segment->save();
-        $segment->save();
+                 // $added=$segment->save();
+            $segment->save();
 
-         \Session::flash('flash_message','Segment successfully added.'); //flash message
+            \Session::flash('flash_message','Segment successfully added.'); //flash message
 
         return redirect('maintenance/garment-segment');   
     }
@@ -157,12 +156,21 @@ class GarmentSegmentController extends Controller
     }
 
      function updateGarmentSegment(Request $request)
-    {
+    {   dd($request->input('editSegmentDesc'));
         $segment = GarmentSegment::find($request->input('editSegmentID'));
+        $checkSegments = GarmentSegment::all();
 
         $file = $request->input('editImage');
         $destinationPath = 'imgSegments';
+        $isAdded = FALSE;
 
+        foreach ($checkSegments as $checkSegment)
+            if(!strcasecmp($checkSegment->strSegmentID, $request->input('editSegmentID')) == 0 &&
+               strcasecmp($checkSegment->strSegmentName, trim($request->input('editSegmentName'))) == 0 && 
+               strcasecmp($checkSegment->strSegCategoryFK, $request->input('editCategory')) == 0)
+                $isAdded = TRUE;
+
+        if(!$isAdded){
             if($file == $segment->strSegmentImage)
             {
 
@@ -185,9 +193,10 @@ class GarmentSegmentController extends Controller
                 $segment->save();
                 
 
-         \Session::flash('flash_message_update','Segment detail/s successfully updated.'); //flash message
+            \Session::flash('flash_message_update','Segment detail/s successfully updated.'); //flash message   
+        }else \Session::flash('flash_message_duplicate','Segment already exists.'); //flash message 
 
-         return redirect('maintenance/garment-segment');      
+        return redirect('maintenance/garment-segment');
     }
 
     function deleteGarmentSegment(Request $request)

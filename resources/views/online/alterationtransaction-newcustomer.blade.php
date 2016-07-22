@@ -123,8 +123,9 @@
                         <tbody>
                            {{--  @foreach($alterations as $alteration_1) --}}
                         <tr>
-                           <td><i id = selectedSegment></i></td>
-                            <td><i id = selectedType></i></td>                           {{-- <td> {{ number_format($alteration_1->dblAlterationPrice, 2) }} PHP</td> --}}
+                           <td><i id = "selectedSegment"></i></td>
+                          <td><i id = "selectedType"></i></td>                          
+                             {{-- <td> {{ number_format($alteration_1->dblAlterationPrice, 2) }} PHP</td> --}}
                            <!--<td> </td>-->
                         </tr>
                       {{--     @endforeach --}}

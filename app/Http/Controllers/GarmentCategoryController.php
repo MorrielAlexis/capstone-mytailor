@@ -125,17 +125,25 @@ class GarmentCategoryController extends Controller
 
     function updateGarmentCategory(GarmentCategoryRequest $request)
     {
-    
-        $garment = GarmentCategory::find($request->input('editGarmentID'));
-        // $garment = GarmentCategory::find($request->input('strGarmentCategoryID'));
-            $garment->strGarmentCategoryName = trim($request->input('editGarmentName'));
-            // $garment->strGarmentCategoryName = trim($request->input('strGarmentCategoryName'));
+        $checkGarments = GarmentCategory::all();
 
+        foreach($checkGarments as $checkGarment)
+            if(!strcasecmp($checkGarment->strGarmentCategoryID, $request->input('editGarmentID')) == 0 &&
+                strcasecmp($checkGarment->strGarmentCategoryName, trim($request->input('editGarmentName'))) == 0)
+                $isAdded = TRUE;
+
+        if(!$isAdded){
+            $garment = GarmentCategory::find($request->input('editGarmentID'));
+            $garment->strGarmentCategoryName = trim($request->input('editGarmentName'));
             $garment->textGarmentCategoryDesc = trim($request->input('editGarmentDescription'));
+            // $garment = GarmentCategory::find($request->input('strGarmentCategoryID'));
+            // $garment->strGarmentCategoryName = trim($request->input('strGarmentCategoryName'));
             // $garment->textGarmentCategoryDesc = trim($request->input('textGarmentCategoryDesc'));
+
             $garment ->save();
 
-        \Session::flash('flash_message_update','Garment category detail/s successfully updated.'); //flash message
+          \Session::flash('flash_message_update','Garment category detail/s successfully updated.'); //flash message   
+        }else \Session::flash('flash_message_duplicate','Garment category already exists.'); //flash message
 
         return  redirect('maintenance/garment-category');
     }

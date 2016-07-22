@@ -100,16 +100,16 @@
         </div>
       @endif
 
-    <!--  <Duplicate Error Message>   -->
-    @if (Input::get('success') == 'duplicate')
-        <div class="row" id="success-message">
+      @if (Session::has('flash_message_duplicate'))
+        <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
-            <div class="card-panel red">
-              <span class="black-text" style="color:black">Record already exists!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+            <div class="card-panel red accent-1">
+              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              <em> {!! session('flash_message_duplicate') !!}</em>
             </div>
           </div>
         </div>
-      @endif
+      @endif  
 
      <!--  <Data Dependency Message> -->
        @if (Input::get('success') == 'beingUsed')
@@ -230,13 +230,6 @@
                                 <input required value="{{ $garment->strGarmentCategoryInactiveReason }}" type="text" id="delInactiveGarment" name="delInactiveGarment">
                               </div>
 
-
-                          <!-- <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
-                              <div class="input-field">
-                                <input value="{{ $garment->strGarmentCategoryInactiveReason }}" type="text" id="delInactiveReason" name="delInactiveReason" class="validate" required>
-                                <label for="reason"> *Reason for Deactivation </label>
-                              </div>
-                          </div> -->
                           </div>
     
                           <div class="modal-footer col s12" style="background-color:#26a69a">
@@ -286,7 +279,7 @@
                 </div>
 
                 <div class="modal-footer" style="background-color:#26a69a">
-                  <button type="submit" id="send" name="send" class=" modal-action  waves-effect waves-green btn-flat">Add</button>
+                  <button type="submit" id="send" name="send" class=" modal-action  waves-effect waves-green btn-flat">Create</button>
                   <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</button> 
                 </div>
               {!! Form::close() !!}

@@ -61,6 +61,8 @@
                 <div class="col s2"><a href="" class="btn" style="background-color:teal; color:white; margin-top:10px">Add</a></div>
 			</div>
 
+			<div class="col s12"><div class="divider" style="height:2px; background-color:gray"></div></div><!--divider-->
+
 
 	       	<div class="row" style="background-color:white; margin-top:20px">
 
@@ -78,8 +80,11 @@
 	      					</div>
 
 	            	<div class="col s12" style="padding:20px"> 
+	            		
 		            	<div id="for_top" class="col s12" style="color:black">
 		            		<h5><b>Parts to be measured</b></h5>
+		            		
+							<!--if Body and Cloth Measurement-->
 		            		<div class="container"> 
 			            		@foreach($measurements as $measurement)
 			            			@if($measurement->strMeasDetSegmentFK == $segment->strSegmentID)
@@ -90,7 +95,43 @@
 			                        @endif
 		                        @endforeach
 		                    </div>
+							<!--End of Body and Cloth Measurement-->
+
+							<!--if Standard Size Measurement-->
+							<div class="col s12 z-depth-1" style="padding:20px">
+								<div class="container">
+									<div class="left col s6">
+										<center><img src="" style="height:200px; width:200px; border:3px gray solid"></center>	
+										<p><center>Garment Name Here</center></p>							          	
+									</div><!--this will be the garment detail-->
+
+									<div class="right col s6" style="margin-top:20px">
+										<div class="col s6"><p style="color:teal" for="standard_size">Choose Fit Type:</p></div>  		
+					            	   	<div style="color:black;" class="col s6">                 	
+				                          	<select>
+			    								<option value="">Normal Fit</option>
+		    								</select><!--Standard sizes for the specific Garment-->
+				                        </div>  
+				                    </div> 
+
+									<div class="right col s6">
+										<div class="col s6"><p style="color:teal" for="standard_size">Choose Standard Size:</p></div>  		
+					            	   	<div style="color:black;" class="col s6">                 	
+				                          	<select>
+			    								<option value="">Small</option>
+		    								</select><!--Standard sizes for the specific Garment-->
+				                        </div>  
+				                    </div> 
+			                    </div>
+			                </div>
+
+			                <div class="col s12"><div class="divider" style="height:2px gray solid; margin:20px"></div></div>
+							<!--End of standard size measurement-->
+
 	                    </div>
+	                    
+
+	                    
 
 	                    <p style="color:red">In case of multiple measurements</p>
 	                    	<div style="color:black; padding-left:160px" class="input-field col s5">                 

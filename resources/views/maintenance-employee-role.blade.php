@@ -56,7 +56,6 @@
         </div>
       @endif
 
-
       <!--Delete Fabric Type-->
       @if (Session::has('flash_message_delete'))
         <div class="row" id="flash_message">

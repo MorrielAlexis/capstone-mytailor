@@ -75,7 +75,7 @@
 												      	@foreach($patterns as $k => $pattern)
 												      	<div class="col s6" @if($pattern->strSegPStyleCategoryFK != $style->strSegStyleCatID) hidden @endif>
 								                        	<div class="center col s2 " style="margin-top:60px">
-								                        		<input name="rdb-pattern" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" />
+								                        		<input name="rdb-pattern{{ $style->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" />
 								                        		<label for="{{ $pattern->strSegPatternID }}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}"></label>
 								                        	</div>
 								                        	 <div class="col s10">
@@ -127,7 +127,7 @@
 												<div class="col s3"><!--fabric type-->
 													<div class="input-field col s12">
 															<select class = "fabric-type" id = "fabric-type">
-																<option value="All" class="circle" selected>All</option>
+																<option value="TA" class="circle" selected>All</option>
 																@foreach($fabricTypes as $fabricType)
 																	<option value="{{ $fabricType->strFabricTypeID }}">{{ $fabricType->strFabricTypeName }}</option>
 																@endforeach
@@ -139,7 +139,7 @@
 												<div class="col s3"><!--fabric color-->
 													<div class="input-field col s12">
 															<select class = "fabric-color" id = "fabric-color">
-																<option value="All" class="circle" selected>All</option>
+																<option value="CA" class="circle" selected>All</option>
 																@foreach($fabricColors as $fabricColor)
 																	<option value="{{ $fabricColor->strFabricColorID }}">{{ $fabricColor->strFabricColorName }}</option>
 																@endforeach
@@ -151,7 +151,7 @@
 												<div class="col s3"><!--fabric pattern-->
 													<div class="input-field col s12">
 															<select class = "fabric-pattern" id = "fabric-pattern">
-																<option value="All" class="circle" selected>All</option>
+																<option value="PA" class="circle" selected>All</option>
 																@foreach($fabricPatterns as $fabricPattern)
 																	<option value="{{ $fabricPattern->strFabricPatternID }}">{{ $fabricPattern->strFabricPatternName }}</option>
 																@endforeach
@@ -163,7 +163,7 @@
 												<div class="col s3"><!--fabric thread count-->
 													<div class="input-field col s12">
 															<select class = "fabric-thread-count" id = "fabric-thread-count">
-																<option value="All" class="circle" selected>All</option>
+																<option value="TCA" class="circle" selected>All</option>
 																@foreach($fabricThreadCounts as $fabricThreadCount)
 																	<option value="{{ $fabricThreadCount->strFabricThreadCountID }}">{{ $fabricThreadCount->strFabricThreadCountName }}</option>
 																@endforeach
@@ -182,9 +182,9 @@
 
 												
 					                        	@foreach($fabrics as $k => $fabric)
-					                        	<div class="col s6">
+					                        	<div class="col s6 fabric-general {{ $fabric->strFabricTypeFK }} {{ $fabric->strFabricPatternFK }} {{ $fabric->strFabricColorFK }} {{ $fabric->strFabricThreadCountFK }}">
 					                        	<div class="center col s2" style="margin-top:60px">
-					                        		<input name="garmentFabrics" type="radio" class="filled-in" value="{{ $fabric->strFabricID }}" id="{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}" />
+					                        		<input name="garmentFabrics" type="radio" class="filled-in segmentFabric{{ $i+1 }}" value="{{ $fabric->strFabricID }}" id="{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}" />
 					                        		<label for="{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}"></label>
 					                        	</div>
 					                        	 <div class="col s10">
@@ -194,7 +194,7 @@
 											              <img src="#!" alt="" class="responsive-img"> <!-- notice the "circle" class -->
 											            </div>
 											            <div class="col s6"> 
-											              <p><b>{{ $fabric->strFabricName }}</b></p> <!-- This will be the name of the pattern -->
+											              <p><b id="{{ 'fabricText'.$fabric->strFabricID }}">{{ $fabric->strFabricName }}</b></p> <!-- This will be the name of the pattern -->
 											              <span class="black-text">
 											                {{ $fabric->txtFabricDesc }}
 											              </span>
@@ -202,7 +202,7 @@
 											          </div>
 											        </div>
 											      </div>
-											      </div>
+											    </div>
 												@endforeach
 												
 											<div class="col s12" style="margin:20px"></div>
@@ -242,11 +242,11 @@
 													              	</tr>
 												              	</thead>
 												              	<tbody>
-												              		@foreach($segments as $segment)
+												              		@foreach($segments as $i => $segment)
 														            <tr>
 														               <td>{{ $segment->strGarmentCategoryName }}, {{ $segment->strSegmentName }}</td>
 														               <td hidden>1</td>
-														               <td>Traditional Cotton</td>
+														               <td id="{{ 'segmentFabricText'.($i+1) }}"></td>
 														               <td> {{ number_format($segment->dblSegmentPrice, 2) }} PHP</td>
 														               <!--<td> </td>-->
 														            </tr>
@@ -402,6 +402,54 @@
 	</script>
 
 	<script>
+		var type = $('#fabric-type');
+		var color = $('#fabric-color');
+		var pattern = $('#fabric-pattern');
+		var threadCount = $('#fabric-thread-count');
+
+		type.change(function () {
+		  updateUI();
+		});
+
+		color.change(function () {
+		  updateUI();
+		});
+
+		pattern.change(function () {
+		  updateUI();
+		});
+
+		threadCount.change(function () {
+		  updateUI();
+		});
+
+
+		function updateUI () {
+		  $('.fabric-general').hide();
+
+		  var typeValue = type.val();
+		  var colorValue = color.val();
+		  var patternValue = pattern.val();
+		  var threadValue = threadCount.val();
+		  
+		  if (typeValue == 'TA' && colorValue == 'CA' && patternValue == 'PA' && threadValue == 'TCA'){
+		  	return $('.fabric-general').show();
+		  } 
+		  
+		  var typeClass = typeValue == 'TA' ? '' : '.' + typeValue;
+		  var colorClass = colorValue == 'CA' ? '' : '.' + colorValue;
+		  var patternClass = patternValue == 'PA' ? '' : '.' + patternValue;
+		  var threadClass = threadValue == 'TCA' ? '' : '.' + threadValue;
+
+		  var classesToUpdate = typeClass + colorClass + patternClass + threadClass;
+		  console.log(classesToUpdate);
+		  $(classesToUpdate).show();
+		}
+
+		updateUI();
+	</script>
+
+	<script>
 		$(document).ready(function(){
 			var a = document.getElementsByClassName('time-to-finish');
 			var b = document.getElementsByClassName('price-per-segment');
@@ -425,6 +473,21 @@
 	  $(document).ready(function() {
 	    $('select').material_select();
 		$('.tooltipped').tooltip({delay: 50});
+
+		$segments = {!! json_encode($segments) !!};
+					 
+		$('input[name=garmentFabrics]').on('change', function () {
+			var fabricID = $('input[name=garmentFabrics]:checked').val();
+			var fabricClass = $('input[name=garmentFabrics]:checked').attr('class');
+			var fabricText = $('#fabricText' + fabricID).text();
+
+			for($i = 1; $i < ($segments.length) + 1; $i++){
+				$('#segmentFabricText' + $i).text(fabricText);
+			}	
+				
+			
+
+		});
 	  });
 	  
 	</script>

@@ -13,6 +13,7 @@ use App\SegmentPattern;
 use App\GarmentSegment; 
 use App\Alteration; 
 use App\TransactionAlteration;
+use App\Individual;
 
 
 class AlterationWalkInController extends Controller
@@ -30,9 +31,7 @@ class AlterationWalkInController extends Controller
     
     public function index()
     {
-       
-        return view('alteration.walkin-transaction');
-             
+        return view('alteration.walkin-transaction');      
     }
 
     public function newCust()
@@ -137,19 +136,117 @@ class AlterationWalkInController extends Controller
         return redirect('transaction/alteration-walkin-newcustomer-update');
     }
 
-    public function oldcust()
-    {
-        return view('alteration.walkin-oldcustomer');
+    public function checkoutCustInfo()
+    {   
+        $ids = \DB::table('tblNewAlteration')
+            ->select('strNewAlterationID')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('strNewAlterationID', 'desc')
+            ->take(1)
+            ->get();
+
+        if($ids == null){
+            $altID = $this->smartCounter("ALTN000"); 
+        }else{
+            $ID = $ids["0"]->strNewAlterationID;
+            $altID = $this->smartCounter($ID);  
+        }
+
+        //get all the individuals
+        $ids = \DB::table('tblCustIndividual')
+            ->select('strIndivID')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('strIndivID', 'desc')
+            ->take(1)
+            ->get();
+
+        if($ids == null){
+            $custID = $this->smartCounter("CUSTP000"); 
+        }else{
+            $ID = $ids["0"]->strIndivID;
+            $custID = $this->smartCounter($ID);  
+        }
+
+        session(['alteration_id' => $altID]);
+        session(['customer_id' => $custID]);    
+
+        return view('alteration.checkout-info')
+                ->with('custID', $custID)
+                ->with('newID', $altID);
     }
 
-    public function checkoutCustInfo()
-    {
-        return view('alteration.checkout-info');
+    public function addNewCustomer(Request $request)
+    {           
+        $individual = Individual::create(array(
+                    'strIndivID' => $request->input('addIndiID'),
+                    'strIndivFName' => trim($request->input('first_name')),     
+                    'strIndivMName' => trim($request->input('middle_name')),
+                    'strIndivLName' => trim($request->input('last_name')),
+                    'strIndivSex' => $request->input('cust-sex'),
+                    'strIndivHouseNo' => trim($request->input('addCustPrivHouseNo')), 
+                    'strIndivStreet' => trim($request->input('addCustPrivStreet')),
+                    'strIndivBarangay' => trim($request->input('addCustPrivBarangay')),   
+                    'strIndivCity' => trim($request->input('addCustPrivCity')),   
+                    'strIndivProvince' => trim($request->input('addCustPrivProvince')),
+                    'strIndivZipCode' => trim($request->input('addCustPrivZipCode')),
+                    'strIndivLandlineNumber' => trim($request->input('addPhone')),
+                    'strIndivCPNumber' => trim($request->input('addCel')), 
+                    'strIndivCPNumberAlt' => trim($request->input('addCelAlt')),
+                    'strIndivEmailAddress' => trim($request->input('addEmail')),
+                    'boolIsActive' => 1
+                    ));
+
+            $individual->save();
+
+        return redirect('transaction/alteration-checkout-payment');
+    }
+
+    public function saveTransaction(Request $request)
+    {   
+        $values = session()->get('orders');
+        $transaction_date = $request->input('transaction_date');
+
+        for($i = 0; $i < count($values); $i++){
+            $alteration = TransactionAlteration::create(array(
+                    'strNewAlterationID' => $request->input('alteID'),
+                    'strCustomerIndFK' => session()->get('customer_id'),
+                    'strAlteSegmentFK' => $values[$i][0],
+                    'strAlterationTypeFK' => $values[$i][1],
+                    'dblAlterationPrice' => $values[$i][3],
+                    'dtAlteDate' => $transaction_date,
+                    'txtAlteNotes' => $values[$i][2],
+                    'boolIsActive' => 1
+            ));
+
+            $alteration->save();
+        }
+
+        return redirect('transaction/alteration-walkin-transaction');
     }
 
     public function checkoutPayment()   
+    {   
+        $values = session()->get('orders');
+        $alte_id = session()->get('alteration_id');
+
+        $totalPrice = 0.00;
+        $totalDays = 0;
+
+        for($i = 0; $i < count($values); $i++){
+            $totalPrice += $values[$i][3];
+            $totalDays  += $values[$i][4];
+        }
+
+        return view('alteration.checkout-payment')
+                ->with('alterations', $values)
+                ->with('alte_id', $alte_id)
+                ->with('total_price', $totalPrice)
+                ->with('total_days', $totalDays);
+    }
+
+    public function oldcust()
     {
-        return view('alteration.checkout-payment');
+        return view('alteration.walkin-oldcustomer');
     }
 
     public function checkoutAddMeasurement()

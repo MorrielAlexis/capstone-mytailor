@@ -36,16 +36,30 @@
     <div class="container" style="width:100%;">
     <div class="section white" style="margin:40px; padding:40px;">
 
+<<<<<<< HEAD
+      <div class="col s12" style="margin-bottom:20px; padding:20px;">
+=======
       <div class="col s12" style="margin-bottom:20px; padding:20px; padding-top:0;">
+>>>>>>> 1c7e658efa333021b8a6bd44b48b546159decba0
 
+        <!--sample lang-->
         <div class="input-field col s3">
+<<<<<<< HEAD
+            <select class="browser-default">
+                <option value="" selected></option>
+                <option value="All" class="circle">All</option>
+            </select>
+            <label><font size="3" color="gray">Fabric Type</font></label>
+=======
           <select class="browser-default">
             <option value="" disabled selected>Fabric Type</option>
             <option value="1">Option 1</option>
             <option value="2">Option 2</option>
             <option value="3">Option 3</option>
           </select>
+>>>>>>> 1c7e658efa333021b8a6bd44b48b546159decba0
         </div>
+         <!--end--> 
 
         <div class="input-field col s3">
           <select class="browser-default">
@@ -116,10 +130,9 @@
   </script>
 
   <script>
-
     $(document).ready(function() {
       $('select').material_select();
+    $('.tooltipped').tooltip({delay: 50});
     });
-
+    
   </script>
-

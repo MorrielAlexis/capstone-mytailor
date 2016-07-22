@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateJoMeasurementProfileInd extends Migration
+class CreateJoMeasurementProfile extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,12 @@ class CreateJoMeasurementProfileInd extends Migration
      */
     public function up()
     {
-        Schema::create('tblJo_MeasureProfileInd', function (Blueprint $table) {
-            $table->string('strMeasureProfileID')->primary();
-            $table->string('strMeasProfCustIndivFK')->index();
-            $table->string('strMeasProfMeasCategoryFK')->index();
+        Schema::create('tblJo_MeasureProfile', function (Blueprint $table) {
+            $table->string('strJOMeasureProfileID')->primary();
+            $table->string('strMeasProfCustIndivFK')->index()->nullable();
+            $table->string('strMeasProfCustCompanyFK')->index()->nullable();
             $table->string('strProfileName');
-            $table->string('strUnitofMeasurement');
+            $table->string('strSex');
             $table->boolean('boolIsActive');
             $table->timestamps();
 
@@ -25,9 +25,9 @@ class CreateJoMeasurementProfileInd extends Migration
                   ->references('strIndivID')
                   ->on('tblCustIndividual');
 
-            $table->foreign('strMeasProfMeasCategoryFK')
-                  ->references('strMeasurementCategoryID')
-                  ->on('tblMeasurementCategory');
+            $table->foreign('strMeasProfCustCompanyFK')
+                  ->references('strCompanyID')
+                  ->on('tblCustCompany');
                   
 
         });

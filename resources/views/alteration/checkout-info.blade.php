@@ -13,9 +13,8 @@
       <div style="padding:30px">
 
     <ul class="col s12 breadcrumb">
-			<li><a class="active" style="padding-left:200px" href="#customer-info"><b>1.FILL-UP FORM</b></a></li>
-			<li><a style="padding-left:200px"><b>2.PAYMENT</b></a></li>
-			<li><a style="padding-left:200px"><b>3.ADD MEASUREMENT DETAIL</b></a></li>
+			<li><a class="active" style="padding-left:200px" href="#customer-info"><b>FILL-UP FORM</b></a></li>
+			<li><a style="padding-left:200px"><b>PAYMENT</b></a></li>
 		</ul>
 
           <div class="row">
@@ -25,23 +24,24 @@
               <div class="divider" style="height:1px; background-color:#80d8ff"></div>
             </div>
           </div>
-
+          
+        {!! Form::open(['url' => 'transaction/alteration-walkin-add-newcustomer-info', 'method' => 'POST']) !!}
           <div class="row" style="background-color:white;">
             <div class="container">
               <div class="col s12">    
                 <div class="col s6">       
                   <div style="color:black; padding-left:140px" class="input-field col s12">                 
-                    <input value="" id="addIndiID" name="addIndiID" type="text" readonly>
+                    <input value="{{ $custID }}" id="addIndiID" name="addIndiID" type="text" readonly>
                     <label for="addIndiID" style="color:gray"><b>Individual ID </b></label>
                   </div>
 
                   <div style="color:black; padding-left:140px; margin-left:1px" class="input-field col s12">    
-                    <input value="" id="dateToday" name="dateToday" type="text" readonly>
+                    <input value="{{ $newID }}" id="alteID" name="alteID" type="text" readonly>
                     <label style="color:gray"><b>Transaction No. </b></label>
                   </div>
                 </div>
 
-                <a id="addPayment" href="{{URL::to('transaction/alteration-checkout-payment')}}" class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-top:20px; margin-left:40px; padding:10px; padding-left:19px; padding-right:19px; padding-bottom:45px; background-color:teal; color:white">Save and Proceed</a>                                
+                <button type="submit" class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-top:20px; margin-left:40px; padding:10px; padding-left:19px; padding-right:19px; padding-bottom:45px; background-color:teal; color:white">Save and Proceed</button>                                
                 <a id="cancelTransac" href="#cancel-order" class="btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel transaction and go back to homepage" style="margin-top:30px; margin-left:40px; padding:10px; padding-bottom:45px; background-color:teal; color:white">Cancel Transaction</a>
               </div>
             </div>
@@ -70,16 +70,10 @@
 
                 <div style="color:black" class="input-field col s6">
                   <p style="color:gray"><b>Sex</b></p>
-                  <select>
-                    <option value="0"></option>
-                      <option value="1">Female</option>
-                      <option value="2">Male</option>
+                  <select name="cust-sex">
+                      <option value="F">Female</option>
+                      <option value="M">Male</option>
                   </select>
-                </div>
-
-                <div style="color:black" class="input-field col s6">
-                  <p style="color:gray"><b>Date of Birth</b></p>
-                  <input class="datepicker" id="editDtEmpBday" name="editDtEmpBday" type="date" placeholder="May 3, 1997">  
                 </div>
             </div>
 
@@ -141,7 +135,7 @@
             </div>
         </div>
       </div>
-
+    {!! Form::close() !!}
       <div style="color:gray; margin-top:30px; margin-left:20px" class="col s12">
         <h6>IMPORTANT NOTE: Fields with asterisk (*) must not be left blank.</h6>
       </div>

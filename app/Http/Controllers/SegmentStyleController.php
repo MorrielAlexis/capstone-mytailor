@@ -24,7 +24,7 @@ class SegmentStyleController extends Controller
 
     public function index()
     {
-         //get all the segment style
+         //get all the segmentStyle style
 
         $ids = \DB::table('tblSegmentStyleCategory')
             ->select('strSegStyleCatID')
@@ -84,7 +84,7 @@ class SegmentStyleController extends Controller
 
         \Session::flash('flash_message','Segment style  category successfully added.'); //flash message
 
-        return redirect('maintenance/garment-category');
+        return redirect('maintenance/segment-style');
     }
 
     /**
@@ -132,21 +132,40 @@ class SegmentStyleController extends Controller
         //
     }
 
-    function updateSegmentStyle(Request $request)
+
+
+    function updatesegmentStyle(Request $request)
     {
     
-        $segment  = GarmentCategory::find($request->input('editGarmentID'));
-        // $garment = GarmentCategory::find($request->input('strGarmentCategoryID'));
-            $segment ->strGarmentCategoryName = trim($request->input('editGarmentName'));
-            // $garment->strGarmentCategoryName = trim($request->input('strGarmentCategoryName'));
+        $segmentStyle  = SegmentStyle::find($request->input('editSegmentStyleID'));
 
-            $segment ->textGarmentCategoryDesc = trim($request->input('editGarmentDescription'));
-            // $garment->textGarmentCategoryDesc = trim($request->input('textGarmentCategoryDesc'));
-            $segment  ->save();
+            $segmentStyle ->strSegmentFK = $request->input('editSegmentStyle');
+            $segmentStyle ->strSegStyleName = trim($request->input('editSegmentStyleName'));
+            $segmentStyle ->txtSegStyleCatDesc = trim($request->input('editStyleDesc'));
 
-        \Session::flash('flash_message_update','Garment category detail/s successfully updated.'); //flash message
+            $segmentStyle  ->save();
 
-        return  redirect('maintenance/segment -category');
+        \Session::flash('flash_message_update','Segment style category detail/s successfully updated.'); //flash message
+
+
+
+        return  redirect('maintenance/segment-style');
+    }
+
+    function deletesegmentStyle(Request $request)
+    {
+
+        $segmentStyle = SegmentStyle::find($request->input('delsegmentStyleID'));
+
+        $segmentStyle->strSegStyleCatInactiveReason = trim($request->input('delInactiveSegmentStyle'));
+        $segmentStyle->boolIsActive = 0;
+        $segmentStyle->save();
+
+
+       \Session::flash('flash_message_delete','Segment pattern successfully deactivated.'); //flash message
+
+        return redirect('maintenance/segment-style');
+
     }
 
        public function smartCounter($id)

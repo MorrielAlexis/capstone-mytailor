@@ -12,6 +12,7 @@ use Redirect;
 use Illuminate\Http\Request;
 use Validator;
 use Auth;
+use Session;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -79,7 +80,6 @@ class HomeController extends Controller
     {    
         if(Auth::check())
         {   
-
             Auth::logout();
             return redirect('/');
         }
