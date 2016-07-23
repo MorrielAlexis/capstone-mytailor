@@ -23,10 +23,14 @@ use App\SegmentPattern;
 use App\SegmentStyle;
 
 use App\MeasurementCategory;
+use App\MeasurementDetail;
 use App\StandardSizeCategory;
 
 use App\TransactionJobOrder;
 use App\TransactionJobOrderSpecifics;
+use App\TransactionJobOrderSpecificsPattern;
+use App\TransactionJobOrderMeasurementProfile;
+use App\TransactionJobOrderMeasurementSpecifics;
 
 class WalkInIndividualController extends Controller
 {
@@ -172,13 +176,12 @@ class WalkInIndividualController extends Controller
 
         for($i = 0; $i < count($values); $i++){
             for($j = 0; $j < count($segmentStyles); $j++){
-                $tempPatterns = $request->input('rdb_pattern' . $segmentStyles[$j]->strSegStyleCatID . ($i+1));
+                $tempPatterns = $request->input('rdb_pattern' . $segmentStyles[$j]->strSegStyleCatID . ($i+1));       
                 if($tempPatterns != null){
                     $patterns[$i] = $tempPatterns;
                 } 
             }
         }
-
 
         $sqlStyles = \DB::table('tblSegmentPattern AS a')
                 ->leftJoin('tblSegmentStyleCategory AS b', 'a.strSegPStyleCategoryFK', '=', 'b.strSegStyleCatID')
@@ -320,6 +323,27 @@ class WalkInIndividualController extends Controller
 
     public function saveOrder(Request $request)
     {   
+        $measDet = MeasurementDetail::get();
+        $segments = session()->get('segment_values'); //tblJobSpecs
+        
+        $measurementDetails = [];
+        $measurementName = [];
+        $measurementProfile = [];
+
+        foreach($segments as $i => $segment){
+            foreach($measDet as $j => $detail){
+                if($detail->strMeasDetSegmentFK == $segment->strSegmentID){
+                    $measurementName[$i][$j] = $request->input('detailName' . ($i+1) . ($j+1));
+                    $measurementDetails[$i][$j] = $request->input($detail->strMeasurementDetailID . ($i+1));
+                    $measurementDetails[$i][$j+1] = $request->input('uom' . ($i+1));
+                }
+                $j++;
+            }
+                $measurementProfile[$i][0] =  $request->input('profile_name' . ($i+1));
+                $measurementProfile[$i][1] =  $request->input('profile_sex' . ($i+1));
+                $i++;
+        }
+
         //tblJobOrder
         $tempQuantity = session()->get('segment_quantity');
         $totalQuantity = 0;
@@ -349,6 +373,7 @@ class WalkInIndividualController extends Controller
 
         //tblJobSpecs
         $segments = session()->get('segment_values'); //tblJobSpecs
+        $designs = session()->get('segment_design'); //tblJOSpecs_Design
 
         for($i = 0; $i < count($segments); $i++){
 
@@ -379,9 +404,72 @@ class WalkInIndividualController extends Controller
             ));
 
             $jobOrderSpecifics->save();
-        }
 
-        $designs = session()->get('segment_design'); //tblJOSpecs_Design
+            $jobOrderSpecificsPattern = TransactionJobOrderSpecificsPattern::create(array(
+                    'strJobOrderSpecificFK' => $jobSpecsID,
+                    'strSegmentPatternFK' => $designs[$i]->strSegPatternID
+            ));
+
+            $jobOrderSpecificsPattern->save(); 
+
+
+            //measurement profile
+            $ids = \DB::table('tblJO_MeasureProfile')
+                    ->select('strJOMeasureProfileID')
+                    ->orderBy('created_at', 'desc')
+                    ->orderBy('strJOMeasureProfileID', 'desc')
+                    ->take(1)
+                    ->get();
+
+                if($ids == null){
+                    $joMeasProfileID = $this->smartCounter("JOMP000"); 
+                }else{
+                    $ID = $ids["0"]->strJOMeasureProfileID;
+                    $joMeasProfileID = $this->smartCounter($ID);  
+                }
+
+            $joMeasurementProfile = TransactionJobOrderMeasurementProfile::create(array(
+                    'strJOMeasureProfileID' => $joMeasProfileID,
+                    'strMeasProfCustIndivFK' => $customerID,
+                    'strProfileName' => $measurementProfile[$i][0],
+                    'strSex' => $measurementProfile[$i][1],
+                    'boolIsActive' => 1
+            ));
+
+            $joMeasurementProfile->save();
+
+            for($j = 0; $j < count($measurementName[$i]); $j++){
+                //measurement specs
+                $ids = \DB::table('tblJOMeasureSpecific')
+                        ->select('strJOMeasureSpecificID')
+                        ->orderBy('created_at', 'desc')
+                        ->orderBy('strJOMeasureSpecificID', 'desc')
+                        ->take(1)
+                        ->get();
+
+                    if($ids == null){
+                        $joMeasSpecificID = $this->smartCounter("JOMP000"); 
+                    }else{
+                        $ID = $ids["0"]->strJOMeasureSpecificID;
+                        $joMeasSpecificID = $this->smartCounter($ID);  
+                    }
+
+                    $joMeasurementProfile = TransactionJobOrderMeasurementSpecifics::create(array(
+                            'strJOMeasureSpecificID' => $joMeasSpecificID,
+                            'strJobOrderSpecificFK' => $jobSpecsID,
+                            'strMeasureProfileFK' => $joMeasProfileID,
+                            'strMeasureDetailFK' => $measurementName[$i][$j],
+                            'dblMeasureValue' => $measurementDetails[$i][$j],
+                            'strUnitOfMeasurement' => $measurementDetails[$i][count($measurementName[$i])],
+                            'boolIsActive' => 1
+                    ));
+
+                    $joMeasurementProfile->save();
+            }//end of loop for meas specs
+        }//end of save loop for JO Specs
+
+
+
 
         dd("");
     }

@@ -13,6 +13,7 @@ class CreateJoSpecificSegmentPattern extends Migration
     public function up()
     {
         Schema::create('tblJOSpecificSegmentPattern', function (Blueprint $table) {
+            $table->increments('intJOSpecSegmentPatternID');
             $table->string('strJobOrderSpecificFK')->index();
             $table->string('strSegmentPatternFK')->index();
             //$table->primary('strJobOrderSpecificFK');
@@ -22,12 +23,9 @@ class CreateJoSpecificSegmentPattern extends Migration
                   ->references('strJOSpecificID')
                   ->on('tblJOSpecific');
 
-              $table->foreign('strSegmentPatternFK')
+            $table->foreign('strSegmentPatternFK')
                   ->references('strSegPatternID')
                   ->on('tblSegmentPattern');
-
-
-
         });
     }
 
