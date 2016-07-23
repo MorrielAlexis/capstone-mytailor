@@ -13,14 +13,14 @@
    <div class="row" style="margin-top:50px">
 		<div class="col s12 m12 l12">
 
-			<div class="col s12 m9 l10">
+			<div class="col s12 m9 l12" style="padding-left:5%; padding-right:5%">
 				<ul class="tabs transparent" style="margin-top:15px">
 					<li class="tab col s12" style="border-top-left-radius: 20px; border-top-right-radius: 20px; background-color: #00b0ff;"><a style="color:black; padding-top:5px; opacity:0.80" href="#shoppingCart"></a></li>	
 					<div class="indicator white" style="z-index:1"></div>
 	            </ul>
 	        </div>
 				<div class="row">
-				    <div class="col s12 m9 l10">
+				    <div class="col s12 m9 l12" style="padding-left:5%; padding-right:5%">
 				    	<div id="billCustomer" class="card-panel">
 							<div class="card-content">
 								<div class="row">
@@ -31,11 +31,11 @@
 
 									<div class="col s12" style="margin-top:10px">
 										<div style="color:black" class="input-field col s5">                 
-				                          <div class="container"><input style="margin-left:53px; border:3px teal solid; padding:5px; padding-left:10px" name="customer-info" type="text" class="" placeholder="ex. IND 20001" editable="false"></div>
+				                          <div class="container"><input value="{{ $custID }}" style="margin-left:53px; border:3px teal solid; padding:5px; padding-left:10px" name="custid" id="custid" type="text" class="" placeholder="ex. IND 20001" editable="false" readonly></div>
 				                          <label style="color:teal; margin-top:5px;"><b>CUSTOMER ID:</b></label>
 				                        </div>
 										<div style="color:black" class="input-field col s7">                 
-				                          <div class="container"><input style="margin-left:80px; margin-right:100px; border:3px teal solid; padding:5px; padding-left:10px" name="customer-info" type="text" class="" placeholder="ex. Honey Buenavides"></div>
+				                          <div class="container"><input value="" style="margin-left:80px; margin-right:100px; border:3px teal solid; padding:5px; padding-left:10px" name="customer-info" type="text" class="" placeholder="ex. Honey Buenavides"></div>
 				                          <label style="color:teal; margin-top:5px; margin-left:20px"><b>CUSTOMER NAME:</b></label>
 				                        </div>
 									</div>
@@ -44,11 +44,9 @@
 										<div class="input-field col s9">
 										<div class="container">
 											<select class="browser-default tooltipped" data-position="bottom" data-delay="50" data-tooltip="In case of multiple pending payments" style="margin-left:150px; border:3px teal solid; padding-left:10px">
-												<option disabled>Choose a transaction date...</option>
-											    <option value="date1">2016-05-03</option>
-											    <option value="date2">2016-06-16</option>
-											    <option value="date3">2016-09-21</option>
-											    <option value="A" selected class="circle">All</option>
+												
+												<option disabled></option>
+											
 											</select>
 										</div>
 										<label style="color:teal; margin-top:5px;"><b>Choose a transaction date to bill:</b></label>
@@ -114,7 +112,7 @@
 							                        </div>
 													
 													<div class="col s12" style="margin-top:30px">
-														<a href="" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to print a copy of receipt" style="background-color:teal"><i class="large mdi-action-print" style="font-size:30px"></i></a>
+														<a href="{{ URL::to('billing-payment/payment-receipt-pdf') }}" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to print a copy of receipt" style="background-color:teal"><i class="large mdi-action-print" style="font-size:30px"></i></a>
 														<a href="" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="CLick to save data" style="background-color:teal; margin-left:20px">Save</a>
 														<a href="" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to clear all fields for payment process" style="background-color:teal">Cancel</a>
 													</div>
@@ -293,13 +291,6 @@
 					</div>
 
 
-
-
-					<div class="col hide-on-small-only m3 l2" style="margin-top:60px">
-				    	<a href="{{URL::to('/transaction/billing-payment')}}" class="btn tooltipped" data-position="bottom" data-delay"50" data-tooltip="Click to bill a new customer" style="padding-left:7px; padding-right:7px; background-color:#fb8c00; margin-bottom:30px"><b>New Customer Payment</b></a>
-				    	<a href="{{URL::to('/transaction/billing-collection')}}" class="btn tooltipped" data-position="bottom" data-delay"50" data-tooltip="Click to view collections" style="padding-left:10px; padding-right:10px; background-color:#fb8c00; margin-bottom:30px"><b>View Collections</b></a>
-				    	<a href="" class="btn tooltipped" data-position="bottom" data-delay"50" data-tooltip="Click to check for incoming deadlines" style="padding-left:13.5px; padding-right:13.5px; background-color:#fb8c00"><b>Review Deadlines</b></a>
-				    </div>
 				</div>
 
 			</div>

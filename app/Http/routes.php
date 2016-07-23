@@ -244,6 +244,9 @@ Route::group(['prefix' => 'transaction'], function(){
 		['only' => ['index']]);
 });
 
+Route::get('billing-payment/pending-payment-pdf', 'BillingPaymentController@generateBill');
+Route::get('billing-payment/payment-receipt-pdf', 'BillingPaymentController@generateReceipt');
+
 Route::group(['prefix' => 'utilities'], function(){
 	Route::resource('inactive-data', 'InactiveDataController');
 

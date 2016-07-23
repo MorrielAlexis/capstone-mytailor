@@ -29,7 +29,7 @@
 	       	</div>
 
 	       	<div class="col s12 left">
-		        <a class="right btn-floating tooltipped btn-large green" data-position="bottom" data-delay="50"  data-tooltip="CLick to print a receipt for current transaction" href="#!" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-action-print"></i></a>
+		        <a href="{{ URL::to('billing-payment/payment-receipt-pdf') }}" class="right btn-floating tooltipped btn-large green" data-position="bottom" data-delay="50"  data-tooltip="CLick to print a receipt for current transaction" href="#!" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-action-print"></i></a>
 		    </div>
 
 	       	<div class="row" style="background-color:white; padding:40px">
@@ -110,7 +110,7 @@
 
 					<div class="col s12" style="margin:10px"></div>
 					{!! Form::open(['url' => 'transaction/walkin-individual-payment-measure-detail', 'method' => 'POST']) !!}
-						<div class="col s6" style="border-right:2px gray solid">
+						<div class="col s6">
 							<h5 style="color:teal"><b>Price Quotation*</b></h5>
 							<span>Determine terms of payment to get payment details</span>
 							<div class="col s12"><div class="divider" style="margin:15px"></div></div>
@@ -142,7 +142,7 @@
 
 						</div>
 
-						<div class="col s6 z-depth-1">
+						<div class="col s6 z-depth-1" style="border-left:2px gray solid">
 							<h5 style="color:teal"><b>Payment</b></h5>
 							<span>Fill up the following information</span>
 							<div class="col s12"><div class="divider" style="margin:15px"></div></div>
