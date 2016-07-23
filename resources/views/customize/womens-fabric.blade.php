@@ -96,12 +96,14 @@
       <div class="col s12 fabric-general {{ $fabric->strFabricTypeFK }} {{ $fabric->strFabricPatternFK }} {{ $fabric->strFabricColorFK }} {{ $fabric->strFabricThreadCountFK }}">
         <div class="col s3">
           <div style="padding:20px;">
+
             <img class="materialboxed responsive-img" src="{{URL::asset($fabric->strFabricImage)}}">
             <figcaption style="background-color:#ede7f6">{{$fabric->strFabricName}}</figcaption>
             <figcaption style="background-color:#ede7f6">{{$fabric->strFabricCode}}</figcaption>
             <figcaption style="background-color:#ede7f6">{{$fabric->strFabricTypeName}}</figcaption>
             <figcaption style="background-color:#ede7f6; color:red;">PHP {{$fabric->dblFabricPrice}}</figcaption>
             <div><a class="btn green" type="button" value="{{$fabric->strFabricID}}"><i class="mdi-action-shopping-cart" style="font-size:22px;"> Choose this fabric</i></a></div>
+
           </div>
         </div>
       </div> 

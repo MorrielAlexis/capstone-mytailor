@@ -23,10 +23,15 @@ use App\SegmentPattern;
 use App\SegmentStyle;
 
 use App\MeasurementCategory;
+use App\MeasurementDetail;
 use App\StandardSizeCategory;
 
 use App\TransactionJobOrder;
+use App\TransactionJobOrderPayment;
 use App\TransactionJobOrderSpecifics;
+use App\TransactionJobOrderSpecificsPattern;
+use App\TransactionJobOrderMeasurementProfile;
+use App\TransactionJobOrderMeasurementSpecifics;
 
 class WalkInIndividualController extends Controller
 {
@@ -172,13 +177,12 @@ class WalkInIndividualController extends Controller
 
         for($i = 0; $i < count($values); $i++){
             for($j = 0; $j < count($segmentStyles); $j++){
-                $tempPatterns = $request->input('rdb_pattern' . $segmentStyles[$j]->strSegStyleCatID . ($i+1));
+                $tempPatterns = $request->input('rdb_pattern' . $segmentStyles[$j]->strSegStyleCatID . ($i+1));       
                 if($tempPatterns != null){
                     $patterns[$i] = $tempPatterns;
                 } 
             }
         }
-
 
         $sqlStyles = \DB::table('tblSegmentPattern AS a')
                 ->leftJoin('tblSegmentStyleCategory AS b', 'a.strSegPStyleCategoryFK', '=', 'b.strSegStyleCatID')
@@ -269,12 +273,69 @@ class WalkInIndividualController extends Controller
 
     public function measurement(Request $request)
     {   
-        $values = session()->get('segment_values');
-        $data = session()->get('segment_data');
+        //tblJobOrder
+        $tempQuantity = session()->get('segment_quantity');
+        $totalQuantity = 0;
 
         session(['termsOfPayment' => $request->input('termsOfPayment')]);
         session(['totalPrice' => $request->input('total_price')]);
         session(['transaction_date' => $request->input('transaction_date')]);
+
+        foreach($tempQuantity as $quantity)
+            $totalQuantity += $quantity; //tblJobOrder
+
+        $jobOrderID = session()->get('joID'); //tblJobOrder
+        $customerID = session()->get('custID'); //tblJobOrder
+        $termsOfPayment = session()->get('termsOfPayment'); //tblJobOrder
+        $modeOfPayment = "Cash"; //tblJobOrder
+        $totalPrice = (double)session()->get('totalPrice'); //tblJobOrder
+        $orderDate = session()->get('transaction_date'); //tblJobOrder
+
+        $jobOrder = TransactionJobOrder::create(array(
+                'strJobOrderID' => $jobOrderID,
+                'strJO_CustomerFK' => $customerID,
+                'strTermsOfPayment' => $termsOfPayment,
+                'strModeOfPayment' => $modeOfPayment,
+                'intJO_OrderQuantity' => $totalQuantity,
+                'dblOrderTotalPrice' => $totalPrice,
+                'dtOrderDate' => $request->input('transaction_date'),
+                'boolIsActive' => 1
+        ));
+
+        $jobOrder->save();
+
+        $ids = \DB::table('tblJOPayment')
+                ->select('strPaymentID')
+                ->orderBy('created_at', 'desc')
+                ->orderBy('strPaymentID', 'desc')
+                ->take(1)
+                ->get();
+
+            if($ids == null){
+                $jobPaymentID = $this->smartCounter("JOPY000"); 
+            }else{
+                $ID = $ids["0"]->strPaymentID;
+                $jobPaymentID = $this->smartCounter($ID);  
+            }
+
+        $payment = TransactionJobOrderPayment::create(array(
+                'strPaymentID' => $jobPaymentID,
+                'strTransactionFK' => session()->get('joID'), //tblJobOrder
+                'dblAmountTendered' => $request->input('amount-tendered'),
+                'dblAmountToPay' => $request->input('amount-to-pay'),
+                'dblOutstandingBal' => $request->input('outstanding-bal'),
+                'strReceivedByEmployeeNameFK' => 'EMPL001' ,
+                'dtPaymentDate' => $request->input('transaction_date'),
+                'dtPaymentDueDate' => $request->input('due_date'),
+                'strPaymentStatus' => 'Pending',
+                'boolIsActive' => 1
+
+            ));
+
+        $payment->save();
+
+        $values = session()->get('segment_values');
+        $data = session()->get('segment_data');
 
 
         $measurements = \DB::table('tblMeasurementCategory AS a')
@@ -320,35 +381,33 @@ class WalkInIndividualController extends Controller
 
     public function saveOrder(Request $request)
     {   
-        //tblJobOrder
-        $tempQuantity = session()->get('segment_quantity');
-        $totalQuantity = 0;
+        $measDet = MeasurementDetail::get();
+        $segments = session()->get('segment_values'); //tblJobSpecs
+        
+        $measurementDetails = [];
+        $measurementName = [];
+        $measurementProfile = [];
 
-        foreach($tempQuantity as $quantity)
-            $totalQuantity += $quantity; //tblJobOrder
+        foreach($segments as $i => $segment){
+            foreach($measDet as $j => $detail){
+                if($detail->strMeasDetSegmentFK == $segment->strSegmentID){
+                    $measurementName[$i][$j] = $request->input('detailName' . ($i+1) . ($j+1));
+                    $measurementDetails[$i][$j] = $request->input($detail->strMeasurementDetailID . ($i+1));
+                    $measurementDetails[$i][$j+1] = $request->input('uom' . ($i+1));
+                }
+                $j++;
+            }
+                $measurementProfile[$i][0] =  $request->input('profile_name' . ($i+1));
+                $measurementProfile[$i][1] =  $request->input('profile_sex' . ($i+1));
+                $i++;
+        }
 
         $jobOrderID = session()->get('joID'); //tblJobOrder
         $customerID = session()->get('custID'); //tblJobOrder
-        $termsOfPayment = session()->get('termsOfPayment'); //tblJobOrder
-        $modeOfPayment = "Cash"; //tblJobOrder
-        $totalPrice = (double)session()->get('totalPrice'); //tblJobOrder
-        $orderDate = session()->get('transaction_date'); //tblJobOrder
-
-        $jobOrder = TransactionJobOrder::create(array(
-                'strJobOrderID' => $jobOrderID,
-                'strJO_CustomerFK' => $customerID,
-                'strTermsOfPayment' => $termsOfPayment,
-                'strModeOfPayment' => $modeOfPayment,
-                'intJO_OrderQuantity' => $totalQuantity,
-                'dblOrderTotalPrice' => $totalPrice,
-                'dtOrderDate' => $orderDate,
-                'boolIsActive' => 1
-        ));
-
-        $jobOrder->save();
 
         //tblJobSpecs
         $segments = session()->get('segment_values'); //tblJobSpecs
+        $designs = session()->get('segment_design'); //tblJOSpecs_Design
 
         for($i = 0; $i < count($segments); $i++){
 
@@ -379,11 +438,82 @@ class WalkInIndividualController extends Controller
             ));
 
             $jobOrderSpecifics->save();
-        }
 
-        $designs = session()->get('segment_design'); //tblJOSpecs_Design
+            $jobOrderSpecificsPattern = TransactionJobOrderSpecificsPattern::create(array(
+                    'strJobOrderSpecificFK' => $jobSpecsID,
+                    'strSegmentPatternFK' => $designs[$i]->strSegPatternID
+            ));
 
-        dd("");
+            $jobOrderSpecificsPattern->save(); 
+
+
+            //measurement profile
+            $ids = \DB::table('tblJO_MeasureProfile')
+                    ->select('strJOMeasureProfileID')
+                    ->orderBy('created_at', 'desc')
+                    ->orderBy('strJOMeasureProfileID', 'desc')
+                    ->take(1)
+                    ->get();
+
+                if($ids == null){
+                    $joMeasProfileID = $this->smartCounter("JOMP000"); 
+                }else{
+                    $ID = $ids["0"]->strJOMeasureProfileID;
+                    $joMeasProfileID = $this->smartCounter($ID);  
+                }
+
+            $joMeasurementProfile = TransactionJobOrderMeasurementProfile::create(array(
+                    'strJOMeasureProfileID' => $joMeasProfileID,
+                    'strMeasProfCustIndivFK' => $customerID,
+                    'strProfileName' => $measurementProfile[$i][0],
+                    'strSex' => $measurementProfile[$i][1],
+                    'boolIsActive' => 1
+            ));
+
+            $joMeasurementProfile->save();
+
+            for($j = 0; $j < count($measurementName[$i]); $j++){
+                //measurement specs
+                $ids = \DB::table('tblJOMeasureSpecific')
+                        ->select('strJOMeasureSpecificID')
+                        ->orderBy('created_at', 'desc')
+                        ->orderBy('strJOMeasureSpecificID', 'desc')
+                        ->take(1)
+                        ->get();
+
+                    if($ids == null){
+                        $joMeasSpecificID = $this->smartCounter("JOMP000"); 
+                    }else{
+                        $ID = $ids["0"]->strJOMeasureSpecificID;
+                        $joMeasSpecificID = $this->smartCounter($ID);  
+                    }
+
+                    $joMeasurementProfile = TransactionJobOrderMeasurementSpecifics::create(array(
+                            'strJOMeasureSpecificID' => $joMeasSpecificID,
+                            'strJobOrderSpecificFK' => $jobSpecsID,
+                            'strMeasureProfileFK' => $joMeasProfileID,
+                            'strMeasureDetailFK' => $measurementName[$i][$j],
+                            'dblMeasureValue' => $measurementDetails[$i][$j],
+                            'strUnitOfMeasurement' => $measurementDetails[$i][count($measurementName[$i])],
+                            'boolIsActive' => 1
+                    ));
+
+                    $joMeasurementProfile->save();
+            }//end of loop for meas specs
+        }//end of save loop for JO Specs
+
+        session()->forget('joID');
+        session()->forget('custID');
+        session()->forget('segment_values'); 
+        session()->forget('segment_design');
+        session()->forget('segment_fabric');
+        session()->forget('segment_quantity');
+        session()->forget('segment_data');
+        session()->forget('termsOfPayment');
+        session()->forget('totalPrice');
+        session()->forget('transaction_date');
+
+        return redirect('transaction/walkin-individual');
     }
 
     public function removeItem(Request $request)

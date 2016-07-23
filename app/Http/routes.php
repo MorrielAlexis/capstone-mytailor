@@ -90,8 +90,8 @@ Route::group(['prefix' => 'maintenance'], function(){
 
 	Route::resource('body-part-form', 'BodyPartFormController');
 
-		Route::post('body-part-form/update','BodyPartFormController@update_threadCount');
-		Route::post('body-part-form/destroy','BodyPartFormController@delete_threadCount');
+		Route::post('body-part-form/update','BodyPartFormController@update_bodyPartForm');
+		Route::post('body-part-form/destroy','BodyPartFormController@delete_bodyPartForm');
 
 	Route::resource('standard-size-category', 'StandardSizeCategoryController');
 
@@ -244,6 +244,9 @@ Route::group(['prefix' => 'transaction'], function(){
 		['only' => ['index']]);
 });
 
+Route::get('billing-payment/pending-payment-pdf', 'BillingPaymentController@generateBill');
+Route::get('billing-payment/payment-receipt-pdf', 'BillingPaymentController@generateReceipt');
+
 Route::group(['prefix' => 'utilities'], function(){
 	Route::resource('inactive-data', 'InactiveDataController');
 
@@ -346,7 +349,7 @@ Route::group(['prefix' => 'transaction'], function(){
 		Route::post('alteration-walkin-newcustomer-delete', 'AlterationWalkInController@deleteOrder');
 		Route::post('alteration-walkin-add-newcustomer-info', 'AlterationWalkInController@addNewCustomer');
 		Route::post('alteration-walkin-newcustomer-save-transaction', 'AlterationWalkInController@saveTransaction');
-});
+});		Route::get('alteration-walkin-newcustomer-cancel', 'AlterationWalkInController@cancelOrder');
 
 
 /*---------------------------------------------ONLINE---------------------------------------------------*/
@@ -452,6 +455,14 @@ Route::get('online-company-checkout-employee-details', 'OnlineCheckoutCompanyCon
 
 	Route::get('customize-womens-fabric', 'OnlineCustomizeWomensController@fabricwomens');
 	Route::get('customize-womens-style', 'OnlineCustomizeWomensController@stylewomens');
+
+	Route::get('customize-womens-fabric', 'OnlineCustomizeWomensController@fabric');
+	Route::post('customize-womens-style-collar', 'OnlineCustomizeWomensController@stylecollar');
+	Route::get('customize-womens-style-cuffs', 'OnlineCustomizeWomensController@stylecuffs');
+	Route::get('customize-womens-style-buttons', 'OnlineCustomizeWomensController@stylebuttons');
+	Route::get('customize-womens-style-pocket-monogram', 'OnlineCustomizeWomensController@stylepocketmonogram');
+	Route::get('customize-womens-style-others', 'OnlineCustomizeWomensController@styleothers');
+
 
 	Route::get('customize-pants-fabric', 'OnlineCustomizePantsController@fabric');
 	Route::post('customize-pants-style-pleats', 'OnlineCustomizePantsController@stylepleats');

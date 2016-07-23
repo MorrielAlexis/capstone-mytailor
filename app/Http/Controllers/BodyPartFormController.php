@@ -31,7 +31,6 @@ class BodyPartFormController extends Controller
 
         $bodyPartCategory = BodyPartCategory::all();
 
-        // $pattern = SegmentPattern::all();
 
         $bodyForm = \DB::table('tblBodyPartForm')
                 ->join('tblBodyPartCategory', 'tblBodyPartForm.strBodyPartFK', '=', 'tblBodyPartCategory.strBodyPartCategoryID')
@@ -65,7 +64,40 @@ class BodyPartFormController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $file = $request->input('addImage');
+        $destinationPath = 'imgBodyForms';
+
+            if($file == '' || $file == null){
+                $bodyForm = BodyPartForm::create(array(
+
+                        'strBodyFormID' => $request->input('strBodyFormID'),
+                        'strBodyPartFK' =>$request->input('strBodyPartFK'),
+                        'strBodyFormName' =>trim($request->input('strBodyFormName')),
+                        'txtBodyFormDesc' =>trim($request->input('txtBodyFormDesc')),
+                        'boolIsActive' => 1
+
+                ));
+            }else{
+
+                $request->file('addImg')->move($destinationPath);
+                $bodyForm = BodyPartForm::create(array(
+
+                        'strBodyFormID' => $request->input('strBodyFormID'),
+                        'strBodyPartFK' =>$request->input('strBodyPartFK'),
+                        'strBodyFormName' =>trim($request->input('strBodyFormName')),
+                        'txtBodyFormDesc' =>trim($request->input('txtBodyFormDesc')),
+                        'strBodyFormImage' => 'imgBodyForms/'.$file,
+                        'boolIsActive' => 1
+
+                ));
+            } 
+
+                 // $added=$segment->save();
+            $bodyForm->save();
+
+            \Session::flash('flash_message','Body form successfully added.'); //flash message
+
+        return redirect('maintenance/body-part-form');  
     }
 
     /**
@@ -113,6 +145,57 @@ class BodyPartFormController extends Controller
         //
     }
 
+    function update_bodyPartForm(Request $request)
+    {   
+        $bodyForm = BodyPartForm::find($request->input('editBodyFormID'));
+        $checkForms = BodyPartForm::all();
+
+        $file = $request->input('editImage');
+        $destinationPath = 'imgBodyForms';
+        $isAdded = FALSE;
+
+        foreach ($checkForms as $checkForm)
+            if(!strcasecmp($checkForm->strBodyFormID, $request->input('editBodyFormID')) == 0 &&
+               strcasecmp($checkForm->strBodyFormName, trim($request->input('editBodyFormName'))) == 0 && 
+               strcasecmp($checkForm->strBodyPartFK, $request->input('editPartCategory')) == 0)
+                $isAdded = TRUE;
+
+        if(!$isAdded){
+            if($file == $bodyForm->strBodyFormImage)
+            {
+
+                $bodyForm->strBodyPartFK = $request->input('editPartCategory'); 
+                $bodyForm->strBodyFormName = trim($request->input('editBodyFormName'));
+                $bodyForm->txtBodyFormDesc = trim($request->input('editBodyFormDesc'));
+            }else{
+                    $request->file('editImg')->move($destinationPath);
+                    $bodyForm->strBodyPartFK = $request->input('editPartCategory'); 
+                    $bodyForm->strBodyFormName = trim($request->input('editBodyFormName'));  
+                    $bodyForm->txtBodyFormDesc = trim($request->input('editBodyFormDesc')); 
+                    $bodyForm->strBodyFormImage = 'imgBodyForms/'.$file;
+            }
+                $bodyForm->save();
+                
+            \Session::flash('flash_message_update','Body form detail/s successfully updated.'); //flash message   
+        }else \Session::flash('flash_message_duplicate','Body form  already exists.'); //flash message 
+
+        return redirect('maintenance/body-part-form');
+    }
+
+    function delete_bodyPartForm(Request $request)
+    {
+
+       $id = $request->input('delBodyFormID');
+        $bodyForm = BodyPartForm::find($request->input('delBodyFormID'));
+        $bodyForm->strBodyFormInactiveReason = trim($request->input('delInactiveBodyForm')); 
+        $bodyForm->boolIsActive = 0;
+        $bodyForm->save();
+        \Session::flash('flash_message_delete','Body form successfully deactivated.'); //flash message
+                    return redirect('maintenance/body-part-form'); 
+            
+    }
+
+    
     public function smartCounter($id)
     {   
 

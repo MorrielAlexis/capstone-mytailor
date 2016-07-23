@@ -53,7 +53,7 @@
 
       
               <!-- <div class="divider"></div> -->
-              <li class="bold"><a class="collapsible-header waves-effect waves-white" style="color:#212121"><i style="font-size:30px" class="small mdi-action-dashboard" style="color:#ccff90;"></i><b>Dashboard</b></a></li>
+              <li class="bold"><a class="collapsible-header waves-effect waves-white" style="color:#212121" href="{{URL::to('/dashboard')}}"><i style="font-size:30px" class="small mdi-action-dashboard" style="color:#ccff90;"></i><b>Dashboard</b></a></li>
               <!--<div class="divider"></div>-->
               <li class="bold"><a class="collapsible-header waves-effect waves-white {{ Request::is('maintenance/*') ? 'active' : '' }}" style="color:#212121"><i style="font-size:30px" class="mdi-action-settings" style="color:#ccff90"></i><b>Maintenance</b></a>
 
@@ -115,8 +115,8 @@
                             <ul>  
                               <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/body-part-category')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Body Part Category</font></i></a></li>
                               <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/body-part-form')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Body Part Form</font></i></a></li>
-                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/standard-size-category')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Standard Size Category</font></i></a></li>
-                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/standard-size-detail')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Standard Size Detail</font></i></a></li>
+                              {{-- <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/standard-size-category')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Standard Size Category</font></i></a></li>
+                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/standard-size-detail')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Standard Size Detail</font></i></a></li> --}}
                               <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/measurement-category')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family "Century Gothic">Measurement Category</font></i></a></li>
                               <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/measurement-detail')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family "Century Gothic">Measurement Detail</font></i></a></li>
                               <div class="divider"></div>

@@ -196,7 +196,67 @@ class SegmentPatternSeeder extends Seeder
                 'txtSegPDesc' => 'A cuff that is a square cut.',
                 'strSegPImage' => 'imgDesignPatterns/square-1-button.jpg',
                 'boolIsActive' => '1' 
-            )         
+            ),
+
+            array(
+                'strSegPatternID' => 'SPAT019',
+                'strSegPStyleCategoryFK' => 'SEGSTY006',
+                'strSegPName'=>' 1 Pleat ',
+                'dblPatternPrice' => '50',
+                'txtSegPDesc' => 'Pants with 1 pleat',
+                'strSegPImage' => 'imgDesignPatterns/1pleat.jpg',
+                'boolIsActive' => '1' 
+            ),        
+
+            array(
+                'strSegPatternID' => 'SPAT020',
+                'strSegPStyleCategoryFK' => 'SEGSTY006',
+                'strSegPName'=>' 2 Pleats ',
+                'dblPatternPrice' => '50',
+                'txtSegPDesc' => 'Pants with 2 pleats',
+                'strSegPImage' => 'imgDesignPatterns/2pleats.jpg',
+                'boolIsActive' => '1' 
+            ),
+
+            array(
+                'strSegPatternID' => 'SPAT021',
+                'strSegPStyleCategoryFK' => 'SEGSTY007',
+                'strSegPName'=>' Vertical Pockets ',
+                'dblPatternPrice' => '50',
+                'txtSegPDesc' => 'Pants pockets vertically cut',
+                'strSegPImage' => 'imgDesignPatterns/verticalpantspockets.jpg',
+                'boolIsActive' => '1' 
+            ),
+
+            array(
+                'strSegPatternID' => 'SPAT022',
+                'strSegPStyleCategoryFK' => 'SEGSTY007',
+                'strSegPName'=>' Sliced Pockets ',
+                'dblPatternPrice' => '50',
+                'txtSegPDesc' => 'Pants pockets sliced cut',
+                'strSegPImage' => 'imgDesignPatterns/slicedpantspockets.jpg',
+                'boolIsActive' => '1' 
+            ),
+
+            array(
+                'strSegPatternID' => 'SPAT023',
+                'strSegPStyleCategoryFK' => 'SEGSTY012',
+                'strSegPName'=>' 1 Back Pocket ',
+                'dblPatternPrice' => '50',
+                'txtSegPDesc' => 'Pants with 1 backpocket',
+                'strSegPImage' => 'imgDesignPatterns/1backpocket.jpg',
+                'boolIsActive' => '1' 
+            ),
+
+            array(
+                'strSegPatternID' => 'SPAT024',
+                'strSegPStyleCategoryFK' => 'SEGSTY012',
+                'strSegPName'=>' 2 Back Pocket ',
+                'dblPatternPrice' => '50',
+                'txtSegPDesc' => 'Pants with 2 backpocket',
+                'strSegPImage' => 'imgDesignPatterns/2backpockets.jpg',
+                'boolIsActive' => '1' 
+            )                                
 
         );
 

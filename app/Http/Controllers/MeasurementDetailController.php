@@ -8,6 +8,8 @@ use App\MeasurementDetail;
 use App\Http\Requests;
 use App\Http\Requests\MaintenanceMeasDetailRequest;
 use App\Http\Controllers\Controller;
+use App\GarmentSegment;
+use App\MeasurementCategory;
 
 class MeasurementDetailController extends Controller
 {
@@ -33,14 +35,25 @@ class MeasurementDetailController extends Controller
             ->get();
 
         $ID = $ids["0"]->strMeasurementDetailID;
-        $detailNewID = $this->smartCounter($ID);            
+        $newID = $this->smartCounter($ID);            
 
-        $detail = MeasurementDetail::all();
+
+        $segment  = GarmentSegment::all();
+        $measurementCategory = MeasurementCategory::all();
+
+        $detail =\DB::table('tblMeasurementDetail')
+            ->join('tblSegment', 'tblMeasurementDetail.strMeasDetSegmentFK', '=', 'tblSegment.strSegmentID')
+            ->join('tblMeasurementCategory', 'tblMeasurementDetail.strMeasCategoryFK', '=', 'tblMeasurementCategory.strMeasurementCategoryID')
+            ->select('tblMeasurementDetail.*', 'tblSegment.strSegmentName', 'tblMeasurementCategory.strMeasurementCategoryName')
+            ->orderBy('strMeasurementDetailID')
+            ->get();
                 
         //load the view and pass the individuals
         return view('maintenance-measurement-detail')
                     ->with('detail', $detail)
-                    ->with('detailNewID', $detailNewID);
+                    ->with('segment', $segment)
+                    ->with('measurementCategory', $measurementCategory)
+                    ->with('newID', $newID);
     }
 
 
@@ -51,15 +64,20 @@ class MeasurementDetailController extends Controller
     
                 $detail = MeasurementDetail::create(array(
                 'strMeasurementDetailID' =>$request->input('strMeasurementDetailID'),
-                'strMeasurementDetailName' =>trim($request->input('strMeasurementDetailName')),
-                'txtMeasurementDetailDesc' =>trim($request->input('txtMeasurementDetailDesc')),
-                'boolIsActive' => 1
+                'strMeasDetSegmentFK'    =>$request->input('strMeasDetSegmentFK'),
+                'strMeasCategoryFK'      =>$request->input('strMeasCategoryFK'),
+                'strMeasDetailName'      =>trim($request->input('strMeasDetailName')),
+                'txtMeasDetailDesc'      =>trim($request->input('txtMeasDetailDesc')),
+                'dblMeasDetailMinCm'     =>trim($request->input('dblMeasDetailMinCm')),
+                'dblMeasDetailMinInch'   =>trim($request->input('dblMeasDetailMinInch')),
+                'boolIsActive'           => 1
+                
                 ));
 
-            $detail->save();
+            $added=$detail->save();
 
         
-         \Session::flash('flash_message','Measurement part successfully added.'); //flash message
+         \Session::flash('flash_message','Measurement detail successfully added.'); //flash message
 
         return redirect ('maintenance/measurement-detail');
 
@@ -110,8 +128,14 @@ class MeasurementDetailController extends Controller
 
         $detail = MeasurementDetail::find($request->input('editDetailID'));
 
-                $detail->strMeasurementDetailName = trim($request->input('editDetailName'));   
-                $detail->txtMeasurementDetailDesc = trim($request->input('editDetailDesc'));
+                 $detail->strMeasurementDetailID= $request->input('editDetailID');
+                 $detail->strMeasDetSegmentFK   = $request->input('editMeasSegment');
+                 $detail->strMeasCategoryFK     = $request->input('editMeasCategory');
+                 $detail->strMeasDetailName     = trim($request->input('editMeasDetailName'));
+                 $detail->txtMeasDetailDesc     = trim($request->input('editMeasDetailDesc'));
+                 $detail->dblMeasDetailMinCm    = trim($request->input('editMeasDetailMinCm'));
+                 $detail->dblMeasDetailMinInch  = trim($request->input('editMeasDetailMinInch'));
+               
 
         $detail->save();
 
