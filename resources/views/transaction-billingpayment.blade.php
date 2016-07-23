@@ -122,17 +122,16 @@
 											</div>
 										</div>
 									</div>
-
+									
 									<div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
 									<h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
 										
-										{!! Form::open() !!}
 											<div class="divider" style="height:2px"></div>
 											<div class="modal-content col s12">
 												
-												
+											{!! Form::open(['url' => 'transaction/billing-payment-bill-customer', 'method' => 'post']) !!}
 												<div class="col s6" style="margin-top:20px;">
-												<label>This is a summary of orders:</label>
+												<label>{{ $pending_payment->strJobOrderID }}This is a summary of orders:</label>
 												</div>
 
 												<div class="col s6">
@@ -159,7 +158,7 @@
 												              	<tbody>
 												              	@if(isset($or_summary))
 												              	@foreach($or_summary as $summary)
-												              		@if($ummary->boolIsActive == 1)
+												              		@if($summary->boolIsActive == 1)
 														            <tr>
 														               <td>{{ $summary->strGarmentCategoryName }} , {{ $summary->strSegmentName }}</td>
 														               <td>{{ $summary->intQuantity }}</td>
