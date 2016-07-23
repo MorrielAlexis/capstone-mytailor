@@ -31,11 +31,11 @@
 
 									<div class="col s12" style="margin-top:10px">
 										<div style="color:black" class="input-field col s5">                 
-				                          <div class="container"><input style="margin-left:53px; border:3px teal solid; padding:5px; padding-left:10px" name="customer-info" type="text" class="" placeholder="ex. IND 20001" editable="false"></div>
+				                          <div class="container"><input value="{{ $custID }}" style="margin-left:53px; border:3px teal solid; padding:5px; padding-left:10px" name="custid" id="custid" type="text" class="" placeholder="ex. IND 20001" editable="false" readonly></div>
 				                          <label style="color:teal; margin-top:5px;"><b>CUSTOMER ID:</b></label>
 				                        </div>
 										<div style="color:black" class="input-field col s7">                 
-				                          <div class="container"><input style="margin-left:80px; margin-right:100px; border:3px teal solid; padding:5px; padding-left:10px" name="customer-info" type="text" class="" placeholder="ex. Honey Buenavides"></div>
+				                          <div class="container"><input value="" style="margin-left:80px; margin-right:100px; border:3px teal solid; padding:5px; padding-left:10px" name="customer-info" type="text" class="" placeholder="ex. Honey Buenavides"></div>
 				                          <label style="color:teal; margin-top:5px; margin-left:20px"><b>CUSTOMER NAME:</b></label>
 				                        </div>
 									</div>
@@ -44,9 +44,9 @@
 										<div class="input-field col s9">
 										<div class="container">
 											<select class="browser-default tooltipped" data-position="bottom" data-delay="50" data-tooltip="In case of multiple pending payments" style="margin-left:150px; border:3px teal solid; padding-left:10px">
-												@foreach($transac_dates as $transac_date)
-												<option disabled>{{ $transac_dates->dtOrderDate }}</option>
-												@endforeach
+												
+												<option disabled></option>
+											
 											</select>
 										</div>
 										<label style="color:teal; margin-top:5px;"><b>Choose a transaction date to bill:</b></label>
@@ -112,7 +112,7 @@
 							                        </div>
 													
 													<div class="col s12" style="margin-top:30px">
-														<a href="" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to print a copy of receipt" style="background-color:teal"><i class="large mdi-action-print" style="font-size:30px"></i></a>
+														<a href="{{ URL::to('billing-payment/payment-receipt-pdf') }}" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to print a copy of receipt" style="background-color:teal"><i class="large mdi-action-print" style="font-size:30px"></i></a>
 														<a href="" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="CLick to save data" style="background-color:teal; margin-left:20px">Save</a>
 														<a href="" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to clear all fields for payment process" style="background-color:teal">Cancel</a>
 													</div>
