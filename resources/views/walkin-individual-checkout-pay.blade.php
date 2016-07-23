@@ -328,14 +328,14 @@
 		});
 
 		$('#amount-to-pay').blur(function(){	
-			if($('#amount-to-pay').val() > $('#total_price').val()){
-				alert("You can't choose to pay more than the total.");
-				$('#amount-to-pay').val("");
-			}else{
+			// if($('#amount-to-pay').val() > $('#total_price').val()){
+			// 	alert("You can't choose to pay more than the total.");
+			// 	$('#amount-to-pay').val("");
+			// }
 				var amountChange = $('#amount-tendered').val() - $('#amount-to-pay').val();
 				$('#amount-change').val(amountChange.toFixed(2) + ' PHP');	
 				$('#outstanding-bal').val(($('#total_price').val() - $('#amount-to-pay').val()).toFixed(2) + ' PHP');				
-			}
+
 		});
 		
 	</script>
