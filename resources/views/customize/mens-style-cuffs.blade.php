@@ -41,41 +41,61 @@
         </ul>
 
         <!--CUFFS TAB-->
+          {!! Form::open(['url' => 'customize-pants-style-buttons']) !!}
         <div id="tabCuffs" class="col s12 white" style="padding:20px; border 2px teal accent-4 white-text;">
           
           <div class="col s12">
-            <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/customize-mens-style-buttons')}}">Next step</a></div>
+            <div><button class="right btn-flat teal accent-4 white-text" type="submit">Next step</button></div>
             <div><a class="left btn-flat teal accent-4 white-text" href="{{URL::to('/customize-mens-style-collar')}}">Previous step</a></div>
           </div>
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
 
           <div class="col s12" style="padding:20px;"><h4>2. Sleeve & Cuffs</h4></div>
+          <div class="col s12" style="padding:20px;"><h5>Sleeve</h5></div>
 
           <div class="col s12" style="margin-top:20px;">
-
             <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Round Cut 1 Button</b></font></label>
-              </p>
-            </div>
-
-          </div> 
-
-          <div class="col s12" style="margin-top:40px;">
-
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
+              <img class="materialboxed responsive-img" src="imgCustomize/cuffed-short-sleeves.jpg">
               <p>
                 <input class="with-gap" name="classic" type="radio" id="small" />
                 <label for="small"><font size="+1"><b>Cuffed Short Sleeves</b></font></label>
               </p>
             </div>
-
           </div> 
 
-          <div class="divider dashed" style="height:2px;"></div>
+          <div class="col s12" style="margin-top:20px;">
+            <div class="col s2">
+              <img class="materialboxed responsive-img" src="imgCustomize/plain-short-sleeves.jpg">
+              <p>
+                <input class="with-gap" name="classic" type="radio" id="small" />
+                <label for="small"><font size="+1"><b>Plain Short Sleeves</b></font></label>
+              </p>
+            </div>
+          </div>
+
+
+          <div class="col s12" style="padding:20px;"><h5>Cuffs</h5></div>
+          <div class="col s12" style="margin-top:20px;">
+            <div class="col s2">
+              <img class="materialboxed responsive-img" src="imgDesignPatterns/french-square.jpg">
+              <p>
+                <input class="with-gap" name="classic" type="radio" id="small" />
+                <label for="small"><font size="+1"><b>French Square</b></font></label>
+              </p>
+            </div>
+          </div> 
+
+          <div class="col s12" style="margin-top:20px;">
+            <div class="col s2">
+              <img class="materialboxed responsive-img" src="imgDesignPatterns/HiddenButtonCuffs.jpg">
+              <p>
+                <input class="with-gap" name="classic" type="radio" id="small" />
+                <label for="smal"><font size="+1"><b>Hidden Button Cuffs</b></font></label>
+              </p>
+            </div>
+          </div>
+
+          <!--<div class="divider dashed" style="height:2px;"></div>
 
           <div class="col s12" style="margin-top:20px;">
             <div class="col s3" style="padding-left:20px;"><h5><b>Contrast Cuffs</b></h5></div>
@@ -101,15 +121,16 @@
               <div><a class="btn-flat teal accent-4 white-text" href="{{URL::to('/customize-mens-fabric')}}"><font size="+1">Select Cufflinks</font></a></div>
             </div> 
 
-          </div>
+          </div>-->
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12">
-            <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/customize-mens-style-buttons')}}">Next step</a></div>
+            <div><button class="right btn-flat teal accent-4 white-text" type="submit">Next step</button></div>
             <div><a class="left btn-flat teal accent-4 white-text" href="{{URL::to('/customize-mens-style-collar')}}">Previous step</a></div>
           </div>
 
         </div>
+        {!! Form::close() !!}
         <!--END OF CUFFS TAB-->
 
 

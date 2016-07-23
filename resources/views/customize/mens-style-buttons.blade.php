@@ -41,29 +41,58 @@
         </ul>
 
         <!--BUTTONS TAB-->
+        {!! Form::open(['url' => 'customize-mens-style-pocket-monogram']) !!}
         <div id="tabButtons" class="col s12 white" style="padding:20px; border 2px teal accent-4 white-text;">
           
           <div class="col s12">
-            <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/customize-mens-style-pocket-monogram')}}">Next step</a></div>
+            <div><button class="right btn-flat teal accent-4 white-text" type="submit">Next step</button></div>
             <div><a class="left btn-flat teal accent-4 white-text" href="{{URL::to('/customize-mens-style-cuffs')}}">Previous step</a></div>
           </div>
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
 
           <div class="col s12" style="padding:20px;"><h4>3. Buttons</h4></div>
+          @foreach($buttons as $button)
+          <div class="col s12" style="margin-top:20px;">
+            <div class="col s2">
+              <img class="materialboxed responsive-img" src="{{URL::asset($button->strButtonImage)}}">
+              <p>
+                <input name="rdb_pattern{{ $button->intButtonID }}" type="radio" class="filled-in" value = "{{ $button->intButtonID }}" id="{{ $button->intButtonID }}" />
+                <label for="{{ $button->intButtonID }}"><font size="+1"><b>{{$button->strButtonBrand}} {{$button->strButtonColor}}</b></font></label>
+              </p>
+            </div>
+          </div> 
+          @endforeach
+          
 
           <div class="col s12" style="margin-top:20px;">
+            
+            <div class="col s2">
+              <img class="materialboxed responsive-img" src="img/fabric.jpg">
+              <p>
+                <input name="" type="radio" class="filled-in" value = "" id="" />
+                <label for=""><font size="+1"><b>Button Name</b></font></label>
+              </p>
+            </div>
 
             <div class="col s2">
               <img class="materialboxed responsive-img" src="img/fabric.jpg">
               <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Cuffed Short Sleeves</b></font></label>
+                <input name="" type="radio" class="filled-in" value = "" id="" />
+                <label for=""><font size="+1"><b>Button Name</b></font></label>
+              </p>
+            </div>
+
+            <div class="col s2">
+              <img class="materialboxed responsive-img" src="img/fabric.jpg">
+              <p>
+                <input name="" type="radio" class="filled-in" value = "" id="" />
+                <label for=""><font size="+1"><b>Button Name</b></font></label>
               </p>
             </div>
 
           </div> 
 
-          <div class="divider dashed" style="height:2px;"></div>
+         <!-- <div class="divider dashed" style="height:2px;"></div>
 
           <div class="col s12" style="margin-top:20px;">
             <div class="col s6" style="padding-left:20px;"><h5><b>Coloured Button Threads</b></h5></div>
@@ -71,24 +100,24 @@
           </div>
 
           <div class="col s12">
-
-            <div class="col s3" style="padding:40px;">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-            </div> 
+            <div class="col s3 button-thread ]" style="padding:40px;">
+            <input type="hidden" name="hidden_thread_id" value="">
+              <img class="materialboxed responsive-img" src="">
+            </div>
+            ndforeach 
 
             <div class="col s2" style="padding:20px;">
               <p>Would you like coloured button threads?</p>
-              <div class="input-field" style="margin-top:70px;">
-                <select class="browser-default">
-                  <option value="" disabled selected>Choose your option</option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
+              <div class="input-field col s12">
+                <select class = "button-thread" id = "button-thread">
+                    <option value=""></option>
                 </select>
+                <label><font size="3" color="gray">Choose</font></label>
               </div>             
             </div>
 
             <div class="col s3" style="padding:40px;">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
+              <img class="materialboxed responsive-img" src="">
             </div>             
 
             <div class="col s2" style="padding:20px;">
@@ -96,21 +125,21 @@
               <div class="input-field" style="margin-top:70px;">
                 <select class="browser-default">
                   <option value="" disabled selected>Choose your option</option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
+                  <option value=""></option>
                 </select>
               </div>             
-            </div>            
+            </div>         
 
-          </div>
+          </div>-->
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12">
-            <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/customize-mens-style-pocket-monogram')}}">Next step</a></div>
+            <div><button class="right btn-flat teal accent-4 white-text" type="submit">Next step</button></div>
             <div><a class="left btn-flat teal accent-4 white-text" href="{{URL::to('/customize-mens-style-cuffs')}}">Previous step</a></div>
           </div>
 
         </div>
+        {!! Form::close() !!}
         <!--END OF BUTTONS TAB-->
 
 
@@ -140,4 +169,6 @@
     });
 
   </script>
+
+@stop
         

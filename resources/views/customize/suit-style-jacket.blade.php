@@ -40,9 +40,10 @@
         </ul>
 
         <!--JACKET TAB-->
+          {!! Form::open(['url' => 'customize-suit-style-collar-pocket', 'method' => 'POST']) !!}
         <div id="tabJacket" class="col s12 white" style="padding:20px; border: 2px teal accent-4;">
 
-          <div class="col s12"><a class="btn-flat right teal accent-4 white-text" href="{{URL::to('/customize-suit-style-collar-pocket')}}">Next step</a></div>
+          <div class="col s12"><button class="btn-flat right teal accent-4 white-text" type="submit">Next step</button></div>
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
           
           <div class="col s12" style="margin-top:10px;">
@@ -65,29 +66,73 @@
           </div>
           @endforeach
 
-        @foreach($segment as $segment)
-
-          @foreach($style as $style)
-          <div class="col s12 @if($style->strSegmentFK != $segment->strSegmentID) hidden @endif" style="padding:20px;"><h5><b>{{$style->strSegStyleName}}</b></h5></div>
-            <div class="col s12">
-              @foreach($segpattern as $pattern)
-                <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $style->strSegStyleCatID) hidden @endif>
-                  <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
-                  <p>
-                    <input class="with-gap" name="classic" type="radio" id="small" />
-                    <label for="{{$pattern->strSegPatternID}}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
-                  </p>
-                </div>
-              @endforeach
+          <div class="col s12" style="padding:20px;"><h4>Vents</h4></div>
+          @foreach($ventsSegment as $vents)
+          <div class="col s12">
+            @foreach($patterns as $pattern)
+            <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $vents->strSegStyleCatID) hidden @endif>
+              <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
+              <p>
+                <input name="rdb_pattern{{ $vents->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
+                <label for="{{ $pattern->strSegPatternID }}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
+              </p>
             </div>
+            @endforeach
+          </div>
           @endforeach
 
-        @endforeach
+          <div class="col s12">
+            
+            <div class="col s2" >
+              <img class="materialboxed responsive-img" src="img/fabric.jpg">
+              <p>
+                <input name="" type="radio" class="filled-in" value = "" id="" />
+                <label for=""><font size="+1"><b>Vents Name</b></font></label>
+              </p>
+            </div>
+
+            <div class="col s2" >
+              <img class="materialboxed responsive-img" src="img/fabric.jpg">
+              <p>
+                <input name="" type="radio" class="filled-in" value = "" id="" />
+                <label for=""><font size="+1"><b>Vents Name</b></font></label>
+              </p>
+            </div>
+
+          </div>
+
+          <div class="col s12" style="padding:20px;"><h4>Lapel</h4></div>
+          @foreach($lapelSegment as $lapel)
+          <div class="col s12">
+            @foreach($patterns as $pattern)
+            <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $lapel->strSegStyleCatID) hidden @endif>
+              <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
+              <p>
+                <input name="rdb_pattern{{ $lapel->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
+                <label for="{{ $pattern->strSegPatternID }}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
+              </p>
+            </div>
+            @endforeach
+          </div> 
+          @endforeach
+
+          <div class="col s12">
+           
+            <div class="col s2">
+              <img class="materialboxed responsive-img" src="img/fabric.jpg">
+              <p>
+                <input name="" type="radio" class="filled-in" value = "" id="" />
+                <label for=""><font size="+1"><b>Lapel Name</b></font></label>
+              </p>
+            </div>
+            @endforeach
+          </div> 
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
-          <div class="col s12"><a class="btn-flat right teal accent-4 white-text" href="{{URL::to('/customize-suit-style-collar-pocket')}}">Next step</a></div>
+          <div class="col s12"><button class="btn-flat right teal accent-4 white-text" type="submit">Next step</button></div>
 
         </div>
+        {!! Form::close() !!}
         <!--END OF JACKET TAB-->
 
 

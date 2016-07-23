@@ -59,7 +59,7 @@ class OnlineCustomizePantsController extends Controller
                     ->where('a.strFabricID', $request->input('hidden_fabric_id'))
                     ->get();
 
-        $key = 'Pleats';
+        $key = 'Pleat';
 
         $pleatsSegment = \DB::table('tblSegmentStyleCategory')
                     ->select('strSegStyleCatID', 'strSegStyleName')
@@ -75,22 +75,45 @@ class OnlineCustomizePantsController extends Controller
     public function stylepockets()
     {
         $pattern = SegmentPattern::all();
-        $key = 'Pocket';
+        $keypocket = 'Pants Pocket';
 
         $pocketSegment = \DB::table('tblSegmentStyleCategory')
                     ->select('strSegStyleCatID', 'strSegStyleName')
-                    ->where('strSegStyleName', 'LIKE', '%'.$key.'%')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keypocket.'%')
+                    ->get();
+
+        $keyback = 'Pants Backpocket';
+
+        $backSegment = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keyback.'%')
                     ->get();
 
         return view('customize.pants-style-pockets')
                     ->with('pattern', $pattern)
-                    ->with('pocketSegment', $pocketSegment);
+                    ->with('pocketSegment', $pocketSegment)
+                    ->with('backSegment', $backSegment);
     }   
 
     public function stylebottom()
     {
-        return view('customize.pants-style-bottom');
-    }   
+        $pattern = SegmentPattern::all();
+        $keybottom = 'Pants Bottom';
+
+        $bottomSegment = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keybottom.'%')
+                    ->get();
+
+        return view('customize.pants-style-bottom')
+                    ->with('pattern', $pattern)
+                    ->with('bottomSegment', $bottomSegment);
+    }  
+
+    public function tocart()
+    {
+        return redirect('online-order-now');
+    } 
 
     /**
      * Show the form for creating a new resource.

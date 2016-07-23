@@ -67,6 +67,22 @@
               </p>
             </div>
 
+            <div class="col s2">
+              <img class="materialboxed responsive-img" src="img/fabric.jpg">
+              <p>
+                <input class="with-gap" name="classic" type="radio" id="small" />
+                <label for="small"><font size="+1"><b>Cuffed Short Sleeves</b></font></label>
+              </p>
+            </div>
+
+            <div class="col s2">
+              <img class="materialboxed responsive-img" src="img/fabric.jpg">
+              <p>
+                <input class="with-gap" name="classic" type="radio" id="small" />
+                <label for="small"><font size="+1"><b>Cuffed Short Sleeves</b></font></label>
+              </p>
+            </div>
+
           </div> 
 
           <div class="col s12" style="margin-top:20px;">

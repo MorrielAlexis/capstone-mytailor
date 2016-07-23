@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Mail;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -27,7 +27,13 @@ class OnlineCustomerIndividualController extends Controller
 
     public function accept()
     {
-        return view('transaction-acceptindividualorder');
+        //$email = 'arianne_spice@yahoo.com';
+        $name = 'Arianne Labtic';
+        Mail::send('emails.accept-order', ['name' => $name], function($message) {
+            $message->to('arianne_spice@yahoo.com', 'Arianne Labtic')->subject('Hello!');
+        });
+
+        return redirect('transaction/online-customer-individual');
     }
 
     /**

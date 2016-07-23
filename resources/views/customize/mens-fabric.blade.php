@@ -93,18 +93,21 @@
       <div class="col s12 divider dashed" style="height:4px; margin-top:10px;"></div>
 
       @foreach($fabrics as $fabric)
+      {!! Form::open(['url' => 'customize-mens-style-collar', 'method' => 'POST']) !!}
       <div class="col s12 fabric-general {{ $fabric->strFabricTypeFK }} {{ $fabric->strFabricPatternFK }} {{ $fabric->strFabricColorFK }} {{ $fabric->strFabricThreadCountFK }}">
         <div class="col s3">
           <div style="padding:20px;">
             <img class="materialboxed responsive-img" src="{{URL::asset($fabric->strFabricImage)}}">
+            <input type="hidden" name="hidden_fabric_id" value="{{$fabric->strFabricID}}">
             <figcaption style="background-color:#ede7f6">{{$fabric->strFabricName}}</figcaption>
             <figcaption style="background-color:#ede7f6">{{$fabric->strFabricCode}}</figcaption>
             <figcaption style="background-color:#ede7f6">{{$fabric->strFabricTypeName}}</figcaption>
             <figcaption style="background-color:#ede7f6; color:red;">PHP {{$fabric->dblFabricPrice}}</figcaption>
-            <div><a class="btn green" type="button" value="{{$fabric->strFabricID}}"><i class="mdi-action-shopping-cart" style="font-size:22px;"> Choose this fabric</i></a></div>
+            <div><button class="btn teal acccent-4" type="submit"><i class="mdi-action-shopping-cart" style="font-size:22px;"> Choose this fabric</i></button></div>
           </div>
         </div>
       </div> 
+      {!! Form::close() !!}
       @endforeach      
       
       <div class="col s12 divider dashed" style="height:4px; margin-bottom:10px;"></div>

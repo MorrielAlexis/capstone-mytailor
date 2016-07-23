@@ -54,32 +54,32 @@
           <div class="col s12" style="margin-top:20px;">
 
             <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
+              <img class="materialboxed responsive-img" src="imgDesignPatterns/FRONTCOVEREDPLACKET.jpg">
               <p>
                 <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>No Placket</b></font></label>
+                <label for="small"><font size="+1"><b>Front Covered Placket</b></font></label>
               </p>
             </div>
 
             <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
+              <img class="materialboxed responsive-img" src="imgDesignPatterns/FRONTONPLACKET.jpg">
               <p>
                 <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Placket</b></font></label>
+                <label for="small"><font size="+1"><b>Front-on Placket</b></font></label>
               </p>
             </div>
 
             <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
+              <img class="materialboxed responsive-img" src="imgDesignPatterns/FRONTPLACKET.jpg">
               <p>
                 <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Covered Placket</b></font></label>
+                <label for="small"><font size="+1"><b>Front Placket</b></font></label>
               </p>
             </div>                        
 
           </div> 
 
-          <div class="col s12" style="margin-top:20px;">
+          <!--<div class="col s12" style="margin-top:20px;">
             
             <div class="col s3" style="padding:20px;">
               <img class="materialboxed responsive-img" src="img/fabric.jpg">
@@ -93,31 +93,31 @@
               <div><a class="btn-flat teal accent-4 white-text" href="{{URL::to('/customize-mens-fabric')}}"><font size="+1">Select Fabric</font></a></div>
             </div> 
                        
-          </div>
+          </div>-->
 
           <div class="col s12" style="margin-top:20px;">
 
             <div class="col s3">
               <h4>7. Tuxedo</h4>
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
+              <img class="materialboxed responsive-img" src="imgCustomize/tuxedo.jpg">
               <p>
                 <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Cuffed Short Sleeves</b></font></label>
+                <label for="small"><font size="+1"><b>Tuxedo</b></font></label>
               </p>
             </div>
 
             <div class="col s3">
               <h4>8. Epaulettes</h4>
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
+              <img class="materialboxed responsive-img" src="imgCustomize/epaulettes.jpg">
               <div><a class="btn-flat teal accent-4 white-text" href="{{URL::to('/customize-mens-fabric')}}"><font size="+1">Select Fabric</font></a></div>
             </div>
 
             <div class="col s3">
               <h4>9. Back Split</h4>
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
+              <img class="materialboxed responsive-img" src="imgCustomize/backsplit.jpg">
               <p>
                 <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Cuffed Short Sleeves</b></font></label>
+                <label for="small"><font size="+1"><b>Back Split</b></font></label>
               </p>
             </div>
 
@@ -127,10 +127,10 @@
             <h4>10. Back</h4>
 
             <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
+              <img class="materialboxed responsive-img" src="imgCustomize/BACKBOXPLEATS.jpg">
               <p>
                 <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Cuffed Short Sleeves</b></font></label>
+                <label for="small"><font size="+1"><b>Back Box Pleats</b></font></label>
               </p>
             </div>
 
@@ -140,16 +140,18 @@
             <h4>11. Bottom</h4>
 
             <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
+              <img class="materialboxed responsive-img" src="imgCustomize/BOTTOMSSTRAIGHTCUT.jpg">
               <p>
                 <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Cuffed Short Sleeves</b></font></label>
+                <label for="small"><font size="+1"><b>Bottom Straight Cut</b></font></label>
               </p>
             </div>
 
+            
+
           </div>
 
-          <div class="col s12" style="margin-top:20px;">
+          <!--<div class="col s12" style="margin-top:20px;">
 
             <h5><b>13. Provide image for our reference (optional)</b></h5>
 
@@ -184,7 +186,7 @@
               </div>
             </div>
 
-          </div>
+          </div>-->
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12">

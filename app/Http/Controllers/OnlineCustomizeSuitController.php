@@ -15,8 +15,6 @@ use App\FabricThreadCount;
 
 use App\SegmentStyle;
 use App\SegmentPattern;
-use App\GarmentCategory;
-use App\GarmentSegment;
 
 class OnlineCustomizeSuitController extends Controller
 {
@@ -60,18 +58,96 @@ class OnlineCustomizeSuitController extends Controller
                     ->where('a.strFabricID', $request->input('hidden_fabric_id'))
                     ->get();
 
+        $patterns = SegmentPattern::all();
+        $keyvents = 'Vents';
+
+        $ventsSegment = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keyvents.'%')
+                    ->get();
+
+        $keylapel = 'Lapel';
+
+        $lapelSegment = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keylapel.'%')
+                    ->get();
+
         return view('customize.suit-style-jacket')
-            ->with('fabrics', $selectedFabric);
+            ->with('fabrics', $selectedFabric)
+            ->with('patterns', $patterns)
+            ->with('ventsSegment', $ventsSegment)
+            ->with('lapelSegment', $lapelSegment);
     }
 
     public function stylecollarpocket()
     {
-        return view('customize.suit-style-collar-pocket');
+        $patterns = SegmentPattern::all();
+
+        $keycollar = 'Collar Pocket';
+        $keychest = 'Chest Pocket';
+        $keyjacket = 'Jacket Pocket';
+
+        $collarSegment =\DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keycollar.'%')
+                    ->get();
+
+        $chestSegment = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keychest.'%')
+                    ->get();
+
+        $jacketSegment = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keyjacket.'%')
+                    ->get();
+
+        return view('customize.suit-style-collar-pocket')
+                ->with('patterns', $patterns)
+                ->with('collarSegment', $collarSegment)
+                ->with('chestSegment', $chestSegment)
+                ->with('jacketSegment', $jacketSegment);
     }
 
     public function stylepants()
     {
-        return view('customize.suit-style-pants');
+        $patterns = SegmentPattern::all();
+
+        $key = 'Pleat';
+
+        $pleatsSegment = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->where('strSegStyleName', 'LIKE', '%'.$key.'%')
+                    ->get();
+
+        $keypocket = 'Pants Pocket';
+
+        $pocketSegment = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keypocket.'%')
+                    ->get();
+
+        $keyback = 'Pants Backpocket';
+
+        $backSegment = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keyback.'%')
+                    ->get();
+
+        $keybottom = 'Pants Bottom';
+
+        $bottomSegment = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keybottom.'%')
+                    ->get();
+
+        return view('customize.suit-style-pants')
+                    ->with('patterns', $patterns)
+                    ->with('pleatsSegment', $pleatsSegment)
+                    ->with('pocketSegment', $pocketSegment)
+                    ->with('backSegment', $backSegment)
+                    ->with('bottomSegment', $bottomSegment);
     }
 
     public function stylemonogram()

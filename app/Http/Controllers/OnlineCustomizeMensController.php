@@ -13,6 +13,11 @@ use App\FabricColor;
 use App\FabricPattern;
 use App\FabricThreadCount;
 
+use App\SegmentPattern;
+
+use App\Thread;
+use App\Button;
+
 class OnlineCustomizeMensController extends Controller
 {
     /**
@@ -47,19 +52,63 @@ class OnlineCustomizeMensController extends Controller
                 ->with('fabricPatterns', $fabricPatterns);
     }
 
-    public function stylecollar()
+    public function stylecollar(Request $request)
     {
-        return view('customize.mens-style-collar');
+        $patterns = SegmentPattern::all();
+        $selectedFabric = \DB::table('tblFabric AS a')
+                    ->leftJoin('tblFabricType AS b', 'a.strFabricTypeFK', '=','b.strFabricTypeID')
+                    ->select('a.*', 'b.strFabricTypeName')
+                    ->where('a.strFabricID', $request->input('hidden_fabric_id'))
+                    ->get();
+
+        $keycollar = 'Collar';
+
+        $collars = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keycollar.'%')
+                    ->get();
+
+        return view('customize.mens-style-collar')
+                ->with('fabrics', $selectedFabric)
+                ->with('patterns', $patterns)
+                ->with('collars', $collars);
     }
 
     public function stylecuffs()
     {
+        /*$patterns = SegmentPattern::all();
+        $keysleeves = 'Slevees';
+
+        $sleeves = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keysleeves.'%')
+                    ->get();
+
+        return view('customize.mens-style-cuffs')
+                ->with('patterns', $patterns)
+                ->with('sleeves', $sleeves);*/
         return view('customize.mens-style-cuffs');
     }
 
-    public function stylebuttons()
+    public function stylebuttons(Request $request)
     {
-        return view('customize.mens-style-buttons');
+        //$patterns = SegmentPattern::all();
+        //$buttonthreads = Thread::all();
+        $buttons = Button::all();
+        //$keybutton = 'Buttons';
+
+        /*$buttons = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keybutton.'%')
+                    ->get();
+
+        $selectedThreads = \DB::table('tblThread')
+                    ->select('tblThread.*')
+                    ->where('tblThread.intThreadID', $request->input('hidden_thread_id'))
+                    ->get();*/
+
+        return view('customize.mens-style-buttons')
+                ->with('buttons', $buttons);
     }
 
     public function stylepocketmonogram()

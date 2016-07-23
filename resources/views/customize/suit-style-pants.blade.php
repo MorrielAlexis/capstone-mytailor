@@ -40,6 +40,7 @@
         </ul>
 
         <!--PANTS TAB-->
+        <!--{!! Form::open(['url' => 'customize-suit-style-monogram', 'method' => 'POST']) !!}-->
         <div id="tabPants" class="col s12 white"style="padding:20px; border: 2px teal accent-4;">
 
           <div class="col s12">
@@ -48,59 +49,142 @@
           </div>
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
     
-          <div class="col s12" style="padding:20px;"><h5><b>Pant's Pleats</b></h5></div>
+          <div class="col s12" style="padding:20px;"><h4>Pants' Pleats</h4></div>
+            @foreach($pleatsSegment as $pleatsSegment)
+            <div class="col s12">
+              @foreach($patterns as $pattern)
+              <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $pleatsSegment->strSegStyleCatID) hidden @endif>
+                <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
+                <p>
+                  <input name="rdb_pattern{{ $pleatsSegment->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
+                  <label for="{{$pattern->strSegPatternID}}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
+                </p>
+              </div>
+              @endforeach
+            </div>
+            @endforeach
+
+            <div class="col s12">
+              
+              <div class="col s2">
+                <img class="materialboxed responsive-img" src="img/fabric.jpg">
+                <p>
+                  <input name="" type="radio" class="filled-in" value = "" id="" />
+                  <label for=""><font size="+1"><b>Pants Pleats Name</b></font></label>
+                </p>
+              </div>
+
+              <div class="col s2">
+                <img class="materialboxed responsive-img" src="img/fabric.jpg">
+                <p>
+                  <input name="" type="radio" class="filled-in" value = "" id="" />
+                  <label for=""><font size="+1"><b>Pants Pleats Name</b></font></label>
+                </p>
+              </div>
+              
+            </div>
+
+
+          <div class="col s12" style="padding:20px;"><h4>Pants' Pockets</h4></div>
+          @foreach($pocketSegment as $pocket)
           <div class="col s12">
+            @foreach($patterns as $pattern)
+            <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $pocket->strSegStyleCatID) hidden @endif>
+              <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
+              <p>
+                <input name="rdb_pattern{{ $pocket->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
+                <label for="{{ $pattern->strSegPatternID }}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
+              </p>
+            </div>
+            @endforeach
+          </div>
+          @endforeach
+
+          <div class="col s12">
+           
+            <div class="col s2">
+              <img class="materialboxed responsive-img" src="img/fabric.jpg">
+              <p>
+                <input name="" type="radio" class="filled-in" value = "" id="" />
+                <label for=""><font size="+1"><b>Pants Pockets Name</b></font></label>
+              </p>
+            </div>
 
             <div class="col s2">
               <img class="materialboxed responsive-img" src="img/fabric.jpg">
               <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>No Pleat</b></font></label>
+                <input name="" type="radio" class="filled-in" value = "" id="" />
+                <label for=""><font size="+1"><b>Pants Pockets Name</b></font></label>
               </p>
             </div>
 
+            
           </div>
 
-          <div class="col s12" style="padding:20px;"><h5><b>Pant's Pockets</b></h5></div>
+          <div class="col s12" style="padding:20px;"><h4>Backpockets</h4></div>
+          @foreach($backSegment as $back)
           <div class="col s12">
+            @foreach($patterns as $pattern)
+            <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $back->strSegStyleCatID) hidden @endif>
+              <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
+              <p>
+                <input name="rdb_pattern{{ $back->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
+                <label for="{{ $pattern->strSegPatternID }}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
+              </p>
+            </div>
+            @endforeach
+          </div> 
+          @endforeach 
 
+          <div class="col s12">
+           
             <div class="col s2">
               <img class="materialboxed responsive-img" src="img/fabric.jpg">
               <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Classic Small</b></font></label>
+                <input name="" type="radio" class="filled-in" value = "" id="" />
+                <label for=""><font size="+1"><b>Back Pocket Name</b></font></label>
               </p>
             </div>
 
+             <div class="col s2">
+              <img class="materialboxed responsive-img" src="img/fabric.jpg">
+              <p>
+                <input name="" type="radio" class="filled-in" value = "" id="" />
+                <label for=""><font size="+1"><b>Back Pocket Name</b></font></label>
+              </p>
+            </div>
+            
           </div> 
 
-          <div class="col s12" style="padding:20px;"><h5><b>BackPockets</b></h5></div>
+          <div class="col s12" style="padding:20px;"><h4>Pants' Bottom</h4></div>
+          @foreach($bottomSegment as $bottom)
           <div class="col s12">
+            @foreach($patterns as $pattern)
+            <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $bottom->strSegStyleCatID) hidden @endif>
+              <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
+              <p>
+                <input name="rdb_pattern{{ $bottom->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
+                <label for="{{ $pattern->strSegPatternID }}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
+              </p>
+            </div>
+            @endforeach
+          </div>
+          @endforeach
 
+
+          <div class="col s12">
+          
             <div class="col s2">
               <img class="materialboxed responsive-img" src="img/fabric.jpg">
               <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Classic Small</b></font></label>
+                <input name="" type="radio" class="filled-in" value = "" id="" />
+                <label for=""><font size="+1"><b>Pants Bottom Name</b></font></label>
               </p>
             </div>
-
-          </div> 
-
-          <div class="col s12" style="padding:20px;"><h5><b>Pants Bottom</b></h5></div>
-          <div class="col s12">
-
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Classic Small</b></font></label>
-              </p>
-            </div>
-
+            @endforeach
           </div>
 
-          <div class="col s12" style="margin-top:20px;">
+          <!--<div class="col s12" style="margin-top:20px;">
             
             <div class="col s3">
               <h5><b>Additional Pants</b></h5>
@@ -113,7 +197,7 @@
               <p>You can order two pants with the same characteristics.</p>
             </div>
 
-          </div>
+          </div>-->
 
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
@@ -123,6 +207,7 @@
           </div>
 
         </div>
+          <!--{!! Form::close() !!}-->
         <!--END OF PANTS TAB-->
 
       </div>

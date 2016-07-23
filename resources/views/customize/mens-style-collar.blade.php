@@ -51,27 +51,59 @@
             <label class="col s5"><a class="btn teal accent-4 white-text" href="{{URL::to('/customize-mens-fabric')}}"><font size="+1">Edit / Change Fabric</font></a></label>
           </div>
           
+          @foreach($fabrics as $fabric)
           <div class="col s12">
             <div class="col s2">
-              <img class="responsive-img" src="img/fabric.jpg" style="">
+              <img class="responsive-img" src="{{ URL::asset($fabric->strFabricImage) }}" style="">
             </div>
+            
             <div class="col s5" style="background-color:#eeeeee;">
-              <p>Fabric Name</p>
-              <p>Swatch Code</p>
-              <p>Fabric Type</p>
-              <p>Price</p>
+                <p>Fabric Name: {{ $fabric->strFabricName }}</p>
+                <p>Swatch Code: {{ $fabric->strFabricCode }}</p>
+                <p>Fabric Type: {{ $fabric->strFabricTypeName }}</p>
+                <p>Price:       {{ number_format($fabric->dblFabricPrice, 2) }} PHP</p>
             </div>
           </div>
+          @endforeach
 
           <div class="col s12" style="padding:20px;"><h4>1. Collar</h4></div>
+          @foreach($collars as $collar)
+          <div class="col s12" style="margin-top:20px;">
+            @foreach($patterns as $pattern)
+            <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $collar->strSegStyleCatID) hidden @endif>
+              <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
+              <p>
+                <input name="rdb_pattern{{ $collar->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
+                <label for="{{ $pattern->strSegPatternID }}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
+              </p>
+            </div>
+            @endforeach
+          </div>
+          @endforeach
 
           <div class="col s12" style="margin-top:20px;">
+           
+            <div class="col s2">
+              <img class="materialboxed responsive-img" src="img/fabric.jpg">
+              <p>
+                <input name="" type="radio" class="filled-in" value = "" id="" />
+                <label for=""><font size="+1"><b>Collar Name</b></font></label>
+              </p>
+            </div>
+            
+            <div class="col s2">
+              <img class="materialboxed responsive-img" src="img/fabric.jpg">
+              <p>
+                <input name="" type="radio" class="filled-in" value = "" id="" />
+                <label for=""><font size="+1"><b>Collar Name</b></font></label>
+              </p>
+            </div>
 
             <div class="col s2">
               <img class="materialboxed responsive-img" src="img/fabric.jpg">
               <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Classic Small</b></font></label>
+                <input name="" type="radio" class="filled-in" value = "" id="" />
+                <label for=""><font size="+1"><b>Collar Name</b></font></label>
               </p>
             </div>
 
@@ -80,12 +112,12 @@
           <div class="divider dashed" style="height:2px;"></div>
 
           <div class="col s12" style="margin-top:20px;">
-            <div class="col s3" style="padding:20px;"><h5><b>Collar Lining</b></h5></div>
-            <div class="col s3" style="padding:20px;"><h5><b>Removable Collar Stay</b></h5></div>
+            <!--<div class="col s3" style="padding:20px;"><h5><b>Collar Lining</b></h5></div>
+            <div class="col s3" style="padding:20px;"><h5><b>Removable Collar Stay</b></h5></div>-->
             <div class="col s3" style="padding:20px;"><h5><b>Contrast Color</b></h5></div>
           </div>
 
-          <div class="col s12">
+          <!--<div class="col s12">
 
             <div class="col s3" style="padding:20px;">
               <div class="input-field" style="margin-top:70px;">
@@ -107,13 +139,13 @@
                   <option value="3">Option 3</option>
                 </select>
               </div>             
-            </div>
-
+            </div>-->
+            @foreach($fabrics as $fabric)
             <div class="col s3" style="padding:20px;">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <div><a class="btn-flat teal accent-4 white-text" href="{{URL::to('/customize-mens-fabric')}}"><font size="+1">Select Fabric</font></a></div>
+              <img class="materialboxed responsive-img" src="{{URL::asset($fabric->strFabricImage)}}">
+              <div><a class="btn-flat teal accent-4 white-text" href=""><font size="+1">Select Fabric</font></a></div>
             </div> 
-
+            @endforeach
           </div>          
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
