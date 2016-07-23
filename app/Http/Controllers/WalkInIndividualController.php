@@ -502,10 +502,18 @@ class WalkInIndividualController extends Controller
             }//end of loop for meas specs
         }//end of save loop for JO Specs
 
+        session()->forget('joID');
+        session()->forget('custID');
+        session()->forget('segment_values'); 
+        session()->forget('segment_design');
+        session()->forget('segment_fabric');
+        session()->forget('segment_quantity');
+        session()->forget('segment_data');
+        session()->forget('termsOfPayment');
+        session()->forget('totalPrice');
+        session()->forget('transaction_date');
 
-
-
-        dd("");
+        return redirect('transaction/walkin-individual');
     }
 
     public function removeItem(Request $request)

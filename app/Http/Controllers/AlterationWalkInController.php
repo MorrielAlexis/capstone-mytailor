@@ -12,8 +12,11 @@ use App\GarmentCategory;
 use App\SegmentPattern;
 use App\GarmentSegment; 
 use App\Alteration; 
-use App\TransactionAlteration;
 use App\Individual;
+
+use App\TransactionJOAlteration;
+use App\TransactionNonShopAlteration;
+use App\TransactionNonShopAlterationSpecifics;
 
 
 class AlterationWalkInController extends Controller
@@ -87,11 +90,13 @@ class AlterationWalkInController extends Controller
         $values;
 
         for($i = 0; $i < count($data_segment); $i++){
-            $values[$i][0] = $data_segment;
-            $values[$i][1] = $data_alteType;
-            $values[$i][2] = $alteDesc;
-            $values[$i][3] = $alte_price;
-            $values[$i][4] = $alte_days;
+            $values[$i][0] = $segment;
+            $values[$i][1] = $alteType;
+            $values[$i][2] = $data_segment;
+            $values[$i][3] = $data_alteType;
+            $values[$i][4] = $alteDesc;
+            $values[$i][5] = $alte_price;
+            $values[$i][6] = $alte_days;
         }
 
         $request->session()->push('orders', $values[0]);
@@ -109,8 +114,8 @@ class AlterationWalkInController extends Controller
         $totalDays = 0;
 
         for($i = 0; $i < count($values); $i++){
-            $totalPrice += $values[$i][3];
-            $totalDays  += $values[$i][4];
+            $totalPrice += $values[$i][5];
+            $totalDays  += $values[$i][6];
         }
 
         return view('alteration.walkin-newcustomer')
@@ -138,10 +143,10 @@ class AlterationWalkInController extends Controller
 
     public function checkoutCustInfo()
     {   
-        $ids = \DB::table('tblNewAlteration')
-            ->select('strNewAlterationID')
+        $ids = \DB::table('tblNonShopAlteration')
+            ->select('strNonShopAlterID')
             ->orderBy('created_at', 'desc')
-            ->orderBy('strNewAlterationID', 'desc')
+            ->orderBy('strNonShopAlterID', 'desc')
             ->take(1)
             ->get();
 
@@ -204,24 +209,68 @@ class AlterationWalkInController extends Controller
     public function saveTransaction(Request $request)
     {   
         $values = session()->get('orders');
+        $totalPrice = (double)$request->input('total-price');
         $transaction_date = $request->input('transaction_date');
 
+        $alteration = TransactionNonShopAlteration::create(array(
+            'strNonShopAlterID' => $request->input('alteID'),
+            'strCustIndFK' => session()->get('customer_id'),
+            'dblOrderTotalPrice' => $totalPrice,
+            'dtAlteDate' => $transaction_date
+        ));
+
+        $alteration->save();
+
         for($i = 0; $i < count($values); $i++){
-            $alteration = TransactionAlteration::create(array(
-                    'strNewAlterationID' => $request->input('alteID'),
-                    'strCustomerIndFK' => session()->get('customer_id'),
-                    'strAlteSegmentFK' => $values[$i][0],
-                    'strAlterationTypeFK' => $values[$i][1],
-                    'dblAlterationPrice' => $values[$i][3],
-                    'dtAlteDate' => $transaction_date,
-                    'txtAlteNotes' => $values[$i][2],
-                    'boolIsActive' => 1
+            $ids = \DB::table('tblNonShopAlterSpecific')
+                ->select('strNonAlterSpecificID') //palitan pls
+                ->orderBy('created_at', 'desc')
+                ->orderBy('strNonAlterSpecificID', 'desc')
+                ->take(1)
+                ->get();
+
+            if($ids == null){
+                $alteSpecsID = $this->smartCounter("ALTSPEC000"); 
+            }else{
+                $ID = $ids["0"]->strNonAlterSpecificID;
+                $alteSpecsID = $this->smartCounter($ID);  
+            }
+
+            $ids = \DB::table('tblJOAlteration')
+                ->select('strJOAlterationID') //palitan pls
+                ->orderBy('created_at', 'desc')
+                ->orderBy('strJOAlterationID', 'desc')
+                ->take(1)
+                ->get();
+
+            if($ids == null){
+                $joAlteID = $this->smartCounter("JOALTE000"); 
+            }else{
+                $ID = $ids["0"]->strJOAlterationID;
+                $joAlteID = $this->smartCounter($ID);  
+            }
+
+            $alterationSpecs = TransactionNonShopAlterationSpecifics::create(array(
+                'strNonAlterSpecificID' => $alteSpecsID,
+                'strNonShopAlterFK' => $request->input('alteID'),
+                'strGarmentSegmentFK' => $values[$i][0]
             ));
 
-            $alteration->save();
-        }
+            $alterationSpecs->save();
 
-        return redirect('transaction/alteration-walkin-transaction');
+            $jobOrderAlteration = TransactionJOAlteration::create(array(
+                'strJOAlterationID' => $joAlteID,
+                'strAlterationType' => "Non shop",
+                'strAlterationFK' => $values[$i][1],
+                'txtAlterationNotes' => $values[$i][4] ,
+                'strSegmentNonShopSpecFK' => $alteSpecsID
+            ));
+
+            $jobOrderAlteration->save();
+        }//end of jo alteration and specs loop
+
+
+        return redirect('transaction/alteration-walkin-newcustomer');
     }
 
     public function checkoutPayment()   
@@ -233,8 +282,8 @@ class AlterationWalkInController extends Controller
         $totalDays = 0;
 
         for($i = 0; $i < count($values); $i++){
-            $totalPrice += $values[$i][3];
-            $totalDays  += $values[$i][4];
+            $totalPrice += $values[$i][5];
+            $totalDays  += $values[$i][6];
         }
 
         return view('alteration.checkout-payment')

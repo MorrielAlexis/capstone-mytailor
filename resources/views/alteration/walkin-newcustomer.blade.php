@@ -36,9 +36,9 @@
                                     <tbody>
                                       @for($i = 0; $i < count($alterations); $i++)
                                       <tr>
-                                        <td>{!! $alterations[$i][0] !!}</td>
-                                        <td>{!! $alterations[$i][1] !!}</td>
                                         <td>{!! $alterations[$i][2] !!}</td>
+                                        <td>{!! $alterations[$i][3] !!}</td>
+                                        <td>{!! $alterations[$i][4] !!}</td>
                                         <td><a href="#remove{!! $i !!}" style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order from table"><i class="mdi-action-delete"></i></a></td>
                                       </tr>
                                       @endfor
@@ -118,9 +118,9 @@
                                               <tbody>
                                               @for($i = 0; $i < count($alterations); $i++)
                                                 <tr>
-                                                  <td>{!! $alterations[$i][0] !!}</td>
-                                                  <td>{!! $alterations[$i][1] !!}</td>
-                                                  <td>PHP {!! number_format($alterations[$i][3], 2) !!}</td>
+                                                  <td>{!! $alterations[$i][2] !!}</td>
+                                                  <td>{!! $alterations[$i][3] !!}</td>
+                                                  <td>PHP {!! number_format($alterations[$i][5], 2) !!}</td>
                                                 </tr>
                                               @endfor
                                               </tbody>
@@ -255,7 +255,6 @@
         }
       });
     </script>
-s
 
 
 
