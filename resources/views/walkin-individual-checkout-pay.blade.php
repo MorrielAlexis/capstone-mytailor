@@ -110,7 +110,7 @@
 
 					<div class="col s12" style="margin:10px"></div>
 					{!! Form::open(['url' => 'transaction/walkin-individual-payment-measure-detail', 'method' => 'POST']) !!}
-						<div class="col s6" style="border-right:2px gray solid">
+						<div class="col s6">
 							<h5 style="color:teal"><b>Price Quotation*</b></h5>
 							<span>Determine terms of payment to get payment details</span>
 							<div class="col s12"><div class="divider" style="margin:15px"></div></div>
@@ -142,7 +142,7 @@
 
 						</div>
 
-						<div class="col s6 z-depth-1">
+						<div class="col s6 z-depth-1" style="border-left:2px gray solid">
 							<h5 style="color:teal"><b>Payment</b></h5>
 							<span>Fill up the following information</span>
 							<div class="col s12"><div class="divider" style="margin:15px"></div></div>
