@@ -138,8 +138,8 @@
                       @if($detail->boolIsActive == 1)
                       <tr>
                         <td>{{ $detail->strMeasurementDetailID }}</td>
-                        <td>{{ $detail->strMeasDetSegmentFK }}</td>
-                        <td>{{ $detail->strMeasCategoryFK }}</td>
+                        <td>{{ $detail->strSegmentName }}</td>
+                        <td>{{ $detail->strMeasurementCategoryName }}</td>
                         <td>{{ $detail->strMeasDetailName }}</td>
                         <td>{{ $detail->txtMeasDetailDesc }}</td>
                         <td>{{ $detail->dblMeasDetailMinCm }}</td>
@@ -247,12 +247,7 @@
                                     <input required value="{{ $detail->strMeasDetInactiveReason }}" id="delInactiveDetail" name="delInactiveDetail" type="text">
                                   </div>
 
-                           <!--  <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
-                                  <div class="input-field col s12">
-                                    <input value="{{ $detail->strInactiveReason }}" id="delInactiveReason" name="delInactiveReason" type="text"  required>
-                                    <label for="measurement_desc">Reason for Deactivation </label>
-                                  </div>
-                            </div> -->
+                         
                             </div>
 
                               <div class="modal-footer col s12" style="background-color:#26a69a">
@@ -282,8 +277,34 @@
                       <div class="modal-content col s12">
                         
                           <div class="input-field">
-                            <input value="{{$detailNewID}}" id="strMeasurementDetailID" name="strMeasurementDetailID" type="text"  hidden>
+                            <input value="{{$newID}}" id="strMeasurementDetailID" name="strMeasurementDetailID" type="text"  hidden>
                           </div>
+
+                  <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                        <div class="input-field col s12">
+                          <select class="browser-default" required id="strMeasDetSegmentFK" name="strMeasDetSegmentFK">
+                                @foreach($segment as $segment)
+                                  @if($segment->boolIsActive == 1)
+                                    <option value="{{ $segment->strSegmentID }}" class="{{ $segment->strMeasDetSegmentFK }}">{{ $segment->strSegmentName }}</option>
+                                  @endif
+                                @endforeach
+                          </select>
+                        </div>  
+                  </div>  
+
+
+                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                        <div class="input-field col s12">
+                          <select class="browser-default" required id="strMeasCategoryFK" name="strMeasCategoryFK">
+                                @foreach($measurementCategory as $measurementCategory)
+                                  @if($measurementCategory->boolIsActive == 1)
+                                    <option value="{{ $measurementCategory->strMeasurementCategoryID }}" class="{{ $measurementCategory->strMeasCategoryFK }}">{{ $measurementCategory->strMeasurementCategoryName }}</option>
+                                  @endif
+                                @endforeach
+                          </select>
+                        </div>  
+                  </div>
+
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">

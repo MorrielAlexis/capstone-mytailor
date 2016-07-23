@@ -166,7 +166,17 @@
 	                          	<div class="col s8 style="color:red;""><input readonly style="padding:5px; border:3px gray solid" name="outstanding-bal" id="outstanding-bal" type="text" class="right"></div>
 	                        </div>
 
-	                        <div class="right col s12" style="padding:18px"><a style="margin-top:5px; background-color:red" type="submit" class="right waves-effect waves-green btn modal-trigger tooltipped z-depth-2" data-position="bottom" data-delay="50" data-tooltip="Click to continue payment process" href="#due-date"><font color="white" size="+1">Pay for Order</font></a>		
+							<input type="hidden" id="transaction_date" name="transaction_date">
+							<input type="hidden" id="due_date" name="due_date">
+
+							<div class="col s12"><div class="divider" style="padding-top:10px"></div></div>								
+								<div class="modal-content col s12" style="padding-bottom:20px;">
+										<div class="col s5" style="padding-top:10px"><h5><font color="teal"><center><b>Due Date</b></center></font></h5></div>
+										<div class="col s7"><p style="font-size:20px" ><b id="due-date"></b></p></div>
+
+										<div class="col s12" style="padding-left:10px"><p style="color:gray;">Pay balance on (or before) the said due date above</p></div>
+								</div>
+	                        <!--<div class="right col s12" style="padding:18px"><a style="margin-top:5px; background-color:red" type="submit" class="right waves-effect waves-green btn modal-trigger tooltipped z-depth-2" data-position="bottom" data-delay="50" data-tooltip="Click to continue payment process" href="#due-date"><font color="white" size="+1">Pay for Order</font></a>		
 								<div id="due-date" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:50px">
 										<h5><font color="red"><center><b>Reminder:</b></center></font></h5>	
 										<div class="col s12"><div class="divider" style="padding-top:50px"></div></div>								
@@ -185,13 +195,13 @@
 
 								</div>
 								
-							</div>			
+							</div>-->			
 						</div>
 
 
                     		<!--start of bottom button-->
                     		<div class="col s12" style="margin-top:20px">
-	                    		<button type="submit" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save payment information and get measured" style="background-color:#00695c; padding:9.5px; padding-bottom:45px; margin-top:20px; margin-left:30px"><label style="font-size:15px; color:white"><b>Start Measurement</b></label></button>
+	                    		<button type="submit" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save payment information and get measured" style="background-color:#00695c; padding:9.5px; padding-bottom:45px; margin-top:20px; margin-left:30px"><label style="font-size:15px; color:white"><b>Save Payment and Start Measurement</b></label></button>
 	                    		<a href="#cancel-order" class="right btn modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Click to cancel current unsaved transaction" style="background-color:#a7ffeb; padding:9.5px; padding-bottom:45px; margin-top:20px; margin-left:30px"><label style="font-size:15px; color:black"><b>Cancel Transaction</b></label></a>
 	                    			<div id="cancel-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:80px">
 										<h5><font color="red"><center><b>Warning!</b></center></font></h5>
@@ -249,15 +259,31 @@
 
 			var a = {!! json_encode($segments) !!};
 			var b = {!! json_encode($styles) !!};
+
 			var totalAmount = 0.00;
+			var minDays = 0;
 
 			for(var i = 0; i < a.length; i++){
 				totalAmount += a[i].dblSegmentPrice;
 				totalAmount += a[i].dblFabricPrice;
 				totalAmount += b[i].dblPatternPrice;
+				minDays += a[i].intMinDays;
 			}
-			
+
+			var monthNames = [ "January", "February", "March", "April", "May", "June",
+		    "July", "August", "September", "October", "November", "December" ];
+			var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+
+			var newDate = new Date();
+			var dueDate = new Date();
+
+			newDate.setDate(newDate.getDate());   
+			dueDate.setDate(newDate.getDate()+minDays); 
+
 			$('#total_price').val(totalAmount.toFixed(2));
+			$('#due-date').text(dayNames[dueDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
+			$('#transaction_date').val(newDate.getFullYear() + "-" +  (newDate.getMonth()+1) + "-" + newDate.getDate());
+			$('#due_date').val(dueDate.getFullYear() + "-" +  (dueDate.getMonth()+1) + "-" + dueDate.getDate())
 		});
 	</script>
 

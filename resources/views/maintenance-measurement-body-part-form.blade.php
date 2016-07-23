@@ -14,6 +14,18 @@
         </div>
       @endif
 
+       @if (Session::has('flash_message_duplicate'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red accent-1">
+              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              <em> {!! session('flash_message_duplicate') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif  
+
+
       <!--Add -->
         @if(Session::has('flash_message'))
         <div class="row" id="flash_message">
@@ -64,17 +76,19 @@
         </div>
       @endif
 
-             <!--  <Duplicate Error Message>   -->
-      @if (Session::has('flash_message_duplicate'))
-        <div class="row" id="flash_message">
+      <!-- Errors -->
+        @if ($errors->any())
+           <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
-            <div class="card-panel red accent-1">
-              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
-              <em> {!! session('flash_message_duplicate') !!}</em>
+            <div class="card-panel red">
+              <span class="black-text" style="color:black"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
             </div>
           </div>
         </div>
-      @endif  
+      @endif
 
 
       <!--  <Data Dependency Message> -->
@@ -89,19 +103,6 @@
       @endif
 
 
-      <!-- Errors -->
-        @if ($errors->any())
-           <div class="row" id="flash_message">
-          <div class="col s12 m12 l12">
-            <div class="card-panel red">
-              <span class="black-text" style="color:black"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
-              @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-              @endforeach
-            </div>
-          </div>
-        </div>
-      @endif
 
      <!--  End of flash messages -->
 
@@ -128,10 +129,10 @@
                 <thead>
                   <tr>
                     <!--<th data-field="id">Garment Details ID</th>-->
-                    <th data-field="BodyPartFK">Body Part FK</th>
+                    <th data-field="BodyPartFK">Body Part</th>
                     <th data-field="BodyFormName">Body Part Form Name</th>
-                    <th data-field="BodyFormDesc">Description</th>
                     <th data-field="BodyFormImage">Image</th>
+                    <th data-field="BodyFormDesc">Description</th>
                     <th data-field="Action">Actions</th>
                     
                   </tr>
@@ -141,10 +142,10 @@
                   @foreach($bodyForm as $bodyForm)
                   @if($bodyForm->boolIsActive == 1)
                   <tr>
-                    <td>{{ $bodyForm->strBodyPartFK }}</td>
+                    <td>{{ $bodyForm->strBodyPartCatName }}</td>
                     <td>{{ $bodyForm->strBodyFormName }}</td>
-                    <td>{{ $bodyForm->textBodyFormDesc }}</td>
                     <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($bodyForm->strBodyFormImage)}}"></td>
+                    <td>{{ $bodyForm->txtBodyFormDesc }}</td>
 
                     <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of body part" href="#edit{{ $bodyForm->strBodyFormID }}"><i class="mdi-editor-mode-edit"></i></a> 
                     <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of body part from table" href="#del{{ $bodyForm->strBodyFormID }}"><i class="mdi-action-delete"></i></a></td>
@@ -162,13 +163,13 @@
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">                                                    
-                                <select class="browser-default" id="editCategory" name="editCategory" required>
-                                  <option value="" disabled selected>Choose garment category</option>
-                                  @foreach($bodyForm as $part)
-                                    @if($bodyForm->strBodyPartFK == $part->strGarmentCategoryID && $part->boolIsActive == 1)
-                                      <option selected value="{{ $part->strBodyFormID }}">{{ $part->strBodyFormName }}</option>
-                                    @elseif($part->boolIsActive == 1)
-                                      <option value="{{ $part->strBodyFormID }}">{{ $part->strBodyFormName }}</option>
+                                <select class="browser-default" id="editPartCategory" name="editPartCategory" required>
+                                  <option value="" disabled selected>Choose body part:</option>
+                                  @foreach($bodyPartCategory as $bodyPart)
+                                    @if($bodyForm->strBodyPartFK == $bodyPart->strBodyPartCategoryID && $bodyPart->boolIsActive == 1)
+                                      <option selected value="{{ $bodyPart->strBodyPartCategoryID }}">{{ $bodyPart->strBodyPartCatName }}</option>
+                                    @elseif($bodyPart->boolIsActive == 1)
+                                      <option value="{{ $bodyPart->strBodyPartCategoryID }}">{{ $bodyPart->strBodyPartCatName }}</option>
                                     @endif
                                   @endforeach
                                 </select>   
@@ -178,13 +179,13 @@
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
                                 <input required value="{{ $bodyForm->strBodyFormName }}" id="editBodyFormName" name= "editBodyFormName" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
-                                <label for="bodyform_name">Body Part Form Name <span class="red-text"><b>*</b></span></label>
+                                <label for="bodyform_name">Body Form Name <span class="red-text"><b>*</b></span></label>
                               </div>
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                               <div class="input-field col s12">
-                                <input  value="{{ $bodyForm->textBodyFormDesc }}" id="BodyFormDesc" name = "editBodyFormDesc" type="text" class="validate">
+                                <input  value="{{ $bodyForm->txtBodyFormDesc }}" id="BodyFormDesc" name = "editBodyFormDesc" type="text" class="validate">
                                <label for="bodyform_description">Description</label>
                               </div>
                           </div> 
@@ -211,7 +212,7 @@
                       </div>
                     <!--***************************Soft Delete********************************-->
                       <div id="del{{ $bodyForm->strBodyFormID }}" class="modal modal-fixed-footer">
-                        <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS Body Part Form?</center> </font> </h5>
+                        <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS BODY FORM?</center> </font> </h5>
                           
                           {!! Form::open(['url' => 'maintenance/body-part-form/destroy']) !!}
                             <div class="divider" style="height:2px"></div>
@@ -223,21 +224,21 @@
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">                                                    
-                                  <input type="text" value="{{$bodyForm->strBodyFormName}}">
-                                  <label>Body Part Form Name</label>
+                                  <input type="text" value="{{$bodyForm->strBodyPartCatName}}">
+                                  <label>Body Part Category</label>
                               </div>   
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input value="{{ $bodyForm->strBodyFormName }}"type="text" readonly>
-                                <label for="bodyform_name">Body Part Form Name </label>
+                                <input type="text" value="{{ $bodyForm->strBodyFormName }}" readonly>
+                                <label for="Form Name">Body Part Form Name </label>
                               </div>
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input value="{{ $bodyForm->textBodyFormDesc }}" type="text" readonly>
+                                <input value="{{ $bodyForm->txtBodyFormDesc }}" type="text" readonly>
                                 <label for="bodyform_description">Description </label>
                               </div>
                           </div>
@@ -290,10 +291,10 @@
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
                         <select class="browser-default" name='strBodyPartFK' id='strBodyPartFK' required>
-                          <option value="" disabled selected>Choose Body Part Form category</option>
-                          @foreach($bodyForm as $bodyForm_1)
-                            @if($bodyForm_1->boolIsActive == 1) 
-                              <option value="{{ $bodyForm_1->strBodyFormID }}">{{ $bodyForm_1->strBodyFormName }}</option>
+                          <option value="" disabled selected>Choose Body Part Category:</option>
+                          @foreach($bodyPartCategory as $bodyPartCategory_1)
+                            @if($bodyPartCategory_1->boolIsActive == 1) 
+                              <option value="{{ $bodyPartCategory_1->strBodyPartCategoryID }}">{{ $bodyPartCategory_1->strBodyPartCatName }}</option>
                             @endif                       
                           @endforeach
                         </select> 

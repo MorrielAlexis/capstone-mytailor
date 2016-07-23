@@ -19,7 +19,7 @@ class CreateJoMeasureSpecificTable extends Migration
             $table->string('strMeasureDetailFk')->index()->nullable();
             $table->string('strStandardSizeFK')->index()->nullable();
             $table->double('dblMeasureValue');
-            $table->string('strBodyPartFormFK')->index();
+            $table->string('strBodyPartFormFK')->index()->nullable();
             $table->string('strUnitofMeasurement');
             $table->string('boolIsActive');
             $table->timestamps();
