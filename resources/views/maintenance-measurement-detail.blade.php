@@ -200,15 +200,15 @@
 
                               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                     <div class="input-field col s12">
-                                      <input required value="{{ $detail->dblMeasDetailMinCm }}" id="editMeasDetailMinCm" MinCm = "editMeasDetailName" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
-                                      <label for="measurement_cm">Minimun Cm <span class="red-text"><b>*</b></span></label>
+                                      <input required value="{{ $detail->dblMeasDetailMinCm }}" id="editMeasDetailMinCm" name="editMeasDetailMinCm" type="text" class="validate" pattern="^[a-zA-Z\-'`\d]+(\s[a-zA-Z\-'`]+)?">
+                                      <label for="measurement_cm">Minimum Cm <span class="red-text"><b>*</b></span></label>
                                     </div>
                               </div>
 
                               <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                                     <div class="input-field col s12">
-                                      <input  value="{{ $detail->dblMeasDetailMinInch }}" id="editMeasDetailMinInch" name = "editMeasDetailMinInch" type="text" class="validate">
-                                      <label for="measurement_inch">Minimun Inch</label>
+                                      <input  value="{{ $detail->dblMeasDetailMinInch }}" id="editMeasDetailMinInch" name="editMeasDetailMinInch" type="text" class="validate" pattern="^[a-zA-Z\-'`\d]+(\s[a-zA-Z\-'`]+)?">
+                                      <label for="measurement_inch">Minimum Inch<span class="red-text"><b>*</b></span></label>
                                     </div>
                               </div>
                               </div>

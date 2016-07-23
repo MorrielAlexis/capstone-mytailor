@@ -128,8 +128,14 @@ class MeasurementDetailController extends Controller
 
         $detail = MeasurementDetail::find($request->input('editDetailID'));
 
-                $detail->strMeasurementDetailName = trim($request->input('editDetailName'));   
-                $detail->txtMeasurementDetailDesc = trim($request->input('editDetailDesc'));
+                 $detail->strMeasurementDetailID= $request->input('editDetailID');
+                 $detail->strMeasDetSegmentFK   = $request->input('editMeasSegment');
+                 $detail->strMeasCategoryFK     = $request->input('editMeasCategory');
+                 $detail->strMeasDetailName     = trim($request->input('editMeasDetailName'));
+                 $detail->txtMeasDetailDesc     = trim($request->input('editMeasDetailDesc'));
+                 $detail->dblMeasDetailMinCm    = trim($request->input('editMeasDetailMinCm'));
+                 $detail->dblMeasDetailMinInch  = trim($request->input('editMeasDetailMinInch'));
+               
 
         $detail->save();
 

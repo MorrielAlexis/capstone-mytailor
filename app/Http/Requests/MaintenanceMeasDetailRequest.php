@@ -25,8 +25,8 @@ class MaintenanceMeasDetailRequest extends Request
     public function rules()
     {
         return [
-            'strMeasDetailName' => 'required|unique_with:tblMeasurementDetail,strMeasDetSegmentFK
-strMeasCategoryFK',
+            'strMeasDetailName' => 'required|unique_with:tblMeasurementDetail,strMeasDetSegmentFK,
+strMeasCategoryFK'
             
             
             
