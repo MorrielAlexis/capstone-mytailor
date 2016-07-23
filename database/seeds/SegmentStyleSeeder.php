@@ -113,10 +113,25 @@ class SegmentStyleSeeder extends Seeder
                 'txtSegStyleCatDesc' => 'Stylish accent on the chest side of the jacket.  ',
                 'strSegStyleCatInactiveReason' => '',
                 'boolIsActive' => '1'
-            )
+            ),
 
+            array(
+                'strSegStyleCatID' => 'SEGSTY012',
+                'strSegmentFK' => 'SEGM006',
+                'strSegStyleName' =>'Backpockets',
+                'txtSegStyleCatDesc' => 'Either 1 or 2 backpockets.',
+                'strSegStyleCatInactiveReason' => '',
+                'boolIsActive' => '1'
+            ),
            
- 
+            array(
+                'strSegStyleCatID' => 'SEGSTY013',
+                'strSegmentFK' => 'SEGM006',
+                'strSegStyleName' =>'Pants Bottom',
+                'txtSegStyleCatDesc' => 'Either with or without cuffs.',
+                'strSegStyleCatInactiveReason' => '',
+                'boolIsActive' => '1'
+            ) 
  
 
         );
