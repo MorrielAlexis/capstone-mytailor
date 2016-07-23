@@ -41,7 +41,7 @@
         </ul>
 
         <!--CUFFS TAB-->
-          {!! Form::open(['url' => 'customize-pants-style-buttons']) !!}
+          {!! Form::open(['url' => 'customize-mens-style-buttons', 'method' => 'POST']) !!}
         <div id="tabCuffs" class="col s12 white" style="padding:20px; border 2px teal accent-4 white-text;">
           
           <div class="col s12">

@@ -125,8 +125,7 @@
                 <label for=""><font size="+1"><b>Lapel Name</b></font></label>
               </p>
             </div>
-            @endforeach
-          </div> 
+/          </div> 
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12"><button class="btn-flat right teal accent-4 white-text" type="submit">Next step</button></div>

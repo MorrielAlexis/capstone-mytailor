@@ -181,7 +181,6 @@
                 <label for=""><font size="+1"><b>Pants Bottom Name</b></font></label>
               </p>
             </div>
-            @endforeach
           </div>
 
           <!--<div class="col s12" style="margin-top:20px;">

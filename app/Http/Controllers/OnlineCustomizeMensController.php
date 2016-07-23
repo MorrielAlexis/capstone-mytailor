@@ -76,7 +76,7 @@ class OnlineCustomizeMensController extends Controller
 
     public function stylecuffs()
     {
-        /*$patterns = SegmentPattern::all();
+        $patterns = SegmentPattern::all();
         $keysleeves = 'Slevees';
 
         $sleeves = \DB::table('tblSegmentStyleCategory')
@@ -86,18 +86,18 @@ class OnlineCustomizeMensController extends Controller
 
         return view('customize.mens-style-cuffs')
                 ->with('patterns', $patterns)
-                ->with('sleeves', $sleeves);*/
+                ->with('sleeves', $sleeves);
         return view('customize.mens-style-cuffs');
     }
 
     public function stylebuttons(Request $request)
     {
-        //$patterns = SegmentPattern::all();
-        //$buttonthreads = Thread::all();
+        $patterns = SegmentPattern::all();
+        $buttonthreads = Thread::all();
         $buttons = Button::all();
-        //$keybutton = 'Buttons';
+        $keybutton = 'Buttons';
 
-        /*$buttons = \DB::table('tblSegmentStyleCategory')
+        $buttons = \DB::table('tblSegmentStyleCategory')
                     ->select('strSegStyleCatID', 'strSegStyleName')
                     ->where('strSegStyleName', 'LIKE', '%'.$keybutton.'%')
                     ->get();
@@ -105,7 +105,7 @@ class OnlineCustomizeMensController extends Controller
         $selectedThreads = \DB::table('tblThread')
                     ->select('tblThread.*')
                     ->where('tblThread.intThreadID', $request->input('hidden_thread_id'))
-                    ->get();*/
+                    ->get();
 
         return view('customize.mens-style-buttons')
                 ->with('buttons', $buttons);

@@ -41,7 +41,7 @@
         </ul>
 
         <!--BUTTONS TAB-->
-        {!! Form::open(['url' => 'customize-mens-style-pocket-monogram']) !!}
+        {!! Form::open(['url' => 'customize-mens-style-pocket-monogram', 'method' => 'POST']) !!}
         <div id="tabButtons" class="col s12 white" style="padding:20px; border 2px teal accent-4 white-text;">
           
           <div class="col s12">
