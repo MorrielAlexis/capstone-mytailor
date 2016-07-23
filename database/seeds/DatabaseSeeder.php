@@ -42,6 +42,9 @@ class DatabaseSeeder extends Seeder
         $this->call(StandardSizeCategorySeeder::class);
         $this->call(MeasurementDetailSeeder::class); 
         $this->call(StandardSizeDetailSeeder::class); 
+        $this->call(JobOrderSeeder::class); 
+        $this->call(JobOrderSpecificSeeder::class);
+        $this->call(JobOrderProgressSeeder::class);
 
         Model::reguard();
     }

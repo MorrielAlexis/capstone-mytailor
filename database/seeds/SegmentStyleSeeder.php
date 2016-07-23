@@ -62,7 +62,7 @@ class SegmentStyleSeeder extends Seeder
             array(
                 'strSegStyleCatID' => 'SEGSTY006',
                 'strSegmentFK' => 'SEGM006',
-                'strSegStyleName' =>'Slacks Pleat',
+                'strSegStyleName' =>'Pants Pleat',
                 'txtSegStyleCatDesc' => 'Stylish detail for pants/trousers',
                 'strSegStyleCatInactiveReason' => '',
                 'boolIsActive' => '1'
@@ -71,7 +71,7 @@ class SegmentStyleSeeder extends Seeder
             array(
                 'strSegStyleCatID' => 'SEGSTY007',
                 'strSegmentFK' => 'SEGM006',
-                'strSegStyleName' =>'Slack Pockets',
+                'strSegStyleName' =>'Pants Pockets',
                 'txtSegStyleCatDesc' => 'Either be vertical or sliced pockets.',
                 'strSegStyleCatInactiveReason' => '',
                 'boolIsActive' => '1'

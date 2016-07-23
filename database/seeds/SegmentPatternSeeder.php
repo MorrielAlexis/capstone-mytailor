@@ -86,7 +86,117 @@ class SegmentPatternSeeder extends Seeder
                 'txtSegPDesc' => 'Usually use as a collar for dress shirts.',
                 'strSegPImage' => 'imgDesignPatterns/italiancollar.jpg',
                 'boolIsActive' => '1'
-            )
+            ),
+
+            array(
+                'strSegPatternID' => 'SPAT008',
+                'strSegPStyleCategoryFK' => 'SEGSTY004',
+                'strSegPName'=>' Angle Cut ',
+                'dblPatternPrice' => '50',
+                'txtSegPDesc' => 'Usually use as a collar for dress shirts.',
+                'strSegPImage' => 'imgDesignPatterns/pocket_angle_cut.jpg',
+                'boolIsActive' => '1'
+            ),    
+
+            array(
+                'strSegPatternID' => 'SPAT009',
+                'strSegPStyleCategoryFK' => 'SEGSTY004',
+                'strSegPName'=>' Round Cut ',
+                'dblPatternPrice' => '50',
+                'txtSegPDesc' => 'A pocket on a shirt that has round cut.',
+                'strSegPImage' => 'imgDesignPatterns/pocket_round_cut.jpg',
+                'boolIsActive' => '1' 
+            ),
+
+            array(
+                'strSegPatternID' => 'SPAT010',
+                'strSegPStyleCategoryFK' => 'SEGSTY004',
+                'strSegPName'=>' Square Cut ',
+                'dblPatternPrice' => '50',
+                'txtSegPDesc' => 'A pocket on a shirt that has square cut.',
+                'strSegPImage' => 'imgDesignPatterns/pocket_square_cut.jpg',
+                'boolIsActive' => '1' 
+            ),
+
+            array(
+                'strSegPatternID' => 'SPAT011',
+                'strSegPStyleCategoryFK' => 'SEGSTY004',
+                'strSegPName'=>' V-Shaped Cut ',
+                'dblPatternPrice' => '50',
+                'txtSegPDesc' => 'A pocket on a shirt that has v-shaped cut.',
+                'strSegPImage' => 'imgDesignPatterns/pocket_vshaped.jpg',
+                'boolIsActive' => '1' 
+            ),
+
+            array(
+                'strSegPatternID' => 'SPAT012',
+                'strSegPStyleCategoryFK' => 'SEGSTY002',
+                'strSegPName'=>' French Cut ',
+                'dblPatternPrice' => '50',
+                'txtSegPDesc' => 'A cuff that is a french cut.',
+                'strSegPImage' => 'imgDesignPatterns/french-cut.jpg',
+                'boolIsActive' => '1' 
+            ), 
+
+            array(
+                'strSegPatternID' => 'SPAT013',
+                'strSegPStyleCategoryFK' => 'SEGSTY002',
+                'strSegPName'=>' French Round ',
+                'dblPatternPrice' => '50',
+                'txtSegPDesc' => 'A cuff that is a french round.',
+                'strSegPImage' => 'imgDesignPatterns/french-round.jpg',
+                'boolIsActive' => '1' 
+            ),
+
+            array(
+                'strSegPatternID' => 'SPAT014',
+                'strSegPStyleCategoryFK' => 'SEGSTY002',
+                'strSegPName'=>' French Cut ',
+                'dblPatternPrice' => '50',
+                'txtSegPDesc' => 'A cuff that is a french square.',
+                'strSegPImage' => 'imgDesignPatterns/french-square.jpg',
+                'boolIsActive' => '1' 
+            ),
+
+            array(
+                'strSegPatternID' => 'SPAT015',
+                'strSegPStyleCategoryFK' => 'SEGSTY002',
+                'strSegPName'=>' Portofino ',
+                'dblPatternPrice' => '50',
+                'txtSegPDesc' => 'A cuff that is a portofino.',
+                'strSegPImage' => 'imgDesignPatterns/portofino.jpg',
+                'boolIsActive' => '1' 
+            ),
+
+            array(
+                'strSegPatternID' => 'SPAT016',
+                'strSegPStyleCategoryFK' => 'SEGSTY002',
+                'strSegPName'=>' Round Cut ',
+                'dblPatternPrice' => '50',
+                'txtSegPDesc' => 'A cuff that is a round cut.',
+                'strSegPImage' => 'imgDesignPatterns/round-cut-1-button.jpg',
+                'boolIsActive' => '1' 
+            ),
+
+            array(
+                'strSegPatternID' => 'SPAT017',
+                'strSegPStyleCategoryFK' => 'SEGSTY002',
+                'strSegPName'=>' Round Cut Portofino',
+                'dblPatternPrice' => '50',
+                'txtSegPDesc' => 'A cuff that is a round cut portofino.',
+                'strSegPImage' => 'imgDesignPatterns/roundcutportofino.jpg',
+                'boolIsActive' => '1' 
+            ),
+
+            array(
+                'strSegPatternID' => 'SPAT018',
+                'strSegPStyleCategoryFK' => 'SEGSTY002',
+                'strSegPName'=>' Square Cut ',
+                'dblPatternPrice' => '50',
+                'txtSegPDesc' => 'A cuff that is a square cut.',
+                'strSegPImage' => 'imgDesignPatterns/square-1-button.jpg',
+                'boolIsActive' => '1' 
+            )         
 
         );
 

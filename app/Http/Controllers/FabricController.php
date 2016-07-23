@@ -10,6 +10,7 @@ use App\FabricType;
 use App\FabricPattern;
 use App\FabricThreadCount;
 use App\Http\Requests;
+use App\Http\Requests\MaintenanceFabricRequest;
 use App\Http\Controllers\Controller;
 
 class FabricController extends Controller
@@ -81,7 +82,7 @@ class FabricController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MaintenanceFabricRequest $request)
     {
          $file = $request->input('addImage');
         $destinationPath = 'imgFabrics';
