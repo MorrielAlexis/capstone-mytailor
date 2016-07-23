@@ -51,16 +51,17 @@
 							</select>
 					</div>
 				</div>
-
+			<!--
 				<div style="color:gray" class="col s5"> 
 					<div class="col s7"><p style="color:gray; margin-top:5px; font-size:15px"><b>No. of Measurement Profile:</b></p></div>                
                   	<div class="col s5"><center><input class="center" name="num-meas-profile" id="num-meas-profile" type="number" value=""></div>
                 </div>
 
                 <div class="col s2"><a href="" class="btn" style="background-color:teal; color:white; margin-top:10px">Add</a></div>
+			-->
 			</div>
 
-			@foreach($segments as $segment)
+			@foreach($segments as $i => $segment)
 			<div class="col s12"><div class="divider" style="height:2px; background-color:gray"></div></div><!--divider-->
 
 
@@ -70,27 +71,28 @@
 					<div class="col s8" style="margin-left:20px;color:red">
 						<p><b>Unit of Measurement</b></p>
 	                        	<div class="col s6">
-			          				<input name="uom" type="radio" class="filled-in payment" id="cm" />
-	      							<label for="cm">centimeter (cm)</label>
+			          				<input name="uom{{ $i+1 }}" value="cm" type="radio" class="filled-in payment" id="cm{{ $i+1 }}" />
+	      							<label for="cm{{ $i+1 }}">centimeter (cm)</label>
 								</div>
 								<div class="col s6">
-				          			<input name="uom" type="radio" class="filled-in payment" id="in" />
-		      						<label for="in">inch (in)</label>
+				          			<input name="uom{{ $i+1 }}" value="in" type="radio" class="filled-in payment" id="in{{ $i+1 }}" />
+		      						<label for="in{{ $i+1 }}">inch (in)</label>
 		      					</div>
 	      					</div>
 
 	            	<div class="col s12" style="padding:20px"> 
 	            		
 		            	<div id="for_top" class="col s12" style="color:black">
-		            		<h5><b>Parts to be measured</b></h5>
+		            		<h5><b>Parts to be measured - {{ $segment->strSegmentName }}</b></h5>
 		            		
 							<!--if Body and Cloth Measurement-->
-			            	@foreach($measurements as $measurement)
+			            	@foreach($measurements as $j => $measurement)
 			            		@if($measurement->strMeasDetSegmentFK == $segment->strSegmentID)
 		            				<div class="container measurement-general {{ $measurement->strMeasCategoryFK }}"> 
-					            	   	<div style="color:black; padding-left:140px" class="input-field col s6 ">                 
-				                          <input name="shoulder" type="text">
-				                          <label style="color:teal" for="shoulder">{{ $measurement->strMeasDetailName }}: </label>
+					            	   	<div style="color:black; padding-left:140px" class="input-field col s6 ">   
+					            	   		<input type="hidden" name="detailName{{ $i+1 }}{{ $j+1 }}" value="{{ $measurement->strMeasurementDetailID }}">              
+				                            <input name="{{ $measurement->strMeasurementDetailID }}{{ $i+1 }}" type="text">
+				                            <label style="color:teal" for="{{ $measurement->strMeasurementDetailID }} {{ $i+1 }}">{{ $measurement->strMeasDetailName }}: </label>
 				                        </div>
 		                    		</div>
 			                    @endif
@@ -134,24 +136,25 @@
 
 	                    <p style="color:red">In case of multiple measurements</p>
 	                    	<div style="color:black; padding-left:160px" class="input-field col s5">                 
-	                          <input value="" id="length" name="length" type="text" class="">
+	                          <input id="length" name="profile_name{{ $i+1 }}" type="text" class="">
 	                          <label style="color:gray" for="length">Profile Name: </label>
 	                    	</div>
 
 	                    	<div style="color:gray" class="input-field col s3">                 
-	                          <select>
+	                          <select name="profile_sex{{ $i+1 }}">
 							    <option value="" disabled selected color="red">Sex</option>
 							    <option value="M">Female</option>
 							    <option value="F">Male</option>
 							  </select>
 	                    	</div>
-
+							
+							<!--
 	                    	<div style="color:gray" class="input-field col s3">                 
 	                          <select>
 							    <option value="" disabled selected color="red">Target Garment</option>
 							    <option value="1">{{ $segment->strGarmentCategoryName }} - {{ $segment->strSegmentName }}</option>
 							  </select>
-	                    	</div>
+	                    	</div>-->
 
 	                    	<div class="col s1"><a href="#!" class="btn-floating" style="background-color:#a7ffeb; margin-top:20px"><i class="mdi-navigation-check" style="color:black;"></i></a></div>
 	            	</div>

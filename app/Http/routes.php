@@ -90,8 +90,8 @@ Route::group(['prefix' => 'maintenance'], function(){
 
 	Route::resource('body-part-form', 'BodyPartFormController');
 
-		Route::post('body-part-form/update','BodyPartFormController@update_threadCount');
-		Route::post('body-part-form/destroy','BodyPartFormController@delete_threadCount');
+		Route::post('body-part-form/update','BodyPartFormController@update_bodyPartForm');
+		Route::post('body-part-form/destroy','BodyPartFormController@delete_bodyPartForm');
 
 	Route::resource('standard-size-category', 'StandardSizeCategoryController');
 

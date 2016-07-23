@@ -37,7 +37,6 @@
                   <div style="color:gray; padding-left:140px;" class="input-field col s6">                 
                       <div class="col s4" style="color:gray"><p>Date:</div>
                       <div class="col s8" id="Date" style="padding:15px; color:teal;"></div>
-                      <input type="hidden" id="transaction_date" name="transaction_date">
                   </div>
                 </div>
 

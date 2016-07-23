@@ -8,6 +8,8 @@ use App\MeasurementDetail;
 use App\Http\Requests;
 use App\Http\Requests\MaintenanceMeasDetailRequest;
 use App\Http\Controllers\Controller;
+use App\GarmentSegment;
+use App\MeasurementCategory;
 
 class MeasurementDetailController extends Controller
 {
@@ -33,14 +35,25 @@ class MeasurementDetailController extends Controller
             ->get();
 
         $ID = $ids["0"]->strMeasurementDetailID;
-        $detailNewID = $this->smartCounter($ID);            
+        $newID = $this->smartCounter($ID);            
 
-        $detail = MeasurementDetail::all();
+
+        $segment  = GarmentSegment::all();
+        $measurementCategory = MeasurementCategory::all();
+
+        $detail =\DB::table('tblMeasurementDetail')
+            ->join('tblSegment', 'tblMeasurementDetail.strMeasDetSegmentFK', '=', 'tblSegment.strSegmentID')
+            ->join('tblMeasurementCategory', 'tblMeasurementDetail.strMeasCategoryFK', '=', 'tblMeasurementCategory.strMeasurementCategoryID')
+            ->select('tblMeasurementDetail.*', 'tblSegment.strSegmentName', 'tblMeasurementCategory.strMeasurementCategoryName')
+            ->orderBy('strMeasurementDetailID')
+            ->get();
                 
         //load the view and pass the individuals
         return view('maintenance-measurement-detail')
                     ->with('detail', $detail)
-                    ->with('detailNewID', $detailNewID);
+                    ->with('segment', $segment)
+                    ->with('measurementCategory', $measurementCategory)
+                    ->with('newID', $newID);
     }
 
 
