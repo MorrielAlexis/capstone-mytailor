@@ -87,7 +87,7 @@
             <figcaption style="background-color:#ede7f6">Swatch Code</figcaption>
             <figcaption style="background-color:#ede7f6">Fabric Type</figcaption>
             <figcaption style="background-color:#ede7f6; color:red;">Price</figcaption>
-            <div><a class="btn teal accent-4 white-text" href="{{URL::to('/customize-womens-style')}}"><i class="mdi-action-shopping-cart"></i>Choose this fabric</a></div>
+            <div><a class="btn teal accent-4 white-text" href="{{URL::to('/customize-womens-style-collar')}}"><i class="mdi-action-shopping-cart"></i>Choose this fabric</a></div>
           </div>
         </div>
       </div>      

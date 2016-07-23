@@ -448,8 +448,12 @@ Route::get('online-company-checkout-employee-details', 'OnlineCheckoutCompanyCon
 	Route::get('customize-mens-style-pocket-monogram', 'OnlineCustomizeMensController@stylepocketmonogram');
 	Route::get('customize-mens-style-others', 'OnlineCustomizeMensController@styleothers');
 
-	Route::get('customize-womens-fabric', 'OnlineCustomizeController@fabricwomens');
-	Route::get('customize-womens-style', 'OnlineCustomizeController@stylewomens');
+	Route::get('customize-womens-fabric', 'OnlineCustomizeWomensController@fabric');
+	Route::get('customize-womens-style-collar', 'OnlineCustomizeWomensController@stylecollar');
+	Route::get('customize-womens-style-cuffs', 'OnlineCustomizeWomensController@stylecuffs');
+	Route::get('customize-womens-style-buttons', 'OnlineCustomizeWomensController@stylebuttons');
+	Route::get('customize-womens-style-pocket-monogram', 'OnlineCustomizeWomensController@stylepocketmonogram');
+	Route::get('customize-womens-style-others', 'OnlineCustomizeWomensController@styleothers');
 
 	Route::get('customize-pants-fabric', 'OnlineCustomizePantsController@fabric');
 	Route::get('customize-pants-style-pleats', 'OnlineCustomizePantsController@stylepleats');
