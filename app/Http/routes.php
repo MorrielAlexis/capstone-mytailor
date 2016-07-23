@@ -349,8 +349,8 @@ Route::group(['prefix' => 'transaction'], function(){
 		Route::post('alteration-walkin-newcustomer-delete', 'AlterationWalkInController@deleteOrder');
 		Route::post('alteration-walkin-add-newcustomer-info', 'AlterationWalkInController@addNewCustomer');
 		Route::post('alteration-walkin-newcustomer-save-transaction', 'AlterationWalkInController@saveTransaction');
-});		Route::get('alteration-walkin-newcustomer-cancel', 'AlterationWalkInController@cancelOrder');
-
+		Route::post('alteration-walkin-newcustomer-cancel', 'AlterationWalkInController@cancelOrder');
+});
 
 /*---------------------------------------------ONLINE---------------------------------------------------*/
 
