@@ -33,7 +33,68 @@ class AlterationSeeder extends Seeder
                 'txtAlterationDesc' =>'Use in almost all classes of shirt for resizing.',
                 'dblAlterationPrice' => 200.00,
                 'boolIsActive' => '1'
+            ),
+
+            array(
+                'strAlterationID' => 'ALTE0003',
+                'strAlterationName' => 'Slim Sleeves',
+                'strAlterationSegmentFK' => 'SEGM004',
+                'intAlterationMinDays' => 2, 
+                'txtAlterationDesc' =>'Use in almost all classes of shirt for resizing.',
+                'dblAlterationPrice' => 100.00,
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strAlterationID' => 'ALTE0004',
+                'strAlterationName' => 'Adjust Shoulder',
+                'strAlterationSegmentFK' => 'SEGM004',
+                'intAlterationMinDays' => 2, 
+                'txtAlterationDesc' =>'Use in almost all classes of shirt for resizing.',
+                'dblAlterationPrice' => 100.00,
+                'boolIsActive' => '1'
+            ),
+
+              array(
+                'strAlterationID' => 'ALTE0005',
+                'strAlterationName' => 'Slim',
+                'strAlterationSegmentFK' => 'SEGM004',
+                'intAlterationMinDays' => 5, 
+                'txtAlterationDesc' =>'Use in almost all classes of shirt for resizing.',
+                'dblAlterationPrice' => 250.00,
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strAlterationID' => 'ALTE0006',
+                'strAlterationName' => 'Slim Leg',
+                'strAlterationSegmentFK' => 'SEGM006',
+                'intAlterationMinDays' => 2, 
+                'txtAlterationDesc' =>'Use in almost all classes of shirt for resizing.',
+                'dblAlterationPrice' => 150.00,
+                'boolIsActive' => '1'
+            ),
+
+             array(
+                'strAlterationID' => 'ALTE0007',
+                'strAlterationName' => 'Adjust Waist',
+                'strAlterationSegmentFK' => 'SEGM006',
+                'intAlterationMinDays' => 2, 
+                'txtAlterationDesc' =>'Use in almost all classes of shirt for resizing.',
+                'dblAlterationPrice' => 200.00,
+                'boolIsActive' => '1'
+            ),
+
+              array(
+                'strAlterationID' => 'ALTE0008',
+                'strAlterationName' => 'Baston Cutting',
+                'strAlterationSegmentFK' => 'SEGM006',
+                'intAlterationMinDays' => 2, 
+                'txtAlterationDesc' =>'Use in almost all classes of shirt for resizing.',
+                'dblAlterationPrice' => 200.00,
+                'boolIsActive' => '1'
             )
+
 
         );
 
