@@ -56,6 +56,7 @@
                             <th> <center>Segment Name</center></th>
                             <th> <center>Quantity</center></th>
                             <th> <center>No. of Finished Garment</center></th>
+                            <th><center>Action</center><th>
                           </tr>
                         </thead>
 
@@ -66,15 +67,17 @@
                               <td>@{{ jobOrderDetail.strSegmentName }}</td>
                               <td>@{{ jobOrderDetail.intQuantity }}</td>
                               <td>                     
-                                <input type="input-field" value = "@{{ jobOrderDetail.intProgressAmount }}" id="progress[jobOrderDetail]"/>
-                                <label for ="progress[jobOrderDetail]" fontsize= "+2"></label>                   
-                              </td>           
+                                <input type="number" ng-model ="jobOrderDetail.intProgressAmount"/>                
+                              </td> 
+                              <td><button class="waves-effect waves-light btn" ng-click="update()">Update</button></td>
+
                             </tr>
                             <tr>
                               <td><b>TOTAL</b></td>
                               <td></td>
                               <td><b>@{{getTotal()}}</b></td>
                               <td><b>@{{getTotalProg()}}</b></td>
+                              <td></td>
                             </tr>
                         </tbody>
                       </table>  
@@ -82,14 +85,8 @@
                     
                     <div class ="row">
                       <div class = "col s12">
-                        <div class = "col s6">
-                          <br>
-                          <center><button class="waves-effect waves-light btn" ng-click="update()">Update</button></center>
-                        </div>
-                        <div class = "col s6">
-                          <br>
-                          <center><button class="waves-effect waves-light btn" ng-click="cancel()">Cancel</button></center>
-                        </div>  
+                        <br>
+                        <center><button class="waves-effect waves-light btn" ng-click="cancel()">CLOSE</button></center>
                       </div>
                     </div>
 
@@ -141,8 +138,9 @@
     app.controller('JobOrderController', function($scope, $http) {
       $scope.jobOrderDetails = [];
       $scope.isEmpty = true;
-      // alert('Wahahahahaha');
+      // $scope.qty = [];
       $scope.details = function(jobID) {
+        console.log(jobID);
            $http.get('{!! url("details?jobID=") !!}' + jobID)
             .then(function(response) {
               var jobOrder = response.data.job_order_details;
@@ -163,16 +161,17 @@
       $scope.cancel = function(){
         $scope.isEmpty=true;
       }
-      $scope.update = function(user){
-        alert("ffffff")
-      }
+      $scope.update = function(){
+        console.log('Fisher', $scope.jobOrderDetails);
+
+      } 
       $scope.getTotal = function(){
         var total = 0;
         for(var i = 0; i < $scope.jobOrderDetails.length; i++){
             var jobOrderDetail = $scope.jobOrderDetails[i];
             total += jobOrderDetail.intQuantity;
         }
-        return total;
+        return parseInt(total);
       }
       $scope.getTotalProg = function(){
         var totalProg = 0;
@@ -180,12 +179,13 @@
             var jobOrderDetail = $scope.jobOrderDetails[i];
             totalProg += jobOrderDetail.intProgressAmount;
         }
-        return totalProg;
+        return parseInt(totalProg);
       }
       $scope.getProg = function(){
         var prog = 0;
         var total = 0;
         var totalProg = 0;
+
 
         for(var i = 0; i < $scope.jobOrderDetails.length; i++){
             var jobOrderDetail = $scope.jobOrderDetails[i];
@@ -195,10 +195,13 @@
         for(var i = 0; i < $scope.jobOrderDetails.length; i++){
             var jobOrderDetail = $scope.jobOrderDetails[i];
             totalProg += jobOrderDetail.intProgressAmount;
+            
         }
 
+        total = parseFloat(total);
+        totalProg = parseFloat(totalProg);
+        console.log(total, totalProg);
         prog = (totalProg/total)*100;
-        console.log(prog);
         $('.determinate').css('width', prog + '%');
 
         return prog.toFixed(2);
