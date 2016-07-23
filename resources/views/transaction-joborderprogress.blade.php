@@ -67,7 +67,7 @@
                               <td>@{{ jobOrderDetail.strSegmentName }}</td>
                               <td>@{{ jobOrderDetail.intQuantity }}</td>
                               <td>                     
-                                <input type="number" min= "0" max = "@{{ jobOrderDetail.intQuantity }}"  ng-model ="jobOrderDetail.intProgressAmount"/>                
+                                <input type="number" onkeydown = "return false" min= "0" max = "@{{ jobOrderDetail.intQuantity }}"  ng-model ="jobOrderDetail.intProgressAmount"/>                
                               </td> 
                               <td><button class="waves-effect waves-light btn" ng-click="update()">Update</button></td>
 
@@ -122,9 +122,6 @@
     $(document).ready(function() {
       $('select').material_select();
     });
-    $("[type='number']").keypress(function (evt) {
-    evt.preventDefault();
-    );
   </script>
 
 <script type="text/javascript">
