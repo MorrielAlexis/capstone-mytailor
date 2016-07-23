@@ -7,6 +7,7 @@ use App\SegmentStyle;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\MaintenanceSegmentStyleRequest;
 use App\Http\Controllers\Controller;
 
 class SegmentStyleController extends Controller
@@ -68,7 +69,7 @@ class SegmentStyleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MaintenanceSegmentStyleRequest $request)
     {
         $styles = SegmentStyle::get();
             $segmentStyle = SegmentStyle::create(array(

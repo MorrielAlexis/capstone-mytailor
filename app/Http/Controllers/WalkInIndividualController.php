@@ -327,7 +327,7 @@ class WalkInIndividualController extends Controller
                 'strReceivedByEmployeeNameFK' => 'EMPL001' ,
                 'dtPaymentDate' => $request->input('transaction_date'),
                 'dtPaymentDueDate' => $request->input('due_date'),
-                'strPaymentStatus' => 'Partial',
+                'strPaymentStatus' => 'Pending',
                 'boolIsActive' => 1
 
             ));

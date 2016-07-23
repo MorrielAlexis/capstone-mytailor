@@ -25,7 +25,9 @@ class MaintenanceMeasDetailRequest extends Request
     public function rules()
     {
         return [
-            'strMeasurementDetailName' => 'required|unique:tblMeasurementDetail,strMeasurementDetailName'
+            'strMeasDetailName' => 'required|unique_with:tblMeasurementDetail,strMeasDetSegmentFK,
+strMeasCategoryFK'
+            
             
             
         ];
@@ -34,10 +36,9 @@ class MaintenanceMeasDetailRequest extends Request
     public function messages()
     {
         return [
-            'strMeasurementDetailName.unique'  =>  'Measurement detail name already exists.',
-            'strMeasurementDetailName.required'  =>  'Measurement detail name is required.'
-            
-            
+            'strMeasDetailName.unique'  =>  'Measurement detail name already exists.',
+            'strMeasDetailName.required'  =>  'Measurement detail name is required.'
+           
             
         ];
 

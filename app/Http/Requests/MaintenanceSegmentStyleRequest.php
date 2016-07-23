@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Requests;
-use Illuminate\Contracts\Validation\Validator;
-use App\Http\Requests\Request;
 
-class MaintenanceAlterationRequest extends Request
+use App\Http\Requests\Request;
+use Illuminate\Contracts\Validation\Validator;
+
+class MaintenanceSegmentStyleRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,10 +22,10 @@ class MaintenanceAlterationRequest extends Request
      *
      * @return array
      */
-   public function rules()
+     public function rules()
     {
         return [
-            'strAlterationName' => 'required|unique_with:tblAlteration,strAlterationSegmentFK'
+            'strSegStyleName' => 'required|unique_with:tblSegmentStyleCategory,strSegmentFK'
             
             
         ];
@@ -33,8 +34,8 @@ class MaintenanceAlterationRequest extends Request
     public function messages()
     {
         return [
-            'strAlterationName.unique'  =>  'Alteration name already exists.',
-            'strAlterationName.required'  =>  'Alteration name is required.'
+            'strSegStyleName.unique_with'  =>  'Alteration name already exists.',
+            'strSegStyleName.required'  =>  'Alteration name is required.'
             
             
             

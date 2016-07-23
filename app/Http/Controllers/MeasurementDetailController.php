@@ -64,15 +64,20 @@ class MeasurementDetailController extends Controller
     
                 $detail = MeasurementDetail::create(array(
                 'strMeasurementDetailID' =>$request->input('strMeasurementDetailID'),
-                'strMeasurementDetailName' =>trim($request->input('strMeasurementDetailName')),
-                'txtMeasurementDetailDesc' =>trim($request->input('txtMeasurementDetailDesc')),
-                'boolIsActive' => 1
+                'strMeasDetSegmentFK'    =>$request->input('strMeasDetSegmentFK'),
+                'strMeasCategoryFK'      =>$request->input('strMeasCategoryFK'),
+                'strMeasDetailName'      =>trim($request->input('strMeasDetailName')),
+                'txtMeasDetailDesc'      =>trim($request->input('txtMeasDetailDesc')),
+                'dblMeasDetailMinCm'     =>trim($request->input('dblMeasDetailMinCm')),
+                'dblMeasDetailMinInch'   =>trim($request->input('dblMeasDetailMinInch')),
+                'boolIsActive'           => 1
+                
                 ));
 
-            $detail->save();
+            $added=$detail->save();
 
         
-         \Session::flash('flash_message','Measurement part successfully added.'); //flash message
+         \Session::flash('flash_message','Measurement detail successfully added.'); //flash message
 
         return redirect ('maintenance/measurement-detail');
 
@@ -123,8 +128,14 @@ class MeasurementDetailController extends Controller
 
         $detail = MeasurementDetail::find($request->input('editDetailID'));
 
-                $detail->strMeasurementDetailName = trim($request->input('editDetailName'));   
-                $detail->txtMeasurementDetailDesc = trim($request->input('editDetailDesc'));
+                 $detail->strMeasurementDetailID= $request->input('editDetailID');
+                 $detail->strMeasDetSegmentFK   = $request->input('editMeasSegment');
+                 $detail->strMeasCategoryFK     = $request->input('editMeasCategory');
+                 $detail->strMeasDetailName     = trim($request->input('editMeasDetailName'));
+                 $detail->txtMeasDetailDesc     = trim($request->input('editMeasDetailDesc'));
+                 $detail->dblMeasDetailMinCm    = trim($request->input('editMeasDetailMinCm'));
+                 $detail->dblMeasDetailMinInch  = trim($request->input('editMeasDetailMinInch'));
+               
 
         $detail->save();
 
