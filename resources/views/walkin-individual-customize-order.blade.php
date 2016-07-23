@@ -24,9 +24,6 @@
 						<div class="col s12"> <!--start of list-->
 							<div class="col s12">
 								
-								<div class="col s6"><p><h5><b>Customize Order</b></h5></p></div>							
-									<div class="right col s1"><a style="margin-top:15px; background-color:teal" type="submit" class="waves-effect waves-green btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to go back home" href="{{URL::to('/transaction/walkin-individual')}}"><i class="mdi-action-home" style="color:white; opacity:0.90; font-size:30px;"></i></a></div>
-									<div class="right col s5"><a style="margin-top:15px; background-color:teal" type="submit" class="right waves-effect waves-green btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to proceed to payment of orders" href="#summary-of-order"><font color="white" size="+1"><!--<i class="mdi-action-payment" style="font-size:20px;">-->  Proceed to Checkout<!--</i>--></font></a>
 										@foreach($segments as $i => $segment)
 										<div id="remove{{ $i+1 }}" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
 											<h5><font color="red"><center><b>{{$i+1}}Warning!</b></center></font></h5>
@@ -51,6 +48,10 @@
 												{!! Form::close() !!}
 										</div>
 										@endforeach
+								<div class="col s6"><p><h5><b>Customize Order</b></h5></p></div>							
+									<div class="right col s1"><a style="margin-top:15px; background-color:teal" type="submit" class="waves-effect waves-green btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to go back home" href="{{URL::to('/transaction/walkin-individual')}}"><i class="mdi-action-home" style="color:white; opacity:0.90; font-size:30px;"></i></a></div>
+							{!! Form::open(['url' => 'transaction/walkin-individual-payment-customer-info', 'method' => 'post']) !!}
+									<div class="right col s5"><button style="margin-top:15px; background-color:teal" type="submit" class="right waves-effect waves-green btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to proceed to payment of orders" ><font color="white" size="+1"><!--<i class="mdi-action-payment" style="font-size:20px;">-->  Proceed to Checkout<!--</i>--></font></button>
 									</div>																
 							</div>
 
@@ -58,12 +59,11 @@
 							<div class="divider" style="margin-bottom:30px"></div>
 							<div class="divider" style="margin-bottom:30px"></div>
 							<div class="divider" style="margin-bottom:30px; height:3px"></div>
-								<div id="summary-of-order" class="modal modal-fixed-footer" style="width:800px; height:600px">
+								<!--<div id="summary-of-order" class="modal modal-fixed-footer" style="width:800px; height:600px">
 											<h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
 												
 													<div class="divider" style="height:2px"></div>
 													<div class="modal-content col s12">
-													{!! Form::open(['url' => 'transaction/walkin-individual-payment-customer-info', 'method' => 'post']) !!}
 														<label>This is a summary of orders:</label>
 														<div class="container">
 									                        <table class = "table centered order-summary" border = "1">
@@ -73,7 +73,7 @@
 													                  <th data-field="quantity" hidden>Quantity</th>
 													                  <th data-field="fabric">Fabric</th>
 													                  <th data-field="price">Unit Price</th>
-													                  <!--<th data-field="price">Total Price</th>-->
+													                  <th data-field="price">Total Price</th>
 													              	</tr>
 												              	</thead>
 												              	<tbody>
@@ -83,14 +83,14 @@
 														               <td hidden>1</td>
 														               <td id="{{ 'segmentFabricText'.($i+1) }}"></td>
 														               <td> {{ number_format($segment->dblSegmentPrice, 2) }} PHP</td>
-														               <!--<td> </td>-->
+														               <td> </td>
 														            </tr>
 																	@endforeach
 														        </tbody>
 														    </table>
 											      		</div>
 
-											      		<!--For the design summary-->
+											      		For the design summary
 													    @foreach($segments as $segment)
 											      		<div class="container">
 											      			<p style="color: white; padding-left:5px; margin-top:10px; background-color:teal; padding:3px;">Design for <b>{{ $segment->strGarmentCategoryName }}, {{ $segment->strSegmentName }}</b></p>
@@ -100,21 +100,21 @@
 													          			<tr>
 														                  <th data-field="product">Style Category</th>         
 														                  <th data-field="quantity">Segment Pattern</th>
-														                  <!--<th data-field="price">Total Price</th>-->
+														                  <!--<th data-field="price">Total Price</th>
 														              	</tr>
 													              	</thead>
 													              	<tbody>
 															            <tr>
 															               <td>Lapel</td>
 															               <td>Shawl Type</td>
-															               <!--<td> </td>-->
+															               <!--<td> </td>
 															            </tr>
 															        </tbody>
 															    </table>
 											      			</div>
 											      		</div>
 														@endforeach
-											      		<!--End of design summary-->
+											      		<!--End of design summary
 
 
 
@@ -131,7 +131,7 @@
 										                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
 										            </div>
 												
-										</div>
+										</div>-->
 
 <!-- END OF LOOP -->		@foreach($segments as $i => $segment)
 							<div class="col s6">
@@ -194,9 +194,9 @@
 										</div> <!--end of modal content-->
 
 									<div class="modal-footer col s12">
-										<a href="{{URL::to('transaction/walkin-individual-catalogue-designs')}}" class="left btn-flat" style="background-color:teal; color:white">Check designs from catalogue</a>
+										<!--<a href="{{URL::to('transaction/walkin-individual-catalogue-designs')}}" class="left btn-flat" style="background-color:teal; color:white">Check designs from catalogue</a>-->
 			                          	<a class="right modal-action modal-close waves-effect waves-green btn-flat">OK</a>
-			                          	<a class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+			                          	<!--<a class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>-->
 			                        </div>
 								</div>
 								</div>
@@ -296,7 +296,7 @@
 								
 										<div class="modal-footer col s12">
 				                          <a  class="right modal-action modal-close waves-effect waves-green btn-flat">OK</a>
-				                          <a  class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+				                          <!--<a  class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>-->
 				                        </div>
 									</div>
 							<!--End of modal for choosing fabric-->
@@ -343,7 +343,7 @@
 								</div>	
 								<div class="col s6">
 									<!--<a href="{{URL::to('transaction/walkin-individual-bulk-orders')}}" class="right btn" style="color:white; background-color:teal; margin-left:20px; border:3px teal solid">Add another set</a>-->
-									<a href="{{URL::to('transaction/walkin-individual')}}" class="right btn" style="background-color:#00695c; color:white"><b><i class="mdi-content-add" style="padding-right:10px;"></i>Add garment</b></a>
+									<!--<a href="{{URL::to('transaction/walkin-individual')}}" class="right btn" style="background-color:#00695c; color:white"><b><i class="mdi-content-add" style="padding-right:10px;"></i>Add garment</b></a>-->
 								</div>
 							</div>
 						</div> <!--end of list-->
