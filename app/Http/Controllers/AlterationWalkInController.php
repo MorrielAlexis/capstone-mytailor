@@ -153,7 +153,7 @@ class AlterationWalkInController extends Controller
         if($ids == null){
             $altID = $this->smartCounter("ALTN000"); 
         }else{
-            $ID = $ids["0"]->strNewAlterationID;
+            $ID = $ids["0"]->strNonShopAlterID;
             $altID = $this->smartCounter($ID);  
         }
 
@@ -269,6 +269,16 @@ class AlterationWalkInController extends Controller
             $jobOrderAlteration->save();
         }//end of jo alteration and specs loop
 
+        session()->forget('orders');
+        session()->forget('alteration_id');
+
+        return redirect('transaction/alteration-walkin-newcustomer');
+    }
+
+    public function cancelOrder(Request $request)
+    {
+        session()->forget('orders');
+        session()->forget('alteration_id');
 
         return redirect('transaction/alteration-walkin-newcustomer');
     }

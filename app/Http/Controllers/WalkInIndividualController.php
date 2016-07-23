@@ -277,6 +277,10 @@ class WalkInIndividualController extends Controller
         $tempQuantity = session()->get('segment_quantity');
         $totalQuantity = 0;
 
+        session(['termsOfPayment' => $request->input('termsOfPayment')]);
+        session(['totalPrice' => $request->input('total_price')]);
+        session(['transaction_date' => $request->input('transaction_date')]);
+
         foreach($tempQuantity as $quantity)
             $totalQuantity += $quantity; //tblJobOrder
 
@@ -332,10 +336,6 @@ class WalkInIndividualController extends Controller
 
         $values = session()->get('segment_values');
         $data = session()->get('segment_data');
-
-        session(['termsOfPayment' => $request->input('termsOfPayment')]);
-        session(['totalPrice' => $request->input('total_price')]);
-        session(['transaction_date' => $request->input('transaction_date')]);
 
 
         $measurements = \DB::table('tblMeasurementCategory AS a')
