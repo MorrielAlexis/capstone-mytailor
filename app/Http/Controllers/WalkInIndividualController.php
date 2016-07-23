@@ -27,6 +27,7 @@ use App\MeasurementDetail;
 use App\StandardSizeCategory;
 
 use App\TransactionJobOrder;
+use App\TransactionJobOrderPayment;
 use App\TransactionJobOrderSpecifics;
 use App\TransactionJobOrderSpecificsPattern;
 use App\TransactionJobOrderMeasurementProfile;
@@ -272,6 +273,63 @@ class WalkInIndividualController extends Controller
 
     public function measurement(Request $request)
     {   
+        //tblJobOrder
+        $tempQuantity = session()->get('segment_quantity');
+        $totalQuantity = 0;
+
+        foreach($tempQuantity as $quantity)
+            $totalQuantity += $quantity; //tblJobOrder
+
+        $jobOrderID = session()->get('joID'); //tblJobOrder
+        $customerID = session()->get('custID'); //tblJobOrder
+        $termsOfPayment = session()->get('termsOfPayment'); //tblJobOrder
+        $modeOfPayment = "Cash"; //tblJobOrder
+        $totalPrice = (double)session()->get('totalPrice'); //tblJobOrder
+        $orderDate = session()->get('transaction_date'); //tblJobOrder
+
+        $jobOrder = TransactionJobOrder::create(array(
+                'strJobOrderID' => $jobOrderID,
+                'strJO_CustomerFK' => $customerID,
+                'strTermsOfPayment' => $termsOfPayment,
+                'strModeOfPayment' => $modeOfPayment,
+                'intJO_OrderQuantity' => $totalQuantity,
+                'dblOrderTotalPrice' => $totalPrice,
+                'dtOrderDate' => $request->input('transaction_date'),
+                'boolIsActive' => 1
+        ));
+
+        $jobOrder->save();
+
+        $ids = \DB::table('tblJOPayment')
+                ->select('strPaymentID')
+                ->orderBy('created_at', 'desc')
+                ->orderBy('strPaymentID', 'desc')
+                ->take(1)
+                ->get();
+
+            if($ids == null){
+                $jobPaymentID = $this->smartCounter("JOPY000"); 
+            }else{
+                $ID = $ids["0"]->strPaymentID;
+                $jobPaymentID = $this->smartCounter($ID);  
+            }
+
+        $payment = TransactionJobOrderPayment::create(array(
+                'strPaymentID' => $jobPaymentID,
+                'strTransactionFK' => session()->get('joID'), //tblJobOrder
+                'dblAmountTendered' => $request->input('amount-tendered'),
+                'dblAmountToPay' => $request->input('amount-to-pay'),
+                'dblOutstandingBal' => $request->input('outstanding-bal'),
+                'strReceivedByEmployeeNameFK' => 'EMPL001' ,
+                'dtPaymentDate' => $request->input('transaction_date'),
+                'dtPaymentDueDate' => $request->input('due_date'),
+                'strPaymentStatus' => 'Partial',
+                'boolIsActive' => 1
+
+            ));
+
+        $payment->save();
+
         $values = session()->get('segment_values');
         $data = session()->get('segment_data');
 
@@ -344,32 +402,8 @@ class WalkInIndividualController extends Controller
                 $i++;
         }
 
-        //tblJobOrder
-        $tempQuantity = session()->get('segment_quantity');
-        $totalQuantity = 0;
-
-        foreach($tempQuantity as $quantity)
-            $totalQuantity += $quantity; //tblJobOrder
-
         $jobOrderID = session()->get('joID'); //tblJobOrder
         $customerID = session()->get('custID'); //tblJobOrder
-        $termsOfPayment = session()->get('termsOfPayment'); //tblJobOrder
-        $modeOfPayment = "Cash"; //tblJobOrder
-        $totalPrice = (double)session()->get('totalPrice'); //tblJobOrder
-        $orderDate = session()->get('transaction_date'); //tblJobOrder
-
-        $jobOrder = TransactionJobOrder::create(array(
-                'strJobOrderID' => $jobOrderID,
-                'strJO_CustomerFK' => $customerID,
-                'strTermsOfPayment' => $termsOfPayment,
-                'strModeOfPayment' => $modeOfPayment,
-                'intJO_OrderQuantity' => $totalQuantity,
-                'dblOrderTotalPrice' => $totalPrice,
-                'dtOrderDate' => $orderDate,
-                'boolIsActive' => 1
-        ));
-
-        $jobOrder->save();
 
         //tblJobSpecs
         $segments = session()->get('segment_values'); //tblJobSpecs
