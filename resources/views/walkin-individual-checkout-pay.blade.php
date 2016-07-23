@@ -202,6 +202,9 @@
                     		<!--start of bottom button-->
                     		<div class="col s12" style="margin-top:20px">
 	                    		<button type="submit" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save payment information and get measured" style="background-color:#00695c; padding:9.5px; padding-bottom:45px; margin-top:20px; margin-left:30px"><label style="font-size:15px; color:white"><b>Save Payment and Start Measurement</b></label></button>
+					{!! Form::close() !!}
+
+					{!! Form::open(['url' => 'transaction/walkin-individual-clear-order', 'method' => 'POST']) !!}
 	                    		<a href="#cancel-order" class="right btn modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Click to cancel current unsaved transaction" style="background-color:#a7ffeb; padding:9.5px; padding-bottom:45px; margin-top:20px; margin-left:30px"><label style="font-size:15px; color:black"><b>Cancel Transaction</b></label></a>
 	                    			<div id="cancel-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:80px">
 										<h5><font color="red"><center><b>Warning!</b></center></font></h5>
@@ -213,14 +216,14 @@
 												</div>
 
 												<div class="modal-footer col s12">
-									                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-individual')}}"><font color="black">Yes</font></a>
-									                <a href="{{URL::to('/transaction/walkin-individual-payment-payment-info')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+									                <button type="submit" class="waves-effect waves-green btn-flat"><font color="black">Yes</font></button>
+									                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
 									            </div>
-									</div>
+								</div>
 							</div>
+					{!! Form::close() !!}
 							<!--end of bottom button-->
 
-					{!! Form::close() !!}
 
 
 	            </div>
