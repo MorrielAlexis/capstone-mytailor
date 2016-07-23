@@ -29,7 +29,7 @@
 	       	</div>
 
 	       	<div class="col s12 left">
-		        <a class="right btn-floating tooltipped btn-large green" data-position="bottom" data-delay="50"  data-tooltip="CLick to print a receipt for current transaction" href="#!" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-action-print"></i></a>
+		        <a href="{{ URL::to('billing-payment/payment-receipt-pdf') }}" class="right btn-floating tooltipped btn-large green" data-position="bottom" data-delay="50"  data-tooltip="CLick to print a receipt for current transaction" href="#!" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-action-print"></i></a>
 		    </div>
 
 	       	<div class="row" style="background-color:white; padding:40px">
