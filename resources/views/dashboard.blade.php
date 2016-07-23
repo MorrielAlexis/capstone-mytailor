@@ -5,43 +5,18 @@
                     <div id="card-stats" style="padding:20px;">
                         <div class="row">
                         	<div class="col s4" style="margin-top:-12px;">
-                                <div class="card z-depth-3" style="background-image:url('img/delivery.jpg');">
-                                    <div class="card-header purple">
+                                <div class="card z-depth-3" style="background-image:url('img/1.jpg');">
+                                    <div class="card-header blue-grey">
                                         <div class="card-title">
-                                            <h3 class="card-title white-text" style="font-size:40px; padding-left:10px;">Delivery</h3>
+                                            <h3 class="card-title white-text" style="font-size:40px; padding-left:10px;">My Tailor</h3>
                                             <p style="padding-left:10px;" class="flight-card-date white-text">June 18, Thu 04:50</p>
                                         </div>
                                     </div>
                                     <div class="white-text">
-                                        <div class="card-content">
-                                            <div class="row flight-state-wrapper">
-                                                <div class="col s5 m5 l5 center-align">
-                                                    <div class="flight-state">
-                                                        <h4 class="margin">MNL</h4>
-                                                    </div>
-                                                </div>
-                                                <div class="col s2 m2 l2 center-align">
-                                                    <span class="activator"><i class="mdi-maps-local-shipping" style="font-size:70px;"></i></span>
-                                                </div>
-                                                <div class="col s5 m5 l5 center-align">
-                                                    <div class="flight-state">
-                                                        <h4 class="margin">CDO</h4>
-                                                    </div>
-                                                </div>
+                                        <div class="card-content" style="height:400px;">
+                                            <div style="margin-top:-20px;">
+                                                <center><a class="grey-text" href="{{URL::to('/online-home')}}" style="font-family:cursive; font-size:50px;">Go to shop<i class="mdi-maps-local-mall"></i></a></center>
                                             </div>
-                                            <div class="row" style="margin-top:100px;">
-                                                <h5><div class="col s6 m6 l6 center-align">
-                                                    <div class="flight-info">
-                                                        <p class="small"><span class="grey-text text-lighten-4">Depart:</span> 04.50</p>
-                                                    </div>
-                                                </div></h5>
-                                                <h5><div class="col s6 m6 l6 center-align flight-state-two">
-                                                    <div class="flight-info">
-                                                        <p class="small"><span class="grey-text text-lighten-4">Arrive:</span> 08.50</p>
-                                                    </div>
-                                            	</div></h5>
-                                            </div>
-                                           	<center><h5 style="margin-top:40px; margin-bottom:20px;">Transaction No.:1234567</h5></center>
                                         </div>
                                     </div>
 	                                <div class="card-reveal">
@@ -62,12 +37,12 @@
                                     </div>
                                 </div>
                                 <div class="card z-depth-3">
-                                    <div class="card-content blue-grey white-text">
+                                    <div class="card-content purple white-text">
                                         <center><p class="card-stats-title"><i class="mdi-editor-attach-money" style="font-size:30px;">Total Sales</i></p></center>
                                         <center><h3 class="card-stats-number black-text"><b>$8990.63</b></h3></center>
                                         <center><p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up" style="font-size:25px;"> 70% <span class="purple-text text-lighten-5">last month</span></i></p></center>
                                     </div>
-                                    <div class="card-action blue-grey darken-2">
+                                    <div class="card-action purple darken-2">
                                         <div id="sales-compositebar"></div>
                                     </div>
                                 </div>
@@ -82,7 +57,7 @@
 	                                    </li>
 	                                    <li class="collection-item dismissable" style="padding:20px;">
 	                                        <input type="checkbox" id="task1" />
-	                                        <label for="task1">Create Mobile App UI. <a href="#" class="secondary-content"><span class="ultra-small">Today</span></a>
+	                                        <label for="task1">Transaction No. 12325<br><a href="#" class="secondary-content"><span class="ultra-small">Today</span></a>
 	                                        </label>
 	                                        <span class="task-cat teal">Mobile App</span>
 	                                    </li>
