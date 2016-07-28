@@ -163,7 +163,7 @@ class SegmentStyleController extends Controller
         $segmentStyle->save();
 
 
-       \Session::flash('flash_message_delete','Segment pattern successfully deactivated.'); //flash message
+       \Session::flash('flash_message_delete','Segment style successfully deactivated.'); //flash message
 
         return redirect('maintenance/segment-style');
 

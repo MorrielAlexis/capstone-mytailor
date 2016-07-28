@@ -34,8 +34,8 @@ class MaintenanceSegmentStyleRequest extends Request
     public function messages()
     {
         return [
-            'strSegStyleName.unique_with'  =>  'Alteration name already exists.',
-            'strSegStyleName.required'  =>  'Alteration name is required.'
+            'strSegStyleName.unique_with'  =>  'Segment style name already exists.',
+            'strSegStyleName.required'  =>  'Segment style name is required.'
             
             
             
