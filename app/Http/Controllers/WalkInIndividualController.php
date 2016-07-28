@@ -106,26 +106,30 @@ class WalkInIndividualController extends Controller
     public function customize(Request $request)
     {   
         $data_segment = $request->input('cbx-segment-name');
-        $data_quantity = array_slice(array_filter($request->input('int-segment-qty')), 0);
-
         $values = [];
 
-        $segments = \DB::table('tblSegment AS a')
-                    ->leftJoin('tblGarmentCategory AS b', 'a.strSegCategoryFK', '=', 'b.strGarmentCategoryID')
-                    ->select('a.*', 'b.strGarmentCategoryName') 
-                    ->whereIn('a.strSegmentID', $data_segment)
-                    ->orderBy('a.strSegmentID')
-                    ->get();        
+        if(!$data_segment == null){
+            $data_quantity = array_slice(array_filter($request->input('int-segment-qty')), 0);
 
-       for($i = 0; $i < count($data_segment); $i++){
-            for($j = 0; $j < $data_quantity[$i]; $j++){
-                $values[] = $segments[$i];
+
+            $segments = \DB::table('tblSegment AS a')
+                        ->leftJoin('tblGarmentCategory AS b', 'a.strSegCategoryFK', '=', 'b.strGarmentCategoryID')
+                        ->select('a.*', 'b.strGarmentCategoryName') 
+                        ->whereIn('a.strSegmentID', $data_segment)
+                        ->orderBy('a.strSegmentID')
+                        ->get();        
+
+           for($i = 0; $i < count($data_segment); $i++){
+                for($j = 0; $j < $data_quantity[$i]; $j++){
+                    $values[] = $segments[$i];
+                }
             }
-        }
 
-        session(['segment_data' => $data_segment]);
-        session(['segment_quantity' => $data_quantity]);
-        session(['segment_values' => $values]);
+            session(['segment_data' => $data_segment]);
+            session(['segment_quantity' => $data_quantity]);
+        }
+        
+        session(['segment_values' => $values]);     
 
         return redirect('transaction/walkin-individual-show-customize-orders');
     }

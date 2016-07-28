@@ -125,7 +125,120 @@
                 <label for=""><font size="+1"><b>Lapel Name</b></font></label>
               </p>
             </div>
-/          </div> 
+          </div> 
+
+          <div class="col s12">
+            <ul class="collapsible" data-collapsible="accordion" style="border:none;">
+              <li>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Single Breasted</div>
+                <div class="collapsible-body row overflow-x">
+                  <div class="col s4">
+                    <div class="center col s2 " style="margin-top:100px">
+                      <input name="" type="radio" class="filled-in" value = "" id="" />
+                      <label for=""></label>
+                    </div>
+                    <div class="col s10">
+                      <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
+                        <div class="row valign-wrapper">
+                          <div class="center col s6">
+                            <img src="" alt="" class="responsive-img">
+                          </div>
+                          <div class="col s6"> 
+                            <span><b></b></span>
+                            <br/>
+                            <span class="black-text">
+                              
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Double Breasted</div>
+                <div class="collapsible-body row overflow-x">
+                  <div class="col s4">
+                    <div class="center col s2 " style="margin-top:100px">
+                      <input name="" type="radio" class="filled-in" value = "" id="" />
+                      <label for=""></label>
+                    </div>
+                    <div class="col s10">
+                      <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
+                        <div class="row valign-wrapper">
+                          <div class="center col s6">
+                            <img src="" alt="" class="responsive-img">
+                          </div>
+                          <div class="col s6"> 
+                            <span><b></b></span>
+                            <br/>
+                            <span class="black-text">
+                              
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>              
+              <li>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Jacket Bottom</div>
+                <div class="collapsible-body row overflow-x">
+                  <div class="col s4">
+                    <div class="center col s2 " style="margin-top:100px">
+                      <input name="" type="radio" class="filled-in" value = "" id="" />
+                      <label for=""></label>
+                    </div>
+                    <div class="col s10">
+                      <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
+                        <div class="row valign-wrapper">
+                          <div class="center col s6">
+                            <img src="" alt="" class="responsive-img">
+                          </div>
+                          <div class="col s6"> 
+                            <span><b></b></span>
+                            <br/>
+                            <span class="black-text">
+                              
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>    
+              <li>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Vents</div>
+                <div class="collapsible-body row overflow-x">
+                  <div class="col s4">
+                    <div class="center col s2 " style="margin-top:100px">
+                      <input name="" type="radio" class="filled-in" value = "" id="" />
+                      <label for=""></label>
+                    </div>
+                    <div class="col s10">
+                      <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
+                        <div class="row valign-wrapper">
+                          <div class="center col s6">
+                            <img src="" alt="" class="responsive-img">
+                          </div>
+                          <div class="col s6"> 
+                            <span><b></b></span>
+                            <br/>
+                            <span class="black-text">
+                              
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>                                      
+            </ul>     
+          </div>
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12"><button class="btn-flat right teal accent-4 white-text" type="submit">Next step</button></div>
@@ -158,6 +271,12 @@
 
     $(document).ready(function() {
       Materialize.updateTextFields();
+    });
+
+    $(document).ready(function(){
+      $('.collapsible').collapsible({
+        accordion : false
+      });
     });
 
   </script>
