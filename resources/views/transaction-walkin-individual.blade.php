@@ -47,10 +47,10 @@
 							</div>
 
 					</div>
-					{!! Form::open(['url' => 'transaction/walkin-individual-customize-orders', 'method' => 'POST']) !!}
+					{!! Form::open(['url' => 'transaction/walkin-individual-customize-orders', 'method' => 'POST', "id" => "order-form"]) !!}
 						<div class="col s12">
 							<div class="divider"></div>
-								<a class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize orders" style="margin-top:30px; font-size:15px; color:white; background-color: teal; opacity:0.90" href="{{URL::to('/transaction/walkin-individual-customize-orders')}}"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Reset Order<!--</i>--></a>
+								<a class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel orders" style="margin-top:30px; font-size:15px; color:white; background-color: teal; opacity:0.90" href="{{URL::to('/transaction/walkin-individual-customize-orders')}}"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Reset Order<!--</i>--></a>
 								{{-- <button type="submit" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to add orders to cart " style="margin-top:30px; background-color: teal; font-size:15px; color:white" href="#!"> --}}<!--<i class="mdi-editor-add" style="font-size:20px;">-->  {{-- View Cart --}}<!--</i>-->{{-- </a> --}}							
 						</div>
 
@@ -122,9 +122,6 @@
 
 			var i, j;
 
-			$(".cbx-segment-name").attr('required', false);
-
-
 			for(i = 0; i < a.length; i++){
 				for(j = 0; j < b.length; j++){
 					if(a[i].id == b[j].id){
@@ -140,6 +137,15 @@
 			}
 
 		});
+
+		$("#order-form").submit(function(){
+			if(!$('.cbx-segment-name').is(":checked"))
+			{
+			    alert('Please select at least one item.');
+			    return false;
+			}
+		})
+
 	</script>
 
 	<script>
@@ -175,7 +181,6 @@
 	<script>
 	  $(document).ready(function() {
 	    $('select').material_select();
-	    $(".cbx-segment-name").attr('required', true);
 	  });
 	</script>	        
 
