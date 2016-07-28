@@ -47,10 +47,10 @@
 							</div>
 
 					</div>
-					{!! Form::open(['url' => 'transaction/walkin-individual-customize-orders', 'method' => 'POST']) !!}
+					{!! Form::open(['url' => 'transaction/walkin-individual-customize-orders', 'method' => 'POST', "id" => "order-form"]) !!}
 						<div class="col s12">
 							<div class="divider"></div>
-								<a class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize orders" style="margin-top:30px; font-size:15px; color:white; background-color: teal; opacity:0.90" href="{{URL::to('/transaction/walkin-individual-customize-orders')}}"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Reset Order<!--</i>--></a>
+								<a class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel orders" style="margin-top:30px; font-size:15px; color:white; background-color: teal; opacity:0.90" href="{{URL::to('/transaction/walkin-individual-customize-orders')}}"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Reset Order<!--</i>--></a>
 								{{-- <button type="submit" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to add orders to cart " style="margin-top:30px; background-color: teal; font-size:15px; color:white" href="#!"> --}}<!--<i class="mdi-editor-add" style="font-size:20px;">-->  {{-- View Cart --}}<!--</i>-->{{-- </a> --}}							
 						</div>
 
@@ -127,6 +127,7 @@
 					if(a[i].id == b[j].id){
 						if($('#' + a[i].id).is(":checked")){
 							$('.' + b[j].id).removeAttr('disabled');
+							$('.' + b[j].id).attr('required', true);
 						}else{
 							$('.' + b[j].id).attr('disabled', true);
 							$('.' + b[j].id).val('');
@@ -136,6 +137,15 @@
 			}
 
 		});
+
+		$("#order-form").submit(function(){
+			if(!$('.cbx-segment-name').is(":checked"))
+			{
+			    alert('Please select at least one item.');
+			    return false;
+			}
+		})
+
 	</script>
 
 	<script>

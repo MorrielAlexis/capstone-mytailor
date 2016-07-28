@@ -27,7 +27,7 @@ class SegmentPatternRequest extends Request
         return [
             'strSegPName' => 'unique_with:tblSegmentPattern,strSegPStyleCategoryFK',
             'addImg' => 'image',
-            'dblSegmentPrice' => 'required|numeric'
+            'dblPatternPrice' => 'required|numeric'
             
         ];
     }
@@ -38,8 +38,8 @@ class SegmentPatternRequest extends Request
             'strSegPName.unique_with'  =>  'Pattern already exists.',
             // 'strSegPName.required'  =>  'Pattern name is required.',
             'addImg.image' => 'The file you uploaded is not an image.',
-            'dblSegmentPrice.numeric' => 'Pattern price should be numeric',
-            'dblSegmentPrice.required' => 'Pattern price is required.'
+            'dblPatternPrice.numeric' => 'Pattern price should be numeric',
+            'dblPatternPrice.required' => 'Pattern price is required.'
             
             
         ];

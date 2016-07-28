@@ -51,8 +51,13 @@
 								<div class="col s6"><p><h5><b>Customize Order</b></h5></p></div>							
 									<div class="right col s1"><a style="margin-top:15px; background-color:teal" type="submit" class="waves-effect waves-green btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to go back home" href="{{URL::to('/transaction/walkin-individual')}}"><i class="mdi-action-home" style="color:white; opacity:0.90; font-size:30px;"></i></a></div>
 							{!! Form::open(['url' => 'transaction/walkin-individual-payment-customer-info', 'method' => 'post']) !!}
-									<div class="right col s5"><button style="margin-top:15px; background-color:teal" type="submit" class="right waves-effect waves-green btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to proceed to payment of orders" ><font color="white" size="+1"><!--<i class="mdi-action-payment" style="font-size:20px;">-->  Proceed to Checkout<!--</i>--></font></button>
-									</div>																
+									@if($segments != null) 
+										<div class="right col s5"><button style="margin-top:15px; background-color:teal" type="submit" class="right waves-effect waves-green btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to proceed to payment of orders" ><font color="white" size="+1"><!--<i class="mdi-action-payment" style="font-size:20px;">-->  Proceed to Checkout<!--</i>--></font></button>
+										</div>
+									@else 
+										<div class="right col s5"><a href="{{URL::to('transaction/walkin-individual')}}" style="margin-top:15px; background-color:teal"class="right waves-effect waves-green btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to proceed to previous page" ><font color="white" size="+1"><!--<i class="mdi-action-payment" style="font-size:20px;">-->Choose available products<!--</i>--></font></a>
+										</div>
+									@endif														
 							</div>
 
 							<!--/// START OF AN ITERATION  ///-->
