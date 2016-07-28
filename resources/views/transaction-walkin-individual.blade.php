@@ -122,11 +122,15 @@
 
 			var i, j;
 
+			$(".cbx-segment-name").attr('required', false);
+
+
 			for(i = 0; i < a.length; i++){
 				for(j = 0; j < b.length; j++){
 					if(a[i].id == b[j].id){
 						if($('#' + a[i].id).is(":checked")){
 							$('.' + b[j].id).removeAttr('disabled');
+							$('.' + b[j].id).attr('required', true);
 						}else{
 							$('.' + b[j].id).attr('disabled', true);
 							$('.' + b[j].id).val('');
@@ -171,6 +175,7 @@
 	<script>
 	  $(document).ready(function() {
 	    $('select').material_select();
+	    $(".cbx-segment-name").attr('required', true);
 	  });
 	</script>	        
 
