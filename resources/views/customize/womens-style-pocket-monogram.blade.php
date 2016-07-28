@@ -49,145 +49,158 @@
           </div>
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
 
-          <div class="col s12" style="padding:20px;"><h4>4.Pockets</h4></div>
-
           <div class="col s12">
-            <p>
-              <input class="with-gap" name="classic" type="radio" id="small" />
-              <label for="small"><font size="+1"><b>No Pocket</b></font></label>
-            </p>
-          </div>
+            <ul class="collapsible" data-collapsible="accordion" style="border:none;">
+              <li>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Pockets</div>
+                <div class="collapsible-body row overflow-x">
+                  <div class="col s12" style="padding:20px;"><h4>4.Pockets</h4></div>
 
-          <div class="col s12" style="margin-top:20px;">
+                  <div class="col s12">
+                    <p>
+                      <input class="with-gap" name="classic" type="radio" id="small" />
+                      <label for="small"><font size="+1"><b>No Pocket</b></font></label>
+                    </p>
+                  </div>
 
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Cuffed Short Sleeves</b></font></label>
-              </p>
-            </div>
+                  <div class="col s12" style="margin-top:20px;">
 
-          </div> 
+                    <div class="col s2">
+                      <img class="materialboxed responsive-img" src="img/fabric.jpg">
+                      <p>
+                        <input class="with-gap" name="classic" type="radio" id="small" />
+                        <label for="small"><font size="+1"><b>Cuffed Short Sleeves</b></font></label>
+                      </p>
+                    </div>
 
-          <div class="col s12" style="margin-top:20px;">
-            
-            <div class="col s3" style="padding:20px;">
-              <h5><b>Contrast Pocket</b></h5>
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <div><a class="btn-flat teal accent-4 white-text" href="{{URL::to('/customize-womens-fabric')}}"><font size="+1">Select Fabric</font></a></div>
-            </div>
+                  </div> 
 
-            <div class="col s3" style="padding:20px;">
-              <h5><b>Contrast Pocket Flap</b></h5>
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <div><a class="btn-flat teal accent-4 white-text" href="{{URL::to('/customize-womens-fabric')}}"><font size="+1">Select Fabric</font></a></div>
-            </div> 
-                       
-          </div>
+                  <div class="col s12" style="margin-top:20px;">
+                    
+                    <div class="col s3" style="padding:20px;">
+                      <h5><b>Contrast Pocket</b></h5>
+                      <img class="materialboxed responsive-img" src="img/fabric.jpg">
+                      <div><a class="btn-flat teal accent-4 white-text" href="{{URL::to('/customize-womens-fabric')}}"><font size="+1">Select Fabric</font></a></div>
+                    </div>
 
-          <div class="col s12" style="padding:20px;"><h4>5. Monogram</h4></div>
+                    <div class="col s3" style="padding:20px;">
+                      <h5><b>Contrast Pocket Flap</b></h5>
+                      <img class="materialboxed responsive-img" src="img/fabric.jpg">
+                      <div><a class="btn-flat teal accent-4 white-text" href="{{URL::to('/customize-womens-fabric')}}"><font size="+1">Select Fabric</font></a></div>
+                    </div> 
+                               
+                  </div>         
+                </div>
+              </li>
+              <li>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Monogram</div>
+                <div class="collapsible-body row overflow-x">
+                  <div class="col s12" style="padding:20px;"><h4>5. Monogram</h4></div>
 
-          <div class="col s12">
-            <p>
-              <input class="with-gap" name="classic" type="radio" id="small" />
-              <label for="small"><font size="+1"><b>No Monogram</b></font></label>
-            </p>
-          </div>
+                  <div class="col s12">
+                    <p>
+                      <input class="with-gap" name="classic" type="radio" id="small" />
+                      <label for="small"><font size="+1"><b>No Monogram</b></font></label>
+                    </p>
+                  </div>
 
-          <div class="col s12" style="margin-top:20px;">
+                  <div class="col s12" style="margin-top:20px;">
 
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Cuffed Short Sleeves</b></font></label>
-              </p>
-            </div>
+                    <div class="col s2">
+                      <img class="materialboxed responsive-img" src="img/fabric.jpg">
+                      <p>
+                        <input class="with-gap" name="classic" type="radio" id="small" />
+                        <label for="small"><font size="+1"><b>Cuffed Short Sleeves</b></font></label>
+                      </p>
+                    </div>
 
-          </div> 
+                  </div> 
 
-          <div class="col s12" style="padding:20px;"><h4>Monogram Position</h4></div>
+                  <div class="col s12" style="padding:20px;"><h4>Monogram Position</h4></div>
 
-          <div class="col s12" style="margin-top:20px;">
+                  <div class="col s12" style="margin-top:20px;">
 
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Cuffed Short Sleeves</b></font></label>
-              </p>
-            </div>
+                    <div class="col s2">
+                      <img class="materialboxed responsive-img" src="img/fabric.jpg">
+                      <p>
+                        <input class="with-gap" name="classic" type="radio" id="small" />
+                        <label for="small"><font size="+1"><b>Cuffed Short Sleeves</b></font></label>
+                      </p>
+                    </div>
 
-            <div class="col s2">
-              <div class="input-field" style="margin-top:100px;">
-                <input placeholder="Monogram Position" id="position" type="text" class="validate">
-              </div>
-              <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Other Position</b></font></label>
-              </p>              
-            </div>
+                    <div class="col s2">
+                      <div class="input-field" style="margin-top:100px;">
+                        <input placeholder="Monogram Position" id="position" type="text" class="validate">
+                      </div>
+                      <p>
+                        <input class="with-gap" name="classic" type="radio" id="small" />
+                        <label for="small"><font size="+1"><b>Other Position</b></font></label>
+                      </p>              
+                    </div>
 
-          </div>
+                  </div>
 
-          <div class="col s12" style="margin-top:20px;">
+                  <div class="col s12" style="margin-top:20px;">
 
-            <div class="input-field col s4">
-              <input id="monogram" type="text" class="validate">
-              <label for="monogram"><b>Enter your monogram:</b></label>
-            </div>
+                    <div class="input-field col s4">
+                      <input id="monogram" type="text" class="validate">
+                      <label for="monogram"><b>Enter your monogram:</b></label>
+                    </div>
 
-            <div class="col s8">
-              <p>(15 characters at most. Our standard monogram size is 10mm. If you want to change the size, please leave messages as monogram comment - note that our tailor will have to decide on the monogram size that will match the fabric choosen.)</p>
-            </div>
+                    <div class="col s8">
+                      <p>(15 characters at most. Our standard monogram size is 10mm. If you want to change the size, please leave messages as monogram comment - note that our tailor will have to decide on the monogram size that will match the fabric choosen.)</p>
+                    </div>
 
-          </div>
+                  </div>
 
-          <div class="col s12">
+                  <div class="col s12">
 
-            <div class="input-field col s4">
-              <select class="browser-default">
-                <option value="" disabled selected>STANDARD</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
-              </select>
-              <label><b>Monogram Color</b></label>
-            </div>
+                    <div class="input-field col s4">
+                      <select class="browser-default">
+                        <option value="" disabled selected>STANDARD</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                      </select>
+                      <label><b>Monogram Color</b></label>
+                    </div>
 
-          </div>
+                  </div>
 
-          <div class="col s12">
+                  <div class="col s12">
 
-            <div class="file-field input-field col s4">
-              <div class="btn">
-                <span>Upload photo</span>
-                <input type="file">
-              </div>
-              <div class="file-path-wrapper">
-                <input class="file-path validate" type="text">
-              </div>
-            </div>
+                    <div class="file-field input-field col s4">
+                      <div class="btn">
+                        <span>Upload photo</span>
+                        <input type="file">
+                      </div>
+                      <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                      </div>
+                    </div>
 
-            <div class="col s8">
-              <p>If you want to put logos instead of monograms, please email the logo to us or upload your logo here.</p>
-            </div>
+                    <div class="col s8">
+                      <p>If you want to put logos instead of monograms, please email the logo to us or upload your logo here.</p>
+                    </div>
 
-          </div>
+                  </div>
 
-          <div class="col s12">
+                  <div class="col s12">
 
-            <div class="input-field col s4">
-              <input id="comment" type="text" class="validate">
-              <label for="comment"><b>Monogram comment:</b></label>
-            </div>
+                    <div class="input-field col s4">
+                      <input id="comment" type="text" class="validate">
+                      <label for="comment"><b>Monogram comment:</b></label>
+                    </div>
 
-            <div class="col s8">
-              <p>Please add any comments you would like to make regarding your monogram.</p>
-            </div>
+                    <div class="col s8">
+                      <p>Please add any comments you would like to make regarding your monogram.</p>
+                    </div>
 
-          </div>
+                  </div>                  
+                </div>
+              </li>              
+            </ul>
+          </div>          
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12">

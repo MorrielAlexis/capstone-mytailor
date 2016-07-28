@@ -49,109 +49,9 @@
           </div>
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
 
-          <div class="col s12" style="padding:20px;"><h4>6. Front</h4></div>
-
           <div class="col s12" style="margin-top:20px;">
 
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>No Placket</b></font></label>
-              </p>
-            </div>
-
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Placket</b></font></label>
-              </p>
-            </div>
-
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Covered Placket</b></font></label>
-              </p>
-            </div>                        
-
-          </div> 
-
-          <div class="col s12" style="margin-top:20px;">
-            
-            <div class="col s3" style="padding:20px;">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>Inside Placket Lining<br>Button Side</p>
-              <div><a class="btn-flat teal accent-4 white-text" href="{{URL::to('/customize-womens-fabric')}}"><font size="+1">Select Fabric</font></a></div>
-            </div>
-
-            <div class="col s3" style="padding:20px;">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>Inside Placket Lining<br>Buttonhole Side</p>
-              <div><a class="btn-flat teal accent-4 white-text" href="{{URL::to('/customize-womens-fabric')}}"><font size="+1">Select Fabric</font></a></div>
-            </div> 
-                       
-          </div>
-
-          <div class="col s12" style="margin-top:20px;">
-
-            <div class="col s3">
-              <h4>7. Tuxedo</h4>
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Cuffed Short Sleeves</b></font></label>
-              </p>
-            </div>
-
-            <div class="col s3">
-              <h4>8. Epaulettes</h4>
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <div><a class="btn-flat teal accent-4 white-text" href="{{URL::to('/customize-womens-fabric')}}"><font size="+1">Select Fabric</font></a></div>
-            </div>
-
-            <div class="col s3">
-              <h4>9. Back Split</h4>
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Cuffed Short Sleeves</b></font></label>
-              </p>
-            </div>
-
-          </div>
-
-          <div class="col s12" style="margin-top:20px;">
-            <h4>10. Back</h4>
-
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Cuffed Short Sleeves</b></font></label>
-              </p>
-            </div>
-
-          </div>           
-
-          <div class="col s12" style="margin-top:20px;">
-            <h4>11. Bottom</h4>
-
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Cuffed Short Sleeves</b></font></label>
-              </p>
-            </div>
-
-          </div>
-
-          <div class="col s12" style="margin-top:20px;">
-
-            <h5><b>13. Provide image for our reference (optional)</b></h5>
+            <h5><b>12. Provide image for our reference (optional)</b></h5>
 
             <div class="col s12">
               <div class="file-field input-field col s4">
@@ -184,6 +84,186 @@
               </div>
             </div>
 
+          </div>
+
+          <div class="col s12">
+            <ul class="collapsible" data-collapsible="accordion" style="border:none;">
+              <li>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Front</div>
+                <div class="collapsible-body row overflow-x">
+
+                  <div class="col s12" style="margin-top:20px;">
+
+                    <div class="col s2">
+                      <img class="materialboxed responsive-img" src="img/fabric.jpg">
+                      <p>
+                        <input class="with-gap" name="classic" type="radio" id="small" />
+                        <label for="small"><font size="+1"><b>No Placket</b></font></label>
+                      </p>
+                    </div>
+
+                    <div class="col s2">
+                      <img class="materialboxed responsive-img" src="img/fabric.jpg">
+                      <p>
+                        <input class="with-gap" name="classic" type="radio" id="small" />
+                        <label for="small"><font size="+1"><b>Placket</b></font></label>
+                      </p>
+                    </div>
+
+                    <div class="col s2">
+                      <img class="materialboxed responsive-img" src="img/fabric.jpg">
+                      <p>
+                        <input class="with-gap" name="classic" type="radio" id="small" />
+                        <label for="small"><font size="+1"><b>Covered Placket</b></font></label>
+                      </p>
+                    </div>                        
+
+                  </div> 
+
+                  <div class="col s12" style="margin-top:20px;">
+                    
+                    <div class="col s3" style="padding:20px;">
+                      <img class="materialboxed responsive-img" src="img/fabric.jpg">
+                      <p>Inside Placket Lining<br>Button Side</p>
+                      <div><a class="btn-flat teal accent-4 white-text" href="{{URL::to('/customize-womens-fabric')}}"><font size="+1">Select Fabric</font></a></div>
+                    </div>
+
+                    <div class="col s3" style="padding:20px;">
+                      <img class="materialboxed responsive-img" src="img/fabric.jpg">
+                      <p>Inside Placket Lining<br>Buttonhole Side</p>
+                      <div><a class="btn-flat teal accent-4 white-text" href="{{URL::to('/customize-womens-fabric')}}"><font size="+1">Select Fabric</font></a></div>
+                    </div> 
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Tuxedo</div>
+                <div class="collapsible-body row overflow-x">
+                  <div class="col s4">
+                    <div class="center col s2 " style="margin-top:100px">
+                      <input name="" type="radio" class="filled-in" value = "" id="" />
+                      <label for=""></label>
+                    </div>
+                    <div class="col s10">
+                      <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
+                        <div class="row valign-wrapper">
+                          <div class="center col s6">
+                            <img src="" alt="" class="responsive-img">
+                          </div>
+                          <div class="col s6"> 
+                            <span><b></b></span>
+                            <br/>
+                            <span class="black-text">
+                              
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Epaulettes</div>
+                <div class="collapsible-body row overflow-x">
+                  <div class="col s4">
+                    <div class="center col s6" style="margin-top:100px">
+                        <div><a class="btn-flat teal accent-4 white-text" href="{{URL::to('/customize-womens-fabric')}}"><font size="+1">Select Fabric</font></a></div>
+                    </div>
+                    <div class="col s6">
+                      <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
+                        <div class="row valign-wrapper">
+                          <div class="center">
+                            <img src="" alt="" class="responsive-img">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Back Split</div>
+                <div class="collapsible-body row overflow-x">
+                  <div class="col s4">
+                    <div class="center col s2 " style="margin-top:100px">
+                      <input name="" type="radio" class="filled-in" value = "" id="" />
+                      <label for=""></label>
+                    </div>
+                    <div class="col s10">
+                      <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
+                        <div class="row valign-wrapper">
+                          <div class="center col s6">
+                            <img src="" alt="" class="responsive-img">
+                          </div>
+                          <div class="col s6"> 
+                            <span><b></b></span>
+                            <br/>
+                            <span class="black-text">
+                              
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Back</div>
+                <div class="collapsible-body row overflow-x">
+                  <div class="col s4">
+                    <div class="center col s2 " style="margin-top:100px">
+                      <input name="" type="radio" class="filled-in" value = "" id="" />
+                      <label for=""></label>
+                    </div>
+                    <div class="col s10">
+                      <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
+                        <div class="row valign-wrapper">
+                          <div class="center col s6">
+                            <img src="" alt="" class="responsive-img">
+                          </div>
+                          <div class="col s6"> 
+                            <span><b></b></span>
+                            <br/>
+                            <span class="black-text">
+                              
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Bottom</div>
+                <div class="collapsible-body row overflow-x">
+                  <div class="col s4">
+                    <div class="center col s2 " style="margin-top:100px">
+                      <input name="" type="radio" class="filled-in" value = "" id="" />
+                      <label for=""></label>
+                    </div>
+                    <div class="col s10">
+                      <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
+                        <div class="row valign-wrapper">
+                          <div class="center col s6">
+                            <img src="" alt="" class="responsive-img">
+                          </div>
+                          <div class="col s6"> 
+                            <span><b></b></span>
+                            <br/>
+                            <span class="black-text">
+                              
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </div>
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
