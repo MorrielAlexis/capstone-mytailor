@@ -14,8 +14,8 @@
                                     </div>
                                     <div class="white-text">
                                         <div class="card-content" style="height:400px;">
-                                            <div style="margin-top:-20px;">
-                                                <center><a class="grey-text" href="{{URL::to('/online-home')}}" style="font-family:cursive; font-size:50px;">Go to shop<i class="mdi-maps-local-mall"></i></a></center>
+                                            <div class="right" style="margin-top:-20px;">
+                                                <a href="{{URL::to('/online-home')}}" style="font-family:cursive; font-size:30px; font-color:teal accent-4;">Go to shop<i class="mdi-maps-local-mall"></i></a>
                                             </div>
                                         </div>
                                     </div>
