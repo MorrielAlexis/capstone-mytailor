@@ -76,7 +76,7 @@
 					                  <div class="container"> 
 					                  	<div class="container">
 					                    <div class="input-field col s12" style="margin-top:-2px;">
-					                      <center><input class="center int-segment-qty {{ $garment->strSegmentID }}" disabled="true" name="int-segment-qty[]" id="{{ $garment->strSegmentID }}" type="number" value="1">
+					                      <center><input class="center int-segment-qty {{ $garment->strSegmentID }} qty{{ $garment->strSegmentID }}" disabled="true" name="int-segment-qty[]" id="{{ $garment->strSegmentID }}" type="number">
 					                    </div>
 					                    </div>
 					                  </div>
@@ -180,6 +180,24 @@
 
 	<script>
 	  $(document).ready(function() {
+
+	  	var values = {!! json_encode($values) !!};
+	  	var quantity = {!! json_encode($quantity) !!};
+
+	  	var cbx_id = document.getElementsByClassName('cbx-segment-name');
+		var tf_qty = document.getElementsByClassName('int-segment-qty');
+
+	  	for(var i = 0; i < values.length; i++){
+	  		for(var j = 0; j < cbx_id.length; j++){
+	  			if(cbx_id[j].id == values[i]){
+	  				$('#' + cbx_id[j].id).prop('checked', true);
+	  				$('.qty'  + tf_qty[j].id).val(quantity[i]);
+	  				$('.qty'  + tf_qty[j].id).removeAttr('disabled');
+	  			}
+	  		}
+	  	}
+
+
 	    $('select').material_select();
 	  });
 	</script>	        
