@@ -24,7 +24,9 @@ class MaintenanceAlterationRequest extends Request
    public function rules()
     {
         return [
-            'strAlterationName' => 'required|unique_with:tblAlteration,strAlterationSegmentFK'
+            'strAlterationName' => 'required|unique_with:tblAlteration,strAlterationSegmentFK',
+             'dblAlterationPrice'   => 'numeric|required',
+             'intAlterationMinDays' => 'numeric|required'
             
             
         ];
@@ -33,8 +35,13 @@ class MaintenanceAlterationRequest extends Request
     public function messages()
     {
         return [
-            'strAlterationName.unique'  =>  'Alteration name already exists.',
-            'strAlterationName.required'  =>  'Alteration name is required.'
+            'strAlterationName.unique_with'  =>  'Alteration name already exists.',
+            'strAlterationName.required'  =>  'Alteration name is required.',
+            'dblAlterationPrice.numeric' => 'Alteration price must be numeric.',
+            'intAlterationMinDays.numeric' => 'Minimum production days must be numeric.',
+
+            'dblAlterationPrice.required' => 'Alteration price is required.',
+            'intAlterationMinDays.required' => 'Alteration minimum days must be numeric.'
             
             
             

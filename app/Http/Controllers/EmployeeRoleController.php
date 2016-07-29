@@ -123,16 +123,26 @@ class EmployeeRoleController extends Controller
         //
     }
 
-    function updateRole(RoleRequest $request)
+    function updateRole(Request $request)
     {
+        $checkRoles = EmployeeRole::all();
+        $isAdded=FALSE;
 
+        foreach($checkRoles as $checkRole)
+            if(!strcasecmp($checkRole->strEmpRoleID, $request->input('editRoleID')) == 0 &&
+                strcasecmp($checkRole->strEmpRoleName, trim($request->input('editRoleName'))) == 0)
+                $isAdded = TRUE;
+
+            if(!$isAdded){
             $role = EmployeeRole::find($request->input('editRoleID'));
 
                $role->strEmpRoleName = trim($request->input('editRoleName'));
                $role->strEmpRoleDesc = trim($request->input('editRoleDescription'));
                $role->save();
 
-        \Session::flash('flash_message_update','Employee role detail/s successfully updated.'); //flash message            
+        \Session::flash('flash_message_update','Employee role detail/s successfully updated.'); //flash message       
+
+        }else \Session::flash('flash_message_duplicate','Employee role already exists.'); //flash message
         
          return redirect('maintenance/employee-role');
     }

@@ -128,7 +128,15 @@ class FabricTypeController extends Controller
     function update_fabrictype(Request $request)
 
     {   
-       
+       $checkFabTypes = FabricType::all();
+        $isAdded=FALSE;
+
+        foreach($checkFabTypes as $checkFabType)
+            if(!strcasecmp($checkFabType->strFabricTypeID, $request->input('editFabricTypeID')) == 0 &&
+                strcasecmp($checkFabType->strFabricTypeName, trim($request->input('editFabricTypeName'))) == 0)
+                $isAdded = TRUE;
+
+        if(!$isAdded){
         $fabricType = FabricType::find($request->input('editFabricTypeID'));
 
                 $fabricType->strFabricTypeName = trim($request->get('editFabricTypeName'));    
@@ -137,6 +145,8 @@ class FabricTypeController extends Controller
                 $fabricType->save();
 
         \Session::flash('flash_message_update','Fabric type successfully updated.');
+
+        }else \Session::flash('flash_message_duplicate','Fabric type already exists.'); //flash message
 
         return redirect('maintenance/fabric-type');
 

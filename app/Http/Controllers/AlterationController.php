@@ -153,7 +153,17 @@ class AlterationController extends Controller
 
     function update_alteration(Request $request)
     {
+        $checkAlterations = Alteration::all();
+        $isAdded=FALSE;
 
+        foreach($checkAlterations as $checkAlteration)
+            if(!strcasecmp($checkAlteration->strAlterationID, $request->input('editAlterationNameID')) == 0 &&
+               strcasecmp($checkAlteration->strAlterationName, trim($request->input('editAlterationName'))) == 0 && 
+               strcasecmp($checkAlteration->strAlterationSegmentFK, $request->input('editSegment')) == 0)
+                $isAdded = TRUE;
+
+
+        if(!$isAdded){
         $alteration = Alteration::find($request->input('editAlterationNameID'));
 
                $alteration->strAlterationName = trim($request->input('editAlterationName'));
@@ -165,6 +175,8 @@ class AlterationController extends Controller
         $alteration->save();
 
           \Session::flash('flash_message_update','Alteration detail  successfully updated.'); //flash message
+
+        }else \Session::flash('flash_message_duplicate','Alteration type  already exists.'); //flash message 
 
          return redirect('maintenance/alteration');
         
