@@ -69,7 +69,7 @@
                               <td>                     
                                 <input type="text" min= "0" max = "@{{ jobOrderDetail.intQuantity }}"  ng-model ="jobOrderDetail.intProgressAmount"/>                
                               </td> 
-                              <td><button class="waves-effect waves-light btn" ng-click="update(jobOrderDetail.strJOSpecificID)">Update</button></td>
+                              <td><button class="waves-effect waves-light btn" ng-click="update(jobOrderDetail.strJOSpecificID, jobOrderDetail.intProgressAmount)">Update</button></td>
 
                             </tr>
                             <tr>
@@ -159,9 +159,9 @@
       $scope.cancel = function(){
         $scope.isEmpty=true;
       }
-      $scope.update = function(progID){
+      $scope.update = function(progID, intQua){
         console.log(progID);
-        console.log($scope.jobOrderDetails);
+        console.log(intQua);
 
       } 
       $scope.getTotal = function(){
