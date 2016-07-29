@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/details','JobOrderProgressController@jobdetails');
+Route::get('/track', 'OnlineCustomerProfileIndividualController@trackJob');
 Route::get('/', 'HomeController@showWelcome');
 Route::post('/login', 'HomeController@LogIn');
 Route::get('/logout', 'HomeController@LogOut');

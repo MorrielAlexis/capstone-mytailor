@@ -37,7 +37,35 @@ class OnlineCustomerProfileIndividualController extends Controller
 
     public function tracking()
     {
+        //  $tracks = \DB::table('tbljospecific')
+        //     ->join('tbljoborder' , 'tbljoborder.strJobOrderID', '=', 'tbljospecific.strJobOrderFK')
+        //     ->join('tblSegment', 'tblSegment.strSegmentID', '=', 'tbljospecific.strJOSegmentFK')
+        //     ->join('tblGarmentCategory', 'tblGarmentCategory.strGarmentCategoryID', '=', 'tblSegment.strSegCategoryFK')
+        //     ->leftjoin('tblJobOrderProgress', 'tblJobOrderProgress.strJobOrderSpecificFK', '=', "tbljospecific.strJOSpecificID")
+        //     ->where('tbljospecific.strJobOrderFK', '=', "JO001")
+        //     ->select('tbljospecific.*', 'tblGarmentCategory.strGarmentCategoryName', 'tblSegment.strSegmentName', 'tblJobOrderProgress.intProgressAmount')
+        //     ->get(); 
+
+        // dd($tracks);    
         return view('customerprofile.individual-order-tracking');
+    }
+
+    public function trackJob()
+    {
+         $tracks = \DB::table('tbljospecific')
+            ->join('tbljoborder' , 'tbljoborder.strJobOrderID', '=', 'tbljospecific.strJobOrderFK')
+            ->join('tblSegment', 'tblSegment.strSegmentID', '=', 'tbljospecific.strJOSegmentFK')
+            ->join('tblGarmentCategory', 'tblGarmentCategory.strGarmentCategoryID', '=', 'tblSegment.strSegCategoryFK')
+            ->leftjoin('tblJobOrderProgress', 'tblJobOrderProgress.strJobOrderSpecificFK', '=', "tbljospecific.strJOSpecificID")
+            ->where('tbljospecific.strJobOrderFK', '=', Input::get('trackID'))
+            ->select('tbljospecific.*', 'tblGarmentCategory.strGarmentCategoryName', 'tblSegment.strSegmentName', 'tblJobOrderProgress.intProgressAmount')
+            ->get();        
+
+
+            // dd($specifics);
+        return response()->json(array(
+            'track_details' => $tracks
+        ));
     }
 
     public function pay()
