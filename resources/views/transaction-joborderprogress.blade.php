@@ -133,9 +133,10 @@
 
 
  <script type="text/javascript">
-    var app = angular.module('tailoring', []);
+    var app = angular.module('tailoring', [])
+      .constant('CSRF_TOKEN', '{!! csrf_token() !!}');
 
-    app.controller('JobOrderController', function($scope, $http) {
+    app.controller('JobOrderController', function($scope, $http, CSRF_TOKEN) {
       $scope.jobOrderDetails = [];
       $scope.isEmpty = true;
       // $scope.qty = [];
@@ -162,6 +163,22 @@
       $scope.update = function(progID, intQua){
         console.log(progID);
         console.log(intQua);
+
+        $http({
+          url: '{!! url("update") !!}',
+          method: 'post',
+          data: $.param({
+            _token          : CSRF_TOKEN,
+            strJOSpecificID : progID,
+            intQuantity     : intQua
+          }),
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).then(function(response) {
+          console.log(response.data);
+          alert('Successfully Updated!');
+        }, function(error) {
+          alert('An error occurred!');
+        });
 
       } 
       $scope.getTotal = function(){

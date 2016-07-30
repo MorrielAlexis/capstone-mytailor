@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use DB;
 use Input;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -66,6 +67,20 @@ class JobOrderProgressController extends Controller
             // dd($specifics);
         return response()->json(array(
             'job_order_details' => $specifics
+        ));
+    }
+
+    public function updateJobDetails(Request $request)
+    {
+        DB::table("tblJobOrderProgress") 
+        ->where('strJobOrderSpecificFK', '=', $request->strJOSpecificID)
+        ->update(array(
+            'intProgressAmount' => $request->intQuantity
+        ));
+
+        return response()->json(array(
+            $request->strJOSpecificID,
+            $request->intQuantity
         ));
     }
 
