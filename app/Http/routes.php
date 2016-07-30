@@ -256,12 +256,11 @@ Route::group(['prefix' => 'utilities'], function(){
 		Route::post('inactive-data/reactivate-employee', 'InactiveDataController@reactivate_employee');
 		Route::post('inactive-data/reactivate-garmentCategory', 'InactiveDataController@reactivate_category');
 		Route::post('inactive-data/reactivate-segment', 'InactiveDataController@reactivate_segment');
+		Route::post('inactive-data/reactivate-segment-style', 'InactiveDataController@reactivate_segmentStyle');
 		Route::post('inactive-data/reactivate-segmentPattern', 'InactiveDataController@reactivate_segmentPattern');
-		Route::post('inactive-data/reactivate-head', 'InactiveDataController@reactivate_head');
+		Route::post('inactive-data/reactivate-meas-category', 'InactiveDataController@reactivate_measCategory');
 		Route::post('inactive-data/reactivate-detail', 'InactiveDataController@reactivate_detail');
 		Route::post('inactive-data/reactivate-fabricType', 'InactiveDataController@reactivate_fabrictype');
-		Route::post('inactive-data/reactivate-swatch', 'InactiveDataController@reactivate_swatch');
-		Route::post('inactive-data/reactivate-swatchName', 'InactiveDataController@reactivate_swatchname');
 		Route::post('inactive-data/reactivate-button', 'InactiveDataController@reactivate_button');
 		Route::post('inactive-data/reactivate-hookAndEye', 'InactiveDataController@reactivate_hookeye');
 		Route::post('inactive-data/reactivate-needle', 'InactiveDataController@reactivate_needle');
