@@ -67,9 +67,9 @@
                               <td>@{{ jobOrderDetail.strSegmentName }}</td>
                               <td>@{{ jobOrderDetail.intQuantity }}</td>
                               <td>                     
-                                <input type="number" onkeydown = "return false" min= "0" max = "@{{ jobOrderDetail.intQuantity }}"  ng-model ="jobOrderDetail.intProgressAmount"/>                
+                                <input type="text" min= "0" max = "@{{ jobOrderDetail.intQuantity }}"  ng-model ="jobOrderDetail.intProgressAmount"/>                
                               </td> 
-                              <td><button class="waves-effect waves-light btn" ng-click="update()">Update</button></td>
+                              <td><button class="waves-effect waves-light btn" ng-click="update(jobOrderDetail.strJOSpecificID, jobOrderDetail.intProgressAmount)">Update</button></td>
 
                             </tr>
                             <tr>
@@ -133,19 +133,18 @@
 
 
  <script type="text/javascript">
-    var app = angular.module('tailoring', []);
+    var app = angular.module('tailoring', [])
+      .constant('CSRF_TOKEN', '{!! csrf_token() !!}');
 
-    app.controller('JobOrderController', function($scope, $http) {
+    app.controller('JobOrderController', function($scope, $http, CSRF_TOKEN) {
       $scope.jobOrderDetails = [];
       $scope.isEmpty = true;
       // $scope.qty = [];
       $scope.details = function(jobID) {
-        console.log(jobID);
            $http.get('{!! url("details?jobID=") !!}' + jobID)
             .then(function(response) {
               var jobOrder = response.data.job_order_details;
 
-              console.log(jobOrder);
               if(jobOrder.length > 0) {
                 $scope.isEmpty = false;
 
@@ -161,15 +160,32 @@
       $scope.cancel = function(){
         $scope.isEmpty=true;
       }
-      $scope.update = function(){
-        console.log('Fisher', $scope.jobOrderDetails);
+      $scope.update = function(progID, intQua){
+        console.log(progID);
+        console.log(intQua);
+
+        $http({
+          url: '{!! url("update") !!}',
+          method: 'post',
+          data: $.param({
+            _token          : CSRF_TOKEN,
+            strJOSpecificID : progID,
+            intQuantity     : intQua
+          }),
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).then(function(response) {
+          console.log(response.data);
+          alert('Successfully Updated!');
+        }, function(error) {
+          alert('An error occurred!');
+        });
 
       } 
       $scope.getTotal = function(){
         var total = 0;
         for(var i = 0; i < $scope.jobOrderDetails.length; i++){
             var jobOrderDetail = $scope.jobOrderDetails[i];
-            total += jobOrderDetail.intQuantity;
+            total += parseInt(jobOrderDetail.intQuantity);
         }
         return parseInt(total);
       }
@@ -177,7 +193,7 @@
         var totalProg = 0;
         for(var i = 0; i < $scope.jobOrderDetails.length; i++){
             var jobOrderDetail = $scope.jobOrderDetails[i];
-            totalProg += jobOrderDetail.intProgressAmount;
+            totalProg += parseInt(jobOrderDetail.intProgressAmount);
         }
         return parseInt(totalProg);
       }
@@ -189,18 +205,17 @@
 
         for(var i = 0; i < $scope.jobOrderDetails.length; i++){
             var jobOrderDetail = $scope.jobOrderDetails[i];
-            total += jobOrderDetail.intQuantity;
+            total += parseInt(jobOrderDetail.intQuantity);
         }
 
         for(var i = 0; i < $scope.jobOrderDetails.length; i++){
             var jobOrderDetail = $scope.jobOrderDetails[i];
-            totalProg += jobOrderDetail.intProgressAmount;
+            totalProg += parseInt(jobOrderDetail.intProgressAmount);
             
         }
 
-        total = parseFloat(total);
-        totalProg = parseFloat(totalProg);
-        console.log(total, totalProg);
+        total = parseInt(total);
+        totalProg = parseInt(totalProg);
         prog = (totalProg/total)*100;
         $('.determinate').css('width', prog + '%');
 
