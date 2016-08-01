@@ -48,11 +48,18 @@ class WalkInIndividualController extends Controller
     
     public function index()
     {   
-        if(session()->get('segment_values') != null){
+        if(session()->get('segment_data') != null && session()->get('segment_quantity')){
             $values = session()->get('segment_values');
+            $data = session()->get('segment_data');
+            $quantity = session()->get('segment_quantity');
         }else{
             $values = [];
+            $quantity = [];
+            $data = [];
+
+            session(['segment_data' => $data]);
             session(['segment_values' => $values]);
+            session(['segment_quantity' => $quantity]);
         }
 
         $categories = GarmentCategory::all();
@@ -65,7 +72,8 @@ class WalkInIndividualController extends Controller
         return view('transaction-walkin-individual')
                     ->with('garments', $garments)
                     ->with('categories', $categories)
-                    ->with('values', $values);
+                    ->with('values', $data)
+                    ->with('quantity', $quantity);
     }
 
     public function bulkOrder()
