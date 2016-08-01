@@ -50,94 +50,12 @@
           </div>
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
 
-          <div class="col s12" style="padding:20px;"><h4>3. Buttons</h4></div>
-          @foreach($buttons as $button)
-          <div class="col s12" style="margin-top:20px;">
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="{{URL::asset($button->strButtonImage)}}">
-              <p>
-                <input name="rdb_pattern{{ $button->intButtonID }}" type="radio" class="filled-in" value = "{{ $button->intButtonID }}" id="{{ $button->intButtonID }}" />
-                <label for="{{ $button->intButtonID }}"><font size="+1"><b>{{$button->strButtonBrand}} {{$button->strButtonColor}}</b></font></label>
-              </p>
-            </div>
-          </div> 
-          @endforeach
-          
-
-          <div class="col s12" style="margin-top:20px;">
-            
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input name="" type="radio" class="filled-in" value = "" id="" />
-                <label for=""><font size="+1"><b>Button Name</b></font></label>
-              </p>
-            </div>
-
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input name="" type="radio" class="filled-in" value = "" id="" />
-                <label for=""><font size="+1"><b>Button Name</b></font></label>
-              </p>
-            </div>
-
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input name="" type="radio" class="filled-in" value = "" id="" />
-                <label for=""><font size="+1"><b>Button Name</b></font></label>
-              </p>
-            </div>
-
-          </div> 
-
-         <!-- <div class="divider dashed" style="height:2px;"></div>
-
-          <div class="col s12" style="margin-top:20px;">
-            <div class="col s6" style="padding-left:20px;"><h5><b>Coloured Button Threads</b></h5></div>
-            <div class="col s6" style="padding-left:20px;"><h5><b>Coloured Buttonholes</b></h5></div>
-          </div>
-
-          <div class="col s12">
-            <div class="col s3 button-thread ]" style="padding:40px;">
-            <input type="hidden" name="hidden_thread_id" value="">
-              <img class="materialboxed responsive-img" src="">
-            </div>
-            ndforeach 
-
-            <div class="col s2" style="padding:20px;">
-              <p>Would you like coloured button threads?</p>
-              <div class="input-field col s12">
-                <select class = "button-thread" id = "button-thread">
-                    <option value=""></option>
-                </select>
-                <label><font size="3" color="gray">Choose</font></label>
-              </div>             
-            </div>
-
-            <div class="col s3" style="padding:40px;">
-              <img class="materialboxed responsive-img" src="">
-            </div>             
-
-            <div class="col s2" style="padding:20px;">
-              <p>Would you like coloured buttonholes?</p>
-              <div class="input-field" style="margin-top:70px;">
-                <select class="browser-default">
-                  <option value="" disabled selected>Choose your option</option>
-                  <option value=""></option>
-                </select>
-              </div>             
-            </div>         
-
-          </div>-->
-
           <div class="col s12">
             <ul class="collapsible" data-collapsible="accordion" style="border:none;">
               <li>
                 <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Buttons</div>
                 <div class="collapsible-body row overflow-x">
-                  <div class="col s4">
+                  <div class="col s6">
                     <div class="center col s2 " style="margin-top:100px">
                       <input name="" type="radio" class="filled-in" value = "" id="" />
                       <label for=""></label>
@@ -163,6 +81,45 @@
               </li>
             </ul>
           </div>
+
+        <div class="divider dashed" style="height:2px;"></div>
+
+          <div class="col s12" style="margin-top:20px;">
+            <div class="col s6" style="padding-left:20px;"><h5><b>Coloured Button Threads</b></h5></div>
+            <div class="col s6" style="padding-left:20px;"><h5><b>Coloured Buttonholes</b></h5></div>
+          </div>
+
+          <div class="col s12">
+            <div class="col s3 button-thread" style="padding:40px;">
+            <input type="hidden" name="hidden_thread_id" value="">
+              <img class="materialboxed responsive-img" src="">
+            </div>
+
+            <div class="col s3" style="padding:20px;">
+              <p>Would you like coloured button threads?</p>
+              <div class="input-field col s12">
+                <select class = "button-thread" id = "button-thread">
+                    <option value="">Choose</option>
+                </select>
+              </div>             
+            </div>
+
+            <div class="col s3" style="padding:40px;">
+              <img class="materialboxed responsive-img" src="">
+            </div>             
+
+            <div class="col s3" style="padding:20px;">
+              <p>Would you like coloured buttonholes?</p>
+              <div class="input-field">
+                <select>
+                  <option value="" disabled selected>Choose your option</option>
+                  <option value=""></option>
+                </select>
+              </div>             
+            </div>         
+
+          </div>
+
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12">

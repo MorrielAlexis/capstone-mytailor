@@ -39,7 +39,6 @@
         </ul>
 
         <!--POCKETS TAB-->
-          {!! Form::open(['url' => 'customize-pants-style-bottom', 'method' => 'POST']) !!}
         <div id="tabPockets" class="col s12 white" style="padding:20px; border: 2px teal accent-4;">
           
           <div class="col s12">
@@ -48,64 +47,68 @@
           </div>
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
           
-          <div class="col s12" style="padding:20px;"><h4>Pants' Pockets</h4></div>
-          @foreach($pocketSegment as $pocket)
-          <div class="col s12">
-            @foreach($pattern as $pattern)
-            <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $pocket->strSegStyleCatID) hidden @endif>
-              <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
-              <p>
-                <input name="rdb_pattern{{ $pocket->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
-                <label for="{{ $pattern->strSegPatternID }}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
-              </p>
-            </div>
-            @endforeach
-          </div>
-          @endforeach
-
-          <div class="col s12" style="padding:20px;"><h4>Backpockets</h4></div>
-          @foreach($backSegment as $back)
-          <div class="col s12">
-            @foreach($pattern as $pattern)
-            <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $back->strSegStyleCatID) hidden @endif>
-              <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
-              <p>
-                <input name="rdb_pattern{{ $back->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
-                <label for="{{ $pattern->strSegPatternID }}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
-              </p>
-            </div>
-            @endforeach
-          </div> 
-          @endforeach    
-
-
-          <div class="col s12">
-          
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input name="" type="radio" class="filled-in" value = "" id="" />
-                <label for=""><font size="+1"><b>Pockets Name</b></font></label>
-              </p>
-            </div>
-
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input name="" type="radio" class="filled-in" value = "" id="" />
-                <label for=""><font size="+1"><b>Pockets Name</b></font></label>
-              </p>
-            </div>
-
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input name="" type="radio" class="filled-in" value = "" id="" />
-                <label for=""><font size="+1"><b>Pockets Name</b></font></label>
-              </p>
-            </div>
-           
-          </div>      
+          <div class="col s12" style="margin-top:20px;">
+            <ul class="collapsible" data-collapsible="accordion" style="border:none;">
+              <li>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Pant's Pockets</div>
+                <div class="collapsible-body row overflow-x" style="padding:20px;">       
+                  <div class="col s12">
+                    <div class="col s6">
+                      <div class="center col s2 " style="margin-top:100px">
+                        <input name="" type="radio" class="filled-in" value = "" id="" />
+                        <label for=""></label>
+                      </div>
+                      <div class="col s10">
+                        <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
+                          <div class="row valign-wrapper">
+                            <div class="center col s6">
+                              <img src="" alt="" class="responsive-img">
+                            </div>
+                            <div class="col s6"> 
+                              <span><b></b></span>
+                              <br/>
+                              <span class="black-text">
+                                
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>                  
+                </div>
+              </li>
+              <li>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Backpockets</div>
+                <div class="collapsible-body row overflow-x" style="padding:20px;">       
+                  <div class="col s12">
+                    <div class="col s6">
+                      <div class="center col s2 " style="margin-top:100px">
+                        <input name="" type="radio" class="filled-in" value = "" id="" />
+                        <label for=""></label>
+                      </div>
+                      <div class="col s10">
+                        <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
+                          <div class="row valign-wrapper">
+                            <div class="center col s6">
+                              <img src="" alt="" class="responsive-img">
+                            </div>
+                            <div class="col s6"> 
+                              <span><b></b></span>
+                              <br/>
+                              <span class="black-text">
+                                
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>                  
+                </div>
+              </li>              
+            </ul>
+          </div>          
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12">

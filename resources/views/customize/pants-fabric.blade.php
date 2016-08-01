@@ -92,51 +92,67 @@
       <center><span class="red-text"><font size="+1">Click fabric photo to view fabric in detail</font></span></center>
       <div class="col s12 divider dashed" style="height:4px; margin-top:10px; margin-bottom:10px;"></div>
       
-      <div class="col s12" style="margin-bottom:20px;"><a class="right btn-flat teal accent-4 white-text" type="submit">Continue</a></div>
+      <div class="col s12" style="margin-bottom:20px;"><a class="right btn-flat teal accent-4 white-text" href="/customize-pants-style-pleats">Continue</a></div>
 
       <div class="col s12" style="margin-bottom:20px; padding:20px; padding-top:0;">
-        <div class="col s6">
+        <div class="col s4">
           <div class="center col s2 " style="margin-top:100px">
             <input name="" type="radio" class="filled-in" value = "" id="" />
             <label for=""></label>
           </div>
           <div class="col s10">
-            <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
+            <div class="card-panel teal lighten-4 z-depth-1" style="height:265px">
               <div class="row valign-wrapper">
-                <div class="center col s6">
+                <div class="center" style="margin:auto;">
                   <img src="img/1.jpg" alt="" class="responsive-img">
-                </div>
-                <div class="col s6"> 
-                  <span><b></b></span>
-                  <br/>
-                  <span class="black-text">
-                    
-                  </span>
+                  <figcaption style="background-color:#ede7f6">Fabric Name</figcaption>
+                  <figcaption style="background-color:#ede7f6">Fabric Code</figcaption>
+                  <figcaption style="background-color:#ede7f6">Fabric Type Name</figcaption>
+                  <figcaption style="background-color:#ede7f6; color:red;">PHP </figcaption>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-
-      @foreach($fabrics as $fabric)
-      {!! Form::open(['url' => 'customize-pants-style-pleats', 'method' => 'POST']) !!}
-      <div class="col s12 fabric-general {{ $fabric->strFabricTypeFK }} {{ $fabric->strFabricPatternFK }} {{ $fabric->strFabricColorFK }} {{ $fabric->strFabricThreadCountFK }}">
-        <div class="col s3">
-          <div style="padding:20px;">
-            <img class="materialboxed responsive-img" src="{{URL::asset($fabric->strFabricImage)}}">
-            <input type="hidden" name="hidden_fabric_id" value="{{$fabric->strFabricID}}">
-            <figcaption style="background-color:#ede7f6">{{$fabric->strFabricName}}</figcaption>
-            <figcaption style="background-color:#ede7f6">{{$fabric->strFabricCode}}</figcaption>
-            <figcaption style="background-color:#ede7f6">{{$fabric->strFabricTypeName}}</figcaption>
-            <figcaption style="background-color:#ede7f6; color:red;">PHP {{$fabric->dblFabricPrice}}</figcaption>
-            <div><button class="btn teal acccent-4" type="submit"><i class="mdi-action-shopping-cart" style="font-size:22px;"> Choose this fabric</i></button></div>
+        <div class="col s4">
+          <div class="center col s2 " style="margin-top:100px">
+            <input name="" type="radio" class="filled-in" value = "" id="" />
+            <label for=""></label>
+          </div>
+          <div class="col s10">
+            <div class="card-panel teal lighten-4 z-depth-1" style="height:265px">
+              <div class="row valign-wrapper">
+                <div class="center" style="margin:auto;">
+                  <img src="img/1.jpg" alt="" class="responsive-img">
+                  <figcaption style="background-color:#ede7f6">Fabric Name</figcaption>
+                  <figcaption style="background-color:#ede7f6">Fabric Code</figcaption>
+                  <figcaption style="background-color:#ede7f6">Fabric Type Name</figcaption>
+                  <figcaption style="background-color:#ede7f6; color:red;">PHP </figcaption>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div> 
-      {!! Form::close() !!}
-      @endforeach     
+        <div class="col s4">
+          <div class="center col s2 " style="margin-top:100px">
+            <input name="" type="radio" class="filled-in" value = "" id="" />
+            <label for=""></label>
+          </div>
+          <div class="col s10">
+            <div class="card-panel teal lighten-4 z-depth-1" style="height:265px">
+              <div class="row valign-wrapper">
+                <div class="center" style="margin:auto;">
+                  <img src="img/1.jpg" alt="" class="responsive-img">
+                  <figcaption style="background-color:#ede7f6">Fabric Name</figcaption>
+                  <figcaption style="background-color:#ede7f6">Fabric Code</figcaption>
+                  <figcaption style="background-color:#ede7f6">Fabric Type Name</figcaption>
+                  <figcaption style="background-color:#ede7f6; color:red;">PHP </figcaption>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>                
+      </div>    
       
       <div class="col s12 divider dashed" style="height:4px; margin-bottom:10px;"></div>
       <center><span class="red-text"><font size="+1">Click fabric photo to view fabric in detail</font></span></center>
