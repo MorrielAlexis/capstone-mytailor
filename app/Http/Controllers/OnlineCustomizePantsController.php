@@ -74,7 +74,7 @@ class OnlineCustomizePantsController extends Controller
 
     public function stylepockets()
     {
-        $pattern = SegmentPattern::all();
+        $patterns = SegmentPattern::all();
         $keypocket = 'Pants Pocket';
 
         $pocketSegment = \DB::table('tblSegmentStyleCategory')
@@ -82,7 +82,7 @@ class OnlineCustomizePantsController extends Controller
                     ->where('strSegStyleName', 'LIKE', '%'.$keypocket.'%')
                     ->get();
 
-        $keyback = 'Pants Backpocket';
+        $keyback = 'Backpockets';
 
         $backSegment = \DB::table('tblSegmentStyleCategory')
                     ->select('strSegStyleCatID', 'strSegStyleName')
@@ -90,7 +90,7 @@ class OnlineCustomizePantsController extends Controller
                     ->get();
 
         return view('customize.pants-style-pockets')
-                    ->with('pattern', $pattern)
+                    ->with('patterns', $patterns)
                     ->with('pocketSegment', $pocketSegment)
                     ->with('backSegment', $backSegment);
     }   

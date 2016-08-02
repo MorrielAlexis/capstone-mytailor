@@ -51,7 +51,7 @@
           <div class="col s12" style="padding:20px;"><h4>Pants' Pockets</h4></div>
           @foreach($pocketSegment as $pocket)
           <div class="col s12">
-            @foreach($pattern as $pattern)
+            @foreach($patterns as $pattern)
             <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $pocket->strSegStyleCatID) hidden @endif>
               <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
               <p>
@@ -66,7 +66,7 @@
           <div class="col s12" style="padding:20px;"><h4>Backpockets</h4></div>
           @foreach($backSegment as $back)
           <div class="col s12">
-            @foreach($pattern as $pattern)
+            @foreach($patterns as $pattern)
             <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $back->strSegStyleCatID) hidden @endif>
               <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
               <p>
@@ -79,7 +79,7 @@
           @endforeach    
 
 
-          <div class="col s12">
+         <!-- <div class="col s12">
           
             <div class="col s2">
               <img class="materialboxed responsive-img" src="img/fabric.jpg">
@@ -89,23 +89,7 @@
               </p>
             </div>
 
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input name="" type="radio" class="filled-in" value = "" id="" />
-                <label for=""><font size="+1"><b>Pockets Name</b></font></label>
-              </p>
-            </div>
-
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input name="" type="radio" class="filled-in" value = "" id="" />
-                <label for=""><font size="+1"><b>Pockets Name</b></font></label>
-              </p>
-            </div>
-           
-          </div>      
+          </div>  -->    
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12">

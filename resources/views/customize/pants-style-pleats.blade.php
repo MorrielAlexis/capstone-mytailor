@@ -53,26 +53,25 @@
           @foreach($fabrics as $fabric)
           <div class="col s12">
             <div class="col s2">
-              <img class="responsive-img" src="{{ URL::asset($fabric->strFabricImage) }}" style="">
+              <img class="responsive-img" src="{{ URL::asset($fabric->strFabricImage) }}">
             </div>
             
             <div class="col s5" style="background-color:#eeeeee;">
                 <p>Fabric Name: {{ $fabric->strFabricName }}</p>
                 <p>Swatch Code: {{ $fabric->strFabricCode }}</p>
-                <p>Fabric Type: {{ $fabric->strFabricTypeName }}</p>
                 <p>Price:       {{ number_format($fabric->dblFabricPrice, 2) }} PHP</p>
             </div>
           </div>
           @endforeach
 
           <div class="col s12" style="padding:20px;"><h4>Pants' Pleats</h4></div>
-            @foreach($pleatsSegment as $pleatsSegment)
+            @foreach($pleatsSegment as $pleats)
             <div class="col s12">
               @foreach($pattern as $pattern)
-              <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $pleatsSegment->strSegStyleCatID) hidden @endif>
+              <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $pleats->strSegStyleCatID) hidden @endif>
                 <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
                 <p>
-                  <input name="rdb_pattern{{ $pleatsSegment->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
+                  <input name="rdb_pattern{{ $pleats->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
                   <label for="{{$pattern->strSegPatternID}}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
                 </p>
               </div>
@@ -80,7 +79,7 @@
             </div>
             @endforeach
 
-
+<!--
             <div class="col s12">
            
               <div class="col s2">
@@ -90,24 +89,9 @@
                   <label for=""><font size="+1"><b>Pleats name</b></font></label>
                 </p>
               </div>
-
-              <div class="col s2">
-                <img class="materialboxed responsive-img" src="img/fabric.jpg">
-                <p>
-                  <input name="" type="radio" class="filled-in" value = "" id="" />
-                  <label for=""><font size="+1"><b>Pleats name</b></font></label>
-                </p>
-              </div>
-
-              <div class="col s2">
-                <img class="materialboxed responsive-img" src="img/fabric.jpg">
-                <p>
-                  <input name="" type="radio" class="filled-in" value = "" id="" />
-                  <label for=""><font size="+1"><b>Pleats name</b></font></label>
-                </p>
-              </div>
              
             </div>
+-->
 
 
 

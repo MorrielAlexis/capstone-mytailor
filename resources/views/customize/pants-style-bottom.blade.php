@@ -64,7 +64,7 @@
           @endforeach
 
 
-          <div class="col s12">
+         <!-- <div class="col s12">
             
             <div class="col s2">
               <img class="materialboxed responsive-img" src="img/fabric.jpg">
@@ -74,23 +74,7 @@
               </p>
             </div>
 
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input name="" type="radio" class="filled-in" value = "" id="" />
-                <label for=""><font size="+1"><b>Bottom Name</b></font></label>
-              </p>
-            </div>
-
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input name="" type="radio" class="filled-in" value = "" id="" />
-                <label for=""><font size="+1"><b>Bottom Name</b></font></label>
-              </p>
-            </div>
-            
-          </div>
+          </div> -->
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12">
