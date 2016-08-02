@@ -109,7 +109,7 @@
 																	<td>{{ $pending_payment->dtOrderDate }}</td>
 																	<td>Php {{ number_format($pending_payment->dblOrderTotalPrice, 2) }}</td>
 																	<td>Php {{ number_format($pending_payment->dblAmountToPay, 2) }}</td>
-																	<td>Php {{ number_format($pending_payment->dblOustandingBal, 2) }}</td>
+																	<td>Php {{ number_format($pending_payment->dblOutstandingBal, 2) }}</td>
 																	<td style="color:red">{{ $pending_payment->dtPaymentDueDate}}</td>
 																</tr>
 																@endif
@@ -131,7 +131,7 @@
 												
 											{!! Form::open(['url' => 'transaction/billing-payment-bill-customer', 'method' => 'post']) !!}
 												<div class="col s6" style="margin-top:20px;">
-												<label>{{ $pending_payment->strJobOrderID }}This is a summary of orders:</label>
+												<label>This is a summary of orders:</label>
 												</div>
 
 												<div class="col s6">
@@ -152,18 +152,19 @@
 													                  <th data-field="product">Item</th>         
 													                  <th data-field="quantity">Quantity</th>
 													                  <th data-field="price">Unit Price</th>
-													                  <th data-field="price">Total Price</th>
+													                  
 													              	</tr>
 												              	</thead>
 												              	<tbody>
 												              	@if(isset($or_summary))
 												              	@foreach($or_summary as $summary)
 												              		@if($summary->boolIsActive == 1)
+												              		
 														            <tr>
 														               <td>{{ $summary->strGarmentCategoryName }} , {{ $summary->strSegmentName }}</td>
 														               <td>{{ $summary->intQuantity }}</td>
 														               <td>{{ $summary->dblUnitPrice }}</td>
-														               <td>{{ $summary->dblUnitPrice*2 }}</td>
+														               
 														            </tr>
 																	@endif
 																@endforeach

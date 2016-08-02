@@ -113,9 +113,33 @@
 						<div class="col s6">
 							<h5 style="color:teal"><b>Price Quotation*</b></h5>
 							<span>Determine terms of payment to get payment details</span>
+
+							<!--Eto yung mga pinapadagdag non sa Capstone-->
+							<!--Ikinoment ko muna dahil hindi naman yata pina-require sa soft eng-->
+							<!--
+							<div class="col s12 z-depth-1" style="border: 2px gray solid; padding:20px; margin-top:2%">
+								
+								<div class="col s12">
+									<div class="col s4" style="color:gray; font-size:15px"><p><b>Estimated Total Amount</b></p></div>
+			      					<div class="col s8" style="color:red;"><p><input id="estimated_total" name="estimated_total" type="text" class=""></p></div>
+								</div>
+
+								<div class="col s12">
+									<div class="col s4" style="color:gray; font-size:15px"><p><b>Labor Fee</b></p></div>
+			      					<div class="col s8" style="color:red;"><p><input id="labor_fee" name="labor_fee" type="text" class=""></p></div>
+								</div>
+								
+								<div class="col s12">
+									<div class="col s4" style="color:gray; font-size:15px"><p><b>Additional Fee</b></p></div>
+			      					<div class="col s8" style="color:red;"><p><input id="addtnl_fee" name="addtnl_fee" type="text" class=""></p></div>
+								</div>
+
+							</div>-->
+
 							<div class="col s12"><div class="divider" style="margin:15px"></div></div>
-			      			<div class="col s4" style="color:gray; font-size:15px"><p><b>Total Amount</b></p></div>
-			      			<div class="col s8" style="color:red;"><p><input id="total_price" name="total_price" type="text" class="" readonly></p></div>
+
+			      			<div class="col s4" style="color:red; font-size:15px"><p><b>Grand Total</b></p></div>
+			      			<div class="col s8" style="color:red;"><p><input id="total_price" name="total_price" type="text" class="" readonly><b></b></p></div>
 
                         	<div class="col s4" style="color:gray; font-size:15px"><p><b>Terms of Payment</b></p></div>
                         	<div class="col s8" style="padding:18px; padding-top:30px">

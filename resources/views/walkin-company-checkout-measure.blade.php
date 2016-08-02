@@ -14,8 +14,8 @@
         
 	        <ul class="col s12 breadcrumb">
 				<li><a style="padding-left:200px" href="{{URL::to('transaction/walkin-company-payment-customer-info')}}"><b>1.FILL-UP FORM</b></a></li>
-				<li><a style="padding-left:200px" href="{{URL::to('transaction/walkin-company-payment-payment-info')}}"><b>2.PAYMENT</b></a></li>
-				<li><a class="active" style="padding-left:200px" href="#measure-detail"><b>3.ADD MEASUREMENT DETAIL</b></a></li>
+				<li><a class="active" style="padding-left:200px" href="#measure-detail"><b>2.ADD MEASUREMENT DETAIL</b></a></li>
+				<li><a style="padding-left:200px" href="{{URL::to('transaction/walkin-company-payment-payment-info')}}"><b>3.PAYMENT</b></a></li>	
 			</ul>
 
 
@@ -137,8 +137,7 @@
 	        	</div>
 
 
-                    		<a class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to edit data for company employees" href="{{URL::to('transaction/walkin-company-add-employees')}}" style="margin-left:30px; padding:10px; color:white; background-color:#03a9f4; padding-bottom:45px; margin-top:80px;"><!--<i class="mdi-navigation-cancel" style="font-size:20px;">--> <label style="font-size:15px; color:white"> Add Employees Now</label><!--</i>--></a>
-                    		<a href="{{URL::to('transaction/walkin-company')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to go back to home and start shopping!" style="background-color:#1976d2; padding:9.5px; padding-bottom:45px; margin-top:80px; margin-right:30px"><label style="font-size:15px; color:white">Go Back to Shopping</label></a>
+                    		<a href="{{URL::to('transaction/walkin-company-payment-payment-info')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to go back to home and start shopping!" style="background-color:#1976d2; padding:9.5px; padding-bottom:45px; margin-top:80px; margin-right:60px"><label style="font-size:15px; color:white">Save and Go to Payment</label></a>
                     		<a href="{{URL::to('transaction/walkin-company')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Transfers you back home and clears current unsaved transaction" style="background-color:#26a69a; padding:9.5px; padding-bottom:45px; margin-right:30px; margin-top:80px;"><label style="font-size:15px; color:white">Cancel Transaction</label></a>
                     	
 
