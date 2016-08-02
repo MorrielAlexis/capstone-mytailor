@@ -90,6 +90,8 @@
                                       <th> <center>Segment Name</center></th>
                                       <th> <center>Quantity</center></th>
                                       <th> <center>No. of Finished Garment</center></th>
+                                      <th> <center>Date Ordered</center></th>
+                                      <th> <center>Date Order Expected to be Done</center></th>
                                     </tr>
                                   </thead>
 
@@ -99,13 +101,17 @@
                                         <td>@{{ trackDetail.strGarmentCategoryName }}</td>
                                         <td>@{{ trackDetail.strSegmentName }}</td>
                                         <td>@{{ trackDetail.intQuantity }}</td>
-                                        <td>@{{ trackDetail.intProgressAmount }}</td>                                       
+                                        <td>@{{ trackDetail.intProgressAmount }}</td>
+                                        <td>@{{ trackDetail.dtOrderDate }}</td>
+                                        <td>@{{ trackDetail.dtOrderExpectedToBeDone }}</td>                                       
                                       </tr>
                                       <tr>
                                         <td><b>TOTAL</b></td>
                                         <td></td>
                                         <td><b>@{{getTotal()}}</b></td>
                                         <td><b>@{{getTotalProg()}}</b></td>
+                                        <td></td>
+                                        <td></td>
                                       </tr>
                                   </tbody>
                                 </table>  
@@ -127,6 +133,13 @@
                             </div>
 
                         </div>
+                        <div class = "col s12" style= "border:3px solid #ffebee;" ng-hide="isNull">
+                          <div class = "row">
+                            <div class = "card">
+                              <center><h4>No data found</h4></center>
+                            </div>  
+                          </div>  
+                        </div>  
                       </div>
                     </div>
                 </div>
@@ -152,6 +165,7 @@
     app.controller('OrderTrackingController', function($scope, $http){
       $scope.trackDetails = [];
       $scope.isEmpty = true;
+      $scope.isNull = false;
 
       $scope.track = function(trackID){
         console.log(trackID);
@@ -161,10 +175,12 @@
 
             if(trackOrder.length > 0) {
               $scope.isEmpty = false;
+              $scope.isNull = true;
 
               $scope.trackDetails = trackOrder;
             } else {
               $scope.isEmpty = true;
+              $scope.isNull = false;
 
             }
           }, function(response) {

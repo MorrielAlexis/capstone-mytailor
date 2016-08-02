@@ -182,6 +182,7 @@ class WalkInIndividualController extends Controller
         $segmentStyles = SegmentStyle::all();
         $patterns = [];
         $i = 0;
+        $k = 0;
 
         for($i = 0; $i < count($values); $i++){
             $segmentFabric[$i] = $request->input('fabrics' . ($i+1));
@@ -191,23 +192,27 @@ class WalkInIndividualController extends Controller
             for($j = 0; $j < count($segmentStyles); $j++){
                 $tempPatterns = $request->input('rdb_pattern' . $segmentStyles[$j]->strSegStyleCatID . ($i+1));       
                 if($tempPatterns != null){
-                    $patterns[$i] = $tempPatterns;
+                    $patterns[$i][$k] = $tempPatterns;
+                    $k++;
                 } 
             }
+            $k = 0;
         }
-
-        $sqlStyles = \DB::table('tblSegmentPattern AS a')
-                ->leftJoin('tblSegmentStyleCategory AS b', 'a.strSegPStyleCategoryFK', '=', 'b.strSegStyleCatID')
-                ->leftJoin('tblSegment AS c', 'b.strSegmentFK', '=', 'strSegmentID')
-                ->select('c.strSegmentID', 'a.strSegPStyleCategoryFK', 'a.strSegPatternID', 
-                         'a.strSegPName', 'b.strSegStyleName', 'a.dblPatternPrice')
-                ->whereIn('a.strSegPatternID', $patterns)
-                ->get();
+        
+        for($i = 0; $i < count($values); $i++){
+            $sqlStyles[] = \DB::table('tblSegmentPattern AS a')
+                    ->leftJoin('tblSegmentStyleCategory AS b', 'a.strSegPStyleCategoryFK', '=', 'b.strSegStyleCatID')
+                    ->leftJoin('tblSegment AS c', 'b.strSegmentFK', '=', 'strSegmentID')
+                    ->select('c.strSegmentID', 'a.strSegPStyleCategoryFK', 'a.strSegPatternID', 
+                             'a.strSegPName', 'b.strSegStyleName', 'a.dblPatternPrice')
+                    ->whereIn('a.strSegPatternID', $patterns[$i])
+                    ->get();
+        }
 
         for($i = 0; $i < count($values); $i++){
             for($j = 0; $j < count($sqlStyles); $j++){
-                if($patterns[$i] == $sqlStyles[$j]->strSegPatternID){
-                    $patterns[$i] = $sqlStyles[$j];
+                if($patterns[$i][$j] == $sqlStyles[$i][$j]->strSegPatternID){
+                    $patterns[$i][$j] = $sqlStyles[$i][$j];
                 }
             }
         }
