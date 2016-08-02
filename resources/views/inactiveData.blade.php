@@ -608,6 +608,52 @@
           </div>
         </div>
       </div>
+       <!--Fabric Thread Count-->
+      <p><h5 style="margin-left:20px"><b>Fabric Thread Count</b></h5></p>
+      <div class="row">
+        <div class="col s12">
+          <div class="card">
+            <div class="card-content">
+              <div class = "col s12 m12 l12 overflow-x">
+                <h5><font color = "#1b5e20"><center>Inactive Fabric Thread Count</center> </font> </h5>
+                <table class="centered" border="1">
+                  <thead>
+                    <tr>
+                      <!--<th data-field="fabricID">Fabric Type ID</th>-->
+                      <th data-field="fabricThreadCountName">Thread Count Name</th>
+                      <th data-field="fabricThreadCountDesc">Thread Count Desc</th> 
+                      <th data-field="React">Reason for Deactivation</th>    
+                      <th>Reactivate</th>
+                    </tr>   
+                  </thead>
+
+                  <tbody>
+                    @foreach($threadCount as $threadCount_1)
+                    @if($threadCount_1->boolIsActive == 0)
+                      <tr>
+                          <!--<td>{{ $threadCount_1->strFabricThreadCountID }}</td>-->
+                        <td>{{ $threadCount_1->strFabricThreadCountName }}</td>
+                        <td>{{ $threadCount_1->txtFabricThreadCountDesc}}</td>
+                        <td>{{ $threadCount_1->strFabricThreadCountInactiveReason }}</td>
+                        <td>
+                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-fabric-thread-count']) !!}
+                            <input type="hidden" value="{{ $threadCount_1->strFabricThreadCountID }}" id="reactID" name="reactID">
+                            <input type="hidden" value="{{ $threadCount_1->strFabricThreadCountID }}" id="reactInactiveFabricThreadCount" name="reactInactiveFabricThreadCount">
+                            <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of fabric thread count to the table">REACTIVATE</button>
+                          {!! Form::close() !!}
+                        </td>
+                      </tr>
+                      @endif
+                      @endforeach
+                  </tbody>
+                </table>
+              </div>
+              <div class = "clearfix"></div>
+
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div id="tabMate" class="hue col s12" style="margin-top:45px; background-color: #80d8ff;">

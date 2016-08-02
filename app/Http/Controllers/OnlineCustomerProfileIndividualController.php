@@ -44,7 +44,7 @@ class OnlineCustomerProfileIndividualController extends Controller
         //     ->join('tblGarmentCategory', 'tblGarmentCategory.strGarmentCategoryID', '=', 'tblSegment.strSegCategoryFK')
         //     ->leftjoin('tblJobOrderProgress', 'tblJobOrderProgress.strJobOrderSpecificFK', '=', "tbljospecific.strJOSpecificID")
         //     ->where('tbljospecific.strJobOrderFK', '=', "JO001")
-        //     ->select('tbljospecific.*', 'tblGarmentCategory.strGarmentCategoryName', 'tblSegment.strSegmentName', 'tblJobOrderProgress.intProgressAmount')
+        //     ->select('tbljospecific.*', 'tblJobOrder.dtOrderDate', 'tblGarmentCategory.strGarmentCategoryName', 'tblSegment.strSegmentName', 'tblJobOrderProgress.intProgressAmount')
         //     ->get(); 
 
         // dd($tracks);    
@@ -59,7 +59,7 @@ class OnlineCustomerProfileIndividualController extends Controller
             ->join('tblGarmentCategory', 'tblGarmentCategory.strGarmentCategoryID', '=', 'tblSegment.strSegCategoryFK')
             ->leftjoin('tblJobOrderProgress', 'tblJobOrderProgress.strJobOrderSpecificFK', '=', "tbljospecific.strJOSpecificID")
             ->where('tbljospecific.strJobOrderFK', '=', Input::get('trackID'))
-            ->select('tbljospecific.*', 'tblGarmentCategory.strGarmentCategoryName', 'tblSegment.strSegmentName', 'tblJobOrderProgress.intProgressAmount')
+            ->select('tbljospecific.*', 'tblGarmentCategory.strGarmentCategoryName', 'tblJobOrder.*', 'tblSegment.strSegmentName', 'tblJobOrderProgress.intProgressAmount')
             ->get();        
 
 

@@ -36,6 +36,7 @@ class OnlineCustomizeSuitController extends Controller
 
     public function fabric()
     {
+        return view('customize.suit-fabric');        
         $fabrics = Fabric::all();
         $fabricThreadCounts = FabricThreadCount::all();
         $fabricColors = FabricColor::all();
@@ -48,10 +49,12 @@ class OnlineCustomizeSuitController extends Controller
                 ->with('fabricColors', $fabricColors)
                 ->with('fabricTypes', $fabricTypes)
                 ->with('fabricPatterns', $fabricPatterns);
+
     }
 
-    public function stylejacket(Request $request)
+    public function stylejacket(/*Request $request*/)
     {
+        return view('customize.suit-style-jacket');
        $selectedFabric = \DB::table('tblFabric AS a')
                     ->leftJoin('tblFabricType AS b', 'a.strFabricTypeFK', '=','b.strFabricTypeID')
                     ->select('a.*', 'b.strFabricTypeName')
@@ -78,10 +81,12 @@ class OnlineCustomizeSuitController extends Controller
             ->with('patterns', $patterns)
             ->with('ventsSegment', $ventsSegment)
             ->with('lapelSegment', $lapelSegment);
+
     }
 
     public function stylecollarpocket()
     {
+        return view('customize.suit-style-collar-pocket');
         $patterns = SegmentPattern::all();
 
         $keycollar = 'Collar Pocket';
@@ -108,10 +113,12 @@ class OnlineCustomizeSuitController extends Controller
                 ->with('collarSegment', $collarSegment)
                 ->with('chestSegment', $chestSegment)
                 ->with('jacketSegment', $jacketSegment);
+
     }
 
     public function stylepants()
     {
+        return view('customize.suit-style-pants');
         $patterns = SegmentPattern::all();
 
         $key = 'Pleat';
@@ -148,6 +155,7 @@ class OnlineCustomizeSuitController extends Controller
                     ->with('pocketSegment', $pocketSegment)
                     ->with('backSegment', $backSegment)
                     ->with('bottomSegment', $bottomSegment);
+
     }
 
     public function stylemonogram()

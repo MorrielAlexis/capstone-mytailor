@@ -51,14 +51,14 @@
 							</select>
 					</div>
 				</div>
-			<!--
+			
 				<div style="color:gray" class="col s5"> 
 					<div class="col s7"><p style="color:gray; margin-top:5px; font-size:15px"><b>No. of Measurement Profile:</b></p></div>                
                   	<div class="col s5"><center><input class="center" name="num-meas-profile" id="num-meas-profile" type="number" value=""></div>
                 </div>
 
                 <div class="col s2"><a href="" class="btn" style="background-color:teal; color:white; margin-top:10px">Add</a></div>
-			-->
+			
 			</div>
 
 			@foreach($segments as $i => $segment)
@@ -148,13 +148,12 @@
 							  </select>
 	                    	</div>
 							
-							<!--
 	                    	<div style="color:gray" class="input-field col s3">                 
 	                          <select>
 							    <option value="" disabled selected color="red">Target Garment</option>
 							    <option value="1">{{ $segment->strGarmentCategoryName }} - {{ $segment->strSegmentName }}</option>
 							  </select>
-	                    	</div>-->
+	                    	</div>
 
 	                    	<div class="col s1"><a href="#!" class="btn-floating" style="background-color:#a7ffeb; margin-top:20px"><i class="mdi-navigation-check" style="color:black;"></i></a></div>
 	            	</div>

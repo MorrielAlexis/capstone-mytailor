@@ -53,60 +53,103 @@
             <ul class="collapsible" data-collapsible="accordion" style="border:none;">
               <li>
                 <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Pockets</div>
-                <div class="collapsible-body row overflow-x">
-                  <div class="col s12" style="padding:20px;"><h4>4.Pockets</h4></div>
-
+                <div class="collapsible-body row overflow-x" style="padding:20px;">
                   <div class="col s12">
                     <p>
                       <input class="with-gap" name="classic" type="radio" id="small" />
                       <label for="small"><font size="+1"><b>No Pocket</b></font></label>
                     </p>
-                  </div>
-
-                  <div class="col s12" style="margin-top:20px;">
-
-                    <div class="col s2">
-                      <img class="materialboxed responsive-img" src="img/fabric.jpg">
-                      <p>
-                        <input class="with-gap" name="classic" type="radio" id="small" />
-                        <label for="small"><font size="+1"><b>Cuffed Short Sleeves</b></font></label>
-                      </p>
+                  </div>                
+                  <div class="col s12">
+                    <div class="col s6">
+                      <div class="center col s2 " style="margin-top:100px">
+                        <input name="" type="radio" class="filled-in" value = "" id="" />
+                        <label for=""></label>
+                      </div>
+                      <div class="col s10">
+                        <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
+                          <div class="row valign-wrapper">
+                            <div class="center col s6">
+                              <img src="" alt="" class="responsive-img">
+                            </div>
+                            <div class="col s6"> 
+                              <span><b></b></span>
+                              <br/>
+                              <span class="black-text">
+                                
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-
-                  </div> 
-
-                  <div class="col s12" style="margin-top:20px;">
-                    
-                    <div class="col s3" style="padding:20px;">
-                      <h5><b>Contrast Pocket</b></h5>
-                      <img class="materialboxed responsive-img" src="img/fabric.jpg">
-                      <div><a class="btn-flat teal accent-4 white-text" href="{{URL::to('/customize-womens-fabric')}}"><font size="+1">Select Fabric</font></a></div>
+                  </div>                  
+                  <div class="col s12" style="margin:20px;">
+                    <div class="col s4">
+                    <h5><b>Contrast Pocket</b></h5>
+                      <div class="card-panel teal lighten-4 z-depth-1" style="height:230px">
+                        <div class="row valign-wrapper">
+                          <div class="center" style="margin:auto;">
+                            <img src="img/1.jpg" alt="" class="responsive-img">
+                            <figcaption class="btn container"><a href="">Select Fabric</a></figcaption>
+                          </div>
+                        </div>
+                      </div>  
                     </div>
-
-                    <div class="col s3" style="padding:20px;">
-                      <h5><b>Contrast Pocket Flap</b></h5>
-                      <img class="materialboxed responsive-img" src="img/fabric.jpg">
-                      <div><a class="btn-flat teal accent-4 white-text" href="{{URL::to('/customize-womens-fabric')}}"><font size="+1">Select Fabric</font></a></div>
+                    <div class="col s4">
+                    <h5><b>Contrast Pocket Flap</b></h5>
+                      <div class="card-panel teal lighten-4 z-depth-1" style="height:230px">
+                        <div class="row valign-wrapper">
+                          <div class="center" style="margin:auto;">
+                            <img src="img/1.jpg" alt="" class="responsive-img">
+                            <figcaption class="btn container"><a href="">Select Fabric</a></figcaption>
+                          </div>
+                        </div>
+                      </div>  
                     </div> 
-                               
-                  </div>         
+                  </div>                                      
                 </div>
               </li>
               <li>
                 <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Monogram</div>
-                <div class="collapsible-body row overflow-x">
-                  <div class="col s12" style="padding:20px;"><h4>5. Monogram</h4></div>
-
+                <div class="collapsible-body row overflow-x" style="padding:20px;">
                   <div class="col s12">
                     <p>
                       <input class="with-gap" name="classic" type="radio" id="small" />
                       <label for="small"><font size="+1"><b>No Monogram</b></font></label>
                     </p>
-                  </div>
-
+                  </div>                
+                  <div class="col s12">
+                    <div class="col s6">
+                      <div class="center col s2 " style="margin-top:100px">
+                        <input name="" type="radio" class="filled-in" value = "" id="" />
+                        <label for=""></label>
+                      </div>
+                      <div class="col s10">
+                        <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
+                          <div class="row valign-wrapper">
+                            <div class="center col s6">
+                              <img src="" alt="" class="responsive-img">
+                            </div>
+                            <div class="col s6"> 
+                              <span><b></b></span>
+                              <br/>
+                              <span class="black-text">
+                                
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>                  
+                </div>
+              </li>
+              <li>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Monogram Position</div>
+                <div class="collapsible-body row overflow-x" style="padding:20px;">
                   <div class="col s12" style="margin-top:20px;">
-
-                    <div class="col s2">
+                    <div class="col s3">
                       <img class="materialboxed responsive-img" src="img/fabric.jpg">
                       <p>
                         <input class="with-gap" name="classic" type="radio" id="small" />
@@ -114,21 +157,7 @@
                       </p>
                     </div>
 
-                  </div> 
-
-                  <div class="col s12" style="padding:20px;"><h4>Monogram Position</h4></div>
-
-                  <div class="col s12" style="margin-top:20px;">
-
-                    <div class="col s2">
-                      <img class="materialboxed responsive-img" src="img/fabric.jpg">
-                      <p>
-                        <input class="with-gap" name="classic" type="radio" id="small" />
-                        <label for="small"><font size="+1"><b>Cuffed Short Sleeves</b></font></label>
-                      </p>
-                    </div>
-
-                    <div class="col s2">
+                    <div class="col s3">
                       <div class="input-field" style="margin-top:100px;">
                         <input placeholder="Monogram Position" id="position" type="text" class="validate">
                       </div>
@@ -143,7 +172,7 @@
                   <div class="col s12" style="margin-top:20px;">
 
                     <div class="input-field col s4">
-                      <input id="monogram" type="text" class="validate">
+                      <input id="monogram" type="text" class="validate"/>
                       <label for="monogram"><b>Enter your monogram:</b></label>
                     </div>
 
@@ -156,8 +185,8 @@
                   <div class="col s12">
 
                     <div class="input-field col s4">
-                      <select class="browser-default">
-                        <option value="" disabled selected>STANDARD</option>
+                      <select>
+                        <option value="" disabled selected></option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
                         <option value="3">Option 3</option>
@@ -188,7 +217,7 @@
                   <div class="col s12">
 
                     <div class="input-field col s4">
-                      <input id="comment" type="text" class="validate">
+                      <input id="comment" type="text" class="validate"/>
                       <label for="comment"><b>Monogram comment:</b></label>
                     </div>
 
@@ -196,12 +225,13 @@
                       <p>Please add any comments you would like to make regarding your monogram.</p>
                     </div>
 
-                  </div>                  
+                  </div>
+
                 </div>
               </li>              
             </ul>
-          </div>          
-
+          </div>                        
+          
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12">
             <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/customize-womens-style-others')}}">Next step</a></div>
@@ -237,4 +267,3 @@
     });
 
   </script>
-        

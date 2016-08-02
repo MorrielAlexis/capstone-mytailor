@@ -137,7 +137,7 @@
 												<div class="col s6">
 													<div class="col s6"><p style="color:gray">Date of Transaction:</p></div>
 													@if(isset($pending_payments))
-									              	@foreach($pending_payments as $pending_payment)
+									              	@foreach($pending_payment as $pending_payment)
 									              		@if($pending_payment->boolIsActive == 1)
 													<div class="col s6"><h6 style="color:red; margin-top:15px"><b>{{ $pending_payment->dtOrderDate }}</b></h6></div>
 														@endif

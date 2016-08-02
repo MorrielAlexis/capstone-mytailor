@@ -92,6 +92,7 @@
       <center><span class="red-text"><font size="+1">Click fabric photo to view fabric in detail</font></span></center>
       <div class="col s12 divider dashed" style="height:4px; margin-top:10px; margin-bottom:10px;"></div>
       
+
       {!! Form::open(['url' => 'customize-pants-style-pleats', 'method' => 'post']) !!}
       <div class="col s12" style="margin-bottom:20px;"><button class="right btn-flat teal accent-4 white-text" type="submit">Continue</button></div>
 
@@ -104,13 +105,13 @@
             <label for="{{$fabric->strFabricID}}"></label>
           </div>
           <div class="col s10">
-            <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
+            <div class="card-panel teal lighten-4 z-depth-1" style="height:265px">
               <div class="row valign-wrapper">
                 <div class="center col s6">
                   <img src="{{URL::asset($fabric->strFabricImage)}}"class="responsive-img">
                 </div>
                 <div class="col s6"> 
-                  <span><p><b id="{{ 'fabricText'.$fabric->strFabricID }}">{{ $fabric->strFabricName }}</b></p> </span>
+                  <span><b>{{$fabric->strFabricName}}</b></span>
                   <br/>
                   <span class="black-text">
                     <b>{{$fabric->strFabricCode}}</b> <br>
@@ -123,7 +124,7 @@
         </div>
       </div>
       @endforeach  
-      {!! Form::close() !!}   
+      {!! Form::close() !!}
       
       <div class="col s12 divider dashed" style="height:4px; margin-bottom:10px;"></div>
       <center><span class="red-text"><font size="+1">Click fabric photo to view fabric in detail</font></span></center>

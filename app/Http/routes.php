@@ -263,6 +263,7 @@ Route::group(['prefix' => 'utilities'], function(){
 		Route::post('inactive-data/reactivate-meas-category', 'InactiveDataController@reactivate_measCategory');
 		Route::post('inactive-data/reactivate-detail', 'InactiveDataController@reactivate_detail');
 		Route::post('inactive-data/reactivate-fabricType', 'InactiveDataController@reactivate_fabrictype');
+		Route::post('inactive-data/reactivate-fabric-thread-count', 'InactiveDataController@reactivate_fabricThreadCount');
 		Route::post('inactive-data/reactivate-button', 'InactiveDataController@reactivate_button');
 		Route::post('inactive-data/reactivate-hookAndEye', 'InactiveDataController@reactivate_hookeye');
 		Route::post('inactive-data/reactivate-needle', 'InactiveDataController@reactivate_needle');
@@ -298,6 +299,7 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::post('walkin-individual-payment-measure-detail', 'WalkInIndividualController@measurement');
 	
 	Route::get('walkin-individual-show-customize-orders', 'WalkInIndividualController@showCustomizeOrder');
+	Route::get('walkin-individual-show-measurement-view', 'WalkInIndividualController@showMeasurementView');
 
 	Route::get('walkin-individual-catalogue-designs', 'WalkInIndividualController@catalogueDesign');
 	Route::get('walkin-individual-payment-info', 'WalkInIndividualController@payment');
