@@ -346,9 +346,17 @@ class WalkInIndividualController extends Controller
 
         $payment->save();
 
+        return redirect('transaction/walkin-individual-show-measurement-view');
+
+    }
+
+    public function showMeasurementView()
+    {
         $values = session()->get('segment_values');
         $data = session()->get('segment_data');
 
+        $measurementCategory = MeasurementCategory::all();
+        $standardSizeCategory = StandardSizeCategory::all();
 
         $measurements = \DB::table('tblMeasurementCategory AS a')
                     ->leftJoin('tblMeasurementDetail AS b', 'a.strMeasurementCategoryID', '=', 'b.strMeasCategoryFK')
@@ -356,9 +364,6 @@ class WalkInIndividualController extends Controller
                     ->select('b.*')
                     ->whereIn('b.strMeasDetSegmentFK', $data)
                     ->get();
-
-        $measurementCategory = MeasurementCategory::all();
-        $standardSizeCategory = StandardSizeCategory::all();
 
         return view('walkin-individual-checkout-measure')
                 ->with('segments', $values)
@@ -388,6 +393,7 @@ class WalkInIndividualController extends Controller
                     ));
 
                 $individual->save();
+                
         return redirect('transaction/walkin-individual-payment-info');
     }
 
