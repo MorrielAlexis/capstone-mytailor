@@ -608,6 +608,7 @@
           </div>
         </div>
       </div>
+
        <!--Fabric Thread Count-->
       <p><h5 style="margin-left:20px"><b>Fabric Thread Count</b></h5></p>
       <div class="row">
@@ -640,6 +641,53 @@
                             <input type="hidden" value="{{ $threadCount_1->strFabricThreadCountID }}" id="reactID" name="reactID">
                             <input type="hidden" value="{{ $threadCount_1->strFabricThreadCountID }}" id="reactInactiveFabricThreadCount" name="reactInactiveFabricThreadCount">
                             <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of fabric thread count to the table">REACTIVATE</button>
+                          {!! Form::close() !!}
+                        </td>
+                      </tr>
+                      @endif
+                      @endforeach
+                  </tbody>
+                </table>
+              </div>
+              <div class = "clearfix"></div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Fabric Color-->
+      <p><h5 style="margin-left:20px"><b>Fabric Color</b></h5></p>
+      <div class="row">
+        <div class="col s12">
+          <div class="card">
+            <div class="card-content">
+              <div class = "col s12 m12 l12 overflow-x">
+                <h5><font color = "#1b5e20"><center>Inactive Fabric Color</center> </font> </h5>
+                <table class="centered" border="1">
+                  <thead>
+                    <tr>
+                      <!--<th data-field="fabricID">Fabric Type ID</th>-->
+                      <th data-field="fabricColorName"> Color Name</th>
+                      <th data-field="fabricColorDesc"> Color Desc</th> 
+                      <th data-field="React">Reason for Deactivation</th>    
+                      <th>Reactivate</th>
+                    </tr>   
+                  </thead>
+
+                  <tbody>
+                    @foreach($fabricColor as $fabricColor_1)
+                    @if($fabricColor_1->boolIsActive == 0)
+                      <tr>
+                          <!--<td>{{ $fabricColor_1->strFabricColorID }}</td>-->
+                        <td>{{ $fabricColor_1->strFabricColorName }}</td>
+                        <td>{{ $fabricColor_1->txtFabricColorDesc}}</td>
+                        <td>{{ $fabricColor_1->strFabricColorInactiveReason }}</td>
+                        <td>
+                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-fabric-color']) !!}
+                            <input type="hidden" value="{{ $fabricColor_1->strFabricColorID }}" id="reactID" name="reactID">
+                            <input type="hidden" value="{{ $fabricColor_1->strFabricColorID }}" id="reactInactiveFabricColor" name="reactInactiveFabricColor">
+                            <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of fabric color to the table">REACTIVATE</button>
                           {!! Form::close() !!}
                         </td>
                       </tr>

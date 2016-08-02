@@ -16,6 +16,7 @@ use App\MeasurementCategory;
 use App\MeasurementDetail;
 use App\FabricType;
 use App\FabricThreadCount;
+use App\FabricColor;
 use App\Thread;
 use App\Needle;
 use App\Button;
@@ -55,6 +56,7 @@ class InactiveDataController extends Controller
         $detail = MeasurementDetail::all();
         $fabricType = FabricType::all();
         $threadCount = FabricThreadCount::all();
+        $fabricColor = FabricColor::all();
         $thread = Thread::all();
         $needle = Needle::all();
         $button = Button::all();
@@ -82,6 +84,7 @@ class InactiveDataController extends Controller
             ->with('detail', $detail)
             ->with('fabricType', $fabricType)
             ->with('threadCount', $threadCount)
+            ->with('fabricColor', $fabricColor)
             ->with('thread', $thread)
             ->with('needle', $needle)
             ->with('button', $button)
@@ -364,33 +367,19 @@ class InactiveDataController extends Controller
         return redirect('utilities/inactive-data');
     }
 
-    function reactivate_swatch(Request $request)
+
+      function reactivate_fabricColor(Request $request)
     {
-        $swatch = Swatch::find($request->input('reactID'));
-
-        $swatch->strSwatchInactiveReason = null;
-
-        $swatch->boolIsActive = 1;
-        $swatch->save();
+        $fabricColor = FabricColor::find($request->input('reactID'));
+        $fabricColor->strFabricColorInactiveReason = null;
+        $fabricColor->boolIsActive = 1;
+        $fabricColor->save();
 
         \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
 
         return redirect('utilities/inactive-data');
     }
-
-    function reactivate_swatchname(Request $request)
-    {
-        $swatchname = SwatchNameMaintenance::find($request->input('reactID'));
-
-        $swatchname->strSwatchNameInactiveReason = null;
-
-        $swatchname->boolIsActive = 1;
-        $swatchname->save();
-
-        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
-
-        return redirect('utilities/inactive-data');
-    }
+   
 
     function reactivate_thread(Request $request)
     {
