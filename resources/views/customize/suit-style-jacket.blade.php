@@ -40,7 +40,6 @@
         </ul>
 
         <!--JACKET TAB-->
-          {!! Form::open(['url' => 'customize-suit-style-collar-pocket', 'method' => 'POST']) !!}
         <div id="tabJacket" class="col s12 white" style="padding:20px; border: 2px teal accent-4;">
 
           <div class="col s12"><button class="btn-flat right teal accent-4 white-text" type="submit">Next step</button></div>
@@ -50,190 +49,123 @@
             <label class="col s2"><font size="+1"><b>Selected Fabric</b></font></label>
             <label class="col s5"><a class="btn teal accent-4 white-text" href="{{URL::to('/customize-mens-fabric')}}"><font size="+1">Edit / Change Fabric</font></a></label>
           </div>
-          
-          @foreach($fabrics as $fabric)
+
           <div class="col s12">
             <div class="col s2">
-              <img class="responsive-img" src="{{ URL::asset($fabric->strFabricImage) }}" style="">
+              <img class="responsive-img" src="img/fabric.jpg" style="">
             </div>
-            
             <div class="col s5" style="background-color:#eeeeee;">
-                <p>Fabric Name: {{ $fabric->strFabricName }}</p>
-                <p>Swatch Code: {{ $fabric->strFabricCode }}</p>
-                <p>Fabric Type: {{ $fabric->strFabricTypeName }}</p>
-                <p>Price:       {{ number_format($fabric->dblFabricPrice, 2) }} PHP</p>
+              <p>Fabric Name</p>
+              <p>Swatch Code</p>
+              <p>Fabric Type</p>
+              <p>Price</p>
             </div>
           </div>
-          @endforeach
 
-          <div class="col s12" style="padding:20px;"><h4>Vents</h4></div>
-          @foreach($ventsSegment as $vents)
-          <div class="col s12">
-            @foreach($patterns as $pattern)
-            <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $vents->strSegStyleCatID) hidden @endif>
-              <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
-              <p>
-                <input name="rdb_pattern{{ $vents->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
-                <label for="{{ $pattern->strSegPatternID }}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
-              </p>
-            </div>
-            @endforeach
-          </div>
-          @endforeach
-
-          <div class="col s12">
-            
-            <div class="col s2" >
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input name="" type="radio" class="filled-in" value = "" id="" />
-                <label for=""><font size="+1"><b>Vents Name</b></font></label>
-              </p>
-            </div>
-
-            <div class="col s2" >
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input name="" type="radio" class="filled-in" value = "" id="" />
-                <label for=""><font size="+1"><b>Vents Name</b></font></label>
-              </p>
-            </div>
-
-          </div>
-
-          <div class="col s12" style="padding:20px;"><h4>Lapel</h4></div>
-          @foreach($lapelSegment as $lapel)
-          <div class="col s12">
-            @foreach($patterns as $pattern)
-            <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $lapel->strSegStyleCatID) hidden @endif>
-              <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
-              <p>
-                <input name="rdb_pattern{{ $lapel->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
-                <label for="{{ $pattern->strSegPatternID }}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
-              </p>
-            </div>
-            @endforeach
-          </div> 
-          @endforeach
-
-          <div class="col s12">
-           
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input name="" type="radio" class="filled-in" value = "" id="" />
-                <label for=""><font size="+1"><b>Lapel Name</b></font></label>
-              </p>
-            </div>
-          </div> 
 
           <div class="col s12">
             <ul class="collapsible" data-collapsible="accordion" style="border:none;">
               <li>
                 <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Single Breasted</div>
-                <div class="collapsible-body row overflow-x">
-                  <div class="col s4">
-                    <div class="center col s2 " style="margin-top:100px">
+                <div class="collapsible-body row overflow-x" style="padding:20px;">
+                  <div class="col s6">
+                    <div class="center col s2 " style="margin-top:60px">
                       <input name="" type="radio" class="filled-in" value = "" id="" />
                       <label for=""></label>
                     </div>
-                    <div class="col s10">
-                      <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
-                        <div class="row valign-wrapper">
-                          <div class="center col s6">
-                            <img src="" alt="" class="responsive-img">
-                          </div>
-                          <div class="col s6"> 
-                            <span><b></b></span>
-                            <br/>
-                            <span class="black-text">
-                              
-                            </span>
+                      <div class="col s10">
+                        <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
+                          <div class="row valign-wrapper">
+                            <div class="center col s4">
+                              <img src="" alt="" class="responsive-img">
+                            </div>
+                            <div class="col s6"> 
+                              <span><b></b></span>
+                              <br/>
+                              <span class="black-text">
+                              </span>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
                   </div>
                 </div>
               </li>
               <li>
                 <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Double Breasted</div>
-                <div class="collapsible-body row overflow-x">
-                  <div class="col s4">
-                    <div class="center col s2 " style="margin-top:100px">
+                <div class="collapsible-body row overflow-x" style="padding:20px;">
+                  <div class="col s6">
+                    <div class="center col s2 " style="margin-top:60px">
                       <input name="" type="radio" class="filled-in" value = "" id="" />
                       <label for=""></label>
                     </div>
-                    <div class="col s10">
-                      <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
-                        <div class="row valign-wrapper">
-                          <div class="center col s6">
-                            <img src="" alt="" class="responsive-img">
-                          </div>
-                          <div class="col s6"> 
-                            <span><b></b></span>
-                            <br/>
-                            <span class="black-text">
-                              
-                            </span>
+                      <div class="col s10">
+                        <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
+                          <div class="row valign-wrapper">
+                            <div class="center col s4">
+                              <img src="" alt="" class="responsive-img">
+                            </div>
+                            <div class="col s6"> 
+                              <span><b></b></span>
+                              <br/>
+                              <span class="black-text">
+                              </span>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
                   </div>
                 </div>
               </li>              
               <li>
                 <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Jacket Bottom</div>
-                <div class="collapsible-body row overflow-x">
-                  <div class="col s4">
-                    <div class="center col s2 " style="margin-top:100px">
+                <div class="collapsible-body row overflow-x" style="padding:20px;">
+                  <div class="col s6">
+                    <div class="center col s2 " style="margin-top:60px">
                       <input name="" type="radio" class="filled-in" value = "" id="" />
                       <label for=""></label>
                     </div>
-                    <div class="col s10">
-                      <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
-                        <div class="row valign-wrapper">
-                          <div class="center col s6">
-                            <img src="" alt="" class="responsive-img">
-                          </div>
-                          <div class="col s6"> 
-                            <span><b></b></span>
-                            <br/>
-                            <span class="black-text">
-                              
-                            </span>
+                      <div class="col s10">
+                        <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
+                          <div class="row valign-wrapper">
+                            <div class="center col s4">
+                              <img src="" alt="" class="responsive-img">
+                            </div>
+                            <div class="col s6"> 
+                              <span><b></b></span>
+                              <br/>
+                              <span class="black-text">
+                              </span>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
                   </div>
                 </div>
               </li>    
               <li>
                 <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Vents</div>
-                <div class="collapsible-body row overflow-x">
-                  <div class="col s4">
-                    <div class="center col s2 " style="margin-top:100px">
+                <div class="collapsible-body row overflow-x" style="padding:20px;">
+                  <div class="col s6">
+                    <div class="center col s2 " style="margin-top:60px">
                       <input name="" type="radio" class="filled-in" value = "" id="" />
                       <label for=""></label>
                     </div>
-                    <div class="col s10">
-                      <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
-                        <div class="row valign-wrapper">
-                          <div class="center col s6">
-                            <img src="" alt="" class="responsive-img">
-                          </div>
-                          <div class="col s6"> 
-                            <span><b></b></span>
-                            <br/>
-                            <span class="black-text">
-                              
-                            </span>
+                      <div class="col s10">
+                        <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
+                          <div class="row valign-wrapper">
+                            <div class="center col s4">
+                              <img src="" alt="" class="responsive-img">
+                            </div>
+                            <div class="col s6"> 
+                              <span><b></b></span>
+                              <br/>
+                              <span class="black-text">
+                              </span>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
                   </div>
                 </div>
               </li>                                      
@@ -244,7 +176,6 @@
           <div class="col s12"><button class="btn-flat right teal accent-4 white-text" type="submit">Next step</button></div>
 
         </div>
-        {!! Form::close() !!}
         <!--END OF JACKET TAB-->
 
 

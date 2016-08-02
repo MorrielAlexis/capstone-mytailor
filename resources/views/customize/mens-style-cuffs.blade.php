@@ -41,7 +41,6 @@
         </ul>
 
         <!--CUFFS TAB-->
-          {!! Form::open(['url' => 'customize-mens-style-buttons', 'method' => 'POST']) !!}
         <div id="tabCuffs" class="col s12 white" style="padding:20px; border 2px teal accent-4 white-text;">
           
           <div class="col s12">
@@ -50,85 +49,12 @@
           </div>
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
 
-          <div class="col s12" style="padding:20px;"><h4>2. Sleeve & Cuffs</h4></div>
-          <div class="col s12" style="padding:20px;"><h5>Sleeve</h5></div>
-
-          <div class="col s12" style="margin-top:20px;">
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="imgCustomize/cuffed-short-sleeves.jpg">
-              <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Cuffed Short Sleeves</b></font></label>
-              </p>
-            </div>
-          </div> 
-
-          <div class="col s12" style="margin-top:20px;">
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="imgCustomize/plain-short-sleeves.jpg">
-              <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Plain Short Sleeves</b></font></label>
-              </p>
-            </div>
-          </div>
-
-
-          <div class="col s12" style="padding:20px;"><h5>Cuffs</h5></div>
-          <div class="col s12" style="margin-top:20px;">
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="imgDesignPatterns/french-square.jpg">
-              <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>French Square</b></font></label>
-              </p>
-            </div>
-          </div> 
-
-          <div class="col s12" style="margin-top:20px;">
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="imgDesignPatterns/HiddenButtonCuffs.jpg">
-              <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="smal"><font size="+1"><b>Hidden Button Cuffs</b></font></label>
-              </p>
-            </div>
-          </div>
-
-          <!--<div class="divider dashed" style="height:2px;"></div>
-
-          <div class="col s12" style="margin-top:20px;">
-            <div class="col s3" style="padding-left:20px;"><h5><b>Contrast Cuffs</b></h5></div>
-            <div class="col s6" style="padding-left:20px;"><h5><b>Inside fabric for collar & cuffs</b></h5></div>
-            <div class="col s3" style="padding-left:20px;"><h5><b>Select Cufflinks</b></h5></div>
-          </div>
-
-          <div class="col s12">
-
-            <div class="col s3" style="padding:20px;">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <div><a class="btn-flat teal accent-4 white-text" href="{{URL::to('/customize-mens-fabric')}}"><font size="+1">Select Fabric</font></a></div>
-            </div>             
-
-            <div class="col s6" style="padding:20px;">
-              <div class="col s6"><img class="materialboxed responsive-img" src="img/fabric.jpg"></div>
-              <div class="col s6"><img class="materialboxed responsive-img" src="img/fabric.jpg"></div>
-              <div class="col s12"><a class="btn-flat teal accent-4 white-text" href="{{URL::to('/customize-mens-fabric')}}"><font size="+1">Select Fabric</font></a></div>
-            </div> 
-
-            <div class="col s3" style="padding:20px;">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <div><a class="btn-flat teal accent-4 white-text" href="{{URL::to('/customize-mens-fabric')}}"><font size="+1">Select Cufflinks</font></a></div>
-            </div> 
-
-          </div>-->
-
           <div class="col s12">
             <ul class="collapsible" data-collapsible="accordion" style="border:none;">
               <li>
                 <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Sleeve</div>
                 <div class="collapsible-body row overflow-x">
-                  <div class="col s4">
+                  <div class="col s6">
                     <div class="center col s2 " style="margin-top:100px">
                       <input name="" type="radio" class="filled-in" value = "" id="" />
                       <label for=""></label>
@@ -155,7 +81,7 @@
               <li>
                 <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Cuffs</div>
                 <div class="collapsible-body row overflow-x">
-                  <div class="col s4">
+                  <div class="col s6">
                     <div class="center col s2 " style="margin-top:100px">
                       <input name="" type="radio" class="filled-in" value = "" id="" />
                       <label for=""></label>
@@ -181,6 +107,34 @@
               </li>              
             </ul>
           </div>          
+
+          <div class="divider dashed" style="height:2px;"></div>
+
+          <div class="col s12" style="margin-top:20px;">
+            <div class="col s3" style="padding-left:20px;"><h5><b>Contrast Cuffs</b></h5></div>
+            <div class="col s6" style="padding-left:20px;"><h5><b>Inside fabric for collar & cuffs</b></h5></div>
+            <div class="col s3" style="padding-left:20px;"><h5><b>Select Cufflinks</b></h5></div>
+          </div>
+
+          <div class="col s12">
+
+            <div class="col s3" style="padding:20px;">
+              <img class="materialboxed responsive-img" src="img/fabric.jpg">
+              <div><a class="btn-flat teal accent-4 white-text" href="{{URL::to('/customize-mens-fabric')}}"><font size="+1">Select Fabric</font></a></div>
+            </div>             
+
+            <div class="col s6" style="padding:20px;">
+              <div class="col s6"><img class="materialboxed responsive-img" src="img/fabric.jpg"></div>
+              <div class="col s6"><img class="materialboxed responsive-img" src="img/fabric.jpg"></div>
+              <div class="col s12"><a class="btn-flat teal accent-4 white-text" href="{{URL::to('/customize-mens-fabric')}}"><font size="+1">Select Fabric</font></a></div>
+            </div> 
+
+            <div class="col s3" style="padding:20px;">
+              <img class="materialboxed responsive-img" src="img/fabric.jpg">
+              <div><a class="btn-flat teal accent-4 white-text" href="{{URL::to('/customize-mens-fabric')}}"><font size="+1">Select Cufflinks</font></a></div>
+            </div> 
+
+          </div>        
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12">

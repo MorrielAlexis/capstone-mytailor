@@ -50,66 +50,52 @@
             <label class="col s5"><a class="btn teal accent-4 white-text" href="{{URL::to('/customize-mens-fabric')}}"><font size="+1">Edit / Change Fabric</font></a></label>
           </div>
           
-          @foreach($fabrics as $fabric)
           <div class="col s12">
             <div class="col s2">
-              <img class="responsive-img" src="{{ URL::asset($fabric->strFabricImage) }}" style="">
+              <img class="responsive-img" src="" style="">
             </div>
             
             <div class="col s5" style="background-color:#eeeeee;">
-                <p>Fabric Name: {{ $fabric->strFabricName }}</p>
-                <p>Swatch Code: {{ $fabric->strFabricCode }}</p>
-                <p>Fabric Type: {{ $fabric->strFabricTypeName }}</p>
-                <p>Price:       {{ number_format($fabric->dblFabricPrice, 2) }} PHP</p>
+                <p>Fabric Name: </p>
+                <p>Swatch Code: </p>
+                <p>Fabric Type: </p>
+                <p>Price:       PHP</p>
             </div>
           </div>
-          @endforeach
 
-          <div class="col s12" style="padding:20px;"><h4>Pants' Pleats</h4></div>
-            @foreach($pleatsSegment as $pleatsSegment)
-            <div class="col s12">
-              @foreach($pattern as $pattern)
-              <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $pleatsSegment->strSegStyleCatID) hidden @endif>
-                <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
-                <p>
-                  <input name="rdb_pattern{{ $pleatsSegment->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
-                  <label for="{{$pattern->strSegPatternID}}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
-                </p>
-              </div>
-              @endforeach
-            </div>
-            @endforeach
-
-
-            <div class="col s12">
-           
-              <div class="col s2">
-                <img class="materialboxed responsive-img" src="img/fabric.jpg">
-                <p>
-                  <input name="" type="radio" class="filled-in" value = "" id="" />
-                  <label for=""><font size="+1"><b>Pleats name</b></font></label>
-                </p>
-              </div>
-
-              <div class="col s2">
-                <img class="materialboxed responsive-img" src="img/fabric.jpg">
-                <p>
-                  <input name="" type="radio" class="filled-in" value = "" id="" />
-                  <label for=""><font size="+1"><b>Pleats name</b></font></label>
-                </p>
-              </div>
-
-              <div class="col s2">
-                <img class="materialboxed responsive-img" src="img/fabric.jpg">
-                <p>
-                  <input name="" type="radio" class="filled-in" value = "" id="" />
-                  <label for=""><font size="+1"><b>Pleats name</b></font></label>
-                </p>
-              </div>
-             
-            </div>
-
-
+          <div class="col s12" style="margin-top:20px;">
+            <ul class="collapsible" data-collapsible="accordion" style="border:none;">
+              <li>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Pleats</div>
+                <div class="collapsible-body row overflow-x" style="padding:20px;">       
+                  <div class="col s12">
+                    <div class="col s6">
+                      <div class="center col s2 " style="margin-top:100px">
+                        <input name="" type="radio" class="filled-in" value = "" id="" />
+                        <label for=""></label>
+                      </div>
+                      <div class="col s10">
+                        <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
+                          <div class="row valign-wrapper">
+                            <div class="center col s6">
+                              <img src="" alt="" class="responsive-img">
+                            </div>
+                            <div class="col s6"> 
+                              <span><b></b></span>
+                              <br/>
+                              <span class="black-text">
+                                
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>                  
+                </div>
+              </li>
+            </ul>
+          </div>
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12"><button class="right btn-flat teal accent-4 white-text" type="submit">Next step</button></div>
