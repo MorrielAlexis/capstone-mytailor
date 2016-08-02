@@ -101,7 +101,7 @@
         <div class="col s6">
           <div class="center col s2 " style="margin-top:100px">
             <input type="hidden" name="hidden_fabric_id" value="{{$fabric->strFabricID}}">
-            <input name="rdb_fabric{{$fabric->strFabricID}}" type="radio" class="filled-in" value = "{{$fabric->strFabricID}}" id="{{$fabric->strFabricID}}" />
+            <input name="rdb_fabric" type="radio" class="filled-in" value = "{{$fabric->strFabricID}}" id="{{$fabric->strFabricID}}" />
             <label for="{{$fabric->strFabricID}}"></label>
           </div>
           <div class="col s10">
