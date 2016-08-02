@@ -15,6 +15,7 @@ use App\SegmentStyle;
 use App\MeasurementCategory;
 use App\MeasurementDetail;
 use App\FabricType;
+use App\FabricThreadCount;
 use App\Thread;
 use App\Needle;
 use App\Button;
@@ -53,6 +54,7 @@ class InactiveDataController extends Controller
         $measurementCategory = MeasurementCategory::all();
         $detail = MeasurementDetail::all();
         $fabricType = FabricType::all();
+        $threadCount = FabricThreadCount::all();
         $thread = Thread::all();
         $needle = Needle::all();
         $button = Button::all();
@@ -79,6 +81,7 @@ class InactiveDataController extends Controller
             ->with('measurementCategory', $measurementCategory)
             ->with('detail', $detail)
             ->with('fabricType', $fabricType)
+            ->with('threadCount', $threadCount)
             ->with('thread', $thread)
             ->with('needle', $needle)
             ->with('button', $button)
@@ -340,9 +343,21 @@ class InactiveDataController extends Controller
     {
         $fabricType = FabricType::find($request->input('reactID'));
         $fabricType->strFabricTypeInactiveReason = null;
-
         $fabricType->boolIsActive = 1;
         $fabricType->save();
+
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
+
+        return redirect('utilities/inactive-data');
+    }
+
+     function reactivate_fabricThreadCount(Request $request)
+    {
+        $threadCount = FabricThreadCount::find($request->input('reactID'));
+        $threadCount->strFabricThreadCountInactiveReason = null;
+
+        $threadCount->boolIsActive = 1;
+        $threadCount->save();
 
         \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
 
