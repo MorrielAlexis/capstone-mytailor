@@ -247,6 +247,8 @@ Route::group(['prefix' => 'transaction'], function(){
 Route::get('billing-payment/pending-payment-pdf', 'BillingPaymentController@generateBill');
 Route::get('billing-payment/payment-receipt-pdf', 'BillingPaymentController@generateReceipt');
 
+Route::get('generate-payment-receipt', 'WalkInIndividualController@generateReceipt');
+
 Route::group(['prefix' => 'utilities'], function(){
 	Route::resource('inactive-data', 'InactiveDataController');
 
@@ -300,6 +302,7 @@ Route::group(['prefix' => 'transaction'], function(){
 
 	Route::get('walkin-individual-catalogue-designs', 'WalkInIndividualController@catalogueDesign');
 	Route::get('walkin-individual-payment-info', 'WalkInIndividualController@payment');
+
 });
 
 Route::group(['prefix' => 'transaction'], function(){

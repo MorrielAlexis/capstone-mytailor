@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Session;
+use PDF;
 
 use App\GarmentCategory;
 
@@ -359,6 +360,7 @@ class WalkInIndividualController extends Controller
                 ->with('standard_categories', $standardSizeCategory);
     }
 
+
     public function addCustomer(Request $request)
     {
         $individual = Individual::create(array(
@@ -539,6 +541,24 @@ class WalkInIndividualController extends Controller
         session()->forget('segment_values');
         return redirect('transaction/walkin-individual');
     }
+
+    public function generateReceipt()
+    {
+         
+
+        // $data = [
+        //     'joborderid' => session()->get('segment_data'),
+        //     'quantity' => session('segment_quantity'[0]),
+        //     'price' => (double)session()->get('totalPrice')
+        // ];
+
+        // dd($data);
+
+
+        return PDF::loadView('pdf/payment-receipt')
+                ->stream();
+    }
+
 
     /**
      * Show the form for creating a new resource.
