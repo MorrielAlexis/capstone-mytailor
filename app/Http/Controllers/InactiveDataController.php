@@ -54,7 +54,7 @@ class InactiveDataController extends Controller
         $segment = GarmentSegment::all();
         $pattern = SegmentPattern::all();
         $segmentStyle = SegmentStyle::all();
-        $measurementCategory = MeasurementCategory::all();
+        $measurement_category = MeasurementCategory::all();
         $detail = MeasurementDetail::all();
         $fabricType = FabricType::all();
         $threadCount = FabricThreadCount::all();
@@ -84,7 +84,7 @@ class InactiveDataController extends Controller
             ->with('segment', $segment)
             ->with('pattern', $pattern)
             ->with('segmentStyle', $segmentStyle)
-            ->with('measurementCategory', $measurementCategory)
+            ->with('measurement_category', $measurement_category)
             ->with('detail', $detail)
             ->with('fabricType', $fabricType)
             ->with('threadCount', $threadCount)
@@ -324,11 +324,11 @@ class InactiveDataController extends Controller
 
     function reactivate_measCategory(Request $request)
     {
-        $measurementCategory = MeasurementCategory::find($request->input('reactID'));
-        $measurementCategory->strMeasCatInactiveReason = null;
+        $measurement_category = MeasurementCategory::find($request->input('reactID'));
+        $measurement_category->strMeasCatInactiveReason = null;
 
-        $measurementCategory->boolIsActive = 1;
-        $measurementCategory->save();
+        $measurement_category->boolIsActive = 1;
+        $measurement_category->save();
 
         \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
 
@@ -401,7 +401,7 @@ class InactiveDataController extends Controller
     function reactivate_fabric(Request $request)
     {
         $fabric = Fabric::find($request->input('reactID'));
-        $fabric->strPackageInactiveReason = null;
+        $fabric->strFabricInactiveReason = null;
         $fabric->boolIsActive = 1;
         $fabric->save();
 
@@ -414,11 +414,7 @@ class InactiveDataController extends Controller
     function reactivate_thread(Request $request)
     {
         $thread = Thread::find($request->input('reactID'));
-
-      //  $reas = $request->input('reactInactiveID');
-       // $indiv = \DB::table('tblCustIndividual')
-               // ->where('strIndivID', $individual)
-              //  ->update(array($individual->strIndivInactiveReason => null));
+        
         $thread->strThreadInactiveReason = null;
 
         $thread->boolIsActive = 1;

@@ -101,10 +101,11 @@
     @endif
 
 
-  <br><br><br>
- <!--<p><h4 style="lightpink">Measurement Details</h4></p>-->
-
-        
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <span class="page-title"><h4>Maintenance - Measurement Detail</h4></span>
+      </div>
+    </div>  
       <div class="col s6 left">
            <a class="right waves-effect waves-light modal-trigger btn-floating tooltipped btn-large light-green accent-1" data-position="bottom" data-delay="50"  data-tooltip="Click to add a new measurement detail to the table" href="#addMeasurementPart" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-content-add"></i></a>
       </div>
