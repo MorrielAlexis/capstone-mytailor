@@ -702,6 +702,52 @@
           </div>
         </div>
       </div>
+       <!--Fabric Pattern-->
+      <p><h5 style="margin-left:20px"><b>Fabric Pattern</b></h5></p>
+      <div class="row">
+        <div class="col s12">
+          <div class="card">
+            <div class="card-content">
+              <div class = "col s12 m12 l12 overflow-x">
+                <h5><font color = "#1b5e20"><center>Inactive Fabric Pattern</center> </font> </h5>
+                <table class="centered" border="1">
+                  <thead>
+                    <tr>
+                      <!--<th data-field="fabricID">Fabric Type ID</th>-->
+                      <th data-field="fabricColorName"> Pattern Name</th>
+                      <th data-field="fabricColorDesc"> Pattern Desc</th> 
+                      <th data-field="React">Reason for Deactivation</th>    
+                      <th>Reactivate</th>
+                    </tr>   
+                  </thead>
+
+                  <tbody>
+                    @foreach($fabricPattern as $fabricPattern_1)
+                    @if($fabricPattern_1->boolIsActive == 0)
+                      <tr>
+                          <!--<td>{{ $fabricPattern_1->strFabricPatternID }}</td>-->
+                        <td>{{ $fabricPattern_1->strFabricPatternName }}</td>
+                        <td>{{ $fabricPattern_1->txtFabricPatternDesc}}</td>
+                        <td>{{ $fabricPattern_1->strFabricPatternInactiveReason }}</td>
+                        <td>
+                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-fabric-pattern']) !!}
+                            <input type="hidden" value="{{ $fabricPattern_1->strFabricPatternID }}" id="reactID" name="reactID">
+                            <input type="hidden" value="{{ $fabricPattern_1->strFabricPatternID }}" id="reactInactiveFabricPattern" name="reactInactiveFabricPattern">
+                            <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of fabric color to the table">REACTIVATE</button>
+                          {!! Form::close() !!}
+                        </td>
+                      </tr>
+                      @endif
+                      @endforeach
+                  </tbody>
+                </table>
+              </div>
+              <div class = "clearfix"></div>
+
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div id="tabMate" class="hue col s12" style="margin-top:45px; background-color: #80d8ff;">

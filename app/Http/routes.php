@@ -264,6 +264,7 @@ Route::group(['prefix' => 'utilities'], function(){
 		Route::post('inactive-data/reactivate-detail', 'InactiveDataController@reactivate_detail');
 		Route::post('inactive-data/reactivate-fabricType', 'InactiveDataController@reactivate_fabrictype');
 		Route::post('inactive-data/reactivate-fabric-color', 'InactiveDataController@reactivate_fabricColor');
+		Route::post('inactive-data/reactivate-fabric-pattern', 'InactiveDataController@reactivate_fabricPattern');
 		Route::post('inactive-data/reactivate-fabric-thread-count', 'InactiveDataController@reactivate_fabricThreadCount');
 		Route::post('inactive-data/reactivate-button', 'InactiveDataController@reactivate_button');
 		Route::post('inactive-data/reactivate-hookAndEye', 'InactiveDataController@reactivate_hookeye');
