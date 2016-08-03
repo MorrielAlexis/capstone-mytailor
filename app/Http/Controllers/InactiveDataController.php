@@ -18,6 +18,7 @@ use App\FabricType;
 use App\FabricThreadCount;
 use App\FabricColor;
 use App\FabricPattern;
+use App\Fabric;
 use App\Thread;
 use App\Needle;
 use App\Button;
@@ -59,6 +60,7 @@ class InactiveDataController extends Controller
         $threadCount = FabricThreadCount::all();
         $fabricColor = FabricColor::all();
         $fabricPattern = FabricPattern::all();
+        $fabric =Fabric::all();
         $thread = Thread::all();
         $needle = Needle::all();
         $button = Button::all();
@@ -88,6 +90,7 @@ class InactiveDataController extends Controller
             ->with('threadCount', $threadCount)
             ->with('fabricColor', $fabricColor)
             ->with('fabricPattern', $fabricPattern)
+            ->with('fabric', $fabric)
             ->with('thread', $thread)
             ->with('needle', $needle)
             ->with('button', $button)
@@ -389,6 +392,18 @@ class InactiveDataController extends Controller
         $fabricPattern->strFabricPatternInactiveReason = null;
         $fabricPattern->boolIsActive = 1;
         $fabricPattern->save();
+
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
+
+        return redirect('utilities/inactive-data');
+    }
+
+    function reactivate_fabric(Request $request)
+    {
+        $fabric = Fabric::find($request->input('reactID'));
+        $fabric->strPackageInactiveReason = null;
+        $fabric->boolIsActive = 1;
+        $fabric->save();
 
         \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
 
