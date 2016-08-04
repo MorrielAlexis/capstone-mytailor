@@ -8,7 +8,7 @@
                 <div class="row" id="success-message">
                   <div class="col s12 m12 l12">
                     <div class="card-panel red">
-                      <span class="black-text" style="color:black">Invalid input!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+                      <span class="black-text" style="color:black">Invalid input!<i class="tiny mdi-navigation-close right" onclick="$('#success-message').hide()"></i></span>
                     </div>
                   </div>
                 </div>
@@ -19,7 +19,7 @@
            <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
             <div class="card-panel red">
-              <span class="black-text" style="color:black"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              <span class="black-text" style="color:black"><i class="tiny mdi-navigation-close right" onclick="$('#flash_message').hide()"></i></span>
               @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
               @endforeach
@@ -34,7 +34,7 @@
         <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
             <div class="card-panel yellow accent-1">
-              <span class="alert alert-success"> <i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              <span class="alert alert-success"> <i class="tiny mdi-navigation-close right" onclick="$('#flash_message').hide()"></i></span>
              <em> {!! session('flash_message') !!}</em>
             </div>
           </div>
@@ -46,7 +46,7 @@
         <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
             <div class="card-panel blue accent-1">
-              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              <span class="alert alert-success"><i class="tiny mdi-navigation-close right" onclick="$('#flash_message').hide()"></i></span>
               <em> {!! session('flash_message_update') !!}</em>
             </div>
           </div>
@@ -59,7 +59,7 @@
         <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
             <div class="card-panel red accent-2">
-              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              <span class="alert alert-success"><i class="tiny mdi-navigation-close right" onclick="$('#flash_message').hide()"></i></span>
                <em> {!! session('flash_message_delete') !!}</em>
             </div>
           </div>
@@ -71,7 +71,7 @@
                 <div class="row" id="success-message">
                   <div class="col s12 m12 l12">
                     <div class="card-panel red">
-                      <span class="black-text" style="color:black">Record already exists!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+                      <span class="black-text" style="color:black">Record already exists!<i class="tiny mdi-navigation-close right" onclick="$('#success-message').hide()"></i></span>
                     </div>
                   </div>
                 </div>
@@ -82,7 +82,7 @@
                   <div class="row" id="success-message">
                     <div class="col s12 m12 l12">
                       <div class="card-panel red">
-                        <span class="black-text" style="color:black">Record already exists!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+                        <span class="black-text" style="color:black">Record already exists!<i class="tiny mdi-navigation-close right" onclick="$('#success-message').hide()"></i></span>
                       </div>
                     </div>
                   </div>
@@ -94,7 +94,7 @@
     <div class="row" id="success-message">
     <div class="col s12 m12 l12">
       <div class="card-panel red">
-        <span class="black-text" style="color:black">Sorry! Cannot deactivate garment category. It's still being used!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+        <span class="black-text" style="color:black">Sorry! Cannot deactivate garment category. It's still being used!<i class="tiny mdi-navigation-close right" onclick="$('#success-message').hide()"></i></span>
       </div>
     </div>
     </div>

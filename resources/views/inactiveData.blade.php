@@ -536,13 +536,57 @@
                       @foreach($detail as $detail_1)
                       @if($detail_1->boolIsActive == 0)
                       <tr>
-                        <td>{{ $detail_1->strMeasurementDetailName }}</td>
-                        <td>{{ $detail_1->txtMeasurementDetailDesc }}</td>
+                        <td>{{ $detail_1->strMeasDetailName }}</td>
+                        <td>{{ $detail_1->txtMeasDetailDesc }}</td>
                         <td>{{ $detail_1->strMeasDetInactiveReason }}</td>
                         <td>
-                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-detail']) !!}
+                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-meas-detail']) !!}
                             <input type="hidden" id="reactID" name="reactID" value="{{ $detail_1->strMeasurementDetailID }}">
                             <input type="hidden" id="reactInactiveDetail" name="reactInactiveDetail" value="{{ $detail_1->strMeasurementDetailID }}">
+                            <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of segment to the table">REACTIVATE</button>
+                          {!! Form::close() !!}
+                        </td>
+                      </tr>
+                      @endif
+                      @endforeach
+                  </tbody>
+                </table>
+              </div>
+              <div class = "clearfix"></div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+       <!--Standard Category-->
+      <p><h5 style="margin-left:20px"><b>Standard Category</b></h5></p>
+      <div class="row">
+        <div class="col s12">
+          <div class="card">
+            <div class="card-content">
+              <div class = "col s12 m12 l12 overflow-x">
+                <h5><font color = "#1b5e20"><center>Inactive Standard Category</center> </font> </h5>
+                <table class = "table centered data-reactSegment" align = "center" border = "1">
+                  <thead>
+                    <tr>
+                        <th data-field="name">Standard Category Name</th>
+                        <th data-field="description">Standard Category Description</th>
+                        <th data-field="Garmentcategory">Reason for Deactivation</th>
+                        <th data-field="MeasurementName">Reactivate</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                      @foreach($standard as $standard_1)
+                      @if($standard_1->boolIsActive == 0)
+                      <tr>
+                        <td>{{ $standard_1->strStandardSizeCategoryName }}</td>
+                        <td>{{ $standard_1->txtStandardSizeCategoryDesc }}</td>
+                        <td>{{ $standard_1->strStandardSizeCategoryInactiveReason }}</td>
+                        <td>
+                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-standard-category']) !!}
+                            <input type="hidden" id="reactID" name="reactID" value="{{ $standard_1->strStandardSizeCategoryID }}">
+                            <input type="hidden" id="reactInactiveMeasStandardCategory" name="reactInactiveMeasStandardCategory" value="{{ $standard_1->strStandardSizeCategoryID }}">
                             <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of segment to the table">REACTIVATE</button>
                           {!! Form::close() !!}
                         </td>

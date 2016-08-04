@@ -14,6 +14,7 @@ use App\SegmentPattern;
 use App\SegmentStyle;
 use App\MeasurementCategory;
 use App\MeasurementDetail;
+use App\StandardSizeCategory;
 use App\FabricType;
 use App\FabricThreadCount;
 use App\FabricColor;
@@ -56,6 +57,7 @@ class InactiveDataController extends Controller
         $segmentStyle = SegmentStyle::all();
         $measurement_category = MeasurementCategory::all();
         $detail = MeasurementDetail::all();
+        $standard = StandardSizeCategory::all();
         $fabricType = FabricType::all();
         $threadCount = FabricThreadCount::all();
         $fabricColor = FabricColor::all();
@@ -86,6 +88,7 @@ class InactiveDataController extends Controller
             ->with('segmentStyle', $segmentStyle)
             ->with('measurement_category', $measurement_category)
             ->with('detail', $detail)
+            ->with('standard', $standard)
             ->with('fabricType', $fabricType)
             ->with('threadCount', $threadCount)
             ->with('fabricColor', $fabricColor)
@@ -347,6 +350,20 @@ class InactiveDataController extends Controller
 
         return redirect('utilities/inactive-data');
     }
+
+     function reactivate_standardCategory(Request $request)
+    {
+        $standard = StandardSizeCategory::find($request->input('reactID'));
+        $standard->strStandardSizeCategoryInactiveReason = null;
+        $standard->boolIsActive = 1;
+        $standard->save();
+
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
+
+        return redirect('utilities/inactive-data');
+    }
+
+
 
     function reactivate_fabrictype(Request $request)
     {
