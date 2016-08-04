@@ -555,8 +555,35 @@ class WalkInIndividualController extends Controller
         // dd($data);
 
 
-        return PDF::loadView('pdf/payment-receipt')
-                ->stream();
+        $data = [
+            'orders' => [
+                [
+                  'job_order_id' => 'JOB001',
+                  'segment_data'  => 'Name 1',
+                  'segment_quantity' => 1,
+                  'totalPrice' => 52.00
+
+                ]
+            ]
+        ];
+
+        // for($i=0; $i<count($data); $i++){
+        //     for($j=0; $j<$i+1; $j++){
+        //         array_push($data['orders'[$i+1]], [
+        //         'segment_data' => 'Name[$j+1]',
+        //         'segment_quantity' => $j+1,
+        //         'price' => $j+1
+        //     ]);
+        //     }
+        // }
+       
+
+        // dd($data);
+
+        $pdf = PDF::loadView('pdf/payment-receipt', compact('data'));
+
+        return $pdf->stream();
+                
     }
 
 

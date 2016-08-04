@@ -14,8 +14,8 @@
         
         <ul class="col s12 breadcrumb">
 			<li><a style="padding-left:200px"><b>1.FILL-UP FORM</b></a></li>
-			<li><a class="active" style="padding-left:200px" href="#payment-info"><b>2.PAYMENT</b></a></li>
-			<li><a style="padding-left:200px"><b>3.ADD MEASUREMENT DETAIL</b></a></li>
+			<li><a style="padding-left:200px"><b>2.ADD MEASUREMENT DETAIL</b></a></li>
+			<li><a class="active" style="padding-left:200px" href="#payment-info"><b>3.PAYMENT</b></a></li>
 		</ul>
 
 		<!-- Tab for Payment-->
@@ -28,10 +28,10 @@
               	</div>
 	       	</div>
 
-	       	<div class="col s12 left">
+	       <!-- 	<div class="col s12 left">
 		        <a href="{{ URL::to('generate-payment-receipt') }}" class="right btn-floating tooltipped btn-large green" data-position="bottom" data-delay="50"  data-tooltip="CLick to print a receipt for current transaction" href="#!" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-action-print"></i></a>
 		    </div>
-
+ -->
 	       	<div class="row" style="background-color:white; padding:40px">
 	            <div class="col s12"> 
 
@@ -53,9 +53,10 @@
 	                    </div>
                     </div>
 
-					<div class="col s12 overflow-x" style="max-height:350px; border: 3px gray solid; padding:20px">
-						<div class="col s6">
-		                    <label style="font-size:16px; color:dimgray; margin-bottom:10px"><center>Order Summary</center></label>
+					<div class="col s6 overflow-x" style="min-height:200px; max-height:350px; border: 3px gray solid; padding:20px">
+						<div class="col s12">
+		                    <label style="font-size:20px; color:dimgray;"><center><b>Order Summary</b></center></label>
+		                        <div class="col s12" style="margin-bottom:30px"><div class="divider" style="height:2px; background-color:teal"></div></div>
 		                        <table class = "table centered order-summary z-depth-1" border = "1">
 				       				<thead style="color:gray">
 					          			<tr>
@@ -73,12 +74,17 @@
 								            </tr>
 							            @endforeach
 							        </tbody>
-							    </table>
+							    </table>					
 						</div>
+						<div class="col s12" style="margin-bottom:38px"></div>
+					</div>
 
 					<!--For the design summary-->
+					<div class="col s6 overflow-x" style="min-height:200px; max-height:350px; border: 3px gray solid; padding:20px">
+					<label style="font-size:20px; color:dimgray;"><center><b>Design Summary</b></center></label>
+		                        <div class="col s12" style="margin-bottom:20px"><div class="divider" style="height:2px; background-color:teal"></div></div>
 					@foreach($segments as $segment)
-						<div class="col s6" style="border-left:3px gray solid">
+						<div class="col s12">
 			      			<p style="color: teal">Design for <b>{{ $segment->strGarmentCategoryName }} - {{ $segment->strSegmentName }}</b></p>
 	                        <table class = "table centered design-summary z-depth-1" border = "1">
 			       				<thead style="color:gray">
@@ -103,10 +109,10 @@
 						    </table>
 
 						    <div class="col s12"><div class="divider" style="height:2px"></div></div>
-						</div>
+						</div>				
 						@endforeach
+					</div>
 		      		<!--End of design summary-->
-		      		</div>
 
 					<div class="col s12" style="margin:10px"></div>
 					{!! Form::open(['url' => 'transaction/walkin-individual-payment-measure-detail', 'method' => 'POST']) !!}

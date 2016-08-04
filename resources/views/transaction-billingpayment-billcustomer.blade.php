@@ -31,11 +31,13 @@
 
 									<div class="col s12" style="margin-top:10px">
 										<div style="color:black" class="input-field col s5">                 
-				                          <div class="container"><input value="{{ $custID }}" style="margin-left:53px; border:3px teal solid; padding:5px; padding-left:10px" name="custid" id="custid" type="text" class="" placeholder="ex. IND 20001" editable="false" readonly></div>
+				                          <div class="container"><input value="" style="margin-left:53px; border:3px teal solid; padding:5px; padding-left:10px; color:red" name="custid" id="custid" type="text" class="" placeholder="ex. IND 20001" editable="false" readonly><b></b></div>
 				                          <label style="color:teal; margin-top:5px;"><b>CUSTOMER ID:</b></label>
 				                        </div>
 										<div style="color:black" class="input-field col s7">                 
-				                          <div class="container"><input value="" style="margin-left:80px; margin-right:100px; border:3px teal solid; padding:5px; padding-left:10px" name="customer-info" type="text" class="" placeholder="ex. Honey Buenavides"></div>
+				                          <div class="container">							
+				                          	<input value="" style="margin-left:80px; margin-right:100px; border:3px teal solid; padding:5px; padding-left:10px" name="customer-info" type="text" class="" placeholder="ex. Honey Buenavides">
+				                          </div>
 				                          <label style="color:teal; margin-top:5px; margin-left:20px"><b>CUSTOMER NAME:</b></label>
 				                        </div>
 									</div>

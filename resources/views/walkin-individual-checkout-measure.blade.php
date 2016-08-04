@@ -14,8 +14,8 @@
         
         <ul class="col s12 breadcrumb">
 			<li><a style="padding-left:200px"><b>1.FILL-UP FORM</b></a></li>
-			<li><a style="padding-left:200px"><b>2.PAYMENT</b></a></li>
-			<li><a class="active" style="padding-left:200px" href="#measure-detail"><b>3.ADD MEASUREMENT DETAIL</b></a></li>
+			<li><a class="active" style="padding-left:200px" href="#measure-detail"><b>2.ADD MEASUREMENT DETAIL</b></a></li>
+			<li><a style="padding-left:200px"><b>3.PAYMENT</b></a></li>
 		</ul>
 
 		<!-- Tab for Adding Measurement Detail-->
@@ -51,6 +51,10 @@
 							</select>
 					</div>
 				</div>
+
+				<div class="col s7">
+			        <a href="{{ URL::to('generate-payment-receipt') }}" class="right btn-floating tooltipped btn-large green" data-position="bottom" data-delay="50"  data-tooltip="CLick to print a receipt for current transaction" href="#!" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-action-print"></i></a>
+			    </div>
 			<!--
 				<div style="color:gray" class="col s5"> 
 					<div class="col s7"><p style="color:gray; margin-top:5px; font-size:15px"><b>No. of Measurement Profile:</b></p></div>                
@@ -160,6 +164,8 @@
 	            	</div>
                     <div class="col s12"><div class="divider" style="height:5px; color:gray; margin-top:15px; margin-bottom:15px"></div></div>
 				@endforeach
+				
+
 
                 <button type="submit" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save info and begin processing" style="background-color:teal; margin-right:50px; padding:9.5px; padding-bottom:45px; color:white"><!--<i class="mdi-action-done"> -->Save Measurements<!--</i>--></button>
 
