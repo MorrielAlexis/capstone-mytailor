@@ -144,7 +144,7 @@
 
           <div class="modal-footer col s12">
             <p class="left" style="margin-left:10px; color:gray;">Continue to payment?</p>
-            <a class="waves-effect waves-green btn-flat" href="{{URL::to('/online-check-out')}}"><font color="black">Yes</font></a>
+            <a class="waves-effect waves-green btn-flat" href="{{URL::to('/online-alteration-checkout-info')}}"><font color="black">Yes</font></a>
             <a class="modal-action modal-close waves-effect waves-green btn-flat" href=""><font color="black">No</font></a>
           </div>
         {!! Form::close() !!}
