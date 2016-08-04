@@ -480,21 +480,23 @@
                   <thead>
                     <tr>
                         <th data-field="MeasurementName">Measurement Category Name</th>
+                        <th data-field="MeasurementDesc">Measurement Category Desc</th>
                         <th data-field="Garmentcategory">Reason for Deactivation</th>
                         <th data-field="MeasurementName">Reactivate</th>
                     </tr>
                   </thead>
 
                   <tbody>
-                      @foreach($measurementCategory as $measurementCategory_1)
-                      @if($measurementCategory_1->boolIsActive == 0)
+                      @foreach($measurement_category as $measurement_category1)
+                      @if($measurement_category1->boolIsActive == 0)
                           <tr>
-                            <td>{{ $measurementCategory_1->strMeasurementCategoryName }}</td> 
-                            <td>{{ $measurementCategory_1->strMeasCatInactiveReason }}</td>
+                            <td>{{ $measurement_category1->strMeasurementCategoryName }}</td> 
+                            <td>{{ $measurement_category1->txtMeasurementCategoryDesc }}</td>
+                            <td> {{ $measurement_category1->strMeasCatInactiveReason }}</td>
                             <td>
                             {!! Form::open(['url' => 'utilities/inactive-data/reactivate-meas-category']) !!}
-                              <input type="hidden" value="{{ $measurementCategory_1->strMeasurementCategoryID }}" id="reactID" name="reactID">
-                              <input type="hidden" value="{{ $measurementCategory_1->strMeasurementCategoryID }}" id="reactInactiveMeasCat" name="reactInactiveMeasCat">
+                              <input type="hidden" value="{{ $measurement_category1->strMeasurementCategoryID }}" id="reactID" name="reactID">
+                              <input type="hidden" value="{{ $measurement_category1->strMeasurementCategoryID }}" id="reactInactiveMeasCat" name="reactInactiveMeasCat">
                               <button type="submit"  style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return measuremennt information to the table">REACTIVATE</button>
                             {!! Form::close() !!}
                           </td>
@@ -772,7 +774,7 @@
 
                   <tbody>
                     @foreach($fabric as $fabric_1)
-                    @if($fabricColor_1->boolIsActive == 0)
+                    @if($fabric_1->boolIsActive == 0)
                       <tr>
                           <td>{{ $fabric_1->strFabricName }}</td>
                           <td>{{ $fabric_1->strFabricCode }}</td>
@@ -780,7 +782,7 @@
                             , 2) . ' PHP' }}</td>
                           <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($fabric_1->strFabricImage)}}"></td>
                           <td>{{ $fabric_1->txtFabricDesc }}</td>
-                          <td> {{ $fabric_1->strPackageInactiveReason}}</td>
+                          <td> {{ $fabric_1->strFabricInactiveReason}}</td>
                         <td>
                           {!! Form::open(['url' => 'utilities/inactive-data/reactivate-fabric']) !!}
                             <input type="hidden" value="{{ $fabric_1->strFabricID }}" id="reactID" name="reactID">
