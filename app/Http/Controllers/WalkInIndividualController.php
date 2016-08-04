@@ -192,43 +192,46 @@ class WalkInIndividualController extends Controller
             for($j = 0; $j < count($segmentStyles); $j++){
                 $tempPatterns = $request->input('rdb_pattern' . $segmentStyles[$j]->strSegStyleCatID . ($i+1));       
                 if($tempPatterns != null){
-                    $patterns[$i][$k] = $tempPatterns;
-                    $k++;
+                    $patterns[$i] = $tempPatterns;
                 } 
             }
-            $k = 0;
         }
         
-        for($i = 0; $i < count($values); $i++){
-            $sqlStyles[] = \DB::table('tblSegmentPattern AS a')
+            $sqlStyles = \DB::table('tblSegmentPattern AS a')
                     ->leftJoin('tblSegmentStyleCategory AS b', 'a.strSegPStyleCategoryFK', '=', 'b.strSegStyleCatID')
                     ->leftJoin('tblSegment AS c', 'b.strSegmentFK', '=', 'strSegmentID')
                     ->select('c.strSegmentID', 'a.strSegPStyleCategoryFK', 'a.strSegPatternID', 
                              'a.strSegPName', 'b.strSegStyleName', 'a.dblPatternPrice')
-                    ->whereIn('a.strSegPatternID', $patterns[$i])
+                    ->whereIn('a.strSegPatternID', $patterns)
                     ->get();
-        }
+    
 
         for($i = 0; $i < count($values); $i++){
             for($j = 0; $j < count($sqlStyles); $j++){
-                if($patterns[$i][$j] == $sqlStyles[$i][$j]->strSegPatternID){
-                    $patterns[$i][$j] = $sqlStyles[$i][$j];
+                if($patterns[$i] == $sqlStyles[$j]->strSegPatternID){
+                    $patterns[$i] = $sqlStyles[$j];
                 }
             }
         }
-
+        
         $sqlFabric = \DB::table('tblFabric')
                 ->select('strFabricID', 'strFabricName', 'dblFabricPrice')
                 ->whereIn('strFabricID', $segmentFabric)
                 ->get();
 
+            for($j = 0; $j < count($sqlFabric); $j++){
+                if($segmentFabric == $sqlFabric[$j]->strFabricID){
+                    $segmentFabric = $sqlFabric;
+
+                }
+            }
         for($i = 0; $i < count($values); $i++){
             for($j = 0; $j < count($sqlFabric); $j++){
                 if($segmentFabric[$i] == $sqlFabric[$j]->strFabricID){
-                    $segmentFabric[$i] = $sqlFabric[$j];
+                    $segmentFabric = $sqlFabric;
                 }
             }
-        }
+        }   
 
         for($i = 0; $i < count($values); $i++){
             $values[$i]->strFabricID = $segmentFabric[$i]->strFabricID;
