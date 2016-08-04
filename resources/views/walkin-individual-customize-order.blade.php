@@ -26,7 +26,7 @@
 								
 										@foreach($segments as $i => $segment)
 										<div id="remove{{ $i+1 }}" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
-											<h5><font color="red"><center><b>{{$i+1}}Warning!</b></center></font></h5>
+											<h5><font color="red"><center><b>{{$i+1}} Warning!</b></center></font></h5>
 												
 												{!! Form::open(['url' => 'transaction/walkin-individual-remove-item', 'method' => 'post']) !!}
 													<div class="divider" style="height:2px"></div>
@@ -174,7 +174,7 @@
 								                        	 <div class="col s10">
 														        <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
 														          <div class="row valign-wrapper">
-														            <div class="center col s4">
+														            <div class="center col s6">
 														              <img src="{{URL::asset($pattern->strSegPImage)}}" alt="" class="responsive-img">
 														            </div>
 														            <div class="col s6"> 
@@ -283,7 +283,7 @@
 											            <div class="center col s4">
 											              <img src="{{URL::asset($fabric->strFabricImage)}}"class="responsive-img"> <!-- notice the "circle" class -->
 											            </div>
-											            <div class="col s6"> 
+											            <div class="col s8"> 
 											              <p><b id="{{ 'fabricText'.$fabric->strFabricID }}">{{ $fabric->strFabricName }}</b></p> <!-- This will be the name of the pattern -->
 											              <span class="black-text">
 											                {{ $fabric->txtFabricDesc }}

@@ -14,8 +14,8 @@
         
 	        <ul class="col s12 breadcrumb">
 				<li><a style="padding-left:200px" href="{{URL::to('transaction/walkin-company-payment-customer-info')}}"><b>1.FILL-UP FORM</b></a></li>
-				<li><a class="active" style="padding-left:200px" href="#payment-info"><b>2.PAYMENT</b></a></li>
-				<li><a style="padding-left:200px" href="{{URL::to('transaction/walkin-company-payment-measure-detail')}}"><b>3.ADD MEASUREMENT DETAIL</b></a></li>
+				<li><a style="padding-left:200px" href="{{URL::to('transaction/walkin-company-payment-measure-detail')}}"><b>2.ADD MEASUREMENT DETAIL</b></a></li>
+				<li><a class="active" style="padding-left:200px" href="#payment-info"><b>3.PAYMENT</b></a></li>			
 			</ul>
 
 			<!-- Tab for Payment-->
@@ -39,7 +39,6 @@
 			</div>
 
 	       	<div class="row" style="background-color:white;">
-	       		<div class="container">
 	            <div class="col s12"> 
 
 	            	<div class="col s12" style="margin-bottom:20px">
@@ -60,93 +59,263 @@
 	                    </div>
                     </div>
 
-                    <label style="font-size:15px; color:black"><center>Order Summary</center></label>
-                    <div class="container overflow-x">
-                        <table class = "table centered order-summary" border = "1">
-		       				<thead style="color:gray">
-			          			<tr>
-				                  <th data-field="product">Product</th>         
-				                  <th data-field="quantity">Quantity</th>
-				                  <th data-field="design">Design</th>
-				                  <th data-field="fabric">Fabric</th>
-				                  <th data-field="price">Unit Price</th>
-				                  <th data-field="price">Total Price</th>
-				              	</tr>
-			              	</thead>
-			              	<tbody>
-					            <tr>
-					               <td>Uniform, Polo</td>
-					               <td>1</td>
-					               <td>No-fit</td>
-					               <td>Traditional Cotton</td>
-					               <td>800.00 PHP</td>
-					               <td>800.00 PHP</td>
-					            </tr>
+                    <div class="col s12 overflow-x" style="max-height:350px; border: 3px gray solid; padding:20px">
+						<div class="col s6">
+		                    <label style="font-size:16px; color:dimgray; margin-bottom:10px"><center>Order Summary</center></label>
+		                        <table class = "table centered order-summary z-depth-1" border = "1">
+				       				<thead style="color:gray">
+					          			<tr>
+						                  <th data-field="product">Product</th>         
+						                  <th data-field="quantity">Quantity</th>
+						                  <th data-field="design">Design</th>
+						                  <th data-field="fabric">Fabric</th>
+						                  <th data-field="price">Unit Price</th>
+						                  <th data-field="price">Total Price</th>
+						              	</tr>
+					              	</thead>
+					              	<tbody>
+								            <tr>
+								               <td>Uniform, Polo</td>
+								               <td>1</td>
+								               <td>No-fit</td>
+								               <td>Traditional Cotton</td>
+								               <td>800.00 PHP</td>
+								               <td>800.00 PHP</td>
+								            </tr>
+							        </tbody>
+							    </table>
+						</div>
 
-					             <tr>
-					               <td>Uniform, Polo</td>
-					               <td>1</td>
-					               <td>Slim-fit</td>
-					               <td>Remarkable Cotton</td>
-					               <td>850.00 PHP</td>
-					               <td>850.00 PHP</td>
-					            </tr>
-					        </tbody>
-					    </table>
+					<!--For the design summary-->
+						<div class="col s6" style="border-left:3px gray solid">
+							<h6><b>Generic FA (per Garment Design)</b></h6>
+			      			<p style="color: teal">Design for <b>Uniform, Polo</b></p>
+	                        <table class = "table centered design-summary z-depth-1" border = "1">
+			       				<thead style="color:gray">
+				          			<tr>
+					                  <th data-field="product">Style Category</th>         
+					                  <th data-field="quantity">Segment Pattern</th>
+					                  <th data-field="price">Style Price</th>
+					                  <!--<th data-field="price">Total Price</th>-->
+					              	</tr>
+				              	</thead>
+				              	<tbody>
+						            <tr>
+						               <td>Collar</td>
+						               <td>Baby Collar</td>
+						               <td>200.00 PHP</td>
+						            </tr>
+						        </tbody>
+						    </table>
+
+						    <div class="col s12"><div class="divider" style="height:2px"></div></div>
+						</div>
+		      		<!--End of design summary-->
 		      		</div>
 
-		      		<div class="container">
-			      			<div class="col s4" style="color:teal"><p><b>Total Amount</b></p></div>
-			      			<div class="col s8" style="color:red;"><p><input id="total-price" name="total-price" type="text" class="" readonly></p></div>
+						
+					<div class="col s12" style="margin:10px"></div>
+						<div class="col s6">
+							<h5 style="color:teal"><b>Price Quotation*</b></h5>
+							<span>Determine terms of payment to get payment details</span>
 
-	                        <div class="left col s12" id="mode-of-payment" style="margin-bottom:20px">
+							<!--Eto yung mga pinapadagdag non sa Capstone-->
+							<!--Ikinoment ko muna dahil hindi naman yata pina-require sa soft eng-->
+							<!--
+							<div class="col s12 z-depth-1" style="border: 2px gray solid; padding:20px; margin-top:2%">
+								
+								<div class="col s12">
+									<div class="col s4" style="color:gray; font-size:15px"><p><b>Estimated Total Amount</b></p></div>
+			      					<div class="col s8" style="color:red;"><p><input id="estimated_total" name="estimated_total" type="text" class=""></p></div>
+								</div>
+
+								<div class="col s12">
+									<div class="col s4" style="color:gray; font-size:15px"><p><b>Labor Fee</b></p></div>
+			      					<div class="col s8" style="color:red;"><p><input id="labor_fee" name="labor_fee" type="text" class=""></p></div>
+								</div>
+								
+								<div class="col s12">
+									<div class="col s4" style="color:gray; font-size:15px"><p><b>Additional Fee</b></p></div>
+			      					<div class="col s8" style="color:red;"><p><input id="addtnl_fee" name="addtnl_fee" type="text" class=""></p></div>
+								</div>
+
+							</div>-->
+
+							<div class="col s12"><div class="divider" style="margin:15px"></div></div>
+
+			      			<div class="col s4" style="color:red; font-size:15px"><p><b>Grand Total</b></p></div>
+			      			<div class="col s8" style="color:red;"><p><input id="total_price" name="total_price" type="text" class="" readonly><b></b></p></div>
+
+                        	<div class="col s4" style="color:gray; font-size:15px"><p><b>Terms of Payment</b></p></div>
+                        	<div class="col s8" style="padding:18px; padding-top:30px">
 	                        	<div class="col s6">
-			          				<input name="modePayment" type="radio" class="filled-in payment" id="half_pay" />
-	      							<label for="half_pay">Half-payment</label>
+			          				<input name="termsOfPayment" value="Half Payment" type="radio" class="filled-in payment" id="half_pay"/>
+	      							<label for="half_pay">Half (50-50)</label>
 								</div>
 								<div class="col s6">
-				          			<input name="modePayment" type="radio" class="filled-in payment" id="full_pay" />
-		      						<label for="full_pay">Full-payment</label>
+				          			<input name="termsOfPayment" value="Full Payment" type="radio" class="filled-in payment" id="full_pay" />
+		      						<label for="full_pay">Full (100)</label>
 		      					</div>
-		      				</div>
+	      					</div>
 
-		      				<div class="col s4" style="color:teal"><p><b>Amount Payable:</b></p></div>
+							<!-- <div class="col s4" style="color:red; font-size:15px"><p><b>Mode of Payment</b></p></div>
+                        	<div class="col s8" style="padding:18px; padding-top:30px; color:red">
+	                        	<div class="col s6">
+			          				<input name="termsOfPayment" value="Half Payment" type="radio" class="filled-in payment selected" id="half_pay" selected/>
+	      							<label color="red" for="half_pay">Cash</label>
+								</div>
+								<div class="col s6">
+				          			<input name="termsOfPayment" value="Full Payment" type="radio" class="filled-in payment" id="full_pay" />
+		      						<label color="red" for="full_pay">Cheque</label>
+		      					</div>
+	      					</div> -->
+
+							<input type="hidden" id="transaction_date" name="transaction_date" />
+
+		      				<div class="col s4" style="color:gray; font-size:15px"><p><b>Amount Payable</b></p></div>
 		      				<div class="col s8" style="color:red;"><p><input value="" id="amount-payable" name="amount-payable" type="text" class="" readonly></p></div>
 
-		      				<div class="col s4" style="color:teal"><p><b>Remaining Balance:</b></p></div>
-		      				<div class="col s8" style="color:red;"><p><input value="" id="balance" name="balance" type="text" class="" readonly></p></div>
-                    </div>
+		      			<!--	<div class="col s4" style="color:gray; font-size:15px"><p><b>Additional Charge (*)</b></p></div>
+		      				<div class="col s8" style="color:red;"><p><input value="" id="add-charge" name="add-charge" type="text" class="" readonly></p></div> -->
 
-                    <div class="col s12" style="border:4px solid teal; padding:5px">
-							<left><p style="padding-left:40px"><font size="+1"><b>CHEQUE DETAILS</b></font><font color="gray" style="padding-left:30px">In case payment is made through cheque</font></p></left> 
-							
-							<div class="divider" style="height:2px; background-color:teal; margin-left:30px; margin-right:30px"></div>        
+		      				<div class="col s4" style="color:gray; font-size:15px"><p><b>Remaining Balance</b></p></div>
+		      				<div class="col s8" style="color:red;"><p><input value="" id="balance" name="balance" type="text" class="" readonly></p></div>		
+
+							<div class="col s12">
+								<a href="#pay-by-check" class="right btn modal-trigger" style="background-color:#03a9f4; color:black; margin-top:20px"><b>Make payment by Cheque</b></a>
+							</div>
+						</div>
+
+						<div class="col s6 z-depth-1" style="border-left:2px gray solid">
+							<h5 style="color:teal"><b>Payment <font size="-1">(Default by Cash)</font></b></h5>
+							<span>Fill up the following information</span>
+							<div class="col s12"><div class="divider" style="margin:15px"></div></div>
+							<div style="color:black" class="col s12"> 
+								<div class="col s4"><p style="color:black; margin-top:5px; font-size:15px"><b>Amount Tendered:</b></p></div>                
+	                          	<div class="col s8"><input placeholder="How much you'll pay" style="padding:5px; border:3px gray solid" name="amount-tendered" id="amount-tendered" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="right"><right></right></div>	                          
+	                        </div>
+
+	                        <div style="color:black" class="col s12"> 
+								<div class="col s4"><p style="color:black; margin-top:5px; font-size:15px"><b>Amount To Pay:</b></p></div>                
+	                          	<div class="col s8"><input placeholder="How much want to pay from the total."  style="padding:5px; border:3px gray solid;" name="amount-to-pay" id="amount-to-pay" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="right"></div>
+	                        </div>
+
+	                        <div style="color:black" class="col s12"> 
+								<div class="col s4"><p style="color:red; margin-top:5px; font-size:15px"><b>Change*:</b></p></div>                
+	                          	<div class="col s8" style="color:red;"><input readonly style="padding:5px; border:3px gray solid" name="amount-change" id="amount-change" type="text" class="right"></div>
+	                        </div>
+
+	                        <div style="color:black" class="col s12"> 
+								<div class="col s4"><p style="color:red; margin-top:5px; font-size:15px"><b>Outstanding Balance*:</b></p></div>                
+	                          	<div class="col s8 style="color:red;""><input readonly style="padding:5px; border:3px gray solid" name="outstanding-bal" id="outstanding-bal" type="text" class="right"></div>
+	                        </div>
+
+							<input type="hidden" id="transaction_date" name="transaction_date">
+							<input type="hidden" id="due_date" name="due_date">
+
+							<div class="col s12"><div class="divider" style="padding-top:10px"></div></div>								
+								<div class="modal-content col s12" style="padding-bottom:20px;">
+										<div class="col s5" style="padding-top:10px"><h5><font color="teal"><center><b>Due Date: </b></center></font></h5></div>
+										<div class="col s7"><p style="font-size:20px" ><b id="due-date"></b></p></div>
+
+										<div class="col s12" style="padding-left:10px"><p style="color:gray;">Pay balance on (or before) the said due date above</p></div>
+								</div>
+	                        <!--<div class="right col s12" style="padding:18px"><a style="margin-top:5px; background-color:red" type="submit" class="right waves-effect waves-green btn modal-trigger tooltipped z-depth-2" data-position="bottom" data-delay="50" data-tooltip="Click to continue payment process" href="#due-date"><font color="white" size="+1">Pay for Order</font></a>		
+								<div id="due-date" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:50px">
+										<h5><font color="red"><center><b>Reminder:</b></center></font></h5>	
+										<div class="col s12"><div class="divider" style="padding-top:50px"></div></div>								
+											<div class="modal-content col s12" style="padding:40px;">
+												<div class="col s5" style="padding-top:10px"><h5><font color="teal"><center><b>Due Date</b></center></font></h5></div>
+												<div class="col s7"><p style="font-size:20px"><b>August 16,2016</b></p></div>
+
+												<div class="col s12" style="padding-left:10px"><p style="color:gray;">Pay balance on (or before) the said due date above</p></div>
+											</div>
+
+											<div class="modal-footer col s12">
+												<p class="left" style="margin-left:10px; color:gray; font-size:15px">Continue with payment?</p>
+								                <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat" ><font color="black">Yes</font></button>
+								                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+								            </div>
+
+								</div>
 								
-								<div class="col s4" style="color:teal; padding-top:20px; padding-left:30px"><p>Account Number:</p></div>
-		      					<div class="col s8" style="color:black; padding-right:50px"><p><input value="" id="account_no" name="account_no" type="text" class=""></p></div>
-							
-								<div class="col s4" style="color:teal; padding-top:20px; padding-left:30px"><p>Account Name:</p></div>
-		      					<div class="col s8" style="color:black; padding-right:50px"><p><input value="" id="account_name" name="account_name" type="text" class=""></p></div>
+							</div>-->			
+						</div>
 
-		      					<div class="col s4" style="color:teal; padding-top:20px; padding-left:30px"><p>Check Number:</p></div>
-		      					<div class="col s8" style="color:black; padding-right:50px"><p><input value="" id="check_no" name="check_no" type="text" class=""></p></div>
 
-		      					<div class="col s4" style="color:teal; padding-top:20px; padding-left:30px"><p>Date:</p></div>
-		      					<div class="col s8" style="color:black; padding-right:50px"><p><input value="" id="transac_date" name="transac_date" type="date" class="datepicker"></p></div>
-    
+					<!-- <div class="container">
+	                    <div class="col s12" style="border:4px solid teal; padding:5px; margin-top:30px; padding-left:30px; padding-right:30px">
+								<left><p style="padding-left:40px"><font size="+1"><b>CHEQUE DETAILS</b></font><font color="gray" style="padding-left:30px">In case payment is made through cheque</font></p></left> 
+								
+								<div class="divider" style="height:2px; background-color:teal; margin-left:30px; margin-right:30px"></div>        
+									
+									<div class="col s4" style="color:teal; padding-top:20px; padding-left:30px"><p>Account Number:</p></div>
+			      					<div class="col s8" style="color:black; padding-right:50px"><p><input value="" id="account_no" name="account_no" type="text" class=""></p></div>
+								
+									<div class="col s4" style="color:teal; padding-top:20px; padding-left:30px"><p>Account Name:</p></div>
+			      					<div class="col s8" style="color:black; padding-right:50px"><p><input value="" id="account_name" name="account_name" type="text" class=""></p></div>
 
-                     </div>
+			      					<div class="col s4" style="color:teal; padding-top:20px; padding-left:30px"><p>Check Number:</p></div>
+			      					<div class="col s8" style="color:black; padding-right:50px"><p><input value="" id="check_no" name="check_no" type="text" class=""></p></div>
 
-                    <div class="container">
-                    	
-                    		<a href="{{URL::to('transaction/walkin-company-payment-measure-detail')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save payment information and get measured" style="background-color:teal; padding:9.5px; padding-bottom:45px; margin-top:20px;"><label style="font-size:15px; color:white">Start Measurement</label></a>
-                    		<a href="{{URL::to('transaction/walkin-company')}}" class="left btn tooltipped" data-position="top" data-delay="50" data-tooltip="Transfers you back to shopping for garments and clears current unsaved transaction" style="background-color:teal; padding:9.5px; padding-bottom:45px; margin-top:20px;"><label style="font-size:15px; color:white">Cancel Transaction</label></a>
-                    	
+			      					<div class="col s4" style="color:teal; padding-top:20px; padding-left:30px"><p>Date:</p></div>
+			      					<div class="col s8" style="color:black; padding-right:50px"><p><input value="" id="transac_date" name="transac_date" type="date" class="datepicker"></p></div>
+	    
+
+	                    </div>
+                 	</div> -->
+
+                 	<div id="pay-by-check" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
+						<h5><font color="teal"><center><b>Fill up Cheque Information</b></center></font></h5>
+						<div class="divider" style="height:2px"></div>
+
+						<div class="modal-content col s12">
+
+							<div class="col s4">Bank Account</div>
+							<div class="col s8"><p><input value="" id="bank-acct" name="bank-acct" type="text" placeholder="Name of Bank"></p></div>
+
+							<div class="col s4">Account Code</div>
+							<div class="col s8"><p><input value="" id="acct-code" name="acct-code" type="number" placeholder="1111"></p></div>
+
+							<div class="col s4">Cheque No</div>
+							<div class="col s8"><p><input value="" id="cheque-no" name="cheque-no" type="number" placeholder="17"></p></div>
+
+							<div class="col s4">Date</div>
+							<div class="col s8"><p><input value="" id="payment-date" name="payment-date" type="date" placeholder="Wednesday, 15 August 1996" class="datepicker"></p></div>
+
+							<div class="col s4">Period</div>
+							<div class="col s8"><p><input value="" id="cheque-period" name="cheque-period" type="date" placeholder="February, 2006" class="datepicker"></p></div>
+
+							<div class="col s4">Credit Amount (in Php)</div>
+							<div class="col s8"><p><input value="" id="credit-amt" name="credit-amt" type="number" placeholder="200.00 Php"></p></div>
+
+							<div class="col s4">Payee (Contact Code)</div>
+							<div class="col s8"><p><input value="" id="payee-code" name="payee-code" type="number" placeholder="12416"></p></div>
+
+							<div class="col s4">Name</div>
+							<div class="col s8"><p><input value="" id="payee-name" name="payee-name" type="text" placeholder="Bayer Philippines"></p></div>
+
+							<div class="col s4">Description</div>
+							<div class="col s8"><p><input value="" id="cheque-desc" name="cheque-desc" type="text" placeholder="insert text"></p></div>
+
+						</div>
+						
+						<div style="margin-bottom:50px"></div>
+
+						<div class="modal-footer col s12">
+			                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-company-payment-payment-info')}}"><font color="teal"><b>Save Payment</b></font></a>
+			                <a href="{{URL::to('/transaction/walkin-company-payment-payment-info')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="teal"><b>Cancel</b></font></a>
+			            </div>
+                 	</div>
+
+					<div class="col s12"><div class="divider" style="height:2px; color:gray; margin:15px"></div></div>
+                    <div class="col s12">                  	
+                    		<a href="{{URL::to('transaction/walkin-company')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save payment information and get measured" style="background-color:teal; padding:9.5px; padding-bottom:45px; margin-top:20px;"><label style="font-size:15px; color:white">Save Payment</label></a>
+                    		<a href="{{URL::to('transaction/walkin-company')}}" class="left btn tooltipped" data-position="top" data-delay="50" data-tooltip="Transfers you back to shopping for garments and clears current unsaved transaction" style="background-color:teal; padding:9.5px; padding-bottom:45px; margin-top:20px;"><label style="font-size:15px; color:white">Cancel Transaction</label></a>                   	
                     </div>
 
 
 	            </div>
-	        	</div>
 	        </div>
 
 	        <div class="divider" style="height:2px; margin-bottom:20px; margin-top:50px"></div>

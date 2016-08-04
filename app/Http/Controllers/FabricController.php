@@ -217,7 +217,7 @@ class FabricController extends Controller
     {
         $fabric = Fabric::find($request->input('delFabricID'));
 
-        $fabric->strPackageInactiveReason = trim($request->input('delInactiveFabric'));
+        $fabric->strFabricInactiveReason = trim($request->input('delInactiveFabric'));
         $fabric->boolIsActive = 0;
         $fabric->save();
 

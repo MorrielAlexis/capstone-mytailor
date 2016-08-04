@@ -96,7 +96,6 @@
                                   </thead>
 
                                   <tbody>
-                                    
                                       <tr ng-repeat="trackDetail in trackDetails">
                                         <td>@{{ trackDetail.strGarmentCategoryName }}</td>
                                         <td>@{{ trackDetail.strSegmentName }}</td>
@@ -165,7 +164,7 @@
     app.controller('OrderTrackingController', function($scope, $http){
       $scope.trackDetails = [];
       $scope.isEmpty = true;
-      $scope.isNull = false;
+      $scope.isNull = true;
 
       $scope.track = function(trackID){
         console.log(trackID);

@@ -109,7 +109,7 @@
 																	<td>{{ $pending_payment->dtOrderDate }}</td>
 																	<td>Php {{ number_format($pending_payment->dblOrderTotalPrice, 2) }}</td>
 																	<td>Php {{ number_format($pending_payment->dblAmountToPay, 2) }}</td>
-																	<td>Php {{ number_format($pending_payment->dblOustandingBal, 2) }}</td>
+																	<td>Php {{ number_format($pending_payment->dblOutstandingBal, 2) }}</td>
 																	<td style="color:red">{{ $pending_payment->dtPaymentDueDate}}</td>
 																</tr>
 																@endif
@@ -131,7 +131,7 @@
 												
 											{!! Form::open(['url' => 'transaction/billing-payment-bill-customer', 'method' => 'post']) !!}
 												<div class="col s6" style="margin-top:20px;">
-												<label>{{ $pending_payment->strJobOrderID }}This is a summary of orders:</label>
+												<label>This is a summary of orders:</label>
 												</div>
 
 												<div class="col s6">
@@ -152,18 +152,19 @@
 													                  <th data-field="product">Item</th>         
 													                  <th data-field="quantity">Quantity</th>
 													                  <th data-field="price">Unit Price</th>
-													                  <th data-field="price">Total Price</th>
+													                  
 													              	</tr>
 												              	</thead>
 												              	<tbody>
 												              	@if(isset($or_summary))
 												              	@foreach($or_summary as $summary)
 												              		@if($summary->boolIsActive == 1)
+												              		
 														            <tr>
 														               <td>{{ $summary->strGarmentCategoryName }} , {{ $summary->strSegmentName }}</td>
 														               <td>{{ $summary->intQuantity }}</td>
 														               <td>{{ $summary->dblUnitPrice }}</td>
-														               <td>{{ $summary->dblUnitPrice*2 }}</td>
+														               
 														            </tr>
 																	@endif
 																@endforeach
@@ -199,7 +200,7 @@
 
 									<div class="col s12" style="margin-top:30px">
 										<a href="{{URL::to('billing-payment/pending-payment-pdf')}}" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to print a copy of pending payments" style="background-color:teal; margin-right:10px"><i class="medium mdi-action-print" style="margin-right:15px;"></i>Print a copy</a>
-										<a href="{{URL::to('/transaction/billing-payment')}}" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to clear all fields" style="background-color:teal"><i class="medium mdi-editor-format-clear" style="margin-right:15px;"></i>Clear view</a>
+										<button class="left btn tooltipped" type="submit" data-position="bottom" data-delay="50" data-tooltip="Click to clear all fields" style="background-color:teal"><i class="medium mdi-editor-format-clear" style="margin-right:15px;"></i>Clear view</a>
 										<a href="{{URL::to('/transaction/billing-payment-bill-customer')}}" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to proceeed to billing process" style="background-color:teal"><i class="medium mdi-action-payment" style="margin-right:15px;"></i>Proceed to Payment</a>
 									</div>
 

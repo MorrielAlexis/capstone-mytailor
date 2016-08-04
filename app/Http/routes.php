@@ -249,6 +249,8 @@ Route::group(['prefix' => 'transaction'], function(){
 Route::get('billing-payment/pending-payment-pdf', 'BillingPaymentController@generateBill');
 Route::get('billing-payment/payment-receipt-pdf', 'BillingPaymentController@generateReceipt');
 
+Route::get('generate-payment-receipt', 'WalkInIndividualController@generateReceipt');
+
 Route::group(['prefix' => 'utilities'], function(){
 	Route::resource('inactive-data', 'InactiveDataController');
 
@@ -263,7 +265,10 @@ Route::group(['prefix' => 'utilities'], function(){
 		Route::post('inactive-data/reactivate-meas-category', 'InactiveDataController@reactivate_measCategory');
 		Route::post('inactive-data/reactivate-detail', 'InactiveDataController@reactivate_detail');
 		Route::post('inactive-data/reactivate-fabricType', 'InactiveDataController@reactivate_fabrictype');
+		Route::post('inactive-data/reactivate-fabric-color', 'InactiveDataController@reactivate_fabricColor');
+		Route::post('inactive-data/reactivate-fabric-pattern', 'InactiveDataController@reactivate_fabricPattern');
 		Route::post('inactive-data/reactivate-fabric-thread-count', 'InactiveDataController@reactivate_fabricThreadCount');
+		Route::post('inactive-data/reactivate-fabric', 'InactiveDataController@reactivate_fabric');
 		Route::post('inactive-data/reactivate-button', 'InactiveDataController@reactivate_button');
 		Route::post('inactive-data/reactivate-hookAndEye', 'InactiveDataController@reactivate_hookeye');
 		Route::post('inactive-data/reactivate-needle', 'InactiveDataController@reactivate_needle');
@@ -303,6 +308,7 @@ Route::group(['prefix' => 'transaction'], function(){
 
 	Route::get('walkin-individual-catalogue-designs', 'WalkInIndividualController@catalogueDesign');
 	Route::get('walkin-individual-payment-info', 'WalkInIndividualController@payment');
+
 });
 
 Route::group(['prefix' => 'transaction'], function(){

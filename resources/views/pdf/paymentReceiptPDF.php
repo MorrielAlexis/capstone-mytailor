@@ -4,8 +4,7 @@
         <head align="center">
             <title>Fashion Collection - Payment Receipt</title>
             <div>
-	            <div class="col s12"><center><img src="img/logo.jpg" class="left circle responsive-img valign profile-image center" style="height:100px; width:120px; margin-top:5px;"><h1 style="color:teal; font-size:40px;"><b>MyTailor</b> Store</h1></center></div>
-	            <center><h3 style="color:gray">Payment Receipt- Copy No. 0001</h3></center>
+	            <div class="col s12"><center><h1 style="color:teal; font-size:40px;"><img src="img/logo.jpg" class="left circle responsive-img valign profile-image center" style="height:100px; width:120px; margin-top:5px;"><b>MyTailor</b> Store</h1></center></div>
 	            <div class="col s12"><div class="container"><div class="divider" style="height:3px; background-color:teal"></div></div></div>
 	            <div class="col s12"><div class="divider" style="height:3px; background-color:teal"></div></div>
 	            

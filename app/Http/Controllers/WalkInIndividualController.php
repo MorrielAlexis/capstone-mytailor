@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Session;
+use PDF;
 
 use App\GarmentCategory;
 
@@ -380,6 +381,7 @@ class WalkInIndividualController extends Controller
                 ->with('standard_categories', $standardSizeCategory);
     }
 
+
     public function addCustomer(Request $request)
     {
         $individual = Individual::create(array(
@@ -561,6 +563,51 @@ class WalkInIndividualController extends Controller
         session()->forget('segment_values');
         return redirect('transaction/walkin-individual');
     }
+
+    public function generateReceipt()
+    {
+         
+
+        // $data = [
+        //     'joborderid' => session()->get('segment_data'),
+        //     'quantity' => session('segment_quantity'[0]),
+        //     'price' => (double)session()->get('totalPrice')
+        // ];
+
+        // dd($data);
+
+
+        $data = [
+            'orders' => [
+                [
+                  'job_order_id' => 'JOB001',
+                  'segment_data'  => 'Name 1',
+                  'segment_quantity' => 1,
+                  'totalPrice' => 52.00
+
+                ]
+            ]
+        ];
+
+        // for($i=0; $i<count($data); $i++){
+        //     for($j=0; $j<$i+1; $j++){
+        //         array_push($data['orders'[$i+1]], [
+        //         'segment_data' => 'Name[$j+1]',
+        //         'segment_quantity' => $j+1,
+        //         'price' => $j+1
+        //     ]);
+        //     }
+        // }
+       
+
+        // dd($data);
+
+        $pdf = PDF::loadView('pdf/payment-receipt', compact('data'));
+
+        return $pdf->stream();
+                
+    }
+
 
     /**
      * Show the form for creating a new resource.

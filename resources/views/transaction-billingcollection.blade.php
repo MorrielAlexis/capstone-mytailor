@@ -66,7 +66,7 @@
 
 						<div class="col s12" style="margin-top:20px">
 							<a href="" class="left btn" style="background-color:teal; color:white; margin-left:10px">Cancel</a>
-							<a href="{{URL::to('/transaction/billing-payment')}}" class="left btn" style="background-color:teal; color:white; margin-left:10px">Go to Billing</a>
+							<a href="{{URL::to('/transaction/billing-payment')}}" class="left btn" style="background-color:teal; color:white; margin-left:10px">Go to Payment</a>
 							<a href="" class="right btn" style="background-color:teal; color:white; margin-right:10px">Search</a>
 							<a href="" class="right btn" style="background-color:teal; color:white; margin-right:40px">Edit</a>
 						</div>
@@ -86,52 +86,52 @@
 								<div class="divider"></div>
 								<div class="divider"></div>
 							</div>
+
 							<table>
 								<thead>
 									<tr>
-										<th class="center" style="color:gray">ID</th>
+										<!-- <th class="center" style="color:gray">ID</th> -->
 										<th class="center" style="color:gray">Customer Name</th>
 										<th class="center" style="color:gray">Customer Type</th>
 										<th class="center" style="color:gray">Payment Type</th>
+										<th class="center" style="color:gray">Cheque Number</th>
 										<th class="center" style="color:red">Total Amount</th>
 										<th class="center" style="color:gray">Downpayment (50%)</th>
 										<th class="center" style="color:gray">Amount Paid</th>
 										<th class="center" style="color:gray">Outstanding Balance</th>
 										<th class="center" style="color:red">Due Date</th>
-										<th class="center" style="color:gray">Date of Payment</th>
+										<!-- <th class="center" style="color:gray">Date of Payment</th> -->
 										<th class="center" style="color:green">Status</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr >
-										<td class="center"><a href="#view-detail" class="modal-trigger"><b><u>COMP002</u></b></a></td>
-										<td class="center">Walang Tulugan Inc.</td>
-										<td class="center">Company</td>
-										<td class="center">Cheque</td>
-										<td class="center" style="color:red">130,000.00 Php</td>
-										<td class="center">65,000.00 Php</td>
-										<td class="center">70,000.00 Php</td>
-										<td class="center">60,000.00 Php</td>
-										<td class="center" style="color:red">2016-06-18</td>
-										<td class="center">2016-06-17</td>
-										<td class="center" style="color:green"><i>Paid</i></td>
-									</tr>
+									@if(isset($payments))
+									@foreach($payments as $payment)
+										@if($payment->boolIsActive == 1)
 
 									<tr>
-										<td class="center"><a href="#!"><b><u>COMP001</u></b></a></td>
-										<td class="center">Sabog Na Ko Co.</td>
-										<td class="center">Company</td>
-										<td class="center">Cheque</td>
-										<td class="center" style="color:red">100,000.00 Php</td>
-										<td class="center">50,000.00 Php</td>
-										<td class="center">50,000.00 Php</td>
-										<td class="center">50,000.00 Php</td>
-										<td class="center" style="color:red">2016-06-18</td>
-										<td class="center">2016-06-17</td>
-										<td class="center" style="color:green"><i>Pending</i></td>
+										
+										<!--  -->
+										<td class="center">{{ $payment->fullname }}</td>
+										<td class="center">Individual</td>
+										<td class="center">Cash</td>
+										<td class="center"> </td>
+										<td class="center" style="color:red">{{ number_format($payment->dblOrderTotalPrice, 2) }}</td>
+										<td class="center">{{ number_format(($payment->dblOrderTotalPrice/2), 2) }}</td>
+										<td class="center">{{ number_format($payment->dblAmountToPay, 2) }}</td>
+										<td class="center">{{ number_format($payment->dblOutstandingBal, 2)}}</td>
+										<td class="center" style="color:red">{{ $payment->dtPaymentDueDate }}</td>
+										<!-- <td class="center">{{ $payment->dtPaymentDate }}</td> -->
+										<td class="center" style="color:green"><i>{{ $payment->strPaymentStatus }}</i></td>
+											
 									</tr>
+
+										@endif
+									@endforeach
+									@endif
 								</tbody>
 							</table>
+
 
 							<div id="view-detail" class="modal modal-fixed-footer">
 								{!! Form::open() !!}

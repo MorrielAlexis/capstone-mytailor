@@ -14,8 +14,8 @@
         
 	        <ul class="col s12 breadcrumb">
 				<li><a class="active" style="padding-left:200px" href="#customer-info"><b>1.FILL-UP FORM</b></a></li>
-				<li><a style="padding-left:200px" href="{{URL::to('transaction/walkin-company-payment-payment-info')}}"><b>2.PAYMENT</b></a></li>
-				<li><a style="padding-left:200px" href="{{URL::to('transaction/walkin-company-payment-measure-detail')}}"><b>3.ADD MEASUREMENT DETAIL</b></a></li>
+				<li><a style="padding-left:200px" href="{{URL::to('transaction/walkin-company-payment-measure-detail')}}"><b>2.ADD MEASUREMENT DETAIL</b></a></li>
+				<li><a style="padding-left:200px" href="{{URL::to('transaction/walkin-company-payment-payment-info')}}"><b>3.PAYMENT</b></a></li>				
 			</ul>
 
 
@@ -49,64 +49,50 @@
 
 					<!--Modal for summary of orders-->
 					<div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
-									<h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
-										
-										{!! Form::open() !!}
-											<div class="divider" style="height:2px"></div>
-											<div class="modal-content col s12">
-												<label>This is a summary of orders:</label>
-														<div class="container">
-									                        <table class = "table centered order-summary" border = "1">
-											       				<thead style="color:gray">
-												          			<tr>
-													                  <th data-field="product">Package</th>         
-													                  <th data-field="quantity">Quantity</th>
-													                  <th data-field="price">Unit Price</th>
-													                  <th data-field="price">Total Price</th>
-													              	</tr>
-												              	</thead>
-												              	<tbody>
-														            <tr>
-														               <td>Men Set A</td>
-														               <td>19</td>
-														               <td>1,400.00 PHP</td>
-														               <td>26,600.00 PHP</td>
-														            </tr>
+						<h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
+							
+							{!! Form::open() !!}
+								<div class="divider" style="height:2px"></div>
+								<div class="modal-content col s12">
+									<label>This is a summary of orders:</label>
+										<div class="container">
+					                        <table class = "table centered order-summary" border = "1">
+							       				<thead style="color:gray">
+								          			<tr>
+									                  <th data-field="product">Package</th>         
+									                  <th data-field="quantity">Quantity</th>
+									                  <th data-field="price">Unit Price</th>
+									                  <th data-field="price">Total Price</th>
+									              	</tr>
+								              	</thead>
+								              	<tbody>
+										            <tr>
+										               <td>Generic FA</td>
+										               <td>19</td>
+										               <td>900.00 PHP</td>
+										               <td>17,100.00 PHP</td>
+										            </tr>
 
-														            <tr>
-														               <td>Women Set A</td>
-														               <td>38</td>
-														               <td>1,300.00 PHP</td>
-														               <td>49,400.00 PHP</td>
-														            </tr>
+										        </tbody>
+										    </table>
+							      		</div>
 
-														            <tr>
-														               <td>Blazer</td>
-														               <td>19</td>
-														               <td>900.00 PHP</td>
-														               <td>17,100.00 PHP</td>
-														            </tr>
+							      		
+							      		<div class="col s12"><div class="divider"></div></div>
 
-														        </tbody>
-														    </table>
-											      		</div>
+								      	<div class="col s12" style="margin-bottom:50px" >
+											<div class="col s6"><p style="color:gray">Estimated time to finish all orders:<p style="color:black">60 days</p></p></div>
+											<div class="col s6"><p style="color:gray">Total Amoun to Pay:<p style="color:black">93,100.00 PHP</p></p></div>
+										</div>
+								</div>
 
-											      		<div class="divider"></div>
-											      		<div class="divider"></div>
-
-												      	<div class="col s12" style="margin-bottom:50px" >
-															<div class="col s6"><p style="color:gray">Estimated time to finish all orders:<p style="color:black">60 days</p></p></div>
-															<div class="col s6"><p style="color:gray">Total Amoun to Pay:<p style="color:black">93,100.00 PHP</p></p></div>
-														</div>
-													</div>
-
-											<div class="modal-footer col s12">
-												<p class="left" style="margin-left:10px; color:gray;">Continue to payment?</p>
-								                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-company-payment-payment-info')}}"><font color="black">Yes</font></a>
-								                <a href="{{URL::to('/transaction/walkin-company-payment-customer-info')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
-								            </div>
-										{!! Form::close() !!}
-							</div>
+								<div class="modal-footer col s12">
+									<p class="left" style="margin-left:10px; color:gray;">Continue to payment?</p>
+					                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-company-payment-measure-detail')}}"><font color="black">Yes</font></a>
+					                <a href="{{URL::to('/transaction/walkin-company-payment-customer-info')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+					            </div>
+							{!! Form::close() !!}
+					</div>
 					<!--End of modal for summary of orders-->
 
 					<!--Modal for Cancel Transaction-->

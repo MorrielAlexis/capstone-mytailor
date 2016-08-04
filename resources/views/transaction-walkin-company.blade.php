@@ -50,9 +50,9 @@
 										</div>
 									</div>
 
-									<div class="modal-footer col s12" style="background-color:red; opacity:0.85">
-						                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-company')}}"><font color="white">OK</font></a>
-						                <a href="{{URL::to('transaction/walkin-company')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="white">Cancel</font></a>
+									<div class="modal-footer col s12">
+						                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-company')}}"><font color="black"><b>OK</b></font></a>
+						                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black"><b>Cancel</b></font></a>
 						            </div>
 								{!! Form::close() !!}
 						</div>
@@ -90,8 +90,7 @@
 									</div>
 
 									<div class="modal-footer col s12">
-						                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-company')}}"><font color="teal"><b>OK</b></font></a>
-						                <a href="{{URL::to('transaction/walkin-company')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="teal"><b>Cancel</b></font></a>
+						                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="teal"><b>OK</b></font></a>
 						            </div>
 								{!! Form::close() !!}
 						</div>
