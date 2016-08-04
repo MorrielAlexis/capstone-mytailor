@@ -14,7 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::post('/update', 'JobOrderProgressController@updateJobDetails');
 Route::get('/details','JobOrderProgressController@jobdetails');
+Route::get('/track', 'OnlineCustomerProfileIndividualController@trackJob');
 Route::get('/', 'HomeController@showWelcome');
 Route::post('/login', 'HomeController@LogIn');
 Route::get('/logout', 'HomeController@LogOut');
@@ -258,12 +260,15 @@ Route::group(['prefix' => 'utilities'], function(){
 		Route::post('inactive-data/reactivate-employee', 'InactiveDataController@reactivate_employee');
 		Route::post('inactive-data/reactivate-garmentCategory', 'InactiveDataController@reactivate_category');
 		Route::post('inactive-data/reactivate-segment', 'InactiveDataController@reactivate_segment');
+		Route::post('inactive-data/reactivate-segment-style', 'InactiveDataController@reactivate_segmentStyle');
 		Route::post('inactive-data/reactivate-segmentPattern', 'InactiveDataController@reactivate_segmentPattern');
-		Route::post('inactive-data/reactivate-head', 'InactiveDataController@reactivate_head');
+		Route::post('inactive-data/reactivate-meas-category', 'InactiveDataController@reactivate_measCategory');
 		Route::post('inactive-data/reactivate-detail', 'InactiveDataController@reactivate_detail');
 		Route::post('inactive-data/reactivate-fabricType', 'InactiveDataController@reactivate_fabrictype');
-		Route::post('inactive-data/reactivate-swatch', 'InactiveDataController@reactivate_swatch');
-		Route::post('inactive-data/reactivate-swatchName', 'InactiveDataController@reactivate_swatchname');
+		Route::post('inactive-data/reactivate-fabric-color', 'InactiveDataController@reactivate_fabricColor');
+		Route::post('inactive-data/reactivate-fabric-pattern', 'InactiveDataController@reactivate_fabricPattern');
+		Route::post('inactive-data/reactivate-fabric-thread-count', 'InactiveDataController@reactivate_fabricThreadCount');
+		Route::post('inactive-data/reactivate-fabric', 'InactiveDataController@reactivate_fabric');
 		Route::post('inactive-data/reactivate-button', 'InactiveDataController@reactivate_button');
 		Route::post('inactive-data/reactivate-hookAndEye', 'InactiveDataController@reactivate_hookeye');
 		Route::post('inactive-data/reactivate-needle', 'InactiveDataController@reactivate_needle');
@@ -299,6 +304,7 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::post('walkin-individual-payment-measure-detail', 'WalkInIndividualController@measurement');
 	
 	Route::get('walkin-individual-show-customize-orders', 'WalkInIndividualController@showCustomizeOrder');
+	Route::get('walkin-individual-show-measurement-view', 'WalkInIndividualController@showMeasurementView');
 
 	Route::get('walkin-individual-catalogue-designs', 'WalkInIndividualController@catalogueDesign');
 	Route::get('walkin-individual-payment-info', 'WalkInIndividualController@payment');

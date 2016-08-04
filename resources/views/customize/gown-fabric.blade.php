@@ -92,25 +92,29 @@
       <center><span class="red-text"><font size="+1">Click fabric photo to view fabric in detail</font></span></center>
       <div class="col s12 divider dashed" style="height:4px; margin-top:10px; margin-bottom:10px;"></div>
       
+      {!! Form::open(['url' => 'customize-gown-style', 'method' => 'post']) !!}
       <div class="col s12" style="margin-bottom:20px;"><a class="right btn-flat teal accent-4 white-text" type="submit">Continue</a></div>
 
-      <div class="col s12" style="margin-bottom:20px; padding:20px; padding-top:0;">
+      @foreach($fabrics as $fabric)
+      <div class="col s12 fabric-general {{ $fabric->strFabricTypeFK }} {{ $fabric->strFabricPatternFK }} {{ $fabric->strFabricColorFK }} {{ $fabric->strFabricThreadCountFK }}" style="margin-bottom:20px; padding:20px; padding-top:0;">
         <div class="col s6">
           <div class="center col s2 " style="margin-top:100px">
-            <input name="" type="radio" class="filled-in" value = "" id="" />
-            <label for=""></label>
+            <input type="hidden" name="hidden_fabric_id" value="{{$fabric->strFabricID}}">
+            <input name="rdb_fabric{{$fabric->strFabricID}}" type="radio" class="filled-in" value = "{{$fabric->strFabricID}}" id="{{$fabric->strFabricID}}" />
+            <label for="{{$fabric->strFabricID}}"></label>
           </div>
           <div class="col s10">
-            <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
+            <div class="card-panel teal lighten-4 z-depth-1" style="height:265px">
               <div class="row valign-wrapper">
                 <div class="center col s6">
-                  <img src="img/1.jpg" alt="" class="responsive-img">
+                  <img src="{{URL::asset($fabric->strFabricImage)}}"class="responsive-img">
                 </div>
                 <div class="col s6"> 
-                  <span><b></b></span>
+                  <span><b>{{$fabric->strFabricName}}</b></span>
                   <br/>
                   <span class="black-text">
-                    
+                    <b>{{$fabric->strFabricCode}}</b> <br>
+                    <b>{{ number_format($fabric->dblFabricPrice, 2) }} PHP</b>
                   </span>
                 </div>
               </div>
@@ -118,22 +122,8 @@
           </div>
         </div>
       </div>
-
-
-      @foreach($fabrics as $fabric)
-      <div class="col s12 fabric-general {{ $fabric->strFabricTypeFK }} {{ $fabric->strFabricPatternFK }} {{ $fabric->strFabricColorFK }} {{ $fabric->strFabricThreadCountFK }}">
-        <div class="col s3">
-          <div style="padding:20px;">
-            <img class="materialboxed responsive-img" src="{{URL::asset($fabric->strFabricImage)}}">
-            <figcaption style="background-color:#ede7f6">{{$fabric->strFabricName}}</figcaption>
-            <figcaption style="background-color:#ede7f6">{{$fabric->strFabricCode}}</figcaption>
-            <figcaption style="background-color:#ede7f6">{{$fabric->strFabricTypeName}}</figcaption>
-            <figcaption style="background-color:#ede7f6; color:red;">PHP {{$fabric->dblFabricPrice}}</figcaption>
-            <div><a class="btn green" type="button" value="{{$fabric->strFabricID}}"><i class="mdi-action-shopping-cart" style="font-size:22px;"> Choose this fabric</i></a></div>
-          </div>
-        </div>
-      </div> 
-      @endforeach      
+      @endforeach 
+      {!! Form::close() !!}
       
       <div class="col s12 divider dashed" style="height:4px; margin-bottom:10px;"></div>
       <center><span class="red-text"><font size="+1">Click fabric photo to view fabric in detail</font></span></center>

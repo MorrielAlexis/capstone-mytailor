@@ -137,7 +137,15 @@ class SegmentStyleController extends Controller
 
     function updatesegmentStyle(Request $request)
     {
-    
+        $checkSegmentStyles = SegmentStyle::all();
+        $isAdded=FALSE;
+
+        foreach($checkSegmentStyles as $checkSegmentStyle)
+            if(!strcasecmp($checkSegmentStyle->strSegStyleCatID, $request->input('editSegmentStyleID')) == 0 && strcasecmp($checkSegmentStyle->strSegmentFK,$request->input('editSegmentStyle')) == 0 &&
+                strcasecmp($checkSegmentStyle->strSegStyleName, trim($request->input('editSegmentStyleName'))) == 0)
+                $isAdded = TRUE;
+
+        if(!$isAdded){   
         $segmentStyle  = SegmentStyle::find($request->input('editSegmentStyleID'));
 
             $segmentStyle ->strSegmentFK = $request->input('editSegmentStyle');
@@ -147,8 +155,7 @@ class SegmentStyleController extends Controller
             $segmentStyle  ->save();
 
         \Session::flash('flash_message_update','Segment style category detail/s successfully updated.'); //flash message
-
-
+        }else \Session::flash('flash_message_duplicate','Segment style category already exists.'); //flash message
 
         return  redirect('maintenance/segment-style');
     }

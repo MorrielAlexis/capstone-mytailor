@@ -50,18 +50,36 @@
           </div>
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
 
-          <div class="col s12" style="padding:20px;"><h4>3. Buttons</h4></div>
-
-          <div class="col s12" style="margin-top:20px;">
-
-            <div class="col s2">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-              <p>
-                <input class="with-gap" name="classic" type="radio" id="small" />
-                <label for="small"><font size="+1"><b>Cuffed Short Sleeves</b></font></label>
-              </p>
-            </div>
-
+          <div class="col s12">
+            <ul class="collapsible" data-collapsible="accordion" style="border:none;">
+              <li>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Buttons</div>
+                <div class="collapsible-body row overflow-x">
+                  <div class="col s6">
+                    <div class="center col s2 " style="margin-top:100px">
+                      <input name="" type="radio" class="filled-in" value = "" id="" />
+                      <label for=""></label>
+                    </div>
+                    <div class="col s10">
+                      <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
+                        <div class="row valign-wrapper">
+                          <div class="center col s6">
+                            <img src="" alt="" class="responsive-img">
+                          </div>
+                          <div class="col s6"> 
+                            <span><b></b></span>
+                            <br/>
+                            <span class="black-text">
+                              
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </div> 
 
           <div class="divider dashed" style="height:2px;"></div>
@@ -103,39 +121,7 @@
               </div>             
             </div>            
 
-          </div>
-
-          <div class="col s12">
-            <ul class="collapsible" data-collapsible="accordion" style="border:none;">
-              <li>
-                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Buttons</div>
-                <div class="collapsible-body row overflow-x">
-                  <div class="col s4">
-                    <div class="center col s2 " style="margin-top:100px">
-                      <input name="" type="radio" class="filled-in" value = "" id="" />
-                      <label for=""></label>
-                    </div>
-                    <div class="col s10">
-                      <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
-                        <div class="row valign-wrapper">
-                          <div class="center col s6">
-                            <img src="" alt="" class="responsive-img">
-                          </div>
-                          <div class="col s6"> 
-                            <span><b></b></span>
-                            <br/>
-                            <span class="black-text">
-                              
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>          
+          </div>                   
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12">
@@ -173,4 +159,3 @@
     });
 
   </script>
-        

@@ -80,6 +80,7 @@ class HomeController extends Controller
     {    
         if(Auth::check())
         {   
+            session()->flush();
             Auth::logout();
             return redirect('/');
         }

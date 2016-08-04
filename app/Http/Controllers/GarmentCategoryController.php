@@ -138,9 +138,6 @@ class GarmentCategoryController extends Controller
             $garment = GarmentCategory::find($request->input('editGarmentID'));
             $garment->strGarmentCategoryName = trim($request->input('editGarmentName'));
             $garment->textGarmentCategoryDesc = trim($request->input('editGarmentDescription'));
-            // $garment = GarmentCategory::find($request->input('strGarmentCategoryID'));
-            // $garment->strGarmentCategoryName = trim($request->input('strGarmentCategoryName'));
-            // $garment->textGarmentCategoryDesc = trim($request->input('textGarmentCategoryDesc'));
 
             $garment ->save();
 

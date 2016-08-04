@@ -30,7 +30,7 @@
         </div>
       @endif
 
-     <!--Edit Fabric Type-->
+     <!--Edit Alteration-->
       @if (Session::has('flash_message_update'))
         <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
@@ -43,7 +43,7 @@
       @endif
 
 
-      <!--Delete Fabric Type-->
+      <!--Delete Alteration-->
       @if (Session::has('flash_message_delete'))
         <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
@@ -54,8 +54,21 @@
           </div>
         </div>
       @endif
-      
+    
 
+      @if (Session::has('flash_message_duplicate'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red accent-1">
+              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              <em> {!! session('flash_message_duplicate') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif 
+
+       {{--  End of Flash Messages
+ --}}
     <div class="row">
       <div class="col s12 m12 l12">
         <span class="page-title"><h4>Maintenance - Alteration Type</h4></span>
@@ -284,7 +297,7 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                       <div class="input-field col s12">
-                        <input required id="strAlterationPrice" name = "strAlterationPrice" type="text" class="validate">
+                        <input required id="dblAlterationPrice" name = "dblAlterationPrice" type="text" class="validate">
                         <label for="alteration_Price">Alteration Price <span class="red-text"><b>*</b></span></label>
                       </div>
                   </div>

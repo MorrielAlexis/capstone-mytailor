@@ -29,10 +29,11 @@
         <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabEmp">Employee</a></li>
         <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabGarm">Garments</a></li>
         <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabFabmat">Fabrics</a></li>
+        <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabMeasurements">Measurements</a></li>
         <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabMate">Materials</a></li>
         <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabCata">Catalogue</a></li>
         <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabAlte">Alteration</a></li>
-        <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabPackages">Packages</a></li>
+        <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabPackages">Sets</a></li>
         <div class="indicator white" style="z-index:1"></div>
       </ul>
 
@@ -274,7 +275,7 @@
     <div style="height:30px;"></div>
     
       <!--Category Garments-->
-      <p><h5 style="margin-left:20px"><b>Category Garments</b></h5></p>
+      <p><h5 style="margin-left:20px"><b>Garment Category</b></h5></p>
       <div class="row">
         <div class="col s12">
           <div class="card">
@@ -322,18 +323,18 @@
       </div>
 
       <!--Segment Garments-->
-      <p><h5 style="margin-left:20px"><b>Segment Garments</b></h5></p>
+      <p><h5 style="margin-left:20px"><b>Segments</b></h5></p>
       <div class="row">
         <div class="col s12">
           <div class="card">
             <div class="card-content">
               <div class = "col s12 m12 l12 overflow-x">
-                <h5><font color = "#1b5e20"><center>Inactive Garment Segments</center> </font> </h5>
+                <h5><font color = "#1b5e20"><center>Inactive Segments</center> </font> </h5>
                 <table class = "table centered data-reactSegment" align = "center" border = "1">
                   <thead>
                     <tr>
                       <!--<th data-field="id">Garment Details ID</th>-->
-                      <th data-field="name">Category Name</th>
+                    {{--   <th data-field="name">Category Name</th> --}}
                       <th data-field="name">Segment Name</th>
                       <th data-field="address">Segment Description</th>
                       <th data-field="React">Reason for Deactivation</th>
@@ -346,7 +347,7 @@
                       @if($segment_1->boolIsActive == 0)
                       <tr>
                         <!--<td>{{ $segment_1->strGarmentSegmentID }}</td>-->
-                        <td>{{ $segment_1->strGarmentCategoryName }}</td>
+                    {{--     <td>{{ $segment_1->strGarmentCategoryName }}</td> --}}
                         <td>{{ $segment_1->strSegmentName }}</td>
                         <td>{{ $segment_1->textSegmentDesc }}</td>
                         <td>{{ $segment_1->strSegInactiveReason }}</td>
@@ -370,6 +371,51 @@
         </div>
       </div>
 
+      <!--Segment Style Category-->
+      <p><h5 style="margin-left:20px"><b>Segment Style Category</b></h5></p>
+      <div class="row">
+        <div class="col s12">
+          <div class="card">
+            <div class="card-content">
+              <div class = "col s12 m12 l12 overflow-x">
+                <h5><font color = "#1b5e20"><center>Inactive Segment Style</center> </font> </h5>
+                <table class="centered" border="1">
+                  <thead>
+                    <tr>
+                      <!--<th data-field= "Catalog ID">Segment Pattern ID</th>-->
+                      <th data-field="Segment  Style Name">Style Category Name</th>
+                      <th data-field="React">Reason for Deactivation</th>
+                      <th data-field="React">Reactivate</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                        @foreach($segmentStyle as $segmentStyle_1)
+                          @if($segmentStyle_1->boolIsActive == 0)
+                          <tr>
+                            <td>{{ $segmentStyle_1->strSegStyleName }}</td>
+                            <td>{{ $segmentStyle_1->strSegStyleCatInactiveReason }}</td>
+                            <td>
+                            {!! Form::open(['url' => 'utilities/inactive-data/reactivate-segment-style']) !!}
+                              <input type="hidden" value="{{ $segmentStyle_1->strSegStyleCatID }}" id="reactID" name="reactID">
+                              <input type="hidden" value="{{ $segmentStyle_1->strSegStyleCatID }}" id="reactInactiveSegmentStyle" name="reactInactiveSegmentStyle">
+                              <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of segment style to the table">REACTIVATE</button>
+                            {!! Form::close() !!}
+                          </td>
+                      </tr>
+                      @endif
+                      @endforeach
+                  </tbody>
+                </table>
+              
+              </div>
+              <div class = "clearfix"></div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!--Segment Pattern-->
       <p><h5 style="margin-left:20px"><b>Segment Pattern</b></h5></p>
       <div class="row">
@@ -382,8 +428,6 @@
                   <thead>
                     <tr>
                       <!--<th data-field= "Catalog ID">Segment Pattern ID</th>-->
-                      <th data-field="Category Name">Category Name </th>
-                      <th data-field="Garment Name">Segment Name </th>
                       <th data-field="Pattern Name">Pattern Name</th>
                       <th data-field="Pattern Image">Pattern Image</th>
                       <th data-field="React">Reason for Deactivation</th>
@@ -396,8 +440,6 @@
                       @if($pattern_1->boolIsActive == 0)
                           <tr>
                             <!--<td>{{ $pattern_1->strDesignPatternID }}</td>-->
-                            <td>{{ $pattern_1->strGarmentCategoryName }}</td>
-                            <td>{{ $pattern_1->strSegmentName }}</td>
                             <td>{{ $pattern_1->strSegPName }}</td>
                             <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($pattern_1->strSegPImage)}}"></td>
                             <td>{{ $pattern_1->strSegPInactiveReason }}</td>
@@ -421,6 +463,10 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div id="tabMeasurements" class="hue col s12" style="margin-top:45px; background-color: #80d8ff;">
+    <div style="height:30px;"></div>
 
       <!--Measurement Category-->
       <p><h5 style="margin-left:20px"><b>Measurement Category</b></h5></p>
@@ -429,30 +475,26 @@
           <div class="card">
             <div class="card-content">
               <div class = "col s12 m12 l12 overflow-x">
-                <h5><font color = "#1b5e20"><center>Inactive Measurement Information</center> </font> </h5>
+                <h5><font color = "#1b5e20"><center>Inactive Measurement Category</center> </font> </h5>
                 <table class="centered" border="1">
                   <thead>
                     <tr>
-                        <th data-field="Garmentcategory">Garment Category</th>
-                        <th data-field="Garmentcategory">Segment</th>
-                        <th data-field="MeasurementName">Measurement Name</th>
+                        <th data-field="MeasurementName">Measurement Category Name</th>
                         <th data-field="Garmentcategory">Reason for Deactivation</th>
                         <th data-field="MeasurementName">Reactivate</th>
                     </tr>
                   </thead>
 
                   <tbody>
-                      @foreach($head as $head_1)
-                      @if($head_1->boolIsActive == 0)
+                      @foreach($measurementCategory as $measurementCategory_1)
+                      @if($measurementCategory_1->boolIsActive == 0)
                           <tr>
-                            <td>{{ $head_1->strGarmentCategoryName }}</td>
-                            <td>{{ $head_1->strSegmentName }}</td>
-                            <td>{{ $head_1->strMeasurementDetailName }}</td>
-                            <td>{{ $head_1->strMeasCatInactiveReason }}</td>
+                            <td>{{ $measurementCategory_1->strMeasurementCategoryName }}</td> 
+                            <td>{{ $measurementCategory_1->strMeasCatInactiveReason }}</td>
                             <td>
-                            {!! Form::open(['url' => 'utilities/inactive-data/reactivate-head']) !!}
-                              <input type="hidden" value="{{ $head_1->strMeasCatID }}" id="reactID" name="reactID">
-                              <input type="hidden" value="{{ $head_1->strMeasCatID }}" id="reactInactiveHead" name="reactInactiveHead">
+                            {!! Form::open(['url' => 'utilities/inactive-data/reactivate-meas-category']) !!}
+                              <input type="hidden" value="{{ $measurementCategory_1->strMeasurementCategoryID }}" id="reactID" name="reactID">
+                              <input type="hidden" value="{{ $measurementCategory_1->strMeasurementCategoryID }}" id="reactInactiveMeasCat" name="reactInactiveMeasCat">
                               <button type="submit"  style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return measuremennt information to the table">REACTIVATE</button>
                             {!! Form::close() !!}
                           </td>
@@ -567,92 +609,38 @@
         </div>
       </div>
 
-      <!--Swatches-->
-      <p><h5 style="margin-left:20px"><b>Swatches</b></h5></p>
+       <!--Fabric Thread Count-->
+      <p><h5 style="margin-left:20px"><b>Fabric Thread Count</b></h5></p>
       <div class="row">
         <div class="col s12">
           <div class="card">
             <div class="card-content">
               <div class = "col s12 m12 l12 overflow-x">
-                <h5><font color = "#1b5e20"><center>Inactive Fabric Swatches</center> </font> </h5>
-                <table class="centered" border="1">
-                  <thead>
-                    <tr>
-                      <!--<th date-field="Swatch ID">Swatch ID </th>-->
-                      <th data-field="Swatch Type">Swatch Type</th>
-                      <th data-field="SwatchName">Swatch Name</th>
-                      <th data-field="SwatchCode">Swatch Code</th>
-                      <th data-field="SwatchImage">Image</th>
-                      <th data-field="React">Reason for Deactivation</th>
-                      <th data-field="reactSwatch">Reactivate</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                      @foreach($swatch as $swatch_1)
-                        @if($swatch_1->boolIsActive == 0)
-                      <tr>
-                        <!--<td>{{ $swatch_1->strSwatchID }}</td>-->
-                        <td>{{ $swatch_1->strFabricTypeName }}</td>
-                        <td>{{ $swatch_1->strSwatchName }}</td>
-                        <td>{{ $swatch_1->strSwatchCode }}</td>
-                        <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($swatch_1->strSwatchImage)}}"></td>
-                        <td>{{ $swatch_1->strSwatchInactiveReason }}</td>
-                        <td>
-
-                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-swatch']) !!}
-
-                            <input type="hidden" value="{{ $swatch_1->strSwatchID }}" id="reactID" name="reactID">
-                            <input type="hidden" value="{{ $swatch_1->strSwatchID }}" id="reactInactiveSwatch" name="reactInactiveSwatch">
-                            <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of fabric swatch to the table">REACTIVATE</button>
-
-                          {!! Form::close() !!}
-                      </td>
-                      </tr>
-                  @endif
-                  @endforeach
-                  </tbody>
-                </table>
-              </div>
-              <div class = "clearfix"></div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!--Swatch Name-->
-      <p><h5 style="margin-left:20px"><b>Swatch Names</b></h5></p>
-      <div class="row">
-        <div class="col s12">
-          <div class="card">
-            <div class="card-content">
-              <div class = "col s12 m12 l12 overflow-x">
-                <h5><font color = "#1b5e20"><center>Inactive Swatch Names</center> </font> </h5>
+                <h5><font color = "#1b5e20"><center>Inactive Fabric Thread Count</center> </font> </h5>
                 <table class="centered" border="1">
                   <thead>
                     <tr>
                       <!--<th data-field="fabricID">Fabric Type ID</th>-->
-                      <th data-field="swatchName">Name</th>
-                      <th data-field="swatchDescription">Description</th> 
+                      <th data-field="fabricThreadCountName">Thread Count Name</th>
+                      <th data-field="fabricThreadCountDesc">Thread Count Desc</th> 
                       <th data-field="React">Reason for Deactivation</th>    
                       <th>Reactivate</th>
                     </tr>   
                   </thead>
 
                   <tbody>
-                    @foreach($swatchname as $swatchname_1)
-                    @if($swatchname_1->boolIsActive == 0)
+                    @foreach($threadCount as $threadCount_1)
+                    @if($threadCount_1->boolIsActive == 0)
                       <tr>
-                        <!--<td>{{ $fabricType_1->strFabricTypeID }}</td>-->
-                        <td>{{ $swatchname_1->strSName}}</td>
-                        <td>{{ $swatchname_1->txtSwatchNameDesc}}</td>
-                        <td>{{ $swatchname_1->strSwatchNameInactiveReason }}</td>
+                          <!--<td>{{ $threadCount_1->strFabricThreadCountID }}</td>-->
+                        <td>{{ $threadCount_1->strFabricThreadCountName }}</td>
+                        <td>{{ $threadCount_1->txtFabricThreadCountDesc}}</td>
+                        <td>{{ $threadCount_1->strFabricThreadCountInactiveReason }}</td>
                         <td>
-                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-swatchName']) !!}
-                            <input type="hidden" value="{{ $swatchname_1->strSwatchNameID }}" id="reactID" name="reactID">
-                            <input type="hidden" value="{{ $swatchname_1->strSwatchNameID }}" id="reactInactiveSName" name="reactInactiveSName">
-                            <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="CLick to return data of fabric type to the table">REACTIVATE</button>
+                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-fabric-thread-count']) !!}
+                            <input type="hidden" value="{{ $threadCount_1->strFabricThreadCountID }}" id="reactID" name="reactID">
+                            <input type="hidden" value="{{ $threadCount_1->strFabricThreadCountID }}" id="reactInactiveFabricThreadCount" name="reactInactiveFabricThreadCount">
+                            <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of fabric thread count to the table">REACTIVATE</button>
                           {!! Form::close() !!}
                         </td>
                       </tr>
@@ -668,6 +656,150 @@
         </div>
       </div>
 
+      <!--Fabric Color-->
+      <p><h5 style="margin-left:20px"><b>Fabric Color</b></h5></p>
+      <div class="row">
+        <div class="col s12">
+          <div class="card">
+            <div class="card-content">
+              <div class = "col s12 m12 l12 overflow-x">
+                <h5><font color = "#1b5e20"><center>Inactive Fabric Color</center> </font> </h5>
+                <table class="centered" border="1">
+                  <thead>
+                    <tr>
+                      <!--<th data-field="fabricID">Fabric Type ID</th>-->
+                      <th data-field="fabricColorName"> Color Name</th>
+                      <th data-field="fabricColorDesc"> Color Desc</th> 
+                      <th data-field="React">Reason for Deactivation</th>    
+                      <th>Reactivate</th>
+                    </tr>   
+                  </thead>
+
+                  <tbody>
+                    @foreach($fabricColor as $fabricColor_1)
+                    @if($fabricColor_1->boolIsActive == 0)
+                      <tr>
+                          <!--<td>{{ $fabricColor_1->strFabricColorID }}</td>-->
+                        <td>{{ $fabricColor_1->strFabricColorName }}</td>
+                        <td>{{ $fabricColor_1->txtFabricColorDesc}}</td>
+                        <td>{{ $fabricColor_1->strFabricColorInactiveReason }}</td>
+                        <td>
+                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-fabric-color']) !!}
+                            <input type="hidden" value="{{ $fabricColor_1->strFabricColorID }}" id="reactID" name="reactID">
+                            <input type="hidden" value="{{ $fabricColor_1->strFabricColorID }}" id="reactInactiveFabricColor" name="reactInactiveFabricColor">
+                            <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of fabric color to the table">REACTIVATE</button>
+                          {!! Form::close() !!}
+                        </td>
+                      </tr>
+                      @endif
+                      @endforeach
+                  </tbody>
+                </table>
+              </div>
+              <div class = "clearfix"></div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+       <!--Fabric Pattern-->
+      <p><h5 style="margin-left:20px"><b>Fabric Pattern</b></h5></p>
+      <div class="row">
+        <div class="col s12">
+          <div class="card">
+            <div class="card-content">
+              <div class = "col s12 m12 l12 overflow-x">
+                <h5><font color = "#1b5e20"><center>Inactive Fabric Pattern</center> </font> </h5>
+                <table class="centered" border="1">
+                  <thead>
+                    <tr>
+                      <!--<th data-field="fabricID">Fabric Type ID</th>-->
+                      <th data-field="fabricColorName"> Pattern Name</th>
+                      <th data-field="fabricColorDesc"> Pattern Desc</th> 
+                      <th data-field="React">Reason for Deactivation</th>    
+                      <th>Reactivate</th>
+                    </tr>   
+                  </thead>
+
+                  <tbody>
+                    @foreach($fabricPattern as $fabricPattern_1)
+                    @if($fabricPattern_1->boolIsActive == 0)
+                      <tr>
+                          <!--<td>{{ $fabricPattern_1->strFabricPatternID }}</td>-->
+                        <td>{{ $fabricPattern_1->strFabricPatternName }}</td>
+                        <td>{{ $fabricPattern_1->txtFabricPatternDesc}}</td>
+                        <td>{{ $fabricPattern_1->strFabricPatternInactiveReason }}</td>
+                        <td>
+                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-fabric-pattern']) !!}
+                            <input type="hidden" value="{{ $fabricPattern_1->strFabricPatternID }}" id="reactID" name="reactID">
+                            <input type="hidden" value="{{ $fabricPattern_1->strFabricPatternID }}" id="reactInactiveFabricPattern" name="reactInactiveFabricPattern">
+                            <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of fabric color to the table">REACTIVATE</button>
+                          {!! Form::close() !!}
+                        </td>
+                      </tr>
+                      @endif
+                      @endforeach
+                  </tbody>
+                </table>
+              </div>
+              <div class = "clearfix"></div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Fabrics-->
+      <p><h5 style="margin-left:20px"><b>Fabric</b></h5></p>
+      <div class="row">
+        <div class="col s12">
+          <div class="card">
+            <div class="card-content">
+              <div class = "col s12 m12 l12 overflow-x">
+                <h5><font color = "#1b5e20"><center>Inactive Fabric</center> </font> </h5>
+                <table class="centered" border="1">
+                  <thead>
+                    <tr>
+                      <!--<th data-field="fabricID">Fabric Type ID</th>-->
+                      <th data-field="fabricName">Fabric Name</th>
+                      <th data-field="fabricCode">Code</th> 
+                      <th data-field="fabricPrice">Price</th> 
+                      <th data-field="fabricImage">Image</th> 
+                      <th data-field="fabricDesc">Description</th>
+                      <th data-field="React">Reason for Deactivation</th>    
+                      <th>Reactivate</th>
+                    </tr>   
+                  </thead>
+
+                  <tbody>
+                    @foreach($fabric as $fabric_1)
+                    @if($fabricColor_1->boolIsActive == 0)
+                      <tr>
+                          <td>{{ $fabric_1->strFabricName }}</td>
+                          <td>{{ $fabric_1->strFabricCode }}</td>
+                          <td>{{ number_format($fabric_1->dblFabricPrice
+                            , 2) . ' PHP' }}</td>
+                          <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($fabric_1->strFabricImage)}}"></td>
+                          <td>{{ $fabric_1->txtFabricDesc }}</td>
+                          <td> {{ $fabric_1->strPackageInactiveReason}}</td>
+                        <td>
+                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-fabric']) !!}
+                            <input type="hidden" value="{{ $fabric_1->strFabricID }}" id="reactID" name="reactID">
+                            <input type="hidden" value="{{ $fabric_1->strFabricID }}" id="reactInactiveFabric" name="reactInactiveFabric">
+                            <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of fabric color to the table">REACTIVATE</button>
+                          {!! Form::close() !!}
+                        </td>
+                      </tr>
+                      @endif
+                      @endforeach
+                  </tbody>
+                </table>
+              </div>
+              <div class = "clearfix"></div>
+
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div id="tabMate" class="hue col s12" style="margin-top:45px; background-color: #80d8ff;">
@@ -1041,19 +1173,19 @@
           </div>
         </div>
       </div>
-      </div>
+    </div>
 
       <div id="tabPackages" class="hue col s12" style="margin-top:45px; background-color: #80d8ff;">
     <div style="height:30px;"></div>
 
             <!--Packages-->
-     <p><h5 style="margin-left:20px"><b>Packages</b></h5></p>
+     <p><h5 style="margin-left:20px"><b>Sets</b></h5></p>
       <div class="row">
         <div class="col s12">
           <div class="card">
             <div class="card-content">
               <div class = "col s12 m12 l12 overflow-x">
-                <h5><font color = "#1b5e20"><center>Inactive Packages</center> </font> </h5>
+                <h5><font color = "#1b5e20"><center>Inactive Sets</center> </font> </h5>
                 <table class="centered" border="1">
 
                   <thead>
@@ -1095,6 +1227,7 @@
       </div>
     </div>
   </div>
+
 
 
 

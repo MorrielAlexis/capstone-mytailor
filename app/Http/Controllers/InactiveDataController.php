@@ -11,11 +11,14 @@ use App\Employee;
 use App\GarmentCategory;
 use App\GarmentSegment;
 use App\SegmentPattern;
-// use App\MeasurementCategory;
-// use App\MeasurementDetail;
+use App\SegmentStyle;
+use App\MeasurementCategory;
+use App\MeasurementDetail;
 use App\FabricType;
-// use App\Swatch;
-// use App\SwatchNameMaintenance;
+use App\FabricThreadCount;
+use App\FabricColor;
+use App\FabricPattern;
+use App\Fabric;
 use App\Thread;
 use App\Needle;
 use App\Button;
@@ -50,11 +53,14 @@ class InactiveDataController extends Controller
         $category = GarmentCategory::all();
         $segment = GarmentSegment::all();
         $pattern = SegmentPattern::all();
-        $head = MeasurementCategory::all();
+        $segmentStyle = SegmentStyle::all();
+        $measurementCategory = MeasurementCategory::all();
         $detail = MeasurementDetail::all();
         $fabricType = FabricType::all();
-        $swatch = Swatch::all();
-        $swatchname = SwatchNameMaintenance::all();
+        $threadCount = FabricThreadCount::all();
+        $fabricColor = FabricColor::all();
+        $fabricPattern = FabricPattern::all();
+        $fabric =Fabric::all();
         $thread = Thread::all();
         $needle = Needle::all();
         $button = Button::all();
@@ -77,11 +83,14 @@ class InactiveDataController extends Controller
             ->with('category', $category)
             ->with('segment', $segment)
             ->with('pattern', $pattern)
-            ->with('head', $head)
+            ->with('segmentStyle', $segmentStyle)
+            ->with('measurementCategory', $measurementCategory)
             ->with('detail', $detail)
             ->with('fabricType', $fabricType)
-            ->with('swatch', $swatch)
-            ->with('swatchname', $swatchname)
+            ->with('threadCount', $threadCount)
+            ->with('fabricColor', $fabricColor)
+            ->with('fabricPattern', $fabricPattern)
+            ->with('fabric', $fabric)
             ->with('thread', $thread)
             ->with('needle', $needle)
             ->with('button', $button)
@@ -165,10 +174,6 @@ class InactiveDataController extends Controller
     {
         $individual = Individual::find($request->input('reactID'));
 
-      //  $reas = $request->input('reactInactiveID');
-       // $indiv = \DB::table('tblCustIndividual')
-               // ->where('strIndivID', $individual)
-              //  ->update(array($individual->strIndivInactiveReason => null));
         $individual->strIndivInactiveReason = null;
 
         $individual->boolIsActive = 1;
@@ -183,10 +188,6 @@ class InactiveDataController extends Controller
     {
         $company = Company::find($request->input('reactID'));
 
-      //  $reas = $request->input('reactInactiveID');
-       // $indiv = \DB::table('tblCustIndividual')
-               // ->where('strIndivID', $individual)
-              //  ->update(array($individual->strIndivInactiveReason => null));
         $company->strCompanyInactiveReason = null;
 
         $company->boolIsActive = 1;
@@ -201,10 +202,6 @@ class InactiveDataController extends Controller
     {
         $role = EmployeeRole::find($request->input('reactID'));
 
-      //  $reas = $request->input('reactInactiveID');
-       // $indiv = \DB::table('tblCustIndividual')
-               // ->where('strIndivID', $individual)
-              //  ->update(array($individual->strIndivInactiveReason => null));
         $role->strRoleInactiveReason = null;
 
         $role->boolIsActive = 1;
@@ -273,10 +270,6 @@ class InactiveDataController extends Controller
     {
         $category = GarmentCategory::find($request->input('reactID'));
 
-      //  $reas = $request->input('reactInactiveID');
-       // $indiv = \DB::table('tblCustIndividual')
-               // ->where('strIndivID', $individual)
-              //  ->update(array($individual->strIndivInactiveReason => null));
         $category->strGarmentCategoryInactiveReason = null;
 
         $category->boolIsActive = 1;
@@ -291,10 +284,6 @@ class InactiveDataController extends Controller
     {
         $segment = GarmentSegment::find($request->input('reactID'));
 
-      //  $reas = $request->input('reactInactiveID');
-       // $indiv = \DB::table('tblCustIndividual')
-               // ->where('strIndivID', $individual)
-              //  ->update(array($individual->strIndivInactiveReason => null));
         $segment->strSegInactiveReason = null;
 
         $segment->boolIsActive = 1;
@@ -305,14 +294,24 @@ class InactiveDataController extends Controller
         return redirect('utilities/inactive-data');
     }
 
+    function reactivate_segmentStyle(Request $request)
+    {
+        $segmentStyle = SegmentStyle::find($request->input('reactID'));
+
+        $segmentStyle->strSegStyleCatInactiveReason = null;
+
+        $segmentStyle->boolIsActive = 1;
+        $segmentStyle->save();
+
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
+
+        return redirect('utilities/inactive-data');
+    }
+
     function reactivate_segmentpattern(Request $request)
     {
         $pattern = SegmentPattern::find($request->input('reactID'));
 
-      //  $reas = $request->input('reactInactiveID');
-       // $indiv = \DB::table('tblCustIndividual')
-               // ->where('strIndivID', $individual)
-              //  ->update(array($individual->strIndivInactiveReason => null));
         $pattern->strSegPInactiveReason = null;
 
         $pattern->boolIsActive = 1;
@@ -323,18 +322,13 @@ class InactiveDataController extends Controller
         return redirect('utilities/inactive-data');
     }
 
-    function reactivate_head(Request $request)
+    function reactivate_measCategory(Request $request)
     {
-        $head = MeasurementCategory::find($request->input('reactID'));
+        $measurementCategory = MeasurementCategory::find($request->input('reactID'));
+        $measurementCategory->strMeasCatInactiveReason = null;
 
-      //  $reas = $request->input('reactInactiveID');
-       // $indiv = \DB::table('tblCustIndividual')
-               // ->where('strIndivID', $individual)
-              //  ->update(array($individual->strIndivInactiveReason => null));
-        $head->strMeasCatInactiveReason = null;
-
-        $head->boolIsActive = 1;
-        $head->save();
+        $measurementCategory->boolIsActive = 1;
+        $measurementCategory->save();
 
         \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
 
@@ -344,11 +338,6 @@ class InactiveDataController extends Controller
     function reactivate_detail(Request $request)
     {
         $detail = MeasurementDetail::find($request->input('reactID'));
-
-      //  $reas = $request->input('reactInactiveID');
-       // $indiv = \DB::table('tblCustIndividual')
-               // ->where('strIndivID', $individual)
-              //  ->update(array($individual->strIndivInactiveReason => null));
         $detail->strMeasDetInactiveReason = null;
 
         $detail->boolIsActive = 1;
@@ -362,13 +351,7 @@ class InactiveDataController extends Controller
     function reactivate_fabrictype(Request $request)
     {
         $fabricType = FabricType::find($request->input('reactID'));
-
-      //  $reas = $request->input('reactInactiveID');
-       // $indiv = \DB::table('tblCustIndividual')
-               // ->where('strIndivID', $individual)
-              //  ->update(array($individual->strIndivInactiveReason => null));
         $fabricType->strFabricTypeInactiveReason = null;
-
         $fabricType->boolIsActive = 1;
         $fabricType->save();
 
@@ -377,41 +360,56 @@ class InactiveDataController extends Controller
         return redirect('utilities/inactive-data');
     }
 
-    function reactivate_swatch(Request $request)
+     function reactivate_fabricThreadCount(Request $request)
     {
-        $swatch = Swatch::find($request->input('reactID'));
+        $threadCount = FabricThreadCount::find($request->input('reactID'));
+        $threadCount->strFabricThreadCountInactiveReason = null;
 
-      //  $reas = $request->input('reactInactiveID');
-       // $indiv = \DB::table('tblCustIndividual')
-               // ->where('strIndivID', $individual)
-              //  ->update(array($individual->strIndivInactiveReason => null));
-        $swatch->strSwatchInactiveReason = null;
-
-        $swatch->boolIsActive = 1;
-        $swatch->save();
+        $threadCount->boolIsActive = 1;
+        $threadCount->save();
 
         \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
 
         return redirect('utilities/inactive-data');
     }
 
-    function reactivate_swatchname(Request $request)
+
+    function reactivate_fabricColor(Request $request)
     {
-        $swatchname = SwatchNameMaintenance::find($request->input('reactID'));
-
-      //  $reas = $request->input('reactInactiveID');
-       // $indiv = \DB::table('tblCustIndividual')
-               // ->where('strIndivID', $individual)
-              //  ->update(array($individual->strIndivInactiveReason => null));
-        $swatchname->strSwatchNameInactiveReason = null;
-
-        $swatchname->boolIsActive = 1;
-        $swatchname->save();
+        $fabricColor = FabricColor::find($request->input('reactID'));
+        $fabricColor->strFabricColorInactiveReason = null;
+        $fabricColor->boolIsActive = 1;
+        $fabricColor->save();
 
         \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
 
         return redirect('utilities/inactive-data');
     }
+
+    function reactivate_fabricPattern(Request $request)
+    {
+        $fabricPattern = FabricPattern::find($request->input('reactID'));
+        $fabricPattern->strFabricPatternInactiveReason = null;
+        $fabricPattern->boolIsActive = 1;
+        $fabricPattern->save();
+
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
+
+        return redirect('utilities/inactive-data');
+    }
+
+    function reactivate_fabric(Request $request)
+    {
+        $fabric = Fabric::find($request->input('reactID'));
+        $fabric->strPackageInactiveReason = null;
+        $fabric->boolIsActive = 1;
+        $fabric->save();
+
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
+
+        return redirect('utilities/inactive-data');
+    }
+   
 
     function reactivate_thread(Request $request)
     {
@@ -435,10 +433,6 @@ class InactiveDataController extends Controller
     {
         $needle = Needle::find($request->input('reactID'));
 
-      //  $reas = $request->input('reactInactiveID');
-       // $indiv = \DB::table('tblCustIndividual')
-               // ->where('strIndivID', $individual)
-              //  ->update(array($individual->strIndivInactiveReason => null));
         $needle->strNeedleInactiveReason = null;
 
         $needle->boolIsActive = 1;

@@ -67,6 +67,19 @@
           </div>
         </div>
       @endif
+
+      @if (Session::has('flash_message_duplicate'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red accent-1">
+              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              <em> {!! session('flash_message_duplicate') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif 
+
+      {{-- End of Flash Messages --}}
       
     <div class="row">
       <div class="col s12 m12 l12">
@@ -110,7 +123,7 @@
                 <a style="color:black" class="modal-trigger btn tooltipped btn-floating red"data-position="bottom" data-delay="50" data-tooltip="Click to remove data of role from table" href="#del{{$role->strEmpRoleID}}"><i class="mdi-action-delete"></i></a>
                 </td>	
                   <div id="edit{{$role->strEmpRoleID}}" class="modal modal-fixed-footer">                     
-                    <h5><font color = "#1b5e20"><center>EDIT EMPLOYEE ROLE</center> </font> </h5>
+                    <h5><font color = "#1b5e20"><center>UPDATE EMPLOYEE ROLE</center> </font> </h5>
                       
                     {!! Form::open(['url' => 'maintenance/employee-role/update']) !!}
                       <div class="divider" style="height:2px"></div>
