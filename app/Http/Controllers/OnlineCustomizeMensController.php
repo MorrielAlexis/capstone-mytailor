@@ -167,13 +167,13 @@ class OnlineCustomizeMensController extends Controller
 
     public function styleothers()
     {
-        $contrast = Fabric::all();
+        $fabrics = Fabric::all();
         $fabricThreadCounts = FabricThreadCount::all();
         $fabricColors = FabricColor::all();
         $fabricTypes = FabricType::all();
         $fabricPatterns = FabricPattern::all();
         $patterns = SegmentPattern::all();
-        
+
         $keyplacket = 'Placket';
         $plackets = \DB::table('tblSegmentStyleCategory')
                     ->select('strSegStyleCatID', 'strSegStyleName')
@@ -181,7 +181,7 @@ class OnlineCustomizeMensController extends Controller
                     ->get();
 
         return view('customize.mens-style-others')
-                ->with('contrasts', $contrast)
+                ->with('fabrics', $fabrics)
                 ->with('fabricThreadCounts', $fabricThreadCounts)
                 ->with('fabricColors', $fabricColors)
                 ->with('fabricTypes', $fabricTypes)
