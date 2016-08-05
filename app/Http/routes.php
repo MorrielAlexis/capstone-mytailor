@@ -97,13 +97,13 @@ Route::group(['prefix' => 'maintenance'], function(){
 
 	Route::resource('standard-size-category', 'StandardSizeCategoryController');
 
-		Route::post('standard-size-category/update','StandardSizeCategoryController@update_fabricPattern');
-		Route::post('standard-size-category/destroy','StandardSizeCategoryController@delete_fabricPattern');
+		Route::post('standard-size-category/update','StandardSizeCategoryController@update_standardCategory');
+		Route::post('standard-size-category/destroy','StandardSizeCategoryController@delete_standardCategory');
 
 	Route::resource('standard-size-detail', 'StandardSizeDetailController');
 
-		Route::post('standard-size-detail/update','StandardSizeDetailController@update_fabricColor');
-		Route::post('standard-size-detail/destroy','StandardSizeDetailController@delete_fabricColor');
+		Route::post('standard-size-detail/update','StandardSizeDetailController@update_standardDetail');
+		Route::post('standard-size-detail/destroy','StandardSizeDetailController@delete_standardDetail');
 
 
 	Route::resource('measurement-category', 'MeasurementCategoryController');
