@@ -156,7 +156,7 @@
                     <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of segment from table" href="#del{{ $standardDetail->strStandardSizeDetID }}"><i class="mdi-action-delete"></i></a></td>
        
                       <div id="edit{{ $standardDetail->strStandardSizeDetID }}" class="modal modal-fixed-footer">
-                        <h5><font color = "#1b5e20"><center>EDIT GARMENT SEGMENT</center> </font> </h5>
+                        <h5><font color = "#1b5e20"><center>UPDATE STANDARD SIZE DETAIL</center> </font> </h5>
                           
                           {!! Form::open(['url' => 'maintenance/standard-size-detail/update', 'files' => 'true']) !!}
                             <div class="divider" style="height:2px"></div>
@@ -166,20 +166,51 @@
                                 <input value="{{ $standardDetail->strStandardSizeDetID }}" id="editStandardSizeDetID" name="editStandardSizeDetID" type="hidden"> 
                               </div>
 
-                         {{--  <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                              <div class="input-field col s12">                                                    
-                                <select class="browser-default" id="editStandardSizeCategory" name="editStandardSizeCategory" required>
-                                  <option value="" disabled selected>Choose standard size category</option>
-                                  @foreach($standardDetail as $standard)
-                                    @if($standardDetail->strStanSizeCategoryFK == $standard->strStandardSizeDetID && $standard->boolIsActive == 1)
-                                      <option selected value="{{ $standard->strStandardSizeDetID }}">{{ $standard->strStandardSizeCategoryName }}</option>
-                                    @elseif($standard->boolIsActive == 1)
-                                      <option value="{{ $standard->strStandardSizeDetID }}">{{ $standard->strStandardSizeCategoryName }}</option>
+
+                        <div class = "col s12" style="padding:15px;  border:3px solid white;"> 
+                          <div class="input-field col s12">                                                   
+                            <select class="browser-default editStandardDetSegment" id="{{ $standardDetail->strStandardSizeDetID }}" name='editStandardDetSegment'>
+                                  @foreach($segment as $segment_1)
+                                    @if($standardDetail->strStanSizeSegmentFK == $segment_1->strSegmentID && $segment_1->boolIsActive == 1)
+                                      <option selected value="{{ $segment_1->strSegmentID }}" class="{{$segment_1->strSegmentFK}}">{{ $segment_1->strSegmentName }}</option>
+                                    @elseif($segment_1->boolIsActive == 1)
+                                      <option value="{{ $segment_1->strSegmentID }}" class="{{$segment_1->strStanSizeSegmentFK}}">{{ $segment_1->strSegmentName }}</option>
                                     @endif
                                   @endforeach
-                                </select>   
-                              </div>  
-                          </div>  --}}
+                            </select>     
+                          </div> 
+                        </div>   
+
+                        <div class = "col s12" style="padding:15px;  border:3px solid white;"> 
+                            <div class="input-field col s12">                                                   
+                              <select class="browser-default editMeasCategory" id="{{ $standardDetail->strStandardSizeDetID }}" name='editMeasCategory' >
+                                    @foreach($measurementCategory as $measurementCategory_1)
+                                      @if($standardDetail->strStanSizeMeasCatFK == $measurementCategory_1->strMeasurementCategoryID && $measurementCategory_1->boolIsActive == 1)
+                                        <option selected value="{{ $measurementCategory_1->strMeasurementCategoryID }}" class="{{$measurementCategory_1->strStanSizeMeasCatFK}}">{{ $measurementCategory_1->strMeasurementCategoryName }}</option>
+                                      @elseif($measurementCategory_1->boolIsActive == 1)
+                                        <option value="{{ $measurementCategory_1->strMeasurementCategoryID }}" class="{{$measurementCategory_1->strStanSizeMeasCatFK}}">{{ $measurementCategory_1->strMeasurementCategoryName }}</option>
+                                      @endif
+                                    @endforeach
+                              </select>    
+                            </div> 
+                        </div>
+
+                        <div class = "col s12" style="padding:15px;  border:3px solid white;"> 
+                            <div class="input-field col s12">                                                   
+                              <select class="browser-default editStandardSizeCategory" id="{{ $standardDetail->strStandardSizeDetID }}" name='editStandardSizeCategory' >
+                                    @foreach($standard as $standard_1)
+                                      @if($standardDetail->strStanSizeCategoryFK == $standard_1->strStandardSizeCategoryID && $standard_1->boolIsActive == 1)
+                                        <option selected value="{{ $standard_1->strStandardSizeCategoryID }}" class="{{$standard_1->strStanSizeMeasCatFK}}">{{ $standard_1->strStandardSizeCategoryName }}</option>
+                                      @elseif($standard_1->boolIsActive == 1)
+                                        <option value="{{ $standard_1->strStandardSizeCategoryID }}" class="{{$standard_1->strStanSizeMeasCatFK}}">{{ $standard_1->strStandardSizeCategoryName }}</option>
+                                      @endif
+                                    @endforeach
+                              </select>    
+                            </div> 
+                        </div>
+                        
+
+                         
                         
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
@@ -306,7 +337,7 @@
 
 
     			    <div id="addSegment" class="modal modal-fixed-footer">
-                <h5><font color = "#1b5e20"><center>CREATE NEW GARMENT SEGMENT</center> </font> </h5> 
+                <h5><font color = "#1b5e20"><center>CREATE NEW STANDARD SIZE DETAIL</center> </font> </h5> 
                 
                 {!! Form::open(['url' => 'maintenance/standard-size-detail', 'method' => 'post', 'files' => true ]) !!}
                   <div class="divider" style="height:2px"></div>
@@ -317,50 +348,77 @@
                       <input type="hidden" name="_token" value="{!! csrf_token() !!}" />
                 <input value = "{{$newID}}" id="strStandardSizeDetID" name= "strStandardSizeDetID" type="hidden">
 
-                 {{--  <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <select class="browser-default" name='strStanSizeCategoryFK' id='strStanSizeCategoryFK' required>
-                          <option value="" disabled selected>Choose standard size category</option>
-                          @foreach($standardDetail as $standardDetail_1)
-                            @if($standardDetail_1->boolIsActive == 1) 
-                              <option value="{{ $standardDetail_1->strStandardSizeDetID }}">{{ $standardDetail_1->strStandardSizeCategoryName }}</option>
+                        <select class="browser-default" name='strStanSizeSegmentFK' id='strStanSizeSegmentFK' >
+                          <option value="" disabled selected>Choose a segment:</option>
+                          @foreach($segment as $segment_1)
+                            @if($segment_1->boolIsActive == 1) 
+                              <option value="{{ $segment_1->strSegmentID }}">{{ $segment_1->strSegmentName }}</option>
                             @endif                       
                           @endforeach
                         </select> 
                       </div>  
                   </div>
- --}}
+
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input required id="strStanSizeDetailName" name= "strStanSizeDetailName" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" class="active"  placeholder="Dress">
+                        <select class="browser-default" name='strStanSizeMeasCatFK' id='strStanSizeMeasCatFK' >
+                          <option value="" disabled selected>Choose a measurement category:</option>
+                          @foreach($measurementCategory as $measurementCategory_1)
+                            @if($measurementCategory_1->boolIsActive == 1) 
+                              <option value="{{ $measurementCategory_1->strMeasurementCategoryID }}">{{ $measurementCategory_1->strMeasurementCategoryName }}</option>
+                            @endif                       
+                          @endforeach
+                        </select> 
+                      </div>  
+                  </div>
+
+                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                      <div class="input-field col s12">
+                        <select class="browser-default" name='strStanSizeCategoryFK' id='strStanSizeCategoryFK' >
+                          <option value="" disabled selected>Choose a standard size category:</option>
+                          @foreach($standard as $standard_1)
+                            @if($standard_1->boolIsActive == 1) 
+                              <option value="{{ $standard_1->strStandardSizeCategoryID }}">{{ $standard_1->strStandardSizeCategoryName }}</option>
+                            @endif                       
+                          @endforeach
+                        </select> 
+                      </div>  
+                  </div>
+
+
+                  <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                      <div class="input-field col s12">
+                        <input required id="strStanSizeDetailName" name= "strStanSizeDetailName" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" class="active"  placeholder="Chest">
                         <label for="stanSizeDet_name">Standard Size Detail Name<span class="red-text"><b>*</b></span></label>
                       </div>
                   </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input required id="strStanSizeFitType" name= "strStanSizeFitType" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" class="active"  placeholder="Dress">
+                        <input required id="strStanSizeFitType" name= "strStanSizeFitType" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" class="active"  placeholder="Normal Fit">
                         <label for="stanSizeDet_type">Fit Type<span class="red-text"><b>*</b></span></label>
                       </div>
                   </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input required id="dblStanSizeInch" name= "dblStanSizeInch" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" class="active"  placeholder="Dress">
+                        <input required id="dblStanSizeInch" name= "dblStanSizeInch" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`\d]+(\s[a-zA-Z\-'`]+)?" class="active"  placeholder="15">
                         <label for="stanSizeDet_inch">Inch<span class="red-text"><b>*</b></span></label>
                       </div>
                   </div>
                                                    
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input required id="dblStanSizeCm" name= "dblStanSizeCm" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" class="active"  placeholder="Dress">
+                        <input required id="dblStanSizeCm" name= "dblStanSizeCm" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`\d]+)?" class="active"  placeholder="17">
                         <label for="stanSizeDet_cm">Cm<span class="red-text"><b>*</b></span></label>
                       </div>
                   </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input required id="txtStanSizeDesc" name= "txtStanSizeDesc" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" class="active"  placeholder="Dress">
+                        <input required id="txtStanSizeDesc" name= "txtStanSizeDesc" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" class="active"  placeholder="Measurement around the neck.">
                         <label for="stanSizeDet_desc">Description<span class="red-text"><b>*</b></span></label>
                       </div>
                   </div>
