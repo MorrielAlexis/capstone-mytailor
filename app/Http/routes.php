@@ -263,7 +263,8 @@ Route::group(['prefix' => 'utilities'], function(){
 		Route::post('inactive-data/reactivate-segment-style', 'InactiveDataController@reactivate_segmentStyle');
 		Route::post('inactive-data/reactivate-segmentPattern', 'InactiveDataController@reactivate_segmentPattern');
 		Route::post('inactive-data/reactivate-meas-category', 'InactiveDataController@reactivate_measCategory');
-		Route::post('inactive-data/reactivate-detail', 'InactiveDataController@reactivate_detail');
+		Route::post('inactive-data/reactivate-meas-detail', 'InactiveDataController@reactivate_detail');
+		Route::post('inactive-data/reactivate-standard-category', 'InactiveDataController@reactivate_standardCategory');
 		Route::post('inactive-data/reactivate-fabricType', 'InactiveDataController@reactivate_fabrictype');
 		Route::post('inactive-data/reactivate-fabric-color', 'InactiveDataController@reactivate_fabricColor');
 		Route::post('inactive-data/reactivate-fabric-pattern', 'InactiveDataController@reactivate_fabricPattern');
@@ -434,6 +435,10 @@ Route::get('online-company-checkout-info', 'OnlineCheckoutCompanyController@info
 Route::get('online-company-checkout-payment', 'OnlineCheckoutCompanyController@payment');
 Route::get('online-company-checkout-measurement', 'OnlineCheckoutCompanyController@measuredetails');
 Route::get('online-company-checkout-employee-details', 'OnlineCheckoutCompanyController@emp');
+
+Route::get('online-alteration-checkout-info', 'OnlineCheckoutAlterationController@info');
+Route::get('online-alteration-checkout-payment', 'OnlineCheckoutAlterationController@payment');
+Route::get('online-alteration-checkout-measurement', 'OnlineCheckoutAlterationController@measuredetails');
 /*-------------------------------------------ONLINE CUSTOMER PROFILE---------------------------------------------------*/
 
 	Route::get('customerprofile-individual', 'OnlineCustomerProfileIndividualController@index');

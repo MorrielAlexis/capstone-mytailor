@@ -6,39 +6,27 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Session;
 
-use App\GarmentCategory;
-use App\SegmentPattern;
-use App\GarmentSegment; 
-use App\Alteration; 
-use App\Individual;
-
-use App\TransactionJOAlteration;
-use App\TransactionNonShopAlteration;
-use App\TransactionNonShopAlterationSpecifics;
-
-class AlterationOnlineController extends Controller
+class OnlineCheckoutAlterationController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function __construct()
+    public function info()
     {
-        $this->middleware('auth');
-    }
-    
-    public function index()
-    {
-        return view('alteration.online-transaction');
+        return view('online.alteration-checkout-info');
     }
 
-    public function accept()
+    public function payment()
     {
-        return view('alteration.acceptorder');
+        return view('online.alteration-checkout-payment');
+    }
+
+    public function measuredetails()
+    {
+        return view('online.alteration-checkout-measurement');
     }
 
     /**

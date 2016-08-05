@@ -115,8 +115,8 @@
                             <ul>  
                               <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/body-part-category')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Body Part Category</font></i></a></li>
                               <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/body-part-form')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Body Part Form</font></i></a></li>
-                              {{-- <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/standard-size-category')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Standard Size Category</font></i></a></li>
-                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/standard-size-detail')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Standard Size Detail</font></i></a></li> --}}
+                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/standard-size-category')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Standard Size Category</font></i></a></li>
+                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/standard-size-detail')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Standard Size Detail</font></i></a></li>
                               <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/measurement-category')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family "Century Gothic">Measurement Category</font></i></a></li>
                               <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/measurement-detail')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family "Century Gothic">Measurement Detail</font></i></a></li>
                               <div class="divider"></div>
@@ -174,7 +174,7 @@
                           <div class="collapsible-body">
                             <ul>
                               <li><a style="color:black; font-weight:normal" class="waves-effect waves-white " href="{{URL::to('transaction/alteration-walkin-newcustomer')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Walk In Alteration</font></i></a></li>
-                              <!--<li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('transaction/alteration-online-transaction')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Online Alteration</font></i></a></li>-->
+                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('transaction/alteration-online-transaction')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Online Alteration</font></i></a></li>
                              <div class="divider"></div>
                             </ul>
                           </div>
@@ -207,7 +207,7 @@
               <!--<div class="divider"></div>-->
               <li class="bold"><a class="collapsible-header waves-effect waves-white" style="color:#212121"><i style="font-size:30px" class="small mdi-action-assessment" style="color:#ccff90"></i><b>Queries</b></a></li>
               <!--<div class="divider"></div>-->
-              <li class="bold"><a class="collapsible-header waves-effect waves-white" style="color:#212121"><i style="font-size:30px" class="small mdi-action-trending-up" style="color:#ccff90"></i><b>Reports</b></a></li>
+              <li class="bold"><a class="collapsible-header waves-effect waves-white" style="color:#212121"><i style="font-size:30px" class="small mdi-action-assignment" style="color:#ccff90"></i><b>Reports</b></a></li>
               <!--<div class="divider"></div>-->
               
               <li class="bold"><a class="collapsible-header waves-effect waves-white {{ Request::is('utilities/*') ? 'active' : '' }}" style="color:#212121"><i style="font-size:30px" class="small mdi-action-perm-contact-cal" style="color:#ccff90"></i><b>Utilities</b></a>
