@@ -54,30 +54,20 @@
               <li>
                 <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Front</div>
                 <div class="collapsible-body row overflow-x" style="padding:20px;">
+                  @foreach($plackets as $placket)
                   <div class="col s12">
-                    <div class="col s6">
-                      <div class="center col s2 " style="margin-top:100px">
-                        <input name="" type="radio" class="filled-in" value = "" id="" />
-                        <label for=""></label>
-                      </div>
-                      <div class="col s10">
-                        <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
-                          <div class="row valign-wrapper">
-                            <div class="center col s6">
-                              <img src="" alt="" class="responsive-img">
-                            </div>
-                            <div class="col s6"> 
-                              <span><b></b></span>
-                              <br/>
-                              <span class="black-text">
-                                
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                    @foreach($patterns as $pattern)
+                    <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $placket->strSegStyleCatID) hidden @endif>
+                      <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
+                      <p>
+                        <input name="rdb_pattern{{ $placket->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
+                        <label for="{{$pattern->strSegPatternID}}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
+                      </p>
                     </div>
+                    @endforeach
                   </div>
+                  @endforeach 
+
                   <div class="col s12" style="margin:20px;">
                     <div class="col s4">
                       <div class="card-panel teal lighten-4 z-depth-1" style="height:260px">

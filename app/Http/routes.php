@@ -487,7 +487,7 @@ Route::get('online-alteration-checkout-measurement', 'OnlineCheckoutAlterationCo
 
 	Route::get('customize-mens-fabric', 'OnlineCustomizeMensController@fabric');
 	Route::post('customize-mens-style-collar', 'OnlineCustomizeMensController@stylecollar');
-	Route::get('customize-mens-style-cuffs', 'OnlineCustomizeMensController@stylecuffs');
+	Route::post('customize-mens-style-cuffs', 'OnlineCustomizeMensController@stylecuffs');
 	Route::post('customize-mens-style-buttons', 'OnlineCustomizeMensController@stylebuttons');
 	Route::post('customize-mens-style-pocket-monogram', 'OnlineCustomizeMensController@stylepocketmonogram');
 	Route::get('customize-mens-style-others', 'OnlineCustomizeMensController@styleothers');
