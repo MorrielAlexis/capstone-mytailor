@@ -8,6 +8,18 @@
         <center><h5>Walk-in Individual - Order Process</h5></center>
       </div>
     </div>
+	
+	     <!--Add Fabric Type-->
+        @if(Session::has('success-message'))
+        <div class="row" id="success-message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel yellow accent-1">
+              <span class="alert alert-success"> <i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+              <strong> {!! session('success-message') !!}</strong>
+            </div>
+          </div>
+        </div>
+      @endif
 
 	<div class="row">
 		<div class="col s12 m12 l12">
@@ -47,14 +59,15 @@
 							</div>
 
 					</div>
-					{!! Form::open(['url' => 'transaction/walkin-individual-customize-orders', 'method' => 'POST', "id" => "order-form"]) !!}
+					{!! Form::open(['url' => 'transaction/walkin-individual-clear-order', 'method' => 'POST']) !!}
 						<div class="col s12">
 							<div class="divider"></div>
-								<a class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel orders" style="margin-top:30px; font-size:15px; color:white; background-color: teal; opacity:0.90" href="{{URL::to('/transaction/walkin-individual-customize-orders')}}"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Reset Order<!--</i>--></a>
+								<button type="submit" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel orders" style="margin-top:30px; font-size:15px; color:white; background-color: teal; opacity:0.90"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Reset Order<!--</i>--></button>
 								{{-- <button type="submit" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to add orders to cart " style="margin-top:30px; background-color: teal; font-size:15px; color:white" href="#!"> --}}<!--<i class="mdi-editor-add" style="font-size:20px;">-->  {{-- View Cart --}}<!--</i>-->{{-- </a> --}}							
 						</div>
-
+					{!! Form::close() !!}
 						<div class="col s12" style="margin-bottom:20px"></div>
+					{!! Form::open(['url' => 'transaction/walkin-individual-customize-orders', 'method' => 'POST', "id" => "order-form"]) !!}
 				
 						<div class="col s12" style="margin-top:15px">
 							<div class="divider" style="margin-bottom:40px; height:2px"></div>
