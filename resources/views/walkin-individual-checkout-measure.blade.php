@@ -40,6 +40,7 @@
 	      		<div class="divider"></div>
 	      	</div>-->
 			{!! Form::open(['url' => 'transaction/walkin-individual-save-measurements', 'method' => 'POST']) !!}
+			@foreach($segments as $i => $segment)
 			<div class="col s12" style="margin-bottom:10px">
 				<div class="col s5">
 					<div class="col s4"><p style="color:gray"><b>Measurement Type</b></p></div>
@@ -67,7 +68,6 @@
 			
 			</div>-->
 
-			@foreach($segments as $i => $segment)
 			<div class="col s12"><div class="divider" style="height:2px; background-color:gray"></div></div><!--divider-->
 
 
@@ -166,27 +166,10 @@
                     <div class="col s12"><div class="divider" style="height:5px; color:gray; margin-top:15px; margin-bottom:15px"></div></div>
 				@endforeach
 				
-
-
                 <button type="submit" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save measurements and begin processing" style="background-color:teal; margin-right:50px; padding:9.5px; padding-bottom:45px; color:white"><!--<i class="mdi-action-done"> -->Save Measurements<!--</i>--></button>
 
 				{!! Form::close() !!}
                     
-					<a href="#cancel-order" class="right btn modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Clears current transaction" style="background-color:teal; padding:9.5px; padding-bottom:45px; margin-right:50px; color:white">Cancel Transaction</a>
-						<div id="cancel-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:80px">
-							<h5><font color="red"><center><b>Warning!</b></center></font></h5>
-								
-									<div class="divider" style="height:2px"></div>
-									<div class="modal-content col s12">
-										<div class="center col s4"><i class="mdi-alert-warning" style="color:red; font-size:60px"></i></div>
-										<div class="col s8"><p style="font-size:18px">Are you sure? Doing this will delete current transaction.</p></div>
-									</div>
-
-									<div class="modal-footer col s12">
-						                <a class="waves-effect waves-green btn-flat" href="{{URL::to('/online-home')}}"><font color="black">Yes</font></a>
-						                <a href="{{URL::to('/online-individual-checkout-measurement')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
-						            </div>
-						</div>
 				<!--end of bottom buttons-->
 
 	        </div>

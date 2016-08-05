@@ -55,7 +55,7 @@
 										<div class="right col s5"><button style="margin-top:15px; background-color:teal" type="submit" class="right waves-effect waves-green btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to proceed to payment of orders" ><font color="white" size="+1"><!--<i class="mdi-action-payment" style="font-size:20px;">-->  Proceed to Checkout<!--</i>--></font></button>
 										</div>
 									@else 
-										<div class="right col s5"><a href="{{URL::to('transaction/walkin-individual')}}" style="margin-top:15px; background-color:teal"class="right waves-effect waves-green btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to proceed to previous page" ><font color="white" size="+1"><!--<i class="mdi-action-payment" style="font-size:20px;">-->Choose available products<!--</i>--></font></a>
+										<div class="right col s5"><a href="{{URL::to('transaction/walkin-individual-show-items')}}" style="margin-top:15px; background-color:teal"class="right waves-effect waves-green btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to proceed to previous page" ><font color="white" size="+1"><!--<i class="mdi-action-payment" style="font-size:20px;">-->Choose available products<!--</i>--></font></a>
 										</div>
 									@endif														
 							</div>
@@ -348,7 +348,7 @@
 								</div>	
 								<div class="col s6">
 									<!--<a href="{{URL::to('transaction/walkin-individual-bulk-orders')}}" class="right btn" style="color:white; background-color:teal; margin-left:20px; border:3px teal solid">Add another set</a>-->
-									<a href="{{URL::to('transaction/walkin-individual')}}" class="right btn" style="background-color:#00695c; color:white"><b><i class="mdi-content-add" style="padding-right:10px;"></i>Add another item</b></a>
+									<a href="{{URL::to('transaction/walkin-individual-show-items')}}" class="right btn" style="background-color:#00695c; color:white"><b><i class="mdi-content-add" style="padding-right:10px;"></i>Add another item</b></a>
 								</div>
 							</div>
 						</div> <!--end of list-->
