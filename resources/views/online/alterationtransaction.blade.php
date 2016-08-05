@@ -12,11 +12,11 @@
 
       <div class="col s12" style="padding:80px;">
         <div class="col s6">
-          <center><div><a class="btn waves-effect teal accent-4 waves-teal container" href="{{URL::to('/online-alterationtransaction-newcustomer')}}" style="height:100px; padding:10px;"><font size="+5">NEW CUSTOMER</font></a></div></center>
+          <center><div><a class="btn waves-effect teal accent-4 waves-teal container" href="{{URL::to('transaction/online-alterationtransaction-newcustomer')}}" style="height:100px; padding:10px;"><font size="+5">NEW CUSTOMER</font></a></div></center>
         </div>
 
         <div class="col s6">
-          <center><div><a class="btn waves-effect teal accent-4 waves-teal container" href="{{URL::to('/online-alterationtransaction-patron')}}" style="height:100px; padding:30px;"><font size="+5">PATRON</font></a></div></center>
+          <center><div><a class="btn waves-effect teal accent-4 waves-teal container" href="{{URL::to('transaction/online-alterationtransaction-patron')}}" style="height:100px; padding:30px;"><font size="+5">PATRON</font></a></div></center>
         </div>
       </div>
 

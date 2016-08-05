@@ -6,17 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Session;
 
-use App\GarmentCategory;
-use App\SegmentPattern;
-use App\GarmentSegment; 
-use App\Alteration; 
-use App\Individual;
-
-use App\TransactionJOAlteration;
-use App\TransactionNonShopAlteration;
-use App\TransactionNonShopAlterationSpecifics;
 
 class AlterationOnlineController extends Controller
 {
