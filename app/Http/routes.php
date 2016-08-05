@@ -376,12 +376,31 @@ Route::group(['prefix' => 'transaction'], function(){
 Route::resource('online-home', 'OnlineHomeController',
 		['only' => ['index']]);
 
-Route::resource('online-alteration', 'OnlineAlterationController',
-		['only' => ['index']]);
-Route::get('online-alteration-transact', 'OnlineAlterationController@transac');
 
-Route::get('online-alterationtransaction-newcustomer', 'OnlineAlterationController@newcust');
-Route::get('online-alterationtransaction-patron', 'OnlineAlterationController@oldcust');
+/*Online Alteration New Customer*/
+Route::group(['prefix' => 'transaction'], function(){
+
+		Route::resource('online-alteration', 'OnlineAlterationController');
+		Route::get('online-alteration-transact', 'OnlineAlterationController@transac');
+		Route::get('online-alterationtransaction-newcustomer', 'OnlineAlterationController@newcust');
+		Route::get('online-alterationtransaction-patron', 'OnlineAlterationController@oldcust');
+		Route::get('online-alteration-newcustomer', 'OnlineAlterationController@showCart');
+		Route::get('online-alteration-newcustomer-update', 'OnlineAlterationController@updateCart');
+		Route::get('online-alteration-oldcustomer', 'OnlineAlterationController@oldcust');
+		Route::get('online-alteration-info', 'OnlineAlterationController@checkoutCustInfo');
+		Route::get('online-alteration-payment', 'OnlineAlterationController@checkoutPayment');
+		Route::get('online-alteration-measurement', 'OnlineAlterationController@checkoutAddMeasurement');
+		Route::post('online-alteration-newcustomer', 'OnlineAlterationController@addValues');
+		Route::post('online-alteration-newcustomer-delete', 'OnlineAlterationController@deleteOrder');
+		Route::post('online-alteration-add-newcustomer-checkout-info', 'OnlineAlterationController@addNewCustomer');
+		Route::post('online-alteration-newcustomer-save-transaction', 'OnlineAlterationController@saveTransaction');
+		Route::post('online-alteration-newcustomer-cancel', 'OnlineAlterationController@cancelOrder');
+
+});
+
+/*End of Online Alteration New Customer*/
+
+
 
 Route::resource('online-garment-gown', 'OnlineGarmentGownController',
 		['only' => ['index']]);

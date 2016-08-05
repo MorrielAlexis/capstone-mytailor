@@ -89,7 +89,7 @@
                   <a style="color: white;" class="dropdown-button btn-flat" data-beloworigin="true" href="#" data-activates="alter"><b>ALTERATION</b></a>
                   <ul id="alter" class="dropdown-content">
                     <li><a href="{{URL::to('/online-alteration')}}">SERVICES</a></li>
-                    <li><a href="{{URL::to('/online-alteration-transact')}}">TRANSACTION</a></li>
+                    <li><a href="{{URL::to('transaction/online-alteration-transact')}}">TRANSACTION</a></li>
                   </ul>
                 </li>
                 <li><div class="divider" style="margin-top:20px; width:1px; height:30px;"></div></li>
