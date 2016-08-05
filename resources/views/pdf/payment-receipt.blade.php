@@ -3,6 +3,7 @@
 	$columns = 
 	[
 		'ITEM DESCRIPTION',
+		'QUANTITY',
 		'TOTAL PRICE (Php)',
 	];
 
@@ -97,6 +98,7 @@
 							</div>	
 
 						</td>
+						<td>2</td>
 						<td style="width:100px;">{!! session('totalPrice') !!}</td>
 					</tr>
 
