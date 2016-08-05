@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Session;
+use DOMPDF;
 use PDF;
 
 use App\GarmentCategory;
@@ -585,7 +586,8 @@ class WalkInIndividualController extends Controller
 
         // dd($data);
 
-        $pdf = PDF::loadView('pdf/payment-receipt', compact('data'));
+        $pdf = PDF::loadView('pdf/payment-receipt', compact('data'))
+                ->setPaper('a4', 'landscape');
 
         return $pdf->stream();
                 

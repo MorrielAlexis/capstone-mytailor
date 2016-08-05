@@ -34,14 +34,21 @@
 	
 	<body>
 		<div class="col s12">
-			<center>
-				<h1 style="color:teal; font-size:40px;">
-					<img src="img/logo.jpg" class="left circle responsive-img valign profile-image center" style="height:100px; width:120px; margin-top:5px;">
+			<left>
+				<h1 style="color:teal; font-size:20px;">
+					<img src="img/logo.jpg" class="left circle responsive-img valign profile-image center" style="height:5%; width:5%; margin-top:5px;">
 					<b>MyTailor</b> Store
+					<p style="color:gray; font-size:-0.5px;"></p>
+					<p style="color:gray">123-A Heaven St., Sta. Mesa, Manila</p>
+					<p style="color:gray">Contact: 0908-223-5065</p>
+					<p style="color:gray">Visit: www.myTailor.com</p>
 				</h1>
-			</center>
+			</left>
+			<right>
+				
+			</right>
 		</div>
-        <div class="col s12"><div class="divider" style="height:5px; background-color:teal"></div></div>
+        <div class="col s12"><div class="divider" style="height:3px; background-color:teal"></div></div>
 
         <h2 style="color:dimgray;"><center>Job Order Receipt</center></h2>
 
