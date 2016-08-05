@@ -39,7 +39,7 @@
 	      		<div class="divider"></div>
 	      		<div class="divider"></div>
 	      	</div>-->
-			{!! Form::open(['url' => 'transaction/walkin-individual-save-order', 'method' => 'POST']) !!}
+			{!! Form::open(['url' => 'transaction/walkin-individual-save-measurements', 'method' => 'POST']) !!}
 			<div class="col s12" style="margin-bottom:10px">
 				<div class="col s5">
 					<div class="col s4"><p style="color:gray"><b>Measurement Type</b></p></div>
@@ -168,7 +168,7 @@
 				
 
 
-                <button type="submit" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save info and begin processing" style="background-color:teal; margin-right:50px; padding:9.5px; padding-bottom:45px; color:white"><!--<i class="mdi-action-done"> -->Save Measurements<!--</i>--></button>
+                <button type="submit" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save measurements and begin processing" style="background-color:teal; margin-right:50px; padding:9.5px; padding-bottom:45px; color:white"><!--<i class="mdi-action-done"> -->Save Measurements<!--</i>--></button>
 
 				{!! Form::close() !!}
                     

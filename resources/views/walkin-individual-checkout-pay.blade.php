@@ -115,7 +115,7 @@
 		      		<!--End of design summary-->
 
 					<div class="col s12" style="margin:10px"></div>
-					{!! Form::open(['url' => 'transaction/walkin-individual-payment-measure-detail', 'method' => 'POST']) !!}
+					{!! Form::open(['url' => 'transaction/walkin-individual-save-order', 'method' => 'POST']) !!}
 						<div class="col s6">
 							<h5 style="color:teal"><b>Price Quotation*</b></h5>
 							<span>Determine terms of payment to get payment details</span>
@@ -231,7 +231,7 @@
 
                     		<!--start of bottom button-->
                     		<div class="col s12" style="margin-top:20px">
-	                    		<button type="submit" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save payment information and get measured" style="background-color:#00695c; padding:9.5px; padding-bottom:45px; margin-top:20px; margin-left:30px"><label style="font-size:15px; color:white"><b>Save Payment and Start Measurement</b></label></button>
+	                    		<button type="submit" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save payment information and get measured" style="background-color:#00695c; padding:9.5px; padding-bottom:45px; margin-top:20px; margin-left:30px"><label style="font-size:15px; color:white"><b>Save Order</b></label></button>
 					{!! Form::close() !!}
 
 					{!! Form::open(['url' => 'transaction/walkin-individual-clear-order', 'method' => 'POST']) !!}

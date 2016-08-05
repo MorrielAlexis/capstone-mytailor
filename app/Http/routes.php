@@ -295,20 +295,26 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::get('walkin-individual-bulk-orders-payment-measure-detail', 'WalkInIndividualController@bulkOrderMeasure');
 	Route::get('walkin-individual-bulk-orders-measure-now', 'WalkInIndividualController@bulkOrderMeasureNow');
 
-	Route::post('walkin-individual-customize-orders', 'WalkInIndividualController@customize');
-	Route::post('walkin-individual-payment-customer-info', 'WalkInIndividualController@information');
+	//customize view
+	Route::post('walkin-individual-customize-orders', 'WalkInIndividualController@customizeOrder');
+	
+	//customer information view
+	Route::post('walkin-individual-customer-information', 'WalkInIndividualController@customerInformation');
+	Route::post('walkin-individual-save-customer', 'WalkInIndividualController@addCustomer');
+	Route::post('walkin-individual-save-measurements', 'WalkInIndividualController@saveMeasurements');
+
+	//payment view
+	Route::get('walkin-individual-payment-information', 'WalkInIndividualController@showPayment');
+	Route::post('walkin-individual-save-order', 'WalkInIndividualController@saveOrder');
+
 	Route::post('walkin-individual-remove-item', 'WalkInIndividualController@removeItem');
 	Route::post('walkin-individual-add-design', 'WalkInIndividualController@addDesign');
 	Route::post('walkin-individual-clear-order', 'WalkInIndividualController@clearOrder');
-	Route::post('walkin-individual-save-order', 'WalkInIndividualController@saveOrder');
-	Route::post('walkin-individual-save-customer', 'WalkInIndividualController@addCustomer');
-	Route::post('walkin-individual-payment-measure-detail', 'WalkInIndividualController@measurement');
-	
+
 	Route::get('walkin-individual-show-customize-orders', 'WalkInIndividualController@showCustomizeOrder');
 	Route::get('walkin-individual-show-measurement-view', 'WalkInIndividualController@showMeasurementView');
 
 	Route::get('walkin-individual-catalogue-designs', 'WalkInIndividualController@catalogueDesign');
-	Route::get('walkin-individual-payment-info', 'WalkInIndividualController@payment');
 
 });
 
