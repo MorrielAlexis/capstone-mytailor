@@ -8,7 +8,7 @@
         <div class="row" id="success-message">
           <div class="col s12 m12 l12">
             <div class="card-panel red">
-              <span class="black-text" style="color:black">Invalid input!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+              <span class="black-text" style="color:black">Invalid input!<i class="tiny mdi-navigation-close right" onclick="$('#success-message').hide()"></i></span>
             </div>
           </div>
         </div>
@@ -19,7 +19,7 @@
         <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
             <div class="card-panel yellow accent-1">
-              <span class="alert alert-success"> <i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              <span class="alert alert-success"> <i class="tiny mdi-navigation-close right" onclick="$('#flash_message').hide()"></i></span>
              <em> {!! session('flash_message') !!}</em>
             </div>
           </div>
@@ -31,7 +31,7 @@
         <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
             <div class="card-panel blue accent-1">
-              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              <span class="alert alert-success"><i class="tiny mdi-navigation-close right" onclick="$('#flash_message').hide()"></i></span>
               <em> {!! session('flash_message_update') !!}</em>
             </div>
           </div>
@@ -44,7 +44,7 @@
         <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
             <div class="card-panel red accent-2">
-              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              <span class="alert alert-success"><i class="tiny mdi-navigation-close right" onclick="$('#flash_message').hide()"></i></span>
                <em> {!! session('flash_message_delete') !!}</em>
             </div>
           </div>
@@ -57,7 +57,7 @@
         <div class="row" id="success-message">
           <div class="col s12 m12 l12">
             <div class="card-panel yellow">
-              <span class="black-text" style="color:black">Successfully added back garment segment!<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+              <span class="black-text" style="color:black">Successfully added back garment segment!<i class="tiny mdi-navigation-close right" onclick="$('#success-message').hide()"></i></span>
             </div>
           </div>
         </div>
@@ -68,7 +68,7 @@
         <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
             <div class="card-panel red accent-1">
-              <span class="alert alert-success"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              <span class="alert alert-success"><i class="tiny mdi-navigation-close right" onclick="$('#flash_message').hide()"></i></span>
               <em> {!! session('flash_message_duplicate') !!}</em>
             </div>
           </div>
@@ -81,7 +81,7 @@
         <div class="row" id="success-message">
           <div class="col s12 m12 l12">
             <div class="card-panel red">
-              <span class="black-text" style="color:black">Sorry! Segment cannot be deactivated! Segment is still affiliated with other materials.<i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+              <span class="black-text" style="color:black">Sorry! Segment cannot be deactivated! Segment is still affiliated with other materials.<i class="tiny mdi-navigation-close right" onclick="$('#success-message').hide()"></i></span>
             </div>
           </div>
         </div>
@@ -93,7 +93,7 @@
            <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
             <div class="card-panel red">
-              <span class="black-text" style="color:black"><i class="material-icons right" onclick="$('#flash_message').hide()">clear</i></span>
+              <span class="black-text" style="color:black"><i class="tiny mdi-navigation-close right" onclick="$('#flash_message').hide()"></i></span>
               @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
               @endforeach
@@ -106,7 +106,7 @@
 
     <div class="row">
       <div class="col s12 m12 l12">
-        <span class="page-title"><h4>Maintenance - Garment Segment</h4></span>
+        <span class="page-title"><h4>Maintenance - Standard Size Detail</h4></span>
       </div>
     </div>
 
@@ -126,10 +126,9 @@
       				<table class = "table centered data-stanSizeDet" align = "center" border = "1">
        			    <thead>
           				<tr>
-              			<th data-field="StandardSizeDetID">Standard Size Detail ID</th>
-             		   	<th data-field="StanSizeSegmentFK">Segment</th>
-                    <th data-field="StanSizeMeasCatFK">Measurement Category</th>
-                    <th data-field="StanSizeCategoryFK">Category</th>
+              			<th data-field="StanSizeSegmentFK">Segment</th>
+             		   	<th data-field="StanSizeMeasCatFK">Measurement Category</th>
+                    <th data-field="StanSizeCategoryFK">Standard Size Category</th>
                     <th data-field="StanSizeDetailName">Detail Name</th>
                     <th data-field="StanSizeFitType">Fit Type</th>
                     <th data-field="StanSizeInch">Inch</th>
@@ -141,78 +140,109 @@
                 </thead>
 
                 <tbody>
-                  @foreach($stanSizeDet as $stanSizeDet)
-                  @if($stanSizeDet->boolIsActive == 1)
+                  @foreach($standardDetail as $standardDetail)
+                  @if($standardDetail->boolIsActive == 1)
                   <tr>
-             		    <td>{{ $stanSizeDet->strStanSizeSegmentFK }}</td>
-                    <td>{{ $stanSizeDet->strStanSizeMeasCatFK }}</td>
-                    <td>{{ $stanSizeDet->strStanSizeCategoryFK }}</td>
-                    <td>{{ $stanSizeDet->strStanSizeDetailName }}</td>
-                    <td>{{ $stanSizeDet->strStanSizeFitType }}</td>
-                    <td>{{ $stanSizeDet->dblStanSizeInch }}</td>
-                    <td>{{ $stanSizeDet->dblStanSizeCm }}</td>
-                    <td>{{ $stanSizeDet->txtStanSizeDesc }}</td>
+             		    <td>{{ $standardDetail->strSegmentName }}</td>
+                    <td>{{ $standardDetail->strMeasurementCategoryName }}</td>
+                    <td>{{ $standardDetail->strStandardSizeCategoryName }}</td>
+                    <td>{{ $standardDetail->strStanSizeDetailName }}</td>
+                    <td>{{ $standardDetail->strStanSizeFitType }}</td>
+                    <td>{{ $standardDetail->dblStanSizeInch }}</td>
+                    <td>{{ $standardDetail->dblStanSizeCm }}</td>
+                    <td>{{ $standardDetail->txtStanSizeDesc }}</td>
 
-                    <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of segment" href="#edit{{ $stanSizeDet->strStandardSizeDetID }}"><i class="mdi-editor-mode-edit"></i></a> 
-                    <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of segment from table" href="#del{{ $stanSizeDet->strStandardSizeDetID }}"><i class="mdi-action-delete"></i></a></td>
+                    <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of segment" href="#edit{{ $standardDetail->strStandardSizeDetID }}"><i class="mdi-editor-mode-edit"></i></a> 
+                    <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of segment from table" href="#del{{ $standardDetail->strStandardSizeDetID }}"><i class="mdi-action-delete"></i></a></td>
        
-                      <div id="edit{{ $stanSizeDet->strStandardSizeDetID }}" class="modal modal-fixed-footer">
-                        <h5><font color = "#1b5e20"><center>EDIT GARMENT SEGMENT</center> </font> </h5>
+                      <div id="edit{{ $standardDetail->strStandardSizeDetID }}" class="modal modal-fixed-footer">
+                        <h5><font color = "#1b5e20"><center>UPDATE STANDARD SIZE DETAIL</center> </font> </h5>
                           
                           {!! Form::open(['url' => 'maintenance/standard-size-detail/update', 'files' => 'true']) !!}
                             <div class="divider" style="height:2px"></div>
                             <div class="modal-content col s12">
 
                               <div class="input-field">
-                                <input value="{{ $stanSizeDet->strStandardSizeDetID }}" id="editStandardSizeDetID" name="editStandardSizeDetID" type="hidden"> 
+                                <input value="{{ $standardDetail->strStandardSizeDetID }}" id="editStandardSizeDetID" name="editStandardSizeDetID" type="hidden"> 
                               </div>
 
-                          <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                              <div class="input-field col s12">                                                    
-                                <select class="browser-default" id="editCategory" name="editCategory" required>
-                                  <option value="" disabled selected>Choose garment category</option>
-                                  @foreach($stanSizeDet as $stanSize)
-                                    @if($stanSizeDet->strStanSizeCategoryFK == $stanSize->strStandardSizeDetID && $stanSize->boolIsActive == 1)
-                                      <option selected value="{{ $stanSize->strStandardSizeDetID }}">{{ $stanSize->strStanSizeDetailName }}</option>
-                                    @elseif($stanSize->boolIsActive == 1)
-                                      <option value="{{ $stanSize->strStandardSizeDetID }}">{{ $stanSize->strStanSizeDetailName }}</option>
+
+                        <div class = "col s12" style="padding:15px;  border:3px solid white;"> 
+                          <div class="input-field col s12">                                                   
+                            <select class="browser-default editStandardDetSegment" id="{{ $standardDetail->strStandardSizeDetID }}" name='editStandardDetSegment'>
+                                  @foreach($segment as $segment_1)
+                                    @if($standardDetail->strStanSizeSegmentFK == $segment_1->strSegmentID && $segment_1->boolIsActive == 1)
+                                      <option selected value="{{ $segment_1->strSegmentID }}" class="{{$segment_1->strSegmentFK}}">{{ $segment_1->strSegmentName }}</option>
+                                    @elseif($segment_1->boolIsActive == 1)
+                                      <option value="{{ $segment_1->strSegmentID }}" class="{{$segment_1->strStanSizeSegmentFK}}">{{ $segment_1->strSegmentName }}</option>
                                     @endif
                                   @endforeach
-                                </select>   
-                              </div>  
+                            </select>     
                           </div> 
+                        </div>   
+
+                        <div class = "col s12" style="padding:15px;  border:3px solid white;"> 
+                            <div class="input-field col s12">                                                   
+                              <select class="browser-default editMeasCategory" id="{{ $standardDetail->strStandardSizeDetID }}" name='editMeasCategory' >
+                                    @foreach($measurementCategory as $measurementCategory_1)
+                                      @if($standardDetail->strStanSizeMeasCatFK == $measurementCategory_1->strMeasurementCategoryID && $measurementCategory_1->boolIsActive == 1)
+                                        <option selected value="{{ $measurementCategory_1->strMeasurementCategoryID }}" class="{{$measurementCategory_1->strStanSizeMeasCatFK}}">{{ $measurementCategory_1->strMeasurementCategoryName }}</option>
+                                      @elseif($measurementCategory_1->boolIsActive == 1)
+                                        <option value="{{ $measurementCategory_1->strMeasurementCategoryID }}" class="{{$measurementCategory_1->strStanSizeMeasCatFK}}">{{ $measurementCategory_1->strMeasurementCategoryName }}</option>
+                                      @endif
+                                    @endforeach
+                              </select>    
+                            </div> 
+                        </div>
+
+                        <div class = "col s12" style="padding:15px;  border:3px solid white;"> 
+                            <div class="input-field col s12">                                                   
+                              <select class="browser-default editStandardSizeCategory" id="{{ $standardDetail->strStandardSizeDetID }}" name='editStandardSizeCategory' >
+                                    @foreach($standard as $standard_1)
+                                      @if($standardDetail->strStanSizeCategoryFK == $standard_1->strStandardSizeCategoryID && $standard_1->boolIsActive == 1)
+                                        <option selected value="{{ $standard_1->strStandardSizeCategoryID }}" class="{{$standard_1->strStanSizeMeasCatFK}}">{{ $standard_1->strStandardSizeCategoryName }}</option>
+                                      @elseif($standard_1->boolIsActive == 1)
+                                        <option value="{{ $standard_1->strStandardSizeCategoryID }}" class="{{$standard_1->strStanSizeMeasCatFK}}">{{ $standard_1->strStandardSizeCategoryName }}</option>
+                                      @endif
+                                    @endforeach
+                              </select>    
+                            </div> 
+                        </div>
+                        
+
+                         
                         
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input required value="{{ $stanSizeDet->strStanSizeDetailName }}" id="editStanSizeDetailName" name= "editStanSizeDetailName" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
+                                <input required value="{{ $standardDetail->strStanSizeDetailName }}" id="editStanSizeDetailName" name= "editStanSizeDetailName" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                                 <label for="stanSizeDet_name">Standard Size Detail Name <span class="red-text"><b>*</b></span></label>
                               </div>
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input required value="{{ $stanSizeDet->strStanSizeFitType }}" id="editStanSizeFitType" name= "editStanSizeFitType" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
+                                <input required value="{{ $standardDetail->strStanSizeFitType }}" id="editStanSizeFitType" name= "editStanSizeFitType" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                                 <label for="stanSizeDet_fitType">Fit Type <span class="red-text"><b>*</b></span></label>
                               </div>
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input required value="{{ $stanSizeDet->dblStanSizeInch }}" id="editStanSizeInch" name= "editStanSizeInch" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
+                                <input required value="{{ $standardDetail->dblStanSizeInch }}" id="editStanSizeInch" name= "editStanSizeInch" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                                 <label for="stansize_inch">Inch <span class="red-text"><b>*</b></span></label>
                               </div>
                           </div> 
                                                    
-                          <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                          {{-- <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input required value="{{ $stanSizeDet->dblStanSizeCm }}" id="editStanSizeCm" name= "editStanSizeCm" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
+                                <input required value="{{ $standardDetail->dblStanSizeCm }}" id="editStanSizeCm" name= "editStanSizeCm" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
                                 <label for="stanSizeDet_cm">Cm <span class="red-text"><b>*</b></span></label>
                               </div>
-                          </div>
+                          </div> --}}
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                               <div class="input-field col s12">
-                                <input  value="{{ $stanSizeDet->textStanSizeDesc }}" id="SegmentDesc" name = "editSegmentDesc" type="text" class="validate">
+                                <input  value="{{ $standardDetail->txtStanSizeDesc }}" id="SegmentDesc" name = "editSegmentDesc" type="text" class="validate">
                                <label for="stanSizeDet_description">Description</label>
                               </div>
                           </div> 
@@ -225,7 +255,7 @@
                         {!! Form::close() !!}
                       </div>
                     <!--***************************Soft Delete********************************-->
-                      <div id="del{{ $stanSizeDet->strStandardSizeDetID }}" class="modal modal-fixed-footer">
+                      <div id="del{{ $standardDetail->strStandardSizeDetID }}" class="modal modal-fixed-footer">
                         <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS GARMENT SEGMENT?</center> </font> </h5>
                           
                           {!! Form::open(['url' => 'maintenance/standard-size-detail/destroy']) !!}
@@ -233,47 +263,47 @@
                             <div class="modal-content col s12"> 
 
                               <div class="input-field">
-                                <input value="{{ $stanSizeDet->strStandardSizeDetID }}" id="delStandardSizeDetID" name="delStandardSizeDetID" type="hidden">
+                                <input value="{{ $standardDetail->strStandardSizeDetID }}" id="delStandardSizeDetID" name="delStandardSizeDetID" type="hidden">
                               </div>
-
+{{-- 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">                                                    
-                                  <input type="text" value="{{$stanSizeDet->strStanSizeDetailName}}">
+                                  <input type="text" value="{{$standardDetail->strStanSizeDetailName}}">
                                   <label>Category Name</label>
                               </div>   
-                          </div>
+                          </div> --}}
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input value="{{ $stanSizeDet->strStanSizeDetailName }}"type="text" readonly>
+                                <input value="{{ $standardDetail->strStanSizeDetailName }}" type="text" readonly>
                                 <label for="stanSizeDet_name">Detail Name </label>
                               </div>
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input value="{{ $stanSizeDet->strStanSizeFitType }}"type="text" readonly>
+                                <input value="{{ $standardDetail->strStanSizeFitType }}"type="text" readonly>
                                 <label for="stanSizeDet_type">Fit Type </label>
                               </div>
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input value="{{ $stanSizeDet->dblStanSizeInch }}"type="text" readonly>
+                                <input value="{{ $standardDetail->dblStanSizeInch }}"type="text" readonly>
                                 <label for="stanSizeDet_inch">Inch </label>
                               </div>
                           </div>
                                                    
-                          <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                       {{--    <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input value="{{ $stanSizeDet->dblStanSizeCm }}"type="text" readonly>
+                                <input value="{{ $standardDetail->dblStanSizeCm }}"type="text" readonly>
                                 <label for="stanSizeDet_cm">Cm </label>
                               </div>
-                          </div>
+                          </div> --}}
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input value="{{ $stanSizeDet->txtStanSizeDesc }}"type="text" readonly>
+                                <input value="{{ $standardDetail->txtStanSizeDesc }}"type="text" readonly>
                                 <label for="stanSizeDet_desc">Description </label>
                               </div>
                           </div>
@@ -307,7 +337,7 @@
 
 
     			    <div id="addSegment" class="modal modal-fixed-footer">
-                <h5><font color = "#1b5e20"><center>CREATE NEW GARMENT SEGMENT</center> </font> </h5> 
+                <h5><font color = "#1b5e20"><center>CREATE NEW STANDARD SIZE DETAIL</center> </font> </h5> 
                 
                 {!! Form::open(['url' => 'maintenance/standard-size-detail', 'method' => 'post', 'files' => true ]) !!}
                   <div class="divider" style="height:2px"></div>
@@ -318,13 +348,13 @@
                       <input type="hidden" name="_token" value="{!! csrf_token() !!}" />
                 <input value = "{{$newID}}" id="strStandardSizeDetID" name= "strStandardSizeDetID" type="hidden">
 
-                  <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <select class="browser-default" name='strStanSizeCategoryFK' id='strStanSizeCategoryFK' required>
-                          <option value="" disabled selected>Choose garment category</option>
-                          @foreach($stanSizeDet as $stanSizeDet_1)
-                            @if($stanSizeDet_1->boolIsActive == 1) 
-                              <option value="{{ $stanSizeDet_1->strStandardSizeDetID }}">{{ $stanSizeDet_1->strStanSizeDetailName }}</option>
+                        <select class="browser-default" name='strStanSizeSegmentFK' id='strStanSizeSegmentFK' >
+                          <option value="" disabled selected>Choose a segment:</option>
+                          @foreach($segment as $segment_1)
+                            @if($segment_1->boolIsActive == 1) 
+                              <option value="{{ $segment_1->strSegmentID }}">{{ $segment_1->strSegmentName }}</option>
                             @endif                       
                           @endforeach
                         </select> 
@@ -333,35 +363,62 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input required id="strStanSizeDetailName" name= "strStanSizeDetailName" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" class="active"  placeholder="Dress">
+                        <select class="browser-default" name='strStanSizeMeasCatFK' id='strStanSizeMeasCatFK' >
+                          <option value="" disabled selected>Choose a measurement category:</option>
+                          @foreach($measurementCategory as $measurementCategory_1)
+                            @if($measurementCategory_1->boolIsActive == 1) 
+                              <option value="{{ $measurementCategory_1->strMeasurementCategoryID }}">{{ $measurementCategory_1->strMeasurementCategoryName }}</option>
+                            @endif                       
+                          @endforeach
+                        </select> 
+                      </div>  
+                  </div>
+
+                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                      <div class="input-field col s12">
+                        <select class="browser-default" name='strStanSizeCategoryFK' id='strStanSizeCategoryFK' >
+                          <option value="" disabled selected>Choose a standard size category:</option>
+                          @foreach($standard as $standard_1)
+                            @if($standard_1->boolIsActive == 1) 
+                              <option value="{{ $standard_1->strStandardSizeCategoryID }}">{{ $standard_1->strStandardSizeCategoryName }}</option>
+                            @endif                       
+                          @endforeach
+                        </select> 
+                      </div>  
+                  </div>
+
+
+                  <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                      <div class="input-field col s12">
+                        <input required id="strStanSizeDetailName" name= "strStanSizeDetailName" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" class="active"  placeholder="Chest">
                         <label for="stanSizeDet_name">Standard Size Detail Name<span class="red-text"><b>*</b></span></label>
                       </div>
                   </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input required id="strStanSizeFitType" name= "strStanSizeFitType" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" class="active"  placeholder="Dress">
+                        <input required id="strStanSizeFitType" name= "strStanSizeFitType" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" class="active"  placeholder="Normal Fit">
                         <label for="stanSizeDet_type">Fit Type<span class="red-text"><b>*</b></span></label>
                       </div>
                   </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input required id="dblStanSizeInch" name= "dblStanSizeInch" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" class="active"  placeholder="Dress">
+                        <input required id="dblStanSizeInch" name= "dblStanSizeInch" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`\d]+(\s[a-zA-Z\-'`]+)?" class="active"  placeholder="15">
                         <label for="stanSizeDet_inch">Inch<span class="red-text"><b>*</b></span></label>
                       </div>
                   </div>
                                                    
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input required id="dblStanSizeCm" name= "dblStanSizeCm" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" class="active"  placeholder="Dress">
+                        <input required id="dblStanSizeCm" name= "dblStanSizeCm" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`\d]+)?" class="active"  placeholder="17">
                         <label for="stanSizeDet_cm">Cm<span class="red-text"><b>*</b></span></label>
                       </div>
                   </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input required id="txtStanSizeDesc" name= "txtStanSizeDesc" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" class="active"  placeholder="Dress">
+                        <input required id="txtStanSizeDesc" name= "txtStanSizeDesc" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" class="active"  placeholder="Measurement around the neck.">
                         <label for="stanSizeDet_desc">Description<span class="red-text"><b>*</b></span></label>
                       </div>
                   </div>
@@ -449,8 +506,7 @@
     <script type="text/javascript">
 
       $(document).ready(function() {
-          $('.data-garmentsDetails').DataTable();
-          $('.data-reactSegment').DataTable();
+          $('.data-stanSizeDet').DataTable();
           $('select').material_select();
 
           setTimeout(function () {

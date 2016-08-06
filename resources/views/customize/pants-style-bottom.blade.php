@@ -41,7 +41,7 @@
         <!--BOTTOM TAB-->
         <div id="tabBottom" class="col s12 white" style="padding:20px; border 2px teal accent-4 white-text;">
 
-          {!! Form::open(['url' => 'online-individual-checkout-info', 'method' => 'post']) !!}
+          {!! Form::open(['url' => 'shopping-cart']) !!}
           <div class="col s12">
             <div><button class="right btn-flat teal accent-4 white-text" type="submit">Go to Shopping Cart</button></div>
             <div><a class="left btn-flat teal accent-4 white-text" href="{{URL::to('/customize-pants-style-pockets')}}">Previous step</a></div>

@@ -55,7 +55,7 @@
             <div class="card-panel col s12" style="border:3px solid gray; padding:15px;">
                 <div style="color:black" class="input-field col s4">                 
                   <input value="" id="first_name" name="first_name" type="text" class="">
-                  <label style="color:gray" for="first_name"><b>*First Name</b></label>
+                  <label style="color:gray" for="first_name"><b><span class="red-text"><b>*</b></span>First Name</b></label>
                 </div>
 
                 <div style="color:black" class="input-field col s4">                 
@@ -65,7 +65,7 @@
 
                 <div style="color:black" class="input-field col s4">                 
                   <input value="" id="last_name" name="last_name" type="text" class="">
-                  <label style="color:gray" for="last_name"><b>*Last Name </b></label>
+                  <label style="color:gray" for="last_name"><b><span class="red-text"><b>*</b></span>Last Name </b></label>
                 </div>
 
                 <div style="color:black" class="input-field col s6">
@@ -81,12 +81,12 @@
             <div class="card-panel col s12" style="border:3px solid gray; padding:15px">
                 <div style="color:black" class="input-field col s4">
                     <input required id="addCustPrivHouseNo" name="addCustPrivHouseNo" type="text" class="validateHouseNo">
-                    <label style="color:gray" for="house_no"><b>*House No. </b></label>
+                    <label style="color:gray" for="house_no"><b><span class="red-text"><b>*</b></span>House No. </b></label>
                 </div>
 
                 <div style="color:black" class="input-field col s4">
                     <input required id="addCustPrivStreet" name="addCustPrivStreet" type="text" class="validateStreet">
-                    <label style="color:gray" for=" Street"><b>*Street </b></label>
+                    <label style="color:gray" for=" Street"><b><span class="red-text"><b>*</b></span>Street </b></label>
                 </div>
 
                 <div style="color:black" class="input-field col s4">
@@ -96,7 +96,7 @@
 
                 <div style="color:black" class="input-field col s4">
                     <input required id="addCustPrivCity" name="addCustPrivCity" type="text" class="validateCity">
-                    <label style="color:gray" for=" City"><b>*City/Municipality </b></label>
+                    <label style="color:gray" for=" City"><b><span class="red-text"><b>*</b></span>City/Municipality </b></label>
                 </div>
 
 
@@ -115,7 +115,7 @@
             <div class="card-panel col s12" style="border:3px solid gray; padding:15px">
               <div style="color:black" class="input-field col s6">
                     <input required id="addEmail" name = "addEmail" type="text" class="validateEmail">
-                    <label style="color:gray" for="email"><b> *Email Address </b></label>
+                    <label style="color:gray" for="email"><b> <span class="red-text"><b>*</b></span>Email Address </b></label>
                 </div>
 
                 <div style="color:black" class="input-field col s6">
@@ -125,7 +125,7 @@
 
                 <div style="color:black" class="input-field col s6">
                     <input required id="addCel" name = "addCel" type="text" class="validateCell" maxlength="11">
-                    <label style="color:gray" for="cellphone"><b> *Cellphone Number </b></label>
+                    <label style="color:gray" for="cellphone"><b> <span class="red-text"><b>*</b></span>Cellphone Number </b></label>
                 </div>
 
                 <div style="color:black" class="input-field col s6">

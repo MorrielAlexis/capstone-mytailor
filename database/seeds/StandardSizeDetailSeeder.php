@@ -20,7 +20,8 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeCategoryFK' =>'STDRSZE001',
                 'strStanSizeDetailName' =>'Collar',
                 'strStanSizeFitType' =>'Slim Fit',
-                'dblStanSizeInch' =>'27',
+                'dblStanSizeInch' =>'8',
+                'dblStanSizeCm' => '24',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -32,7 +33,8 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeCategoryFK' =>'STDRSZE001',
                 'strStanSizeDetailName' =>'Collar',
                 'strStanSizeFitType' =>'Normal Fit',
-                'dblStanSizeInch' =>'27',
+                'dblStanSizeInch' =>'9',
+                'dblStanSizeCm' => '24',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -44,7 +46,8 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeCategoryFK' =>'STDRSZE001',
                 'strStanSizeDetailName' =>'Collar',
                 'strStanSizeFitType' =>'Loose Fit',
-                'dblStanSizeInch' =>'29',
+                'dblStanSizeInch' =>'10',
+                'dblStanSizeCm' => '26',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -56,7 +59,8 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeCategoryFK' =>'STDRSZE002',
                 'strStanSizeDetailName' =>'Collar',
                 'strStanSizeFitType' =>'Normal Fit',
-                'dblStanSizeInch' =>'15',
+                'dblStanSizeInch' =>'10',
+                'dblStanSizeCm' => '24',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -69,6 +73,7 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeDetailName' =>'Collar',
                 'strStanSizeFitType' =>'Loose Fit',
                 'dblStanSizeInch' =>'17.75',
+                'dblStanSizeCm' => '24.75',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -80,7 +85,8 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeCategoryFK' =>'STDRSZE004',
                 'strStanSizeDetailName' =>'Collar',
                 'strStanSizeFitType' =>'Loose Fit',
-                'dblStanSizeInch' =>'16.5',
+                'dblStanSizeInch' =>'10',
+                'dblStanSizeCm' => '14',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -92,7 +98,8 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeCategoryFK' =>'STDRSZE002',
                 'strStanSizeDetailName' =>'Collar',
                 'strStanSizeFitType' =>'Slim Fit',
-                'dblStanSizeInch' =>'15',
+                'dblStanSizeInch' =>'11',
+                'dblStanSizeCm' => '12',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -104,7 +111,8 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeCategoryFK' =>'STDRSZE001',
                 'strStanSizeDetailName' =>'Shirt Length',
                 'strStanSizeFitType' =>'Slim Fit',
-                'dblStanSizeInch' =>'28',
+                'dblStanSizeInch' =>'10',
+                'dblStanSizeCm' => '29',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -116,7 +124,8 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeCategoryFK' =>'STDRSZE002',
                 'strStanSizeDetailName' =>'Shirt Length',
                 'strStanSizeFitType' =>'Slim Fit',
-                'dblStanSizeInch' =>'29',
+                'dblStanSizeInch' =>'13',
+                'dblStanSizeCm' => '30',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -128,7 +137,8 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeCategoryFK' =>'STDRSZE003',
                 'strStanSizeDetailName' =>'Shirt Length',
                 'strStanSizeFitType' =>'Slim Fit',
-                'dblStanSizeInch' =>'31',
+                'dblStanSizeInch' =>'12',
+                'dblStanSizeCm' => '24',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -141,7 +151,8 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeCategoryFK' =>'STDRSZE004',
                 'strStanSizeDetailName' =>'Shirt Length',
                 'strStanSizeFitType' =>'Slim Fit',
-                'dblStanSizeInch' =>'31.5',
+                'dblStanSizeInch' =>'12',
+                'dblStanSizeCm' => '29',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -153,7 +164,8 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeCategoryFK' =>'STDRSZE005',
                 'strStanSizeDetailName' =>'Shirt Length',
                 'strStanSizeFitType' =>'Slim Fit',
-                'dblStanSizeInch' =>'32',
+                'dblStanSizeInch' =>'11',
+                'dblStanSizeCm' => '28',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -165,7 +177,8 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeCategoryFK' =>'STDRSZE001',
                 'strStanSizeDetailName' =>'Shoulder Width',
                 'strStanSizeFitType' =>'Slim Fit',
-                'dblStanSizeInch' =>'16',
+                'dblStanSizeInch' =>'14',
+                'dblStanSizeCm' => '29',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -178,6 +191,7 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeDetailName' =>'Shoulder Width',
                 'strStanSizeFitType' =>'Slim Fit',
                 'dblStanSizeInch' =>'17',
+                'dblStanSizeCm' => '31',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -190,6 +204,7 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeDetailName' =>'Shoulder Width',
                 'strStanSizeFitType' =>'Slim Fit',
                 'dblStanSizeInch' =>'18',
+                'dblStanSizeCm' => '32',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -201,7 +216,8 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeCategoryFK' =>'STDRSZE004',
                 'strStanSizeDetailName' =>'Shoulder Width',
                 'strStanSizeFitType' =>'Slim Fit',
-                'dblStanSizeInch' =>'19.5',
+                'dblStanSizeInch' =>'15.5',
+                 'dblStanSizeCm' => '32',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -214,6 +230,7 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeDetailName' =>'Shoulder Width',
                 'strStanSizeFitType' =>'Slim Fit',
                 'dblStanSizeInch' =>'20.5',
+                'dblStanSizeCm' => '12.1',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -225,7 +242,8 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeCategoryFK' =>'STDRSZE006',
                 'strStanSizeDetailName' =>'Shoulder Width',
                 'strStanSizeFitType' =>'Slim Fit',
-                'dblStanSizeInch' =>'22',
+                'dblStanSizeInch' =>'16',
+                'dblStanSizeCm' => '28',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -237,7 +255,8 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeCategoryFK' =>'STDRSZE006',
                 'strStanSizeDetailName' =>'Shoulder Width',
                 'strStanSizeFitType' =>'Slim Fit',
-                'dblStanSizeInch' =>'22',
+                'dblStanSizeInch' =>'13',
+                'dblStanSizeCm' => '23',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -249,7 +268,8 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeCategoryFK' =>'STDRSZE006',
                 'strStanSizeDetailName' =>'Shoulder Width',
                 'strStanSizeFitType' =>'Slim Fit',
-                'dblStanSizeInch' =>'22',
+                'dblStanSizeInch' =>'14',
+                 'dblStanSizeCm' => '28',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -261,7 +281,8 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeCategoryFK' =>'STDRSZE001',
                 'strStanSizeDetailName' =>'Sleeve Length',
                 'strStanSizeFitType' =>'Slim Fit',
-                'dblStanSizeInch' =>'25',
+                'dblStanSizeInch' =>'5',
+                 'dblStanSizeCm' => '19',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -273,7 +294,8 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeCategoryFK' =>'STDRSZE002',
                 'strStanSizeDetailName' =>'Sleeve Length',
                 'strStanSizeFitType' =>'Slim Fit',
-                'dblStanSizeInch' =>'26',
+                'dblStanSizeInch' =>'16',
+                 'dblStanSizeCm' => '24',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -285,7 +307,8 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeCategoryFK' =>'STDRSZE003',
                 'strStanSizeDetailName' =>'Sleeve Length',
                 'strStanSizeFitType' =>'Slim Fit',
-                'dblStanSizeInch' =>'25',
+                'dblStanSizeInch' =>'9',
+                 'dblStanSizeCm' => '27',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -297,7 +320,8 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeCategoryFK' =>'STDRSZE004',
                 'strStanSizeDetailName' =>'Sleeve Length',
                 'strStanSizeFitType' =>'Slim Fit',
-                'dblStanSizeInch' =>'26',
+                'dblStanSizeInch' =>'10',
+                 'dblStanSizeCm' => '24',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -309,7 +333,8 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeCategoryFK' =>'STDRSZE005',
                 'strStanSizeDetailName' =>'Sleeve Length',
                 'strStanSizeFitType' =>'Slim Fit',
-                'dblStanSizeInch' =>'27',
+                'dblStanSizeInch' =>'8',
+                 'dblStanSizeCm' => '21',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -321,7 +346,8 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeCategoryFK' =>'STDRSZE006',
                 'strStanSizeDetailName' =>'Sleeve Length',
                 'strStanSizeFitType' =>'Slim Fit',
-                'dblStanSizeInch' =>'27',
+                'dblStanSizeInch' =>'7',
+                 'dblStanSizeCm' => '21',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -333,7 +359,8 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeCategoryFK' =>'STDRSZE001',
                 'strStanSizeDetailName' =>'Chest',
                 'strStanSizeFitType' =>'Slim Fit',
-                'dblStanSizeInch' =>'37',
+                'dblStanSizeInch' =>'12',
+                 'dblStanSizeCm' => '24',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -345,7 +372,8 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeCategoryFK' =>'STDRSZE001',
                 'strStanSizeDetailName' =>'Chest',
                 'strStanSizeFitType' =>'Normal Fit',
-                'dblStanSizeInch' =>'44',
+                'dblStanSizeInch' =>'14',
+                 'dblStanSizeCm' => '24',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -357,7 +385,8 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeCategoryFK' =>'STDRSZE001',
                 'strStanSizeDetailName' =>'Chest',
                 'strStanSizeFitType' =>'Loose Fit',
-                'dblStanSizeInch' =>'45',
+                'dblStanSizeInch' =>'15',
+                 'dblStanSizeCm' => '25',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             ),
@@ -370,7 +399,8 @@ class StandardSizeDetailSeeder extends Seeder
                 'strStanSizeCategoryFK' =>'STDRSZE002',
                 'strStanSizeDetailName' =>'Chest',
                 'strStanSizeFitType' =>'Loose Fit',
-                'dblStanSizeInch' =>'46',
+                'dblStanSizeInch' =>'16',
+                 'dblStanSizeCm' => '24',
                 'txtStanSizeDesc' => '',
                 'boolIsActive' => '1'
             )

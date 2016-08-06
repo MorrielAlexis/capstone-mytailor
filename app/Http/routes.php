@@ -97,13 +97,13 @@ Route::group(['prefix' => 'maintenance'], function(){
 
 	Route::resource('standard-size-category', 'StandardSizeCategoryController');
 
-		Route::post('standard-size-category/update','StandardSizeCategoryController@update_fabricPattern');
-		Route::post('standard-size-category/destroy','StandardSizeCategoryController@delete_fabricPattern');
+		Route::post('standard-size-category/update','StandardSizeCategoryController@update_standardCategory');
+		Route::post('standard-size-category/destroy','StandardSizeCategoryController@delete_standardCategory');
 
 	Route::resource('standard-size-detail', 'StandardSizeDetailController');
 
-		Route::post('standard-size-detail/update','StandardSizeDetailController@update_fabricColor');
-		Route::post('standard-size-detail/destroy','StandardSizeDetailController@delete_fabricColor');
+		Route::post('standard-size-detail/update','StandardSizeDetailController@update_standardDetail');
+		Route::post('standard-size-detail/destroy','StandardSizeDetailController@delete_standardDetail');
 
 
 	Route::resource('measurement-category', 'MeasurementCategoryController');
@@ -263,7 +263,8 @@ Route::group(['prefix' => 'utilities'], function(){
 		Route::post('inactive-data/reactivate-segment-style', 'InactiveDataController@reactivate_segmentStyle');
 		Route::post('inactive-data/reactivate-segmentPattern', 'InactiveDataController@reactivate_segmentPattern');
 		Route::post('inactive-data/reactivate-meas-category', 'InactiveDataController@reactivate_measCategory');
-		Route::post('inactive-data/reactivate-detail', 'InactiveDataController@reactivate_detail');
+		Route::post('inactive-data/reactivate-meas-detail', 'InactiveDataController@reactivate_detail');
+		Route::post('inactive-data/reactivate-standard-category', 'InactiveDataController@reactivate_standardCategory');
 		Route::post('inactive-data/reactivate-fabricType', 'InactiveDataController@reactivate_fabrictype');
 		Route::post('inactive-data/reactivate-fabric-color', 'InactiveDataController@reactivate_fabricColor');
 		Route::post('inactive-data/reactivate-fabric-pattern', 'InactiveDataController@reactivate_fabricPattern');
@@ -294,20 +295,26 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::get('walkin-individual-bulk-orders-payment-measure-detail', 'WalkInIndividualController@bulkOrderMeasure');
 	Route::get('walkin-individual-bulk-orders-measure-now', 'WalkInIndividualController@bulkOrderMeasureNow');
 
-	Route::post('walkin-individual-customize-orders', 'WalkInIndividualController@customize');
-	Route::post('walkin-individual-payment-customer-info', 'WalkInIndividualController@information');
+	//customize view
+	Route::post('walkin-individual-customize-orders', 'WalkInIndividualController@customizeOrder');
+	
+	//customer information view
+	Route::post('walkin-individual-customer-information', 'WalkInIndividualController@customerInformation');
+	Route::post('walkin-individual-save-customer', 'WalkInIndividualController@addCustomer');
+	Route::post('walkin-individual-save-measurements', 'WalkInIndividualController@saveMeasurements');
+
+	//payment view
+	Route::get('walkin-individual-payment-information', 'WalkInIndividualController@showPayment');
+	Route::post('walkin-individual-save-order', 'WalkInIndividualController@saveOrder');
+
 	Route::post('walkin-individual-remove-item', 'WalkInIndividualController@removeItem');
 	Route::post('walkin-individual-add-design', 'WalkInIndividualController@addDesign');
 	Route::post('walkin-individual-clear-order', 'WalkInIndividualController@clearOrder');
-	Route::post('walkin-individual-save-order', 'WalkInIndividualController@saveOrder');
-	Route::post('walkin-individual-save-customer', 'WalkInIndividualController@addCustomer');
-	Route::post('walkin-individual-payment-measure-detail', 'WalkInIndividualController@measurement');
-	
+
 	Route::get('walkin-individual-show-customize-orders', 'WalkInIndividualController@showCustomizeOrder');
 	Route::get('walkin-individual-show-measurement-view', 'WalkInIndividualController@showMeasurementView');
 
 	Route::get('walkin-individual-catalogue-designs', 'WalkInIndividualController@catalogueDesign');
-	Route::get('walkin-individual-payment-info', 'WalkInIndividualController@payment');
 
 });
 
@@ -367,12 +374,31 @@ Route::group(['prefix' => 'transaction'], function(){
 Route::resource('online-home', 'OnlineHomeController',
 		['only' => ['index']]);
 
-Route::resource('online-alteration', 'OnlineAlterationController',
-		['only' => ['index']]);
-Route::get('online-alteration-transact', 'OnlineAlterationController@transac');
 
-Route::get('online-alterationtransaction-newcustomer', 'OnlineAlterationController@newcust');
-Route::get('online-alterationtransaction-patron', 'OnlineAlterationController@oldcust');
+/*Online Alteration New Customer*/
+Route::group(['prefix' => 'transaction'], function(){
+
+		Route::resource('online-alteration', 'OnlineAlterationController');
+		Route::get('online-alteration-transact', 'OnlineAlterationController@transac');
+		Route::get('online-alterationtransaction-newcustomer', 'OnlineAlterationController@newcust');
+		Route::get('online-alterationtransaction-patron', 'OnlineAlterationController@oldcust');
+		Route::get('online-alteration-newcustomer', 'OnlineAlterationController@showCart');
+		Route::get('online-alteration-newcustomer-update', 'OnlineAlterationController@updateCart');
+		Route::get('online-alteration-oldcustomer', 'OnlineAlterationController@oldcust');
+		Route::get('online-alteration-info', 'OnlineAlterationController@checkoutCustInfo');
+		Route::get('online-alteration-payment', 'OnlineAlterationController@checkoutPayment');
+		Route::get('online-alteration-measurement', 'OnlineAlterationController@checkoutAddMeasurement');
+		Route::post('online-alteration-newcustomer', 'OnlineAlterationController@addValues');
+		Route::post('online-alteration-newcustomer-delete', 'OnlineAlterationController@deleteOrder');
+		Route::post('online-alteration-add-newcustomer-checkout-info', 'OnlineAlterationController@addNewCustomer');
+		Route::post('online-alteration-newcustomer-save-transaction', 'OnlineAlterationController@saveTransaction');
+		Route::post('online-alteration-newcustomer-cancel', 'OnlineAlterationController@cancelOrder');
+
+});
+
+/*End of Online Alteration New Customer*/
+
+
 
 Route::resource('online-garment-gown', 'OnlineGarmentGownController',
 		['only' => ['index']]);
@@ -460,7 +486,7 @@ Route::get('online-alteration-checkout-payment', 'OnlineCheckoutAlterationContro
 
 	Route::get('customize-mens-fabric', 'OnlineCustomizeMensController@fabric');
 	Route::post('customize-mens-style-collar', 'OnlineCustomizeMensController@stylecollar');
-	Route::get('customize-mens-style-cuffs', 'OnlineCustomizeMensController@stylecuffs');
+	Route::post('customize-mens-style-cuffs', 'OnlineCustomizeMensController@stylecuffs');
 	Route::post('customize-mens-style-buttons', 'OnlineCustomizeMensController@stylebuttons');
 	Route::post('customize-mens-style-pocket-monogram', 'OnlineCustomizeMensController@stylepocketmonogram');
 	Route::get('customize-mens-style-others', 'OnlineCustomizeMensController@styleothers');

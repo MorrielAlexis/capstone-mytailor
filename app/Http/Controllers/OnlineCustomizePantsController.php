@@ -58,6 +58,7 @@ class OnlineCustomizePantsController extends Controller
                     ->select('a.*', 'b.strFabricTypeName')
                     ->where('a.strFabricID', $request->input('hidden_fabric_id'))
                     ->get();
+                dd($request->input('hidden_fabric_id'));
 
         $key = 'Pleat';
 
