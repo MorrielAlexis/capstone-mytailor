@@ -1,10 +1,6 @@
-html {
-    font-family: Trebuchet, sans-serif;
-}
-
 <!--MASTER_BLADE-->
 body{
-  font-family: Trebuchet, sans-serif;
+  font-family: 'Philosopher', sans-serif;
 }
 nav{
   background-color: transparent;
@@ -116,7 +112,6 @@ nav{
 
 #gallery h2{
 
-	font-family:'Playfair Display','Times'; 
 	position: absolute; 
 	display: inline-block; 
 	margin-top:250px; 
@@ -152,8 +147,7 @@ nav{
 
 	font-size:40px; 
 	color: #FFFFFF; 
-	font-family:'Playfair Display','Times';
-}
+
 
 #ind_header p{
 
@@ -181,7 +175,7 @@ nav{
 #details h5{
 
 	color: #757575; 
-	font-family:'Playfair Display','Times';
+
 }
 
         .breadcrumb { 

@@ -6,11 +6,17 @@
       
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Cormorant+Infant|Lemonada|Lobster+Two|Pacifico|Yatra+One|Philosopher" rel="stylesheet">
 
       {!! Html::style('css/materialize.min.css') !!}
       {!! Html::style('css/styleOnline.css'); !!}
 
       <style>
+      @import 'https://fonts.googleapis.com/css?family=Cormorant+Infant|Lemonada|Lobster+Two|Pacifico|Philosopher|Yatra+One';
+      </style>
+
+      <style>
+
         body{
           background: #C8E6C9;
           background-size: cover;
@@ -67,7 +73,7 @@
 
 
         <div class="navbar teal">
-          <nav>
+          <nav style="font-family: 'Philosopher', sans-serif;">
             <div style="border-bottom:1px solid grey" class="nav-wrapper">
 
               <ul class="container">
@@ -123,8 +129,8 @@
               <div class="container">
                 <div class="row">
                   <div class="col s3">
-                    <h5 class="teal-text"><b>MY STORE</b></h5>
-                    <ul>
+                    <h5 class="teal-text" style="font-family:'Lemonada',cursive;"><b>MY STORE</b></h5>
+                    <ul style="font-family:'Philosopher',sans-serif;">
                       <li><a class="black-text" href="#!">Order Now!</a></li>
                       <li><a class="black-text" href="#!">Uniform Garments</a></li>
                       <li><a class="black-text" href="#!">Gown Garments</a></li>
@@ -134,8 +140,8 @@
                     </ul>
                   </div>
                   <div class="col s3">
-                    <h5 class="teal-text"><b>SERVICE</b></h5>
-                    <ul>
+                    <h5 class="teal-text" style="font-family:'Lemonada',cursive;"><b>SERVICE</b></h5>
+                    <ul style="font-family:'Philosopher',sans-serif;">
                       <li><a class="black-text" href="#!">Style Consultation</a></li>
                       <li><a class="black-text" href="#!">Showroom</a></li>
                       <li><a class="black-text" href="#!">Fit Promise</a></li>
@@ -144,16 +150,16 @@
                     </ul>
                   </div>
                   <div class="col s3">
-                    <h5 class="teal-text"><b>ABOUT US</b></h5>
-                    <ul>
+                    <h5 class="teal-text" style="font-family:'Lemonada',cursive;"><b>ABOUT US</b></h5>
+                    <ul style="font-family:'Philosopher',sans-serif;">
                       <li><a class="black-text" href="#!">Our Story</a></li>
                       <li><a class="black-text" href="#!">Reviews</a></li>
                       <li><a class="black-text" href="#!">Quality</a></li>
                     </ul>
                   </div>
                   <div class="col s3">
-                    <h5 class="teal-text"><b>MORE</b></h5>
-                    <ul>
+                    <h5 class="teal-text" style="font-family:'Lemonada',cursive;"><b>MORE</b></h5>
+                    <ul style="font-family:'Philosopher',sans-serif;">
                       <li><a class="black-text" href="#!">Contact Us</a></li>
                       <li><a class="black-text" href="#!">Terms</a></li>
                       <li><a class="black-text" href="#!">FAQs</a></li>
@@ -164,7 +170,7 @@
                 </div>
               </div>
               <div class="footer-copyright">
-                <div class="container">
+                <div class="container" style="font-family:'Lemonada',cursive;">
                 Copyright © myTailor. All rights reserved.
                 </div>
               </div>

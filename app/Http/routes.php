@@ -431,7 +431,6 @@ Route::get('online-company-checkout-employee-details', 'OnlineCheckoutCompanyCon
 
 Route::get('online-alteration-checkout-info', 'OnlineCheckoutAlterationController@info');
 Route::get('online-alteration-checkout-payment', 'OnlineCheckoutAlterationController@payment');
-Route::get('online-alteration-checkout-measurement', 'OnlineCheckoutAlterationController@measuredetails');
 /*-------------------------------------------ONLINE CUSTOMER PROFILE---------------------------------------------------*/
 
 	Route::get('customerprofile-individual', 'OnlineCustomerProfileIndividualController@index');
