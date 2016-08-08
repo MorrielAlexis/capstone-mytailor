@@ -9,12 +9,16 @@
       </div>
     </div>
 	
-	     <!--Add Fabric Type-->
+
+	     <!--Add Order-->
         @if(Session::has('success-message'))
         <div class="row" id="success-message">
           <div class="col s12 m12 l12">
             <div class="card-panel yellow accent-1">
-              <span class="alert alert-success"> <i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+              <span class="alert alert-success"> 
+              	<i class="tiny mdi-navigation-close" onclick="$('#success-message').hide()"></i>
+              	<a href="{{ URL::to('generate-payment-receipt') }}" class="right btn btn-flat">Print Receipt</a>
+              </span>
               <strong> {!! session('success-message') !!}</strong>
             </div>
           </div>
