@@ -96,21 +96,23 @@
 					              	</tr>
 				              	</thead>
 				              	<tbody>
-								@foreach($styles as $style)
-									@if($style->strSegmentID == $segment->strSegmentID)
-						            <tr>
-						               <td>{{ $style->strSegStyleName }}</td>
-						               <td>{{ $style->strSegPName }}</td>
-						               <td>{{ number_format($style->dblPatternPrice, 2) }} PHP</td>
-						            </tr>
-						            @endif
-						         @endforeach
+				              	@for($i = 0; $i < count($segments); $i++)
+									@for($j = 0; $j < count($styles[$i]); $j++)
+										@if($styles[$i][$j]->strSegmentID == $segment->strSegmentID)
+							            <tr>
+							               <td>{{ $styles[$i][$j]->strSegStyleName }}</td>
+							               <td>{{ $styles[$i][$j]->strSegPName }}</td>
+							               <td>{{ number_format($styles[$i][$j]->dblPatternPrice, 2) }} PHP</td>
+							            </tr>
+							            @endif
+							        @endfor
+							    @endfor
 						        </tbody>
 						    </table>
 
 						    <div class="col s12"><div class="divider" style="height:2px"></div></div>
-						</div>				
-						@endforeach
+						</div>	
+					@endforeach
 					</div>
 		      		<!--End of design summary-->
 
@@ -277,7 +279,9 @@
 			for(var i = 0; i < a.length; i++){
 				totalAmount += a[i].dblSegmentPrice;
 				totalAmount += a[i].dblFabricPrice;
-				totalAmount += b[i].dblPatternPrice;
+					for(var j = 0; j < b[i].length; j++){
+						totalAmount += b[i][j].dblPatternPrice;
+					}
 				minDays += a[i].intMinDays;
 			}
 
@@ -309,7 +313,9 @@
 					for(var i = 0; i < a.length; i++){
 						totalAmount += a[i].dblSegmentPrice;
 						totalAmount += a[i].dblFabricPrice;
-						totalAmount += b[i].dblPatternPrice;
+							for(var j = 0; j < b[i].length; j++){
+								totalAmount += b[i][j].dblPatternPrice;
+							}
 					}
 					
 					$('#amount-payable').val((totalAmount/2).toFixed(2) + ' PHP');
@@ -320,12 +326,15 @@
 
 					var a = {!! json_encode($segments) !!};
 					var b = {!! json_encode($styles) !!};	
+
 					var totalAmount = 0.00;
 
 					for(var i = 0; i < a.length; i++){
 						totalAmount += a[i].dblSegmentPrice;
 						totalAmount += a[i].dblFabricPrice;
-						totalAmount += b[i].dblPatternPrice;
+							for(var j = 0; j < b[i].length; j++){
+								totalAmount += b[i][j].dblPatternPrice;
+							}
 					}
 					
 					$('#amount-payable').val(totalAmount.toFixed(2) + ' PHP');
@@ -407,8 +416,8 @@
 		 }
 
 		$(document).ready(function()
-		{
-		   setInterval('updateClock()', 1000);
+		{	
+		    setInterval('updateClock()', 1000);
 		});
 	</script>
 

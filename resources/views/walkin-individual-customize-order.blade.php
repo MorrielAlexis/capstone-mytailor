@@ -178,7 +178,7 @@
 														              <img src="{{URL::asset($pattern->strSegPImage)}}" alt="" class="responsive-img">
 														            </div>
 														            <div class="col s6"> 
-														              <span><b>{{ $pattern->strSegPName }}</b></span> <!-- This will be the name of the pattern -->
+														              <span><b>{{ $pattern->strSegPatternID }} {{ $pattern->strSegPName }}</b></span> <!-- This will be the name of the pattern -->
 														              <br/>
 														              <span class="black-text">
 														                {{ $pattern->txtSegPDesc }}
