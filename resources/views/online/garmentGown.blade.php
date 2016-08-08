@@ -6,8 +6,8 @@
 
 		<div id="gownheader" style="height:500px; margin-top: -15px;">
 	  		<div style="height:70px"></div>
-	  		<center><h1 style="color:white; font-family:'Playfair Display','Times';">Custom tailored gowns</h1></center>
-	  		<center><a style="margin-top:45px; padding-top:15px; padding-left:5px; padding-right:5px; width:250px; height:70px; background:rgb(236, 59, 65);" class="white-text modal-trigger waves-effect waves-light btn btn-small center-text" href="{{URL::to('/customize-gown-fabric')}}"><font size="+1">CUSTOMIZE YOURS NOW!</font></a></center>
+	  		<center><h1 style="color:white; font-family:'Pacifico',cursive;">Custom tailored gowns</h1></center>
+	  		<center><a style="font-family:'Yatra One',cursive; font-size:20px; margin-top:45px; padding-top:15px; padding-left:5px; padding-right:5px; width:300px; height:70px; background:rgb(236, 59, 65);" class="white-text modal-trigger waves-effect waves-light btn btn-small center-text" href="{{URL::to('/customize-gown-fabric')}}">CUSTOMIZE YOURS NOW!</a></center>
 		</div>
 
 		<div style= "height:20px;"></div>

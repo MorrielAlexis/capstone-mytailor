@@ -2,7 +2,7 @@
 
 @section('content')
   
-  <div class="container">
+  <div class="container" style="margin-top:20px;">
     <div style="padding:20px; margin-bottom:20px;"> 
 
     <div id="customer-info" class = "hue col s12" style="background-color: white;">
@@ -127,7 +127,7 @@
               
               <!--Start of bottom button-->
               <div class="col s12" style="margin-top:30px">
-                  <a id="addPayment" href="{{URL::to('/online-alteration-checkout-measurement')}}" class="right btn-flat tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-left:40px; background-color:#00695c; color:white"><b><i class="mdi-navigation-check" style="padding-right:10px"></i>Save</b></a>                                
+                  <a id="addPayment" href="{{URL::to('/online-alteration-checkout-payment')}}" class="right btn-flat tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-left:40px; background-color:#00695c; color:white"><b><i class="mdi-navigation-check" style="padding-right:10px"></i>Save</b></a>                                
                   <a id="cancelTransac" href="#cancel-order" class="right btn-flat modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel transaction and go back to homepage" style="background-color:#a7ffeb; color:black"><b><i class="mdi-navigation-close" style="padding-right:10px"></i>Cancel</b></a>                   
                   <div id="cancel-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:80px">
                       <h5><font color="red"><center><b>Warning!</b></center></font></h5>

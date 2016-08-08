@@ -24,11 +24,6 @@ class OnlineCheckoutAlterationController extends Controller
         return view('online.alteration-checkout-payment');
     }
 
-    public function measuredetails()
-    {
-        return view('online.alteration-checkout-measurement');
-    }
-
     /**
      * Show the form for creating a new resource.
      *

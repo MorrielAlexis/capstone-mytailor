@@ -45,7 +45,7 @@ class SegmentStyleSeeder extends Seeder
                 'strSegStyleCatID' => 'SEGSTY004',
                 'strSegmentFK' => 'SEGM004',
                 'strSegStyleName' =>'Shirt Pocket',
-                'txtSegStyleCatDesc' => 'Perfect pairing for casual pants',
+                'txtSegStyleCatDesc' => 'Stylish accent on the chest side of the jacket.  ',
                 'strSegStyleCatInactiveReason' => '',
                 'boolIsActive' => '1'
             ),
@@ -108,15 +108,6 @@ class SegmentStyleSeeder extends Seeder
 
             array(
                 'strSegStyleCatID' => 'SEGSTY011',
-                'strSegmentFK' => 'SEGM002',
-                'strSegStyleName' =>'Chest pocket',
-                'txtSegStyleCatDesc' => 'Stylish accent on the chest side of the jacket.  ',
-                'strSegStyleCatInactiveReason' => '',
-                'boolIsActive' => '1'
-            ),
-
-            array(
-                'strSegStyleCatID' => 'SEGSTY012',
                 'strSegmentFK' => 'SEGM006',
                 'strSegStyleName' =>'Backpockets',
                 'txtSegStyleCatDesc' => 'Either 1 or 2 backpockets.',
@@ -125,7 +116,7 @@ class SegmentStyleSeeder extends Seeder
             ),
            
             array(
-                'strSegStyleCatID' => 'SEGSTY013',
+                'strSegStyleCatID' => 'SEGSTY012',
                 'strSegmentFK' => 'SEGM006',
                 'strSegStyleName' =>'Pants Bottom',
                 'txtSegStyleCatDesc' => 'Either with or without cuffs.',
