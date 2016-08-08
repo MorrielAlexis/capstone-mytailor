@@ -2,7 +2,7 @@
 
 @section('content')
   
-  <div class="container">
+  <div class="container" style="margin-top:20px;">
     <div style="padding:20px; margin-bottom:20px;"> 
 
       <div id="payment-info" class = "hue col s12 active" style="background-color: white;">

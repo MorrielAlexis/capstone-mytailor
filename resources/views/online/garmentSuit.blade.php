@@ -6,13 +6,20 @@
 
 		<div id="suitheader" style="height:500px; margin-top: -15px;">
 	  		<div style="height:70px"></div>
-	  		<center><h1 style="color:white; font-family:'Playfair Display','Times';">Custom tailored suits</h1></center>
-	  		<center><a style="margin-top:45px; padding-top:15px; padding-left:5px; padding-right:5px; width:250px; height:70px; background:rgb(236, 59, 65);" class="white-text modal-trigger waves-effect waves-light btn btn-small center-text" href="{{URL::to('/customize-suit-fabric')}}"><font size="+1">CUSTOMIZE YOURS NOW!</font></a></center>
+	  		<center><h1 style="color:white; font-family:'Pacifico',cursive;">Custom tailored suits</h1></center>
+	  		<center><a style="font-family:'Yatra One',cursive; font-size: 20px; margin-top:45px; padding-top:15px; padding-left:5px; padding-right:5px; width:300px; height:70px; background:rgb(236, 59, 65);" class="white-text modal-trigger waves-effect waves-light btn btn-small center-text" href="{{URL::to('/customize-suit-fabric')}}">CUSTOMIZE YOURS NOW!</a></center>
 		</div>
 
 		<div style= "height:20px;"></div>
 
 		<div class="section white container" style="width:95%;">
+
+<h2 style="font-family: 'Pacifico', cursive;">My Tailor MYTAILOR</h2>
+<h2 style="font-family: 'Yatra One', cursive;">My Tailor MYTAILOR</h2>
+<h2 style="font-family: 'Lobster Two', cursive;">My Tailor MYTAILOR</h2>
+<h2 style="font-family: 'Cormorant Infant', serif;">My Tailor MYTAILOR</h2>
+<h2 style="font-family: 'Lemonada', cursive;">My Tailor MYTAILOR</h2>
+<h2 style="font-family: 'Philosopher', sans-serif;">My Tailor MYTAILOR</h2>		
 
 			<div class="row">
 
@@ -48,9 +55,9 @@
 					<img class="responsive-img" src="imgOnline/suity.jpg">
 				</div>
 				<div class="col s6" style="padding:20px;">
-					<h4 style="font-family:'Playfair Display','Times';">Fine custom mens suits - expert tailoring</h4>
-					<h6>Trust us to tailor your new suit. Our experienced tailors will stop at nothing to give you:</h6>
-					<ul>
+					<h4 style="font-family:'Lobster Two',cursive;">Fine custom mens suits - expert tailoring</h4>
+					<h6 style="font-family:'Yatra One',cursive;">Trust us to tailor your new suit. Our experienced tailors will stop at nothing to give you:</h6>
+					<ul style="font-family:'Yatra One',cursive;">
 						<li>A perfect fit - always a made-to-measure with fit guarantee</li>
 						<li>Highest quality fabrics, materials & craftmanship</li>
 						<li>Finely tailored suits with an individual touch - made for you.</li>
@@ -60,9 +67,9 @@
 
 			<div class="row">
 				<div class="col s6" style="padding:20px;">
-					<h4 style="font-family:'Playfair Display','Times';">Custom made - to your measurements</h4>
-					<p>With our unique suit customizer, you can easily create a suit that perfectly matches your personality.</p>
-					<p>Tailored to your individual measurements, we dare to guarantee a perfect fit - every time.</p>
+					<h4 style="font-family:'Lobster Two',cursive;">Custom made - to your measurements</h4>
+					<p style="font-family:'Yatra One',cursive;">With our unique suit customizer, you can easily create a suit that perfectly matches your personality.</p>
+					<p style="font-family:'Yatra One',cursive;">Tailored to your individual measurements, we dare to guarantee a perfect fit - every time.</p>
 				</div>
 				<div class="col s6 center">
 					<img class="responsive-img" src="imgOnline/suitmehe.jpg">

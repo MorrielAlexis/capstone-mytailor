@@ -97,13 +97,13 @@ Route::group(['prefix' => 'maintenance'], function(){
 
 	Route::resource('standard-size-category', 'StandardSizeCategoryController');
 
-		Route::post('standard-size-category/update','StandardSizeCategoryController@update_fabricPattern');
-		Route::post('standard-size-category/destroy','StandardSizeCategoryController@delete_fabricPattern');
+		Route::post('standard-size-category/update','StandardSizeCategoryController@update_standardCategory');
+		Route::post('standard-size-category/destroy','StandardSizeCategoryController@delete_standardCategory');
 
 	Route::resource('standard-size-detail', 'StandardSizeDetailController');
 
-		Route::post('standard-size-detail/update','StandardSizeDetailController@update_fabricColor');
-		Route::post('standard-size-detail/destroy','StandardSizeDetailController@delete_fabricColor');
+		Route::post('standard-size-detail/update','StandardSizeDetailController@update_standardDetail');
+		Route::post('standard-size-detail/destroy','StandardSizeDetailController@delete_standardDetail');
 
 
 	Route::resource('measurement-category', 'MeasurementCategoryController');
@@ -459,7 +459,6 @@ Route::get('online-company-checkout-employee-details', 'OnlineCheckoutCompanyCon
 
 Route::get('online-alteration-checkout-info', 'OnlineCheckoutAlterationController@info');
 Route::get('online-alteration-checkout-payment', 'OnlineCheckoutAlterationController@payment');
-Route::get('online-alteration-checkout-measurement', 'OnlineCheckoutAlterationController@measuredetails');
 /*-------------------------------------------ONLINE CUSTOMER PROFILE---------------------------------------------------*/
 
 	Route::get('customerprofile-individual', 'OnlineCustomerProfileIndividualController@index');
@@ -489,7 +488,7 @@ Route::get('online-alteration-checkout-measurement', 'OnlineCheckoutAlterationCo
 
 	Route::get('customize-mens-fabric', 'OnlineCustomizeMensController@fabric');
 	Route::post('customize-mens-style-collar', 'OnlineCustomizeMensController@stylecollar');
-	Route::get('customize-mens-style-cuffs', 'OnlineCustomizeMensController@stylecuffs');
+	Route::post('customize-mens-style-cuffs', 'OnlineCustomizeMensController@stylecuffs');
 	Route::post('customize-mens-style-buttons', 'OnlineCustomizeMensController@stylebuttons');
 	Route::post('customize-mens-style-pocket-monogram', 'OnlineCustomizeMensController@stylepocketmonogram');
 	Route::get('customize-mens-style-others', 'OnlineCustomizeMensController@styleothers');

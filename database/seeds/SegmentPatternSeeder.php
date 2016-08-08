@@ -240,7 +240,7 @@ class SegmentPatternSeeder extends Seeder
 
             array(
                 'strSegPatternID' => 'SPAT023',
-                'strSegPStyleCategoryFK' => 'SEGSTY012',
+                'strSegPStyleCategoryFK' => 'SEGSTY011',
                 'strSegPName'=>' 1 Back Pocket ',
                 'dblPatternPrice' => '50',
                 'txtSegPDesc' => 'Pants with 1 backpocket',
@@ -250,7 +250,7 @@ class SegmentPatternSeeder extends Seeder
 
             array(
                 'strSegPatternID' => 'SPAT024',
-                'strSegPStyleCategoryFK' => 'SEGSTY012',
+                'strSegPStyleCategoryFK' => 'SEGSTY011',
                 'strSegPName'=>' 2 Back Pocket ',
                 'dblPatternPrice' => '50',
                 'txtSegPDesc' => 'Pants with 2 backpocket',

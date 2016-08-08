@@ -41,7 +41,7 @@
         <!--POCKETS TAB-->
         <div id="tabPockets" class="col s12 white" style="padding:20px; border: 2px teal accent-4;">
           
-          {!! Form::open(['url' => 'customize-pants-style-pockets', 'method' => 'post']) !!}
+          {!! Form::open(['url' => 'customize-pants-style-bottom', 'method' => 'post']) !!}
           <div class="col s12">
             <div><button class="right btn-flat teal accent-4 white-text" type="submit">Next step</button></div>
             <div><a class="left btn-flat teal accent-4 white-text" href="{{URL::to('/customize-pants-style-pleats')}}">Previous step</a></div>
