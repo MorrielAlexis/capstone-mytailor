@@ -228,14 +228,14 @@
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input required value="{{ $standardDetail->dblStanSizeInch }}" id="editStanSizeInch" name= "editStanSizeInch" type="text" class="validate" pattern="^[1-9]\d{0,7}(?:\.\d{1,4})?|\.\d{1,4}$" maxlength="4">
+                                <input required value="{{ $standardDetail->dblStanSizeInch }}" id="editStanSizeInch" name= "editStanSizeInch" type="text" class="validate" pattern="^[0-9]*$" maxlength="4">
                                 <label for="stansize_inch">Inch <span class="red-text"><b>*</b></span></label>
                               </div>
                           </div> 
                                                    
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input required value="{{ $standardDetail->dblStanSizeCm }}" id="editStanSizeCm" name= "editStanSizeCm" type="text" class="validate" pattern="^[1-9]\d{0,7}(?:\.\d{1,4})?|\.\d{1,4}$" maxlength="4">
+                                <input required value="{{ $standardDetail->dblStanSizeCm }}" id="editStanSizeCm" name= "editStanSizeCm" type="text" class="validate" pattern="^[0-9]*$" maxlength="4">
                                 <label for="stanSizeDet_cm">Cm <span class="red-text"><b>*</b></span></label>
                               </div>
                           </div>
@@ -404,14 +404,14 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input required id="dblStanSizeInch" name= "dblStanSizeInch" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`\d]+(\s[a-zA-Z\-'`]+)?" class="active"  placeholder="15" maxlength="4">
+                        <input required id="dblStanSizeInch" name= "dblStanSizeInch" type="text" class="validate" data-position="bottom" pattern="^[0-9]*$" class="active"  placeholder="15" maxlength="4">
                         <label for="stanSizeDet_inch">Inch<span class="red-text"><b>*</b></span></label>
                       </div>
                   </div>
                                                    
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input required id="dblStanSizeCm" name= "dblStanSizeCm" type="text" class="validate" data-positiow="bottom" pattern="^[1-9]\d{0,7}(?:\.\d{1,4})?|\.\d{1,4}$" class="active"  placeholder="17" maxlength="4">
+                        <input required id="dblStanSizeCm" name= "dblStanSizeCm" type="text" class="validate" data-positiow="bottom" pattern="^[0-9]*$" class="active"  placeholder="17" maxlength="4">
                         <label for="stanSizeDet_cm">Cm<span class="red-text"><b>*</b></span></label>
                       </div>
                   </div>

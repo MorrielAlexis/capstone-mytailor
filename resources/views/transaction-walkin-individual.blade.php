@@ -9,12 +9,16 @@
       </div>
     </div>
 	
-	     <!--Add Fabric Type-->
+
+	     <!--Add Order-->
         @if(Session::has('success-message'))
         <div class="row" id="success-message">
           <div class="col s12 m12 l12">
             <div class="card-panel yellow accent-1">
-              <span class="alert alert-success"> <i class="material-icons right" onclick="$('#success-message').hide()">clear</i></span>
+              <span class="alert alert-success"> 
+              	<i class="tiny mdi-navigation-close" onclick="$('#success-message').hide()"></i>
+              	<a href="{{ URL::to('generate-payment-receipt') }}" class="right btn btn-flat">Print Receipt</a>
+              </span>
               <strong> {!! session('success-message') !!}</strong>
             </div>
           </div>
@@ -49,12 +53,11 @@
 							<div class="col s6" style="margin-bottom:20px">
 								<div class="input-field col s12">
 										<select id="garment-sex">
-											<option disabled>Show garments for...</option>
 										    <option value="SA" selected class="circle">All</option>
 										    <option value="M" class="circle">Male</option>
 										    <option value="F" class="circle">Female</option>
 										</select>
-										
+										<label><font size="3" color="Red">Show garments for(gender):</font></label>
 								</div>
 							</div>
 
