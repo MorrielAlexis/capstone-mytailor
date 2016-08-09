@@ -143,7 +143,7 @@
 	                    <p style="color:red">In case of multiple measurements</p>
 	                    	<div style="color:black; padding-left:160px" class="input-field col s5">                 
 	                          <input id="length" name="profile_name{{ $i+1 }}" type="text" class="">
-	                          <label style="color:gray" for="length">Profile Name: </label>
+	                          <label style="color:gray" for="length">Measurement Profile Name: </label>
 	                    	</div>
 
 	                    	<div style="color:gray" class="input-field col s3">                 
