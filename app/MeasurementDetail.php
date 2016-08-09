@@ -12,6 +12,7 @@ class MeasurementDetail extends Model
 								'strMeasDetSegmentFK',
 								'strMeasCategoryFK',
 								'strMeasDetailName',
+								// 'strMeaDetailImage',
 								'txtMeasDetailDesc',
 								'dblMeasDetailMinCm',
 								'dblMeasDetailMinInch',
