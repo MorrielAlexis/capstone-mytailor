@@ -56,9 +56,15 @@
                             <h6><div id= "Date"></div></h6>
                         </li>
                         @foreach($joborder as $joborder)
-                            <li class="collection-item dismissable" style="padding:20px;">
-                                 <a class="waves-effect waves-teal btn-flat"> {{$joborder->dtOrderExpectedToBeDone}} {{$joborder->strCompanyName}}{{$joborder->strIndivFName}} {{$joborder->strIndivLName}}</a>
-                            </li>
+                            @if($joborder->strCompanyName == null)
+                                <li class="collection-item dismissable" style="padding:20px;">
+                                     <a href="{{URL::to('transaction/online-customer-individual')}}" class="waves-effect waves-teal btn-flat"> {{$joborder->dtOrderExpectedToBeDone}} {{$joborder->strCompanyName}}{{$joborder->strIndivFName}} {{$joborder->strIndivLName}}</a>
+                                </li>
+                            @else
+                                <li class="collection-item dismissable" style="padding:20px;">
+                                     <a href="{{URL::to('transaction/online-customer-company')}}" class="waves-effect waves-teal btn-flat"> {{$joborder->dtOrderExpectedToBeDone}} {{$joborder->strCompanyName}}{{$joborder->strIndivFName}} {{$joborder->strIndivLName}}</a>
+                                </li>
+                            @endif        
                         @endforeach    
                     </ul>
                 </div>
