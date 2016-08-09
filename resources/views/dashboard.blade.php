@@ -26,25 +26,24 @@
                 </div>
             </div>
             <div class="col s4">
-                <div class="card z-depth-3">
-                    <div class="card-content  green white-text">
-                        <center><p class="card-stats-title"><i class="mdi-social-group-add" style="font-size:30px;"> New Clients</i></p></center>
-                        <center><h3 class="card-stats-number black-text"><b>566</b></h3></center>
-                        <center><p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up" style="font-size:25px;"> 15% <span class="green-text text-lighten-5">from yesterday</span></i></p></center>
-                    </div>
-                    <div class="card-action  green darken-2">
-                        <div id="clients-bar"></div>
-                    </div>
-                </div>
-                <div class="card z-depth-3">
-                    <div class="card-content purple white-text">
-                        <center><p class="card-stats-title"><i class="mdi-editor-attach-money" style="font-size:30px;">Total Sales</i></p></center>
-                        <center><h3 class="card-stats-number black-text"><b>$8990.63</b></h3></center>
-                        <center><p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up" style="font-size:25px;"> 70% <span class="purple-text text-lighten-5">last month</span></i></p></center>
-                    </div>
-                    <div class="card-action purple darken-2">
-                        <div id="sales-compositebar"></div>
-                    </div>
+                <div class="col s12">
+                    <ul id="task-card" class="collection with-header z-depth-3" style="border:0;">
+                        <li class="collection-header green">
+                            <h3 class="task-card-title white-text">On Going Orders</h3>
+                            <h6><div id= "Date"></div></h6>
+                        </li>
+                        @foreach($joborderongoing as $joborderongoing)
+                            @if($joborderongoing->strCompanyName == null)
+                                <li class="collection-item dismissable" style="padding:20px;">
+                                     <a href= "{{URL::to('transaction/orderProgress')}}" class="waves-effect waves-teal btn-flat"> {{$joborderongoing->dtOrderExpectedToBeDone}} {{$joborderongoing->strCompanyName}}{{$joborderongoing->strIndivFName}} {{$joborderongoing->strIndivLName}}</a>
+                                </li>
+                            @else
+                                <li class="collection-item dismissable" style="padding:20px;">
+                                     <a href= "{{URL::to('transaction/orderProgress')}}" class="waves-effect waves-teal btn-flat"> {{$joborderongoing->dtOrderExpectedToBeDone}} {{$joborderongoing->strCompanyName}}{{$joborderongoing->strIndivFName}} {{$joborderongoing->strIndivLName}}</a>
+                                </li>
+                            @endif        
+                        @endforeach    
+                    </ul>
                 </div>
             </div>
 
@@ -53,7 +52,7 @@
                     <ul id="task-card" class="collection with-header z-depth-3" style="border:0;">
                         <li class="collection-header cyan">
                             <h3 class="task-card-title white-text">Pending Orders</h3>
-                            <h6><div id= "Date"></div></h6>
+                            <h6><div id= "CurDate"></div></h6>
                         </li>
                         @foreach($joborder as $joborder)
                             @if($joborder->strCompanyName == null)
@@ -216,7 +215,7 @@
 
 @section('scripts')
 
-<script type="text/javascript">
+    <script type="text/javascript">
         var monthNames = [ "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December" ];
         var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
@@ -228,38 +227,13 @@
     </script>
 
     <script type="text/javascript">
-        function updateClock ( )
-            {
-            var currentTime = new Date ( );
-            var currentHours = currentTime.getHours ( );
-            var currentMinutes = currentTime.getMinutes ( );
-            var currentSeconds = currentTime.getSeconds ( );
+        var monthNames = [ "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December" ];
+        var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
 
-            // Pad the minutes and seconds with leading zeros, if required
-            currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
-            currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
-
-            // Choose either "AM" or "PM" as appropriate
-            var timeOfDay = ( currentHours < 12 ) ? "AM" : "PM";
-
-            // Convert the hours component to 12-hour format if needed
-            currentHours = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
-
-            // Convert an hours component of "0" to "12"
-            currentHours = ( currentHours == 0 ) ? 12 : currentHours;
-
-            // Compose the string for display
-            var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
-            
-            
-            $("#clock").html(currentTimeString);
-                
-         }
-
-        $(document).ready(function()
-        {
-           setInterval('updateClock()', 1000);
-        });
+        var newDate = new Date();
+        newDate.setDate(newDate.getDate());    
+        $('#CurDate').html(dayNames[newDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
+    
     </script>
-
 @stop
