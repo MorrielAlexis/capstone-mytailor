@@ -49,6 +49,30 @@ class WalkInIndividualController extends Controller
     
     public function index()
     {   
+            $values = [];
+            $quantity = [];
+            $data = [];
+
+            session(['segment_data' => $data]);
+            session(['segment_values' => $values]);
+            session(['segment_quantity' => $quantity]);
+
+        $categories = GarmentCategory::all();
+        $garments = \DB::table('tblSegment AS a')
+                    ->leftJoin('tblGarmentCategory AS b', 'a.strSegCategoryFK', '=', 'b.strGarmentCategoryID')
+                    ->select('a.*', 'b.strGarmentCategoryName') 
+                    ->orderBy('a.strSegmentID')
+                    ->get();
+
+        return view('transaction-walkin-individual')
+                    ->with('garments', $garments)
+                    ->with('categories', $categories)
+                    ->with('values', $data)
+                    ->with('quantity', $quantity);
+    }
+
+    public function showItems()
+    {
         if(session()->get('segment_data') != null && session()->get('segment_quantity')){
             $values = session()->get('segment_values');
             $data = session()->get('segment_data');
@@ -158,54 +182,45 @@ class WalkInIndividualController extends Controller
             for($j = 0; $j < count($segmentStyles); $j++){
                 $tempPatterns = $request->input('rdb_pattern' . $segmentStyles[$j]->strSegStyleCatID . ($i+1));       
                 if($tempPatterns != null){
-                    $patterns[$i] = $tempPatterns;
+                    $patterns[$i][$k] = $tempPatterns;
+                    $k++;
                 } 
             }
+            $k = 0;
         }
         
-            $sqlStyles = \DB::table('tblSegmentPattern AS a')
+        for($i = 0; $i < count($values); $i++){
+            $sqlStyles[$i] = \DB::table('tblSegmentPattern AS a')
                     ->leftJoin('tblSegmentStyleCategory AS b', 'a.strSegPStyleCategoryFK', '=', 'b.strSegStyleCatID')
                     ->leftJoin('tblSegment AS c', 'b.strSegmentFK', '=', 'strSegmentID')
                     ->select('c.strSegmentID', 'a.strSegPStyleCategoryFK', 'a.strSegPatternID', 
                              'a.strSegPName', 'b.strSegStyleName', 'a.dblPatternPrice')
-                    ->whereIn('a.strSegPatternID', $patterns)
+                    ->whereIn('a.strSegPatternID', $patterns[$i])
                     ->get();
-    
-
-        for($i = 0; $i < count($values); $i++){
-            for($j = 0; $j < count($sqlStyles); $j++){
-                if($patterns[$i] == $sqlStyles[$j]->strSegPatternID){
-                    $patterns[$i] = $sqlStyles[$j];
-                }
-            }
         }
-        
+
         $sqlFabric = \DB::table('tblFabric')
                 ->select('strFabricID', 'strFabricName', 'dblFabricPrice')
                 ->whereIn('strFabricID', $segmentFabric)
                 ->get();
 
-            for($j = 0; $j < count($sqlFabric); $j++){
-                if($segmentFabric == $sqlFabric[$j]->strFabricID){
-                    $segmentFabric = $sqlFabric;
+        $fabrics;
 
-                }
-            }
         for($i = 0; $i < count($values); $i++){
             for($j = 0; $j < count($sqlFabric); $j++){
                 if($segmentFabric[$i] == $sqlFabric[$j]->strFabricID){
-                    $segmentFabric = $sqlFabric;
+                    $fabrics[$i] = $sqlFabric;
                 }
             }
         }   
-
+        
         for($i = 0; $i < count($values); $i++){
-            $values[$i]->strFabricID = $segmentFabric[$i]->strFabricID;
-            $values[$i]->strFabricName = $segmentFabric[$i]->strFabricName;
-            $values[$i]->dblFabricPrice = $segmentFabric[$i]->dblFabricPrice;
+            $values[$i]->strFabricID = $fabrics[$i][0]->strFabricID;
+            $values[$i]->strFabricName = $fabrics[$i][0]->strFabricName;
+            $values[$i]->dblFabricPrice = $fabrics[$i][0]->dblFabricPrice;
         }
 
-        session(['segment_design' => $patterns]);
+        session(['segment_design' => $sqlStyles]);
 
         $joID = \DB::table('tblJobOrder')
             ->select('strJobOrderID')
@@ -245,7 +260,7 @@ class WalkInIndividualController extends Controller
     }
 
     public function addCustomer(Request $request)
-    {
+    {   
         $individual = Individual::create(array(
                     'strIndivID' => $request->input('addIndiID'),
                     'strIndivFName' => trim($request->input('addIndiFirstName')),     
@@ -445,13 +460,14 @@ class WalkInIndividualController extends Controller
 
             $jobOrderSpecifics->save();
 
-            $jobOrderSpecificsPattern = TransactionJobOrderSpecificsPattern::create(array(
-                    'strJobOrderSpecificFK' => $jobSpecsID,
-                    'strSegmentPatternFK' => $designs[$i]->strSegPatternID
-            ));
+            for($j = 0; $j < count($designs); $j++){
+                $jobOrderSpecificsPattern = TransactionJobOrderSpecificsPattern::create(array(
+                        'strJobOrderSpecificFK' => $jobSpecsID,
+                        'strSegmentPatternFK' => $designs[$i][$j]->strSegPatternID
+                ));
 
-            $jobOrderSpecificsPattern->save(); 
-
+                $jobOrderSpecificsPattern->save(); 
+            }
 
             //measurement profile
             $ids = \DB::table('tblJO_MeasureProfile')

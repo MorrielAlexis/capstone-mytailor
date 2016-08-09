@@ -50,7 +50,7 @@
                    <div class="fixed-action-btn vertical" style="bottom: 45px; right: 24px;">
                     <a class="mdi-maps-store-mall-directory btn-floating btn-large red " style="font-size:40px; height:70px; width:70px; padding:5px; padding-bottom:3px; margin-right:40px" ></a>
                       <ul>
-                        <li><a href="{{URL::to('transaction/walkin-individual')}}" class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="Forgot something? Click to go back shopping" style="margin-right:40px"><i class="mdi-action-shopping-basket"></i></a></li>
+                        <li><a href="{{URL::to('transaction/walkin-individual-show-items')}}" class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="Forgot something? Click to go back shopping" style="margin-right:40px"><i class="mdi-action-shopping-basket"></i></a></li>
                         <li><a href="{{URL::to('transaction/walkin-individual-customize-orders')}}" class="btn-floating yellow darken-1 tooltipped" data-position="left" data-delay="50" data-tooltip="Click to go back editing your order" style="margin-right:40px"><i class="mdi-action-description">Return to Customize Order</i></a></li>
                       </ul>
                     </div>                
@@ -146,8 +146,26 @@
                     </div>
 
                 </div>
-                  <button type="submit" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-left:40px; background-color:#00695c; color:white"><b><i class="mdi-navigation-check" style="padding-right:10px"></i>Save</b></button>                                
-                  <a id="cancelTransac" href="#cancel-order" class="right btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel transaction and go back to homepage" style="background-color:#a7ffeb; color:black"><b><i class="mdi-navigation-close" style="padding-right:10px"></i>Cancel</b></a>                   
+                  <a href="#confirm-submission" class="right btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-left:40px; background-color:#00695c; color:white"><b><i class="mdi-navigation-check" style="padding-right:10px"></i>Save</b></a>                                
+                  <a href="#cancel-order" class="right btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel transaction and go back to homepage" style="background-color:#a7ffeb; color:black"><b><i class="mdi-navigation-close" style="padding-right:10px"></i>Cancel</b></a>                   
+              
+              <div class="col s12" style="margin-top:30px">
+                  <div id="confirm-submission" class="modal modal-fixed-footer" style="height:300px; width:500px; margin-top:80px">
+                      <h5><font color="black"><center><b>Warning!</b></center></font></h5>
+                        
+                          <div class="divider" style="height:2px"></div>
+                            <div class="modal-content col s12">
+                              <div class="center col s4"><i class="mdi-alert-warning" style="color:yellow; font-size:60px"></i></div>
+                              <div class="col s8"><p style="font-size:18px">Confirm submission? You will not be able to change or cancel your transaction once you have proceeded.</p></div>
+                            </div>
+
+                          <div class="modal-footer col s12">
+                              <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Yes</font></button>
+                              <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+                          </div>
+                    </div>
+              </div>
+
             {!! Form::close() !!}
               <!--End of Customer Information-->
               

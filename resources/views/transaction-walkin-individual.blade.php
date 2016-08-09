@@ -53,12 +53,11 @@
 							<div class="col s6" style="margin-bottom:20px">
 								<div class="input-field col s12">
 										<select id="garment-sex">
-											<option disabled>Show garments for...</option>
 										    <option value="SA" selected class="circle">All</option>
 										    <option value="M" class="circle">Male</option>
 										    <option value="F" class="circle">Female</option>
 										</select>
-										
+										<label><font size="3" color="Red">Show garments for(gender):</font></label>
 								</div>
 							</div>
 

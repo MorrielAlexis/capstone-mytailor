@@ -96,21 +96,23 @@
 					              	</tr>
 				              	</thead>
 				              	<tbody>
-								@foreach($styles as $style)
-									@if($style->strSegmentID == $segment->strSegmentID)
-						            <tr>
-						               <td>{{ $style->strSegStyleName }}</td>
-						               <td>{{ $style->strSegPName }}</td>
-						               <td>{{ number_format($style->dblPatternPrice, 2) }} PHP</td>
-						            </tr>
-						            @endif
-						         @endforeach
+				              	@for($i = 0; $i < count($segments); $i++)
+									@for($j = 0; $j < count($styles[$i]); $j++)
+										@if($styles[$i][$j]->strSegmentID == $segment->strSegmentID)
+							            <tr>
+							               <td>{{ $styles[$i][$j]->strSegStyleName }}</td>
+							               <td>{{ $styles[$i][$j]->strSegPName }}</td>
+							               <td>{{ number_format($styles[$i][$j]->dblPatternPrice, 2) }} PHP</td>
+							            </tr>
+							            @endif
+							        @endfor
+							    @endfor
 						        </tbody>
 						    </table>
 
 						    <div class="col s12"><div class="divider" style="height:2px"></div></div>
-						</div>				
-						@endforeach
+						</div>	
+					@endforeach
 					</div>
 		      		<!--End of design summary-->
 
@@ -235,34 +237,16 @@
 							        <a href="{{ URL::to('generate-payment-receipt') }}" class="right btn-floating tooltipped btn-large green" data-position="bottom" data-delay="50"  data-tooltip="CLick to print a receipt for current transaction" href="#!" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-action-print"></i></a>
 							    </div> -->
 	                    		<button type="submit" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save payment information and get measured" style="background-color:#00695c; padding:9.5px; padding-bottom:45px; margin-top:20px; margin-left:30px"><label style="font-size:15px; color:white"><b>Save Order</b></label></button>
-					{!! Form::close() !!}
-
-					{!! Form::open(['url' => 'transaction/walkin-individual-clear-order', 'method' => 'POST']) !!}
-	                    		<a href="#cancel-order" class="right btn modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Click to cancel current unsaved transaction" style="background-color:#a7ffeb; padding:9.5px; padding-bottom:45px; margin-top:20px; margin-left:30px"><label style="font-size:15px; color:black"><b>Cancel Transaction</b></label></a>
-	                    			<div id="cancel-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:80px">
-										<h5><font color="red"><center><b>Warning!</b></center></font></h5>
-											
-												<div class="divider" style="height:2px"></div>
-												<div class="modal-content col s12">
-													<div class="center col s4"><i class="mdi-alert-warning" style="color:red; font-size:60px"></i></div>
-													<div class="col s8"><p style="font-size:18px">Are you sure? Doing this will delete current transaction.</p></div>
-												</div>
-
-												<div class="modal-footer col s12">
-									                <button type="submit" class="waves-effect waves-green btn-flat"><font color="black">Yes</font></button>
-									                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
-									            </div>
-								</div>
 							</div>
 					{!! Form::close() !!}
 							<!--end of bottom button-->
-
+	            			
 	            </div>
-	        	</div>
+	        </div>
 
 	        <div class="divider" style="height:2px; margin-bottom:20px; margin-top:30px"></div>
 	      	
-	      		<center><p><font color="gray">End of Payment Information Form</font></p></center>
+	      	<center><p><font color="gray">End of Payment Information Form</font></p></center>
 	
 	    </div>
 	    <!-- End of Tab for Payment-->
@@ -300,7 +284,9 @@
 			for(var i = 0; i < a.length; i++){
 				totalAmount += a[i].dblSegmentPrice;
 				totalAmount += a[i].dblFabricPrice;
-				totalAmount += b[i].dblPatternPrice;
+					for(var j = 0; j < b[i].length; j++){
+						totalAmount += b[i][j].dblPatternPrice;
+					}
 				minDays += a[i].intMinDays;
 			}
 
@@ -332,7 +318,9 @@
 					for(var i = 0; i < a.length; i++){
 						totalAmount += a[i].dblSegmentPrice;
 						totalAmount += a[i].dblFabricPrice;
-						totalAmount += b[i].dblPatternPrice;
+							for(var j = 0; j < b[i].length; j++){
+								totalAmount += b[i][j].dblPatternPrice;
+							}
 					}
 					
 					$('#amount-payable').val((totalAmount/2).toFixed(2) + ' PHP');
@@ -343,12 +331,15 @@
 
 					var a = {!! json_encode($segments) !!};
 					var b = {!! json_encode($styles) !!};	
+
 					var totalAmount = 0.00;
 
 					for(var i = 0; i < a.length; i++){
 						totalAmount += a[i].dblSegmentPrice;
 						totalAmount += a[i].dblFabricPrice;
-						totalAmount += b[i].dblPatternPrice;
+							for(var j = 0; j < b[i].length; j++){
+								totalAmount += b[i][j].dblPatternPrice;
+							}
 					}
 					
 					$('#amount-payable').val(totalAmount.toFixed(2) + ' PHP');
@@ -430,8 +421,8 @@
 		 }
 
 		$(document).ready(function()
-		{
-		   setInterval('updateClock()', 1000);
+		{	
+		    setInterval('updateClock()', 1000);
 		});
 	</script>
 
