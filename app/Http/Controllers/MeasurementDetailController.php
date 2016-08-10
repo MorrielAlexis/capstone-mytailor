@@ -60,9 +60,12 @@ class MeasurementDetailController extends Controller
     public function store(MaintenanceMeasDetailRequest $request)
     {
 
-             $det = MeasurementDetail::get();
-    
-                $detail = MeasurementDetail::create(array(
+            $file = $request->input('addImage');
+             $destinationPath = 'imgMeasurementDetail';
+
+                if($file == '' || $file == null){
+                    $detail = MeasurementDetail::create(array(
+
                 'strMeasurementDetailID' =>$request->input('strMeasurementDetailID'),
                 'strMeasDetSegmentFK'    =>$request->input('strMeasDetSegmentFK'),
                 'strMeasCategoryFK'      =>$request->input('strMeasCategoryFK'),
@@ -73,6 +76,26 @@ class MeasurementDetailController extends Controller
                 'boolIsActive'           => 1
                 
                 ));
+              }else{
+
+                $request->file('addImg')->move($destinationPath);
+
+                $detail = MeasurementDetail::create(array(
+
+                        'strMeasurementDetailID' =>$request->input('strMeasurementDetailID'),
+                        'strMeasDetSegmentFK'    =>$request->input('strMeasDetSegmentFK'),
+                        'strMeasCategoryFK'      =>$request->input('strMeasCategoryFK'),
+                        'strMeasDetailName'      =>trim($request->input('strMeasDetailName')),
+                        'txtMeasDetailDesc'      =>trim($request->input('txtMeasDetailDesc')),
+                        'dblMeasDetailMinCm'     =>trim($request->input('dblMeasDetailMinCm')),
+                        'dblMeasDetailMinInch'   =>trim($request->input('dblMeasDetailMinInch')),
+                        'strMeaDetailImage' => 'imgMeasurementDetail/'.$file,
+                        'boolIsActive' => 1
+
+                ));
+            } 
+
+
 
             $added=$detail->save();
 
@@ -128,18 +151,36 @@ class MeasurementDetailController extends Controller
 
         $detail = MeasurementDetail::find($request->input('editDetailID'));
 
-                 $detail->strMeasurementDetailID= $request->input('editDetailID');
-                 $detail->strMeasDetSegmentFK   = $request->input('editMeasSegment');
-                 $detail->strMeasCategoryFK     = $request->input('editMeasCategory');
-                 $detail->strMeasDetailName     = trim($request->input('editMeasDetailName'));
-                 $detail->txtMeasDetailDesc     = trim($request->input('editMeasDetailDesc'));
-                 $detail->dblMeasDetailMinCm    = trim($request->input('editMeasDetailMinCm'));
-                 $detail->dblMeasDetailMinInch  = trim($request->input('editMeasDetailMinInch'));
-               
+        $file = $request->input('editImage');
+        $destinationPath = 'imgMeasurementDetail';
+
+                if($file == $detail->strMeaDetailImage)
+                {
+
+                     $detail->strMeasurementDetailID= $request->input('editDetailID');
+                     $detail->strMeasDetSegmentFK   = $request->input('editMeasSegment');
+                     $detail->strMeasCategoryFK     = $request->input('editMeasCategory');
+                     $detail->strMeasDetailName     = trim($request->input('editMeasDetailName'));
+                     $detail->txtMeasDetailDesc     = trim($request->input('editMeasDetailDesc'));
+                     $detail->dblMeasDetailMinCm    = trim($request->input('editMeasDetailMinCm'));
+                     $detail->dblMeasDetailMinInch  = trim($request->input('editMeasDetailMinInch'));
+                }else{
+
+                    $request->file('editImg')->move($destinationPath);
+
+                     $detail->strMeasDetSegmentFK   = $request->input('editMeasSegment');
+                     $detail->strMeasCategoryFK     = $request->input('editMeasCategory');
+                     $detail->strMeasDetailName     = trim($request->input('editMeasDetailName'));
+                     $detail->txtMeasDetailDesc     = trim($request->input('editMeasDetailDesc'));
+                     $detail->dblMeasDetailMinCm    = trim($request->input('editMeasDetailMinCm'));
+                     $detail->dblMeasDetailMinInch  = trim($request->input('editMeasDetailMinInch'));
+                     $detail->strMeaDetailImage = 'imgMeasurementDetail/'. $file;
+                }
+
 
         $detail->save();
 
-        \Session::flash('flash_message_update','Measurement part successfully updated.'); //flash message
+        \Session::flash('flash_message_update','Measurement detail successfully updated.'); //flash message
 
         return redirect('maintenance/measurement-detail');
 
