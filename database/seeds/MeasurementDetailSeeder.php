@@ -18,7 +18,7 @@ class MeasurementDetailSeeder extends Seeder
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Chest',
                 'txtMeasDetailDesc' =>'',
-                'strMeaDetailImage' => 'imgMeasurementDetails/bodychest.jpg',
+                'strMeaDetailImage' => 'imgMeasurementDetails/body-chest.jpg',
                 'dblMeasDetailMinCm' =>'14.5',
                 'dblMeasDetailMinInch' =>'5.51',
                 'boolIsActive' => '1'
@@ -30,7 +30,7 @@ class MeasurementDetailSeeder extends Seeder
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Hips',
                 'txtMeasDetailDesc' =>'',
-                'strMeaDetailImage' => 'imgMeasurementDetails/hipsbody.jpg',
+                'strMeaDetailImage' => 'imgMeasurementDetails/hips-body.jpg',
                 'dblMeasDetailMinCm' =>'37',
                 'dblMeasDetailMinInch' =>'28',
                 'boolIsActive' => '1'
