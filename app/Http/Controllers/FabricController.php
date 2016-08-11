@@ -84,7 +84,45 @@ class FabricController extends Controller
      */
     public function store(MaintenanceFabricRequest $request)
     {
-         
+          $file = $request->input('addImage');
+          $destinationPath = 'imgFabrics';
+
+            if($file == '' || $file == null){
+                $fabric = Fabric::create(array(
+                'strFabricID' => $request->input('strFabricID'),
+                'strFabricTypeFK' => $request->input('strFabricTypeFK'),
+                'strFabricPatternFK' => $request ->input('strFabricPatternFK'),
+                'strFabricColorFK' => $request->input('strFabricColorFK'),
+                'strFabricThreadCountFK' => $request->input('strFabricThreadCountFK'),
+                'strFabricName'  =>trim($request->input('strFabricName')),
+                'dblFabricPrice'  =>trim($request->input('dblFabricPrice')),
+                'strFabricCode'  =>trim($request->input('strFabricCode')),
+                'txtFabricDesc'  =>trim($request->input('txtFabricDesc')),
+                'boolIsActive' => 1
+                ));     
+                }else{
+                    $request->file('addImg')->move($destinationPath, $file);
+
+                    $fabric = Fabric::create(array(
+                        'strFabricID' => $request->input('strFabricID'),
+                        'strFabricTypeFK' => $request->input('strFabricTypeFK'),
+                        'strFabricPatternFK' => $request ->input('strFabricPatternFK'),
+                        'strFabricColorFK' => $request->input('strFabricColorFK'),
+                        'strFabricThreadCountFK' => $request->input('strFabricThreadCountFK'),
+                        'strFabricName'  =>trim($request->input('strFabricName')),
+                        'dblFabricPrice'  =>trim($request->input('dblFabricPrice')),
+                        'strFabricCode'  =>trim($request->input('strFabricCode')),
+                        'txtFabricDesc'  =>trim($request->input('txtFabricDesc')),
+                        'strFabricImage' => 'imgFabrics/'.$file,
+                        'boolIsActive' => 1
+                    )); 
+
+                }
+            $fabric->save();
+
+              \Session::flash('flash_message','Fabric successfully added.'); //flash message
+
+            return redirect('maintenance/fabric');
     }
 
     /**

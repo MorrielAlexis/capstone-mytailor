@@ -23,7 +23,24 @@ class DashboardController extends Controller
     public function dash()
     {
         //$user = Auth::user();
-        return view('dashboard');
-            //->with('user', $user);
+
+        $joborder = \DB::table('tblJobOrder')
+            ->leftjoin('tblcustindividual', 'tblJobOrder.strJo_CustomerFK', '=', 'tblcustindividual.strIndivID')
+            ->leftjoin('tblcustcompany', 'tblJobOrder.strJo_CustomerCompanyFK', '=', 'tblcustcompany.strCompanyID')
+            ->where('tblJobOrder.boolIsOrderAccepted', '!=', '1')
+            ->select('tblcustindividual.*', 'tblcustcompany.*', 'tblJobOrder.*')
+            ->get();
+
+        $joborderongoing = \DB::table('tblJobOrder')
+            ->leftjoin('tblcustindividual', 'tblJobOrder.strJo_CustomerFK', '=', 'tblcustindividual.strIndivID')
+            ->leftjoin('tblcustcompany', 'tblJobOrder.strJo_CustomerCompanyFK', '=', 'tblcustcompany.strCompanyID')
+            ->where('tblJobOrder.boolIsOrderAccepted', '=', '1')
+            ->select('tblcustindividual.*', 'tblcustcompany.*', 'tblJobOrder.*')
+            ->get();      
+
+           
+        return view('dashboard')
+             ->with('joborder', $joborder)
+             ->with('joborderongoing', $joborderongoing);
     }
 }
