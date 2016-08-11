@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ChargeDetailModel;
+use App\GarmentSegment;
+use App\ChargeCategoryModel;
 
 use App\Http\Requests;
+use App\Http\Requests\ChargeDetailRequest;
 use App\Http\Controllers\Controller;
 
 class ChargeDetailController extends Controller
@@ -35,7 +38,7 @@ class ChargeDetailController extends Controller
 
         $chargeDetail = \DB::table('tblChargeDetail')
                 ->join('tblSegment', 'tblChargeDetail.strChargeDetSegFK', '=', 'tblSegment.strSegmentID')
-                >join('tblChargeCategory', 'tblChargeDetail.strChargeCatFK', '=', 'tblChargeCategory.strChargeCatID')
+                ->join('tblChargeCategory', 'tblChargeDetail.strChargeCatFK', '=', 'tblChargeCategory.strChargeCatID')
                 ->select('tblChargeDetail.*','tblSegment.strSegmentName', 'tblChargeCategory.strChargeCatName') 
                 ->orderBy('strChargeDetailID')
                 ->get();
@@ -64,9 +67,24 @@ class ChargeDetailController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ChargeDetailRequest $request)
     {
-        //
+        $chargeDetails = ChargeDetailModel::get();
+            $chargeDetail = ChargeDetailModel::create(array(
+                'strChargeDetailID' => $request->input('strChargeDetailID'),
+                'strChargeCatFK' => $request->input('strChargeCatFK'),
+                 'strChargeDetSegFK' => $request->input('strChargeDetSegFK'),
+                'dblChargeDetPrice' => trim($request->input('dblChargeDetPrice')),
+                'txtChargeDetDesc' => trim($request->input('txtChargeDetDesc')),
+                'boolIsActive' => 1
+                ));
+
+         $added=$chargeDetail->save();
+          
+
+        \Session::flash('flash_message','Additional charge detail successfully added.'); //flash message
+
+        return redirect('maintenance/charges-detail');
     }
 
     /**
@@ -112,6 +130,47 @@ class ChargeDetailController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    function updatechargeDetail(Request $request)
+    {
+        $checkchargeDetails = ChargeDetailModel::all();
+        $isAdded=FALSE;
+
+        foreach($checkchargeDetails as $checkchargeDetail)
+            if(!strcasecmp($checkchargeDetail->strChargeDetailID, $request->input('editChargeDetID')) == 0 && strcasecmp($checkchargeDetail->strChargeCatFK,$request->input('editChargeCatFK')) == 0 &&  strcasecmp($checkchargeDetail->strChargeDetSegFK,$request->input('editChargeDetSegFK')) == 0)
+                // &&
+                // strcasecmp($checkchargeDetail->dblChargeDetPrice, trim($request->input('editChargeDetPrice'))) == 0
+                $isAdded = TRUE;
+
+        if(!$isAdded){   
+        $chargeDetail  = ChargeDetailModel::find($request->input('editChargeDetID'));
+
+            $chargeDetail ->strChargeCatFK = $request->input('editChargeCatFK');
+            $chargeDetail ->strChargeDetSegFK = $request->input('editChargeDetSegFK');
+            $chargeDetail ->dblChargeDetPrice = trim($request->input('editChargeDetPrice'));
+            $chargeDetail ->txtChargeDetDesc = trim($request->input('editChargeDetDesc'));
+
+            $chargeDetail  ->save();
+
+        \Session::flash('flash_message_update','Additional chrage detail/s successfully updated.'); //flash message
+        }else \Session::flash('flash_message_duplicate','Charge detail already exists.'); //flash message
+
+        return  redirect('maintenance/charges-detail');
+    }
+
+    function deletechargeDetail(Request $request)
+    {
+        $chargeDetail = ChargeDetailModel::find($request->input('delChargeDetID'));
+
+        $chargeDetail->strChargeDetInactiveReason = trim($request->input('delInactiveChargeDet'));
+        $chargeDetail->boolIsActive = 0;
+        $chargeDetail->save();
+
+
+       \Session::flash('flash_message_delete','Charge detail successfully deactivated.'); //flash message
+
+        return redirect('maintenance/charges-detail');
     }
 
       public function smartCounter($id)

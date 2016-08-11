@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\ChargeCategoryModel;
 
+
+
 use App\Http\Requests;
+use App\Http\Requests\ChargeCategoryRequest;
 use App\Http\Controllers\Controller;
 
 class ChargeCategoryController extends Controller
@@ -53,9 +56,23 @@ class ChargeCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ChargeCategoryRequest $request)
     {
-        //
+        $chargeCats = ChargeCategoryModel::get();
+
+            $chargeCat = ChargeCategoryModel::create(array(
+            'strChargeCatID' => $request->input('strChargeCatID'),
+            'strChargeCatName' => trim($request->input('strChargeCatName')),
+            'txtChargeDesc' => trim($request->input('txtChargeDesc')),
+            'boolIsActive' => 1
+            ));
+
+            $chargeCat->save();
+
+
+        \Session::flash('flash_message',' Charge category successfully added.');
+
+        return redirect('maintenance/charges-category');
     }
 
     /**
@@ -101,6 +118,35 @@ class ChargeCategoryController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    function updateChargeCat(Request $request)
+    {
+         $chargeCat = ChargeCategoryModel::find($request->input('editChargeCatID'));
+
+                $chargeCat->strChargeCatName = trim($request->get('editChargeCatName'));    
+                $chargeCat->txtChargeDesc = trim($request->get('editChargeCatDesc'));
+
+                $chargeCat->save();
+
+        \Session::flash('flash_message_update','Charge category successfully updated.');
+
+        return redirect('maintenance/fabric-color');
+    }
+
+    function deleteChargeCat(Request $request)
+    {
+        $id = $request->input('delChargeCatID');
+            $chargeCat = ChargeCategoryModel::find($request-> input('delChargeCatID'));
+
+            $chargeCat->strChargeCatInactiveReason = trim($request->input('delInactiveChargeCat'));
+            $chargeCat->boolIsActive = 0;
+            $chargeCat->save();
+
+        \Session::flash('flash_message_delete','Charge category successfully deactivated.');
+
+        return redirect('maintenance/fabric-color');
+
     }
 
     public function smartCounter($id)

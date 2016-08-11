@@ -11,8 +11,9 @@ class ChargeDetailModel extends Model
 	protected $fillable = array('strChargeDetailID',
 								'strChargeCatFK',
 								'strChargeDetSegFK',
-								'strChargeDetInactiveReason',
 								'dblChargeDetPrice',
+								'txtChargeDetDesc',
+								'strChargeDetInactiveReason',
 								'boolIsActive'
 								);
 }

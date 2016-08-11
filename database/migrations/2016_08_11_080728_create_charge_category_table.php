@@ -15,7 +15,7 @@ class CreateChargeCategoryTable extends Migration
         Schema::create('tblChargeCategory', function (Blueprint $table) {
             $table->string('strChargeCatID')->primary();
             $table->string('strChargeCatName');
-            $table->text('txtChargeDesc');
+            $table->text('txtChargeDesc')->nullable();
             $table->boolean('boolIsActive');
             $table->string('strChargeCatInactiveReason')->nullable();
             $table->timestamps();

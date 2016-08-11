@@ -17,7 +17,8 @@ class CreateChargeDetailTable extends Migration
             $table->string('strChargeCatFK');//fk
             $table->string('strChargeDetSegFK');//fk
             $table->double('dblChargeDetPrice');
-            $table->string('strChargeDetInactiveReason');
+            $table->text('txtChargeDetDesc')->nullable();
+            $table->string('strChargeDetInactiveReason')->nullable();
             $table->boolean('boolIsActive');
             $table->timestamps();
 

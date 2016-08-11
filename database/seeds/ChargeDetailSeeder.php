@@ -17,8 +17,9 @@ class ChargeDetailSeeder extends Seeder
                 'strChargeCatFK' => 'CHA001',
                 'strChargeDetSegFK' => 'SEGM002',
                 'dblChargeDetPrice' => 250.00,
-                'strChargeDetInactiveReason' => '1',
-                'boolIsActive' => ''
+                'txtChargeDetDesc' => '',
+                'strChargeDetInactiveReason' => '',
+                'boolIsActive' => '1'
             ),
 
             array(
@@ -26,8 +27,9 @@ class ChargeDetailSeeder extends Seeder
                 'strChargeCatFK' => 'CHA001',
                 'strChargeDetSegFK' => 'SEGM004',
                 'dblChargeDetPrice' => 150.00,
-                'strChargeDetInactiveReason' => '1',
-                'boolIsActive' => ''
+                'txtChargeDetDesc' => '',
+                'strChargeDetInactiveReason' => '',
+                'boolIsActive' => '1'
             )
 
         );
