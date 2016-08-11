@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\LaborChargeModel;
+use App\ChargeCategoryModel;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class LaborChargesController extends Controller
+class ChargeCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,31 +17,23 @@ class LaborChargesController extends Controller
      */
     public function index()
     {
-        //get all the labor charges
+         //get all the labor charges
 
-        $ids = \DB::table('tblLaborCharges')
-            ->select('strLaborChargeID')
+        $ids = \DB::table('tblChargeCategory')
+            ->select('strChargeCatID')
             ->orderBy('created_at', 'desc')
-            ->orderBy('strLaborChargeID', 'desc')
+            ->orderBy('strChargeCatID', 'desc')
             ->take(1)
             ->get();
 
-        $ID = $ids["0"]->strLaborChargeID;
+        $ID = $ids["0"]->strChargeCatID;
         $newID = $this->smartCounter($ID);  
 
-        $segment = GarmentSegment::all();
-
-
-        $laborCharge = \DB::table('tblLaborCharges')
-                ->join('tblSegment', 'tblLaborCharges.strLCSegmentFK', '=', 'tblSegment.strSegmentID')
-                ->select('tblLaborCharges.*','tblSegment.strSegmentName') 
-                ->orderBy('strLaborChargeID')
-                ->get();
+        $chargeCat = ChargeCategoryModel::all();
         
         //load the view and pass the charges
-       return view('maintenance-charges')
-                    ->with('laborCharge', $laborCharge)
-                    ->with('segment', $segment)
+       return view('maintenance-charge-category')
+                    ->with('chargeCat', $chargeCat)
                     ->with('newID', $newID);
     }
 
@@ -111,7 +103,7 @@ class LaborChargesController extends Controller
         //
     }
 
-      public function smartCounter($id)
+    public function smartCounter($id)
     {   
 
         $lastID = str_split($id);

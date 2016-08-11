@@ -206,10 +206,17 @@ Route::group(['prefix' => 'maintenance'], function(){
 });
 
 Route::group(['prefix' => 'maintenance'], function(){
-	Route::resource('charges', 'LaborChargesController');
+	Route::resource('charges-category', 'ChargeCategoryController');
 
-		Route::post('charges/update','LaborChargesController@update_charges');
-		Route::post('charges/destroy','LaborChargesController@delete_charges');
+		Route::post('charges-category/update','ChargeCategoryController@updatechargeCat');
+		Route::post('charges-category/destroy','ChargeCategoryController@deletechargeCat');
+});
+
+Route::group(['prefix' => 'maintenance'], function(){
+	Route::resource('charges-detail', 'ChargeDetailController');
+
+		Route::post('charges-detail/update','ChargeDetailController@updatechargeDetail');
+		Route::post('charges-detail/destroy','ChargeDetailController@deletechargeDetail');
 });
 
 Route::group(['prefix' => 'transaction'], function(){

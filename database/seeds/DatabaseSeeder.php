@@ -45,6 +45,8 @@ class DatabaseSeeder extends Seeder
         $this->call(JobOrderSeeder::class); 
         $this->call(JobOrderSpecificSeeder::class);
         $this->call(JobOrderProgressSeeder::class);
+        $this->call(ChargeCategorySeeder::class);
+        $this->call(ChargeDetailSeeder::class);
 
         Model::reguard();
     }
