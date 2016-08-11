@@ -205,6 +205,13 @@ Route::group(['prefix' => 'maintenance'], function(){
 		Route::post('sets/destroy','PackagesController@delete_package');
 });
 
+Route::group(['prefix' => 'maintenance'], function(){
+	Route::resource('charges', 'LaborChargesController');
+
+		Route::post('charges/update','LaborChargesController@update_charges');
+		Route::post('charges/destroy','LaborChargesController@delete_charges');
+});
+
 Route::group(['prefix' => 'transaction'], function(){
 	Route::resource('walkin-individual', 'WalkInIndividualController');
 

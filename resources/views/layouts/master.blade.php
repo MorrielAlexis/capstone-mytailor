@@ -137,6 +137,15 @@
                           </div>
                         </li>
 
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{  Request::is('maintenance/charges') ? 'active' : '' }}"><b>Charges</b></a>
+                          <div class="collapsible-body">
+                            <ul>  
+                             <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/charges')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Labor Charges</font></i></a></li>
+                              <div class="divider"></div>
+                            </ul>
+                          </div>
+                        </li>
+
                         <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('maintenance/catalogue') ? 'active' : '' }}" href="{{URL::to('maintenance/catalogue')}}"><b>Catalogue</b></a></li>
                         <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('maintenance/alteration') ? 'active' : '' }}" href="{{URL::to('maintenance/alteration')}}"><b>Alteration</b></a></li>
                          <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('maintenance/sets') ? 'active' : '' }}" href="{{URL::to('maintenance/sets')}}"><b>Sets</b></a></li>
