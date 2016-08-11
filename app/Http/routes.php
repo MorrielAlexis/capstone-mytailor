@@ -308,6 +308,7 @@ Route::group(['prefix' => 'transaction'], function(){
 	//payment view
 	Route::get('walkin-individual-payment-information', 'WalkInIndividualController@showPayment');
 	Route::post('walkin-individual-save-order', 'WalkInIndividualController@saveOrder');
+	
 
 	Route::post('walkin-individual-remove-item', 'WalkInIndividualController@removeItem');
 	Route::post('walkin-individual-add-design', 'WalkInIndividualController@addDesign');

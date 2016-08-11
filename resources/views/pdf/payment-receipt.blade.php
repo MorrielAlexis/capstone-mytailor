@@ -57,7 +57,7 @@
         <div class="col s12" >
 			<div class="col s12" style="font-size:18px"><b>Job Order #:</b> <font color="red"><b>{!! session('joID') !!}</b> <font style="margin-left:38%; color:black">Receipt No.: <font color="teal"><b>OR0001</b></font></font></div>
        		
-       		<div class="left col s12" style="font-size:18px">Customer Name: <font color="teal"><b>Conrado Bataller Jr.</b> <font style="margin-left:19%; color:black;">Customer Id: <font color="teal"><b>{!! session('custID') !!}</font></div>
+       		<div class="left col s12" style="font-size:18px">Customer Name: <font color="teal"><b>Honey May Buenavides</b> <font style="margin-left:17%; color:black;">Customer Id: <font color="teal"><b>{!! session('custID') !!}</font></div>
         	
         </div>
 
@@ -66,7 +66,7 @@
         </div>
 
         <div class="col s12">
-			<div class="col s12" style="font-size:18px">Issued By: <font color="teal"><b>Sharmaine De Asis</b></div>
+			<div class="col s12" style="font-size:18px">Issued By: <font color="teal"><b>Morriel Aquino</b></div>
         </div>
 
 		<div class="col s12" style="margin-top:1%;">
@@ -85,7 +85,7 @@
 							{!! session('segment_data')[0] !!}
 						</td>
 						<td style="width:40%">
-							{!! session('segment_fabric')[0] !!}	
+							{!! session('segment_fabric')[0] !!}
 						</td>
 						<td style="width:60%">
 							<!--Item description here-->
@@ -94,15 +94,17 @@
 								<b>Style Category:</b> Collar<br/>
 								<b>Pattern Name:</b> Button Down
 								 <br/><b>Style Category:</b> Pocket<br/>
-								<b>Pattern Name:</b> Something
+								<b>Pattern Name:</b> Angle Cut
 							</div>	
 						</td>
-						<td style="width:30%">{!! session('segment_quantity')[0] !!}	</td>
+						<td style="width:30%">{!! session('segment_quantity')[0] !!}</td>
 						<td style="width:50%">{!! session('totalPrice') !!}</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
+
+		<br><br><br><br><br><br><br><br><br><br><br>
 			
 		<div class="col s12" style="margin-left:44%; margin-top:2%">
 			<table>

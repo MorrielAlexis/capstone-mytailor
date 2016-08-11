@@ -236,12 +236,26 @@
                     			<!-- <div class="left col s1">
 							        <a href="{{ URL::to('generate-payment-receipt') }}" class="right btn-floating tooltipped btn-large green" data-position="bottom" data-delay="50"  data-tooltip="CLick to print a receipt for current transaction" href="#!" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-action-print"></i></a>
 							    </div> -->
-	                    		<button type="submit" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save payment information and get measured" style="background-color:#00695c; padding:9.5px; padding-bottom:45px; margin-top:20px; margin-left:30px"><label style="font-size:15px; color:white"><b>Save Order</b></label></button>
-							</div>
+	                    		<!-- <button type="submit" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save order" style="background-color:#00695c; padding:9.5px; padding-bottom:45px; margin-top:20px; margin-left:30px"><label style="font-size:15px; color:white"><b>Save Order</b></label></button> -->
+	                    		<a href="#confirm-submission" class="right btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-left:40px; background-color:#00695c; color:white"><b><i class="mdi-navigation-check" style="padding-right:10px"></i>Save Order</b></a> 
+									<div class="col s12" style="margin-top:30px">
+							              <div  id="confirm-submission" class="modal modal-fixed-footer" style="height:300px; width:500px; margin-top:80px">
+							                  <h5><font color="black"><center><b>Warning!</b></center></font></h5>
+							                    
+							                      <div class="divider" style="height:2px"></div>
+							                        <div class="modal-content col s12">
+							                          <div class="center col s4"><i class="mdi-alert-warning" style="color:green; font-size:60px"></i></div>
+							                          <div class="col s8"><p style="font-size:18px">Print Receipt</p></div>
+							                        </div>
+
+							                      <div class="modal-footer col s12">
+							                          <button type="submit"  onclick="window.open('/generate-payment-receipt')" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">OK</font></button>
+							                      </div>
+							                </div>
+							        </div>							
 					{!! Form::close() !!}
 							<!--end of bottom button-->
-	            			
-	            </div>
+	            			</div>	
 	        </div>
 
 	        <div class="divider" style="height:2px; margin-bottom:20px; margin-top:30px"></div>
@@ -425,11 +439,14 @@
 		    setInterval('updateClock()', 1000);
 		});
 	</script>
-
+	
 	<script>
-		$(document).on("click", ".saveOrder", function(){
-			document.getElementById('print-receipt').submit();
+		$(document).ready(function(){
+			$("#confirm-submission").on('click', function(){
+				// window.open($this.)
+			});
 		});
+
 	</script>
 
 @stop

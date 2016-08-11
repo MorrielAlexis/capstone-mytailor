@@ -524,12 +524,72 @@ class WalkInIndividualController extends Controller
             }//end of loop for meas specs
         }//end of save loop for JO Specs
 
-        $request->session()->flash('success-message', 'Order successfully sent!');  
-        // $this->clearValues();
 
-        return redirect('transaction/walkin-individual');
+        return redirect('transaction/walkin-individual-clear-order');
+
     }
 
+    // public function confirmPrint(Request $request){
+
+
+
+    // }
+
+    public function generateReceipt()
+    {
+
+        // var_dump(session()->get('segment_data'));
+
+        $data = [
+            'orders' => [
+                [
+                  'job_order_id' => 'JOB001',
+                  'segment_data'  => 'Name 1',
+                  'segment_quantity' => 1,
+                  'segment_fabric' => 'Cotton',
+                  'segment_design' => 'Design 1',
+                  'totalPrice' => 52.00,
+                  'amountToPay' => 60.00,
+                  'outstandingBal' => 70.00,
+                ]
+            ]
+        ];
+
+        $custname = \DB::table('tblCustIndividual')
+                    ->select('strIndivID', \DB::raw('CONCAT(strIndivFName, " ", strIndivMName, " ", strIndivLName) AS fullname'))
+                    ->where('strIndivID', '=', 'custID')
+                    ->get();
+
+
+        $pdf = PDF::loadView('pdf/payment-receipt', compact('data'))->setPaper('Letter')->setOrientation('portrait');
+
+        return $pdf->stream();
+
+
+
+        // $ids = 
+
+        // if($ids == null){
+        //     $custID = $this->smartCounter("CUSTP000"); 
+        // }else{
+        //     $ID = $ids["0"]->strIndivID;
+        //     $custID = $this->smartCounter($ID);  
+        // } 
+
+        // for($i=0; $i<count($data); $i++){
+        //     for($j=0; $j<$i+1; $j++){
+        //         array_push($data['orders'[$i+1]], [
+        //         'segment_data' => 'Name[$j+1]',
+        //         'segment_quantity' => $j+1,
+        //         'price' => $j+1
+        //     ]);
+        //     }
+        // }
+       
+
+        // dd($data);
+                
+    }
 
     public function removeItem(Request $request)
     {   
@@ -563,62 +623,18 @@ class WalkInIndividualController extends Controller
         session()->forget('segment_data');
         session()->forget('termsOfPayment');
         session()->forget('totalPrice');
+        session()->forget('amountToPay');
+        session()->forget('outstandingBal');
         session()->forget('transaction_date');
+        session()->forget('dueDate');
+
+        $request->session()->flash('success-message', 'Order successfully sent!');  
+
+        return redirect('transaction/walkin-individual');
     }
 
 
-    public function generateReceipt()
-    {
 
-        $data = [
-            'orders' => [
-                [
-                  'job_order_id' => 'JOB001',
-                  'segment_data'  => 'Name 1',
-                  'segment_quantity' => 1,
-                  'segment_fabric' => 'Cotton',
-                  'segment_design' => 'Design 1',
-                  'totalPrice' => 52.00,
-                  'amountToPay' => 60.00,
-                  'outstandingBal' => 70.00,
-                ]
-            ]
-        ];
-
-        $custname = \DB::table('tblCustIndividual')
-                    ->select('strIndivID', \DB::raw('CONCAT(strIndivFName, " ", strIndivMName, " ", strIndivLName) AS fullname'))
-                    ->where('strIndivID', '=', 'custID')
-                    ->get();
-
-
-        $pdf = PDF::loadView('pdf/payment-receipt', compact('data'));
-
-        return $pdf->stream();
-        $this->clearValues();
-
-        // $ids = 
-
-        // if($ids == null){
-        //     $custID = $this->smartCounter("CUSTP000"); 
-        // }else{
-        //     $ID = $ids["0"]->strIndivID;
-        //     $custID = $this->smartCounter($ID);  
-        // } 
-
-        // for($i=0; $i<count($data); $i++){
-        //     for($j=0; $j<$i+1; $j++){
-        //         array_push($data['orders'[$i+1]], [
-        //         'segment_data' => 'Name[$j+1]',
-        //         'segment_quantity' => $j+1,
-        //         'price' => $j+1
-        //     ]);
-        //     }
-        // }
-       
-
-        // dd($data);
-                
-    }
 
     public function bulkOrder()
     {
