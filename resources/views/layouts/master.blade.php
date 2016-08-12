@@ -137,10 +137,12 @@
                           </div>
                         </li>
 
-                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{  Request::is('maintenance/charges') ? 'active' : '' }}"><b>Charges</b></a>
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{  Request::is('maintenance/charges-category') || Request::is('maintenance/charges-detail') ? 'active' : '' }}"><b>Charges</b></a>
                           <div class="collapsible-body">
                             <ul>  
-                             <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/charges')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Labor Charges</font></i></a></li>
+                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/charges-category')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Charge Category</font></i></a></li>
+                              <div class="divider"></div>
+                             <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('maintenance/charges-detail')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Charge Details</font></i></a></li>
                               <div class="divider"></div>
                             </ul>
                           </div>

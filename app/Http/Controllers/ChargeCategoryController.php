@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\LaborChargeModel;
+use App\ChargeCategoryModel;
+
+
 
 use App\Http\Requests;
+use App\Http\Requests\ChargeCategoryRequest;
 use App\Http\Controllers\Controller;
 
-class LaborChargesController extends Controller
+class ChargeCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,31 +20,23 @@ class LaborChargesController extends Controller
      */
     public function index()
     {
-        //get all the labor charges
+         //get all the labor charges
 
-        $ids = \DB::table('tblLaborCharges')
-            ->select('strLaborChargeID')
+        $ids = \DB::table('tblChargeCategory')
+            ->select('strChargeCatID')
             ->orderBy('created_at', 'desc')
-            ->orderBy('strLaborChargeID', 'desc')
+            ->orderBy('strChargeCatID', 'desc')
             ->take(1)
             ->get();
 
-        $ID = $ids["0"]->strLaborChargeID;
+        $ID = $ids["0"]->strChargeCatID;
         $newID = $this->smartCounter($ID);  
 
-        $segment = GarmentSegment::all();
-
-
-        $laborCharge = \DB::table('tblLaborCharges')
-                ->join('tblSegment', 'tblLaborCharges.strLCSegmentFK', '=', 'tblSegment.strSegmentID')
-                ->select('tblLaborCharges.*','tblSegment.strSegmentName') 
-                ->orderBy('strLaborChargeID')
-                ->get();
+        $chargeCat = ChargeCategoryModel::all();
         
         //load the view and pass the charges
-       return view('maintenance-charges')
-                    ->with('laborCharge', $laborCharge)
-                    ->with('segment', $segment)
+       return view('maintenance-charge-category')
+                    ->with('chargeCat', $chargeCat)
                     ->with('newID', $newID);
     }
 
@@ -61,9 +56,23 @@ class LaborChargesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ChargeCategoryRequest $request)
     {
-        //
+        $chargeCats = ChargeCategoryModel::get();
+
+            $chargeCat = ChargeCategoryModel::create(array(
+            'strChargeCatID' => $request->input('strChargeCatID'),
+            'strChargeCatName' => trim($request->input('strChargeCatName')),
+            'txtChargeDesc' => trim($request->input('txtChargeDesc')),
+            'boolIsActive' => 1
+            ));
+
+            $chargeCat->save();
+
+
+        \Session::flash('flash_message',' Charge category successfully added.');
+
+        return redirect('maintenance/charges-category');
     }
 
     /**
@@ -111,7 +120,36 @@ class LaborChargesController extends Controller
         //
     }
 
-      public function smartCounter($id)
+    function updateChargeCat(Request $request)
+    {
+         $chargeCat = ChargeCategoryModel::find($request->input('editChargeCatID'));
+
+                $chargeCat->strChargeCatName = trim($request->get('editChargeCatName'));    
+                $chargeCat->txtChargeDesc = trim($request->get('editChargeCatDesc'));
+
+                $chargeCat->save();
+
+        \Session::flash('flash_message_update','Charge category successfully updated.');
+
+        return redirect('maintenance/fabric-color');
+    }
+
+    function deleteChargeCat(Request $request)
+    {
+        $id = $request->input('delChargeCatID');
+            $chargeCat = ChargeCategoryModel::find($request-> input('delChargeCatID'));
+
+            $chargeCat->strChargeCatInactiveReason = trim($request->input('delInactiveChargeCat'));
+            $chargeCat->boolIsActive = 0;
+            $chargeCat->save();
+
+        \Session::flash('flash_message_delete','Charge category successfully deactivated.');
+
+        return redirect('maintenance/fabric-color');
+
+    }
+
+    public function smartCounter($id)
     {   
 
         $lastID = str_split($id);

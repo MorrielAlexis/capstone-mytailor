@@ -103,7 +103,7 @@
 
     <div class="row">
       <div class="col s12 m12 l12">
-        <span class="page-title"><h4>Maintenance - Segment Style Category</h4></span>
+        <span class="page-title"><h4>Maintenance - Charge Detail</h4></span>
       </div>
     </div>
 
@@ -117,7 +117,7 @@
   <div class="row">
     <div class="col s12 m12 l12">
     	<div class="card-panel">
-        <span class="card-title"><h5 style="color:#1b5e20"><center>List of Segment Style</center></h5></span>
+        <span class="card-title"><h5 style="color:#1b5e20"><center>List of Charge Details</center></h5></span>
         <div class="divider"></div>
 
     		<div class="card-content"> 
@@ -126,43 +126,62 @@
        				<thead>
           			<tr>
                   <!--<th data-field= "Catalog ID">Segment segmentStyle ID</th>-->
-              		<th data-field="Segment Name">Segment</th>
-             		  <th data-field="Segment  Style Name">Style Category Name</th>
-                  <th data-field="Desc">Description</th>
+              		<th data-field="Charge Category">Charge Category</th>
+             		  <th data-field="Segment">Segment</th>
+                  <th data-field="Fee">Fee</th>
+                  <th data-field="Desc">Descriptionn</th> 
                   <th data-field="Edit">Actions</th>
               	</tr>
               </thead>
 
               <tbody>
-                @foreach($segmentStyle as $segmentStyle)
-                @if($segmentStyle->boolIsActive == 1)
+                @foreach($chargeDetail as $chargeDetail)
+                @if($chargeDetail->boolIsActive == 1)
                 <tr>
-             		
-                  <td>{{ $segmentStyle->strSegmentName }}</td>
-              		<td>{{ $segmentStyle->strSegStyleName }}</td>
-                  <td>{{ $segmentStyle->txtSegStyleCatDesc }}</td>
-              		<td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to update segment style data" href="#edit{{ $segmentStyle->strSegStyleCatID }}"><i class="mdi-editor-mode-edit"></i></a>
-                  <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="CLick to remove segment style data from the table" href="#del{{ $segmentStyle->strSegStyleCatID }}"><i class="mdi-action-delete"></i></a></td>
+             		   
+                  <td>{{ $chargeDetail->strChargeCatName }}</td> 
+                  <td>{{ $chargeDetail->strSegmentName }}</td>
+              		<td>{{ number_format($chargeDetail->dblChargeDetPrice, 2) . ' PHP' }}</td>
+                  <td>{{ $chargeDetail->txtChargeDetDesc }}</td>
+              		<td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to update charge detail data" href="#edit{{ $chargeDetail->strChargeDetailID }}"><i class="mdi-editor-mode-edit"></i></a>
+                  <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="CLick to remove segment style data from the table" href="#del{{ $chargeDetail->strChargeDetailID }}"><i class="mdi-action-delete"></i></a></td>
                       
-                    <div id="edit{{ $segmentStyle->strSegStyleCatID }}" class="modal modal-fixed-footer">                     
+                    <div id="edit{{ $chargeDetail->strChargeDetailID }}" class="modal modal-fixed-footer">                     
                         <h5><font color = "#1b5e20"><center>UPDATE SEGMENT STYLE</center> </font> </h5>                        
 
-                      {!! Form::open(['url' => 'maintenance/segment-style/update', 'files' => true]) !!}
+                      {!! Form::open(['url' => 'maintenance/charges-detail/update', 'files' => true]) !!}
                         <div class="divider" style="height:2px"></div>
                         <div class="modal-content col s12">
                           
                           <div class="input-field">
-                            <input value= "{{ $segmentStyle->strSegStyleCatID }}" id="editSegmentStyleID" name= "editSegmentStyleID" type="hidden">
+                            <input value= "{{ $chargeDetail->strChargeDetailID }}" id="editChargeDetID" name= "editChargeDetID" type="hidden">
                           </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;"> 
                           <div class="input-field col s12">                                                   
-                            <select class="browser-default editSegmentStyle" id="{{ $segmentStyle->strSegStyleCatID }}" name='editSegmentStyle'>
+                            <select class="browser-default editChargeCatFK" id="{{ $chargeDetail->strChargeDetailID }}" name='editChargeCatFK'>
+                             <option value="" disabled selected><font size="3" color="Red">Choose a charge category:</font></option>
+                                  @foreach($chargeCat as $chargeCat_1)
+                                    @if($chargeDetail->strChargeCatFK == $chargeCat_1->strChargeCatID && $chargeCat_1->boolIsActive == 1)
+                                      <option selected value="{{ $chargeCat_1->strChargeCatID }}" class="{{$chargeCat_1->strChargeCatFK}}">{{ $chargeCat_1->strChargeCatName }}</option>
+                                    @elseif($chargeCat_1->boolIsActive == 1)
+                                      <option value="{{ $chargeCat_1->strChargeCatID }}" class="{{$chargeCat_1->strChargeCatFK}}">{{ $chargeCat_1->strChargeCatName }}</option>
+                                    @endif
+                                  @endforeach
+                            </select>    
+                          </div> 
+                      </div>   
+
+
+                      <div class = "col s12" style="padding:15px;  border:3px solid white;"> 
+                          <div class="input-field col s12">                                                   
+                            <select class="browser-default editChargeDetSegFK" id="{{ $chargeDetail->strChargeDetailID }}" name='editChargeDetSegFK'>
+                               <option value="" disabled selected><font size="3" color="Red">Choose a segment:</font></option>
                                   @foreach($segment as $segment_1)
-                                    @if($segmentStyle->strSegmentFK == $segment_1->strSegmentID && $segment_1->boolIsActive == 1)
-                                      <option selected value="{{ $segment_1->strSegmentID }}" class="{{$segment_1->strSegmentFK}}">{{ $segment_1->strSegmentName }}</option>
+                                    @if($chargeDetail->strChargeDetSegFK == $segment_1->strSegmentID && $segment_1->boolIsActive == 1)
+                                      <option selected value="{{ $segment_1->strSegmentID }}" class="{{$segment_1->strChargeDetSegFK}}">{{ $segment_1->strSegmentName }}</option>
                                     @elseif($segment_1->boolIsActive == 1)
-                                      <option value="{{ $segment_1->strSegmentID }}" class="{{$segment_1->strSegmentFK}}">{{ $segment_1->strSegmentName }}</option>
+                                      <option value="{{ $segment_1->strSegmentID }}" class="{{$segment_1->strChargeDetSegFK}}">{{ $segment_1->strSegmentName }}</option>
                                     @endif
                                   @endforeach
                             </select>    
@@ -171,15 +190,15 @@
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input required value = "{{ $segmentStyle->strSegStyleName }}" id="editSegmentStyleName" name= "editSegmentStyleName" type="text" class="validate"  data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?">
-                            <label for="Style_name"><span class="red-text"><b>*</b></span>Style Name </label>
+                            <input required value = "{{ $chargeDetail->dblChargeDetPrice }}" id="editChargeDetPrice" name= "editChargeDetPrice" type="text" class="validate"  data-position="bottom" pattern="^[a-zA-Z\-'`\d]+(\s[a-zA-Z\-'`]+)?">
+                            <label for="Price"><span class="red-text"><b>*</b></span>Price</label>
                           </div>
                       </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                             <div class="input-field col s12">
-                                  <input  value="{{ $segmentStyle->txtSegStyleCatDesc }}" id="editStyleDesc" name = "editStyleDesc" type="text" class="validate">
-                               <label for="segment_description">Style Description</label>
+                                  <input  value="{{ $chargeDetail->txtChargeDetDesc }}" id="editChargeDetDesc" name = "editChargeDetDesc" type="text" class="validate">
+                               <label for="Description">Description</label>
                             </div>
                       </div>
                   </div>
@@ -192,41 +211,48 @@
               </div>  
                 
 
-                <div id="del{{ $segmentStyle->strSegStyleCatID }}" class="modal modal-fixed-footer">
+                <div id="del{{ $chargeDetail->strChargeDetailID }}" class="modal modal-fixed-footer">
                       <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS SEGMENT STYLE?</center> </font> </h5>
                         
-                      {!! Form::open(['url' => 'maintenance/segment-style/destroy']) !!}
+                      {!! Form::open(['url' => 'maintenance/charges-detail/destroy']) !!}
                         <div class="divider" style="height:2px"></div>
                         <div class="modal-content col s12">
 
                                 <div class="input-field">
-                                      <input value= "{{ $segmentStyle->strSegStyleCatID }}" id="delsegmentStyleID" name= "delsegmentStyleID" type="hidden">
+                                      <input value= "{{ $chargeDetail->strChargeDetailID }}" id="delChargeDetID" name= "delChargeDetID" type="hidden">
                                 </div>
 
-                        <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s6">                                                    
-                                    <input type="text" value="{{$segmentStyle->strSegmentName}}" readonly>
-                                    <label>Segment</label>
+                                    <input type="text" value="{{$chargeDetail->strChargeCatName}}" readonly>
+                                    <label>Charge Category</label>
                               </div>  
-                        </div> 
+                      </div> 
+
+                    <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                          <div class="input-field col s6">                                                    
+                                <input type="text" value="{{$chargeDetail->strSegmentName}}" readonly>
+                                <label>Segment</label>
+                          </div>  
+                    </div> 
   
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s12">
-                          <input value = "{{ $segmentStyle->strSegStyleName }}" type="text" class="validate" readonly>
-                          <label for="segmentStyle_name">Style Name: </label>
+                          <input value = "{{ $chargeDetail->dblChargeDetPrice }}" type="text" class="validate" readonly>
+                          <label for="Price">Price:</label>
                         </div>
                     </div>
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s12">
-                            <input value = "{{ $segmentStyle->txtSegStyleCatDesc }}" type="text" class="validate" readonly>
-                            <label for="segmentStyle_name">Style Description: </label>
+                            <input value = "{{$chargeDetail->txtChargeDetDesc }}" type="text" class="validate" readonly>
+                            <label for="Description">Description: </label>
                         </div>
                     </div>
 
                      <div class="input-field col s12">
                             <label for="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span> </label>
-                            <input required id="delInactiveSegmentStyle" name = "delInactiveSegmentStyle" value = "{{$segmentStyle->strSegStyleCatInactiveReason}}" type="text">
+                            <input required id="delInactiveChargeDet" name = "delInactiveChargeDet" value = "{{$chargeDetail->strChargeDetInactiveReason}}" type="text">
                      </div> 
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">        
@@ -252,24 +278,38 @@
            
 
             <div id="addDesign" class="modal modal-fixed-footer">
-              <h5><font color = "#1b5e20"><center>CREATE SEGMENT STYLE</center> </font> </h5> 
+              <h5><font color = "#1b5e20"><center>CREATE CHARGE DETAIL</center> </font> </h5> 
                 
-              {!! Form::open(['url' => 'maintenance/segment-style', 'method' => 'post']) !!}
+              {!! Form::open(['url' => 'maintenance/charges-detail', 'method' => 'post']) !!}
                 <div class="divider" style="height:2px"></div>
                 <div class="modal-content col s12">
 
 
                 
                 <div class="input-field">
-                    <input value="{{ $newID }}" id="strSegStyleCatID" name="strSegStyleCatID" type="hidden">
+                    <input value="{{ $newID }}" id="strChargeDetailID" name="strChargeDetailID" type="hidden">
                 </div>
+
+            <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                <div class="input-field col s12">
+                  <select class="browser-default" required id="strChargeCatFK" name="strChargeCatFK">
+                     <option value="" disabled selected><font size="3" color="Red">Choose a charge category:</font></option>
+                        @foreach($chargeCat as $chargeCat)
+                          @if($chargeCat->boolIsActive == 1)
+                            <option value="{{ $chargeCat->strChargeCatID }}" class="{{ $chargeCat->strChargeCatFK }}">{{ $chargeCat->strChargeCatName }}</option>
+                          @endif
+                        @endforeach
+                  </select>
+                </div>  
+            </div> 
 
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                 <div class="input-field col s12">
-                  <select class="browser-default" required id="strSegmentFK" name="strSegmentFK">
+                  <select class="browser-default" required id="strChargeDetSegFK" name="strChargeDetSegFK">
+                    <option value="" disabled selected><font size="3" color="Red">Choose a segment:</font></option>
                         @foreach($segment as $segment)
                           @if($segment->boolIsActive == 1)
-                            <option value="{{ $segment->strSegmentID }}" class="{{ $segment->strSegmentFK }}">{{ $segment->strSegmentName }}</option>
+                            <option value="{{ $segment->strSegmentID }}" class="{{ $segment->strChargeDetSegFK }}">{{ $segment->strSegmentName }}</option>
                           @endif
                         @endforeach
                   </select>
@@ -278,16 +318,16 @@
 
             <div class = "col s12" style="padding:15px;  border:3px solid white;">
                 <div class="input-field col s12">
-                  <input required id="strSegStyleName" name= "strSegStyleName" type="text" class="validate"  data-position="bottom" segmentStyle="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" placeholder="Button Down">
-                  <label for="Style Name">Style Name <span class="red-text"><b>*</b></span></label>
+                  <input required id="dblChargeDetPrice" name= "dblChargeDetPrice" type="text" class="validate"  data-position="bottom" pattern="^[a-zA-Z\-'`\d]+(\s[a-zA-Z\-'`]+)?" placeholder="Php 200.00">
+                  <label for="Price">Price<span class="red-text"><b>*</b></span></label>
                 </div>
             </div>
 
 
              <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s12">
-                        <input id="txtSegStyleCatDesc" name="txtSegStyleCatDesc" type="text" class="validate">
-                        <label for="Style Desc">Style Description <span class="red-text"><b>*</b></span></label>
+                        <input id="txtChargeDetDesc" name="txtChargeDetDesc" type="text" class="validate" placeholder="Extra Php 200 for coats.">
+                        <label for="Desc">Description <span class="red-text"><b>*</b></span></label>
                   </div>
              </div>
           </div>
