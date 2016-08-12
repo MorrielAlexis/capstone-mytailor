@@ -310,9 +310,11 @@
 								<!--Garment Description Here-->
 								<div class="col s12" style="margin-top:20px; color:gray"><p>Garment description below:</p></div>
 								<div class="col s12" style="margin-left:130px">
-									<div class="col s4" style="color:teal;"><p><b>Garment Category:</b></p></div>
-									<div class="col s8"><p>{{ $segment->strGarmentCategoryName }}</p></div>
-
+									<div class = "row">
+										<div class="col s4" style="color:teal;"><p><b>Garment Category:</b></p></div>
+										<div class="col s8"><p>{{ $segment->strGarmentCategoryName }}</p></div>
+									</div>
+									
 									<div class="col s4" style="color:teal;"><p><b>Garment Segment:</b></p></div>
 									<div class="col s8"><p>{{ $segment->strSegmentName }}</p></div>
 
