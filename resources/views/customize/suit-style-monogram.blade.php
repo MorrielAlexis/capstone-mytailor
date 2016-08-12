@@ -60,19 +60,22 @@
                         <input class="with-gap" name="classic" type="radio" id="small" />
                         <label for="small"><font size="+1"><b>No Monogram</b></font></label>
                       </p>
-                    </div>                  
+                    </div>                 
                   </div>
 
-                  <div class="col s12">
-
-                    <div class="col s3">
-                      <img class="materialboxed responsive-img" src="img/fabric.jpg">
-                      <p>
-                        <input class="with-gap" name="classic" type="radio" id="small" />
-                        <label for="small"><font size="+1"><b>Cuffed Short Sleeves</b></font></label>
-                      </p>
+                  @foreach($monograms as $monogram)
+                    <div class="col s12">
+                      @foreach($patterns as $pattern)
+                      <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $monogram->strSegStyleCatID) hidden @endif>
+                        <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
+                        <p>
+                          <input name="rdb_pattern{{ $monogram->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
+                          <label for="{{$pattern->strSegPatternID}}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
+                        </p>
+                      </div>
+                      @endforeach
                     </div>
-                  </div> 
+                  @endforeach 
                 </div>
               </li>            
               <li>
