@@ -13,6 +13,18 @@
         </div>
       @endif
 
+      <!-- Update Duplicate -->
+       @if (Session::has('flash_message_duplicate'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red accent-1">
+              <span class="alert alert-success"><i class="tiny mdi-navigation-close right" onclick="$('#flash_message').hide()"></i></span>
+              <em> {!! session('flash_message_duplicate') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif 
+
       <!-- Errors -->
         @if ($errors->any())
            <div class="row" id="flash_message">
@@ -75,19 +87,6 @@
           </div>
         </div>
       @endif
-
-             <!--  <Duplicate Error Message>   -->
-      @if (Session::has('flash_message_duplicate'))
-        <div class="row" id="flash_message">
-          <div class="col s12 m12 l12">
-            <div class="card-panel red accent-1">
-              <span class="alert alert-success"><i class="tiny mdi-navigation-close right" onclick="$('#flash_message').hide()"></i></span>
-              <em> {!! session('flash_message_duplicate') !!}</em>
-            </div>
-          </div>
-        </div>
-      @endif  
-
 
       <!--  <Data Dependency Message> -->
        @if (Input::get('success') == 'beingUsed')
@@ -243,7 +242,7 @@
 
                               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                   <div class="input-field col s12">
-                                    <input required value = "{{ $fabric->strFabricCode }}" id="editFabricCode" name= "editFabricCode" type="text" class="validate"  data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="2">
+                                    <input required value = "{{ $fabric->strFabricCode }}" id="editFabricCode" name= "editFabricCode" type="text" class="validate"  data-position="bottom" pattern="^[a-zA-Z\-'`\s\d]{2,}$" >
                                     <label for="days">Fabric Code:</label>
                                   </div>
                               </div>
@@ -398,7 +397,7 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input required id="strFabricName" name= "strFabricName" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" class="active"  placeholder="Tobacco Brown Plain">
+                        <input required id="strFabricName" name= "strFabricName" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`\s\d]{2,}$" class="active"  placeholder="Tobacco Brown Plain">
                         <label for="segment_name">Fabric Name<span class="red-text"><b>*</b></span></label>
                       </div>
                   </div>
