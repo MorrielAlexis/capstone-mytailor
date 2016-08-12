@@ -134,7 +134,7 @@
 				<tbody>
 					<tr>
 						<td style="background-color:teal; color:white"><font size="+0.1">  <br><b>  Amount Paid:  </b> </font></td>
-						<td><font color="black"><br><b>{!! session('amountToPay') !!}.00 PHP</b></font></td>
+						<td><font color="black"><br><b>{!! session('amountToPay') !!}</b></font></td>
 					</tr>
 					<tr>
 						<td style="background-color:teal; color:white"><font size="+0.1">  <br><b>  Outstanding Balance:  </b> </font></td>

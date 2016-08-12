@@ -13,7 +13,6 @@ class TransactionJobOrderPayment extends Model
     protected $fillable = array('strPaymentID',
     							'strTransactionFK', 
 						    	'strTransacAlterFK',
-						    	'dblAmountTendered',
 						    	'dblAmountToPay',
 						    	'dblOutstandingBal',
 						    	'strReceivedByEmployeeNameFK',

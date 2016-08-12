@@ -364,8 +364,8 @@ class WalkInIndividualController extends Controller
 
         session(['termsOfPayment' => $request->input('termsOfPayment')]);
         session(['totalPrice' => $request->input('total_price')]);
-        session(['amountToPay' => $request->input('amount-to-pay')]);
-        session(['outstandingBal' => $request->input('outstanding-bal')]);
+        session(['amountToPay' => $request->input('amount-payable')]);
+        session(['outstandingBal' => $request->input('balance')]);
         session(['transaction_date' => $request->input('transaction_date')]);
         session(['dueDate' => $request->input('due_date')]);
 
@@ -386,7 +386,7 @@ class WalkInIndividualController extends Controller
                 'strModeOfPayment' => $modeOfPayment,
                 'intJO_OrderQuantity' => $totalQuantity,
                 'dblOrderTotalPrice' => $totalPrice,
-                'dtOrderDate' => $request->input('transaction_date'),
+                'dtOrderDate' => $orderDate,
                 'boolIsActive' => 1
         ));
 
@@ -409,7 +409,6 @@ class WalkInIndividualController extends Controller
         $payment = TransactionJobOrderPayment::create(array(
                 'strPaymentID' => $jobPaymentID,
                 'strTransactionFK' => session()->get('joID'), //tblJobOrder
-                'dblAmountTendered' => $request->input('amount-tendered'),
                 'dblAmountToPay' => session()->get('amountToPay'),
                 'dblOutstandingBal' => session()->get('outstandingBal'),
                 'strReceivedByEmployeeNameFK' => 'EMPL001' ,
@@ -524,8 +523,6 @@ class WalkInIndividualController extends Controller
             }//end of loop for meas specs
         }//end of save loop for JO Specs
 
-
-        return redirect('transaction/walkin-individual-clear-order');
 
     }
 
