@@ -118,9 +118,15 @@ class FabricPatternController extends Controller
     }
 
     function update_fabricPattern(Request $request)
-
     {   
-       
+       $checkfabricPatterns = FabricPattern::all();
+        $isAdded=FALSE;
+
+        foreach($checkfabricPatterns as $checkfabricPattern)
+            if(!strcasecmp($checkfabricPattern->strFabricPatternID, $request->input('editfabricPattern')) == 0 && strcasecmp($checkfabricPattern->strFabricPatternName,$request->input('editFabricPatternName')) == 0)
+                $isAdded = TRUE;
+
+        if(!$isAdded){
         $fabricPattern = FabricPattern::find($request->input('editfabricPattern'));
 
                 $fabricPattern->strFabricPatternName = trim($request->get('editFabricPatternName'));    
@@ -128,6 +134,9 @@ class FabricPatternController extends Controller
                 $fabricPattern->save();
 
         \Session::flash('flash_message_update','Pattern successfully updated.');
+
+        }else \Session::flash('flash_message_duplicate','Pattern already exists.'); //flash message
+
 
         return redirect('maintenance/fabric-pattern');
 

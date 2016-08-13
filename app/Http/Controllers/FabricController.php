@@ -172,19 +172,32 @@ class FabricController extends Controller
 
      function update_fabric(Request $request)
     {
+
         $fabric = Fabric::find($request->input('editFabricID'));
+        $checkFabrics = Fabric::all();
 
         $file = $request->input('editImage');
         $destinationPath = 'imgFabrics';
+        $isAdded = FALSE;
 
+        foreach ($checkFabrics as $checkFabric)
+            if(!strcasecmp($checkFabric->strFabricID, $request->input('editFabricID')) == 0 &&
+                strcasecmp($checkFabric->strFabricName, trim($request->input('editFabricName'))) == 0 && 
+                strcasecmp($checkFabric->strFabricTypeFK, $request->input('editFabricType')) == 0 &&
+                strcasecmp($checkFabric->strFabricPatternFK, $request->input('editFabricPattern')) == 0 &&
+                strcasecmp($checkFabric->strFabricColorFK, $request->input('editFabricColor')) == 0 &&
+                strcasecmp($checkFabric->strFabricThreadCountFK, $request->input('editFabricThreadCount')) == 0)
+                 // strcasecmp($checkFabric->dblFabricPrice, $request->input('editFabricPrice')) == 0
+                $isAdded = TRUE;
+
+        if(!$isAdded){
                 if($file == $fabric->strFabricImage)
                 {
                     
                     $fabric->strFabricTypeFK = $request->input('editFabricType');
                     $fabric->strFabricPatternFK = $request->input('editFabricPattern');
                     $fabric->strFabricColorFK = $request->input('editFabricColor');
-                    $fabric->strFabricThreadCountFK = $request->input('editFabricThreadCount');
-                   
+                    $fabric->strFabricThreadCountFK = $request->input('editFabricThreadCount');  
                     $fabric->strFabricName = trim($request->input('editFabricName'));
                     $fabric->dblFabricPrice = trim($request->input('editFabricPrice'));
                     $fabric->strFabricCode = trim($request->input('editFabricCode'));
@@ -208,7 +221,7 @@ class FabricController extends Controller
                 $fabric->save();
 
             \Session::flash('flash_message_update','Fabric was successfully updated.'); //flash message      
-
+        }else \Session::flash('flash_message_duplicate','Fabric already exists.'); //flash message
             
             return redirect('maintenance/fabric');
     }

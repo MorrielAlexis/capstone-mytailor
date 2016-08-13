@@ -59,50 +59,42 @@
                       <input class="with-gap" name="classic" type="radio" id="small" />
                       <label for="small"><font size="+1"><b>No Pocket</b></font></label>
                     </p>
-                  </div>                
-                  <div class="col s12">
-                    <div class="col s6">
-                      <div class="center col s2 " style="margin-top:100px">
-                        <input name="" type="radio" class="filled-in" value = "" id="" />
-                        <label for=""></label>
+                  </div>
+      
+                    @foreach($pockets as $pocket)
+                    <div class="col s12">
+                      @foreach($patterns as $pattern)
+                      <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $pocket->strSegStyleCatID) hidden @endif>
+                        <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
+                        <p>
+                          <input name="rdb_pattern{{ $pocket->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
+                          <label for="{{$pattern->strSegPatternID}}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
+                        </p>
                       </div>
-                      <div class="col s10">
-                        <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
-                          <div class="row valign-wrapper">
-                            <div class="center col s6">
-                              <img src="" alt="" class="responsive-img">
-                            </div>
-                            <div class="col s6"> 
-                              <span><b></b></span>
-                              <br/>
-                              <span class="black-text">
-                                
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      @endforeach
                     </div>
-                  </div>                  
+                    @endforeach   
+
                   <div class="col s12" style="margin:20px;">
                     <div class="col s4">
                     <h5><b>Contrast Pocket</b></h5>
                       <div class="card-panel teal lighten-4 z-depth-1" style="height:230px">
                         <div class="row valign-wrapper">
                           <div class="center" style="margin:auto;">
-                            <img src="img/1.jpg" alt="" class="responsive-img">
-                            <figcaption class="btn container"><a href="">Select Fabric</a></figcaption>
+                            <img src="imgDesignPatterns/contrastpocket.jpg" alt="" class="responsive-img">
+                            <figcaption><a style="color:white" class="modal-trigger btn tooltipped teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#pocketContrast">Select Fabric</a></figcaption>
                           </div>
                         </div>
                       </div>  
                     </div>
+
                     <div class="col s4">
                     <h5><b>Contrast Pocket Flap</b></h5>
                       <div class="card-panel teal lighten-4 z-depth-1" style="height:230px">
                         <div class="row valign-wrapper">
                           <div class="center" style="margin:auto;">
-                            <img src="img/1.jpg" alt="" class="responsive-img">
-                            <figcaption class="btn container"><a href="">Select Fabric</a></figcaption>
+                            <img src="imgDesignPatterns/contrastpocketflap.jpg" alt="" class="responsive-img">
+                            <figcaption><a style="color:white" class="modal-trigger btn tooltipped teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#flapContrast">Select Fabric</a></figcaption>
                           </div>
                         </div>
                       </div>  
@@ -110,6 +102,205 @@
                   </div>                                      
                 </div>
               </li>
+
+              <!-- Pocket COntrast -->
+              <div id="pocketContrast" class="modal modal-fixed-footer" style="width:1100px; height:600px">
+                  <h5><font color = "#1b5e20"><center>List of Available Fabrics</center> </font> </h5>
+      
+                    <div class="divider" style="height:2px"></div>        
+                    <div class="modal-content col s12">
+                        <!--Select-->
+                        <div class="col s3"><!--fabric type-->
+                          <div class="input-field col s12">
+                              <select class = "fabric-type" id = "fabric-type">
+                                <option value="TA" class="circle" selected>All</option>
+                                @foreach($fabricTypes as $fabricType)
+                                  <option value="{{ $fabricType->strFabricTypeID }}">{{ $fabricType->strFabricTypeName }}</option>
+                                @endforeach
+                              </select>
+                              <label><font size="3" color="gray">Fabric Type</font></label>
+                          </div>
+                        </div>
+
+                        <div class="col s3"><!--fabric color-->
+                          <div class="input-field col s12">
+                              <select class = "fabric-color" id = "fabric-color">
+                                <option value="CA" class="circle" selected>All</option>
+                                @foreach($fabricColors as $fabricColor)
+                                  <option value="{{ $fabricColor->strFabricColorID }}">{{ $fabricColor->strFabricColorName }}</option>
+                                @endforeach
+                              </select>
+                              <label><font size="3" color="gray">Fabric Color</font></label>
+                          </div>
+                        </div>
+
+                        <div class="col s3"><!--fabric pattern-->
+                          <div class="input-field col s12">
+                              <select class = "fabric-pattern" id = "fabric-pattern">
+                                <option value="PA" class="circle" selected>All</option>
+                                @foreach($fabricPatterns as $fabricPattern)
+                                  <option value="{{ $fabricPattern->strFabricPatternID }}">{{ $fabricPattern->strFabricPatternName }}</option>
+                                @endforeach
+                              </select>
+                              <label><font size="3" color="gray">Fabric Pattern</font></label>
+                          </div>
+                        </div>
+
+                        <div class="col s3"><!--fabric thread count-->
+                          <div class="input-field col s12">
+                              <select class = "fabric-thread-count" id = "fabric-thread-count">
+                                <option value="TCA" class="circle" selected>All</option>
+                                @foreach($fabricThreadCounts as $fabricThreadCount)
+                                  <option value="{{ $fabricThreadCount->strFabricThreadCountID }}">{{ $fabricThreadCount->strFabricThreadCountName }}</option>
+                                @endforeach
+                              </select>
+                              <label><font size="3" color="gray">Fabric Thread Count</font></label>
+                          </div>
+                        </div>
+                        <!--end of select-->
+                        
+                        <div class="col s12" style="margin:20px">
+                          <div class="divider" style="height:2px gray solid"></div>
+                          <div class="divider" style="height:2px gray solid"></div>
+                        </div> 
+                        
+                        <p style="color:gray; margin-left:20px">*Choose one of your desired fabric</p>
+
+                        
+                          @foreach($contrasts as $contrast)
+                          <div class="col s6 fabric-general {{ $contrast->strFabricTypeFK }} {{ $contrast->strFabricPatternFK }} {{ $contrast->strFabricColorFK }} {{ $contrast->strFabricThreadCountFK }}">
+                            <div class="center col s2" style="margin-top:60px">
+                              <input name="rdb_fabricContrast" type="radio" class="filled-in" value="{{ $contrast->strFabricID }}" id="{{ $contrast->strFabricID }}" />                                    
+                              <label for="{{ $contrast->strFabricID }}"></label>
+                            </div>
+                            <div class="col s10">
+                              <div class="card-panel teal lighten-4 z-depth-1">
+                                <div class="row valign-wrapper">
+                                  <div class="center col s4">
+                                    <img src="{{URL::asset($contrast->strFabricImage)}}"class="responsive-img"> <!-- notice the "circle" class -->
+                                  </div>
+                                  <div class="col s8"> 
+                                    <p><b id="{{ 'fabricText'.$contrast->strFabricID }}">{{ $contrast->strFabricName }}</b></p> <!-- This will be the name of the pattern -->
+                                    <span class="black-text">
+                                      {{ $contrast->txtFabricDesc }}
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          @endforeach
+                        
+                      <div class="col s12" style="margin:20px"></div>
+                      
+                      </div>
+                
+                    <div class="modal-footer col s12">
+                      <a  class="right modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+                      <!--<a  class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>-->
+                    </div>
+                  </div>
+              <!--End of modal for Pocket Contrast -->
+
+              <!-- Pocket Flap COntrast -->
+              <div id="flapContrast" class="modal modal-fixed-footer" style="width:1100px; height:600px">
+                  <h5><font color = "#1b5e20"><center>List of Available Fabrics</center> </font> </h5>
+      
+                    <div class="divider" style="height:2px"></div>        
+                    <div class="modal-content col s12">
+                        <!--Select-->
+                        <div class="col s3"><!--fabric type-->
+                          <div class="input-field col s12">
+                              <select class = "fabric-type" id = "fabric-type">
+                                <option value="TA" class="circle" selected>All</option>
+                                @foreach($fabricTypes as $fabricType)
+                                  <option value="{{ $fabricType->strFabricTypeID }}">{{ $fabricType->strFabricTypeName }}</option>
+                                @endforeach
+                              </select>
+                              <label><font size="3" color="gray">Fabric Type</font></label>
+                          </div>
+                        </div>
+
+                        <div class="col s3"><!--fabric color-->
+                          <div class="input-field col s12">
+                              <select class = "fabric-color" id = "fabric-color">
+                                <option value="CA" class="circle" selected>All</option>
+                                @foreach($fabricColors as $fabricColor)
+                                  <option value="{{ $fabricColor->strFabricColorID }}">{{ $fabricColor->strFabricColorName }}</option>
+                                @endforeach
+                              </select>
+                              <label><font size="3" color="gray">Fabric Color</font></label>
+                          </div>
+                        </div>
+
+                        <div class="col s3"><!--fabric pattern-->
+                          <div class="input-field col s12">
+                              <select class = "fabric-pattern" id = "fabric-pattern">
+                                <option value="PA" class="circle" selected>All</option>
+                                @foreach($fabricPatterns as $fabricPattern)
+                                  <option value="{{ $fabricPattern->strFabricPatternID }}">{{ $fabricPattern->strFabricPatternName }}</option>
+                                @endforeach
+                              </select>
+                              <label><font size="3" color="gray">Fabric Pattern</font></label>
+                          </div>
+                        </div>
+
+                        <div class="col s3"><!--fabric thread count-->
+                          <div class="input-field col s12">
+                              <select class = "fabric-thread-count" id = "fabric-thread-count">
+                                <option value="TCA" class="circle" selected>All</option>
+                                @foreach($fabricThreadCounts as $fabricThreadCount)
+                                  <option value="{{ $fabricThreadCount->strFabricThreadCountID }}">{{ $fabricThreadCount->strFabricThreadCountName }}</option>
+                                @endforeach
+                              </select>
+                              <label><font size="3" color="gray">Fabric Thread Count</font></label>
+                          </div>
+                        </div>
+                        <!--end of select-->
+                        
+                        <div class="col s12" style="margin:20px">
+                          <div class="divider" style="height:2px gray solid"></div>
+                          <div class="divider" style="height:2px gray solid"></div>
+                        </div> 
+                        
+                        <p style="color:gray; margin-left:20px">*Choose one of your desired fabric</p>
+
+                        
+                          @foreach($contrasts as $contrast)
+                          <div class="col s6 fabric-general {{ $contrast->strFabricTypeFK }} {{ $contrast->strFabricPatternFK }} {{ $contrast->strFabricColorFK }} {{ $contrast->strFabricThreadCountFK }}">
+                            <div class="center col s2" style="margin-top:60px">
+                              <input name="rdb_fabricContrast" type="radio" class="filled-in" value="{{ $contrast->strFabricID }}" id="{{ $contrast->strFabricID }}" />                                    
+                              <label for="{{ $contrast->strFabricID }}"></label>
+                            </div>
+                            <div class="col s10">
+                              <div class="card-panel teal lighten-4 z-depth-1">
+                                <div class="row valign-wrapper">
+                                  <div class="center col s4">
+                                    <img src="{{URL::asset($contrast->strFabricImage)}}"class="responsive-img"> <!-- notice the "circle" class -->
+                                  </div>
+                                  <div class="col s8"> 
+                                    <p><b id="{{ 'fabricText'.$contrast->strFabricID }}">{{ $contrast->strFabricName }}</b></p> <!-- This will be the name of the pattern -->
+                                    <span class="black-text">
+                                      {{ $contrast->txtFabricDesc }}
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          @endforeach
+                        
+                      <div class="col s12" style="margin:20px"></div>
+                      
+                      </div>
+                
+                    <div class="modal-footer col s12">
+                      <a  class="right modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+                      <!--<a  class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>-->
+                    </div>
+                  </div>
+              <!--End of modal for Pocket Flap Contrast -->
+
               <li>
                 <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Monogram</div>
                 <div class="collapsible-body row overflow-x" style="padding:20px;">
@@ -119,32 +310,22 @@
                       <label for="small"><font size="+1"><b>No Monogram</b></font></label>
                     </p>
                   </div>                
-                  <div class="col s12">
-                    <div class="col s6">
-                      <div class="center col s2 " style="margin-top:100px">
-                        <input name="" type="radio" class="filled-in" value = "" id="" />
-                        <label for=""></label>
+                  @foreach($monograms as $monogram)
+                    <div class="col s12">
+                      @foreach($patterns as $pattern)
+                      <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $monogram->strSegStyleCatID) hidden @endif>
+                        <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
+                        <p>
+                          <input name="rdb_pattern{{ $monogram->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
+                          <label for="{{$pattern->strSegPatternID}}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
+                        </p>
                       </div>
-                      <div class="col s10">
-                        <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
-                          <div class="row valign-wrapper">
-                            <div class="center col s6">
-                              <img src="" alt="" class="responsive-img">
-                            </div>
-                            <div class="col s6"> 
-                              <span><b></b></span>
-                              <br/>
-                              <span class="black-text">
-                                
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      @endforeach
                     </div>
-                  </div>                  
+                  @endforeach                  
                 </div>
               </li>
+              
               <li>
                 <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Monogram Position</div>
                 <div class="collapsible-body row overflow-x" style="padding:20px;">
@@ -231,7 +412,7 @@
               </li>              
             </ul>
           </div>                        
-          
+
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12">
             <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/customize-womens-style-others')}}">Next step</a></div>

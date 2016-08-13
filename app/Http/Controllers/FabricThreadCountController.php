@@ -126,9 +126,15 @@ class FabricThreadCountController extends Controller
     }
 
    function update_threadCount(Request $request)
-
     {   
-       
+       $checkThreadCounts = FabricThreadCount::all();
+        $isAdded=FALSE;
+
+        foreach($checkThreadCounts as $checkThreadCount)
+            if(!strcasecmp($checkThreadCount->strFabricThreadCountID, $request->input('editThreadCount')) == 0 && strcasecmp($checkThreadCount->strFabricThreadCountName,$request->input('editThreadCountName')) == 0)
+                $isAdded = TRUE;
+
+        if(!$isAdded){
         $threadCount = FabricThreadCount::find($request->input('editThreadCount'));
 
                 $threadCount->strFabricThreadCountName = trim($request->get('editThreadCountName'));    
@@ -137,6 +143,7 @@ class FabricThreadCountController extends Controller
                 $threadCount->save();
 
         \Session::flash('flash_message_update','Thread count successfully updated.');
+         }else \Session::flash('flash_message_duplicate','Thread count already exists.'); //flash message
 
         return redirect('maintenance/fabric-thread-count');
 
