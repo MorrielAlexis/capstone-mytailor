@@ -125,13 +125,23 @@ class MeasurementCategoryController extends Controller
 
     public function updateMeasurementCategory(Request $request)
     {   
-        $measurementCategory = MeasurementCategory::find($request->input('editMeasurementCategoryID'));
+        $meas_category = MeasurementCategory::find($request->input('editMeasurementCategoryID'));
+        $checkmeasurementCats = MeasurementCategory::all();
+        $isAdded = FALSE;
 
-        $measurementCategory->strMeasurementCategoryName = trim($request->input('editMeasurementCategoryName'));
-        $measurementCategory->strMeasurementCategoryID = trim($request->input('editMeasurementCategoryDescription'));
-        $measurementCategory->save();
+        foreach ($checkmeasurementCats as $checkmeasurementCat)
+            if(!strcasecmp($checkmeasurementCat->strMeasurementCategoryID, $request->input('editMeasurementCategoryID')) == 0 &&
+                strcasecmp($checkmeasurementCat->strMeasurementCategoryName, trim($request->input('editMeasurementCategoryName'))) == 0)
+                $isAdded = TRUE;
+
+        if(!$isAdded){
+
+        $meas_category->strMeasurementCategoryName = trim($request->input('editMeasurementCategoryName'));
+        $meas_category->strMeasurementCategoryID = trim($request->input('editMeasurementCategoryDescription'));
+        $meas_category->save();
 
         \Session::flash('flash_message_update','Measurement category successfully edited.'); //flash message
+        }else \Session::flash('flash_message_duplicate','Measurement category already exists.'); //flash message 
 
         return redirect('maintenance/measurement-category');
     }

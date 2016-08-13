@@ -63,8 +63,8 @@
         </div>
       @endif
 
-             <!--  <Duplicate Error Message>   -->
-      @if (Session::has('flash_message_duplicate'))
+           <!-- Update Duplicate -->
+       @if (Session::has('flash_message_duplicate'))
         <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
             <div class="card-panel red accent-1">
@@ -265,13 +265,6 @@
                               <div class="input-field">
                                 <input value="{{ $standardDetail->strStandardSizeDetID }}" id="delStandardSizeDetID" name="delStandardSizeDetID" type="hidden">
                               </div>
-{{-- 
-                          <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                              <div class="input-field col s12">                                                    
-                                  <input type="text" value="{{$standardDetail->strStanSizeDetailName}}">
-                                  <label>Category Name</label>
-                              </div>   
-                          </div> --}}
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
@@ -294,17 +287,17 @@
                               </div>
                           </div>
                                                    
-                       {{--    <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                          <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
                                 <input value="{{ $standardDetail->dblStanSizeCm }}"type="text" readonly>
                                 <label for="stanSizeDet_cm">Cm </label>
                               </div>
-                          </div> --}}
+                          </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input value="{{ $standardDetail->txtStanSizeDesc }}"type="text" readonly>
-                                <label for="stanSizeDet_desc">Description </label>
+                                <input value="{{ $standardDetail->strStandardSizeDetInactiveReason }}" type="text" name="delStandardSizeDet" id="delStandardSizeDet">
+                                <label for="stanSizeDet_desc"><span class="red-text"><b>*</b></span>Reason for Deactivation: </label>
                               </div>
                           </div>
 
