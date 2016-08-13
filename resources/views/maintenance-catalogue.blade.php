@@ -65,6 +65,18 @@
         </div>
       @endif
 
+     <!-- Update Duplicate -->
+       @if (Session::has('flash_message_duplicate'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red accent-1">
+              <span class="alert alert-success"><i class="tiny mdi-navigation-close right" onclick="$('#flash_message').hide()"></i></span>
+              <em> {!! session('flash_message_duplicate') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif 
+
    
 
     
@@ -125,21 +137,20 @@
                         </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                        <div class="input-field col s12">
-                          <select class="browser-default" id="editCategory" name="editCategory"> 
-                                <option disabled selected value="">Choose Category</option>
-                              @foreach($category as $cat)
-                                @if($catalogue->strCatalogueCategoryFK == $cat->strGarmentCategoryID && $cat->boolIsActive == 0)
-                                  <option selected value="{{$cat->strGarmentCategoryID}}" selected>{{$cat->strGarmentCategoryName}}</option>
-                                @elseif($cat->boolIsActive == 1)
-                                  <option value="{{$cat->strGarmentCategoryID}}" selected>{{$cat->strGarmentCategoryName}}</option>
-                                @endif
-                              @endforeach
-                          </select>
-                          <!--<label>Category</label>-->
-                        </div> 
-                    </div>     
-
+                              <div class="input-field col s12">                                                    
+                                <select class="browser-default" id="editCategory" name="editCategory" required>
+                                  <option value="" disabled selected>Choose garment category</option>
+                                  @foreach($category as $cat)
+                                    @if($catalogue->strCatalogueCategoryFK == $cat->strGarmentCategoryID && $cat->boolIsActive == 1)
+                                      <option selected value="{{ $cat->strGarmentCategoryID }}">{{ $cat->strGarmentCategoryName }}</option>
+                                    @elseif($cat->boolIsActive == 1)
+                                      <option value="{{ $cat->strGarmentCategoryID }}">{{ $cat->strGarmentCategoryName }}</option>
+                                    @endif
+                                  @endforeach
+                                </select>   
+                              </div>  
+                      </div>
+                     
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s12">
                           <input required value="{{$catalogue->strCatalogueName}}" id="editCatalogueName" name = "editCatalogueName" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >

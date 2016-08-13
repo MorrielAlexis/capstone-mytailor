@@ -60,7 +60,7 @@ class MaterialButtonController extends Controller
      */
     public function store(MaintenanceButtonRequest $request)
     {
-         $file = $request->input('addImage');
+        $file = $request->input('addImage');
         $destinationPath = 'imgMaterialButtons';
 
                 if($file == '' || $file == null){
@@ -155,9 +155,20 @@ class MaterialButtonController extends Controller
     function update_button(Request $request)
     {
         $button = Button::find($request->input('editButtonID'));
+        $checkButtons = Button::all();
 
         $file = $request->input('editButtonImage');
         $destinationPath = 'imgMaterialButtons';
+        $isAdded = FALSE;
+
+        foreach ($checkButtons as $checkButton)
+            if(!strcasecmp($checkButton->intButtonID, $request->input('editButtonID')) == 0 &&
+                strcasecmp($checkButton->strButtonBrand, trim($request->input('editButtonBrand'))) == 0 &&
+                strcasecmp($checkButton->strButtonSize, trim($request->input('editButtonSize'))) == 0  &&
+                strcasecmp($checkButton->strButtonColor, trim($request->input('editButtonColor'))) == 0)
+                $isAdded = TRUE;
+
+        if(!$isAdded){
 
                 if($file == $button->strButtonImage)
                 {
@@ -178,6 +189,8 @@ class MaterialButtonController extends Controller
                 $button ->save();
 
                 \Session::flash('flash_message_update','Button successfully updated.'); //flash message
+
+         }else \Session::flash('flash_message_duplicate','Button already exists.'); //flash message  
 
                 return redirect('maintenance/material-button');
 

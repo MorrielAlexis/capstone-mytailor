@@ -139,10 +139,21 @@ class MaterialThreadController extends Controller
 
      function editThread(Request $request)
     {
+
         $thread = Thread::find($request->input('editThreadID'));
+        $checkThreads = Thread::all();
 
         $file = $request->input('strThreadImage');
         $destinationPath = 'imgMaterialThreads';
+        $isAdded = FALSE;
+
+        foreach ($checkThreads as $checkThread)
+            if(!strcasecmp($checkThread->intThreadID, $request->input('editThreadID')) == 0 &&
+                strcasecmp($checkThread->strThreadBrand, $request->input('editThreadBrand')) == 0 &&
+                strcasecmp($checkThread->strThreadColor, trim($request->input('editThreadColor'))) == 0)
+                $isAdded = TRUE;
+
+        if(!$isAdded){
 
                 if($file == $thread->editThreadImage)
                 
@@ -162,6 +173,7 @@ class MaterialThreadController extends Controller
                 $thread->save();
 
                  \Session::flash('flash_message_update','Thread successfully updated.'); //flash message
+        }else \Session::flash('flash_message_duplicate','Thread already exists.'); //flash message   
 
                 return redirect('maintenance/material-thread');
     }

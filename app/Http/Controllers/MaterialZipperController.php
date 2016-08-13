@@ -138,29 +138,38 @@ class MaterialZipperController extends Controller
 
     function update_zipper(Request $request)
     {
-       $zipper = Zipper::find($request->input('editZipperID'));
+        $zipper = Zipper::find($request->input('editZipperID'));
+        $checkZippers = Zipper::all();
 
         $file = $request->input('editZipperImage');
         $destinationPath = 'imgMaterialZippers';
+        $isAdded = FALSE;
+
+        foreach ($checkZippers as $checkZipper)
+            if(!strcasecmp($checkZipper->intZipperID, $request->input('editZipperID')) == 0 &&
+                strcasecmp($checkZipper->strZipperBrand, trim($request->input('editZipperBrand'))) == 0 &&
+                strcasecmp($checkZipper->strZipperColor, trim($request->input('editZipperColor'))) == 0)
+                $isAdded = TRUE;
+
+        if(!$isAdded){
 
                 if($file == $zipper->strZipperImage)
                  {
                     $zipper->strZipperBrand = trim($request->input('editZipperBrand'));
                     $zipper->strZipperColor = trim($request->input('editZipperColor'));
-                    $zipper->strZipperSize = trim($request->input('editZipperSize'));
                     $zipper->txtZipperDesc = trim($request->input('editZipperDesc'));    
                 }else{  
                     $request->file('editImg')->move($destinationPath);
 
                     $zipper->strZipperBrand = trim($request->input('editZipperBrand'));
                     $zipper->strZipperColor = trim($request->input('editZipperColor'));
-                     $zipper->strZipperSize = trim($request->input('editZipperSize'));
                     $zipper->txtZipperDesc = trim($request->input('editZipperDesc'));
                     $zipper->strZipperImage = 'imgMaterialZippers/'.$file;
                 }
                 $zipper->save();
 
                 \Session::flash('flash_message_update','Zipper successfully updated.'); //flash message
+         }else \Session::flash('flash_message_duplicate','Zipper already exists.'); //flash message   
 
                 return redirect('maintenance/material-zipper');  
 

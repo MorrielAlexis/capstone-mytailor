@@ -64,7 +64,17 @@
       @endif
 
 
-
+      <!-- Update Duplicate -->
+       @if (Session::has('flash_message_duplicate'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red accent-1">
+              <span class="alert alert-success"><i class="tiny mdi-navigation-close right" onclick="$('#flash_message').hide()"></i></span>
+              <em> {!! session('flash_message_duplicate') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif 
 
       <!--Reactivate Garment Category-->
       @if (Input::get('successRec') == 'true')
@@ -72,17 +82,6 @@
           <div class="col s12 m12 l12">
             <div class="card-panel yellow">
               <span class="black-text" style="color:black">Successfully reactivated material!<i class="tiny mdi-navigation-close right" onclick="$('#success-message').hide()"></i></span>
-            </div>
-          </div>
-        </div>
-      @endif
-
-    <!--  <Duplicate Error Message>   -->
-    @if (Input::get('success') == 'duplicate')
-        <div class="row" id="success-message">
-          <div class="col s12 m12 l12">
-            <div class="card-panel red">
-              <span class="black-text" style="color:black">Record already exists!<i class="tiny mdi-navigation-close right" onclick="$('#success-message').hide()"></i></span>
             </div>
           </div>
         </div>
@@ -126,7 +125,7 @@
                       <tr>
                         <!--<th date-field="Hook and Eye ID">Hook and Eye ID</th>-->
                         <th data-field="Hook and Eye Name"> Hook Brand</th>
-                        <th data-field="Hook and Eyes"> Style </th>
+                        <th data-field="Hook and Eyes"> Size </th>
                         <th data-field="Hook and Eye Color"> Hook Color</th>
                         <th data-field="Hook and Eye Desc">Description</th>
                         <th data-field="Image">Image</th>
@@ -170,8 +169,8 @@
 
                             <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                 <div class="input-field col s6">
-                                  <input id="editHooks" name = "editHooks" value = "{{$hook->strHooks}}" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
-                                  <label for="HookEye_s"> Hook and Eye Style<span class="red-text"><b>*</b></span></label>
+                                  <input id="editHooks" name = "editHooks" value = "{{$hook->strHookSize}}" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
+                                  <label for="HookEye_s"> Hook and Eye Size<span class="red-text"><b>*</b></span></label>
                                 </div>
 
                                 <div class="input-field col s6">
@@ -229,8 +228,8 @@
 
                               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                   <div class="input-field col s6">
-                                    <label for="Hook_s">Hook and Eye Style </label>
-                                    <input value="{{$hook->strHooks}}" id="delHooks" name="delHooks" type="text" readonly>
+                                    <label for="Hook_s">Hook and Eye Size </label>
+                                    <input value="{{$hook->strHookSize}}" id="delHooks" name="delHooks" type="text" readonly>
                                   </div>
 
                                   <div class="input-field col s6">
@@ -306,7 +305,7 @@
       <div class = "col s12" style="padding:15px;  border:3px solid white;">
         <div class="input-field col s6">
           <input required id="strHooks" name = "strHooks" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
-          <label for="HookEye_s"> Hook and Eye Style <span class="red-text"><b>*</b></span></label>
+          <label for="HookEye_s"> Hook and Eye Size <span class="red-text"><b>*</b></span></label>
         </div>
 
         <div class="input-field col s6">

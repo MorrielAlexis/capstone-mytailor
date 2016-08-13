@@ -20,7 +20,7 @@ class MaterialHookEyeSeeder extends Seeder
                 'strHookBrand' => 'Skirt Hook',
                 'strHookSize' => 'Small',
                 'strHookColor' => 'Black',
-                'strHookImage' => '',
+                'strHookImage' => 'imgMaterialHooks/skirthookandeye-1.jpg',
                 'textHookDesc' => 'Use for skirt and dress',
                 'boolIsActive' => '1'
             ),
@@ -30,7 +30,7 @@ class MaterialHookEyeSeeder extends Seeder
                 'strHookBrand' => 'Pants Hook',
                 'strHookSize' => 'Medium',
                 'strHookColor' => 'Silver',
-                'strHookImage' => '',
+                'strHookImage' => 'imgMaterialHooks/skirthookandeye-5.jpg',
                 'textHookDesc' => 'Use for pants',
                 'boolIsActive' => '1'
             )

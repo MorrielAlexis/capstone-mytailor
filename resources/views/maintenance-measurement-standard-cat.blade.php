@@ -78,18 +78,7 @@
         </div>
       @endif
 
-      <!--Delete Garment Category-->
-      @if (Input::get('successDel') == 'true')
-        <div class="row" id="success-message">
-          <div class="col s12 m12 l12">
-            <div class="card-panel yellow">
-              <span class="black-text" style="color:black">Successfully deactivated garment category!<i class="tiny mdi-navigation-close right" onclick="$('#success-message').hide()"></i></span>
-            </div>
-          </div>
-        </div>
-      @endif
-
-
+     
 
       <!--Reactivate Garment Category-->
       @if (Input::get('successRec') == 'true')
@@ -123,6 +112,19 @@
           </div>
         </div>
       @endif
+
+      
+     <!-- Update Duplicate -->
+       @if (Session::has('flash_message_duplicate'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red accent-1">
+              <span class="alert alert-success"><i class="tiny mdi-navigation-close right" onclick="$('#flash_message').hide()"></i></span>
+              <em> {!! session('flash_message_duplicate') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif 
 
      <div class="row">
       <div class="col s12 m12 l12">

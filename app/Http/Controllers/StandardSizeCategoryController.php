@@ -52,7 +52,26 @@ class StandardSizeCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $standardDet = StandardSizeDetail::get();
+
+        $standardDetail = StandardSizeDetail::create(array(
+                    'strStandardSizeDetID' => $request->input('strStandardSizeDetID'),
+                    'strStanSizeSegmentFK' => $request->input('strStanSizeSegmentFK'),     
+                    'strStanSizeMeasCatFK' => $request->input('strStanSizeMeasCatFK'),
+                    'strStanSizeCategoryFK' => $request->input('strStanSizeCategoryFK'),
+                    'strStanSizeDetailName' => trim($request->input('strStanSizeDetailName')), 
+                    'strStanSizeFitType' => trim($request->input('strStanSizeFitType')),
+                    'dblStanSizeInch' => trim($request->input('dblStanSizeInch')),   
+                    'dblStanSizeCm' => trim($request->input('dblStanSizeCm')),   
+                    'txtStanSizeDesc' => trim($request->input('txtStanSizeDesc')),
+                    'boolIsActive' => 1
+                    ));
+
+                $standardDetail->save();
+
+         \Session::flash('flash_message','Standard size detail successfully added.');
+
+        return redirect('maintenance/standard-size-detail');
     }
 
     /**

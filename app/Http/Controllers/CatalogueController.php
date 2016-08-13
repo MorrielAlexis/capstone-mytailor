@@ -148,11 +148,20 @@ class CatalogueController extends Controller
     }
     function update_catalogue(Request $request)
     {
-
         $catalogue = Catalogue::find($request->input('editCatalogueID'));
+        $checkCatalogues = Catalogue::all();
 
         $file = $request->input('editImage');
         $destinationPath = 'imgCatalogue';
+        $isAdded = FALSE;
+
+        foreach ($checkCatalogues as $checkCatalogue)
+            if(!strcasecmp($checkCatalogue->strCatalogueID, $request->input('editCatalogueID')) == 0 &&
+                strcasecmp($checkCatalogue->strCatalogueCategoryFK, $request->input('editCategory')) == 0 &&
+                strcasecmp($checkCatalogue->strCatalogueName, trim($request->input('editCatalogueName'))) == 0)
+                $isAdded = TRUE;
+
+        if(!$isAdded){
 
                 if($file == $catalogue->strCatalogueImage)
                 {
@@ -172,8 +181,9 @@ class CatalogueController extends Controller
 
 
               \Session::flash('flash_message_update','Catalogue successfully updated.'); //flash message    
-            
-            return redirect('maintenance/catalogue');
+        }else \Session::flash('flash_message_duplicate','Catalogue already exists.'); //flash message   
+
+             return redirect('maintenance/catalogue');
     }
 
     function delete_catalogue(Request $request)
