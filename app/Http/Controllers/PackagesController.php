@@ -168,10 +168,22 @@ class PackagesController extends Controller
 
     function update_package(Request $request)
     {
-         $sets = Package::find($request->input('editPackageID'));
+        $sets = Package::find($request->input('editPackageID'));
+        $checkSets = Catalogue::all();
 
         $file = $request->input('editImage');
         $destinationPath = 'imgPackages';
+        $isAdded = FALSE;
+
+        foreach ($checkSet as $checkSet)
+            if(!strcasecmp($checkSet->strPackageID, $request->input('editPackageID')) == 0 &&
+                strcasecmp($checkSet->strPackageSeg1FK, $request->input('editSegment1')) == 0 &&
+                strcasecmp($checkSet->strPackageSeg2FK, $request->input('editSegment2')) == 0 &&
+                strcasecmp($checkSet->strPackageSeg3FK, $request->input('editSegment3')) == 0 &&
+                strcasecmp($checkSet->strPackageName, trim($request->input('editPackageName'))) == 0)
+                $isAdded = TRUE;
+
+        if(!$isAdded){
 
                 if($file == $sets->strPackageImage)
                 {
@@ -204,7 +216,8 @@ class PackagesController extends Controller
 
                 $sets->save();
 
-            \Session::flash('flash_message_update','Set was successfully updated.'); //flash message      
+            \Session::flash('flash_message_update','Set was successfully updated.'); //flash message    
+         }else \Session::flash('flash_message_duplicate','Set already exists.'); //flash message    
 
             
             return redirect('maintenance/sets');

@@ -156,13 +156,23 @@ class SegmentPatternController extends Controller
         //
     }
 
-    function update_segmentpattern(SegmentPatternRequest $request)
+    function update_segmentpattern(Request $request)
     {
-
         $pattern = SegmentPattern::find($request->input('editPatternID'));
+
+        $checkPatterns = SegmentPattern::all();
 
         $file = $request->input('editImage');
         $destinationPath = 'imgDesignPatterns';
+        $isAdded = FALSE;
+
+        foreach ($checkPatterns as $checkPattern)
+            if(!strcasecmp($checkPattern->strSegPatternID, $request->input('editPatternID')) == 0 &&
+                strcasecmp($checkPattern->strSegPStyleCategoryFK, $request->input('editSegmentStyle')) == 0 &&
+                strcasecmp($checkPattern->strSegPName, trim($request->input('editPatternName'))) == 0)
+                $isAdded = TRUE;
+
+        if(!$isAdded){
 
                 if($file == $pattern->strSegPImage)
                 {
@@ -183,7 +193,9 @@ class SegmentPatternController extends Controller
 
                 $pattern->save();
 
-            \Session::flash('flash_message_update','Segment pattern detail/s successfully updated.'); //flash message      
+            \Session::flash('flash_message_update','Segment pattern detail/s successfully updated.'); //flash message   
+
+            }else \Session::flash('flash_message_duplicate','Segment pattern already exists.'); //flash message   
 
             
             return redirect('maintenance/segment-pattern');

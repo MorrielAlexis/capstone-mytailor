@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\StandardSizeCategory;
 use App\Http\Requests;
+use App\Http\Requests\MaintenanceStandardSizeCategoryRequest;
 use App\Http\Controllers\Controller;
 
 
@@ -50,9 +51,22 @@ class StandardSizeCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MaintenanceStandardSizeCategoryRequest $request)
     {
-        //
+        $standards = StandardSizeCategory::get();
+
+        $standard = StandardSizeCategory::create(array(
+                    'strStandardSizeCategoryID' => $request->input('strStandardSizeCategoryID'),
+                    'strStandardSizeCategoryName' => trim($request->input('strStandardSizeCategoryName')), 
+                    'txtStandardSizeCategoryDesc' => trim($request->input('txtStandardSizeCategoryDesc')),
+                    'boolIsActive' => 1
+                    ));
+
+                $standard->save();
+
+         \Session::flash('flash_message','Standard size category successfully added.');
+
+        return redirect('maintenance/standard-size-category');
     }
 
     /**
@@ -98,6 +112,44 @@ class StandardSizeCategoryController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function update_standardCategory(Request $request)
+    {   
+        $standard = StandardSizeCategory::find($request->input('editStandardSizeCategoryID'));
+        $checkStandardCats = StandardSizeCategory::all();
+        $isAdded = FALSE;
+
+        foreach ($checkStandardCats as $checkStandardCat)
+            if(!strcasecmp($checkStandardCat->strStandardSizeCategoryID, $request->input('editStandardSizeCategoryID')) == 0 &&
+                strcasecmp($checkStandardCat->strStandardSizeCategoryName, trim($request->input('editStandardSizeCatName'))) == 0)
+                $isAdded = TRUE;
+
+        if(!$isAdded){
+        $standard = StandardSizeCategory::find($request->input('editStandardSizeCategoryID'));
+
+        $standard->strStandardSizeCategoryName = trim($request->input('editStandardSizeCatName'));
+        $standard->txtStandardSizeCategoryDesc = trim($request->input('editStandardSizeCatDesc'));
+        $standard->save();
+
+        \Session::flash('flash_message_update','Standard size category successfully updated.'); //flash message
+         }else \Session::flash('flash_message_duplicate','Standard size category already exists.'); //flash message 
+
+        return redirect('maintenance/standard-size-category');
+    }
+
+    function delete_standardCategory(Request $request)
+    {
+         $id = $request->input('delStandardCatID');
+            $standard = StandardSizeCategory::find($request-> input('delStandardCatID'));
+            $standard->strStandardSizeCategoryInactiveReason = trim($request->input('delInactiveStandardSizeCat'));
+            $standard->boolIsActive = 0;
+            $standard->save();
+
+        \Session::flash('flash_message_delete','Standard size category successfully deactivated.');
+
+        return redirect('maintenance/standard-size-category');
+        
     }
 
     public function smartCounter($id)

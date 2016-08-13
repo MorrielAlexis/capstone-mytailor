@@ -78,18 +78,7 @@
         </div>
       @endif
 
-      <!--Delete Garment Category-->
-      @if (Input::get('successDel') == 'true')
-        <div class="row" id="success-message">
-          <div class="col s12 m12 l12">
-            <div class="card-panel yellow">
-              <span class="black-text" style="color:black">Successfully deactivated garment category!<i class="tiny mdi-navigation-close right" onclick="$('#success-message').hide()"></i></span>
-            </div>
-          </div>
-        </div>
-      @endif
-
-
+     
 
       <!--Reactivate Garment Category-->
       @if (Input::get('successRec') == 'true')
@@ -123,6 +112,19 @@
           </div>
         </div>
       @endif
+
+
+     <!-- Update Duplicate -->
+       @if (Session::has('flash_message_duplicate'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red accent-1">
+              <span class="alert alert-success"><i class="tiny mdi-navigation-close right" onclick="$('#flash_message').hide()"></i></span>
+              <em> {!! session('flash_message_duplicate') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif 
 
      <div class="row">
       <div class="col s12 m12 l12">
@@ -158,65 +160,67 @@
                       <tr>   
                         <td>{{ $standard->strStandardSizeCategoryName }}</td> 
                         <td>{{ $standard->txtStandardSizeCategoryDesc }}</td>
-                        <td>
-                          <a style = "color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement information" href="#edit"><i class="mdi-editor-mode-edit"></i></a>
-                          <a style = "color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to delete measurement information" href="#del"><i class="mdi-action-delete"></i></a>
-                      
-                          <div id="edit" class="modal modal-fixed-footer">
-                            <h5><font color = "#1b5e20"><center>EDIT STANDARD SIZE INFORMATION</center> </font> </h5>
-                             
-                            <div class="divider" style="height:2px"></div>
-                            <div class="modal-content col s12"> 
+                       <td><a style = "color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement information" href="#edit{{$standard->strStandardSizeCategoryID}}"><i class="mdi-editor-mode-edit"></i></a>
+                          <a style = "color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement information" href="#del{{$standard->strStandardSizeCategoryID}}"><i class="mdi-action-delete"></i></a>
+                        
+                          <div id="edit{{$standard->strStandardSizeCategoryID}}" class="modal modal-fixed-footer">
+                            <h5><font color = "#1b5e20"><center>EDIT MEASUREMENT INFORMATION</center> </font> </h5>
+                              {!! Form::open(['url' => 'maintenance/standard-size-category/update', 'method' => 'POST']) !!}
+                                <div class="divider" style="height:2px"></div>
+                                <div class="modal-content col s12"> 
+ 
+                                    <div class="input-field">
+                                      <input value="{{ $standard->strStandardSizeCategoryID }}" id="editStandardSizeCategoryID" name="editStandardSizeCategoryID" type="hidden" readonly>                                 
+                                    </div>
 
-                              <div class="input-field">
-                                <input value="" id="editStandardSizeCatID" name="editStandardSizeCatID" type="hidden" readonly>                                 
-                              </div>
+                                    <div class="input-field">
+                                      <label for="editMeasurementCategoryName"><span class="red-text"><b>*</b></span>Standard Measurement Category Name</label>
+                                      <input value="{{ $standard->strStandardSizeCategoryName }}" id="editStandardSizeCatName" name="editStandardSizeCatName" type="text">                                 
+                                    </div>
 
-                              <div class="input-field">
-                                <label for="editStandardSizeCatName">Standard Size Category Name</label>
-                                <input value="" id="editStandardSizeCatName" name="editStandardSizeCatName" type="text">                                 
-                              </div>
+                                    <div class="input-field">
+                                      <label for="editMeasurementCategoryDesc">Standard Measurement Category Description</label>
+                                      <input value="{{ $standard->txtStandardSizeCategoryDesc }}" id="editStandardSizeCatDesc" name="editStandardSizeCatDesc" type="text">                                 
+                                    </div>
+  
+                                </div> 
 
-                              <div class="input-field">
-                                <label for="editStandardSizeCatDesc">Standard Size Category Description</label>
-                                <input value="" id="editStandardSizeCatDesc" name="editStandardSizeCatDesc" type="text">                                 
-                              </div>
-
-                            </div> 
-
-                            <div class="modal-footer col s12" style="background-color:#26a69a">
-                              <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Update</button>
-                              <a class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
-                            </div>
-                          </div>
-
-                         
-
-                          <div id="del" class="modal modal-fixed-footer">
-                            <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS STANDARD SIZE INFORMATION?</center> </font> </h5>
-                            
-                            <div class="divider" style="height:2px"></div>
-                            <div class="modal-content col s12">
-                                
-                              <div class="input-field">
-                                  <input value="" id="delStandardSizeCatID" name="delStandardSizeCatID" type="hidden" readonly>                                 
+                                <div class="modal-footer col s12" style="background-color:#26a69a">
+                                  <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Update</button>
+                                  <a class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
                                 </div>
-
-                              <div class="input-field col s12">
-                                <input value="" type="text" readonly>
-                                <label for="StandardSizeCat_name">Standard Size Category Name</label>
-                              </div>
-
-                              <div class="input-field col s12">
-                                <label for="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span> </label>
-                                <input value="" id="delInactiveHead" name="delInactiveHead" type="text">                                 
-                              </div>
+                              {!! Form::close() !!}
                             </div>
 
-                            <div class="modal-footer col s12" style="background-color:#26a69a">
-                              <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">OK</button>
-                              <a class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
+                            <!--Deactivate Standard Category-->
+
+                         <div id="del{{$standard->strStandardSizeCategoryID}}" class="modal modal-fixed-footer">
+                            <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS MEASUREMENT INFORMATION?</center> </font> </h5>
+                            
+                            {!! Form::open(['url' => 'maintenance/standard-size-category/destroy']) !!}
+                              <div class="divider" style="height:2px"></div>
+                              <div class="modal-content col s12">
+                                
+                                  <div class="input-field">
+                                      <input value="{{ $standard->strStandardSizeCategoryID }}" id="delStandardCatID" name="delStandardCatID" type="hidden" readonly>                                 
+                                    </div>
+
+                                  <div class="input-field col s12">
+                                    <input value="{{ $standard->strStandardSizeCategoryName }}" type="text" readonly>
+                                    <label for="measurement_name">Measurement Category Name</label>
+                                  </div>
+
+                                  <div class="input-field col s12">
+                                    <label for="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span> </label>
+                                    <input value="{{ $standard->strStandardSizeCategoryInactiveReason}}" id="delInactiveStandardSizeCat" name="delInactiveStandardSizeCat" type="text" required>                                 
+                                  </div>
                             </div>
+
+                              <div class="modal-footer col s12" style="background-color:#26a69a">
+                                <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">OK</button>
+                                <a class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
+                              </div>
+                            {!! Form::close() !!}
                           </div>
                         </td>
                       </tr>
@@ -232,15 +236,16 @@
 
             <div id="addStandardSizeCatInfo" class="modal modal-fixed-footer">
               <h5><font color = "#1b5e20"><center>CREATE NEW STANDARD SIZE INFORMATION</center> </font> </h5> 
-                                    
-              <div class="divider" style="height:2px"></div>
-              <div class="modal-content col s12"> 
-                
+                {!! Form::open(['url' => 'maintenance/standard-size-category', 'method' => 'post']) !!}                     
+                  <div class="divider" style="height:2px"></div>
+                  <div class="modal-content col s12"> 
+            
+
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}" />
-                <input value="" name="strStandardSizeCategoryID" type="text" hidden>
+                          <input value="{{ $newID }}" id="strStandardSizeCategoryID" name="strStandardSizeCategoryID" type="text" hidden>
                                       
                 <div class="input-field">
-                  <label for="strStandardSizeCategoryName">Standard Size Category Name</label>
+                  <label for="strStandardSizeCategoryName"><span class="red-text"><b>*</b></span>Standard Size Category Name</label>
                   <input id="strStandardSizeCategoryName" name="strStandardSizeCategoryName" type="text">                                 
                 </div>
 
@@ -253,7 +258,7 @@
 
               <div class="modal-footer col s12" style="background-color:#26a69a">
                 <button type="submit" name="send" id="send" class=" modal-action  waves-effect waves-green btn-flat">Create</button>
-                <a class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
+                <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
               </div>
             </div> 
             
