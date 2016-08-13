@@ -81,6 +81,7 @@
 													<div class="col s4"><b style="color:teal">Style Category</b></div>
 													<div class="col s4"><b style="color:teal">Segment Pattern</b></div>
 													<div class="col s4"><b style="color:teal">Style Price</b></div>
+													<div class="col s12"><div class="divider"></div></div>
 												</div>
 												
 													@for($i = 0; $i < count($segments); $i++)
@@ -226,15 +227,12 @@
 
                     		<!--start of bottom button-->
                     		<div class="col s12" style="margin-top:20px">
-                    			<!-- <div class="left col s1">
-							        <a href="{{ URL::to('generate-payment-receipt') }}" class="right btn-floating tooltipped btn-large green" data-position="bottom" data-delay="50"  data-tooltip="CLick to print a receipt for current transaction" href="#!" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-action-print"></i></a>
-							    </div> -->
-	                    		<!-- <button type="submit" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save order" style="background-color:#00695c; padding:9.5px; padding-bottom:45px; margin-top:20px; margin-left:30px"><label style="font-size:15px; color:white"><b>Save Order</b></label></button> -->
-	                    		<a href="#confirm-submission" class="right btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-left:40px; background-color:#00695c; color:white"><b><i class="mdi-navigation-check" style="padding-right:10px"></i>Save Order</b></a> 
+	                    		<button type="submit" href="#confirm-submission" class="right btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-left:40px; background-color:#00695c; color:white"><b><i class="mdi-navigation-check" style="padding-right:10px"></i>Save Order</b></button> 
+									{!! Form::close() !!}
 									<div class="col s12" style="margin-top:30px">
 							              <div  id="confirm-submission" class="modal modal-fixed-footer" style="height:300px; width:500px; margin-top:80px">
 							                  <h5><font color="black"><center><b>Warning!</b></center></font></h5>
-							                    
+							                 
 							                      <div class="divider" style="height:2px"></div>
 							                        <div class="modal-content col s12">
 							                          <div class="center col s4"><i class="mdi-alert-warning" style="color:green; font-size:60px"></i></div>
@@ -242,16 +240,16 @@
 							                        </div>
 
 							                      <div class="modal-footer col s12">
-							                          <button type="submit"  onclick="window.open('/generate-payment-receipt')" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">OK</font></button>
+							                          <a onclick="window.open('/generate-payment-receipt')" href="{{ URL::to('/transaction/walkin-individual') }}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">OK</font></a>
 							                      </div>
 							                </div>
-							        </div>							
-					{!! Form::close() !!}
+							        </div>
+							   
 							<!--end of bottom button-->
 	            			</div>	
 	        </div>
 
-	        <div class="divider" style="height:2px; margin-bottom:20px; margin-top:30px"></div>
+	        <div class="col s12"><div class="divider" style="height:2px; margin-bottom:20px; margin-top:30px"></div></div>
 	      	
 	      	<center><p><font color="gray">End of Payment Information Form</font></p></center>
 	

@@ -29,7 +29,10 @@
 				border: 1px solid teal;
 				text-align: center;
 			}
-
+			
+			.page-break {
+			    page-break-after: always;
+			}
 
 		</style>
 	</head>
@@ -57,7 +60,7 @@
         <div class="col s12" >
 			<div class="col s12" style="font-size:18px"><b>Job Order #:</b> <font color="red"><b>{!! session('joID') !!}</b> <font style="margin-left:38%; color:black">Receipt No.: <font color="teal"><b>OR0001</b></font></font></div>
        		
-       		<div class="left col s12" style="font-size:18px">Customer Name: <font color="teal"><b>Honey May Buenavides</b> <font style="margin-left:17%; color:black;">Customer Id: <font color="teal"><b>{!! session('custID') !!}</font></div>
+       		<div class="left col s12" style="font-size:18px">Customer Name: <font color="teal"><b>{{ $custname->fullname }}</b> <font style="margin-left:17%; color:black;">Customer Id: <font color="teal"><b>{!! session('custID') !!}</font></div>
         	
         </div>
 
@@ -66,10 +69,10 @@
         </div>
 
         <div class="col s12">
-			<div class="col s12" style="font-size:18px">Issued By: <font color="teal"><b>Morriel Aquino</b></div>
+			<div class="col s12" style="font-size:18px">Issued By: <font color="teal"><b>{{ $empname->employeename }}</b></div>
         </div>
 
-		<div class="col s12" style="margin-top:1%;">
+		<div class="col s12 page-break" style="margin-top:1%;">
 	        <table class="col s12" style="width:98% ">
 				<thead style="background-color:teal; opacity:0.90; color:white">
 					<tr>
@@ -102,11 +105,81 @@
 					</tr>
 				</tbody>
 			</table>
+
+			<!--Style Summary-->
+			<table class="col s6">
+				<thead style="background-color:teal; opacity:0.90; color:white">
+					<tr>
+						<th>Style Category</th>
+						<th>Pattern Name</th>
+						<th>Style Price</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Category 1</td>
+						<td>Pattern 1</td>
+						<td>0.00 PHP</td>
+					</tr>
+				</tbody>
+			</table>
+			<!--End of Style Summary-->
+
+			<!--Fabric Summary-->
+			<table class="col s6">
+				<thead style="background-color:teal; opacity:0.90; color:white">
+					<tr>
+						<th>Fabric Name</th>
+						<th>Fabric Price</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Fabric 1</td>
+						<td>0.00 PHP</td>
+					</tr>
+				</tbody>
+			</table>
+			<!--End of Fabric Summary-->
 		</div>
 
-		<br><br><br><br><br><br><br><br><br><br><br>
-			
-		<div class="col s12" style="margin-left:44%; margin-top:2%">
+		
+		<div class="col s12">
+			<left>
+				<h1 style="color:teal; font-size:20px;">
+					<img src="img/logo.jpg" class="left circle responsive-img valign profile-image center" style="height:5%; width:5%; margin-top:5px;">
+					<b>MyTailor</b> Store
+					<p style="color:gray; font-size:-0.5px;"></p>
+					<p style="color:gray">123-A Heaven St., Sta. Mesa, Manila</p>
+					<p style="color:gray">Contact: 0908-223-5065</p>
+					<p style="color:gray">Visit: www.myTailor.com</p>
+				</h1>
+			</left>
+			<right>
+				
+			</right>
+		</div>
+        <div class="col s12"><div class="divider" style="height:3px; background-color:teal"></div></div>
+
+        <h2 style="color:dimgray;"><center>PAYMENT RECEIPT</center></h2>	
+
+        <div class="col s12" >
+			<div class="col s12" style="font-size:18px"><b>Job Order #:</b> <font color="red"><b>{!! session('joID') !!}</b> <font style="margin-left:38%; color:black">Receipt No.: <font color="teal"><b>OR0001</b></font></font></div>
+       		
+       		<div class="left col s12" style="font-size:18px">Customer Name: <font color="teal"><b>{{ $custname->fullname }}</b> <font style="margin-left:17%; color:black;">Customer Id: <font color="teal"><b>{!! session('custID') !!}</font></div>
+        	
+        </div>
+
+        <div class="col s12">
+        	<div class="col s12" style="font-size:18px">Date: <font color="teal"><b>{{ date('m-d-Y') }}</b> <font style="margin-left:42%; color:black">Time: <font color="teal"><b>{{ date('h:i:s A') }}</b></font></font></font></div>
+        </div>
+
+        <div class="col s12">
+			<div class="col s12" style="font-size:18px">Issued By: <font color="teal"><b>{{ $empname->employeename }}</b></div>
+        </div>
+
+
+		<div class="col s12" style="margin-left:14%; margin-top:2%">
 			<table>
 				<thead>
 				</thead>
@@ -127,7 +200,7 @@
 			</table>
 		</div>
 		
-		<div class="col s12" style="margin-left:38%; margin-top:1%">
+		<div class="col s12" style="margin-left:14%; margin-top:1%">
 			<table>
 				<thead>
 				</thead>

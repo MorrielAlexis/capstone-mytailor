@@ -409,7 +409,7 @@ class WalkInIndividualController extends Controller
         $payment = TransactionJobOrderPayment::create(array(
                 'strPaymentID' => $jobPaymentID,
                 'strTransactionFK' => session()->get('joID'), //tblJobOrder
-                'dblAmountToPay' => session()->get('amountToPay'),
+                'dblAmountToPay' => session()->get('amountToPay'), 
                 'dblOutstandingBal' => session()->get('outstandingBal'),
                 'strReceivedByEmployeeNameFK' => 'EMPL001' ,
                 'dtPaymentDate' => $request->input('transaction_date'),
@@ -523,14 +523,10 @@ class WalkInIndividualController extends Controller
             }//end of loop for meas specs
         }//end of save loop for JO Specs
 
+        // $this->clearValues();
 
     }
 
-    // public function confirmPrint(Request $request){
-
-
-
-    // }
 
     public function generateReceipt()
     {
@@ -552,13 +548,18 @@ class WalkInIndividualController extends Controller
             ]
         ];
 
+        $custId = session()->get('custID');
         $custname = \DB::table('tblCustIndividual')
                     ->select('strIndivID', \DB::raw('CONCAT(strIndivFName, " ", strIndivMName, " ", strIndivLName) AS fullname'))
-                    ->where('strIndivID', '=', 'custID')
-                    ->get();
+                    ->where('strIndivID', '=', $custId)
+                    ->first();
 
+        $empname = \DB::table('tblEmployee')
+                    ->select('strEmployeeID', \DB::raw('CONCAT(strEmpFName, " ", strEmpMName, " ", strEmpLName) AS employeename'))
+                    ->where('strEmployeeID', '=', 'EMPL001')
+                    ->first();
 
-        $pdf = PDF::loadView('pdf/payment-receipt', compact('data'))->setPaper('Letter')->setOrientation('portrait');
+        $pdf = PDF::loadView('pdf/payment-receipt', compact('data','custname', 'empname'))->setPaper('Letter')->setOrientation('portrait');
 
         return $pdf->stream();
 

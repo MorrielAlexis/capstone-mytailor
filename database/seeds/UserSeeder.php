@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
 
             array(
                 'id' => 'USER002',
-                'name' => 'Honey Mae Buenavides',
+                'name' => 'Honey May Buenavides',
                 'type'=> 'customer',
                 'email' =>'haniganda@gmail.com',
                 'password' =>bcrypt('custpass01'),

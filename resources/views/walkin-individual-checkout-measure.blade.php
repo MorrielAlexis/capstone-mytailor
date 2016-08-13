@@ -174,7 +174,7 @@
 
 	        <div class="divider" style="height:1px; margin-bottom:20px; margin-top:30px"></div>
 	      	
-	      		<center><p><font color="gray">End of Measurement Form</font></p></center>
+	      		<p><font color="gray"><center>End of Measurement Form</center></font></p>
 	
 
 	    </div>
