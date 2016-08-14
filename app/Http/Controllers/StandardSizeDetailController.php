@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\MaintenanceStandardSizeDetailRequest;
 use App\Http\Controllers\Controller;
 use App\StandardSizeCategory;
 use App\StandardSizeDetail;
@@ -68,7 +69,7 @@ class StandardSizeDetailController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MaintenanceStandardSizeDetailRequest $request)
     {
         $standardDet = StandardSizeDetail::get();
 
@@ -135,6 +136,53 @@ class StandardSizeDetailController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    function update_standardDetail(Request $request)
+    {
+        $standardDetail = StandardSizeDetail::find($request->input('editStandardSizeDetID'));
+        $checkStandardDets = StandardSizeDetail::all();
+
+        $isAdded = FALSE;
+
+        foreach ($checkStandardDets as $checkStandardDet)
+            if(!strcasecmp($checkStandardDet->strStandardSizeDetID, $request->input('editStandardSizeDetID')) == 0 &&
+                strcasecmp($checkStandardDet->strStanSizeDetailName, trim($request->input('editStanSizeDetailName'))) == 0 && 
+                strcasecmp($checkStandardDet->strStanSizeSegmentFK, $request->input('editStandardDetSegment')) == 0 &&
+                strcasecmp($checkStandardDet->strStanSizeMeasCatFK, $request->input('editMeasCategory')) == 0 &&
+                strcasecmp($checkStandardDet->strStanSizeCategoryFK, $request->input('editStandardSizeCategory')) == 0 &&
+                strcasecmp($checkStandardDet->strStanSizeFitType, $request->input('editStanSizeFitType')) == 0)
+                $isAdded = TRUE;
+
+        if(!$isAdded){
+
+                $standardDetail->strStanSizeSegmentFK= $request->input('editStandardDetSegment'); 
+                $standardDetail->strStanSizeMeasCatFK = $request->input('editMeasCategory');
+                $standardDetail->strStanSizeCategoryFK = $request->input('editStandardSizeCategory');
+                $standardDetail->strStanSizeDetailName = trim($request->input('editStanSizeDetailName'));
+                $standardDetail->strStanSizeFitType = trim($request->input('editStanSizeFitType'));
+                $standardDetail->dblStanSizeInch = trim($request->input('editStanSizeInch'));
+                $standardDetail->dblStanSizeCm = trim($request->input('editStanSizeCm'));
+                $standardDetail->txtStanSizeDesc = trim($request->input('editConPerson'));
+
+                $standardDetail->save();
+
+        \Session::flash('flash_message_update','Measurement detail/s successfully updated.');
+     }else \Session::flash('flash_message_duplicate','Measurement detail/s already exists.'); //flash message 
+
+        return redirect('maintenance/standard-size-detail');
+    }
+
+    function delete_standardDetail(Request $request)
+    {
+        $standardDetail = StandardSizeDetail::find($request->input('delStandardSizeDetID'));
+        $standardDetail->strStandardSizeDetInactiveReason = trim($request->input('delStandardSizeDet'));
+        $standardDetail->boolIsActive = 0;
+        $standardDetail->save();
+
+        \Session::flash('flash_message_delete','Standard size detail successfully deactivated.'); //flash message
+
+        return redirect('maintenance/standard-size-detail');
     }
 
      public function smartCounter($id)

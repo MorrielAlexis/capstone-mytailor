@@ -310,9 +310,11 @@
 								<!--Garment Description Here-->
 								<div class="col s12" style="margin-top:20px; color:gray"><p>Garment description below:</p></div>
 								<div class="col s12" style="margin-left:130px">
-									<div class="col s4" style="color:teal;"><p><b>Garment Category:</b></p></div>
-									<div class="col s8"><p>{{ $segment->strGarmentCategoryName }}</p></div>
-
+									<div class = "row">
+										<div class="col s4" style="color:teal;"><p><b>Garment Category:</b></p></div>
+										<div class="col s8"><p>{{ $segment->strGarmentCategoryName }}</p></div>
+									</div>
+									
 									<div class="col s4" style="color:teal;"><p><b>Garment Segment:</b></p></div>
 									<div class="col s8"><p>{{ $segment->strSegmentName }}</p></div>
 
@@ -343,10 +345,10 @@
 
 
 							<div class="col s12" style="padding:10px">
-								<div class="col s6">
-									<!--<a class="btn" style="background-color:#a7ffeb; color:black"><b><i class="mdi-navigation-close" style="padding-right:10px"></i>Cancel</b></a>-->
-								</div>	
-								<div class="col s6">
+								<!-- <div class="col s6">
+									<a class="btn" style="background-color:#a7ffeb; color:black"><b><i class="mdi-navigation-close" style="padding-right:10px"></i>Cancel</b></a>
+								</div>	 -->
+								<div class="right col s6">
 									<!--<a href="{{URL::to('transaction/walkin-individual-bulk-orders')}}" class="right btn" style="color:white; background-color:teal; margin-left:20px; border:3px teal solid">Add another set</a>-->
 									<a href="{{URL::to('transaction/walkin-individual-show-items')}}" class="right btn" style="background-color:#00695c; color:white"><b><i class="mdi-content-add" style="padding-right:10px;"></i>Add another item</b></a>
 								</div>

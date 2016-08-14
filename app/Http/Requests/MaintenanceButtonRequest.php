@@ -25,8 +25,7 @@ class MaintenanceButtonRequest extends Request
     {
         return [
             'strButtonBrand'    =>  'required|unique_with:tblButton,strButtonSize,strButtonColor'
-            // 'editThreadBrand'   =>  'unique:tblThread,strThreadBrand'
-        ];
+    
     }
 
     public function messages()
@@ -34,7 +33,6 @@ class MaintenanceButtonRequest extends Request
         return [
             'strButtonBrand.unique'  =>  'Button already exists.',
             'strButtonBrand.required' => 'Button name is required.'
-            // 'editThreadBrand.unique'  => 'Thread name already exists.'
         ];
 
     }

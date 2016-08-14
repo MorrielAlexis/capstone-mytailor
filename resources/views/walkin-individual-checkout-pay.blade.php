@@ -53,7 +53,7 @@
 	                    </div>
                     </div>
 
-					<div class="col s6 overflow-x" style="min-height:200px; max-height:350px; border: 3px gray solid; padding:20px">
+					<div class="col s6 overflow-x" style="height:300px; max-height:350px; border: 3px gray solid; padding:20px">
 						<div class="col s12">
 		                    <label style="font-size:20px; color:dimgray;"><center><b>Order Summary</b></center></label>
 		                        <div class="col s12" style="margin-bottom:30px"><div class="divider" style="height:2px; background-color:teal"></div></div>
@@ -80,7 +80,7 @@
 					</div>
 
 					<!--For the design summary-->
-					<div class="col s6 overflow-x" style="min-height:200px; max-height:350px; border: 3px gray solid; padding:20px">
+					<div class="col s6 overflow-x" style="height:300px; max-height:350px; border: 3px gray solid; padding:20px">
 					<label style="font-size:20px; color:dimgray;"><center><b>Design Summary</b></center></label>
 		                        <div class="col s12" style="margin-bottom:20px"><div class="divider" style="height:2px; background-color:teal"></div></div>
 					@foreach($segments as $segment)
@@ -153,11 +153,11 @@
                         	<div class="col s8" style="padding:18px; padding-top:30px">
 	                        	<div class="col s6">
 			          				<input name="termsOfPayment" value="Half Payment" type="radio" class="filled-in payment" id="half_pay"/>
-	      							<label for="half_pay">Half (50-50)</label>
+	      							<label for="half_pay">Half (50%)</label>
 								</div>
 								<div class="col s6">
 				          			<input name="termsOfPayment" value="Full Payment" type="radio" class="filled-in payment" id="full_pay" />
-		      						<label for="full_pay">Full (100)</label>
+		      						<label for="full_pay">Full (100%)</label>
 		      					</div>
 	      					</div>
 							
@@ -233,9 +233,14 @@
 
                     		<!--start of bottom button-->
                     		<div class="col s12" style="margin-top:20px">
+                    			<!-- <div class="left col s1">
+							        <a href="{{ URL::to('generate-payment-receipt') }}" class="right btn-floating tooltipped btn-large green" data-position="bottom" data-delay="50"  data-tooltip="CLick to print a receipt for current transaction" href="#!" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-action-print"></i></a>
+							    </div> -->
 	                    		<button type="submit" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save payment information and get measured" style="background-color:#00695c; padding:9.5px; padding-bottom:45px; margin-top:20px; margin-left:30px"><label style="font-size:15px; color:white"><b>Save Order</b></label></button>
+							</div>
 					{!! Form::close() !!}
 							<!--end of bottom button-->
+	            			
 	            </div>
 	        </div>
 
@@ -418,6 +423,12 @@
 		$(document).ready(function()
 		{	
 		    setInterval('updateClock()', 1000);
+		});
+	</script>
+
+	<script>
+		$(document).on("click", ".saveOrder", function(){
+			document.getElementById('print-receipt').submit();
 		});
 	</script>
 

@@ -42,7 +42,7 @@
 			{!! Form::open(['url' => 'transaction/walkin-individual-save-measurements', 'method' => 'POST']) !!}
 			@foreach($segments as $i => $segment)
 			<div class="col s12" style="margin-bottom:10px">
-				<div class="col s5">
+				<div class="col s12">
 					<div class="col s4"><p style="color:gray"><b>Measurement Type</b></p></div>
 					<div class="col s8">		
 							<select id = "measurement-category">
@@ -54,9 +54,7 @@
 				</div>
 
 
-				<div class="col s7">
-			        <a href="{{ URL::to('generate-payment-receipt') }}" class="right btn-floating tooltipped btn-large green" data-position="bottom" data-delay="50"  data-tooltip="CLick to print a receipt for current transaction" href="#!" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-action-print"></i></a>
-			    </div>
+				
 			<!--
 
 				<div style="color:gray" class="col s5"> 
@@ -161,7 +159,7 @@
 							  </select>
 	                    	</div>
 
-	                    	<div class="col s1"><a href="#!" class="btn-floating" style="background-color:#a7ffeb; margin-top:20px"><i class="mdi-navigation-check" style="color:black;"></i></a></div>
+	                    	<!-- <div class="col s1"><a href="#!" class="btn-floating" style="background-color:#a7ffeb; margin-top:20px"><i class="mdi-navigation-check" style="color:black;"></i></a></div> -->
 	            	</div>
                     <div class="col s12"><div class="divider" style="height:5px; color:gray; margin-top:15px; margin-bottom:15px"></div></div>
 				@endforeach

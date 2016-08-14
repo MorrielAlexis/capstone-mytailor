@@ -141,9 +141,19 @@ class MaterialNeedleController extends Controller
      function editNeedle(Request $request)
     {
         $needle = Needle::find($request->input('editNeedleID'));
+        $checkNeedles = Needle::all();
 
         $file = $request->input('editNeedleImage');
         $destinationPath = 'imgMaterialNeedles';
+        $isAdded = FALSE;
+
+        foreach ($checkNeedles as $checkNeedle)
+            if(!strcasecmp($checkNeedle->intNeedleID, $request->input('editNeedleID')) == 0 &&
+                strcasecmp($checkNeedle->strNeedleBrand, $request->input('editNeedleBrand')) == 0 &&
+                strcasecmp($checkNeedle->strNeedleSize, trim($request->input('editNeedleSize'))) == 0)
+                $isAdded = TRUE;
+
+        if(!$isAdded){
 
                 if($file == $needle->strNeedleImage)
                 {
@@ -162,6 +172,7 @@ class MaterialNeedleController extends Controller
                 $needle->save();
 
                 \Session::flash('flash_message_update','Needle successfully updated.'); //flash message
+        }else \Session::flash('flash_message_duplicate','Needle already exists.'); //flash message   
 
                 return redirect('/maintenance/material-needle');
     }

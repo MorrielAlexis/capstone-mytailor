@@ -65,27 +65,17 @@
         </div>
       @endif
 
-                  <!--  <Duplicate Error Message>   -->
-                  @if (Input::get('successHead') == 'duplicate')
-                      <div class="row" id="success-message">
-                        <div class="col s12 m12 l12">
-                          <div class="card-panel red">
-                            <span class="black-text" style="color:black">Record already exists!<i class="tiny mdi-navigation-close right" onclick="$('#success-message').hide()"></i></span>
-                          </div>
-                        </div>
-                      </div>
-                    @endif
-
-                    <!--  <Duplicate Error Message>   -->
-                    @if (Input::get('successPart') == 'duplicate')
-                        <div class="row" id="success-message">
-                          <div class="col s12 m12 l12">
-                            <div class="card-panel red">
-                              <span class="black-text" style="color:black">Record already exists!<i class="tiny mdi-navigation-close right" onclick="$('#success-message').hide()"></i></span>
-                            </div>
-                          </div>
-                        </div>
-                      @endif
+       <!-- Update Duplicate -->
+       @if (Session::has('flash_message_duplicate'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red accent-1">
+              <span class="alert alert-success"><i class="tiny mdi-navigation-close right" onclick="$('#flash_message').hide()"></i></span>
+              <em> {!! session('flash_message_duplicate') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif            
 
 
                        <!--  <Data Dependency Message> -->
@@ -131,32 +121,32 @@
                       </thead>
 
                       <tbody>
-                            @foreach($measurement_categories as $measurement_category) 
-                            @if($measurement_category->boolIsActive == 1) 
+                            @foreach($measurement_categories as $meas_category) 
+                            @if($meas_category->boolIsActive == 1) 
                         <tr>   
-                          <td>{{ $measurement_category->strMeasurementCategoryName }}</td> 
-                          <td>{{ $measurement_category->txtMeasurementCategoryDesc }}</td>
-                          <td><a style = "color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement information" href="#edit{{$measurement_category->strMeasurementCategoryID}}"><i class="mdi-editor-mode-edit"></i></a>
-                          <a style = "color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement information" href="#del{{$measurement_category->strMeasurementCategoryID}}"><i class="mdi-action-delete"></i></a>
+                          <td>{{ $meas_category->strMeasurementCategoryName }}</td> 
+                          <td>{{ $meas_category->txtMeasurementCategoryDesc }}</td>
+                          <td><a style = "color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement information" href="#edit{{$meas_category->strMeasurementCategoryID}}"><i class="mdi-editor-mode-edit"></i></a>
+                          <a style = "color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement information" href="#del{{$meas_category->strMeasurementCategoryID}}"><i class="mdi-action-delete"></i></a>
                         
-                          <div id="edit{{$measurement_category->strMeasurementCategoryID}}" class="modal modal-fixed-footer">
+                          <div id="edit{{$meas_category->strMeasurementCategoryID}}" class="modal modal-fixed-footer">
                             <h5><font color = "#1b5e20"><center>EDIT MEASUREMENT INFORMATION</center> </font> </h5>
                               {!! Form::open(['url' => 'maintenance/measurement-category/update', 'method' => 'POST']) !!}
                                 <div class="divider" style="height:2px"></div>
                                 <div class="modal-content col s12"> 
  
                                     <div class="input-field">
-                                      <input value="{{ $measurement_category->strMeasurementCategoryID }}" id="editMeasurementCategoryID" name="editMeasurementCategoryID" type="hidden" readonly>                                 
+                                      <input value="{{ $meas_category->strMeasurementCategoryID }}" id="editMeasurementCategoryID" name="editMeasurementCategoryID" type="hidden" readonly>                                 
                                     </div>
 
                                     <div class="input-field">
-                                      <label for="editMeasurementCategoryName">Measurement Category Name</label>
-                                      <input value="{{ $measurement_category->strMeasurementCategoryName }}" id="editMeasurementCategoryName" name="editMeasurementCategoryName" type="text">                                 
+                                      <label for="editMeasurementCategoryName"><span class="red-text"><b>*</b></span>Measurement Category Name</label>
+                                      <input value="{{ $meas_category->strMeasurementCategoryName }}" id="editMeasurementCategoryName" name="editMeasurementCategoryName" type="text">                                 
                                     </div>
 
                                     <div class="input-field">
                                       <label for="editMeasurementCategoryDesc">Measurement Category Description</label>
-                                      <input value="{{ $measurement_category->txtMeasurementCategoryDesc }}" id="editMeasurementCategoryDesc" name="editMeasurementCategoryDesc" type="text">                                 
+                                      <input value="{{ $meas_category->txtMeasurementCategoryDesc }}" id="editMeasurementCategoryDesc" name="editMeasurementCategoryDesc" type="text">                                 
                                     </div>
   
                                 </div> 
@@ -170,7 +160,7 @@
 
                          
 
-                          <div id="del{{$measurement_category->strMeasurementCategoryID}}" class="modal modal-fixed-footer">
+                          <div id="del{{$meas_category->strMeasurementCategoryID}}" class="modal modal-fixed-footer">
                             <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS MEASUREMENT INFORMATION?</center> </font> </h5>
                             
                             {!! Form::open(['url' => 'maintenance/measurement-category/destroy']) !!}
@@ -178,17 +168,17 @@
                               <div class="modal-content col s12">
                                 
                                   <div class="input-field">
-                                      <input value="{{ $measurement_category->strMeasurementCategoryID }}" id="delMeasurementID" name="delMeasurementID" type="hidden" readonly>                                 
+                                      <input value="{{ $meas_category->strMeasurementCategoryID }}" id="delMeasurementID" name="delMeasurementID" type="hidden" readonly>                                 
                                     </div>
 
                                   <div class="input-field col s12">
-                                    <input value="{{ $measurement_category->strMeasurementCategoryName }}" type="text" readonly>
+                                    <input value="{{ $meas_category->strMeasurementCategoryName }}" type="text" readonly>
                                     <label for="measurement_name">Measurement Category Name</label>
                                   </div>
 
                                   <div class="input-field col s12">
-                                    <label for="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span> </label>
-                                    <input value="{{ $measurement_category->strMeasCatInactiveReason}}" id="delInactiveHead" name="delInactiveHead" type="text">                                 
+                                    <label for="inactive_reason">Reason for Deactivation <span class="red-text"><b>*</b></span> </label>
+                                    <input value="{{ $meas_category->strMeasCatInactiveReason}}" id="delInactiveHead" name="delInactiveHead" type="text">                                 
                                   </div>
                             </div>
 
@@ -221,7 +211,7 @@
                           <input value="{{ $newID }}" id="strMeasurementCategoryID" name="strMeasurementCategoryID" type="text" hidden>
                                                 
                           <div class="input-field">
-                            <label for="strMeasurementCategoryName">Measurement Category Name</label>
+                            <label for="strMeasurementCategoryName"><span class="red-text"><b>*</b></span>Measurement Category Name</label>
                             <input id="strMeasurementCategoryName" name="strMeasurementCategoryName" type="text">                                 
                           </div>
 
@@ -234,7 +224,7 @@
 
                       <div class="modal-footer col s12" style="background-color:#26a69a">
                         <button type="submit" name="send" id="send" class=" modal-action  waves-effect waves-green btn-flat">Create</button>
-                        <a class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
+                         <button type="reset" value="Reset" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
                       </div>
                     {!! Form::close() !!}
                   </div> 
@@ -392,57 +382,9 @@
       $('select').material_select();
       });
     </script>
-    
-    <script>
-      function clearData(){
-          document.getElementById('addDetailDesc').value = "";
-          document.getElementById('addDetailName').value = "";
-      }
-    </script>
+
 
     <script type="text/javascript">
-      $('.validateDetailName').on('input', function() {
-        var input=$(this);
-        var re=/^[a-zA-Z\'\-]+( [a-zA-Z\'\-]+)*$/;
-        var is_name=re.test(input.val());
-        if(is_name){input.removeClass("invalid").addClass("valid");}
-        else{input.removeClass("valid").addClass("invalid");}
-      });
-      //Kapag Number
-      $('.validateDetailName').keyup(function() {
-        var name = $(this).val();
-        $(this).val(name.replace(/\d/, ''));
-      });
-
-      $('.validateDetailName').blur('input', function() {
-        var input=$(this);
-        var re=/^[a-zA-Z\'\-]+( [a-zA-Z\'\-]+)*$/;
-        var is_name=re.test(input.val());
-        if(is_name){input.removeClass("invalid").addClass("valid");}
-        else{input.removeClass("valid").addClass("invalid");}
-      }); 
-
-      //Kapag whitespace
-      $('.validateDetailName').blur('input', function() {
-        var desc = $(this).val();
-        $(this).val(desc.trim());
-      }); 
-
-      $('.validateDetailDesc').on('input', function() {
-        var input=$(this);
-        var re=/^[a-zA-Z0-9\'\-\.\,]+( [a-zA-Z0-9\,\'\-\.]+)*$/;
-        var is_desc=re.test(input.val());
-        if(is_desc){input.removeClass("invalid").addClass("valid");}
-        else{input.removeClass("valid").addClass("invalid");}
-      });
-      $('.validateDetailDesc').blur('input', function() {
-        var input=$(this);
-        var re=/^[a-zA-Z0-9\'\-\.\,]+( [a-zA-Z0-9\,\'\-\.]+)*$/;
-        var is_desc=re.test(input.val());
-        if(is_desc){input.removeClass("invalid").addClass("valid");}
-        else{input.removeClass("valid").addClass("invalid");}
-      });
-
             //Kapag whitespace
       $('.validateDetailDesc').blur('input', function() {
         var desc = $(this).val();
@@ -450,10 +392,10 @@
       }); 
 
     </script>
+
          <!--DATA TABLE SCRIPT-->
     <script type="text/javascript">
       $(document).ready(function() {
-          $('.data-measDet').DataTable();
           $('.data-measHead').DataTable();
           $('select').material_select();
           

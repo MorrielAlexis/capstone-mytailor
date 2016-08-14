@@ -153,10 +153,21 @@ class MaterialHookAndEyeController extends Controller
 
     function update_hookeye(Request $request)
     {
-       $hook = HookAndEye::find($request->input('editHookID'));
+        $hook = HookAndEye::find($request->input('editHookID'));
+        $checkHooks = HookAndEye::all();
 
         $file = $request->input('editHookImage');
         $destinationPath = 'imgMaterialHooks';
+        $isAdded = FALSE;
+
+        foreach ($checkThreads as $checkThread)
+            if(!strcasecmp($checkThread->intHookID, $request->input('editHookID')) == 0 &&
+                strcasecmp($checkThread->strHookBrand, trim($request->input('editHookBrand'))) == 0 &&
+                strcasecmp($checkThread->strHookSize, trim($request->input('editHookSize'))) == 0 &&
+                strcasecmp($checkThread->strHookColor, trim($request->input('editHookColor'))) == 0)
+                $isAdded = TRUE;
+
+        if(!$isAdded){
 
                 if($file == $hook->strHookImage)
                 {
@@ -177,6 +188,7 @@ class MaterialHookAndEyeController extends Controller
                 $hook ->save();
 
                 \Session::flash('flash_message_update','Hook and eye successfully updated.'); //flash message
+         }else \Session::flash('flash_message_duplicate','Hook and eye  already exists.'); //flash message   
 
                 return redirect('maintenance/material-hookandeye');
 

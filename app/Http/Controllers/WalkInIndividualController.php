@@ -364,7 +364,10 @@ class WalkInIndividualController extends Controller
 
         session(['termsOfPayment' => $request->input('termsOfPayment')]);
         session(['totalPrice' => $request->input('total_price')]);
+        session(['amountToPay' => $request->input('amount-to-pay')]);
+        session(['outstandingBal' => $request->input('outstanding-bal')]);
         session(['transaction_date' => $request->input('transaction_date')]);
+        session(['dueDate' => $request->input('due_date')]);
 
         foreach($tempQuantity as $quantity)
             $totalQuantity += $quantity; //tblJobOrder
@@ -407,11 +410,11 @@ class WalkInIndividualController extends Controller
                 'strPaymentID' => $jobPaymentID,
                 'strTransactionFK' => session()->get('joID'), //tblJobOrder
                 'dblAmountTendered' => $request->input('amount-tendered'),
-                'dblAmountToPay' => $request->input('amount-to-pay'),
-                'dblOutstandingBal' => $request->input('outstanding-bal'),
+                'dblAmountToPay' => session()->get('amountToPay'),
+                'dblOutstandingBal' => session()->get('outstandingBal'),
                 'strReceivedByEmployeeNameFK' => 'EMPL001' ,
                 'dtPaymentDate' => $request->input('transaction_date'),
-                'dtPaymentDueDate' => $request->input('due_date'),
+                'dtPaymentDueDate' => session()->get('dueDate'),
                 'strPaymentStatus' => 'Pending',
                 'boolIsActive' => 1
 
@@ -522,7 +525,7 @@ class WalkInIndividualController extends Controller
         }//end of save loop for JO Specs
 
         $request->session()->flash('success-message', 'Order successfully sent!');  
-        $this->clearValues();
+        // $this->clearValues();
 
         return redirect('transaction/walkin-individual');
     }
@@ -563,18 +566,9 @@ class WalkInIndividualController extends Controller
         session()->forget('transaction_date');
     }
 
+
     public function generateReceipt()
     {
-         
-
-        // $data = [
-        //     'joborderid' => session()->get('segment_data'),
-        //     'quantity' => session('segment_quantity'[0]),
-        //     'price' => (double)session()->get('totalPrice')
-        // ];
-
-        // dd($data);
-
 
         $data = [
             'orders' => [
@@ -582,11 +576,34 @@ class WalkInIndividualController extends Controller
                   'job_order_id' => 'JOB001',
                   'segment_data'  => 'Name 1',
                   'segment_quantity' => 1,
-                  'totalPrice' => 52.00
-
+                  'segment_fabric' => 'Cotton',
+                  'segment_design' => 'Design 1',
+                  'totalPrice' => 52.00,
+                  'amountToPay' => 60.00,
+                  'outstandingBal' => 70.00,
                 ]
             ]
         ];
+
+        $custname = \DB::table('tblCustIndividual')
+                    ->select('strIndivID', \DB::raw('CONCAT(strIndivFName, " ", strIndivMName, " ", strIndivLName) AS fullname'))
+                    ->where('strIndivID', '=', 'custID')
+                    ->get();
+
+
+        $pdf = PDF::loadView('pdf/payment-receipt', compact('data'));
+
+        return $pdf->stream();
+        $this->clearValues();
+
+        // $ids = 
+
+        // if($ids == null){
+        //     $custID = $this->smartCounter("CUSTP000"); 
+        // }else{
+        //     $ID = $ids["0"]->strIndivID;
+        //     $custID = $this->smartCounter($ID);  
+        // } 
 
         // for($i=0; $i<count($data); $i++){
         //     for($j=0; $j<$i+1; $j++){
@@ -600,10 +617,6 @@ class WalkInIndividualController extends Controller
        
 
         // dd($data);
-
-        $pdf = PDF::loadView('pdf/payment-receipt', compact('data'));
-
-        return $pdf->stream();
                 
     }
 

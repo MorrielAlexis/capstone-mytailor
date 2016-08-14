@@ -28,6 +28,7 @@ class JobOrderProgressController extends Controller
         $joborder = \DB::table('tblJobOrder')
             ->leftjoin('tblcustindividual', 'tblJobOrder.strJo_CustomerFK', '=', 'tblcustindividual.strIndivID')
             ->leftjoin('tblcustcompany', 'tblJobOrder.strJo_CustomerCompanyFK', '=', 'tblcustcompany.strCompanyID')
+            ->orderby('tbljoborder.strJobOrderID')
             ->select('tblcustindividual.*', 'tblcustcompany.*', 'tblJobOrder.*')
             ->get(); 
 

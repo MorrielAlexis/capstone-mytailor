@@ -13,6 +13,11 @@ use App\FabricColor;
 use App\FabricPattern;
 use App\FabricThreadCount;
 
+use App\SegmentPattern;
+
+use App\Thread;
+use App\Button;
+
 class OnlineCustomizeWomensController extends Controller
 {
     /**
@@ -47,29 +52,141 @@ class OnlineCustomizeWomensController extends Controller
                 ->with('fabricPatterns', $fabricPatterns);
     } 
 
-    public function stylecollar()
+    public function stylecollar(Request $request)
     {
-        return view('customize.womens-style-collar');
+        $contrast = Fabric::all();
+        $fabricThreadCounts = FabricThreadCount::all();
+        $fabricColors = FabricColor::all();
+        $fabricTypes = FabricType::all();
+        $fabricPatterns = FabricPattern::all();
+        $patterns = SegmentPattern::all();
+
+        $selectedFabric = \DB::table('tblFabric AS a')
+                    ->leftJoin('tblFabricType AS b', 'a.strFabricTypeFK', '=','b.strFabricTypeID')
+                    ->select('a.*', 'b.strFabricTypeName')
+                    ->where('a.strFabricID', $request->input('hidden_fabric_id'))
+                    ->get();
+
+        $keycollar = 'Collar';
+        $collars = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keycollar.'%')
+                    ->get();
+
+        return view('customize.womens-style-collar')
+                ->with('contrasts', $contrast)
+                ->with('fabricThreadCounts', $fabricThreadCounts)
+                ->with('fabricColors', $fabricColors)
+                ->with('fabricTypes', $fabricTypes)
+                ->with('fabricPatterns', $fabricPatterns)
+                ->with('fabrics', $selectedFabric)
+                ->with('patterns', $patterns)
+                ->with('collars', $collars);
     }    
 
     public function stylecuffs()
     {
-        return view('customize.womens-style-cuffs');
+        $contrast = Fabric::all();
+        $fabricThreadCounts = FabricThreadCount::all();
+        $fabricColors = FabricColor::all();
+        $fabricTypes = FabricType::all();
+        $fabricPatterns = FabricPattern::all();
+        $patterns = SegmentPattern::all();
+
+        $keysleeves = 'Slevee';
+        $sleeves = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keysleeves.'%')
+                    ->get();
+
+        $keycuffs = 'Cuff';
+        $cuffs = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keycuffs.'%')
+                    ->get();
+
+        $keycufflinks = 'cufflinks';
+        $cufflinks =  \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keycufflinks.'%')
+                    ->get();
+
+        return view('customize.womens-style-cuffs')
+                ->with('contrasts', $contrast)
+                ->with('fabricThreadCounts', $fabricThreadCounts)
+                ->with('fabricColors', $fabricColors)
+                ->with('fabricTypes', $fabricTypes)
+                ->with('fabricPatterns', $fabricPatterns)
+                ->with('patterns', $patterns)
+                ->with('cuffs', $cuffs)
+                ->with('cufflinks', $cufflinks)
+                ->with('sleeves', $sleeves);
     }    
 
     public function stylebuttons()
     {
-        return view('customize.womens-style-buttons');
+        $buttonthreads = Thread::all();
+        $buttons = Button::all();
+
+        return view('customize.womens-style-buttons')
+                ->with('buttons', $buttons)
+                ->with('threads', $buttonthreads);
     }    
 
     public function stylepocketmonogram()
     {
-        return view('customize.womens-style-pocket-monogram');
+        $contrast = Fabric::all();
+        $fabricThreadCounts = FabricThreadCount::all();
+        $fabricColors = FabricColor::all();
+        $fabricTypes = FabricType::all();
+        $fabricPatterns = FabricPattern::all();
+        $patterns = SegmentPattern::all();
+
+        $keypocket = 'Shirt Pocket';
+        $pockets = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keypocket.'%')
+                    ->get();
+
+        $keymonogram = 'Monogram';
+        $monograms = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keymonogram.'%')
+                    ->get();
+
+        return view('customize.womens-style-pocket-monogram')
+                ->with('contrasts', $contrast)
+                ->with('fabricThreadCounts', $fabricThreadCounts)
+                ->with('fabricColors', $fabricColors)
+                ->with('fabricTypes', $fabricTypes)
+                ->with('fabricPatterns', $fabricPatterns)
+                ->with('patterns', $patterns)
+                ->with('pockets', $pockets)
+                ->with('monograms', $monograms);
     }    
 
     public function styleothers()
     {
-        return view('customize.womens-style-others');
+        $fabrics = Fabric::all();
+        $fabricThreadCounts = FabricThreadCount::all();
+        $fabricColors = FabricColor::all();
+        $fabricTypes = FabricType::all();
+        $fabricPatterns = FabricPattern::all();
+        $patterns = SegmentPattern::all();
+
+        $keyplacket = 'Placket';
+        $plackets = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keyplacket.'%')
+                    ->get();
+
+        return view('customize.womens-style-others')
+                ->with('fabrics', $fabrics)
+                ->with('fabricThreadCounts', $fabricThreadCounts)
+                ->with('fabricColors', $fabricColors)
+                ->with('fabricTypes', $fabricTypes)
+                ->with('fabricPatterns', $fabricPatterns)
+                ->with('plackets', $plackets);
     }    
 
 

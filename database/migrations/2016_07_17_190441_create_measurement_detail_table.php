@@ -17,6 +17,7 @@ class CreateMeasurementDetailTable extends Migration
             $table->string('strMeasDetSegmentFK')->index();
             $table->string('strMeasCategoryFK')->index();
             $table->string('strMeasDetailName');
+            $table->string('strMeaDetailImage')->nullable();
             $table->text('txtMeasDetailDesc')->nullable();
             $table->double('dblMeasDetailMinCm')->nullable();
             $table->double('dblMeasDetailMinInch')->nullable();

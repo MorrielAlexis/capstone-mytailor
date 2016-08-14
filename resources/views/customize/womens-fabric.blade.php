@@ -93,8 +93,8 @@
       <div class="col s12 divider dashed" style="height:4px; margin-top:10px; margin-bottom:10px;"></div>
       
 
-      {!! Form::open(['url' => 'customize-womens-style', 'method' => 'post']) !!}
-      <div class="col s12" style="margin-bottom:20px;"><a class="right btn-flat teal accent-4 white-text" type="submit">Continue</a></div>
+      {!! Form::open(['url' => 'customize-womens-style-collar', 'method' => 'post']) !!}
+      <div class="col s12" style="margin-bottom:20px;"><button class="right btn-flat teal accent-4 white-text" type="submit">Continue</button></div>
 
       @foreach($fabrics as $fabric)
       <div class="col s12 fabric-general {{ $fabric->strFabricTypeFK }} {{ $fabric->strFabricPatternFK }} {{ $fabric->strFabricColorFK }} {{ $fabric->strFabricThreadCountFK }}" style="margin-bottom:20px; padding:20px; padding-top:0;">

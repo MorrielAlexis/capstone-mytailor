@@ -84,7 +84,45 @@ class FabricController extends Controller
      */
     public function store(MaintenanceFabricRequest $request)
     {
-         
+          $file = $request->input('addImage');
+          $destinationPath = 'imgFabrics';
+
+            if($file == '' || $file == null){
+                $fabric = Fabric::create(array(
+                'strFabricID' => $request->input('strFabricID'),
+                'strFabricTypeFK' => $request->input('strFabricTypeFK'),
+                'strFabricPatternFK' => $request ->input('strFabricPatternFK'),
+                'strFabricColorFK' => $request->input('strFabricColorFK'),
+                'strFabricThreadCountFK' => $request->input('strFabricThreadCountFK'),
+                'strFabricName'  =>trim($request->input('strFabricName')),
+                'dblFabricPrice'  =>trim($request->input('dblFabricPrice')),
+                'strFabricCode'  =>trim($request->input('strFabricCode')),
+                'txtFabricDesc'  =>trim($request->input('txtFabricDesc')),
+                'boolIsActive' => 1
+                ));     
+                }else{
+                    $request->file('addImg')->move($destinationPath, $file);
+
+                    $fabric = Fabric::create(array(
+                        'strFabricID' => $request->input('strFabricID'),
+                        'strFabricTypeFK' => $request->input('strFabricTypeFK'),
+                        'strFabricPatternFK' => $request ->input('strFabricPatternFK'),
+                        'strFabricColorFK' => $request->input('strFabricColorFK'),
+                        'strFabricThreadCountFK' => $request->input('strFabricThreadCountFK'),
+                        'strFabricName'  =>trim($request->input('strFabricName')),
+                        'dblFabricPrice'  =>trim($request->input('dblFabricPrice')),
+                        'strFabricCode'  =>trim($request->input('strFabricCode')),
+                        'txtFabricDesc'  =>trim($request->input('txtFabricDesc')),
+                        'strFabricImage' => 'imgFabrics/'.$file,
+                        'boolIsActive' => 1
+                    )); 
+
+                }
+            $fabric->save();
+
+              \Session::flash('flash_message','Fabric successfully added.'); //flash message
+
+            return redirect('maintenance/fabric');
     }
 
     /**
@@ -134,19 +172,32 @@ class FabricController extends Controller
 
      function update_fabric(Request $request)
     {
+
         $fabric = Fabric::find($request->input('editFabricID'));
+        $checkFabrics = Fabric::all();
 
         $file = $request->input('editImage');
         $destinationPath = 'imgFabrics';
+        $isAdded = FALSE;
 
+        foreach ($checkFabrics as $checkFabric)
+            if(!strcasecmp($checkFabric->strFabricID, $request->input('editFabricID')) == 0 &&
+                strcasecmp($checkFabric->strFabricName, trim($request->input('editFabricName'))) == 0 && 
+                strcasecmp($checkFabric->strFabricTypeFK, $request->input('editFabricType')) == 0 &&
+                strcasecmp($checkFabric->strFabricPatternFK, $request->input('editFabricPattern')) == 0 &&
+                strcasecmp($checkFabric->strFabricColorFK, $request->input('editFabricColor')) == 0 &&
+                strcasecmp($checkFabric->strFabricThreadCountFK, $request->input('editFabricThreadCount')) == 0)
+                 // strcasecmp($checkFabric->dblFabricPrice, $request->input('editFabricPrice')) == 0
+                $isAdded = TRUE;
+
+        if(!$isAdded){
                 if($file == $fabric->strFabricImage)
                 {
                     
                     $fabric->strFabricTypeFK = $request->input('editFabricType');
                     $fabric->strFabricPatternFK = $request->input('editFabricPattern');
                     $fabric->strFabricColorFK = $request->input('editFabricColor');
-                    $fabric->strFabricThreadCountFK = $request->input('editFabricThreadCount');
-                   
+                    $fabric->strFabricThreadCountFK = $request->input('editFabricThreadCount');  
                     $fabric->strFabricName = trim($request->input('editFabricName'));
                     $fabric->dblFabricPrice = trim($request->input('editFabricPrice'));
                     $fabric->strFabricCode = trim($request->input('editFabricCode'));
@@ -170,7 +221,7 @@ class FabricController extends Controller
                 $fabric->save();
 
             \Session::flash('flash_message_update','Fabric was successfully updated.'); //flash message      
-
+        }else \Session::flash('flash_message_duplicate','Fabric already exists.'); //flash message
             
             return redirect('maintenance/fabric');
     }

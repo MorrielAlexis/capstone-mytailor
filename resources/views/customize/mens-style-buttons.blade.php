@@ -53,7 +53,7 @@
           <div class="col s12" style="margin-top:20px;">
             <ul class="collapsible" data-collapsible="accordion" style="border:none;">
               <li>
-                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Collars</div>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Buttons</div>
                 <div class="collapsible-body row overflow-x" style="padding:20px;"> 
                   <div class="col s12">      
                   @foreach($buttons as $button)

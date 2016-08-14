@@ -15,6 +15,7 @@ use App\FabricThreadCount;
 
 use App\SegmentStyle;
 use App\SegmentPattern;
+use App\Thread;
 
 class OnlineCustomizeSuitController extends Controller
 {
@@ -35,8 +36,7 @@ class OnlineCustomizeSuitController extends Controller
     }
 
     public function fabric()
-    {
-        return view('customize.suit-fabric');        
+    {      
         $fabrics = Fabric::all();
         $fabricThreadCounts = FabricThreadCount::all();
         $fabricColors = FabricColor::all();
@@ -52,9 +52,8 @@ class OnlineCustomizeSuitController extends Controller
 
     }
 
-    public function stylejacket(/*Request $request*/)
+    public function stylejacket(Request $request)
     {
-        return view('customize.suit-style-jacket');
        $selectedFabric = \DB::table('tblFabric AS a')
                     ->leftJoin('tblFabricType AS b', 'a.strFabricTypeFK', '=','b.strFabricTypeID')
                     ->select('a.*', 'b.strFabricTypeName')
@@ -62,34 +61,47 @@ class OnlineCustomizeSuitController extends Controller
                     ->get();
 
         $patterns = SegmentPattern::all();
-        $keyvents = 'Vents';
 
+        $keysingle = 'Single Breasted';
+        $singleSegment = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keysingle.'%')
+                    ->get();
+
+        $keydouble = 'Double Breasted';
+        $doubleSegment = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keydouble.'%')
+                    ->get();
+
+        $keyjacket = 'Jacket Bottom';
+        $jacketSegment = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keyjacket.'%')
+                    ->get();
+
+        $keyvents = 'Vents';
         $ventsSegment = \DB::table('tblSegmentStyleCategory')
                     ->select('strSegStyleCatID', 'strSegStyleName')
                     ->where('strSegStyleName', 'LIKE', '%'.$keyvents.'%')
-                    ->get();
-
-        $keylapel = 'Lapel';
-
-        $lapelSegment = \DB::table('tblSegmentStyleCategory')
-                    ->select('strSegStyleCatID', 'strSegStyleName')
-                    ->where('strSegStyleName', 'LIKE', '%'.$keylapel.'%')
                     ->get();
 
         return view('customize.suit-style-jacket')
             ->with('fabrics', $selectedFabric)
             ->with('patterns', $patterns)
             ->with('ventsSegment', $ventsSegment)
-            ->with('lapelSegment', $lapelSegment);
+            ->with('singleSegment', $singleSegment)
+            ->with('doubleSegment', $doubleSegment)
+            ->with('jacketSegment', $jacketSegment);
 
     }
 
     public function stylecollarpocket()
     {
-        return view('customize.suit-style-collar-pocket');
         $patterns = SegmentPattern::all();
+        $threads = Thread::all();
 
-        $keycollar = 'Collar Pocket';
+        $keycollar = 'Jacket Collar';
         $keychest = 'Chest Pocket';
         $keyjacket = 'Jacket Pocket';
 
@@ -103,47 +115,43 @@ class OnlineCustomizeSuitController extends Controller
                     ->where('strSegStyleName', 'LIKE', '%'.$keychest.'%')
                     ->get();
 
-        $jacketSegment = \DB::table('tblSegmentStyleCategory')
+        $jackpotSegment = \DB::table('tblSegmentStyleCategory')
                     ->select('strSegStyleCatID', 'strSegStyleName')
                     ->where('strSegStyleName', 'LIKE', '%'.$keyjacket.'%')
                     ->get();
 
         return view('customize.suit-style-collar-pocket')
                 ->with('patterns', $patterns)
+                ->with('threads', $threads)
                 ->with('collarSegment', $collarSegment)
                 ->with('chestSegment', $chestSegment)
-                ->with('jacketSegment', $jacketSegment);
+                ->with('jackpotSegment', $jackpotSegment);
 
     }
 
     public function stylepants()
     {
-        return view('customize.suit-style-pants');
         $patterns = SegmentPattern::all();
 
         $key = 'Pleat';
-
         $pleatsSegment = \DB::table('tblSegmentStyleCategory')
                     ->select('strSegStyleCatID', 'strSegStyleName')
                     ->where('strSegStyleName', 'LIKE', '%'.$key.'%')
                     ->get();
 
         $keypocket = 'Pants Pocket';
-
         $pocketSegment = \DB::table('tblSegmentStyleCategory')
                     ->select('strSegStyleCatID', 'strSegStyleName')
                     ->where('strSegStyleName', 'LIKE', '%'.$keypocket.'%')
                     ->get();
 
         $keyback = 'Pants Backpocket';
-
         $backSegment = \DB::table('tblSegmentStyleCategory')
                     ->select('strSegStyleCatID', 'strSegStyleName')
                     ->where('strSegStyleName', 'LIKE', '%'.$keyback.'%')
                     ->get();
 
         $keybottom = 'Pants Bottom';
-
         $bottomSegment = \DB::table('tblSegmentStyleCategory')
                     ->select('strSegStyleCatID', 'strSegStyleName')
                     ->where('strSegStyleName', 'LIKE', '%'.$keybottom.'%')
@@ -160,7 +168,17 @@ class OnlineCustomizeSuitController extends Controller
 
     public function stylemonogram()
     {
-        return view('customize.suit-style-monogram');
+        $patterns = SegmentPattern::all();
+
+        $keymonogram = 'Monogram';
+        $monograms = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keymonogram.'%')
+                    ->get();
+
+        return view('customize.suit-style-monogram')
+                    ->with('patterns', $patterns)
+                    ->with('monograms', $monograms);
     }
 
     /**

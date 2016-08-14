@@ -29,6 +29,7 @@
                   <tr>
                       <th style="color:#1b5e20">Track#</th>
                       <th style="color:#1b5e20">Customer Name</th>
+                      <th style="color:#1b5e20">Order Date</th>
                       <th style="color:#1b5e20">Due Date</th>
                       <th style="color:#1b5e20">Action</th>
                   </tr>
@@ -38,6 +39,7 @@
                     <tr>
                       <td>{{$joborder->strJobOrderID}}</td>                        
                       <td>{{$joborder->strCompanyName}}{{$joborder->strIndivFName}} {{$joborder->strIndivMName}} {{$joborder->strIndivLName}}</td>
+                      <td>{{$joborder->dtOrderDate}}</td>
                       <td>{{$joborder->dtOrderExpectedToBeDone}}</td>
                       <td><button class="waves-effect waves-light btn" ng-click="details('{!! $joborder->strJobOrderID !!}')">Show Details</button></td>
                     </tr>                      

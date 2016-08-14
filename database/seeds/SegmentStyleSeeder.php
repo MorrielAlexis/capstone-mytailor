@@ -122,7 +122,52 @@ class SegmentStyleSeeder extends Seeder
                 'txtSegStyleCatDesc' => 'Either with or without cuffs.',
                 'strSegStyleCatInactiveReason' => '',
                 'boolIsActive' => '1'
-            ) 
+            ),
+
+             array(
+                'strSegStyleCatID' => 'SEGSTY013',
+                'strSegmentFK' => 'SEGM003',
+                'strSegStyleName' =>'Fit',
+                'txtSegStyleCatDesc' => 'Either normal, slim or loose fit.',
+                'strSegStyleCatInactiveReason' => '',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strSegStyleCatID' => 'SEGSTY014',
+                'strSegmentFK' => 'SEGM003',
+                'strSegStyleName' =>'Pants Pleat',
+                'txtSegStyleCatDesc' => 'Stylish detail for pants/trousers',
+                'strSegStyleCatInactiveReason' => '',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strSegStyleCatID' => 'SEGSTY015',
+                'strSegmentFK' => 'SEGM003',
+                'strSegStyleName' =>'Pants Pockets',
+                'txtSegStyleCatDesc' => 'Either be vertical or sliced pockets.',
+                'strSegStyleCatInactiveReason' => '',
+                'boolIsActive' => '1'
+            ), 
+
+            array(
+                'strSegStyleCatID' => 'SEGSTY016',
+                'strSegmentFK' => 'SEGM003',
+                'strSegStyleName' =>'Backpockets',
+                'txtSegStyleCatDesc' => 'Either 1 or 2 backpockets.',
+                'strSegStyleCatInactiveReason' => '',
+                'boolIsActive' => '1'
+            ),
+           
+            array(
+                'strSegStyleCatID' => 'SEGSTY017',
+                'strSegmentFK' => 'SEGM003',
+                'strSegStyleName' =>'Pants Bottom',
+                'txtSegStyleCatDesc' => 'Either with or without cuffs.',
+                'strSegStyleCatInactiveReason' => '',
+                'boolIsActive' => '1'
+            )
  
 
         );

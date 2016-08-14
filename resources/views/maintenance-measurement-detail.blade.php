@@ -128,6 +128,7 @@
                         <th data-field="MeasDetailDesc">Description</th>
                         <th data-field="MeasDetailMinCm">Cm</th>
                         <th data-field="MeasDetailMinInch">Inch</th>
+                        <th data-field="Image">Image</th>
                         <th data-field="action">Actions</th>
                       </tr>
                     </thead>
@@ -143,6 +144,7 @@
                         <td>{{ $detail->txtMeasDetailDesc }}</td>
                         <td>{{ $detail->dblMeasDetailMinCm }}</td>
                         <td>{{ $detail->dblMeasDetailMinInch }}</td>
+                        <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($detail->strMeaDetailImage)}}"></td>
                         <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement detail" href="#edit{{ $detail->strMeasurementDetailID }}"><i class="mdi-editor-mode-edit"></i></a>
                         <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to deactivate measurement detail from the table" href="#del{{ $detail->strMeasurementDetailID }}"><i class="mdi-action-delete"></i></a></td>
 
@@ -212,7 +214,19 @@
                                       <label for="measurement_inch">Minimum Inch<span class="red-text"><b>*</b></span></label>
                                     </div>
                               </div>
-                              </div>
+
+                              <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
+                                <div class="file-field input-field col s12">
+                                    <div style="color:black" class="btn tooltipped btn-small center-text light-green lighten-2" data-position="bottom" data-delay="50" data-tooltip="May upload jpg, png, gif, bmp, tif, tiff files">
+                                    <span>Upload Image</span>
+                                    <input id="editImg" name="editImg" type="file" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*">
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                    <input value="{{ $detail->strMeaDetailImage }}" id="editImage" name="editImage" class="file-path validate" type="text" readonly="readonly">
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
 
                               <div class="modal-footer col s12" style="background-color:#26a69a">
                                 <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Update</button>
@@ -333,6 +347,19 @@
                       </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
+                          <div class="file-field input-field col s12">
+                            <div style="color:black" class="btn tooltipped btn-small center-text light-green lighten-2" data-position="bottom" data-delay="50" data-tooltip="May upload jpg, png, gif, bmp, tif, tiff files">
+                              <span>Upload Image</span>
+                              <input id="addImg" name="addImg" type="file" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*">
+                            </div>
+                          
+                            <div class="file-path-wrapper">
+                              <input id="addImage" name="addImage" class="file-path validate" type="text">
+                            </div>
+                          </div>
+                      </div>
+
+                      <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                           <div class="input-field col s12">
                             <input  id="txtMeasDetailDesc" name ="txtMeasDetailDesc" type="text" class="validate" placeholder="Front portion to be measured">
                             <label for="measurement_desc">Measurement Description </label>
@@ -351,7 +378,20 @@
                             <input  id="dblMeasDetailMinInch" name ="dblMeasDetailMinInch" type="text" class="validate" placeholder="Front portion to be measured" pattern="^[a-zA-Z\-'`\d]+(\s[a-zA-Z\-'`]+)?">
                             <label for="measurement_inch"><span class="red-text"><b>*</b></span>Minimum Inch </label>
                           </div>
-                      </div>                                                                 
+                      </div> 
+
+                      <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
+                          <div class="file-field input-field col s12">
+                            <div style="color:black" class="btn tooltipped btn-small center-text light-green lighten-2" data-position="bottom" data-delay="50" data-tooltip="May upload jpg, png, gif, bmp, tif, tiff files">
+                              <span>Upload Image</span>
+                              <input id="addImg" name="addImg" type="file" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*">
+                            </div>
+                          
+                            <div class="file-path-wrapper">
+                              <input id="addImage" name="addImage" class="file-path validate" type="text">
+                            </div>
+                          </div>
+                      </div>                                                                
 
                       </div>
 

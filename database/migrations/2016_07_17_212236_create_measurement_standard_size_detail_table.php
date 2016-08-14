@@ -22,6 +22,7 @@ class CreateMeasurementStandardSizeDetailTable extends Migration
             $table->double('dblStanSizeInch');
             $table->double('dblStanSizeCm');
             $table->text('txtStanSizeDesc');
+            $table->string('strStandardSizeDetInactiveReason')->nullable();
             $table->boolean('boolIsActive');
             $table->timestamps();
 
