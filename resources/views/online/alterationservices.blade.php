@@ -4,12 +4,12 @@
 
 	<div style="height:150px; margin-top: -15px;">
       <div style="height:20px;"></div>
-      <center><h1 style="color:white; font-family:'Playfair Display','Times';">List of Services</h1></center>
+      <center><h1 style="color:#757575; font-family:'Lemonada',cursive;">List of Services</h1></center>
       <div class="container divider"></div>
     </div>
 
     <div class="section">
-    	
+ 	
     	<div class="row">
 			<div class="col s6 center">
 				<div style="padding:50px; margin-right:-25px;">
@@ -18,7 +18,7 @@
 						<div class="row">
 							<div class="col s6">
 				            	<div style="height:50px;"></div>
-								<h4 style="font-family:'Playfair Display','Times';">Tops, Shirts & Blouses</h4>
+								<h4 style="font-family: 'Yatra One', cursive;">Tops, Shirts & Blouses</h4>
 				            	<div class="divider"></div>
 				            	<div style="height:30px;"></div>
 								<img class="responsive-img" src="imgOnline/altertop.jpg">
@@ -28,28 +28,28 @@
 								<div class="divider" style="margin-bottom:20px;"></div>
 								<table class="striped">
 									<tr>
-										<td>Hem (Php 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Hem (Php 50.00)</td>
 									</tr>
 									<tr>
-										<td>Slim (PHP 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Slim (PHP 50.00)</td>
 									</tr>
 									<tr>
-										<td>Shorten Sleeve - no cuff (PHP 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Shorten Sleeve - no cuff (PHP 50.00)</td>
 									</tr>
 									<tr>
-										<td>Shorten Sleeve - with cuff (PHP 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Shorten Sleeve - with cuff (PHP 50.00)</td>
 									</tr>
 									<tr>	
-										<td>Adjust Shoulder - no sleeves (PHP 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Adjust Shoulder - no sleeves (PHP 50.00)</td>
 									</tr>
 									<tr>	
-										<td>Adjust Shoulder - with sleeves (PHP 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Adjust Shoulder - with sleeves (PHP 50.00)</td>
 									</tr>
 									<tr>
-										<td>Slim Sleeves (PHP 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Slim Sleeves (PHP 50.00)</td>
 									</tr>
 									<tr>
-										<td>Add Darts (PHP 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Add Darts (PHP 50.00)</td>
 									</tr>
 								</table>
 								<div class="divider" style="margin-top:20px; margin-bottom:10px;"></div>
@@ -62,7 +62,7 @@
 					<div class="white" style="border:5px solid #69f0ae;">
 						<div class="row">
 							<div class="col s6">
-								<h4 style="font-family:'Playfair Display','Times';">Denim</h4>
+								<h4 style="font-family: 'Yatra One', cursive;">Denim</h4>
 								<div class="divider"></div>
 				            	<div style="height:30px;"></div>
 								<img class="responsive-img" src="imgOnline/alterdenim.jpg">
@@ -72,16 +72,16 @@
 								<div class="divider" style="margin-bottom:20px;"></div>	
 								<table class="striped">
 									<tr>
-										<td>Hem (Php 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Hem (Php 50.00)</td>
 									</tr>
 									<tr>
-										<td>Original Hem (Php 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Original Hem (Php 50.00)</td>
 									</tr>
 									<tr>
-										<td>Slim Leg (PHP 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Slim Leg (PHP 50.00)</td>
 									</tr>
 									<tr>
-										<td>Adjust Waist (PHP 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Adjust Waist (PHP 50.00)</td>
 									</tr>
 								</table>	
 								<div class="divider" style="margin-top:20px; margin-bottom:10px;"></div>
@@ -95,7 +95,7 @@
 						<div class="row">
 							<div class="col s6">
 				            	<div style="height:60px;"></div>
-								<h4 style="font-family:'Playfair Display','Times';">Dresses & Skirts</h4>
+								<h4 style="font-family: 'Yatra One', cursive;">Dresses & Skirts</h4>
 								<div class="divider"></div>
 				            	<div style="height:30px;"></div>
 								<img class="responsive-img" src="imgOnline/alterdress.jpg">
@@ -105,28 +105,28 @@
 								<div class="divider" style="margin-bottom:20px;"></div>	
 								<table class="striped">
 									<tr>
-										<td>Hem (Php 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Hem (Php 50.00)</td>
 									</tr>
 									<tr>
-										<td>Hem with Pleats Details (Php 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Hem with Pleats Details (Php 50.00)</td>
 									</tr>
 									<tr>
-										<td>Slim (PHP 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Slim (PHP 50.00)</td>
 									</tr>
 									<tr>
-										<td>Shorten Sleeve - no cuff (PHP 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Shorten Sleeve - no cuff (PHP 50.00)</td>
 									</tr>
 									<tr>
-										<td>Shorten Sleeve - with cuff (PHP 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Shorten Sleeve - with cuff (PHP 50.00)</td>
 									</tr>
 									<tr>
-										<td>Slim Sleeves (PHP 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Slim Sleeves (PHP 50.00)</td>
 									</tr>
 									<tr>
-										<td>Adjust Shoulder - no sleeves (PHP 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Adjust Shoulder - no sleeves (PHP 50.00)</td>
 									</tr>
 									<tr>
-										<td>Adjust Shoulder - with sleeves (PHP 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Adjust Shoulder - with sleeves (PHP 50.00)</td>
 									</tr>
 								</table>	
 								<div class="divider" style="margin-top:20px; margin-bottom:10px;"></div>
@@ -143,7 +143,7 @@
 						<div class="row">
 							<div class="col s6">
 				            	<div style="height:5px;"></div>
-								<h4 style="font-family:'Playfair Display','Times';">Pants & Bottoms</h4>
+								<h4 style="font-family: 'Yatra One', cursive;">Pants & Bottoms</h4>
 								<div class="divider"></div>
 				            	<div style="height:30px;"></div>
 								<img class="responsive-img" src="imgOnline/alterbottom.jpg">
@@ -154,13 +154,13 @@
 								<div class="divider" style="margin-bottom:20px;"></div>	
 								<table class="striped">
 									<tr>
-										<td>Hem (Php 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Hem (Php 50.00)</td>
 									</tr>
 									<tr>
-										<td>Slim Leg (PHP 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Slim Leg (PHP 50.00)</td>
 									</tr>
 									<tr>
-										<td>Adjust Waist (PHP 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Adjust Waist (PHP 50.00)</td>
 									</tr>
 								</table>	
 								<div class="divider" style="margin-top:20px; margin-bottom:10px;"></div>
@@ -174,7 +174,7 @@
 						<div class="row">
 							<div class="col s6">
 				            	<div style="height:20px;"></div>
-								<h4 style="font-family:'Playfair Display','Times';">Jackets & Coats</h4>
+								<h4 style="font-family: 'Yatra One', cursive;">Jackets & Coats</h4>
 								<div class="divider"></div>
 				            	<div style="height:30px;"></div>
 								<img class="responsive-img" src="imgOnline/altercoat.jpg">
@@ -185,28 +185,28 @@
 								<div class="divider" style="margin-bottom:20px;"></div>	
 								<table class="striped">
 									<tr>
-										<td>Shorten (Php 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Shorten (Php 50.00)</td>
 									</tr>
 									<tr>
-										<td>Slim (PHP 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Slim (PHP 50.00)</td>
 									</tr>
 									<tr>
-										<td>Shorten Sleeves (Php 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Shorten Sleeves (Php 50.00)</td>
 									</tr>
 									<tr>
-										<td>Shorten Shoulder (Php 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Shorten Shoulder (Php 50.00)</td>
 									</tr>
 									<tr>
-										<td>Slim Sleeves(PHP 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Slim Sleeves(PHP 50.00)</td>
 									</tr>
 									<tr>
-										<td>Adjust Shoulder(PHP 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Adjust Shoulder(PHP 50.00)</td>
 									</tr>
 									<tr>
-										<td>Add Darts (PHP 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Add Darts (PHP 50.00)</td>
 									</tr>
 									<tr>
-										<td>Replace Lining (PHP 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Replace Lining (PHP 50.00)</td>
 									</tr>
 								</table>	
 								<div class="divider" style="margin-top:20px; margin-bottom:10px;"></div>
@@ -219,7 +219,7 @@
 					<div class="white" style="border:5px solid #69f0ae;">
 						<div class="row">
 							<div class="col s6">
-								<h4 style="font-family:'Playfair Display','Times';">Others</h4>
+								<h4 style="font-family: 'Yatra One', cursive;">Others</h4>
 								<div class="divider"></div>
 				            	<div style="height:30px;"></div>								<img class="responsive-img" src="imgOnline/dashboard.jpg">
 							</div>
@@ -229,16 +229,16 @@
 								<div class="divider" style="margin-bottom:20px;"></div>	
 								<table class="striped">
 									<tr>
-										<td>Add/Remove Zippers/Buttons (Php 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Add/Remove Zippers/Buttons (Php 50.00)</td>
 									</tr>
 									<tr>
-										<td>Move Zipper (PHP 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Move Zipper (PHP 50.00)</td>
 									</tr>
 									<tr>
-										<td>Heavily Embellished Items (PHP 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Heavily Embellished Items (PHP 50.00)</td>
 									</tr>
 									<tr>
-										<td>Hem Leather (PHP 50.00)</td>
+										<td style="font-family: 'Philosopher', sans-serif;">Hem Leather (PHP 50.00)</td>
 									</tr>
 								</table>	
 								<div class="divider" style="margin-top:20px; margin-bottom:10px;"></div>
