@@ -117,7 +117,7 @@ class PackagesController extends Controller
 
              \Session::flash('flash_message','Set successfully created.'); //flash message
             
-            return redirect('/maintenance/sets');
+            return redirect('maintenance/sets');
 
     }
 
