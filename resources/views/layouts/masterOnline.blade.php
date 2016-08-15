@@ -7,12 +7,13 @@
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css?family=Cormorant+Infant|Lemonada|Lobster+Two|Pacifico|Yatra+One|Philosopher" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
 
       {!! Html::style('css/materialize.min.css') !!}
       {!! Html::style('css/styleOnline.css'); !!}
 
       <style>
-      @import 'https://fonts.googleapis.com/css?family=Cormorant+Infant|Lemonada|Lobster+Two|Pacifico|Philosopher|Yatra+One';
+      @import 'https://fonts.googleapis.com/css?family=Cormorant+Infant|Lemonada|Lobster+Two|Pacifico|Philosopher|Yatra+One|Roboto+Slab';
       </style>
 
       <style>
@@ -73,7 +74,7 @@
 
 
         <div class="navbar teal">
-          <nav style="font-family: 'Philosopher', sans-serif;">
+          <nav style="font-family: 'Roboto Slab', serif;">
             <div style="border-bottom:1px solid grey" class="nav-wrapper">
 
               <ul class="container">
@@ -94,7 +95,7 @@
                 <li>
                   <a style="color: white;" class="dropdown-button btn-flat" data-beloworigin="true" href="#" data-activates="alter"><b>ALTERATION</b></a>
                   <ul id="alter" class="dropdown-content">
-                    <li><a href="{{URL::to('/online-alteration')}}">SERVICES</a></li>
+                    <li><a href="{{URL::to('transaction/online-alteration')}}">SERVICES</a></li>
                     <li><a href="{{URL::to('transaction/online-alteration-transact')}}">TRANSACTION</a></li>
                   </ul>
                 </li>
@@ -189,11 +190,11 @@
         $('.dropdown-button').dropdown({
           inDuration: 500,
           outDuration: 500,
-          constrain_width: false, // Does not change width of dropdown to that of the activator
-          hover: true, // Activate on hover
-          gutter: 0, // Spacing from edge
+          constrain_width: true, // Does not change width of dropdown to that of the activator
+          hover: false, // Activate on hover
+          gutter: -2, // Spacing from edge
           belowOrigin: false, // Displays dropdown below the button
-          alignment: 'left' // Displays dropdown with edge aligned to the left of button
+          alignment: 'right'
         });
       });
           

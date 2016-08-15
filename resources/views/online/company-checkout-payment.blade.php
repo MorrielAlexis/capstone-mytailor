@@ -7,8 +7,8 @@
         <ul class="col s12 breadcrumb">
           <li><a style="padding-left:100px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Select Fabric</b></a></li>
           <li><a style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Choose Style</b></a></li>
-          <li><a class="active" style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Step 3: Check Out</b></a></li>
           <li><a style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Measurement</b></a></li>
+          <li><a class="active" style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Step 4: Check Out</b></a></li>
         </ul>
       </div>
     </div>
@@ -197,7 +197,25 @@
 
                         <!--start of bottom button-->
             <div class="col s12" style="margin-top:20px">
-              <a href="{{URL::to('/online-company-checkout-employee-details')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save payment information and get measured" style="background-color:#00695c; padding:9.5px; padding-bottom:45px; margin-top:20px; margin-left:30px"><label style="font-size:15px; color:white"><b>Start Measurement</b></label></a>
+              <a href="#save-transaction" class="right modal-trigger btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save info and begin processing" style="background-color:#a7ffeb; padding:9.5px; padding-bottom:45px; margin-top:20px; margin-left:30px"><label style="font-size:15px; color:black"><!--<i class="mdi-action-done"> --><b>Save Order</b><!--</i>--></a>
+                <div id="save-transaction" class="modal modal-fixed-footer" style="height:200px; width:500px; margin-top:150px">
+                    
+                  {!! Form::open() !!}
+                    
+                    <div class="modal-content col s12">
+                      <div class="col s3">
+                        <i class="mdi-action-done" style="font-size:50px; color:green"></i>
+                      </div>
+                      <div class="col s9">
+                        <p><font size="+1">Successfully saved measurement and transaction!</font></p>
+                      </div>
+                    </div>
+
+                    <div class="modal-footer col s12" style="background-color:green; opacity:0.85; color:white">
+                              <a class="waves-effect waves-green btn-flat" href="{{URL::to('/online-home')}}"><font color="white">OK</font></a>
+                          </div>
+                  {!! Form::close() !!}
+                </div>              
               <a href="#cancel-order" class="right btn modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Click to cancel current unsaved transaction" style="background-color:#a7ffeb; padding:9.5px; padding-bottom:45px; margin-top:20px; margin-left:30px"><label style="font-size:15px; color:black"><b>Cancel Transaction</b></label></a>
                 <div id="cancel-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:80px">
                     <h5><font color="red"><center><b>Warning!</b></center></font></h5>

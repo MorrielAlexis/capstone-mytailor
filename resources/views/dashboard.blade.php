@@ -193,4 +193,3 @@
         $('#CurDate').html(dayNames[newDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
     
     </script>
-@stop
