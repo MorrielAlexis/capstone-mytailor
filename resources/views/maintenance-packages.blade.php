@@ -225,7 +225,7 @@
                         
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">                                                    
-                                <select class="browser-default" id="editSegment3" name="editSegment3"required>
+                                <select class="browser-default" id="editSegment3" name="editSegment3">
                                   <option value="" disabled selected>Choose a segment:</option>
                                   @foreach($segment as $segment_3)
                                     @if($sets->strPackageSeg3FK == $segment_3->strSegmentID && $segment_3->boolIsActive == 1)
@@ -240,7 +240,7 @@
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">                                                    
-                                <select class="browser-default" id="editSegment4" name="editSegment4"required>
+                                <select class="browser-default" id="editSegment4" name="editSegment4">
                                   <option value="" disabled selected>Choose a segment:</option>
                                   @foreach($segment as $segment_4)
                                     @if($sets->strPackageSeg4FK == $segment_4->strSegmentID && $segment_4->boolIsActive == 1)
@@ -255,7 +255,7 @@
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">                                                    
-                                <select class="browser-default" id="editSegment5" name="editSegment5"required>
+                                <select class="browser-default" id="editSegment5" name="editSegment5">
                                   <option value="" disabled selected>Choose a segment:</option>
                                   @foreach($segment as $segment_5)
                                     @if($sets->strPackageSeg5FK == $segment_5->strSegmentID && $segment_5->boolIsActive == 1)
