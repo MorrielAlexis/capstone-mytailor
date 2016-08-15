@@ -120,9 +120,15 @@ class FabricColorController extends Controller
     }
 
     function update_fabricColor(Request $request)
-
     {   
-       
+        $checkfabricColors = FabricColor::all();
+        $isAdded=FALSE;
+
+        foreach($checkfabricColors as $checkfabricColor)
+            if(!strcasecmp($checkfabricColor->strFabricColorID, $request->input('editfabricColor')) == 0 && strcasecmp($checkfabricColor->strFabricColorName,$request->input('editColorName')) == 0)
+                $isAdded = TRUE;
+
+        if(!$isAdded){
         $fabricColor = FabricColor::find($request->input('editfabricColor'));
 
                 $fabricColor->strFabricColorName = trim($request->get('editColorName'));    
@@ -130,7 +136,8 @@ class FabricColorController extends Controller
 
                 $fabricColor->save();
 
-        \Session::flash('flash_message_update','Color successfully updated.');
+            \Session::flash('flash_message_update','Color successfully updated.');
+         }else \Session::flash('flash_message_duplicate','Color already exists.'); //flash message
 
         return redirect('maintenance/fabric-color');
 

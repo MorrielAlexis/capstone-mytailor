@@ -12,7 +12,7 @@
         </div>
 
         <div class="col s4" style="margin-top:-30px;">
-          <center><span style="font-size:42px; color: #757575; font-family:'Playfair Display','Times';">WOMEN'S SHIRT</span></center>
+          <center><span style="font-size:42px; color: #757575; font-family:'Lemonada',cursive;">WOMEN'S SHIRT</span></center>
         </div>
 
         <div class="col s4">
@@ -27,8 +27,8 @@
         <ul class="col s12 breadcrumb">
           <li><a class="active" style="padding-left:100px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Step 1: Select Fabric</b></a></li>
           <li><a style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Choose Style</b></a></li>
-          <li><a style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Check Out</b></a></li>
           <li><a style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Measurement</b></a></li>
+          <li><a style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Check Out</b></a></li>
         </ul>
       </div>
     </div>
@@ -93,8 +93,8 @@
       <div class="col s12 divider dashed" style="height:4px; margin-top:10px; margin-bottom:10px;"></div>
       
 
-      {!! Form::open(['url' => 'customize-womens-style', 'method' => 'post']) !!}
-      <div class="col s12" style="margin-bottom:20px;"><a class="right btn-flat teal accent-4 white-text" type="submit">Continue</a></div>
+      {!! Form::open(['url' => 'customize-womens-style-collar', 'method' => 'post']) !!}
+      <div class="col s12" style="margin-bottom:20px;"><button class="right btn-flat teal accent-4 white-text" type="submit">Continue</button></div>
 
       @foreach($fabrics as $fabric)
       <div class="col s12 fabric-general {{ $fabric->strFabricTypeFK }} {{ $fabric->strFabricPatternFK }} {{ $fabric->strFabricColorFK }} {{ $fabric->strFabricThreadCountFK }}" style="margin-bottom:20px; padding:20px; padding-top:0;">

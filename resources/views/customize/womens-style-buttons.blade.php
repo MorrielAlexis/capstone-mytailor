@@ -12,7 +12,7 @@
         </div>
 
         <div class="col s4" style="margin-top:-30px;">
-          <center><span style="font-size:42px; color: #757575; font-family:'Playfair Display','Times';">WOMEN'S SHIRT</span></center>
+          <center><span style="font-size:42px; color: #757575; font-family:'Lemonada',cursive;">WOMEN'S SHIRT</span></center>
         </div>
 
         <div class="col s4">
@@ -27,8 +27,8 @@
         <ul class="col s12 breadcrumb">
           <li><a style="padding-left:100px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Select Fabric</b></a></li>
           <li><a class="active"  style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Step 2: Choose Style</b></a></li>
-          <li><a style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Check Out</b></a></li>
           <li><a style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Measurement</b></a></li>
+          <li><a style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Check Out</b></a></li>
         </ul>
 
         <ul class="tabs transparent" style="float:left; margin-top:40px;">
@@ -42,47 +42,37 @@
 
 
         <!--BUTTONS TAB-->
+        {!! Form::open(['url' => 'customize-womens-style-pocket-monogram', 'method' => 'POST']) !!}
         <div id="tabButtons" class="col s12 white" style="padding:20px; border 2px teal accent-4 white-text;">
-          
+
           <div class="col s12">
-            <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/customize-womens-style-pocket-monogram')}}">Next step</a></div>
+            <div><button class="right btn-flat teal accent-4 white-text" type="submit">Next step</button></div>
             <div><a class="left btn-flat teal accent-4 white-text" href="{{URL::to('/customize-womens-style-cuffs')}}">Previous step</a></div>
           </div>
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
 
-          <div class="col s12">
+          <div class="col s12" style="margin-top:20px;">
             <ul class="collapsible" data-collapsible="accordion" style="border:none;">
               <li>
                 <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Buttons</div>
-                <div class="collapsible-body row overflow-x">
-                  <div class="col s6">
-                    <div class="center col s2 " style="margin-top:100px">
-                      <input name="" type="radio" class="filled-in" value = "" id="" />
-                      <label for=""></label>
+                <div class="collapsible-body row overflow-x" style="padding:20px;"> 
+                  <div class="col s12">      
+                  @foreach($buttons as $button)
+                    <div class="col s2">
+                      <img class="materialboxed responsive-img" src="{{URL::asset($button->strButtonImage)}}">
+                      <p>
+                        <input name="rdb_button" type="radio" class="filled-in" value = "{{ $button->intButtonID }}" id="{{ $button->intButtonID }}" />
+                        <label for="{{$button->intButtonID}}"><font size="+1"><b>{{$button->strButtonBrand}}</b></font></label>
+                      </p>
                     </div>
-                    <div class="col s10">
-                      <div class="card-panel teal lighten-4 z-depth-1" style="height:200px">
-                        <div class="row valign-wrapper">
-                          <div class="center col s6">
-                            <img src="" alt="" class="responsive-img">
-                          </div>
-                          <div class="col s6"> 
-                            <span><b></b></span>
-                            <br/>
-                            <span class="black-text">
-                              
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  @endforeach
+                  </div>                
                 </div>
               </li>
             </ul>
-          </div> 
+          </div>
 
-          <div class="divider dashed" style="height:2px;"></div>
+        <div class="divider dashed" style="height:2px;"></div>
 
           <div class="col s12" style="margin-top:20px;">
             <div class="col s6" style="padding-left:20px;"><h5><b>Coloured Button Threads</b></h5></div>
@@ -90,46 +80,50 @@
           </div>
 
           <div class="col s12">
+            <div class="col s3 button-thread" style="padding:40px;">
+            <input type="hidden" name="hidden_thread_id" value="">
+              <img class="materialboxed responsive-img" src="imgDesignPatterns/buttonthread.png">
+            </div>
 
-            <div class="col s3" style="padding:40px;">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
-            </div> 
-
-            <div class="col s2" style="padding:20px;">
+            <div class="col s3" style="padding:20px;">
               <p>Would you like coloured button threads?</p>
-              <div class="input-field" style="margin-top:70px;">
-                <select class="browser-default">
-                  <option value="" disabled selected>Choose your option</option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
+              <div class="input-field col s12">
+                <select class = "button-thread" id = "button-thread">
+                    <option value="No" class="circle" selected>No</option>
+                    @foreach($threads as $thread)
+                    <option value="{{$thread->intThreadID}}">{{$thread->strThreadColor}}</option>
+                    @endforeach
                 </select>
               </div>             
             </div>
 
             <div class="col s3" style="padding:40px;">
-              <img class="materialboxed responsive-img" src="img/fabric.jpg">
+              <img class="materialboxed responsive-img" src="imgDesignPatterns/buttonhole.png">
             </div>             
 
-            <div class="col s2" style="padding:20px;">
+            <div class="col s3" style="padding:20px;">
               <p>Would you like coloured buttonholes?</p>
-              <div class="input-field" style="margin-top:70px;">
-                <select class="browser-default">
-                  <option value="" disabled selected>Choose your option</option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
+              <div class="input-field">
+                <select>
+                    <option value="No" class="circle" selected>No</option>
+                    @foreach($threads as $thread)
+                    <option value="{{$thread->intThreadID}}">{{$thread->strThreadColor}}</option>
+                    @endforeach
                 </select>
               </div>             
-            </div>            
+            </div>         
 
-          </div>                   
+          </div>
+
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12">
-            <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/customize-womens-style-pocket-monogram')}}">Next step</a></div>
+            <div><button class="right btn-flat teal accent-4 white-text" type="submit">Next step</button></div>
             <div><a class="left btn-flat teal accent-4 white-text" href="{{URL::to('/customize-womens-style-cuffs')}}">Previous step</a></div>
           </div>
 
         </div>
+        {!! Form::close() !!}
         <!--END OF BUTTONS TAB-->
 
 

@@ -14,7 +14,7 @@
             </div>
 
             <div class="col s4" style="margin-top:-30px;">
-              <center><span style="font-size:40px; color: #757575; font-family:'Playfair Display','Times';">CUSTOMER PROFILE</span></center>
+              <center><span style="font-size:40px; color: #757575; font-family:'Lemonada',cursive;">CUSTOMER PROFILE</span></center>
             </div>
 
             <div class="col s4">
@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <div class="col s12" style="padding-left:2%; padding-right:2%;">
+    <div class="col s12" style="padding-left:2%; padding-right:2%; font-family:'Philosopher',sans-serif;">
 
       <div class="col s3" style="padding:0; margin-top:10px;">
         <ul class="collapsible white">
@@ -44,10 +44,10 @@
         </ul>
       </div>
 
-      <div class="col s9" style="margin-top:17px; padding-top:0; padding-right:0; padding-left:17px;">
+      <div class="col s9" style="margin-top:17px; padding-top:0; padding-right:0; padding-left:17px; font-family:'Cormorant Infant',serif;">
         <div class="white" style="padding:20px;">
           <div style="border:4px solid #b2dfdb; padding:20px;">
-            <h5 style="color:#757575; margin-left:15px;">Order Specification</h5>
+            <h3 style="color:#757575; font-family:'Lobster Two',cursive;">Order Specification</h3>
             <div class="divider" style="margin-top:-10px; margin-bottom:20px;"></div>
             
             <ul class="collapsible" data-collapsible="accordion" style="border:none;">

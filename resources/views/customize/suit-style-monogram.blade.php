@@ -12,7 +12,7 @@
         </div>
 
         <div class="col s4" style="margin-top:-30px;">
-          <center><span style="font-size:42px; color: #757575; font-family:'Playfair Display','Times';">SUIT CUSTOMIZATION</span></center>
+          <center><span style="font-size:42px; color: #757575; font-family:'Lemonada',cursive;">SUIT CUSTOMIZATION</span></center>
         </div>
 
         <div class="col s4">
@@ -27,8 +27,8 @@
         <ul class="col s12 breadcrumb">
           <li><a style="padding-left:100px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Select Fabric</b></a></li>
           <li><a class="active"  style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Step 2: Choose Style</b></a></li>
-          <li><a style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Check Out</b></a></li>
           <li><a style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Measurement</b></a></li>
+          <li><a style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Check Out</b></a></li>
         </ul>
 
         <ul class="tabs transparent" style="float:left; margin-top:40px;">
@@ -60,19 +60,22 @@
                         <input class="with-gap" name="classic" type="radio" id="small" />
                         <label for="small"><font size="+1"><b>No Monogram</b></font></label>
                       </p>
-                    </div>                  
+                    </div>                 
                   </div>
 
-                  <div class="col s12">
-
-                    <div class="col s3">
-                      <img class="materialboxed responsive-img" src="img/fabric.jpg">
-                      <p>
-                        <input class="with-gap" name="classic" type="radio" id="small" />
-                        <label for="small"><font size="+1"><b>Cuffed Short Sleeves</b></font></label>
-                      </p>
+                  @foreach($monograms as $monogram)
+                    <div class="col s12">
+                      @foreach($patterns as $pattern)
+                      <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $monogram->strSegStyleCatID) hidden @endif>
+                        <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
+                        <p>
+                          <input name="rdb_pattern{{ $monogram->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
+                          <label for="{{$pattern->strSegPatternID}}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
+                        </p>
+                      </div>
+                      @endforeach
                     </div>
-                  </div> 
+                  @endforeach 
                 </div>
               </li>            
               <li>

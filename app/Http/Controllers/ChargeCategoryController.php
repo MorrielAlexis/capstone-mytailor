@@ -122,6 +122,15 @@ class ChargeCategoryController extends Controller
 
     function updateChargeCat(Request $request)
     {
+        $checkchargeCats = ChargeCategoryModel::all();
+        $isAdded=FALSE;
+
+        foreach($checkchargeCats as $checkchargeCat)
+            if(!strcasecmp($checkchargeCat->strChargeCatID, $request->input('editChargeCatID')) == 0 && strcasecmp($checkchargeCat->strChargeCatName,$request->input('editChargeCatName')) == 0)
+                 // &&  strcasecmp($checkchargeCat->strChargeDetSegFK,$request->input('editChargeDetSegFK')) == 0
+                $isAdded = TRUE;
+
+        if(!$isAdded){
          $chargeCat = ChargeCategoryModel::find($request->input('editChargeCatID'));
 
                 $chargeCat->strChargeCatName = trim($request->get('editChargeCatName'));    
@@ -130,8 +139,9 @@ class ChargeCategoryController extends Controller
                 $chargeCat->save();
 
         \Session::flash('flash_message_update','Charge category successfully updated.');
+        }else \Session::flash('flash_message_duplicate','Charge category already exists.'); //flash message
 
-        return redirect('maintenance/fabric-color');
+        return redirect('maintenance/charges-category');
     }
 
     function deleteChargeCat(Request $request)
@@ -145,7 +155,7 @@ class ChargeCategoryController extends Controller
 
         \Session::flash('flash_message_delete','Charge category successfully deactivated.');
 
-        return redirect('maintenance/fabric-color');
+        return redirect('maintenance/charges-category');
 
     }
 

@@ -4,7 +4,8 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 use Illuminate\Contracts\Validation\Validator;
-class MaintenanceButtonRequest extends Request
+
+class MaintenanceStandardSizeCategoryRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,19 +25,20 @@ class MaintenanceButtonRequest extends Request
     public function rules()
     {
         return [
-            'strButtonBrand'    =>  'required|unique_with:tblButton,strButtonSize,strButtonColor'
-    
+            'strStandardSizeCategoryName' => 'required|unique:tblStandardSizeCategory,strStandardSizeCategoryName'
+              
+        ];
     }
 
     public function messages()
     {
         return [
-            'strButtonBrand.unique'  =>  'Button already exists.',
-            'strButtonBrand.required' => 'Button name is required.'
+            'strStandardSizeCategoryName.unique'  =>  'Standard size category already exists.',
+            'strStandardSizeCategoryName.required'  =>  'Standard size category name is required.'
+            
         ];
 
     }
-
 
     protected function formatErrors(Validator $validator)
     {

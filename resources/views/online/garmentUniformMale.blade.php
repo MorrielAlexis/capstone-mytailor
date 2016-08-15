@@ -47,7 +47,7 @@
 				</div>
 				<div class="col s6" style="padding:20px;">
 					<h4 style="font-family:'Lobster Two',cursive;">Custom tailored uniforms - designed by you</h4>
-					<h6>Buying a custom tailored shirt from us is always an excellent choice. We promise to give you:</h6>
+					<h6 style="font-family:'Yatra One',cursive;">Buying a custom tailored shirt from us is always an excellent choice. We promise to give you:</h6>
 					<ul style="font-family:'Yatra One',cursive;">
 						<li>Guaranteed perfect fit</li>
 						<li>Highest quality fabrics, materials and craftmanship</li>

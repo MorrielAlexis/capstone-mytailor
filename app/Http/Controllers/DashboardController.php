@@ -36,11 +36,19 @@ class DashboardController extends Controller
             ->leftjoin('tblcustcompany', 'tblJobOrder.strJo_CustomerCompanyFK', '=', 'tblcustcompany.strCompanyID')
             ->where('tblJobOrder.boolIsOrderAccepted', '=', '1')
             ->select('tblcustindividual.*', 'tblcustcompany.*', 'tblJobOrder.*')
-            ->get();      
+            ->get();
+
+        $joborderprog = \DB::table('tblJobOrder')
+            ->leftjoin('tblcustindividual', 'tblJobOrder.strJo_CustomerFK', '=', 'tblcustindividual.strIndivID')
+            ->leftjoin('tblcustcompany', 'tblJobOrder.strJo_CustomerCompanyFK', '=', 'tblcustcompany.strCompanyID')
+            ->where('tblJobOrder.boolIsOrderAccepted', '=', '1')
+            ->select('tblcustindividual.*', 'tblcustcompany.*', 'tblJobOrder.*')
+            ->get();           
 
            
         return view('dashboard')
              ->with('joborder', $joborder)
-             ->with('joborderongoing', $joborderongoing);
+             ->with('joborderongoing', $joborderongoing)
+             ->with('joborderprog', $joborderprog);
     }
 }

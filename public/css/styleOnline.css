@@ -2,6 +2,12 @@
 body{
   font-family: 'Philosopher', sans-serif;
 }
+
+.btn{
+    font-family: 'Yatra One', cursive;
+}
+
+
 nav{
   background-color: transparent;
   box-shadow: 0px 0px;

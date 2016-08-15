@@ -142,70 +142,27 @@
                         <span class="collection-header"><font size="+1">JOB ORDERS IN PROGRESS</font></span>
                         <a href="#" class="secondary-content"><i class="mdi-action-grade"></i></a>
                     </li>
-                    <li class="collection-item">
-                        <div class="row">
-                            <div class="col s7">
-                                <p class="collections-title"><strong>#102</strong> Home Page</p>
-                                <p class="collections-content">Web Project</p>
+
+                    @foreach($joborderprog as $joborderprog)
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col s7">
+                                    <p class="collections-title">{{$joborderprog->strJobOrderID}}</p>
+                                    <p class="collections-content">Date Order: {{$joborderprog->dtOrderDate}}</p>
+                                    <p class="collections-content">Date to be Finished: {{$joborderprog->dtOrderExpectedToBeDone}}</p>
+                                </div>
+                                <div class="col s2">
+                                    <span class="task-cat pink accent-2">P1</span>
+                                </div>
+                                <div class="col s3">
+                                    <div class="progress">
+                                         <div class="determinate" style="width: 70%"></div>   
+                                    </div>                                                
+                                </div>
                             </div>
-                            <div class="col s2">
-                                <span class="task-cat pink accent-2">P1</span>
-                            </div>
-                            <div class="col s3">
-                                <div class="progress">
-                                     <div class="determinate" style="width: 70%"></div>   
-                                </div>                                                
-                            </div>
-                        </div>
-                    </li>
-                    <li class="collection-item">
-                        <div class="row">
-                            <div class="col s7">
-                                <p class="collections-title"><strong>#108</strong> API Fix</p>
-                                <p class="collections-content">API Project </p>
-                            </div>
-                            <div class="col s2">
-                                <span class="task-cat yellow darken-4">P2</span>
-                            </div>
-                            <div class="col s3">
-                                <div class="progress">
-                                    <div class="determinate" style="width: 40%"></div>   
-                                </div>                                                
-                            </div>
-                        </div>
-                    </li>
-                    <li class="collection-item">
-                        <div class="row">
-                            <div class="col s7">
-                                <p class="collections-title"><strong>#205</strong> Profile page css</p>
-                                <p class="collections-content">New Project </p>
-                            </div>
-                            <div class="col s2">                                                
-                                <span class="task-cat light-green darken-3">P3</span>
-                            </div>
-                            <div class="col s3">
-                                <div class="progress">
-                                    <div class="determinate" style="width: 95%"></div>   
-                                </div>                                                
-                            </div>
-                        </div>
-                    </li>
-                    <li class="collection-item">
-                        <div class="row">
-                            <div class="col s7">
-                                <p class="collections-title"><strong>#188</strong> SAP Changes</p>
-                                <p class="collections-content">SAP Project</p>
-                            </div>
-                            <div class="col s2">
-                                <span class="task-cat pink accent-2">P1</span>
-                            </div>
-                            <div class="col s3">
-                                <div class="progress">
-                                     <div class="determinate" style="width: 10%"></div>   
-                                </div>                                                
-                            </div>
-                        </div>
-                    </li>
+                        </li>
+                    @endforeach    
+                    
                 </ul>
             </div>
         </div>
@@ -236,4 +193,3 @@
         $('#CurDate').html(dayNames[newDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
     
     </script>
-@stop

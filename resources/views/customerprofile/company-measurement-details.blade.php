@@ -14,7 +14,7 @@
             </div>
 
             <div class="col s4" style="margin-top:-30px;">
-              <center><span style="font-size:40px; color: #757575; font-family:'Playfair Display','Times';">CUSTOMER PROFILE</span></center>
+              <center><span style="font-size:40px; color: #757575; font-family:'Lemonada',cursive;">CUSTOMER PROFILE</span></center>
             </div>
 
             <div class="col s4">
@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <div class="col s12" style="padding-left:2%; padding-right:2%;">
+    <div class="col s12" style="padding-left:2%; padding-right:2%; font-family:'Philosopher',sans-serif;">
       <div class="col s3" style="padding:0; margin-top:10px;">
         <ul class="collapsible white">
           <li class="sidemenu"><div><a href="{{URL::to('/customerprofile-company')}}" class="collapsible-header"><font color="#424242">Information Details<i class="mdi-navigation-chevron-right right"></i></font></a></div></li>
@@ -43,10 +43,10 @@
         </ul>
       </div>
 
-      <div class="col s9" style="margin-top:17px; padding-top:0; padding-right:0; padding-left:17px;">
+      <div class="col s9" style="font-family:'Cormorant Infant',serif; margin-top:17px; padding-top:0; padding-right:0; padding-left:17px;">
         <div class="white" style="padding:20px;">
           <div style="border:4px solid #b2dfdb; padding:20px;">
-            <h5 style="color:#757575; margin-left:15px;">Employees Profile</h5>
+            <h3 style="color:#757575; font-family:'Lobster Two',cursive;">Employees Profile</h3>
             <div class="divider" style="margin-top:-10px; margin-bottom:20px;"></div>
             
             <div class="container" style="width:90%">
@@ -63,7 +63,7 @@
                     <td class="col s3">Liza Soberano</td>
                     <td class="col s3">Female</td>
                     <td class="col s6">
-                      <a class="white-text modal-trigger btn-flat deep-purple accent-1" style="font-size:13px;" href="#measurementprofile">Measurement Profile</a>
+                      <a class="white-text modal-trigger btn-flat deep-purple accent-1" style="font-size:13px; font-family:'Yatra One',cursive;" href="#measurementprofile">Measurement Profile</a>
                       <a class="white-text modal-trigger btn-flat green accent-2" href="#editEmp"><i style="font-size:15px;" class="mdi-editor-border-color"></i></a>
                       <a class="white-text modal-trigger btn-flat red accent-2" href="#removeEmp"><i style="font-size:15px;" class="mdi-content-clear"></i></a>
                     </td>
@@ -73,7 +73,7 @@
             </div>
             
             <div style="margin:10px;">
-              <a class="btn-flat teal lighten-4 modal-trigger" href="#newprofile">Create a new profile</a>
+              <a class="btn-flat teal lighten-4 modal-trigger" style="font-family:'Yatra One',cursive;" href="#newprofile">Create a new profile</a>
             </div>
           </div>
         </div>
