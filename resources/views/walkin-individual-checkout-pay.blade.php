@@ -83,17 +83,17 @@
 													<div class="col s4"><b style="color:teal">Style Price</b></div>
 													<div class="col s12"><div class="divider"></div></div>
 												</div>
-												
 													@for($i = 0; $i < count($segments); $i++)
 														@for($j = 0; $j < count($styles[$i]); $j++)
-													@if($styles[$i][$j]->strSegmentID == $segment->strSegmentID)
-													<div class="col s4">{{ $styles[$i][$j]->strSegStyleName }}</div>
-													<div class="col s4">{{ $styles[$i][$j]->strSegPName }}</div>
-													<div class="col s4">{{ number_format($styles[$i][$j]->dblPatternPrice, 2) }} PHP</div><br>
-													
-													@endif
-										        @endfor
-										    @endfor		
+															@if($styles[$i][$j]->strSegmentID == $segment->strSegmentID)
+																
+																	<div class="col s4">{{ $styles[$i][$j]->strSegStyleName }}</div>
+																	<div class="col s4">{{ $styles[$i][$j]->strSegPName }}</div>
+																	<div class="col s4">{{ number_format($styles[$i][$j]->dblPatternPrice, 2) }} PHP</div><br>
+
+																@endif
+												        @endfor
+												    @endfor	
 												</td>
 												<td style="border-right:1px teal solid">[ insert price here ]</td>
 												<td style="border-right:1px teal solid">[ insert price here ]</td>
@@ -227,9 +227,9 @@
 
                     		<!--start of bottom button-->
                     		<div class="col s12" style="margin-top:20px">
-	                    		<button type="submit" href="#confirm-submission" class="right btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-left:40px; background-color:#00695c; color:white"><b><i class="mdi-navigation-check" style="padding-right:10px"></i>Save Order</b></button> 
-									{!! Form::close() !!}
-									<div class="col s12" style="margin-top:30px">
+	                    		<button type="submit" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-left:40px; background-color:#00695c; color:white"><b><i class="mdi-navigation-check" style="padding-right:10px"></i>Save Order</b></button> 
+									
+									<!-- <div class="col s12" style="margin-top:30px">
 							              <div  id="confirm-submission" class="modal modal-fixed-footer" style="height:300px; width:500px; margin-top:80px">
 							                  <h5><font color="black"><center><b>Warning!</b></center></font></h5>
 							                 
@@ -240,11 +240,11 @@
 							                        </div>
 
 							                      <div class="modal-footer col s12">
-							                          <a onclick="window.open('/generate-payment-receipt')" href="{{ URL::to('/transaction/walkin-individual') }}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">OK</font></a>
+							                          <button type="submit"  href="{{ URL::to('/transaction/walkin-individual') }}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">OK</font></button>
 							                      </div>
 							                </div>
-							        </div>
-							   
+							        </div> -->
+			{!! Form::close() !!}   
 							<!--end of bottom button-->
 	            			</div>	
 	        </div>

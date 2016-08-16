@@ -33,6 +33,8 @@ use App\TransactionJobOrderSpecifics;
 use App\TransactionJobOrderSpecificsPattern;
 use App\TransactionJobOrderMeasurementProfile;
 use App\TransactionJobOrderMeasurementSpecifics;
+use App\TransactionJobOrderReceipt;
+use App\TransactionPaymentReceipt;
 
 class WalkInIndividualController extends Controller
 {
@@ -212,7 +214,9 @@ class WalkInIndividualController extends Controller
                     $fabrics[$i] = $sqlFabric;
                 }
             }
-        }   
+        }  
+
+        session(['segment_fabric' => $fabrics]); 
         
         for($i = 0; $i < count($values); $i++){
             $values[$i]->strFabricID = $fabrics[$i][0]->strFabricID;
@@ -404,20 +408,22 @@ class WalkInIndividualController extends Controller
             }else{
                 $ID = $ids["0"]->strPaymentID;
                 $jobPaymentID = $this->smartCounter($ID);  
+
             }
 
         $payment = TransactionJobOrderPayment::create(array(
                 'strPaymentID' => $jobPaymentID,
                 'strTransactionFK' => session()->get('joID'), //tblJobOrder
-                'dblAmountToPay' => session()->get('amountToPay'), 
-                'dblOutstandingBal' => session()->get('outstandingBal'),
+                'dblAmountToPay' => $request->input('amount-payable'), 
+                'dblOutstandingBal' => $request->input('balance'),
                 'strReceivedByEmployeeNameFK' => 'EMPL001' ,
                 'dtPaymentDate' => $request->input('transaction_date'),
                 'dtPaymentDueDate' => session()->get('dueDate'),
                 'strPaymentStatus' => 'Pending',
                 'boolIsActive' => 1
 
-            ));
+        ));
+        session(['payment_id' => $jobPaymentID]);
 
         $payment->save();
 
@@ -493,38 +499,105 @@ class WalkInIndividualController extends Controller
 
             $joMeasurementProfile->save();
 
-            for($j = 0; $j < count($measurementName[$i]); $j++){
-                //measurement specs
-                $ids = \DB::table('tblJOMeasureSpecific')
-                        ->select('strJOMeasureSpecificID')
-                        ->orderBy('created_at', 'desc')
-                        ->orderBy('strJOMeasureSpecificID', 'desc')
-                        ->take(1)
-                        ->get();
+            // for($j = 0; $j < count($measurementName[$i]); $j++){
+            //     //measurement specs
+            //     $ids = \DB::table('tblJOMeasureSpecific')
+            //             ->select('strJOMeasureSpecificID')
+            //             ->orderBy('created_at', 'desc')
+            //             ->orderBy('strJOMeasureSpecificID', 'desc')
+            //             ->take(1)
+            //             ->get();
 
-                    if($ids == null){
-                        $joMeasSpecificID = $this->smartCounter("JOMP000"); 
-                    }else{
-                        $ID = $ids["0"]->strJOMeasureSpecificID;
-                        $joMeasSpecificID = $this->smartCounter($ID);  
-                    }
+            //         if($ids == null){
+            //             $joMeasSpecificID = $this->smartCounter("JOMP000"); 
+            //         }else{
+            //             $ID = $ids["0"]->strJOMeasureSpecificID;
+            //             $joMeasSpecificID = $this->smartCounter($ID);  
+            //         }
 
-                    $joMeasurementProfile = TransactionJobOrderMeasurementSpecifics::create(array(
-                            'strJOMeasureSpecificID' => $joMeasSpecificID,
-                            'strJobOrderSpecificFK' => $jobSpecsID,
-                            'strMeasureProfileFK' => $joMeasProfileID,
-                            'strMeasureDetailFK' => $measurementName[$i][$j],
-                            'dblMeasureValue' => $measurementDetails[$i][$j],
-                            'strUnitOfMeasurement' => $measurementDetails[$i][count($measurementName[$i])],
-                            'boolIsActive' => 1
-                    ));
+            //         $joMeasurementProfile = TransactionJobOrderMeasurementSpecifics::create(array(
+            //                 'strJOMeasureSpecificID' => $joMeasSpecificID,
+            //                 'strJobOrderSpecificFK' => $jobSpecsID,
+            //                 'strMeasureProfileFK' => $joMeasProfileID,
+            //                 'strMeasureDetailFK' => $measurementName[$i][$j],
+            //                 'dblMeasureValue' => $measurementDetails[$i][$j],
+            //                 'strUnitOfMeasurement' => $measurementDetails[$i][count($measurementName[$i])],
+            //                 'boolIsActive' => 1
+            //         ));
 
-                    $joMeasurementProfile->save();
-            }//end of loop for meas specs
+            //          dd($joMeasurementProfile);
+
+            //         $joMeasurementProfile->save();
+            // }//end of loop for meas specs
         }//end of save loop for JO Specs
 
-        // $this->clearValues();
+        $paymentid = session()->get('payment_id');
 
+        //Job Order Receipt
+        $jorId = \DB::table('tblJobOrderReceipt')
+                ->select('strOrderReceiptID')
+                ->orderBy('created_at', 'desc')
+                ->orderBy('strOrderReceiptID', 'desc')
+                ->take(1)
+                ->get();
+
+            if($jorId == null){
+                $joReceiptID = $this->smartCounter("OR000"); 
+            }else{
+                $ID = $jorId["0"]->strOrderReceiptID;
+                $joReceiptID = $this->smartCounter($ID);  
+            }
+
+        $jobOrderReceipt = TransactionJobOrderReceipt::create(array(
+                'strOrderReceiptID' => $joReceiptID,
+                'strJobOrderFK' => session()->get('joID'), //tblJobOrder
+                'strIssuedByEmpNameFK' => "EMPL001", 
+                'boolIsActive' => 1
+
+        ));
+
+        session(['jorReceiptId' => $joReceiptID]);
+
+        $jobOrderReceipt->save();
+
+        //Payment Receipt
+        $prId = \DB::table('tblPaymentReceipt')
+                ->select('strPaymentReceiptID')
+                ->orderBy('created_at', 'desc')
+                ->orderBy('strPaymentReceiptID', 'desc')
+                ->take(1)
+                ->get();
+
+            if($prId == null){
+                $payReceiptID = $this->smartCounter("PYR000"); 
+            }else{
+                $ID = $prId["0"]->strPaymentReceiptID;
+                $payReceiptID = $this->smartCounter($ID);  
+            }
+        
+        $paymentReceipt = TransactionPaymentReceipt::create(array(
+                'strPaymentReceiptID' => $payReceiptID,
+                'strPaymentFK' => session()->get('payment_id'), //tblJobOrder
+                'strIssuedByEmpNameFK' => "EMPL001", 
+                'boolIsActive' => 1
+        ));
+
+        session(['pyrReceiptId' => $payReceiptID]);
+
+        $paymentReceipt->save();
+
+
+        return view('for-printing');
+
+    }
+
+
+    public function submit(Request $request)
+    {
+        $request->session()->flash('success-message', 'Order successfully sent!');  
+        $this->clearValues();
+
+        return redirect('transaction/walkin-individual');
     }
 
 
@@ -532,6 +605,12 @@ class WalkInIndividualController extends Controller
     {
 
         // var_dump(session()->get('segment_data'));
+        $values = session()->get('segment_values');
+        $patterns = [];
+        $i = 0;
+        $k = 0;
+        $termsOfPayment = 'null';
+        $paymentid = 'null';
 
         $data = [
             'orders' => [
@@ -548,6 +627,17 @@ class WalkInIndividualController extends Controller
             ]
         ];
 
+        $fabric = [
+            'fabrics' => [
+                [
+                    'joID' => 'JOB001',
+                    'jobSpecsID' => 'id',
+                    'segment_fabric' => 'Fabric'
+                ]
+            ]
+
+        ];
+
         $custId = session()->get('custID');
         $custname = \DB::table('tblCustIndividual')
                     ->select('strIndivID', \DB::raw('CONCAT(strIndivFName, " ", strIndivMName, " ", strIndivLName) AS fullname'))
@@ -556,23 +646,37 @@ class WalkInIndividualController extends Controller
 
         $empname = \DB::table('tblEmployee')
                     ->select('strEmployeeID', \DB::raw('CONCAT(strEmpFName, " ", strEmpMName, " ", strEmpLName) AS employeename'))
-                    ->where('strEmployeeID', '=', 'EMPL001')
+                    ->where('strEmployeeID', '=', 'EMPL001')//Temporary, since naka-hardcode pa yung pagset ng employee sa naunang process.
                     ->first();
 
-        $pdf = PDF::loadView('pdf/payment-receipt', compact('data','custname', 'empname'))->setPaper('Letter')->setOrientation('portrait');
+        $data_segment = session()->get('segment_data');
+        $segments = \DB::table('tblSegment AS a')
+                        ->leftJoin('tblGarmentCategory AS b', 'a.strSegCategoryFK', '=', 'b.strGarmentCategoryID')
+                        ->select('a.*', 'b.strGarmentCategoryName') 
+                        ->whereIn('a.strSegmentID', $data_segment)
+                        ->orderBy('a.strSegmentID')
+                        ->get();
+
+        $values = session()->get('segment_values');
+        $styles = session()->get('segment_design');
+        $fabric = session()->get('segment_fabric');
+
+        // dd($fabric);
+
+        $termsOfPayment = session()->get('termsOfPayment');
+        $paymentid = session()->get('payment_id');
+        $order_receipt = session()->get('jorReceiptId');
+        $payment_receipt = session()->get('pyrReceiptId');
+
+        $pdf = PDF::loadView('pdf/payment-receipt', compact('data', 'custname', 'empname', 'segments', 'values', 'styles', 'termsOfPayment', 'paymentid', 'order_receipt', 'payment_receipt', 'fabric'))->setPaper('Letter')->setOrientation('portrait');
 
         return $pdf->stream();
-
-
-
-        // $ids = 
-
-        // if($ids == null){
-        //     $custID = $this->smartCounter("CUSTP000"); 
-        // }else{
-        //     $ID = $ids["0"]->strIndivID;
-        //     $custID = $this->smartCounter($ID);  
-        // } 
+        // $jobId = session()->get('joID');
+        // $paymentid = \DB::table('tblJOPayment')
+        //             ->select('strPaymentID', 'strTransactionFK')
+        //             ->where('strTransactionFK', '=', $jobId)
+        //             ->first();
+ 
 
         // for($i=0; $i<count($data); $i++){
         //     for($j=0; $j<$i+1; $j++){
@@ -583,9 +687,6 @@ class WalkInIndividualController extends Controller
         //     ]);
         //     }
         // }
-       
-
-        // dd($data);
                 
     }
 
@@ -625,10 +726,10 @@ class WalkInIndividualController extends Controller
         session()->forget('outstandingBal');
         session()->forget('transaction_date');
         session()->forget('dueDate');
+        session()->forget('jorReceiptId');
+        session()->forget('pyrReceiptId');
+        session()->forget('payment_id');
 
-        $request->session()->flash('success-message', 'Order successfully sent!');  
-
-        return redirect('transaction/walkin-individual');
     }
 
 
