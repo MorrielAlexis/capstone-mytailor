@@ -7,8 +7,8 @@
         <ul class="col s12 breadcrumb">
           <li><a style="padding-left:100px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Select Fabric</b></a></li>
           <li><a style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Choose Style</b></a></li>
+          <li><a class="active" style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Step 3: Measurement</b></a></li>
           <li><a style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Check Out</b></a></li>
-          <li><a class="active" style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Step 4: Measurement</b></a></li>
         </ul>
       </div>
     </div>
@@ -108,7 +108,7 @@
 
                     <div class="col s12"><div class="divider" style="height:5px; color:gray; margin-top:15px; margin-bottom:15px"></div></div>
 
-          <a href="{{URL::to('/online-company-checkout-employee-details')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save employee measurement" style="background-color:teal; margin-right:50px; padding:9.5px; padding-bottom:45px; color:white"><!--<i class="mdi-action-done"> -->Save<!--</i>--></a>
+          <a href="{{URL::to('/online-company-checkout-employee-details')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save employee measurement" style="background-color:teal; padding:9.5px; padding-bottom:45px; margin-right:50px; color:white"><!--<i class="mdi-action-done"> -->Check Out<!--</i>--></a>
           <a href="{{URL::to('/online-company-checkout-employee-details')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Cancels employee measurement profile" style="background-color:teal; padding:9.5px; padding-bottom:45px; margin-right:50px; color:white">Cancel</a>
 
         </div>

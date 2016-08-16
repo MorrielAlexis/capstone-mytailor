@@ -13,14 +13,7 @@
 		<div style= "height:20px;"></div>
 
 		<div class="section white container" style="width:95%;">
-
-<h2 style="font-family: 'Pacifico', cursive;">My Tailor MYTAILOR</h2>
-<h2 style="font-family: 'Yatra One', cursive;">My Tailor MYTAILOR</h2>
-<h2 style="font-family: 'Lobster Two', cursive;">My Tailor MYTAILOR</h2>
-<h2 style="font-family: 'Cormorant Infant', serif;">My Tailor MYTAILOR</h2>
-<h2 style="font-family: 'Lemonada', cursive;">My Tailor MYTAILOR</h2>
-<h2 style="font-family: 'Philosopher', sans-serif;">My Tailor MYTAILOR</h2>		
-
+	
 			<div class="row">
 
 				<div class="col s4 center" style="padding:30px;">

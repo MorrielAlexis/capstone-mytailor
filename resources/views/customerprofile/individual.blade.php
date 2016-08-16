@@ -7,28 +7,24 @@
 
         <!--HEADER-->      
           <div class="col s12" style="padding-left:2%; padding-right:2%; padding-top:2%;">
-            <div class="section">
+            <div class="section white z-depth-3">
               <div class="row" style="margin-top:40px;">
-
-                <section id="ind_header"> 
-                  <div class="col s12">     
-                    <div class="col s4">
-                      <div class="divider white" style="height:3px; margin-bottom:5px;"></div>
-                      <div class="divider white" style="height:3px;"></div>
-                    </div>
-
-                    <div class="col s4" style="margin-top:-30px;">
-                      <center><span><b>CUSTOMER PROFILE</b></span></center>
-                    </div>
-
-                    <div class="col s4">
-                      <div class="divider white" style="height:3px; margin-bottom:5px;"></div>
-                      <div class="divider white" style="height:3px;"></div>
-                    </div>
+                <div class="col s12">
+                  <div class="col s4">
+                    <div class="divider grey" style="margin-bottom:5px;"></div>
+                    <div class="divider grey"></div>
                   </div>
-                    <p class="center container">Welcome to your personal page here at MyTailor.</p>
-                 </section>
 
+                  <div class="col s4" style="margin-top:-30px;">
+                    <center><span style="font-size:40px; color: #757575; font-family:'Lemonada',cursive;">CUSTOMER PROFILE</span></center>
+                  </div>
+
+                  <div class="col s4">
+                    <div class="divider grey" style="margin-bottom:5px;"></div>
+                    <div class="divider grey"></div>
+                  </div>
+                </div>
+                    <p class="center container" style="width:80%; font-family:'Philosopher',sans-serif;">Welcome to your personal page at MyTailor. Here you can find and modify all your registered personal data such as addresses, previous orders, and measurement profiles to make sure your information are up to date.</p>
               </div>
             </div>
           </div>
@@ -36,9 +32,9 @@
 
         <!--CONTENT-->
           <div class="col s12" style="padding-left:2%; padding-right:2%;">
-            
+ 
           <!--SIDE MENU-->
-            <div class="col s3" style="padding:0;">
+            <div class="col s3" style="padding:0; font-family:'Philosopher',sans-serif;">
               <ul class="collapsible white">
                 <li class="sidemenu"><div><a href="{{URL::to('/customerprofile-individual')}}" class="collapsible-header teal lighten-4"><font size="+1" color="teal">Information Details<i class="mdi-navigation-chevron-right right"></i></font></a></div></li>
 
@@ -57,11 +53,13 @@
 
 
           <!--CONTENT FOR SIDE-MENU: Information Details-->
-            <div class="col s9" style="margin-top:7px; padding-top:0; padding-right:0; padding-left:17px;">
+            <div class="col s9" style="font-family:'Cormorant Infant',serif; margin-top:7px; padding-top:0; padding-right:0; padding-left:17px;">
               <div class="white" style="padding:20px;">
                 <div style="border:4px solid #b2dfdb; padding:20px;">
                   <section id="head">
-                    <h3>Hi, Cassandra De Asis!</h3>
+                  @if(Auth::check())
+                    <h3 style="color:#757575; font-family:'Lobster Two',cursive;">Hi, {{ Auth::user()->name }} !</h3>
+                  @endif
                     <div class="divider" style="margin-top:-10px; margin-bottom:20px;"></div>
                     <span>Below are the personal information you have provided us upon registration. Kindly update if there are any changes.</span>
                     <br>
@@ -90,8 +88,8 @@
                     </div>
 
                     <div style="margin:20px; margin-top:50px">
-                      <a class="btn-flat teal lighten-1 modal-trigger white-text" href="#changedetails">Change Details</a>
-                      <a class="btn-flat teal lighten-1 modal-trigger white-text" href="#changepassword">Change Password</a>
+                      <a class="btn-flat teal lighten-1 modal-trigger white-text" href="#changedetails" style="font-family:'Yatra One',cursive;">Change Details</a>
+                      <a class="btn-flat teal lighten-1 modal-trigger white-text" href="#changepassword" style="font-family:'Yatra One',cursive;">Change Password</a>
                     </div>      
                 </div>
               </div>

@@ -128,8 +128,8 @@
                     <th data-field="name">Segment 1</th>
                     <th data-field="name">Segment 2</th>
                     <th data-field="name">Segment 3</th>
-                    <th data-field="name">Segment 4</th>
-                    <th data-field="name">Segment 5</th>
+                    {{-- <th data-field="name">Segment 4</th>
+                    <th data-field="name">Segment 5</th> --}}
                      <th data-field="price">Price:</th>
                     <th data-field="days">Production Time (Days)</th>
                     <th data-field="image">Image</th>
@@ -147,8 +147,8 @@
                     <td>{{ $sets->strSegmentName1 }}</td>
                     <td>{{ $sets->strSegmentName2 }}</td>
                     <td>{{ $sets->strSegmentName3 }}</td>
-                    <td>{{ $sets->strSegmentName4 }}</td>
-                    <td>{{ $sets->strSegmentName5 }}</td>
+                   {{--  <td>{{ $sets->strSegmentName4 }}</td>
+                    <td>{{ $sets->strSegmentName5 }}</td> --}}
                     <td>{{ number_format($sets->dblPackagePrice
                       , 2) . ' PHP' }}</td>
                     <td> {{ $sets->intPackageMinDays }}</td>
@@ -225,7 +225,7 @@
                         
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">                                                    
-                                <select class="browser-default" id="editSegment3" name="editSegment3"required>
+                                <select class="browser-default" id="editSegment3" name="editSegment3">
                                   <option value="" disabled selected>Choose a segment:</option>
                                   @foreach($segment as $segment_3)
                                     @if($sets->strPackageSeg3FK == $segment_3->strSegmentID && $segment_3->boolIsActive == 1)
@@ -238,9 +238,9 @@
                               </div>  
                           </div> 
 
-                          <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                         {{--  <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">                                                    
-                                <select class="browser-default" id="editSegment4" name="editSegment4"required>
+                                <select class="browser-default" id="editSegment4" name="editSegment4">
                                   <option value="" disabled selected>Choose a segment:</option>
                                   @foreach($segment as $segment_4)
                                     @if($sets->strPackageSeg4FK == $segment_4->strSegmentID && $segment_4->boolIsActive == 1)
@@ -255,7 +255,7 @@
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">                                                    
-                                <select class="browser-default" id="editSegment5" name="editSegment5"required>
+                                <select class="browser-default" id="editSegment5" name="editSegment5">
                                   <option value="" disabled selected>Choose a segment:</option>
                                   @foreach($segment as $segment_5)
                                     @if($sets->strPackageSeg5FK == $segment_5->strSegmentID && $segment_5->boolIsActive == 1)
@@ -266,7 +266,7 @@
                                   @endforeach
                                 </select>   
                               </div>  
-                          </div> 
+                          </div>  --}}
 
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
@@ -441,7 +441,7 @@
                       </div>  
                   </div>
 
-                  <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                 {{--  <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
                         <select class="browser-default" name='strPackageSeg4FK' id='strPackageSeg4FK' >
                           <option value="" disabled selected>Choose a segment for your set:</option>
@@ -465,7 +465,7 @@
                           @endforeach
                         </select> 
                       </div>  
-                  </div>
+                  </div> --}}
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">

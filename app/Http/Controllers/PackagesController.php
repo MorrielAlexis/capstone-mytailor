@@ -43,14 +43,16 @@ class PackagesController extends Controller
             ->join('tblSegment as tblSegment1', 'tblPackages.strPackageSeg1FK', '=', 'tblSegment1.strSegmentID')
             ->join('tblSegment as tblSegment2', 'tblPackages.strPackageSeg2FK', '=', 'tblSegment2.strSegmentID')
             ->join('tblSegment as tblSegment3', 'tblPackages.strPackageSeg3FK', '=', 'tblSegment3.strSegmentID')
-            ->join('tblSegment as tblSegment4', 'tblPackages.strPackageSeg4FK', '=', 'tblSegment4.strSegmentID')
-            ->join('tblSegment as tblSegment5', 'tblPackages.strPackageSeg5FK', '=', 'tblSegment5.strSegmentID')
-            ->select('tblPackages.*', 'tblSegment1.strSegmentName as strSegmentName1','tblSegment2.strSegmentName as strSegmentName2','tblSegment3.strSegmentName as strSegmentName3','tblSegment4.strSegmentName as strSegmentName4','tblSegment5.strSegmentName as strSegmentName5')
+            // ->join('tblSegment as tblSegment4', 'tblPackages.strPackageSeg4FK', '=', 'tblSegment4.strSegmentID')
+            // ->join('tblSegment as tblSegment5', 'tblPackages.strPackageSeg5FK', '=', 'tblSegment5.strSegmentID')
+            ->select('tblPackages.*', 'tblSegment1.strSegmentName as strSegmentName1','tblSegment2.strSegmentName as strSegmentName2','tblSegment3.strSegmentName as strSegmentName3')
             ->get();
+
+            // 'tblSegment4.strSegmentName as strSegmentName4','tblSegment5.strSegmentName as strSegmentName5'
 
 
         //load the view and pass the employees
-        return view('maintenance-packages')
+        return view('maintenance-sets')
                     ->with('sets', $sets)
                     ->with('segment', $segment)
                     ->with('newID', $newID);
@@ -86,8 +88,8 @@ class PackagesController extends Controller
                  'strPackageSeg1FK' => $request->input('strPackageSeg1FK'),
                  'strPackageSeg2FK' => $request->input('strPackageSeg2FK'),
                  'strPackageSeg3FK' => $request->input('strPackageSeg3FK'),
-                 'strPackageSeg4FK' => $request->input('strPackageSeg4FK'),
-                 'strPackageSeg5FK' => $request->input('strPackageSeg5FK'),
+                 // 'strPackageSeg4FK' => $request->input('strPackageSeg4FK'),
+                 // 'strPackageSeg5FK' => $request->input('strPackageSeg5FK'),
                  'dblPackagePrice' => trim($request->input('dblPackagePrice')),
                  'intPackageMinDays' => trim($request->input('intPackageMinDays')),
                  'strPackageDesc' => trim($request->input('strPackageDesc')),
@@ -103,8 +105,8 @@ class PackagesController extends Controller
                 'strPackageSeg1FK' => $request->input('strPackageSeg1FK'),
                 'strPackageSeg2FK' => $request->input('strPackageSeg2FK'),
                 'strPackageSeg3FK' => $request->input('strPackageSeg3FK'),
-                'strPackageSeg4FK' => $request->input('strPackageSeg4FK'),
-                'strPackageSeg5FK' => $request->input('strPackageSeg5FK'),
+                // 'strPackageSeg4FK' => $request->input('strPackageSeg4FK'),
+                // 'strPackageSeg5FK' => $request->input('strPackageSeg5FK'),
                 'dblPackagePrice' => trim($request->input('dblPackagePrice')),
                 'intPackageMinDays' => trim($request->input('intPackageMinDays')),
                 'strPackageDesc' => trim($request->input('strPackageDesc')),
@@ -117,7 +119,7 @@ class PackagesController extends Controller
 
              \Session::flash('flash_message','Set successfully created.'); //flash message
             
-            return redirect('/maintenance/sets');
+            return redirect('maintenance/sets');
 
     }
 
@@ -169,13 +171,13 @@ class PackagesController extends Controller
     function update_package(Request $request)
     {
         $sets = Package::find($request->input('editPackageID'));
-        $checkSets = Catalogue::all();
+        $checkSets = Package::all();
 
         $file = $request->input('editImage');
         $destinationPath = 'imgPackages';
         $isAdded = FALSE;
 
-        foreach ($checkSet as $checkSet)
+        foreach ($checkSets as $checkSet)
             if(!strcasecmp($checkSet->strPackageID, $request->input('editPackageID')) == 0 &&
                 strcasecmp($checkSet->strPackageSeg1FK, $request->input('editSegment1')) == 0 &&
                 strcasecmp($checkSet->strPackageSeg2FK, $request->input('editSegment2')) == 0 &&
@@ -192,8 +194,8 @@ class PackagesController extends Controller
                     $sets->strPackageSeg1FK = $request->input('editSegment1');
                     $sets->strPackageSeg2FK = $request->input('editSegment2');
                     $sets->strPackageSeg3FK = $request->input('editSegment3');
-                    $sets->strPackageSeg4FK = $request->input('editSegment4');
-                    $sets->strPackageSeg5FK = $request->input('editSegment5');
+                    // $sets->strPackageSeg4FK = $request->input('editSegment4');
+                    // $sets->strPackageSeg5FK = $request->input('editSegment5');
                     $sets->dblPackagePrice = trim($request->input('editPackagePrice'));
                     $sets->intPackageMinDays = trim($request->input('editPackageMinDays'));
                     $sets->strPackageDesc = trim($request->input('editPackageDesc'));
@@ -206,8 +208,8 @@ class PackagesController extends Controller
                     $sets->strPackageSeg1FK = $request->input('editSegment1');
                     $sets->strPackageSeg2FK = $request->input('editSegment2');
                     $sets->strPackageSeg3FK = $request->input('editSegment3');
-                    $sets->strPackageSeg4FK = $request->input('editSegment4');
-                    $sets->strPackageSeg5FK = $request->input('editSegment5');
+                    // $sets->strPackageSeg4FK = $request->input('editSegment4');
+                    // $sets->strPackageSeg5FK = $request->input('editSegment5');
                     $sets->dblPackagePrice = trim($request->input('editPackagePrice'));
                     $sets->intPackageMinDays = trim($request->input('editPackageMinDays'));
                     $sets->strPackageDesc = trim($request->input('editPackageDesc'));
