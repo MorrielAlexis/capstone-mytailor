@@ -19,10 +19,10 @@ class CreatePackagesTable extends Migration
             $table->string('strPackageSeg1FK')->index();//fk
             $table->string('strPackageSeg2FK')->index();//fk
             $table->string('strPackageSeg3FK')->index()->nullable();//fk
-            $table->string('strPackageSeg4FK')->index()->nullable();//fk
-            $table->string('strPackageSeg5FK')->index()->nullable();//fk
+            // $table->string('strPackageSeg4FK')->index()->nullable();//fk
+            // $table->string('strPackageSeg5FK')->index()->nullable();//fk
             $table->double('dblPackagePrice');
-            $table->string('strPackageImage')->index();
+            $table->string('strPackageImage');
             $table->integer('intPackageMinDays');
             $table->string('strPackageDesc')->nullable();
             $table->boolean('boolIsActive');
@@ -33,8 +33,8 @@ class CreatePackagesTable extends Migration
             $table->foreign('strPackageSeg1FK')->references('strSegmentID')->on('tblSegment');
             $table->foreign('strPackageSeg2FK')->references('strSegmentID')->on('tblSegment');
             $table->foreign('strPackageSeg3FK')->references('strSegmentID')->on('tblSegment');
-            $table->foreign('strPackageSeg4FK')->references('strSegmentID')->on('tblSegment');
-            $table->foreign('strPackageSeg5FK')->references('strSegmentID')->on('tblSegment');
+            // $table->foreign('strPackageSeg4FK')->references('strSegmentID')->on('tblSegment');
+            // $table->foreign('strPackageSeg5FK')->references('strSegmentID')->on('tblSegment');
 
         });
     }
