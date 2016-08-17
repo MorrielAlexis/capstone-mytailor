@@ -53,68 +53,59 @@
 	                    </div>
                     </div>
 
-					<div class="col s6 overflow-x" style="height:300px; max-height:350px; border: 3px gray solid; padding:20px">
+					<div class="col s12 overflow-x" style="min-height:300px; max-height:550px; border: 3px gray solid; padding:10px">
 						<div class="col s12">
-		                    <label style="font-size:20px; color:dimgray;"><center><b>Order Summary</b></center></label>
-		                        <div class="col s12" style="margin-bottom:30px"><div class="divider" style="height:2px; background-color:teal"></div></div>
+		                    <label style="font-size:23px; color:teal;"><center><b>ORDER SUMMARY</b></center></label>
+		                        <div class="col s12" style="margin-bottom:30px"><!-- <div class="divider" style="height:2px; background-color:teal"></div> --></div>
 		                        <table class = "table centered order-summary z-depth-1" border = "1">
 				       				<thead style="color:gray">
-					          			<tr>
-						                  <th data-field="product">Product</th>    
-						                  <th data-field="fabric">Fabric</th>
-						                  <th data-field="price">Unit Price</th>
+					          			<tr style="border-top:1px teal solid; border-bottom:1px teal solid; background-color:teal; color:white">
+						                  <th data-field="product" style="border-right:1px teal solid; border-left:1px teal solid">Product</th> 
+						                  <th data-field="fabric" style="border-right:1px teal solid">Fabric</th>
+						                  <th data-field="base-price" style="border-right:1px teal solid">Base Price</th>
+						                  <th data-field="description" style="border-right:1px teal solid">Description</th>  
+						                  <th data-field="style-price-total" style="border-right:1px teal solid">Style Price Total</th>
+						                  <th data-field="labor-price-per-segment" style="border-right:1px teal solid">Labor Price</th>
+						                  <th data-field="line-total" style="border-right:1px teal solid">Line Total</th>        
 						              	</tr>
 					              	</thead>
 					              	<tbody>
 					              		@foreach($segments as $segment)
-								            <tr>
-								                <td>{{ $segment->strGarmentCategoryName }}, {{ $segment->strSegmentName }}</td>
-												<td>{{ $segment->strFabricName }}</td>
-								                <td>{{ number_format(($segment->dblSegmentPrice + $segment->dblFabricPrice) , 2) }} PHP</td>
-								            </tr>
+					              			
+								            <tr style="border-top:1px teal solid; border-bottom:1px teal solid">
+								                <td style="border-right:1px teal solid; border-left:1px teal solid">{{ $segment->strGarmentCategoryName }}, {{ $segment->strSegmentName }}</td>
+												<td style="border-right:1px teal solid">{{ $segment->strFabricName }}</td>
+								                <td style="border-right:1px teal solid">{{ number_format(($segment->dblSegmentPrice + $segment->dblFabricPrice) , 2) }} PHP</td>
+												<td style="border-right:1px teal solid">
+													<div class="col s12">
+													<div class="col s4"><b style="color:teal">Style Category</b></div>
+													<div class="col s4"><b style="color:teal">Segment Pattern</b></div>
+													<div class="col s4"><b style="color:teal">Style Price</b></div>
+													<div class="col s12"><div class="divider"></div></div>
+												</div>
+													@for($i = 0; $i < count($segments); $i++)
+														@for($j = 0; $j < count($styles[$i]); $j++)
+															@if($styles[$i][$j]->strSegmentID == $segment->strSegmentID)
+																
+																	<div class="col s4">{{ $styles[$i][$j]->strSegStyleName }}</div>
+																	<div class="col s4">{{ $styles[$i][$j]->strSegPName }}</div>
+																	<div class="col s4">{{ number_format($styles[$i][$j]->dblPatternPrice, 2) }} PHP</div><br>
+
+																@endif
+												        @endfor
+												    @endfor	
+												</td>
+												<td style="border-right:1px teal solid">[ insert price here ]</td>
+												<td style="border-right:1px teal solid">[ insert price here ]</td>
+												<td style="border-right:1px teal solid">[ insert price here ]</td>
+								            </tr>						            		
 							            @endforeach
+
 							        </tbody>
 							    </table>					
 						</div>
 						<div class="col s12" style="margin-bottom:38px"></div>
 					</div>
-
-					<!--For the design summary-->
-					<div class="col s6 overflow-x" style="height:300px; max-height:350px; border: 3px gray solid; padding:20px">
-					<label style="font-size:20px; color:dimgray;"><center><b>Design Summary</b></center></label>
-		                        <div class="col s12" style="margin-bottom:20px"><div class="divider" style="height:2px; background-color:teal"></div></div>
-					@foreach($segments as $segment)
-						<div class="col s12">
-			      			<p style="color: teal">Design for <b>{{ $segment->strGarmentCategoryName }} - {{ $segment->strSegmentName }}</b></p>
-	                        <table class = "table centered design-summary z-depth-1" border = "1">
-			       				<thead style="color:gray">
-				          			<tr>
-					                  <th data-field="product">Style Category</th>         
-					                  <th data-field="quantity">Segment Pattern</th>
-					                  <th data-field="price">Style Price</th>
-					                  <!--<th data-field="price">Total Price</th>-->
-					              	</tr>
-				              	</thead>
-				              	<tbody>
-				              	@for($i = 0; $i < count($segments); $i++)
-									@for($j = 0; $j < count($styles[$i]); $j++)
-										@if($styles[$i][$j]->strSegmentID == $segment->strSegmentID)
-							            <tr>
-							               <td>{{ $styles[$i][$j]->strSegStyleName }}</td>
-							               <td>{{ $styles[$i][$j]->strSegPName }}</td>
-							               <td>{{ number_format($styles[$i][$j]->dblPatternPrice, 2) }} PHP</td>
-							            </tr>
-							            @endif
-							        @endfor
-							    @endfor
-						        </tbody>
-						    </table>
-
-						    <div class="col s12"><div class="divider" style="height:2px"></div></div>
-						</div>	
-					@endforeach
-					</div>
-		      		<!--End of design summary-->
 
 					<div class="col s12" style="margin:10px"></div>
 					{!! Form::open(['url' => 'transaction/walkin-individual-save-order', 'method' => 'POST']) !!}
@@ -145,6 +136,9 @@
 							</div>-->
 
 							<div class="col s12"><div class="divider" style="margin:15px"></div></div>
+							
+							<div class="col s4" style="color:gray; font-size:15px"><p><b>Total Labor Price</b></p></div>
+			      			<div class="col s8" style="color:gray;"><p><input id="total_labor_price" name="total_labor_price" type="text" class="" readonly><b></b></p></div>
 
 			      			<div class="col s4" style="color:red; font-size:15px"><p><b>Grand Total</b></p></div>
 			      			<div class="col s8" style="color:red;"><p><input id="total_price" name="total_price" type="text" class="" readonly><b></b></p></div>
@@ -163,39 +157,39 @@
 							
 							<input type="hidden" id="transaction_date" name="transaction_date" />
 
-		      				<div class="col s4" style="color:gray; font-size:15px"><p><b>Amount Payable</b></p></div>
+		      				<!-- <div class="col s4" style="color:gray; font-size:15px"><p><b>Amount Payable</b></p></div>
 		      				<div class="col s8" style="color:red;"><p><input value="" id="amount-payable" name="amount-payable" type="text" class="" readonly></p></div>
 
-		      			<!--	<div class="col s4" style="color:gray; font-size:15px"><p><b>Additional Charge (*)</b></p></div>
-		      				<div class="col s8" style="color:red;"><p><input value="" id="add-charge" name="add-charge" type="text" class="" readonly></p></div> -->
+		      				<div class="col s4" style="color:gray; font-size:15px"><p><b>Additional Charge (*)</b></p></div>
+		      				<div class="col s8" style="color:red;"><p><input value="" id="add-charge" name="add-charge" type="text" class="" readonly></p></div> 
 
 		      				<div class="col s4" style="color:gray; font-size:15px"><p><b>Remaining Balance</b></p></div>
 		      				<div class="col s8" style="color:red;"><p><input value="" id="balance" name="balance" type="text" class="" readonly></p></div>		
-
+ -->
 						</div>
 
-						<div class="col s6 z-depth-1" style="border-left:2px gray solid">
+						<div class="col s6 z-depth-1"  style="border-left:2px gray solid">
 							<h5 style="color:teal"><b>Payment</b></h5>
 							<span>Fill up the following information</span>
 							<div class="col s12"><div class="divider" style="margin:15px"></div></div>
-							<div style="color:black" class="col s12"> 
+							<!-- <div style="color:black" class="col s12"> 
 								<div class="col s4"><p style="color:black; margin-top:5px; font-size:15px"><b>Amount Tendered:</b></p></div>                
 	                          	<div class="col s8"><input placeholder="How much you'll pay" style="padding:5px; border:3px gray solid" name="amount-tendered" id="amount-tendered" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="right"><right></right></div>	                          
-	                        </div>
+	                        </div> -->
 
 	                        <div style="color:black" class="col s12"> 
 								<div class="col s4"><p style="color:black; margin-top:5px; font-size:15px"><b>Amount To Pay:</b></p></div>                
-	                          	<div class="col s8"><input placeholder="How much want to pay from the total."  style="padding:5px; border:3px gray solid;" name="amount-to-pay" id="amount-to-pay" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="right"></div>
+	                          	<div class="col s8"><input  style="padding:5px; border:3px gray solid;" id="amount-payable" name="amount-payable" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="right"></div>
 	                        </div>
 
-	                        <div style="color:black" class="col s12"> 
+	                       <!--  <div style="color:black" class="col s12"> 
 								<div class="col s4"><p style="color:red; margin-top:5px; font-size:15px"><b>Change*:</b></p></div>                
 	                          	<div class="col s8" style="color:red;"><input readonly style="padding:5px; border:3px gray solid" name="amount-change" id="amount-change" type="text" class="right"></div>
-	                        </div>
+	                        </div> -->
 
 	                        <div style="color:black" class="col s12"> 
 								<div class="col s4"><p style="color:red; margin-top:5px; font-size:15px"><b>Outstanding Balance*:</b></p></div>                
-	                          	<div class="col s8 style="color:red;""><input readonly style="padding:5px; border:3px gray solid" name="outstanding-bal" id="outstanding-bal" type="text" class="right"></div>
+	                          	<div class="col s8" style="color:red;"><input readonly style="padding:5px; border:3px gray solid" id="balance" name="balance" type="text" class="right"></div>
 	                        </div>
 
 							<input type="hidden" id="transaction_date" name="transaction_date">
@@ -233,18 +227,29 @@
 
                     		<!--start of bottom button-->
                     		<div class="col s12" style="margin-top:20px">
-                    			<!-- <div class="left col s1">
-							        <a href="{{ URL::to('generate-payment-receipt') }}" class="right btn-floating tooltipped btn-large green" data-position="bottom" data-delay="50"  data-tooltip="CLick to print a receipt for current transaction" href="#!" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-action-print"></i></a>
-							    </div> -->
-	                    		<button type="submit" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save payment information and get measured" style="background-color:#00695c; padding:9.5px; padding-bottom:45px; margin-top:20px; margin-left:30px"><label style="font-size:15px; color:white"><b>Save Order</b></label></button>
-							</div>
-					{!! Form::close() !!}
+	                    		<button type="submit" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-left:40px; background-color:#00695c; color:white"><b><i class="mdi-navigation-check" style="padding-right:10px"></i>Save Order</b></button> 
+									
+									<!-- <div class="col s12" style="margin-top:30px">
+							              <div  id="confirm-submission" class="modal modal-fixed-footer" style="height:300px; width:500px; margin-top:80px">
+							                  <h5><font color="black"><center><b>Warning!</b></center></font></h5>
+							                 
+							                      <div class="divider" style="height:2px"></div>
+							                        <div class="modal-content col s12">
+							                          <div class="center col s4"><i class="mdi-alert-warning" style="color:green; font-size:60px"></i></div>
+							                          <div class="col s8"><p style="font-size:18px">Print Receipt</p></div>
+							                        </div>
+
+							                      <div class="modal-footer col s12">
+							                          <button type="submit"  href="{{ URL::to('/transaction/walkin-individual') }}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">OK</font></button>
+							                      </div>
+							                </div>
+							        </div> -->
+			{!! Form::close() !!}   
 							<!--end of bottom button-->
-	            			
-	            </div>
+	            			</div>	
 	        </div>
 
-	        <div class="divider" style="height:2px; margin-bottom:20px; margin-top:30px"></div>
+	        <div class="col s12"><div class="divider" style="height:2px; margin-bottom:20px; margin-top:30px"></div></div>
 	      	
 	      	<center><p><font color="gray">End of Payment Information Form</font></p></center>
 	
@@ -347,21 +352,21 @@
 				}
 		});
 
-		$('#amount-tendered').blur(function(){	
-			var amountChange = $('#amount-tendered').val() - $('#amount-to-pay').val();
-			$('#amount-change').val(amountChange.toFixed(2) + ' PHP');
-		});
+		// $('#amount-tendered').blur(function(){	
+		// 	var amountChange = $('#amount-tendered').val() - $('#amount-to-pay').val();
+		// 	$('#amount-change').val(amountChange.toFixed(2) + ' PHP');
+		// });
 
-		$('#amount-to-pay').blur(function(){	
-			// if($('#amount-to-pay').val() > $('#total_price').val()){
-			// 	alert("You can't choose to pay more than the total.");
-			// 	$('#amount-to-pay').val("");
-			// }
-				var amountChange = $('#amount-tendered').val() - $('#amount-to-pay').val();
-				$('#amount-change').val(amountChange.toFixed(2) + ' PHP');	
-				$('#outstanding-bal').val(($('#total_price').val() - $('#amount-to-pay').val()).toFixed(2) + ' PHP');				
+		// $('#amount-to-pay').blur(function(){	
+		// 	// if($('#amount-to-pay').val() > $('#total_price').val()){
+		// 	// 	alert("You can't choose to pay more than the total.");
+		// 	// 	$('#amount-to-pay').val("");
+		// 	// }
+		// 		var amountChange = $('#amount-tendered').val() - $('#amount-to-pay').val();
+		// 		$('#amount-change').val(amountChange.toFixed(2) + ' PHP');	
+		// 		$('#outstanding-bal').val(($('#total_price').val() - $('#amount-to-pay').val()).toFixed(2) + ' PHP');				
 
-		});
+		// });
 		
 	</script>
 
@@ -425,11 +430,14 @@
 		    setInterval('updateClock()', 1000);
 		});
 	</script>
-
+	
 	<script>
-		$(document).on("click", ".saveOrder", function(){
-			document.getElementById('print-receipt').submit();
+		$(document).ready(function(){
+			$("#confirm-submission").on('click', function(){
+				// window.open($this.)
+			});
 		});
+
 	</script>
 
 @stop

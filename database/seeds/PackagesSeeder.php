@@ -15,51 +15,48 @@ class PackagesSeeder extends Seeder
         	array( 
 
         			'strPackageID' => 'PACK0001',
-        			'strPackageName' =>  'Generic FA',
+        			'strPackageName' =>  'Female Pair A',
               'strPackageSex' =>  'F',
   					  'strPackageSeg1FK' =>  'SEGM003',
-    					'strPackageSeg2FK' =>  'SEGM003',
-    					'strPackageSeg3FK' =>  'SEGM003',
-    					'strPackageSeg4FK' =>  'SEGM005',
-    					'strPackageSeg5FK' =>  'SEGM005',
+    					'strPackageSeg2FK' =>  'SEGM005',
+    					'strPackageSeg3FK' =>  'SEGM015',
+              // 'strPackageSeg4FK' =>  'SEGM011',
+              // 'strPackageSeg5FK' =>  'SEGM011',
               'dblPackagePrice' => '2500.00',
               'intPackageMinDays' => '60',
-    					'strPackageImage' =>  'imgPackages/Fset 1.1.png',
-    					'strPackageDesc' =>  '3 pairs of blouse and ladies slacks. ',
+    					'strPackageImage' =>  'imgPackages/blouse-pants-blazer.png',
+    					'strPackageDesc' =>  'Pair of blouse, slack and blazer for female employees. ',
     					'boolIsActive'  =>  '1'      
         			),
 
         			array(
         			'strPackageID' => 'PACK0002',
-        			'strPackageName' =>  'Generic FB',
+        			'strPackageName' =>  'Female Pair B',
               'strPackageSex' =>  'F',
         			'strPackageSeg1FK' =>  'SEGM003',
-				    	'strPackageSeg2FK' =>  'SEGM003',
-      		  	'strPackageSeg3FK' =>  'SEGM005',
-      		  	'strPackageSeg4FK' =>  'SEGM005',
-      		  	'strPackageSeg5FK' =>  'SEGM007',
+				    	'strPackageSeg2FK' =>  'SEGM005',
+      		  	'strPackageSeg3FK' =>  'SEGM007',
+              // 'strPackageSeg4FK' =>  'SEGM002',
+              // 'strPackageSeg5FK' =>  'SEGM001',
               'dblPackagePrice' => '3500.00',
               'intPackageMinDays' => '60',
-					    'strPackageImage' =>  'imgPackages/Fset 2.1.png',
-					    'strPackageDesc' =>  '2 pairs of slacks and blouse plus a dress.',
+					    'strPackageImage' =>  'imgPackages/blouse-pants-dress-2.png',
+					    'strPackageDesc' =>  'Pair of slacks and blouse plus a dress.',
 					    'boolIsActive'  =>  '1'     
-					),
+					)
 
-              array(
-              'strPackageID' => 'PACK0003',
-              'strPackageName' =>  'Generic FC',
-              'strPackageSex' =>  'F',
-              'strPackageSeg1FK' =>  'SEGM007',
-              'strPackageSeg2FK' =>  'SEGM007',
-              'strPackageSeg3FK' =>  'SEGM007',
-              'strPackageSeg4FK' =>  'SEGM005',
-              'strPackageSeg5FK' =>  'SEGM003',
-              'dblPackagePrice' => '3500.00',
-              'intPackageMinDays' => '60',
-              'strPackageImage' =>  'imgPackages/Fset 3.1.png',
-              'strPackageDesc' =>  '3 pieces of dress and a ladies slacks and blouse.',
-              'boolIsActive'  =>  '1'     
-          )
+          // array(
+          //     'strPackageID' => 'PACK0003',
+          //     'strPackageName' =>  'Male Pair A',
+          //     'strPackageSex' =>  'M',
+          //     'strPackageSeg1FK' =>  'SEGM004',
+          //     'strPackageSeg2FK' =>  'SEGM006',
+          //     'dblPackagePrice' => '2500.00',
+          //     'intPackageMinDays' => '60',
+          //     'strPackageImage' =>  'imgPackages/whitepants-polo-shirt-male.png',
+          //     'strPackageDesc' =>  'Pair of polo and pants for male employees.',
+          //     'boolIsActive'  =>  '1'     
+          // )
 
         );
 

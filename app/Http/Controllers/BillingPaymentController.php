@@ -26,25 +26,6 @@ class BillingPaymentController extends Controller
         $this->middleware('auth');
     }
 
-   
-
-    function pdf_create($html, $filename, $paper, $orientation, $stream=TRUE)
-    {
-         require_once("dompdf/dompdf_config.inc.php");
-        spl_autoload_register('DOMPDF_autoload');
-
-        $dompdf = new DOMPDF();
-        $dompdf->set_paper($paper,$orientation);
-        $dompdf->load_html($html);
-        $dompdf->render();
-        $dompdf->stream($filename.".pdf");
-
-        $filename = 'nama_file';
-        $dompdf = new DOMPDF();
-        $html = file_get_contents('file_html.php'); 
-        pdf_create($html,$filename,'A4','portrait');
-    }
-
     
     public function index()
     {
@@ -73,9 +54,10 @@ class BillingPaymentController extends Controller
                     ->where('a.strPaymentStatus', 'Pending')
                     ->get();
 
-        //$order_ids = TransactionJobOrder::all();
-        
+ 
+        $or_summary = 0;
         for($i = 0; $i < count($pending_payments); $i++){
+
             $or_summary = \DB::table('tblJOSpecific AS a')
                         ->leftJoin('tblJobOrder AS b', 'a.strJobOrderFK', '=', 'b.strJobOrderID')
                         ->leftJoin('tblSegment AS c', 'a.strJOSegmentFK', '=', 'c.strSegmentID')
@@ -85,14 +67,12 @@ class BillingPaymentController extends Controller
                         ->get();
         }
         
-        billCustomer($search_query);
 
         return view('transaction-billingpayment')
                 ->with('customers', $customers)
                 ->with('types', $types)
                 ->with('pending_payments', $pending_payments)
                 ->with('or_summary', $or_summary);
-                //->with('order_ids', $order_ids);
     }
 
     public function generateBill()

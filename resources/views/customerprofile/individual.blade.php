@@ -57,7 +57,9 @@
               <div class="white" style="padding:20px;">
                 <div style="border:4px solid #b2dfdb; padding:20px;">
                   <section id="head">
-                    <h3 style="color:#757575; font-family:'Lobster Two',cursive;">Hi, Cassandra De Asis!</h3>
+                  @if(Auth::check())
+                    <h3 style="color:#757575; font-family:'Lobster Two',cursive;">Hi, {{ Auth::user()->name }} !</h3>
+                  @endif
                     <div class="divider" style="margin-top:-10px; margin-bottom:20px;"></div>
                     <span>Below are the personal information you have provided us upon registration. Kindly update if there are any changes.</span>
                     <br>

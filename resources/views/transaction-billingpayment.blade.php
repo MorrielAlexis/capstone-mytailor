@@ -128,8 +128,7 @@
 										
 											<div class="divider" style="height:2px"></div>
 											<div class="modal-content col s12">
-												
-											{!! Form::open(['url' => 'transaction/billing-payment-bill-customer', 'method' => 'post']) !!}
+
 												<div class="col s6" style="margin-top:20px;">
 												<label>This is a summary of orders:</label>
 												</div>
@@ -137,7 +136,7 @@
 												<div class="col s6">
 													<div class="col s6"><p style="color:gray">Date of Transaction:</p></div>
 													@if(isset($pending_payments))
-									              	@foreach($pending_payment as $pending_payment)
+									              	@foreach($pending_payments as $pending_payment)
 									              		@if($pending_payment->boolIsActive == 1)
 													<div class="col s6"><h6 style="color:red; margin-top:15px"><b>{{ $pending_payment->dtOrderDate }}</b></h6></div>
 														@endif
@@ -195,7 +194,7 @@
 											<div class="modal-footer col s12">	
 								                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">OK</font></a>								                
 								            </div>
-										{!! Form::close() !!}
+									
 							</div>
 
 									<div class="col s12" style="margin-top:30px">
