@@ -55,7 +55,7 @@ class WalkInIndividualController extends Controller
 
             session(['segment_data' => $data]);
             session(['segment_values' => $values]);
-            session(['segment_quantity' => $quantity]);
+            session(['segment_quantiyt' => $quantity]);
 
         $categories = GarmentCategory::all();
         $garments = \DB::table('tblSegment AS a')
