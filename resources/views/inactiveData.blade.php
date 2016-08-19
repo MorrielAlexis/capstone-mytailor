@@ -5,7 +5,7 @@
   <div class="main-wrapper" style="margin-top:30px">
    <div class="row">
       <div class="col s12 m12 l12">
-        <span class="page-title"><h4>Inactive Data</h4></span>
+        <span class="page-title"><h4>Utilities - Data Reactivation</h4></span>
       </div>
     </div>
   </div>
@@ -31,6 +31,7 @@
         <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabFabmat">Fabrics</a></li>
         <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabMeasurements">Measurements</a></li>
         <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabMate">Materials</a></li>
+        <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabCharges">Charges</a></li>
         <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabCata">Catalogue</a></li>
         <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabAlte">Alteration</a></li>
         <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabPackages">Sets</a></li>
@@ -1102,6 +1103,58 @@
                     </tr>
                     @endif
                     @endforeach
+                  </tbody>
+                </table>
+              </div>
+              <div class = "clearfix"></div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+     <div id="tabCharges" class="hue col s12" style="margin-top:45px; background-color: #80d8ff;">
+    <div style="height:30px;"></div>
+    
+      <!--Alterations-->
+      <p><h5 style="margin-left:20px"><b>Charges</b></h5></p>
+      <div class="row">
+        <div class="col s12">
+          <div class="card">
+            <div class="card-content">
+              <div class = "col s12 m12 l12 overflow-x">
+                <h5><font color = "#1b5e20"><center>Inactive Charges</center> </font> </h5>
+                <table class="centered" border="1">
+
+                  <thead>
+                    <tr>
+                      <!--<th data-field= "Catalogue ID">Catalogue ID</th>-->
+                      <th data-field="alterationName">Name</th>
+                      <th data-field="alterationDescription">Description</th>
+                      <th data-field="alterationPrice">Price</th>
+                      <th data-field="React">Reason for Deactivation</th>
+                      <th data-field="React">Reactivate</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach($alteration as $alteration_1)
+                    @if($alteration_1->boolIsActive == 0)
+                      <tr>
+                        <td>{{$alteration_1->strAlterationName}}</td>
+                        <td>{{$alteration_1->txtAlterationDesc}}</td>
+                        <td>{{"Php" . $alteration_1->dblAlterationPrice}}</td>
+                        <td>{{ $alteration_1->strAlterationInactiveReason }}</td>
+                        <td>
+                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-alteration']) !!}
+                            <input type="hidden" value="{{ $alteration_1->strAlterationID }}" id="reactID" name="reactID">
+                            <input type="hidden" value="{{ $alteration_1->strAlterationID }}" id="reactInactiveCatalogue" name="reactInactiveCatalogue">
+                            <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of customer to the table">REACTIVATE</button>
+                          {!! Form::close() !!}
+                        </td>
+                      </tr>
+                      @endif
+                      @endforeach
                   </tbody>
                 </table>
               </div>
