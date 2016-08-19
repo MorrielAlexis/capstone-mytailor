@@ -15,7 +15,7 @@
 
 			<div class="row">
 
-				<div class="col s4 center" style="padding:20px;">
+				<div class="col s4 center" style="padding:20px; font-family:'Philosopher',sans-serif;">
 		     		<div class="container"><a  href="{{URL::to('/customize-sets-customize-order')}}">
 		     			<div class="z-depth-1 card medium" style="border:3px gray solid">
 		       				<div class="card-image">
@@ -26,13 +26,15 @@
 		         				 	<span class="card-title" style="color:black"><b>Women Set <font color="red">A</font></b></span>
 		         					<p class="center-align" style="color:teal">Package includes:</p>
 		         					<p class="center-align" style="color:gray">1 x Blouse, 1 x Skirt</p>
+		         					</br>
+		         					<figcaption style="background-color:#ede7f6">CHOOSE THIS SET</figcaption>
 		       				 	</p>
 		       				</div>
 		     			</div>
 		     		</div></a>
 				</div>
 
-				<div class="col s4 center" style="padding:20px;">
+				<div class="col s4 center" style="padding:20px; font-family:'Philosopher',sans-serif;">
 	         		<div class="container"><a  href="{{URL::to('/customize-sets-customize-order')}}">
 	         			<div class="z-depth13 card medium" style="border:3px gray solid">
 	           				<div class="card-image">
@@ -43,13 +45,15 @@
 	             					<span class="card-title" style="color:black"><b>Unisex Set <font color="red">A</font></b></span>
 	             					<p class="center-align" style="color:teal">Package includes:</p>
 	             					<p class="center-align" style="color:gray">2 x Polo, 2 x Pants, 1 x Belt</p>
+	             					</br>
+	             					<figcaption style="background-color:#ede7f6">CHOOSE THIS SET</figcaption>
 	           				 	</p>
 	           				</div>
 	           			</div>
 	         		</div></a>
 				</div>
 
-				<div class="col s4 center" style="padding:20px;">
+				<div class="col s4 center" style="padding:20px; font-family:'Philosopher',sans-serif;">
 	         		<div class="container"><a  href="{{URL::to('/customize-sets-customize-order')}}">
 	         			<div class="z-depth-1 card medium" style="border:3px gray solid">
 	           				<div class="card-image">
@@ -60,6 +64,8 @@
 	             				 	<span class="card-title" style="color:black"><b>Men Set <font color="red">A</font></b></span>
 	             					<p class="center-align" style="color:teal">Package includes:</p>
 	             					<p class="center-align" style="color:gray">1 x Polo, 1 x Pants</p>
+	             					</br>
+	             					<figcaption style="background-color:#ede7f6">CHOOSE THIS SET</figcaption>
 	           				 	</p>
 	           				</div>
 	         			</div>
