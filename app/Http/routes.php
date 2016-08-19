@@ -289,6 +289,7 @@ Route::group(['prefix' => 'utilities'], function(){
 		Route::post('inactive-data/reactivate-needle', 'InactiveDataController@reactivate_needle');
 		Route::post('inactive-data/reactivate-thread', 'InactiveDataController@reactivate_thread');
 		Route::post('inactive-data/reactivate-zipper', 'InactiveDataController@reactivate_zipper');
+		Route::post('inactive-data/reactivate-charges', 'InactiveDataController@reactivate_charges');
 		Route::post('inactive-data/reactivate-catalogue', 'InactiveDataController@reactivate_catalogue');
 		Route::post('inactive-data/reactivate-alteration', 'InactiveDataController@reactivate_alteration');
 		Route::post('inactive-data/reactivate-packages', 'InactiveDataController@reactivate_package');

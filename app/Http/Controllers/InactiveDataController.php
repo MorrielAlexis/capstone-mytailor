@@ -25,6 +25,7 @@ use App\Needle;
 use App\Button;
 use App\Zipper;
 use App\HookAndEye;
+use App\ChargeCategoryModel;
 use App\Catalogue;
 use App\Alteration;
 use App\Package;
@@ -68,6 +69,7 @@ class InactiveDataController extends Controller
         $button = Button::all();
         $zipper = Zipper::all();
         $hook = HookAndEye::all();
+        $chargeCat = ChargeCategoryModel::all();
         $catalogue = Catalogue::all();
         $alteration = Alteration::all();
         $packages = Package::all();
@@ -99,6 +101,7 @@ class InactiveDataController extends Controller
             ->with('button', $button)
             ->with('zipper', $zipper)
             ->with('hook', $hook)
+            ->with('chargeCat', $chargeCat)
             ->with('catalogue', $catalogue)
             ->with('alteration', $alteration)
             ->with('packages', $packages)
@@ -491,6 +494,19 @@ class InactiveDataController extends Controller
 
         $hook->boolIsActive = 1;
         $hook->save();
+
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
+
+        return redirect('utilities/inactive-data');
+    }
+
+    function reactivate_charges(Request $request)
+    {
+        $chargeCat = ChargeCategoryModel::find($request->input('reactID'));
+        $chargeCat->strChargeCatInactiveReason = null;
+
+        $chargeCat->boolIsActive = 1;
+        $chargeCat->save();
 
         \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
 

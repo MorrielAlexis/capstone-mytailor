@@ -1117,14 +1117,14 @@
      <div id="tabCharges" class="hue col s12" style="margin-top:45px; background-color: #80d8ff;">
     <div style="height:30px;"></div>
     
-      <!--Alterations-->
+      <!--Charge Category-->
       <p><h5 style="margin-left:20px"><b>Charges</b></h5></p>
       <div class="row">
         <div class="col s12">
           <div class="card">
             <div class="card-content">
               <div class = "col s12 m12 l12 overflow-x">
-                <h5><font color = "#1b5e20"><center>Inactive Charges</center> </font> </h5>
+                <h5><font color = "#1b5e20"><center>Inactive Charge Category</center> </font> </h5>
                 <table class="centered" border="1">
 
                   <thead>
@@ -1132,23 +1132,21 @@
                       <!--<th data-field= "Catalogue ID">Catalogue ID</th>-->
                       <th data-field="alterationName">Name</th>
                       <th data-field="alterationDescription">Description</th>
-                      <th data-field="alterationPrice">Price</th>
                       <th data-field="React">Reason for Deactivation</th>
                       <th data-field="React">Reactivate</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach($alteration as $alteration_1)
-                    @if($alteration_1->boolIsActive == 0)
+                    @foreach($chargeCat as $chargeCat_1)
+                    @if($chargeCat_1->boolIsActive == 0)
                       <tr>
-                        <td>{{$alteration_1->strAlterationName}}</td>
-                        <td>{{$alteration_1->txtAlterationDesc}}</td>
-                        <td>{{"Php" . $alteration_1->dblAlterationPrice}}</td>
-                        <td>{{ $alteration_1->strAlterationInactiveReason }}</td>
+                        <td>{{$chargeCat_1->strChargeCatName}}</td>
+                        <td>{{$chargeCat_1->txtChargeDesc}}</td>
+                        <td>{{ $chargeCat_1->strChargeCatInactiveReason }}</td>
                         <td>
-                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-alteration']) !!}
-                            <input type="hidden" value="{{ $alteration_1->strAlterationID }}" id="reactID" name="reactID">
-                            <input type="hidden" value="{{ $alteration_1->strAlterationID }}" id="reactInactiveCatalogue" name="reactInactiveCatalogue">
+                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-charges']) !!}
+                            <input type="hidden" value="{{ $chargeCat_1->strChargeCatID }}" id="reactID" name="reactID">
+                            <input type="hidden" value="{{ $chargeCat_1->strChargeCatID }}" id="reactInactiveChargeCat" name="reactInactiveChargeCat">
                             <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of customer to the table">REACTIVATE</button>
                           {!! Form::close() !!}
                         </td>
