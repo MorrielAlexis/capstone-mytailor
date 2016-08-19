@@ -134,8 +134,42 @@ class CustomerIndividualController extends Controller
     }
 
     function updateIndividual(Request $request)
-    {
+    {   
         $individual = Individual::find($request->input('editIndiID'));
+        $checkIndividuals = Individual::all();
+        $isAdded=FALSE;
+        $count = 0; 
+        $count2 = 0;
+
+        if(!($individual->strIndivEmailAddress == trim($request->input('editEmail')))) {    
+            $count = \DB::table('tblCustIndividual')
+                ->select('tblCustIndividual.strIndivEmailAddress')
+                ->where('tblCustIndividual.strIndivEmailAddress','=', trim($request->input('editEmail')))
+                ->count();
+        }
+
+        if(!($individual->strIndivCPNumber == trim($request->input('editCel')))) { 
+            $count2 = \DB::table('tblCustIndividual')
+                ->select('tblCustIndividual.strIndivCPNumber')
+                ->where('tblCustIndividual.strIndivCPNumber','=', trim($request->input('editCel')))
+                ->count();
+        }
+            if($count > 0 || $count2 > 0){
+            $isAdded = TRUE;
+
+        }
+
+
+
+            foreach($checkIndividuals as $ind)
+            if(!strcasecmp($ind->strIndivID, $request->input('editIndiID')) == 0 &&
+                strcasecmp($ind->strIndivFName, trim($request->input('editFName'))) == 0 &&
+                strcasecmp($ind->strIndivMName, trim($request->input('editMName'))) == 0 &&
+                strcasecmp($ind->strIndivLName, trim($request->input('editLName'))) == 0)
+                 $isAdded = TRUE;   
+            
+
+        if(!$isAdded){
 
         $individual->strIndivFName = trim($request->input('editFName'));
         $individual->strIndivMName = trim($request->input('editMName'));  
@@ -154,6 +188,7 @@ class CustomerIndividualController extends Controller
         $individual->save();
 
          \Session::flash('flash_message_update','Customer detail/s successfully updated.');
+        }else \Session::flash('flash_message_duplicate','Employee profile already exists.'); //flash message
 
         return redirect('maintenance/individual');
     }
