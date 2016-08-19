@@ -107,7 +107,6 @@
             <div class="card-panel teal lighten-4 z-depth-1" style="height:265px">
               <div class="row valign-wrapper">
                 <div class="center col s6">
-            <input type="hidden" name="hidden_fabric_id" value="{{$fabric->strFabricID}}">
                   <img src="{{URL::asset($fabric->strFabricImage)}}"class="responsive-img">
                 </div>
                 <div class="col s6"> 

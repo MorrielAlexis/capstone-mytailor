@@ -56,7 +56,7 @@
                 <div class="collapsible-body row overflow-x" style="padding:20px;">       
                   @foreach($bottomSegment as $bottom)
                   <div class="col s12">
-                    @foreach($pattern as $pattern)
+                    @foreach($patterns as $pattern)
                     <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $bottom->strSegStyleCatID) hidden @endif>
                       <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
                       <p>
