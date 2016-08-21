@@ -53,7 +53,12 @@ class InactiveDataController extends Controller
         $role = EmployeeRole::all();
         $employee = Employee::all();
         $category = GarmentCategory::all();
-        $segment = GarmentSegment::all();
+        // $segment = GarmentSegment::all();
+        $segment = \DB::table('tblSegment')
+            ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
+            ->select('tblSegment.*', 'tblGarmentCategory.strGarmentCategoryName')
+
+            ->get();
         $pattern = SegmentPattern::all();
         $segmentStyle = SegmentStyle::all();
         $measurement_category = MeasurementCategory::all();

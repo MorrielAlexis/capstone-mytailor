@@ -335,7 +335,7 @@
                   <thead>
                     <tr>
                       <!--<th data-field="id">Garment Details ID</th>-->
-                    {{--   <th data-field="name">Category Name</th> --}}
+                      <th data-field="name">Category Name</th>
                       <th data-field="name">Segment Name</th>
                       <th data-field="address">Segment Description</th>
                       <th data-field="React">Reason for Deactivation</th>
@@ -347,8 +347,8 @@
                       @foreach($segment as $segment_1)
                       @if($segment_1->boolIsActive == 0)
                       <tr>
-                        <!--<td>{{ $segment_1->strGarmentSegmentID }}</td>-->
-                    {{--     <td>{{ $segment_1->strGarmentCategoryName }}</td> --}}
+
+                        <td>{{ $segment_1->strGarmentCategoryName }}</td>
                         <td>{{ $segment_1->strSegmentName }}</td>
                         <td>{{ $segment_1->textSegmentDesc }}</td>
                         <td>{{ $segment_1->strSegInactiveReason }}</td>
@@ -1162,6 +1162,52 @@
           </div>
         </div>
       </div>
+
+      <!--Charge Details-->
+      {{-- <p><h5 style="margin-left:20px"><b>Charge Details</b></h5></p>
+      <div class="row">
+        <div class="col s12">
+          <div class="card">
+            <div class="card-content">
+              <div class = "col s12 m12 l12 overflow-x">
+                <h5><font color = "#1b5e20"><center>Inactive Charge Details</center> </font> </h5>
+                <table class="centered" border="1">
+
+                  <thead>
+                    <tr>
+                      <!--<th data-field= "Catalogue ID">Catalogue ID</th>-->
+                      <th data-field="alterationName">Name</th>
+                      <th data-field="alterationDescription">Description</th>
+                      <th data-field="React">Reason for Deactivation</th>
+                      <th data-field="React">Reactivate</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach($chargeCat as $chargeCat_1)
+                    @if($chargeCat_1->boolIsActive == 0)
+                      <tr>
+                        <td>{{$chargeCat_1->strChargeCatName}}</td>
+                        <td>{{$chargeCat_1->txtChargeDesc}}</td>
+                        <td>{{ $chargeCat_1->strChargeCatInactiveReason }}</td>
+                        <td>
+                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-charges']) !!}
+                            <input type="hidden" value="{{ $chargeCat_1->strChargeCatID }}" id="reactID" name="reactID">
+                            <input type="hidden" value="{{ $chargeCat_1->strChargeCatID }}" id="reactInactiveChargeCat" name="reactInactiveChargeCat">
+                            <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of customer to the table">REACTIVATE</button>
+                          {!! Form::close() !!}
+                        </td>
+                      </tr>
+                      @endif
+                      @endforeach
+                  </tbody>
+                </table>
+              </div>
+              <div class = "clearfix"></div>
+
+            </div>
+          </div>
+        </div>
+      </div> --}}
     </div>
 
     <div id="tabCata" class="hue col s12" style="margin-top:45px; background-color: #80d8ff;">
