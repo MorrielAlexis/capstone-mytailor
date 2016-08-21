@@ -383,7 +383,7 @@
                 <table class="centered" border="1">
                   <thead>
                     <tr>
-                      <!--<th data-field= "Catalog ID">Segment Pattern ID</th>-->
+                      <th data-field= "Segment">Segment</th>
                       <th data-field="Segment  Style Name">Style Category Name</th>
                       <th data-field="React">Reason for Deactivation</th>
                       <th data-field="React">Reactivate</th>
@@ -394,6 +394,7 @@
                         @foreach($segmentStyle as $segmentStyle_1)
                           @if($segmentStyle_1->boolIsActive == 0)
                           <tr>
+                            <td>{{ $segmentStyle_1->strSegmentName }}</td>
                             <td>{{ $segmentStyle_1->strSegStyleName }}</td>
                             <td>{{ $segmentStyle_1->strSegStyleCatInactiveReason }}</td>
                             <td>
@@ -526,6 +527,7 @@
                 <table class = "table centered data-reactSegment" align = "center" border = "1">
                   <thead>
                     <tr>
+                        <th data-field="Category">Category/th>
                         <th data-field="name">Measurement Name</th>
                         <th data-field="description">Measurement Description</th>
                         <th data-field="Garmentcategory">Reason for Deactivation</th>
@@ -537,6 +539,7 @@
                       @foreach($detail as $detail_1)
                       @if($detail_1->boolIsActive == 0)
                       <tr>
+                        <td>{{ $detail_1->strMeasurementCategoryName }}</td>
                         <td>{{ $detail_1->strMeasDetailName }}</td>
                         <td>{{ $detail_1->txtMeasDetailDesc }}</td>
                         <td>{{ $detail_1->strMeasDetInactiveReason }}</td>

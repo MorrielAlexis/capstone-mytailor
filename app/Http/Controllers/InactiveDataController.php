@@ -60,9 +60,20 @@ class InactiveDataController extends Controller
 
             ->get();
         $pattern = SegmentPattern::all();
-        $segmentStyle = SegmentStyle::all();
+        $segmentStyle = \DB::table('tblSegmentStyleCategory')
+                ->join('tblSegment', 'tblSegmentStyleCategory.strSegmentFK', '=', 'tblSegment.strSegmentID')
+                ->select('tblSegmentStyleCategory.*','tblSegment.strSegmentName') 
+                ->orderBy('strSegStyleCatID')
+                ->get();
+        
         $measurement_category = MeasurementCategory::all();
-        $detail = MeasurementDetail::all();
+         $detail =\DB::table('tblMeasurementDetail')
+            ->join('tblSegment', 'tblMeasurementDetail.strMeasDetSegmentFK', '=', 'tblSegment.strSegmentID')
+            ->join('tblMeasurementCategory', 'tblMeasurementDetail.strMeasCategoryFK', '=', 'tblMeasurementCategory.strMeasurementCategoryID')
+            ->select('tblMeasurementDetail.*', 'tblSegment.strSegmentName', 'tblMeasurementCategory.strMeasurementCategoryName')
+            ->orderBy('strMeasurementDetailID')
+            ->get();
+            
         $standard = StandardSizeCategory::all();
         $fabricType = FabricType::all();
         $threadCount = FabricThreadCount::all();
