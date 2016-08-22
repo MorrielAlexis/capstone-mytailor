@@ -135,8 +135,42 @@ class CustomerCompanyController extends Controller
 
     function updateCompany(Request $request)
     {
-        $company = Company::find($request->input('editComID'));
 
+        $company = Company::find($request->input('editComID'));
+        $checkCompany = Company::all();
+        $isAdded=FALSE;
+        $count = 0; 
+        $count2 = 0;
+
+        if(!($company->strCompanyEmailAddress == trim($request->input('editComEmailAddress')))) {    
+            $count = \DB::table('tblCustCompany')
+                ->select('tblCustCompany.strCompanyEmailAddress')
+                ->where('tblCustCompany.strCompanyEmailAddress','=', trim($request->input('editComEmailAddress')))
+                ->count();
+        }
+
+        if(!($company->strCompanyCPNumber == trim($request->input('editCel')))) { 
+            $count2 = \DB::table('tblCustCompany')
+                ->select('tblCustCompany.strCompanyCPNumber')
+                ->where('tblCustCompany.strCompanyCPNumber','=', trim($request->input('editCel')))
+                ->count();
+        }
+            if($count > 0 || $count2 > 0){
+            $isAdded = TRUE;
+
+        }
+
+
+
+        foreach($checkCompany as $company)
+        if(!strcasecmp($company->strCompanyID, $request->input('editComID')) == 0 &&
+            strcasecmp($company->strCompanyName, trim($request->input('editComName'))) == 0 &&
+            strcasecmp($company->strContactPerson, trim($request->input('editConPerson'))) == 0)
+            $isAdded = TRUE;   
+            
+
+            if(!$isAdded){
+        
                 $company->strCompanyName = trim($request->input('editComName')); 
                 $company->strCompanyBuildingNo = trim($request->input('editCustCompanyHouseNo'));
                 $company->strCompanyStreet = trim($request->input('editCustCompanyStreet'));
@@ -153,7 +187,8 @@ class CustomerCompanyController extends Controller
 
                 $company->save();
 
-        \Session::flash('flash_message_update','Customer detail/s successfully updated.');
+            \Session::flash('flash_message_update','Company detail/s successfully updated.');
+        }else \Session::flash('flash_message_duplicate','Company detail/s already exists.'); //flash message
 
         return redirect('maintenance/company');
     }

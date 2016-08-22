@@ -18,6 +18,8 @@ class CreateJOPayment extends Migration
             $table->string('strTransacAlterFk')->index()->nullable();
             $table->double('dblAmountToPay');
             $table->double('dblOutstandingBal');
+            $table->double('dblAmountTendered');
+            $table->double('dblAmountChange');
             $table->string('strReceivedByEmployeeNameFK')->index();
             $table->date('dtPaymentDate');
             $table->date('dtPaymentDueDate');

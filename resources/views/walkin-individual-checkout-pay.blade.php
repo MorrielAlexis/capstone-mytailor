@@ -52,10 +52,10 @@
 	                        </div>
 	                    </div>
                     </div>
-
+					
+					<label style="font-size:23px; color:teal;"><center><b>ORDER SUMMARY</b></center></label>
 					<div class="col s12 overflow-x" style="min-height:300px; max-height:550px; border: 3px gray solid; padding:10px">
-						<div class="col s12">
-		                    <label style="font-size:23px; color:teal;"><center><b>ORDER SUMMARY</b></center></label>
+						<div class="col s12">		                    
 		                        <div class="col s12" style="margin-bottom:30px"><!-- <div class="divider" style="height:2px; background-color:teal"></div> --></div>
 		                        <table class = "table centered order-summary z-depth-1" border = "1">
 				       				<thead style="color:gray">
@@ -70,12 +70,12 @@
 						              	</tr>
 					              	</thead>
 					              	<tbody>
-					              		@foreach($segments as $segment)
+					              		@foreach($values as $value)
 					              			
 								            <tr style="border-top:1px teal solid; border-bottom:1px teal solid">
-								                <td style="border-right:1px teal solid; border-left:1px teal solid">{{ $segment->strGarmentCategoryName }}, {{ $segment->strSegmentName }}</td>
-												<td style="border-right:1px teal solid">{{ $segment->strFabricName }}</td>
-								                <td style="border-right:1px teal solid">{{ number_format(($segment->dblSegmentPrice + $segment->dblFabricPrice) , 2) }} PHP</td>
+								                <td style="border-right:1px teal solid; border-left:1px teal solid">{{ $value->strGarmentCategoryName }}, {{ $value->strSegmentName }}</td>
+												<td style="border-right:1px teal solid">{{ $value->strFabricName }}</td>
+								                <td style="border-right:1px teal solid">{{ number_format(($value->dblSegmentPrice + $value->dblFabricPrice) , 2) }} PHP</td>
 												<td style="border-right:1px teal solid">
 													<div class="col s12">
 													<div class="col s4"><b style="color:teal">Style Category</b></div>
@@ -83,9 +83,9 @@
 													<div class="col s4"><b style="color:teal">Style Price</b></div>
 													<div class="col s12"><div class="divider"></div></div>
 												</div>
-													@for($i = 0; $i < count($segments); $i++)
+													@for($i = 0; $i < count($values); $i++)
 														@for($j = 0; $j < count($styles[$i]); $j++)
-															@if($styles[$i][$j]->strSegmentID == $segment->strSegmentID)
+															@if($styles[$i][$j]->strSegmentID == $value->strSegmentID)
 																
 																	<div class="col s4">{{ $styles[$i][$j]->strSegStyleName }}</div>
 																	<div class="col s4">{{ $styles[$i][$j]->strSegPName }}</div>
@@ -95,7 +95,7 @@
 												        @endfor
 												    @endfor	
 												</td>
-												<td style="border-right:1px teal solid">[ insert price here ]</td>
+												<td style="border-right:1px teal solid"><div id="style_price_total" name="style_price_total"> </div></td>
 												<td style="border-right:1px teal solid">[ insert price here ]</td>
 												<td style="border-right:1px teal solid">[ insert price here ]</td>
 								            </tr>						            		
@@ -138,7 +138,7 @@
 							<div class="col s12"><div class="divider" style="margin:15px"></div></div>
 							
 							<div class="col s4" style="color:gray; font-size:15px"><p><b>Total Labor Price</b></p></div>
-			      			<div class="col s8" style="color:gray;"><p><input id="total_labor_price" name="total_labor_price" type="text" class="" readonly><b></b></p></div>
+			      			<div class="col s8" style="color:gray;"><p><input id="style_price_total" name="style_price_total" type="text" class="" readonly><b></b></p></div>
 
 			      			<div class="col s4" style="color:red; font-size:15px"><p><b>Grand Total</b></p></div>
 			      			<div class="col s8" style="color:red;"><p><input id="total_price" name="total_price" type="text" class="" readonly><b></b></p></div>
@@ -172,25 +172,27 @@
 							<h5 style="color:teal"><b>Payment</b></h5>
 							<span>Fill up the following information</span>
 							<div class="col s12"><div class="divider" style="margin:15px"></div></div>
-							<!-- <div style="color:black" class="col s12"> 
-								<div class="col s4"><p style="color:black; margin-top:5px; font-size:15px"><b>Amount Tendered:</b></p></div>                
-	                          	<div class="col s8"><input placeholder="How much you'll pay" style="padding:5px; border:3px gray solid" name="amount-tendered" id="amount-tendered" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="right"><right></right></div>	                          
-	                        </div> -->
 
 	                        <div style="color:black" class="col s12"> 
 								<div class="col s4"><p style="color:black; margin-top:5px; font-size:15px"><b>Amount To Pay:</b></p></div>                
 	                          	<div class="col s8"><input  style="padding:5px; border:3px gray solid;" id="amount-payable" name="amount-payable" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="right"></div>
 	                        </div>
 
-	                       <!--  <div style="color:black" class="col s12"> 
-								<div class="col s4"><p style="color:red; margin-top:5px; font-size:15px"><b>Change*:</b></p></div>                
-	                          	<div class="col s8" style="color:red;"><input readonly style="padding:5px; border:3px gray solid" name="amount-change" id="amount-change" type="text" class="right"></div>
-	                        </div> -->
-
 	                        <div style="color:black" class="col s12"> 
 								<div class="col s4"><p style="color:red; margin-top:5px; font-size:15px"><b>Outstanding Balance*:</b></p></div>                
 	                          	<div class="col s8" style="color:red;"><input readonly style="padding:5px; border:3px gray solid" id="balance" name="balance" type="text" class="right"></div>
 	                        </div>
+
+	                        <div style="color:black" class="col s12"> 
+								<div class="col s4"><p style="color:black; margin-top:5px; font-size:15px"><b>Amount Tendered:</b></p></div>                
+	                          	<div class="col s8"><input style="padding:5px; border:3px gray solid" name="amount-tendered" id="amount-tendered" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="right"><right></right></div>	                          
+	                        </div>
+
+	                        <div style="color:black" class="col s12"> 
+								<div class="col s4"><p style="color:red; margin-top:5px; font-size:15px"><b>Change*:</b></p></div>                
+	                          	<div class="col s8" style="color:red;"><input readonly style="padding:5px; border:3px gray solid" name="amount-change" id="amount-change" type="text" class="right"></div>
+	                        </div>
+
 
 							<input type="hidden" id="transaction_date" name="transaction_date">
 							<input type="hidden" id="due_date" name="due_date">
@@ -280,11 +282,12 @@
 
 		  	});
 
-			var a = {!! json_encode($segments) !!};
+			var a = {!! json_encode($values) !!};
 			var b = {!! json_encode($styles) !!};
 
 			var totalAmount = 0.00;
 			var minDays = 0;
+			var stylePriceTotal = 0.00;
 
 			for(var i = 0; i < a.length; i++){
 				totalAmount += a[i].dblSegmentPrice;
@@ -293,6 +296,13 @@
 						totalAmount += b[i][j].dblPatternPrice;
 					}
 				minDays += a[i].intMinDays;
+			}
+
+			var stylePriceTotal = 0.00;
+			for(var i = 0; i < a.length; i++) {
+				for(var j = 0; j < b[i].length; j++) {
+					stylePriceTotal += b[i][j].dblPatternPrice;
+				}
 			}
 
 			var monthNames = [ "January", "February", "March", "April", "May", "June",
@@ -305,6 +315,7 @@
 			newDate.setDate(newDate.getDate());   
 			dueDate.setDate(newDate.getDate()+minDays); 
 
+			$('#style_price_total').val(stylePriceTotal.toFixed(2));
 			$('#total_price').val(totalAmount.toFixed(2));
 			$('#due-date').text(dayNames[dueDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
 			$('#transaction_date').val(newDate.getFullYear() + "-" +  (newDate.getMonth()+1) + "-" + newDate.getDate());
@@ -316,7 +327,7 @@
 		$('.payment').change(function(){
 				if($('#half_pay').prop("checked")){
 
-					var a = {!! json_encode($segments) !!};
+					var a = {!! json_encode($values) !!};
 					var b = {!! json_encode($styles) !!};
 					var totalAmount = 0.00;
 
@@ -328,13 +339,13 @@
 							}
 					}
 					
-					$('#amount-payable').val((totalAmount/2).toFixed(2) + ' PHP');
-					$('#balance').val((totalAmount - (totalAmount/2)).toFixed(2) + ' PHP');
+					$('#amount-payable').val((totalAmount/2).toFixed(2));
+					$('#balance').val((totalAmount - (totalAmount/2)).toFixed(2));
 				}
 
 				if($('#full_pay').prop("checked")){
 
-					var a = {!! json_encode($segments) !!};
+					var a = {!! json_encode($values) !!};
 					var b = {!! json_encode($styles) !!};	
 
 					var totalAmount = 0.00;
@@ -347,26 +358,26 @@
 							}
 					}
 					
-					$('#amount-payable').val(totalAmount.toFixed(2) + ' PHP');
-					$('#balance').val((totalAmount - totalAmount).toFixed(2) + ' PHP');
+					$('#amount-payable').val(totalAmount.toFixed(2));
+					$('#balance').val((totalAmount - totalAmount).toFixed(2));
 				}
 		});
 
-		// $('#amount-tendered').blur(function(){	
-		// 	var amountChange = $('#amount-tendered').val() - $('#amount-to-pay').val();
-		// 	$('#amount-change').val(amountChange.toFixed(2) + ' PHP');
-		// });
+		$('#amount-tendered').blur(function(){	
+			var amountChange = $('#amount-tendered').val() - $('#amount-payable').val();
+			$('#amount-change').val(amountChange.toFixed(2));
+		});
 
-		// $('#amount-to-pay').blur(function(){	
-		// 	// if($('#amount-to-pay').val() > $('#total_price').val()){
-		// 	// 	alert("You can't choose to pay more than the total.");
-		// 	// 	$('#amount-to-pay').val("");
-		// 	// }
-		// 		var amountChange = $('#amount-tendered').val() - $('#amount-to-pay').val();
-		// 		$('#amount-change').val(amountChange.toFixed(2) + ' PHP');	
-		// 		$('#outstanding-bal').val(($('#total_price').val() - $('#amount-to-pay').val()).toFixed(2) + ' PHP');				
+		$('#amount-payable').blur(function(){	
+			// if($('#amount-to-pay').val() > $('#total_price').val()){
+			// 	alert("You can't choose to pay more than the total.");
+			// 	$('#amount-to-pay').val("");
+			// }
+				var amountChange = $('#amount-tendered').val() - $('#amount-payable').val();
+				$('#amount-change').val(amountChange.toFixed(2));	
+				// $('#outstanding-bal').val(($('#total_price').val() - $('#amount-to-pay').val()).toFixed(2) + ' PHP');				
 
-		// });
+		});
 		
 	</script>
 

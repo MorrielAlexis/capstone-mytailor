@@ -71,12 +71,12 @@
                 <div class="collapsible-body row overflow-x" style="padding:20px;">       
                   @foreach($pleatsSegment as $pleats)
                   <div class="col s12">
-                    @foreach($pattern as $pattern)
-                    <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $pleats->strSegStyleCatID) hidden @endif>
-                      <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
+                    @foreach($pattern as $patterns)
+                    <div class="col s2" @if($patterns->strSegPStyleCategoryFK != $pleats->strSegStyleCatID) hidden @endif>
+                      <img class="materialboxed responsive-img" src="{{URL::asset($patterns->strSegPImage)}}">
                       <p>
-                        <input name="rdb_pattern{{ $pleats->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
-                        <label for="{{$pattern->strSegPatternID}}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
+                        <input name="rdb_pattern{{ $pleats->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $patterns->strSegPatternID }}" id="{{ $patterns->strSegPatternID }}" />
+                        <label for="{{$patterns->strSegPatternID}}"><font size="+1"><b>{{$patterns->strSegPName}}</b></font></label>
                       </p>
                     </div>
                     @endforeach

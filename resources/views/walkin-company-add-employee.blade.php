@@ -62,9 +62,7 @@
 								<div class="input-field col s3">
 								    <select>
 								      
-								      <option value="1">Generic FA</option>	
-								      <option value="2">Generic FB</option>
-								      <option value="3">Generic FC</option>
+								      <option value="1"></option>	
 								    </select>
 								    <label>Choose a set</label>
 								</div>
@@ -95,8 +93,7 @@
 															<th>Item</th>
 															<th>Image</th>
 															<th>Quantity</th>
-															<th style="color:gray">Add or Edit</th>
-															<th style="color:gray">Remove</th>												
+															<th style="color:gray">Add or Edit</th>												
 														</tr>
 													</thead>
 
@@ -106,28 +103,6 @@
 															<td><img src="../img/female-uniform-skirt.jpg"/></td>
 															<td>1</td>
 															<td><a class="modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Add or edit quantity of this garment" href="#add-edit">Add/Edit</a></td>
-															<td><a class="modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Remove this garment from your set" href="#remove">Remove</a></td>
-														</tr>
-														<tr>
-															<td>Uniform, Pants</td>
-															<td><img src="../img/female-uniform-pants.jpg"/></td>
-															<td>1</td>
-															<td><a class="modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Add or edit quantity of this garment" href="#add-edit">Add/Edit</a></td>
-															<td><a class="modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Remove this garment from your set" href="#remove">Remove</a></td>
-														</tr>
-														<tr>
-															<td>Uniform, Pants</td>
-															<td><img src="../img/female-uniform-pants.jpg"/></td>
-															<td>1</td>
-															<td><a class="modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Add or edit quantity of this garment" href="#add-edit">Add/Edit</a></td>
-															<td><a class="modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Remove this garment from your set" href="#remove">Remove</a></td>
-														</tr>
-														<tr>
-															<td>Uniform, Pants</td>
-															<td><img src="../img/female-uniform-pants.jpg"/></td>
-															<td>1</td>
-															<td><a class="modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Add or edit quantity of this garment" href="#add-edit">Add/Edit</a></td>
-															<td><a class="modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Remove this garment from your set" href="#remove">Remove</a></td>
 														</tr>
 													</tbody>
 												</table>
@@ -174,7 +149,7 @@
 
 
 										<!--Modal for remove-->
-										<div id="remove" class="modal modal-fixed-footer" style="width:45%; height:45%; margin-top:5%">
+										<!-- <div id="remove" class="modal modal-fixed-footer" style="width:45%; height:45%; margin-top:5%">
 											<h5><font color = "#1b5e20"><center>Remove from Purchased Set</center> </font> </h5>
 				                        	<div class="divider" style="height:2px"></div>
 
@@ -193,7 +168,7 @@
 								                <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>	
 								            </div>
 
-										</div>
+										</div> -->
 										<!--End of modal for remove-->
 
 

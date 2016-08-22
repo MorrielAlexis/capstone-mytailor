@@ -56,9 +56,8 @@ class OnlineCustomizePantsController extends Controller
         $selectedFabric = \DB::table('tblFabric AS a')
                     ->leftJoin('tblFabricType AS b', 'a.strFabricTypeFK', '=','b.strFabricTypeID')
                     ->select('a.*', 'b.strFabricTypeName')
-                    ->where('a.strFabricID', $request->input('hidden_fabric_id'))
+                    ->where('a.strFabricID', $request->input('rdb_fabric'))
                     ->get();
-                dd($request->input('hidden_fabric_id'));
 
         $key = 'Pleat';
 
@@ -107,7 +106,7 @@ class OnlineCustomizePantsController extends Controller
                     ->get();
 
         return view('customize.pants-style-bottom')
-                    ->with('pattern', $pattern)
+                    ->with('patterns', $pattern)
                     ->with('bottomSegment', $bottomSegment);
     }  
 

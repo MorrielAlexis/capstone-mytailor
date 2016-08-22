@@ -12,7 +12,7 @@ class SegmentPattern extends Model
 								'strSegPStyleCategoryFK',
 								'strSegPName',
 								'dblPatternPrice',	
-								'strSegPDesc',
+								'txtSegPDesc',
 								'strSegPImage',
 								'strSegPInactiveReason',
 								'boolIsActive'

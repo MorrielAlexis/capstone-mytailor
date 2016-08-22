@@ -113,7 +113,7 @@ class SegmentSeeder extends Seeder
             array(
                 'strSegmentID' => 'SEGM009',
                 'strSegCategoryFK' => 'GARM005',    
-                'strSegmentName' =>'Dress',
+                'strSegmentName' =>'Office Dress',
                 'dblSegmentPrice' => '600.00',
                 'strSegmentSex' => 'F',
                 'intMinDays' => '3',

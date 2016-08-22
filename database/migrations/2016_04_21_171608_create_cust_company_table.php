@@ -22,7 +22,7 @@ class CreateCustCompanyTable extends Migration
             $table->string('strCompanyProvince');
             $table->string('strCompanyZipCode');
             $table->string('strContactPerson');
-            $table->string('strCompanyEmailAddress')->unique();
+            $table->string('strCompanyEmailAddress');
             $table->string('strCompanyTelNumber')->nullable();
             $table->string('strCompanyCPNumber');
             $table->string('strCompanyCPNumberAlt')->nullable();
