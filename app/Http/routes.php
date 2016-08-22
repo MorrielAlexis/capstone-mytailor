@@ -405,7 +405,7 @@ Route::group(['prefix' => 'transaction'], function(){
 		Route::get('online-alteration-transact', 'OnlineAlterationController@transac');
 		Route::get('online-alterationtransaction-newcustomer', 'OnlineAlterationController@newcust');
 		Route::get('online-alterationtransaction-patron', 'OnlineAlterationController@oldcust');
-		Route::get('online-alteration-newcustomer', 'OnlineAlterationController@showCart');
+		Route::get('online-alterationtransaction-newcustomer', 'OnlineAlterationController@showCart');
 		Route::get('online-alteration-newcustomer-update', 'OnlineAlterationController@updateCart');
 		Route::get('online-alteration-oldcustomer', 'OnlineAlterationController@oldcust');
 		Route::get('online-alteration-info', 'OnlineAlterationController@checkoutCustInfo');
