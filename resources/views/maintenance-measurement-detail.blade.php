@@ -347,19 +347,6 @@
                       </div>
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
-                          <div class="file-field input-field col s12">
-                            <div style="color:black" class="btn tooltipped btn-small center-text light-green lighten-2" data-position="bottom" data-delay="50" data-tooltip="May upload jpg, png, gif, bmp, tif, tiff files">
-                              <span>Upload Image</span>
-                              <input id="addImg" name="addImg" type="file" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*">
-                            </div>
-                          
-                            <div class="file-path-wrapper">
-                              <input id="addImage" name="addImage" class="file-path validate" type="text">
-                            </div>
-                          </div>
-                      </div>
-
-                      <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                           <div class="input-field col s12">
                             <input  id="txtMeasDetailDesc" name ="txtMeasDetailDesc" type="text" class="validate" placeholder="Front portion to be measured">
                             <label for="measurement_desc">Measurement Description </label>

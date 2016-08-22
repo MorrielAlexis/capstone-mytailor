@@ -110,7 +110,7 @@ class OnlineAlterationController extends Controller
 
         $request->session()->push('orders', $values[0]);
 
-        return redirect('transaction/online-alteration-newcustomer-update');
+        return redirect('transaction/online-alteration-newcustomer');
     }
 
     public function updateCart()
