@@ -226,6 +226,9 @@ class WalkInIndividualController extends Controller
 
         session(['segment_design' => $sqlStyles]);
 
+        // var_dump($fabrics);
+        // dd("");
+
         $joID = \DB::table('tblJobOrder')
             ->select('strJobOrderID')
             ->orderBy('created_at', 'desc')
@@ -353,11 +356,13 @@ class WalkInIndividualController extends Controller
         $styles = session()->get('segment_design');
         $fabrics = session()->get('segment_fabric');
         $joID = session()->get('joID');
+        $style_count = count(session()->get('segment_values'));
 
         return view('walkin-individual-checkout-pay')
-                    ->with('segments', $values)
+                    ->with('values', $values)
                     ->with('styles', $styles)
-                    ->with('joID', $joID);
+                    ->with('joID', $joID)
+                    ->with('style_count', $style_count);
     }
 
     public function saveOrder(Request $request)
@@ -370,6 +375,8 @@ class WalkInIndividualController extends Controller
         session(['totalPrice' => $request->input('total_price')]);
         session(['amountToPay' => $request->input('amount-payable')]);
         session(['outstandingBal' => $request->input('balance')]);
+        session(['amountTendered' => $request->input('amount-tendered')]);
+        session(['amountChange' => $request->input('amount-change')]);
         session(['transaction_date' => $request->input('transaction_date')]);
         session(['dueDate' => $request->input('due_date')]);
 
@@ -381,6 +388,8 @@ class WalkInIndividualController extends Controller
         $termsOfPayment = session()->get('termsOfPayment'); //tblJobOrder
         $modeOfPayment = "Cash"; //tblJobOrder
         $totalPrice = (double)session()->get('totalPrice'); //tblJobOrder
+        $amtTendered = (double)session()->get('amountTendered');
+        $amtChange = (double)session()->get('amountChange');
         $orderDate = session()->get('transaction_date'); //tblJobOrder
 
         $jobOrder = TransactionJobOrder::create(array(
@@ -416,6 +425,8 @@ class WalkInIndividualController extends Controller
                 'strTransactionFK' => session()->get('joID'), //tblJobOrder
                 'dblAmountToPay' => $request->input('amount-payable'), 
                 'dblOutstandingBal' => $request->input('balance'),
+                'dblAmountTendered' => $amtTendered,
+                'dblAmountChange' => $amtChange,
                 'strReceivedByEmployeeNameFK' => 'EMPL001' ,
                 'dtPaymentDate' => $request->input('transaction_date'),
                 'dtPaymentDueDate' => session()->get('dueDate'),
@@ -605,7 +616,7 @@ class WalkInIndividualController extends Controller
     {
 
         // var_dump(session()->get('segment_data'));
-        $values = session()->get('segment_values');
+        $values = 'null';
         $patterns = [];
         $i = 0;
         $k = 0;
@@ -625,17 +636,6 @@ class WalkInIndividualController extends Controller
                   'outstandingBal' => 70.00,
                 ]
             ]
-        ];
-
-        $fabric = [
-            'fabrics' => [
-                [
-                    'joID' => 'JOB001',
-                    'jobSpecsID' => 'id',
-                    'segment_fabric' => 'Fabric'
-                ]
-            ]
-
         ];
 
         $custId = session()->get('custID');
@@ -660,15 +660,18 @@ class WalkInIndividualController extends Controller
         $values = session()->get('segment_values');
         $styles = session()->get('segment_design');
         $fabric = session()->get('segment_fabric');
+        $style_count = count(session()->get('segment_values'));
 
-        // dd($fabric);
-
+        // var_dump($segments, $values);
+        // dd("");
         $termsOfPayment = session()->get('termsOfPayment');
         $paymentid = session()->get('payment_id');
         $order_receipt = session()->get('jorReceiptId');
         $payment_receipt = session()->get('pyrReceiptId');
+        $amtTendered = (double)session()->get('amountTendered');
+        $amtChange = (double)session()->get('amountChange');
 
-        $pdf = PDF::loadView('pdf/payment-receipt', compact('data', 'custname', 'empname', 'segments', 'values', 'styles', 'termsOfPayment', 'paymentid', 'order_receipt', 'payment_receipt', 'fabric'))->setPaper('Letter')->setOrientation('portrait');
+        $pdf = PDF::loadView('pdf/payment-receipt', compact('data', 'custname', 'empname', 'segments', 'values', 'styles', 'termsOfPayment', 'paymentid', 'order_receipt', 'payment_receipt', 'fabric', 'amtTendered', 'amtChange', 'style_count'))->setPaper('Letter')->setOrientation('portrait');
 
         return $pdf->stream();
         // $jobId = session()->get('joID');

@@ -28,7 +28,7 @@
 						
 						<a class="center" href="#!" onclick="window.open('/generate-payment-receipt')">
 							<center><img style="height:20%; width:20%" src="{{URL::to('img/temp-online.png')}}"></center>
-							<p align="center" style="font-size:1em; color:teal"><center><b><u>Print order receipt</u></b></center></p>
+							<p align="center" style="font-size:30px; color:teal"><center><b><u><font size="4em">Print order receipt</font></u></b></center></p>
 						</a>
 						
 						<br><br>

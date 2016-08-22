@@ -62,13 +62,13 @@
 							</div>
 
 					</div>
-					{!! Form::open(['url' => 'transaction/walkin-individual-clear-order', 'method' => 'POST']) !!}
-						<div class="col s12">
+					
+						<!-- <div class="col s12">
 							<div class="divider"></div>
-								<button type="submit" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel orders" style="margin-top:30px; font-size:15px; color:white; background-color: teal; opacity:0.90"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Reset Order<!--</i>--></button>
-								{{-- <button type="submit" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to add orders to cart " style="margin-top:30px; background-color: teal; font-size:15px; color:white" href="#!"> --}}<!--<i class="mdi-editor-add" style="font-size:20px;">-->  {{-- View Cart --}}<!--</i>-->{{-- </a> --}}							
-						</div>
-					{!! Form::close() !!}
+								
+								{{-- <button type="submit" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to add orders to cart " style="margin-top:30px; background-color: teal; font-size:15px; color:white" href="#!"> --}}{{-- View Cart --}}{{-- </a> --}}							
+						</div> -->
+					
 						<div class="col s12" style="margin-bottom:20px"></div>
 					{!! Form::open(['url' => 'transaction/walkin-individual-customize-orders', 'method' => 'POST', "id" => "order-form"]) !!}
 				
@@ -88,6 +88,8 @@
 
 										<div class="center col s12"><img src="{{URL::asset($garment->strSegmentImage)}}" style="height:200px; width:250px; padding:10px; border:3px gray solid"></div>
 									
+									<!--Eto yung buong quantity, hindi ko matanggal, baka magloko bigla ang process. Ikaw na lang
+									<!   Nai-comment ko naman na. If ever tatanggalin mo, eto lang-->
 									<center><h6 style="color:darkgray"><b>Quantity</b></h6></center>
 					                  <div class="container"> 
 					                  	<div class="container">
@@ -96,18 +98,20 @@
 					                    </div>
 					                    </div>
 					                  </div>
+									<!--End nung para sa quantity-->
 								</div>
 						@endforeach
 						</div>
 
-						<div class="col s12">
-							<div class="divider"></div>
-						<div>
 						
 							<div class="col s12">
-								<button type="submit" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize orders" style="margin-left:40px; margin-top:20px; font-size:15px; color:white; background-color: teal; opacity:0.90"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Customize Orders<!--</i></button>
+								<div class="divider"></div>
+								<button type="submit" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize orders" style="margin-left:40px; margin-top:20px; font-size:15px; color:white; background-color: teal; opacity:0.90; margin-right:3%"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Customize Orders<!--</i></button>
 								<a class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to add orders to cart " style="margin-top:30px; background-color: teal; font-size:15px; color:white" href="#!"><i class="mdi-editor-add" style="font-size:20px;">-->  {{-- Add to Cart --}}</i></a>
 								<!--<a cphplass="left tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to see available package 5sets" href="{{URL::to('/transaction/walkin-individual-bulk-orders')}}" style=" margin-top:30px; font-size:18px;"><i class="mdi-navigation-arrow-back"></i><b><u>Go to Bulk Orders</u></b></a>-->
+								{!! Form::open(['url' => 'transaction/walkin-individual-clear-order', 'method' => 'POST']) !!}
+								<button type="submit" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel orders" style="margin-top:30px; font-size:15px; color:white; background-color: teal; opacity:0.90 margin-left:3%"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Reset Order<!--</i>--></button>
+								{!! Form::close() !!}
 							</div>
 						</div> 
 

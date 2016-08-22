@@ -59,7 +59,7 @@
 						<!--End of Modal for Reset Order-->
 
 						<!--Modal for View Cart-->
-						<div id="view-cart" class="modal modal-fixed-footer">
+						<!-- <div id="view-cart" class="modal modal-fixed-footer">
 							<h5><font color="teal"><center><b>List of Products Added to Cart</b></center></font></h5>	
 							{!! Form::open() !!}
 									<div class="divider" style="height:2px"></div>
@@ -93,15 +93,15 @@
 						                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="teal"><b>OK</b></font></a>
 						            </div>
 								{!! Form::close() !!}
-						</div>
+						</div> -->
 						<!--End of modal for view cart-->
 
-						<div class="col s12" style="margin-bottom:20px">
-							<div class="divider"></div>
-								<a class="left btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize orders" style="margin-top:30px; font-size:15px; color:white; background-color: teal; opacity:0.90" href="#reset-order"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Reset Order<!--</i>--></a>
+						<!-- <div class="col s12" style="margin-bottom:20px">
+							<div class="divider"></div> -->
+								
 									
-								<a class="right btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to add orders to cart " style="margin-top:30px; background-color: teal; font-size:15px; color:white" href="#view-cart"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  View Cart<!--</i>--></a>										
-						</div>
+								<!-- <a class="right btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to add orders to cart " style="margin-top:30px; background-color: teal; font-size:15px; color:white" href="#view-cart">View Cart</a> -->										
+						<!-- </div> -->
 
 
 						<!-- List of Packages Available-->
@@ -135,10 +135,12 @@
 				      							<label for="{!! $package->strPackageID !!}"></label>
 					      					</div>
 
+											<!--For the quantity-->
 					      					<div class="center col s9">
 									          <input type="text" name="int-package-qty[]" id="{{ $package->strPackageID }}" class="center int-package-qty {!! $package->strPackageID !!}" value=1 disabled="true">
 									          <label for="{!! $package->strPackageID !!}">Quantity</label>
 					      					</div>
+					      					<!--End for the quantity-->
 					      				</div>
 
 					      			</div>
@@ -151,10 +153,10 @@
 									<div class="divider"></div>
 								</div>
 
-					       		<button type="submit" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize orders" style="margin-left:40px; margin-top:30px; font-size:15px; color:white; background-color: teal; opacity:0.90"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Customize Orders<!--</i>--></button>
-					       		<a class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to add orders to cart " style="margin-top:30px; background-color: teal; font-size:15px; color:white" href="#!"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Add to Cart<!--</i>--></a>
+					       		<button type="submit" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize orders" style="margin-left:40px; margin-top:30px; font-size:15px; color:white; background-color: teal; opacity:0.90; margin-right:3%"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Customize Orders<!--</i>--></button>
+					       		<!-- <a class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to add orders to cart " style="margin-top:30px; background-color: teal; font-size:15px; color:white" href="#!">Add to Cart</a> -->
 								<!--<a href="{{URL::to('transaction/walkin-company-retail-products')}}" class="left" style="margin-top:30px; margin-left:15px; font-size:18px"><i class="mdi-navigation-arrow-back"></i><b><u>Switch to retail products</u></b></a>-->
-
+								<a class="left btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize orders" style="margin-top:30px; font-size:15px; color:white; background-color: teal; opacity:0.90; margin-left:3%" href="#reset-order"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Reset Order<!--</i>--></a>
 					       		{!! Form::close() !!}
 
 			       		 <div class="col s12">
