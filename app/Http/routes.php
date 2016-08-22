@@ -403,7 +403,7 @@ Route::group(['prefix' => 'transaction'], function(){
 
 		Route::resource('online-alteration', 'OnlineAlterationController');
 		Route::get('online-alteration-transact', 'OnlineAlterationController@transac');
-		Route::get('online-alterationtransaction-newcustomer', 'OnlineAlterationController@newcust');
+		// Route::get('online-alterationtransaction-newcustomer', 'OnlineAlterationController@newcust');
 		Route::get('online-alterationtransaction-patron', 'OnlineAlterationController@oldcust');
 		Route::get('online-alterationtransaction-newcustomer', 'OnlineAlterationController@showCart');
 		Route::get('online-alteration-newcustomer-update', 'OnlineAlterationController@updateCart');
