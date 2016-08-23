@@ -466,11 +466,11 @@ class WalkInIndividualController extends Controller
             $jobOrderSpecifics = TransactionJobOrderSpecifics::create(array(
                     'strJOSpecificID' => $jobSpecsID,
                     'strJobOrderFK' => $jobOrderID,
-                    'strJOSegmentFK' => $segments[$i]->strSegmentID,
-                    'strJOFabricFK' => $segments[$i]->strFabricID,
+                    'strJOSegmentFK' => $segments[$i]['strSegmentID'],
+                    'strJOFabricFK' => $segments[$i]['strFabricID'],
                     'intQuantity' => 1,
-                    'dblUnitPrice' => $segments[$i]->dblSegmentPrice,
-                    'intEstimatedDaysToFinish' => $segments[$i]->intMinDays,
+                    'dblUnitPrice' => $segments[$i]['dblSegmentPrice'],
+                    'intEstimatedDaysToFinish' => $segments[$i]['intMinDays'],
                     'strEmployeeNameFK' => "EMPL001",
                     'boolIsActive' => 1
             ));
