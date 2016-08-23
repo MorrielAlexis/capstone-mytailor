@@ -256,6 +256,48 @@ class SegmentPatternSeeder extends Seeder
                 'txtSegPDesc' => 'Pants with 2 backpocket',
                 'strSegPImage' => 'imgDesignPatterns/2backpockets.jpg',
                 'boolIsActive' => '1' 
+            ),
+
+            array(
+                'strSegPatternID' => 'SPAT025',
+                'strSegPStyleCategoryFK' => 'SEGSTY019',
+                'strSegPName'=>'Button Down',
+                'dblPatternPrice' => '70',
+                'txtSegPDesc' => 'A collar on a shirt that has the pointed ends fastened to the shirt by buttons',
+                'strSegPImage' => 'imgDesignPatterns/button-down.jpg',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strSegPatternID' => 'SPAT026',
+                'strSegPStyleCategoryFK' => 'SEGSTY019',
+                'strSegPName'=>'Riley Collar',
+                'dblPatternPrice' => '70',
+                'txtSegPDesc' => 'Usually use as a collar for tuxedos.',
+                'strSegPImage' => 'imgDesignPatterns/1ButtonRileyCollar.jpg',
+                'boolIsActive' => '1'
+            ),
+
+
+            array(
+                'strSegPatternID' => 'SPAT027',
+                'strSegPStyleCategoryFK' => 'SEGSTY019',
+                'strSegPName'=>' Band Collar',
+                'dblPatternPrice' => '70',
+                'txtSegPDesc' => 'Usually use as a collar for chinese formal wears.',
+                'strSegPImage' => 'imgDesignPatterns/band.jpg',
+                'boolIsActive' => '1'
+            ),
+
+
+            array(
+                'strSegPatternID' => 'SPAT028',
+                'strSegPStyleCategoryFK' => 'SEGSTY019',
+                'strSegPName'=>' Italian Collar',
+                'dblPatternPrice' => '70',
+                'txtSegPDesc' => 'Usually use as a collar for dress shirts.',
+                'strSegPImage' => 'imgDesignPatterns/italiancollar.jpg',
+                'boolIsActive' => '1'
             )                                
 
         );

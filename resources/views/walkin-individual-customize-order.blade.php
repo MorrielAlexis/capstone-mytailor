@@ -64,93 +64,22 @@
 							<div class="divider" style="margin-bottom:30px"></div>
 							<div class="divider" style="margin-bottom:30px"></div>
 							<div class="divider" style="margin-bottom:30px; height:3px"></div>
-								<!--<div id="summary-of-order" class="modal modal-fixed-footer" style="width:800px; height:600px">
-											<h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
-												
-													<div class="divider" style="height:2px"></div>
-													<div class="modal-content col s12">
-														<label>This is a summary of orders:</label>
-														<div class="container">
-									                        <table class = "table centered order-summary" border = "1">
-											       				<thead style="color:gray">
-												          			<tr>
-													                  <th data-field="product">Product</th>         
-													                  <th data-field="quantity" hidden>Quantity</th>
-													                  <th data-field="fabric">Fabric</th>
-													                  <th data-field="price">Unit Price</th>
-													                  <th data-field="price">Total Price</th>
-													              	</tr>
-												              	</thead>
-												              	<tbody>
-												              		@foreach($segments as $i => $segment)
-														            <tr>
-														               <td>{{ $segment->strGarmentCategoryName }}, {{ $segment->strSegmentName }}</td>
-														               <td hidden>1</td>
-														               <td id="{{ 'segmentFabricText'.($i+1) }}"></td>
-														               <td> {{ number_format($segment->dblSegmentPrice, 2) }} PHP</td>
-														               <td> </td>
-														            </tr>
-																	@endforeach
-														        </tbody>
-														    </table>
-											      		</div>
 
-											      		For the design summary
-													    @foreach($segments as $segment)
-											      		<div class="container">
-											      			<p style="color: white; padding-left:5px; margin-top:10px; background-color:teal; padding:3px;">Design for <b>{{ $segment->strGarmentCategoryName }}, {{ $segment->strSegmentName }}</b></p>
-									                        <div class="col s12 overflow-x" style="max-height:160px; background-color:white">
-										                        <table class = "table centered order-summary" border = "1">
-												       				<thead style="color:gray">
-													          			<tr>
-														                  <th data-field="product">Style Category</th>         
-														                  <th data-field="quantity">Segment Pattern</th>
-														                  <!--<th data-field="price">Total Price</th>
-														              	</tr>
-													              	</thead>
-													              	<tbody>
-															            <tr>
-															               <td>Lapel</td>
-															               <td>Shawl Type</td>
-															               <!--<td> </td>
-															            </tr>
-															        </tbody>
-															    </table>
-											      			</div>
-											      		</div>
-														@endforeach
-											      		<!--End of design summary
-
-
-
-												      	<div class="col s12" style="margin-bottom:50px; margin-top:30px">
-												      		<div class="col s12"><div class="divider" style="height:2px"></div></div>
-															<div class="col s6"><p style="color:gray">Estimated time to finish all orders:<p style="color:black" id="total-time"></p></p></div>
-															<div class="col s6"><p style="color:gray">Total Amount to Pay:<p style="color:black" id="total-price"></p></p></div>
-														</div>
-													</div>
-
-													<div class="modal-footer col s12">
-										                <p class="left" style="margin-left:10px; color:gray;">Continue to checkout?</p>
-										                <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Yes</font></button>
-										                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
-										            </div>
-												
-										</div>-->
 
 <!-- END OF LOOP -->		@foreach($segments as $i => $segment)
 							<div class="col s6">
 							<a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#remove{{ $i+1 }}"><i class="mdi-navigation-close"></i></a>
 
-							<center><img src="{{URL::asset($segment->strSegmentImage)}}" style="height:450px; width:450px; border:3px gray solid"></center>								          	
+							<center><img src="{{URL::asset($segment['strSegmentImage'])}}" style="height:450px; width:450px; border:3px gray solid"></center>								          	
+							<center><a href="#!" class="btn tooltipped"  data-position="bottom" data-delay="50" data-tooltip="Click to add similar garment and specify new design and fabric" style="background-color:teal; white:white">Add</a></center>
 							</div>
 							
 							<br>
 							<div class="col s6">
-								<div class="col s6" style="margin-top:50px">
+								<div class="col s6" style="margin-top:4%">
 									<a style="color:white; margin-top:10px" class="modal-trigger btn tooltipped teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a segment pattern" href="#pattern{{ $i+1 }}"><i class="mdi-content-content-cut" style="padding-right:10px"></i>Choose Design</a>
 								<!--Modal for Choosing design-->
-								<div id="pattern{{ $i+1 }}" class="modal modal-fixed-footer" style="width:1100px; height:600px">
+								<div id="pattern{{ $i+1 }}" class="modal modal-fixed-footer" style="width:80%; height:85%;">
 									<h5><font color = "#1b5e20"><center>List of Available Designs</center> </font> </h5>
 				                        <div class="divider" style="height:2px"></div>
 				                        <div class="modal-content col s12">
@@ -160,11 +89,15 @@
 										<!--Under each "style category" ay may mga segment pattern na pipiliin-->
 										<!--Check maintenance for a better understanding. Under Garments-->
 										@foreach($styles as $j => $style)
-										<ul class="collapsible z-depth-2" data-collapsible="accordion" style="border:none" @if($segment->strSegmentID != $style->strSegmentFK) hidden @endif>
+										@if($style->boolIsActive == 1)
+										<ul class="collapsible z-depth-2" data-collapsible="accordion" style="border:none" @if($segment['strSegmentID'] != $style->strSegmentFK) hidden @endif>
 										    <li style="margin-bottom:10px;">
 										      	<div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $style->strSegStyleName }}</div>
 										      	<div class="collapsible-body overflow-x">
-												      	<p style="color:gray; margin-left:20px">*Choose one of your desired design</p>
+										      		<div class="col s12">
+												      	<div class="left col s6"><p style="color:gray; margin-left:20px">*Choose one of your desired design</p></div>
+												      	<div class="pull-right col s6"  style="margin-top:2.8%; font-size:15px; padding-left:10%"><a class="modal-trigger tooltipped" href="#custom-fabric" data-position="bottom" data-delay="50" data-tooltip="Click this if you want a separate fabric for this specific style category"><u><b>Click to specify fabric for this specific style category</b></u></a></div>
+												    </div>
 												      	@foreach($patterns as $k => $pattern)
 												      	<div class="col s6" @if($pattern->strSegPStyleCategoryFK != $style->strSegStyleCatID) hidden @endif>
 								                        	<div class="center col s2 " style="margin-top:60px">
@@ -178,7 +111,7 @@
 														              <img src="{{URL::asset($pattern->strSegPImage)}}" alt="" class="responsive-img">
 														            </div>
 														            <div class="col s6"> 
-														              <span><b>{{ $pattern->strSegPatternID }} {{ $pattern->strSegPName }}</b></span> <!-- This will be the name of the pattern -->
+														              <span><b>{{ $pattern->strSegPName }}</b></span> <!-- This will be the name of the pattern -->
 														              <br/>
 														              <span class="black-text">
 														                {{ $pattern->txtSegPDesc }}
@@ -189,9 +122,12 @@
 														     </div>
 														</div>
 														@endforeach
+														
+														
 										      	</div>
 										    </li>
 										  </ul>
+										  @endif
 										@endforeach
 										<!--End of Collapsible Accordion-->
 
@@ -205,11 +141,110 @@
 			                        </div>
 								</div>
 								</div>
+
+								<!--Modal for custom-facbric-->
+								<div id="custom-fabric" class="modal modal-fixed-footer" style="width:80%; height:85%;">
+		 								<h5><font color = "#1b5e20"><center>List of Available Fabrics</center> </font> </h5>
+		    
+				                        <div class="divider" style="height:2px"></div>				
+				                        <div class="modal-content col s12">
+												
+												<div class="col s3">
+													<div class="input-field col s12">
+															<select class = "custom-fabric-type" id = "custom-fabric-type">
+																<option value="TA" class="circle" selected>All</option>
+																@foreach($fabricTypes as $fabricType)
+																	<option value="{{ $fabricType->strFabricTypeID }}">{{ $fabricType->strFabricTypeName }}</option>
+																@endforeach
+															</select>
+															<label><font size="3" color="gray">Fabric Type</font></label>
+													</div>
+												</div>
+
+												<div class="col s3">
+													<div class="input-field col s12">
+															<select class = "custom-fabric-color" id = "custom-fabric-color">
+																<option value="CA" class="circle" selected>All</option>
+																@foreach($fabricColors as $fabricColor)
+																	<option value="{{ $fabricColor->strFabricColorID }}">{{ $fabricColor->strFabricColorName }}</option>
+																@endforeach
+															</select>
+															<label><font size="3" color="gray">Fabric Color</font></label>
+													</div>
+												</div>
+
+												<div class="col s3">
+													<div class="input-field col s12">
+															<select class = "custom-fabric-pattern" id = "custom-fabric-pattern">
+																<option value="PA" class="circle" selected>All</option>
+																@foreach($fabricPatterns as $fabricPattern)
+																	<option value="{{ $fabricPattern->strFabricPatternID }}">{{ $fabricPattern->strFabricPatternName }}</option>
+																@endforeach
+															</select>
+															<label><font size="3" color="gray">Fabric Pattern</font></label>
+													</div>
+												</div>
+
+												<div class="col s3">
+													<div class="input-field col s12">
+															<select class = "custom-fabric-thread-count" id = "custom-fabric-thread-count">
+																<option value="TCA" class="circle" selected>All</option>
+																@foreach($fabricThreadCounts as $fabricThreadCount)
+																	<option value="{{ $fabricThreadCount->strFabricThreadCountID }}">{{ $fabricThreadCount->strFabricThreadCountName }}</option>
+																@endforeach
+															</select>
+															<label><font size="3" color="gray">Fabric Thread Count</font></label>
+													</div>
+												</div>
+												
+												
+												<div class="col s12" style="margin:20px">
+													<div class="divider" style="height:2px gray solid"></div>
+													<div class="divider" style="height:2px gray solid"></div>
+												</div> 
+												
+												<p style="color:gray; margin-left:20px">*Choose one of your desired fabric</p>
+
+												
+					                        	@foreach($fabrics as $j => $fabric)
+					                        	<div class="col s6">
+					                        	<div class="center col s2" style="margin-top:60px">
+					                        		<input name="custom-fabrics{{ $i+1 }}" type="radio" class="filled-in custom-segmentFabric{{ $i+1 }}" value="custom-{{ $fabric->strFabricID }}" id="custom-{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}" />					                        	
+					                        		<label for="custom-{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}"></label>
+					                        	</div>
+					                        	 <div class="col s10">
+											        <div class="card-panel teal lighten-4 z-depth-1">
+											          <div class="row valign-wrapper">
+											            <div class="center col s4">
+											              <img src="{{URL::asset($fabric->strFabricImage)}}"class="responsive-img">
+											            </div>
+											            <div class="col s8"> 
+											              <p><b id="{{ 'fabricText'.$fabric->strFabricID }}">{{ $fabric->strFabricName }}</b></p> 
+											              <span class="black-text">
+											                {{ $fabric->txtFabricDesc }}
+											              </span>
+											            </div>
+											          </div>
+											        </div>
+											      </div>
+											    </div>
+												@endforeach
+												
+											<div class="col s12" style="margin:20px"></div>
+											
+									</div>
 								
-								<div class="col s6" style="margin-top:50px">
+									<div class="modal-footer col s12">
+			                          <a  class="right modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+			                          <a  class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+			                        </div>
+								</div>
+								<!--End of modal for custom fabric-->
+								
+								<div class="col s6" style="margin-top:4%">
 									<a style="color:white; margin-top:10px" class="modal-trigger btn tooltipped teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#fabric{{ $i+1 }}"><i class="mdi-maps-layers" style="padding-right:10px"></i>Choose Fabric</a>
-								<div id="fabric{{ $i+1 }}" class="modal modal-fixed-footer" style="width:1100px; height:600px">
-	 								<h5><font color = "#1b5e20"><center>List of Available Fabrics</center> </font> </h5>
+									<div id="fabric{{ $i+1 }}" class="modal modal-fixed-footer" style="width:1100px; height:600px">
+	 									<h5><font color = "#1b5e20"><center>List of Available Fabrics</center> </font> </h5>
 	    
 					                        <div class="divider" style="height:2px"></div>				
 					                        <div class="modal-content col s12">
@@ -304,33 +339,39 @@
 				                          <!--<a  class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>-->
 				                        </div>
 									</div>
-							<!--End of modal for choosing fabric-->
+								<!--End of modal for choosing fabric-->
 								</div>
 
 								<!--Garment Description Here-->
-								<div class="col s12" style="margin-top:20px; color:gray"><p>Garment description below:</p></div>
+								<div class="col s12" style="margin-top:1%; color:gray"><p>Garment description below:</p></div>
 								<div class="col s12" style="margin-left:130px">
-									<div class = "row">
 										<div class="col s4" style="color:teal;"><p><b>Garment Category:</b></p></div>
-										<div class="col s8"><p>{{ $segment->strGarmentCategoryName }}</p></div>
-									</div>
+										<div class="col s8"><p>{{ $segment['strGarmentCategoryName'] }}</p></div>
 									
 									<div class="col s4" style="color:teal;"><p><b>Garment Segment:</b></p></div>
-									<div class="col s8"><p>{{ $segment->strSegmentName }}</p></div>
+									<div class="col s8"><p>{{ $segment['strSegmentName'] }}</p></div>
 
 									<div class="col s4" style="color:teal;"><p><b>Sex(Applicable):</b></p></div>
-									@if($segment->strSegmentSex == 'M') <div class="col s8"><p>Male</p></div>
-			                        @elseif($segment->strSegmentSex == 'F') <div class="col s8"><p>Female</p></div>
+									@if($segment['strSegmentSex'] == 'M') <div class="col s8"><p>Male</p></div>
+			                        @elseif($segment['strSegmentSex'] == 'F') <div class="col s8"><p>Female</p></div>
 			                        @endif
 
 									<div class="col s4" style="color:teal;"><p><b>Price starts from:</b></p></div>
-									<div class="col s8" style="color:red"><p>{{ number_format($segment->dblSegmentPrice, 2) }} PHP</p></div>
-									<input type="hidden" class="price-per-segment" id="{{ $segment->dblSegmentPrice }}">
+									<div class="col s8" style="color:red"><p>{{ number_format($segment['dblSegmentPrice'], 2) }} PHP</p></div>
+									<input type="hidden" class="price-per-segment" id="{{ $segment['dblSegmentPrice'] }}">
 
 									<div class="col s4" style="color:teal;"><p><b>Time to finish(min):</b></p></div>
-									<div class="col s8 " style="color:red" ><p>{{ $segment->intMinDays }} days</p></div>
-									<input type="hidden" class="time-to-finish" id="{{ $segment->intMinDays }}">
+									<div class="col s8 " style="color:red" ><p>{{ $segment['intMinDays'] }} days</p></div>
+									<input type="hidden" class="time-to-finish" id="{{ $segment['intMinDays'] }}">
+																	
 								</div>
+
+								<!--To identify the quantity of garments with similar design and fabrics-->
+				                <div class="col s8">
+				                <div class="col s8" style="padding-top:3%; padding-left:50%; color:red"><center><b style="font-size:18px">QTY</b></center></div>   
+				               	<div class="col s4" style="padding-left:0; margin-left:0;"><input name="quantity" id="quantity" type="number" style="border:2px teal solid; padding-left:18%; padding-right:18%" placeholder="How many?"></div>
+				                </div>
+				                <!--end-->
 							</div>
 						<!--dati dito yung div-->
 

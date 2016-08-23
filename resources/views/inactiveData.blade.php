@@ -5,7 +5,7 @@
   <div class="main-wrapper" style="margin-top:30px">
    <div class="row">
       <div class="col s12 m12 l12">
-        <span class="page-title"><h4>Inactive Data</h4></span>
+        <span class="page-title"><h4>Utilities - Data Reactivation</h4></span>
       </div>
     </div>
   </div>
@@ -31,6 +31,7 @@
         <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabFabmat">Fabrics</a></li>
         <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabMeasurements">Measurements</a></li>
         <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabMate">Materials</a></li>
+        <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabCharges">Charges</a></li>
         <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabCata">Catalogue</a></li>
         <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabAlte">Alteration</a></li>
         <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabPackages">Sets</a></li>
@@ -334,7 +335,7 @@
                   <thead>
                     <tr>
                       <!--<th data-field="id">Garment Details ID</th>-->
-                    {{--   <th data-field="name">Category Name</th> --}}
+                      <th data-field="name">Category Name</th>
                       <th data-field="name">Segment Name</th>
                       <th data-field="address">Segment Description</th>
                       <th data-field="React">Reason for Deactivation</th>
@@ -346,8 +347,8 @@
                       @foreach($segment as $segment_1)
                       @if($segment_1->boolIsActive == 0)
                       <tr>
-                        <!--<td>{{ $segment_1->strGarmentSegmentID }}</td>-->
-                    {{--     <td>{{ $segment_1->strGarmentCategoryName }}</td> --}}
+
+                        <td>{{ $segment_1->strGarmentCategoryName }}</td>
                         <td>{{ $segment_1->strSegmentName }}</td>
                         <td>{{ $segment_1->textSegmentDesc }}</td>
                         <td>{{ $segment_1->strSegInactiveReason }}</td>
@@ -382,7 +383,7 @@
                 <table class="centered" border="1">
                   <thead>
                     <tr>
-                      <!--<th data-field= "Catalog ID">Segment Pattern ID</th>-->
+                      <th data-field= "Segment">Segment</th>
                       <th data-field="Segment  Style Name">Style Category Name</th>
                       <th data-field="React">Reason for Deactivation</th>
                       <th data-field="React">Reactivate</th>
@@ -393,6 +394,7 @@
                         @foreach($segmentStyle as $segmentStyle_1)
                           @if($segmentStyle_1->boolIsActive == 0)
                           <tr>
+                            <td>{{ $segmentStyle_1->strSegmentName }}</td>
                             <td>{{ $segmentStyle_1->strSegStyleName }}</td>
                             <td>{{ $segmentStyle_1->strSegStyleCatInactiveReason }}</td>
                             <td>
@@ -525,6 +527,7 @@
                 <table class = "table centered data-reactSegment" align = "center" border = "1">
                   <thead>
                     <tr>
+                        <th data-field="Category">Category/th>
                         <th data-field="name">Measurement Name</th>
                         <th data-field="description">Measurement Description</th>
                         <th data-field="Garmentcategory">Reason for Deactivation</th>
@@ -536,6 +539,7 @@
                       @foreach($detail as $detail_1)
                       @if($detail_1->boolIsActive == 0)
                       <tr>
+                        <td>{{ $detail_1->strMeasurementCategoryName }}</td>
                         <td>{{ $detail_1->strMeasDetailName }}</td>
                         <td>{{ $detail_1->txtMeasDetailDesc }}</td>
                         <td>{{ $detail_1->strMeasDetInactiveReason }}</td>
@@ -1111,6 +1115,102 @@
           </div>
         </div>
       </div>
+    </div>
+
+     <div id="tabCharges" class="hue col s12" style="margin-top:45px; background-color: #80d8ff;">
+    <div style="height:30px;"></div>
+    
+      <!--Charge Category-->
+      <p><h5 style="margin-left:20px"><b>Charges</b></h5></p>
+      <div class="row">
+        <div class="col s12">
+          <div class="card">
+            <div class="card-content">
+              <div class = "col s12 m12 l12 overflow-x">
+                <h5><font color = "#1b5e20"><center>Inactive Charge Category</center> </font> </h5>
+                <table class="centered" border="1">
+
+                  <thead>
+                    <tr>
+                      <!--<th data-field= "Catalogue ID">Catalogue ID</th>-->
+                      <th data-field="alterationName">Name</th>
+                      <th data-field="alterationDescription">Description</th>
+                      <th data-field="React">Reason for Deactivation</th>
+                      <th data-field="React">Reactivate</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach($chargeCat as $chargeCat_1)
+                    @if($chargeCat_1->boolIsActive == 0)
+                      <tr>
+                        <td>{{$chargeCat_1->strChargeCatName}}</td>
+                        <td>{{$chargeCat_1->txtChargeDesc}}</td>
+                        <td>{{ $chargeCat_1->strChargeCatInactiveReason }}</td>
+                        <td>
+                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-charges']) !!}
+                            <input type="hidden" value="{{ $chargeCat_1->strChargeCatID }}" id="reactID" name="reactID">
+                            <input type="hidden" value="{{ $chargeCat_1->strChargeCatID }}" id="reactInactiveChargeCat" name="reactInactiveChargeCat">
+                            <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of customer to the table">REACTIVATE</button>
+                          {!! Form::close() !!}
+                        </td>
+                      </tr>
+                      @endif
+                      @endforeach
+                  </tbody>
+                </table>
+              </div>
+              <div class = "clearfix"></div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Charge Details-->
+      {{-- <p><h5 style="margin-left:20px"><b>Charge Details</b></h5></p>
+      <div class="row">
+        <div class="col s12">
+          <div class="card">
+            <div class="card-content">
+              <div class = "col s12 m12 l12 overflow-x">
+                <h5><font color = "#1b5e20"><center>Inactive Charge Details</center> </font> </h5>
+                <table class="centered" border="1">
+
+                  <thead>
+                    <tr>
+                      <!--<th data-field= "Catalogue ID">Catalogue ID</th>-->
+                      <th data-field="alterationName">Name</th>
+                      <th data-field="alterationDescription">Description</th>
+                      <th data-field="React">Reason for Deactivation</th>
+                      <th data-field="React">Reactivate</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach($chargeCat as $chargeCat_1)
+                    @if($chargeCat_1->boolIsActive == 0)
+                      <tr>
+                        <td>{{$chargeCat_1->strChargeCatName}}</td>
+                        <td>{{$chargeCat_1->txtChargeDesc}}</td>
+                        <td>{{ $chargeCat_1->strChargeCatInactiveReason }}</td>
+                        <td>
+                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-charges']) !!}
+                            <input type="hidden" value="{{ $chargeCat_1->strChargeCatID }}" id="reactID" name="reactID">
+                            <input type="hidden" value="{{ $chargeCat_1->strChargeCatID }}" id="reactInactiveChargeCat" name="reactInactiveChargeCat">
+                            <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of customer to the table">REACTIVATE</button>
+                          {!! Form::close() !!}
+                        </td>
+                      </tr>
+                      @endif
+                      @endforeach
+                  </tbody>
+                </table>
+              </div>
+              <div class = "clearfix"></div>
+
+            </div>
+          </div>
+        </div>
+      </div> --}}
     </div>
 
     <div id="tabCata" class="hue col s12" style="margin-top:45px; background-color: #80d8ff;">
