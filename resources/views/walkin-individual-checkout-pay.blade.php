@@ -70,12 +70,12 @@
 						              	</tr>
 					              	</thead>
 					              	<tbody>
-					              		@foreach($values as $value)
+					              		@for($i = 0; $i < count($values); $i++)
 					              			
 								            <tr style="border-top:1px teal solid; border-bottom:1px teal solid">
-								                <td style="border-right:1px teal solid; border-left:1px teal solid">{{ $value['strGarmentCategoryName'] }}, {{ $value['strSegmentName'] }}</td>
-												<td style="border-right:1px teal solid">{{ $value['strFabricName'] }}</td>
-								                <td style="border-right:1px teal solid">{{ number_format(($value['dblSegmentPrice'] + $value['dblFabricPrice']) , 2) }} PHP</td>
+								                <td style="border-right:1px teal solid; border-left:1px teal solid">{{ $values[$i]['strGarmentCategoryName'] }}, {{ $values[$i]['strSegmentName'] }}</td>
+												<td style="border-right:1px teal solid">{{ $values[$i]['strFabricName'] }}</td>
+								                <td style="border-right:1px teal solid">{{ number_format(($values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice']) , 2) }} PHP</td>
 												<td style="border-right:1px teal solid">
 													<div class="col s12">
 													<div class="col s4"><b style="color:teal">Style Category</b></div>
@@ -83,9 +83,8 @@
 													<div class="col s4"><b style="color:teal">Style Price</b></div>
 													<div class="col s12"><div class="divider"></div></div>
 												</div>
-													@for($i = 0; $i < count($values); $i++)
 														@for($j = 0; $j < count($styles[$i]); $j++)
-															@if($styles[$i][$j]->strSegmentID == $value['strSegmentID'])
+															@if($styles[$i][$j]->strSegmentID == $values[$i]['strSegmentID'])
 																
 																	<div class="col s4">{{ $styles[$i][$j]->strSegStyleName }}</div>
 																	<div class="col s4">{{ $styles[$i][$j]->strSegPName }}</div>
@@ -93,13 +92,12 @@
 
 																@endif
 												        @endfor
-												    @endfor	
 												</td>
 												<td style="border-right:1px teal solid"><div id="style_price_total" name="style_price_total"> </div></td>
 												<td style="border-right:1px teal solid">[ insert price here ]</td>
 												<td style="border-right:1px teal solid">[ insert price here ]</td>
 								            </tr>						            		
-							            @endforeach
+							            @endfor
 
 							        </tbody>
 							    </table>					
