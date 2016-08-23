@@ -9,18 +9,18 @@
         <p>Good day! This is to inform you that your online order is already confirmed and currently being processed. Your order/s have been processed at [time]. Any concerns, changes and/or additions to your order, please contact us through our hotline [set phone here] or email us at [mytailorsystems@gmail.com]. You have 1 week parameter to change or add your order.</p>
 
         <div>
-          <h3>Customer Details</h3>
+          <h2>Customer Details</h2>
 
-          <b>JO Number: </b>
-          <b>Name: </b>
-          <b>Email: </b>
-          <b>Primary Number: </b>
-          <b>Alternative Number: </b>
-          <b>Address: </b>
+          <b>JO Number: </b><br>
+          <b>Name: </b><br>
+          <b>Email: </b><br>
+          <b>Primary Number: </b><br>
+          <b>Alternative Number: </b><br>
+          <b>Address: </b><br><br>
         </div>
 
         <div>
-            <h3>Order Details</h3>
+            <h2>Order Details</h2>
 
             <div class="container">
                 <table class = "table centered order-summary" border = "1">
@@ -71,8 +71,8 @@
 
             <div class="col s12" style="margin-bottom:50px; margin-top:30px">
                 <div class="col s12"><div class="divider" style="height:2px"></div></div>
-                <div class="col s6"><p>Estimated time to finish all orders:<p>3 days</p></p></div>
-                <div class="col s6"><p>Total Amount to Pay:<p>600.00 PHP</p></p></div>
+                <div class="col s6"><p>Estimated time to finish all orders: 3 days</p></div>
+                <div class="col s6"><p>Total Amount to Pay: 600.00 PHP</p></div>
             </div>
 
             <div>
