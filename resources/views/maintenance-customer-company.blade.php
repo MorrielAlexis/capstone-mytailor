@@ -124,6 +124,7 @@
             <table class = "table centered data-custCompany" align = "center" border = "1">
               <thead>
                 <tr>
+                  <th data-field="ID">ID</th>
                   <th data-field="name">Company Name</th>
                   <th data-field="address">Address</th>
                   <th data-field="contact">Contact Person</th>
@@ -142,6 +143,7 @@
                 @foreach($company as $company)
                   @if($company->boolIsActive == 1)
                 <tr>
+                  <td>{{ $company->strCompanyID }}</td>
                   <td>{{ $company->strCompanyName }}</td>
                   <td>{{ $company->strCompanyBuildingNo }} {{ $company->strCompanyStreet }} {{ $company->strCompanyBarangay }} {{ $company->strCompanyCity }} {{ $company->strCompanyProvince }}  {{ $company->strCompanyZipCode }} </td>
                   <td>{{ $company->strContactPerson }} </td>

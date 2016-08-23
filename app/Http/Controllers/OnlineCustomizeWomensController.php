@@ -64,7 +64,7 @@ class OnlineCustomizeWomensController extends Controller
         $selectedFabric = \DB::table('tblFabric AS a')
                     ->leftJoin('tblFabricType AS b', 'a.strFabricTypeFK', '=','b.strFabricTypeID')
                     ->select('a.*', 'b.strFabricTypeName')
-                    ->where('a.strFabricID', $request->input('hidden_fabric_id'))
+                    ->where('a.strFabricID', $request->input('rdb_fabric'))
                     ->get();
 
         $keycollar = 'Collar';

@@ -74,7 +74,7 @@
 
 
         <div class="navbar teal">
-          <nav style="font-family: 'Roboto Slab', serif;">
+          <nav style="font-family: 'Helvetica';">
             <div style="border-bottom:1px solid grey" class="nav-wrapper">
 
               <ul class="container">

@@ -87,11 +87,11 @@
 	            	<div class="col s12" style="padding:20px"> 
 	            		
 		            	<div id="for_top" class="col s12" style="color:black">
-		            		<h5><b>Parts to be measured - {{ $segment->strSegmentName }}</b></h5>
+		            		<h5><b>Parts to be measured - {{ $segment['strSegmentName'] }}</b></h5>
 		            		
 							<!--if Body and Cloth Measurement-->
 			            	@foreach($measurements as $j => $measurement)
-			            		@if($measurement->strMeasDetSegmentFK == $segment->strSegmentID)
+			            		@if($measurement->strMeasDetSegmentFK == $segment['strSegmentID'])
 		            				<div class="container measurement-general {{ $measurement->strMeasCategoryFK }}"> 
 					            	   	<div style="color:black; padding-left:140px" class="input-field col s6 ">   
 					            	   		<input type="hidden" name="detailName{{ $i+1 }}{{ $j+1 }}" value="{{ $measurement->strMeasurementDetailID }}">              
@@ -107,8 +107,8 @@
 							<div class="col s12 z-depth-1 measurement-general MEASCAT001" style="padding:20px">
 								<div class="container">
 									<div class="left col s6">
-										<center><img src="{{ URL::asset($segment->strSegmentImage) }}" style="height:200px; width:200px; border:3px gray solid"></center>	
-										<p><center>{{ $segment->strSegmentName }}</center></p>							          	
+										<center><img src="{{ URL::asset($segment['strSegmentImage']) }}" style="height:200px; width:200px; border:3px gray solid"></center>	
+										<p><center>{{ $segment['strSegmentName'] }}</center></p>							          	
 									</div><!--this will be the garment detail-->
 
 									<div class="right col s6" style="margin-top:20px">
@@ -155,7 +155,7 @@
 	                    	<div style="color:gray" class="input-field col s3">                 
 	                          <select>
 							    <option value="" disabled selected color="red">Target Garment</option>
-							    <option value="1">{{ $segment->strGarmentCategoryName }} - {{ $segment->strSegmentName }}</option>
+							    <option value="1">{{ $segment['strGarmentCategoryName'] }} - {{ $segment['strSegmentName'] }}</option>
 							  </select>
 	                    	</div>
 

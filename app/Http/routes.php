@@ -289,6 +289,8 @@ Route::group(['prefix' => 'utilities'], function(){
 		Route::post('inactive-data/reactivate-needle', 'InactiveDataController@reactivate_needle');
 		Route::post('inactive-data/reactivate-thread', 'InactiveDataController@reactivate_thread');
 		Route::post('inactive-data/reactivate-zipper', 'InactiveDataController@reactivate_zipper');
+		Route::post('inactive-data/reactivate-charges', 'InactiveDataController@reactivate_charges');
+		Route::post('inactive-data/reactivate-charges-details', 'InactiveDataController@reactivate_chargeDetails');
 		Route::post('inactive-data/reactivate-catalogue', 'InactiveDataController@reactivate_catalogue');
 		Route::post('inactive-data/reactivate-alteration', 'InactiveDataController@reactivate_alteration');
 		Route::post('inactive-data/reactivate-packages', 'InactiveDataController@reactivate_package');
@@ -401,9 +403,9 @@ Route::group(['prefix' => 'transaction'], function(){
 
 		Route::resource('online-alteration', 'OnlineAlterationController');
 		Route::get('online-alteration-transact', 'OnlineAlterationController@transac');
-		Route::get('online-alterationtransaction-newcustomer', 'OnlineAlterationController@newcust');
+		// Route::get('online-alterationtransaction-newcustomer', 'OnlineAlterationController@newcust');
 		Route::get('online-alterationtransaction-patron', 'OnlineAlterationController@oldcust');
-		Route::get('online-alteration-newcustomer', 'OnlineAlterationController@showCart');
+		Route::get('online-alterationtransaction-newcustomer', 'OnlineAlterationController@showCart');
 		Route::get('online-alteration-newcustomer-update', 'OnlineAlterationController@updateCart');
 		Route::get('online-alteration-oldcustomer', 'OnlineAlterationController@oldcust');
 		Route::get('online-alteration-info', 'OnlineAlterationController@checkoutCustInfo');

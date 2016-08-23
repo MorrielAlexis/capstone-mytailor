@@ -19,7 +19,7 @@ class PackagesSeeder extends Seeder
               'strPackageSex' =>  'F',
   					  'strPackageSeg1FK' =>  'SEGM003',
     					'strPackageSeg2FK' =>  'SEGM005',
-    					'strPackageSeg3FK' =>  'SEGM015',
+    					'strPackageSeg3FK' =>  'SEGM009',
               // 'strPackageSeg4FK' =>  'SEGM011',
               // 'strPackageSeg5FK' =>  'SEGM011',
               'dblPackagePrice' => '2500.00',

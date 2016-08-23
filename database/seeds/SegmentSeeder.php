@@ -103,7 +103,7 @@ class SegmentSeeder extends Seeder
                 'strSegCategoryFK' => 'GARM003',    
                 'strSegmentName' =>'Long Sleeve Shirt',
                 'dblSegmentPrice' => '500.00',
-                'strSegmentSex' => 'F',
+                'strSegmentSex' => 'M',
                 'intMinDays' => '3',
                 'strSegmentImage' => 'imgSegments/male-uniform-plain.jpg',
                 'textSegmentDesc' => 'Casual wear for men. .',
@@ -112,78 +112,6 @@ class SegmentSeeder extends Seeder
 
             array(
                 'strSegmentID' => 'SEGM009',
-                'strSegCategoryFK' => 'GARM005',    
-                'strSegmentName' =>'Dress',
-                'dblSegmentPrice' => '600.00',
-                'strSegmentSex' => 'F',
-                'intMinDays' => '3',
-                'strSegmentImage' => 'imgSegments/dressfinal.jpg',
-                'textSegmentDesc' => 'Formal for womens uniform.',
-                'boolIsActive' => '1'
-            ),
-
-            array(
-                'strSegmentID' => 'SEGM010',
-                'strSegCategoryFK' => 'GARM003',    
-                'strSegmentName' =>'Polo',
-                'dblSegmentPrice' => '400.00',
-                'strSegmentSex' => 'M',
-                'intMinDays' => '5',
-                'strSegmentImage' => 'imgSegments/whitepolowithblack.jpg',
-                'textSegmentDesc' => 'Upper part wear for mens uniform.',
-                'boolIsActive' => '1'
-            ),
-
-            array(
-                'strSegmentID' => 'SEGM011',
-                'strSegCategoryFK' => 'GARM003',    
-                'strSegmentName' =>'Jacket Canvass',
-                'dblSegmentPrice' => '800.00',
-                'strSegmentSex' => 'M',
-                'intMinDays' => '5',
-                'strSegmentImage' => 'imgSegments/Jacket1.jpg',
-                'textSegmentDesc' => 'Upper part wear for mens uniform.',
-                'boolIsActive' => '1'
-            ),
-
-            array(
-                'strSegmentID' => 'SEGM012',
-                'strSegCategoryFK' => 'GARM004',    
-                'strSegmentName' =>'Khaki Pants',
-                'dblSegmentPrice' => '500.00',
-                'strSegmentSex' => 'M',
-                'intMinDays' => '3',
-                'strSegmentImage' => 'imgSegments/pants-brown.jpg',
-                'textSegmentDesc' => 'Lower part wear.',
-                'boolIsActive' => '1'
-            ),
-
-            array(
-                'strSegmentID' => 'SEGM013',
-                'strSegCategoryFK' => 'GARM004',    
-                'strSegmentName' =>'Maong Trousers',
-                'dblSegmentPrice' => '500.00',
-                'strSegmentSex' => 'M',
-                'intMinDays' => '3',
-                'strSegmentImage' => 'imgSegments/maongpants.jpg',
-                'textSegmentDesc' => 'Lower part wear.',
-                'boolIsActive' => '1'
-            ),
-
-              array(
-                'strSegmentID' => 'SEGM014',
-                'strSegCategoryFK' => 'GARM003',    
-                'strSegmentName' =>'Cotton Polos',
-                'dblSegmentPrice' => '400.00',
-                'strSegmentSex' => 'M',
-                'intMinDays' => '3',
-                'strSegmentImage' => 'imgSegments/skybluepolo.jpg',
-                'textSegmentDesc' => 'Lower part wear.',
-                'boolIsActive' => '1'
-            ),
-
-            array(
-                'strSegmentID' => 'SEGM015',
                 'strSegCategoryFK' => 'GARM001',    
                 'strSegmentName' =>'Blazers',
                 'dblSegmentPrice' => '400.00',
@@ -193,6 +121,90 @@ class SegmentSeeder extends Seeder
                 'textSegmentDesc' => 'Upper part wear.',
                 'boolIsActive' => '1'
             )
+
+            // array(
+            //     'strSegmentID' => 'SEGM010',
+            //     'strSegCategoryFK' => 'GARM005',    
+            //     'strSegmentName' =>'Office Dress',
+            //     'dblSegmentPrice' => '600.00',
+            //     'strSegmentSex' => 'F',
+            //     'intMinDays' => '3',
+            //     'strSegmentImage' => 'imgSegments/dressfinal.jpg',
+            //     'textSegmentDesc' => 'Formal for womens uniform.',
+            //     'boolIsActive' => '1'
+            // ),
+
+            // array(
+            //     'strSegmentID' => 'SEGM011',
+            //     'strSegCategoryFK' => 'GARM003',    
+            //     'strSegmentName' =>'Polo',
+            //     'dblSegmentPrice' => '400.00',
+            //     'strSegmentSex' => 'M',
+            //     'intMinDays' => '5',
+            //     'strSegmentImage' => 'imgSegments/whitepolowithblack.jpg',
+            //     'textSegmentDesc' => 'Upper part wear for mens uniform.',
+            //     'boolIsActive' => '1'
+            // ),
+
+            // array(
+            //     'strSegmentID' => 'SEGM012',
+            //     'strSegCategoryFK' => 'GARM003',    
+            //     'strSegmentName' =>'Jacket Canvass',
+            //     'dblSegmentPrice' => '800.00',
+            //     'strSegmentSex' => 'M',
+            //     'intMinDays' => '5',
+            //     'strSegmentImage' => 'imgSegments/Jacket1.jpg',
+            //     'textSegmentDesc' => 'Upper part wear for mens uniform.',
+            //     'boolIsActive' => '1'
+            // ),
+
+            // array(
+            //     'strSegmentID' => 'SEGM013',
+            //     'strSegCategoryFK' => 'GARM004',    
+            //     'strSegmentName' =>'Khaki Pants',
+            //     'dblSegmentPrice' => '500.00',
+            //     'strSegmentSex' => 'M',
+            //     'intMinDays' => '3',
+            //     'strSegmentImage' => 'imgSegments/pants-brown.jpg',
+            //     'textSegmentDesc' => 'Lower part wear.',
+            //     'boolIsActive' => '1'
+            // ),
+
+            // array(
+            //     'strSegmentID' => 'SEGM014',
+            //     'strSegCategoryFK' => 'GARM004',    
+            //     'strSegmentName' =>'Maong Trousers',
+            //     'dblSegmentPrice' => '500.00',
+            //     'strSegmentSex' => 'M',
+            //     'intMinDays' => '3',
+            //     'strSegmentImage' => 'imgSegments/maongpants.jpg',
+            //     'textSegmentDesc' => 'Lower part wear.',
+            //     'boolIsActive' => '1'
+            // ),
+
+            //   array(
+            //     'strSegmentID' => 'SEGM015',
+            //     'strSegCategoryFK' => 'GARM003',    
+            //     'strSegmentName' =>'Cotton Polos',
+            //     'dblSegmentPrice' => '400.00',
+            //     'strSegmentSex' => 'M',
+            //     'intMinDays' => '3',
+            //     'strSegmentImage' => 'imgSegments/skybluepolo.jpg',
+            //     'textSegmentDesc' => 'Lower part wear.',
+            //     'boolIsActive' => '1'
+            // ),
+
+            // array(
+            //     'strSegmentID' => 'SEGM016',
+            //     'strSegCategoryFK' => 'GARM001',    
+            //     'strSegmentName' =>'Blazers',
+            //     'dblSegmentPrice' => '400.00',
+            //     'strSegmentSex' => 'F',
+            //     'intMinDays' => '4',
+            //     'strSegmentImage' => 'imgSegments/blazer-woman.jpg',
+            //     'textSegmentDesc' => 'Upper part wear.',
+            //     'boolIsActive' => '1'
+            // )
 
 
         );

@@ -165,22 +165,21 @@ class EmployeeController extends Controller
                 ->where('tblEmployee.strCellNo','=', trim($request->input('editCellNo')))
                 ->count();
         }
-             if($count > 0 || $count2 > 0){
+
+        if($count > 0 || $count2 > 0){
             $isAdded = TRUE;
-
-        }else{
-
+        }
 
 
-            foreach($checkEmployees as $emp){
+
+            foreach($checkEmployees as $emp)
             if(!strcasecmp($emp->strEmployeeID, $request->input('editEmpID')) == 0 &&
                 strcasecmp($emp->strEmpFName, trim($request->input('editFirstName'))) == 0 &&
                 strcasecmp($emp->strEmpMName, trim($request->input('editMiddleName'))) == 0 &&
-                strcasecmp($emp->strEmpLName, trim($request->input('editLastName'))) == 0){
-                    
-                    }    $isAdded = TRUE;
-                }
-            }
+                strcasecmp($emp->strEmpLName, trim($request->input('editLastName'))) == 0)
+                 $isAdded = TRUE;
+                
+            
 
             if(!$isAdded){
             
@@ -208,28 +207,6 @@ class EmployeeController extends Controller
         }else \Session::flash('flash_message_duplicate','Employee profile already exists.'); //flash message
             return redirect('maintenance/employee');
 
-        //  $employee = Employee::find($request->input('editEmpID'));
-
-        //         $employee->strEmpFName = trim($request->input('editFirstName')); 
-        //         $employee->strEmpLName = trim($request->input('editLastName'));  
-        //         $employee->strEmpMName = trim($request->input('editMiddleName'));    
-        //         $employee->dtEmpBday = date("Y-m-d", strtotime($request->input("editDtEmpBday")));
-        //         $employee->strSex = $request->input('editSex');
-        //         $employee->strEmpHouseNo = trim($request->input('editEmpHouseNo'));
-        //         $employee->strEmpStreet = trim($request->input('editEmpStreet'));
-        //         $employee->strEmpBarangay = trim($request->input('editEmpBarangay'));
-        //         $employee->strEmpCity = trim($request->input('editEmpCity'));
-        //         $employee->strEmpProvince = trim($request->input('editEmpProvince'));
-        //         $employee->strEmpZipCode = trim($request->input('editEmpZipCode'));
-        //         $employee->strRole = $request->input('editRoles');
-        //         $employee->strCellNo = trim($request->input('editCellNo'));
-        //         $employee->strCellNoAlt = trim($request->input('editCellNoAlt'));
-        //         $employee->strPhoneNo = trim($request->input('editPhoneNo'));
-        //         $employee->strEmailAdd = trim($request->input('editEmail'));
-
-        //     $employee->save();
-
-        // return redirect('maintenance/employee');
 
     }
 
