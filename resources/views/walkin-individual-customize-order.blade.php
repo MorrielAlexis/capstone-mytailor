@@ -64,85 +64,13 @@
 							<div class="divider" style="margin-bottom:30px"></div>
 							<div class="divider" style="margin-bottom:30px"></div>
 							<div class="divider" style="margin-bottom:30px; height:3px"></div>
-								<!--<div id="summary-of-order" class="modal modal-fixed-footer" style="width:800px; height:600px">
-											<h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
-												
-													<div class="divider" style="height:2px"></div>
-													<div class="modal-content col s12">
-														<label>This is a summary of orders:</label>
-														<div class="container">
-									                        <table class = "table centered order-summary" border = "1">
-											       				<thead style="color:gray">
-												          			<tr>
-													                  <th data-field="product">Product</th>         
-													                  <th data-field="quantity" hidden>Quantity</th>
-													                  <th data-field="fabric">Fabric</th>
-													                  <th data-field="price">Unit Price</th>
-													                  <th data-field="price">Total Price</th>
-													              	</tr>
-												              	</thead>
-												              	<tbody>
-												              		@foreach($segments as $i => $segment)
-														            <tr>
-														               <td>{{ $segment->strGarmentCategoryName }}, {{ $segment->strSegmentName }}</td>
-														               <td hidden>1</td>
-														               <td id="{{ 'segmentFabricText'.($i+1) }}"></td>
-														               <td> {{ number_format($segment->dblSegmentPrice, 2) }} PHP</td>
-														               <td> </td>
-														            </tr>
-																	@endforeach
-														        </tbody>
-														    </table>
-											      		</div>
 
-											      		For the design summary
-													    @foreach($segments as $segment)
-											      		<div class="container">
-											      			<p style="color: white; padding-left:5px; margin-top:10px; background-color:teal; padding:3px;">Design for <b>{{ $segment->strGarmentCategoryName }}, {{ $segment->strSegmentName }}</b></p>
-									                        <div class="col s12 overflow-x" style="max-height:160px; background-color:white">
-										                        <table class = "table centered order-summary" border = "1">
-												       				<thead style="color:gray">
-													          			<tr>
-														                  <th data-field="product">Style Category</th>         
-														                  <th data-field="quantity">Segment Pattern</th>
-														                  <!--<th data-field="price">Total Price</th>
-														              	</tr>
-													              	</thead>
-													              	<tbody>
-															            <tr>
-															               <td>Lapel</td>
-															               <td>Shawl Type</td>
-															               <!--<td> </td>
-															            </tr>
-															        </tbody>
-															    </table>
-											      			</div>
-											      		</div>
-														@endforeach
-											      		<!--End of design summary
-
-
-
-												      	<div class="col s12" style="margin-bottom:50px; margin-top:30px">
-												      		<div class="col s12"><div class="divider" style="height:2px"></div></div>
-															<div class="col s6"><p style="color:gray">Estimated time to finish all orders:<p style="color:black" id="total-time"></p></p></div>
-															<div class="col s6"><p style="color:gray">Total Amount to Pay:<p style="color:black" id="total-price"></p></p></div>
-														</div>
-													</div>
-
-													<div class="modal-footer col s12">
-										                <p class="left" style="margin-left:10px; color:gray;">Continue to checkout?</p>
-										                <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Yes</font></button>
-										                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
-										            </div>
-												
-										</div>-->
 
 <!-- END OF LOOP -->		@foreach($segments as $i => $segment)
 							<div class="col s6">
 							<a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#remove{{ $i+1 }}"><i class="mdi-navigation-close"></i></a>
 
-							<center><img src="{{URL::asset($segment->strSegmentImage)}}" style="height:450px; width:450px; border:3px gray solid"></center>								          	
+							<center><img src="{{URL::asset($segment['strSegmentImage'])}}" style="height:450px; width:450px; border:3px gray solid"></center>								          	
 							<center><a href="#!" class="btn tooltipped"  data-position="bottom" data-delay="50" data-tooltip="Click to add similar garment and specify new design and fabric" style="background-color:teal; white:white">Add</a></center>
 							</div>
 							
@@ -162,7 +90,7 @@
 										<!--Check maintenance for a better understanding. Under Garments-->
 										@foreach($styles as $j => $style)
 										@if($style->boolIsActive == 1)
-										<ul class="collapsible z-depth-2" data-collapsible="accordion" style="border:none" @if($segment->strSegmentID != $style->strSegmentFK) hidden @endif>
+										<ul class="collapsible z-depth-2" data-collapsible="accordion" style="border:none" @if($segment['strSegmentID'] != $style->strSegmentFK) hidden @endif>
 										    <li style="margin-bottom:10px;">
 										      	<div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $style->strSegStyleName }}</div>
 										      	<div class="collapsible-body overflow-x">
@@ -418,23 +346,23 @@
 								<div class="col s12" style="margin-top:1%; color:gray"><p>Garment description below:</p></div>
 								<div class="col s12" style="margin-left:130px">
 										<div class="col s4" style="color:teal;"><p><b>Garment Category:</b></p></div>
-										<div class="col s8"><p>{{ $segment->strGarmentCategoryName }}</p></div>
+										<div class="col s8"><p>{{ $segment['strGarmentCategoryName'] }}</p></div>
 									
 									<div class="col s4" style="color:teal;"><p><b>Garment Segment:</b></p></div>
-									<div class="col s8"><p>{{ $segment->strSegmentName }}</p></div>
+									<div class="col s8"><p>{{ $segment['strSegmentName'] }}</p></div>
 
 									<div class="col s4" style="color:teal;"><p><b>Sex(Applicable):</b></p></div>
-									@if($segment->strSegmentSex == 'M') <div class="col s8"><p>Male</p></div>
-			                        @elseif($segment->strSegmentSex == 'F') <div class="col s8"><p>Female</p></div>
+									@if($segment['strSegmentSex'] == 'M') <div class="col s8"><p>Male</p></div>
+			                        @elseif($segment['strSegmentSex'] == 'F') <div class="col s8"><p>Female</p></div>
 			                        @endif
 
 									<div class="col s4" style="color:teal;"><p><b>Price starts from:</b></p></div>
-									<div class="col s8" style="color:red"><p>{{ number_format($segment->dblSegmentPrice, 2) }} PHP</p></div>
-									<input type="hidden" class="price-per-segment" id="{{ $segment->dblSegmentPrice }}">
+									<div class="col s8" style="color:red"><p>{{ number_format($segment['dblSegmentPrice'], 2) }} PHP</p></div>
+									<input type="hidden" class="price-per-segment" id="{{ $segment['dblSegmentPrice'] }}">
 
 									<div class="col s4" style="color:teal;"><p><b>Time to finish(min):</b></p></div>
-									<div class="col s8 " style="color:red" ><p>{{ $segment->intMinDays }} days</p></div>
-									<input type="hidden" class="time-to-finish" id="{{ $segment->intMinDays }}">
+									<div class="col s8 " style="color:red" ><p>{{ $segment['intMinDays'] }} days</p></div>
+									<input type="hidden" class="time-to-finish" id="{{ $segment['intMinDays'] }}">
 																	
 								</div>
 

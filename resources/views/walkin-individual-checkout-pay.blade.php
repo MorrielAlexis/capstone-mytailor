@@ -73,9 +73,9 @@
 					              		@foreach($values as $value)
 					              			
 								            <tr style="border-top:1px teal solid; border-bottom:1px teal solid">
-								                <td style="border-right:1px teal solid; border-left:1px teal solid">{{ $value->strGarmentCategoryName }}, {{ $value->strSegmentName }}</td>
-												<td style="border-right:1px teal solid">{{ $value->strFabricName }}</td>
-								                <td style="border-right:1px teal solid">{{ number_format(($value->dblSegmentPrice + $value->dblFabricPrice) , 2) }} PHP</td>
+								                <td style="border-right:1px teal solid; border-left:1px teal solid">{{ $value['strGarmentCategoryName'] }}, {{ $value['strSegmentName'] }}</td>
+												<td style="border-right:1px teal solid">{{ $value['strFabricName'] }}</td>
+								                <td style="border-right:1px teal solid">{{ number_format(($value['dblSegmentPrice'] + $value['dblFabricPrice']) , 2) }} PHP</td>
 												<td style="border-right:1px teal solid">
 													<div class="col s12">
 													<div class="col s4"><b style="color:teal">Style Category</b></div>
@@ -85,7 +85,7 @@
 												</div>
 													@for($i = 0; $i < count($values); $i++)
 														@for($j = 0; $j < count($styles[$i]); $j++)
-															@if($styles[$i][$j]->strSegmentID == $value->strSegmentID)
+															@if($styles[$i][$j]->strSegmentID == $value['strSegmentID'])
 																
 																	<div class="col s4">{{ $styles[$i][$j]->strSegStyleName }}</div>
 																	<div class="col s4">{{ $styles[$i][$j]->strSegPName }}</div>

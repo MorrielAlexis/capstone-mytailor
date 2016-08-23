@@ -57,7 +57,7 @@ class WalkInIndividualController extends Controller
 
             session(['segment_data' => $data]);
             session(['segment_values' => $values]);
-            session(['segment_quantiyt' => $quantity]);
+            session(['segment_quantity' => $quantity]);
 
         $categories = GarmentCategory::all();
         $garments = \DB::table('tblSegment AS a')
@@ -112,14 +112,16 @@ class WalkInIndividualController extends Controller
             $data_quantity = array_slice(array_filter($request->input('int-segment-qty')), 0);
 
 
-            $segments = \DB::table('tblSegment AS a')
+            $segments =  \DB::table('tblSegment AS a')
                         ->leftJoin('tblGarmentCategory AS b', 'a.strSegCategoryFK', '=', 'b.strGarmentCategoryID')
                         ->select('a.*', 'b.strGarmentCategoryName') 
                         ->whereIn('a.strSegmentID', $data_segment)
                         ->orderBy('a.strSegmentID')
                         ->get();        
 
-           for($i = 0; $i < count($data_segment); $i++){
+            $segments = json_decode(json_encode($segments), true);
+
+            for($i = 0; $i < count($data_segment); $i++){
                 for($j = 0; $j < $data_quantity[$i]; $j++){
                     $values[] = $segments[$i];
                 }
@@ -211,23 +213,22 @@ class WalkInIndividualController extends Controller
         for($i = 0; $i < count($values); $i++){
             for($j = 0; $j < count($sqlFabric); $j++){
                 if($segmentFabric[$i] == $sqlFabric[$j]->strFabricID){
-                    $fabrics[$i] = $sqlFabric;
+                    $fabrics[$i] = $sqlFabric[$j];
                 }
             }
         }  
-
         session(['segment_fabric' => $fabrics]); 
-        
+
         for($i = 0; $i < count($values); $i++){
-            $values[$i]->strFabricID = $fabrics[$i][0]->strFabricID;
-            $values[$i]->strFabricName = $fabrics[$i][0]->strFabricName;
-            $values[$i]->dblFabricPrice = $fabrics[$i][0]->dblFabricPrice;
+            $values[$i]['strFabricID'] = $fabrics[$i]->strFabricID;
+            $values[$i]['strFabricName'] = $fabrics[$i]->strFabricName;
+            $values[$i]['dblFabricPrice'] = $fabrics[$i]->dblFabricPrice;
         }
 
-        session(['segment_design' => $sqlStyles]);
+        session()->forget('segment_values');
+        session(['segment_values' => $values]);
 
-        // var_dump($fabrics);
-        // dd("");
+        session(['segment_design' => $sqlStyles]);
 
         $joID = \DB::table('tblJobOrder')
             ->select('strJobOrderID')
@@ -324,7 +325,7 @@ class WalkInIndividualController extends Controller
 
         foreach($segments as $i => $segment){
             foreach($measDet as $j => $detail){
-                if($detail->strMeasDetSegmentFK == $segment->strSegmentID){
+                if($detail->strMeasDetSegmentFK == $segment['strSegmentID']){
                     $measurementName[$i][$j] = $request->input('detailName' . ($i+1) . ($j+1));
                     $measurementDetails[$i][$j] = $request->input($detail->strMeasurementDetailID . ($i+1));
                     $measurementDetails[$i][$j+1] = $request->input('uom' . ($i+1));
