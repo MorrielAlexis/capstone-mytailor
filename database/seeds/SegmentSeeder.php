@@ -103,7 +103,7 @@ class SegmentSeeder extends Seeder
                 'strSegCategoryFK' => 'GARM003',    
                 'strSegmentName' =>'Long Sleeve Shirt',
                 'dblSegmentPrice' => '500.00',
-                'strSegmentSex' => 'F',
+                'strSegmentSex' => 'M',
                 'intMinDays' => '3',
                 'strSegmentImage' => 'imgSegments/male-uniform-plain.jpg',
                 'textSegmentDesc' => 'Casual wear for men. .',

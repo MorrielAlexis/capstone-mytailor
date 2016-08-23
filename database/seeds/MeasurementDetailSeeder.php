@@ -543,7 +543,540 @@ class MeasurementDetailSeeder extends Seeder
                 'dblMeasDetailMinCm' =>'11',
                 'dblMeasDetailMinInch' =>'2',
                 'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0045',
+                'strMeasDetSegmentFK' => 'SEGM008', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Chest',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => 'imgMeasurementDetails/body-chest.jpg',
+                'dblMeasDetailMinCm' =>'14.5',
+                'dblMeasDetailMinInch' =>'5.51',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0046',
+                'strMeasDetSegmentFK' => 'SEGM008', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Hips',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => 'imgMeasurementDetails/hips-body.jpg',
+                'dblMeasDetailMinCm' =>'37',
+                'dblMeasDetailMinInch' =>'28',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0047',
+                'strMeasDetSegmentFK' => 'SEGM008', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Back Length',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => 'imgMeasurementDetails/shirtlengthbody.jpg',
+                'dblMeasDetailMinCm' =>'28',
+                'dblMeasDetailMinInch' =>'19',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0048',
+                'strMeasDetSegmentFK' => 'SEGM008', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Shoulder',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => 'imgMeasurementDetails/shoulderbody.jpg',
+                'dblMeasDetailMinCm' =>'16',
+                'dblMeasDetailMinInch' =>'7',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0049',
+                'strMeasDetSegmentFK' => 'SEGM008', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Neck',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => 'imgMeasurementDetails/neckneck.jpg',
+                'dblMeasDetailMinCm' =>'14.5',
+                'dblMeasDetailMinInch' =>'5.51',
+                'boolIsActive' => '1'
+            ),
+
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0050',
+                'strMeasDetSegmentFK' => 'SEGM008', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Bicep',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'11',
+                'dblMeasDetailMinInch' =>'2',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0051',
+                'strMeasDetSegmentFK' => 'SEGM008', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Wrist',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'11',
+                'dblMeasDetailMinInch' =>'2',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0052',
+                'strMeasDetSegmentFK' => 'SEGM008', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Elbow',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'11',
+                'dblMeasDetailMinInch' =>'2',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0053',
+                'strMeasDetSegmentFK' => 'SEGM001', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Waist Line',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'11',
+                'dblMeasDetailMinInch' =>'2',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0054',
+                'strMeasDetSegmentFK' => 'SEGM001', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Skirt Length',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'11',
+                'dblMeasDetailMinInch' =>'2',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0055',
+                'strMeasDetSegmentFK' => 'SEGM003', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Waist',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'10',
+                'dblMeasDetailMinInch' =>'1',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0056',
+                'strMeasDetSegmentFK' => 'SEGM003', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Hips',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'10',
+                'dblMeasDetailMinInch' =>'1',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0057',
+                'strMeasDetSegmentFK' => 'SEGM003', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Crotch',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'10',
+                'dblMeasDetailMinInch' =>'1',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0058',
+                'strMeasDetSegmentFK' => 'SEGM003', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Thigh Width',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'10',
+                'dblMeasDetailMinInch' =>'1',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0059',
+                'strMeasDetSegmentFK' => 'SEGM003', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Pants Length',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'10',
+                'dblMeasDetailMinInch' =>'1',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0060',
+                'strMeasDetSegmentFK' => 'SEGM003', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Inseam',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'10',
+                'dblMeasDetailMinInch' =>'1',
+                'boolIsActive' => '1'
+            ),
+
+             array(
+                'strMeasurementDetailID' => 'MEASDET0061',
+                'strMeasDetSegmentFK' => 'SEGM003', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Half Hem',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'10',
+                'dblMeasDetailMinInch' =>'1',
+                'boolIsActive' => '1'
+            ),
+
+             array(
+                'strMeasurementDetailID' => 'MEASDET0062',
+                'strMeasDetSegmentFK' => 'SEGM005', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Chest',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => 'imgMeasurementDetails/body-chest.jpg',
+                'dblMeasDetailMinCm' =>'14.5',
+                'dblMeasDetailMinInch' =>'5.51',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0063',
+                'strMeasDetSegmentFK' => 'SEGM005', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Hips',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => 'imgMeasurementDetails/hips-body.jpg',
+                'dblMeasDetailMinCm' =>'37',
+                'dblMeasDetailMinInch' =>'28',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0064',
+                'strMeasDetSegmentFK' => 'SEGM005', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Back Length',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => 'imgMeasurementDetails/shirtlengthbody.jpg',
+                'dblMeasDetailMinCm' =>'28',
+                'dblMeasDetailMinInch' =>'19',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0065',
+                'strMeasDetSegmentFK' => 'SEGM005', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Shoulder',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => 'imgMeasurementDetails/shoulderbody.jpg',
+                'dblMeasDetailMinCm' =>'16',
+                'dblMeasDetailMinInch' =>'7',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0066',
+                'strMeasDetSegmentFK' => 'SEGM005', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Neck',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => 'imgMeasurementDetails/neckneck.jpg',
+                'dblMeasDetailMinCm' =>'14.5',
+                'dblMeasDetailMinInch' =>'5.51',
+                'boolIsActive' => '1'
+            ),
+
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0067',
+                'strMeasDetSegmentFK' => 'SEGM005', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Bicep',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'11',
+                'dblMeasDetailMinInch' =>'2',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0068',
+                'strMeasDetSegmentFK' => 'SEGM007', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Dress Length',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'11',
+                'dblMeasDetailMinInch' =>'2',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0069',
+                'strMeasDetSegmentFK' => 'SEGM007', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Shoulder Width',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'11',
+                'dblMeasDetailMinInch' =>'2',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0070',
+                'strMeasDetSegmentFK' => 'SEGM007', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Hips',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'11',
+                'dblMeasDetailMinInch' =>'2',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0071',
+                'strMeasDetSegmentFK' => 'SEGM007', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Breasts',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'11',
+                'dblMeasDetailMinInch' =>'2',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0072',
+                'strMeasDetSegmentFK' => 'SEGM002', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Neck',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'11',
+                'dblMeasDetailMinInch' =>'2',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0073',
+                'strMeasDetSegmentFK' => 'SEGM002', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Chest',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'11',
+                'dblMeasDetailMinInch' =>'2',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0074',
+                'strMeasDetSegmentFK' => 'SEGM002', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Stomach',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'11',
+                'dblMeasDetailMinInch' =>'2',
+                'boolIsActive' => '1'
+            ),
+
+             array(
+                'strMeasurementDetailID' => 'MEASDET0075',
+                'strMeasDetSegmentFK' => 'SEGM002', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Hips',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'11',
+                'dblMeasDetailMinInch' =>'2',
+                'boolIsActive' => '1'
+            ),
+
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0076',
+                'strMeasDetSegmentFK' => 'SEGM002', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Coat Length',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'11',
+                'dblMeasDetailMinInch' =>'2',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0077',
+                'strMeasDetSegmentFK' => 'SEGM002', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Should Width',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'11',
+                'dblMeasDetailMinInch' =>'2',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0078',
+                'strMeasDetSegmentFK' => 'SEGM002', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Sleeve Length',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'11',
+                'dblMeasDetailMinInch' =>'2',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0079',
+                'strMeasDetSegmentFK' => 'SEGM002', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Bicep',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'11',
+                'dblMeasDetailMinInch' =>'2',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0080',
+                'strMeasDetSegmentFK' => 'SEGM002', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Wrist',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'11',
+                'dblMeasDetailMinInch' =>'2',
+                'boolIsActive' => '1'
+            ),
+
+              array(
+                'strMeasurementDetailID' => 'MEASDET0081',
+                'strMeasDetSegmentFK' => 'SEGM009', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Chest',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'11',
+                'dblMeasDetailMinInch' =>'2',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0082',
+                'strMeasDetSegmentFK' => 'SEGM009', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Stomach',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'11',
+                'dblMeasDetailMinInch' =>'2',
+                'boolIsActive' => '1'
+            ),
+
+             array(
+                'strMeasurementDetailID' => 'MEASDET0083',
+                'strMeasDetSegmentFK' => 'SEGM009', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Hips',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'11',
+                'dblMeasDetailMinInch' =>'2',
+                'boolIsActive' => '1'
+            ),
+
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0084',
+                'strMeasDetSegmentFK' => 'SEGM009', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Coat Length',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'11',
+                'dblMeasDetailMinInch' =>'2',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0085',
+                'strMeasDetSegmentFK' => 'SEGM009', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Should Width',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'11',
+                'dblMeasDetailMinInch' =>'2',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0086',
+                'strMeasDetSegmentFK' => 'SEGM009', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Sleeve Length',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'11',
+                'dblMeasDetailMinInch' =>'2',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0087',
+                'strMeasDetSegmentFK' => 'SEGM009', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Bicep',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'11',
+                'dblMeasDetailMinInch' =>'2',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strMeasurementDetailID' => 'MEASDET0088',
+                'strMeasDetSegmentFK' => 'SEGM009', 
+                'strMeasCategoryFK' =>'MEASCAT002',
+                'strMeasDetailName' =>'Wrist',
+                'txtMeasDetailDesc' =>'',
+                'strMeaDetailImage' => '',
+                'dblMeasDetailMinCm' =>'11',
+                'dblMeasDetailMinInch' =>'2',
+                'boolIsActive' => '1'
             )
+
 
 
 
