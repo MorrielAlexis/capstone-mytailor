@@ -167,8 +167,44 @@ class SegmentStyleSeeder extends Seeder
                 'txtSegStyleCatDesc' => 'Either with or without cuffs.',
                 'strSegStyleCatInactiveReason' => '',
                 'boolIsActive' => '1'
+            ),
+
+            array(
+                'strSegStyleCatID' => 'SEGSTY018',
+                'strSegmentFK' => 'SEGM008',
+                'strSegStyleName' =>'Collar',
+                'txtSegStyleCatDesc' => 'The part of a garment that encircles the neck, especially when raised or folded.',
+                'strSegStyleCatInactiveReason' => '',
+                'boolIsActive' => '1'
+            ),
+
+             array(
+                'strSegStyleCatID' => 'SEGSTY019',
+                'strSegmentFK' => 'SEGM008',
+                'strSegStyleName' =>'Shirt Pocket',
+                'txtSegStyleCatDesc' => 'Stylish accent on the chest side of the jacket.  ',
+                'strSegStyleCatInactiveReason' => '',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strSegStyleCatID' => 'SEGSTY020',
+                'strSegmentFK' => 'SEGM005',
+                'strSegStyleName' =>'Collars',
+                'txtSegStyleCatDesc' => 'The part of a garment that encircles the neck, especially when raised or folded.',
+                'strSegStyleCatInactiveReason' => '',
+                'boolIsActive' => '1'
+            ),
+
+             array(
+                'strSegStyleCatID' => 'SEGSTY021',
+                'strSegmentFK' => 'SEGM005',
+                'strSegStyleName' =>'Shirt Pockets',
+                'txtSegStyleCatDesc' => 'Stylish accent on the chest side of the jacket.  ',
+                'strSegStyleCatInactiveReason' => '',
+                'boolIsActive' => '1'
             )
- 
+             
 
         );
 
