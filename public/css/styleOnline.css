@@ -1,6 +1,6 @@
 <!--MASTER_BLADE-->
 body{
-  font-family: 'Helvetica';
+  font-family: 'Segoe UI';
 }
 
 
@@ -183,7 +183,7 @@ nav{
         .breadcrumb { 
             list-style: none; 
             overflow: hidden; 
-            font: 18px Helvetica, Arial, Sans-Serif;
+            font: 18px Segoe UI;
         }
         .breadcrumb li { 
             float: left; 

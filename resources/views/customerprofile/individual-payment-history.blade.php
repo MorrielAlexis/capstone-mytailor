@@ -16,7 +16,7 @@
                 </div>
 
                 <div class="col s4" style="margin-top:-30px;">
-                  <center><span style="font-size:40px; color: #757575; font-family:'Lemonada',cursive;">CUSTOMER PROFILE</span></center>
+                  <center><span style="font-size:40px; color: #757575; font-family:'Segoe UI',cursive;">CUSTOMER PROFILE</span></center>
                 </div>
 
                 <div class="col s4">
@@ -52,12 +52,12 @@
             <!--END OF SIDE MENU-->
 
             <!--CONTENT FOR SIDE MENU: Payment History-->
-              <div class="col s9" style="font-family:'Cormorant Infant',serif; margin-top:7px; padding-top:0; padding-right:0; padding-left:17px;">
+              <div class="col s9" style="font-family:'Segoe UI'; margin-top:7px; padding-top:0; padding-right:0; padding-left:17px;">
                 <div class="white" style="padding:20px;">
                   <div style="border:4px solid #b2dfdb; padding:20px;">
 
                     <section id="head">
-                      <h3 style="color:#757575; font-family:'Lobster Two',cursive;">Payment History</h3>
+                      <h3 style="color:#757575; font-family:'Segoe UI';">Payment History</h3>
                       <div class="divider" style="margin-top:-10px; margin-bottom:20px;"></div>
                       <span>Below are the list of payments you have made.</span>
                     </section>
