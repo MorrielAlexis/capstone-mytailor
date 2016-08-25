@@ -125,53 +125,14 @@
         <div style="height:40px;"></div>
         @yield('content')
 
-        <footer class="fixed-footer">
-          <div style="background-color:#cccccc" class="page-footer">
+        <footer>
+          <div style="background-color:#cccccc; opacity:0.90" class="page-footer">
               <div class="container">
                 <div class="row">
-                  <div class="col s3">
-                    <h5 class="teal-text" style="font-family: Helvetica"><b>MY STORE</b></h5>
-                    <ul style="font-family: Helvetica">
-                      <li><a class="black-text" href="#!">Order Now!</a></li>
-                      <li><a class="black-text" href="#!">Uniform Garments</a></li>
-                      <li><a class="black-text" href="#!">Gown Garments</a></li>
-                      <li><a class="black-text" href="#!">Suit Garments</a></li>
-                      <li><a class="black-text" href="#!">How It Works</a></li>
-                      <li><a class="black-text" href="#!">Order Tracking</a></li>
-                    </ul>
-                  </div>
-                  <div class="col s3">
-                    <h5 class="teal-text" style="font-family: Helvetica"><b>SERVICE</b></h5>
-                    <ul style="font-family: Helvetica">
-                      <li><a class="black-text" href="#!">Style Consultation</a></li>
-                      <li><a class="black-text" href="#!">Showroom</a></li>
-                      <li><a class="black-text" href="#!">Fit Promise</a></li>
-                      <li><a class="black-text" href="#!">Shipping Policy</a></li>
-                      <li><a class="black-text" href="#!">Alterations/ Remakes/ Returns</a></li>
-                    </ul>
-                  </div>
-                  <div class="col s3">
-                    <h5 class="teal-text" style="font-family: Helvetica"><b>ABOUT US</b></h5>
-                    <ul style="font-family: Helvetica">
-                      <li><a class="black-text" href="#!">Our Story</a></li>
-                      <li><a class="black-text" href="#!">Reviews</a></li>
-                      <li><a class="black-text" href="#!">Quality</a></li>
-                    </ul>
-                  </div>
-                  <div class="col s3">
-                    <h5 class="teal-text" style="font-family: Helvetica"><b>MORE</b></h5>
-                    <ul style="font-family: Helvetica">
-                      <li><a class="black-text" href="#!">Contact Us</a></li>
-                      <li><a class="black-text" href="#!">Terms</a></li>
-                      <li><a class="black-text" href="#!">FAQs</a></li>
-                      <li><a class="black-text" href="#!">Shipping</a></li>
-                    </ul>
-                  </div>
-
-                </div>
+               </div>
               </div>
-              <div class="footer-copyright">
-                <div class="container" style="font-family: Helvetica">
+              <div>
+                <div class="container" style="font-family: Segoe UI">
                 Copyright © myTailor. All rights reserved.
                 </div>
               </div>

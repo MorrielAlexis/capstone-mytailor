@@ -14,7 +14,7 @@
             </div>
 
             <div class="col s4" style="margin-top:-30px;">
-              <center><span style="font-size:40px; color: #757575; font-family:'Lemonada',cursive;">CUSTOMER PROFILE</span></center>
+              <center><span style="font-size:40px; color: #757575; font-family:'Segoe UI';">CUSTOMER PROFILE</span></center>
             </div>
 
             <div class="col s4">
@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <div class="col s12" style="padding-left:2%; padding-right:2%; font-family:'Philosopher',sans-serif;">
+    <div class="col s12" style="padding-left:2%; padding-right:2%; font-family:'Segoe UI';">
       <div class="col s3" style="padding:0; margin-top:10px;">
         <ul class="collapsible white">
           <li class="sidemenu"><div><a href="{{URL::to('/customerprofile-company')}}" class="collapsible-header"><font color="#424242">Information Details<i class="mdi-navigation-chevron-right right"></i></font></a></div></li>
