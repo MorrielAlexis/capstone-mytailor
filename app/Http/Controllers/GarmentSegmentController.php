@@ -209,8 +209,26 @@ class GarmentSegmentController extends Controller
                 ->select('tblSegment.*')
                 ->where('tblSegment.strSegmentID','=', $id)
                 ->count();
+
+        $count2 = \DB::table('tblAlteration')
+                ->join('tblSegment',  'tblAlteration.strAlterationSegmentFK', '=', 'tblSegment.strSegmentID')
+                ->select('tblSegment.*')
+                ->where('tblSegment.strSegmentID','=', $id)
+                ->count();
+
+        $count3 = \DB::table('tblMeasurementDetail')
+                ->join('tblSegment',  'tblMeasurementDetail.strMeasCategoryFK', '=', 'tblSegment.strSegmentID')
+                ->select('tblSegment.*')
+                ->where('tblSegment.strSegmentID','=', $id)
+                ->count();
+
+        $count4 = \DB::table('tblStandardSizeDetail')
+                ->join('tblSegment',  'tblStandardSizeDetail.strStanSizeSegmentFK', '=', 'tblSegment.strSegmentID')
+                ->select('tblSegment.*')
+                ->where('tblSegment.strSegmentID','=', $id)
+                ->count();
                 
-                if ($count != 0 ) {
+                if ($count != 0 || $count2 != 0 || $count3 != 0  || $count4 != 0) {
                     return redirect('maintenance/garment-segment?success=beingUsed'); 
                 }else {
                     $segment->strSegInactiveReason = trim($request->input('delInactiveSegment')); 
