@@ -44,8 +44,10 @@ class WalkInCompanyController extends Controller
     public function showOrder()
     {   
         $values = \DB::table('tblPackages')
-                ->select('*')
-                ->whereIn('strPackageID', session()->get('segment_values'))
+                ->select('strPackageID', 'strPackageName', 'strPackageSex', 'strPackageSeg1FK', 
+                    'strPackageSeg2FK', 'strPackageSeg3FK', 'dblPackagePrice', 'strPackageImage', 
+                    'intPackageMinDays', 'strPackageDesc', 'boolIsActive')
+                ->whereIn('strPackageID', session()->get('package_values'))
                 ->get();
 
         return view('walkin-company-customize-order')
@@ -56,14 +58,14 @@ class WalkInCompanyController extends Controller
     {   
         $data_segment = $request->input('cbx-package-name');
 
-        session(['segment_values' => $data_segment]);
+        session(['package_values' => $data_segment]);
 
         return redirect('transaction/walkin-company-show-order');
     }
 
     public function showCustomizeOrder()
     {   
-        $to_be_customized = session()->get('segment_customize');
+        $to_be_customized = session()->get('package_customize');
 
         $segment1 = \DB::table('tblPackages AS a')
                 ->leftJoin('tblSegment AS b', 'a.strPackageSeg1FK', '=', 'b.strSegmentID')
@@ -117,7 +119,7 @@ class WalkInCompanyController extends Controller
     public function customize(Request $request)
     {   
         $to_be_customized = $request->input('hidden-package-id');
-        session(['segment_customize' => $to_be_customized]);
+        session(['package_customize' => $to_be_customized]);
 
         return redirect('transaction/walkin-company-show-customize');
     }

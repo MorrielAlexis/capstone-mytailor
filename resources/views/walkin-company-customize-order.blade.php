@@ -41,8 +41,8 @@
 						    </div>    
 
 						    
-						{!! Form::open(['url' => 'transaction/walkin-company-customize-orders', 'method' => 'POST']) !!}
-							@foreach($values as $value)
+						@foreach($values as $value)
+							{!! Form::open(['url' => 'transaction/walkin-company-customize-orders', 'method' => 'POST']) !!}
 							<!--Package Detail-->
 							<div class="col s12" style="margin-bottom:40px">
 								
@@ -90,8 +90,8 @@
 			         			</div>
 	                  			
 							</div>
-							@endforeach
-						{!! Form::close() !!}
+							{!! Form::close() !!}
+						@endforeach
 						<!--End of package detail-->
         
 
