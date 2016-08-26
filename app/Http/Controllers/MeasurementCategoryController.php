@@ -148,15 +148,32 @@ class MeasurementCategoryController extends Controller
 
     public function deleteMeasurementCategory(Request $request)
     {
+        $id = $request->input('delMeasurementID');
         $meas_category = MeasurementCategory::find($request->input('delMeasurementID'));
+
+        $count = \DB::table('tblMeasurementDetail')
+                ->join('tblMeasurementCategory', 'tblMeasurementDetail.strMeasCategoryFK', '=', 'tblMeasurementCategory.strMeasurementCategoryID')
+                ->select('tblMeasurementCategory.*')
+                ->where('tblMeasurementCategory.strMeasurementCategoryID','=', $id)
+                ->count();
+
+        $count2 = \DB::table('tblStandardSizeDetail')
+                ->join('tblMeasurementCategory', 'tblStandardSizeDetail.strStanSizeMeasCatFK', '=', 'tblMeasurementCategory.strMeasurementCategoryID')
+                ->select('tblMeasurementCategory.*')
+                ->where('tblMeasurementCategory.strMeasurementCategoryID','=', $id)
+                ->count();
+
+        if ($count != 0 || $count2 != 0){
+                    return redirect('maintenance/measurement-category?success=beingUsed'); 
+                }else {
 
         $meas_category->strMeasCatInactiveReason = trim($request->input('delInactiveHead'));
         $meas_category->boolIsActive = 0;
         $meas_category->save();
 
         \Session::flash('flash_message_update','Measurement category successfully deactivated.'); //flash message
-
         return redirect('maintenance/measurement-category');
+        }
     }
 
     public function smartCounter($id)

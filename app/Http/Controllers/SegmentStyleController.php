@@ -163,16 +163,28 @@ class SegmentStyleController extends Controller
     function deletesegmentStyle(Request $request)
     {
 
+        $id = $request->input('delsegmentStyleID');
         $segmentStyle = SegmentStyle::find($request->input('delsegmentStyleID'));
 
-        $segmentStyle->strSegStyleCatInactiveReason = trim($request->input('delInactiveSegmentStyle'));
-        $segmentStyle->boolIsActive = 0;
-        $segmentStyle->save();
+        $count = \DB::table('tblSegmentPattern')
+                ->join('tblSegmentStyleCategory', 'tblSegmentPattern.strSegPStyleCategoryFK', '=', 'tblSegmentStyleCategory.strSegStyleCatID')
+                ->select('tblSegmentStyleCategory.*')
+                ->where('tblSegmentStyleCategory.strSegStyleCatID','=', $id)
+                ->count();
 
+        if ($count != 0) {
+                    return redirect('maintenance/segment-style?success=beingUsed');
+
+        }else {
+            $segmentStyle->strSegStyleCatInactiveReason = trim($request->input('delInactiveSegmentStyle'));
+            $segmentStyle->boolIsActive = 0;
+            $segmentStyle->save();
 
        \Session::flash('flash_message_delete','Segment style successfully deactivated.'); //flash message
 
         return redirect('maintenance/segment-style');
+
+        }
 
     }
 

@@ -173,6 +173,7 @@ class GarmentCategoryController extends Controller
                     $garment->save();
                     \Session::flash('flash_message_delete','Garment category successfully deactivated.'); //flash message
                     return redirect('maintenance/garment-category');
+                }
 
     }    
       

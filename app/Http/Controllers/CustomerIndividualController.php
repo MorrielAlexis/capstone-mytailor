@@ -195,15 +195,26 @@ class CustomerIndividualController extends Controller
 
     function deleteIndividual(Request $request)
     {
+        $id = $request->input('delIndivID');
         $individual = Individual::find($request->input('delIndivID'));
+              $count = \DB::table('tblJobOrder')
+                ->join('tblCustIndividual', 'tblJobOrder.strJO_CustomerFK', '=', 'tblCustIndividual.strIndivID')
+                ->select('tblCustIndividual.*')
+                ->where('tblCustIndividual.strIndivID','=', $id)
+                ->count();
 
-        $individual->strIndivInactiveReason = trim($request->input('delInactiveReason'));
-        $individual->boolIsActive = 0;
-        $individual->save();
+                if ($count != 0){
+                    return redirect('maintenance/individual?success=beingUsed'); 
+                }else {
+
+                $individual->strIndivInactiveReason = trim($request->input('delInactiveReason'));
+                $individual->boolIsActive = 0;
+                $individual->save();
 
          \Session::flash('flash_message_delete','Customer successfully deactivated.');
 
         return redirect('maintenance/individual');
+        }
     }
 
     public function smartCounter($id)

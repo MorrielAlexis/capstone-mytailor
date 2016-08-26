@@ -13,6 +13,7 @@
                 </div>
               @endif
 
+
           <!-- Errors -->
         @if ($errors->any())
            <div class="row" id="flash_message">
@@ -76,18 +77,18 @@
           </div>
         </div>
       @endif            
-
-
-                       <!--  <Data Dependency Message> -->
+      
+     <!--  <Data Dependency Message> -->
        @if (Input::get('success') == 'beingUsed')
         <div class="row" id="success-message">
           <div class="col s12 m12 l12">
             <div class="card-panel red">
-              <span class="black-text" style="color:black">Sorry! Cannot deactivate garment category. It's still being used!<i class="tiny mdi-navigation-close right" onclick="$('#success-message').hide()"></i></span>
+              <span class="black-text" style="color:black">Sorry! Segment cannot be deactivated! Segment is still affiliated with other materials.<i class="tiny mdi-navigation-close right" onclick="$('#success-message').hide()"></i></span>
             </div>
           </div>
         </div>
       @endif
+      
   
 
   <br><br><br>
@@ -401,6 +402,10 @@
           
           setTimeout(function () {
             $('#flash_message').hide();
+        }, 5000);
+
+           setTimeout(function () {
+            $('#success-message').hide();
         }, 5000);
       } );
     </script>

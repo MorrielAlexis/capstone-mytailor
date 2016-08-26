@@ -77,27 +77,17 @@
         </div>
       @endif
 
-     <!--Reactivate Customer-->
-     @if (Input::get('successRec') == 'true')
+      <!--  <Data Dependency Message> -->
+       @if (Input::get('success') == 'beingUsed')
         <div class="row" id="success-message">
           <div class="col s12 m12 l12">
-            <div class="card-panel yellow">
-              <span class="black-text" style="color:black">Successfully added back customer!<i class="tiny mdi-navigation-close right" onclick="$('#success-message').hide()"></i></span>
+            <div class="card-panel red">
+              <span class="black-text" style="color:black">Sorry! Customer cannot be deactivated! Customer is still affiliated in the shop.<i class="tiny mdi-navigation-close right" onclick="$('#success-message').hide()"></i></span>
             </div>
           </div>
         </div>
       @endif
 
-      <!--  <Duplicate Error Message>   -->
-      @if (Input::get('success') == 'duplicate')
-          <div class="row" id="success-message">
-            <div class="col s12 m12 l12">
-              <div class="card-panel red">
-                <span class="black-text" style="color:black">Record already exists!<i class="tiny mdi-navigation-close right" onclick="$('#success-message').hide()"></i></span>
-              </div>
-            </div>
-          </div>
-        @endif
       
 
     <div class="row">
@@ -460,6 +450,10 @@
 
       setTimeout(function () {
             $('#flash_message').hide();
+        }, 5000);
+
+      setTimeout(function () {
+            $('#success-message').hide();
         }, 5000);
 
 
