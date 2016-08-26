@@ -71,12 +71,12 @@
 							<a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#remove{{ $i+1 }}"><i class="mdi-navigation-close"></i></a>
 
 							<center><img src="{{URL::asset($segment['strSegmentImage'])}}" style="height:450px; width:450px; border:3px gray solid"></center>								          	
-							<!-- <center><a href="#!" class="btn tooltipped"  data-position="bottom" data-delay="50" data-tooltip="Click to add similar garment and specify new design and fabric" style="background-color:teal; white:white">Add</a></center> -->
+							<center><a href="#!" class="btn tooltipped"  data-position="bottom" data-delay="50" data-tooltip="Click to add similar garment and specify new design and fabric" style="background-color:teal; white:white">Add</a></center>
 							</div>
 							
 							<br>
 							<div class="col s6">
-								<div class="col s6" style="margin-top:4%">
+								<div class="col s6" style="margin-top:7%">
 									<a style="color:white; margin-top:10px" class="modal-trigger btn tooltipped teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a segment pattern" href="#pattern{{ $i+1 }}"><i class="mdi-content-content-cut" style="padding-right:10px"></i>Choose Design</a>
 								<!--Modal for Choosing design-->
 								<div id="pattern{{ $i+1 }}" class="modal modal-fixed-footer" style="width:80%; height:85%;">
@@ -96,7 +96,7 @@
 										      	<div class="collapsible-body overflow-x">
 										      		<div class="col s12">
 												      	<div class="left col s6"><p style="color:gray; margin-left:20px">*Choose one of your desired design</p></div>
-												      	<!-- <div class="pull-right col s6"  style="margin-top:2.8%; font-size:15px; padding-left:10%"><a class="modal-trigger tooltipped" href="#custom-fabric" data-position="bottom" data-delay="50" data-tooltip="Click this if you want a separate fabric for this specific style category"><u><b>Click to specify fabric for this specific style category</b></u></a></div> -->
+												      	<div class="pull-right col s6"  style="margin-top:2.8%; font-size:15px; padding-left:10%"><a class="modal-trigger tooltipped" href="#custom-fabric" data-position="bottom" data-delay="50" data-tooltip="Click this if you want a separate fabric for this specific style category"><u><b>Click to specify fabric for this specific style category</b></u></a></div>
 												    </div>
 												      	@foreach($patterns as $k => $pattern)
 												      	<div class="col s6" @if($pattern->strSegPStyleCategoryFK != $style->strSegStyleCatID) hidden @endif>
@@ -241,7 +241,7 @@
 								</div>
 								<!--End of modal for custom fabric-->
 								
-								<div class="col s6" style="margin-top:4%">
+								<div class="col s6" style="margin-top:7%">
 									<a style="color:white; margin-top:10px" class="modal-trigger btn tooltipped teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#fabric{{ $i+1 }}"><i class="mdi-maps-layers" style="padding-right:10px"></i>Choose Fabric</a>
 									<div id="fabric{{ $i+1 }}" class="modal modal-fixed-footer" style="width:1100px; height:600px">
 	 									<h5><font color = "#1b5e20"><center>List of Available Fabrics</center> </font> </h5>
@@ -345,27 +345,21 @@
 								<!--Garment Description Here-->
 								<div class="col s12" style="margin-top:1%; color:gray"><p>Garment description below:</p></div>
 								<div class="col s12" style="margin-left:130px">
-									<div class = "row">
+									
 										<div class="col s4" style="color:teal;"><p><b>Garment Category:</b></p></div>
 										<div class="col s8"><p>{{ $segment['strGarmentCategoryName'] }}</p></div>
-									</div>
-									<div class = "row">
+									
 										<div class="col s4" style="color:teal;"><p><b>Garment Segment:</b></p></div>
-										<div class="col s8"><p>{{ $segment['strSegmentName'] }}</p></div>
-									</div>
-
-									<div class = "row">
+										<div class="col s8"><p>{{ $segment['strSegmentName'] }}</p></div>									
+									
 										<div class="col s4" style="color:teal;"><p><b>Sex(Applicable):</b></p></div>
 										@if($segment['strSegmentSex'] == 'M') <div class="col s8"><p>Male</p></div>
 				                        @elseif($segment['strSegmentSex'] == 'F') <div class="col s8"><p>Female</p></div>
 				                        @endif
-				                    </div>
 
-									<div class = "row">
 										<div class="col s4" style="color:teal;"><p><b>Price starts from:</b></p></div>
 										<div class="col s8" style="color:red"><p>{{ number_format($segment['dblSegmentPrice'], 2) }} PHP</p></div>
 										<input type="hidden" class="price-per-segment" id="{{ $segment['dblSegmentPrice'] }}">
-									</div>
 
 									<div class="col s4" style="color:teal;"><p><b>Time to finish(min):</b></p></div>
 									<div class="col s8 " style="color:red" ><p>{{ $segment['intMinDays'] }} days</p></div>
@@ -374,10 +368,10 @@
 								</div>
 
 								<!--To identify the quantity of garments with similar design and fabrics-->
-				               <!--  <div class="col s8">
+				                <div class="col s8" style="margin-top:4%">
 				                <div class="col s8" style="padding-top:3%; padding-left:50%; color:red"><center><b style="font-size:18px">QTY</b></center></div>   
 				               	<div class="col s4" style="padding-left:0; margin-left:0;"><input name="quantity" id="quantity" type="number" style="border:2px teal solid; padding-left:18%; padding-right:18%" placeholder="How many?"></div>
-				                </div> -->
+				                </div>
 				                <!--end-->
 							</div>
 						<!--dati dito yung div-->
