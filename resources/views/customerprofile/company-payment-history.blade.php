@@ -14,7 +14,7 @@
             </div>
 
             <div class="col s4" style="margin-top:-30px;">
-              <center><span style="font-size:40px; color: #757575; font-family:'Lemonada',cursive;">CUSTOMER PROFILE</span></center>
+              <center><span style="font-size:40px; color: #757575; font-family:'Segoe UI',cursive;">CUSTOMER PROFILE</span></center>
             </div>
 
             <div class="col s4">
@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <div class="col s12" style="padding-left:2%; padding-right:2%; font-family:'Philosopher',sans-serif;">
+    <div class="col s12" style="padding-left:2%; padding-right:2%; font-family:'Segoe UI',sans-serif;">
       <div class="col s3" style="padding:0; margin-top:10px;">
         <ul class="collapsible white">
           <li class="sidemenu"><div><a href="{{URL::to('/customerprofile-company')}}" class="collapsible-header"><font color="#424242">Information Details<i class="mdi-navigation-chevron-right right"></i></font></a></div></li>
@@ -43,10 +43,10 @@
         </ul>
       </div>
 
-      <div class="col s9" style="font-family:'Cormorant Infant',serif; margin-top:17px; padding-top:0; padding-right:0; padding-left:17px;">
+      <div class="col s9" style="font-family:'Segoe UI',serif; margin-top:17px; padding-top:0; padding-right:0; padding-left:17px;">
         <div class="white" style="padding:20px;">
           <div style="border:4px solid #b2dfdb; padding:20px;">
-            <h3 style="color:#757575; font-family:'Lobster Two',cursive;">Payment History</h3>
+            <h3 style="color:#757575; font-family:'Segoe UI',cursive;">Payment History</h3>
             <div class="divider" style="margin-top:-10px; margin-bottom:20px;"></div>
             
           </div>

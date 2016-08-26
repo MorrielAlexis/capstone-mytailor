@@ -7,7 +7,7 @@
     <div align = "center">
       <div style= "height:10px"></div>
            <div class="container" style="margin:80px">
-            <h3 style="color:white;">Men's Full Profile Measurement Tutorial</h3>
+            <h3 style="color:grey;">Men's Full Profile Measurement Tutorial</h3>
           </div>
     </div>
 
@@ -26,7 +26,7 @@
   <div id="tutorialVideos">
   <!--Shirt Measurement-->
   <h2 align="center" style="margin-top:80px">Neck</h2>
-    <p style="left-align; text-align:center">
+    <p style="left-align; text-align:center;">
            The neck measurement is taken around the neck with the tape resting on your shoulders. 
            You should put one finger between the tape and the neck if you want to allow for some extra room.
     </p>
@@ -42,12 +42,9 @@
               <label for="neck_measure">Input Measurement</label>
         </div>
     </center>
-    
-    <div class="divider" style="background-color:teal;"></div> 
-
   
     <h2 align="center" style="margin-top:80px">Chest</h2>
-    <p style="left-align; text-align:center">
+    <p style="left-align; text-align:center;">
            The chest measurement is taken as a circumference measurement around your chest at the widest point. 
          Stand in a relaxed posture and breathe out.
     </p>
@@ -64,12 +61,8 @@
         </div>
     </center>
 
-
-    <div class="divider" style="background-color:teal;"></div> 
-
-
     <h2 align="center" style="margin-top:80px">Arm Length</h2>
-    <p style="left-align; text-align:center">
+    <p style="left-align; text-align:center;">
           The sleeve length measurement is taken from the point of your shoulder (where you took the shoulder width measurement), 
           following your bent arm down to where you want the sleeve to end.
           <br>
@@ -91,12 +84,8 @@
         </div>
     </center>
 
-
-    <div class="divider" style="background-color:teal;"></div> 
-
-
     <h2 align="center" style="margin-top:80px">Shoulder</h2>
-    <p style="left-align; text-align:center">
+    <p style="left-align; text-align:center;">
           Think of a line going from your armpit straight upwards to your shoulder. 
          Measure between those two points and hold the tape measure straight.
     </p>
@@ -113,13 +102,8 @@
         </div>
     </center>
 
-
-    <div class="divider" style="background-color:teal;"></div>
-    <div class="divider" style="background-color:teal;"></div> 
-
-
     <h2 align="center" style="margin-top:80px">Short Sleeve Length</h2>
-    <p style="left-align; text-align:center">
+    <p style="left-align; text-align:center;">
          The short sleeve length measurement is taken from the point of your shoulder 
          (where you took the shoulder width measurement), down to where you want the short sleeve to end.
     </p>
@@ -136,12 +120,8 @@
         </div>
     </center>
 
-
-    <div class="divider" style="background-color:teal;"></div> 
-
-
     <h2 align="center" style="margin-top:80px">Biceps</h2>
-    <p style="left-align; text-align:center">
+    <p style="left-align; text-align:center;">
          The biceps measurement is taken as a circumference measurement around your biceps.
          Relax the muscle and measure at the widest part of your upper arm.
     </p>
@@ -158,12 +138,8 @@
         </div>
     </center>
 
-
-     <div class="divider" style="background-color:teal;"></div> 
-
-
     <h2 align="center" style="margin-top:80px">Shirt/Piquet Polo Length</h2>
-    <p style="left-align; text-align:center">
+    <p style="left-align; text-align:center;">
          The shirt/piqué polo length measurement is taken from the top of the shoulder, close to the mid side of your neck, 
          following your body down to the point where you want your shirt/piqué polos to end.
     </p>
@@ -180,13 +156,8 @@
         </div>
     </center>
 
-
-
-     <div class="divider" style="background-color:teal;"></div> 
-
-
     <h2 align="center" style="margin-top:80px">Waist</h2>
-    <p style="left-align; text-align:center">
+    <p style="left-align; text-align:center;">
          The waist measurement is taken as a circumference measurement around your waist just above your 
          belly button. Stand in a relaxed posture and breathe out.
     </p>
@@ -203,11 +174,8 @@
         </div>
     </center>
 
-
-     <div class="divider" style="background-color:teal;"></div> 
-
      <h2 align="center" style="margin-top:80px">Wrist</h2>
-    <p style="left-align; text-align:center">
+    <p style="left-align; text-align:center;">
          The wrist measurement is taken as a circumference measurement around your wrist.
          <br>
          <b>NOTE !</b> We will add movement ease according to the cuff you select.
@@ -227,11 +195,12 @@
 
 <!--Pants Measurement-->
 
-  <div class="divider" style="background-color:teal;"></div>
-  <div class="divider" style="background-color:teal;"></div>
+    <div class="divider" style="background-color:teal;"></div> 
+    <div class="divider" style="background-color:teal;"></div> 
+    <div class="divider" style="background-color:teal;"></div>  
 
     <h2 align="center" style="margin-top:80px">Seat</h2>
-    <p style="left-align; text-align:center">
+    <p style="left-align; text-align:center;">
            The seat measurement is a circumferential measurement taken around the seat at your widest point.
     </p>
     <div class="container">
@@ -247,12 +216,8 @@
         </div>
     </center>
 
-    
-    <div class="divider" style="background-color:teal;"></div>
-
-  
     <h2 align="center" style="margin-top:80px">Hip</h2>
-    <p style="left-align; text-align:center">
+    <p style="left-align; text-align:center;">
          The hip measurement is a circumferential measurement. 
          <br>
          <b>NOTE!</b> please measure directly on the body i.e.
@@ -271,12 +236,8 @@
         </div>
     </center>
 
-
-    <div class="divider" style="background-color:teal;"></div> 
-
-
     <h2 align="center" style="margin-top:80px">Inseam</h2>
-    <p style="left-align; text-align:center">
+    <p style="left-align; text-align:center;">
           The inseam is measured from the crotch along the inner side of the leg to a point where you want 
          the hem of the trousers to end. 
          Stand upright, do not bend the leg and ask someone to help you take the measurement.
@@ -294,12 +255,8 @@
         </div>
     </center>
 
-
-    <div class="divider" style="background-color:teal;"></div> 
-
-
     <h2 align="center" style="margin-top:80px">Inseam for Shorts</h2>
-    <p style="left-align; text-align:center">
+    <p style="left-align; text-align:center;">
          The inseam for shorts is measured from the crotch along the inner side of the leg to a point where 
          you woudl like your shorts to end. Stand upright, do not bend the leg and ask someone to help you 
          take the measurement.
@@ -326,7 +283,173 @@
 
 <!--Tutorial Images-->
 <div id="tutorialImages">
-    <h2 align="center" style="margin-top:80px">This is where the images should be</h2>
+    <!--shirt measurement-->
+    <h2 align="center" style="margin-top:80px">Neck</h2>
+    <p style="left-align; text-align:center;">
+           The neck measurement is taken around the neck with the tape resting on your shoulders. 
+           You should put one finger between the tape and the neck if you want to allow for some extra room.
+    </p>
+    <div class="container" align="center" >
+        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/neck.JPG">
+    </div>
+    <center>
+        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
+              <input id="neck_measure" type="text" style="align:center" class="validate">
+              <label for="neck_measure">Input Measurement</label>
+        </div>
+    </center>
+
+ 
+
+
+    <h2 align="center" style="margin-top:80px">Chest</h2>
+    <p style="left-align; text-align:center;">
+          The chest measurement is taken as a circumference measurement around your chest at the widest point. 
+         Stand in a relaxed posture and breathe out.
+    </p>
+    <div class="container" align="center" >
+        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/chest.JPG">
+    </div>
+    <center>
+        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
+              <input id="chest_measure" type="text" style="align:center" class="validate">
+              <label for="chest_measure">Input Measurement</label>
+        </div>
+    </center>
+ 
+
+
+    <h2 align="center" style="margin-top:80px">Arm Length</h2>
+    <p style="left-align; text-align:center;">
+         The sleeve length measurement is taken from the point of your shoulder (where you took the shoulder width measurement), 
+          following your bent arm down to where you want the sleeve to end.
+          <br>
+          <b>NOTE 1!</b> Bend your arm slightly when taking this measurement. 
+          <br>
+          <b>NOTE 2!</b> This measurement is always the full length of the arm. 
+          For short sleeve and 3/4 sleeve you should still measure the full length of the arm
+    </p>
+    <div class="container" align="center" >
+        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/sleeve length.JPG">
+    </div>
+    <center>
+        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
+              <input id="arm_length_measure" type="text" style="align:center" class="validate">
+              <label for="arm_length_measure">Input Measurement</label>
+        </div>
+    </center>
+
+ 
+
+
+    <h2 align="center" style="margin-top:80px">Shoulder</h2>
+    <p style="left-align; text-align:center;">
+          Think of a line going from your armpit straight upwards to your shoulder. 
+         Measure between those two points and hold the tape measure straight.
+    </p>
+    <div class="container" align="center" >
+        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/shoulder.JPG">
+    </div>
+    <center>
+        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
+              <input id="shoulder_measure" type="text" style="align:center" class="validate">
+              <label for="shoulder_measure">Input Measurement</label>
+        </div>
+    </center>
+ 
+
+
+    <h2 align="center" style="margin-top:80px">Waist</h2>
+    <p style="left-align; text-align:center;">
+         The waist measurement is taken as a circumference measurement around your waist just above your 
+         belly button. Stand in a relaxed posture and breathe out.
+    </p>
+    <div class="container" align="center" >
+        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/waist.JPG">
+    </div>
+    <center>
+        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
+              <input id="waist_measure" type="text" style="align:center" class="validate">
+              <label for="waist_measure">Input Measurement</label>
+        </div>
+    </center>
+
+ 
+
+
+    <h2 align="center" style="margin-top:80px">Wrist</h2>
+    <p style="left-align; text-align:center;">
+         The waist measurement is taken as a circumference measurement around your waist just above your 
+         belly button. Stand in a relaxed posture and breathe out.
+    </p>
+    <div class="container" align="center" >
+        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/wrist.JPG">
+    </div>
+    <center>
+        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
+              <input id="wrist_measure" type="text" style="align:center" class="validate">
+              <label for="wrist_measure">Input Measurement</label>
+        </div>
+    </center>
+    
+    <!--pants measurement-->
+    <div class="divider" style="background-color:teal;"></div> 
+    <div class="divider" style="background-color:teal;"></div> 
+    <div class="divider" style="background-color:teal;"></div>     
+
+    <h2 align="center" style="margin-top:80px">Seat</h2>
+    <p style="left-align; text-align:center;">
+      The seat measurement is a circumferential measurement taken around the seat at your widest point
+    </p>
+    <div class="container" align="center" >
+        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/seat.JPG">
+    </div>
+    <center>
+        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
+              <input id="wrist_measure" type="text" style="align:center" class="validate">
+              <label for="wrist_measure">Input Measurement</label>
+        </div>
+    </center>
+      
+
+    <h2 align="center" style="margin-top:80px">Hip</h2>
+    <p style="left-align; text-align:center;">
+        The hip measurement is a circumferential measurement.
+        <br>
+        <b>NOTE!</b> please measure directly on the body i.e. not outside of the garment or on top of a belt.
+    </p>
+    <div class="container" align="center" >
+        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/hip.JPG">
+    </div>
+    <center>
+        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
+              <input id="wrist_measure" type="text" style="align:center" class="validate">
+              <label for="wrist_measure">Input Measurement</label>
+        </div>
+    </center>
+    
+
+    <h2 align="center" style="margin-top:80px">Inseam</h2>
+    <p style="left-align; text-align:center;">
+        The inseam is measured from the crotch along the inner side of the leg straight down to the floor. Stand upright, do not bend the leg and ask someone to help
+        you take the measurement
+    </p>
+    <div class="container" align="center" >
+        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/inseam.JPG">
+    </div>
+    <center>
+        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
+              <input id="wrist_measure" type="text" style="align:center" class="validate">
+              <label for="wrist_measure">Input Measurement</label>
+        </div>
+    </center>
+
+
+    <div style="margin-bottom:200px;">
+      <a class="left btn-flat tooltipped modal-trigger" data-position="bottom" data-delay="50" data-tooltip="Click to go back" style="font-size:15px; color:white; background-color: teal; opacity:0.90" href="{{URL::to('/online-measuring-tutorial')}}"><i class="mdi-content-reply"> BACK</i></a>
+      <a type="submit" class="right btn-flat tooltipped modal-trigger" data-position="bottom" data-delay="50" data-tooltip="Click to save measurements" style="background-color: teal; font-size:15px; color:white" href="#savemodal"><i class="mdi-content-save"> SAVE</i></a>              
+    </div>
+
 
 </div>
 
@@ -334,7 +457,7 @@
 </div>
 
   <!--Save Modal-->
-  <div id="savemodal" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
+  <div id="savemodal" class="modal modal-fixed-footer" style="font-family:'Philosopher',sans-serif; height:250px; width:500px; margin-top:150px">
     <h5><font color="green"><center><b>Saved!</b></center></font></h5>
     <div class="divider" style="height:2px"></div>
     <div class="modal-content">

@@ -12,7 +12,7 @@
         </div>
 
         <div class="col s4" style="margin-top:-30px;">
-          <center><span style="font-size:40px; color: #757575; font-family: 'Pacifico', cursive;">Shopping Cart</span></center>
+          <center><span style="font-size:40px; color: #757575;">Shopping Cart</span></center>
         </div>
 
         <div class="col s4">
@@ -22,7 +22,7 @@
       </div>
     </div>
 
-  <div class="row" style="font-family:'Philosopher',sans-serif;">
+  <div class="row">
     <div class="col s12">
     <!--order 1-->
       <div class="col s6">
@@ -179,8 +179,8 @@
 
   <div class="divider"></div>
   <div class="col s12" style="padding:30px">
-      <a href="{{URL::to('/online-order-now')}}" class="btn-flat white-text" style="color:white; background-color:teal; font-family:'Yatra One',cursive;">Cancel Transaction</a>
-      <a href="{{URL::to('/online-individual-checkout-measurement')}}" class="right btn-flat white-text red" style="color:white; background-color:teal; font-family:'Yatra One',cursive;">Proceed to MEASUREMENT</a>
+      <a href="{{URL::to('/online-order-now')}}" class="btn-flat white-text" style="color:white; background-color:teal;">Cancel Transaction</a>
+      <a href="{{URL::to('/online-individual-checkout-measurement')}}" class="right btn-flat white-text red" style="color:white; background-color:teal;">Proceed to MEASUREMENT</a>
   </div>
 
     <div class="divider" style="margin-bottom:20px;"></div>
@@ -202,7 +202,7 @@
           </div>
 
           <div class="col s4" style="margin-top:-30px;">
-            <center><span style="font-size:40px; color: #757575; font-family:'Pacifico',cursive;">Shopping Cart</span></center>
+            <center><span style="font-size:40px; color: #757575;">Shopping Cart</span></center>
           </div>
 
           <div class="col s4">
@@ -216,7 +216,7 @@
             <div class="col s12">
                 <div class="card grey lighten-3 z-depth-0" style="border:1px solid pink; padding:2px;">
                   <div class="card-content" style="border:1px solid pink;">
-                <center><p style="font-family:'Philosopher',sans-serif;">Your shopping cart is currently empty.</p></center>
+                <center><p>Your shopping cart is currently empty.</p></center>
                   </div>
                 </div>
             </div>
@@ -226,7 +226,7 @@
 
     <div class="divider" style="margin-top:40px; margin-bottom:20px;"></div>
     <div>
-      <a class="green-text" style="margin-left:20px;" href="{{URL::to('/online-home')}}"><i style="size:20px; font-family:'Philosopher',sans-serif;" class="mdi-hardware-keyboard-arrow-left"></i>CONTINUE SHOPPING</a>
+      <a class="green-text" style="margin-left:20px;" href="{{URL::to('/online-home')}}"><i style="size:20px;" class="mdi-hardware-keyboard-arrow-left"></i>CONTINUE SHOPPING</a>
     </div>
   </div>
 
