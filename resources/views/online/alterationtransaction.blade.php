@@ -4,8 +4,8 @@
 
 	<div style="height:150px; margin-top: -10px;">
     <div style="height:20px;"></div>
-    <center><h2 style="color:grey;">Choose your transaction</h2></center>
-    <div class="container divider"></div>
+    <center><h2 style="font-family: 'Mada', sans-serif;color:#009688">Choose your transaction</h2></center>
+    <div class="container divider" style="background-color:black"></div>
   </div>
 
     <div class="row section transparent container" style="height:300px;">
