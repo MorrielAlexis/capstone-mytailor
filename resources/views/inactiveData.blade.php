@@ -430,6 +430,7 @@
                   <thead>
                     <tr>
                       <!--<th data-field= "Catalog ID">Segment Pattern ID</th>-->
+                      <th data-field="Garment Name">Segment Style Name</th>
                       <th data-field="Pattern Name">Pattern Name</th>
                       <th data-field="Pattern Image">Pattern Image</th>
                       <th data-field="React">Reason for Deactivation</th>
@@ -441,14 +442,15 @@
                       @foreach($pattern as $pattern_1)
                       @if($pattern_1->boolIsActive == 0)
                           <tr>
-                            <!--<td>{{ $pattern_1->strDesignPatternID }}</td>-->
+                            
+                            <td>{{ $pattern_1->strSegStyleName }}</td>
                             <td>{{ $pattern_1->strSegPName }}</td>
                             <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($pattern_1->strSegPImage)}}"></td>
                             <td>{{ $pattern_1->strSegPInactiveReason }}</td>
                             <td>
                             {!! Form::open(['url' => 'utilities/inactive-data/reactivate-segmentPattern']) !!}
                               <input type="hidden" value="{{ $pattern_1->strSegPatternID }}" id="reactID" name="reactID">
-                              <input type="hidden" value="{{ $pattern_1->strDesignPatternID }}" id="reactInactivePattern" name="reactInactivePattern">
+                              <input type="hidden" value="{{ $pattern_1->strSegPatternID }}" id="reactInactivePattern" name="reactInactivePattern">
                               <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of segment pattern to the table">REACTIVATE</button>
                             {!! Form::close() !!}
                           </td>
@@ -591,6 +593,55 @@
                           {!! Form::open(['url' => 'utilities/inactive-data/reactivate-standard-category']) !!}
                             <input type="hidden" id="reactID" name="reactID" value="{{ $standard_1->strStandardSizeCategoryID }}">
                             <input type="hidden" id="reactInactiveMeasStandardCategory" name="reactInactiveMeasStandardCategory" value="{{ $standard_1->strStandardSizeCategoryID }}">
+                            <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of segment to the table">REACTIVATE</button>
+                          {!! Form::close() !!}
+                        </td>
+                      </tr>
+                      @endif
+                      @endforeach
+                  </tbody>
+                </table>
+              </div>
+              <div class = "clearfix"></div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Standard Detail-->
+      <p><h5 style="margin-left:20px"><b>Standard Detail</b></h5></p>
+      <div class="row">
+        <div class="col s12">
+          <div class="card">
+            <div class="card-content">
+              <div class = "col s12 m12 l12 overflow-x">
+                <h5><font color = "#1b5e20"><center>Inactive Standard Details</center> </font> </h5>
+                <table class = "table centered data-reactSegment" align = "center" border = "1">
+                  <thead>
+                    <tr>
+                        <th data-field="StanSizeSegmentFK">Segment</th>
+                        <th data-field="StanSizeMeasCatFK">Measurement Category</th>
+                        <th data-field="StanSizeCategoryFK">Standard Size Category</th>
+                        <th data-field="StanSizeDetailName">Detail Name</th>
+                        <th data-field="Garmentcategory">Reason for Deactivation</th>
+                        <th data-field="MeasurementName">Reactivate</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                      @foreach($standardDetail as $standardDetail_1)
+                      @if($standardDetail_1->boolIsActive == 0)
+                      <tr>
+                        <td>{{ $standardDetail_1->strSegmentName }}</td>
+                        <td>{{ $standardDetail_1->strMeasurementCategoryName }}</td>
+                        <td>{{ $standardDetail_1->strStandardSizeCategoryName }}</td>
+                        <td>{{ $standardDetail_1->strStanSizeDetailName }}</td>
+                        <td>{{ $standardDetail_1->strStandardSizeDetInactiveReason }}</td>
+                        <td>
+                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-standard-detail']) !!}
+                            <input type="hidden" id="reactID" name="reactID" value="{{ $standardDetail_1->strStandardSizeDetID }}">
+                            <input type="hidden" id="reactInactiveMeasStandardDetail" name="reactInactiveMeasStandardDetail" value="{{ $standardDetail_1->strStandardSizeDetID }}">
                             <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of segment to the table">REACTIVATE</button>
                           {!! Form::close() !!}
                         </td>

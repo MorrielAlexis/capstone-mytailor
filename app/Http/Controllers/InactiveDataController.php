@@ -15,6 +15,7 @@ use App\SegmentStyle;
 use App\MeasurementCategory;
 use App\MeasurementDetail;
 use App\StandardSizeCategory;
+use App\StandardSizeDetail;
 use App\FabricType;
 use App\FabricThreadCount;
 use App\FabricColor;
@@ -60,7 +61,11 @@ class InactiveDataController extends Controller
             ->select('tblSegment.*', 'tblGarmentCategory.strGarmentCategoryName')
 
             ->get();
-        $pattern = SegmentPattern::all();
+       $pattern = \DB::table('tblSegmentPattern')
+                ->join('tblSegmentStyleCategory', 'tblSegmentPattern.strSegPStyleCategoryFK', '=', 'tblSegmentStyleCategory.strSegStyleCatID')
+                ->select('tblSegmentPattern.*','tblSegmentStyleCategory.strSegStyleName') 
+                ->orderBy('strSegPatternID')
+                ->get();
         $segmentStyle = \DB::table('tblSegmentStyleCategory')
                 ->join('tblSegment', 'tblSegmentStyleCategory.strSegmentFK', '=', 'tblSegment.strSegmentID')
                 ->select('tblSegmentStyleCategory.*','tblSegment.strSegmentName') 
@@ -76,6 +81,14 @@ class InactiveDataController extends Controller
             ->get();
             
         $standard = StandardSizeCategory::all();
+        $standardDetail = \DB::table('tblStandardSizeDetail')
+            ->join('tblSegment', 'tblStandardSizeDetail.strStanSizeSegmentFK', '=', 'tblSegment.strSegmentID')
+            ->join('tblMeasurementCategory', 'tblStandardSizeDetail.strStanSizeMeasCatFK', '=', 'tblMeasurementCategory.strMeasurementCategoryID')
+            ->join('tblStandardSizeCategory', 'tblStandardSizeDetail.strStanSizeCategoryFK', '=', 'tblStandardSizeCategory.strStandardSizeCategoryID')
+            ->select('tblStandardSizeDetail.*', 'tblSegment.strSegmentName', 'tblMeasurementCategory.strMeasurementCategoryName', 'tblStandardSizeCategory.strStandardSizeCategoryName')
+            ->orderBy('strStandardSizeDetID')
+            ->get();
+
         $fabricType = FabricType::all();
         $threadCount = FabricThreadCount::all();
         $fabricColor = FabricColor::all();
@@ -115,6 +128,7 @@ class InactiveDataController extends Controller
             ->with('measurement_category', $measurement_category)
             ->with('detail', $detail)
             ->with('standard', $standard)
+            ->with('standardDetail', $standardDetail)
             ->with('fabricType', $fabricType)
             ->with('threadCount', $threadCount)
             ->with('fabricColor', $fabricColor)
@@ -379,12 +393,25 @@ class InactiveDataController extends Controller
         return redirect('utilities/inactive-data');
     }
 
-     function reactivate_standardCategory(Request $request)
+    function reactivate_standardCategory(Request $request)
     {
         $standard = StandardSizeCategory::find($request->input('reactID'));
         $standard->strStandardSizeCategoryInactiveReason = null;
         $standard->boolIsActive = 1;
         $standard->save();
+
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
+
+        return redirect('utilities/inactive-data');
+    }
+
+
+    function reactivate_standardDetail(Request $request)
+    {
+        $standardDetail = StandardSizeDetail::find($request->input('reactID'));
+        $standardDetail->strStandardSizeDetInactiveReason = null;
+        $standardDetail->boolIsActive = 1;
+        $standardDetail->save();
 
         \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
 
