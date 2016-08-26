@@ -6,13 +6,13 @@
       
       <div id="backyy" style="height:500px; margin-top: -15px; background-image:url(imgOnline/measure.jpg);">
           <div style="height:120px;"></div>
-          <center><h1 style="color:teal; font-family:'Playfair Display','Times';"><b>Start Measuring Yourself</b></h1></center>
-          <center><h5  style="color:teal; font-family:'Playfair Display','Times';"><b>Get accurate measurements even with no professional experience in tailoring</b></h5></center>
+          <center><h1 style="color:teal;"><b>Start Measuring Yourself</b></h1></center>
+          <center><h5 style="color:teal;"><b>Get accurate measurements even with no professional experience in tailoring</b></h5></center>
       </div>
 
 		<div class="divider"></div>
 		<div style= "height:20px;"></div>
-		<p class="center-align" style="color:gray"><font size = "+3">For Him</font></p>
+		<p class="center-align" style="color:gray;"><font size = "+3">For Him</font></p>
 		<div style= "height:20px;"></div>
 		<div class="row">
         	<div class="col s4">
@@ -76,7 +76,7 @@
 
 
      	<div style= "height:20px;"></div>
-		<p class="center-align" style="color:gray"><font size = "+3">For Her</font></p>
+		<p class="center-align" style="color:gray;"><font size = "+3">For Her</font></p>
 		<div style= "height:20px;"></div>
 		<div class="row">
         	<div class="col s4">

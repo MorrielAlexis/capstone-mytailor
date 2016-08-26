@@ -16,7 +16,7 @@
               </div>
 
               <div class="col s4" style="margin-top:-30px;">
-                <center><span style="font-size:40px; color: #757575; font-family:'Lemonada',cursive;">CUSTOMER PROFILE</span></center>
+                <center><span style="font-size:40px; color: #757575; font-family:'Segoe UI';">CUSTOMER PROFILE</span></center>
               </div>
 
               <div class="col s4">
@@ -34,7 +34,7 @@
         <div class="col s12" style="padding-left:2%; padding-right:2%;">
             
           <!--SIDE MENU-->  
-            <div class="col s3" style="padding:0; font-family:'Philosopher',sans-serif;">
+            <div class="col s3" style="padding:0; font-family:'Segoe UI';">
               <ul class="collapsible white">
                 <li class="sidemenu"><div><a href="{{URL::to('/customerprofile-individual')}}" class="collapsible-header"><font color="#424242">Information Details<i class="mdi-navigation-chevron-right right"></i></font></a></div></li>
 
@@ -56,7 +56,7 @@
               <div class="white" style="padding:20px;">
                 <div style="border:4px solid #b2dfdb; padding:20px;">
                   <section id="head">
-                    <h3 style="color:#757575; font-family:'Lobster Two',cursive;">Order Tracking</h3>
+                    <h3 style="color:#757575; font-family:'Segoe UI',cursive;">Order Tracking</h3>
                     <div class="divider" style="margin-top:-10px; margin-bottom:20px;"></div>
                   </section>
 

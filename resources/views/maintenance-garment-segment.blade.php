@@ -52,17 +52,6 @@
       @endif
 
 
-      <!--Reactivate Garment Segment-->
-      @if (Input::get('successRec') == 'true')
-        <div class="row" id="success-message">
-          <div class="col s12 m12 l12">
-            <div class="card-panel yellow">
-              <span class="black-text" style="color:black">Successfully added back garment segment!<i class="tiny mdi-navigation-close right" onclick="$('#success-message').hide()"></i></span>
-            </div>
-          </div>
-        </div>
-      @endif
-
              <!--  <Duplicate Error Message>   -->
       @if (Session::has('flash_message_duplicate'))
         <div class="row" id="flash_message">

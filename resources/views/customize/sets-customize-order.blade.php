@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="section white" style="margin:40px; padding:40px;"> 
+    <div class="section white" style="margin:40px; padding:40px; font-family:'Philosopher',sans-serif;"> 
 
     <div class="row" style="margin-top:40px;">
       <div class="col s12">
@@ -12,7 +12,7 @@
         </div>
 
         <div class="col s4" style="margin-top:-30px;">
-          <center><span style="font-size:40px; color: #757575; font-family:'Playfair Display','Times';">WOMEN SET <font color="red">A</font></span></center>
+          <center><span style="font-size:40px; color: #757575; font-family:'Pacifico',cursive;">Women Set <font color="red">A</font></span></center>
         </div>
 
         <div class="col s4">
@@ -185,8 +185,8 @@
 
   <div class="divider"></div>
   <div class="col s12" style="padding:30px">
-      <a href="{{URL::to('/online-order-now')}}" class="btn-flat white-text" style="color:white; background-color:teal;">Cancel Transaction</a>
-      <a href="{{URL::to('/online-company-checkout-info')}}" class="right btn-flat white-text red" style="color:white; background-color:teal;">Proceed to CHECKOUT</a>
+      <a href="{{URL::to('/online-order-now')}}" class="btn-flat white-text" style="color:white; background-color:teal; font-family:'Yatra One',cursive;">Cancel Transaction</a>
+      <a href="{{URL::to('/online-company-checkout-info')}}" class="right btn-flat white-text red" style="color:white; background-color:teal; font-family:'Yatra One',cursive;">Proceed to CHECKOUT</a>
   </div>
 
     <div class="divider" style="margin-bottom:20px;"></div>

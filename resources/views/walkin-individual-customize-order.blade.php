@@ -1,4 +1,4 @@
-@extends('layouts.master')
+ 	@extends('layouts.master')
 
 @section('content')
 
@@ -345,20 +345,27 @@
 								<!--Garment Description Here-->
 								<div class="col s12" style="margin-top:1%; color:gray"><p>Garment description below:</p></div>
 								<div class="col s12" style="margin-left:130px">
+									<div class = "row">
 										<div class="col s4" style="color:teal;"><p><b>Garment Category:</b></p></div>
 										<div class="col s8"><p>{{ $segment['strGarmentCategoryName'] }}</p></div>
-									
-									<div class="col s4" style="color:teal;"><p><b>Garment Segment:</b></p></div>
-									<div class="col s8"><p>{{ $segment['strSegmentName'] }}</p></div>
+									</div>
+									<div class = "row">
+										<div class="col s4" style="color:teal;"><p><b>Garment Segment:</b></p></div>
+										<div class="col s8"><p>{{ $segment['strSegmentName'] }}</p></div>
+									</div>
 
-									<div class="col s4" style="color:teal;"><p><b>Sex(Applicable):</b></p></div>
-									@if($segment['strSegmentSex'] == 'M') <div class="col s8"><p>Male</p></div>
-			                        @elseif($segment['strSegmentSex'] == 'F') <div class="col s8"><p>Female</p></div>
-			                        @endif
+									<div class = "row">
+										<div class="col s4" style="color:teal;"><p><b>Sex(Applicable):</b></p></div>
+										@if($segment['strSegmentSex'] == 'M') <div class="col s8"><p>Male</p></div>
+				                        @elseif($segment['strSegmentSex'] == 'F') <div class="col s8"><p>Female</p></div>
+				                        @endif
+				                    </div>
 
-									<div class="col s4" style="color:teal;"><p><b>Price starts from:</b></p></div>
-									<div class="col s8" style="color:red"><p>{{ number_format($segment['dblSegmentPrice'], 2) }} PHP</p></div>
-									<input type="hidden" class="price-per-segment" id="{{ $segment['dblSegmentPrice'] }}">
+									<div class = "row">
+										<div class="col s4" style="color:teal;"><p><b>Price starts from:</b></p></div>
+										<div class="col s8" style="color:red"><p>{{ number_format($segment['dblSegmentPrice'], 2) }} PHP</p></div>
+										<input type="hidden" class="price-per-segment" id="{{ $segment['dblSegmentPrice'] }}">
+									</div>
 
 									<div class="col s4" style="color:teal;"><p><b>Time to finish(min):</b></p></div>
 									<div class="col s8 " style="color:red" ><p>{{ $segment['intMinDays'] }} days</p></div>

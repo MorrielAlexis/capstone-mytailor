@@ -59,6 +59,7 @@ class SegmentStyleSeeder extends Seeder
                 'boolIsActive' => '1'
             ),
 
+
             array(
                 'strSegStyleCatID' => 'SEGSTY006',
                 'strSegmentFK' => 'SEGM006',
@@ -210,6 +211,15 @@ class SegmentStyleSeeder extends Seeder
                 'strSegmentFK' => 'SEGM001',
                 'strSegStyleName' =>'Skirt - Skirt Cut',
                 'txtSegStyleCatDesc' => 'Stylish cut on the skirt.  ',
+                'strSegStyleCatInactiveReason' => '',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strSegStyleCatID' => 'SEGSTY023',
+                'strSegmentFK' => 'SEGM002',
+                'strSegStyleName' =>'Coat Vents',
+                'txtSegStyleCatDesc' => 'Widely use for accent at the back of the coat. ',
                 'strSegStyleCatInactiveReason' => '',
                 'boolIsActive' => '1'
             ),

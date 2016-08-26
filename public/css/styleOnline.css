@@ -1,10 +1,6 @@
 <!--MASTER_BLADE-->
 body{
-  font-family: 'Philosopher', sans-serif;
-}
-
-.btn{
-    font-family: 'Yatra One', cursive;
+  font-family: 'Segoe UI';
 }
 
 
@@ -69,7 +65,7 @@ nav{
 #gownheader{
 	 background-size: cover;
 	 background-repeat: no-repeat;
-	 background-image: url("../imgOnline/gownheader.jpg");
+	 background-image: url("../imgOnline/bs8.jpg");
 }
 #suitheader{
 	 background-size: cover;
@@ -187,7 +183,7 @@ nav{
         .breadcrumb { 
             list-style: none; 
             overflow: hidden; 
-            font: 18px Helvetica, Arial, Sans-Serif;
+            font: 18px Segoe UI;
         }
         .breadcrumb li { 
             float: left; 

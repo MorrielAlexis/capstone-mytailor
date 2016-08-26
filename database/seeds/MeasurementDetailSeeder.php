@@ -605,7 +605,6 @@ class MeasurementDetailSeeder extends Seeder
                 'boolIsActive' => '1'
             ),
 
-
             array(
                 'strMeasurementDetailID' => 'MEASDET0050',
                 'strMeasDetSegmentFK' => 'SEGM008', 

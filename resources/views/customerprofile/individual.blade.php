@@ -16,7 +16,7 @@
                   </div>
 
                   <div class="col s4" style="margin-top:-30px;">
-                    <center><span style="font-size:40px; color: #757575; font-family:'Lemonada',cursive;">CUSTOMER PROFILE</span></center>
+                    <center><span style="font-size:40px; color: #757575; font-family:'Segoe UI',cursive;">CUSTOMER PROFILE</span></center>
                   </div>
 
                   <div class="col s4">
@@ -24,7 +24,7 @@
                     <div class="divider grey"></div>
                   </div>
                 </div>
-                    <p class="center container" style="width:80%; font-family:'Philosopher',sans-serif;">Welcome to your personal page at MyTailor. Here you can find and modify all your registered personal data such as addresses, previous orders, and measurement profiles to make sure your information are up to date.</p>
+                    <p class="center container" style="width:80%; font-family:'Segoe UI';">Welcome to your personal page at MyTailor. Here you can find and modify all your registered personal data such as addresses, previous orders, and measurement profiles to make sure your information are up to date.</p>
               </div>
             </div>
           </div>
@@ -34,7 +34,7 @@
           <div class="col s12" style="padding-left:2%; padding-right:2%;">
  
           <!--SIDE MENU-->
-            <div class="col s3" style="padding:0; font-family:'Philosopher',sans-serif;">
+            <div class="col s3" style="padding:0; font-family:'Segoe UI';">
               <ul class="collapsible white">
                 <li class="sidemenu"><div><a href="{{URL::to('/customerprofile-individual')}}" class="collapsible-header teal lighten-4"><font size="+1" color="teal">Information Details<i class="mdi-navigation-chevron-right right"></i></font></a></div></li>
 
@@ -53,7 +53,7 @@
 
 
           <!--CONTENT FOR SIDE-MENU: Information Details-->
-            <div class="col s9" style="font-family:'Cormorant Infant',serif; margin-top:7px; padding-top:0; padding-right:0; padding-left:17px;">
+            <div class="col s9" style="font-family:'Segoe UI',serif; margin-top:7px; padding-top:0; padding-right:0; padding-left:17px;">
               <div class="white" style="padding:20px;">
                 <div style="border:4px solid #b2dfdb; padding:20px;">
                   <section id="head">
@@ -88,8 +88,8 @@
                     </div>
 
                     <div style="margin:20px; margin-top:50px">
-                      <a class="btn-flat teal lighten-1 modal-trigger white-text" href="#changedetails" style="font-family:'Yatra One',cursive;">Change Details</a>
-                      <a class="btn-flat teal lighten-1 modal-trigger white-text" href="#changepassword" style="font-family:'Yatra One',cursive;">Change Password</a>
+                      <a class="btn-flat teal lighten-1 modal-trigger white-text" href="#changedetails" style="font-family:'Segoe UI',cursive;">Change Details</a>
+                      <a class="btn-flat teal lighten-1 modal-trigger white-text" href="#changepassword" style="font-family:'Segoe UI',cursive;">Change Password</a>
                     </div>      
                 </div>
               </div>
@@ -188,7 +188,8 @@
     
     <script>
       $(document).ready(function() {
-        Materialize.updateTextFields();
+        M
+        aterialize.updateTextFields();
     });
     </script>
 

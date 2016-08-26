@@ -16,7 +16,7 @@ class SegmentPatternSeeder extends Seeder
 
         $tblSegmentPattern = array (
             array(
-                'strSegPatternID' => 'SPAT001',
+                'strSegPatternID' => 'SPAT0001',
                 'strSegPStyleCategoryFK' => 'SEGSTY001',
                 'strSegPName' =>'Shawl Type',
                 'dblPatternPrice' => '50',
@@ -26,7 +26,7 @@ class SegmentPatternSeeder extends Seeder
             ),
 
             array(
-                'strSegPatternID' => 'SPAT002',
+                'strSegPatternID' => 'SPAT0002',
                 'strSegPStyleCategoryFK' => 'SEGSTY001',
                 'strSegPName'=>'Notch Type',
                 'dblPatternPrice' => '70',
@@ -36,7 +36,7 @@ class SegmentPatternSeeder extends Seeder
             ),
 
             array(
-                'strSegPatternID' => 'SPAT003',
+                'strSegPatternID' => 'SPAT0003',
                 'strSegPStyleCategoryFK' => 'SEGSTY001',
                 'strSegPName'=>'Peak Type',
                 'dblPatternPrice' => '80',
@@ -47,7 +47,7 @@ class SegmentPatternSeeder extends Seeder
 
 
             array(
-                'strSegPatternID' => 'SPAT004',
+                'strSegPatternID' => 'SPAT0004',
                 'strSegPStyleCategoryFK' => 'SEGSTY003',
                 'strSegPName'=>'Button Down',
                 'dblPatternPrice' => '70',
@@ -57,7 +57,7 @@ class SegmentPatternSeeder extends Seeder
             ),
 
             array(
-                'strSegPatternID' => 'SPAT005',
+                'strSegPatternID' => 'SPAT0005',
                 'strSegPStyleCategoryFK' => 'SEGSTY003',
                 'strSegPName'=>'Riley Collar',
                 'dblPatternPrice' => '70',
@@ -68,7 +68,7 @@ class SegmentPatternSeeder extends Seeder
 
 
             array(
-                'strSegPatternID' => 'SPAT006',
+                'strSegPatternID' => 'SPAT0006',
                 'strSegPStyleCategoryFK' => 'SEGSTY003',
                 'strSegPName'=>' Band Collar',
                 'dblPatternPrice' => '70',
@@ -79,7 +79,7 @@ class SegmentPatternSeeder extends Seeder
 
 
             array(
-                'strSegPatternID' => 'SPAT007',
+                'strSegPatternID' => 'SPAT0007',
                 'strSegPStyleCategoryFK' => 'SEGSTY003',
                 'strSegPName'=>' Italian Collar',
                 'dblPatternPrice' => '70',
@@ -89,7 +89,7 @@ class SegmentPatternSeeder extends Seeder
             ),
 
             array(
-                'strSegPatternID' => 'SPAT008',
+                'strSegPatternID' => 'SPAT0008',
                 'strSegPStyleCategoryFK' => 'SEGSTY004',
                 'strSegPName'=>' Angle Cut ',
                 'dblPatternPrice' => '50',
@@ -99,7 +99,7 @@ class SegmentPatternSeeder extends Seeder
             ),    
 
             array(
-                'strSegPatternID' => 'SPAT009',
+                'strSegPatternID' => 'SPAT0009',
                 'strSegPStyleCategoryFK' => 'SEGSTY004',
                 'strSegPName'=>' Round Cut ',
                 'dblPatternPrice' => '50',
@@ -109,7 +109,7 @@ class SegmentPatternSeeder extends Seeder
             ),
 
             array(
-                'strSegPatternID' => 'SPAT010',
+                'strSegPatternID' => 'SPAT0010',
                 'strSegPStyleCategoryFK' => 'SEGSTY004',
                 'strSegPName'=>' Square Cut ',
                 'dblPatternPrice' => '50',
@@ -119,7 +119,7 @@ class SegmentPatternSeeder extends Seeder
             ),
 
             array(
-                'strSegPatternID' => 'SPAT011',
+                'strSegPatternID' => 'SPAT0011',
                 'strSegPStyleCategoryFK' => 'SEGSTY004',
                 'strSegPName'=>' V-Shaped Cut ',
                 'dblPatternPrice' => '50',
@@ -129,7 +129,7 @@ class SegmentPatternSeeder extends Seeder
             ),
 
             array(
-                'strSegPatternID' => 'SPAT012',
+                'strSegPatternID' => 'SPAT0012',
                 'strSegPStyleCategoryFK' => 'SEGSTY002',
                 'strSegPName'=>' French Cut ',
                 'dblPatternPrice' => '50',
@@ -139,7 +139,7 @@ class SegmentPatternSeeder extends Seeder
             ), 
 
             array(
-                'strSegPatternID' => 'SPAT013',
+                'strSegPatternID' => 'SPAT0013',
                 'strSegPStyleCategoryFK' => 'SEGSTY002',
                 'strSegPName'=>' French Round ',
                 'dblPatternPrice' => '50',
@@ -149,9 +149,9 @@ class SegmentPatternSeeder extends Seeder
             ),
 
             array(
-                'strSegPatternID' => 'SPAT014',
+                'strSegPatternID' => 'SPAT0014',
                 'strSegPStyleCategoryFK' => 'SEGSTY002',
-                'strSegPName'=>' French Cut ',
+                'strSegPName'=>' French Square ',
                 'dblPatternPrice' => '50',
                 'txtSegPDesc' => 'A cuff that is a french square.',
                 'strSegPImage' => 'imgDesignPatterns/french-square.jpg',
@@ -159,7 +159,7 @@ class SegmentPatternSeeder extends Seeder
             ),
 
             array(
-                'strSegPatternID' => 'SPAT015',
+                'strSegPatternID' => 'SPAT0015',
                 'strSegPStyleCategoryFK' => 'SEGSTY002',
                 'strSegPName'=>' Portofino ',
                 'dblPatternPrice' => '50',
@@ -169,7 +169,7 @@ class SegmentPatternSeeder extends Seeder
             ),
 
             array(
-                'strSegPatternID' => 'SPAT016',
+                'strSegPatternID' => 'SPAT0016',
                 'strSegPStyleCategoryFK' => 'SEGSTY002',
                 'strSegPName'=>' Round Cut ',
                 'dblPatternPrice' => '50',
@@ -179,7 +179,7 @@ class SegmentPatternSeeder extends Seeder
             ),
 
             array(
-                'strSegPatternID' => 'SPAT017',
+                'strSegPatternID' => 'SPAT0017',
                 'strSegPStyleCategoryFK' => 'SEGSTY002',
                 'strSegPName'=>' Round Cut Portofino',
                 'dblPatternPrice' => '50',
@@ -189,7 +189,7 @@ class SegmentPatternSeeder extends Seeder
             ),
 
             array(
-                'strSegPatternID' => 'SPAT018',
+                'strSegPatternID' => 'SPAT0018',
                 'strSegPStyleCategoryFK' => 'SEGSTY002',
                 'strSegPName'=>' Square Cut ',
                 'dblPatternPrice' => '50',
@@ -199,7 +199,7 @@ class SegmentPatternSeeder extends Seeder
             ),
 
             array(
-                'strSegPatternID' => 'SPAT019',
+                'strSegPatternID' => 'SPAT0019',
                 'strSegPStyleCategoryFK' => 'SEGSTY006',
                 'strSegPName'=>' 1 Pleat ',
                 'dblPatternPrice' => '50',
@@ -209,7 +209,7 @@ class SegmentPatternSeeder extends Seeder
             ),        
 
             array(
-                'strSegPatternID' => 'SPAT020',
+                'strSegPatternID' => 'SPAT0020',
                 'strSegPStyleCategoryFK' => 'SEGSTY006',
                 'strSegPName'=>' 2 Pleats ',
                 'dblPatternPrice' => '50',
@@ -219,7 +219,7 @@ class SegmentPatternSeeder extends Seeder
             ),
 
             array(
-                'strSegPatternID' => 'SPAT021',
+                'strSegPatternID' => 'SPAT0021',
                 'strSegPStyleCategoryFK' => 'SEGSTY007',
                 'strSegPName'=>' Vertical Pockets ',
                 'dblPatternPrice' => '50',
@@ -229,7 +229,7 @@ class SegmentPatternSeeder extends Seeder
             ),
 
             array(
-                'strSegPatternID' => 'SPAT022',
+                'strSegPatternID' => 'SPAT0022',
                 'strSegPStyleCategoryFK' => 'SEGSTY007',
                 'strSegPName'=>' Sliced Pockets ',
                 'dblPatternPrice' => '50',
@@ -239,7 +239,7 @@ class SegmentPatternSeeder extends Seeder
             ),
 
             array(
-                'strSegPatternID' => 'SPAT023',
+                'strSegPatternID' => 'SPAT0023',
                 'strSegPStyleCategoryFK' => 'SEGSTY011',
                 'strSegPName'=>' 1 Back Pocket ',
                 'dblPatternPrice' => '50',
@@ -249,7 +249,7 @@ class SegmentPatternSeeder extends Seeder
             ),
 
             array(
-                'strSegPatternID' => 'SPAT024',
+                'strSegPatternID' => 'SPAT0024',
                 'strSegPStyleCategoryFK' => 'SEGSTY011',
                 'strSegPName'=>' 2 Back Pocket ',
                 'dblPatternPrice' => '50',
@@ -259,7 +259,7 @@ class SegmentPatternSeeder extends Seeder
             ),
 
             array(
-                'strSegPatternID' => 'SPAT025',
+                'strSegPatternID' => 'SPAT0025',
                 'strSegPStyleCategoryFK' => 'SEGSTY019',
                 'strSegPName'=>'Button Down',
                 'dblPatternPrice' => '70',
@@ -269,7 +269,7 @@ class SegmentPatternSeeder extends Seeder
             ),
 
             array(
-                'strSegPatternID' => 'SPAT026',
+                'strSegPatternID' => 'SPAT0026',
                 'strSegPStyleCategoryFK' => 'SEGSTY019',
                 'strSegPName'=>'Riley Collar',
                 'dblPatternPrice' => '70',
@@ -280,7 +280,7 @@ class SegmentPatternSeeder extends Seeder
 
 
             array(
-                'strSegPatternID' => 'SPAT027',
+                'strSegPatternID' => 'SPAT0027',
                 'strSegPStyleCategoryFK' => 'SEGSTY019',
                 'strSegPName'=>' Band Collar',
                 'dblPatternPrice' => '70',
@@ -291,7 +291,7 @@ class SegmentPatternSeeder extends Seeder
 
 
             array(
-                'strSegPatternID' => 'SPAT028',
+                'strSegPatternID' => 'SPAT0028',
                 'strSegPStyleCategoryFK' => 'SEGSTY019',
                 'strSegPName'=>' Italian Collar',
                 'dblPatternPrice' => '70',
@@ -439,6 +439,37 @@ class SegmentPatternSeeder extends Seeder
             //     'strSegPImage' => 'imgDesignPatterns/sidevents.jpg',
             //     'boolIsActive' => '1'
             // ), 
+
+            array(
+                'strSegPatternID' => 'SPAT0040',
+                'strSegPStyleCategoryFK' => 'SEGSTY023',
+                'strSegPName'=>'No Vent',
+                'dblPatternPrice' => '10',
+                'txtSegPDesc' => 'Usually use  for winter.',
+                'strSegPImage' => 'imgDesignPatterns/novent.jpg',
+                'boolIsActive' => '1'
+            ),
+
+            array(
+                'strSegPatternID' => 'SPAT0041',
+                'strSegPStyleCategoryFK' => 'SEGSTY023',
+                'strSegPName'=>'Center Vent',
+                'dblPatternPrice' => '50',
+                'txtSegPDesc' => 'Usually use  for winter.',
+                'strSegPImage' => 'imgDesignPatterns/centervents.jpg',
+                'boolIsActive' => '1'
+            ),  
+
+            array(
+                'strSegPatternID' => 'SPAT0042',
+                'strSegPStyleCategoryFK' => 'SEGSTY023',
+                'strSegPName'=>'Side Vent',
+                'dblPatternPrice' => '50',
+                'txtSegPDesc' => 'Usually use  for winter.',
+                'strSegPImage' => 'imgDesignPatterns/sidevents.jpg',
+                'boolIsActive' => '1'
+            ), 
+
 
             array(
                 'strSegPatternID' => 'SPAT0043',

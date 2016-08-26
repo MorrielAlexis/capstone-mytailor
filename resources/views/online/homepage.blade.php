@@ -1,21 +1,39 @@
 @extends('layouts.masterOnline')
 
 @section('content')
+    
+    <style type="text/css">
+        #gallery h2{
+            background-color: #f2f2f2;
+            border-style: solid;
+            border-color: #595959;
+            border-width: 4px 4px 4px 0px;
+        }
+        .slider .indicators .indicator-item{
+            background-color: #262626;
+        }
+        .slider .indicators .indicator-item.active{
+            background-color: #26a69a;
+        }
+    </style>
 
         
     <div class="slider" style="margin-bottom:40px;">
         <ul class="slides">
             <li>
-                <img src="imgOnlineHomepageSlider/hmpgslider1.jpg">
+                <img src="imgOnlineHomepageSlider/1.jpg">
             </li>
             <li>
-                <img src="imgOnlineHomepageSlider/hmpgslider2.jpg">
+                <img src="imgOnlineHomepageSlider/2.jpg">
             </li>
             <li>
-                <img src="imgOnlineHomepageSlider/hmpgslider3.jpg">
+                <img src="imgOnlineHomepageSlider/3.jpg">
             </li>
             <li>
-                <img src="imgOnlineHomepageSlider/hmpgslider4.jpg">
+                <img src="imgOnlineHomepageSlider/slide6.jpg">
+            </li>
+            <li>
+                <img src="imgOnlineHomepageSlider/slide16.jpg">
             </li>
         </ul>
     </div>
@@ -23,28 +41,28 @@
     <div class="row">
 
         <div class="col s6 center">
-            <section id="gallery">
-                <h2><a style="font-family:'Yatra One',cursive; background-color:transparent; color:grey; font-weight:normal" href="{{URL::to('/online-garment-uniform-female')}}">Custom Uniform</a></h2>
-                <img alt="" src="imgOnline/uniform3.jpg">
-                <p class="center-align" style="font-family:'Philosopher',sans-serif; color:#212121;">
+            <section id="gallery" >
+                <h2><a style="background-color:transparent; color:#009688; font-weight:normal;font-family: 'Mada', sans-serif;" href="{{URL::to('/online-garment-uniform-female')}}">Custom Uniform</a></h2>
+                <img alt="" src="imgOnline/uniform.jpg"  style="">
+                <p class="center-align" style="color:#212121;font-family: 'Rambla', sans-serif;">
                     From different designs and options to choose from,
-                    personalize uniforms for an exclusive style and
+                    personalize <br>uniforms for an exclusive style and
                     distinction.
                 </p>          
-                <a class="waves-effect waves-green btn-flat" href="{{URL::to('/online-garment-uniform-female')}}" style="font-family:'Lemonada',cursive;">PROCEED TO UNIFORM</a>
+                <a class="waves-effect  btn-flat" style="background-color:#26a69a;color:white" href="{{URL::to('/online-garment-uniform-female')}}">PROCEED TO UNIFORM</a>
             </section>
         </div>
         
         <div class="col s6 center">
-            <section id="gallery">
-                <h2><a style="font-family:'Yatra One',cursive; background-color:transparent; color:grey; font-weight:normal" href="{{URL::to('/online-garment-gown')}}">Custom Gown</a></h2>
-                <img alt="" src="imgOnline/gowns.jpg">
-                <p class="center-align" style="font-family:'Philosopher',sans-serif; color:#212121;">
+            <section id="gallery" >
+                <h2><a style="background-color:transparent; color:#009688; font-weight:normal;font-family: 'Mada', sans-serif;" href="{{URL::to('/online-garment-gown')}}">Custom Gown</a></h2>
+                <img alt=""  src="imgOnline/gown.jpg" style="">
+                <p class="center-align" style="color:#212121;font-family: 'Rambla', sans-serif;">
                     Be the eye-catcher in events with custom
-                    designed gowns and dresses. Choose from a variety
+                    designed gowns and<br> dresses. Choose from a variety
                     of fabrics!
                 </p>         
-                <a class="waves-effect waves-green btn-flat" href="{{URL::to('/online-garment-gown')}}" style="font-family:'Lemonada',cursive;">PROCEED TO GOWNS</a>
+                <a class="waves-effect waves-green btn-flat" style="background-color:#26a69a;color:white" href="{{URL::to('/online-garment-gown')}}">PROCEED TO GOWNS</a>
             </section>
         </div>
     </div>
@@ -53,27 +71,27 @@
 
     <div class="row">
         <div class="col s6 center">
-            <section id="gallery">
-                <h2><a style="font-family:'Yatra One',cursive; background-color:transparent; color:grey; font-weight:normal" href="{{URL::to('/online-garment-suit')}}">Custom Suits</a></h2>
-                <img alt="" src="imgOnline/suits.jpg">
-                <p class="center-align" style="font-family:'Philosopher',sans-serif; color:#212121;">
+            <section id="gallery" >
+                <h2><a style="background-color:transparent; color:#009688; font-weight:normal;font-family: 'Mada', sans-serif;" href="{{URL::to('/online-garment-suit')}}">Custom Suits</a></h2>
+                <img alt="" src="imgOnline/suit4.jpg" style="">
+                <p class="center-align" style="color:#212121;font-family: 'Rambla', sans-serif;">
                     Look your best in a custom suit made 
-                    with high quality fabrics & materials!
-                </p>        
-                <a class="waves-effect waves-green btn-flat" href="{{URL::to('/online-garment-suit')}}" style="font-family:'Lemonada',cursive;">PROCEED TO SUITS</a>
+                    with high quality fabrics & <br>materials!
+                </p>   
+                <a class="waves-effect waves-green btn-flat" style="background-color:#26a69a;color:white" href="{{URL::to('/online-garment-suit')}}">PROCEED TO SUITS</a>
             </section>
         </div>
         
         <div class="col s6 center">
-            <section id="gallery">
-                <h2><a style="font-family:'Yatra One',cursive; background-color:transparent; color:grey; font-weight:normal" href="{{URL::to('/online-order-tracking')}}">Order Tracking</a></h2>
-                <img alt="" src="imgOnline/ordertrack1.jpg">
-                <p class="center-align" style="font-family:'Philosopher',sans-serif; color:#212121;padding-left:60px; padding-right:60px">
+            <section id="gallery" >
+                <h2><a style="background-color:transparent; color:#009688; font-weight:normal;font-family: 'Mada', sans-serif;" href="{{URL::to('/online-order-tracking')}}">Order Tracking</a></h2>
+                <img alt="" src="imgOnline/csuit.jpg" style="">
+                <p class="center-align" style="color:#212121;padding-left:60px; padding-right:60px;font-family: 'Rambla', sans-serif;">
                     Experience made more personal with
-                    this feature that let's you monitor 
+                    this feature that let's you <br> monitor 
                     order progress in real-time.
                 </p>           
-                <a class="waves-effect waves-green btn-flat" href="{{URL::to('/online-order-tracking')}}" style="font-family:'Lemonada',cursive;">TRACK YOURS HERE</a>
+                <a class="waves-effect waves-green btn-flat" style="background-color:#26a69a;color:white" href="{{URL::to('/online-order-tracking')}}">TRACK YOURS HERE</a>
             </section>
         </div>
     </div>
@@ -85,7 +103,7 @@
             <div class="container">
                 <h2 class="white-text" style="font-family:'Playfair Display','Times';">How It Works</h2>
                 <img style="width:100%; height:300px;" class="responsive-img" src="imgOnline/howitwork.jpg">
-                <p class="center-align" style="font-family:'Lemonada',cursive;" style="font-size:20px;">
+                <p class="center-align" style="font-size:20px;">
                     Easy steps to follow for a perfect fit.
                     In just a couple of minutes, the measurements
                     for perfect fitting will be ready for the garments! 

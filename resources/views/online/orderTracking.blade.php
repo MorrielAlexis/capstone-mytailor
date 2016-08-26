@@ -4,10 +4,10 @@
 @section('content')
   <div class = "section">
       
-    <center><h1 style="color:white; font-family:'Playfair Display','Times';">Order Tracking</h1></center>
+    <center><h1 style="color:#009688; font-family: 'Mada', sans-serif;">Order Tracking</h1></center>
     <div class="divider container" style="margin-bottom:25px;"></div>
 
-    <div class="section container white" style="width:80%; margin-top:20px; margin-bottom:20px; padding:40px;"> 
+    <div class="section container white" style="width:80%; margin-top:20px; margin-bottom:20px; padding:40px;box-shadow: 9px 9px 4px #a6a6a6;"> 
       <div class="row">
         <div class="col s12">
          
@@ -54,14 +54,14 @@
         <div class="col s12" style="margin-top:40px;">
           <div class = "container">
             <h6 class="center" style="margin-bottom:20px;"><font size = "+2" color = "black">Job Order: JOB001</font></h6>
-            <div class="divider"></div>
+            <div class="divider" style="background-color:#26a69a"></div>
 
-            <label><center><font size = "+1">Progress:</font></center> </label>
+            <label style="color:#737373"><center><font size = "+1">Progress:</font></center> </label>
 
             <div id="progress">
               <span id="percent">60%</span>
               <div id="bar"></div>
-                <label><center><font size ="+2">30 out of 50 garments is done</font></center></label>
+                <label style="color:#737373"><center><font size ="+2">30 out of 50 garments is done</font></center></label>
             </div>
           </div>
         </div>
