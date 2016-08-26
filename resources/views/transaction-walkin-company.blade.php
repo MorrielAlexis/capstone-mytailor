@@ -130,17 +130,10 @@
 					         			 </div>
 
 					         			<div class="col s12">
-						         			<div class="center col s3" style="margin-top:10px; padding-right:5px">
+						         			<div class="center col s12" style="margin-top:10px; padding-right:5px">
 						          				<input type="checkbox" name="cbx-package-name[]" class="filled-in cbx-package-name" id="{{ $package->strPackageID }}" value="{{ $package->strPackageID }}">
-				      							<label for="{!! $package->strPackageID !!}"></label>
+				      							<label for="{!! $package->strPackageID !!}">Choose this package.</label>
 					      					</div>
-
-											<!--For the quantity-->
-					      					<div class="center col s9">
-									          <input type="text" name="int-package-qty[]" id="{{ $package->strPackageID }}" class="center int-package-qty {!! $package->strPackageID !!}" value=1 disabled="true">
-									          <label for="{!! $package->strPackageID !!}">Quantity</label>
-					      					</div>
-					      					<!--End for the quantity-->
 					      				</div>
 
 					      			</div>
@@ -157,7 +150,7 @@
 					       		<!-- <a class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to add orders to cart " style="margin-top:30px; background-color: teal; font-size:15px; color:white" href="#!">Add to Cart</a> -->
 								<!--<a href="{{URL::to('transaction/walkin-company-retail-products')}}" class="left" style="margin-top:30px; margin-left:15px; font-size:18px"><i class="mdi-navigation-arrow-back"></i><b><u>Switch to retail products</u></b></a>-->
 								<a class="left btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize orders" style="margin-top:30px; font-size:15px; color:white; background-color: teal; opacity:0.90; margin-left:3%" href="#reset-order"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Reset Order<!--</i>--></a>
-					       		{!! Form::close() !!}
+					       	{!! Form::close() !!}
 
 			       		 <div class="col s12">
 							<div class="divider" style="height:2px; margin-top:10px"></div>      	
@@ -177,29 +170,6 @@
 @stop
 
 @section('scripts')
-
-	<script>
-		$(".cbx-package-name").change(function(){
-			var a = document.getElementsByClassName('cbx-package-name');
-			var b = document.getElementsByClassName('int-package-qty');
-
-			var i, j;
-
-			for(i = 0; i < a.length; i++){
-				for(j = 0; j < b.length; j++){
-					if(a[i].id == b[j].id){
-						if($('#' + a[i].id).is(":checked")){
-							$('.' + b[j].id).removeAttr('disabled');
-						}else{
-							$('.' + b[j].id).attr('disabled', true);
-							$('.' + b[j].id).val('');
-						}
-					}		
-				}
-			}
-
-		});
-	</script>
 
 	<script>
 	  $(document).ready(function() {

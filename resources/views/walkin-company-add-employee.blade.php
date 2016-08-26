@@ -28,48 +28,47 @@
 							<div class="col s12" style="border-bottom:2px white outset; padding:10px; margin-bottom:40px;">
 								<div style="color:gray" class="right col s5"> 
 									<div class="col s7"><p style="color:gray; font-size:15px; margin-top:20px"><b>Input no. of employees to add:</b></p></div>                
-				                  	<div class="col s2"><input class="" name="emp-num" id="emp-num" type="number" value="" style="padding:5px; margin-top:5px; border:2px teal solid"></div>
-				                  	<div class="col s3"><a href="" class="btn" style="background-color:teal; color:white; margin-top:15px">Add</a></div>
+				                  	<div class="col s2"><input class="" data-bind="value: fieldsToAdd" name="emp-num" id="emp-num" type="number" value="" style="padding:5px; margin-top:5px; border:2px teal solid" /></div>
+				                  	<div class="col s3"><button type="button" class="btn" data-bind="click: addField" style="background-color:teal; color:white; margin-top:15px">Add</button></div>
 				                </div>				         
 				            </div>
 
 							<!--Employee Information starts here-->
-							<div class="col s12" style="margin-bottom:30px">
+							<div data-bind="foreach: inputFields" class="col s12" style="margin-bottom:30px">
 								<div class="input-field col s3">
-						          <input id="first_name" type="text" class="validate">
-						          <label for="first_name">First Name</label>
+						          <input id="first_name" type="text" class="validate" data-bind="value: inputFirstName">
+						          <label for="first_name" data-bind="text: labelFirstName"></label>
 						        </div>
 
 						        <div class="input-field col s3">
-						          <input id="last_name" type="text" class="validate">
-						          <label for="last_name">Last Name</label>
+						          <input id="last_name" type="text" class="validate" data-bind="value: inputLastName">
+						          <label for="last_name" data-bind="text: labelLastName"></label>
 						        </div>
 
 						        <div class="input-field col s1">
-						          <input id="middle_initial" type="text" class="validate">
-						          <label for="middle_initial">M.I</label>
+						          <input id="middle_initial" type="text" class="validate" data-bind="value: inputMiddleName">
+						          <label for="middle_initial"data-bind="text: labelMiddleName"></label>
 						        </div>
 
 						        <div class="input-field col s1">
-								    <select>
-								      
-								      <option value="1">F</option>
-								      <option value="2">M</option>
+								    <select id="sex" data-bind="
+								    		options: optSex,
+								    		optionsText: 'sexName',
+								    		optionsValue: 'sexID'">
 								    </select>
-								    <label>Sex</label>
+								    <label data-bind="text: labelSex"></label>
 								</div>
 
 								<div class="input-field col s3">
-								    <select>
-								      
-								      <option value="1"></option>	
+								    <select id="set"> 
+								    	<option value="1"></option>	
 								    </select>
 								    <label>Choose a set</label>
 								</div>
 
 								<div class="col s1">
-								<a style="color:white; margin-top:18px" class="modal-trigger btn tooltipped blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit the set purchased" href="#edit-emp-data"><i class="mdi-editor-mode-edit"></i></a>
-								
+									<a style="color:white; margin-top:18px" class="modal-trigger btn tooltipped blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit the set purchased" href="#edit-emp-data"><i class="mdi-editor-mode-edit"></i></a>
+								</div>
 								<!--Modal for editing employee data-->
 								<div id="edit-emp-data" class="modal modal-fixed-footer" style="width:70%; height:80%">
 									<h5><font color="teal"><center><b>Employee Data</b></center></font></h5>
@@ -114,7 +113,7 @@
 
 									<div class="modal-footer col s12">
 						                <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Save</font></button>
-						                <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Cancel</font></a>	
+						                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Cancel</font></a>	
 						            </div>
 									{!! Form::close() !!}
 								</div>
@@ -141,7 +140,7 @@
 
 											<div class="modal-footer col s12">
 								                <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Save</font></button>
-								                <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Cancel</font></a>	
+								                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Cancel</font></a>	
 								            </div>
 
 										</div>
@@ -197,15 +196,12 @@
 								</div>
 								-->
 								<!--End of modal for removing employees-->
-
-
-							</div>
-							</div>
-							<!--Employee Information ends here-->
+						</div>
+						<!--Employee Information ends here-->
 						
-						<div class="col s12"><div class="divider" style="margin-bottom:20px; margin-top:20px"></div></div>
-		                <a class="right waves-effect waves-green btn" href="{{URL::to('transaction/walkin-company-show-order')}}" style="background-color:teal; margin-right:10px"><font color="white">Save</font></a>
-		                <a href="{{URL::to('transaction/walkin-company-show-order')}}" class="left modal-action modal-close waves-effect waves-green btn" style="background-color:teal; margin-left:10px;"><font color="white">Cancel</font></a>
+						<div class="col s12"><div class="divider" style="margin-bottom:20px; margin-top:20px"></div>
+			                <a class="right waves-effect waves-green btn" href="{{URL::to('transaction/walkin-company-show-order')}}" style="background-color:teal; margin-right:10px"><font color="white">Save</font></a>
+			                <a href="{{URL::to('transaction/walkin-company-show-order')}}" class="left modal-action modal-close waves-effect waves-green btn" style="background-color:teal; margin-left:10px;"><font color="white">Cancel</font></a>
 		            	</div>
 		            </div>
 
@@ -221,16 +217,36 @@
 @stop
 
 @section('scripts')
+	
+	<script>
+		var viewModel = function () {
+		 	var self = this;
+		  
+			self.fieldsToAdd = ko.observable(1);
+		  	self.inputFields = ko.observableArray([{ 
+		    	inputFirstName: '', labelFirstName: 'First Name',
+		      	inputLastName: '', labelLastName: 'Last Name',
+		      	inputMiddleName: '', labelMiddleName: 'M.I.',
+		      	labelSex: 'Sex',
+		      	optSex: [{ sexName: 'Male', sexID: 'M'},
+		      			 { sexName: 'Female', sexID: 'F'}]
+		    }]);
 
-	<script type="text/javascript">
-	  $('.modal-trigger').leanModal({
-	      dismissible: true, // Modal can be dismissed by clicking outside of the modal
-	      opacity: 1, // Opacity of modal background
-	      in_duration: 300, // Transition in duration
-	      out_duration: 200, // Transition out duration
-	      width:400,
-	    }
-	  );
+		  self.addField = function () {
+		    var fieldsToAdd = self.fieldsToAdd();
+		    for (var i = 0; i < fieldsToAdd; i++) 
+		    	self.inputFields.push({ 
+		    		inputFirstName: '', labelFirstName: 'First Name',
+		    		inputLastName: '', labelLastName: 'Last Name',
+		    		inputMiddleName: '', labelMiddleName: 'M.I.', 
+		    		labelSex: 'Sex', 	
+		    	    optSex: [{ sexName: 'Male', sexID: 'M'},
+		      			     { sexName: 'Female', sexID: 'F'}]
+		      	});
+		  	}
+		}
+
+		ko.applyBindings(new viewModel(), document.getElementById('fisher'));
 	</script>
 
 	<script>

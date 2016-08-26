@@ -9,6 +9,17 @@ use App\Http\Controllers\Controller;
 
 use App\Package;
 
+use App\Fabric;
+use App\FabricType;
+use App\FabricColor;
+use App\FabricPattern;
+use App\FabricThreadCount;
+
+use App\Segment;
+use App\SegmentPattern;
+use App\SegmentStyle;
+
+
 class WalkInCompanyController extends Controller
 {
     /**
@@ -44,7 +55,6 @@ class WalkInCompanyController extends Controller
     public function listOfOrders(Request $request)
     {   
         $data_segment = $request->input('cbx-package-name');
-        $data_quantity = array_slice(array_filter($request->input('int-package-qty')), 0);
 
         session(['segment_values' => $data_segment]);
 
@@ -76,21 +86,16 @@ class WalkInCompanyController extends Controller
                 ->where('a.strPackageID', $to_be_customized)
                 ->get();
 
-        $segment4 = \DB::table('tblPackages AS a')
-                ->leftJoin('tblSegment AS b', 'a.strPackageSeg4FK', '=', 'b.strSegmentID')
-                ->leftJoin('tblGarmentCategory AS c', 'b.strSegCategoryFK', '=', 'c.strGarmentCategoryID')
-                ->select('b.*', 'c.strGarmentCategoryName')
-                ->where('a.strPackageID', $to_be_customized)
-                ->get();
+        $segments = [$segment1, $segment2, $segment3];
 
-        $segment5 = \DB::table('tblPackages AS a')
-                ->leftJoin('tblSegment AS b', 'a.strPackageSeg5FK', '=', 'b.strSegmentID')
-                ->leftJoin('tblGarmentCategory AS c', 'b.strSegCategoryFK', '=', 'c.strGarmentCategoryID')
-                ->select('b.*', 'c.strGarmentCategoryName')
-                ->where('a.strPackageID', $to_be_customized)
-                ->get(); 
+        $fabrics = Fabric::all();
+        $fabricThreadCounts = FabricThreadCount::all();
+        $fabricColors = FabricColor::all();
+        $fabricTypes = FabricType::all();
+        $fabricPatterns = FabricPattern::all();
 
-        $segments = [$segment1, $segment2, $segment3, $segment4, $segment5];
+        $segmentPatterns = SegmentPattern::all();
+        $segmentStyles = SegmentStyle::all();
 
         $package = \DB::table('tblPackages')
                 ->select('*')
@@ -99,7 +104,14 @@ class WalkInCompanyController extends Controller
 
         return view('walkin-company-customize-order-package')
                 ->with('segments', $segments)
-                ->with('package', $package);
+                ->with('package', $package)
+                ->with('fabrics', $fabrics)
+                ->with('fabricThreadCounts', $fabricThreadCounts)
+                ->with('fabricColors', $fabricColors)
+                ->with('fabricTypes', $fabricTypes)
+                ->with('fabricPatterns', $fabricPatterns)
+                ->with('patterns', $segmentPatterns)
+                ->with('styles', $segmentStyles);
     }
 
     public function customize(Request $request)
