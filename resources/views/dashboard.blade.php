@@ -9,7 +9,7 @@
                     <div class="card-header blue-grey">
                         <div class="card-title">
                             <h3 class="card-title white-text" style="font-size:40px; padding-left:10px;">My Tailor</h3>
-                            <p style="padding-left:10px;" class="flight-card-date white-text">June 18, Thu 04:50</p>
+                            <p style="padding-left:10px;" class="flight-card-date white-text"><div id="Date"></div><div id= "clock"></div></p>
                         </div>
                     </div>
                     <div class="white-text">
@@ -30,7 +30,6 @@
                     <ul id="task-card" class="collection with-header z-depth-3" style="border:0;">
                         <li class="collection-header green">
                             <h3 class="task-card-title white-text">On Going Orders</h3>
-                            <h6><div id= "Date"></div></h6>
                         </li>
                         @foreach($joborderongoing as $joborderongoing)
                             @if($joborderongoing->strCompanyName == null)
@@ -52,7 +51,6 @@
                     <ul id="task-card" class="collection with-header z-depth-3" style="border:0;">
                         <li class="collection-header cyan">
                             <h3 class="task-card-title white-text">Pending Orders</h3>
-                            <h6><div id= "CurDate"></div></h6>
                         </li>
                         @foreach($joborder as $joborder)
                             @if($joborder->strCompanyName == null)
@@ -83,7 +81,7 @@
                                 <p class="collections-title">Web App</p>
                                 <p class="collections-content">AEC Company</p>
                             </div>
-                            <div class="col s3">
+                           <div class="col s3">
                                 <span class="task-cat cyan">Development</span>
                             </div>
                             <div class="col s3">
@@ -184,12 +182,38 @@
     </script>
 
     <script type="text/javascript">
-        var monthNames = [ "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December" ];
-        var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+        function updateClock ( )
+            {
+            var currentTime = new Date ( );
+            var currentHours = currentTime.getHours ( );
+            var currentMinutes = currentTime.getMinutes ( );
+            var currentSeconds = currentTime.getSeconds ( );
 
-        var newDate = new Date();
-        newDate.setDate(newDate.getDate());    
-        $('#CurDate').html(dayNames[newDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
-    
+            // Pad the minutes and seconds with leading zeros, if required
+            currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
+            currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
+
+            // Choose either "AM" or "PM" as appropriate
+            var timeOfDay = ( currentHours < 12 ) ? "AM" : "PM";
+
+            // Convert the hours component to 12-hour format if needed
+            currentHours = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
+
+            // Convert an hours component of "0" to "12"
+            currentHours = ( currentHours == 0 ) ? 12 : currentHours;
+
+            // Compose the string for display
+            var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
+            
+            
+            $("#clock").html(currentTimeString);
+                
+         }
+
+        $(document).ready(function()
+        {
+           setInterval('updateClock()', 1000);
+        });
     </script>
+
+@stop    
