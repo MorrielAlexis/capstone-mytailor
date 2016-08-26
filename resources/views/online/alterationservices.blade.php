@@ -4,8 +4,8 @@
 
 	<div style="height:150px; margin-top: -15px;">
       <div style="height:20px;"></div>
-      <center><h1 style="color:#757575;">List of Services</h1></center>
-      <div class="container divider"></div>
+      <center><h1 style="font-family: 'Mada', sans-serif;color:#009688">List of Services</h1></center>
+      <div class="container divider" style="background-color:black"></div>
     </div>
 
     <div class="section">

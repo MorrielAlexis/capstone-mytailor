@@ -159,19 +159,6 @@ class GarmentCategoryController extends Controller
                 ->where('tblGarmentCategory.strGarmentCategoryID','=', $id)
                 ->count();
 
-        // $count2 = \DB::table('tblMeasurementCategory')
-        //         ->join('tblGarmentCategory', 'tblMeasurementCategory.strMeasGarFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
-        //         ->select('tblGarmentCategory.*')
-        //         ->where('tblGarmentCategory.strGarmentCategoryID','=', $id)
-        //         ->count();
-        //         // dd($count2);
-
-        // $count3 = \DB::table('tblSegmentPattern')
-        //         ->join('tblGarmentCategory', 'tblSegmentPattern.strSegPCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
-        //         ->select('tblGarmentCategory.*')
-        //         ->where('tblGarmentCategory.strGarmentCategoryID','=', $id)
-        //         ->count();
-
         $count4 = \DB::table('tblCatalogue')
                 ->join('tblGarmentCategory', 'tblCatalogue.strCatalogueCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
                 ->select('tblGarmentCategory.*')
@@ -185,8 +172,7 @@ class GarmentCategoryController extends Controller
                     $garment->boolIsActive = 0;
                     $garment->save();
                     \Session::flash('flash_message_delete','Garment category successfully deactivated.'); //flash message
-                    return redirect('maintenance/garment-category'); 
-            }
+                    return redirect('maintenance/garment-category');
 
     }    
       
