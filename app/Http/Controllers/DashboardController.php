@@ -43,12 +43,23 @@ class DashboardController extends Controller
             ->leftjoin('tblcustcompany', 'tblJobOrder.strJo_CustomerCompanyFK', '=', 'tblcustcompany.strCompanyID')
             ->where('tblJobOrder.boolIsOrderAccepted', '=', '1')
             ->select('tblcustindividual.*', 'tblcustcompany.*', 'tblJobOrder.*')
-            ->get();           
+            ->get();
+
+        $neardue = \DB::table('tblJobOrder')
+            ->leftjoin('tblcustindividual', 'tblJobOrder.strJo_CustomerFK', '=', 'tblcustindividual.strIndivID')
+            ->leftjoin('tblcustcompany', 'tblJobOrder.strJo_CustomerCompanyFK', '=', 'tblcustcompany.strCompanyID')
+            ->where('tblJobOrder.boolIsOrderAccepted', '=', '1')
+            ->whereRaw('DATEDIFF(tblJobOrder.dtOrderExpectedToBeDone, CurDate()) <= 7')
+            ->whereRaw('DATEDIFF(tblJobOrder.dtOrderExpectedToBeDone, CurDate()) > 0')
+            ->OrderBy('tblJobOrder.dtOrderExpectedToBeDone')
+            ->select('tblcustindividual.*', 'tblcustcompany.*', 'tblJobOrder.*')
+            ->get();          
 
            
         return view('dashboard')
              ->with('joborder', $joborder)
              ->with('joborderongoing', $joborderongoing)
-             ->with('joborderprog', $joborderprog);
+             ->with('joborderprog', $joborderprog)
+             ->with('neardue', $neardue);
     }
 }

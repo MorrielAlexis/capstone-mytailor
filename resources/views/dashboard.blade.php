@@ -75,62 +75,19 @@
                         <span class="collection-header"><font size="+1">CUSTOMER NEAR DUE DATE</font></span>
                         <a href="#" class="secondary-content"><i class="mdi-action-grade"></i></a>
                     </li>
-                    <li class="collection-item">
-                        <div class="row">
-                            <div class="col s6">
-                                <p class="collections-title">Web App</p>
-                                <p class="collections-content">AEC Company</p>
+                    @foreach($neardue as $neardue)
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col s6">
+                                    <p class="collections-title">{{$neardue->strJobOrderID}}</p>
+                                    <p class="collections-content">{{$neardue->strCompanyName}}{{$neardue->strIndivFName}} {{$neardue->strIndivLName}}</p>
+                                </div>
+                               <div class="col s6">
+                                    <p>{{$neardue->dtOrderExpectedToBeDone}}</p>
+                                </div>
                             </div>
-                           <div class="col s3">
-                                <span class="task-cat cyan">Development</span>
-                            </div>
-                            <div class="col s3">
-                                <div id="project-line-1"></div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="collection-item">
-                        <div class="row">
-                            <div class="col s6">
-                                <p class="collections-title">Mobile App for Social</p>
-                                <p class="collections-content">iSocial App</p>
-                            </div>
-                            <div class="col s3">
-                                <span class="task-cat grey darken-3">UI/UX</span>
-                            </div>
-                            <div class="col s3">
-                                <div id="project-line-2"></div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="collection-item">
-                        <div class="row">
-                            <div class="col s6">
-                                <p class="collections-title">Website</p>
-                                <p class="collections-content">MediTab</p>
-                            </div>
-                            <div class="col s3">
-                                <span class="task-cat teal">Marketing</span>
-                            </div>
-                            <div class="col s3">
-                                <div id="project-line-3"></div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="collection-item">
-                        <div class="row">
-                            <div class="col s6">
-                                <p class="collections-title">AdWord campaign</p>
-                                <p class="collections-content">True Line</p>
-                            </div>
-                            <div class="col s3">
-                                <span class="task-cat green">SEO</span>
-                            </div>
-                            <div class="col s3">
-                                <div id="project-line-4"></div>
-                            </div>
-                        </div>
-                    </li>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
             <div class="col s6">
