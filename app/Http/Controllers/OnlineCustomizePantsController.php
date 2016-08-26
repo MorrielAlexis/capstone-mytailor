@@ -59,38 +59,54 @@ class OnlineCustomizePantsController extends Controller
                     ->where('a.strFabricID', $request->input('rdb_fabric'))
                     ->get();
 
-        $key = 'Pleat';
+        $garmentKey = 'Pants';
+        $segment = \DB::table('tblSegment')
+                        ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
+                        ->select('tblSegment.*', 'tblGarmentCategory.strGarmentCategoryName')
+                        ->where('tblGarmentCategory.strGarmentCategoryName', 'LIKE', '%'.$garmentKey.'%')
+                        ->orderBy('strSegmentID')
+                        ->get();
 
+        $key = 'Pleat';
         $pleatsSegment = \DB::table('tblSegmentStyleCategory')
-                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->select('strSegStyleCatID', 'strSegStyleName', 'strSegmentFK', 'boolIsActive')
                     ->where('strSegStyleName', 'LIKE', '%'.$key.'%')
                     ->get();
 
         return view('customize.pants-style-pleats')
             ->with('pattern', $pattern)
-            ->with('pleatsSegment', $pleatsSegment)
+            ->with('segments', $segment)
+            ->with('style', $pleatsSegment)
             ->with('fabrics', $selectedFabric);
     }   
 
     public function stylepockets()
     {
         $patterns = SegmentPattern::all();
-        $keypocket = 'Pants Pocket';
 
+        $garmentKey = 'Pants';
+        $segment = \DB::table('tblSegment')
+                        ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
+                        ->select('tblSegment.*', 'tblGarmentCategory.strGarmentCategoryName')
+                        ->where('tblGarmentCategory.strGarmentCategoryName', 'LIKE', '%'.$garmentKey.'%')
+                        ->orderBy('strSegmentID')
+                        ->get();
+
+        $keypocket = 'Pants Pocket';
         $pocketSegment = \DB::table('tblSegmentStyleCategory')
-                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->select('strSegStyleCatID', 'strSegStyleName', 'strSegmentFK', 'boolIsActive')
                     ->where('strSegStyleName', 'LIKE', '%'.$keypocket.'%')
                     ->get();
 
         $keyback = 'Backpockets';
-
         $backSegment = \DB::table('tblSegmentStyleCategory')
-                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->select('strSegStyleCatID', 'strSegStyleName', 'strSegmentFK', 'boolIsActive')
                     ->where('strSegStyleName', 'LIKE', '%'.$keyback.'%')
                     ->get();
 
         return view('customize.pants-style-pockets')
                     ->with('patterns', $patterns)
+                    ->with('segments', $segment)
                     ->with('pocketSegment', $pocketSegment)
                     ->with('backSegment', $backSegment);
     }   
@@ -98,16 +114,26 @@ class OnlineCustomizePantsController extends Controller
     public function stylebottom()
     {
         $pattern = SegmentPattern::all();
-        $keybottom = 'Pants Bottom';
 
-        $bottomSegment = \DB::table('tblSegmentStyleCategory')
-                    ->select('strSegStyleCatID', 'strSegStyleName')
+
+        $garmentKey = 'Pants';
+        $segment = \DB::table('tblSegment')
+                        ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
+                        ->select('tblSegment.*', 'tblGarmentCategory.strGarmentCategoryName')
+                        ->where('tblGarmentCategory.strGarmentCategoryName', 'LIKE', '%'.$garmentKey.'%')
+                        ->orderBy('strSegmentID')
+                        ->get();
+
+        $keybottom = 'Pants Bottom';
+        $style = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName', 'strSegmentFK', 'boolIsActive')
                     ->where('strSegStyleName', 'LIKE', '%'.$keybottom.'%')
                     ->get();
 
         return view('customize.pants-style-bottom')
                     ->with('patterns', $pattern)
-                    ->with('bottomSegment', $bottomSegment);
+                    ->with('segments', $segment)
+                    ->with('style', $style);
     }  
 
     public function tocart()

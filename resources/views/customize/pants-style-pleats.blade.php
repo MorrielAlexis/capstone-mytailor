@@ -47,7 +47,7 @@
           
           <div class="col s12" style="margin-top:10px;">
             <label class="col s2"><font size="+1"><b>Selected Fabric</b></font></label>
-            <label class="col s5"><a class="btn teal accent-4 white-text" href="{{URL::to('/customize-mens-fabric')}}"><font size="+1">Edit / Change Fabric</font></a></label>
+            <label class="col s5"><a class="btn teal accent-4 white-text" href="{{URL::to('/customize-pants-fabric')}}"><font size="+1">Edit / Change Fabric</font></a></label>
           </div>
           
           @foreach($fabrics as $fabric)
@@ -64,28 +64,32 @@
           @endforeach
 
 
+          @foreach($segments as $segment)
+          @foreach($style as $style)
+          @if($style->boolIsActive == 1)
           <div class="col s12" style="margin-top:20px;">
-            <ul class="collapsible" data-collapsible="accordion" style="border:none;">
+            <ul class="collapsible" data-collapsible="accordion" style="border:none;" @if($segment->strSegmentID != $style->strSegmentFK) hidden @endif>
               <li>
-                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Pleats</div>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $style->strSegStyleName }}</div>
                 <div class="collapsible-body row overflow-x" style="padding:20px;">       
-                  @foreach($pleatsSegment as $pleats)
                   <div class="col s12">
                     @foreach($pattern as $patterns)
-                    <div class="col s2" @if($patterns->strSegPStyleCategoryFK != $pleats->strSegStyleCatID) hidden @endif>
+                    <div class="col s2" @if($patterns->strSegPStyleCategoryFK != $style->strSegStyleCatID) hidden @endif>
                       <img class="materialboxed responsive-img" src="{{URL::asset($patterns->strSegPImage)}}">
                       <p>
-                        <input name="rdb_pattern{{ $pleats->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $patterns->strSegPatternID }}" id="{{ $patterns->strSegPatternID }}" />
+                        <input name="rdb_pattern{{ $style->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $patterns->strSegPatternID }}" id="{{ $patterns->strSegPatternID }}" />
                         <label for="{{$patterns->strSegPatternID}}"><font size="+1"><b>{{$patterns->strSegPName}}</b></font></label>
                       </p>
                     </div>
                     @endforeach
-                  </div>
-                  @endforeach                 
+                  </div>               
                 </div>
               </li>
             </ul>
           </div>
+          @endif
+          @endforeach
+          @endforeach
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12"><button class="right btn-flat teal accent-4 white-text" type="submit">Next step</button></div>
