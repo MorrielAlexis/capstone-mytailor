@@ -155,21 +155,16 @@ class FabricThreadCountController extends Controller
             $id = $request->input('delThreadCountID');
             $threadCount = FabricThreadCount::find($request-> input('delThreadCountID'));
 
-            // $count = \DB::table('tblSwatchName')
-            //     ->join('tblFabricType', 'tblSwatchName.strSwatchNameTypeFK', '=', 'tblFabricType.strFabricTypeID')
-            //     ->select('tblFabricType.*')
-            //     ->where('tblFabricType.strFabricTypeID','=', $id)
-            //     ->count();
+            $count = \DB::table('tblFabric')
+                ->join('tblFabricThreadCount', 'tblFabric.strFabricThreadCountFK', '=', 'tblFabricThreadCount.strFabricThreadCountID')
+                ->select('tblFabricThreadCount.*')
+                ->where('tblFabricThreadCount.strFabricThreadCountID','=', $id)
+                ->count();
 
-            // $count2 = \DB::table('tblSwatch')
-            //     ->join('tblFabricType', 'tblSwatch.strSwatchTypeFK', '=', 'tblFabricType.strFabricTypeID')
-            //     ->select('tblFabricType.*')
-            //     ->where('tblFabricType.strFabricTypeID','=', $id)
-            //     ->count();
 
-            // if ($count != 0 || $count2 != 0){
-            //         return redirect('maintenance/fabric-type?success=beingUsed'); 
-            //     }else {
+            if ($count != 0){
+                    return redirect('maintenance/fabric-thread-count?success=beingUsed'); 
+                }else {
 
             $threadCount->strFabricThreadCountInactiveReason = trim($request->input('delInactiveThreadCount'));
             $threadCount->boolIsActive = 0;
@@ -178,6 +173,7 @@ class FabricThreadCountController extends Controller
         \Session::flash('flash_message_delete','Thread count successfully deactivated.');
 
         return redirect('maintenance/fabric-thread-count');
+        }
         
     }
 

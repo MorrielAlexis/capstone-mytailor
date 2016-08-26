@@ -66,6 +66,20 @@
           </div>
         </div>
       @endif
+
+      <!--  <Data Dependency Message> -->
+       @if (Input::get('success') == 'beingUsed')
+        <div class="row" id="success-message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red">
+              <span class="black-text" style="color:black">Sorry! Fabric pattern cannot be deactivated! Fabric pattern is still affiliated with other materials.<i class="tiny mdi-navigation-close right" onclick="$('#success-message').hide()"></i></span>
+            </div>
+          </div>
+        </div>
+      @endif
+
+
+
     <div class="row">
       <div class="col s12 m12 l12">
         <span class="page-title"><h4>Maintenance - Fabric Pattern</h4></span>
@@ -308,6 +322,10 @@
 
           setTimeout(function () {
             $('#flash_message').hide();
+        }, 5000);
+
+          setTimeout(function () {
+            $('#success-message').hide();
         }, 5000);
 
       } );

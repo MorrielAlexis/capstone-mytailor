@@ -78,23 +78,23 @@
       @endif
 
 
-       <!--Reactivate Segment segmentStyle-->
-      @if (Input::get('successRec') == 'true')
-        <div class="row" id="success-message">
-          <div class="col s12 m12 l12">
-            <div class="card-panel yellow">
-              <span class="black-text" style="color:black">Successfully added back segment style!<i class="tiny mdi-navigation-close right" onclick="$('#success-message').hide()"></i></span>
-            </div>
-          </div>
-        </div>
-        @endif
-
         <!--  <Duplicate Error Message>   -->
     @if (Input::get('success') == 'duplicate')
         <div class="row" id="success-message">
           <div class="col s12 m12 l12">
             <div class="card-panel red">
               <span class="black-text" style="color:black">Record already exists!<i class="tiny mdi-navigation-close right" onclick="$('#success-message').hide()"></i></span>
+            </div>
+          </div>
+        </div>
+      @endif
+
+       <!--  <Data Dependency Message> -->
+       @if (Input::get('success') == 'beingUsed')
+        <div class="row" id="success-message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red">
+              <span class="black-text" style="color:black">Sorry! Segment style cannot be deactivated! Segment style is still affiliated with other materials.<i class="tiny mdi-navigation-close right" onclick="$('#success-message').hide()"></i></span>
             </div>
           </div>
         </div>
@@ -444,6 +444,10 @@
 
           setTimeout(function () {
             $('#flash_message').hide();
+        }, 5000);
+
+          setTimeout(function () {
+            $('#success-message').hide();
         }, 5000);
 
       } );
