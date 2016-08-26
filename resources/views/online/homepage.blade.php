@@ -66,14 +66,14 @@
         
         <div class="col s6 center">
             <section id="gallery">
-                <h2><a style="background-color:transparent; color:grey; font-weight:normal" href="{{URL::to('/online-order-tracking')}}">Order Tracking</a></h2>
+                <h2><a style="background-color:transparent; color:grey; font-weight:normal" href="{{URL::to('/customerprofile-company-order-tracking')}}">Order Tracking</a></h2>
                 <img alt="" src="imgOnline/ordertrack1.jpg">
                 <p class="center-align" style="color:#212121;padding-left:60px; padding-right:60px">
                     Experience made more personal with
                     this feature that let's you monitor 
                     order progress in real-time.
                 </p>           
-                <a class="waves-effect waves-green btn-flat" href="{{URL::to('/online-order-tracking')}}">TRACK YOURS HERE</a>
+                <a class="waves-effect waves-green btn-flat" href="{{URL::to('/customerprofile-company-order-tracking')}}">TRACK YOURS HERE</a>
             </section>
         </div>
     </div>
