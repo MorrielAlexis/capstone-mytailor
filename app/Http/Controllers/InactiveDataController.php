@@ -15,6 +15,7 @@ use App\SegmentStyle;
 use App\MeasurementCategory;
 use App\MeasurementDetail;
 use App\StandardSizeCategory;
+use App\StandardSizeDetail;
 use App\FabricType;
 use App\FabricThreadCount;
 use App\FabricColor;
@@ -26,6 +27,7 @@ use App\Button;
 use App\Zipper;
 use App\HookAndEye;
 use App\ChargeCategoryModel;
+use App\ChargeDetailModel;
 use App\Catalogue;
 use App\Alteration;
 use App\Package;
@@ -59,7 +61,11 @@ class InactiveDataController extends Controller
             ->select('tblSegment.*', 'tblGarmentCategory.strGarmentCategoryName')
 
             ->get();
-        $pattern = SegmentPattern::all();
+       $pattern = \DB::table('tblSegmentPattern')
+                ->join('tblSegmentStyleCategory', 'tblSegmentPattern.strSegPStyleCategoryFK', '=', 'tblSegmentStyleCategory.strSegStyleCatID')
+                ->select('tblSegmentPattern.*','tblSegmentStyleCategory.strSegStyleName') 
+                ->orderBy('strSegPatternID')
+                ->get();
         $segmentStyle = \DB::table('tblSegmentStyleCategory')
                 ->join('tblSegment', 'tblSegmentStyleCategory.strSegmentFK', '=', 'tblSegment.strSegmentID')
                 ->select('tblSegmentStyleCategory.*','tblSegment.strSegmentName') 
@@ -75,6 +81,14 @@ class InactiveDataController extends Controller
             ->get();
             
         $standard = StandardSizeCategory::all();
+        $standardDetail = \DB::table('tblStandardSizeDetail')
+            ->join('tblSegment', 'tblStandardSizeDetail.strStanSizeSegmentFK', '=', 'tblSegment.strSegmentID')
+            ->join('tblMeasurementCategory', 'tblStandardSizeDetail.strStanSizeMeasCatFK', '=', 'tblMeasurementCategory.strMeasurementCategoryID')
+            ->join('tblStandardSizeCategory', 'tblStandardSizeDetail.strStanSizeCategoryFK', '=', 'tblStandardSizeCategory.strStandardSizeCategoryID')
+            ->select('tblStandardSizeDetail.*', 'tblSegment.strSegmentName', 'tblMeasurementCategory.strMeasurementCategoryName', 'tblStandardSizeCategory.strStandardSizeCategoryName')
+            ->orderBy('strStandardSizeDetID')
+            ->get();
+
         $fabricType = FabricType::all();
         $threadCount = FabricThreadCount::all();
         $fabricColor = FabricColor::all();
@@ -86,6 +100,13 @@ class InactiveDataController extends Controller
         $zipper = Zipper::all();
         $hook = HookAndEye::all();
         $chargeCat = ChargeCategoryModel::all();
+        $chargeDetail = \DB::table('tblChargeDetail')
+                ->join('tblSegment', 'tblChargeDetail.strChargeDetSegFK', '=', 'tblSegment.strSegmentID')
+                ->join('tblChargeCategory', 'tblChargeDetail.strChargeCatFK', '=', 'tblChargeCategory.strChargeCatID')
+                ->select('tblChargeDetail.*','tblSegment.strSegmentName', 'tblChargeCategory.strChargeCatName') 
+                ->orderBy('strChargeDetailID')
+                ->get();
+
         $catalogue = Catalogue::all();
         $alteration = Alteration::all();
         $packages = Package::all();
@@ -107,6 +128,7 @@ class InactiveDataController extends Controller
             ->with('measurement_category', $measurement_category)
             ->with('detail', $detail)
             ->with('standard', $standard)
+            ->with('standardDetail', $standardDetail)
             ->with('fabricType', $fabricType)
             ->with('threadCount', $threadCount)
             ->with('fabricColor', $fabricColor)
@@ -118,6 +140,7 @@ class InactiveDataController extends Controller
             ->with('zipper', $zipper)
             ->with('hook', $hook)
             ->with('chargeCat', $chargeCat)
+            ->with('chargeDetail', $chargeDetail)
             ->with('catalogue', $catalogue)
             ->with('alteration', $alteration)
             ->with('packages', $packages)
@@ -370,12 +393,25 @@ class InactiveDataController extends Controller
         return redirect('utilities/inactive-data');
     }
 
-     function reactivate_standardCategory(Request $request)
+    function reactivate_standardCategory(Request $request)
     {
         $standard = StandardSizeCategory::find($request->input('reactID'));
         $standard->strStandardSizeCategoryInactiveReason = null;
         $standard->boolIsActive = 1;
         $standard->save();
+
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
+
+        return redirect('utilities/inactive-data');
+    }
+
+
+    function reactivate_standardDetail(Request $request)
+    {
+        $standardDetail = StandardSizeDetail::find($request->input('reactID'));
+        $standardDetail->strStandardSizeDetInactiveReason = null;
+        $standardDetail->boolIsActive = 1;
+        $standardDetail->save();
 
         \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
 
@@ -523,6 +559,19 @@ class InactiveDataController extends Controller
 
         $chargeCat->boolIsActive = 1;
         $chargeCat->save();
+
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
+
+        return redirect('utilities/inactive-data');
+    }
+
+    function reactivate_chargeDetails(Request $request)
+    {
+        $chargeDetail = ChargeDetailModel::find($request->input('reactID'));
+        $chargeDetail->strChargeDetInactiveReason = null;
+
+        $chargeDetail->boolIsActive = 1;
+        $chargeDetail->save();
 
         \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
 
