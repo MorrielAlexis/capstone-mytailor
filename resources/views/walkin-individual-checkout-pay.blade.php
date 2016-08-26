@@ -64,10 +64,10 @@
 						                  <th data-field="fabric" style="border-right:1px teal solid">Fabric</th>
 						                  <th data-field="base-price" style="border-right:1px teal solid">Base Price</th>
 						                  <th data-field="description" style="border-right:1px teal solid">Description</th>  
-						                  <th data-field="style-price-total" style="border-right:1px teal solid">Style Price Total</th>
-						                  <th data-field="labor-price-per-segment" style="border-right:1px teal solid">Labor Price</th>
-						                  <th data-field="line-total" style="border-right:1px teal solid">Line Total</th>        
-						              	</tr>
+						                  <!-- <th data-field="style-price-total" style="border-right:1px teal solid">Style Price Total</th>
+						                  <th data-field="labor-price-per-segment" style="border-right:1px teal solid">Labor Price</th> -->
+<!-- 						                  <th data-field="line-total" style="border-right:1px teal solid">Grand Total</th>        
+ -->						              	</tr>
 					              	</thead>
 					              	<tbody>
 					              		@for($i = 0; $i < count($values); $i++)
@@ -93,11 +93,13 @@
 																@endif
 												        @endfor
 												</td>
-												<td style="border-right:1px teal solid"><div id="style_price_total" name="style_price_total"> </div></td>
-												<td style="border-right:1px teal solid">[ insert price here ]</td>
-												<td style="border-right:1px teal solid">[ insert price here ]</td>
+												<!-- <td style="border-right:1px teal solid"><div id="style_price_total" name="style_price_total"> </div></td>
+												<td style="border-right:1px teal solid">[ insert price here ]</td> -->
+										 @endfor		
+<!-- 							            	<td style="border-right:1px white solid; border-top:1px white solid; border-bottom:1px white solid"><</td>
+ -->							            
 								            </tr>						            		
-							            @endfor
+							           
 
 							        </tbody>
 							    </table>					
@@ -135,11 +137,11 @@
 
 							<div class="col s12"><div class="divider" style="margin:15px"></div></div>
 							
-							<div class="col s4" style="color:gray; font-size:15px"><p><b>Total Labor Price</b></p></div>
-			      			<div class="col s8" style="color:gray;"><p><input id="style_price_total" name="style_price_total" type="text" class="" readonly><b></b></p></div>
+							<!-- <div class="col s4" style="color:gray; font-size:15px"><p><b>Total Labor Price</b></p></div>
+			      			<div class="col s8" style="color:gray;"><p><input id="style_price_total" name="style_price_total" type="text" class="" readonly><b></b></p></div> -->
 
 			      			<div class="col s4" style="color:red; font-size:15px"><p><b>Grand Total</b></p></div>
-			      			<div class="col s8" style="color:red;"><p><input id="total_price" name="total_price" type="text" class="" readonly><b></b></p></div>
+			      			<div class="col s8" style="color:red;"><p><input id="total_price" name="total_price" type="text" class="" readonly style="font-size:3em"></p></div>
 
                         	<div class="col s4" style="color:gray; font-size:15px"><p><b>Terms of Payment</b></p></div>
                         	<div class="col s8" style="padding:18px; padding-top:30px">
@@ -173,22 +175,22 @@
 
 	                        <div style="color:black" class="col s12"> 
 								<div class="col s4"><p style="color:black; margin-top:5px; font-size:15px"><b>Amount To Pay:</b></p></div>                
-	                          	<div class="col s8"><input  style="padding:5px; border:3px gray solid;" id="amount-payable" name="amount-payable" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="right"></div>
+	                          	<div class="col s8"><b><input  style="padding:5px; border:3px gray solid; font-size:1.5em" id="amount-payable" name="amount-payable" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="right"></b></div>
 	                        </div>
 
 	                        <div style="color:black" class="col s12"> 
 								<div class="col s4"><p style="color:red; margin-top:5px; font-size:15px"><b>Outstanding Balance*:</b></p></div>                
-	                          	<div class="col s8" style="color:red;"><input readonly style="padding:5px; border:3px gray solid" id="balance" name="balance" type="text" class="right"></div>
+	                          	<div class="col s8" style="color:red;"><b><input readonly style="padding:5px; border:3px gray solid; font-size:1.5em" id="balance" name="balance" type="text" class="right"></b></div>
 	                        </div>
 
 	                        <div style="color:black" class="col s12"> 
 								<div class="col s4"><p style="color:black; margin-top:5px; font-size:15px"><b>Amount Tendered:</b></p></div>                
-	                          	<div class="col s8"><input style="padding:5px; border:3px gray solid" name="amount-tendered" id="amount-tendered" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="right"><right></right></div>	                          
+	                          	<div class="col s8"><input style="padding:5px; border:3px gray solid; font-size:1em" name="amount-tendered" id="amount-tendered" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="right"><right></right></div>	                          
 	                        </div>
 
 	                        <div style="color:black" class="col s12"> 
 								<div class="col s4"><p style="color:red; margin-top:5px; font-size:15px"><b>Change*:</b></p></div>                
-	                          	<div class="col s8" style="color:red;"><input readonly style="padding:5px; border:3px gray solid" name="amount-change" id="amount-change" type="text" class="right"></div>
+	                          	<div class="col s8" style="color:red;"><input readonly style="padding:5px; border:3px gray solid; font-size:1em" name="amount-change" id="amount-change" type="text" class="right"></div>
 	                        </div>
 
 
@@ -196,12 +198,12 @@
 							<input type="hidden" id="due_date" name="due_date">
 
 							<div class="col s12"><div class="divider" style="padding-top:10px"></div></div>								
-								<div class="modal-content col s12" style="padding-bottom:20px;">
+								<!-- <div class="modal-content col s12" style="padding-bottom:20px;">
 										<div class="col s5" style="padding-top:10px"><h5><font color="teal"><center><b>Due Date</b></center></font></h5></div>
 										<div class="col s7"><p style="font-size:20px" ><b id="due-date"></b></p></div>
 
 										<div class="col s12" style="padding-left:10px"><p style="color:gray;">Pay balance on (or before) the said due date above</p></div>
-								</div>
+								</div> -->
 	                        <!--<div class="right col s12" style="padding:18px"><a style="margin-top:5px; background-color:red" type="submit" class="right waves-effect waves-green btn modal-trigger tooltipped z-depth-2" data-position="bottom" data-delay="50" data-tooltip="Click to continue payment process" href="#due-date"><font color="white" size="+1">Pay for Order</font></a>		
 								<div id="due-date" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:50px">
 										<h5><font color="red"><center><b>Reminder:</b></center></font></h5>	
@@ -316,8 +318,8 @@
 			$('#style_price_total').val(stylePriceTotal.toFixed(2));
 			$('#total_price').val(totalAmount.toFixed(2));
 			$('#due-date').text(dayNames[dueDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
-			$('#transaction_date').val(newDate.getFullYear() + "-" +  (newDate.getMonth()+1) + "-" + newDate.getDate());
-			$('#due_date').val(dueDate.getFullYear() + "-" +  (dueDate.getMonth()+1) + "-" + dueDate.getDate())
+			$('#transaction_date').val(monthNames[(newDate.getMonth()+1)] + " " + newDate.getDate() + ", " + newDate.getFullYear());
+			$('#due_date').val(monthNames[(dueDate.getMonth()+1)] + " " + dueDate.getDate() + ", " + dueDate.getFullYear());
 		});
 	</script>
 

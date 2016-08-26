@@ -149,21 +149,15 @@ class FabricColorController extends Controller
             $id = $request->input('delfabricColorID');
             $fabricColor = FabricColor::find($request-> input('delfabricColorID'));
 
-            // $count = \DB::table('tblSwatchName')
-            //     ->join('tblFabricType', 'tblSwatchName.strSwatchNameTypeFK', '=', 'tblFabricType.strFabricTypeID')
-            //     ->select('tblFabricType.*')
-            //     ->where('tblFabricType.strFabricTypeID','=', $id)
-            //     ->count();
+            $count = \DB::table('tblFabric')
+                ->join('tblFabricColor', 'tblFabric.strFabricColorFK', '=', 'tblFabricColor.strFabricColorID')
+                ->select('tblFabricColor.*')
+                ->where('tblFabricColor.strFabricColorID','=', $id)
+                ->count();
 
-            // $count2 = \DB::table('tblSwatch')
-            //     ->join('tblFabricType', 'tblSwatch.strSwatchTypeFK', '=', 'tblFabricType.strFabricTypeID')
-            //     ->select('tblFabricType.*')
-            //     ->where('tblFabricType.strFabricTypeID','=', $id)
-            //     ->count();
-
-            // if ($count != 0 || $count2 != 0){
-            //         return redirect('maintenance/fabric-type?success=beingUsed'); 
-            //     }else {
+            if ($count != 0){
+                    return redirect('maintenance/fabric-color?success=beingUsed'); 
+                }else {
 
             $fabricColor->strFabricColorInactiveReason = trim($request->input('delInactivefabricColor'));
             $fabricColor->boolIsActive = 0;
@@ -172,6 +166,7 @@ class FabricColorController extends Controller
         \Session::flash('flash_message_delete','Color successfully deactivated.');
 
         return redirect('maintenance/fabric-color');
+        }
         
     }
 

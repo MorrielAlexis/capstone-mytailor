@@ -195,15 +195,26 @@ class CustomerCompanyController extends Controller
 
     function deleteCompany(Request $request)
     {
+        $id = $request->input('delCompanyID');
         $company = Company::find($request->input('delCompanyID'));
+          $count = \DB::table('tblJobOrder')
+                ->join('tblCustCompany', 'tblJobOrder.strJO_CustomerCompanyFK', '=', 'tblCustCompany.strCompanyID')
+                ->select('tblCustCompany.*')
+                ->where('tblCustCompany.strCompanyID','=', $id)
+                ->count();
 
-        $company->strCompanyInactiveReason = trim($request->input('delInactiveComp'));
-        $company->boolIsActive = 0;
-        $company->save();
+             if ($count != 0){
+                    return redirect('maintenance/company?success=beingUsed'); 
+                }else {
+
+                $company->strCompanyInactiveReason = trim($request->input('delInactiveComp'));
+                $company->boolIsActive = 0;
+                $company->save();
 
         \Session::flash('flash_message_delete','Customer successfully deactivated.');
 
         return redirect('maintenance/company');
+        }
     }
 
     public function smartCounter($id)

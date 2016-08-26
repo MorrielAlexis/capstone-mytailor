@@ -70,7 +70,7 @@
         <div class="row" id="flash_message">
           <div class="col s12 m12 l12">
             <div class="card-panel red">
-              <span class="black-text" style="color:black">Sorry! Cannot deactivate garment category. It's still being used!<i class="tiny mdi-navigation-close right" onclick="$('#success-message').hide()"></i></span>
+              <span class="black-text" style="color:black">Sorry! Cannot deactivate fabric type. It's still being used!<i class="tiny mdi-navigation-close right" onclick="$('#success-message').hide()"></i></span>
             </div>
           </div>
         </div>
@@ -329,6 +329,10 @@
 
           setTimeout(function () {
             $('#flash_message').hide();
+        }, 5000);
+
+          setTimeout(function () {
+            $('#success-message').hide();
         }, 5000);
 
       } );

@@ -410,6 +410,36 @@ class SegmentPatternSeeder extends Seeder
                 'boolIsActive' => '1'
             ),  
 
+            // array(
+            //     'strSegPatternID' => 'SPAT0040',
+            //     'strSegPStyleCategoryFK' => 'SEGSTY023',
+            //     'strSegPName'=>'No Vent',
+            //     'dblPatternPrice' => '10',
+            //     'txtSegPDesc' => 'Usually use  for winter.',
+            //     'strSegPImage' => 'imgDesignPatterns/novent.jpg',
+            //     'boolIsActive' => '1'
+            // ),
+
+            // array(
+            //     'strSegPatternID' => 'SPAT0041',
+            //     'strSegPStyleCategoryFK' => 'SEGSTY023',
+            //     'strSegPName'=>'Center Vent',
+            //     'dblPatternPrice' => '50',
+            //     'txtSegPDesc' => 'Usually use  for winter.',
+            //     'strSegPImage' => 'imgDesignPatterns/centervents.jpg',
+            //     'boolIsActive' => '1'
+            // ),  
+
+            // array(
+            //     'strSegPatternID' => 'SPAT0042',
+            //     'strSegPStyleCategoryFK' => 'SEGSTY023',
+            //     'strSegPName'=>'Side Vent',
+            //     'dblPatternPrice' => '50',
+            //     'txtSegPDesc' => 'Usually use  for winter.',
+            //     'strSegPImage' => 'imgDesignPatterns/sidevents.jpg',
+            //     'boolIsActive' => '1'
+            // ), 
+
             array(
                 'strSegPatternID' => 'SPAT0040',
                 'strSegPStyleCategoryFK' => 'SEGSTY023',
@@ -439,6 +469,7 @@ class SegmentPatternSeeder extends Seeder
                 'strSegPImage' => 'imgDesignPatterns/sidevents.jpg',
                 'boolIsActive' => '1'
             ), 
+
 
             array(
                 'strSegPatternID' => 'SPAT0043',
@@ -750,7 +781,7 @@ class SegmentPatternSeeder extends Seeder
                 'txtSegPDesc' => 'Usually use as a lining for pants.',
                 'strSegPImage' => 'imgDesignPatterns/withoutcuffs.jpg',
                 'boolIsActive' => '1'
-            ),
+            ),                                
 
         );
 

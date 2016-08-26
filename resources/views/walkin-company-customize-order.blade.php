@@ -44,7 +44,7 @@
 						@foreach($values as $value)
 							{!! Form::open(['url' => 'transaction/walkin-company-customize-orders', 'method' => 'POST']) !!}
 							<!--Package Detail-->
-							<div class="col s12" style="margin-bottom:40px">
+							<div class="col s6" style="margin-bottom:40px">
 								
 								<a style="color:black; margin-left:50px" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#removeOrder"><i class="mdi-navigation-close"></i></a>
 								

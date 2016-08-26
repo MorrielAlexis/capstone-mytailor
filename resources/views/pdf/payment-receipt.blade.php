@@ -5,8 +5,6 @@
 		'ITEM',
 		'FABRIC',
 		'DESCRIPTION',
-		'ITEM QTY',
-		'LINE TOTAL'
 	];
 
 ?>
@@ -78,7 +76,7 @@
 					</tr>
 					<tr>
 						<td style="width:40%; font-size:18px; text-align:left"><b>Date:</b></td>
-						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{{ date('m-d-Y') }}</b></td>
+						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{{ date('F d, Y') }}</b></td>
 						<td></td>
 						<td style="width:40%; font-size:18px; text-align:left"><b>Time:</b></td>
 						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{{ date('h:i A') }}</b></td>
@@ -107,44 +105,53 @@
 				</thead>
 
 				<tbody>
-					@foreach($values as $value)
+					@for($i = 0; $i < count($values); $i++)
 					<tr>
 						
 						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%">
-							{{ $value->strGarmentCategoryName }}, {{ $value->strSegmentName }}
+							{{ $values[$i]['strGarmentCategoryName'] }}, {{ $values[$i]['strSegmentName'] }}
 						</td>
 
 						<td style="width:40%">
-							{{ $value->strFabricName }}	
+							{{ $values[$i]['strFabricName'] }}
 						</td>
 						<td style="width:80%">
 							<!--Item description here-->
 							<table border="0" padding="0" style="margin-top:0;">
 								<thead style="border-bottom:1px gray solid">
 									<tr style="color:gray; padding:2%">
-										<th style="color:red"><b>Style Category</b></th>
+										<th style="color:gray"><b>Style Category</b></th>
 										<th style="color:dimgray; padding-left:15px"><b>Pattern Name</b></th>
 									</tr>
 								</thead>
 								<tbody>
-								@for($i = 0; $i < count($values); $i++)
-									@for($j = 0; $j < count($styles[$i]); $j++)
-										@if($styles[$i][$j]->strSegmentID == $value->strSegmentID)
+								@for($j = 0; $j < count($styles[$i]); $j++)
+									@if($styles[$i][$j]->strSegmentID == $values[$i]['strSegmentID'])
 									<tr>									
 										<td><b>{{ $styles[$i][$j]->strSegStyleName }}</b></td>
 										<td>{{ $styles[$i][$j]->strSegPName }}</td>
 									</tr>
-										@endif
-									@endfor
+									@endif
 								@endfor
 								</tbody>
 							</table>
 						</td>
-						<td style="width:20%">{{ count($value) }}</td>
-						<td style="width:30%">{!! session('totalPrice') !!} PHP</td>
+<!-- 						<td style="width:30%">{!! session('totalPrice') !!} PHP</td> -->
 						
 					</tr>
-					@endforeach
+
+					@endfor
+					<tr>
+						<td style="width:50%; border-right:1px teal solid; background-color:teal; height:5%"></td>
+						<td class="right" style="width:50%; background-color:teal; border-right:1px teal solid; color:white; font-size:1em; height:5%;"><b>TOTAL ITEM QTY</b></td>
+						<td style="width:50%; height:5%; color:teal"><b>{!! count($segments) !!}</b></td>
+					</tr>
+					<tr>
+						<td style="width:50%; border-right:1px red solid; background-color:red; opacity:0.90; height:5%"></td>
+						<td class="right" style="width:50%; background-color:red; border-right:1px red solid; opacity:0.90; color:white; font-size:1em; height:5%;"><b>GRAND TOTAL</b></td>
+						<td style="width:50%; height:5%; color:red"><b>{!! session('totalPrice') !!} PHP</b></td>
+					</tr>
+					
 				</tbody>
 			</table>
 
@@ -165,19 +172,17 @@
 					</tr>
 				</thead>
 				<tbody>
-					@foreach($values as $value)
 					@for($i = 0; $i < count($values); $i++)
-						@for($j = 0; $j < count($styles[$i]); $j++)
-							@if($styles[$i][$j]->strSegmentID == $value->strSegmentID)
+					@for($j = 0; $j < count($styles[$i]); $j++)
+						@if($styles[$i][$j]->strSegmentID == $values[$i]['strSegmentID'])
 					<tr>
 						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">{{ $styles[$i][$j]->strSegStyleName }}</td>
 						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">{{ $styles[$i][$j]->strSegPName }}</td>
 						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">{{ number_format($styles[$i][$j]->dblPatternPrice, 2) }} PHP</td>
 					</tr>
-							@endif
-						@endfor
+						@endif
 					@endfor
-					@endforeach
+					@endfor
 				</tbody>
 			</table>
 			<!--End of Style Summary-->
@@ -198,12 +203,12 @@
 					</tr>
 				</thead>
 				<tbody>
-					@foreach($values as $value)
+					@for($i = 0; $i < count($values); $i++)
 					<tr>
-						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">{{ $value->strFabricName }}	</td>
-						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">{{ number_format($value->dblFabricPrice, 2) }} PHP</td>
+						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">{{ $values[$i]['strFabricName'] }}	</td>
+						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">{{ number_format($values[$i]['dblFabricPrice'], 2) }} PHP</td>
 					</tr>
-					@endforeach
+					@endfor
 				</tbody>
 			</table>
 			<!--End of Fabric Summary-->
@@ -250,7 +255,7 @@
 					</tr>
 					<tr>
 						<td style="width:40%; font-size:18px; text-align:left"><b>Date:</b></td>
-						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{{ date('m-d-Y') }}</b></td>
+						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{{ date('F d, Y') }}</b></td>
 						<td></td>
 						<td style="width:40%; font-size:18px; text-align:left"><b>Time:</b></td>
 						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{{ date('h:i A') }}</b></td>
@@ -272,12 +277,20 @@
 				<thead style="background-color:teal; opacity:0.90; color:white">
 					<tr>
 						<th>JOB ORDER ID</th>
+						<th>TERM OF PAYMENT</th>
+						@if( $termsOfPayment == 'Half Payment')
+							<th>DOWNPAYMENT (50%)</th>
+						@endif
 						<th>TOTAL AMOUNT PRICE</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%"><b>{!! session('joID') !!}</b></td>
+						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%">{{ $termsOfPayment }}</td>
+						@if( $termsOfPayment == 'Half Payment')
+							<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%">{!! session('outstandingBal') !!} PHP</td>
+						@endif
 						<td style="width:60%">
 							<b>Sub total: </b> {!! session('totalPrice') !!} PHP<br>
 							<b>Additional Fee: </b> 0.00 PHP<br><br>
@@ -290,43 +303,38 @@
 		</div>
 		
 		<div class="col s12" style="margin-top:1%">
-			<table>
-				<thead style="color:teal;">
-					<tr>
-						<th style="padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">TERM OF PAYMENT</th>
-						<th style="padding-top:10px; padding-bottom:10px; padding-left:20%; padding-right:15%;">DOWNPAYMENT (50%)</th>
-						<th style="padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">AMOUNT PAID</th>
-						<th style="padding-top:10px; padding-bottom:10px; padding-left:20%; padding-right:15%;">OUTSTANDING BALANCE</th>
-						<th style="padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">AMOUNT TENDERED</th>
-						<th style="padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">CHANGE</th>
-					</tr>
-				</thead>
+			<table width="98%">
 				<tbody>
 					<tr>
-						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">{{ $termsOfPayment }}</td>
-						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">
-							@if( $termsOfPayment == 'Half Payment')
-								{!! session('outstandingBal') !!} PHP
-							@endif
-							@if( $termsOfPayment == 'Full Payment')
-								<font color="gray">*<!-- <b>No Downpayment.</b>  -->Amount has been paid in full.</font>
-							@endif
-						</td>	
-						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">{!! session('amountToPay') !!} PHP</td>
-						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">{!! session('outstandingBal') !!} PHP</td>
-						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">{{ number_format($amtTendered, 2) }} PHP</td>
-						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">{{ number_format($amtChange, 2) }} PHP</td>
+						<td style="width:50%; padding-top:10px; padding-bottom:10px; background-color:teal; color:white; border: 2px white solid">AMOUNT PAID</td>
+						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1.2em"><b>{!! session('amountToPay') !!} PHP</b></td>
 					</tr>
+					<tr>
+						<td style="width:50%; padding-top:10px; padding-bottom:10px; background-color:teal; color:white; border: 2px white solid">AMOUNT TENDERED</td>
+						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1em">{{ number_format($amtTendered, 2) }} PHP</td>
+					</tr>
+					<tr>
+						<td style="width:50%; padding-top:10px; padding-bottom:10px; background-color:teal; color:white; border: 2px white solid">CHANGE</td>
+						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1em">{{ number_format($amtChange, 2) }} PHP</td>
+					</tr>
+					
+					<tr>
+						<td style="width:50%; padding-top:10px; padding-bottom:10px; background-color:teal; color:white; border: 2px white solid">OUTSTANDING BALANCE<p></p></td>
+						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1.2em">
+							<b>{!! session('outstandingBal') !!} PHP</b>
+						</td>
+					</tr>
+					@if( $termsOfPayment == 'Half Payment')
+					<tr>
+						<td style="width:50%; padding-top:10px; padding-bottom:10px; background-color:red; opacity:0.80; color:white; border: 2px white solid">DUE DATE FOR PAYMENT</td>
+						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1.2em; color:red"><b>{!! session('dueDate') !!}</b> <br><font color="gray" size="15px">*Pay balance before or on the said date</font></td>
+					</tr>
+					@endif
 				</tbody>
 			</table>
 
 
-			@if( $termsOfPayment == 'Half Payment')
-			<div class="col s12" style="margin-top:10%; margin-left:5%; font-size:20px">
-				<b>DUE DATE: </b><b style="color:red; font-size:20px"> {!! session('dueDate') !!}</b><br>
-				<font color="gray" size="15px">*Pay balance before or on the said date</font>
-			</div>
-			@endif
+			
 		</div>
 
 	</body>

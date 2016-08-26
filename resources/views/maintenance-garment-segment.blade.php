@@ -484,6 +484,10 @@
             $('#flash_message').hide();
         }, 5000);
 
+          setTimeout(function () {
+            $('#success-message').hide();
+        }, 5000);
+
       } );
     </script>
 

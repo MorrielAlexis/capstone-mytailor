@@ -228,7 +228,18 @@ class FabricController extends Controller
 
     function delete_fabric(Request $request)
     {
+        $id = $request->input('delFabricID');
         $fabric = Fabric::find($request->input('delFabricID'));
+
+        $count = \DB::table('tblJOSpecific')
+                ->join('tblFabric', 'tblJOSpecific.strJOFabricFK', '=', 'tblFabric.strFabricID')
+                ->select('tblFabric.*')
+                ->where('tblFabric.strFabricID','=', $id)
+                ->count();
+
+            if ($count != 0){
+                    return redirect('maintenance/fabric?success=beingUsed'); 
+                }else {
 
         $fabric->strFabricInactiveReason = trim($request->input('delInactiveFabric'));
         $fabric->boolIsActive = 0;
@@ -238,6 +249,7 @@ class FabricController extends Controller
        \Session::flash('flash_message_delete','Fabric was successfully deactivated.'); //flash message
 
         return redirect('maintenance/fabric');
+        }
     }
 
 

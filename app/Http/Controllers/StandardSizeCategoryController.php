@@ -141,7 +141,17 @@ class StandardSizeCategoryController extends Controller
     function delete_standardCategory(Request $request)
     {
          $id = $request->input('delStandardCatID');
-            $standard = StandardSizeCategory::find($request-> input('delStandardCatID'));
+         $standard = StandardSizeCategory::find($request-> input('delStandardCatID'));
+
+          $count = \DB::table('tblStandardSizeDetail')
+                ->join('tblStandardSizeCategory', 'tblStandardSizeDetail.strStanSizeCategoryFK', '=', 'tblStandardSizeCategory.strStandardSizeCategoryID')
+                ->select('tblStandardSizeCategory.*')
+                ->where('tblStandardSizeCategory.strStandardSizeCategoryID','=', $id)
+                ->count();
+          if ($count != 0 || $count2 != 0){
+                    return redirect('maintenance/measurement-category?success=beingUsed'); 
+                }else {
+
             $standard->strStandardSizeCategoryInactiveReason = trim($request->input('delInactiveStandardSizeCat'));
             $standard->boolIsActive = 0;
             $standard->save();
@@ -149,6 +159,7 @@ class StandardSizeCategoryController extends Controller
         \Session::flash('flash_message_delete','Standard size category successfully deactivated.');
 
         return redirect('maintenance/standard-size-category');
+        }
         
     }
 

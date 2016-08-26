@@ -158,19 +158,13 @@ class FabricTypeController extends Controller
             $id = $request->input('delFabricID');
             $fabricType = FabricType::find($request-> input('delFabricID'));
 
-            $count = \DB::table('tblSwatchName')
-                ->join('tblFabricType', 'tblSwatchName.strSwatchNameTypeFK', '=', 'tblFabricType.strFabricTypeID')
+            $count = \DB::table('tblFabric')
+                ->join('tblFabricType', 'tblFabric.strFabricTypeFK', '=', 'tblFabricType.strFabricTypeID')
                 ->select('tblFabricType.*')
                 ->where('tblFabricType.strFabricTypeID','=', $id)
                 ->count();
 
-            $count2 = \DB::table('tblSwatch')
-                ->join('tblFabricType', 'tblSwatch.strSwatchTypeFK', '=', 'tblFabricType.strFabricTypeID')
-                ->select('tblFabricType.*')
-                ->where('tblFabricType.strFabricTypeID','=', $id)
-                ->count();
-
-            if ($count != 0 || $count2 != 0){
+            if ($count != 0){
                     return redirect('maintenance/fabric-type?success=beingUsed'); 
                 }else {
 
