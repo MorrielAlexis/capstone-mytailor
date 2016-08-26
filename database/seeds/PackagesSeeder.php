@@ -35,13 +35,13 @@ class PackagesSeeder extends Seeder
               'strPackageSex' =>  'F',
         			'strPackageSeg1FK' =>  'SEGM003',
 				    	'strPackageSeg2FK' =>  'SEGM005',
-      		  	'strPackageSeg3FK' =>  'SEGM007',
+      		  	'strPackageSeg3FK' =>  'SEGM009',
               // 'strPackageSeg4FK' =>  'SEGM002',
               // 'strPackageSeg5FK' =>  'SEGM001',
               'dblPackagePrice' => '3500.00',
               'intPackageMinDays' => '60',
-					    'strPackageImage' =>  'imgPackages/blouse-pants-dress-2.png',
-					    'strPackageDesc' =>  'Pair of slacks and blouse plus a dress.',
+					    'strPackageImage' =>  'imgPackages/blouse-skirt-blazer-female.jpg',
+					    'strPackageDesc' =>  'Pair of skirt and blouse plus a blazer.',
 					    'boolIsActive'  =>  '1'     
 					)
 

@@ -86,17 +86,17 @@ class SegmentSeeder extends Seeder
                 'boolIsActive' => '1'
             ),
 
-             array(
-                'strSegmentID' => 'SEGM007',
-                'strSegCategoryFK' => 'GARM001',    
-                'strSegmentName' =>'Dress',
-                'dblSegmentPrice' => '600.00',
-                'strSegmentSex' => 'F',
-                'intMinDays' => '3',
-                'strSegmentImage' => 'imgSegments/dressfinal.jpg',
-                'textSegmentDesc' => 'Formal for womens uniform.',
-                'boolIsActive' => '1'
-            ),
+            //  array(
+            //     'strSegmentID' => 'SEGM007',
+            //     'strSegCategoryFK' => 'GARM001',    
+            //     'strSegmentName' =>'Dress',
+            //     'dblSegmentPrice' => '600.00',
+            //     'strSegmentSex' => 'F',
+            //     'intMinDays' => '3',
+            //     'strSegmentImage' => 'imgSegments/dressfinal.jpg',
+            //     'textSegmentDesc' => 'Formal for womens uniform.',
+            //     'boolIsActive' => '1'
+            // ),
 
             array(
                 'strSegmentID' => 'SEGM008',
@@ -120,7 +120,7 @@ class SegmentSeeder extends Seeder
                 'strSegmentImage' => 'imgSegments/blazer-woman.jpg',
                 'textSegmentDesc' => 'Upper part wear.',
                 'boolIsActive' => '1'
-            )
+            ),
 
             // array(
             //     'strSegmentID' => 'SEGM010',
