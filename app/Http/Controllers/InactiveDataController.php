@@ -26,6 +26,7 @@ use App\Button;
 use App\Zipper;
 use App\HookAndEye;
 use App\ChargeCategoryModel;
+use App\ChargeDetailModel;
 use App\Catalogue;
 use App\Alteration;
 use App\Package;
@@ -86,6 +87,13 @@ class InactiveDataController extends Controller
         $zipper = Zipper::all();
         $hook = HookAndEye::all();
         $chargeCat = ChargeCategoryModel::all();
+        $chargeDetail = \DB::table('tblChargeDetail')
+                ->join('tblSegment', 'tblChargeDetail.strChargeDetSegFK', '=', 'tblSegment.strSegmentID')
+                ->join('tblChargeCategory', 'tblChargeDetail.strChargeCatFK', '=', 'tblChargeCategory.strChargeCatID')
+                ->select('tblChargeDetail.*','tblSegment.strSegmentName', 'tblChargeCategory.strChargeCatName') 
+                ->orderBy('strChargeDetailID')
+                ->get();
+
         $catalogue = Catalogue::all();
         $alteration = Alteration::all();
         $packages = Package::all();
@@ -118,6 +126,7 @@ class InactiveDataController extends Controller
             ->with('zipper', $zipper)
             ->with('hook', $hook)
             ->with('chargeCat', $chargeCat)
+            ->with('chargeDetail', $chargeDetail)
             ->with('catalogue', $catalogue)
             ->with('alteration', $alteration)
             ->with('packages', $packages)
@@ -523,6 +532,19 @@ class InactiveDataController extends Controller
 
         $chargeCat->boolIsActive = 1;
         $chargeCat->save();
+
+        \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
+
+        return redirect('utilities/inactive-data');
+    }
+
+    function reactivate_chargeDetails(Request $request)
+    {
+        $chargeDetail = ChargeDetailModel::find($request->input('reactID'));
+        $chargeDetail->strChargeDetInactiveReason = null;
+
+        $chargeDetail->boolIsActive = 1;
+        $chargeDetail->save();
 
         \Session::flash('flash_message_inactive','Record was successfully reactivated.'); //flash message
 

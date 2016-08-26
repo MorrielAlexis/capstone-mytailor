@@ -1167,7 +1167,7 @@
       </div>
 
       <!--Charge Details-->
-      {{-- <p><h5 style="margin-left:20px"><b>Charge Details</b></h5></p>
+      <p><h5 style="margin-left:20px"><b>Charge Details</b></h5></p>
       <div class="row">
         <div class="col s12">
           <div class="card">
@@ -1178,24 +1178,27 @@
 
                   <thead>
                     <tr>
-                      <!--<th data-field= "Catalogue ID">Catalogue ID</th>-->
-                      <th data-field="alterationName">Name</th>
+                      <th data-field="Charge Category">Charge Category</th>
+                      <th data-field="Segment">Segment</th>
+                      <th data-field="Fee">Fee</th>
                       <th data-field="alterationDescription">Description</th>
                       <th data-field="React">Reason for Deactivation</th>
                       <th data-field="React">Reactivate</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach($chargeCat as $chargeCat_1)
-                    @if($chargeCat_1->boolIsActive == 0)
-                      <tr>
-                        <td>{{$chargeCat_1->strChargeCatName}}</td>
-                        <td>{{$chargeCat_1->txtChargeDesc}}</td>
-                        <td>{{ $chargeCat_1->strChargeCatInactiveReason }}</td>
+                    @foreach($chargeDetail as $chargeDetail_1)
+                      @if($chargeDetail_1->boolIsActive == 0)
+                      <tr>   
+                        <td>{{ $chargeDetail_1->strChargeCatName }}</td> 
+                        <td>{{ $chargeDetail_1->strSegmentName }}</td>
+                        <td>{{ number_format($chargeDetail_1->dblChargeDetPrice, 2) . ' PHP' }}</td>
+                        <td>{{ $chargeDetail_1->txtChargeDetDesc }}</td>
+                        <td>{{ $chargeDetail_1->strChargeDetInactiveReason }}</td>
                         <td>
-                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-charges']) !!}
-                            <input type="hidden" value="{{ $chargeCat_1->strChargeCatID }}" id="reactID" name="reactID">
-                            <input type="hidden" value="{{ $chargeCat_1->strChargeCatID }}" id="reactInactiveChargeCat" name="reactInactiveChargeCat">
+                          {!! Form::open(['url' => 'utilities/inactive-data/reactivate-charges-details']) !!}
+                            <input type="hidden" value="{{ $chargeDetail_1->strChargeDetailID }}" id="reactID" name="reactID">
+                            <input type="hidden" value="{{ $chargeDetail_1->strChargeDetailID }}" id="reactInactiveChargeDet" name="reactInactiveChargeDet">
                             <button type="submit" style="color:black" class="btn tooltipped btn-small center-text light-green accent-1" data-position="bottom" data-delay="50" data-tooltip="Click to return data of customer to the table">REACTIVATE</button>
                           {!! Form::close() !!}
                         </td>
@@ -1210,7 +1213,7 @@
             </div>
           </div>
         </div>
-      </div> --}}
+      </div>
     </div>
 
     <div id="tabCata" class="hue col s12" style="margin-top:45px; background-color: #80d8ff;">
