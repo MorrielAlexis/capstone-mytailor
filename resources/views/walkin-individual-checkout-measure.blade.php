@@ -72,7 +72,7 @@
 	       	<div class="row" style="background-color:white; margin-top:20px">
 
 
-					<div class="col s8" style="margin-left:20px;color:red">
+					<!-- <div class="col s8" style="margin-left:20px;color:red">
 						<p><b>Unit of Measurement</b></p>
 	                        	<div class="col s6">
 			          				<input name="uom{{ $i+1 }}" value="cm" type="radio" class="filled-in payment" id="cm{{ $i+1 }}" />
@@ -82,7 +82,7 @@
 				          			<input name="uom{{ $i+1 }}" value="in" type="radio" class="filled-in payment" id="in{{ $i+1 }}" />
 		      						<label for="in{{ $i+1 }}">inch (in)</label>
 		      					</div>
-	      					</div>
+	      			</div> -->
 
 	            	<div class="col s12" style="padding:20px"> 
 	            		

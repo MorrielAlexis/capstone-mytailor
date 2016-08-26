@@ -605,7 +605,6 @@ class MeasurementDetailSeeder extends Seeder
                 'boolIsActive' => '1'
             ),
 
-
             array(
                 'strMeasurementDetailID' => 'MEASDET0050',
                 'strMeasDetSegmentFK' => 'SEGM008', 
@@ -823,53 +822,53 @@ class MeasurementDetailSeeder extends Seeder
                 'boolIsActive' => '1'
             ),
 
-            array(
-                'strMeasurementDetailID' => 'MEASDET0068',
-                'strMeasDetSegmentFK' => 'SEGM007', 
-                'strMeasCategoryFK' =>'MEASCAT002',
-                'strMeasDetailName' =>'Dress Length',
-                'txtMeasDetailDesc' =>'',
-                'strMeaDetailImage' => '',
-                'dblMeasDetailMinCm' =>'11',
-                'dblMeasDetailMinInch' =>'2',
-                'boolIsActive' => '1'
-            ),
+            // array(
+            //     'strMeasurementDetailID' => 'MEASDET0068',
+            //     'strMeasDetSegmentFK' => 'SEGM007', 
+            //     'strMeasCategoryFK' =>'MEASCAT002',
+            //     'strMeasDetailName' =>'Dress Length',
+            //     'txtMeasDetailDesc' =>'',
+            //     'strMeaDetailImage' => '',
+            //     'dblMeasDetailMinCm' =>'11',
+            //     'dblMeasDetailMinInch' =>'2',
+            //     'boolIsActive' => '1'
+            // ),
 
-            array(
-                'strMeasurementDetailID' => 'MEASDET0069',
-                'strMeasDetSegmentFK' => 'SEGM007', 
-                'strMeasCategoryFK' =>'MEASCAT002',
-                'strMeasDetailName' =>'Shoulder Width',
-                'txtMeasDetailDesc' =>'',
-                'strMeaDetailImage' => '',
-                'dblMeasDetailMinCm' =>'11',
-                'dblMeasDetailMinInch' =>'2',
-                'boolIsActive' => '1'
-            ),
+            // array(
+            //     'strMeasurementDetailID' => 'MEASDET0069',
+            //     'strMeasDetSegmentFK' => 'SEGM007', 
+            //     'strMeasCategoryFK' =>'MEASCAT002',
+            //     'strMeasDetailName' =>'Shoulder Width',
+            //     'txtMeasDetailDesc' =>'',
+            //     'strMeaDetailImage' => '',
+            //     'dblMeasDetailMinCm' =>'11',
+            //     'dblMeasDetailMinInch' =>'2',
+            //     'boolIsActive' => '1'
+            // ),
 
-            array(
-                'strMeasurementDetailID' => 'MEASDET0070',
-                'strMeasDetSegmentFK' => 'SEGM007', 
-                'strMeasCategoryFK' =>'MEASCAT002',
-                'strMeasDetailName' =>'Hips',
-                'txtMeasDetailDesc' =>'',
-                'strMeaDetailImage' => '',
-                'dblMeasDetailMinCm' =>'11',
-                'dblMeasDetailMinInch' =>'2',
-                'boolIsActive' => '1'
-            ),
+            // array(
+            //     'strMeasurementDetailID' => 'MEASDET0070',
+            //     'strMeasDetSegmentFK' => 'SEGM007', 
+            //     'strMeasCategoryFK' =>'MEASCAT002',
+            //     'strMeasDetailName' =>'Hips',
+            //     'txtMeasDetailDesc' =>'',
+            //     'strMeaDetailImage' => '',
+            //     'dblMeasDetailMinCm' =>'11',
+            //     'dblMeasDetailMinInch' =>'2',
+            //     'boolIsActive' => '1'
+            // ),
 
-            array(
-                'strMeasurementDetailID' => 'MEASDET0071',
-                'strMeasDetSegmentFK' => 'SEGM007', 
-                'strMeasCategoryFK' =>'MEASCAT002',
-                'strMeasDetailName' =>'Breasts',
-                'txtMeasDetailDesc' =>'',
-                'strMeaDetailImage' => '',
-                'dblMeasDetailMinCm' =>'11',
-                'dblMeasDetailMinInch' =>'2',
-                'boolIsActive' => '1'
-            ),
+            // array(
+            //     'strMeasurementDetailID' => 'MEASDET0071',
+            //     'strMeasDetSegmentFK' => 'SEGM007', 
+            //     'strMeasCategoryFK' =>'MEASCAT002',
+            //     'strMeasDetailName' =>'Breasts',
+            //     'txtMeasDetailDesc' =>'',
+            //     'strMeaDetailImage' => '',
+            //     'dblMeasDetailMinCm' =>'11',
+            //     'dblMeasDetailMinInch' =>'2',
+            //     'boolIsActive' => '1'
+            // ),
 
             array(
                 'strMeasurementDetailID' => 'MEASDET0072',
@@ -1075,10 +1074,7 @@ class MeasurementDetailSeeder extends Seeder
                 'dblMeasDetailMinCm' =>'11',
                 'dblMeasDetailMinInch' =>'2',
                 'boolIsActive' => '1'
-            )
-
-
-
+            ),
 
         );
 

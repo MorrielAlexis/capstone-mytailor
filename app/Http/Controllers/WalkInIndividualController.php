@@ -328,7 +328,8 @@ class WalkInIndividualController extends Controller
                 if($detail->strMeasDetSegmentFK == $segment['strSegmentID']){
                     $measurementName[$i][$j] = $request->input('detailName' . ($i+1) . ($j+1));
                     $measurementDetails[$i][$j] = $request->input($detail->strMeasurementDetailID . ($i+1));
-                    $measurementDetails[$i][$j+1] = $request->input('uom' . ($i+1));
+                    $measurementDetails[$i][$j+1] = "cm";
+                    // $measurementDetails[$i][$j+1] = $request->input('uom' . ($i+1));
                 }
                 $j++;
             }
@@ -672,7 +673,12 @@ class WalkInIndividualController extends Controller
         $amtTendered = (double)session()->get('amountTendered');
         $amtChange = (double)session()->get('amountChange');
 
-        $pdf = PDF::loadView('pdf/payment-receipt', compact('data', 'custname', 'empname', 'segments', 'values', 'styles', 'termsOfPayment', 'paymentid', 'order_receipt', 'payment_receipt', 'fabric', 'amtTendered', 'amtChange', 'style_count'))->setPaper('Letter')->setOrientation('portrait');
+        $pdf = PDF::loadView('pdf/payment-receipt', 
+                    compact('data', 'custname', 'empname', 'segments',
+                        'values', 'styles', 'termsOfPayment', 'paymentid',
+                        'order_receipt', 'payment_receipt', 'fabric', 
+                        'amtTendered', 'amtChange', 'style_count'))
+        ->setPaper('Letter')->setOrientation('portrait');
 
         return $pdf->stream();
         // $jobId = session()->get('joID');
