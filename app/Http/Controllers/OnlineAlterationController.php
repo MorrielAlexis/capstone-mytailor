@@ -148,7 +148,7 @@ class OnlineAlterationController extends Controller
         session()->forget('orders');
         session(['orders' => $values]);
 
-        return redirect('transaction/online-alteration-newcustomer-update');
+        return redirect('transaction/online-alterationtransaction-newcustomer-update');
     }
 
     public function checkoutCustInfo()
