@@ -499,7 +499,7 @@ Route::get('online-alteration-checkout-payment', 'OnlineCheckoutAlterationContro
 
 	Route::get('customize-suit-fabric', 'OnlineCustomizeSuitController@fabric');
 	Route::post('customize-suit-style-jacket', 'OnlineCustomizeSuitController@stylejacket');
-	Route::post('customize-suit-style-collar-pocket', 'OnlineCustomizeSuitController@stylecollarpocket');
+	//Route::post('customize-suit-style-collar-pocket', 'OnlineCustomizeSuitController@stylecollarpocket');
 	Route::post('customize-suit-style-pants', 'OnlineCustomizeSuitController@stylepants');
 	Route::post('customize-suit-style-monogram', 'OnlineCustomizeSuitController@stylemonogram');
 

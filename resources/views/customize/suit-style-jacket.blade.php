@@ -33,7 +33,6 @@
 
         <ul class="tabs transparent" style="float:left; margin-top:40px;">
           <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab active"><a style="color:black" href="#tabJacket">Jacket Style</a></li>
-          <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Jacket Collar & Pockets</li>
           <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Pants Style</li>
           <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Monogram</li>
           <div class="indicator teal accent-4" style="z-index:1"></div>
@@ -42,7 +41,7 @@
         <!--JACKET TAB-->
         <div id="tabJacket" class="col s12 white" style="padding:20px; border: 2px teal accent-4;">
 
-      {!! Form::open(['url' => 'customize-suit-style-collar-pocket', 'method' => 'post']) !!}
+      {!! Form::open(['url' => 'customize-suit-style-pants', 'method' => 'post']) !!}
           <div class="col s12"><button class="btn-flat right teal accent-4 white-text" type="submit">Next step</button></div>
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
           
@@ -65,13 +64,14 @@
           </div>
           @endforeach
 
-
+          @foreach($segments as $segment)
           <div class="col s12">
             <ul class="collapsible" data-collapsible="accordion" style="border:none;">
-              <li>
-                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Single Breasted</div>
+              @foreach($singleSegment as $single)
+              @if($single->boolIsActive == 1)
+              <li @if($segment->strSegmentID != $single->strSegmentFK) hidden @endif>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $single->strSegStyleName }}</div>
                 <div class="collapsible-body row overflow-x" style="padding:20px;">
-                  @foreach($singleSegment as $single)
                   <div class="col s12">
                     @foreach($patterns as $pattern)
                     <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $single->strSegStyleCatID) hidden @endif>
@@ -82,15 +82,17 @@
                       </p>
                     </div>
                     @endforeach
-                  </div>
-                  @endforeach 
+                  </div> 
                 </div>
               </li>
+              @endif
+              @endforeach
 
-              <li>
-                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Double Breasted</div>
+              @foreach($doubleSegment as $double)
+              @if($double->boolIsActive == 1)
+              <li @if($segment->strSegmentID != $double->strSegmentFK) hidden @endif>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $double->strSegStyleName }}</div>
                 <div class="collapsible-body row overflow-x" style="padding:20px;">
-                  @foreach($doubleSegment as $double)
                   <div class="col s12">
                     @foreach($patterns as $pattern)
                     <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $double->strSegStyleCatID) hidden @endif>
@@ -102,15 +104,17 @@
                     </div>
                     @endforeach
                   </div>
-                  @endforeach 
                 </div>
               </li>
+              @endif
+              @endforeach 
 
-              <li>
-                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Jacket Bottom</div>
+
+              @foreach($jacketSegment as $jacket)
+              @if($jacket->boolIsActive == 1)
+              <li @if($segment->strSegmentID != $jacket->strSegmentFK) hidden @endif>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $jacket->strSegStyleName }}</div>
                 <div class="collapsible-body row overflow-x" style="padding:20px;">
-                  <div class="col s6">
-                  @foreach($jacketSegment as $jacket)
                   <div class="col s12">
                     @foreach($patterns as $pattern)
                     <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $jacket->strSegStyleCatID) hidden @endif>
@@ -122,14 +126,16 @@
                     </div>
                     @endforeach
                   </div>
-                  @endforeach 
                 </div>
               </li> 
+              @endif
+              @endforeach 
 
-              <li>
-                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Vents</div>
+              @foreach($ventsSegment as $vents)
+              @if($vents->boolIsActive == 1)
+              <li @if($segment->strSegmentID != $vents->strSegmentFK) hidden @endif>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $vents->strSegStyleName }}</div>
                 <div class="collapsible-body row overflow-x" style="padding:20px;">
-                  @foreach($ventsSegment as $vents)
                   <div class="col s12">
                     @foreach($patterns as $pattern)
                     <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $vents->strSegStyleCatID) hidden @endif>
@@ -141,11 +147,157 @@
                     </div>
                     @endforeach
                   </div>
-                  @endforeach 
                 </div>
-              </li>                                      
+              </li> 
+              @endif
+              @endforeach 
+
+              @foreach($collarSegment as $collar)
+              @if($collar->boolIsActive == 1)
+              <li @if($segment->strSegmentID != $collar->strSegmentFK) hidden @endif>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $collar->strSegStyleName }}</div>
+                <div class="collapsible-body row overflow-x" style="padding:20px;">
+                  <div class="col s12">
+                    @foreach($patterns as $pattern)
+                    <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $collar->strSegStyleCatID) hidden @endif>
+                      <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
+                      <p>
+                        <input name="rdb_pattern{{ $collar->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
+                        <label for="{{ $pattern->strSegPatternID }}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
+                      </p>
+                    </div>
+                    @endforeach
+                  </div>
+                </div>
+              </li>
+              @endif
+              @endforeach
+
+              @foreach($chestSegment as $chest)
+              @if($chest->boolIsActive == 1)
+              <li @if($segment->strSegmentID != $chest->strSegmentFK) hidden @endif>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $chest->strSegStyleName }}</div>
+                <div class="collapsible-body row overflow-x" style="padding:20px;">
+                  <div class="col s12">
+                    @foreach($patterns as $pattern)
+                    <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $chest->strSegStyleCatID) hidden @endif>
+                      <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
+                      <p>
+                        <input name="rdb_pattern{{ $chest->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
+                        <label for="{{ $pattern->strSegPatternID }}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
+                      </p>
+                    </div>
+                    @endforeach
+                  </div>
+                </div>
+              </li>
+              @endif
+              @endforeach
+
+              @foreach($jackpotSegment as $jackpot)
+              @if($jackpot->boolIsActive == 1)
+              <li @if($segment->strSegmentID != $jackpot->strSegmentFK) hidden @endif>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $jackpot->strSegStyleName }}</div>
+                <div class="collapsible-body row overflow-x" style="padding:20px;">
+                  <div class="col s12">
+                    @foreach($patterns as $pattern)
+                    <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $jackpot->strSegStyleCatID) hidden @endif>
+                      <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
+                      <p>
+                        <input name="rdb_pattern{{ $jackpot->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
+                        <label for="{{ $pattern->strSegPatternID }}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
+                      </p>
+                    </div>
+                    @endforeach
+                  </div>
+                </div>
+              </li>
+              @endif
+              @endforeach                                     
             </ul>     
           </div>
+          @endforeach
+
+          <div class="col s12" style="margin-top:20px;">
+            
+            <div class="col s3">
+              <h5><b>Functional Buttonhole on Sleeves</b></h5>
+              <img class="materialboxed responsive-img" src="imgDesignPatterns/buttonholesonsleeve.jpg">
+              <div class="col s6">
+                <p>
+                  <input class="with-gap" name="yesButtonhole" type="radio" id="yesButtonhole" />
+                  <label for="yesButtonhole"><font size="+1"><b>yes</b></font></label>
+                </p>
+              </div>
+              <div class="col s6">
+                <p>
+                  <input class="with-gap" name="noButtonhole" type="radio" id="noButtonhole" />
+                  <label for="noButtonhole"><font size="+1"><b>No</b></font></label>
+                </p>
+              </div>
+            </div>
+
+            <div class="col s3">
+              <h5><b>Functional Buttonniere</b></h5><br>
+              <img class="materialboxed responsive-img" src="imgDesignPatterns/buttonniere.jpg">
+              <div class="col s6">
+                <p>
+                  <input class="with-gap" name="yesButtonniere" type="radio" id="yesButtonniere" />
+                  <label for="yesButtonniere"><font size="+1"><b>yes</b></font></label>
+                </p>
+              </div>
+              <div class="col s6">
+                <p>
+                  <input class="with-gap" name="noButtonniere" type="radio" id="noButtonniere" />
+                  <label for="noButtonniere"><font size="+1"><b>No</b></font></label>
+                </p>
+              </div>
+            </div>
+
+            <div class="col s3">
+              <h5><b>Thread Color</b></h5>
+              <p>Would you like coloured button threads?</p>
+              <div class="input-field" style="margin-top:20px;">
+                <select>
+                  <option value="" disabled selected>Choose your option</option>
+                  @foreach($threads as $thread)
+                  <option value="{{$thread->intThreadID}}">{{$thread->strThreadBrand}} {{$thread->strThreadColor}}</option>
+                  @endforeach
+                </select>
+              </div>
+              <h5><b>Buttonhole Color</b></h5>
+              <p>Would you like buttonhole color? (cuffs only)</p>
+              <div class="input-field" style="margin-top:20px;">
+                <select>
+                  <option value="" disabled selected>Choose your option</option>
+                  @foreach($threads as $thread)
+                  <option value="{{$thread->intThreadID}}">{{$thread->strThreadBrand}} {{$thread->strThreadColor}}</option>
+                  @endforeach
+                </select>
+              </div>                              
+            </div>         
+
+          </div>
+
+          <!--<div class="col s12">
+            <div class="col s3">
+              <h5><b>Need Pants</b></h5>
+              <div class="col s6">
+                <p>
+                  <input class="with-gap" name="yesPants" type="radio" id="yesPants" />
+                  <label for="yesPants"><font size="+1"><b>yes</b></font></label>
+                </p>
+              </div>
+              <div class="col s6">
+                <p>
+                  <input class="with-gap" name="noPants" type="radio" id="noPants" />
+                  <label for="noPants"><font size="+1"><b>No</b></font></label>
+                </p>
+              </div>
+            </div>
+          </div> -->         
+
+          <div class="col s12" style="margin-top:20px;">
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12"><button class="btn-flat right teal accent-4 white-text" type="submit">Next step</button></div>
@@ -189,3 +341,4 @@
 
   </script>
 
+@stop
