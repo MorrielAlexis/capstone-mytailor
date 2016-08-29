@@ -51,12 +51,14 @@
           </div>
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
 
+          @foreach($segments as $segment)
           <div class="col s12">
             <ul class="collapsible" data-collapsible="accordion" style="border:none;">
-              <li>
-                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Sleeve</div>
+              @foreach($sleeves as $sleeve)
+              @if($sleeve->boolIsActive == 1)
+              <li @if($segment->strSegmentID != $sleeve->strSegmentFK) hidden @endif>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $sleeve->strSegStyleName }}</div>
                 <div class="collapsible-body row overflow-x" style="padding:20px;">       
-                  @foreach($sleeves as $sleeve)
                   <div class="col s12">
                     @foreach($patterns as $pattern)
                     <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $sleeve->strSegStyleCatID) hidden @endif>
@@ -67,14 +69,17 @@
                       </p>
                     </div>
                     @endforeach
-                  </div>
-                  @endforeach                 
+                  </div>                
                 </div>
               </li>
-              <li>
-                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Cuffs</div>
-                <div class="collapsible-body row overflow-x" style="padding:20px;">       
-                  @foreach($cuffs as $cuff)
+              @endif
+              @endforeach 
+     
+              @foreach($cuffs as $cuff)
+              @if($cuff->boolIsActive == 1)
+              <li @if($segment->strSegmentID != $cuff->strSegmentFK) hidden @endif>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $cuff->strSegStyleName }}</div>
+                <div class="collapsible-body row overflow-x" style="padding:20px;">  
                   <div class="col s12">
                     @foreach($patterns as $pattern)
                     <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $cuff->strSegStyleCatID) hidden @endif>
@@ -85,12 +90,14 @@
                       </p>
                     </div>
                     @endforeach
-                  </div>
-                  @endforeach                 
+                  </div>                 
                 </div>
-              </li>              
+              </li> 
+              @endif 
+              @endforeach            
             </ul>
-          </div>          
+          </div> 
+          @endforeach     
 
           <div class="divider dashed" style="height:2px;"></div>
 

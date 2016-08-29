@@ -161,7 +161,7 @@ class OnlineCustomizeSuitController extends Controller
                     ->orderBy('strSegmentID')
                     ->get();
 
-        $keypocket = 'Pants Pocket';
+        $keypocket = 'Pocket';
         $pocketSegment = \DB::table('tblSegmentStyleCategory')
                     ->select('strSegStyleCatID', 'strSegStyleName', 'strSegmentFK', 'boolIsActive')
                     ->where('strSegStyleName', 'LIKE', '%'.$keypocket.'%')
@@ -173,7 +173,7 @@ class OnlineCustomizeSuitController extends Controller
                     ->where('strSegStyleName', 'LIKE', '%'.$keyback.'%')
                     ->get();
 
-        $keybottom = 'Pants Bottom';
+        $keybottom = 'Bottom';
         $bottomSegment = \DB::table('tblSegmentStyleCategory')
                     ->select('strSegStyleCatID', 'strSegStyleName', 'strSegmentFK', 'boolIsActive')
                     ->where('strSegStyleName', 'LIKE', '%'.$keybottom.'%')

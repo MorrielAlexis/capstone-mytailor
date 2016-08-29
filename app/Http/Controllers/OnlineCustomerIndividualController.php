@@ -28,7 +28,7 @@ class OnlineCustomerIndividualController extends Controller
     public function accept()
     {
         //$email = 'arianne_spice@yahoo.com';
-        $name = 'Arianne Labtic';
+        $name = 'Arianne Labtic'; //name ng pagsesendan
         Mail::send('emails.accept-order', ['name' => $name], function($message) {
             $message->to('arianne_spice@yahoo.com', 'Arianne Labtic')->subject('Hello!');
         });
