@@ -280,9 +280,7 @@
                             <label for="cellphone_number">Cellphone Number <span class="red-text"><b>*</b></span></label>
                           </div>
 
-                          <div class="input-field col s1">
-                              <label style="margin-left: -3px; margin-top: 15px !important;" for="contact">(+63)</label>
-                          </div>
+            
                           <div class="input-field col s6">
                             <input value="{{$employee->strCellNoAlt}}" id="editCellNoAlt" name="editCellNoAlt" pattern="^[0-9]{10,10}$" type="text" class="validate" placeholder="9361234567" maxlength="10">
                             <label for="cellphone_number">Cellphone Number (alternate)</label>
