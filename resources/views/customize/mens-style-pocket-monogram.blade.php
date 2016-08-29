@@ -51,8 +51,11 @@
 
           <div class="col s12">
             <ul class="collapsible" data-collapsible="accordion" style="border:none;">
-              <li>
-                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Pockets</div>
+              @foreach($segments as $segment)
+              @foreach($pockets as $pocket)
+              @if($pocket->boolIsActive == 1)
+              <li @if($segment->strSegmentID != $pocket->strSegmentFK) hidden @endif>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $pocket->strSegStyleName }}</div>
                 <div class="collapsible-body row overflow-x" style="padding:20px;">
                   <div class="col s12">
                     <p>
@@ -61,7 +64,6 @@
                     </p>
                   </div>
       
-                    @foreach($pockets as $pocket)
                     <div class="col s12">
                       @foreach($patterns as $pattern)
                       <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $pocket->strSegStyleCatID) hidden @endif>
@@ -72,8 +74,7 @@
                         </p>
                       </div>
                       @endforeach
-                    </div>
-                    @endforeach   
+                    </div>  
 
                   <div class="col s12" style="margin:20px;">
                     <div class="col s4">
@@ -102,6 +103,9 @@
                   </div>                                      
                 </div>
               </li>
+              @endif
+              @endforeach 
+              @endforeach 
 
               <!-- Pocket COntrast -->
               <div id="pocketContrast" class="modal modal-fixed-footer" style="width:1100px; height:600px">
