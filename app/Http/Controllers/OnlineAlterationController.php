@@ -282,7 +282,7 @@ class OnlineAlterationController extends Controller
         session()->forget('orders');
         session()->forget('alteration_id');
 
-        return redirect('transaction/online-alteration-newcustomer');
+        return redirect('transaction/online-alterationtransaction-newcustomer');
     }
 
     public function cancelOrder(Request $request)

@@ -25,7 +25,7 @@
             </div>
           </div>
           
-        {!! Form::open(['url' => 'transaction/online-alteration-info', 'method' => 'POST']) !!}
+        {!! Form::open(['url' => 'transaction/online-alteration-add-newcustomer-checkout-info', 'method' => 'POST']) !!}
           <div class="row" style="background-color:white;">
             <div class="container">
               <div class="col s12">    
