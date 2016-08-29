@@ -148,7 +148,7 @@ class StandardSizeCategoryController extends Controller
                 ->select('tblStandardSizeCategory.*')
                 ->where('tblStandardSizeCategory.strStandardSizeCategoryID','=', $id)
                 ->count();
-          if ($count != 0 || $count2 != 0){
+          if ($count != 0){
                     return redirect('maintenance/measurement-category?success=beingUsed'); 
                 }else {
 

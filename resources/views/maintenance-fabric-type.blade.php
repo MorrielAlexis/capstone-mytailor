@@ -242,7 +242,6 @@
                     <label for="fabrictype_name">Fabric Name <span class="red-text"><b>*</b></span></label>
                   </div              </div>
 
-              <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                   <div class="input-field col s12">
                     <input  id="txtFabricTypeDesc" name = "txtFabricTypeDesc" type="text" class="validateTypeDesc">
                     <label for="fabrictype_description">Fabric Desription </label>

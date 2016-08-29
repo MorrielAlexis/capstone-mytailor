@@ -117,6 +117,7 @@
                     <th data-field="fname">Customer Name</th>
                     <th data-field="address">Address</th>
                     <th data-field="email">Email Address</th>
+                    <th data-field="Sex">Sex</th>
                     <th data-field="cellphone">Cellphone No.</th>
                     <th data-field="cellphone">Cellphone No. (alt) </th>
                     <th data-field="Landline">Telephone No.</th>
@@ -132,7 +133,12 @@
                   <tr>
                     <td>{{ $individual->strIndivFName }} {{ $individual->strIndivMName }} {{ $individual->strIndivLName }}</td>
                     <td>{{ $individual->strIndivHouseNo }} {{ $individual->strIndivStreet }} {{ $individual->strIndivBarangay }} {{ $individual->strIndivCity }} {{ $individual->strIndivProvince }}  {{ $individual->strIndivZipCode }} </td>
-                    <td>{{ $individual->strIndivEmailAddress}}</td>                  
+                    <td>{{ $individual->strIndivEmailAddress}}</td>   
+                    <td>
+                    @if($individual->strIndivSex == 'M') Male
+                    @elseif($individual->strIndivSex == 'F') Female
+                    @endif
+                    </td>               
                     <td>{{ $individual->strIndivCPNumber }}</td> 
                     <td>{{ $individual->strIndivCPNumberAlt }}</td> 
                     <td>{{ $individual->strIndivLandlineNumber }}</td>
@@ -141,7 +147,7 @@
 
 
                     <div id="edit{{$individual->strIndivID}}" class="modal modal-fixed-footer">                     
-                      <h5><font color = "#1b5e20"><center>EDIT INDIVIDUAL'S CUSTOMER PROFILE</center> </font> </h5>
+                      <h5><font color = "#1b5e20"><center>UPDATE INDIVIDUAL'S CUSTOMER PROFILE</center> </font> </h5>
                           {!! Form::open(['url' => 'maintenance/individual/update']) !!}
                             <div class="divider" style="height:2px"></div>
                               <div class="modal-content col s12">
@@ -170,6 +176,20 @@
                                     <input required id="editLName" name = "editLName" value = "{{$individual->strIndivLName}}" placeholder="Soberano" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
                                     <label for="last_name"> Last Name <span class="red-text"><b>*</b></span></label>
                                   </div>
+
+                                    <div class="input-field col s6" style="margin-top:47px">                                
+                                      <select required name='editSex'>
+                                        <option disabled>Sex</option>
+                                            @if($individual->strIndivSex == "M")
+                                              <option selected value="{{$individual->strIndivSex}}">Male</option>
+                                              <option value="F">Female</option>
+                                            @else
+                                              <option value="M">Male</option>
+                                              <option selected value="{{$individual->strIndivSex}}">Female</option>
+                                            @endif
+                                      </select>    
+                                      <label>Sex</label>
+                                    </div>
                                 </div>
 
                                 <div class = "col s12" style="padding:15px;  border:3px solid white;">
@@ -331,13 +351,22 @@
                           <input required id="strIndivLName" name = "strIndivLName" placeholder="Soberano" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
                           <label for="last_name"> Last Name <span class="red-text"><b>*</b></label>
                         </div>
+
+                        <div class="input-field col s12" style="margin-top:47px">
+                          <select value="" name='strIndivSex' id='strIndivSex' required>
+                              <option value="M">Male</option>
+                              <option value="F">Female</option>
+                          </select>    
+                          <label>Sex</label>
+                        </div>
                       </div>
 
-                      <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                     
+                        <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s3">
                             <input required id="strIndivHouseNo" name="strIndivHouseNo" pattern="[0-9a-zA-Z\-\s]+$" type="text" placeholder="1-A" class="validate">
                             <label for="House No">House No. <span class="red-text"><b>*</b></label>
-                          </div>
+                        </div>
 
                            <div class="input-field col s3">
                             <input required id="strIndivStreet" name="strIndivStreet" pattern="^[a-zA-Z0-9\'\-\.]+([a-zA-Z0-9\'\-\.]+)*$" type="text" placeholder="Malunggay" class="validate">

@@ -296,7 +296,7 @@
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input value="{{ $standardDetail->strStandardSizeDetInactiveReason }}" type="text" name="delStandardSizeDet" id="delStandardSizeDet">
+                                <input required value="{{ $standardDetail->strStandardSizeDetInactiveReason }}" type="text" name="delStandardSizeDet" id="delStandardSizeDet">
                                 <label for="stanSizeDet_desc"><span class="red-text"><b>*</b></span>Reason for Deactivation: </label>
                               </div>
                           </div>

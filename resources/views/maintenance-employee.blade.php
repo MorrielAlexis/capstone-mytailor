@@ -209,7 +209,7 @@
                             <input id="editDtEmpBday" required name="editDtEmpBday" type="date" class = "datepicker" placeholder="January 1, 1996"  value="{{date("Y-m-d", strtotime( $employee->dtEmpBday ))}}" class = "datepicker">
                           </div>  
 
-                           <div class="input-field col s6" style="margin-top:47px">                                                    
+                           <div class="input-field col s6" style="margin-top:47px">                                
                             <select required name='editSex'>
                               <option disabled>Sex</option>
                                   @if($employee->strSex == "M")
