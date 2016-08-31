@@ -88,7 +88,9 @@ class WalkInCompanyController extends Controller
                 ->where('a.strPackageID', $to_be_customized)
                 ->get();
 
-        $segments = [$segment1, $segment2, $segment3];
+        $segments = [$segment1[0], $segment2[0], $segment3[0]];
+
+        session(['package_segments' => $segments]);
 
         $fabrics = Fabric::all();
         $fabricThreadCounts = FabricThreadCount::all();
@@ -122,6 +124,25 @@ class WalkInCompanyController extends Controller
         session(['package_customize' => $to_be_customized]);
 
         return redirect('transaction/walkin-company-show-customize');
+    }
+
+    public function saveDesign(Request $request)
+    {   
+        $values = session()->get('package_segments');
+        $to_be_customized = session()->get('package_customize');
+        $segmentStyles = SegmentStyle::all();
+        $k = 0;
+        dd($values);
+        for($i = 0; $i < count($values); $i++){
+            for($j = 0; $j < count($segmentStyles); $j++){
+                $tempPatterns = $request->input('rdb_pattern' . $segmentStyles[$j]->strSegStyleCatID . ($i+1));       
+                if($tempPatterns != null){
+                    $patterns[$i][$k] = $tempPatterns;
+                    $k++;
+                } 
+            }
+            $k = 0;
+        }
     }
 
     public function retailProduct()
