@@ -179,7 +179,7 @@ class SegmentPatternController extends Controller
                     $pattern->strSegPStyleCategoryFK = $request->input('editSegmentStyle');
                     $pattern->strSegPName = trim($request->input('editPatternName'));
                     $pattern->dblPatternPrice = trim($request->input('editPatternPrice'));
-                    $pattern->strSegPDesc = trim($request->input('editSegPDesc'));
+                    $pattern->txtSegPDesc = trim($request->input('editSegPDesc'));
 
                 }else{
 

@@ -51,10 +51,12 @@
 
           <div class="col s12">
             <ul class="collapsible" data-collapsible="accordion" style="border:none;">
-              <li>
-                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Front</div>
+              @foreach($segments as $segment)
+              @foreach($plackets as $placket)
+              @if($placket->boolIsActive == 1)
+              <li @if($segment->strSegmentID != $placket->strSegmentFK) hidden @endif>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $placket->strSegStyleName }}</div>
                 <div class="collapsible-body row overflow-x" style="padding:20px;">
-                  @foreach($plackets as $placket)
                   <div class="col s12">
                     @foreach($patterns as $pattern)
                     <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $placket->strSegStyleCatID) hidden @endif>
@@ -65,8 +67,7 @@
                       </p>
                     </div>
                     @endforeach
-                  </div>
-                  @endforeach 
+                  </div> 
 
                   <div class="col s12" style="margin:20px;">
                     <div class="col s4">
@@ -295,8 +296,11 @@
                     </div>
                   </div>
               <!--End of modal for Buttonhole Side -->
-
               </li>
+              @endif
+              @endforeach
+              @endforeach
+
               <li>
                 <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Tuxedo</div>
                 <div class="collapsible-body row overflow-x" style="padding:20px;">

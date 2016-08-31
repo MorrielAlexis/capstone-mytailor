@@ -49,28 +49,32 @@
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
 
 
+          @foreach($segments as $segment)
+          @foreach($style as $style)
+          @if($style->boolIsActive == 1)
           <div class="col s12" style="margin-top:20px;">
-            <ul class="collapsible" data-collapsible="accordion" style="border:none;">
+            <ul class="collapsible" data-collapsible="accordion" style="border:none;" @if($segment->strSegmentID != $style->strSegmentFK) hidden @endif>
               <li>
-                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Pant's Bottom</div>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $style->strSegStyleName }}</div>
                 <div class="collapsible-body row overflow-x" style="padding:20px;">       
-                  @foreach($bottomSegment as $bottom)
                   <div class="col s12">
                     @foreach($patterns as $pattern)
-                    <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $bottom->strSegStyleCatID) hidden @endif>
+                    <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $style->strSegStyleCatID) hidden @endif>
                       <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
                       <p>
-                        <input name="rdb_pattern{{ $bottom->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
+                        <input name="rdb_pattern{{ $style->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
                         <label for="{{ $pattern->strSegPatternID }}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
                       </p>
                     </div>
                     @endforeach
-                  </div>
-                  @endforeach                  
+                  </div>                
                 </div>
               </li>
             </ul>
           </div>
+          @endif
+          @endforeach
+          @endforeach
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12">

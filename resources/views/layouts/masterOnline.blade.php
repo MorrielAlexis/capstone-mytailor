@@ -93,7 +93,7 @@
                   <a style="color: white;font-size:18px" class="dropdown-button btn-flat" data-beloworigin="true" data-activates="downdown"><b>GARMENTS</b></a>
                   <ul id="downdown" class="dropdown-content">
                     <li><a href="{{URL::to('/online-garment-suit')}}">SUITS</a></li>
-                    <li><a href="{{URL::to('/online-garment-gown')}}">GOWNS</a></li>
+                   <!-- <li><a href="{{URL::to('/online-garment-gown')}}">GOWNS</a></li> -->
                     <li><a href="{{URL::to('/online-garment-uniform-male')}}">MEN'S SHIRT</a></li>
                     <li><a href="{{URL::to('/online-garment-uniform-female')}}">WOMEN'S SHIRT</a></li>
                     <li><a href="{{URL::to('/online-garment-pants')}}">PANTS</a></li>

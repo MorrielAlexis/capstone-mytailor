@@ -110,7 +110,8 @@ class OnlineAlterationController extends Controller
 
         $request->session()->push('orders', $values[0]);
 
-        return redirect('transaction/online-alteration-newcustomer');
+        return redirect('transaction/online-alterationtransaction-newcustomer-update');
+
     }
 
     public function updateCart()
@@ -147,7 +148,7 @@ class OnlineAlterationController extends Controller
         session()->forget('orders');
         session(['orders' => $values]);
 
-        return redirect('transaction/online-alteration-newcustomer-update');
+        return redirect('transaction/online-alterationtransaction-newcustomer-update');
     }
 
     public function checkoutCustInfo()
@@ -281,7 +282,7 @@ class OnlineAlterationController extends Controller
         session()->forget('orders');
         session()->forget('alteration_id');
 
-        return redirect('transaction/online-alteration-newcustomer');
+        return redirect('transaction/online-alterationtransaction-newcustomer');
     }
 
     public function cancelOrder(Request $request)

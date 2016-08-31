@@ -154,7 +154,7 @@ class FabricPatternController extends Controller
                 ->where('tblFabricPattern.strFabricPatternID','=', $id)
                 ->count();
 
-            if ($count != 0 || $count2 != 0){
+            if ($count != 0){
                     return redirect('maintenance/fabric-pattern?success=beingUsed'); 
                 }else {
 

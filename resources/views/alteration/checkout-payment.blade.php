@@ -163,7 +163,7 @@
       </div>
 
       <div class="modal-footer col s12">
-        <a class="waves-effect waves-green btn-flat" href="{{URL::to('/alteration-walkin-newcustomer')}}"><font color="black">Yes</font></a>
+        <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/alteration-walkin-newcustomer')}}"><font color="black">Yes</font></a>
         <a href="{{URL::to('/alteration-checkout-payment')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
       </div>
     </div>
