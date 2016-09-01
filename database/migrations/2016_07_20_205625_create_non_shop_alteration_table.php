@@ -18,6 +18,7 @@ class CreateNonShopAlterationTable extends Migration
             $table->string('strCustCompFK')->index()->nullable();
             $table->double('dblOrderTotalPrice');
             $table->date('dtAlteration');
+            $table->boolean('boolIsOnline');
 
             $table->foreign('strCustIndFK')
                   ->references('strIndivID')

@@ -375,8 +375,8 @@ Route::get('/pdf', 'PdfController@converToPdf');
 
 /*---------------------------------------ADMIN TRANSACTION ALTERATION--------------------------------------------------*/
 Route::group(['prefix' => 'transaction'], function(){		
-		Route::get('alteration-online-transaction', 'AlterationOnlineController@index');
-		Route::get('alteration-acceptorder', 'AlterationOnlineController@accept');
+		Route::get('alteration-online-transaction', 'AcceptAlterationOnlineController@index');
+		Route::get('alteration-acceptorder', 'AcceptAlterationOnlineController@accept');
 		Route::get('alteration-walkin-transaction', 'AlterationWalkInController@index');
 		Route::get('alteration-walkin-newcustomer', 'AlterationWalkInController@showCart');
 		Route::get('alteration-walkin-newcustomer-update', 'AlterationWalkInController@updateCart');
