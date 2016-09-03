@@ -29,7 +29,7 @@
               	</div>
 	       	</div>
 
-	       	<div class="container" style="color:gray">
+	       	<!-- <div class="container" style="color:gray">
 		       	<center><h6><b>NOTES WHEN TAKING MEASUREMENTS:</b></h6></center>
 		       	<center><h6>* Use "inches" (no allowance).</h6></center>
 	      		<center><h6>* Place one (1) finger between bust and measuring tape while measuring waist.</h6></center>
@@ -39,7 +39,7 @@
 	      		<center><h6>* Measure from waistline to knee to get measurement of length of skirt.</h6></center>
 	      		<div class="divider"></div>
 	      		<div class="divider"></div>
-	      	</div>
+	      	</div> -->
 
 
 	       	<div class="row" style="background-color:white; margin-top:20px">
@@ -48,13 +48,13 @@
 
 	            	<div class="col s12">
 		            	<!--Two ways to submit measurements-->
-	                    <center><h4 style="margin-bottom:50px; color:green"><b>Ways to submit measurements</b></h4></center>
+	                    <center><h4 style="margin-bottom:50px; color:teal"><b>Ways to submit measurements</b></h4></center>
 	                    
 	                    <!--First Way-->
 	                    <div class="left col s5">	                    	
 	                    		<center><img style="height:150px; width:150px" src="{{URL::to('img/temp-online.png')}}"></center>	                    	
-	                    		<center><p><a href="#get-access-code" class="modal-trigger"><font size="+1">Submit measurement of employees online via Access Code to be provided by the system</font></a></p></center>
-	                    			<div id="get-access-code" class="modal modal-fixed-footer" style="height:350px; width:500px; margin-top:30px">
+	                    		<center><p><a href="{{ URL::to('transaction/walkin-company-measure-download-forms') }}" class="modal-trigger"><font size="+1">Acquire downloadable forms for taking measurements and send it through email</font></a></p></center>
+	                    			<!-- <div id="get-access-code" class="modal modal-fixed-footer" style="height:350px; width:500px; margin-top:30px">
 											<h5><font color="teal"><center><b>Get An Access Code</b></center></font></h5>
 												
 												{!! Form::open() !!}
@@ -73,7 +73,7 @@
 										                <a href="{{URL::to('/transaction/walkin-company-payment-measure-detail')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Cancel</font></a>
 										            </div>
 												{!! Form::close() !!}
-									</div>
+									</div> --> 
 	                    </div>
 
 	                    <!--Or-->
@@ -84,8 +84,8 @@
 	                    <!--Second Way-->
 	                    <div class="right col s5">	                    	
 	                    		<center><img style="height:150px; width:150px" src="{{URL::to('img/temp-measure.png')}}"></center>	                    	
-	                    		<center><p><a href="#upload-copy" class="modal-trigger"><font size="+1">Provide or upload a copy of the measurement of each employee to be later inputted in the system</font></a></p></center>
-	                    			<div id="upload-copy" class="modal modal-fixed-footer" style="height:300px; width:500px; margin-top:30px">
+	                    		<center><p><a href="{{ URL::to('transaction/walkin-company-measure-add-employee-profile') }}" class="modal-trigger"><font size="+1">Provide a copy of the measurement of each employee to be inputted in the system</font></a></p></center>
+	                    			<!-- <div id="upload-copy" class="modal modal-fixed-footer" style="height:300px; width:500px; margin-top:30px">
 											<h5><font color="teal"><center><b>Upload File of Measurements</b></center></font></h5>
 												
 												{!! Form::open() !!}
@@ -109,7 +109,7 @@
 										                <a href="{{URL::to('/transaction/walkin-company-payment-measure-detail')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Cancel</font></a>
 										            </div>
 												{!! Form::close() !!}
-									</div>
+									</div> -->
 	                    </div>
 	                </div>
 
@@ -138,7 +138,7 @@
 
 
                     		<a href="{{URL::to('transaction/walkin-company-payment-payment-info')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to go back to home and start shopping!" style="background-color:#1976d2; padding:9.5px; padding-bottom:45px; margin-top:80px; margin-right:60px"><label style="font-size:15px; color:white">Save and Go to Payment</label></a>
-                    		<a href="{{URL::to('transaction/walkin-company')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Transfers you back home and clears current unsaved transaction" style="background-color:#26a69a; padding:9.5px; padding-bottom:45px; margin-right:30px; margin-top:80px;"><label style="font-size:15px; color:white">Cancel Transaction</label></a>
+                    		<a href="{{URL::to('transaction/walkin-company')}}" class="left btn tooltipped" data-position="top" data-delay="50" data-tooltip="Transfers you back home and clears current unsaved transaction" style="background-color:#26a69a; padding:9.5px; padding-bottom:45px; margin-left:30px; margin-top:80px;"><label style="font-size:15px; color:white">Cancel Transaction</label></a>
                     	
 
 

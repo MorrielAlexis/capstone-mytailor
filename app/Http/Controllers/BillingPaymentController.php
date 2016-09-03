@@ -8,6 +8,8 @@ use PDF;
 use Session;
 use DB;
 
+use App\Individual;
+
 use App\TransactionJobOrder;
 use App\TransactionJobOrderPayment;
 use App\Http\Requests;
@@ -34,45 +36,21 @@ class BillingPaymentController extends Controller
                 ->with('types', $types);
     }
 
-    public function search(Request $request)
+    public function searchCustomer(Request $request)
     {
-        $search_query = $request->input('search_query');
-        $types = $request->input('customer_type');
+        $customer = $request->input('cust_name');
+        $types = $request->input('cust_type');
 
-
-        $customers = \DB::table('tblCustIndividual AS a')
-                    ->select(\DB::raw('CONCAT(a.strIndivFName, " ", a.strIndivMName, " ", a.strIndivLName) AS fullname'))
-                    ->where(\DB::raw('CONCAT(a.strIndivFName, " ", a.strIndivMName, " ", a.strIndivLName)'), $search_query)
-                    ->get();
         
-
-        $pending_payments = \DB::table('tblJOPayment AS a')
-                    ->leftJoin('tblJobOrder AS b', 'a.strTransactionFK', '=', 'b.strJobOrderID')
-                    ->leftJoin('tblCustIndividual AS c', 'b.strJO_CustomerFK', '=', 'c.strIndivID')
-                    ->select('a.*', 'b.*', \DB::raw('CONCAT(c.strIndivFName, " ", c.strIndivMName, " ", c.strIndivLName)'))
-                    ->where(\DB::raw('CONCAT(c.strIndivFName, " ", c.strIndivMName, " ", c.strIndivLName)'), $search_query)
-                    ->where('a.strPaymentStatus', 'Pending')
-                    ->get();
-
- 
-        $or_summary = 0;
-        for($i = 0; $i < count($pending_payments); $i++){
-
-            $or_summary = \DB::table('tblJOSpecific AS a')
-                        ->leftJoin('tblJobOrder AS b', 'a.strJobOrderFK', '=', 'b.strJobOrderID')
-                        ->leftJoin('tblSegment AS c', 'a.strJOSegmentFK', '=', 'c.strSegmentID')
-                        ->leftJoin('tblGarmentCategory AS d', 'c.strSegCategoryFK', '=', 'd.strGarmentCategoryID')
-                        ->select('a.*', 'b.*', 'c.*', 'd.strGarmentCategoryName')
-                        ->where('b.strJobOrderID', $pending_payments[$i]->strTransactionFK)
-                        ->get();
-        }
+        // var_dump($customer, $types, $cust_info);
+        // dd("");
         
 
         return view('transaction-billingpayment')
-                ->with('customers', $customers)
-                ->with('types', $types)
-                ->with('pending_payments', $pending_payments)
-                ->with('or_summary', $or_summary);
+                ->with('customer', $customer)
+                ->with('types', $types);
+                // ->with('pending_payments', $pending_payments);
+                //->with('or_summary', $or_summary);
     }
 
     public function generateBill()

@@ -254,7 +254,7 @@ Route::group(['prefix' => 'transaction'], function(){
 Route::group(['prefix' => 'transaction'], function(){
 	Route::resource('billing-payment', 'BillingPaymentController');
 
-		Route::post('billing-payment/result', 'BillingPaymentController@search');
+		Route::post('billing-payment/result', 'BillingPaymentController@searchCustomer');
 
 	Route::resource('billing-collection', 'BillingCollectionController',
 		['only' => ['index']]);
@@ -352,6 +352,15 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::get('walkin-company-payment-measure-detail', 'WalkInCompanyController@measurement');
 	Route::get('walkin-company-show-order', 'WalkInCompanyController@showOrder');
 	Route::get('walkin-company-show-customize', 'WalkInCompanyController@showCustomizeOrder');
+
+	/* Route for downloadable forms */
+	Route::get('walkin-company-measure-download-forms', 'WalkInCompanyController@downloadForms');
+
+
+	/* Route for adding measurement profile*/
+	Route::get('walkin-company-measure-add-employee-profile', 'WalkInCompanyController@measureProfile');
+
+	
 
 	Route::post('walkin-company-orders', 'WalkInCompanyController@listOfOrders');
 	Route::post('walkin-company-customize-orders', 'WalkInCompanyController@customize');
