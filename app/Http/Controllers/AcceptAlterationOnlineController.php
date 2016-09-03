@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 
-class AlterationOnlineController extends Controller
+class AcceptAlterationOnlineController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,11 +23,19 @@ class AlterationOnlineController extends Controller
     
     public function index()
     {
-        return view('alteration.online-transaction');
+        $onlineAlteration = \DB::table('tblNonShopAlteration')
+            ->leftjoin('tblcustindividual', 'tblNonShopAlteration.strCustIndFK', '=', 'tblcustindividual.strIndivID')
+            ->leftjoin('tblcustcompany', 'tblNonShopAlteration.strCustCompFK', '=', 'tblcustcompany.strCompanyID')
+            ->orderby('tblNonShopAlteration.strNonShopAlterID')
+            ->select('tblcustindividual.*', 'tblcustcompany.*', 'tblNonShopAlteration.*')
+            ->get(); 
+        return view('alteration.online-transaction')
+            ->with('onlineAlteration', $onlineAlteration);
     }
 
     public function accept()
     {
+        
         return view('alteration.acceptorder');
     }
 

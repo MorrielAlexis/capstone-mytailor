@@ -28,6 +28,7 @@ class CreateJobOrder extends Migration
             $table->date('dtFinished')->nullable();
             $table->date('dtDelivered')->nullable();
             $table->boolean('boolIsActive');
+            $table->boolean('boolIsOnline');
             $table->timestamps();
 
             $table->foreign('strJO_CustomerFK')

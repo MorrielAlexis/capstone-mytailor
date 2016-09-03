@@ -179,6 +179,19 @@ class WalkInCompanyController extends Controller
         return view('walkin-company-checkout-measure');
     }
 
+    /*For downloadable forms*/
+    public function downloadForms()
+    {
+        return view('walkin-company-downloadable-forms');
+    }
+
+    /*For adding measurement profile*/
+    public function measureProfile()
+    {
+        return view('walkin-company-add-measurement');
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *

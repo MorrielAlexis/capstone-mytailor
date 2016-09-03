@@ -38,54 +38,80 @@
 										</div>	
 									</div>
 
+									<!--Customer search and info-->
 									<div class="col s12" style="margin-top:30px">
 										{!! Form::open(['method' => 'POST', 'url' => 'transaction/billing-payment/result']) !!}
-										<div class="col s4">
-											<div class="input-field col s12"  class="customer_type" id="customer_type">
-												<select class="customer_type" id="customer_type" name="customer_type">
-													<option disabled>Choose Customer Type</option>
-												    <option value="ind" class="circle">Individual</option>
-												    <option value="comp" class="circle">Company</option>
-												</select>
-												<label for="customer_type" style="color:red"><b>*Customer Type</b></label>			
+										<div class="col s12" style="background-color:#00695c; padding-top:3%; padding-bottom:3%">
+											<div class="col s5">
+												<div class="col s5" style="color:darkgray; margin-top:4%"><center><b>CUSTOMER TYPE</b></center></div>
+												<div class="col s7"  class="cust_type" id="cust_type" style="color:black">
+													<select class="browser-default customer_type" id="cust_type" name="cust_type">
+														<option disabled>Choose Customer Type</option>
+													    <option value="ind" class="circle">Individual</option>
+													    <option value="comp" class="circle">Company</option>
+													</select>			
+												</div>
 											</div>
+
+											
+											<div class="col s7">
+												<div style="color:black" class="col s12">                   					                          
+						                          	<div class="col s4" style="color:darkgray; margin-top:4%"><center><b>CUSTOMER NAME:</b></center></div>
+						                          	<div class="col s8"><input style="border:3px teal solid; padding:5px; padding-left:10px; background-color:white; color:teal" id="cust_name" name="cust_name" type="text" placeholder="ex. Honey Buenavides"></div>					                         			                          	
+						                        </div>
+					                        </div>
+
+					                         <button class="right btn" type="submit" id="getCustomer" style="background-color:white; color:teal; margin-right:40px">Search</button> 
+				                    	</div>
+				                    	<div class="col s12" style="margin-top:30px"><div class="divider" style="height:3px; color:gray"></div></div>
+
+									<!-- Customer Info -->
+										<div class="col s12" style="margin-top:10px">
+											<div class="col s6">
+					                    		<div style="color:black" class="col s12">     
+					                    			<div class="col s4" style="color:gray; margin-top:4%"><b>Customer Name:</b></div>            
+						                          	<div class="col s8" ><!-- <input value="" style="padding:5px; padding-left:10px" name="custname" id="custname" type="text" class="" placeholder="ex. Honey Buenavides"> --></div>
+					                        	</div>
+					                    	</div>
+											<div class="col s6">
+												<div style="color:black" class="col s12">  
+													<div class="col s4" style="color:gray; margin-top:4%; padding:0"><b>Customer ID:</b></div>               
+						                          	<div class="col s8"><!-- <input value="" style="padding:5px; padding-left:10px; color:red" name="custid" id="custid" type="text" class="" placeholder="ex. IND 20001" editable="false" readonly> --><b></b></div>
+						                        </div>
+					                    	</div>
+					                    	<div class="col s6">
+												<div style="color:black" class="col s12">  
+													<div class="col s4" style="color:gray; margin-top:4%"><b>Customer Type:</b></div>               
+						                          	<div class="col s8" id="custtype"><!-- <input value="" style="padding:5px; padding-left:10px; color:red" name="custtyoe" id="custtype" type="text" class="" placeholder="ex. IND 20001" editable="false" readonly> --><label ></label></div>
+						                        </div>
+					                    	</div>
+					                    	<!-- <div class="col s6">
+												<div style="color:black" class="col s12">  
+													<div class="col s4" style="color:gray; margin-top:4%"><b>Customer Type:</b></div>               
+						                          	<div class="col s8"><input value="" style="padding:5px; padding-left:10px; color:red" name="custtyoe" id="custtype" type="text" class="" placeholder="ex. IND 20001" editable="false" readonly><b></b></div>
+						                        </div>
+					                    	</div> -->
+					                    												
 										</div>
+									<!--End of customer info-->
 
-										
-										<div style="color:black" class="input-field col s8">                   
-				                          
-				                          <div class="container">  		                          	
-				                          	<input style="margin-left:50px; border:3px teal solid; padding:5px; padding-left:10px" id="name" name="search_query" type="text" class="form-control" placeholder="ex. Honey Buenavides">
-				                          	        	
-				                          </div>
-				                         			                          	
-				                          	<label style="color:teal; margin-top:5px"><b>CUSTOMER NAME:</b></label>
-				                          	<div>
-				                        	</div>
-				                         </div>
-
-				                         <button class="right btn" type="submit" id="getCustomer" style="background-color:teal; margin-right:40px">Search</button> 
-				                        	{!! Form::close() !!}
-				                        	
+				                        {!! Form::close() !!}				                        	
 									</div>
+									<!--End of Customer search and info-->
 
-									<div class="col s12" style="margin-top:30px"><div class="divider" style="height:3px; color:gray"></div></div>
+									
 
-									<div class="col s12" style="padding:10px; padding-left:20px">
+									<!-- <div class="col s12" style="padding:10px; padding-left:20px">
 										<p style="color:teal; font-size:20px"><b>Customer Name: </b>
-											@if(isset($customers))
-											@foreach($customers as $customer)
-												{{ $customer->fullname }}
-											@endforeach
-											@endif
+											
 										</p>
 										<div style="color:teal; font-size:20px">
 											<label style="color:teal; font-size:20px"><b>Customer Type:</b></label>
 											 <label id="cust_type" style="color:teal; font-size:20px"></label>
 										</div>
-									</div>
+									</div> -->
 
-									<div class="col s12">
+									<!-- <div class="col s12">
 										<center><h5 style="color:black"><b>List of Pending Payments</b></h5></center>
 										<div class="card-panel" style="border: 4px black inset">
 											<div class="card-content">
@@ -121,7 +147,7 @@
 												</div>
 											</div>
 										</div>
-									</div>
+									</div> -->
 									
 									<div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
 									<h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
@@ -135,13 +161,9 @@
 
 												<div class="col s6">
 													<div class="col s6"><p style="color:gray">Date of Transaction:</p></div>
-													@if(isset($pending_payments))
-									              	@foreach($pending_payments as $pending_payment)
-									              		@if($pending_payment->boolIsActive == 1)
-													<div class="col s6"><h6 style="color:red; margin-top:15px"><b>{{ $pending_payment->dtOrderDate }}</b></h6></div>
-														@endif
-													@endforeach
-													@endif
+													
+													<div class="col s6"><h6 style="color:red; margin-top:15px"><b></b></h6></div>
+														
 												</div>
 
 														<div class="container">
@@ -155,39 +177,25 @@
 													              	</tr>
 												              	</thead>
 												              	<tbody>
-												              	@if(isset($or_summary))
-												              	@foreach($or_summary as $summary)
-												              		@if($summary->boolIsActive == 1)
-												              		
-														            <tr>
-														               <td>{{ $summary->strGarmentCategoryName }} , {{ $summary->strSegmentName }}</td>
-														               <td>{{ $summary->intQuantity }}</td>
-														               <td>{{ $summary->dblUnitPrice }}</td>
-														               
-														            </tr>
-																	@endif
-																@endforeach
-																@endif
+												              	
+												              	
+																
 														        </tbody>
 														    </table>
 											      		</div>
 
 											      		<div class="divider"></div>
 											      		<div class="divider"></div>
-														@if(isset($pending_payments))
-														@foreach($pending_payments as $pending_payment)
-														@if($pending_payment->boolIsActive == 1)
+														
 												      	<div class="col s12">
 															<div class="col s6"><p style="color:gray">Estimated time to finish all orders:<p style="color:black">60 days</p></p></div>
-															<div class="col s6"><p style="color:gray">Total Amoun to Pay:<p style="color:black">{{ $pending_payment->dblOrderTotalPrice }}</p></p></div>
+															<div class="col s6"><p style="color:gray">Total Amoun to Pay:<p style="color:black"></p></p></div>
 														</div>
 
 														<div class="col s12" style="margin-bottom:50px">
-															<p style="color:red"><b>Due date of payment (pay balance before or on the said date):</b> {{ $pending_payment->dtPaymentDueDate }}</p>
+															<p style="color:red"><b>Due date of payment (pay balance before or on the said date):</b></p>
 														</div>
-														@endif
-														@endforeach
-														@endif
+														
 
 													</div>
 
@@ -197,13 +205,12 @@
 									
 							</div>
 
-									<div class="col s12" style="margin-top:30px">
-										<a href="{{URL::to('billing-payment/pending-payment-pdf')}}" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to print a copy of pending payments" style="background-color:teal; margin-right:10px"><i class="medium mdi-action-print" style="margin-right:15px;"></i>Print a copy</a>
-										<button class="left btn tooltipped" type="submit" data-position="bottom" data-delay="50" data-tooltip="Click to clear all fields" style="background-color:teal"><i class="medium mdi-editor-format-clear" style="margin-right:15px;"></i>Clear view</a>
-										<a href="{{URL::to('/transaction/billing-payment-bill-customer')}}" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to proceeed to billing process" style="background-color:teal"><i class="medium mdi-action-payment" style="margin-right:15px;"></i>Proceed to Payment</a>
-									</div>
-
-
+								<div class="col s12" style="margin-top:30px">
+									<div class="col s12" style="margin-top:30px"><div class="divider" style="height:3px; color:gray; margin-bottom:4%"></div></div>
+									<!-- <a href="{{URL::to('billing-payment/pending-payment-pdf')}}" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to print a copy of pending payments" style="background-color:teal"><i class="medium mdi-action-print"></i>Print a copy</a>
+									<button class="left btn tooltipped" type="submit" data-position="bottom" data-delay="50" data-tooltip="Click to clear all fields" style="background-color:teal; margin-left:5%"><i class="medium mdi-editor-format-clear"></i>Clear view</button> -->
+									<a href="{{URL::to('/transaction/billing-payment-bill-customer')}}" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to proceeed to billing process" style="background-color:teal"><i class="medium mdi-action-payment" style="margin-right:15px;"></i>Proceed to Payment</a>
+								</div>
 
 								</div>
 							</div>
@@ -284,13 +291,13 @@
 	 <script type="text/javascript">
 	 	$(document).ready(function() {
 
-	 		var cust_type = {!! json_encode($types) !!};
+	 		var customer_type = {!! json_encode($types) !!};
 
-	 			if(cust_type == "ind") {
-	 				$("#cust_type").text("Individual");
+	 			if(customer_type == "ind") {
+	 				$("#custtype").text("Individual");
 	 			}
-	 			else if(cust_type == "comp") {
-					$("#cust_type").text("Company");
+	 			else if(customer_type == "comp") {
+					$("#custtype").text("Company");
 	 			}
 	 	});
 	 </script>

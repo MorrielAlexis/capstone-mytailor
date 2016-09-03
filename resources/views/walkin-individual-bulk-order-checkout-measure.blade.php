@@ -53,7 +53,7 @@
 	                    <!--First Way-->
 	                    <div class="left col s5">	                    	
 	                    		<center><img style="height:150px; width:150px" src="{{URL::to('img/temp-online.png')}}"></center>	                    	
-	                    		<center><p><a href="#get-access-code" class="modal-trigger"><font size="+1">Submit measurement of employees online via Access Code to be provided by the system</font></a></p></center>
+	                    		<center><p><a href="#get-access-code" class="modal-trigger"><font size="+1">Acquire downloadable forms for taking measurements to be later submitted through email</font></a></p></center>
 	                    			<div id="get-access-code" class="modal modal-fixed-footer" style="height:350px; width:500px; margin-top:30px">
 											<h5><font color="teal"><center><b>Get An Access Code</b></center></font></h5>
 												
