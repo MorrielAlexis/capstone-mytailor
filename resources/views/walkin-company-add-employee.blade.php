@@ -69,7 +69,7 @@
 								<div class="col s1">
 									<a style="color:white; margin-top:18px" class="modal-trigger btn tooltipped blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit the set purchased" href="#edit-emp-data"><i class="mdi-editor-mode-edit"></i></a>
 								</div>
-								<!--Modal for editing employee data-->
+								<!--Modal for editing employee -->
 								<div id="edit-emp-data" class="modal modal-fixed-footer" style="width:70%; height:80%">
 									<h5><font color="teal"><center><b>Employee Data</b></center></font></h5>
 									<div class="divider" style="height:2px"></div>

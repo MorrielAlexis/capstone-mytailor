@@ -132,7 +132,7 @@ class WalkInCompanyController extends Controller
         $to_be_customized = session()->get('package_customize');
         $segmentStyles = SegmentStyle::all();
         $k = 0;
-        dd($values);
+
         for($i = 0; $i < count($values); $i++){
             for($j = 0; $j < count($segmentStyles); $j++){
                 $tempPatterns = $request->input('rdb_pattern' . $segmentStyles[$j]->strSegStyleCatID . ($i+1));       
@@ -143,6 +143,9 @@ class WalkInCompanyController extends Controller
             }
             $k = 0;
         }
+
+        //dd($values);
+        dd($patterns);
     }
 
     public function retailProduct()
