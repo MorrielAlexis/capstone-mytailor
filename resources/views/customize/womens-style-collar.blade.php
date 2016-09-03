@@ -65,12 +65,14 @@
           </div>
           @endforeach
 
+          @foreach($segments as $segment)
+          @foreach($collars as $collar)
+          @if($collar->boolIsActive == 1)
           <div class="col s12" style="margin-top:20px;">
-            <ul class="collapsible" data-collapsible="accordion" style="border:none;">
+            <ul class="collapsible" data-collapsible="accordion" style="border:none;" @if($segment->strSegmentID != $collar->strSegmentFK) hidden @endif>
               <li>
-                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Collars</div>
-                <div class="collapsible-body row overflow-x" style="padding:20px;">       
-                  @foreach($collars as $collar)
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $collar->strSegStyleName }}</div>
+                <div class="collapsible-body row overflow-x" style="padding:20px;">  
                   <div class="col s12">
                     @foreach($patterns as $pattern)
                     <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $collar->strSegStyleCatID) hidden @endif>
@@ -81,12 +83,14 @@
                       </p>
                     </div>
                     @endforeach
-                  </div>
-                  @endforeach                 
+                  </div>                 
                 </div>
               </li>
             </ul>
           </div>
+          @endif
+          @endforeach
+          @endforeach
 
           <div class="divider dashed" style="height:2px;"></div>
 
@@ -265,3 +269,4 @@
     });
 
   </script>
+@stop

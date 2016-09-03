@@ -68,6 +68,7 @@ class CustomerIndividualController extends Controller
                     'strIndivFName' => trim($request->input('strIndivFName')),     
                     'strIndivMName' => trim($request->input('strIndivMName')),
                     'strIndivLName' => trim($request->input('strIndivLName')),
+                    'strIndivSex' => $request->input('strIndivSex'),
                     'strIndivHouseNo' => trim($request->input('strIndivHouseNo')), 
                     'strIndivStreet' => trim($request->input('strIndivStreet')),
                     'strIndivBarangay' => trim($request->input('strIndivBarangay')),   
@@ -174,6 +175,7 @@ class CustomerIndividualController extends Controller
         $individual->strIndivFName = trim($request->input('editFName'));
         $individual->strIndivMName = trim($request->input('editMName'));  
         $individual->strIndivLName = trim($request->input('editLName'));
+        $individual->strIndivSex = $request->input('editSex');
         $individual->strIndivHouseNo = trim($request->input('editCustPrivHouseNo'));
         $individual->strIndivStreet = trim($request->input('editCustPrivStreet'));
         $individual->strIndivBarangay = trim($request->input('editCustPrivBarangay'));

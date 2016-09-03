@@ -173,7 +173,7 @@
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                             <div class="input-field col s12">
-                                  <input  value="{{ $pattern->dblPatternPrice }}" id="editPatternPrice" name = "editPatternPrice" type="text" class="validate" pattern="^[0-9]+$">
+                                  <input  value="{{ $pattern->dblPatternPrice }}" id="editPatternPrice" name = "editPatternPrice" type="text" class="validate" pattern="^[1-9]\d{0,7}(?:\.\d{1,4})?|\.\d{1,4}$">
                                <label for="segment_description">Pattern Price</label>
                             </div>
                       </div>
@@ -311,7 +311,7 @@
 
              <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s12">
-                      <input id="dblPatternPrice" name="dblPatternPrice" type="text" class="validate" placeholder="50.00" pattern="^[0-9]+$">
+                      <input id="dblPatternPrice" name="dblPatternPrice" type="text" class="validate" placeholder="50.00" pattern="^[1-9]\d{0,7}(?:\.\d{1,4})?|\.\d{1,4}$">
                       <label for="pattern_name">Pattern Price <span class="red-text"><b>*</b></span></label>
                   </div>
              </div>

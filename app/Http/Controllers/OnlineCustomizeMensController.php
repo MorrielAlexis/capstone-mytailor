@@ -67,14 +67,23 @@ class OnlineCustomizeMensController extends Controller
                     ->where('a.strFabricID', $request->input('rdb_fabric'))
                     ->get();
 
+        $garmentKey = 'Men Shirt';
+        $segment = \DB::table('tblSegment')
+                    ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
+                    ->select('tblSegment.*', 'tblGarmentCategory.strGarmentCategoryName')
+                    ->where('tblGarmentCategory.strGarmentCategoryName', 'LIKE', '%'.$garmentKey.'%')
+                    ->orderBy('strSegmentID')
+                    ->get();
+
         $keycollar = 'Collar';
         $collars = \DB::table('tblSegmentStyleCategory')
-                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->select('strSegStyleCatID', 'strSegStyleName', 'strSegmentFK', 'boolIsActive')
                     ->where('strSegStyleName', 'LIKE', '%'.$keycollar.'%')
                     ->get();
 
         return view('customize.mens-style-collar')
                 ->with('contrasts', $contrast)
+                ->with('segments', $segment)
                 ->with('fabricThreadCounts', $fabricThreadCounts)
                 ->with('fabricColors', $fabricColors)
                 ->with('fabricTypes', $fabricTypes)
@@ -92,27 +101,36 @@ class OnlineCustomizeMensController extends Controller
         $fabricTypes = FabricType::all();
         $fabricPatterns = FabricPattern::all();
         $patterns = SegmentPattern::all();
+        
+        $garmentKey = 'Men Shirt';
+        $segment = \DB::table('tblSegment')
+                    ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
+                    ->select('tblSegment.*', 'tblGarmentCategory.strGarmentCategoryName')
+                    ->where('tblGarmentCategory.strGarmentCategoryName', 'LIKE', '%'.$garmentKey.'%')
+                    ->orderBy('strSegmentID')
+                    ->get();
 
         $keysleeves = 'Slevee';
         $sleeves = \DB::table('tblSegmentStyleCategory')
-                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->select('strSegStyleCatID', 'strSegStyleName', 'strSegmentFK', 'boolIsActive')
                     ->where('strSegStyleName', 'LIKE', '%'.$keysleeves.'%')
                     ->get();
 
         $keycuffs = 'Cuff';
         $cuffs = \DB::table('tblSegmentStyleCategory')
-                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->select('strSegStyleCatID', 'strSegStyleName', 'strSegmentFK', 'boolIsActive')
                     ->where('strSegStyleName', 'LIKE', '%'.$keycuffs.'%')
                     ->get();
 
         $keycufflinks = 'cufflinks';
         $cufflinks =  \DB::table('tblSegmentStyleCategory')
-                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->select('strSegStyleCatID', 'strSegStyleName', 'strSegmentFK', 'boolIsActive')
                     ->where('strSegStyleName', 'LIKE', '%'.$keycufflinks.'%')
                     ->get();
 
         return view('customize.mens-style-cuffs')
                 ->with('contrasts', $contrast)
+                ->with('segments', $segment)
                 ->with('fabricThreadCounts', $fabricThreadCounts)
                 ->with('fabricColors', $fabricColors)
                 ->with('fabricTypes', $fabricTypes)
@@ -142,20 +160,29 @@ class OnlineCustomizeMensController extends Controller
         $fabricPatterns = FabricPattern::all();
         $patterns = SegmentPattern::all();
 
+        $garmentKey = 'Men Shirt';
+        $segment = \DB::table('tblSegment')
+                    ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
+                    ->select('tblSegment.*', 'tblGarmentCategory.strGarmentCategoryName')
+                    ->where('tblGarmentCategory.strGarmentCategoryName', 'LIKE', '%'.$garmentKey.'%')
+                    ->orderBy('strSegmentID')
+                    ->get();
+
         $keypocket = 'Shirt Pocket';
         $pockets = \DB::table('tblSegmentStyleCategory')
-                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->select('strSegStyleCatID', 'strSegStyleName', 'strSegmentFK', 'boolIsActive')
                     ->where('strSegStyleName', 'LIKE', '%'.$keypocket.'%')
                     ->get();
 
         $keymonogram = 'Monogram';
         $monograms = \DB::table('tblSegmentStyleCategory')
-                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->select('strSegStyleCatID', 'strSegStyleName', 'strSegmentFK', 'boolIsActive')
                     ->where('strSegStyleName', 'LIKE', '%'.$keymonogram.'%')
                     ->get();
 
         return view('customize.mens-style-pocket-monogram')
                 ->with('contrasts', $contrast)
+                ->with('segments', $segment)
                 ->with('fabricThreadCounts', $fabricThreadCounts)
                 ->with('fabricColors', $fabricColors)
                 ->with('fabricTypes', $fabricTypes)
@@ -174,14 +201,23 @@ class OnlineCustomizeMensController extends Controller
         $fabricPatterns = FabricPattern::all();
         $patterns = SegmentPattern::all();
 
+        $garmentKey = 'Men Shirt';
+        $segment = \DB::table('tblSegment')
+                    ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
+                    ->select('tblSegment.*', 'tblGarmentCategory.strGarmentCategoryName')
+                    ->where('tblGarmentCategory.strGarmentCategoryName', 'LIKE', '%'.$garmentKey.'%')
+                    ->orderBy('strSegmentID')
+                    ->get();
+
         $keyplacket = 'Placket';
         $plackets = \DB::table('tblSegmentStyleCategory')
-                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->select('strSegStyleCatID', 'strSegStyleName', 'strSegmentFK', 'boolIsActive')
                     ->where('strSegStyleName', 'LIKE', '%'.$keyplacket.'%')
                     ->get();
 
         return view('customize.mens-style-others')
                 ->with('fabrics', $fabrics)
+                ->with('segments', $segment)
                 ->with('fabricThreadCounts', $fabricThreadCounts)
                 ->with('fabricColors', $fabricColors)
                 ->with('fabricTypes', $fabricTypes)

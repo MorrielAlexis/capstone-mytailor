@@ -359,7 +359,7 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <select class="browser-default" name='strFabricColorFK' id='strFabricColorFK'>
+                        <select class="browser-default" name='strFabricColorFK' id='strFabricColorFK' required>
                           <option value="" disabled selected>Choose a color:</option>
                           @foreach($fabricColor as $fabricColor_1)
                             @if($fabricColor_1->boolIsActive == 1) 
@@ -372,7 +372,7 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <select class="browser-default" name='strFabricThreadCountFK' id='strFabricThreadCountFK' >
+                        <select class="browser-default" name='strFabricThreadCountFK' id='strFabricThreadCountFK' required>
                           <option value="" disabled selected>Choose a thread count:</option>
                           @foreach($threadCount as $threadCount_1)
                             @if($threadCount_1->boolIsActive == 1) 
@@ -392,7 +392,7 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                            <input required  id="dblFabricPrice" name= "dblFabricPrice" type="text" class="validate"  data-position="bottom" pattern="^[0-9]*$" minlength="2" placeholder="Php89.00">
+                            <input required  id="dblFabricPrice" name= "dblFabricPrice" type="text" class="validate"  data-position="bottom" pattern="^[1-9]\d{0,7}(?:\.\d{1,4})?|\.\d{1,4}$" minlength="2" placeholder="Php89.00">
                             <label for="days"><span class="red-text"><b>*</b></span>Fabric Price:</label>
                       </div>
                   </div>

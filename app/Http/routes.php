@@ -384,8 +384,8 @@ Route::get('/pdf', 'PdfController@converToPdf');
 
 /*---------------------------------------ADMIN TRANSACTION ALTERATION--------------------------------------------------*/
 Route::group(['prefix' => 'transaction'], function(){		
-		Route::get('alteration-online-transaction', 'AlterationOnlineController@index');
-		Route::get('alteration-acceptorder', 'AlterationOnlineController@accept');
+		Route::get('alteration-online-transaction', 'AcceptAlterationOnlineController@index');
+		Route::get('alteration-acceptorder', 'AcceptAlterationOnlineController@accept');
 		Route::get('alteration-walkin-transaction', 'AlterationWalkInController@index');
 		Route::get('alteration-walkin-newcustomer', 'AlterationWalkInController@showCart');
 		Route::get('alteration-walkin-newcustomer-update', 'AlterationWalkInController@updateCart');
@@ -416,12 +416,12 @@ Route::group(['prefix' => 'transaction'], function(){
 		// Route::get('online-alterationtransaction-newcustomer', 'OnlineAlterationController@newcust');
 		Route::get('online-alterationtransaction-patron', 'OnlineAlterationController@oldcust');
 		Route::get('online-alterationtransaction-newcustomer', 'OnlineAlterationController@showCart');
-		Route::get('online-alteration-newcustomer-update', 'OnlineAlterationController@updateCart');
+		Route::get('online-alterationtransaction-newcustomer-update', 'OnlineAlterationController@updateCart');
 		Route::get('online-alteration-oldcustomer', 'OnlineAlterationController@oldcust');
 		Route::get('online-alteration-info', 'OnlineAlterationController@checkoutCustInfo');
 		Route::get('online-alteration-payment', 'OnlineAlterationController@checkoutPayment');
 		Route::get('online-alteration-measurement', 'OnlineAlterationController@checkoutAddMeasurement');
-		Route::post('online-alteration-newcustomer', 'OnlineAlterationController@addValues');
+		Route::post('online-alterationtransaction-newcustomer', 'OnlineAlterationController@addValues');
 		Route::post('online-alteration-newcustomer-delete', 'OnlineAlterationController@deleteOrder');
 		Route::post('online-alteration-add-newcustomer-checkout-info', 'OnlineAlterationController@addNewCustomer');
 		Route::post('online-alteration-newcustomer-save-transaction', 'OnlineAlterationController@saveTransaction');
@@ -508,7 +508,7 @@ Route::get('online-alteration-checkout-payment', 'OnlineCheckoutAlterationContro
 
 	Route::get('customize-suit-fabric', 'OnlineCustomizeSuitController@fabric');
 	Route::post('customize-suit-style-jacket', 'OnlineCustomizeSuitController@stylejacket');
-	Route::post('customize-suit-style-collar-pocket', 'OnlineCustomizeSuitController@stylecollarpocket');
+	//Route::post('customize-suit-style-collar-pocket', 'OnlineCustomizeSuitController@stylecollarpocket');
 	Route::post('customize-suit-style-pants', 'OnlineCustomizeSuitController@stylepants');
 	Route::post('customize-suit-style-monogram', 'OnlineCustomizeSuitController@stylemonogram');
 

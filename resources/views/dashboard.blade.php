@@ -27,7 +27,7 @@
             </div>
             <div class="col s4">
                 <div class="col s12">
-                    <ul id="task-card" class="collection with-header z-depth-3" style="border:0;">
+                    <ul id="task-card" class="collection with-header z-depth-3" style="border:0;  height:550px">
                         <li class="collection-header green">
                             <h3 class="task-card-title white-text">On Going Orders</h3>
                         </li>
@@ -48,7 +48,7 @@
 
             <div class="col s4">
                 <div class="col s12">
-                    <ul id="task-card" class="collection with-header z-depth-3" style="border:0;">
+                    <ul id="task-card" class="collection with-header z-depth-3" style="border:0; height:550px">
                         <li class="collection-header cyan">
                             <h3 class="task-card-title white-text">Pending Orders</h3>
                         </li>
@@ -69,72 +69,31 @@
         </div>
         <div class="row">
             <div class="col s6">
-                <ul id="projects-collection" class="collection z-depth-3">
+                <ul id="projects-collection" class="collection z-depth-3" style="height:550px">
                     <li class="collection-item avatar">
                         <i class="mdi-file-folder circle light-blue darken-2"></i>
                         <span class="collection-header"><font size="+1">CUSTOMER NEAR DUE DATE</font></span>
                         <a href="#" class="secondary-content"><i class="mdi-action-grade"></i></a>
                     </li>
-                    <li class="collection-item">
-                        <div class="row">
-                            <div class="col s6">
-                                <p class="collections-title">Web App</p>
-                                <p class="collections-content">AEC Company</p>
+                    @foreach($neardue as $neardue)
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col s6">
+                                    <a href="{{URL::to('transaction/billing-collection')}}">
+                                        <p class="collections-title">{{$neardue->strJobOrderID}}</p>
+                                        <p class="collections-content">{{$neardue->strCompanyName}}{{$neardue->strIndivFName}} {{$neardue->strIndivLName}}</p>
+                                    </a>
+                                </div>
+                               <div class="col s6">
+                                    <p>{{$neardue->dtOrderExpectedToBeDone}}</p>
+                                </div>
                             </div>
-                           <div class="col s3">
-                                <span class="task-cat cyan">Development</span>
-                            </div>
-                            <div class="col s3">
-                                <div id="project-line-1"></div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="collection-item">
-                        <div class="row">
-                            <div class="col s6">
-                                <p class="collections-title">Mobile App for Social</p>
-                                <p class="collections-content">iSocial App</p>
-                            </div>
-                            <div class="col s3">
-                                <span class="task-cat grey darken-3">UI/UX</span>
-                            </div>
-                            <div class="col s3">
-                                <div id="project-line-2"></div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="collection-item">
-                        <div class="row">
-                            <div class="col s6">
-                                <p class="collections-title">Website</p>
-                                <p class="collections-content">MediTab</p>
-                            </div>
-                            <div class="col s3">
-                                <span class="task-cat teal">Marketing</span>
-                            </div>
-                            <div class="col s3">
-                                <div id="project-line-3"></div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="collection-item">
-                        <div class="row">
-                            <div class="col s6">
-                                <p class="collections-title">AdWord campaign</p>
-                                <p class="collections-content">True Line</p>
-                            </div>
-                            <div class="col s3">
-                                <span class="task-cat green">SEO</span>
-                            </div>
-                            <div class="col s3">
-                                <div id="project-line-4"></div>
-                            </div>
-                        </div>
-                    </li>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
             <div class="col s6">
-                <ul id="issues-collection" class="collection z-depth-3">
+                <ul id="issues-collection" class="collection z-depth-3" style="height:550px">
                     <li class="collection-item avatar">
                         <i class="mdi-action-bug-report circle red darken-2"></i>
                         <span class="collection-header"><font size="+1">JOB ORDERS IN PROGRESS</font></span>

@@ -33,7 +33,6 @@
 
         <ul class="tabs transparent" style="float:left; margin-top:40px;">
           <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Jacket Style</li>
-          <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Jacket Collar & Pockets</li>
           <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab active"><a style="color:black" href="#tabPants">Pants Style</a></li>
           <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Monogram</li>
           <div class="indicator light-blue" style="z-index:1"></div>
@@ -49,12 +48,14 @@
           </div>
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
 
+          @foreach($segments as $segment)
           <div class="col s12">
             <ul class="collapsible" data-collapsible="accordion" style="border:none;">
-              <li>
-                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Pant's Pleats</div>
+              @foreach($pleatsSegment as $pleats)
+              @if($pleats->boolIsActive == 1)
+              <li @if($segment->strSegmentID != $pleats->strSegmentFK) hidden @endif>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $pleats->strSegStyleName }}</div>
                 <div class="collapsible-body row overflow-x" style="padding:20px;">
-                  @foreach($pleatsSegment as $pleats)
                   <div class="col s12">
                     @foreach($patterns as $pattern)
                     <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $pleats->strSegStyleCatID) hidden @endif>
@@ -65,14 +66,17 @@
                       </p>
                     </div>
                     @endforeach
-                  </div>
-                  @endforeach 
+                  </div> 
                 </div>
               </li>
-              <li>
-                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Pant's Pockets</div>
+              @endif
+              @endforeach
+
+              @foreach($pocketSegment as $pocket)
+              @if($pocket->boolIsActive == 1)
+              <li @if($segment->strSegmentID != $pocket->strSegmentFK) hidden @endif>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $pocket->strSegStyleName }}</div>
                 <div class="collapsible-body row overflow-x" style="padding:20px;">
-                  @foreach($pocketSegment as $pocket)
                   <div class="col s12">
                     @foreach($patterns as $pattern)
                     <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $pocket->strSegStyleCatID) hidden @endif>
@@ -84,13 +88,16 @@
                     </div>
                     @endforeach
                   </div>
-                  @endforeach 
                 </div>
               </li>
-              <li>
-                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Backpockets</div>
+              @endif
+              @endforeach
+
+              @foreach($backSegment as $back)
+              @if($back->boolIsActive == 1)
+              <li @if($segment->strSegmentID != $back->strSegmentFK) hidden @endif>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $back->strSegStyleName }}</div>
                 <div class="collapsible-body row overflow-x" style="padding:20px;">
-                  @foreach($backSegment as $back)
                   <div class="col s12">
                     @foreach($patterns as $pattern)
                     <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $back->strSegStyleCatID) hidden @endif>
@@ -102,13 +109,16 @@
                     </div>
                     @endforeach
                   </div> 
-                  @endforeach
                 </div>
               </li>
-              <li>
-                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Pant's Bottom</div>
+              @endif
+              @endforeach
+
+              @foreach($bottomSegment as $bottom)
+              @if($bottom->boolIsActive == 1)
+              <li @if($segment->strSegmentID != $bottom->strSegmentFK) hidden @endif>
+                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $bottom->strSegStyleName }}</div>
                 <div class="collapsible-body row overflow-x" style="padding:20px;">
-                  @foreach($bottomSegment as $bottom)
                   <div class="col s12">
                     @foreach($patterns as $pattern)
                     <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $bottom->strSegStyleCatID) hidden @endif>
@@ -120,18 +130,20 @@
                     </div>
                     @endforeach
                   </div>
-                  @endforeach 
                 </div>
               </li>
+              @endif
+              @endforeach
             </ul>
           </div>
+          @endforeach
 
           <div class="col s12" style="margin-top:20px;">
             
             <div class="col s3">
               <h5><b>Additional Pants</b></h5>
               <div class="input-field">
-                <select class="browser-default">
+                <select>
                   <option value="" disabled selected>Choose your option</option>
                   <option value="1">Only these pants</option>
                   <option value="2">Two Identical Pants</option>
@@ -140,8 +152,9 @@
               <p>You can order two pants with the same characteristics.</p>
             </div>
 
-          </div>          
+          </div>         
 
+          <div class="col s12" style="margin-top:20px;"> 
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12">
@@ -180,3 +193,4 @@
 
   </script>
 
+@stop
