@@ -79,27 +79,6 @@ class BillingPaymentController extends Controller
 
     public function billCustomer(Request $request)
     {
-        
-        // $ids = \DB::table('tblCustIndividual AS a')
-        //     ->leftJoin('tblJobOrder AS b', 'b.strJO_CustomerFK', '=', 'a.strIndivID')
-        //     ->leftJoin('tblJOPayment AS c', 'c.strTransactionFK', '=', 'b.strJobOrderID')
-        //     ->select('a.strIndivID', \DB::raw('CONCAT(a.strIndivFName, " ", a.strIndivMName, " ", a.strIndivLName) AS custname'))
-        //     ->where('b.strJO_CustomerFK', 'a.strIndivID')
-        //     ->where('c.strTransactionFK', 'b.strJobOrderID')
-        //     ->get();
-
-
-        // if($ids == null){
-        //     $custID = $this->smartCounter("CUSTP000"); 
-        // }else{
-        //     $ID = $ids["0"]->strIndivID;
-        //     $custID = $this->smartCounter($ID);  
-        // } 
-
-        // session(['custID' => $custID]);
-
-       //  $values = session()->get('segment_values');
-       //  $joID = session()->get('joID');
 
        // $customers = \DB::table('tblJobOrder AS a')
        //              ->leftJoin('tblCustIndividual AS b', 'a.strJO_CustomerFK', '=', 'b.strIndivID')

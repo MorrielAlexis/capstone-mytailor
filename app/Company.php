@@ -18,4 +18,9 @@ class Company extends Model
     					'strCompanyCPNumber', 'strCompanyCPNumberAlt',
     					'strCompanyFaxNumber', 'boolIsActive', 'userId',
     					'strCompanyInactiveReason');   
+
+    public function customer_comp(){
+
+        return $this->hasOne('App\Customer', 'strCustomer_CompanyFK', 'strCompanyID');
+    }
 }

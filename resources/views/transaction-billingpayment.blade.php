@@ -41,11 +41,11 @@
 									<!--Customer search and info-->
 									<div class="col s12" style="margin-top:30px">
 										{!! Form::open(['method' => 'POST', 'url' => 'transaction/billing-payment/result']) !!}
-										<div class="col s12" style="background-color:#00695c; padding-top:3%; padding-bottom:3%">
+										<div class="col s12 customer" style="background-color:#00695c; padding-top:3%; padding-bottom:3%">
 											<div class="col s5">
 												<div class="col s5" style="color:darkgray; margin-top:4%"><center><b>CUSTOMER TYPE</b></center></div>
 												<div class="col s7"  class="cust_type" id="cust_type" style="color:black">
-													<select class="browser-default customer_type" id="cust_type" name="cust_type">
+													<select class="browser-default cust_type" id="cust_type" name="cust_type">
 														<option disabled>Choose Customer Type</option>
 													    <option value="ind" class="circle">Individual</option>
 													    <option value="comp" class="circle">Company</option>
@@ -301,6 +301,30 @@
 	 			}
 	 	});
 	 </script>
+
+	 <script>
+	 	var type = $('#cust_type');
+
+	 	type.change(function() {
+	 		updateUI();
+	 	});
+
+	 	function updateUI () {
+	 		$('.customer').hide();
+
+	 		var typeValue = type.val();
+
+	 		if(typeValue == '')
+	 	}
+	 </script>
+
+	<script>
+
+	    $(document).ready(function() {
+	      $('select').material_select();
+	    });
+
+	</script>
 
 	<script>
 	function tabInit() {
