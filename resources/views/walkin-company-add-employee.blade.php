@@ -52,7 +52,7 @@
 									</div>
 
 									<div class="input-field col s3">
-									    <select id="empSet{{ $i }}" name="empSet[]"> 
+									    <select class="empSet" id="empSet{!! $i !!}" name="empSet[]"> 
 									    	@foreach($packages as $package)
 									    		<option value="{{ $package->strPackageID }}">{{ $package->strPackageName }}</option>	
 									    	@endforeach
@@ -61,11 +61,11 @@
 									</div>
 
 									<div class="col s1">
-										<a style="color:white; margin-top:18px" class="modal-trigger btn tooltipped blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit the set purchased" href="#edit-emp-data"><i class="mdi-editor-mode-edit"></i></a>
+										<a style="color:white; margin-top:18px" class="modal-trigger btn tooltipped blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit the set purchased" href="#empSpecification{!! $i !!}"><i class="mdi-editor-mode-edit"></i></a>
 									</div>
 
 									<!--Modal for editing employee -->
-									<div id="edit-emp-data" class="modal modal-fixed-footer" style="width:70%; height:80%">
+									<div id="empSpecification{!! $i !!}" class="modal modal-fixed-footer" style="width:70%; height:80%">
 										<h5><font color="teal"><center><b>Employee's Specification</b></center></font></h5>
 										<div class="divider" style="height:2px"></div>
 										<div class="modal-content col s12" style="padding-bottom:10%">
@@ -125,15 +125,16 @@
 
 @section('scripts')
 	
-
 	<script>
-	  $(document).ready(function() {
-	    $('select').material_select();
-	  });
+	$(".empSet").change(function(){
+		var setId = "#" + this.id;
+		
+	});
 	</script>	
 
 	<script>
 	$(document).ready(function(){
+		$('select').material_select();
     	$('body').on('load', 'ul.tabs', function() {
    	 	$('ul.tabs').tabs();
 		});
