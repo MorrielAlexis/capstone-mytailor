@@ -253,7 +253,8 @@ class AlterationWalkInController extends Controller
             $alterationSpecs = TransactionNonShopAlterationSpecifics::create(array(
                 'strNonAlterSpecificID' => $alteSpecsID,
                 'strNonShopAlterFK' => $request->input('alteID'),
-                'strGarmentSegmentFK' => $values[$i][0]
+                'strGarmentSegmentFK' => $values[$i][0],
+                'strAlterationTypeFK' => $values[$i][1]
             ));
 
             $alterationSpecs->save();

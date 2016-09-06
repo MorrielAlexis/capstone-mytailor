@@ -224,7 +224,7 @@
                     <li class="no-padding">
                       <ul class="collapsible collapsible-accordion">
 
-                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('utilities/inactive-data')}}"><b>Inactive Data</b></a></li>
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('utilities/inactive-data')}}"><b>Data Reactivation</b></a></li>
 
                       </ul>
                     </li>

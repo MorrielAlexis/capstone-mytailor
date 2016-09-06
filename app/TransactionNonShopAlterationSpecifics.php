@@ -12,5 +12,7 @@ class TransactionNonShopAlterationSpecifics extends Model
 
     public $fillable = array('strNonAlterSpecificID', 
     						'strNonShopAlterFK',
-    						'strGarmentSegmentFK');
+    						'strGarmentSegmentFK',
+    						'strAlterationTypeFK',
+    						'txtAlterationDesc');
 }
