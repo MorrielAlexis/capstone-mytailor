@@ -51,13 +51,13 @@ class WalkInIndividualController extends Controller
     
     public function index()
     {   
-            $values = [];
-            $quantity = [];
-            $data = [];
+        $values = [];
+        $quantity = [];
+        $data = [];
 
-            session(['segment_data' => $data]);
-            session(['segment_values' => $values]);
-            session(['segment_quantity' => $quantity]);
+        session(['segment_data' => $data]);
+        session(['segment_values' => $values]);
+        session(['segment_quantity' => $quantity]);
 
         $categories = GarmentCategory::all();
         $garments = \DB::table('tblSegment AS a')

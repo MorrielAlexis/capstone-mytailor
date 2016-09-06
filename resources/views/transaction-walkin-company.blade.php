@@ -111,7 +111,7 @@
 							<div class="divider"></div>
 							<p class="center-align" style="color:teal"><b>CHOOSE AMONG AVAILABLE PACKAGE SETS</b></p>
 					
-							{!! Form::open(['url' => 'transaction/walkin-company-orders', 'method' => 'POST']) !!}
+							{!! Form::open(['url' => 'transaction/walkin-company-orders', 'method' => 'POST', 'id' => 'order-form']) !!}
 								@foreach($packages as $package)
 								<div class="col s4" style="margin-top:20px; margin-bottom:20px">
 					           		 <div class="container">
@@ -130,9 +130,12 @@
 					         			 </div>
 
 					         			<div class="col s12">
-						         			<div class="center col s12" style="margin-top:10px; padding-right:5px">
-						          				<input type="checkbox" name="cbx-package-name[]" class="filled-in cbx-package-name" id="{{ $package->strPackageID }}" value="{{ $package->strPackageID }}">
-				      							<label for="{!! $package->strPackageID !!}">Choose this package.</label>
+						         			<div class="center col s2" style="margin-top:10px; padding-right:5px">
+						          				<input type="checkbox" name="cbx-package-name[]" class="filled-in cbx-package-name" id="{!! $package->strPackageID !!}" value="{{ $package->strPackageID }}">
+				      							<label for="{!! $package->strPackageID !!}"></label>
+					      					</div>
+					      					<div class="col s10">
+					      						<input class="center int-package-qty {{ $package->strPackageID }} qty{{ $package->strPackageID }}" disabled="true" name="int-package-qty[]" id="{{ $package->strPackageID }}" type="number">
 					      					</div>
 					      				</div>
 
@@ -171,14 +174,64 @@
 
 @section('scripts')
 
+	<script type="text/javascript">
+		$(".cbx-package-name").change(function(){
+			var a = document.getElementsByClassName('cbx-package-name');
+			var b = document.getElementsByClassName('int-package-qty');
+
+			var i, j;
+
+			for(i = 0; i < a.length; i++){
+				for(j = 0; j < b.length; j++){
+					if(a[i].id == b[j].id){
+						if($('#' + a[i].id).is(":checked")){
+							$('.' + b[j].id).removeAttr('disabled');
+							$('.' + b[j].id).attr('required', true);
+						}else{
+							$('.' + b[j].id).attr('disabled', true);
+							$('.' + b[j].id).val('');
+						}
+					}
+				}
+			}
+
+		});
+
+		$("#order-form").submit(function(){
+			if(!$('.cbx-package-name').is(":checked"))
+			{
+			    alert('Please select at least one item.');
+			    return false;
+			}
+		})
+
+	</script>
+
 	<script>
 	  $(document).ready(function() {
-	    $('select').material_select();
+
+	  	var values = {!! json_encode($values) !!};
+	  	var quantity = {!! json_encode($quantity) !!};
+
+	  	var cbx_id = document.getElementsByClassName('cbx-package-name');
+		var tf_qty = document.getElementsByClassName('int-package-qty');
+
+	  	for(var i = 0; i < values.length; i++){
+	  		for(var j = 0; j < cbx_id.length; j++){
+	  			if(cbx_id[j].id == values[i]){
+	  				$('#' + cbx_id[j].id).prop('checked', true);
+	  				$('.qty'  + tf_qty[j].id).val(quantity[i]);
+	  				$('.qty'  + tf_qty[j].id).removeAttr('disabled');
+	  			}
+	  		}
+	  	}
+
 	  });
-	</script>	        
+	</script>
 
 	<script>
 	 $(document).ready(function(){
+	 	$('select').material_select();
 		$('.tooltipped').tooltip({delay: 50});
 	 });
 	</script>

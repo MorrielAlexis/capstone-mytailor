@@ -34,11 +34,21 @@ class WalkInCompanyController extends Controller
     }
     
     public function index()
-    {   
+    {       
+        $data = [];
+        $values = [];
+        $quantity = [];
+
+        session(['package_data' => $data]);
+        session(['package_values' => $values]);
+        session(['package_quantity' => $quantity]);
+
         $packages = Package::all();
 
         return view('transaction-walkin-company')
-                ->with('packages', $packages);
+                ->with('packages', $packages)
+                ->with('values', $values)
+                ->with('quantity', $quantity);
     }
 
     public function showOrder()
@@ -47,18 +57,22 @@ class WalkInCompanyController extends Controller
                 ->select('strPackageID', 'strPackageName', 'strPackageSex', 'strPackageSeg1FK', 
                     'strPackageSeg2FK', 'strPackageSeg3FK', 'dblPackagePrice', 'strPackageImage', 
                     'intPackageMinDays', 'strPackageDesc', 'boolIsActive')
-                ->whereIn('strPackageID', session()->get('package_values'))
+                ->whereIn('strPackageID', session()->get('package_data'))
                 ->get();
+
+        session(['package_values' => $values]);
 
         return view('walkin-company-customize-order')
                 ->with('values', $values);
-    }
+    }//page before customization
 
     public function listOfOrders(Request $request)
     {   
         $data_segment = $request->input('cbx-package-name');
+        $data_quantity = $request->input('int-package-qty');
 
-        session(['package_values' => $data_segment]);
+        session(['package_data' => $data_segment]);
+        session(['package_quantity' => $data_quantity]);
 
         return redirect('transaction/walkin-company-show-order');
     }
@@ -116,7 +130,7 @@ class WalkInCompanyController extends Controller
                 ->with('fabricPatterns', $fabricPatterns)
                 ->with('patterns', $segmentPatterns)
                 ->with('styles', $segmentStyles);
-    }
+    }//mismong customize na.
 
     public function customize(Request $request)
     {   
@@ -148,6 +162,26 @@ class WalkInCompanyController extends Controller
         dd($patterns);
     }
 
+    public function addEmployees()
+    {
+        $quantity = session()->get('package_quantity');
+        $packages = session()->get('package_values');
+
+        $totalQuantity = 0;
+
+        for($i = 0; $i < count($quantity); $i++)
+            $totalQuantity = $totalQuantity + $quantity[$i];
+
+        return view('walkin-company-add-employee')
+                ->with('total_quantity', $totalQuantity)
+                ->with('packages', $packages);
+    }//specifications ng employee
+
+    public function saveEmployees(Request $request)
+    {
+        
+    }//save employee specs
+
     public function retailProduct()
     {
         return view('walkin-company-retail-product');
@@ -163,11 +197,6 @@ class WalkInCompanyController extends Controller
         return view('walkin-company-checkout-info');
     }
 
-    public function addEmployee()
-    {
-        return view('walkin-company-add-employee');
-    }
- 
     public function payment()
     {
         return view('walkin-company-checkout-pay');
