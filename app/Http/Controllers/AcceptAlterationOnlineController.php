@@ -7,6 +7,17 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Session;
+
+use App\GarmentCategory;
+use App\SegmentPattern;
+use App\GarmentSegment; 
+use App\Alteration; 
+use App\Individual;
+
+use App\TransactionJOAlteration;
+use App\TransactionNonShopAlteration;
+use App\TransactionNonShopAlterationSpecifics;
 
 class AcceptAlterationOnlineController extends Controller
 {
@@ -29,8 +40,31 @@ class AcceptAlterationOnlineController extends Controller
             ->orderby('tblNonShopAlteration.strNonShopAlterID')
             ->select('tblcustindividual.*', 'tblcustcompany.*', 'tblNonShopAlteration.*')
             ->get(); 
-        return view('alteration.online-transaction')
+
+        return view('alteration.acceptonlinealteration')
             ->with('onlineAlteration', $onlineAlteration);
+        
+    }
+
+
+
+    public function alterationDetails()
+    {
+        $onlineAlteration = TransactionNonShopAlteration::all();
+        $onlineAltSpecifics = \DB::table('tblNonShopAlterSpecific')
+            ->join('tblNonShopAlteration', 'tblNonShopAlteration.strNonShopAlterID', '=', 'tblNonShopAlterSpecific.strNonShopAlterFK')
+            ->join('tblSegment', 'tblSegment.strSegmentID', '=', 'tblNonShopAlterSpecific.strGarmentSegmentFK')
+            ->join('tblAlteration', 'tblAlteration.strAlterationID', '=', 'tblNonShopAlterSpecific.strAlterationTypeFK')
+            // ->where('tblNonShopAlterSpecific.strNonShopAlterFK', '=', Input::get('jobID'))
+            ->orderby('tblNonShopAlterSpecific.strNonAlterSpecificID')
+            ->select('tblNonShopAlterSpecific.*', 'tblAlteration.strAlterationName', 'tblSegment.strSegmentName', 'tblNonShopAlteration.strNonShopAlterID')
+            ->get();        
+
+            
+        return redirect('transaction/alteration-online-transaction-details')
+               ->with('onlineAlteration', $onlineAlteration)
+               ->with('onlineAltSpecifics', $onlineAltSpecifics);
+           
     }
 
     public function accept()

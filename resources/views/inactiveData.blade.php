@@ -22,8 +22,8 @@
         </div>
       @endif
 
-  <div style="padding:20px">
-
+   
+    <div style="padding:20px">
       <ul class="tabs transparent" style="float:left">
         <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab active"><a style="color:black" href="#tabCustp">Customer</a></li>
         <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab"><a style="color:black" href="#tabEmp">Employee</a></li>
@@ -38,8 +38,10 @@
         <div class="indicator white" style="z-index:1"></div>
       </ul>
 
+
     <div id="tabCustp" class="hue col s12" style="margin-top:45px; background-color: #80d8ff;">
     <div style="height:30px;"></div>
+
 
       <!--Individual Customer-->
       <p><h5 style="margin-left:20px"><b>Individual Customer</b></h5></p>

@@ -25,16 +25,7 @@
 						        	<th style="color:#1b5e20">Alteration No.</th>
 						            <th style="color:#1b5e20">Customer Name</th>
 						            <th style="color:#1b5e20">Total Price</th>
-						            <th>
-						        </tr>
-						    </thead>
-						</table>
-		        	</div>
-		        	<div class="col s5">
-		        		<table class="centered">
-		        			<thead>
-						    	<tr>
-						            <th style="color:#1b5e20">Action</th>
+						            <th> Actions </th>
 						        </tr>
 						    </thead>
 						</table>
@@ -84,17 +75,17 @@
 						    		<thead>
 						    			<tr>
 						    				<th>Segment Type</th>
-						    				<th>Quantity</th>
 						    				<th>Alteration Type</th>
-						    				{{-- <th></th> --}}
+						    				<th>Description</th>
+						    				<th></th>
 						    			</tr>
 						    		</thead>
 						    		<tbody>
 						    			<tr>
-						    				<td>Polo</td>
-						    				<td>1</td>
+						    				<td>Pants</td>
 						    				<td>Hem</td>
-						    				{{-- <td><a class=" btn modal-trigger tooltipped" href="#measurementmodal" data-position="top" data-delay="50" data-tooltip="View measurements"><i class="mdi-action-view-headline"></i></a></td> --}}
+						    				<td>Decrease by 1 cm</td>
+						    				<td><a class=" btn modal-trigger tooltipped" href="#measurementmodal" data-position="top" data-delay="50" data-tooltip="View measurements"><i class="mdi-action-view-headline"></i></a></td>
 						    			</tr>
 						    		</tbody>
 						    	</table>

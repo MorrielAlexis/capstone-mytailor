@@ -14,9 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::post('/update', 'JobOrderProgressController@updateJobDetails');
-Route::get('/details','JobOrderProgressController@jobdetails');
-Route::get('/track', 'OnlineCustomerProfileIndividualController@trackJob');
+
 Route::get('/', 'HomeController@showWelcome');
 Route::post('/login', 'HomeController@LogIn');
 Route::get('/logout', 'HomeController@LogOut');
@@ -384,8 +382,6 @@ Route::get('/pdf', 'PdfController@converToPdf');
 
 /*---------------------------------------ADMIN TRANSACTION ALTERATION--------------------------------------------------*/
 Route::group(['prefix' => 'transaction'], function(){		
-		Route::get('alteration-online-transaction', 'AcceptAlterationOnlineController@index');
-		Route::get('alteration-acceptorder', 'AcceptAlterationOnlineController@accept');
 		Route::get('alteration-walkin-transaction', 'AlterationWalkInController@index');
 		Route::get('alteration-walkin-newcustomer', 'AlterationWalkInController@showCart');
 		Route::get('alteration-walkin-newcustomer-update', 'AlterationWalkInController@updateCart');
@@ -399,7 +395,17 @@ Route::group(['prefix' => 'transaction'], function(){
 		Route::post('alteration-walkin-add-newcustomer-info', 'AlterationWalkInController@addNewCustomer');
 		Route::post('alteration-walkin-newcustomer-save-transaction', 'AlterationWalkInController@saveTransaction');
 		Route::post('alteration-walkin-newcustomer-cancel', 'AlterationWalkInController@cancelOrder');
+
+		//Accept Online Alteration
+		Route::get('alteration-online-transaction', 'AcceptAlterationOnlineController@index');
+		Route::get('alteration-online-transaction-details', 'AcceptAlterationOnlineController@alterationDetails');
+		Route::get('alteration-acceptorder', 'AcceptAlterationOnlineController@accept');
 });
+
+/*JOB ORDER PROGRESS*/
+Route::post('/update', 'JobOrderProgressController@updateJobDetails');
+Route::get('/details','JobOrderProgressController@jobdetails');
+Route::get('/track', 'OnlineCustomerProfileIndividualController@trackJob');
 
 /*---------------------------------------------ONLINE---------------------------------------------------*/
 
