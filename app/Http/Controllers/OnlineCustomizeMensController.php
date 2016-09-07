@@ -35,6 +35,11 @@ class OnlineCustomizeMensController extends Controller
     {
         //
     }
+    
+    public function choose()
+    {
+        return view('customize.mens-choose-shirt');
+    }   
 
     public function fabric()
     {
@@ -224,7 +229,7 @@ class OnlineCustomizeMensController extends Controller
                 ->with('fabricPatterns', $fabricPatterns)
                 ->with('plackets', $plackets);
     }
-   
+
 
     /**
      * Show the form for creating a new resource.

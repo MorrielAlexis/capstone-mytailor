@@ -89,14 +89,12 @@
 					            </div>
 								{!! Form::close() !!}
 							</div>
-							<a style="color:black; margin-top:15px" class="btn tooltipped btn-floating teal accent-4" data-position="bottom" data-delay="50" data-tooltip="Click to add measurement" href="{{URL::to('/online-company-checkout-measurement')}}"><i class="mdi-editor-border-color"></i></a>
+							<a style="color:black; margin-top:15px" class="btn tooltipped btn-floating teal accent-4" data-position="bottom" data-delay="50" data-tooltip="Click to edit the set purchased" href="{{URL::to('/online-company-checkout-edit-set')}}"><i class="mdi-editor-border-color"></i></a>
 						</div>
 					</div>
 
 		<!--bottom buttons-->
-          <a href="{{URL::to('/online-company-checkout-info')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save payment information and get measured" style="background-color:#00695c; padding:9.5px; padding-bottom:45px; margin-top:20px; margin-left:30px"><label style="font-size:15px; color:white"><b>Check Out</b></label></a>
-
-          <a href="#cancel-order" class="right btn modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Clears current transaction" style="background-color:teal; padding:9.5px; padding-bottom:45px; margin-right:50px; color:white">Cancel Transaction</a>
+          <a href="#cancel-order" class="left btn modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Clears current transaction" style="background-color:teal; padding:9.5px; padding-bottom:45px; color:white">Cancel</a>
             <div id="cancel-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:80px">
               <h5><font color="red"><center><b>Warning!</b></center></font></h5>
                 
@@ -109,8 +107,11 @@
               <div class="modal-footer col s12">
                 <a class="waves-effect waves-green btn-flat" href="{{URL::to('/online-home')}}"><font color="black">Yes</font></a>
                 <a href="{{URL::to('/online-company-checkout-measurement')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
-            </div>
-          </div>
+              </div>
+          	</div>
+
+          <a href="{{URL::to('/customize-sets-list-of-orders')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save employee information and measurement" style="background-color:#00695c; padding:9.5px; padding-bottom:45px; margin-left:30px"><label style="font-size:15px; color:white"><b>Save</b></label></a>
+
         <!--end of bottom buttons-->					
 
 

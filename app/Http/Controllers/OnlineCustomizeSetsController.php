@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class OnlineGarmentSetsController extends Controller
+class OnlineCustomizeSetsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,22 @@ class OnlineGarmentSetsController extends Controller
      */
     public function index()
     {
-        return view('online.garmentSets');
+        //
+    }
+
+    public function choose()
+    {
+        return view('customize.sets-choose-set');
+    }
+
+    public function orderlist()
+    {
+        return view('customize.sets-list-of-orders');
+    }
+
+    public function customize()
+    {
+        return view('customize.sets-customize-order');
     }
 
 

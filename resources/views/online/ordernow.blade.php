@@ -35,13 +35,10 @@
                       <div class="col s6">
                           <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#removeOrder"><i class="mdi-navigation-close"></i></a>
                           <center><img src="{{URL::to('imgOnlineUniform/female-uniform-plain.jpg')}}" style="margin:20px;height:275px; width:275x; border:3px gray solid"></center>
-                          <div class="row" style="margin-left:40px;">
-                            <div class="input-field container" style="margin-top:-2px;">
-                              <input class="center" name="int-segment-qty[]" id="quantity" value="1" type="number">
-                            </div>
-                          </div>
+                          <center><a href="#!" class="container btn tooltipped"  data-position="bottom" data-delay="50" data-tooltip="Click to add similar garment and specify new design and fabric" style="margin-top:20px; background-color:teal; white:white">Add</a></center>
                       </div>
                       <div class="col s6">
+                        <div class="col s12" style=""><a class="btn right container teal accent-4 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize order" href="{{URL::to('/customize-womens-fabric')}}" style="margin-left:10px;">Customize Order</a></div>
                         <div class="col s12" style="margin-top:20px; color:gray"><p>Garment description below:</p></div>
                         <div class="col s12" style="padding:0">
                           <div style="padding:25px;">
@@ -65,7 +62,10 @@
                             <div class="col s5" style="color:red"><p>3 days</p></div>
                           </div>
                         </div>
-                        <span class="right" style="margin-top:40px; font-size:17px; color: #00bfa5;">Plain Long Sleeves for Women<a class="btn-floating teal accent-4 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize order" href="{{URL::to('/customize-womens-fabric')}}" style="margin-left:10px;"><i class="mdi-editor-border-color"></i></a></span>
+                        <div class="col s12">
+                          <div class="col s3" style="margin-top:30px; color:red"><center><b style="font-size:18px">QTY</b></center></div>  
+                          <div class="col s6" style="margin-top:20px; padding:5px; margin-right:5px;"><input name="quantity" id="quantity" type="number" style="border:2px teal solid; padding-left:18%; padding-right:18%" placeholder="How many?"></div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -84,13 +84,10 @@
                     <div class="col s6">
                         <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#removeOrder"><i class="mdi-navigation-close"></i></a>
                         <center><img src="{{URL::to('imgOnlineUniform/female-uniform-skirt.jpg')}}" style="margin:20px;height:275px; width:275x; border:3px gray solid"></center>
-                        <div class="row" style="margin-left:40px;">
-                          <div class="input-field container" style="margin-top:-2px;">
-                            <input class="center" name="int-segment-qty[]" id="quantity" value="1" type="number">
-                          </div>
-                        </div>
+                        <center><a href="#!" class="container btn tooltipped"  data-position="bottom" data-delay="50" data-tooltip="Click to add similar garment and specify new design and fabric" style="background-color:teal; white:white">Add</a></center>
                     </div>
                       <div class="col s6">
+                        <div class="col s12" style=""><a class="btn right container teal accent-4 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize order" href="{{URL::to('/customize-pants-fabric')}}" style="margin-left:10px;">Customize Order</a></div>                      
                         <div class="col s12" style="margin-top:20px; color:gray"><p>Garment description below:</p></div>
                         <div class="col s12" style="padding:0">
                           <div style="padding:25px;">
@@ -114,7 +111,10 @@
                             <div class="col s5" style="color:red"><p>3 days</p></div>
                           </div>
                         </div>
-                        <span class="right" style="margin-top:40px; font-size:17px; color: #00bfa5;">Plain Skirt for Women<a class="btn-floating teal accent-4 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize order" href="{{URL::to('/customize-pants-fabric')}}" style="margin-left:10px;"><i class="mdi-editor-border-color"></i></a></span>
+                        <div class="col s12">
+                          <div class="col s3" style="margin-top:30px; color:red"><center><b style="font-size:18px">QTY</b></center></div>  
+                          <div class="col s6" style="margin-top:20px; padding:5px; margin-right:5px;"><input name="quantity" id="quantity" type="number" style="border:2px teal solid; padding-left:18%; padding-right:18%" placeholder="How many?"></div>
+                        </div>
                       </div>
                   </div>
                 </div>
@@ -135,13 +135,10 @@
                     <div class="col s6">
                         <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#removeOrder"><i class="mdi-navigation-close"></i></a>
                         <center><img src="{{URL::to('imgOnlineUniform/male-uniform-pants-plain.jpg')}}" style="margin:20px;height:275px; width:275x; border:3px gray solid"></center>
-                        <div class="row" style="margin-left:40px;">
-                          <div class="input-field container" style="margin-top:-2px;">
-                            <input class="center" name="int-segment-qty[]" id="quantity" value="1" type="number">
-                          </div>
-                        </div>
+                        <center><a href="#!" class="container btn tooltipped"  data-position="bottom" data-delay="50" data-tooltip="Click to add similar garment and specify new design and fabric" style="background-color:teal; white:white">Add</a></center>
                     </div>
                       <div class="col s6">
+                        <div class="col s12" style=""><a class="btn right container teal accent-4 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize order" href="{{URL::to('/customize-pants-fabric')}}" style="margin-left:10px;">Customize Order</a></div>                      
                         <div class="col s12" style="margin-top:20px; color:gray"><p>Garment description below:</p></div>
                         <div class="col s12" style="padding:0">
                           <div style="padding:25px;">
@@ -165,7 +162,10 @@
                             <div class="col s5" style="color:red"><p>3 days</p></div>
                           </div>
                         </div>
-                        <span class="right" style="margin-top:40px; font-size:17px; color: #00bfa5;">Plain Pants for Men<a class="btn-floating teal accent-4 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize order" href="{{URL::to('/customize-pants-fabric')}}" style="margin-left:10px;"><i class="mdi-editor-border-color"></i></a></span>
+                        <div class="col s12">
+                          <div class="col s3" style="margin-top:30px; color:red"><center><b style="font-size:18px">QTY</b></center></div>  
+                          <div class="col s6" style="margin-top:20px; padding:5px; margin-right:5px;"><input name="quantity" id="quantity" type="number" style="border:2px teal solid; padding-left:18%; padding-right:18%" placeholder="How many?"></div>
+                        </div>
                       </div>
                   </div>
                 </div>

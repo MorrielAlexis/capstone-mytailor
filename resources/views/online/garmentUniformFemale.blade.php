@@ -7,7 +7,7 @@
 		<div id="femaleuniform" style="height:500px; margin-top: -15px;">
 	  		<div style="height:70px"></div>
 	  		<center><h1 style="color:white; font-family:'Pacifico',cursive;text-shadow: 3px 3px 8px rgba(5, 5, 5, 0.90);">Custom tailored women's shirt</h1></center>
-	  		<center><a style="font-size: 20px; margin-top:45px; padding-top:15px; padding-left:5px; padding-right:5px; width:300px; height:70px; background:rgb(236, 59, 65);" class="white-text modal-trigger waves-effect waves-light btn btn-small center-text" href="{{URL::to('/customize-womens-fabric')}}"><font size="+1">CUSTOMIZE YOURS NOW!</font></a></center>
+	  		<center><a style="font-size:20px; margin-top:45px; padding-top:15px; padding-left:5px; padding-right:5px; width:300px; height:70px; background:rgb(236, 59, 65);" class="white-text modal-trigger waves-effect waves-light btn btn-small center-text" href="{{URL::to('/customize-womens-choose-shirt')}}"><font size="+1">CUSTOMIZE YOURS NOW!</font></a></center>
 		</div>
 
 		<div style= "height:20px;"></div>

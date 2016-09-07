@@ -108,8 +108,8 @@
 
                     <div class="col s12"><div class="divider" style="height:5px; color:gray; margin-top:15px; margin-bottom:15px"></div></div>
 
-          <a href="{{URL::to('/online-company-checkout-employee-details')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save employee measurement" style="background-color:teal; padding:9.5px; padding-bottom:45px; margin-right:50px; color:white"><!--<i class="mdi-action-done"> -->Check Out<!--</i>--></a>
-          <a href="{{URL::to('/online-company-checkout-employee-details')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Cancels employee measurement profile" style="background-color:teal; padding:9.5px; padding-bottom:45px; margin-right:50px; color:white">Cancel</a>
+          <a href="{{URL::to('/online-company-checkout-edit-set')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save employee measurement" style="background-color:teal; padding:9.5px; padding-bottom:45px; margin-right:50px; color:white">Save</a>
+          <a href="{{URL::to('/online-company-checkout-edit-set')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Cancels employee measurement profile" style="background-color:teal; padding:9.5px; padding-bottom:45px; margin-right:50px; color:white">Cancel</a>
 
         </div>
 

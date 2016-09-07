@@ -12,7 +12,7 @@
         </div>
 
         <div class="col s4" style="margin-top:-30px;">
-          <center><span style="font-size:42px; color: #757575; font-family:'Lemonada',cursive;">SUIT CUSTOMIZATION</span></center>
+          <center><span style="font-size:42px; color: #757575;">SUIT CUSTOMIZATION</span></center>
         </div>
 
         <div class="col s4">

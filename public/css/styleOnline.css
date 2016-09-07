@@ -183,7 +183,7 @@ nav{
         .breadcrumb { 
             list-style: none; 
             overflow: hidden; 
-            font: 18px Segoe UI;
+            font: 18px Helvetica, Arial, Sans-Serif;
         }
         .breadcrumb li { 
             float: left; 
@@ -245,7 +245,7 @@ nav{
 
         .breadcrumb li a.active{
             background: hsla(186, 95%, 11%, 1);
-            color:white;
+            color: white;
         }
 
         .breadcrumb li a.active:after{

@@ -38,77 +38,85 @@
           </div>-->
 
       <div class="col s12" style="padding:20px;">
-        <div class="col s5">
+        <div class="col s12">
           <div class="col s4"><p style="color:gray"><b>Measurement Type</b></p></div>
           <div class="col s8">    
-              <select class = "fabric-pattern" id = "fabric-pattern">
+              <select id = "measurement-category">
                   <option value="" class="circle"></option>
               </select>
           </div>
         </div>
-
-        <div style="color:gray" class="col s5"> 
-          <div class="col s7"><p style="color:gray; margin-top:5px; font-size:15px"><b>No. of Measurement Profile:</b></p></div>                
-            <div class="col s5"><center><input class="center" name="num-meas-profile" id="num-meas-profile" type="number" value=""></div>
-        </div>
-        <div class="col s2"><a href="" class="btn-flat" style="background-color:teal; color:white; margin-top:10px">Add</a></div>
-      </div>
-
-
-          <div class="row" style="background-color:white; margin-top:20px">
-
-
-          <div class="col s8" style="margin-left:20px;color:red">
-            <p><b>Unit of Measurement</b></p>
-                            <div class="col s6">
-                        <input name="uom" type="radio" class="filled-in payment" id="cm" />
-                      <label for="cm">centimeter (cm)</label>
-                </div>
-                <div class="col s6">
-                        <input name="uom" type="radio" class="filled-in payment" id="in" />
-                      <label for="in">inch (in)</label>
-                    </div>
-                  </div>
-
                 <div class="col s12" style="padding:20px"> 
+                  
                   <div id="for_top" class="col s12" style="color:black">
-                    <h5><b>Parts to be measured</b></h5>
-                    <div class="container"> 
-                          <div style="color:black; padding-left:140px" class="input-field col s6">                 
-                                <input name="shoulder" type="text">
-                                <label style="color:teal" for="shoulder"></label>
-                              </div>
-                        </div>
+                    <h5><b>Parts to be measured - </b></h5>
+                    
+              <!--if Body and Cloth Measurement-->
+                        <div class="container measurement-general"> 
+                            <div style="color:black; padding-left:140px" class="input-field col s6 ">   
+                              <input type="hidden" name="detailName" value="">              
+                                    <input name="" type="text">
+                                    <label style="color:teal" for=""> </label>
+                                </div>
+                            </div>
+              <!--End of Body and Cloth Measurement-->
+
+              <!--if Standard Size Measurement-->
+              <div class="col s12 z-depth-1 measurement-general MEASCAT001" style="padding:20px">
+                <div class="container">
+                  <div class="left col s6">
+                    <center><img src="" style="height:200px; width:200px; border:3px gray solid"></center> 
+                    <p><center></center></p>                          
+                  </div><!--this will be the garment detail-->
+
+                  <div class="right col s6" style="margin-top:20px">
+                    <div class="col s6"><p style="color:teal" for="standard_size">Choose Fit Type:</p></div>      
+                            <div style="color:black;" class="col s6">                   
+                                    <select>
+                          <option value="">Normal Fit</option>
+                        </select><!--Standard sizes for the specific Garment-->
+                                </div>  
+                            </div> 
+
+                  <div class="right col s6">
+                    <div class="col s6"><p style="color:teal" for="standard_size">Choose Standard Size:</p></div>     
+                            <div style="color:black;" class="col s6">                   
+                                    <select>
+                                        <option value=""></option>
+                                    </select><!--Standard sizes for the specific Garment-->
+                                </div>  
+                            </div> 
+                          </div>
+                      </div>
+
+                      <div class="col s12"><div class="divider" style="height:2px gray solid; margin:20px"></div></div>
+              <!--End of standard size measurement-->
+
                       </div>
 
                       <p style="color:red">In case of multiple measurements</p>
                         <div style="color:black; padding-left:160px" class="input-field col s5">                 
-                            <input value="" id="length" name="length" type="text" class="">
-                            <label style="color:gray" for="length">Profile Name: </label>
+                            <input id="length" name="profile_name" type="text" class="">
+                            <label style="color:gray" for="length">Measurement Profile Name: </label>
                         </div>
 
                         <div style="color:gray" class="input-field col s3">                 
-                            <select>
-                  <option value="" disabled selected color="red">Sex</option>
-                  <option value="1">Female</option>
-                  <option value="2">Male</option>
-                </select>
+                            <select name="profile_sex">
+                              <option value="" disabled selected color="red">Sex</option>
+                              <option value="M">Female</option>
+                              <option value="F">Male</option>
+                            </select>
                         </div>
-
+              
                         <div style="color:gray" class="input-field col s3">                 
                             <select>
-                  <option value="" disabled selected color="red">Target Garment</option>
-                  <option value="1"></option>
-                </select>
+                              <option value="" disabled selected color="red">Target Garment</option>
+                              <option value="1"></option>
+                            </select>
                         </div>
-
-                        <div class="col s1"><a href="#!" class="btn-floating" style="background-color:#a7ffeb; margin-top:20px"><i class="mdi-navigation-check" style="color:black;"></i></a></div>
                 </div>
 
-                    <div class="col s12"><div class="divider" style="height:5px; color:gray; margin-top:15px; margin-bottom:15px"></div></div>
 
-
-                    
         <!--bottom buttons-->
           <a href="{{URL::to('/online-individual-checkout-info')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save payment information and get measured" style="background-color:teal; padding:9.5px; padding-bottom:45px; margin-right:50px; color:white"><label style="font-size:15px; color:white">Check Out</label></a>
 
