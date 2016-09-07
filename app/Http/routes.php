@@ -439,64 +439,64 @@ Route::group(['prefix' => 'transaction'], function(){
 
 
 
-Route::resource('online-garment-gown', 'OnlineGarmentGownController',
-		['only' => ['index']]);
+		Route::resource('online-garment-gown', 'OnlineGarmentGownController',
+				['only' => ['index']]);
 
-Route::resource('online-garment-sets', 'OnlineGarmentSetsController',
-		['only' => ['index']]);
+		Route::resource('online-garment-sets', 'OnlineGarmentSetsController',
+				['only' => ['index']]);
 
-Route::resource('online-garment-suit', 'OnlineGarmentSuitController',
-		['only' => ['index']]);
+		Route::resource('online-garment-suit', 'OnlineGarmentSuitController',
+				['only' => ['index']]);
 
-Route::resource('online-garment-pants', 'OnlineGarmentPantsController',
-		['only' => ['index']]);
+		Route::resource('online-garment-pants', 'OnlineGarmentPantsController',
+				['only' => ['index']]);
 
-Route::get('online-garment-uniform-male', 'OnlineGarmentUniformController@male');
-Route::get('online-garment-uniform-female', 'OnlineGarmentUniformController@female');
+		Route::get('online-garment-uniform-male', 'OnlineGarmentUniformController@male');
+		Route::get('online-garment-uniform-female', 'OnlineGarmentUniformController@female');
 
-Route::resource('online-how-it-works', 'OnlineHowItWorksController',
-		['only' => ['index']]);
+		Route::resource('online-how-it-works', 'OnlineHowItWorksController',
+				['only' => ['index']]);
 
-Route::resource('online-measuring-tutorial', 'OnlineMeasuringTutorialController',
-		['only' => ['index']]);
+		Route::resource('online-measuring-tutorial', 'OnlineMeasuringTutorialController',
+				['only' => ['index']]);
 
-Route::resource('online-men-fullprof-tutorial', 'OnlineMenFullProfileTutorialController',
-		['only' => ['index']]);
+		Route::resource('online-men-fullprof-tutorial', 'OnlineMenFullProfileTutorialController',
+				['only' => ['index']]);
 
-Route::resource('online-men-pants-tutorial', 'OnlineMenPantsTutorialController',
-		['only' => ['index']]);
+		Route::resource('online-men-pants-tutorial', 'OnlineMenPantsTutorialController',
+				['only' => ['index']]);
 
-Route::resource('online-men-shirt-tutorial', 'OnlineMenShirtTutorialController',
-		['only' => ['index']]);
+		Route::resource('online-men-shirt-tutorial', 'OnlineMenShirtTutorialController',
+				['only' => ['index']]);
 
-Route::resource('online-order-now', 'OnlineOrderNowController',
-		['only' => ['index']]);
-Route::get('online-measurements', 'OnlineOrderNowController@meas');
+		Route::resource('online-order-now', 'OnlineOrderNowController',
+				['only' => ['index']]);
+		Route::get('online-measurements', 'OnlineOrderNowController@meas');
 
-Route::resource('online-order-tracking', 'OnlineOrderTrackingController',
-		['only' => ['index']]);
+		Route::resource('online-order-tracking', 'OnlineOrderTrackingController',
+				['only' => ['index']]);
 
-Route::resource('online-women-fullprof-tutorial', 'OnlineWomenFullProfileTutorialController',
-		['only' => ['index']]);
+		Route::resource('online-women-fullprof-tutorial', 'OnlineWomenFullProfileTutorialController',
+				['only' => ['index']]);
 
-Route::resource('online-women-pants-skirt-tutorial', 'OnlineWomenPantsAndSkirtTutorialController',
-		['only' => ['index']]);
+		Route::resource('online-women-pants-skirt-tutorial', 'OnlineWomenPantsAndSkirtTutorialController',
+				['only' => ['index']]);
 
-Route::resource('online-women-shirt-tutorial', 'OnlineWomenShirtTutorialController',
-		['only' => ['index']]);
+		Route::resource('online-women-shirt-tutorial', 'OnlineWomenShirtTutorialController',
+				['only' => ['index']]);
 
-Route::get('online-individual-checkout-info', 'OnlineCheckoutIndividualController@info');
-Route::get('online-individual-checkout-payment', 'OnlineCheckoutIndividualController@payment');
-Route::get('online-individual-checkout-measurement', 'OnlineCheckoutIndividualController@measuredetails');
+		Route::get('online-individual-checkout-info', 'OnlineCheckoutIndividualController@info');
+		Route::get('online-individual-checkout-payment', 'OnlineCheckoutIndividualController@payment');
+		Route::get('online-individual-checkout-measurement', 'OnlineCheckoutIndividualController@measuredetails');
 
-Route::get('online-company-checkout-info', 'OnlineCheckoutCompanyController@info');
-Route::get('online-company-checkout-payment', 'OnlineCheckoutCompanyController@payment');
-Route::get('online-company-checkout-measurement', 'OnlineCheckoutCompanyController@measuredetails');
-Route::get('online-company-checkout-employee-details', 'OnlineCheckoutCompanyController@emp');
+		Route::get('online-company-checkout-info', 'OnlineCheckoutCompanyController@info');
+		Route::get('online-company-checkout-payment', 'OnlineCheckoutCompanyController@payment');
+		Route::get('online-company-checkout-measurement', 'OnlineCheckoutCompanyController@measuredetails');
+		Route::get('online-company-checkout-employee-details', 'OnlineCheckoutCompanyController@emp');
 
-Route::get('online-alteration-checkout-info', 'OnlineCheckoutAlterationController@info');
-Route::get('online-alteration-checkout-payment', 'OnlineCheckoutAlterationController@payment');
-/*-------------------------------------------ONLINE CUSTOMER PROFILE---------------------------------------------------*/
+		Route::get('online-alteration-checkout-info', 'OnlineCheckoutAlterationController@info');
+		Route::get('online-alteration-checkout-payment', 'OnlineCheckoutAlterationController@payment');
+		/*-------------------------------------------ONLINE CUSTOMER PROFILE---------------------------------------------------*/
 
 	Route::get('customerprofile-individual', 'OnlineCustomerProfileIndividualController@index');
 	Route::get('customerprofile-individual-measurement-details', 'OnlineCustomerProfileIndividualController@measure');
@@ -545,3 +545,13 @@ Route::get('online-alteration-checkout-payment', 'OnlineCheckoutAlterationContro
 	Route::get('shopping-cart', 'OnlineCustomizePantsController@tocart');
 
 	Route::get('customize-sets-customize-order', 'OnlineGarmentSetsController@customize');
+
+
+  /*Queries */
+  Route::group(['prefix' => 'queries'], function(){
+	
+	Route::get('list-of-online-customers','QueriesOnlineCustomersController@index');
+		
+
+
+});

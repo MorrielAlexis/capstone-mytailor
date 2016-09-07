@@ -239,7 +239,7 @@
 										<div class="col s8"><p>{!! $segments[$i]->strSegmentName !!}</p></div>
 
 										<div class="col s4" style="color:teal;"><p><b>Price starts from:</b></p></div>
-										<div class="col s8" style="color:red"><p>{{ number_format($segments[$i]->dblSegmentPrice, 2) }} PHP</p></div>
+										<div class="col s8" style="color:black;font-weight:bold"><p>{{ number_format($segments[$i]->dblSegmentPrice, 2) }} PHP</p></div>
 									</div>
 							</div>
 							<div class="col s12"><div class="divider" style="height:2px; margin-top:10px; margin-bottom:10px"></div></div>

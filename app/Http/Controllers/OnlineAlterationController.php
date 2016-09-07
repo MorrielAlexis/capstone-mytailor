@@ -33,22 +33,22 @@ class OnlineAlterationController extends Controller
 
     public function index()
     {
-        return View::make('online.alterationservices');
+        return view('online.alterationservices');
     }
 
     public function transac()
     {
-        return View::make('online.alterationtransaction');
+        return view('online.alterationtransaction');
     }
 
     public function newcust()
     {
-        return View::make('online.alterationtransaction-newcustomer');
+        return view('online.alterationtransaction-newcustomer');
     }
 
     public function oldcust()
     {
-        return View::make('online.alterationtransaction-patron');
+        return view('online.alterationtransaction-patron');
     }
 
     public function showCart()
