@@ -19,22 +19,13 @@
 
    		        <div class="row">
 		        	<div class="col s7">
-		        		<table class="centered">
+		        		<table class="table centered data-onlinelateration ">
 		        			<thead>
 						    	<tr>
-						        	<th style="color:#1b5e20">Track#</th>
-						            <th style="color:#1b5e20">Name</th>
-						            <th style="color:#1b5e20">Due Date</th>
-						            <th>
-						        </tr>
-						    </thead>
-						</table>
-		        	</div>
-		        	<div class="col s5">
-		        		<table class="centered">
-		        			<thead>
-						    	<tr>
-						            <th style="color:#1b5e20">Action</th>
+						        	<th style="color:#1b5e20">Alteration No.</th>
+						            <th style="color:#1b5e20">Customer Name</th>
+						            <th style="color:#1b5e20">Total Price</th>
+						            <th> Actions </th>
 						        </tr>
 						    </thead>
 						</table>
@@ -51,11 +42,15 @@
 							<div class="col s7">
 								<table class="centered">
 								    <tbody>
+								    @foreach($onlineAlteration as $onlineAlteration)
+								    	 {{-- @if($onlineAlteration->boolisOnline == 1) --}}
 								        <tr>
-								        	<td>#001</td>
-								        	<td>Terena Marqueta</td>
-								        	<td>01/04/03</td>
+								        	<td>{{$onlineAlteration->strNonShopAlterID}}</td>                        
+					                        <td>{{$onlineAlteration->strCompanyName}}{{$onlineAlteration->strIndivFName}} {{$onlineAlteration->strIndivMName}} {{$onlineAlteration->strIndivLName}}</td>
+					                        <td>{{$onlineAlteration->dblOrderTotalPrice}}</td>
 								        </tr>
+								        	{{-- @endif --}}
+								         @endforeach
 								    </tbody>
 								</table>
 							</div>
@@ -79,36 +74,18 @@
 						    	<table class = "centered striped">
 						    		<thead>
 						    			<tr>
-						    				<th>Garment Type</th>
-						    				<th>Garment Image</th>
-						    				<th>Quantity</th>
-						    				<th>Fabric Type</th>
-						    				<th>Swatch Pattern</th>
-						    				<th>Garment Segment</th>
+						    				<th>Segment Type</th>
 						    				<th>Alteration Type</th>
+						    				<th>Description</th>
 						    				<th></th>
 						    			</tr>
 						    		</thead>
 						    		<tbody>
 						    			<tr>
-						    				<td>Uniform</td>
-						    				<td><img class="img hoverable" src="../img/uniform3.jpg"></td>
-						    				<td>1</td>
-						    				<td>Linen</td>
-						    				<td><img class="img hoverable modal-trigger" href="#swatchpattern" src="../imgSwatches/citadel alpine.jpg"></td>
-						    				<td>Polo</td>
+						    				<td>Pants</td>
 						    				<td>Hem</td>
+						    				<td>Decrease by 1 cm</td>
 						    				<td><a class=" btn modal-trigger tooltipped" href="#measurementmodal" data-position="top" data-delay="50" data-tooltip="View measurements"><i class="mdi-action-view-headline"></i></a></td>
-						    			</tr>
-						    			<tr>
-						    				<td>Gown</td>
-						    				<td><img class="img hoverable" src="../img/gown2.jpg"></td>
-						    				<td>1</td>
-						    				<td>Cotton</td>
-						    				<td><img class="img hoverable modal-trigger" href="#swatchpattern" src="../imgSwatches/citadel grape.jpg"></td>
-						    				<td>Skirt</td>
-						    				<td>Hem Pleats</td>
-											<td><a class="btn modal-trigger tooltipped" href="#measurementmodal" data-position="top" data-delay="50" data-tooltip="View measurements"><i class="mdi-action-view-headline"></i></a></td>
 						    			</tr>
 						    		</tbody>
 						    	</table>
@@ -184,21 +161,27 @@
 
 @section('scripts')
 
-	<script>
-		  $(document).ready(function() {
+	<script type="text/javascript">
+	  
+	  $(document).ready(function() {
 		    $('select').material_select();
 		  });
-	</script>
+	
 
-	<script>
-	  $('.modal-trigger').leanModal({
-	      dismissible: true, // Modal can be dismissed by clicking outside of the modal
-	      opacity: .5, // Opacity of modal background
-	      in_duration: 300, // Transition in duration
-	      out_duration: 200, // Transition out duration
-	      width:400,
-	    }
-	  );
-	</script>
+      $(document).ready(function() {
+
+          $('.data-onlinealteration').DataTable();
+
+      setTimeout(function () {
+            $('#flash_message').hide();
+        }, 5000);
+
+      setTimeout(function () {
+            $('#success-message').hide();
+        }, 5000);
+
+
+      } );
+      </script>
 
 @stop

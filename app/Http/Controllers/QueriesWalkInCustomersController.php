@@ -7,28 +7,16 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-
-class AlterationOnlineController extends Controller
+class QueriesWalkInCustomersController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    
     public function index()
     {
-        return view('alteration.online-transaction');
-    }
-
-    public function accept()
-    {
-        return view('alteration.acceptorder');
+        return view('queries.utilities-walk-in-customers');
     }
 
     /**

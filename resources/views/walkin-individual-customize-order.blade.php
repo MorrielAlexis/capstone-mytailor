@@ -26,7 +26,7 @@
 								
 										@foreach($segments as $i => $segment)
 										<div id="remove{{ $i+1 }}" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
-											<h5><font color="red"><center><b>{{$i+1}} Warning!</b></center></font></h5>
+											<h5><font color="red"><center><b>Warning!</b></center></font></h5>
 												
 												{!! Form::open(['url' => 'transaction/walkin-individual-remove-item', 'method' => 'post']) !!}
 													<div class="divider" style="height:2px"></div>
@@ -42,7 +42,7 @@
 													</div>
 
 													<div class="modal-footer col s12">
-										                <a class=" modal-action modal-close waves-effect waves-green btn-flat" ><font color="black">Yes</font></a>
+										                <button type="submit" class=" modal-action modal-close waves-effect waves-green btn-flat" ><font color="black">Yes</font></button>
 										                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
 										            </div>
 												{!! Form::close() !!}
@@ -77,7 +77,7 @@
 							<br>
 							<div class="col s6">
 								<div class="col s6" style="margin-top:7%">
-									<a style="color:white; margin-top:10px" class="modal-trigger btn tooltipped teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a segment pattern" href="#pattern{{ $i+1 }}"><i class="mdi-content-content-cut" style="padding-right:10px"></i>Choose Design</a>
+									<a style="background-color:#a7ffeb; color:black; margin-top:10px" class="modal-trigger btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to choose a segment pattern" href="#pattern{{ $i+1 }}"><i class="mdi-content-content-cut" style="padding-right:10px"></i><b>Choose Design</b></a>
 								<!--Modal for Choosing design-->
 								<div id="pattern{{ $i+1 }}" class="modal modal-fixed-footer" style="width:80%; height:85%;">
 									<h5><font color = "#1b5e20"><center>List of Available Designs</center> </font> </h5>
@@ -242,7 +242,7 @@
 								<!--End of modal for custom fabric-->
 								
 								<div class="col s6" style="margin-top:7%">
-									<a style="color:white; margin-top:10px" class="modal-trigger btn tooltipped teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#fabric{{ $i+1 }}"><i class="mdi-maps-layers" style="padding-right:10px"></i>Choose Fabric</a>
+									<a style="background-color:#a7ffeb; color:black; margin-top:10px" class="modal-trigger btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#fabric{{ $i+1 }}"><i class="mdi-maps-layers" style="padding-right:10px"></i><b>Choose Fabric</b></a>
 									<div id="fabric{{ $i+1 }}" class="modal modal-fixed-footer" style="width:1100px; height:600px">
 	 									<h5><font color = "#1b5e20"><center>List of Available Fabrics</center> </font> </h5>
 	    
@@ -358,18 +358,18 @@
 				                        @endif
 
 										<div class="col s4" style="color:teal;"><p><b>Price starts from:</b></p></div>
-										<div class="col s8" style="color:red"><p>{{ number_format($segment['dblSegmentPrice'], 2) }} PHP</p></div>
+										<div class="col s8" style="color:color:black;font-weight:bold"><p>{{ number_format($segment['dblSegmentPrice'], 2) }} PHP</p></div>
 										<input type="hidden" class="price-per-segment" id="{{ $segment['dblSegmentPrice'] }}">
 
 									<div class="col s4" style="color:teal;"><p><b>Time to finish(min):</b></p></div>
-									<div class="col s8 " style="color:red" ><p>{{ $segment['intMinDays'] }} days</p></div>
+									<div class="col s8 " style="color:gray;font-weight:bold" ><p>{{ $segment['intMinDays'] }} days</p></div>
 									<input type="hidden" class="time-to-finish" id="{{ $segment['intMinDays'] }}">
 																	
 								</div>
 
 								<!--To identify the quantity of garments with similar design and fabrics-->
 				                <div class="col s8" style="margin-top:4%">
-				                <div class="col s8" style="padding-top:3%; padding-left:50%; color:red"><center><b style="font-size:18px">QTY</b></center></div>   
+				                <div class="col s8" style="padding-top:3%; padding-left:50%; color:black"><center><b style="font-size:18px">QTY</b></center></div>   
 				               	<div class="col s4" style="padding-left:0; margin-left:0;"><input name="quantity" id="quantity" type="number" style="border:2px teal solid; padding-left:18%; padding-right:18%" placeholder="How many?"></div>
 				                </div>
 				                <!--end-->
@@ -390,9 +390,14 @@
 								<!-- <div class="col s6">
 									<a class="btn" style="background-color:#a7ffeb; color:black"><b><i class="mdi-navigation-close" style="padding-right:10px"></i>Cancel</b></a>
 								</div>	 -->
-								<div class="right col s6">
+
+								<!-- //// Same button with the ones on top //// --> 
+								<div class="right col s1"><a style="background-color:teal" type="submit" class="waves-effect waves-green btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to go back home" href="{{URL::to('/transaction/walkin-individual')}}"><i class="mdi-action-home" style="color:white; opacity:0.90; font-size:30px;"></i></a></div>
+								<div class="right col s5"><button style="background-color:teal" type="submit" class="right waves-effect waves-green btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to proceed to payment of orders" ><font color="white" size="+1">Proceed to Checkout</font></button></div>
+								<!-- //// End of Same button with the ones on top //// --> 
+								<div class="left col s6">
 									<!--<a href="{{URL::to('transaction/walkin-individual-bulk-orders')}}" class="right btn" style="color:white; background-color:teal; margin-left:20px; border:3px teal solid">Add another set</a>-->
-									<a href="{{URL::to('transaction/walkin-individual-show-items')}}" class="right btn" style="background-color:#00695c; color:white"><b><i class="mdi-content-add" style="padding-right:10px;"></i>Add another item</b></a>
+									<a href="{{URL::to('transaction/walkin-individual-show-items')}}" class="left btn" style="background-color:#a7ffeb; color:black"><b><i class="mdi-content-add" style="padding-right:10px;"></i>Add another item</b></a>
 								</div>
 							</div>
 						</div> <!--end of list-->

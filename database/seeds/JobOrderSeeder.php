@@ -29,7 +29,8 @@ class JobOrderSeeder extends Seeder
                 'dtExpectedDeliveryDate' => '2016-07-23',
                 'dtFinished' => '2016-07-23',
                 'dtDelivered' => '2016-07-23',
-                'boolIsActive' => '1'
+                'boolIsActive' => '1',
+                'boolIsOnline' => '0'
             ),
             array(
                 'strJobOrderID' => 'JO002',
@@ -46,7 +47,9 @@ class JobOrderSeeder extends Seeder
                 'dtExpectedDeliveryDate' => '2016-07-24',
                 'dtFinished' => '2016-07-24',
                 'dtDelivered' => '2016-07-24',
-                'boolIsActive' => '1'
+                'boolIsActive' => '1',
+                'boolIsOnline' => '0'
+
             ),
             array(
                 'strJobOrderID' => 'JO003',
@@ -63,7 +66,8 @@ class JobOrderSeeder extends Seeder
                 'dtExpectedDeliveryDate' => '2016-07-23',
                 'dtFinished' => '2016-07-23',
                 'dtDelivered' => '2016-07-23',
-                'boolIsActive' => '1'
+                'boolIsActive' => '1',
+                'boolIsOnline' => '0'
             )
         );
 

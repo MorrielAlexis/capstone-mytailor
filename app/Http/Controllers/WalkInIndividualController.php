@@ -51,13 +51,13 @@ class WalkInIndividualController extends Controller
     
     public function index()
     {   
-            $values = [];
-            $quantity = [];
-            $data = [];
+        $values = [];
+        $quantity = [];
+        $data = [];
 
-            session(['segment_data' => $data]);
-            session(['segment_values' => $values]);
-            session(['segment_quantity' => $quantity]);
+        session(['segment_data' => $data]);
+        session(['segment_values' => $values]);
+        session(['segment_quantity' => $quantity]);
 
         $categories = GarmentCategory::all();
         $garments = \DB::table('tblSegment AS a')
@@ -110,7 +110,6 @@ class WalkInIndividualController extends Controller
 
         if(!$data_segment == null){
             $data_quantity = array_slice(array_filter($request->input('int-segment-qty')), 0);
-
 
             $segments =  \DB::table('tblSegment AS a')
                         ->leftJoin('tblGarmentCategory AS b', 'a.strSegCategoryFK', '=', 'b.strGarmentCategoryID')
@@ -702,6 +701,7 @@ class WalkInIndividualController extends Controller
 
     public function removeItem(Request $request)
     {   
+        dd($request->input('delete-item-id'));
         $to_be_deleted = ((int)$request->input('delete-item-id') - 1);
         $values = session()->get('segment_values');
 

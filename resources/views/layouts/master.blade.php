@@ -212,7 +212,23 @@
 
               </li>
               <!--<div class="divider"></div>-->
-              <li class="bold"><a class="collapsible-header waves-effect waves-white" style="color:#212121"><i style="font-size:30px" class="small mdi-action-assessment" style="color:#ccff90"></i><b>Queries</b></a></li>
+              <li class="bold"><a class="collapsible-header waves-effect waves-white {{ Request::is('queries/*') ? 'active' : '' }}" style="color:#212121"><i style="font-size:30px" class="small mdi-action-assessment" style="color:#ccff90"></i><b>Queries</b></a>
+                   <div class="collapsible-body" position = "fixed" style = "display: block;">
+                  <ul>
+                    <li class="no-padding">
+                      <ul class="collapsible collapsible-accordion">
+
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('queries/list-of-online-customers')}}"><b>Online Customers</b></a></li>
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('queries/list-of-walk-in-customers')}}"><b>Walk In Customers</b></a></li>
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('queries/list-of-most-bought-fabric')}}"><b>Most Bought Fabric</b></a></li>
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('queries/list-of-most-sought-design')}}"><b>Most Sought Design</b></a></li>
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('queries/list-of-prominent-segment')}}"><b>Prominent Segment</b></a></li>
+
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </li>
               <!--<div class="divider"></div>-->
               <li class="bold"><a class="collapsible-header waves-effect waves-white" style="color:#212121"><i style="font-size:30px" class="small mdi-action-assignment" style="color:#ccff90"></i><b>Reports</b></a></li>
               <!--<div class="divider"></div>-->
@@ -224,7 +240,7 @@
                     <li class="no-padding">
                       <ul class="collapsible collapsible-accordion">
 
-                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('utilities/inactive-data')}}"><b>Inactive Data</b></a></li>
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('utilities/inactive-data')}}"><b>Data Reactivation</b></a></li>
 
                       </ul>
                     </li>
@@ -246,7 +262,8 @@
       {!! Html::script('js/materialize.min.js'); !!}
       {!! Html::script('js/jquery.dataTables.min.js'); !!}
       {!! Html::script('js/angular.min.js'); !!}
-      
+      {!! Html::script('js/knockout-3.4.0.js'); !!}
+
       <script>
         $(document).ready(function(){
         $('.button-collapse').sideNav({

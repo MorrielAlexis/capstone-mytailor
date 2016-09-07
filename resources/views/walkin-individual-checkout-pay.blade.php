@@ -64,8 +64,8 @@
 						                  <th data-field="fabric" style="border-right:1px teal solid">Fabric</th>
 						                  <th data-field="base-price" style="border-right:1px teal solid">Base Price</th>
 						                  <th data-field="description" style="border-right:1px teal solid">Description</th>  
-						                  <!-- <th data-field="style-price-total" style="border-right:1px teal solid">Style Price Total</th>
-						                  <th data-field="labor-price-per-segment" style="border-right:1px teal solid">Labor Price</th> -->
+						                  <th data-field="style-price-total" style="border-right:1px teal solid">Style Price Total</th>
+						                  <th data-field="labor-price-per-segment" style="border-right:1px teal solid">Labor Price</th>
 <!-- 						                  <th data-field="line-total" style="border-right:1px teal solid">Grand Total</th>        
  -->						              	</tr>
 					              	</thead>
@@ -88,13 +88,13 @@
 																
 																	<div class="col s4">{{ $styles[$i][$j]->strSegStyleName }}</div>
 																	<div class="col s4">{{ $styles[$i][$j]->strSegPName }}</div>
-																	<div class="col s4">{{ number_format($styles[$i][$j]->dblPatternPrice, 2) }} PHP</div><br>
+																	<div class="col s4">{{ number_format($styles[$i][$j]->dblPatternPrice, 2) }} PHP</div>
 
 																@endif
 												        @endfor
 												</td>
-												<!-- <td style="border-right:1px teal solid"><div id="style_price_total" name="style_price_total"> </div></td>
-												<td style="border-right:1px teal solid">[ insert price here ]</td> -->
+												<td style="border-right:1px teal solid"><div id="style_price_total" name="style_price_total"> </div></td>
+												<td style="border-right:1px teal solid">[ insert price here ]</td>
 										 @endfor		
 <!-- 							            	<td style="border-right:1px white solid; border-top:1px white solid; border-bottom:1px white solid"><</td>
  -->							            
@@ -114,34 +114,34 @@
 							<span>Determine terms of payment to get payment details</span>
 
 							<!--Eto yung mga pinapadagdag non sa Capstone-->
-							<!--Ikinoment ko muna dahil hindi naman yata pina-require sa soft eng-->
-							<!--
-							<div class="col s12 z-depth-1" style="border: 2px gray solid; padding:20px; margin-top:2%">
+							<!--Ikinoment ko muna dahil hindi naman yata pina-require sa soft eng..... ADD NOTE: Dahil tapos na ang SOFTENG!!!-->
+							
+							<div class="col s12 z-depth-2" style=" padding:2%; margin-top:2%">
 								
 								<div class="col s12">
 									<div class="col s4" style="color:gray; font-size:15px"><p><b>Estimated Total Amount</b></p></div>
-			      					<div class="col s8" style="color:red;"><p><input id="estimated_total" name="estimated_total" type="text" class=""></p></div>
+			      					<div class="col s8" style="color:black;"><p><input id="estimated_total" name="estimated_total" type="text" class=""></p></div>
 								</div>
 
 								<div class="col s12">
-									<div class="col s4" style="color:gray; font-size:15px"><p><b>Labor Fee</b></p></div>
-			      					<div class="col s8" style="color:red;"><p><input id="labor_fee" name="labor_fee" type="text" class=""></p></div>
+									<div class="col s4" style="color:gray; font-size:15px"><p><b>Total Labor Price</b></p></div>
+			      			<div class="col s8" style="color:gray;"><p><input id="style_price_total" name="style_price_total" type="text" class="" readonly><b></b></p></div>
 								</div>
 								
 								<div class="col s12">
 									<div class="col s4" style="color:gray; font-size:15px"><p><b>Additional Fee</b></p></div>
-			      					<div class="col s8" style="color:red;"><p><input id="addtnl_fee" name="addtnl_fee" type="text" class=""></p></div>
+			      					<div class="col s8" style="color:black;"><p><input id="addtnl_fee" name="addtnl_fee" type="text" class=""></p></div>
 								</div>
 
-							</div>-->
+							</div>
 
-							<div class="col s12"><div class="divider" style="margin:15px"></div></div>
+							<div class="col s12"><div class="divider" style="margin:15px; height:5px"></div></div>
 							
 							<!-- <div class="col s4" style="color:gray; font-size:15px"><p><b>Total Labor Price</b></p></div>
 			      			<div class="col s8" style="color:gray;"><p><input id="style_price_total" name="style_price_total" type="text" class="" readonly><b></b></p></div> -->
 
-			      			<div class="col s4" style="color:red; font-size:15px"><p><b>Grand Total</b></p></div>
-			      			<div class="col s8" style="color:red;"><p><input id="total_price" name="total_price" type="text" class="" readonly style="font-size:3em"></p></div>
+			      			<div class="col s4" style="color:black; font-size:15px"><p><b>Grand Total</b></p></div>
+			      			<div class="col s8" style="color:black;"><p><input id="total_price" name="total_price" type="text" class="" readonly style="font-size:3em"></p></div>
 
                         	<div class="col s4" style="color:gray; font-size:15px"><p><b>Terms of Payment</b></p></div>
                         	<div class="col s8" style="padding:18px; padding-top:30px">
@@ -179,8 +179,8 @@
 	                        </div>
 
 	                        <div style="color:black" class="col s12"> 
-								<div class="col s4"><p style="color:red; margin-top:5px; font-size:15px"><b>Outstanding Balance*:</b></p></div>                
-	                          	<div class="col s8" style="color:red;"><b><input readonly style="padding:5px; border:3px gray solid; font-size:1.5em" id="balance" name="balance" type="text" class="right"></b></div>
+								<div class="col s4"><p style="color:black; margin-top:5px; font-size:15px"><b>Outstanding Balance*:</b></p></div>                
+	                          	<div class="col s8" style="color:black;"><b><input readonly style="padding:5px; border:3px gray solid; font-size:1.5em" id="balance" name="balance" type="text" class="right"></b></div>
 	                        </div>
 
 	                        <div style="color:black" class="col s12"> 
@@ -189,8 +189,8 @@
 	                        </div>
 
 	                        <div style="color:black" class="col s12"> 
-								<div class="col s4"><p style="color:red; margin-top:5px; font-size:15px"><b>Change*:</b></p></div>                
-	                          	<div class="col s8" style="color:red;"><input readonly style="padding:5px; border:3px gray solid; font-size:1em" name="amount-change" id="amount-change" type="text" class="right"></div>
+								<div class="col s4"><p style="color:black; margin-top:5px; font-size:15px"><b>Change*:</b></p></div>                
+	                          	<div class="col s8" style="color:black;"><input readonly style="padding:5px; border:3px gray solid; font-size:1em" name="amount-change" id="amount-change" type="text" class="right"></div>
 	                        </div>
 
 

@@ -16,6 +16,8 @@ class CreateNonShopAlterSpecific extends Migration
             $table->string('strNonAlterSpecificID')->primary();
             $table->string('strNonShopAlterFK')->index();
             $table->string('strGarmentSegmentFK')->index();
+            $table->string('strAlterationTypeFK')->index();
+            $table->text('txtAlterationDesc')->nullable();
             $table->timestamps();
 
             $table->foreign('strNonShopAlterFK')
@@ -25,6 +27,10 @@ class CreateNonShopAlterSpecific extends Migration
             $table->foreign('strGarmentSegmentFK')
                   ->references('strSegmentID')
                   ->on('tblSegment');
+
+             $table->foreign('strAlterationTypeFK')
+                  ->references('strAlterationID')
+                  ->on('tblAlteration');
         });
        
             
