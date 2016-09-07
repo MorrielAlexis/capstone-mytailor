@@ -6,7 +6,7 @@
       
     <div class="row">
       <div class="col s12 m12 l12">
-        <span class="page-title"><h4>Utilities -  Online Customers</h4></span>
+        <span class="page-title"><h4>Utilities -  Prominent Segment</h4></span>
       </div>
     </div>
 
@@ -16,19 +16,19 @@
   <div class="row">
       <div class="col s12 m12 l12">
         <div class="card-panel">
-          <span class="card-title"><h5 style="color:#1b5e20"><center>List of Online Customers</center></h5></span>
+          <span class="card-title"><h5 style="color:#1b5e20"><center>List of Prominent Segment</center></h5></span>
           <div class="divider"></div>
           <div class="card-content">
 
             <div class = "col s12 m12 l12 overflow-x">
 
-            <table class = "table centered data-customers" align = "center" border = "1">
+            <table class = "table centered data-ProminentDesign" align = "center" border = "1">
               <thead>
                   <tr>
                     <!--<th data-field="id">Garment ID</th>-->
-                    <th data-field="garmentName">Customer ID</th>
-                    <th data-field="garmentDescription">Customer Name</th>
-                    <th data-field="Edit">Address</th>
+                    <th data-field="garmentName">Sample</th>
+                    <th data-field="garmentDescription">Sample</th>
+                    <th data-field="Edit">Sample</th>
                     <!-- <th>Deactivate</th> -->
                   </tr>
               </thead>
@@ -83,7 +83,7 @@
 
       $(document).ready(function() {
 
-          $('.data-customers').DataTable();
+          $('.data-ProminentDesign').DataTable();
 
       } );
 

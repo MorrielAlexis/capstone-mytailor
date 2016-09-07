@@ -551,6 +551,10 @@ Route::group(['prefix' => 'transaction'], function(){
   Route::group(['prefix' => 'queries'], function(){
 	
 	Route::get('list-of-online-customers','QueriesOnlineCustomersController@index');
+	Route::get('list-of-walk-in-customers','QueriesWalkInCustomersController@index');
+	Route::get('list-of-most-bought-fabric','QueriesMostBoughtFabricController@index');
+	Route::get('list-of-most-sought-design','QueriesMostSoughtDesignController@index');
+	Route::get('list-of-prominent-segment','QueriesProminentSegmentController@index');
 		
 
 
