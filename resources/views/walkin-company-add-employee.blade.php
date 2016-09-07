@@ -29,35 +29,39 @@
 								<!--Employee Information starts here-->
 								<div class="col s12" style="margin-bottom:30px">
 									<div class="input-field col s3">
-							          <input id="empFirstName{{ $i }}" name="empFirstName[]" type="text" class="validate">
-							          <label for="empFirstName{{ $i }}">First Name</label>
+							          	<input id="empFirstName{{ $i }}" name="empFirstName[]" type="text" class="validate">
+							          	<label for="empFirstName{{ $i }}">First Name</label>
 							        </div>
 
 							        <div class="input-field col s3">
-							          <input id="empLastName{{ $i }}" name="empLastName[]" type="text" class="validate">
-							          <label for="empLastName{{ $i }}">Last Name</label>
+							          	<input id="empLastName{{ $i }}" name="empLastName[]" type="text" class="validate">
+							          	<label for="empLastName{{ $i }}">Last Name</label>
+							        </div>
+
+							        <div class="input-field col s2">
+							        	<input id="empMiddleName{{ $i }}" name="empMiddleName[]" type="text" class="validate">
+							          	<label for="empMiddleName{{ $i }}">Middle Name</label>
 							        </div>
 
 							        <div class="input-field col s1">
-							          <input id="empMiddleInitial{{ $i }}" name="empMiddleName[]" type="text" class="validate">
-							          <label for="empMiddleInitial{{ $i }}">M.I.</label>
-							        </div>
-
-							        <div class="input-field col s1">
-									    <select id="empSex{{ $i }}" name="empSex[]">
-									    	<option value="M">Male</option>
-									    	<option value="F">Female</option>
-									    </select>
-									    <label></label>
+								        @foreach($packages as $package)
+											@if($package->strPackageSex == 'M')
+										    	<input type="hidden" name="empSex[]" value="M">
+												<input type="text" id="empSex{{ $i }}" value="Male">
+										    @elseif($package->strPackageSex == 'F')
+										    	<input type="hidden" name="empSex[]" value="F">
+												<input type="text" id="empSex{{ $i }}" value="Female">
+										    @endif
+										@endforeach
 									</div>
 
-									<div class="input-field col s3">
-									    <select class="empSet" id="empSet{!! $i !!}" name="empSet[]"> 
-									    	@foreach($packages as $package)
-									    		<option value="{{ $package->strPackageID }}">{{ $package->strPackageName }}</option>	
-									    	@endforeach
-									    </select>
-									    <label>Choose a set</label>
+									<div class="input-field col s2">
+										@foreach($packages as $package)
+											@if($orderPackages[$i] == $package->strPackageID)
+												<input type="hidden" name="empSet[]" value="{{ $orderPackages[$i] }}" >
+												<input readonly type="text" id="empSet{!! $i !!}" value="{!! $package->strPackageName !!}"> 
+											@endif
+										@endforeach
 									</div>
 
 									<div class="col s1">
@@ -71,7 +75,13 @@
 										<div class="modal-content col s12" style="padding-bottom:10%">
 
 											<div class="col s12">
-												<div class="col s12" style="font-size:1.5em"><p>Package Availed: <font color="red" style="padding-left:5%"><b><i>Generic FA</i></b></font></p></div>
+												<div class="col s12" style="font-size:1.5em">
+												@foreach($packages as $package)
+													@if($orderPackages[$i] == $package->strPackageID)
+													<p>Package Availed: <font color="red" style="padding-left:5%"><b><i>{{ $package->strPackageName }}</i></b></font></p>
+													@endif
+												@endforeach
+												</div>
 												<div class="col s12 z-depth-1">
 													<table class = "table centered" border = "1">
 														<thead>
@@ -83,11 +93,17 @@
 														</thead>
 
 														<tbody>
-															<tr>
-																<td>Uniform, Skirt</td>
-																<td><img src="../img/female-uniform-skirt.jpg"/></td>
-																<td><input class="" name="add-garment" id="add-garment" type="number" value="" style="margin-top:20px" placeholder="How many?"></td>
-															</tr>
+															@foreach($packages as $j => $package)
+																@for($k = 0; $k < count($segments); $k++)
+																@if($segments[$k][$j][0]->strPackageID == $orderPackages[$i])
+																<tr>
+																	<td>{{ $segments[$k][$j][0]->strGarmentCategoryName }}, <b>{{ $segments[$k][$j][0]->strSegmentName }}</b></td>
+																	<td><img src="../{{ $segments[$k][$j][0]->strSegmentImage }}"/></td>
+																	<td><input class="" name="add-garment" id="add-garment" type="number" value="" style="margin-top:20px" placeholder="How many?"></td>
+																</tr>
+																@endif
+																@endfor
+															@endforeach
 														</tbody>
 													</table>
 												</div>
