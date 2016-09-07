@@ -26,7 +26,7 @@
 								
 										@foreach($segments as $i => $segment)
 										<div id="remove{{ $i+1 }}" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
-											<h5><font color="red"><center><b>{{$i+1}} Warning!</b></center></font></h5>
+											<h5><font color="red"><center><b>Warning!</b></center></font></h5>
 												
 												{!! Form::open(['url' => 'transaction/walkin-individual-remove-item', 'method' => 'post']) !!}
 													<div class="divider" style="height:2px"></div>
@@ -42,7 +42,7 @@
 													</div>
 
 													<div class="modal-footer col s12">
-										                <a class=" modal-action modal-close waves-effect waves-green btn-flat" ><font color="black">Yes</font></a>
+										                <button type="submit" class=" modal-action modal-close waves-effect waves-green btn-flat" ><font color="black">Yes</font></button>
 										                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
 										            </div>
 												{!! Form::close() !!}

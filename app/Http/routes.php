@@ -345,7 +345,7 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::get('walkin-company-customize-orders-package', 'WalkInCompanyController@customPackage');	
 	Route::get('walkin-company-catalogue-designs', 'WalkInCompanyController@catalogueDesign');
 	Route::get('walkin-company-payment-customer-info', 'WalkInCompanyController@information');
-	Route::get('walkin-company-add-employees', 'WalkInCompanyController@addEmployee');
+	Route::get('walkin-company-add-employees', 'WalkInCompanyController@addEmployees');
 	Route::get('walkin-company-payment-payment-info', 'WalkInCompanyController@payment');
 	Route::get('walkin-company-payment-measure-detail', 'WalkInCompanyController@measurement');
 	Route::get('walkin-company-show-order', 'WalkInCompanyController@showOrder');
@@ -358,10 +358,10 @@ Route::group(['prefix' => 'transaction'], function(){
 	/* Route for adding measurement profile*/
 	Route::get('walkin-company-measure-add-employee-profile', 'WalkInCompanyController@measureProfile');
 
-	
-
 	Route::post('walkin-company-orders', 'WalkInCompanyController@listOfOrders');
 	Route::post('walkin-company-customize-orders', 'WalkInCompanyController@customize');
+	Route::post('walkin-company-save-design', 'WalkInCompanyController@saveDesign');
+	Route::post('walkin-company-save-employees', 'WalkInCompanyController@saveEmployees');
 
 });
 

@@ -258,7 +258,8 @@
       {!! Html::script('js/materialize.min.js'); !!}
       {!! Html::script('js/jquery.dataTables.min.js'); !!}
       {!! Html::script('js/angular.min.js'); !!}
-      
+      {!! Html::script('js/knockout-3.4.0.js'); !!}
+
       <script>
         $(document).ready(function(){
         $('.button-collapse').sideNav({
