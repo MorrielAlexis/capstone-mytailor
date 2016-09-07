@@ -41,7 +41,7 @@ class WalkInCompanyController extends Controller
 
         session(['package_data' => $data]);
         session(['package_values' => $values]);
-        session(['package_quantity' => $quantity]);
+        session(['package_quantity' => (int)$quantity]);
 
         $packages = Package::all();
 
@@ -60,6 +60,32 @@ class WalkInCompanyController extends Controller
                 ->whereIn('strPackageID', session()->get('package_data'))
                 ->get();
 
+        for($i = 0; $i < count($values); $i++){
+            $segment1[$i] = \DB::table('tblPackages AS a')
+                    ->leftJoin('tblSegment AS b', 'a.strPackageSeg1FK', '=', 'b.strSegmentID')
+                    ->leftJoin('tblGarmentCategory AS c', 'b.strSegCategoryFK', '=', 'c.strGarmentCategoryID')
+                    ->select('a.strPackageID', 'b.*', 'c.strGarmentCategoryName')
+                    ->where('a.strPackageID', $values[$i]->strPackageID)
+                    ->get();
+
+            $segment2[$i] = \DB::table('tblPackages AS a')
+                    ->leftJoin('tblSegment AS b', 'a.strPackageSeg2FK', '=', 'b.strSegmentID')
+                    ->leftJoin('tblGarmentCategory AS c', 'b.strSegCategoryFK', '=', 'c.strGarmentCategoryID')
+                    ->select('a.strPackageID', 'b.*', 'c.strGarmentCategoryName')
+                    ->where('a.strPackageID', $values[$i]->strPackageID)
+                    ->get();
+
+            $segment3[$i] = \DB::table('tblPackages AS a')
+                    ->leftJoin('tblSegment AS b', 'a.strPackageSeg3FK', '=', 'b.strSegmentID')
+                    ->leftJoin('tblGarmentCategory AS c', 'b.strSegCategoryFK', '=', 'c.strGarmentCategoryID')
+                    ->select('a.strPackageID', 'b.*', 'c.strGarmentCategoryName')
+                    ->where('a.strPackageID', $values[$i]->strPackageID)
+                    ->get();               
+        }
+
+        $segments = [$segment1, $segment2, $segment3];
+
+        session(['package_segments' => $segments]);
         session(['package_values' => $values]);
 
         return view('walkin-company-customize-order')
@@ -104,7 +130,7 @@ class WalkInCompanyController extends Controller
 
         $segments = [$segment1[0], $segment2[0], $segment3[0]];
 
-        session(['package_segments' => $segments]);
+        session(['package_segments_customize' => $segments]);
 
         $fabrics = Fabric::all();
         $fabricThreadCounts = FabricThreadCount::all();
@@ -142,7 +168,7 @@ class WalkInCompanyController extends Controller
 
     public function saveDesign(Request $request)
     {   
-        $values = session()->get('package_segments');
+        $values = session()->get('package_segments_customize');
         $to_be_customized = session()->get('package_customize');
         $segmentStyles = SegmentStyle::all();
         $k = 0;
@@ -163,18 +189,30 @@ class WalkInCompanyController extends Controller
     }
 
     public function addEmployees()
-    {
-        $quantity = session()->get('package_quantity');
+    {   
+        $order = session()->get('package_data');
+        $segments = session()->get('package_segments');
         $packages = session()->get('package_values');
-
+        $quantity = session()->get('package_quantity');
+        $orderPackages = [];
         $totalQuantity = 0;
+        $k = 0;
 
         for($i = 0; $i < count($quantity); $i++)
             $totalQuantity = $totalQuantity + $quantity[$i];
 
+        for($i = 0; $i < count($quantity); $i++){
+            for($j = 0; $j < $quantity[$i]; $j++){
+                $orderPackages[$k] = $order[$i];
+                $k++;
+            }
+        }
+        
         return view('walkin-company-add-employee')
                 ->with('total_quantity', $totalQuantity)
-                ->with('packages', $packages);
+                ->with('orderPackages', $orderPackages)
+                ->with('packages', $packages)
+                ->with('segments', $segments);
     }//specifications ng employee
 
     public function saveEmployees(Request $request)
