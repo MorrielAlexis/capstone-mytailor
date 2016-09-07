@@ -212,7 +212,19 @@
 
               </li>
               <!--<div class="divider"></div>-->
-              <li class="bold"><a class="collapsible-header waves-effect waves-white" style="color:#212121"><i style="font-size:30px" class="small mdi-action-assessment" style="color:#ccff90"></i><b>Queries</b></a></li>
+              <li class="bold"><a class="collapsible-header waves-effect waves-white {{ Request::is('queries/*') ? 'active' : '' }}" style="color:#212121"><i style="font-size:30px" class="small mdi-action-assessment" style="color:#ccff90"></i><b>Queries</b></a>
+                   <div class="collapsible-body" position = "fixed" style = "display: block;">
+                  <ul>
+                    <li class="no-padding">
+                      <ul class="collapsible collapsible-accordion">
+
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('queries/list-of-online-customers')}}"><b>Online Customers</b></a></li>
+
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </li>
               <!--<div class="divider"></div>-->
               <li class="bold"><a class="collapsible-header waves-effect waves-white" style="color:#212121"><i style="font-size:30px" class="small mdi-action-assignment" style="color:#ccff90"></i><b>Reports</b></a></li>
               <!--<div class="divider"></div>-->
