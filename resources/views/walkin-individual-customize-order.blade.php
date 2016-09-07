@@ -358,18 +358,18 @@
 				                        @endif
 
 										<div class="col s4" style="color:teal;"><p><b>Price starts from:</b></p></div>
-										<div class="col s8" style="color:red"><p>{{ number_format($segment['dblSegmentPrice'], 2) }} PHP</p></div>
+										<div class="col s8" style="color:color:black;font-weight:bold"><p>{{ number_format($segment['dblSegmentPrice'], 2) }} PHP</p></div>
 										<input type="hidden" class="price-per-segment" id="{{ $segment['dblSegmentPrice'] }}">
 
 									<div class="col s4" style="color:teal;"><p><b>Time to finish(min):</b></p></div>
-									<div class="col s8 " style="color:red" ><p>{{ $segment['intMinDays'] }} days</p></div>
+									<div class="col s8 " style="color:gray;font-weight:bold" ><p>{{ $segment['intMinDays'] }} days</p></div>
 									<input type="hidden" class="time-to-finish" id="{{ $segment['intMinDays'] }}">
 																	
 								</div>
 
 								<!--To identify the quantity of garments with similar design and fabrics-->
 				                <div class="col s8" style="margin-top:4%">
-				                <div class="col s8" style="padding-top:3%; padding-left:50%; color:red"><center><b style="font-size:18px">QTY</b></center></div>   
+				                <div class="col s8" style="padding-top:3%; padding-left:50%; color:black"><center><b style="font-size:18px">QTY</b></center></div>   
 				               	<div class="col s4" style="padding-left:0; margin-left:0;"><input name="quantity" id="quantity" type="number" style="border:2px teal solid; padding-left:18%; padding-right:18%" placeholder="How many?"></div>
 				                </div>
 				                <!--end-->
