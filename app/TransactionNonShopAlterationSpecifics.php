@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class TransactionNonShopAlterationSpecifics extends Model
 {
     public $table = 'tblNonShopAlterSpecific';
@@ -12,5 +13,14 @@ class TransactionNonShopAlterationSpecifics extends Model
 
     public $fillable = array('strNonAlterSpecificID', 
     						'strNonShopAlterFK',
-    						'strGarmentSegmentFK');
+    						'strGarmentSegmentFK',
+    						'strAlterationTypeFK',
+    						'txtAlterationDesc');
+
+    public function alterationNonShop()
+    {
+    	return $this->belongsTo('App\TransactionNonShopAlteration', 'strNonShopAlterFK');
+    }
+
+
 }

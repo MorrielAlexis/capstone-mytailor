@@ -36,6 +36,11 @@ class OnlineCustomizeWomensController extends Controller
         //
     }
 
+    public function choose()
+    {
+        return view('customize.womens-choose-shirt');
+    }    
+
     public function fabric()
     {
         $fabrics = Fabric::all();

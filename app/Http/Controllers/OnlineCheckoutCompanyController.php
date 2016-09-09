@@ -39,6 +39,11 @@ class OnlineCheckoutCompanyController extends Controller
         return view('online.company-checkout-employee-details');
     }
 
+    public function editset()
+    {
+        return view('online.company-checkout-edit-set');
+    }    
+
     /**
      * Show the form for creating a new resource.
      *

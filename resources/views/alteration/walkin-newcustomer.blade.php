@@ -130,7 +130,7 @@
                                           <div class="divider"></div>
                                           <div class="divider"></div>
 
-                                          <div class="col s12" style="margin-bottom:50px" >
+                                    <div class="col s12" style="margin-bottom:50px" >
                                         <div class="col s6"><p style="color:gray">Estimated time to finish all orders:    <font color="red" size=+1> {{ $total_days }} days</font><p style="color:black" id="total-time"></p></p></div>
                                         <div class="col s6"><p style="color:gray">Total Amount to Pay:    <font color="red" size=+1>P{{ number_format($total_price, 2) }}</font><p style="color:black" id="total-price"></p></p></div>
                                       </div>

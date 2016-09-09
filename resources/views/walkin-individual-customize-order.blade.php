@@ -26,7 +26,7 @@
 								
 										@foreach($segments as $i => $segment)
 										<div id="remove{{ $i+1 }}" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
-											<h5><font color="red"><center><b>{{$i+1}} Warning!</b></center></font></h5>
+											<h5><font color="red"><center><b>Warning!</b></center></font></h5>
 												
 												{!! Form::open(['url' => 'transaction/walkin-individual-remove-item', 'method' => 'post']) !!}
 													<div class="divider" style="height:2px"></div>
@@ -42,7 +42,7 @@
 													</div>
 
 													<div class="modal-footer col s12">
-										                <a class=" modal-action modal-close waves-effect waves-green btn-flat" ><font color="black">Yes</font></a>
+										                <button type="submit" class=" modal-action modal-close waves-effect waves-green btn-flat" ><font color="black">Yes</font></button>
 										                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
 										            </div>
 												{!! Form::close() !!}
@@ -358,18 +358,18 @@
 				                        @endif
 
 										<div class="col s4" style="color:teal;"><p><b>Price starts from:</b></p></div>
-										<div class="col s8" style="color:red"><p>{{ number_format($segment['dblSegmentPrice'], 2) }} PHP</p></div>
+										<div class="col s8" style="color:color:black;font-weight:bold"><p>{{ number_format($segment['dblSegmentPrice'], 2) }} PHP</p></div>
 										<input type="hidden" class="price-per-segment" id="{{ $segment['dblSegmentPrice'] }}">
 
 									<div class="col s4" style="color:teal;"><p><b>Time to finish(min):</b></p></div>
-									<div class="col s8 " style="color:red" ><p>{{ $segment['intMinDays'] }} days</p></div>
+									<div class="col s8 " style="color:gray;font-weight:bold" ><p>{{ $segment['intMinDays'] }} days</p></div>
 									<input type="hidden" class="time-to-finish" id="{{ $segment['intMinDays'] }}">
 																	
 								</div>
 
 								<!--To identify the quantity of garments with similar design and fabrics-->
 				                <div class="col s8" style="margin-top:4%">
-				                <div class="col s8" style="padding-top:3%; padding-left:50%; color:red"><center><b style="font-size:18px">QTY</b></center></div>   
+				                <div class="col s8" style="padding-top:3%; padding-left:50%; color:black"><center><b style="font-size:18px">QTY</b></center></div>   
 				               	<div class="col s4" style="padding-left:0; margin-left:0;"><input name="quantity" id="quantity" type="number" style="border:2px teal solid; padding-left:18%; padding-right:18%" placeholder="How many?"></div>
 				                </div>
 				                <!--end-->

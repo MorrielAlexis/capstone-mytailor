@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="section white" style="margin:40px; padding:40px; font-family:'Philosopher',sans-serif;"> 
+    <div class="section white" style="margin:40px; padding:40px;"> 
 
     <div class="row" style="margin-top:40px;">
       <div class="col s12">
@@ -12,7 +12,7 @@
         </div>
 
         <div class="col s4" style="margin-top:-30px;">
-          <center><span style="font-size:40px; color: #757575; font-family:'Pacifico',cursive;">Women Set <font color="red">A</font></span></center>
+          <center><span style="font-size:40px; color: #757575;">Women Set <font color="red">A</font></span></center>
         </div>
 
         <div class="col s4">
@@ -185,15 +185,12 @@
 
   <div class="divider"></div>
   <div class="col s12" style="padding:30px">
-      <a href="{{URL::to('/online-order-now')}}" class="btn-flat white-text" style="color:white; background-color:teal; font-family:'Yatra One',cursive;">Cancel Transaction</a>
-      <a href="{{URL::to('/online-company-checkout-info')}}" class="right btn-flat white-text red" style="color:white; background-color:teal; font-family:'Yatra One',cursive;">Proceed to CHECKOUT</a>
+      <a href="#!" class="btn-flat white-text" style="color:white; background-color:teal;">Cancel</a>
+      <a href="{{URL::to('/customize-sets-list-of-orders')}}" class="right btn-flat white-text" style="color:white; background-color:teal;">Save Order</a>
   </div>
 
     <div class="divider" style="margin-bottom:20px;"></div>
-    <div>
-      <a class="green-text" style="margin-left:20px;" href="{{URL::to('/online-home')}}"><i style="size:20px;" class="mdi-hardware-keyboard-arrow-left"></i>CONTINUE SHOPPING</a>
-    </div>
-            
+           
     </div>
 
   <!--Remove Order Modal-->

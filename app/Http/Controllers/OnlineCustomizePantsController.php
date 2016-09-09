@@ -34,6 +34,11 @@ class OnlineCustomizePantsController extends Controller
         //
     }
 
+    public function choose()
+    {
+        return view('customize.pants-choose-pants');
+    }
+
     public function fabric()
     {
         $fabrics = Fabric::all();
