@@ -15,4 +15,11 @@ class TransactionNonShopAlteration extends Model
     						'strCustCompFK', 
     						'dblOrderTotalPrice', 
     						'dtAlteration');
+
+    public function alterationSpecifics()
+    {
+    	return $this->hasMany('App\TransactionNonShopAlterationSpecifics');
+    }
+
+
 }

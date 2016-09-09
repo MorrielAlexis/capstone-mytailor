@@ -41,8 +41,13 @@ class AcceptAlterationOnlineController extends Controller
             ->select('tblcustindividual.*', 'tblcustcompany.*', 'tblNonShopAlteration.*')
             ->get(); 
 
+        // $specifics = TransactionNonShopAlterationSpecifics::with('strGarmentSegmentFK', 'strAlterationTypeFK')->get();
+
+
         return view('alteration.acceptonlinealteration')
             ->with('onlineAlteration', $onlineAlteration);
+            // ->with('specifics', $specifics);
+
         
     }
 

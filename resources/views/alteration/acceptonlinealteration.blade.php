@@ -47,48 +47,30 @@
               
 
               <!--**********Orrder Details Modal***********-->
-            {{--         <div id="OrderDetails" class="modal modal-fixed-footer">                     
+                    <div id="OrderDetails" class="modal modal-fixed-footer">                     
                       <h5><font color = "#1b5e20"><center>Order Details</center> </font> </h5>                       
                           
                         {!! Form::open(['url' => 'transaction/alteration-online-transaction-details']) !!} 
                       <div class="divider" style="height:2px"></div>
                         <div class="modal-content col s12">
-                            
-                          <div class="input-field">
-                            <input value="{{$onlineAltSpecifics->strNonAlterSpecificID}}" id="delAlterationNameID" name="delAlterationNameID" type="text" readonly>
-                          </div>
+                             <div class="col s12" style="margin-bottom:50px" >
+                                        {{-- @foreach($specifics as $specific) --}}
+                                        <div class="col s6"><p style="color:gray">Segment: <font color="red" size=+1>{{-- {{$specific->strSegmentName}} --}} Sample 1</font><p style="color:black" id=""></p></p></div>
+                                        <div class="col s6"><p style="color:gray">Alteration Type: <font color="red" size=+1>{{-- {{$specific->strAlterationName}} --}}sample 2</font><p style="color:black" id="total-price"></p></p></div>
+                                        <div class="col s6"><p style="color:gray">Desc: <font color="red" size=+1>{{-- {{$specific->txtAlterationDesc}}  --}}sample 3</font><p style="color:black" id="total-price"></p></p></div>
+                                      </div>
+                                {{--       @endforeach --}}
+                          
 
-
-                          <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                              <div class="input-field col s12">
-                                <label for="alteration_desc">Segment</label>
-                                <input value="{{$onlineAltSpecifics->strSegmentName}}" id="delAlterationDesc" name="delAlterationDesc" type="text" readonly>
-                              </div>
-                          </div>
-
-                          <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                              <div class="input-field col s12">
-                                <label for="alteration_price">Alteration Price</label>
-                                <input value="{{$onlineAltSpecifics->strAlterationName}}" id="delAlterationPrice" name="delAlterationPrice" type="text" readonly>
-                              </div>
-                          </div>
-
-                          <div class="input-field col s12">
-                            <label for="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span> </label>
-                            <input required  value="{{ $onlineAltSpecifics->txtAlterationDesc }}" id="delInactiveAlteration" name="delInactiveAlteration" type="text">
-                          </div>
-
-                          <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
-                                 
+                          <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">       
                           </div>
                         </div>
 
                         <div class="modal-footer col s12" style="background-color:#26a69a">
-                          <button type="submit" class="waves-effect waves-green btn-flat">OK</button>
-                          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+                          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
                         </div> 
                         {!! Form::close() !!}      
-                      </div> --}}
+                      </div>
                     </tr>
                    {{--  @endif --}}
                   @endforeach

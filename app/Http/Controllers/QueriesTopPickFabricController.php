@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class QueriesWalkInCustomersController extends Controller
+class QueriesTopPickFabricController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class QueriesWalkInCustomersController extends Controller
      */
     public function index()
     {
-        return view('queries.utilities-walk-in-customers');
+        return view('queries.queries-top-pick-fabric');
     }
 
     /**

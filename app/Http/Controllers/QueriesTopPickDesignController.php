@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class QueriesOnlineCustomersController extends Controller
+class QueriesTopPickDesignController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class QueriesOnlineCustomersController extends Controller
      */
     public function index()
     {
-        return view('queries.utilities-online-customers');
+        return view('queries.queries-top-pick-design');
     }
 
     /**

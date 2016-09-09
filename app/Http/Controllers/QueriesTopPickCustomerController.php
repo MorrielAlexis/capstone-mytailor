@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class QueriesMostSoughtDesignController extends Controller
+class QueriesTopPickCustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class QueriesMostSoughtDesignController extends Controller
      */
     public function index()
     {
-        return view('queries.utilities-most-sought-design');
+        return view('queries.queries-top-customers');
     }
 
     /**
