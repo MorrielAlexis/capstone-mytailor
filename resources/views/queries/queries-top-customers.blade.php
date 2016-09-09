@@ -6,7 +6,7 @@
       
     <div class="row">
       <div class="col s12 m12 l12">
-        <span class="page-title"><h4>Utilities -  Walk In Customers</h4></span>
+        <span class="page-title"><h4>Queries -  Top Customers</h4></span>
       </div>
     </div>
 
@@ -16,7 +16,7 @@
   <div class="row">
       <div class="col s12 m12 l12">
         <div class="card-panel">
-          <span class="card-title"><h5 style="color:#1b5e20"><center>List of Walk In Customers</center></h5></span>
+          <span class="card-title"><h5 style="color:#1b5e20"><center>List of Individual Customers with Frequent Orders</center></h5></span>
           <div class="divider"></div>
           <div class="card-content">
 
@@ -26,9 +26,9 @@
               <thead>
                   <tr>
                     <!--<th data-field="id">Garment ID</th>-->
-                    <th data-field="garmentName">Sample</th>
-                    <th data-field="garmentDescription">Sample</th>
-                    <th data-field="Edit">Sample</th>
+                    <th data-field="CustID">Customer ID</th>
+                    <th data-field="Customer Name">Customer Name</th>
+                    <th data-field="Total Orders">Total Orders</th>
                     <!-- <th>Deactivate</th> -->
                   </tr>
               </thead>

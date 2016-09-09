@@ -283,6 +283,9 @@ class OnlineAlterationController extends Controller
         session()->forget('orders');
         session()->forget('alteration_id');
 
+        \Session::flash('flash_message','Order sent! Wait for order confirmation via email.'); //flash message
+
+
         return redirect('transaction/online-alterationtransaction-newcustomer');
     }
 

@@ -6,7 +6,7 @@
       
     <div class="row">
       <div class="col s12 m12 l12">
-        <span class="page-title"><h4>Utilities -  Most Bought Fabric</h4></span>
+        <span class="page-title"><h4>Queries - Top Pick Fabric</h4></span>
       </div>
     </div>
 
@@ -16,7 +16,7 @@
   <div class="row">
       <div class="col s12 m12 l12">
         <div class="card-panel">
-          <span class="card-title"><h5 style="color:#1b5e20"><center>List of Most Bought Fabric</center></h5></span>
+          <span class="card-title"><h5 style="color:#1b5e20"><center>List of Most Ordered Fabric</center></h5></span>
           <div class="divider"></div>
           <div class="card-content">
 
@@ -26,15 +26,17 @@
               <thead>
                   <tr>
                     <!--<th data-field="id">Garment ID</th>-->
-                    <th data-field="garmentName">Sample</th>
-                    <th data-field="garmentDescription">Sample</th>
-                    <th data-field="Edit">Sample</th>
+                    <th data-field="garmentName">Fabric Name</th>
+                    <th data-field="garmentDescription">Type</th>
+                    <th data-field="Edit">Color</th>
+                    <th data-field="Edit">Pattern</th>
                     <!-- <th>Deactivate</th> -->
                   </tr>
               </thead>
 
               <tbody>
                   <tr>
+                    <td>Sample</td>
                     <td>Sample</td>
                     <td>Sample</td>
                     <td>Sample</td>
