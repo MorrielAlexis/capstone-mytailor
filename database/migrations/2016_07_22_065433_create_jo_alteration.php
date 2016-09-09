@@ -16,9 +16,11 @@ class CreateJoAlteration extends Migration
             $table->string('strJOAlterationID')->primary();
             $table->string('strAlterationType');
             $table->string('strAlterationFK')->index();
+            $table->date('dtAlteration');
             $table->text('txtAlterationNotes');
             $table->string('strSegmentMeasSpecFK')->index()->nullable();
             $table->string('strSegmentNonShopSpecFK')->index()->nullable();
+            $table->boolean('boolIsOnline');
             $table->timestamps();
 
             $table->foreign('strSegmentNonShopSpecFK')
