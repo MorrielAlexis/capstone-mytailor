@@ -52,12 +52,12 @@ class WalkInIndividualController extends Controller
     public function index()
     {   
         $values = [];
-        $quantity = [];
+        //$quantity = [];
         $data = [];
 
         session(['segment_data' => $data]);
         session(['segment_values' => $values]);
-        session(['segment_quantity' => $quantity]);
+        //session(['segment_quantity' => $quantity]);
 
         $categories = GarmentCategory::all();
         $garments = \DB::table('tblSegment AS a')
@@ -69,24 +69,24 @@ class WalkInIndividualController extends Controller
         return view('transaction-walkin-individual')
                     ->with('garments', $garments)
                     ->with('categories', $categories)
-                    ->with('values', $data)
-                    ->with('quantity', $quantity);
+                    ->with('values', $data);
+                    //->with('quantity', $quantity);
     }
 
     public function showItems()
     {
-        if(session()->get('segment_data') != null && session()->get('segment_quantity')){
+        if(session()->get('segment_data') != null ){
             $values = session()->get('segment_values');
             $data = session()->get('segment_data');
-            $quantity = session()->get('segment_quantity');
+            //$quantity = session()->get('segment_quantity');
         }else{
             $values = [];
-            $quantity = [];
+            //$quantity = [];
             $data = [];
 
             session(['segment_data' => $data]);
             session(['segment_values' => $values]);
-            session(['segment_quantity' => $quantity]);
+           // session(['segment_quantity' => $quantity]);
         }
 
         $categories = GarmentCategory::all();
@@ -99,8 +99,8 @@ class WalkInIndividualController extends Controller
         return view('transaction-walkin-individual')
                     ->with('garments', $garments)
                     ->with('categories', $categories)
-                    ->with('values', $data)
-                    ->with('quantity', $quantity);
+                    ->with('values', $data);
+                    //->with('quantity', $quantity);
     }
 
     public function customizeOrder(Request $request)
@@ -109,7 +109,7 @@ class WalkInIndividualController extends Controller
         $values = [];
 
         if(!$data_segment == null){
-            $data_quantity = array_slice(array_filter($request->input('int-segment-qty')), 0);
+            //$data_quantity = array_slice(array_filter($request->input('int-segment-qty')), 0);
 
             $segments =  \DB::table('tblSegment AS a')
                         ->leftJoin('tblGarmentCategory AS b', 'a.strSegCategoryFK', '=', 'b.strGarmentCategoryID')
@@ -121,13 +121,12 @@ class WalkInIndividualController extends Controller
             $segments = json_decode(json_encode($segments), true);
 
             for($i = 0; $i < count($data_segment); $i++){
-                for($j = 0; $j < $data_quantity[$i]; $j++){
                     $values[] = $segments[$i];
-                }
+                
             }
 
             session(['segment_data' => $data_segment]);
-            session(['segment_quantity' => $data_quantity]);
+            //session(['segment_quantity' => $data_quantity]);
         }
         
         session(['segment_values' => $values]);     
