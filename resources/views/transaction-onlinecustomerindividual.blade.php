@@ -4,6 +4,30 @@
 
 <div class="main-wrapper"  style="margin-top:30px">
 
+ <!--Flash Messages-->
+      @if (Session::has('flash_message'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel blue accent-1">
+              <span class="alert alert-success"><i class="tiny mdi-navigation-close right" onclick="$('#flash_message').hide()"></i></span>
+              <em> {!! session('flash_message') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif
+
+      <!--Flash Messages for Reject-->
+      @if (Session::has('flash_message_delete'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red accent-2">
+              <span class="alert alert-success"><i class="tiny mdi-navigation-close right" onclick="$('#flash_message').hide()"></i></span>
+               <em> {!! session('flash_message_delete') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif
+
   	<div class="row">
       <div class="col s12 m12 l12">
         <span class="page-title"><h4>Online Individual Customers</h4></span>
@@ -62,88 +86,8 @@
 								<table class="centered">
 								    <tbody>
 								        <tr>
-								        	<td><a class="btn modal-trigger" href="{{URL::to('/acceptIndividual')}}"><i class="mdi-action-done"></i>Accept</a></td>
-								        	<td><a class="btn modal-trigger" href="#rejectmodal"><i class="mdi-content-clear"></i>Reject</a></td>
-								        </tr>
-								    </tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-					<div class="collapsible-body" style="border:3px solid #ffebee;">
-						<h5 style="color:#1b5e20; margin-left:20px;">Order Specification</h5>
-
-					    <div class = "row">
-
-						    <div class="col s12 m12 l12 overflow-x">
-						    	<table class = "centered">
-						    		<thead>
-						    			<tr>
-						    				<th>Garment Type</th>
-						    				<th>Garment Name</th>
-						    				<th>Garment Image</th>
-						    				<th>Quantity</th>
-						    				<th>Fabric Type</th>
-						    				<th>Swatch Fabric Name</th>
-						    				<th>Swatch Image</th>
-						    				<th>Swatch Code</th>
-						    				<th></th>
-						    			</tr>
-						    		</thead>
-						    		<tbody>
-						    			<tr>
-						    				<td>Uniform</td>
-						    				<td>Women's Uniform</td>
-						    				<td><img class="img hoverable" src="../img/uniform3.jpg"></td>
-						    				<td>1</td>
-						    				<td>Linen</td>
-						    				<td>Linen Keme</td>
-						    				<td><img class="img hoverable" src="../imgSwatches/citadel alpine.jpg"></td>
-						    				<td>LINK001</td>
-						    				<td><a class="btn modal-trigger tooltipped" href="#measurementmodal" data-position="top" data-delay="50" data-tooltip="Measurements"><i class="mdi-action-view-headline"></i></a></td>
-						    			</tr>
-						    			<tr>
-						    				<td>Gown</td>
-						    				<td>Tube Cocktail</td>
-						    				<td><img class="img hoverable" src="../img/gown2.jpg"></td>
-						    				<td>1</td>
-						    				<td>Cotton</td>
-						    				<td>Cotton Keme</td>
-						    				<td><img class="img hoverable" src="../imgSwatches/citadel grape.jpg"></td>
-						    				<td>COT001</td>
-						    				<td><a class="btn modal-trigger tooltipped" href="#measurementmodal" data-position="top" data-delay="50" data-tooltip="Measurements"><i class="mdi-action-view-headline"></i></a></td>
-						    			</tr>
-						    		</tbody>
-						    	</table>
-						    </div>
-				                  
-				            <div class = "clearfix"></div>
-				        </div>
-
-					</div>
-				</li>
-
-				<!--Order#2-->
-			    <li style="margin-bottom:10px;">
-			        <div class="collapsible-header" style="background-color:#ffebee">
-						<div class="row">
-							<div class="col s7">
-								<table class="centered">
-								    <tbody>
-								        <tr>
-								        	<td>#002</td>
-								        	<td>Timon Vitente Ibarra</td>
-								        	<td>01/04/03</td>
-								        </tr>
-								    </tbody>
-								</table>
-							</div>
-							<div class="col s5 center">
-								<table class="centered">
-								    <tbody>
-								        <tr>
-								        	<td><a class="btn modal-trigger" href="{{URL::to('/acceptIndividual')}}"><i class="mdi-action-done"></i>Accept</a></td>
-								        	<td><a class="btn modal-trigger" href="#rejectmodal"><i class="mdi-content-clear"></i>Reject</a></td>
+								        	<td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to accept online order" href="{{URL::to('/acceptIndividual')}}"><i class="mdi-action-done"></i></a>
+					                          <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to reject order." href="{{URL::to('/rejectIndividual')}}"><i class="mdi-action-delete"></i></a></td>
 								        </tr>
 								    </tbody>
 								</table>
@@ -309,6 +253,11 @@
 	  $(document).ready(function() {
 	    $('select').material_select();
 	  });
+
+	   setTimeout(function () {
+            $('#flash_message').hide();
+        }, 5000);
+
 	</script>	        
 
 	<script>
@@ -324,6 +273,5 @@
 		    });
 		});
 	</script>
-
 
 @stop

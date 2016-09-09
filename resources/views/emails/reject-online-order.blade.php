@@ -6,7 +6,7 @@
     <body>
         <h2>Hi {{$name}}, </h2>
         <br>
-        <p>Good day! This is to inform you that your online order is already confirmed and currently being processed. Your order/s have been processed at [time]. Any concerns, changes and/or additions to your order, please contact us through our hotline [set phone here] or email us at [mytailorsystems@gmail.com]. You have 1 day parameter to change or add your order.</p>
+        <p>Good day! This is to inform you that your online order has been rejected due to unavailability of the requested fabric. Thank you for your understanding!</p>
 
         <div>
           <h2>Customer Details</h2>
@@ -73,11 +73,6 @@
                 <div class="col s12"><div class="divider" style="height:2px"></div></div>
                 <div class="col s6"><p>Estimated time to finish all orders: 3 days</p></div>
                 <div class="col s6"><p>Total Amount to Pay: 600.00 PHP</p></div>
-            </div>
-
-            <div>
-              To pay for your order, please send a copy of your deposit slip at mytailorsystems@gmail.com. <br>
-             {{--  {{URL::to('online-individual-checkout-payment')}} --}}<br>
             </div>
 
         </div>

@@ -30,8 +30,25 @@ class OnlineCustomerIndividualController extends Controller
         //$email = 'arianne_spice@yahoo.com';
         $name = 'Arianne Labtic'; //name ng pagsesendan
         Mail::send('emails.accept-order', ['name' => $name], function($message) {
-            $message->to('arianne_spice@yahoo.com', 'Arianne Labtic')->subject('Hello!');
+            $message->to('morriel.aquino@yahoo.com', 'Arianne Labtic')->subject('Hello!');
+
         });
+
+         \Session::flash('flash_message','Order accepted! Email successfully sent to customer.'); //flash message
+
+        return redirect('transaction/online-customer-individual');
+    }
+
+    public function reject()
+    {
+
+        $name = 'Morriel Aquino'; //name ng pagsesendan
+        Mail::send('emails.reject-online-order', ['name' => $name], function($message) {
+            $message->to('morriel.aquino@yahoo.com', 'Morriel Aquino')->subject('Hello!');
+
+        });
+
+         \Session::flash('flash_message_delete','Order rejected! Email successfully sent to customer.'); //flash message
 
         return redirect('transaction/online-customer-individual');
     }

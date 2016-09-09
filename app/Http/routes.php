@@ -298,6 +298,7 @@ Route::group(['prefix' => 'utilities'], function(){
 
 //acceptance of order from online module
 Route::get('/acceptIndividual','OnlineCustomerIndividualController@accept');
+Route::get('/rejectIndividual','OnlineCustomerIndividualController@reject');
 Route::get('/acceptCompany','OnlineCustomerCompanyController@accept');
 
 Route::group(['prefix' => 'transaction'], function(){
@@ -399,7 +400,8 @@ Route::group(['prefix' => 'transaction'], function(){
 		//Accept Online Alteration
 		Route::get('alteration-online-transaction', 'AcceptAlterationOnlineController@index');
 		Route::get('alteration-online-transaction-details', 'AcceptAlterationOnlineController@alterationDetails');
-		Route::get('alteration-acceptorder', 'AcceptAlterationOnlineController@accept');
+		Route::get('alteration-accept-online-order', 'AcceptAlterationOnlineController@accept');
+		Route::get('alteration-reject-online-order', 'AcceptAlterationOnlineController@reject');
 });
 
 /*JOB ORDER PROGRESS*/
@@ -556,11 +558,11 @@ Route::group(['prefix' => 'transaction'], function(){
   /*Queries */
   Route::group(['prefix' => 'queries'], function(){
 	
-	Route::get('list-of-online-customers','QueriesTopPickCompanyController@index');
-	Route::get('list-of-walk-in-customers','QueriesTopPickCustomerController@index');
-	Route::get('list-of-most-bought-fabric','QueriesTopPickFabricController@index');
-	Route::get('list-of-most-sought-design','QueriesTopPickDesignController@index');
-	Route::get('list-of-prominent-segment','QueriesTopPickSegmentController@index');
+	Route::get('list-of-top-companies','QueriesTopPickCompanyController@index');
+	Route::get('list-of-top-customers','QueriesTopPickCustomerController@index');
+	Route::get('list-of-top-pick-fabric','QueriesTopPickFabricController@index');
+	Route::get('list-of-top-pick-design','QueriesTopPickDesignController@index');
+	Route::get('list-of-top-pick-segment','QueriesTopPickSegmentController@index');
 		
 
 

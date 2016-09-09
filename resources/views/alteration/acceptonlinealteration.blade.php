@@ -1,7 +1,32 @@
 @extends('layouts.master')
 
 @section('content')
-  <div class="main-wrapper" style="margin-top:30px">  <!-- Main Wrapper  -->   
+  <div class="main-wrapper" style="margin-top:30px"> 
+   <!-- Main Wrapper  -->   
+
+      <!--Flash Messages-->
+      @if (Session::has('flash_message'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel blue accent-1">
+              <span class="alert alert-success"><i class="tiny mdi-navigation-close right" onclick="$('#flash_message').hide()"></i></span>
+              <em> {!! session('flash_message') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif
+
+      <!--Flash Messages for Reject-->
+      @if (Session::has('flash_message_delete'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red accent-2">
+              <span class="alert alert-success"><i class="tiny mdi-navigation-close right" onclick="$('#flash_message').hide()"></i></span>
+               <em> {!! session('flash_message_delete') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif
       
     <div class="row">
         <div class="col s12 m12 l12">
@@ -42,8 +67,8 @@
                           <td>{{$onlineAlteration->strCompanyName}}{{$onlineAlteration->strIndivFName}} {{$onlineAlteration->strIndivMName}} {{$onlineAlteration->strIndivLName}}</td>
                           <td>{{"Php" . $onlineAlteration->dblOrderTotalPrice}}</td>
                           <td><a class=" btn modal-trigger tooltipped btn-floating green" href="#OrderDetails" data-position="top" data-delay="50" data-tooltip="Show alteration order details."><i class="mdi-action-view-headline"></i></a>
-                    		  <a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to accept online order" href="{{URL::to('/alteration-acceptorder')}}"><i class="mdi-action-done"></i></a>
-                          <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to reject order." href="#rejectmodal"><i class="mdi-action-delete"></i></a></td>
+                    		  <a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to accept online order" href="{{URL::to('transaction/alteration-accept-online-order')}}"><i class="mdi-action-done"></i></a>
+                          <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to reject order." href="{{URL::to('transaction/alteration-reject-online-order')}}"><i class="mdi-action-delete"></i></a></td>
               
 
               <!--**********Orrder Details Modal***********-->

@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Session;
+use Mail;
 
 use App\GarmentCategory;
 use App\SegmentPattern;
@@ -72,10 +73,38 @@ class AcceptAlterationOnlineController extends Controller
            
     }
 
+    // public function accept()
+    // {
+        
+    //     return view('alteration.acceptorder');
+    // }
+
     public function accept()
     {
-        
-        return view('alteration.acceptorder');
+        //$email = 'arianne_spice@yahoo.com';
+        $name = 'Morriel Aquino'; //name ng pagsesendan
+        Mail::send('emails.accept-online-alteration', ['name' => $name], function($message) {
+            $message->to('morriel.aquino@yahoo.com', 'Arianne Labtic')->subject('Order Confirmation!');
+
+        });
+
+         \Session::flash('flash_message','Order accepted! Email successfully sent to customer.'); //flash message
+
+        return redirect('transaction/alteration-online-transaction');
+    }
+
+    public function reject()
+    {
+
+        $name = 'Morriel Aquino'; //name ng pagsesendan
+        Mail::send('emails.reject-online-alteration', ['name' => $name], function($message) {
+            $message->to('morriel.aquino@yahoo.com', 'Morriel Aquino')->subject('Order Confirmation!');
+
+        });
+
+         \Session::flash('flash_message_delete','Order rejected! Email successfully sent to customer.'); //flash message
+
+        return redirect('transaction/alteration-online-transaction');
     }
 
     /**
