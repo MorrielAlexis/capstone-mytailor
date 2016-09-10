@@ -14,7 +14,8 @@ class TransactionNonShopAlteration extends Model
     						'strCustIndFK',
     						'strCustCompFK', 
     						'dblOrderTotalPrice', 
-    						'dtAlteration');
+    						'dtAlteration',
+                            'boolIsOnline');
 
     public function alterationSpecifics()
     {

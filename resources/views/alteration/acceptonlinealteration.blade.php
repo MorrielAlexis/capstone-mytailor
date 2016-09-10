@@ -79,12 +79,12 @@
                       <div class="divider" style="height:2px"></div>
                         <div class="modal-content col s12">
                              <div class="col s12" style="margin-bottom:50px" >
-                                        {{-- @foreach($specifics as $specific) --}}
-                                        <div class="col s6"><p style="color:gray">Segment: <font color="red" size=+1>{{-- {{$specific->strSegmentName}} --}} Sample 1</font><p style="color:black" id=""></p></p></div>
-                                        <div class="col s6"><p style="color:gray">Alteration Type: <font color="red" size=+1>{{-- {{$specific->strAlterationName}} --}}sample 2</font><p style="color:black" id="total-price"></p></p></div>
-                                        <div class="col s6"><p style="color:gray">Desc: <font color="red" size=+1>{{-- {{$specific->txtAlterationDesc}}  --}}sample 3</font><p style="color:black" id="total-price"></p></p></div>
+                                        @foreach($specifics as $specific)
+                                        <div class="col s6"><p style="color:gray">Segment: <font color="red" size=+1>{{$specific->strSegmentName}} Sample 1</font><p style="color:black" id=""></p></p></div>
+                                        <div class="col s6"><p style="color:gray">Alteration Type: <font color="red" size=+1>{{$specific->strAlterationName}} {{-- sample 2 --}}</font><p style="color:black" id="total-price"></p></p></div>
+                                        <div class="col s6"><p style="color:gray">Desc: <font color="red" size=+1>{{$specific->txtAlterationDesc}} {{-- sample 3 --}}</font><p style="color:black" id="total-price"></p></p></div>
                                       </div>
-                                {{--       @endforeach --}}
+                                      @endforeach
                           
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">       
@@ -97,7 +97,7 @@
                         {!! Form::close() !!}      
                       </div>
                     </tr>
-                   {{--  @endif --}}
+                {{--     @endif --}}
                   @endforeach
                 </tbody>
               </table>

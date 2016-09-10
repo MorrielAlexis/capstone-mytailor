@@ -38,16 +38,19 @@ class AcceptAlterationOnlineController extends Controller
         $onlineAlteration = \DB::table('tblNonShopAlteration')
             ->leftjoin('tblcustindividual', 'tblNonShopAlteration.strCustIndFK', '=', 'tblcustindividual.strIndivID')
             ->leftjoin('tblcustcompany', 'tblNonShopAlteration.strCustCompFK', '=', 'tblcustcompany.strCompanyID')
+            // ->where('boolisOnline','=', 1)
             ->orderby('tblNonShopAlteration.strNonShopAlterID')
             ->select('tblcustindividual.*', 'tblcustcompany.*', 'tblNonShopAlteration.*')
             ->get(); 
+    
 
-        // $specifics = TransactionNonShopAlterationSpecifics::with('strGarmentSegmentFK', 'strAlterationTypeFK')->get();
+        $specifics = TransactionNonShopAlterationSpecifics::with("alterationNonShop")->get();
 
+        dd($specifics);
 
         return view('alteration.acceptonlinealteration')
-            ->with('onlineAlteration', $onlineAlteration);
-            // ->with('specifics', $specifics);
+            ->with('onlineAlteration', $onlineAlteration)
+            ->with('specifics', $specifics);
 
         
     }
