@@ -12,8 +12,7 @@ class Individual extends Model
     protected $primaryKey = 'strIndivID';
 
     protected $fillable = array('strIndivID','strIndivFName', 
-                        'strIndivLName',
-    					'strIndivMName', 'strIndivSex',
+                        'strIndivLName','strIndivMName', 'strIndivSex',
     					'strIndivHouseNo', 'strIndivStreet',
     					'strIndivBarangay', 'strIndivCity',
     					'strIndivProvince', 'strIndivZipCode',
@@ -21,4 +20,9 @@ class Individual extends Model
     					'strIndivCPNumberAlt', 'strIndivEmailAddress',
                         'strIndivInactiveReason', 'userId',
     					'boolIsActive');   
+
+    public function customer_ind(){
+
+        return $this->hasOne('App\Customer', 'strCustomer_IndFK', 'strIndivID');
+    }
 }

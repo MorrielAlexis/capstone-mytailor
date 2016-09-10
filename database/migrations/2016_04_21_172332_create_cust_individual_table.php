@@ -38,6 +38,7 @@ class CreateCustIndividualTable extends Migration
         Schema::table('tblCustIndividual', function (Blueprint $table){
             $table->foreign('userId')->references('id')->on('users');
         });
+
     }
 
     /**

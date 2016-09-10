@@ -26,8 +26,8 @@ class CreateJoMeasurementProfile extends Migration
                   ->on('tblCustIndividual');
 
             $table->foreign('strMeasProfCustCompanyFK')
-                  ->references('strCompanyID')
-                  ->on('tblCustCompany');
+                  ->references('strCustCompEmployeeID')
+                  ->on('tblCustCompEmployee');
                   
 
         });

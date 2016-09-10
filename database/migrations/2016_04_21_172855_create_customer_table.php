@@ -13,30 +13,26 @@ class CreateCustomerTable extends Migration
     public function up()
     {
         Schema::create('tblCustomer', function (Blueprint $table) {
-            $table->string('strCustomerID');
-            $table->string('strCustomer_IndFK')->index();
-            $table->string('strCustomer_CompanyFK')->index();
-            $table->string('strCustomerAccountIDFK')->index();
-            $table->primary('strCustomer_IndFK','strCustomer_CompanyFK'); //primary key
+            $table->string('strCustomerID')->primary;
+            $table->string('strCustomer_IndFK')->nullable();
+            $table->string('strCustomer_CompanyFK')->nullable();
+            $table->string('strCustomerAccountIDFK')->nullable();            
             $table->boolean('boolIsActive');
             $table->string('strCustInactiveReason');
             $table->timestamps();
-
-            $table->foreign('strCustomer_IndFK')
-                  ->references('strIndivID')
-                  ->on('tblCustIndividual');
-
-            $table->foreign('strCustomer_CompanyFK')
-                  ->references('strCompanyID')
-                  ->on('tblCustCompany');
 
 
             $table->foreign('strCustomerAccountIDFK')
                   ->references('id')
                   ->on('users');
 
-
         });
+
+        Schema::table('tblCustomer', function (Blueprint $table){
+            $table->foreign('strCustomer_IndFK')->references('strIndivID')->on('tblCustIndividual');
+            $table->foreign('strCustomer_CompanyFK')->references('strCompanyID')->on('tblCustCompany');
+        });
+
     }
 
     /**
@@ -47,5 +43,9 @@ class CreateCustomerTable extends Migration
     public function down()
     {
         Schema::drop('tblCustomer');
+        Schema::table('tblCustomer', function ($table){
+            $table->dropColumn('strCustomer_IndFK');
+            $table->dropColumn('strCustomer_CompanyFK');
+        });
     }
 }
