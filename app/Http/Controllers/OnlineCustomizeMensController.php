@@ -14,6 +14,7 @@ use App\FabricPattern;
 use App\FabricThreadCount;
 
 use App\SegmentPattern;
+use App\GarmentSegment;
 
 use App\Thread;
 use App\Button;
@@ -38,7 +39,16 @@ class OnlineCustomizeMensController extends Controller
     
     public function choose()
     {
-        return view('customize.mens-choose-shirt');
+        $garmentKey = 'Men Shirt';
+
+        $segments = \DB::table('tblSegment')
+            ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
+            ->where('tblGarmentCategory.strGarmentCategoryName', 'LIKE', '%'.$garmentKey.'%')
+            ->select('tblSegment.*')
+            ->get();
+
+        return view('customize.mens-choose-shirt')
+         ->with('segments', $segments);
     }   
 
     public function fabric()

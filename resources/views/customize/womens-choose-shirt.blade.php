@@ -50,22 +50,30 @@
         <div class="divider" style="margin-bottom:40px; height:2px"></div>
         <p class="center-align" style="color:teal; margin-bottom:40px"><b>CHOOSE AMONG AVAILABLE PRODUCTS</b></p>
       
-          <div class="col s4">
+        @foreach($segments as $segment)
+          @if($segment->boolIsActive==1)
+            <div class="col s4">
+
               <div class="center col s12">
-                <input type="checkbox" name="cbx-segment-name[]"  class="filled-in cbx-segment-name" id="" value="" style="padding:5px"/>
+                <input type="checkbox" name="cbx-segment-name[]"  class="filled-in cbx-segment-name" id="" value="{{$segment->strSegmentName}}" style="padding:5px"/>
+                <label>{{$segment->strSegmentName}}</label>
               </div>
 
-              <div class="center col s12"><img src="" style="height:200px; width:250px; padding:10px; border:3px gray solid"></div>
+              <div class="center col s12">
+                <img src="{{$segment->strSegmentImage}}" style="height:200px; width:250px; padding:10px; border:3px gray solid">
+              </div>
             
-            <center><h6 style="color:darkgray"><b>Quantity</b></h6></center>
+              <center><h6 style="color:darkgray"><b>Quantity</b></h6></center>
               <div class="container"> 
                 <div class="container">
-                <div class="input-field col s12" style="margin-top:-2px;">
-                  <center><input class="center int-segment-qty" disabled="true" name="" id="" type="number">
-                </div>
+                  <div class="input-field col s12" style="margin-top:-2px;">
+                    <center><input class="center int-segment-qty" name="" id="" type="number"></center>
+                  </div>
                 </div>
               </div>
-          </div>
+            </div>
+          @endif
+        @endforeach
       </div>
 
             

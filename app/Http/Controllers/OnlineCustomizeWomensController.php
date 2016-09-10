@@ -37,8 +37,18 @@ class OnlineCustomizeWomensController extends Controller
     }
 
     public function choose()
-    {
-        return view('customize.womens-choose-shirt');
+    {   
+        $garmentKey = 'Women Shirt';
+
+        $segments = \DB::table('tblSegment')
+            ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
+            ->where('tblGarmentCategory.strGarmentCategoryName', 'LIKE', '%'.$garmentKey.'%')
+            ->select('tblSegment.*')
+            ->get();
+
+        return view('customize.womens-choose-shirt')
+         ->with('segments', $segments);
+        
     }    
 
     public function fabric()
