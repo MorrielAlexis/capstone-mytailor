@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\MeasurementCategory;
+use App\StandardSizeCategory;
+
 class OnlineCheckoutIndividualController extends Controller
 {
     /**
@@ -31,7 +34,19 @@ class OnlineCheckoutIndividualController extends Controller
 
     public function measuredetails()
     {
-        return view('online.individual-checkout-measurement');
+        $categories = MeasurementCategory::all();
+        $standardSizeCategory = StandardSizeCategory::all();
+
+        $measurements = \DB::table('tblMeasurementCategory AS a')
+                    ->leftJoin('tblMeasurementDetail AS b', 'a.strMeasurementCategoryID', '=', 'b.strMeasCategoryFK')
+                    ->leftJoin('tblSegment AS c', 'b.strMeasDetSegmentFK', '=', 'c.strSegmentID')
+                    ->select('b.*')
+                    ->get();
+
+        return view('online.individual-checkout-measurement')
+            ->with('categories', $categories)
+            ->with('measurements', $measurements)
+            ->with('standard_categories', $standardSizeCategory);
     }    
 
     /**

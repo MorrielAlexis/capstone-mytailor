@@ -42,7 +42,9 @@
           <div class="col s4"><p style="color:gray"><b>Measurement Type</b></p></div>
           <div class="col s8">    
               <select id = "measurement-category">
-                  <option value="" class="circle"></option>
+                @foreach($categories as $category)
+                  <option value="{{ $category->strMeasurementCategoryID }}" class="circle">{{ $category->strMeasurementCategoryName }}</option>
+                @endforeach
               </select>
           </div>
         </div>
@@ -52,15 +54,20 @@
                     <h5><b>Parts to be measured - </b></h5>
                     
               <!--if Body and Cloth Measurement-->
-                        <div class="container measurement-general"> 
+                       @foreach($measurements as $j => $measurement)
+                        <div class="container measurement-general {{ $measurement->strMeasCategoryFK }}"> 
                             <div style="color:black; padding-left:140px" class="input-field col s6 ">   
-                              <input type="hidden" name="detailName" value="">              
+                              <input type="hidden" name="" value="{{ $measurement->strMeasurementDetailID }}">              
                                     <input name="" type="text">
-                                    <label style="color:teal" for=""> </label>
+                                    <label style="color:teal" for="">{{ $measurement->strMeasDetailName }}: </label>
                                 </div>
                             </div>
+                     
+                        @endforeach
               <!--End of Body and Cloth Measurement-->
 
+              <!--if Standard Size Measurement-->
+              
               <!--if Standard Size Measurement-->
               <div class="col s12 z-depth-1 measurement-general MEASCAT001" style="padding:20px">
                 <div class="container">
@@ -82,8 +89,10 @@
                     <div class="col s6"><p style="color:teal" for="standard_size">Choose Standard Size:</p></div>     
                             <div style="color:black;" class="col s6">                   
                                     <select>
-                                        <option value=""></option>
-                                    </select><!--Standard sizes for the specific Garment-->
+                                      @foreach($standard_categories as $standard_category)
+                            <option value="{{ $standard_category->strStandardSizeCategoryID }}">{{ $standard_category->strStandardSizeCategoryName }}</option>
+                          @endforeach
+                        </select><!--Standard sizes for the specific Garment-->
                                 </div>  
                             </div> 
                           </div>
@@ -153,5 +162,19 @@
       $('select').material_select();
     });
   </script> 
+
+  <script>
+    $('#measurement-category').change(function(){
+      var measurementCat = $('#measurement-category').val();
+      updateUI(measurementCat);
+    });
+
+    
+    function updateUI(category)
+    {
+      $('.measurement-general').hide();
+      $('.' + category).show();
+    }
+  </script>
 
 @stop
