@@ -264,6 +264,8 @@ Route::get('billing-payment/payment-receipt-pdf', 'BillingPaymentController@gene
 Route::get('generate-payment-receipt', 'WalkInIndividualController@generateReceipt');
 
 Route::group(['prefix' => 'utilities'], function(){
+	Route::get('utilities-general','UtilitiesGeneralController@index');
+
 	Route::resource('inactive-data', 'InactiveDataController');
 
 		Route::post('inactive-data/reactivate-individual', 'InactiveDataController@reactivate_individual');
@@ -567,3 +569,4 @@ Route::group(['prefix' => 'transaction'], function(){
 
 
 });
+
