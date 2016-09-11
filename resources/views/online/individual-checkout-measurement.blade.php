@@ -169,12 +169,31 @@
       updateUI(measurementCat);
     });
 
-    
+
     function updateUI(category)
     {
       $('.measurement-general').hide();
       $('.' + category).show();
     }
   </script>
+
+  <script>
+    $(document).ready(function() {
+        $('.measurement-general').hide();
+
+        $('select').material_select();
+        $('body').on('load', 'ul.tabs', function() {
+        $('ul.tabs').tabs();
+    });
+      
+      $("#addMeasurementDetail").on('click', function(){
+/*        setTimeout(function(){
+          $('ul.tabs').tabs();
+          $('#tabMeasurementDetail').style('display', 'block');
+        }, 2000);
+*/      });
+
+      });
+  </script> 
 
 @stop
