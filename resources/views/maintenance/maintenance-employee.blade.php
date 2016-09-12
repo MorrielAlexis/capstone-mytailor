@@ -379,7 +379,7 @@
     			<div id="newemp" class="modal modal-fixed-footer">              
             <h5><font color = "#1b5e20"><center>CREATE NEW EMPLOYEE PROFILE</center> </font> </h5>
               
-              {!! Form::open(['url' => 'maintenance/employee', 'method' => 'post']) !!}
+              {!! Form::open(['url' => 'maintenance/employee', 'method' => 'post', 'files' => 'true' ]) !!}
                 <div class="divider" style="height:2px"></div>
                 <div class="modal-content col s12">
 

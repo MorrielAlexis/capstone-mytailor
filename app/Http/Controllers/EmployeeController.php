@@ -72,27 +72,57 @@ class EmployeeController extends Controller
     {
         $emp = Employee::get();
 
-            $employee = Employee::create(array(
-                'strEmployeeID' => $request->input('strEmployeeID'),
-                'strEmpFName' => trim($request->input('strEmpFName')),  
-                'strEmpMName' => trim($request->input('strEmpMName')), 
-                'strEmpLName' => trim($request->input('strEmpLName')),
-                'dtEmpBday' => date("Y-m-d", strtotime($request->input("dtEmpBday"))),
-                'strSex' => $request->input('strSex'),
-                'strEmpHouseNo' => trim($request->input('strEmpHouseNo')),   
-                'strEmpStreet' => trim($request->input('strEmpStreet')),
-                'strEmpBarangay' => trim($request->input('strEmpBarangay')), 
-                'strEmpCity' => trim($request->input('strEmpCity')), 
-                'strEmpProvince' => trim($request->input('strEmpProvince')),
-                'strEmpZipCode' => trim($request->input('strEmpZipCode')),
-                'strRole' => $request->input('strRole'), 
-                'strCellNo' => trim($request->input('strCellNo')),
-                'strCellNoAlt' => trim($request->input('strCellNoAlt')),
-                'strPhoneNo' => trim($request->input('strPhoneNo')),
-                'strEmailAdd' => trim($request->input('strEmailAdd')),
-                'boolIsActive' => 1
-            ));
-            $employee->save();
+            $file = $request->input('addImage');
+            $destinationPath = 'imgEmployees';
+
+            if($file == '' || $file == null){
+
+                $employee = Employee::create(array(
+                    'strEmployeeID' => $request->input('strEmployeeID'),
+                    'strEmpFName' => trim($request->input('strEmpFName')),  
+                    'strEmpMName' => trim($request->input('strEmpMName')), 
+                    'strEmpLName' => trim($request->input('strEmpLName')),
+                    'dtEmpBday' => date("Y-m-d", strtotime($request->input("dtEmpBday"))),
+                    'strSex' => $request->input('strSex'),
+                    'strEmpHouseNo' => trim($request->input('strEmpHouseNo')),   
+                    'strEmpStreet' => trim($request->input('strEmpStreet')),
+                    'strEmpBarangay' => trim($request->input('strEmpBarangay')), 
+                    'strEmpCity' => trim($request->input('strEmpCity')), 
+                    'strEmpProvince' => trim($request->input('strEmpProvince')),
+                    'strEmpZipCode' => trim($request->input('strEmpZipCode')),
+                    'strRole' => $request->input('strRole'), 
+                    'strCellNo' => trim($request->input('strCellNo')),
+                    'strCellNoAlt' => trim($request->input('strCellNoAlt')),
+                    'strPhoneNo' => trim($request->input('strPhoneNo')),
+                    'strEmailAdd' => trim($request->input('strEmailAdd')),
+                    'boolIsActive' => 1
+                ));
+                }else{
+                       $request->file('addImg')->move($destinationPath, $file); 
+                       $employee = Employee::create(array(
+                    'strEmployeeID' => $request->input('strEmployeeID'),
+                    'strEmpFName' => trim($request->input('strEmpFName')),  
+                    'strEmpMName' => trim($request->input('strEmpMName')), 
+                    'strEmpLName' => trim($request->input('strEmpLName')),
+                    'dtEmpBday' => date("Y-m-d", strtotime($request->input("dtEmpBday"))),
+                    'strSex' => $request->input('strSex'),
+                    'strEmpHouseNo' => trim($request->input('strEmpHouseNo')),   
+                    'strEmpStreet' => trim($request->input('strEmpStreet')),
+                    'strEmpBarangay' => trim($request->input('strEmpBarangay')), 
+                    'strEmpCity' => trim($request->input('strEmpCity')), 
+                    'strEmpProvince' => trim($request->input('strEmpProvince')),
+                    'strEmpZipCode' => trim($request->input('strEmpZipCode')),
+                    'strRole' => $request->input('strRole'), 
+                    'strCellNo' => trim($request->input('strCellNo')),
+                    'strCellNoAlt' => trim($request->input('strCellNoAlt')),
+                    'strPhoneNo' => trim($request->input('strPhoneNo')),
+                    'strEmailAdd' => trim($request->input('strEmailAdd')),
+                    'strEmpImg' => 'imgEmployees/'.$file,
+                    'boolIsActive' => 1
+                ));
+            }
+            
+                $employee->save();
 
          \Session::flash('flash_message','Employee detail successfully added.'); //flash message
 
