@@ -47,7 +47,7 @@ class SegmentStyleController extends Controller
                 ->get();
         
         //load the view and pass the style
-        return view('maintenance-segment-style')
+        return view('maintenance.maintenance-segment-style')
                     ->with('segmentStyle', $segmentStyle)
                     ->with('segment', $segment)
                     ->with('newID', $newID);

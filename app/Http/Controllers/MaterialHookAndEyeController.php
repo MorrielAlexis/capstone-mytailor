@@ -37,7 +37,7 @@ class MaterialHookAndEyeController extends Controller
 
         $hook = HookAndEye::all();
 
-        return view('maintenance-material-hookandeye')
+        return view('maintenance.maintenance-material-hookandeye')
                     ->with('hooks', $hook)
                     ->with('newHookID', $newHookID);;
     }

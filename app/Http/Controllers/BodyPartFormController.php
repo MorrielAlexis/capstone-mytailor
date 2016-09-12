@@ -39,7 +39,7 @@ class BodyPartFormController extends Controller
                 ->get();
         
         //load the view and pass the pattern
-       return view('maintenance-measurement-body-part-form')
+       return view('maintenance.maintenance-measurement-body-part-form')
                     ->with('bodyPartCategory', $bodyPartCategory)
                     ->with('bodyForm', $bodyForm)
                     ->with('newID', $newID);

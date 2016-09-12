@@ -46,7 +46,7 @@ class AcceptAlterationOnlineController extends Controller
 
         $specifics = TransactionNonShopAlterationSpecifics::with("alterationNonShop")->get();
 
-        dd($specifics);
+        // dd($specifics);
 
         return view('alteration.acceptonlinealteration')
             ->with('onlineAlteration', $onlineAlteration)

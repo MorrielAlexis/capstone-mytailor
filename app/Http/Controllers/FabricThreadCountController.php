@@ -39,7 +39,7 @@ class FabricThreadCountController extends Controller
 
 
         //load the view and pass the employees
-        return view('maintenance-fabric-thread-count')
+        return view('maintenance.maintenance-fabric-thread-count')
                     ->with('threadCount', $threadCount)
                     ->with('newID', $newID);
         

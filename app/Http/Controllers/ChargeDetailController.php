@@ -44,7 +44,7 @@ class ChargeDetailController extends Controller
                 ->get();
         
         //load the view and pass the charges
-       return view('maintenance-charge-detail')
+       return view('maintenance.maintenance-charge-detail')
                     ->with('chargeDetail', $chargeDetail)
                     ->with('segment', $segment)
                     ->with('chargeCat', $chargeCat)

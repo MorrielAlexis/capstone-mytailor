@@ -145,6 +145,7 @@
                   <th data-field="cellphone">Cellphone No. (alt)</th>
                   <th data-field="Landline">Phone No.</th>
                   <th data-field="email">Email Address</th>
+                  <th data-field="image">Img</th>
                   <th data-field="Edit">Actions</th>
                   <!-- <th data-field="Delete">Deactivate</th> -->
               	</tr>
@@ -168,6 +169,7 @@
                   <td>{{ $employee->strCellNoAlt }}</td> 
                   <td>{{ $employee->strPhoneNo }}</td>
                   <td>{{ $employee->strEmailAdd }}</td>
+                  <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($employee->strEmpImg)}}"></td>
               		<td><a onclick="editEmp('{!! $employee->strEmployeeID !!}')" style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of employee" href="#edit{{$employee->strEmployeeID}}"><i class="mdi-editor-mode-edit"></i></a>
                   <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of employee from table" href="#del{{$employee->strEmployeeID}}"><i class="mdi-action-delete"></i></a>
                   
@@ -487,14 +489,33 @@
                     <input id="strPhoneNo" placeholder="5351673" pattern="^[0-9]{6,10}$" name="strPhoneNo" type="text" class="validate" maxlength="10">
                     <label for="landline_number">Landline Number </label>
                   </div>
-                </div>  
+                  
 
-              <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">   
+         
                   <div class="input-field col s6">
                     <input required id="strEmailAdd" placeholder="capstone_email@gmail.com" name="strEmailAdd" type="email" class="validate">
                     <label for="email" data-error="wrong" data-success="right">Email Address <span class="red-text"><b>*</b></span></label>
                   </div> 
               </div>
+
+            <div class="row">
+              <div class="col s12">
+                  <div class="file-field input-field">
+                          <div class="btn waves-effect waves-black tooltipped teal accent-4 white-text" data-position="top" data-delay="50" data-tooltip="May upload jpg, png, gif, bmp, tif, tiff files">
+                            <span>Upload Image</span>
+                            <input id="addImg" name="addImg" type="file" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*" onchange="readURL(this);">
+                          </div>
+                          <div class="file-path-wrapper">
+                            <input id="addImage" name="addImage" class="file-path validate black-text text-darken-2" type="text">
+                          </div>
+                  </div>
+              </div> 
+            </div>
+            <div class="tooltipped" data-position="top" data-delay="50" data-tooltip="Company Logo" style="margin-top:49px;margin-left:29px;">
+               <center><img id="blah" src="" style="width:150px;height:150px;border: 1px solid black;" /> </center>
+            </div>    
+
+
               </div>
 
               <div class="modal-footer col s12" style="background-color:#26a69a">
@@ -568,6 +589,24 @@
       $('.tooltipped').tooltip({delay: 50});
   }); 
 </script>
+
+<script> function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(160)
+                    .height(150);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }</script>
+    <script> $(document).ready(function(){
+    $('.tooltipped').tooltip({delay: 50});
+  });</script>
 
 
 

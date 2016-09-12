@@ -32,6 +32,7 @@ class tblEmployee extends Migration {
 			$table->string('strPhoneNo')->nullable();
 			$table->string('strEmailAdd')->nullable();
 			$table->string('strEmpInactiveReason')->nullable();
+			$table->string('strEmpImg')->nullable();
 			$table->boolean('boolIsActive');
 			//$table->datetime('dtUpdatedAt');
 			$table->timestamps();

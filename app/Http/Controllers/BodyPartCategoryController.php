@@ -28,7 +28,7 @@ class BodyPartCategoryController extends Controller
         $newID = $this->smartCounter($ID);  
         $bodyPartCategory = BodyPartCategory::all();
        
-        return view('maintenance-measurement-body-cat')
+        return view('maintenance.maintenance-measurement-body-cat')
                     ->with('bodyPartCategory', $bodyPartCategory)
                     ->with('newID', $newID);
 

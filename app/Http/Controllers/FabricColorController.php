@@ -33,7 +33,7 @@ class FabricColorController extends Controller
 
 
         //load the view and pass the employees
-        return view('maintenance-fabric-color')
+        return view('maintenance.maintenance-fabric-color')
                 ->with('fabricColor', $fabricColor)
                 ->with('newID', $newID);
         

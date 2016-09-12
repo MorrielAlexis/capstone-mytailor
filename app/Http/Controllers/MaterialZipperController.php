@@ -37,7 +37,7 @@ class MaterialZipperController extends Controller
 
         $zipper = Zipper::all();
 
-        return view('maintenance-material-zipper')
+        return view('maintenance.maintenance-material-zipper')
                     ->with('zippers', $zipper)
                     ->with('newZipperID', $newZipperID);
     }

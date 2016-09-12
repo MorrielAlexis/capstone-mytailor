@@ -17,9 +17,9 @@ class CustIndividualSeeder extends Seeder
         $tblCustIndividual = array (
             array(
                 'strIndivID' => 'CUSTP001',
-                'strIndivFName' => 'Melody',
-                'strIndivLName' => 'Legaspi',
-                'strIndivMName' => 'Reyes',
+                'strIndivFName' => 'Riel',
+                'strIndivLName' => 'Apellanes',
+                'strIndivMName' => 'Aquino',
                 'strIndivSex' => 'F',
                 'strIndivHouseNo' => '44',
                 'strIndivStreet' => 'Ipil St.',
@@ -30,17 +30,18 @@ class CustIndividualSeeder extends Seeder
                 'strIndivLandlineNumber' => '0467892',
                 'strIndivCPNumber' => '09156789678',
                 'strIndivCPNumberAlt' => '09122345678',
-                'strIndivEmailAddress' => 'melodyreyes@gmail.com',
+                'strIndivEmailAddress' => 'morriel.aquino@gmail.com',
+                'strIndivImg' => '',
                 'userId' => null,
                 'boolIsActive' => '1'
             ),
 
             array(
                 'strIndivID' => 'CUSTP002',
-                'strIndivFName' => 'Rachel',
-                'strIndivLName' => 'Nayre',
-                'strIndivMName' => 'Atian',
-                'strIndivSex' => 'F',
+                'strIndivFName' => 'Bimby',
+                'strIndivLName' => 'Reyes',
+                'strIndivMName' => 'Legaspi',
+                'strIndivSex' => 'M',
                 'strIndivHouseNo' => '41',
                 'strIndivStreet' => 'Narra St.',
                 'strIndivBarangay' => 'Kwek-kwek',
@@ -50,7 +51,8 @@ class CustIndividualSeeder extends Seeder
                 'strIndivLandlineNumber' => '0723456',
                 'strIndivCPNumber' => '09198761290',
                 'strIndivCPNumberAlt' => '09121236789',
-                'strIndivEmailAddress' => 'reychnayre@yahoo.com',
+                'strIndivEmailAddress' => 'bimbsaquino090409@gmail.com',
+                'strIndivImg' => '',
                 'userId' => null,
                 'boolIsActive' => '1'
             )

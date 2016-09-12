@@ -16,7 +16,7 @@ class Company extends Model
     					'strCompanyZipCode', 'strContactPerson',
     					'strCompanyEmailAddress', 'strCompanyTelNumber',
     					'strCompanyCPNumber', 'strCompanyCPNumberAlt',
-    					'strCompanyFaxNumber', 'boolIsActive', 'userId',
+    					'strCompanyFaxNumber', 'strCompanyImg','boolIsActive', 'userId',
     					'strCompanyInactiveReason');   
 
     public function customer_comp(){

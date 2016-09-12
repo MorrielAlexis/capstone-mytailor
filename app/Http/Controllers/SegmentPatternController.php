@@ -50,7 +50,7 @@ class SegmentPatternController extends Controller
                 ->get();
         
         //load the view and pass the pattern
-        return view('maintenance-segment-pattern')
+        return view('maintenance.maintenance-segment-pattern')
                     ->with('pattern', $pattern)
                     ->with('segmentStyle', $segmentStyle)
                     ->with('newID', $newID);

@@ -32,7 +32,7 @@ class FabricPatternController extends Controller
 
 
         //load the view and pass the employees
-        return view('maintenance-fabric-pattern')
+        return view('maintenance.maintenance-fabric-pattern')
                 ->with('fabricPattern', $fabricPattern)
                 ->with('newID', $newID);
     }

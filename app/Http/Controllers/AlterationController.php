@@ -64,7 +64,7 @@ class AlterationController extends Controller
 
        //  load the view and pass the fabric types
 
-         return view('maintenance-alteration')
+         return view('maintenance.maintenance-alteration')
                     ->with('alteration', $alteration)
                     ->with('segment', $segment)
                     ->with('newID', $newID);

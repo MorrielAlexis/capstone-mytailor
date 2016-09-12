@@ -32,6 +32,7 @@ class EmployeeSeeder extends Seeder
                 'strCellNo' =>'09162451291',
                 'strCellNoAlt' =>'09155432875',
                 'strPhoneNo' => '02345890',
+                'strEmpImg' => '',
                 'strEmailAdd' => 'earvintol@gmail.com',
                 'boolIsActive' => '1'
             ),
@@ -53,6 +54,7 @@ class EmployeeSeeder extends Seeder
                 'strCellNo' =>'09197864523',
                 'strCellNoAlt' =>'0923098567',
                 'strPhoneNo' => '02341276',
+                'strEmpImg' => '',
                 'strEmailAdd' => 'amberaq@gmail.com',
                 'boolIsActive' => '1'
             )

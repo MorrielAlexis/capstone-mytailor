@@ -30,6 +30,7 @@ class CreateCustIndividualTable extends Migration
             $table->string('strIndivCPNumberAlt')->nullable();   
             $table->string('strIndivEmailAddress')->unique();
             $table->string('strIndivInactiveReason')->nullable();
+            $table->string('strIndivImg')->nullable();
             $table->string('userId')->index()->nullable();
             $table->boolean('boolIsActive');
             $table->timestamps();

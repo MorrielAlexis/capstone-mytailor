@@ -39,7 +39,7 @@ class MeasurementCategoryController extends Controller
         $measurementCategory = MeasurementCategory::all();
 
         //load the view and pass the employees
-        return view('maintenance-measurement-category')
+        return view('maintenance.maintenance-measurement-category')
                     ->with('measurement_categories', $measurementCategory)
                     ->with('newID', $newID);
 
