@@ -23,28 +23,7 @@
     </div>
 
   <div class="row">
-    <div class="card col s12 m12 l12">          
-
-      <p class="center-align" style="color:teal; margin-bottom:20px; margin-top:20px;"><b>CHOOSE THE TYPE OF SLEEVES</b></p>
-
-      <div class="container">
-        <div class="container">
-          <div class="col s12">
-            <p class="col s5">
-              <input name="group1" type="radio" id="test1" />
-              <label for="test1"><font size="+2"><b>Short Sleeves</b></font></label>
-            </p>
-            <p class="col s2">
-              <input name="group1" type="radio" id="test2" />
-              <label for="test2"><font size="+2"><b>3/4</b></font></label>
-            </p>
-            <p class="col s5">
-              <input name="group1" type="radio" id="test3"  />
-              <label for="test3"><font size="+2"><b>Long Sleeves</b></font></label>
-            </p>
-          </div>
-        </div>
-      </div>    
+    <div class="card col s12 m12 l12">           
         
       <div class="col s12" style="margin-top:15px">
         <div class="divider" style="margin-bottom:40px; height:2px"></div>
