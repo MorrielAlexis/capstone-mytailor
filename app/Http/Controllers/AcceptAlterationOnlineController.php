@@ -15,6 +15,7 @@ use App\SegmentPattern;
 use App\GarmentSegment; 
 use App\Alteration; 
 use App\Individual;
+use App\Company;
 
 use App\TransactionJOAlteration;
 use App\TransactionNonShopAlteration;
@@ -82,12 +83,34 @@ class AcceptAlterationOnlineController extends Controller
     //     return view('alteration.acceptorder');
     // }
 
-    public function accept()
+    public function accept(Request $request)
     {
-        //$email = 'arianne_spice@yahoo.com';
-        $name = 'Morriel Aquino'; //name ng pagsesendan
-        Mail::send('emails.accept-online-alteration', ['name' => $name], function($message) {
-            $message->to('morriel.aquino@yahoo.com', 'Arianne Labtic')->subject('Order Confirmation!');
+        
+             $results = \DB::table('tblNonShopAlteration')
+            ->leftjoin('tblcustindividual', 'tblNonShopAlteration.strCustIndFK', '=', 'tblcustindividual.strIndivID')
+            ->leftjoin('tblcustcompany', 'tblNonShopAlteration.strCustCompFK', '=', 'tblcustcompany.strCompanyID')
+            // ->where('boolisOnline','=', 1)
+            ->select('tblNonShopAlteration.*', 'tblcustcompany.strCompanyName as CompanyName', 'tblcustindividual.*')
+            ->get(); 
+
+            // tblSegment1.strSegmentName as strSegmentName1
+
+            foreach( $results as $result){
+                $name = $result->strIndivFName;
+            }
+            
+
+
+        Mail::send('emails.accept-online-alteration', ['name' => $name], function($message) use($results) {
+
+                foreach($results as $value){
+                    $email = $value->strIndivEmailAddress;
+                    break;
+                }
+
+                $message->to("$email")->subject('Order Confirmation!');
+        
+
 
         });
 
