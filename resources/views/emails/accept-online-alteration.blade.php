@@ -11,10 +11,10 @@
         <div>
           <h2>Customer Details</h2>
 
-          <b>Alteration Number: </b><br>
-          <b>Name: </b><br>
-          <b>Email: </b><br>
-          <b>Primary Number: </b><br>
+          <b>Alteration Number: {{$order}}</b><br>
+          <b>Name: {{$name}} {{$name2}} </b><br>
+          <b>Email: {{$email}}</b><br>
+          <b>Primary Number: {{$cp}}</b><br>
           <b>Alternative Number: </b><br>
           <b>Address: </b><br><br>
         </div>
@@ -29,7 +29,7 @@
                           <th data-field="product">Segment</th>         
                           <th data-field="quantity" hidden>Alteration Type</th>
                           <th data-field="fabric">Description</th>
-                          <th data-field="price">Unit Price</th>
+                          <th data-field="price">Total Price</th>
                           <!--<th data-field="price">Total Price</th>-->
                         </tr>
                     </thead>
@@ -38,7 +38,7 @@
                            <td>Uniform, Dress</td>
                            <td hidden>Hem</td>
                            <td>Decrease by 2cm</td>
-                           <td>PHP 600.00</td>
+                           <td>{{-- {{ number_format($totPrice, 2) . ' PHP' }} --}}55</td>
                            <!--<td> </td>-->
                         </tr>
                         
@@ -50,7 +50,7 @@
             <div class="col s12" style="margin-bottom:50px; margin-top:30px">
                 <div class="col s12"><div class="divider" style="height:2px"></div></div>
                 <div class="col s6"><p>Estimated time to finish all orders: 3 days</p></div>
-                <div class="col s6"><p>Total Amount to Pay: 600.00 PHP</p></div>
+                <div class="col s6"><p>Total Amount to Pay: {{$totPrice}} PHP</p></div>
             </div>
 
             <div>

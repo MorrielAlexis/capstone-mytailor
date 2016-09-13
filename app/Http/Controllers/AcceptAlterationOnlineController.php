@@ -15,6 +15,7 @@ use App\SegmentPattern;
 use App\GarmentSegment; 
 use App\Alteration; 
 use App\Individual;
+use App\Company;
 
 use App\TransactionJOAlteration;
 use App\TransactionNonShopAlteration;
@@ -81,18 +82,44 @@ class AcceptAlterationOnlineController extends Controller
            
     }
 
-    // public function accept()
-    // {
-        
-    //     return view('alteration.acceptorder');
-    // }
 
-    public function accept()
+
+    public function accept(Request $request)
     {
-        //$email = 'arianne_spice@yahoo.com';
-        $name = 'Morriel Aquino'; //name ng pagsesendan
-        Mail::send('emails.accept-online-alteration', ['name' => $name], function($message) {
-            $message->to('morriel.aquino@yahoo.com', 'Arianne Labtic')->subject('Order Confirmation!');
+        
+             $results = \DB::table('tblNonShopAlteration')
+            ->leftjoin('tblcustindividual', 'tblNonShopAlteration.strCustIndFK', '=', 'tblcustindividual.strIndivID')
+            ->leftjoin('tblcustcompany', 'tblNonShopAlteration.strCustCompFK', '=', 'tblcustcompany.strCompanyID')
+            // ->where('boolisOnline','=', 1)
+            ->select('tblNonShopAlteration.*', 'tblcustcompany.strCompanyName as CompanyName', 'tblcustindividual.*')
+            ->get(); 
+
+            
+
+            foreach( $results as $result){
+                $name = $result->strIndivFName;
+                $nameL = $result->strIndivLName;
+                $order = $result->strNonShopAlterID;
+                $totPrice = $result->dblOrderTotalPrice;
+                $email = $result->strIndivEmailAddress;
+                $cpNo = $result->strIndivCPNumber;
+            }
+
+            // dd($results);
+            
+            
+
+
+        Mail::send('emails.accept-online-alteration', ['name' => $name, 'name2' => $nameL, 'order' => $order, 'totPrice' => $totPrice, 'email' => $email, 'cp' => $cpNo], function($message) use($results) {
+
+                foreach($results as $value){
+                    $email = $value->strIndivEmailAddress;
+                    break;
+                }
+
+                $message->to("$email")->subject('Order Confirmation!');
+        
+
 
         });
 
