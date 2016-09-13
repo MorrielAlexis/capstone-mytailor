@@ -93,11 +93,19 @@ class AcceptAlterationOnlineController extends Controller
 
             foreach( $results as $result){
                 $name = $result->strIndivFName;
+                $nameL = $result->strIndivLName;
+                $order = $result->strNonShopAlterID;
+                $totPrice = $result->dblOrderTotalPrice;
+                $email = $result->strIndivEmailAddress;
+                $cpNo = $result->strIndivCPNumber;
             }
+
+            // dd($results);
+            
             
 
 
-        Mail::send('emails.accept-online-alteration', ['name' => $name], function($message) use($results) {
+        Mail::send('emails.accept-online-alteration', ['name' => $name, 'name2' => $nameL, 'order' => $order, 'totPrice' => $totPrice, 'email' => $email, 'cp' => $cpNo], function($message) use($results) {
 
                 foreach($results as $value){
                     $email = $value->strIndivEmailAddress;
