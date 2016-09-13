@@ -29,12 +29,12 @@
 								<!--Employee Information starts here-->
 								<div class="col s12" style="margin-bottom:30px">
 									<div class="input-field col s3">
-							          	<input id="empFirstName{{ $i }}" name="empFirstName[]" type="text" class="validate">
+							          	<input id="empFirstName{{ $i }}" name="empFirstName[]" required type="text" class="validate">
 							          	<label for="empFirstName{{ $i }}">First Name</label>
 							        </div>
 
 							        <div class="input-field col s3">
-							          	<input id="empLastName{{ $i }}" name="empLastName[]" type="text" class="validate">
+							          	<input id="empLastName{{ $i }}" name="empLastName[]" required type="text" class="validate">
 							          	<label for="empLastName{{ $i }}">Last Name</label>
 							        </div>
 

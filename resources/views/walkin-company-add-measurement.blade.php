@@ -27,17 +27,8 @@
 						
 						<!-- <h1>Search a company and list of employees will appear here</h1> -->
 						<!--Employees List-->
-						<div style="color:black" class="col s12">                   					                          
-                          	<div class="col s4" style="color:darkgray; margin-top:1%; font-size:18px"><center><b>Search for a company name here:</b></center></div>
-                          	<div class="col s8"><input style="border:3px teal solid; padding:5px; padding-left:10px; background-color:white; color:teal" id="cust_name" name="cust_name" type="text" placeholder="ex. Pfizer Philippines"></div>
 
-                          	<button class="right btn" type="submit" id="getCustomer" style="background-color:teal; color:white;">Search</button> 					                         			                          	
-                        </div>
-
-                        <div class="col s12"><div class="divider" style="height:5px; margin-bottom:3%; margin-top:3%"></div></div>
-						
 						<div class="col s12">
-							<a class="left waves-effect waves-light modal-trigger btn-floating tooltipped btn-large teal" data-position="bottom" data-delay="50" data-tooltip="Click to add a new employee" href="#addDesign" style="color:black;"><i class="large mdi-content-add"></i></a>
 							<center><h5 style="color:teal; margin-bottom:5%">List of Employees</h5></center>
 
 							<table class="col s12" style="color:teal; margin-bottom:3%; border-top:1px lightgray solid">
@@ -48,19 +39,15 @@
 									</tr>
 								</thead>
 							</table>
-
+							
+							@for($i = 0; $i < $total_quantity; $i++)
 							<div class="col s12" style="margin-bottom:4%">
-								<div class="col s6" style="padding-top:1%"><font size="4.5em" color="dimgray">Honey May Buenavides</font></div>
+								<div class="col s6" style="padding-top:1%"><font size="4.5em" color="dimgray">{{ $employee_fname[$i] }} {{ $employee_mname[$i] }} {{ $employee_lname[$i] }}</font></div>
 								<div class="col s3"><a style="color:white;" class="right modal-trigger btn tooltipped blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit the set purchased" href="#edit-emp-data">Edit Measurement</a></div>
 								<div class="col s3"><a style="color:white;" class="right modal-trigger btn tooltipped red" data-position="bottom" data-delay="50" data-tooltip="Click to edit the set purchased" href="#edit-emp-data">Delete Employee</a></div>
 								<div class="col s12"><div class="divider" style="margin-top:4%"></div></div>
 							</div>
-
-							<div class="col s12" style="margin-bottom:4%">
-								<div class="col s6" style="padding-top:1%"><font size="4.5em" color="dimgray">Conrado Bataller Jr.</font></div>
-								<div class="col s3"><a style="color:white;" class="right modal-trigger btn tooltipped blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit the set purchased" href="#edit-emp-data">Edit Measurement</a></div>
-								<div class="col s3"><a style="color:white;" class="right modal-trigger btn tooltipped red" data-position="bottom" data-delay="50" data-tooltip="Click to edit the set purchased" href="#edit-emp-data">Delete Employee</a></div>
-							</div>
+							@endfor
 						</div>
 						<!--End of Empployees List-->
 

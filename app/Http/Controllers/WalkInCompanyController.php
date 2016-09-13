@@ -224,6 +224,12 @@ class WalkInCompanyController extends Controller
         $employeeSex = $request->input('empSex');
         $employeeSet = $request->input('empSet');
 
+        session(['employee_fname' => $employeeFirstName]);
+        session(['employee_lname' => $employeeLastName]);
+        session(['employee_mname' => $employeeMiddleName]);
+        session(['employee_sex'   => $employeeSex]);
+        session(['employee_set'   => $employeeSet]);
+
         return redirect('transaction/walkin-company-show-order');
     }//save employee specs
 
@@ -244,7 +250,6 @@ class WalkInCompanyController extends Controller
         $prices = [];
 
         for($i = 0; $i < count($packages); $i++) $prices[$i] = $packages[$i]->dblPackagePrice * $quantity[$i]; 
-        
 
 
         return view('walkin-company-checkout-info')
@@ -259,6 +264,22 @@ class WalkInCompanyController extends Controller
 
     }
 
+    /*For adding measurement profile*/
+    public function measureProfile()
+    {
+        $quantity = session()->get('package_quantity');
+        $totalQuantity = 0;
+
+        for($i = 0; $i < count($quantity); $i++)
+            $totalQuantity = $totalQuantity + $quantity[$i];
+
+        return view('walkin-company-add-measurement')
+                ->with('total_quantity', $totalQuantity)
+                ->with('employee_fname', session()->get('employee_fname'))
+                ->with('employee_lname', session()->get('employee_lname'))
+                ->with('employee_mname', session()->get('employee_mname'));
+    }
+
     public function measurement()
     {
         return view('walkin-company-checkout-measure');
@@ -270,11 +291,6 @@ class WalkInCompanyController extends Controller
         return view('walkin-company-downloadable-forms');
     }
 
-    /*For adding measurement profile*/
-    public function measureProfile()
-    {
-        return view('walkin-company-add-measurement');
-    }
 
 
     /**
