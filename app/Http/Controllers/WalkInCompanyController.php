@@ -207,17 +207,24 @@ class WalkInCompanyController extends Controller
                 $k++;
             }
         }
-        
+
         return view('walkin-company-add-employee')
                 ->with('total_quantity', $totalQuantity)
                 ->with('orderPackages', $orderPackages)
                 ->with('packages', $packages)
+                ->with('orders', $order)
                 ->with('segments', $segments);
     }//specifications ng employee
 
     public function saveEmployees(Request $request)
     {
-        
+        $employeeFirstName = $request->input('empFirstName');
+        $employeeLastName = $request->input('empLastName');
+        $employeeMiddleName = $request->input('empMiddleName');
+        $employeeSex = $request->input('empSex');
+        $employeeSet = $request->input('empSet');
+
+        return redirect('transaction/walkin-company-show-order');
     }//save employee specs
 
     public function retailProduct()
@@ -232,7 +239,18 @@ class WalkInCompanyController extends Controller
 
     public function information()
     {
-        return view('walkin-company-checkout-info');
+        $quantity = session()->get('package_quantity');
+        $packages = session()->get('package_values');
+        $prices = [];
+
+        for($i = 0; $i < count($packages); $i++) $prices[$i] = $packages[$i]->dblPackagePrice * $quantity[$i]; 
+        
+
+
+        return view('walkin-company-checkout-info')
+                ->with('quantity', $quantity)
+                ->with('packages', $packages)
+                ->with('prices', $prices);
     }
 
     public function payment()

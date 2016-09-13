@@ -45,13 +45,15 @@
 
 							        <div class="input-field col s1">
 								        @foreach($packages as $package)
-											@if($package->strPackageSex == 'M')
-										    	<input type="hidden" name="empSex[]" value="M">
-												<input type="text" id="empSex{{ $i }}" value="Male">
-										    @elseif($package->strPackageSex == 'F')
-										    	<input type="hidden" name="empSex[]" value="F">
-												<input type="text" id="empSex{{ $i }}" value="Female">
-										    @endif
+								        	@if($orderPackages[$i] == $package->strPackageID)
+												@if($package->strPackageSex == 'M')
+											    	<input type="hidden" name="empSex[]" value="M">
+													<input type="text" id="empSex{{ $i }}" value="Male" readonly>
+											    @elseif($package->strPackageSex == 'F')
+											    	<input type="hidden" name="empSex[]" value="F">
+													<input type="text" id="empSex{{ $i }}" value="Female" readonly>
+											    @endif
+											@endif
 										@endforeach
 									</div>
 

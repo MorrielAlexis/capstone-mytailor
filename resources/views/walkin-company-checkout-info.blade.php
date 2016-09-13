@@ -66,13 +66,14 @@
 									              	</tr>
 								              	</thead>
 								              	<tbody>
+								              		@for($i = 0; $i < count($packages); $i++)
 										            <tr>
-										               <td>Generic FA</td>
-										               <td>19</td>
-										               <td>900.00 PHP</td>
-										               <td>17,100.00 PHP</td>
+										               <td>{{ $packages[$i]->strPackageName }}</td>
+										               <td>{{ $quantity[$i] }}</td>
+										               <td>{{ number_format($packages[$i]->dblPackagePrice, 2) }} PHP</td>
+										               <td>{{ number_format($prices[$i], 2) }} PHP</td>
 										            </tr>
-
+													@endfor
 										        </tbody>
 										    </table>
 							      		</div>
@@ -81,15 +82,15 @@
 							      		<div class="col s12"><div class="divider"></div></div>
 
 								      	<div class="col s12" style="margin-bottom:50px" >
-											<div class="col s6"><p style="color:gray">Estimated time to finish all orders:<p style="color:black">60 days</p></p></div>
-											<div class="col s6"><p style="color:gray">Total Amoun to Pay:<p style="color:black">93,100.00 PHP</p></p></div>
+											<div class="col s6"><p style="color:gray">Estimated time to finish all orders:<p style="color:black" id="totalTime"></p></p></div>
+											<div class="col s6"><p style="color:gray">Total Amount to Pay:<p style="color:black" id="totalPrice"></p></p></div>
 										</div>
 								</div>
 
 								<div class="modal-footer col s12">
 									<p class="left" style="margin-left:10px; color:gray;">Continue to payment?</p>
 					                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-company-payment-measure-detail')}}"><font color="black">Yes</font></a>
-					                <a href="{{URL::to('/transaction/walkin-company-payment-customer-info')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+					                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
 					            </div>
 							{!! Form::close() !!}
 					</div>
@@ -240,21 +241,23 @@
 
 @section('scripts')
 
-	<script type="text/javascript">
-	  $('.modal-trigger').leanModal({
-	      dismissible: true, // Modal can be dismissed by clicking outside of the modal
-	      opacity: .5, // Opacity of modal background
-	      in_duration: 300, // Transition in duration
-	      out_duration: 200, // Transition out duration
-	      width:400,
-	    }
-	  );
-	</script>
-
 	<script>
-	  $(document).ready(function() {
-	    $('select').material_select();
-	  });
+		$(document).ready(function() {
+		
+			var a = {!! json_encode($packages) !!};
+			var b = {!! json_encode($prices) !!}
+			var totalTime = 0, totalPrice = 0.0;
+
+			for(var i = 0; i < a.length; i++)
+			{
+				totalTime = totalTime + a[i].intPackageMinDays;
+				totalPrice = totalPrice + b[i];
+			}
+
+			$('#totalTime').text(totalTime + " days");
+			$('#totalPrice').text((totalPrice.toFixed(2)) + " PHP");
+
+	  	});
 	</script>	
 
 	<script>
@@ -269,7 +272,7 @@
   				$('#tabMeasurementDetail').style('display', 'block');
   			}, 2000);
 */  		});
-
+		$('select').material_select();
   	});
 
 	</script>
