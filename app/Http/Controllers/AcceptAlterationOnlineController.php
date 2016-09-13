@@ -77,11 +77,7 @@ class AcceptAlterationOnlineController extends Controller
            
     }
 
-    // public function accept()
-    // {
-        
-    //     return view('alteration.acceptorder');
-    // }
+
 
     public function accept(Request $request)
     {
@@ -93,7 +89,7 @@ class AcceptAlterationOnlineController extends Controller
             ->select('tblNonShopAlteration.*', 'tblcustcompany.strCompanyName as CompanyName', 'tblcustindividual.*')
             ->get(); 
 
-            // tblSegment1.strSegmentName as strSegmentName1
+            
 
             foreach( $results as $result){
                 $name = $result->strIndivFName;
