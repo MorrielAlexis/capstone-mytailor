@@ -42,17 +42,22 @@ class AcceptAlterationOnlineController extends Controller
             ->orderby('tblNonShopAlteration.strNonShopAlterID')
             ->select('tblcustindividual.*', 'tblcustcompany.*', 'tblNonShopAlteration.*')
             ->get(); 
-    
+        
+        $onlineAltSpecifics = \DB::table('tblNonShopAlterSpecific')
+            ->join('tblNonShopAlteration', 'tblNonShopAlteration.strNonShopAlterID', '=', 'tblNonShopAlterSpecific.strNonShopAlterFK')
+            ->join('tblSegment', 'tblSegment.strSegmentID', '=', 'tblNonShopAlterSpecific.strGarmentSegmentFK')
+            ->join('tblAlteration', 'tblAlteration.strAlterationID', '=', 'tblNonShopAlterSpecific.strAlterationTypeFK')
+            // ->where('tblNonShopAlterSpecific.strNonShopAlterFK', '=', Input::get('jobID'))
+            ->orderby('tblNonShopAlterSpecific.strNonAlterSpecificID')
+            ->select('tblNonShopAlterSpecific.*', 'tblAlteration.strAlterationName', 'tblSegment.strSegmentName', 'tblNonShopAlteration.strNonShopAlterID')
+            ->get();   
 
         $specifics = TransactionNonShopAlterationSpecifics::with("alterationNonShop")->get();
-
         // dd($specifics);
 
-        return view('alteration.acceptonlinealteration')
+        return view('alteration.accept-online-alteration')
             ->with('onlineAlteration', $onlineAlteration)
-            ->with('specifics', $specifics);
-
-        
+            ->with('specifics', $onlineAltSpecifics);       
     }
 
 
