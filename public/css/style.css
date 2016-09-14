@@ -275,3 +275,10 @@
 .primary-text-color    { color: #212121; }
 .secondary-text-color  { color: #727272; }
 .divider-color         { border-color: #B6B6B6; }
+
+
+<style>
+.pdfobject-container { height: 500px;}
+.pdfobject { border: 1px solid #666; }
+</style>
+
