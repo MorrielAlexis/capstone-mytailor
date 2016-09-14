@@ -175,9 +175,9 @@
                   
 
                    <div id="edit{{$employee->strEmployeeID}}" class="modal modal-fixed-footer">                       
-                    <h5><font color = "#1b5e20"><center>EDIT EMPLOYEE'S PROFILE</center> </font> </h5>
+                    <h5><font color = "#1b5e20"><center>UPDATE EMPLOYEE'S PROFILE</center> </font> </h5>
                         
-                      {!! Form::open(['url' => 'maintenance/employee/update']) !!} 
+                      {!! Form::open(['url' => 'maintenance/employee/update', 'files' => 'true' , 'method' => 'post']) !!} 
                         <div class="divider" style="height:2px"></div>
                         <div class="modal-content col s12">
 
@@ -211,7 +211,7 @@
                             <input id="editDtEmpBday" required name="editDtEmpBday" type="date" class = "datepicker" placeholder="January 1, 1996"  value="{{date("Y-m-d", strtotime( $employee->dtEmpBday ))}}" class = "datepicker">
                           </div>  
 
-                           <div class="input-field col s6" style="margin-top:47px">                                
+                        <div class="input-field col s6" style="margin-top:47px">                                
                             <select required name='editSex'>
                               <option disabled>Sex</option>
                                   @if($employee->strSex == "M")
@@ -228,7 +228,7 @@
 
                         <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s3">
-                            <input required value="{{$employee->strEmpHouseNo}}" id="editEmpHouseNo" pattern="[0-9a-zA-Z\-\s]+$" name="addEmpHouseNo" type="text" placeholder="1-A" class="validate">
+                            <input required value="{{$employee->strEmpHouseNo}}" id="editEmpHouseNo" pattern="[0-9a-zA-Z\-\s]+$" name="editEmpHouseNo" type="text" placeholder="1-A" class="validate">
                             <label for="Emp House No">House No.<span class="red-text"><b>*</b></span> </label>
                           </div>
 
@@ -300,7 +300,20 @@
                             <label for="email">Email Address <span class="red-text"><b>*</b></span></label>
                           </div>
                         </div>
-                        </div>
+
+                        <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
+                          <div class="file-field input-field col s12">
+                            <div style="color:black" class="btn tooltipped btn-small center-text light-green lighten-2" data-position="bottom" data-delay="50" data-tooltip="May upload jpg, png, gif, bmp, tif, tiff files">
+                              <span>Upload Image</span>
+                              <input id="editImg" name="editImg" type="file" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*">
+                            </div>
+                          
+                            <div class="file-path-wrapper">
+                              <input value="{{$employee->strEmpImg}}" id="editImage" name="editImage" class="file-path validate" type="text" readonly="readonly">
+                            </div>
+                          </div>  
+                      </div>
+                    </div>
 
                         <div class="modal-footer col s12" style="background-color:#26a69a">
                           <button type="submit" class="waves-effect waves-green btn-flat">Update</button>
@@ -603,10 +616,24 @@
 
             reader.readAsDataURL(input.files[0]);
         }
-    }</script>
-    <script> $(document).ready(function(){
-    $('.tooltipped').tooltip({delay: 50});
-  });</script>
+}
+</script>
+
+<script> function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah2')
+                    .attr('src', e.target.result)
+                    .width(160)
+                    .height(150);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+}
+</script>    
 
 
 

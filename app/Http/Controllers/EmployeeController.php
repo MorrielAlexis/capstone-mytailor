@@ -182,6 +182,9 @@ class EmployeeController extends Controller
         $isAdded=FALSE;
         $count = 0; $count2 = 0;
 
+        $file = $request->input('editImage');
+        $destinationPath = 'imgEmployees';
+
         if(!($employee->strEmailAdd == trim($request->input('editEmail')))) {    
             $count = \DB::table('tblEmployee')
                 ->select('tblEmployee.strEmailAdd')
@@ -212,7 +215,8 @@ class EmployeeController extends Controller
             
 
             if(!$isAdded){
-            
+                if($file == $employee->strEmpImg)
+            {
 
                 $employee->strEmpFName = trim($request->input('editFirstName')); 
                 $employee->strEmpLName = trim($request->input('editLastName'));  
@@ -230,6 +234,29 @@ class EmployeeController extends Controller
                 $employee->strCellNoAlt = trim($request->input('editCellNoAlt'));
                 $employee->strPhoneNo = trim($request->input('editPhoneNo'));
                 $employee->strEmailAdd = trim($request->input('editEmail'));
+                }else{
+
+                $request->file('editImg')->move($destinationPath);
+
+                $employee->strEmpFName = trim($request->input('editFirstName')); 
+                $employee->strEmpLName = trim($request->input('editLastName'));  
+                $employee->strEmpMName = trim($request->input('editMiddleName'));    
+                $employee->dtEmpBday = date("Y-m-d", strtotime($request->input("editDtEmpBday")));
+                $employee->strSex = $request->input('editSex');
+                $employee->strEmpHouseNo = trim($request->input('editEmpHouseNo'));
+                $employee->strEmpStreet = trim($request->input('editEmpStreet'));
+                $employee->strEmpBarangay = trim($request->input('editEmpBarangay'));
+                $employee->strEmpCity = trim($request->input('editEmpCity'));
+                $employee->strEmpProvince = trim($request->input('editEmpProvince'));
+                $employee->strEmpZipCode = trim($request->input('editEmpZipCode'));
+                $employee->strRole = $request->input('editRoles');
+                $employee->strCellNo = trim($request->input('editCellNo'));
+                $employee->strCellNoAlt = trim($request->input('editCellNoAlt'));
+                $employee->strPhoneNo = trim($request->input('editPhoneNo'));
+                $employee->strEmailAdd = trim($request->input('editEmail'));
+                $employee->strEmpImg = 'imgEmployees/'.$file;
+            }
+
 
             $employee->save();
 
