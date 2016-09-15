@@ -3,14 +3,16 @@
 @section('content')
 
 
-	<div class="row">
+  <div class="row">
       <div class="col s12 m12 l12">
         <span class="page-title"><center><h3><b>Welcome to <font color="white">MyTailor</font></b></h3></center></span>
         <center><h5>Reports - Sales By Product</h5></center>
+        <center><h7 style="color:gray">Daily, Weekly, Monthly, Quarterly and Annual Sales</h7></center> 
       </div>
     </div>
 
-    <div class="row" style="margin-top:6%;">
+
+    <div class="row" style="margin-top:3%;">
     <div class="col s12 m12 l12">
 
       <div class="row" style="margin-bottom:0">
@@ -21,14 +23,14 @@
           </div>
         </div>
       <div class="row">
-          <div class="col s12 m6" style="padding-left:3%; margin-top:0">
-            <div class="card-panel large white lighten-5" style="padding-top:5%; min-width: 50%;">
-            <div class="col s12">
+          <div class="col s12 m12" style="padding-left:3%; margin-top:0">
+            <div class="card-panel large white lighten-5" style="padding-top:3%; min-width: 50%;">
+            <!-- <div class="col s12">
               <label style="color:gray;"> SEE A PREVIEW OF THE REPORT</label>
               <a href="" class="right btn teal" style="position:right">Preview</a><br>
               <div class="divider" style="background-color:gray; height:2px; margin-top:6%; margin-bottom:3%"></div>    
-            </div>
-                <span class="black-text" style="padding-left:3%">Choose an option from the following:</span>
+            </div> -->
+                <left><span style="padding-left:3%; color:gray">Choose one report format from the following:</span></left>
 
                 <!-- User will choose from the following three options to view on as reports:
                 <!  *Daily, *Monthly, and *Annual sales (A user may only choose ONE)
@@ -39,140 +41,224 @@
                 <br><br>
                 <div style="padding-left:5%">
                   
+                  <!-- Daily -->
                   <div class="row">
                 <input type="checkbox" name="cbx-date-name[]" class="cbx-date-name" id="daily-sales" onclick="resetradio1(this)" />
-                <label for="daily-sales">Daily</label>
+                <label for="daily-sales"><b>Daily</b></label>
                        
-                    <div class="daily_sales" style="display:none; padding-left:5%; padding-right:3%">
-                      <input class="with-gap" disabled="true" name="radio-daily-sales" type="radio" id="daily-current-date"/>
+                    <div class="daily_sales" style="display:none; padding-left:5%; padding-right:3%; padding-top:2%">
+                      <input onclick="document.getElementById('d_product_no').disabled = true" class="with-gap" disabled="true" name="radio-daily-sales" type="radio" id="daily-current-date"/>
                       <label for="daily-current-date"">Current Date</label>
                    
                       <br>
       
-                      <input class="left with-gap col s4" disabled="true" name="radio-daily-sales" type="radio" id="daily-product-no" />
-                      <label for="daily-product-no" style="margin-top:3%; margin-bottom:3%;">Product #</label>
-                      <select class="right browser-default col s8">
-                          <option value="" disabled selected>Choose a Product Number</option>
+                      <input onclick="document.getElementById('d_product_no').disabled = false" class="left with-gap col s4" disabled="true" name="radio-daily-sales" type="radio" id="daily-transac-no" />
+                      <label for="daily-transac-no" style="margin-top:3%; margin-bottom:3%;">Specify a Product No</label>
+                      <select class="right browser-default col s8" style="margin-top:1%" id="d_product_no" disabled="disabled">
+                          <option value="" disabled selected>Choose your option</option>
                           <option value="1">Product 1</option>
                           <option value="2">Product 2</option>
                           <option value="3">Product 3</option>
                       </select>
+
                       <br>
-                      <input class="with-gap col s12" disabled="true" name="radio-daily-sales" type="radio" id="daily-between" />
-                      <label for="daily-between" style="margin-bottom:3%">Between <font color="gray">(Specify <b>date from</b> and <b>date to</b>)</font></label>
-                        <input type="date" class="datepicker col s5" name="dl_date_from" id="dl_date_from">                       
-                        <div class="center col s1" style="margin-top:4%"> to </div>
-                      <input type="date" class="datepicker col s6" name="dl_date_to" id="dl_date_to" >
+                                    
+                    <div class="col s12" style="height:2px;"><div class="divider"></div></div>
+                </div>  
+
+            </div> <!--End of Daily-->
+
+
+            <!-- Weekly -->
+                  <div class="row">
+                <input type="checkbox" name="cbx-week-name[]" class="cbx-week-name" id="weekly-sales" onclick="resetradio4(this)" />
+                <label for="weekly-sales"><b>Weekly</b></label>
+                       
+                    <div class="weekly_sales" style="display:none; padding-left:5%; padding-right:3%; padding-top:2%">
+                      <input onclick="document.getElementById('w_product_no').disabled = true" class="with-gap" disabled="true" name="radio-weekly-sales" type="radio" id="weekly-current-date"/>
+                      <label for="weekly-current-date"">Current Week</label>
+                   
+                      <br>
+      
+                      <input onclick="document.getElementById('w_product_no').disabled = false" class="left with-gap col s4" disabled="true" name="radio-weekly-sales" type="radio" id="weekly-transac-no" />
+                      <label for="weekly-transac-no" style="margin-top:3%; margin-bottom:3%;">Specify a Product No</label>
+                      <select class="right browser-default col s8" style="margin-top:1%" id="w_product_no" disabled="disabled">
+                          <option value="" disabled selected>Choose your option</option>
+                          <option value="1">Product 1</option>
+                          <option value="2">Product 2</option>
+                          <option value="3">Product 3</option>
+                      </select>
+
+                      <br>              
+
+                    <div class="col s12" style="height:2px;"><div class="divider"></div></div>
                 </div>  
 
             </div>
 
+            <!-- Monthly -->
             <div class="row">
                 <input type="checkbox" name="cbx-date-name[]" class="cbx-month-name" id="monthly-sales" onclick="resetradio2(this)" />
-                <label for="monthly-sales">Monthly</label>
+                <label for="monthly-sales"><b>Monthly</b></label>
 
-                    <div class="monthly_sales" style="display:none; padding-left:5%; padding-right:3%">
-                      <input class="with-gap" disabled="true" name="radio-monthly-sales" type="radio" id="monthly-current-month" />
+                    <div class="monthly_sales" style="display:none; padding-left:5%; padding-right:3%; padding-top:2%">
+
+                      <input onclick="document.getElementById('m_product_no').disabled = true; document.getElementById('start_month').disabled = true; document.getElementById('end_month').disabled = true" class="with-gap" disabled="true" name="radio-monthly-sales" type="radio" id="monthly-current-month" />
                       <label for="monthly-current-month">Current Month</label>
+
                       <br>
-                      <input class="with-gap col s4" disabled="true" name="radio-monthly-sales" type="radio" id="monthly-product-no" />
-                      <label for="monthly-product-no" style="margin-top:3%; margin-bottom:3%;">Product #</label>
-                        <select class="right browser-default col s8">
-                          <option value="" disabled selected>Choose a Product Number</option>
+
+                      <input onclick="document.getElementById('m_product_no').disabled = false; document.getElementById('start_month').disabled = true; document.getElementById('end_month').disabled = true" class="with-gap col s4" disabled="true" name="radio-monthly-sales" type="radio" id="monthly-transac-no" />
+                      <label for="monthly-transac-no" style="margin-top:3%; margin-bottom:3%;">Specify a Product No</label>
+                        <select class="right browser-default col s8" style="margin-top:1%" id="m_product_no" disabled="disabled">
+                          <option value="" disabled selected>Choose your option</option>
                           <option value="1">Product 1</option>
                           <option value="2">Product 2</option>
                           <option value="3">Product 3</option>
                       </select>
+
                       <br>
-                      <input class="with-gap" disabled="true" name="radio-monthly-sales" type="radio" id="monthly-between" />
+
+                      <input onclick="document.getElementById('m_product_no').disabled = true; document.getElementById('start_month').disabled = false; document.getElementById('end_month').disabled = false" class="with-gap" disabled="true" name="radio-monthly-sales" type="radio" id="monthly-between" />
                       <label for="monthly-between" style="margin-bottom:3%">Between <font color="gray">(Specify <b>date from</b> and <b>date to</b>)</font></label>
-                        <select class="left browser-default col s6">
-                          <option value="" disabled selected>Select a start month</option>
-                          <option value="01">January</option>
-                          <option value="02">February</option>
-                          <option value="03">March</option>
-                          <option value="04">April</option>
-                          <option value="05">May</option>
-                          <option value="06">June</option>
-                          <option value="07">July</option>
-                          <option value="08">August</option>
-                          <option value="09">September</option>
-                          <option value="10">October</option>
-                          <option value="11">November</option>
-                          <option value="12">December</option>
-                      </select>
-                      <div class="col s2"></div>
-                      <select class="right browser-default col s6">
-                          <option value="" disabled selected>Select an end month</option>
-                          <option value="01">January</option>
-                          <option value="02">February</option>
-                          <option value="03">March</option>
-                          <option value="04">April</option>
-                          <option value="05">May</option>
-                          <option value="06">June</option>
-                          <option value="07">July</option>
-                          <option value="08">August</option>
-                          <option value="09">September</option>
-                          <option value="10">October</option>
-                          <option value="11">November</option>
-                          <option value="12">December</option>
-                      </select>
+                        <div class="col s12">
+                          <select class="left browser-default col s6" id="start_month" disabled="disabled">
+                            <option value="" disabled selected>Select a start month</option>
+                            <option value="01">January</option>
+                            <option value="02">February</option>
+                            <option value="03">March</option>
+                            <option value="04">April</option>
+                            <option value="05">May</option>
+                            <option value="06">June</option>
+                            <option value="07">July</option>
+                            <option value="08">August</option>
+                            <option value="09">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                        <!-- <div class="col s2"></div> -->
+                        <select class="right browser-default col s6" id="end_month" disabled="disabled">
+                            <option value="" disabled selected>Select an end month</option>
+                            <option value="01">January</option>
+                            <option value="02">February</option>
+                            <option value="03">March</option>
+                            <option value="04">April</option>
+                            <option value="05">May</option>
+                            <option value="06">June</option>
+                            <option value="07">July</option>
+                            <option value="08">August</option>
+                            <option value="09">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                      </div>
+                <div class="col s12" style="height:2px;"><div class="divider"></div></div>
+
                 </div>
 
             </div>
 
+            <!-- Quarterly -->
+            <div class="row">
+                <input type="checkbox" name="cbx-quarter-name[]" class="cbx-quarter-name" id="quarterly-sales" onclick="resetradio5(this)" />
+                <label for="quarterly-sales"><b>Quarterly</b></label>
+                       
+                    <div class="quarterly_sales" style="display:none; padding-left:5%; padding-right:3%; padding-top:2%">
+                      <input onclick="document.getElementById('q_product_no').disabled = true" class="with-gap" disabled="true" name="radio-quarterly-sales" type="radio" id="quarterly-current-date"/>
+                      <label for="quarterly-current-date"">Current Quarter</label>
+                   
+                      <br>
+      
+                      <input onclick="document.getElementById('q_product_no').disabled = false" class="left with-gap col s4" disabled="true" name="radio-quarterly-sales" type="radio" id="quarterly-transac-no" />
+                      <label for="quarterly-transac-no" style="margin-top:3%; margin-bottom:3%;">Specify a Product No</label>
+                      <select class="right browser-default col s8" style="margin-top:1%" id="q_product_no" disabled="disabled">
+                          <option value="" disabled selected>Choose your option</option>
+                          <option value="1">Product 1</option>
+                          <option value="2">Product 2</option>
+                          <option value="3">Product 3</option>
+                      </select>
+
+                      <br>              
+
+                    <div class="col s12" style="height:2px;"><div class="divider"></div></div>
+                </div>  
+
+            </div>
+
+
+            <!--Annual -->
             <div class="row">
                 <input type="checkbox" name="cbx-date-name[]" class="cbx-month-name" id="annual-sales" onclick="resetradio3(this)" />
-                <label for="annual-sales">Annual</label>
+                <label for="annual-sales"><b>Annual</b></label>
 
-                    <div class="yearly_sales" style="display:none; padding-left:5%; padding-right:3%">
-                      <input class="with-gap" disabled="true" name="radio-yearly-sales" type="radio" id="yearly-current-date" />
-                      <label for="yearly-current-date">Current Date</label>
+                    <div class="yearly_sales" style="display:none; padding-left:5%; padding-right:3%; padding-top:2%">
+                      <input onclick="document.getElementById('y_product_no').disabled = true; document.getElementById('start_year').disabled = true; document.getElementById('end_year').disabled = true" class="with-gap" disabled="true" name="radio-yearly-sales" type="radio" id="yearly-current-date" />
+                      <label for="yearly-current-date">Current Year</label>
                       <br>
-                      <input class="with-gap col s4" disabled="true" name="radio-yearly-sales" type="radio" id="yearly-product-no" />
-                      <label for="yearly-product-no" style="margin-top:3%; margin-bottom:3%;">Product #</label>
-                        <select class="right browser-default col s8">
-                          <option value="" disabled selected>Choose a Product Number</option>
+                      <input onclick="document.getElementById('y_product_no').disabled = false; document.getElementById('start_year').disabled = true; document.getElementById('end_year').disabled = true" class="with-gap col s4" disabled="true" name="radio-yearly-sales" type="radio" id="yearly-transac-no" />
+                      <label for="yearly-transac-no" style="margin-top:3%; margin-bottom:3%;">Specify a Product No</label>
+                        <select class="right browser-default col s8" style="margin-top:1%" id="y_product_no" disabled="disabled">
+                          <option value="" disabled selected>Choose your option</option>
                           <option value="1">Product 1</option>
                           <option value="2">Product 2</option>
                           <option value="3">Product 3</option>
                       </select>
                       <br>
-                      <input class="with-gap" disabled="true" name="radio-yearly-sales" type="radio" id="yearly-between" />
+                      <input onclick="document.getElementById('y_product_no').disabled = true; document.getElementById('start_year').disabled = false; document.getElementById('end_year').disabled = false" class="with-gap" disabled="true" name="radio-yearly-sales" type="radio" id="yearly-between" />
                       <label for="yearly-between"style="margin-bottom:3%">Between <font color="gray">(Specify <b>date from</b> and <b>date to</b>)</font></label>
-                        <select class="left browser-default col s6">
-                          <option value="" disabled selected>Select a start year</option>
-                          <option value="01">2005</option>
-                          <option value="02">2006</option>
-                          <option value="03">2007</option>
-                          <option value="04">2008</option>
-                          <option value="05">2009</option>
-                          <option value="06">2010</option>
-                          <option value="07">2011</option>
-                          <option value="08">2012</option>
-                          <option value="09">2013</option>
-                          <option value="10">2014</option>
-                          <option value="11">2015</option>
-                          <option value="12">2016</option>
-                      </select>
-                      <div class="col s2"></div>
-                      <select class="right browser-default col s6">
-                          <option value="" disabled selected>Select an end year</option>
-                          <option value="01">2005</option>
-                          <option value="02">2006</option>
-                          <option value="03">2007</option>
-                          <option value="04">2008</option>
-                          <option value="05">2009</option>
-                          <option value="06">2010</option>
-                          <option value="07">2011</option>
-                          <option value="08">2012</option>
-                          <option value="09">2013</option>
-                          <option value="10">2014</option>
-                          <option value="11">2015</option>
-                          <option value="12">2016</option>
-                      </select>
-                </div>
+                        <div class="col s12">
+                          <select class="left browser-default col s6" style="margin-top:1%" id="start_year" disabled="disabled">
+                            <option value="" disabled selected>Select a start year</option>
+                            <option value="01">2005</option>
+                            <option value="02">2006</option>
+                            <option value="03">2007</option>
+                            <option value="04">2008</option>
+                            <option value="05">2009</option>
+                            <option value="06">2010</option>
+                            <option value="07">2011</option>
+                            <option value="08">2012</option>
+                            <option value="09">2013</option>
+                            <option value="10">2014</option>
+                            <option value="11">2015</option>
+                            <option value="12">2016</option>
+                        </select>
+                        <div class="col s2"></div>
+                        <select class="right browser-default col s6" style="margin-top:1%" id="end_year" disabled="disabled">
+                            <option value="" disabled selected>Select an end year</option>
+                            <option value="01">2005</option>
+                            <option value="02">2006</option>
+                            <option value="03">2007</option>
+                            <option value="04">2008</option>
+                            <option value="05">2009</option>
+                            <option value="06">2010</option>
+                            <option value="07">2011</option>
+                            <option value="08">2012</option>
+                            <option value="09">2013</option>
+                            <option value="10">2014</option>
+                            <option value="11">2015</option>
+                            <option value="12">2016</option>
+                        </select>
+                      </div>
 
+                <div class="col s12" style="height:2px;"><div class="divider"></div></div>
+
+                </div>
+              </div>
+
+              <!-- Custom Date -->
+              <div class="row">
+                <input type="checkbox" name="cbx-custom-date[]" class="cbx-custom-date" id="custom-date" onclick="resetradio6 (this)" />
+                <label for="custom-date" style="margin-bottom:3%"><b>Custom Date</b></label>
+                  
+                  <div class="custom_dates col s12" style="display:none; padding-left:5%; padding-right:3%">
+                    <input type="date" class="datepicker col s5" name="date_from" id="date_from" disabled="disabled">                       
+                    <div class="center col s1" style="margin-top:2%; color:gray" id="to"><b> to </b></div>
+                  <input type="date" class="datepicker col s6" name="date_to" id="date_to" disabled="disabled">
+
+                  <div class="col s12" style="height:2px;"><div class="divider"></div></div>  
+                  </div>
               </div>
 
           </div>
@@ -181,19 +267,80 @@
                 <div class="divider" style="background-color:gray; height:2px; margin-top:6%; margin-bottom:3%"></div>
                 <div class="col s12">
                 <label style="color:gray;"> SEE A PREVIEW OF THE REPORT</label>
-                <!--<a href="" class="right btn teal" style="position:right">Preview</a>-->                 
+                <a href="" class="right btn teal" style="position:right; margin-left:2%">Preview</a>
+                <a href="" class="right black-text btn teal lighten-4" style="position:right">Generate PDF</a>                  
               </div>
-              <br>
+              <br><br>
             </div>
           </div>
           <!--End of card panel-->
 
-          <!--Pdf preview-->        
-          <div class="col s12 m6" style="border:2px gray solid; padding:3%; margin-top:0.7%; background-color:gray; min-width:50%; min-height:54%; max-height:54%">
-            <span class="white-text">PDF Preview will be here</span>
-          </div>
+          <!--Preview will be here-->               
+          <div class="row" style="padding-left:2%; padding-right:2%">
+              <div class="col s12 m12" style="padding-left:3%; margin-top:5%; background-color:white">
+                <div style="padding-top:3%; min-width: 50%; background-color:white">
+                  <span><h5 style="color:#1b5e20"><center>Sales Report Data</center></h5></span>
+                  <div class="row">
+                    <table class="table centered data-salesByJobOrder" id="salesByJobOrder" align="center" border="1">
+                      <thead>
+                        <tr>
+                          <th>Date</th>
+                          <th>Product No</th>
+                          <th>Product Name</th>
+                          <th>Times Ordered</th>
+                          <th>Amount</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Today</td>
+                          <td>Product 1</td>
+                          <td>Product Name 1</td>
+                          <td>1</td>
+                          <td>123.00 PHP</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
 
-          <!--end of pdf preview-->
+                  <br><br>
+
+                  <div class="col s12" style="padding-bottom:2%">
+                    <div class="divider"></div>
+                    <center><h5 style="color:teal"><b>CHARTS</b></h5></center>
+                  </div>
+                  <!--CHARTS will be here-->
+                  <div class="row col s12" style="padding-bottom:15%">
+                    <div class="col s12">
+                      <span><b>AMOUNT - [Monthly] and Cumulative</b></span> <!--[] will change depending on the format-->
+                      <div class="col s12" style="border:2px gray solid">
+                      CHART will be here  
+                      </div>
+                      <a href="" class="right black-text btn teal lighten-4" style="position:right; margin-top:1%">Export as PDF</a>
+                    </div>
+
+                    <div class="col s12" style="margin-top:4%">
+                      <span><b>QUANTITY - [Monthly] and Cumulative</b></span><!--[] will change depending on the format-->
+                      <div class="col s12" style="border:2px gray solid">
+                      CHART will be here  
+                      </div>
+                      <a href="" class="right black-text btn teal lighten-4" style="position:right; margin-top:1%">Export as PDF</a>
+                    </div>
+
+                    <div class="col s12" style="margin-top:4%">
+                      <span><b>QUANTITY - SALES by Product</b></span>
+                      <div class="col s12" style="border:2px gray solid">
+                      CHART will be here  
+                      </div>
+                      <a href="" class="right black-text btn teal lighten-4" style="position:right; margin-top:1%">Export as PDF</a>
+                    </div>
+                  </div>
+
+                  <br><br><br><br><br><br><br><br><br>
+                </div>
+              </div>
+          </div>
+        <!--end of pdf preview-->
      
         </div>
 
@@ -203,7 +350,6 @@
 
 @stop
 
-@section('scripts')
 
 <script type="text/javascript">
 
@@ -280,6 +426,83 @@
       }
   }
 
+  //weekly
+  function resetradio4 (checkbox){
+
+    var buttons = document.querySelector('.weekly_sales');
+      var radios = document.getElementsByName('radio-weekly-sales');
+      var index = 0, length = radios.length;
+
+      if (checkbox.checked == true) {
+        
+          for ( ; index < length; index++) {
+              radios[index].disabled = false;
+          }
+          buttons.style.display = 'block';
+          
+      }
+      else {
+      
+        for( ; index < length; index++){
+          radios[index].disabled = true;
+        }
+        buttons.style.display = 'none';
+      }
+  }
+
+
+  //quarterly
+  function resetradio5 (checkbox){
+
+    var buttons = document.querySelector('.quarterly_sales');
+      var radios = document.getElementsByName('radio-quarterly-sales');
+      var index = 0, length = radios.length;
+
+      if (checkbox.checked == true) {
+        
+          for ( ; index < length; index++) {
+              radios[index].disabled = false;
+          }
+          buttons.style.display = 'block';
+          
+      }
+      else {
+      
+        for( ; index < length; index++){
+          radios[index].disabled = true;
+        }
+        buttons.style.display = 'none';
+      }
+  }
+
+
+  //custom date
+  function resetradio6 (checkbox){
+
+    var buttons = document.querySelector('.custom_dates');
+      var a = document.getElementById('date_from');
+      var b = document.getElementById('date_to');
+      var c = document.getElementById('to');
+
+      if (checkbox.checked == true) {
+        
+        buttons.style.display = 'block';
+          a.disabled = false;
+          b.disabled = false;
+          c.style.color = 'black';
+          
+      }
+      else {
+        
+        buttons.style.display = 'none';
+        a.disabled = true;
+        b.disabled = true;
+        c.style.color = 'gray';
+        
+      }
+  }
+
+
 
   // function setcheckbox () {
   //     var checkbox = document.getElementsByName('cbx-month-name')[0];
@@ -298,3 +521,4 @@
       selectYears: 12 // Creates a dropdown of 15 years to control year
     });
 </script>
+

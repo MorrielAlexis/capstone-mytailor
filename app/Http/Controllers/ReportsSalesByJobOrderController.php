@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use PDF;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -18,6 +19,15 @@ class ReportsSalesByJobOrderController extends Controller
     {
         return view('reports.reports-sales-by-job-order');
     }
+
+    public function generatePDF() 
+    {
+        $pdf = PDF::loadView('pdf.salesreport-joborder')
+            ->setPaper('Letter')
+            ->setOrientation('portrait');
+
+        return $pdf->stream();
+    }//generates the pdf
 
     /**
      * Show the form for creating a new resource.

@@ -252,6 +252,19 @@
                                 </ul>
                               </div>
                         </li>
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('reports/customers-with-balance/*') ? 'active' : '' }}"><b>Customers with Balance</b></a>
+                          <div class="collapsible-body" position = "fixed" style = "display: block;">
+                                <ul>
+                                  <li class="no-padding">
+                                    <ul class="collapsible collapsible-accordion">
+
+                                      <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('reports/customers-with-balance/individual')}}">Individual</a></li>
+                                      <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('reports/customers-with-balance/company')}}">Company</a></li>
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </div>
+                        </li>
                       </ul>
                     </li>
                   </ul>

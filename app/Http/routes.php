@@ -587,4 +587,10 @@ Route::group(['prefix' => 'transaction'], function(){
 		Route::get('by-customer', 'ReportsSalesByCustomerController@index'); //controller for sales by customer
 		
 	});
+	//Customers with Balance
+	Route::group(['prefix' => 'reports/customers-with-balance'], function(){
+
+		Route::get('individual', 'IndividualCustomerWithBalanceController@index'); //controlller for individuals with balance
+		Route::get('company', 'CompanyCustomerWithBalanceController@index'); //controller for companies with balance		
+	});
 

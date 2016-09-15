@@ -3,10 +3,10 @@
 @section('content')
 
 
-  <div class="row">
+    <div class="row">
       <div class="col s12 m12 l12">
         <span class="page-title"><center><h3><b>Welcome to <font color="white">MyTailor</font></b></h3></center></span>
-        <center><h5>Reports - Sales By Customer</h5></center>
+        <center><h5>Reports - Individual Customers with Balance</h5></center>
         <center><h7 style="color:gray">Daily, Weekly, Monthly, Quarterly and Annual Sales</h7></center> 
       </div>
     </div>
@@ -16,13 +16,17 @@
     <div class="col s12 m12 l12">
 
       <div class="row" style="margin-bottom:0">
-          <div class="col s12 m12" style="padding-left:3%">
-            <div class="card-panel teal">
-            <span class="white-text"><center>SALES REPORT BY CUSTOMER</center></span>
-            </div>
+        <div class="col s12 m12" style="padding-left:3%">
+          <div class="card-panel teal">
+          <span class="white-text"><center>CUSTOMER WITH BALANCE - INDIVIDUAL</center></span>
           </div>
         </div>
-      <div class="row">
+      </div>
+
+    </div>
+    </div>
+
+    <div class="row">
           <div class="col s12 m12" style="padding-left:3%; margin-top:0">
             <div class="card-panel large white lighten-5" style="padding-top:3%; min-width: 50%;">
             <!-- <div class="col s12">
@@ -276,10 +280,10 @@
           <!--End of card panel-->
 
           <!--Preview will be here-->               
-          <div class="row" style="padding-left:2%; padding-right:2%">
-              <div class="col s12 m12" style="padding-left:3%; margin-top:5%; background-color:white">
+          <div class="row" style="padding-left:3%; padding-right:3%">
+              <div class="col s12 m12" style="padding-left:3%; margin-top:5%; background-color:white; ">
                 <div style="padding-top:3%; min-width: 50%">
-                  <span><h5 style="color:#1b5e20"><center>Sales Report Data</center></h5></span>
+                  <span><h5 style="color:#1b5e20"><center>Customer Balance Report Data</center></h5></span>
                   <div class="row">
                     <table class="table centered data-salesByJobOrder" id="salesByJobOrder" align="center" border="1">
                       <thead>
@@ -287,8 +291,10 @@
                           <th>Date</th>
                           <th>Customer Name</th>
                           <th>Job Order No</th>
-                          <th>Times of Order</th>
-                          <th>Amount</th>
+                          <th>Order Total Amount</th>
+                          <th>Payment Type</th>
+                          <th>Balance Amount</th>
+                          <th>Payment Due Date</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -296,8 +302,10 @@
                           <td>Today</td>
                           <td>Honey May</td>
                           <td>Job Order 1</td>
-                          <td>1</td>
                           <td>123.00 PHP</td>
+                          <td>Cash</td>
+                          <td>123.00 PHP</td>
+                          <td>Tomorrow</td>
                         </tr>
                       </tbody>
                     </table>
@@ -328,7 +336,7 @@
                     </div>
 
                     <div class="col s12" style="margin-top:4%">
-                      <span><b>QUANTITY - SALES by Customer</b></span>
+                      <span><b>QUANTITY -  Individual with Balance</b></span>
                       <div class="col s12" style="border:2px gray solid">
                       CHART will be here  
                       </div>

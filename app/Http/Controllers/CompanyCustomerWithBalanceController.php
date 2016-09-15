@@ -8,7 +8,7 @@ use PDF;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class ReportsSalesByProductController extends Controller
+class CompanyCustomerWithBalanceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,17 +17,19 @@ class ReportsSalesByProductController extends Controller
      */
     public function index()
     {
-        return view('reports.reports-sales-by-product');
+        return view('reports.reports-customers-with-balance-company');
     }
 
-    public function generatePDF() 
+    public function generatePDF()
     {
-        $pdf = PDF::loadView('pdf.salesreport-product')
+        $pdf = PDF::loadView('pdf.customer-with-bal-company')
             ->setPaper('Letter')
             ->setOrientation('portrait');
 
         return $pdf->stream();
-    }//generates the pdf
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
