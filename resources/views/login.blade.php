@@ -44,11 +44,11 @@
 
 		<div id="login-page" class="section transparent" style="margin-left:5%; margin-right:69%; margin-top:5%;">
 			<div>
-				<img class="circle responsive-img" src="img/logo.jpg" style="padding-left:23%; padding-right:23%; margin-top:10px;">
+				<img class="circle responsive-img" src="{{ Session::get('shoplogo') }}" style="padding-left:23%; padding-right:23%; margin-top:10px;">
 			</div>
 
 			<div style="color-background:grey; color:#fafafa; text-shadow: 2px 2px 8px rgba(5, 5, 5, 0.62);">
-      			<p class="center"><b><font size="+3">TAILORING MANAGEMENT SYSTEM</font></b></p>
+      			<p class="center"><b><font size="+3">{{ Session::get('strShopName') }}</font></b></p>
  			</div>
 
 		    <ul class="collapsible z-depth-0" style="margin:10px; border:0px;" data-collapsible="accordion">

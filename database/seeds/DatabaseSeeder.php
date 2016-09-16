@@ -48,6 +48,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ChargeCategorySeeder::class);
         $this->call(ChargeDetailSeeder::class);
         $this->call(CustCompEmployeeSeeder::class);
+        $this->call(UtilitiesGeneralSeeder::class);
         //$this->call(CustomerSeeder::class);
         // $this->call(NonShopAlterationSeeder::class);
 
