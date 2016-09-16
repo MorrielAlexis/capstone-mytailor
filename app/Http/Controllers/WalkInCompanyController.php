@@ -224,11 +224,23 @@ class WalkInCompanyController extends Controller
         $employeeSex = $request->input('empSex');
         $employeeSet = $request->input('empSet');
 
+        $quantity = session()->get('package_quantity');
+        $totalQuantity = 0;
+
+        for($i = 0; $i < count($quantity); $i++)
+            $totalQuantity = $totalQuantity + $quantity[$i];
+
+        for($i = 0; $i < $totalQuantity; $i++)
+        {
+            $employeeSegmentQuantity[$i] = $request->input('segment-qty' . $i);
+        }
+
         session(['employee_fname' => $employeeFirstName]);
         session(['employee_lname' => $employeeLastName]);
         session(['employee_mname' => $employeeMiddleName]);
         session(['employee_sex'   => $employeeSex]);
         session(['employee_set'   => $employeeSet]);
+        session(['employee_segment_qty' => $employeeSegmentQuantity]);
 
         return redirect('transaction/walkin-company-show-order');
     }//save employee specs
