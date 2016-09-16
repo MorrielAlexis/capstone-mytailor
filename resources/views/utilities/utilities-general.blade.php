@@ -19,7 +19,7 @@
         {!! Form::open(['url' => 'utilities/utilities-general/update', 'files' => 'true']) !!}
           <span class="" style="color:#263238;font-size:35px;">General Setting</span>
             <div class="tooltipped" data-position="top" data-delay="50" data-tooltip="Company Logo" style="margin-top:49px;margin-left:29px;">
-               <center><img id="imgShopLogo" src="../{{ $shop_logo }}" style="width:150px;height:150px;border: 1px solid black;" /> </center>
+               <center><img id="imgShopLogo" src="" style="width:150px;height:150px;border: 1px solid black;" /> </center>
             </div>
             <div class="row">
               <div class="col s6">
