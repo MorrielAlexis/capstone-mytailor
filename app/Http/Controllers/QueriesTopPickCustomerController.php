@@ -16,7 +16,11 @@ class QueriesTopPickCustomerController extends Controller
      */
     public function index()
     {
-        return view('queries.queries-top-customers');
+        $topCustomers = \DB::select("SELECT Concat(tblCustIndividual.strIndivFName, '' , tblCustIndividual.strIndivMName, '' , tblCustIndividual.strIndivMName)as name, COUNT(strIndivID) as ctr FROM tblJobOrder,tblCustIndividual WHERE tblCustIndividual.strIndivID = tblJobOrder.strJO_CustomerFK GROUP BY strIndivID ORDER BY ctr DESC limit 3");
+        dd($topCustomers);
+
+        return view('queries.queries-top-customers')
+        ->with('topCustomers', $topCustomers);
     }
 
     /**

@@ -34,14 +34,15 @@
               </thead>
 
               <tbody>
+                    @foreach($topCustomers as $topCustomer)
+                    {{--  @if($topCustomer->boolIsActive == 1) --}}
                   <tr>
-                    <td>Sample</td>
-                    <td>Sample</td>
-                    <td>Sample</td>
-              
-                      
-                      
+                    <td>{{$topCustomer->strIndivID}}</td>
+                    <td>{{$topCustomer->strIndivFName}} {{$topCustomer->strIndivMName}} {{$topCustomer->strIndivLName}}</td>
+                    <td></td> 
                   </tr>
+                {{--   @endif --}}
+                  @endforeach
               </tbody>
             </table>
 
