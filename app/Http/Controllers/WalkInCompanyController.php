@@ -184,7 +184,7 @@ class WalkInCompanyController extends Controller
             $k = 0;
         }
 
-        //dd($values);
+        dd($to_be_customized);
         dd($patterns);
     }
 
