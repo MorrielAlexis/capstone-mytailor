@@ -19,7 +19,6 @@ use App\Segment;
 use App\SegmentPattern;
 use App\SegmentStyle;
 
-
 class WalkInCompanyController extends Controller
 {
     /**
@@ -39,11 +38,13 @@ class WalkInCompanyController extends Controller
         $values = [];
         $quantity = [];
         $pattern = [];
+        $fabric = [];
 
         session(['package_data' => $data]);
         session(['package_values' => $values]);
         session(['package_quantity' => (int)$quantity]);
         session(['package_segment_pattern' => $pattern]);
+        session(['package_segment_fabric' => $fabric]);
 
         $packages = Package::all();
 
@@ -198,14 +199,19 @@ class WalkInCompanyController extends Controller
         $values = session()->get('package_segments_customize');
         $to_be_customized = session()->get('package_customize');
         $segmentStyles = SegmentStyle::all();
+        $segmentFabrics = Fabric::all();
+
         $k = 0;
 
         for($i = 0; $i < (count($values) + 1); $i++){
             if($i == 0) {
-
                 $patterns[$i] = $to_be_customized;
+                $fabrics[$i] = $to_be_customized;
                 continue;
             }
+
+            $fabrics[$i] = $request->input('fabrics' . $i);
+
             for($j = 0; $j < count($segmentStyles); $j++){
                 $tempPatterns = $request->input('rdb_pattern' . $segmentStyles[$j]->strSegStyleCatID . ($i));       
                 if($tempPatterns != null){
@@ -215,8 +221,10 @@ class WalkInCompanyController extends Controller
             }
             $k = 0;
         }
+
         $request->session()->push('package_segment_pattern', $patterns);
-        
+        $request->session()->push('package_segment_fabric', $fabrics);
+
         return redirect('transaction/walkin-company-show-order');
     }
 
