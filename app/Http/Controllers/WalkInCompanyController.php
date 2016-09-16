@@ -173,9 +173,14 @@ class WalkInCompanyController extends Controller
         $segmentStyles = SegmentStyle::all();
         $k = 0;
 
-        for($i = 0; $i < count($values); $i++){
+        for($i = 0; $i < (count($values) + 1); $i++){
+            if($i == 0) {
+
+                $patterns[$i] = $to_be_customized;
+                continue;
+            }
             for($j = 0; $j < count($segmentStyles); $j++){
-                $tempPatterns = $request->input('rdb_pattern' . $segmentStyles[$j]->strSegStyleCatID . ($i+1));       
+                $tempPatterns = $request->input('rdb_pattern' . $segmentStyles[$j]->strSegStyleCatID . ($i));       
                 if($tempPatterns != null){
                     $patterns[$i][$k] = $tempPatterns;
                     $k++;
@@ -184,7 +189,7 @@ class WalkInCompanyController extends Controller
             $k = 0;
         }
 
-        dd($to_be_customized);
+        //dd($to_be_customized);
         dd($patterns);
     }
 
@@ -195,7 +200,7 @@ class WalkInCompanyController extends Controller
         $packages = session()->get('package_values');
         $quantity = session()->get('package_quantity');
         $orderPackages = [];
-        $totalQuantity = 0;
+        $totalQuantity = 0  ;
         $k = 0;
 
         for($i = 0; $i < count($quantity); $i++)
