@@ -586,6 +586,7 @@ Route::group(['prefix' => 'transaction'], function(){
 		Route::get('list-of-top-pick-fabric','QueriesTopPickFabricController@index');
 		Route::get('list-of-top-pick-design','QueriesTopPickDesignController@index');
 		Route::get('list-of-top-pick-segment','QueriesTopPickSegmentController@index');
+		Route::get('most-availed-alteration-service', 'QueriesAvailedAlterServiceController@index');
 			
 	});
 

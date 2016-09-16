@@ -200,8 +200,9 @@
                         <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('transaction/billing-payment') || Request::is('transaction/billing-collection') ? 'active' : '' }}"><b>Payment & Collection</b></a>
                             <div class="collapsible-body">
                                 <ul>  
-                                  <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('transaction/billing-payment')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Payment</font></i></a></li>
-                                  <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('transaction/billing-collection')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Collection</font></i></a></li>
+                                  <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('transaction/billing-payment')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family:"Century Gothic">Payment</font></i></a></li>
+                                  <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('transaction/billing-collection')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family:"Century Gothic">Collection</font></i></a></li>
+
                                   <div class="divider"></div>
                                 </ul>
                           </div>
@@ -221,8 +222,9 @@
                         <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('queries/list-of-top-customers')}}"><b>Top Customers</b></a></li>
                         <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('queries/list-of-top-companies')}}"><b>Top Companies</b></a></li>
                         <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('queries/list-of-top-pick-fabric')}}"><b>Top Pick - Fabric</b></a></li>
+                         <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('queries/list-of-top-pick-segment')}}"><b>Top Pick - Segment</b></a></li>
+                         <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('queries/most-availed-alteration-service')}}"><b>Most Availed - Alteration Service</b></a></li>
                         <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('queries/list-of-top-pick-design')}}"><b>Top Pick -  Design</b></a></li>
-                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('queries/list-of-top-pick-segment')}}"><b>Top Pick - Segment</b></a></li>
 
                       </ul>
                     </li>
