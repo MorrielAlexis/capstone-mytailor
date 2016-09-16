@@ -24,12 +24,12 @@
 
 							<div class="col s6" style="margin-bottom:20px">
 								<div class="input-field col s12">
-										<select>
-										    <option value="M" class="circle" selected>Male</option>
+										<select id="package-sex">
+										    <option value="A" class="circle" selected>All</option>
+										    <option value="M" class="circle">Male</option>
 										    <option value="F" class="circle">Female</option>
-										    <option value="A" class="circle">All</option>
 										</select>
-										<label for="" style="font-size:15px">Select packages for:</label>
+										<label for="" style="font-size:15px">Select packages for (sex):</label>
 										
 								</div>
 							</div>
@@ -113,7 +113,7 @@
 					
 							{!! Form::open(['url' => 'transaction/walkin-company-orders', 'method' => 'POST', 'id' => 'order-form']) !!}
 								@foreach($packages as $package)
-								<div class="col s4" style="margin-top:20px; margin-bottom:20px">
+								<div class="col s4 package-general {{ $package->strPackageSex }}" style="margin-top:20px; margin-bottom:20px">
 					           		 <div class="container">
 					         			 <div class="z-depth-1 card medium" style="border:3px gray solid">
 					           				 <div class="card-image">
@@ -205,6 +205,29 @@
 			}
 		})
 
+	</script>
+
+	<script>
+		var sex = $('#package-sex');
+
+		sex.change(function () {
+		  updateUI();
+		});
+
+		function updateUI () {
+		  $('.package-general').hide();
+
+		  var sexValue = sex.val();
+		  
+		  if (sexValue == 'A') return $('.package-general').show();
+		  
+		  var sexClass = sexValue == 'A' ? '' : '.' + sexValue;
+
+		  var classesToUpdate = sexClass;
+		  $(classesToUpdate).show();
+		}
+
+		updateUI();
 	</script>
 
 	<script>
