@@ -265,6 +265,12 @@ class WalkInIndividualController extends Controller
                     ->with('joID', $newID);
     }
 
+    //if a customer already has an existing profile with the shop
+    public function customerCheck(){
+
+        return view('walkin-individual-customer-check');
+    }
+
     public function addCustomer(Request $request)
     {   
         $individual = Individual::create(array(

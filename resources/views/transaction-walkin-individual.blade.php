@@ -77,7 +77,7 @@
 							<p class="center-align" style="color:teal; margin-bottom:40px"><b>CHOOSE AMONG AVAILABLE PRODUCTS</b></p>
 						
 						@foreach($garments as $garment)
-								<div class="col s4 segment-general {{ $garment->strSegCategoryFK }} {{ $garment->strSegmentSex }}">
+								<div class="col s4 segment-general {{ $garment->strSegCategoryFK }} {{ $garment->strSegmentSex }}" style="margin-top:5%">
 										<div class="center col s12">
 					          				<input type="checkbox" name="cbx-segment-name[]"  class="filled-in cbx-segment-name" id="{{ $garment->strSegmentID }}" value="{{ $garment->strSegmentID }}" style="padding:5px"/>
 			      							<label for="{{ $garment->strSegmentID }}"><font size="+1"><b>{{ $garment->strSegmentName }}</b></font></label>

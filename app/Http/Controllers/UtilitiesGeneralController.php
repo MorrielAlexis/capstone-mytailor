@@ -46,6 +46,7 @@ class UtilitiesGeneralController extends Controller
     {   
         $utilities  = UtilitiesGeneral::find("1");
         $file = $request->input('updateFile');
+
         $destinationPath = 'img';
 
         if($file == $utilities->strShopImage)
