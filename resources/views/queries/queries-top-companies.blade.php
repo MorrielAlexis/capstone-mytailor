@@ -25,23 +25,18 @@
             <table class = "table centered data-customers" align = "center" border = "1">
               <thead>
                   <tr>
-                    <!--<th data-field="id">Garment ID</th>-->
-                    <th data-field="garmentName">Customer ID</th>
-                    <th data-field="garmentDescription">Customer Name</th>
-                    <th data-field="Edit">Address</th>
-                    <!-- <th>Deactivate</th> -->
+                    <th data-field="garmentDescription">Company Name</th>
+                    <th data-field="Edit">Total Orders</th>
                   </tr>
               </thead>
 
               <tbody>
+                    @foreach($topCompanies as $topCompany)
                   <tr>
-                    <td>Sample</td>
-                    <td>Sample</td>
-                    <td>Sample</td>
-              
-                      
-                      
+                    <td>{{ $topCompany->name }}</td>
+                    <td>{{ $topCompany->ctr}}</td>
                   </tr>
+                    @endforeach
               </tbody>
             </table>
 

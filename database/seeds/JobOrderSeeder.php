@@ -68,6 +68,44 @@ class JobOrderSeeder extends Seeder
                 'dtDelivered' => '2016-07-23',
                 'boolIsActive' => '1',
                 'boolIsOnline' => '0'
+            ),
+
+            array(
+                'strJobOrderID' => 'JO004',
+                'strJO_CustomerFK' => NULL,    
+                'strJO_CustomerCompanyFK' => 'CUSTC001',
+                'strTermsOfPayment' => 'Full Payment',
+                'strModeOfPayment' => 'Cash',
+                'intJO_OrderQuantity' => '30',
+                'dblOrderTotalPrice' => '15500.00',
+                'boolIsOrderAccepted' => '1',
+                'dtOrderDate' => '2016-08-23',
+                'dtOrderApproved' => '2016-08-23',
+                'dtOrderExpectedToBeDone' => '2016-09-23',
+                'dtExpectedDeliveryDate' => '2016-09-24',
+                'dtFinished' => '2016-09-20',
+                'dtDelivered' => '2016-09-24',
+                'boolIsActive' => '1',
+                'boolIsOnline' => '0'
+            ),
+
+            array(
+                'strJobOrderID' => 'JO005',
+                'strJO_CustomerFK' => NULL,    
+                'strJO_CustomerCompanyFK' => 'CUSTC001',
+                'strTermsOfPayment' => 'Full Payment',
+                'strModeOfPayment' => 'Cash',
+                'intJO_OrderQuantity' => '20',
+                'dblOrderTotalPrice' => '10500.00',
+                'boolIsOrderAccepted' => '1',
+                'dtOrderDate' => '2016-08-24',
+                'dtOrderApproved' => '2016-08-24',
+                'dtOrderExpectedToBeDone' => '2016-09-24',
+                'dtExpectedDeliveryDate' => '2016-09-25',
+                'dtFinished' => '2016-09-21',
+                'dtDelivered' => '2016-09-26',
+                'boolIsActive' => '1',
+                'boolIsOnline' => '0'
             )
         );
 
