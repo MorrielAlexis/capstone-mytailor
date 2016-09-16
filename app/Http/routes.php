@@ -411,12 +411,38 @@ Route::group(['prefix' => 'transaction'], function(){
 		Route::get('alteration-reject-online-order', 'AcceptAlterationOnlineController@reject');
 });
 
+
 /*JOB ORDER PROGRESS*/
 Route::post('/update', 'JobOrderProgressController@updateJobDetails');
 Route::get('/details','JobOrderProgressController@jobdetails');
 Route::get('/track', 'OnlineCustomerProfileIndividualController@trackJob');
 
-/*---------------------------------------------ONLINE---------------------------------------------------*/
+/*PAYMENT AND COLLECTION*/
+/*Payment Part*/
+	Route::group(['prefix' => 'transaction/payment'], function() {
+		
+		Route::group(['prefix' => 'individual'], function() {
+			Route::get('home', 'PaymentIndividualController@index');
+		});
+
+		Route::group(['prefix' => 'company'], function() {
+			Route::get('home', 'PaymentCompanyController@index');
+		});
+	});
+
+/*Collection Part*/
+	Route::group(['prefix' => 'transaction/collection'], function() {
+		Route::group(['prefix' => 'individual'], function() {
+			Route::get('home', 'CollectionIndividualController@index');
+		});
+
+		Route::group(['prefix' => 'company'], function() {
+			Route::get('home', 'CollectionCompanyController@index');
+		});
+	});
+
+
+/*------------------------------------ONLINE---------------------------------------------*/
 
 
 Route::resource('online-home', 'OnlineHomeController',
