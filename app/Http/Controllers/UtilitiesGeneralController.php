@@ -46,6 +46,7 @@ class UtilitiesGeneralController extends Controller
     {   
         $utilities  = UtilitiesGeneral::find("1");
         $file = $request->input('updateFile');
+
         $destinationPath = 'img';
 
         if($file == $utilities->strShopImage)
@@ -62,7 +63,7 @@ class UtilitiesGeneralController extends Controller
         session(['shop_logo', $request->input('updateFile')]);
         session(['shop_name', $request->input('updateShopName')]);
         
-        return redirect('utilities/utilities-general/update');
+        return redirect('utilities/utilities-general');
     }   
 
     /**

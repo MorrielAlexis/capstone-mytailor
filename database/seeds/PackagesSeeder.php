@@ -33,7 +33,7 @@ class PackagesSeeder extends Seeder
         			'strPackageID' => 'PACK0002',
         			'strPackageName' =>  'Female Pair B',
               'strPackageSex' =>  'F',
-        			'strPackageSeg1FK' =>  'SEGM003',
+        			'strPackageSeg1FK' =>  'SEGM001',
 				    	'strPackageSeg2FK' =>  'SEGM005',
       		  	'strPackageSeg3FK' =>  'SEGM009',
               // 'strPackageSeg4FK' =>  'SEGM002',
