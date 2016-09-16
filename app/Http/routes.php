@@ -362,6 +362,10 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::get('walkin-company-show-customize', 'WalkInCompanyController@showCustomizeOrder');
 	Route::get('walkin-company-show-packages', 'WalkInCompanyController@showPackages');
 
+	Route::group(['prefix' => 'walkin-company'], function() {
+		Route::get('customer-check', 'WalkInCompanyController@customerCheck');
+	});
+
 	/* Route for downloadable forms */
 	Route::get('walkin-company-measure-download-forms', 'WalkInCompanyController@downloadForms');
 

@@ -11,12 +11,13 @@
     </div>
 
 	<div class="row" style="padding:30px">
-        
-        <ul class="col s12 breadcrumb">
-			<li><a style="padding-left:200px"><b>1.FILL-UP FORM</b></a></li>
-			<li><a style="padding-left:200px"><b>2.ADD MEASUREMENT DETAIL</b></a></li>
-			<li><a class="active" style="padding-left:200px" href="#payment-info"><b>3.PAYMENT</b></a></li>
-		</ul>
+        <div class="col s12" style="padding-left:15%">
+	        <ul class="breadcrumb">
+				<li><a class="col s12"><b>1.FILL-UP FORM</b></a></li>
+				<li><a class="col s12" style="margin-left:7%"><b>2.ADD MEASUREMENT DETAIL</b></a></li>
+				<li><a class="col s12 active" style="margin-left:33%" href="#payment-info"><b>3.PAYMENT</b></a></li>
+			</ul>
+		</div>
 
 		<!-- Tab for Payment-->
 	    <div id="payment-info" class = "hue col s12 active" style="background-color: white; border:2px outset">
@@ -59,24 +60,36 @@
 		                        <div class="col s12" style="margin-bottom:30px"><!-- <div class="divider" style="height:2px; background-color:teal"></div> --></div>
 		                        <table class = "table centered order-summary z-depth-1" border = "1">
 				       				<thead style="color:gray">
-					          			<tr style="border-top:1px teal solid; border-bottom:1px teal solid; background-color:teal; color:white">
-						                  <th data-field="product" style="border-right:1px teal solid; border-left:1px teal solid">Product</th> 
-						                  <th data-field="fabric" style="border-right:1px teal solid">Fabric</th>
-						                  <th data-field="base-price" style="border-right:1px teal solid">Base Price</th>
-						                  <th data-field="description" style="border-right:1px teal solid">Description</th>  
-						                  <th data-field="style-price-total" style="border-right:1px teal solid">Style Price Total</th>
-						                  <th data-field="labor-price-per-segment" style="border-right:1px teal solid">Labor Price</th>
-<!-- 						                  <th data-field="line-total" style="border-right:1px teal solid">Grand Total</th>        
- -->						              	</tr>
+					          			<tr style="border-top:1px black solid; border-bottom:1px black solid; background-color:teal; color:white">
+						                  <th colspan="1" data-field="product" style="border-right:1px black solid; border-left:1px black solid">Product</th> 
+						                  <th colspan="1" data-field="fabric" style="border-right:1px black solid">Fabric</th>
+						                  <th colspan="1" data-field="base-price" style="border-right:1px black solid">Base Price</th>
+						                  <th colspan="3" data-field="description" style="border-right:1px black solid">Description</th>  
+						                  <th colspan="1" data-field="style-price-total" style="border-right:1px black solid">Style Price Total</th>
+						                  <th colspan="1" data-field="labor-price-per-segment" style="border-right:1px black solid">Labor Price</th>
+						                  <th colspan="1" data-field="line-total" style="border-right:1px black solid">Grand Total</th>        
+						             </tr>
+						             <tr>
+						             	<th style="border:1px black solid"></th>
+						             	<th style="border:1px black solid"></th>
+						             	<th style="border:1px black solid"></th>
+						             	<th style="border:1px black solid">Style Category</th>
+						             	<th style="border:1px black solid">Segment Pattern</th>
+						             	<th style="border:1px black solid">Style Price</th>
+						             	<th style="border:1px black solid"></th>
+						             	<th style="border:1px black solid"></th>
+						             	<th style="border:1px black solid"></th>
+						             </tr>
+
 					              	</thead>
 					              	<tbody>
 					              		@for($i = 0; $i < count($values); $i++)
 					              			
-								            <tr style="border-top:1px teal solid; border-bottom:1px teal solid">
-								                <td style="border-right:1px teal solid; border-left:1px teal solid">{{ $values[$i]['strGarmentCategoryName'] }}, {{ $values[$i]['strSegmentName'] }}</td>
-												<td style="border-right:1px teal solid">{{ $values[$i]['strFabricName'] }}</td>
-								                <td style="border-right:1px teal solid">{{ number_format(($values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice']) , 2) }} PHP</td>
-												<td style="border-right:1px teal solid">
+								            <tr style="border-top:1px black solid; border-bottom:1px black solid">
+								                <td style="border-right:1px black solid; border-left:1px black solid">{{ $values[$i]['strGarmentCategoryName'] }}, {{ $values[$i]['strSegmentName'] }}</td>
+												<td style="border-right:1px black solid">{{ $values[$i]['strFabricName'] }}</td>
+								                <td style="border-right:1px black solid">{{ number_format(($values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice']) , 2) }} PHP</td>
+												{{-- <td style="border-right:1px black solid">
 													<div class="col s12">
 													<div class="col s4"><b style="color:teal">Style Category</b></div>
 													<div class="col s4"><b style="color:teal">Segment Pattern</b></div>
@@ -92,12 +105,19 @@
 
 																@endif
 												        @endfor
-												</td>
+												</td> --}}
+												@for($j = 0; $j < count($styles[$i]); $j++)
+													@if($styles[$i][$j]->strSegmentID == $values[$i]['strSegmentID'])
+												<td>{{ $styles[$i][$j]->strSegStyleName }}</td>
+												<td>{{ $styles[$i][$j]->strSegPName }}</td>
+												<td>{{ number_format($styles[$i][$j]->dblPatternPrice, 2) }} PHP</td>
+													@endif
+												@endfor
 												<td style="border-right:1px teal solid"><div id="style_price_total" name="style_price_total"> </div></td>
 												<td style="border-right:1px teal solid">[ insert price here ]</td>
 										 @endfor		
-<!-- 							            	<td style="border-right:1px white solid; border-top:1px white solid; border-bottom:1px white solid"><</td>
- -->							            
+							            		<td style="border-right:1px white solid; border-top:1px white solid; border-bottom:1px white solid">0.00 PHP</td>
+							            
 								            </tr>						            		
 							           
 

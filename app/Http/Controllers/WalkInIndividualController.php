@@ -266,7 +266,7 @@ class WalkInIndividualController extends Controller
     }
 
     //if a customer already has an existing profile with the shop
-    public function customerCheck(){
+    public function customerCheck(Request $request){
 
         return view('walkin-individual-customer-check');
     }
