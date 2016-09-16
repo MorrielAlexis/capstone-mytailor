@@ -13,7 +13,7 @@ class UtilitiesGeneralSeeder extends Seeder
     {
          $tblUtilitiesGeneral = array (
             array(
-                'intUtilsGenID' => 'GEN0001',
+                'intUtilsGenID' => '1',
                 'strShopName' => 'Keme Management System',
                 'strShopImage' =>'img/20160706064251-167357.jpg',
                 'boolIsActive' => '1'

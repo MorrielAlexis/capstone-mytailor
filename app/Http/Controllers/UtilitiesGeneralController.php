@@ -42,44 +42,28 @@ class UtilitiesGeneralController extends Controller
             //         ->pluck('segment');
     }
 
-    public function general()
-    {
-        // $shopLogo = \DB::table('tblUtilitiesGeneral')
-        //     ->where('intUtilsGenID','GEN0001')
-        //     ->orderBy('created_at', 'desc')
-        //     ->pluck('strShopImage');
-
-        //     Session::put('shoplogo', $shopLogo);
-
-        //     $shopName = \DB::table('tblUtilitiesGeneral')
-        //     ->where('intUtilsGenID', 'GEN0001')
-        //     ->orderBy('created_at', 'desc')
-        //     ->pluck('strShopName');
-
-        //     Session::put('shopname', $shopName);
-
-        //     return redirect('utilities/utilities-general');
-    }
-
     public function updateSettings(Request $request)
     {   
         $utilities  = UtilitiesGeneral::find("1");
         $file = $request->input('updateFile');
         $destinationPath = 'img';
-            if($file == $utilities->strShopImage)
-            {
-                $utilities->strShopName = $request->input('updateShopName'); 
-            }else{
-                    $request->file('updateLogo')->move($destinationPath);
-                    $utilities->strShopName = $request->input('updateShopName'); 
-                    $utilities->strShopImage = 'img/'.$file;
-            }
-            $utilities->save();
-            
-            session(['shop_logo', $utilities]);
-            session(['shop_name', $utilities]);
-            return redirect('utilities/utilities-general/update');
-    }
+
+        if($file == $utilities->strShopImage)
+        {
+            $utilities->strShopName = $request->input('updateShopName'); 
+        }else{
+            $request->file('updateLogo')->move($destinationPath);
+            $utilities->strShopName = $request->input('updateShopName'); 
+            $utilities->strShopImage = 'img/'.$file;
+        }
+
+        $utilities->save();
+         
+        session(['shop_logo', $request->input('updateFile')]);
+        session(['shop_name', $request->input('updateShopName')]);
+        
+        return redirect('utilities/utilities-general/update');
+    }   
 
     /**
      * Show the form for creating a new resource.

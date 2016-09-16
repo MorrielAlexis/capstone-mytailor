@@ -16,9 +16,9 @@
     <body>
 
     <header>
-        <img src="{{ Session::get('shoplogo') }}"  alt="" class="right circle responsive-img valign profile-image center" style="height:70px; width:80px; margin-top:5px;">
+        <img src="{{ Session::get('shop_logo') }}"  alt="" class="right circle responsive-img valign profile-image center" style="height:70px; width:80px; margin-top:5px;">
         <div class="right col s9 " style="padding-top:20px">
-          <font size = "+2" color = "black" style="margin-top:5px" >{{ Session::get('strShopName') }}</font>
+          <font size = "+2" color = "black" style="margin-top:5px" >{{ Session::get('shop_name')}}</font>
         </div>
     </header>
 
