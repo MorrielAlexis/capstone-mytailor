@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UtilitiesGeneralModel extends Model
+class UtilitiesGeneral extends Model
 {
     protected $table = 'tblUtilitiesGeneral';
     

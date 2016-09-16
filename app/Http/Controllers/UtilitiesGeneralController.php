@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Session;
-use App\UtilitiesGeneralModel;
+use App\UtilitiesGeneral;
 
 
 class UtilitiesGeneralController extends Controller
@@ -19,22 +19,23 @@ class UtilitiesGeneralController extends Controller
      */
     public function index()
     {   
-        $utilities = UtilitiesGeneralModel::all();
         $shopLogo = \DB::table('tblUtilitiesGeneral')
-            ->where('intUtilsGenID','GEN0001')
+            ->select('strShopImage')
+            ->where('intUtilsGenID','1')
             ->orderBy('created_at', 'desc')
-            ->pluck('strShopImage');
+            ->get();
 
-            Session::put('shoplogo', $shopLogo);
+        session(['shop_logo' => $shopLogo]);
 
-            $shopName = \DB::table('tblUtilitiesGeneral')
-            ->where('intUtilsGenID', 'GEN0001')
+        $shopName = \DB::table('tblUtilitiesGeneral')
+            ->select('strShopName')
+            ->where('intUtilsGenID','1')
             ->orderBy('created_at', 'desc')
-            ->pluck('strShopName');
+            ->get();
 
-            Session::put('shopname', $shopName);
+        session(['shop_name' => $shopName]);
 
-            return view('utilities.utilities-general');
+        return view('utilities.utilities-general');
 
             // ->select('strSegmentName')
             //         ->where('strSegmentID', $segment)
