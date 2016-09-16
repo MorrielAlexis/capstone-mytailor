@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class QueriesTopPickSegmentController extends Controller
+
+
+class QueriesAvailedAlterServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,11 +18,11 @@ class QueriesTopPickSegmentController extends Controller
      */
     public function index()
     {
-        $topSegments = \DB::select("SELECT tblSegment.strSegmentName as name, tblSegment.strSegmentImage as image, COUNT(strSegmentID) as ctr FROM tblJOSpecific,tblSegment WHERE tblSegment.strSegmentID = tblJOSpecific.strJOSegmentFK GROUP BY strSegmentID ORDER BY ctr DESC limit 3");
+        $topAlterations = \DB::select("SELECT tblAlteration.strAlterationName as name, COUNT(strAlterationID) as ctr FROM tblNonShopAlterSpecific,tblAlteration WHERE tblAlteration.strAlterationID = tblNonShopAlterSpecific.strAlterationTypeFK GROUP BY strAlterationID ORDER BY ctr DESC limit 3");
 
         // dd($topSegments);
-        return view('queries.queries-top-pick-segment')
-        ->with('topSegments', $topSegments);
+        return view('queries.queries-most-availed-alteration-service')
+        ->with('topAlterations', $topAlterations);
     }
 
     /**
