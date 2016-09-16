@@ -374,14 +374,7 @@ Route::get('transaction-modifycompanyorders-modifyemployee','ModifyCompanyOrders
 Route::get('transaction-modifycompanyorders-modifyemployeeorder','ModifyCompanyOrdersController@package');
 
 
-Route::group(['prefix' => 'transaction'], function(){
-	Route::get('billing-payment-bill-customer', 'BillingPaymentController@billCustomer');
-});
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////------ PDF GENERATOR (temp) -------/////////////////////////////////////////////////////////////
-
-Route::get('/pdf', 'PdfController@converToPdf');
 
 /*---------------------------------------ADMIN TRANSACTION ALTERATION--------------------------------------------------*/
 Route::group(['prefix' => 'transaction'], function(){		
@@ -557,16 +550,47 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::get('customize-sets-list-of-orders', 'OnlineCustomizeSetsController@orderlist');
 	Route::get('customize-sets-customize-order', 'OnlineCustomizeSetsController@customize');
 
-  /*Queries */
-  Route::group(['prefix' => 'queries'], function(){
-	
-	Route::get('list-of-top-companies','QueriesTopPickCompanyController@index');
-	Route::get('list-of-top-customers','QueriesTopPickCustomerController@index');
-	Route::get('list-of-top-pick-fabric','QueriesTopPickFabricController@index');
-	Route::get('list-of-top-pick-design','QueriesTopPickDesignController@index');
-	Route::get('list-of-top-pick-segment','QueriesTopPickSegmentController@index');
+
+
+	/** Payment and Collection **/
+	//Payment Part
+	Route::group(['prefix' => 'payment'], function(){
+
+		Route::get('home', 'BillingPaymentController@index'); //homepage for payment
+		Route::get('bill-customer', 'BillingPaymentController@billCustomer'); //where payment process actually takes place
+		Route::get('see-pending', 'BillingPaymentController@showPending'); //shows all pending payments of a customer
+
+	});
+
+	//Collection Part
+	Route::get('see-all-collections', 'BillingPaymentController@index');
+
+
+  	/** Queries **/
+	Route::group(['prefix' => 'queries'], function(){
 		
+		Route::get('list-of-top-companies','QueriesTopPickCompanyController@index');
+		Route::get('list-of-top-customers','QueriesTopPickCustomerController@index');
+		Route::get('list-of-top-pick-fabric','QueriesTopPickFabricController@index');
+		Route::get('list-of-top-pick-design','QueriesTopPickDesignController@index');
+		Route::get('list-of-top-pick-segment','QueriesTopPickSegmentController@index');
+			
+	});
 
 
-});
+	/** Reports **/
+	//Sales Part
+	Route::group(['prefix' => 'reports/sales'], function(){
+
+		Route::get('by-job-order', 'ReportsSalesByJobOrderController@index'); //controller for sales by job order
+		Route::get('by-product', 'ReportsSalesByProductController@index'); //controller for sales by product
+		Route::get('by-customer', 'ReportsSalesByCustomerController@index'); //controller for sales by customer
+		
+	});
+	//Customers with Balance
+	Route::group(['prefix' => 'reports/customers-with-balance'], function(){
+
+		Route::get('individual', 'IndividualCustomerWithBalanceController@index'); //controlller for individuals with balance
+		Route::get('company', 'CompanyCustomerWithBalanceController@index'); //controller for companies with balance		
+	});
 

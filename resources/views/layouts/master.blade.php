@@ -213,7 +213,7 @@
               </li>
               <!--<div class="divider"></div>-->
               <li class="bold"><a class="collapsible-header waves-effect waves-white {{ Request::is('queries/*') ? 'active' : '' }}" style="color:#212121"><i style="font-size:30px" class="small mdi-action-assessment" style="color:#ccff90"></i><b>Queries</b></a>
-                   <div class="collapsible-body" position = "fixed" style = "display: block;">
+                  <div class="collapsible-body" position = "fixed" style = "display: block;">
                   <ul>
                     <li class="no-padding">
                       <ul class="collapsible collapsible-accordion">
@@ -230,7 +230,46 @@
                 </div>
               </li>
               <!--<div class="divider"></div>-->
-              <li class="bold"><a class="collapsible-header waves-effect waves-white" style="color:#212121"><i style="font-size:30px" class="small mdi-action-assignment" style="color:#ccff90"></i><b>Reports</b></a></li>
+
+              <!-- REPORTS -->
+              <li class="bold"><a class="collapsible-header waves-effect waves-white {{ Request::is('reports/*') ? 'active' : '' }}" style="color:#212121"><i style="font-size:30px" class="small mdi-action-assignment" style="color:#ccff90"></i><b>Reports</b></a>
+                  <div class="collapsible-body" position = "fixed" style = "display: block;">
+                  <ul>
+                    <li class="no-padding">
+                      <ul class="collapsible collapsible-accordion">
+
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('reports/sales/*') ? 'active' : '' }}"><b>Sales</b></a>
+                              <div class="collapsible-body" position = "fixed" style = "display: block;">
+                                <ul>
+                                  <li class="no-padding">
+                                    <ul class="collapsible collapsible-accordion">
+
+                                      <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('reports/sales/by-job-order')}}">Sales By Job Order</a></li>
+                                      <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('reports/sales/by-product')}}">Sales By Product</a></li>
+                                      <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('reports/sales/by-customer')}}">Sales By Customer</a></li>
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </div>
+                        </li>
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('reports/customers-with-balance/*') ? 'active' : '' }}"><b>Customers with Balance</b></a>
+                          <div class="collapsible-body" position = "fixed" style = "display: block;">
+                                <ul>
+                                  <li class="no-padding">
+                                    <ul class="collapsible collapsible-accordion">
+
+                                      <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('reports/customers-with-balance/individual')}}">Individual</a></li>
+                                      <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('reports/customers-with-balance/company')}}">Company</a></li>
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </div>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </li>
               <!--<div class="divider"></div>-->
               
               <li class="bold"><a class="collapsible-header waves-effect waves-white {{ Request::is('utilities/*') ? 'active' : '' }}" style="color:#212121" ><i style="font-size:30px" class="small mdi-action-perm-contact-cal" style="color:#ccff90"></i><b>Utilities</b></a>
