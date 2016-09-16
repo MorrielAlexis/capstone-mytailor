@@ -71,6 +71,7 @@
 					              	</thead>
 					              	<tbody>
 					              		@for($i = 0; $i < count($values); $i++)
+					              		@for($)
 					              			
 								            <tr style="border-top:1px teal solid; border-bottom:1px teal solid">
 								                <td style="border-right:1px teal solid; border-left:1px teal solid">{{ $values[$i]['strGarmentCategoryName'] }}, {{ $values[$i]['strSegmentName'] }}</td>
@@ -94,7 +95,7 @@
 												        @endfor
 												</td>
 												<td style="border-right:1px teal solid"><div id="style_price_total" name="style_price_total"> </div></td>
-												<td style="border-right:1px teal solid">[ insert price here ]</td>
+												<td style="border-right:1px teal solid"><div id="labor_price" name="labor_price"> </td>
 										 @endfor		
 <!-- 							            	<td style="border-right:1px white solid; border-top:1px white solid; border-bottom:1px white solid"><</td>
  -->							            
@@ -125,7 +126,7 @@
 
 								<div class="col s12">
 									<div class="col s4" style="color:gray; font-size:15px"><p><b>Total Labor Price</b></p></div>
-			      			<div class="col s8" style="color:gray;"><p><input id="style_price_total" name="style_price_total" type="text" class="" readonly><b></b></p></div>
+			      			<div class="col s8" style="color:gray;"><p><input id="labor_price_total" name="labor_price_total" type="text" class="" readonly><b></b></p></div>
 								</div>
 								
 								<div class="col s12">
@@ -284,14 +285,17 @@
 
 			var a = {!! json_encode($values) !!};
 			var b = {!! json_encode($styles) !!};
+			var c = {!! json_encode($chargefees !!};
 
 			var totalAmount = 0.00;
 			var minDays = 0;
 			var stylePriceTotal = 0.00;
+			var laborPriceTotal = 0.00;
 
 			for(var i = 0; i < a.length; i++){
 				totalAmount += a[i].dblSegmentPrice;
 				totalAmount += a[i].dblFabricPrice;
+				totalAmount += c[i].dblChargeDetPrice;
 					for(var j = 0; j < b[i].length; j++){
 						totalAmount += b[i][j].dblPatternPrice;
 					}
@@ -305,6 +309,13 @@
 				}
 			}
 
+			var laborPriceTotal = 0.00;
+			for(var i = 0; i < a.length; i++) {
+				for(var k = 0; k < c[i].length; j++) {
+					laborPriceTotal += c[i][k].dblChargeDetPrice;
+				}
+			}
+
 			var monthNames = [ "January", "February", "March", "April", "May", "June",
 		    "July", "August", "September", "October", "November", "December" ];
 			var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
@@ -315,7 +326,8 @@
 			newDate.setDate(newDate.getDate());   
 			dueDate.setDate(newDate.getDate()+minDays); 
 
-			$('#style_price_total').val(stylePriceTotal.toFixed(2));
+			$('#style_price_total').text(stylePriceTotal.toFixed(2) + " " + "PHP");
+			$('#labor_price_total').val(laborPriceTotal.toFixed(2));
 			$('#total_price').val(totalAmount.toFixed(2));
 			$('#due-date').text(dayNames[dueDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
 			$('#transaction_date').val(monthNames[(newDate.getMonth()+1)] + " " + newDate.getDate() + ", " + newDate.getFullYear());

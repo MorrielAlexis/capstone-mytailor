@@ -168,8 +168,9 @@ class WalkInIndividualController extends Controller
         return view('walkin-individual-catalogue-design');
     }
 
-    public function customerInformation(Request $request)
-    {   
+    //if a customer already has an existing profile with the shop
+    public function customerCheck(Request $request)
+    {
         $values = session()->get('segment_values');
         $segmentStyles = SegmentStyle::all();
         $patterns = [];
@@ -227,7 +228,13 @@ class WalkInIndividualController extends Controller
         session(['segment_values' => $values]);
 
         session(['segment_design' => $sqlStyles]);
+        
+        return view('walkin-individual-customer-check')
+                ->with('segments', $values);
+    }
 
+    public function customerInformation(Request $request)
+    {   
         $joID = \DB::table('tblJobOrder')
             ->select('strJobOrderID')
             ->orderBy('created_at', 'desc')
@@ -263,12 +270,6 @@ class WalkInIndividualController extends Controller
         return view('walkin-individual-checkout-info')
                     ->with('custID', $custID)
                     ->with('joID', $newID);
-    }
-
-    //if a customer already has an existing profile with the shop
-    public function customerCheck(){
-
-        return view('walkin-individual-customer-check');
     }
 
     public function addCustomer(Request $request)
@@ -363,10 +364,27 @@ class WalkInIndividualController extends Controller
         $fabrics = session()->get('segment_fabric');
         $joID = session()->get('joID');
         $style_count = count(session()->get('segment_values'));
+        $chargefees = [];
+
+        $sqlCharge = \DB::table('tblChargeCategory AS a')
+                    ->leftJoin('tblChargeDetail AS b', 'a.strChargeCatID', '=', 'b.strChargeCatFK')
+                    ->select('b.*')
+                    ->whereIn('b.strMeasDetSegmentFK', $data)
+                    ->get();
+
+        for($i = 0; $i < count($values); $i++){
+            for($j = 0; $j < count($sqlCharge); $j++){
+                if($values[$i] == $sqlCharge[$j]->strChargeDetSegFK){
+                    $chargefees[$i] = $sqlCharge[$j]->dblChargeDetPrice;
+                }
+            }
+        }  
+        session(['charge_laborfee' => $chargefees]);
 
         return view('walkin-individual-checkout-pay')
                     ->with('values', $values)
                     ->with('styles', $styles)
+                    ->with('charge_laborfee', $chargefees)
                     ->with('joID', $joID)
                     ->with('style_count', $style_count);
     }

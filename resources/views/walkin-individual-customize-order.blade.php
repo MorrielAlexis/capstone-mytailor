@@ -382,7 +382,6 @@
 						<br>
 						<div class="divider" style="height:2px;margin-top:40px"></div>
 <!-- END OF LOOP -->	@endforeach
-						{!! Form::close() !!}
 						<!--/// END OF AN ITERATION  ///-->
 
 
@@ -401,6 +400,7 @@
 								</div>
 							</div>
 						</div> <!--end of list-->
+						{!! Form::close() !!}
 
 						<div class="col s12">
 							<div class="divider" style="height:2px; margin-top:30px"></div>      	
