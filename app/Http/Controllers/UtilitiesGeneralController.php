@@ -62,7 +62,7 @@ class UtilitiesGeneralController extends Controller
         session(['shop_logo', $request->input('updateFile')]);
         session(['shop_name', $request->input('updateShopName')]);
         
-        return redirect('utilities/utilities-general/update');
+        return redirect('utilities/utilities-general');
     }   
 
     /**
