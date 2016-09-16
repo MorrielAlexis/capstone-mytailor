@@ -20,22 +20,22 @@ class UtilitiesGeneralController extends Controller
     public function index()
     {   
         $shopLogo = \DB::table('tblUtilitiesGeneral')
-            ->select('strShopImage')
             ->where('intUtilsGenID','1')
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->pluck('strShopImage');
 
         session(['shop_logo' => $shopLogo]);
 
         $shopName = \DB::table('tblUtilitiesGeneral')
-            ->select('strShopName')
             ->where('intUtilsGenID','1')
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->pluck('strShopName');
 
         session(['shop_name' => $shopName]);
 
-        return view('utilities.utilities-general');
+        return view('utilities.utilities-general')
+                ->with('shop_logo', $shopLogo)
+                ->with('shop_name', $shopName);
 
             // ->select('strSegmentName')
             //         ->where('strSegmentID', $segment)

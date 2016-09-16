@@ -101,7 +101,7 @@
 																	<tr>
 																		<td>{{ $segments[$k][$j][0]->strGarmentCategoryName }}, <b>{{ $segments[$k][$j][0]->strSegmentName }}</b></td>
 																		<td><img src="../{{ $segments[$k][$j][0]->strSegmentImage }}"/></td>
-																		<td><input name="segment-qty{{ $i }}[]" id="add-garment" type="number" value="" style="margin-top:20px" placeholder="How many?"></td>
+																		<td><input name="segment-qty{{ $i }}[]" id="add-garment" type="number" value="1" style="margin-top:20px" placeholder="How many?" ></td>
 																	</tr>
 																	@endif
 																@endfor
