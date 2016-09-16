@@ -11,12 +11,13 @@
     </div>
 
 	<div class="row" style="padding:30px">
-        
-        <ul class="col s12 breadcrumb">
-			<li><a style="padding-left:200px"><b>1.FILL-UP FORM</b></a></li>
-			<li><a class="active" style="padding-left:200px" href="#measure-detail"><b>2.ADD MEASUREMENT DETAIL</b></a></li>
-			<li><a style="padding-left:200px"><b>3.PAYMENT</b></a></li>
-		</ul>
+        <div class="col s12" style="padding-left:15%">
+	        <ul class="breadcrumb">
+				<li><a class="col s12"><b>1.FILL-UP FORM</b></a></li>
+				<li><a class="col s12 active" style="margin-left:7%" href="#measure-detail"><b>2.ADD MEASUREMENT DETAIL</b></a></li>
+				<li><a class="col s12" style="margin-left:33%"><b>3.PAYMENT</b></a></li>
+			</ul>
+		</div>
 
 		<!-- Tab for Adding Measurement Detail-->
 	    <div id="measure-detail" class = "hue col s12" style="background-color: white; border:2px outset">

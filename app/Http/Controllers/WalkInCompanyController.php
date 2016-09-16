@@ -193,6 +193,7 @@ class WalkInCompanyController extends Controller
         dd($patterns);
     }
 
+
     public function addEmployees()
     {   
         $order = session()->get('package_data');
@@ -258,6 +259,12 @@ class WalkInCompanyController extends Controller
     public function catalogueDesign()
     {
         return view('walkin-company-catalogue-design');
+    }
+
+    //if a customer already has an existing profile with the shop
+    public function customerCheck(){
+
+        return view('walkin-company-customer-check');
     }
 
     public function companyInformation()

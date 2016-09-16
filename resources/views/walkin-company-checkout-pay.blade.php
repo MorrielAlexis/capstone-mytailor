@@ -11,12 +11,13 @@
     </div>
 
 	<div class="row" style="padding:30px">
-        
-        <ul class="col s12 breadcrumb">
-			<li><a style="padding-left:200px"><b>1.FILL-UP FORM</b></a></li>
-			<li><a style="padding-left:200px"><b>2.ADD MEASUREMENT DETAIL</b></a></li>
-			<li><a class="active" style="padding-left:200px" href="#payment-info"><b>3.PAYMENT</b></a></li>
-		</ul>
+        <div class="col s12" style="padding-left:15%">
+	        <ul class="breadcrumb">
+				<li><a class="col s12"><b>1.FILL-UP FORM</b></a></li>
+				<li><a class="col s12" style="margin-left:7%"><b>2.ADD MEASUREMENT DETAIL</b></a></li>
+				<li><a class="col s12 active" style="margin-left:33%" href="#payment-info"><b>3.PAYMENT</b></a></li>
+			</ul>
+		</div>
 
 		<!-- Tab for Payment-->
 	    <div id="payment-info" class = "hue col s12 active" style="background-color: white; border:2px outset">
@@ -57,50 +58,72 @@
 					<div class="col s12 overflow-x" style="min-height:300px; max-height:550px; border: 3px gray solid; padding:10px">
 						<div class="col s12">		                    
 		                        <div class="col s12" style="margin-bottom:30px"><!-- <div class="divider" style="height:2px; background-color:teal"></div> --></div>
-		                        <table class = "table centered order-summary z-depth-1" border = "1">
+		                        <table class="table centered order-summary z-depth-1" border = "1">
 				       				<thead style="color:gray">
 					          			<tr style="border-top:1px teal solid; border-bottom:1px teal solid; background-color:teal; color:white">
 						                  <th data-field="product" style="border-right:1px teal solid; border-left:1px teal solid">Product</th> 
 						                  <th data-field="fabric" style="border-right:1px teal solid">Fabric</th>
 						                  <th data-field="base-price" style="border-right:1px teal solid">Base Price</th>
-						                  <th data-field="description" style="border-right:1px teal solid">Description</th>  
 						                  <th data-field="style-price-total" style="border-right:1px teal solid">Style Price Total</th>
 						                  <th data-field="labor-price-per-segment" style="border-right:1px teal solid">Labor Price</th>
-<!-- 						                  <th data-field="line-total" style="border-right:1px teal solid">Grand Total</th>        
- -->						              	</tr>
+						                  <th data-field="line-total" style="border-right:1px teal solid">Grand Total</th>        
+						              	</tr>
 					              	</thead>
 					              	<tbody>	
 								            <tr style="border-top:1px teal solid; border-bottom:1px teal solid">
-								                <td style="border-right:1px teal solid; border-left:1px teal solid">Test</td>
+								                <td style="border-right:1px teal solid; border-left:1px teal solid"><a class="btn-flat tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to expand and see package details" onclick="packageDetail(1)"><b><u>Test</u></b></a></td>
 												<td style="border-right:1px teal solid">Test</td>
 								                <td style="border-right:1px teal solid">0.00 PHP</td>
-												<td style="border-right:1px teal solid">
-													<div class="col s12">
-													<div class="col s4"><b style="color:teal">Style Category</b></div>
-													<div class="col s4"><b style="color:teal">Segment Pattern</b></div>
-													<div class="col s4"><b style="color:teal">Style Price</b></div>
-													<div class="col s12"><div class="divider"></div></div>
-												</div>
-	
-																	<div class="col s4">Test</div>
-																	<div class="col s4">Test</div>
-																	<div class="col s4">0.00 PHP</div>
-
-
-												</td>
 												<td style="border-right:1px teal solid"><div id="style_price_total" name="style_price_total"> </div></td>
 												<td style="border-right:1px teal solid">[ insert price here ]</td>
 	
-<!-- 							            	<td style="border-right:1px white solid; border-top:1px white solid; border-bottom:1px white solid"><</td>
- -->							            
+							            	<td style="border-right:1px teal solid; border-top:1px white solid; border-bottom:1px teal solid"></td>
+							            
 								            </tr>						            		
 							           
 
 							        </tbody>
 							    </table>					
 						</div>
+
+
+					<!--PACKAGE DETAIL WILL BE HERE-->
+					<div class="card horizontal col s12" id="package-detail" style="display:none; margin-top:3%; padding-bottom:4%; background-color:#e0f2f1; border:1px #e0f2f1 outset;">
+					<i class="right mdi-navigation-close tooltipped" data-poition="bottom" data-delay="50" data-tooltip="Click to close" onclick="packageDetail(2)" style="font-size:30px"></i>
+					<div class="container" style="margin-top:4%;">
+						<table class="table centered z-depth-1">
+							<thead style="background-color:#b2dfdb">
+								<tr>
+									<th style="border:1px black solid" colspan="1">Product</th>
+									<th style="border:1px black solid" colspan="1">Qty</th>
+									<th style="border:1px black solid" colspan="1">Unit Price</th>
+									<th style="border:1px black solid" colspan="3">Style Description</th>
+								</tr>
+								<tr>
+									<th style="border:1px black solid"></th>
+									<th style="border:1px black solid"></th>
+									<th style="border:1px black solid"></th>
+									<th style="border:1px black solid">Style Category</th>
+									<th style="border:1px black solid">Segment Pattern</th>
+									<th style="border:1px black solid">Style Price</th>
+								</tr>
+							</thead>
+							<tbody style="border:1px #b2dfdb solid; background-color:#FFFFFF">
+								<tr>
+									<td style="border:1px black solid">Product 1</td>
+									<td style="border:1px black solid">1</td>
+									<td style="border:1px black solid">123.00 PHP</td>
+									<td style="border:1px black solid">Test</td>
+									<td style="border:1px black solid">Test</td>
+									<td style="border:1px black solid">0.00 PHP</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					</div>
 						<div class="col s12" style="margin-bottom:38px"></div>
 					</div>
+
 
 					<div class="col s12" style="margin:10px"></div>
 					{!! Form::open(['url' => 'transaction/walkin-individual-save-order', 'method' => 'POST']) !!}
@@ -366,5 +389,23 @@
 		});
 
 	</script>
+
+	<script type="text/javascript">
+	
+	// $('#button').on('click', function() {
+	// 	$('#custId').show();
+	// 	$('#custId').style.display = "block";
+	// });
+	function packageDetail(value) 
+	{
+		if(value == 1){
+			document.getElementById('package-detail').style.display = "block";
+		}
+		else {
+			document.getElementById('package-detail').style.display = "none";
+		}
+		
+	}
+</script>
 
 @stop
