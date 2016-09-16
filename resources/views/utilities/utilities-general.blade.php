@@ -38,7 +38,7 @@
               <div class="col s12">
                   <div class="input-field">
                     <input id="updateShopName" name="updateShopName" type="text" class="validate">
-                    <label for="shop_name">{{ $shop_name }}</label>
+                    <label for="shop_name">Shop Name</label>
                   </div>
               </div> 
             </div>    

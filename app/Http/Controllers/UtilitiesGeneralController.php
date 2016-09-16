@@ -42,28 +42,9 @@ class UtilitiesGeneralController extends Controller
             //         ->pluck('segment');
     }
 
-    public function general()
-    {
-        // $shopLogo = \DB::table('tblUtilitiesGeneral')
-        //     ->where('intUtilsGenID','GEN0001')
-        //     ->orderBy('created_at', 'desc')
-        //     ->pluck('strShopImage');
-
-        //     Session::put('shoplogo', $shopLogo);
-
-        //     $shopName = \DB::table('tblUtilitiesGeneral')
-        //     ->where('intUtilsGenID', 'GEN0001')
-        //     ->orderBy('created_at', 'desc')
-        //     ->pluck('strShopName');
-
-        //     Session::put('shopname', $shopName);
-
-        //     return redirect('utilities/utilities-general');
-    }
-
     public function updateSettings(Request $request)
     {
-        $utilities  = UtilitiesGeneralModel::find("GEN0001");
+        $utilities  = UtilitiesGeneral::find("1");
         $file = $request->input('updateLogo');
         $destinationPath = 'img';
           if($file == $utilities->strShopImage)
@@ -76,10 +57,13 @@ class UtilitiesGeneralController extends Controller
                     $utilities->strShopImage = 'img/'.$file;
             }
                 $utilities->save();
-                Session::put('shoplogo', $utilities);
-                Session::put('shopname', $utilities);
+                Session::put('shop_logo', $utilities);
+                Session::put('shop_name', $utilities);
                 return redirect('utilities/utilities-general/update');
     }
+
+    
+   
 
     /**
      * Show the form for creating a new resource.
