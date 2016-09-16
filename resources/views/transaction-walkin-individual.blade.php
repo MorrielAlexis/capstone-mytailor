@@ -57,7 +57,7 @@
 										    <option value="M" class="circle">Male</option>
 										    <option value="F" class="circle">Female</option>
 										</select>
-										<label><font size="3" color="Red">Show garments for(gender):</font></label>
+										<label><font size="3" color="Red">Show garments for (sex):</font></label>
 								</div>
 							</div>
 

@@ -104,9 +104,11 @@
 						<div class="left col s5">
 							<a class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to edit data for company employees" href="{{URL::to('transaction/walkin-company-add-employees')}}" style="color:white; background-color:#03a9f4;"><label style="font-size:15px; color:white"> Add Employees Now</label></a>
 						</div>	
-						<div class="right col s7">
+
+						<div class="col s7">
 							<a href="{{URL::to('transaction/walkin-company')}}" class="left btn" style="color:white; background-color:teal; border:3px teal solid">Cancel Transaction</a>
-							<a href="{{URL::to('transaction/walkin-company')}}" class="right btn" style="color:white; background-color:teal; border:3px teal solid">Add another set</a>
+							<a href="{{URL::to('transaction/walkin-company-show-packages')}}" class="right btn" style="color:white; background-color:teal; border:3px teal solid">Add another set</a>
+
 							<!--<a href="{{URL::to('transaction/walkin-company-retail-products')}}" class="right btn" style="color:white; background-color:teal; border:3px teal solid">Add a retail order</a>-->
 						</div>
 						

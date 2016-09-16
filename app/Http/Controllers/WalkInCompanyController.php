@@ -38,10 +38,37 @@ class WalkInCompanyController extends Controller
         $data = [];
         $values = [];
         $quantity = [];
+        $pattern = [];
 
         session(['package_data' => $data]);
         session(['package_values' => $values]);
         session(['package_quantity' => (int)$quantity]);
+        session(['package_segment_pattern' => $pattern]);
+
+        $packages = Package::all();
+
+        return view('transaction-walkin-company')
+                ->with('packages', $packages)
+                ->with('values', $values)
+                ->with('quantity', $quantity);
+    }
+
+    public function showPackages()
+    {       
+
+        if(session()->get('package_data') != null ){
+            $values = session()->get('package_data');
+            $quantity = session()->get('package_quantity');
+            //$quantity = session()->get('segment_quantity');
+        }else{
+            $data = [];
+            $values = [];
+            $quantity = [];
+
+            session(['package_data' => $data]);
+            session(['package_values' => $values]);
+            session(['package_quantity' => (int)$quantity]);
+        }
 
         $packages = Package::all();
 
@@ -188,9 +215,9 @@ class WalkInCompanyController extends Controller
             }
             $k = 0;
         }
-
-        //dd($to_be_customized);
-        dd($patterns);
+        $request->session()->push('package_segment_pattern', $patterns);
+        
+        return redirect('transaction/walkin-company-show-order');
     }
 
 
