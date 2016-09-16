@@ -15,7 +15,7 @@
 	        <ul class="col s12 breadcrumb">
 				<li><a class="active" style="padding-left:200px" href="#customer-info"><b>1.FILL-UP FORM</b></a></li>
 				<li><a style="padding-left:200px" href="{{URL::to('transaction/walkin-company-payment-measure-detail')}}"><b>2.ADD MEASUREMENT DETAIL</b></a></li>
-				<li><a style="padding-left:200px" href="{{URL::to('transaction/walkin-company-payment-payment-info')}}"><b>3.PAYMENT</b></a></li>				
+				<li><a style="padding-left:200px" href="{{URL::to('transaction/walkin-company-payment-info')}}"><b>3.PAYMENT</b></a></li>				
 			</ul>
 
 
@@ -37,11 +37,11 @@
 	            	<div class="col s12">
                     	<div class="col s6">       
                         	<div class="col s5" style="color:teal; font-size:17px"><p><b>Customer ID</b></p></div>
-                        	<div class="col s7" style="color:red;"><p><input value="" id="addCompID" name="addCompID" type="text" readonly></p></div> 
+                        	<div class="col s7" style="color:red;"><p><input value="{{ $custID }}" id="addCompID" name="addCompID" type="text" readonly></p></div> 
                       	</div>
                       	<div class="col s6">
                         	<div class="col s5" style="color:teal; font-size:17px"><p><b>Transaction No.</b></p></div>
-                        	<div class="col s7" style="color:red;"><p><input value="" id="addJOID" name="addJOID" type="text" readonly></p></div> 
+                        	<div class="col s7" style="color:red;"><p><input value="{{ $joID }}" id="addJOID" name="addJOID" type="text" readonly></p></div> 
 	            	    </div>
                 	</div>
 
@@ -245,12 +245,13 @@
 		$(document).ready(function() {
 		
 			var a = {!! json_encode($packages) !!};
-			var b = {!! json_encode($prices) !!}
+			var b = {!! json_encode($prices) !!};
+			var c = {!! json_encode($quantity) !!};
 			var totalTime = 0, totalPrice = 0.0;
 
 			for(var i = 0; i < a.length; i++)
 			{
-				totalTime = totalTime + a[i].intPackageMinDays;
+				totalTime = totalTime + (a[i].intPackageMinDays * c[i]);
 				totalPrice = totalPrice + b[i];
 			}
 

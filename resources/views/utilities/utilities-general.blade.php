@@ -16,20 +16,20 @@
 <div class="col s12">
     <div class="row">
       <div class="col offset-s1 s10 ">
-        {!! Form::open(['url' => 'utilities/utilities-general/update', 'files' => 'true']) !!}
+        {!! Form::open(['url' => 'utilities/utilities-general/update', 'files' => 'true', 'method' => 'POST']) !!}
           <span class="" style="color:#263238;font-size:35px;">General Setting</span>
             <div class="tooltipped" data-position="top" data-delay="50" data-tooltip="Company Logo" style="margin-top:49px;margin-left:29px;">
-               <center><img id="blah" src="" style="width:150px;height:150px;border: 1px solid black;" /> </center>
+               <center><img id="imgShopLogo" src="../{!! $shop_logo !!}" style="width:150px;height:150px;border: 1px solid black;" /> </center>
             </div>
             <div class="row">
               <div class="col s6">
                   <div class="file-field input-field">
-                          <div class="btn waves-effect waves-black tooltipped teal accent-4 white-text" data-position="top" data-delay="50" data-tooltip="choose file">
+                          <div class="btn waves-effect waves-black tooltipped teal accent-4 white-text" data-position="top" data-delay="50" data-tooltip="Choose file">
                             <span>File</span>
                             <input id="updateLogo" name="updateLogo" type="file" onchange="readURL(this);">
                           </div>
                           <div class="file-path-wrapper">
-                            <input class="file-path validate black-text text-darken-2" type="text">
+                            <input name="updateFile" value="{{ $shop_logo }}" readonly class="file-path validate black-text text-darken-2" type="text">
                           </div>
                   </div>
               </div> 
@@ -37,7 +37,8 @@
             <div class="row">
               <div class="col s12">
                   <div class="input-field">
-                    <input id="updateShopName" name="updateShopName" type="text" class="validate">
+                    <input id="updateShopName" name="updateShopName" type="text" value="{{ $shop_name }}" class="validate">
+
                     <label for="shop_name">Shop Name</label>
                   </div>
               </div> 
@@ -54,10 +55,7 @@
       </div>
     </div> 
              
-</div>
-   
-    
-    
+</div> 
     
     <script> function readURL(input) {
         if (input.files && input.files[0]) {

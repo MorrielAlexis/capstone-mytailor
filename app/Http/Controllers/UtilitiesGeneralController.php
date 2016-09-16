@@ -20,66 +20,51 @@ class UtilitiesGeneralController extends Controller
     public function index()
     {   
         $shopLogo = \DB::table('tblUtilitiesGeneral')
-            ->select('strShopImage')
             ->where('intUtilsGenID','1')
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->pluck('strShopImage');
 
         session(['shop_logo' => $shopLogo]);
 
         $shopName = \DB::table('tblUtilitiesGeneral')
-            ->select('strShopName')
             ->where('intUtilsGenID','1')
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->pluck('strShopName');
 
         session(['shop_name' => $shopName]);
 
-        return view('utilities.utilities-general');
+        return view('utilities.utilities-general')
+                ->with('shop_logo', $shopLogo)
+                ->with('shop_name', $shopName);
 
             // ->select('strSegmentName')
             //         ->where('strSegmentID', $segment)
             //         ->pluck('segment');
     }
 
-    public function general()
-    {
-        // $shopLogo = \DB::table('tblUtilitiesGeneral')
-        //     ->where('intUtilsGenID','GEN0001')
-        //     ->orderBy('created_at', 'desc')
-        //     ->pluck('strShopImage');
-
-        //     Session::put('shoplogo', $shopLogo);
-
-        //     $shopName = \DB::table('tblUtilitiesGeneral')
-        //     ->where('intUtilsGenID', 'GEN0001')
-        //     ->orderBy('created_at', 'desc')
-        //     ->pluck('strShopName');
-
-        //     Session::put('shopname', $shopName);
-
-        //     return redirect('utilities/utilities-general');
-    }
-
     public function updateSettings(Request $request)
-    {
-        $utilities  = UtilitiesGeneral::find("GEN0001");
-        $file = $request->input('updateLogo');
-        $destinationPath = 'img';
-          if($file == $utilities->strShopImage)
-            {
+    {   
+        $utilities  = UtilitiesGeneral::find("1");
+        $file = $request->input('updateFile');
 
-                $utilities->strShopName = $request->input('updateShopName'); 
-            }else{
-                    $request->file('updateLogo')->move($destinationPath);
-                    $utilities->strShopName = $request->input('updateShopName'); 
-                    $utilities->strShopImage = 'img/'.$file;
-            }
-                $utilities->save();
-                Session::put('shoplogo', $utilities);
-                Session::put('shopname', $utilities);
-                return redirect('utilities/utilities-general/update');
-    }
+        $destinationPath = 'img';
+
+        if($file == $utilities->strShopImage)
+        {
+            $utilities->strShopName = $request->input('updateShopName'); 
+        }else{
+            $request->file('updateLogo')->move($destinationPath);
+            $utilities->strShopName = $request->input('updateShopName'); 
+            $utilities->strShopImage = 'img/'.$file;
+        }
+
+        $utilities->save();
+         
+        session(['shop_logo', $request->input('updateFile')]);
+        session(['shop_name', $request->input('updateShopName')]);
+        
+        return redirect('utilities/utilities-general/update');
+    }   
 
     /**
      * Show the form for creating a new resource.
