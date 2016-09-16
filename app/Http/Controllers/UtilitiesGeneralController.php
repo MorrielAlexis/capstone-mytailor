@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Session;
+use App\UtilitiesGeneralModel;
+
 
 class UtilitiesGeneralController extends Controller
 {
@@ -15,8 +18,66 @@ class UtilitiesGeneralController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+    {   
+        $utilities = UtilitiesGeneralModel::all();
+        $shopLogo = \DB::table('tblUtilitiesGeneral')
+            ->where('intUtilsGenID','GEN0001')
+            ->orderBy('created_at', 'desc')
+            ->pluck('strShopImage');
+
+            Session::put('shoplogo', $shopLogo);
+
+            $shopName = \DB::table('tblUtilitiesGeneral')
+            ->where('intUtilsGenID', 'GEN0001')
+            ->orderBy('created_at', 'desc')
+            ->pluck('strShopName');
+
+            Session::put('shopname', $shopName);
+
+            return view('utilities.utilities-general');
+
+            // ->select('strSegmentName')
+            //         ->where('strSegmentID', $segment)
+            //         ->pluck('segment');
+    }
+
+    public function general()
     {
-        return view('utilities.utilities-general');
+        // $shopLogo = \DB::table('tblUtilitiesGeneral')
+        //     ->where('intUtilsGenID','GEN0001')
+        //     ->orderBy('created_at', 'desc')
+        //     ->pluck('strShopImage');
+
+        //     Session::put('shoplogo', $shopLogo);
+
+        //     $shopName = \DB::table('tblUtilitiesGeneral')
+        //     ->where('intUtilsGenID', 'GEN0001')
+        //     ->orderBy('created_at', 'desc')
+        //     ->pluck('strShopName');
+
+        //     Session::put('shopname', $shopName);
+
+        //     return redirect('utilities/utilities-general');
+    }
+
+    public function updateSettings(Request $request)
+    {
+        $utilities  = UtilitiesGeneralModel::find("GEN0001");
+        $file = $request->input('updateLogo');
+        $destinationPath = 'img';
+          if($file == $utilities->strShopImage)
+            {
+
+                $utilities->strShopName = $request->input('updateShopName'); 
+            }else{
+                    $request->file('updateLogo')->move($destinationPath);
+                    $utilities->strShopName = $request->input('updateShopName'); 
+                    $utilities->strShopImage = 'img/'.$file;
+            }
+                $utilities->save();
+                Session::put('shoplogo', $utilities);
+                Session::put('shopname', $utilities);
+                return redirect('utilities/utilities-general/update');
     }
 
     /**

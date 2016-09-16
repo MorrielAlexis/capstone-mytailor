@@ -5,7 +5,7 @@
       <title>MyTailor</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <link rel="shortcut icon" href="{{{ asset('img/logo.jpg') }}}">
+      <link rel="shortcut icon" href= "{{{ asset('img/logo.jpg') }}}">
 
       {!! Html::style('css/materialize.min.css'); !!}
       {!! Html::style('css/style.css'); !!}
@@ -16,9 +16,9 @@
     <body>
 
     <header>
-        <img src="../img/logo.jpg"  alt="" class="right circle responsive-img valign profile-image center" style="height:70px; width:80px; margin-top:5px;">
+        <img src="{{ Session::get('shoplogo') }}"  alt="" class="right circle responsive-img valign profile-image center" style="height:70px; width:80px; margin-top:5px;">
         <div class="right col s9 " style="padding-top:20px">
-          <font size = "+2" color = "black" style="margin-top:5px" >Tailoring Management System</font>
+          <font size = "+2" color = "black" style="margin-top:5px" >{{ Session::get('strShopName') }}</font>
         </div>
     </header>
 

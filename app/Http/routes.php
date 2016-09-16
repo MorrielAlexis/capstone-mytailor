@@ -265,6 +265,8 @@ Route::get('generate-payment-receipt', 'WalkInIndividualController@generateRecei
 
 Route::group(['prefix' => 'utilities'], function(){
 	Route::get('utilities-general','UtilitiesGeneralController@index');
+	Route::post('utilities-general/update','UtilitiesGeneralController@updateSettings');
+	// Route::get('utilities-general/general','UtilitiesGeneralController@general');
 
 	Route::resource('inactive-data', 'InactiveDataController');
 
