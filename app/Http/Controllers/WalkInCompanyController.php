@@ -255,7 +255,7 @@ class WalkInCompanyController extends Controller
         return view('walkin-company-catalogue-design');
     }
 
-    public function information()
+    public function companyInformation()
     {
         $quantity = session()->get('package_quantity');
         $packages = session()->get('package_values');
@@ -263,16 +263,52 @@ class WalkInCompanyController extends Controller
 
         for($i = 0; $i < count($packages); $i++) $prices[$i] = $packages[$i]->dblPackagePrice * $quantity[$i]; 
 
+        $joID = \DB::table('tblJobOrder')
+            ->select('strJobOrderID')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('strJobOrderID', 'desc')
+            ->take(1)
+            ->get();
+
+        if($joID == null){
+            $newID = $this->smartCounter("JOB000"); 
+        }else{
+            $ID = $joID["0"]->strJobOrderID;
+            $newID = $this->smartCounter($ID);  
+        }
+
+        //get all the individuals
+        $ids = \DB::table('tblCustCompany')
+            ->select('strCompanyID')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('strCompanyID', 'desc')
+            ->take(1)
+            ->get();
+
+        if($ids == null){
+            $custID = $this->smartCounter("CUSTC000"); 
+        }else{
+            $ID = $ids["0"]->strCompanyID;
+            $custID = $this->smartCounter($ID);  
+        }             
+
+        session(['compID' => $custID]);
+        session(['compJOID' => $newID]);
+
 
         return view('walkin-company-checkout-info')
                 ->with('quantity', $quantity)
                 ->with('packages', $packages)
-                ->with('prices', $prices);
+                ->with('prices', $prices)
+                ->with('custID', $custID)
+                ->with('joID', $newID);
     }
 
     public function payment()
     {
-        return view('walkin-company-checkout-pay');
+
+        return view('walkin-company-checkout-pay')
+                ->with('joID', session()->get('compJOID'));
 
     }
 
@@ -369,5 +405,46 @@ class WalkInCompanyController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+        public function smartCounter($id)
+    {   
+
+        $lastID = str_split($id);
+
+        $ctr = 0;
+        $tempID = "";
+        $tempNew = [];
+        $newID = "";
+        $add = TRUE;
+
+        for($ctr = count($lastID)-1; $ctr >= 0; $ctr--){
+
+            $tempID = $lastID[$ctr];
+
+            if($add){
+                if(is_numeric($tempID) || $tempID == '0'){
+                    if($tempID == '9'){
+                        $tempID = '0';
+                        $tempNew[$ctr] = $tempID;
+
+                    }else{
+                        $tempID = $tempID + 1;
+                        $tempNew[$ctr] = $tempID;
+                        $add = FALSE;
+                    }
+                }else{
+                    $tempNew[$ctr] = $tempID;
+                }           
+            }
+            $tempNew[$ctr] = $tempID;   
+        }
+
+        
+        for($ctr = 0; $ctr < count($lastID); $ctr++){
+            $newID = $newID . $tempNew[$ctr];
+        }
+
+        return $newID;
     }
 }

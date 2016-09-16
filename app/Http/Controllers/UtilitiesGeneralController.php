@@ -62,23 +62,23 @@ class UtilitiesGeneralController extends Controller
     }
 
     public function updateSettings(Request $request)
-    {
-        $utilities  = UtilitiesGeneralModel::find("GEN0001");
-        $file = $request->input('updateLogo');
+    {   
+        $utilities  = UtilitiesGeneral::find("1");
+        $file = $request->input('updateFile');
         $destinationPath = 'img';
-          if($file == $utilities->strShopImage)
+            if($file == $utilities->strShopImage)
             {
-
                 $utilities->strShopName = $request->input('updateShopName'); 
             }else{
                     $request->file('updateLogo')->move($destinationPath);
                     $utilities->strShopName = $request->input('updateShopName'); 
                     $utilities->strShopImage = 'img/'.$file;
             }
-                $utilities->save();
-                Session::put('shoplogo', $utilities);
-                Session::put('shopname', $utilities);
-                return redirect('utilities/utilities-general/update');
+            $utilities->save();
+            
+            session(['shop_logo', $utilities]);
+            session(['shop_name', $utilities]);
+            return redirect('utilities/utilities-general/update');
     }
 
     /**

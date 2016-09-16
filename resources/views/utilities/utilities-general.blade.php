@@ -24,12 +24,12 @@
             <div class="row">
               <div class="col s6">
                   <div class="file-field input-field">
-                          <div class="btn waves-effect waves-black tooltipped teal accent-4 white-text" data-position="top" data-delay="50" data-tooltip="choose file">
+                          <div class="btn waves-effect waves-black tooltipped teal accent-4 white-text" data-position="top" data-delay="50" data-tooltip="Choose file">
                             <span>File</span>
                             <input id="updateLogo" name="updateLogo" type="file" onchange="readURL(this);">
                           </div>
                           <div class="file-path-wrapper">
-                            <input class="file-path validate black-text text-darken-2" type="text">
+                            <input name="updateFile" value="{{ $shop_logo }}" readonly class="file-path validate black-text text-darken-2" type="text">
                           </div>
                   </div>
               </div> 
@@ -37,8 +37,7 @@
             <div class="row">
               <div class="col s12">
                   <div class="input-field">
-                    <input id="updateShopName" name="updateShopName" type="text" class="validate">
-                    <label for="shop_name">{{ $shop_name }}</label>
+                    <input id="updateShopName" name="updateShopName" type="text" value="{{ $shop_name }}" class="validate">
                   </div>
               </div> 
             </div>    

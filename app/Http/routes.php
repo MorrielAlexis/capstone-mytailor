@@ -349,9 +349,9 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::get('walkin-company-retail-products', 'WalkInCompanyController@retailProduct');
 	Route::get('walkin-company-customize-orders-package', 'WalkInCompanyController@customPackage');	
 	Route::get('walkin-company-catalogue-designs', 'WalkInCompanyController@catalogueDesign');
-	Route::get('walkin-company-payment-customer-info', 'WalkInCompanyController@information');
+	Route::get('walkin-company-payment-customer-info', 'WalkInCompanyController@companyInformation');
 	Route::get('walkin-company-add-employees', 'WalkInCompanyController@addEmployees');
-	Route::get('walkin-company-payment-payment-info', 'WalkInCompanyController@payment');
+	Route::get('walkin-company-payment-info', 'WalkInCompanyController@payment');
 	Route::get('walkin-company-payment-measure-detail', 'WalkInCompanyController@measurement');
 	Route::get('walkin-company-show-order', 'WalkInCompanyController@showOrder');
 	Route::get('walkin-company-show-customize', 'WalkInCompanyController@showCustomizeOrder');
