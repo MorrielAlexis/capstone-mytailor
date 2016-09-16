@@ -319,6 +319,11 @@ Route::group(['prefix' => 'transaction'], function(){
 
 	//customize view
 	Route::post('walkin-individual-customize-orders', 'WalkInIndividualController@customizeOrder');
+
+	//customer check - new or existing
+	Route::group(['prefix' => 'walkin-individual'], function(){
+		Route::post('customer-check', 'WalkInIndividualController@customerCheck');
+	});
 	
 	//customer information view
 	Route::post('walkin-individual-customer-information', 'WalkInIndividualController@customerInformation');

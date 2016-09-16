@@ -63,7 +63,7 @@ class UtilitiesGeneralController extends Controller
 
     public function updateSettings(Request $request)
     {
-        $utilities  = UtilitiesGeneralModel::find("GEN0001");
+        $utilities  = UtilitiesGeneral::find("GEN0001");
         $file = $request->input('updateLogo');
         $destinationPath = 'img';
           if($file == $utilities->strShopImage)
