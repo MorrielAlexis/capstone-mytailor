@@ -26,7 +26,7 @@
               <thead>
                   <tr>
                     <!--<th data-field="id">Garment ID</th>-->
-                    <th data-field="CustID">Customer ID</th>
+                    {{-- <th data-field="CustID">Customer ID</th> --}}
                     <th data-field="Customer Name">Customer Name</th>
                     <th data-field="Total Orders">Total Orders</th>
                     <!-- <th>Deactivate</th> -->
@@ -34,14 +34,15 @@
               </thead>
 
               <tbody>
+                    @foreach($topCustomers as $topCustomer)
+                    {{--  @if($topCustomer->boolIsActive == 1) --}}
                   <tr>
-                    <td>Sample</td>
-                    <td>Sample</td>
-                    <td>Sample</td>
-              
-                      
-                      
+                    {{-- <td>{{$topCustomer->strIndivID}}</td> --}}
+                    <td>{{$topCustomer->name}}</td>
+                    <td>{{$topCustomer->ctr}}</td> 
                   </tr>
+                {{--   @endif --}}
+                  @endforeach
               </tbody>
             </table>
 
