@@ -61,13 +61,15 @@
               
                 <tbody>
                 @foreach($onlineAlteration as $onlineAlteration)
+                {!! Form::open(['url' => 'transaction/alteration-accept-online-order', 'method' => 'POST']) !!}
+                        <input type="hidden" name="customerID" value="{!! $onlineAlteration->strIndivID !!}">
                        {{-- @if($onlineAlteration->boolisOnline == 1) --}}
                         <tr>
                           <td>{{$onlineAlteration->strNonShopAlterID}}</td>                        
                           <td>{{$onlineAlteration->strCompanyName}}{{$onlineAlteration->strIndivFName}} {{$onlineAlteration->strIndivMName}} {{$onlineAlteration->strIndivLName}}</td>
                           <td>{{"Php" . $onlineAlteration->dblOrderTotalPrice}}</td>
                           <td><a class=" btn modal-trigger tooltipped btn-floating green" href="#{{$onlineAlteration->strNonShopAlterID}}" data-position="top" data-delay="50" data-tooltip="Show alteration order details."><i class="mdi-action-view-headline"></i></a>
-                    		  <a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to accept online order" href="{{URL::to('transaction/alteration-accept-online-order')}}"><i class="mdi-action-done"></i></a>
+                    		  <button type="submit" style="color:black" class="btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to accept online order"><i class="mdi-action-done"></i></button>
                           <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to reject order." href="{{URL::to('transaction/alteration-reject-online-order')}}"><i class="mdi-action-delete"></i></a></td>
                         </tr>
               
@@ -98,6 +100,7 @@
                         </div>      
                       </div>
                 {{--     @endif --}}
+                  {!! Form::close() !!}
                   @endforeach
                 </tbody>
               </table>

@@ -24,14 +24,14 @@ class UtilitiesGeneralController extends Controller
             ->orderBy('created_at', 'desc')
             ->pluck('strShopImage');
 
-        session(['shop_logo' => $shopLogo]);
+        session::put('shop_logo',$shopLogo);
 
         $shopName = \DB::table('tblUtilitiesGeneral')
             ->where('intUtilsGenID','1')
             ->orderBy('created_at', 'desc')
             ->pluck('strShopName');
 
-        session(['shop_name' => $shopName]);
+        session::put('shop_name',$shopName);
 
         return view('utilities.utilities-general')
                 ->with('shop_logo', $shopLogo)
@@ -60,8 +60,8 @@ class UtilitiesGeneralController extends Controller
 
         $utilities->save();
          
-        session(['shop_logo', $request->input('updateFile')]);
-        session(['shop_name', $request->input('updateShopName')]);
+        session::put('shop_logo', $request->input('updateFile'));
+        session::put('shop_name', $request->input('updateShopName'));
         
         return redirect('utilities/utilities-general');
     }   

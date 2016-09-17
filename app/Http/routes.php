@@ -408,8 +408,8 @@ Route::group(['prefix' => 'transaction'], function(){
 		//Accept Online Alteration
 		Route::get('alteration-online-transaction', 'AcceptAlterationOnlineController@index');
 		Route::get('alteration-online-transaction-details', 'AcceptAlterationOnlineController@alterationDetails');
-		Route::get('alteration-accept-online-order', 'AcceptAlterationOnlineController@accept');
 		Route::get('alteration-reject-online-order', 'AcceptAlterationOnlineController@reject');
+		Route::post('alteration-accept-online-order', 'AcceptAlterationOnlineController@accept');
 });
 
 
