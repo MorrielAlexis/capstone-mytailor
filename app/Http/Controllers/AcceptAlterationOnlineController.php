@@ -86,8 +86,11 @@ class AcceptAlterationOnlineController extends Controller
 
     public function accept(Request $request)
     {       
+            //actual fetching from database
             $results = \DB::select('SELECT CONCAT(tblCustIndividual.strIndivFName, " " , tblCustIndividual.strIndivMName, " " , tblCustIndividual.strIndivLName) as custName, tblNonShopAlteration.strNonShopAlterID as transID, tblNonShopAlteration.dblOrderTotalPrice as totalPrice, tblCustIndividual.strIndivEmailAddress as custEmail, tblCustIndividual.strIndivCPNumber as cpNo FROM tblNonShopAlteration,tblCustIndividual WHERE tblCustIndividual.strIndivID = tblNonShopAlteration.strCustIndFK');
 
+
+            //values to be pass sa email view
             foreach( $results as $result){
                 $name = $result->custName;
                 $order = $result->transID;
@@ -105,7 +108,7 @@ class AcceptAlterationOnlineController extends Controller
                     break;
                 }
 
-                $message->to("$email")->subject('Order Confirmation!');
+                $message->to("$email")->subject('Order Confirmation!'); //sending of email to selected customer
      
         });
 
