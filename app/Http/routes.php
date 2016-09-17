@@ -423,6 +423,7 @@ Route::get('/track', 'OnlineCustomerProfileIndividualController@trackJob');
 		
 		Route::group(['prefix' => 'individual'], function() {
 			Route::get('home', 'PaymentIndividualController@index');
+			Route::get('customer-info', 'PaymentIndividualController@custInfo'); //looks for the customer and gets its payment data
 		});
 
 		Route::group(['prefix' => 'company'], function() {
@@ -587,21 +588,6 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::get('customize-sets-choose-set', 'OnlineCustomizeSetsController@choose');
 	Route::get('customize-sets-list-of-orders', 'OnlineCustomizeSetsController@orderlist');
 	Route::get('customize-sets-customize-order', 'OnlineCustomizeSetsController@customize');
-
-
-
-	/** Payment and Collection **/
-	//Payment Part
-	Route::group(['prefix' => 'payment'], function(){
-
-		Route::get('home', 'BillingPaymentController@index'); //homepage for payment
-		Route::get('bill-customer', 'BillingPaymentController@billCustomer'); //where payment process actually takes place
-		Route::get('see-pending', 'BillingPaymentController@showPending'); //shows all pending payments of a customer
-
-	});
-
-	//Collection Part
-	Route::get('see-all-collections', 'BillingPaymentController@index');
 
 
   	/** Queries **/
