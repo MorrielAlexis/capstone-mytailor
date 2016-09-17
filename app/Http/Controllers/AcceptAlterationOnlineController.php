@@ -85,20 +85,8 @@ class AcceptAlterationOnlineController extends Controller
 
 
     public function accept(Request $request)
-    {
-        
-            //  $results = \DB::table('tblNonShopAlteration')
-            // ->leftjoin('tblcustindividual', 'tblNonShopAlteration.strCustIndFK', '=', 'tblcustindividual.strIndivID')
-            // ->leftjoin('tblcustcompany', 'tblNonShopAlteration.strCustCompFK', '=', 'tblcustcompany.strCompanyID')
-            // // ->where('boolisOnline','=', 1)
-            // ->select('select()tblNonShopAlteration.*', 'tblcustcompany.strCompanyName as CompanyName', 'tblcustindividual.*')
-            // ->get(); 
-
-            // $results = TransactionNonShopAlteration::all();
+    {       
             $results = \DB::select('SELECT CONCAT(tblCustIndividual.strIndivFName, " " , tblCustIndividual.strIndivMName, " " , tblCustIndividual.strIndivLName) as custName, tblNonShopAlteration.strNonShopAlterID as transID, tblNonShopAlteration.dblOrderTotalPrice as totalPrice, tblCustIndividual.strIndivEmailAddress as custEmail, tblCustIndividual.strIndivCPNumber as cpNo FROM tblNonShopAlteration,tblCustIndividual WHERE tblCustIndividual.strIndivID = tblNonShopAlteration.strCustIndFK');
-
-    
-            
 
             foreach( $results as $result){
                 $name = $result->custName;
@@ -108,10 +96,6 @@ class AcceptAlterationOnlineController extends Controller
                 $cpNo = $result->cpNo;
             }
 
-            // dd($results);
-
-            
-            
 
 
         Mail::send('emails.accept-online-alteration', ['name' => $name, 'order' => $order, 'totPrice' => $totPrice, 'email' => $email, 'cp' => $cpNo], function($message) use($results) {
@@ -122,9 +106,7 @@ class AcceptAlterationOnlineController extends Controller
                 }
 
                 $message->to("$email")->subject('Order Confirmation!');
-        
-
-
+     
         });
 
          \Session::flash('flash_message','Order accepted! Email successfully sent to customer.'); //flash message
