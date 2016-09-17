@@ -354,7 +354,7 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::get('walkin-company-retail-products', 'WalkInCompanyController@retailProduct');
 	Route::get('walkin-company-customize-orders-package', 'WalkInCompanyController@customPackage');	
 	Route::get('walkin-company-catalogue-designs', 'WalkInCompanyController@catalogueDesign');
-	Route::get('walkin-company-payment-customer-info', 'WalkInCompanyController@companyInformation');
+	Route::get('walkin-company-payment-customer-information', 'WalkInCompanyController@companyInformation');
 	Route::get('walkin-company-add-employees', 'WalkInCompanyController@addEmployees');
 	Route::get('walkin-company-payment-info', 'WalkInCompanyController@payment');
 	Route::get('walkin-company-payment-measure-detail', 'WalkInCompanyController@measurement');
@@ -373,6 +373,7 @@ Route::group(['prefix' => 'transaction'], function(){
 	/* Route for adding measurement profile*/
 	Route::get('walkin-company-measure-add-employee-profile', 'WalkInCompanyController@measureProfile');
 
+	Route::post('walkin-company-payment-customer-information', 'WalkInCompanyController@existingCompanyInformation');
 	Route::post('walkin-company-orders', 'WalkInCompanyController@listOfOrders');
 	Route::post('walkin-company-customize-orders', 'WalkInCompanyController@customize');
 	Route::post('walkin-company-save-design', 'WalkInCompanyController@saveDesign');
@@ -407,8 +408,8 @@ Route::group(['prefix' => 'transaction'], function(){
 		//Accept Online Alteration
 		Route::get('alteration-online-transaction', 'AcceptAlterationOnlineController@index');
 		Route::get('alteration-online-transaction-details', 'AcceptAlterationOnlineController@alterationDetails');
-		Route::get('alteration-accept-online-order', 'AcceptAlterationOnlineController@accept');
 		Route::get('alteration-reject-online-order', 'AcceptAlterationOnlineController@reject');
+		Route::post('alteration-accept-online-order', 'AcceptAlterationOnlineController@accept');
 });
 
 

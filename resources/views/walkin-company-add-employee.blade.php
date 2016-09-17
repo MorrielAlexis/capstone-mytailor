@@ -115,8 +115,7 @@
 										
 
 										<div class="modal-footer col s12">
-							                <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Save</font></button>
-							                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Cancel</font></a>	
+							                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Close</font></a>	
 							            </div>
 									</div>
 									<!--End of modal for editing employee data-->
