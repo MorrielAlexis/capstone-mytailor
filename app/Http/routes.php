@@ -570,6 +570,8 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::post('customize-mens-style-pocket-monogram', 'OnlineCustomizeMensController@stylepocketmonogram');
 	Route::get('customize-mens-style-others', 'OnlineCustomizeMensController@styleothers');
 
+	Route::post('customize-mens-fabrics', 'OnlineCustomizeMensController@fabric');
+
 	Route::get('customize-womens-choose-shirt', 'OnlineCustomizeWomensController@choose');
 	Route::get('customize-womens-fabric', 'OnlineCustomizeWomensController@fabric');
 	Route::post('customize-womens-style-collar', 'OnlineCustomizeWomensController@stylecollar');
