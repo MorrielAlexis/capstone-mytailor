@@ -30,16 +30,15 @@
                           <th data-field="quantity" hidden>Alteration Type</th>
                           <th data-field="fabric">Description</th>
                           <th data-field="price">Total Price</th>
-                          <!--<th data-field="price">Total Price</th>-->
+
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                           <td>Uniform, Dress</td>
-                           <td hidden>Hem</td>
+                           <td>{{$segment}}</td>
+                           <td hidden>{{$alteration}}</td>
                            <td>Decrease by 2cm</td>
-                           <td>{{-- {{ number_format($totPrice, 2) . ' PHP' }} --}}55</td>
-                           <!--<td> </td>-->
+                           <td>{{ number_format($totPrice, 2) . ' PHP' }}</td>
                         </tr>
                         
                     </tbody>

@@ -36,16 +36,20 @@ class AcceptAlterationOnlineController extends Controller
     
     public function index()
     {
-        //kulang ng filters for online orders, nakukuha pa lahat ng laman ng tblNonShopAlteration na dapat hindi kasi may boolIsOnline
+        
         $onlineAlteration = \DB::table('tblNonShopAlteration')
             ->leftjoin('tblcustindividual', 'tblNonShopAlteration.strCustIndFK', '=', 'tblcustindividual.strIndivID')
             ->leftjoin('tblcustcompany', 'tblNonShopAlteration.strCustCompFK', '=', 'tblcustcompany.strCompanyID')
             // ->where('boolisOnline','=', 1)
             ->orderby('tblNonShopAlteration.strNonShopAlterID')
             ->select('tblcustindividual.*', 'tblcustcompany.*', 'tblNonShopAlteration.*')
+            ->where('boolIsOnline', 1)
             ->get(); 
         
-        $onlineAltSpecifics = \DB::table('tblNonShopAlterSpecific')
+
+        $specifics = TransactionNonShopAlterationSpecifics::with("alterationNonShop")->get();
+
+         $onlineAltSpecifics = \DB::table('tblNonShopAlterSpecific')
             ->join('tblNonShopAlteration', 'tblNonShopAlteration.strNonShopAlterID', '=', 'tblNonShopAlterSpecific.strNonShopAlterFK')
             ->join('tblSegment', 'tblSegment.strSegmentID', '=', 'tblNonShopAlterSpecific.strGarmentSegmentFK')
             ->join('tblAlteration', 'tblAlteration.strAlterationID', '=', 'tblNonShopAlterSpecific.strAlterationTypeFK')
@@ -53,9 +57,6 @@ class AcceptAlterationOnlineController extends Controller
             ->orderby('tblNonShopAlterSpecific.strNonAlterSpecificID')
             ->select('tblNonShopAlterSpecific.*', 'tblAlteration.strAlterationName', 'tblSegment.strSegmentName', 'tblNonShopAlteration.strNonShopAlterID')
             ->get();   
-
-        $specifics = TransactionNonShopAlterationSpecifics::with("alterationNonShop")->get();
-        // dd($specifics);
 
         return view('alteration.accept-online-alteration')
             ->with('onlineAlteration', $onlineAlteration)
@@ -86,23 +87,35 @@ class AcceptAlterationOnlineController extends Controller
 
 
     public function accept(Request $request)
-    {       
+    {           
+
             //actual fetching from database
-            $results = \DB::select('SELECT CONCAT(tblCustIndividual.strIndivFName, " " , tblCustIndividual.strIndivMName, " " , tblCustIndividual.strIndivLName) as custName, tblNonShopAlteration.strNonShopAlterID as transID, tblNonShopAlteration.dblOrderTotalPrice as totalPrice, tblCustIndividual.strIndivEmailAddress as custEmail, tblCustIndividual.strIndivCPNumber as cpNo FROM tblNonShopAlteration,tblCustIndividual WHERE tblCustIndividual.strIndivID = tblNonShopAlteration.strCustIndFK');
 
+            $results = \DB::table('tblNonShopAlteration AS a')
+                    ->join('tblCustIndividual AS b', 'a.strCustIndFK', '=', 'b.strIndivID')
+                    ->join('tblNonShopAlterSpecific as c','a.strNonShopAlterID',  '=' , 'c.strNonShopAlterFK')
+                    ->join('tblSegment as d', 'c.strGarmentSegmentFK', '=' , 'd.strSegmentID')
+                    ->join('tblAlteration as e', 'c.strAlterationTypeFK', '=' , 'e.strAlterationID')
+                    ->select(\DB::raw('CONCAT(b.strIndivFName, " " , b.strIndivMName, " " , b.strIndivLName) as custName'), 'a.strNonShopAlterID as transID', 'a.dblOrderTotalPrice AS totalPrice', 'b.strIndivEmailAddress AS custEmail', 'b.strIndivCPNumber AS cpNo', 'd.strSegmentName as segment', 'e.strAlterationName as alteration')
+                    ->where('b.strIndivID', $request->input('customerID'))
+                    ->get();
+/*            var_dump($results);
+            dd("");
+*/
 
-            //values to be pass sa email view
             foreach( $results as $result){
                 $name = $result->custName;
                 $order = $result->transID;
                 $totPrice = $result->totalPrice;
                 $email = $result->custEmail;
                 $cpNo = $result->cpNo;
+                $segment = $result->segment;
+                $alteration = $result->alteration;
             }
 
 
 
-        Mail::send('emails.accept-online-alteration', ['name' => $name, 'order' => $order, 'totPrice' => $totPrice, 'email' => $email, 'cp' => $cpNo], function($message) use($results) {
+        Mail::send('emails.accept-online-alteration', ['name' => $name, 'order' => $order, 'totPrice' => $totPrice, 'email' => $email, 'cp' => $cpNo, 'segment' => $segment, 'alteration' => $alteration], function($message) use($results) {
 
                 foreach($results as $value){
                     $email = $value->custEmail;  
