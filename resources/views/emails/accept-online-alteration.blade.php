@@ -56,10 +56,7 @@
             <div class="col s12" style="margin-bottom:50px; margin-top:30px">
                 <div class="col s12"><div class="divider" style="height:2px"></div></div>
                 <div class="col s6"><p>Estimated time to finish all orders: 3 days</p></div>
-                <div class="col s6"><p>Total Amount to Pay:</p></div>
-                <div class="container">
-                  <div class="container" style="font-family:'Playfair Display','Times';"><center><h3><b>PHP {{ number_format($totPrice, 2) }}</b></h3></center></div>
-                </div>
+                <div class="col s6"><h2>Total Amount to Pay: PHP {{ number_format($totPrice, 2) }}</h2></div>
             </div>
 
             <div>
