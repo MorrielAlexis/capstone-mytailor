@@ -405,10 +405,10 @@ Route::group(['prefix' => 'transaction'], function(){
 		Route::post('alteration-walkin-newcustomer-save-transaction', 'AlterationWalkInController@saveTransaction');
 		Route::post('alteration-walkin-newcustomer-cancel', 'AlterationWalkInController@cancelOrder');
 
-		//Accept Online Alteration
+		/*---------------------------------------ACCEPTANCE OF ONLINE TRANSACTION ALTERATION--------------------------------------------------*/
 		Route::get('alteration-online-transaction', 'AcceptAlterationOnlineController@index');
 		Route::get('alteration-online-transaction-details', 'AcceptAlterationOnlineController@alterationDetails');
-		Route::get('alteration-reject-online-order', 'AcceptAlterationOnlineController@reject');
+		Route::post('alteration-reject-online-order', 'AcceptAlterationOnlineController@reject');
 		Route::post('alteration-accept-online-order', 'AcceptAlterationOnlineController@accept');
 });
 
