@@ -19,6 +19,8 @@ use App\Segment;
 use App\SegmentPattern;
 use App\SegmentStyle;
 
+use App\Company;
+
 class WalkInCompanyController extends Controller
 {
     /**
@@ -297,9 +299,21 @@ class WalkInCompanyController extends Controller
     }
 
     //if a customer already has an existing profile with the shop
-    public function customerCheck(){
+    public function customerCheck()
+    {
+        $company = Company::all();
 
-        return view('walkin-company-customer-check');
+        $quantity = session()->get('package_quantity');
+        $packages = session()->get('package_values');
+        $prices = [];
+        
+        for($i = 0; $i < count($packages); $i++) $prices[$i] = $packages[$i]->dblPackagePrice * $quantity[$i]; 
+
+        return view('walkin-company-customer-check')
+                ->with('company', $company)
+                ->with('quantity', $quantity)
+                ->with('packages', $packages)
+                ->with('prices', $prices);;
     }
 
     public function companyInformation()
@@ -350,6 +364,31 @@ class WalkInCompanyController extends Controller
                 ->with('custID', $custID)
                 ->with('joID', $newID);
     }
+
+    public function existingCompanyInformation(Request $request)
+    {
+        $custID = $request->input('custID');
+
+        $joID = \DB::table('tblJobOrder')
+            ->select('strJobOrderID')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('strJobOrderID', 'desc')
+            ->take(1)
+            ->get();
+
+        if($joID == null){
+            $newID = $this->smartCounter("JOB000"); 
+        }else{
+            $ID = $joID["0"]->strJobOrderID;
+            $newID = $this->smartCounter($ID);  
+        }         
+
+        session(['compID' => $custID]);
+        session(['compJOID' => $newID]);
+
+        return view('walkin-company-checkout-measure');
+    }
+
 
     public function payment()
     {

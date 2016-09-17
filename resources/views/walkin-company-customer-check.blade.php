@@ -25,14 +25,13 @@
 					
 					<!--If the customer is new-->
 					<div class="col s6">
-					{!! Form::open(['url' => 'transaction/walkin-company-payment-customer-info', 'method' => 'GET']) !!}
+					{!! Form::open(['url' => 'transaction/walkin-company-payment-customer-information', 'method' => 'GET']) !!}
 						<div class="center col s12" style="padding-top:5%">
 							<button type="submit" class="center teal lighten-2" style="padding:10%;">
 								<center><i class="mdi-social-person-add" style="font-size:80px"></i></center>
 								<p align="center" style="font-size:40px; color:teal;"><center><font class="hidden" color="#4db6ac">Ad</font><b><font size="4em">New Customer</font></b><font class="hidden" color="#4db6ac">Ad</font></center></p>
 							</button >
 						</div>
-
 					{!! Form::close() !!}
 					</div>
 
@@ -50,18 +49,69 @@
 					<!--this will appear once the user chose the button for existing customer-->
 					<div class="customer-form col s12" id="custname" style="display:none; padding:5%">
 					<div class="col s12"><div class="divider" style="height:2px; background-color:teal; margin-top:3%"></div></div>
-					{!! Form::open(['url' => 'transaction/walkin-company-payment-info', 'method' => 'GET']) !!}
+					{!! Form::open(['url' => 'transaction/walkin-company-payment-customer-information', 'method' => 'POST', 'id' => 'companyForm']) !!}
 						<div class="container">
 							<div class="col s5" style="padding-top:3%"><center><b><font size="+1.5">Enter Company Name</font></b></center></div>
 							<div class="col s7">
 								<div class="input-field col s12">
-					          		<input id="email" type="email" class="validate">
+									<input type="hidden" id="custID" name="custID">
+					          		<input id="companyName" type="text" class="validate">
 					          	</div>
 							</div>					  
 					    </div>
 					<br><br>
-			<div class="col s12"><div class="divider" style="height:2px; background-color:teal; margin-bottom:1%"></div></div>
-			<right><button type="submit" class="right btn" style="background-color:teal; color:white; margin-bottom:3%">Done!</button></right>
+					<div class="col s12"><div class="divider" style="height:2px; background-color:teal; margin-bottom:1%"></div></div>
+					<right><button type="button" id="checkCompany" class="right btn" style="background-color:teal; color:white; margin-bottom:3%">Done!</button></right>
+
+					<!--Modal for summary of orders-->
+					<div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
+						<h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
+							
+							{!! Form::open() !!}
+								<div class="divider" style="height:2px"></div>
+								<div class="modal-content col s12">
+									<label>This is a summary of orders:</label>
+										<div class="container">
+					                        <table class = "table centered order-summary" border = "1">
+							       				<thead style="color:gray">
+								          			<tr>
+									                  <th data-field="product">Package</th>         
+									                  <th data-field="quantity">Quantity</th>
+									                  <th data-field="price">Unit Price</th>
+									                  <th data-field="price">Total Price</th>
+									              	</tr>
+								              	</thead>
+								              	<tbody>
+								              		@for($i = 0; $i < count($packages); $i++)
+										            <tr>
+										               <td>{{ $packages[$i]->strPackageName }}</td>
+										               <td>{{ $quantity[$i] }}</td>
+										               <td>{{ number_format($packages[$i]->dblPackagePrice, 2) }} PHP</td>
+										               <td>{{ number_format($prices[$i], 2) }} PHP</td>
+										            </tr>
+													@endfor
+										        </tbody>
+										    </table>
+							      		</div>
+
+							      		
+							      		<div class="col s12"><div class="divider"></div></div>
+
+								      	<div class="col s12" style="margin-bottom:50px" >
+											<div class="col s6"><p style="color:gray">Estimated time to finish all orders:<p style="color:black" id="totalTime"></p></p></div>
+											<div class="col s6"><p style="color:gray">Total Amount to Pay:<p style="color:black" id="totalPrice"></p></p></div>
+										</div>
+								</div>
+
+								<div class="modal-footer col s12">
+									<p class="left" style="margin-left:10px; color:gray;">Continue to payment?</p>
+					                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-company-payment-measure-detail')}}"><font color="black">Yes</font></a>
+					                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+					            </div>
+							{!! Form::close() !!}
+					</div>
+					<!--End of modal for summary of orders-->
+
 					{!! Form::close() !!}
 					</div>
 
@@ -78,14 +128,53 @@
 
 @section('scripts')
 
+<script>
+	$('#checkCompany').click(function(){
+
+		var comp = {!! json_encode($company) !!};
+		//var companyID = "";
+		var check = 0;
+
+		for(var i = 0; i < comp.length; i++){
+
+			if((comp[i].strCompanyName).toLowerCase().trim() == $('#companyName').val().toLowerCase().trim())
+			{
+				/*companyID = comp[i].strCompanyID;*/
+				check = 1;
+				$('#custID').val(comp[i].strCompanyID);
+				$('#summary-of-order').openModal();
+				//$('#companyForm').submit();
+				break;
+			}	
+
+		}
+		if(check == 0){
+			alert("That company does not exist!");	
+		}
+
+	});
+
+	$(document).ready(function(){
+		  $(window).keydown(function(event){
+			    if(event.keyCode == 13) {
+			      event.preventDefault();
+			      return false;
+			    }
+			  });
+	})
+
+</script>
+
 <script type="text/javascript">
-	
-	// $('#button').on('click', function() {
-	// 	$('#custId').show();
-	// 	$('#custId').style.display = "block";
-	// });
+
 	function showform() 
 	{
 		document.getElementById('custname').style.display = "block";
 	}
+	// $('#button').on('click', function() {
+	// 	$('#custId').show();
+	// 	$('#custId').style.display = "block";
+	// });
 </script>
+
+@stop
