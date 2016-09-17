@@ -84,11 +84,6 @@
 					              	</thead>
 					              	<tbody>
 					              		@for($i = 0; $i < count($values); $i++)
-					              		@if($laborfee[$i]['strChargeDetSegFK'] == $values[$i]['strSegmentID'])
-					              		@foreach($style_total as $styleTtl) 
-					              		@for($j = 0; $j < count($styles[$i]); $j++)
-										@if($style_total[$i]['strSegmentID'] == $styles[$i][$j]->strSegmentID) 
-					              			
 								            <tr style="border-top:1px black solid; border-bottom:1px black solid">
 								                <td style="border-right:1px black solid; border-left:1px black solid">{{ $values[$i]['strGarmentCategoryName'] }}, {{ $values[$i]['strSegmentName'] }}</td>
 												<td style="border-right:1px black solid">{{ $values[$i]['strFabricName'] }}</td>
@@ -113,36 +108,32 @@
 												
 												<td style="border-right:1px black solid">
 													@for($j = 0; $j < count($styles[$i]); $j++)
-													@if($styles[$i][$j]->strSegmentID == $values[$i]['strSegmentID'])
-														{{ $styles[$i][$j]->strSegStyleName }}<br>
-													@endif
+														@if($styles[$i][$j]->strSegmentID == $values[$i]['strSegmentID'])
+															{{ $styles[$i][$j]->strSegStyleName }}<br>
+														@endif
 													@endfor
 												</td>
 												<td style="border-right:1px black solid">
 													@for($j = 0; $j < count($styles[$i]); $j++)
-													@if($styles[$i][$j]->strSegmentID == $values[$i]['strSegmentID'])
-														{{ $styles[$i][$j]->strSegPName }}<br>
-													@endif
+														@if($styles[$i][$j]->strSegmentID == $values[$i]['strSegmentID'])
+															{{ $styles[$i][$j]->strSegPName }}<br>
+														@endif
 													@endfor
 												</td>
 												<td style="border-right:1px black solid">
 													@for($j = 0; $j < count($styles[$i]); $j++)
-													@if($styles[$i][$j]->strSegmentID == $values[$i]['strSegmentID'])
-														{{ number_format($styles[$i][$j]->dblPatternPrice, 2) }} PHP <br>
-													@endif
+														@if($styles[$i][$j]->strSegmentID == $values[$i]['strSegmentID'])
+															{{ number_format($styles[$i][$j]->dblPatternPrice, 2) }} PHP <br>
+														@endif
 													@endfor
-													</td>
+												</td>
 
 												<td style="border-right:1px black solid"><!--<div id="style_price_total" name="style_price_total"></div>-->{{ number_format($style_total[$i]['dblPatternPrice'] , 2) }} PHP</td>
 												<td style="border-right:1px black solid">{{ number_format(($laborfee[$i]['dblChargeDetPrice']) , 2) }} PHP</td>
-												<td style="border-right:1px black solid"><div id="line_total" name="line_total"> </div></td>
+												<td style="border-right:1px black solid">{{ number_format(($lineTotal[$i]) , 2) }} PHP</td>
 										
-										@endif
-										@endfor
-										@endforeach
-										@endif
-										@endfor
-							            
+
+											@endfor       
 								            </tr>						            		
 							           
 

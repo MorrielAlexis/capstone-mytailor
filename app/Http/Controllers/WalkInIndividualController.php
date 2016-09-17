@@ -380,7 +380,6 @@ class WalkInIndividualController extends Controller
         for($i = 0; $i < count($values); $i++){
             for($j = 0; $j < count($sqlLabor); $j++){
                 if($data[$i] == $sqlLabor[$j]->strChargeDetSegFK){
-                    $chargefees[$i]['strChargeDetSegFK'] = $sqlLabor[$j]->strChargeDetSegFK;
                     $chargefees[$i]['dblChargeDetPrice'] = $sqlLabor[$j]->dblChargeDetPrice;
                 }
             }
@@ -423,7 +422,6 @@ class WalkInIndividualController extends Controller
             dd($styleTotal);
         session(['style_totalprice' => $styleTotal]);*/
         $styleTotal = [];
-        $k = 0;
         foreach ($values as $i => $value){//{dd($values);
             $priceStyle = 0.00;
             for($j = 0; $j < count($styles[$i]); $j++){ //dd($styles);
@@ -432,35 +430,14 @@ class WalkInIndividualController extends Controller
                 }
             }//dd($priceStyle);
             $styleTotal[$i]['dblPatternPrice'] = $priceStyle;
-            $styleTotal[$i]['strSegmentID'] = $value['strSegmentID'];
-            
-        } 
+        }   
 
-/*        for($i = 0; $i < count($values); $i++)
+        $lineTotal = [];
+        for($i = 0; $i < count($values); $i++)
         {
-            if($chargefees[$i]['strChargeDetSegFK'] == $values[$i]['strSegmentID'])
-            {
-                foreach($styleTotal as $sTotal)
-                {
-                    for($j = 0; $j < count($styles[$i]); $j++)
-                    {
-                        if($styleTotal[$i]['strSegmentID'] == $styles[$i][$j]->strSegmentID)
-                        {
-                            for($j = 0; $j < count($styles[$i]); $j++)
-                            {    
-                                if($styles[$i][$j]->strSegmentID == $values[$i]['strSegmentID'])
-                                {
-                                    //{{ $styles[$i][$j]->strSegStyleName 
-                                    var_dump($styleTotal[$i]['strSegmentID']);
-                                }
-                            }
-                            
-                        }
-                    }
-                }
-            }
-        }        
-        dd("");*/
+            $lineTotal[$i] = $values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice'] + $styleTotal[$i]['dblPatternPrice'] + $chargefees[$i]['dblChargeDetPrice'];
+        }
+        
         return view('walkin-individual-checkout-pay')
                     ->with('values', $values)
                     ->with('styles', $styles)
@@ -468,7 +445,8 @@ class WalkInIndividualController extends Controller
                     ->with('laborfee', $chargefees)
                     ->with('othercharge', $othercharges)
                     ->with('joID', $joID)
-                    ->with('style_count', $style_count);
+                    ->with('style_count', $style_count)
+                    ->with('lineTotal', $lineTotal);
     }
 
     public function saveOrder(Request $request)
