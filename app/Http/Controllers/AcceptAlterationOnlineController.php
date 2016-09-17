@@ -36,6 +36,7 @@ class AcceptAlterationOnlineController extends Controller
     
     public function index()
     {
+        //kulang ng filters for online orders, nakukuha pa lahat ng laman ng tblNonShopAlteration na dapat hindi kasi may boolIsOnline
         $onlineAlteration = \DB::table('tblNonShopAlteration')
             ->leftjoin('tblcustindividual', 'tblNonShopAlteration.strCustIndFK', '=', 'tblcustindividual.strIndivID')
             ->leftjoin('tblcustcompany', 'tblNonShopAlteration.strCustCompFK', '=', 'tblcustcompany.strCompanyID')
