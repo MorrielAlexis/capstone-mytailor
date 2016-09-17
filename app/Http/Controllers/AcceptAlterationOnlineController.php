@@ -53,7 +53,6 @@ class AcceptAlterationOnlineController extends Controller
             ->join('tblNonShopAlteration', 'tblNonShopAlteration.strNonShopAlterID', '=', 'tblNonShopAlterSpecific.strNonShopAlterFK')
             ->join('tblSegment', 'tblSegment.strSegmentID', '=', 'tblNonShopAlterSpecific.strGarmentSegmentFK')
             ->join('tblAlteration', 'tblAlteration.strAlterationID', '=', 'tblNonShopAlterSpecific.strAlterationTypeFK')
-            // ->where('tblNonShopAlterSpecific.strNonShopAlterFK', '=', Input::get('jobID'))
             ->orderby('tblNonShopAlterSpecific.strNonAlterSpecificID')
             ->select('tblNonShopAlterSpecific.*', 'tblAlteration.strAlterationName', 'tblSegment.strSegmentName', 'tblNonShopAlteration.strNonShopAlterID')
             ->get();   
@@ -96,12 +95,12 @@ class AcceptAlterationOnlineController extends Controller
                     ->join('tblNonShopAlterSpecific as c','a.strNonShopAlterID',  '=' , 'c.strNonShopAlterFK')
                     ->join('tblSegment as d', 'c.strGarmentSegmentFK', '=' , 'd.strSegmentID')
                     ->join('tblAlteration as e', 'c.strAlterationTypeFK', '=' , 'e.strAlterationID')
-                    ->select(\DB::raw('CONCAT(b.strIndivFName, " " , b.strIndivMName, " " , b.strIndivLName) as custName'), 'a.strNonShopAlterID as transID', 'a.dblOrderTotalPrice AS totalPrice', 'b.strIndivEmailAddress AS custEmail', 'b.strIndivCPNumber AS cpNo', 'd.strSegmentName as segment', 'e.strAlterationName as alteration')
+                    ->select(\DB::raw('CONCAT(b.strIndivFName, " " , b.strIndivMName, " " , b.strIndivLName) as custName'),\DB::raw('CONCAT(b.strIndivHouseNo, " ", b.strIndivStreet, " ", b.strIndivBarangay, " ", b.strIndivCity, " ", b.strIndivProvince, " ", b.strIndivZipCode) as address'), 'a.strNonShopAlterID as transID', 'a.dblOrderTotalPrice AS totalPrice', 'b.strIndivEmailAddress AS custEmail', 'b.strIndivCPNumber AS cpNo', 'd.strSegmentName as segment', 'e.strAlterationName as alteration')
                     ->where('b.strIndivID', $request->input('customerID'))
                     ->get();
-/*            var_dump($results);
-            dd("");
-*/
+            // var_dump($results);
+            // dd("");
+
 
             foreach( $results as $result){
                 $name = $result->custName;
@@ -111,11 +110,12 @@ class AcceptAlterationOnlineController extends Controller
                 $cpNo = $result->cpNo;
                 $segment = $result->segment;
                 $alteration = $result->alteration;
+                $address = $result->address;
             }
 
 
 
-        Mail::send('emails.accept-online-alteration', ['name' => $name, 'order' => $order, 'totPrice' => $totPrice, 'email' => $email, 'cp' => $cpNo, 'segment' => $segment, 'alteration' => $alteration], function($message) use($results) {
+        Mail::send('emails.accept-online-alteration', ['name' => $name, 'order' => $order, 'totPrice' => $totPrice, 'email' => $email, 'cp' => $cpNo, 'segment' => $segment, 'alteration' => $alteration, 'address' => $address], function($message) use($results) {
 
                 foreach($results as $value){
                     $email = $value->custEmail;  
