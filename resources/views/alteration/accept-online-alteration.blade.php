@@ -63,14 +63,13 @@
                 @foreach($onlineAlteration as $onlineAlteration)
                 {!! Form::open(['url' => 'transaction/alteration-accept-online-order', 'method' => 'POST']) !!}
                         <input type="hidden" name="customerID" value="{!! $onlineAlteration->strIndivID !!}">
-                       {{-- @if($onlineAlteration->boolisOnline == 1) --}}
                         <tr>
                           <td>{{$onlineAlteration->strNonShopAlterID}}</td>                        
                           <td>{{$onlineAlteration->strCompanyName}}{{$onlineAlteration->strIndivFName}} {{$onlineAlteration->strIndivMName}} {{$onlineAlteration->strIndivLName}}</td>
                           <td>{{"Php" . $onlineAlteration->dblOrderTotalPrice}}</td>
                           <td><a class=" btn modal-trigger tooltipped btn-floating green" href="#{{$onlineAlteration->strNonShopAlterID}}" data-position="top" data-delay="50" data-tooltip="Show alteration order details."><i class="mdi-action-view-headline"></i></a>
                     		  <button type="submit" style="color:black" class="btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to accept online order"><i class="mdi-action-done"></i></button>
-                          <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to reject order." href="{{URL::to('transaction/alteration-reject-online-order')}}"><i class="mdi-action-delete"></i></a></td>
+                         {{--  <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to reject order." href="{{URL::to('transaction/alteration-reject-online-order')}}"><i class="mdi-action-delete"></i></a> --}}</td>
                         </tr>
               
 
@@ -84,11 +83,12 @@
                                 @foreach($specifics as $specific)
                                   @if($onlineAlteration->strNonShopAlterID == $specific->strNonShopAlterID)
                                     <div class="col s6"><p style="color:gray">Segment: <font color="red" size=+1>{{$specific->strSegmentName}}</font><p style="color:black" id=""></p></p></div>
-                                    <div class="col s6"><p style="color:gray">Alteration Type: <font color="red" size=+1>{{$specific->strAlterationName}} {{-- sample 2 --}}</font><p style="color:black" id="total-price"></p></p></div>
-                                    <div class="col s6"><p style="color:gray">Desc: <font color="red" size=+1>{{$specific->txtAlterationDesc}} {{-- sample 3 --}}</font><p style="color:black" id="total-price"></p></p></div>
+                                    <div class="col s6"><p style="color:gray">Alteration Type: <font color="red" size=+1>{{$specific->strAlterationName}}</font><p style="color:black" id="total-price"></p></p></div>
+                                    <div class="col s6"><p style="color:gray">Desc: <font color="red" size=+1>{{$specific->txtAlterationDesc}}</font><p style="color:black" id="total-price"></p></p></div>
                                   @endif
-                                @endforeach
-                              </div>
+                                @endforeach 
+                              </div> 
+    
                           
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">       
@@ -99,7 +99,7 @@
                           <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
                         </div>      
                       </div>
-                {{--     @endif --}}
+                 {{--  @endif --}}
                   {!! Form::close() !!}
                   @endforeach
                 </tbody>

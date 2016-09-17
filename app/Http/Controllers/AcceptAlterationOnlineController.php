@@ -131,13 +131,36 @@ class AcceptAlterationOnlineController extends Controller
         return redirect('transaction/alteration-online-transaction');
     }
 
-    public function reject()
+    public function reject(Request $request)
     {
 
-        $name = 'Morriel Aquino'; //name ng pagsesendan
-        Mail::send('emails.reject-online-alteration', ['name' => $name], function($message) {
-            $message->to('morriel.aquino@yahoo.com', 'Morriel Aquino')->subject('Order Confirmation!');
+         //actual fetching from database
 
+            $rejects = \DB::table('tblNonShopAlteration AS a')
+                    ->join('tblCustIndividual AS b', 'a.strCustIndFK', '=', 'b.strIndivID')
+                    ->join('tblNonShopAlterSpecific as c','a.strNonShopAlterID',  '=' , 'c.strNonShopAlterFK')
+                    ->select(\DB::raw('CONCAT(b.strIndivFName, " " , b.strIndivMName, " " , b.strIndivLName) as custName'), 'b.strIndivEmailAddress AS custEmail')
+                    ->where('b.strIndivID', $request->input('customerID'))
+                    ->get();
+            var_dump($rejects);
+            dd("");
+
+
+            foreach( $results as $result){
+                $name = $result->custName;
+            }
+
+
+
+        Mail::send('emails.accept-online-alteration', ['name' => $name], function($message) use($results) {
+
+                foreach($rejects as $value){
+                    $email = $value->custEmail;  
+                    break;
+                }
+
+                $message->to("$email")->subject('Order declined!'); //sending of email to selected customer
+     
         });
 
          \Session::flash('flash_message_delete','Order rejected! Email successfully sent to customer.'); //flash message
