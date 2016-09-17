@@ -12,7 +12,7 @@
           <h2>Customer Details</h2>
 
           <b>Alteration Number: {{$order}}</b><br>
-          <b>Name: {{$name}} {{$name2}} </b><br>
+          <b>Name: {{$name}} </b><br>
           <b>Email: {{$email}}</b><br>
           <b>Primary Number: {{$cp}}</b><br>
           <b>Alternative Number: </b><br>

@@ -18,7 +18,7 @@ class QueriesAvailedAlterServiceController extends Controller
      */
     public function index()
     {
-        $topAlterations = \DB::select("SELECT tblAlteration.strAlterationName as name, COUNT(strAlterationID) as ctr FROM tblNonShopAlterSpecific,tblAlteration WHERE tblAlteration.strAlterationID = tblNonShopAlterSpecific.strAlterationTypeFK GROUP BY strAlterationID ORDER BY ctr DESC limit 3");
+        $topAlterations = \DB::select('SELECT tblAlteration.strAlterationName as name, COUNT(strAlterationID) as ctr FROM tblNonShopAlterSpecific,tblAlteration WHERE tblAlteration.strAlterationID = tblNonShopAlterSpecific.strAlterationTypeFK GROUP BY strAlterationID ORDER BY ctr DESC limit 3');
 
         // dd($topSegments);
         return view('queries.queries-most-availed-alteration-service')

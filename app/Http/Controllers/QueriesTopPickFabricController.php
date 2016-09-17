@@ -16,7 +16,7 @@ class QueriesTopPickFabricController extends Controller
      */  
     public function index()
     {
-        $topFabrics = \DB::select("SELECT tblFabric.strFabricName as name, tblFabric.strFabricImage as image, COUNT(strFabricID) as ctr FROM tblJOSpecific,tblFabric WHERE tblFabric.strFabricID = tblJOSpecific.strJOFabricFK GROUP BY strFabricID ORDER BY ctr DESC limit 3");
+        $topFabrics = \DB::select('SELECT tblFabric.strFabricName as name, tblFabric.strFabricImage as image, COUNT(strFabricID) as ctr FROM tblJOSpecific,tblFabric WHERE tblFabric.strFabricID = tblJOSpecific.strJOFabricFK GROUP BY strFabricID ORDER BY ctr DESC limit 3');
 
         // dd($topFabrics);
 

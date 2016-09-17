@@ -16,7 +16,7 @@ class QueriesTopPickCompanyController extends Controller
      */
     public function index()
     {   
-        $topCompanies = \DB::select("SELECT tblCustCompany.strCompanyName as name, COUNT(strCompanyID) as ctr FROM tblJobOrder,tblCustCompany WHERE tblCustCompany.strCompanyID = tblJobOrder.strJO_CustomerCompanyFK GROUP BY strCompanyID ORDER BY ctr DESC limit 3");
+        $topCompanies = \DB::select('SELECT tblCustCompany.strCompanyName as name, COUNT(strCompanyID) as ctr FROM tblJobOrder,tblCustCompany WHERE tblCustCompany.strCompanyID = tblJobOrder.strJO_CustomerCompanyFK GROUP BY strCompanyID ORDER BY ctr DESC limit 3');
         // dd($topCustomers);
 
         return view('queries.queries-top-companies')
