@@ -19,6 +19,7 @@ use App\Segment;
 use App\SegmentPattern;
 use App\SegmentStyle;
 
+use App\Company;
 
 class WalkInCompanyController extends Controller
 {
@@ -39,11 +40,13 @@ class WalkInCompanyController extends Controller
         $values = [];
         $quantity = [];
         $pattern = [];
+        $fabric = [];
 
         session(['package_data' => $data]);
         session(['package_values' => $values]);
         session(['package_quantity' => (int)$quantity]);
         session(['package_segment_pattern' => $pattern]);
+        session(['package_segment_fabric' => $fabric]);
 
         $packages = Package::all();
 
@@ -198,14 +201,19 @@ class WalkInCompanyController extends Controller
         $values = session()->get('package_segments_customize');
         $to_be_customized = session()->get('package_customize');
         $segmentStyles = SegmentStyle::all();
+        $segmentFabrics = Fabric::all();
+
         $k = 0;
 
         for($i = 0; $i < (count($values) + 1); $i++){
             if($i == 0) {
-
                 $patterns[$i] = $to_be_customized;
+                $fabrics[$i] = $to_be_customized;
                 continue;
             }
+
+            $fabrics[$i] = $request->input('fabrics' . $i);
+
             for($j = 0; $j < count($segmentStyles); $j++){
                 $tempPatterns = $request->input('rdb_pattern' . $segmentStyles[$j]->strSegStyleCatID . ($i));       
                 if($tempPatterns != null){
@@ -215,8 +223,10 @@ class WalkInCompanyController extends Controller
             }
             $k = 0;
         }
+
         $request->session()->push('package_segment_pattern', $patterns);
-        
+        $request->session()->push('package_segment_fabric', $fabrics);
+
         return redirect('transaction/walkin-company-show-order');
     }
 
@@ -289,9 +299,21 @@ class WalkInCompanyController extends Controller
     }
 
     //if a customer already has an existing profile with the shop
-    public function customerCheck(){
+    public function customerCheck()
+    {
+        $company = Company::all();
 
-        return view('walkin-company-customer-check');
+        $quantity = session()->get('package_quantity');
+        $packages = session()->get('package_values');
+        $prices = [];
+        
+        for($i = 0; $i < count($packages); $i++) $prices[$i] = $packages[$i]->dblPackagePrice * $quantity[$i]; 
+
+        return view('walkin-company-customer-check')
+                ->with('company', $company)
+                ->with('quantity', $quantity)
+                ->with('packages', $packages)
+                ->with('prices', $prices);;
     }
 
     public function companyInformation()
@@ -342,6 +364,31 @@ class WalkInCompanyController extends Controller
                 ->with('custID', $custID)
                 ->with('joID', $newID);
     }
+
+    public function existingCompanyInformation(Request $request)
+    {
+        $custID = $request->input('custID');
+
+        $joID = \DB::table('tblJobOrder')
+            ->select('strJobOrderID')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('strJobOrderID', 'desc')
+            ->take(1)
+            ->get();
+
+        if($joID == null){
+            $newID = $this->smartCounter("JOB000"); 
+        }else{
+            $ID = $joID["0"]->strJobOrderID;
+            $newID = $this->smartCounter($ID);  
+        }         
+
+        session(['compID' => $custID]);
+        session(['compJOID' => $newID]);
+
+        return view('walkin-company-checkout-measure');
+    }
+
 
     public function payment()
     {
