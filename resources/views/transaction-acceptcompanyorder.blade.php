@@ -186,3 +186,20 @@
 	</div>
 
 @stop
+@section('scripts')
+
+<script type="text/javascript">
+	function tabInit() {
+    $('ul.tabs').tabs();
+	}
+
+	$.ajax({
+	    type: "GET",
+	    //Url to the XML-file
+	    url: "transaction/acceptCompany",
+	    dataType: "blade.php",
+	    success: tabInit
+
+	});
+</script>
+@stop

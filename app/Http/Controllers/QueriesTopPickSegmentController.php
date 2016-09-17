@@ -16,7 +16,7 @@ class QueriesTopPickSegmentController extends Controller
      */
     public function index()
     {
-        $topSegments = \DB::select("SELECT tblSegment.strSegmentName as name, tblSegment.strSegmentImage as image, COUNT(strSegmentID) as ctr FROM tblJOSpecific,tblSegment WHERE tblSegment.strSegmentID = tblJOSpecific.strJOSegmentFK GROUP BY strSegmentID ORDER BY ctr DESC limit 3");
+        $topSegments = \DB::select('SELECT tblSegment.strSegmentName as name, tblSegment.strSegmentImage as image, COUNT(strSegmentID) as ctr FROM tblJOSpecific,tblSegment WHERE tblSegment.strSegmentID = tblJOSpecific.strJOSegmentFK GROUP BY strSegmentID ORDER BY ctr DESC limit 3');
 
         // dd($topSegments);
         return view('queries.queries-top-pick-segment')

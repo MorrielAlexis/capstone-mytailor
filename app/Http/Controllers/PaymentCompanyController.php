@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class QueriesTopPickCompanyController extends Controller
+class PaymentCompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +15,8 @@ class QueriesTopPickCompanyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $topCompanies = \DB::select('SELECT tblCustCompany.strCompanyName as name, COUNT(strCompanyID) as ctr FROM tblJobOrder,tblCustCompany WHERE tblCustCompany.strCompanyID = tblJobOrder.strJO_CustomerCompanyFK GROUP BY strCompanyID ORDER BY ctr DESC limit 3');
-        // dd($topCustomers);
-
-        return view('queries.queries-top-companies')
-        ->with('topCompanies', $topCompanies);
+    {
+        return view('transaction-billingpayment-company');
     }
 
     /**
