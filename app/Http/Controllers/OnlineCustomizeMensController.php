@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Session;
+
 use App\Fabric;
 use App\FabricType;
 use App\FabricColor;
@@ -39,32 +41,45 @@ class OnlineCustomizeMensController extends Controller
     
     public function choose()
     {
+        $values = [];
+        $data = [];
+
+        session(['segment_data' => $data]);
+        session(['segment_values' => $values]);
+
         $garmentKey = 'Men Shirt';
 
-        $segments = \DB::table('tblSegment')
+        $garments = \DB::table('tblSegment')
             ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
             ->where('tblGarmentCategory.strGarmentCategoryName', 'LIKE', '%'.$garmentKey.'%')
             ->select('tblSegment.*')
             ->get();
 
         return view('customize.mens-choose-shirt')
-         ->with('segments', $segments);
+         ->with('garments', $garments)
+         ->with('values', $data);
     }   
 
-    public function fabric()
-    {
-        $fabrics = Fabric::all();
-        $fabricThreadCounts = FabricThreadCount::all();
-        $fabricColors = FabricColor::all();
-        $fabricTypes = FabricType::all();
-        $fabricPatterns = FabricPattern::all();
+    public function fabric(Request $request)
+    {   
+        $data_segment = $request->input('menshirt');
 
-        return view('customize.mens-fabric')
-                ->with('fabrics', $fabrics)
-                ->with('fabricThreadCounts', $fabricThreadCounts)
-                ->with('fabricColors', $fabricColors)
-                ->with('fabricTypes', $fabricTypes)
-                ->with('fabricPatterns', $fabricPatterns);
+
+            $fabrics = Fabric::all();
+            $fabricThreadCounts = FabricThreadCount::all();
+            $fabricColors = FabricColor::all();
+            $fabricTypes = FabricType::all();
+            $fabricPatterns = FabricPattern::all();
+
+
+
+            return view('customize.mens-fabric')
+                    ->with('fabrics', $fabrics)
+                    ->with('fabricThreadCounts', $fabricThreadCounts)
+                    ->with('fabricColors', $fabricColors)
+                    ->with('fabricTypes', $fabricTypes)
+                    ->with('fabricPatterns', $fabricPatterns);
+        // }
     }
 
     public function stylecollar(Request $request)
@@ -87,6 +102,7 @@ class OnlineCustomizeMensController extends Controller
                     ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
                     ->select('tblSegment.*', 'tblGarmentCategory.strGarmentCategoryName')
                     ->where('tblGarmentCategory.strGarmentCategoryName', 'LIKE', '%'.$garmentKey.'%')
+                    ->where('tblGarmentCategory.strGarmentCategoryName', 'LIKE', '%'. $data_segment = $request->input('menshirt').'%')
                     ->orderBy('strSegmentID')
                     ->get();
 

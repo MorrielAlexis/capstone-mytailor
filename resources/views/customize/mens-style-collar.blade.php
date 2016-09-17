@@ -78,8 +78,8 @@
                     <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $collar->strSegStyleCatID) hidden @endif>
                       <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
                       <p>
-                        <input name="rdb_pattern{{ $collar->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
-                        <label for="{{$pattern->strSegPatternID}}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
+                        <input name="rdb_pattern" type="radio" class="filled-in" id="{{$pattern->strSegPatternID}}" />
+                        <label for="{{$pattern->strSegPatternID}}">{{$pattern->strSegPName}}</label>
                       </p>
                     </div>
                     @endforeach
@@ -111,6 +111,7 @@
               </div> 
             </div>
           </div>
+
 
           <div class="col s12">
 
@@ -267,6 +268,10 @@
 
     $(document).ready(function() {
       Materialize.updateTextFields();
+    });
+
+     $(document).ready(function(){
+      $('.materialboxed').materialbox();
     });
 
   </script>

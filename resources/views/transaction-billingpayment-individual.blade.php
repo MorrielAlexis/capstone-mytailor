@@ -40,7 +40,7 @@
 
 									<!--Customer search and info-->
 									<div class="col s12" style="margin-top:30px">
-										{!! Form::open() !!}
+										{!! Form::open(['url' => 'transaction/payment/individual/customer-info', 'method' => 'GET']) !!}
 										<div class="col s12 customer" style="background-color: #e0f2f1; padding-top:3%; padding-bottom:3%">
 												<div style="color:black" class="col s12">                   					                          
 						                          	<div class="col s3" style="color:black; margin-top:2%"><center><b>CUSTOMER NAME:</b></center></div>
@@ -52,24 +52,37 @@
 				                    	<div class="col s12" style="margin-top:30px"><div class="divider" style="height:3px; color:gray"></div></div>
 
 									<!-- Customer Info -->
+									@if($customer_info == null)
+									<div class="row" id="success-message">
+							          <div class="col s12 m12 l12">
+							            <div class="card-panel yellow accent-1">
+										<span class="alert alert-success"> 
+											{{ $search_custname }} does not exist as a customer of the shop
+							              	<i class="right tiny mdi-navigation-close" onclick="$('#success-message').hide()"></i>							              	
+							              </span>
+							             </div>
+							            </div>
+							          </div>
+									
+									@elseif(!($customer_info == null)) 
 										<div class="col s12" style="margin-top:10px">
-											<div class="col s6">
+											<div class="col s8">
 					                    		<div style="color:black" class="col s12">     
 					                    			<div class="col s5" style="color:teal; margin-top:4%"><b>Customer Name:</b></div>            
-						                          	<div class="col s7" style="color:black; margin-top:3%; padding:0; font-size:18px"><b>Honey Buenavides</b></div>
+						                          	<div class="col s7" style="color:black; margin-top:3%; padding:0; font-size:18px"><b>{{ $customer_info->fullname }}</b></div>
 					                        	</div>
 					                    	</div>
-											<div class="col s6">
+											<div class="col s4">
 												<div style="color:black" class="col s12">  
-													<div class="col s4" style="color:teal; margin-top:4%; padding:0"><b>Customer ID:</b></div>               
-						                          	<div class="col s8" style="color:black; margin-top:3%; padding:0; font-size:18px"><b>CUSTP001</b></div>
+													<div class="col s5" style="color:teal; margin-top:4%; padding:0"><b>Customer ID:</b></div>               
+						                          	<div class="col s7" style="color:black; margin-top:3%; padding:0; font-size:18px"><b>{{ $customer_info->strIndivID }}</b></div>
 						                        </div>
 					                    	</div>
 					                    	<div class="col s12">
 					                    		<div class="col s12">
 					                    			<div class="col s6">
 						                    			<div class="col s8" style="color:teal; margin-top:4%; padding:0"><b>No. of Pending Payment(s):</b></div>
-						                    			<div class="col s4" style="color:black; margin-top:3%; padding:0; font-size:18px"><b>3</b></div>
+						                    			<div class="col s4" style="color:black; margin-top:3%; padding:0; font-size:18px"><b>{{ count($customer_info->strPaymentID) }}</b></div>
 					                    			</div>
 					                    		</div>
 
@@ -81,24 +94,16 @@
 						                    		<!--eto ang iloloop beybe-->
 						                    		<div class="col s12" style="padding-left:15%">
 						                    			
-						                    			<div class="col s12" style="color:black; margin-top:3%; padding:0; font-size:18px"><b>1996-08-16 JOB001</b>
+						                    			<div class="col s12" style="color:black; margin-top:3%; padding:0; font-size:18px"><b>{{ $customer_info->dtOrderDate }} {{ $customer_info->strJobOrderID }}</b>
 						                    				<a href=""><u>See transaction detail</u></a>
-						                    				<a style="background-color:#ef9a9a; color:white; padding-left:3%; padding-right:3%">Due date: December 29, 2017</a>
-						                    			</div>
-						                    			
-						                    		</div>
-						                    		<div class="col s12" style="padding-left:15%">
-						                    			
-						                    			<div class="col s12" style="color:black; margin-top:3%; padding:0; font-size:18px"><b>1997-05-03 JOB001</b>
-						                    				<a href=""><u>See transaction detail</u></a>
-						                    				<a style="background-color:#ef9a9a; color:white; padding-left:3%; padding-right:3%">Due date: August 16, 2017</a>
+						                    				<a style="background-color:#ef9a9a; color:white; padding-left:3%; padding-right:3%">Due date: {{$customer_info->dtPaymentDueDate }}</a>
 						                    			</div>
 						                    			
 						                    		</div>
 						                    		<!--ends here-->
 					                    			</div>
 					                    		</div>
-					                    		<div class="col s12" style="margin-top:3%"><div class="divider" style="height:3px; color:gray; margin-bottom:4%"></div></div>           							                    												
+					                    		<div class="col s12" style="margin-top:3%"><div class="divider" style="height:3px; color:gray; margin-bottom:4%"></div></div> 
 											</div><!--End of customer info-->
 
 					                    	<!--START OF PAYMENT PROCESS HERE-->
@@ -111,7 +116,7 @@
 														
 														</select>
 													</div>
-													<label style="color:teal"><b>Choose a transaction date to bill:</b></label>
+													<label style="color:teal"><b>Choose a transaction date to pay:</b></label>
 												</div>
 											</div>
 
@@ -121,36 +126,38 @@
 											<div class="card-content">
 												<div class="row">
 													<div style="color:black" class="input-field col s7">                 
-							                          <input style="margin-left:180px; padding:5px; padding-left:10px" name="payment-info" type="text" class="">
-							                          <label style="color:red; margin-top:5px; margin-left:20px"><b>Total Amount to Pay:</b></label>
+							                          <input style="margin-left:80%; padding:1%; padding-left:1%" name="payment-info" type="text" class="" value="{{ number_format($customer_info->dblOrderTotalPrice, 2)}} PHP">
+							                          <label style="color:teal; margin-top:1%; margin-left:2%"><b>Total Amount to Pay:</b></label>
 							                        </div>
 
 							                        <div style="color:black" class="input-field col s7">                 
-							                          <input style="margin-left:180px; padding:5px; padding-left:10px" name="payment-info" type="text" class="">
-							                          <label style="color:red; margin-top:5px; margin-left:20px"><b>Total Amount Paid:</b></label>
+							                          <input style="margin-left:80%; padding:1%; padding-left:1%" name="payment-info" type="text" class="" value="{{ number_format($customer_info->dblAmountToPay, 2)}} PHP">
+							                          <label style="color:teal; margin-top:1%; margin-left:2%"><b>Total Amount Paid:</b></label>
 							                        </div>
 
 							                        <div style="color:black" class="input-field col s7">                 
-							                          <input style="margin-left:180px; padding:5px; padding-left:10px" name="payment-info" type="text" class="">
-							                          <label style="color:red; margin-top:5px; margin-left:20px"><b>Outstanding Balance:</b></label>
+							                          <input style="margin-left:80%; padding:1%; padding-left:1%" name="payment-info" type="text" class="" value="{{ number_format($customer_info->dblOutstandingBal, 2)}} PHP">
+							                          <label style="color:teal; margin-top:1%; margin-left:2%"><b>Outstanding Balance:</b></label>
 							                        </div>
+							        		@endif       							                    												
+											{!! Form::close() !!}
 
-							                        <div class="col s12" style="margin-top:30px"><div class="divider" style="height:3px; color:gray"></div></div>
+							                        <div class="col s12" style="margin-top:3%"><div class="divider" style="height:3px; color:gray"></div></div>
 
 							                        <div style="color:black" class="input-field col s7">                 
-							                          <input style="margin-left:180px; padding:5px; padding-left:10px; border:3px gray solid" name="payment-info" type="text" class="">
-							                          <label style="color:black; margin-top:5px; margin-left:20px"><b>Amount Tendered:</b></label>
+							                          <input style="margin-left:80%; padding:1%; padding-left:1%; border:3px gray solid" name="payment-info" type="text" class="">
+							                          <label style="color:black; margin-top:1%; margin-left:2%"><b>Amount Tendered:</b></label>
 							                        </div>
 
 							                        <div style="color:black" class="input-field col s7">                 
-							                          <input style="margin-left:180px; padding:5px; padding-left:10px; border:3px gray solid" name="payment-info" type="text" class="">
-							                          <label style="color:black; margin-top:5px; margin-left:20px"><b>Amount to Pay :</b></label>
+							                          <input style="margin-left:80%; padding:1%; padding-left:1%; border:3px gray solid" name="payment-info" type="text" class="">
+							                          <label style="color:black; margin-top:1%; margin-left:2%"><b>Amount to Pay :</b></label>
 							                        </div>
 
 							                        <div class="container">
 								                        <div style="color:black" class="input-field col s7">                 
-								                          <input style="margin-left:116px; padding:5px; padding-left:10px; border:3px gray solid" name="payment-info" type="text" class="">
-								                          <label style="color:red; margin-top:5px; margin-left:40px"><b>Change:</b></label>
+								                          <input style="margin-left:80%; padding:1%; padding-left:1%; border:3px gray solid" name="payment-info" type="text" class="">
+								                          <label style="color:teal; margin-top:1%; margin-left:40px"><b>Change:</b></label>
 								                        </div>
 							                    	</div>
 
@@ -160,7 +167,7 @@
 							                        </div>
 
 							                        <div class="col s12">
-							                        	<center><p style="color:gray">*** Pay balance before or on <font color="red"><b><u>"DECEMBER 25, 2016"</u></b></font> ***</p></center>
+							                        	<center><p style="color:gray">*** Pay balance before or on <font color="teal"><b><u>"DECEMBER 25, 2016"</u></b></font> ***</p></center>
 							                        </div>
 
 							                        <div style="color:black" class="input-field col s7">                 
@@ -190,11 +197,11 @@
 												
 												<!--In case of multiple pending transactions...-->
 													<div  class="col s6">
-														<h6>Order No.: <p style="color:red"><b>ORN 001</b></p></h6>
+														<h6>Order No.: <p style="color:teal"><b>ORN 001</b></p></h6>
 													</div>
 
 													<div  class="col s6">
-														<h6>Transaction Date: <p style="color:red"><b>2016-05-03</b></p></h6>
+														<h6>Transaction Date: <p style="color:teal"><b>2016-05-03</b></p></h6>
 													</div>
 
 													<div class="col s12">
@@ -224,115 +231,6 @@
 													<div class="col s12"><div class="divider" style="height:2px; color:gray; margin-top:15px; margin-bottom:15px"></div></div>
 
 
-													<!--Second example, just to emphasize the sample situation-->
-													
-													<div  class="col s6">
-														<h6>Order No.: <p style="color:red"><b>ORN 002</b></p></h6>
-													</div>
-
-													<div  class="col s6">
-														<h6>Transaction Date: <p style="color:red"><b>2016-06-16</b></p></h6>
-													</div>
-
-													<div class="col s12">
-														<table class="table centered order-summary">
-															<thead style="color:gray">
-																<th>Product Code</th>
-																<th>Quantity</th>
-																<th>Unit Price</th>
-															</thead>
-															<tbody>
-																<tr>
-																	<td>GAR 1011</td>
-																	<td>1</td>
-																	<td>P 800.00</td>
-																</tr>
-																<tr>
-																	<td>GAR 1012</td>
-																	<td>1</td>
-																	<td>P 1,600.00</td>
-																</tr>
-															</tbody>
-														</table>
-
-														<center><a href="#summary-of-order" class="btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to view summary of orders" style="background-color:teal">View Order Details</a></center>
-													</div>
-
-													<div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
-														<h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
-															
-															{!! Form::open() !!}
-																<div class="divider" style="height:2px"></div>
-																<div class="modal-content col s12">
-																	<div class="col s6" style="margin-top:20px;">
-																		<label>This is a summary of orders:</label>
-																	</div>
-
-																	<div class="col s6">
-																		<div class="col s6"><p style="color:gray">Date of Transaction:</p></div>
-																		<div class="col s6"><h6 style="color:red; margin-top:15px"><b>May 3, 2016</b></h6></div>
-																	</div>
-																	<div class="container">
-												                        <table class = "table centered order-summary" border = "1">
-														       				<thead style="color:gray">
-															          			<tr>
-																                  <th data-field="product">Product</th>         
-																                  <th data-field="quantity">Quantity</th>
-																                  <th data-field="design">Design</th>
-																                  <th data-field="fabric">Fabric</th>
-																                  <th data-field="price">Unit Price</th>
-																                  <th data-field="price">Total Price</th>
-																              	</tr>
-															              	</thead>
-															              	<tbody>
-																	            <tr>
-																	               <td>Uniform, Polo</td>
-																	               <td>1</td>
-																	               <td>No-fit</td>
-																	               <td>Traditional Cotton</td>
-																	               <td>800.00 PHP</td>
-																	               <td>800.00 PHP</td>
-																	            </tr>
-
-																	             <tr>
-																	               <td>Uniform, Polo</td>
-																	               <td>1</td>
-																	               <td>Slim-fit</td>
-																	               <td>Remarkable Cotton</td>
-																	               <td>850.00 PHP</td>
-																	               <td>850.00 PHP</td>
-																	            </tr>
-
-																	        </tbody>
-																	    </table>
-														      		</div>
-
-														      		<div class="divider"></div>
-														      		<div class="divider"></div>
-
-															      	<div class="col s12">
-																		<div class="col s6"><p style="color:gray">Estimated time to finish all orders:<p style="color:black">10 days</p></p></div>
-																		<div class="col s6"><p style="color:gray">Total Amoun to Pay:<p style="color:black">1,650.00 PHP</p></p></div>
-																	</div>
-
-																	<div class="col s12" style="margin-bottom:50px">
-																		<p style="color:red"><b>Due date of payment (pay balance before or on the said date):</b> JULY 16, 2015</p>
-																	</div>
-																</div>
-
-
-
-																<div class="modal-footer col s12">
-													                
-													                <a class="waves-effect waves-green btn-flat" href="{{URL::to('/transaction/billing-payment-bill-customer')}}"><font color="black">OK</font></a>
-													                
-													            </div>
-															{!! Form::close() !!}
-													</div>
-
-													<div class="col s12"><div class="divider" style="height:2px; color:gray; margin-top:15px; margin-bottom:15px"></div></div>
-
-
 												</div>
 											</div>
 										</div>
@@ -353,10 +251,6 @@
 						                        </div>
 					                    	</div> -->
 
-
-				                        {!! Form::close() !!}				                        	
-									</div>
-									<!--End of Customer search and info-->
 
 									
 
