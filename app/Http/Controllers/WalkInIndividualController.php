@@ -364,27 +364,109 @@ class WalkInIndividualController extends Controller
         $fabrics = session()->get('segment_fabric');
         $joID = session()->get('joID');
         $style_count = count(session()->get('segment_values'));
+        $data = session()->get('segment_data');
         $chargefees = [];
+        $othercharges = [];
 
-        $sqlCharge = \DB::table('tblChargeCategory AS a')
+        $laborkey = "Labor Fee";
+
+        $sqlLabor = \DB::table('tblChargeCategory AS a')
                     ->leftJoin('tblChargeDetail AS b', 'a.strChargeCatID', '=', 'b.strChargeCatFK')
                     ->select('b.*')
-                    ->whereIn('b.strMeasDetSegmentFK', $data)
+                    ->whereIn('b.strChargeDetSegFK', $data)
+                    ->where('a.strChargeCatName', 'LIKE', '%'.$laborkey.'%')
                     ->get();
 
         for($i = 0; $i < count($values); $i++){
-            for($j = 0; $j < count($sqlCharge); $j++){
-                if($values[$i] == $sqlCharge[$j]->strChargeDetSegFK){
-                    $chargefees[$i] = $sqlCharge[$j]->dblChargeDetPrice;
+            for($j = 0; $j < count($sqlLabor); $j++){
+                if($data[$i] == $sqlLabor[$j]->strChargeDetSegFK){
+                    $chargefees[$i]['strChargeDetSegFK'] = $sqlLabor[$j]->strChargeDetSegFK;
+                    $chargefees[$i]['dblChargeDetPrice'] = $sqlLabor[$j]->dblChargeDetPrice;
                 }
             }
         }  
-        session(['charge_laborfee' => $chargefees]);
+        session(['charge_laborfee' => $chargefees]); //dd($sqlLabor);
 
+        for($i = 0; $i < count($values); $i++){
+            $sqlCharge[$i] = \DB::table('tblChargeCategory AS a')
+                        ->leftJoin('tblChargeDetail AS b', 'a.strChargeCatID', '=', 'b.strChargeCatFK')
+                        ->where('a.strChargeCatName', 'NOT LIKE', '%'.$laborkey.'%')
+                        ->whereIn('b.strChargeDetSegFK', $data)
+                        ->select('b.*')
+                        ->get();
+        }
+        /*for($i = 0; $i < count($values); $i++){
+            for($j = 0; $j < count($sqlCharge); $j++){
+             
+                    $othercharges[$i]['strChargeDetSegFK'] = $sqlCharge[$j]->strChargeDetSegFK;
+                    $othercharges[$i]['dblChargeDetPrice'] = $sqlCharge[$j]->dblChargeDetPrice;
+
+            }
+        }  */
+        session(['charge_others' => $sqlCharge]);
+       // dd($sqlCharge);
+
+        /*$priceStyle = 0.00;
+        $styleTotal = [];
+        foreach ($values as $i => $value) { //dd($value);
+                foreach ($styles as $j => $style) { //dd($style);
+                    if($style[$i]->strSegmentID == $values[$i]['strSegmentID']){
+                        for($j = 0; $j < count($style[$i]); $j++){  //dd($style);
+                                $priceStyle += $style[$i]->dblPatternPrice;
+                        } 
+                        $styleTotal[$i]['strSegmentID'] = $style[$i]->strSegmentID;
+                    }
+                } dd($priceStyle);
+            $styleTotal[$i]['dblPatternPrice'] = $priceStyle;
+             //dd($styleTotal);//dd($priceStyle);
+        } dd($priceStyle);
+            dd($styleTotal);
+        session(['style_totalprice' => $styleTotal]);*/
+        $styleTotal = [];
+        $k = 0;
+        foreach ($values as $i => $value){//{dd($values);
+            $priceStyle = 0.00;
+            for($j = 0; $j < count($styles[$i]); $j++){ //dd($styles);
+                if($styles[$i][$j]->strSegmentID == $value['strSegmentID']){
+                    $priceStyle += $styles[$i][$j]->dblPatternPrice;
+                }
+            }//dd($priceStyle);
+            $styleTotal[$i]['dblPatternPrice'] = $priceStyle;
+            $styleTotal[$i]['strSegmentID'] = $value['strSegmentID'];
+            
+        } 
+
+/*        for($i = 0; $i < count($values); $i++)
+        {
+            if($chargefees[$i]['strChargeDetSegFK'] == $values[$i]['strSegmentID'])
+            {
+                foreach($styleTotal as $sTotal)
+                {
+                    for($j = 0; $j < count($styles[$i]); $j++)
+                    {
+                        if($styleTotal[$i]['strSegmentID'] == $styles[$i][$j]->strSegmentID)
+                        {
+                            for($j = 0; $j < count($styles[$i]); $j++)
+                            {    
+                                if($styles[$i][$j]->strSegmentID == $values[$i]['strSegmentID'])
+                                {
+                                    //{{ $styles[$i][$j]->strSegStyleName 
+                                    var_dump($styleTotal[$i]['strSegmentID']);
+                                }
+                            }
+                            
+                        }
+                    }
+                }
+            }
+        }        
+        dd("");*/
         return view('walkin-individual-checkout-pay')
                     ->with('values', $values)
                     ->with('styles', $styles)
-                    ->with('charge_laborfee', $chargefees)
+                    ->with('style_total', $styleTotal)
+                    ->with('laborfee', $chargefees)
+                    ->with('othercharge', $othercharges)
                     ->with('joID', $joID)
                     ->with('style_count', $style_count);
     }

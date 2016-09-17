@@ -67,9 +67,9 @@
 						                  <th colspan="3" data-field="description" style="border-right:1px black solid">Description</th>  
 						                  <th colspan="1" data-field="style-price-total" style="border-right:1px black solid">Style Price Total</th>
 						                  <th colspan="1" data-field="labor-price-per-segment" style="border-right:1px black solid">Labor Price</th>
-						                  <th colspan="1" data-field="line-total" style="border-right:1px black solid">Grand Total</th>        
+						                  <th colspan="1" data-field="line-total" style="border-right:1px black solid">Line Total</th>        
 						             </tr>
-						             <tr>
+						             <tr style="border-top:1px black solid; border-bottom:1px black solid; background-color:teal; color:white">
 						             	<th style="border:1px black solid"></th>
 						             	<th style="border:1px black solid"></th>
 						             	<th style="border:1px black solid"></th>
@@ -84,14 +84,17 @@
 					              	</thead>
 					              	<tbody>
 					              		@for($i = 0; $i < count($values); $i++)
-					              		@for($)
+					              		@if($laborfee[$i]['strChargeDetSegFK'] == $values[$i]['strSegmentID'])
+					              		@foreach($style_total as $styleTtl) 
+					              		@for($j = 0; $j < count($styles[$i]); $j++)
+										@if($style_total[$i]['strSegmentID'] == $styles[$i][$j]->strSegmentID) 
 					              			
 								            <tr style="border-top:1px black solid; border-bottom:1px black solid">
 								                <td style="border-right:1px black solid; border-left:1px black solid">{{ $values[$i]['strGarmentCategoryName'] }}, {{ $values[$i]['strSegmentName'] }}</td>
 												<td style="border-right:1px black solid">{{ $values[$i]['strFabricName'] }}</td>
 								                <td style="border-right:1px black solid">{{ number_format(($values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice']) , 2) }} PHP</td>
-												{{-- <td style="border-right:1px black solid">
-													<div class="col s12">
+												<!-- <td style="border-right:1px black solid">
+													<div class="col s12">	
 													<div class="col s4"><b style="color:teal">Style Category</b></div>
 													<div class="col s4"><b style="color:teal">Segment Pattern</b></div>
 													<div class="col s4"><b style="color:teal">Style Price</b></div>
@@ -106,18 +109,39 @@
 
 																@endif
 												        @endfor
-												</td> --}}
-												@for($j = 0; $j < count($styles[$i]); $j++)
+												</td> -->
+												
+												<td style="border-right:1px black solid">
+													@for($j = 0; $j < count($styles[$i]); $j++)
 													@if($styles[$i][$j]->strSegmentID == $values[$i]['strSegmentID'])
-												<td>{{ $styles[$i][$j]->strSegStyleName }}</td>
-												<td>{{ $styles[$i][$j]->strSegPName }}</td>
-												<td>{{ number_format($styles[$i][$j]->dblPatternPrice, 2) }} PHP</td>
+														{{ $styles[$i][$j]->strSegStyleName }}<br>
 													@endif
-												@endfor
-												<td style="border-right:1px teal solid"><div id="style_price_total" name="style_price_total"> </div></td>
-												<td style="border-right:1px teal solid"><div id="labor_price" name="labor_price"> </td>
-										 @endfor		
-							            		<td style="border-right:1px white solid; border-top:1px white solid; border-bottom:1px white solid">0.00 PHP</td>
+													@endfor
+												</td>
+												<td style="border-right:1px black solid">
+													@for($j = 0; $j < count($styles[$i]); $j++)
+													@if($styles[$i][$j]->strSegmentID == $values[$i]['strSegmentID'])
+														{{ $styles[$i][$j]->strSegPName }}<br>
+													@endif
+													@endfor
+												</td>
+												<td style="border-right:1px black solid">
+													@for($j = 0; $j < count($styles[$i]); $j++)
+													@if($styles[$i][$j]->strSegmentID == $values[$i]['strSegmentID'])
+														{{ number_format($styles[$i][$j]->dblPatternPrice, 2) }} PHP <br>
+													@endif
+													@endfor
+													</td>
+
+												<td style="border-right:1px black solid"><!--<div id="style_price_total" name="style_price_total"></div>-->{{ number_format($style_total[$i]['dblPatternPrice'] , 2) }} PHP</td>
+												<td style="border-right:1px black solid">{{ number_format(($laborfee[$i]['dblChargeDetPrice']) , 2) }} PHP</td>
+												<td style="border-right:1px black solid"><div id="line_total" name="line_total"> </div></td>
+										
+										@endif
+										@endfor
+										@endforeach
+										@endif
+										@endfor
 							            
 								            </tr>						            		
 							           
@@ -141,17 +165,17 @@
 								
 								<div class="col s12">
 									<div class="col s4" style="color:gray; font-size:15px"><p><b>Estimated Total Amount</b></p></div>
-			      					<div class="col s8" style="color:black;"><p><input id="estimated_total" name="estimated_total" type="text" class=""></p></div>
+			      					<div class="col s8" style="color:black;"><p><input id="estimated_total" name="estimated_total" type="text" class="" readonly></p></div>
 								</div>
 
 								<div class="col s12">
 									<div class="col s4" style="color:gray; font-size:15px"><p><b>Total Labor Price</b></p></div>
-			      			<div class="col s8" style="color:gray;"><p><input id="labor_price_total" name="labor_price_total" type="text" class="" readonly><b></b></p></div>
+			      					<div class="col s8" style="color:black;"><p><input id="labor_price_total" name="labor_price_total" type="text" class="" readonly></p></div>
 								</div>
 								
 								<div class="col s12">
 									<div class="col s4" style="color:gray; font-size:15px"><p><b>Additional Fee</b></p></div>
-			      					<div class="col s8" style="color:black;"><p><input id="addtnl_fee" name="addtnl_fee" type="text" class=""></p></div>
+			      					<div class="col s8" style="color:black;"><p><input id="addtnl_fee" name="addtnl_fee" type="text" class="" readonly></p></div>
 								</div>
 
 							</div>
@@ -305,36 +329,51 @@
 
 			var a = {!! json_encode($values) !!};
 			var b = {!! json_encode($styles) !!};
-			var c = {!! json_encode($chargefees !!};
+			var c = {!! json_encode($laborfee) !!};
+			var d = {!! json_encode($othercharge) !!};
 
 			var totalAmount = 0.00;
 			var minDays = 0;
 			var stylePriceTotal = 0.00;
-			var laborPriceTotal = 0.00;
+			var laborTotal = 0.00;
+			var addtnlFees = 0.00;
+			var estimatedTotal = 0.00;
 
-			for(var i = 0; i < a.length; i++){
-				totalAmount += a[i].dblSegmentPrice;
-				totalAmount += a[i].dblFabricPrice;
-				totalAmount += c[i].dblChargeDetPrice;
-					for(var j = 0; j < b[i].length; j++){
-						totalAmount += b[i][j].dblPatternPrice;
-					}
-				minDays += a[i].intMinDays;
-			}
-
-			var stylePriceTotal = 0.00;
+			//style price total
 			for(var i = 0; i < a.length; i++) {
 				for(var j = 0; j < b[i].length; j++) {
 					stylePriceTotal += b[i][j].dblPatternPrice;
 				}
 			}
 
-			var laborPriceTotal = 0.00;
+			//labor total
 			for(var i = 0; i < a.length; i++) {
-				for(var k = 0; k < c[i].length; j++) {
-					laborPriceTotal += c[i][k].dblChargeDetPrice;
+				for(var k = 0; k < c[i].length; k++) {
+					laborTotal += c[i][k].dblChargeDetPrice;
 				}
 			}
+
+			//additional total fees
+			for(var i = 0; i < a.length; i++) {
+				for(var j = 0; j < d[i].length; j++) {
+					addtnlFees += d[i][j].dblChargeDetPrice;
+				}
+			}
+
+			//grand total
+			for(var i = 0; i < a.length; i++){
+				totalAmount += a[i].dblSegmentPrice;
+				totalAmount += a[i].dblFabricPrice;
+				totalAmount += c[i].dblChargeDetPrice;
+				totalAmount += addtnlFees;
+					for(var j = 0; j < b[i].length; j++){
+						totalAmount += b[i][j].dblPatternPrice;
+					}
+				minDays += a[i].intMinDays;
+			}
+
+			//estimated total
+			estimatedTotal = totalAmount - (addtnlFees + laborTotal);
 
 			var monthNames = [ "January", "February", "March", "April", "May", "June",
 		    "July", "August", "September", "October", "November", "December" ];
@@ -347,11 +386,49 @@
 			dueDate.setDate(newDate.getDate()+minDays); 
 
 			$('#style_price_total').text(stylePriceTotal.toFixed(2) + " " + "PHP");
-			$('#labor_price_total').val(laborPriceTotal.toFixed(2));
+			$('#labor_price_total').val(laborTotal.toFixed(2));
+			$('#estimated_total').val(estimatedTotal.toFixed(2));
+			$('#grand_price').text(totalAmount.toFixed(2) + " " + "PHP");
 			$('#total_price').val(totalAmount.toFixed(2));
+			$('#addtnl_fee').val(addtnlFees.toFixed(2));
 			$('#due-date').text(dayNames[dueDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
 			$('#transaction_date').val(monthNames[(newDate.getMonth()+1)] + " " + newDate.getDate() + ", " + newDate.getFullYear());
 			$('#due_date').val(monthNames[(dueDate.getMonth()+1)] + " " + dueDate.getDate() + ", " + dueDate.getFullYear());
+		});
+	</script>
+
+	<script type="text/javascript">
+		function updateTotals ( )
+		 	{
+			var a = {!! json_encode($values) !!};
+			var b = {!! json_encode($styles) !!};
+			var c = {!! json_encode($laborfee) !!};
+			var d = {!! json_encode($othercharge) !!};
+
+			var totalAmount = 0.00;
+			var minDays = 0;
+			var stylePriceTotal = 0.00;
+			var lineTotal = 0.00;
+			var addtnlFees = 0.00;
+			var estimatedTotal = 0.00;
+
+			//style price total
+			for(var i = 0; i < a.length; i++) {
+				for(var j = 0; j < b[i].length; j++) {
+					stylePriceTotal += b[i][j].dblPatternPrice;
+				}
+			}
+
+			//line total
+		  	
+		  	
+		   	$("#clock").html(currentTimeString);
+		   	  	
+		 }
+
+		$(document).ready(function()
+		{	
+		    setInterval('updateClock()', 1000);
 		});
 	</script>
 
@@ -361,11 +438,23 @@
 
 					var a = {!! json_encode($values) !!};
 					var b = {!! json_encode($styles) !!};
+					var c = {!! json_encode($laborfee) !!};
+					var d = {!! json_encode($othercharge) !!};
 					var totalAmount = 0.00;
+					var addtnlFees = 0.00;
+
+					//additional total fees
+					for(var i = 0; i < a.length; i++) {
+						for(var j = 0; j < d[i].length; j++) {
+							addtnlFees += d[i][j].dblChargeDetPrice;
+						}
+					}
 
 					for(var i = 0; i < a.length; i++){
 						totalAmount += a[i].dblSegmentPrice;
 						totalAmount += a[i].dblFabricPrice;
+						totalAmount += c[i].dblChargeDetPrice;
+						totalAmount += addtnlFees;
 							for(var j = 0; j < b[i].length; j++){
 								totalAmount += b[i][j].dblPatternPrice;
 							}
@@ -378,13 +467,25 @@
 				if($('#full_pay').prop("checked")){
 
 					var a = {!! json_encode($values) !!};
-					var b = {!! json_encode($styles) !!};	
+					var b = {!! json_encode($styles) !!};
+					var c = {!! json_encode($laborfee) !!};
+					var d = {!! json_encode($othercharge) !!};
 
 					var totalAmount = 0.00;
+					var addtnlFees = 0.00;
+
+					//additional total fees
+					for(var i = 0; i < a.length; i++) {
+						for(var j = 0; j < d[i].length; j++) {
+							addtnlFees += d[i][j].dblChargeDetPrice;
+						}
+					}
 
 					for(var i = 0; i < a.length; i++){
 						totalAmount += a[i].dblSegmentPrice;
 						totalAmount += a[i].dblFabricPrice;
+						totalAmount += c[i].dblChargeDetPrice;
+						totalAmount += addtnlFees;
 							for(var j = 0; j < b[i].length; j++){
 								totalAmount += b[i][j].dblPatternPrice;
 							}

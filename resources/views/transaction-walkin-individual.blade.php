@@ -90,7 +90,7 @@
 									
 									<!--Eto yung buong quantity, hindi ko matanggal, baka magloko bigla ang process. Ikaw na lang
 									<!   Nai-comment ko naman na. If ever tatanggalin mo, eto lang-->
-									<!--<center><h6 style="color:darkgray"><b>Quantity</b></h6></center>
+									<center><h6 style="color:darkgray"><b>Quantity</b></h6></center>
 					                  <div class="container"> 
 					                  	<div class="container">
 					                    <div class="input-field col s12" style="margin-top:-2px;">
@@ -98,7 +98,7 @@
 					                    </div>
 					                    </div>
 					                  </div>
-									<!End nung para sa quantity-->
+									<!--End nung para sa quantity-->
 								</div>
 						@endforeach
 						</div>
