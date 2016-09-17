@@ -11,10 +11,13 @@ class TransactionJobOrderPayment extends Model
     protected $primaryKey = 'strPaymentID';
 
     protected $fillable = array('strPaymentID',
-    							'strTransactionFK', 
+    							'strTransactionFK',
+    							'strNonShopTransacAlterFK', 
 						    	'strTransacAlterFK',
 						    	'dblAmountToPay',
 						    	'dblOutstandingBal',
+						    	'dblAmountTendered',
+						    	'dblAmountChange',
 						    	'strReceivedByEmployeeNameFK',
 						    	'dtPaymentDate',
 						    	'dtPaymentDueDate',
