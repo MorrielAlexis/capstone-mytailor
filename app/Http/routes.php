@@ -446,6 +446,7 @@ Route::get('/track', 'OnlineCustomerProfileIndividualController@trackJob');
 
 		Route::group(['prefix' => 'company'], function() {
 			Route::get('home', 'PaymentCompanyController@index');
+			Route::get('company-info', 'PaymentCompanyController@companyInfo'); //looks for the company and gets its payment data
 		});
 	});
 
