@@ -50,6 +50,7 @@
 							@endfor
 						</div>
 						<!--End of Employees List-->
+						{!! Form::open(['url' => 'transaction/walkin-company-save-measurements', 'method' => 'POST']) !!}
 						@for($i = 0; $i < $total_quantity; $i++)
 						<div id="edit-emp-data{{ $i }}" class="modal modal-fixed-footer" style="max-height:50%; max-width:60%">
 							<h5><font color="teal"><center><b>Add Measurement Profile</b></center></font></h5>
@@ -95,7 +96,8 @@
 																	<right><p>{{ $detail->strMeasDetailName }}</p></right>
 																</div>
 																<div class="col s7">
-																	<input name="{{ $detail->strMeasDetailName }}[]" id="measure_name" type="text" class="validate">
+																	<input name="measID{{ $i }}[]" type="hidden" value="{{ $detail->strMeasurementDetailID }}">
+																	<input name="{{ $i }}[]" id="measure_name" type="text" class="validate">
 																</div>
 															</div>
 														@endif
@@ -114,9 +116,9 @@
 						<div class="col s12">
 							<div class="col s12"><div class="divider" style="height:2px; margin-bottom:2%"></div></div>
 							<a href="{{URL::to('transaction/walkin-company-payment-measure-detail')}}" class="left btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to go back to measurement homepage!" style="background-color:#1976d2; opacity:0.80"><label style="font-size:15px; color:white">Go Back</label></a>
-							<a href="{{URL::to('transaction/walkin-company-payment-measure-detail')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to go save measurements!" style="background-color:#1976d2; opacity:0.80"><label style="font-size:15px; color:white">Save Measurements</label></a>
+							<button type="submit" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to go save measurements!" style="background-color:#1976d2; opacity:0.80"><label style="font-size:15px; color:white">Save Measurements</label></button>
 						</div>
-
+						{!! Form::close() !!}
 	            	</div> <!-- end of col s12 -->
 	            </div> <!-- end of row -->
 		    </div> <!-- end of payment info -->

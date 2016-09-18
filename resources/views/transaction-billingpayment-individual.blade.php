@@ -101,14 +101,18 @@
 						                    		</div>
 						                    		<!--eto ang iloloop beybe-->
 						                    		<div class="col s12" style="padding-left:15%">
-						                    			@foreach($payments as $payment)
-						                    			@if( ($customer_info->strIndivID) == ($payment->strIndivID)) 
-						                    			<div class="col s12" style="color:black; margin-top:3%; padding:0; font-size:18px"><b>{{ $payment->dtOrderDate }} {{ $payment->strJobOrderID }}</b>
-						                    				<a href=""><u>See transaction detail</u></a>
-						                    				<a style="background-color:#ef9a9a; color:white; padding-left:3%; padding-right:3%">Due date: {{$payment->dtPaymentDueDate }}</a>
+						                    			
+						                    			
+														@foreach($payments as $i => $payment)
+														@if(($payment->strJO_CustomerFK == $customer_info->strIndivID))
+						                    			<div class="col s12 {{$payment->strJobOrderID}}{{$i+1}}" style="color:black; margin-top:3%; padding:0; font-size:18px" id="{{$payment->strJobOrderID}}{{$i+1}}"><b>{{ $payment->dtOrderDate }} {{ $payment->strJobOrderID }}</b>
+						                    				<!-- <a href=""><u>See transaction detail</u></a> -->
+						                    				<a class="{{$payment->strJobOrderID}}{{$i+1}}" style="background-color:#ef9a9a; color:white; padding-left:3%; padding-right:3%" id="{{$payment->strJobOrderID}}">Due date: {{$payment->dtPaymentDueDate }}</a>
 						                    			</div>
 						                    			@endif
 						                    			@endforeach
+						                    			
+						                    			
 						                    		</div>
 						                    		<!--ends here-->
 					                    		</div>
@@ -121,11 +125,13 @@
 					                    	<div class="col s12" style="padding-left:5%">
 												<div class="input-field col s9">
 													<div class="container">
-														<select class="browser-default" id="unpaid-payments" style="margin-left:45%">
-															@foreach($customer_orders as $order)
-															<option value="{{ $order->strJobOrderID }}">{{ $order->dtOrderDate }} {{ $order->strJobOrderID }}</option>
-															@endforeach
-														</select>
+													<select class="browser-default unpaid-payments" id="unpaid-payments" style="margin-left:45%">
+														@foreach($customer_orders as $j => $order)
+														@foreach($payments as $i => $payment)
+														<option id="{{ $order->strJobOrderID }}" value="{{ $order->strJobOrderID }}" @if($payment->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>{{ $order->dtOrderDate }} {{ $order->strJobOrderID }}</option>
+														@endforeach
+														@endforeach
+													</select>
 													</div>
 													<label style="color:teal"><b>Choose a transaction date to pay:</b></label>
 												</div>
@@ -136,26 +142,29 @@
 											<div class="card-panel">
 												<div class="card-content">
 													<div class="row">
+													
+													@foreach($customer_orders as $order)
 													@foreach($payments as $payment)
-													@if( ($customer_info->strIndivID) == ($payment->strIndivID))
-														<div class="payment-summary {{ $order->strJobOrderID}}">
+														@if($payment->strTransactionFK == $order->strJobOrderID)
+														<div class="payment-summary">
 															<div style="color:black" class="input-field col s7">                 
-									                          <input style="margin-left:80%; padding:1%; padding-left:1%" name="payment-info" type="text" class="" value="{{ number_format($payment->dblOrderTotalPrice, 2)}} PHP">
-									                          <label style="color:teal; margin-top:1%; margin-left:2%"><b>Total Amount to Pay:</b></label>
-									                        </div>
+											                  <input style="margin-left:80%; padding:1%; padding-left:1%" name="payment-info" type="text" class="" id="amount-to-pay" value="{{$order->dblOrderTotalPrice}}">
+											                  <label style="color:teal; margin-top:1%; margin-left:2%"><b>Total Amount to Pay:</b></label>
+											                </div>
 
-									                        <div style="color:black" class="input-field col s7">                 
-									                          <input style="margin-left:80%; padding:1%; padding-left:1%" name="payment-info" type="text" class="" value="{{ number_format($payment->dblAmountToPay, 2)}} PHP">
-									                          <label style="color:teal; margin-top:1%; margin-left:2%"><b>Total Amount Paid:</b></label>
-									                        </div>
+											                <div style="color:black" class="input-field col s7">                 
+											                  <input style="margin-left:80%; padding:1%; padding-left:1%" name="payment-info" type="text" class="" id="amount-paid" value="{{$payment->dblAmountToPay}}">
+											                  <label style="color:teal; margin-top:1%; margin-left:2%"><b>Total Amount Paid:</b></label>
+											                </div>
 
-									                        <div style="color:black" class="input-field col s7">                 
-									                          <input style="margin-left:80%; padding:1%; padding-left:1%" name="payment-info" type="text" class="" value="{{ number_format($payment->dblOutstandingBal, 2)}} PHP">
-									                          <label style="color:teal; margin-top:1%; margin-left:2%"><b>Outstanding Balance:</b></label>
-									                        </div>
-								                        </div>
-								                        @endif
-								                    @endforeach
+											                <div style="color:black" class="input-field col s7">                 
+											                  <input style="margin-left:80%; padding:1%; padding-left:1%" name="payment-info" type="text" class="" id="outstanding-bal" value="{{$payment->dblOutstandingBal}}">
+											                  <label style="color:teal; margin-top:1%; margin-left:2%"><b>Outstanding Balance:</b></label>
+											                </div>
+											            </div>
+											            @endif
+											            @endforeach
+											        @endforeach   
 								        		
 
 								                        <div class="col s12" style="margin-top:3%"><div class="divider" style="height:3px; color:gray"></div></div>
@@ -403,24 +412,37 @@
 @stop
 
 @section('scripts')
-
+	
 	<script>
-	  $(document).ready(function() {
-	    $('select').material_select();
-	  });
-	</script>	
 
-	<script>
+		var amount_to_pay = 0.00;
+		var amount_paid = 0.00;
+		var bal = 0.00;
+
 		$('#unpaid-payments').change(function(){
-			var payments = $('#unpaid-payments').val();
-			updateUI(payments);
-		});
+			var orders = {!! json_encode($customer_orders) !!}
+			var payment = {!! json_encode($payments) !!}
 
-		function updateUI(payment)
-		{
-			$('.payment-summary').hide();
-			$('.' + payments).show();
-		}
+				amount_to_pay = payment.dblOrderTotalPrice;
+				amount_paid = payment.dblAmountToPay;
+				bal = payment.dblOutstandingBal;
+
+			
+
+			if($('#order.strJobOrderID').val() == orders.strJobOrderID)
+			{
+				$('#amount-to-pay').val(amount_to_pay.toFixed(2));
+				$('#amount-paid').val(amount_paid.toFixed(2));
+				$('outstanding-bal').val(bal.toFixed(2));
+
+				alert(orders.strJobOrderID);
+				break;
+			}
+
+
+			
+
+		});
 	</script>
 
 	<script type="text/javascript">
@@ -469,35 +491,6 @@
 		});
 	</script>
 
-	 <script type="text/javascript">
-	 	$(document).ready(function() {
-
-	 		// var customer_type = ;
-
-	 		// 	if(customer_type == "ind") {
-	 		// 		$("#custtype").text("Individual");
-	 		// 	}
-	 		// 	else if(customer_type == "comp") {
-				// 	$("#custtype").text("Company");
-	 		// 	}
-	 	});
-	 </script>
-
-	 <script>
-	 	// var type = $('#cust_type');
-
-	 	// type.change(function() {
-	 	// 	updateUI();
-	 	// });
-
-	 	// function updateUI () {
-	 	// 	$('.customer').hide();
-
-	 	// 	var typeValue = type.val();
-
-	 	// 	if(typeValue == '')
-	 	// }
-	 </script>
 
 	<script>
 
