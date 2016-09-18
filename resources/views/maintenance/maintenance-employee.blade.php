@@ -190,7 +190,7 @@
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s4">
-                            <input required value="{{"$employee->strEmpFName"}}" id="editFirstName" name="editFirstName" placeholder="Hope" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
+                            <input required value="{{"$employee->strEmpFName"}}" id="editFirstName" name="editFirstName" placeholder="Hope" type="text" class="validate" required data-position="bottom" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$" maxlength="30" minlength="2">
                             <label for="first_name">First Name <span class="red-text"><b>*</b></span> </label>
                           </div>
 
@@ -200,7 +200,7 @@
                           </div>
 
                           <div class="input-field col s4">
-                            <input required value="{{$employee->strEmpLName}}" id="editLastName" name="editLastName" placeholder="Soberano" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
+                            <input required value="{{$employee->strEmpLName}}" id="editLastName" name="editLastName" placeholder="Soberano" type="text" class="validate" required data-position="bottom" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$" maxlength="30" minlength="2">
                             <label for="LastName">Last Name <span class="red-text"><b>*</b></span></label>
                           </div>
                       </div>
@@ -233,7 +233,7 @@
                           </div>
 
                            <div class="input-field col s3">
-                            <input required value="{{$employee->strEmpStreet}}" id="editEmpStreet" name="editEmpStreet" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$" type="text" placeholder="Malunggay"class="validate">
+                            <input required value="{{$employee->strEmpStreet}}" id="editEmpStreet" name="editEmpStreet" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$" type="text" placeholder="Malunggay" class="validate">
                             <label for="Emp Street">Street <span class="red-text"><b>*</b></span></label>
                           </div>
 
