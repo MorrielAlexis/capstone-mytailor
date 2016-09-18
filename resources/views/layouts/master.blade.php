@@ -268,7 +268,7 @@
                                 </ul>
                               </div>
                         </li>
-                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('reports/customers-with-balance/*') ? 'active' : '' }}"><b>Customers with Balance</b></a>
+                        <!-- <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('reports/customers-with-balance/*') ? 'active' : '' }}"><b>Customers with Balance</b></a>
                           <div class="collapsible-body" position = "fixed" style = "display: block;">
                                 <ul>
                                   <li class="no-padding">
@@ -280,7 +280,7 @@
                                   </li>
                                 </ul>
                               </div>
-                        </li>
+                        </li> -->
                       </ul>
                     </li>
                   </ul>

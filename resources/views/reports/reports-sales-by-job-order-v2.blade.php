@@ -57,17 +57,17 @@
 											<tr>
 												<th data-field="id">Week #</th>
 												<th data-field="name" class="right-align">Sum Amount</th>
-												<th data-field="price" class="right-align">Culmulative Amount</th>
+												<th data-field="price" class="right-align">Cumulative Amount</th>
 											</tr>
 										</thead>
 										<tbody>
-											<?php $culmulative = 0; ?>
+											<?php $Cumulative = 0; ?>
 											@foreach($Weekly as $value)
 											<tr>
 												<td>Week {{$value->WeekNumber}}</td>
 												<td class="right-align">{{number_format($value->Total + $value->Fee)}}</td>
-												<?php $culmulative += $value->Total + $value->Fee ?>
-												<td class="right-align">{{number_format($culmulative)}}</td>
+												<?php $Cumulative += $value->Total + $value->Fee ?>
+												<td class="right-align">{{number_format($Cumulative)}}</td>
 											</tr>
 											@endforeach
 										</tbody>
@@ -83,17 +83,17 @@
 											<tr>
 												<th data-field="id">Month Name</th>
 												<th data-field="name" class="right-align">Sum Amount</th>
-												<th data-field="price" class="right-align">Culmulative Amount</th>
+												<th data-field="price" class="right-align">Cumulative Amount</th>
 											</tr>
 										</thead>
 										<tbody>
-											<?php $culmulative = 0; ?>
+											<?php $Cumulative = 0; ?>
 											@foreach($Monthly as $value)
 											<tr>
 												<td>{{$value->Month}}</td>
 												<td class="right-align">{{number_format($value->Total + $value->Fee)}}</td>
-												<?php $culmulative += $value->Total + $value->Fee ?>
-												<td class="right-align">{{number_format($culmulative)}}</td>
+												<?php $Cumulative += $value->Total + $value->Fee ?>
+												<td class="right-align">{{number_format($Cumulative)}}</td>
 											</tr>
 											@endforeach
 										</tbody>
@@ -109,17 +109,17 @@
 											<tr>
 												<th data-field="id">Quarter</th>
 												<th data-field="name" class="right-align">Sum Amount</th>
-												<th data-field="price" class="right-align">Culmulative Amount</th>
+												<th data-field="price" class="right-align">Cumulative Amount</th>
 											</tr>
 										</thead>
 										<tbody>
-											<?php $culmulative = 0; ?>
+											<?php $Cumulative = 0; ?>
 											@foreach($Quarterly as $value)
 											<tr>
 												<td>Quarter {{$value->Quarter}}</td>
 												<td class="right-align">{{number_format($value->Total + $value->Fee)}}</td>
-												<?php $culmulative += $value->Total + $value->Fee ?>
-												<td class="right-align">{{number_format($culmulative)}}</td>
+												<?php $Cumulative += $value->Total + $value->Fee ?>
+												<td class="right-align">{{number_format($Cumulative)}}</td>
 											</tr>
 											@endforeach
 										</tbody>
@@ -135,17 +135,17 @@
 											<tr>
 												<th data-field="id">Year</th>
 												<th data-field="name" class="right-align">Sum Amount</th>
-												<th data-field="price" class="right-align">Culmulative Amount</th>
+												<th data-field="price" class="right-align">Cumulative Amount</th>
 											</tr>
 										</thead>
 										<tbody>
-											<?php $culmulative = 0; ?>
+											<?php $Cumulative = 0; ?>
 											@foreach($Annually as $value)
 											<tr>
 												<td>{{$value->YearNumber}}</td>
 												<td class="right-align">{{number_format($value->Total + $value->Fee)}}</td>
-												<?php $culmulative += $value->Total + $value->Fee ?>
-												<td class="right-align">{{number_format($culmulative)}}</td>
+												<?php $Cumulative += $value->Total + $value->Fee ?>
+												<td class="right-align">{{number_format($Cumulative)}}</td>
 											</tr>
 											@endforeach
 										</tbody>
@@ -248,12 +248,12 @@
 			            borderWidth: 1
 			        },
 			        {
-			            label: 'Culmulative Amount',
+			            label: 'Cumulative Amount',
 			            data: [
-			            	<?php $culmulative = 0; ?>
+			            	<?php $Cumulative = 0; ?>
 				            @foreach($Monthly as $MonthAmount)
-				            	<?php $culmulative += $MonthAmount->Total + $MonthAmount->Fee?>
-				                {{$culmulative}},
+				            	<?php $Cumulative += $MonthAmount->Total + $MonthAmount->Fee?>
+				                {{$Cumulative}},
 			                @endforeach
 			            ],
 			            backgroundColor: [
@@ -314,12 +314,12 @@
 			            borderWidth: 1
 			        },
 			        {
-			            label: 'Culmulative Amount',
+			            label: 'Cumulative Amount',
 			            data: [
-				            <?php $culmulative = 0; ?>
+				            <?php $Cumulative = 0; ?>
 				            @foreach($Annually as $value)
-				            	<?php $culmulative += $value->Total + $value->Fee?>
-				                {{$culmulative}},
+				            	<?php $Cumulative += $value->Total + $value->Fee?>
+				                {{$Cumulative}},
 			                @endforeach
 			            ],
 			            backgroundColor: [
@@ -380,12 +380,12 @@
 			            borderWidth: 1
 			        },
 			        {
-			            label: 'Culmulative Amount',
+			            label: 'Cumulative Amount',
 			            data: [
-				            <?php $culmulative = 0; ?>
+				            <?php $Cumulative = 0; ?>
 				            @foreach($Weekly as $value)
-				            	<?php $culmulative += $value->Total + $value->Fee?>
-				                {{$culmulative}},
+				            	<?php $Cumulative += $value->Total + $value->Fee?>
+				                {{$Cumulative}},
 			                @endforeach
 			            ],
 			            backgroundColor: [
@@ -446,12 +446,12 @@
 			            borderWidth: 1
 			        },
 			        {
-			            label: 'Culmulative Amount',
+			            label: 'Cumulative Amount',
 			            data: [
-			            	<?php $culmulative = 0; ?>
+			            	<?php $Cumulative = 0; ?>
 			            	@foreach($Quarterly as $value)
-					            <?php $culmulative += $value->Total + $value->Fee?>
-				               	{{$culmulative}},
+					            <?php $Cumulative += $value->Total + $value->Fee?>
+				               	{{$Cumulative}},
 			            	@endforeach
 			            ],
 			            backgroundColor: [
