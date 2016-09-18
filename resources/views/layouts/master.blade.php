@@ -15,18 +15,18 @@
     <body>
 
     <header>
-        <img src="../{{ Session::get('shop_logo') }}"  alt="" class="right circle responsive-img valign profile-image center" style="height:70px; width:80px; margin-top:5px;">
+        <img src="../../{{ Session::get('shop_logo') }}"  alt="" class="right circle responsive-img valign profile-image center" style="height:70px; width:80px; margin-top:5px;">
         <div class="right col s9 " style="padding-top:20px">
           <font size = "+2" color = "black" style="margin-top:5px" >{{ Session::get('shop_name')}}</font>
         </div>
     </header>
 
       <nav id="slide-out" class="side-nav fixed" style="position fixed; top: 0; padding-top:0px; margin-top:0px;width:310px; background-color: #C8E6C9 "> 
-        <div class="row" style="background-image:url('../img/head.jpg');height:240px">
+        <div class="row" style="background-image:url('../../img/head.jpg');height:240px">
           <div style="height:20px;"></div>
           <div class="col s12 center" style="">
           @if(Auth::check())
-            <img src="../{{ Auth::user()->user_image }}" alt="" class="circle responsive-img valign profile-image center" style="height:130px; width:130px;"/>
+            <img src="../../{{ Auth::user()->user_image }}" alt="" class="circle responsive-img valign profile-image center" style="height:130px; width:130px;"/>
           </div>
         </div>
         <div class="col s12 container" style="margin-top:-90px;">
