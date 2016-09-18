@@ -369,9 +369,10 @@
                         </div>
 
                            <div class="input-field col s3">
-                            <input required id="strIndivStreet" name="strIndivStreet" pattern="^[a-zA-Z0-9\'\-\.]+([a-zA-Z0-9\'\-\.]+)*$" type="text" placeholder="Malunggay" class="validate">
+                            <input required id="strIndivStreet" name="strIndivStreet" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$" type="text" placeholder="Malunggay" class="validate">
                             <label for=" Street">Street <span class="red-text"><b>*</b></label>
-                          </div><!-- ^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)? -->
+                          </div>
+                          <!-- ^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)? -->
                          <!--  ^[a-zA-Z0-9\'\-\.]+(\s[a-zA-Z0-9\'\-\.]+)*$ -->
 
                           <div class="input-field col s3">
