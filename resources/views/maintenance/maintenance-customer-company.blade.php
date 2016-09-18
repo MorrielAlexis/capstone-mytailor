@@ -148,7 +148,7 @@
                   
 
                     <div id="edit{{$company->strCompanyID}}" class="modal modal-fixed-footer">                     
-                     <h5><font color = "#1b5e20"><center>EDIT COMPANY'S CUSTOMER PROFILE</center> </font> </h5>                      
+                     <h5><font color = "#1b5e20"><center>UPDATE COMPANY'S CUSTOMER PROFILE</center> </font> </h5>                      
                         
                         {!! Form::open(['url' => 'maintenance/company/update']) !!}
                           <div class="divider" style="height:2px"></div>
@@ -164,7 +164,7 @@
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s12">
-                          <input required id="editComName" name = "editComName" value = "{{$company->strCompanyName}}" placeholder="Company Name" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s\d]{2,}$" maxlength="30" minlength="2">
+                          <input required id="editComName" name = "editComName" value = "{{$company->strCompanyName}}" placeholder="Company Name" type="text" class="validate" required data-position="bottom" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$" maxlength="30" minlength="2">
                           <label for="company_name">Company Name <span class="red-text"><b>*</b></span></label>
                         </div>
                     </div>
@@ -205,7 +205,7 @@
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s6">
-                          <input required id="editConPerson" name = "editConPerson" value = "{{$company->strContactPerson}}" placeholder="Contact Person" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2">
+                          <input required id="editConPerson" name = "editConPerson" value = "{{$company->strContactPerson}}" placeholder="Contact Person" type="text" class="validate" required data-position="bottom" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$" maxlength="30" minlength="2">
                           <label for="company_name">Contact Person <span class="red-text"><b>*</b></span></label>
                         </div>
 
