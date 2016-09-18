@@ -28,7 +28,7 @@
 
 			        <div class = "col s12" style="padding:15px;">
 			            <div class="input-field col s12">
-			                <input required id="strCompanyName" name = "strCompanyName" placeholder="Company Name" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s\d]{2,}$" maxlength="30" minlength="2">
+			                <input required id="strCompanyName" name = "strCompanyName" placeholder="Company Name" type="text" class="validate" required data-position="bottom" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$" maxlength="30" minlength="2">
 			                <label for="company_name"> Company Name <span class="red-text"><b>*</b></span></label>
 			            </div>
 			        </div>
@@ -69,7 +69,7 @@
 
 			        <div class = "col s12" style="padding:15px;">
 			            <div class="input-field col s6">
-			                <input required id="strContactPerson" name = "strContactPerson" placeholder="Contact Person" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`\s]{2,}$" maxlength="30" minlength="2">
+			                <input required id="strContactPerson" name = "strContactPerson" placeholder="Contact Person" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
 			                <label for="company_name"> Contact Person <span class="red-text"><b>*</b></span></label>
 			            </div>
 

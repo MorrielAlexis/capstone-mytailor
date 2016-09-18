@@ -6,7 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <link rel="shortcut icon" href= "{{{ asset('img/logo.jpg') }}}">
-
       {!! Html::style('css/materialize.min.css'); !!}
       {!! Html::style('css/style.css'); !!}
       {!! Html::style('css/jquery.dataTables.min.css'); !!}
@@ -16,24 +15,24 @@
     <body>
 
     <header>
-        <img src="{{ Session::get('shop_logo') }}"  alt="" class="right circle responsive-img valign profile-image center" style="height:70px; width:80px; margin-top:5px;">
+        <img src="../../{{ Session::get('shop_logo') }}"  alt="" class="right circle responsive-img valign profile-image center" style="height:70px; width:80px; margin-top:5px;">
         <div class="right col s9 " style="padding-top:20px">
           <font size = "+2" color = "black" style="margin-top:5px" >{{ Session::get('shop_name')}}</font>
         </div>
     </header>
 
-      <nav id="slide-out" class="side-nav fixed" style="position fixed; top: 0; padding-top:0px; margin-top:0px; background: #C8E6C9; width:310px;"> 
-        <div class="row">
-          <div style="height:20px"></div>
-          <div class="col s12 center">
+      <nav id="slide-out" class="side-nav fixed" style="position fixed; top: 0; padding-top:0px; margin-top:0px;width:310px; background-color: #C8E6C9 "> 
+        <div class="row" style="background-image:url('../../img/head.jpg');height:240px">
+          <div style="height:20px;"></div>
+          <div class="col s12 center" style="">
           @if(Auth::check())
-            <img src="{{ Auth::user()->user_image }}" alt="" class="circle responsive-img valign profile-image center" style="height:130px; width:130px;"/>
+            <img src="../../{{ Auth::user()->user_image }}" alt="" class="circle responsive-img valign profile-image center" style="height:130px; width:130px;"/>
           </div>
         </div>
-        <div class="col s12 container" style="margin-top:-40px;">
-          <a class='dropdown-button btn btn-flat waves-effect waves-light profile-btn black-txt' href="#!" style="background-color: #C8E6C9;" data-activates='profile-dropdown'>{{ Auth::user()->name }}</a>
+        <div class="col s12 container" style="margin-top:-90px;">
+          <a class='dropdown-button btn btn-flat waves-effect waves-light profile-btn white-text' href="#!" style="background-color: transparent; " data-activates='profile-dropdown'>{{ Auth::user()->name }}</a>
           @endif
-          <ul id="profile-dropdown" class="dropdown-content">
+          <ul id="profile-dropdown" class="dropdown-content" style="background-color: white;margin-top:65px"> 
             <li><a href="#!"><i class="mdi-action-face-unlock" style="font-size:16px; margin-top:10px;margin-left:0px;font-style:Segoe UI"> Profile</i></a></li>
             <li><a href="{{URL::to('/logout')}}"><i class="mdi-hardware-keyboard-tab" style="font-size:16px;margin-top:10px;margin-left:0px;font-style:Segoe UI"> Logout</i></a></li>
           </ul>
@@ -269,7 +268,7 @@
                                 </ul>
                               </div>
                         </li>
-                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('reports/customers-with-balance/*') ? 'active' : '' }}"><b>Customers with Balance</b></a>
+                        <!-- <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('reports/customers-with-balance/*') ? 'active' : '' }}"><b>Customers with Balance</b></a>
                           <div class="collapsible-body" position = "fixed" style = "display: block;">
                                 <ul>
                                   <li class="no-padding">
@@ -281,7 +280,7 @@
                                   </li>
                                 </ul>
                               </div>
-                        </li>
+                        </li> -->
                       </ul>
                     </li>
                   </ul>
@@ -313,13 +312,12 @@
       <main>
         @yield('content')
       </main>
-
       {!! Html::script('js/jquery-2.1.4.min.js'); !!}
       {!! Html::script('js/materialize.min.js'); !!}
       {!! Html::script('js/jquery.dataTables.min.js'); !!}
       {!! Html::script('js/angular.min.js'); !!}
       {!! Html::script('js/knockout-3.4.0.js'); !!}
-
+      {!! Html::script('js/chart.min.js'); !!}
       <script>
         $(document).ready(function(){
         $('.button-collapse').sideNav({
@@ -353,7 +351,7 @@
           
       </script>
 
-        @yield('scripts')
+      @yield('scripts')
     </body>
 
 </html>

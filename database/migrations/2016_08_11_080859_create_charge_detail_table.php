@@ -15,7 +15,7 @@ class CreateChargeDetailTable extends Migration
         Schema::create('tblChargeDetail', function (Blueprint $table) {
             $table->string('strChargeDetailID')->primary();
             $table->string('strChargeCatFK');//fk
-            $table->string('strChargeDetSegFK');//fk
+            $table->string('strChargeDetSegFK')->nullable();//fk
             $table->double('dblChargeDetPrice');
             $table->text('txtChargeDetDesc')->nullable();
             $table->string('strChargeDetInactiveReason')->nullable();

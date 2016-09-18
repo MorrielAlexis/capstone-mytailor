@@ -137,17 +137,17 @@
 	            	<span class="col s12" style="color:teal;"><b>Company Detail</b></span>
 	            	<div class="card-panel col s12" style="border:3px solid gray; padding:15px;">                      
                         <div style="color:black" class="input-field col s12">                 
-                          <input value="" id="first_name" name="first_name" type="text" class="">
+                          <input value="" id="first_name" name="first_name" type="text" class="" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$">
                           <label style="color:gray" for="first_name"><b>*Company Name </b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s6">                 
-                          <input value="" id="middle_name" name="middle_name" type="text" class="">
+                          <input value="" id="middle_name" name="middle_name" type="text" class="" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$">
                           <label style="color:gray" for="middle_name"><b>*Contact Person </b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s6">                 
-                          <input value="" id="contact_position" name="contact_position" type="text" class="">
+                          <input value="" id="contact_position" name="contact_position" type="text" class="" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$">
                           <label style="color:gray" for="contact_position"><b>*Position </b></label>
                         </div>
                     </div>
@@ -155,33 +155,33 @@
                     <span class="col s12" style="color:teal; margin-top:20px"><b>Company Address</b></span>
                     <div class="card-panel col s12" style="border:3px solid gray; padding:15px">
                         <div style="color:black" class="input-field col s4">
-                            <input required id="addCustPrivHouseNo" name="addCustPrivHouseNo" type="text" class="validateHouseNo">
+                            <input required id="addCustPrivHouseNo" name="addCustPrivHouseNo" type="text" class="" pattern="[0-9a-zA-Z\-\s]+$">
                             <label style="color:gray" for="house_no"><b>*House No. </b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s4">
-                            <input required id="addCustPrivStreet" name="addCustPrivStreet" type="text" class="validateStreet">
+                            <input required id="addCustPrivStreet" name="addCustPrivStreet" type="text" class="" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$">
                             <label style="color:gray" for=" Street"><b>*Street </b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s4">
-                            <input  id="addCustPrivBarangay" name="addCustPrivBarangay" type="text" class="validateBarangay">
+                            <input  id="addCustPrivBarangay" name="addCustPrivBarangay" type="text" class="validateBarangay" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$">
                             <label style="color:gray" for=" Brgy"><b>*Barangay/Subd </b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s4">
-                            <input required id="addCustPrivCity" name="addCustPrivCity" type="text" class="validateCity">
+                            <input required id="addCustPrivCity" name="addCustPrivCity" type="text" class="validateCity" pattern="^[a-zA-Z\'\-]+( [a-zA-Z\'\-]+)*$">
                             <label style="color:gray" for=" City"><b>*City/Municipality </b></label>
                         </div>
 
 
                         <div style="color:black" class="input-field col s4">
-                            <input id="addCustPrivProvince" name="addCustPrivProvince" type="text" class="validateProvince">
+                            <input id="addCustPrivProvince" name="addCustPrivProvince" type="text" class="validateProvince" pattern="^[a-zA-Z\'\-\.]+( [a-zA-Z\'\-\.]+)*$">
                             <label style="color:gray" for=" Province"><b>Province/Region </b></label>
 	                    </div>
 
                         <div style="color:black" class="input-field col s4">
-                            <input id="addCustPrivZipCode" name="addCustPrivZipCode" type="text" class="validateZip">
+                            <input id="addCustPrivZipCode" name="addCustPrivZipCode" type="text" class="" pattern="0-9]+$">
                             <label style="color:gray" for=" Zip Code"><b>Zip Code </b></label>
 	                    </div>
 	                </div>
@@ -189,27 +189,27 @@
 	                <span class="col s12" style="color:teal; margin-top:20px"><b>Company Contact Information</b></span>
                     <div class="card-panel col s12" style="border:3px solid gray; padding:15px">
 	                    <div style="color:black" class="input-field col s12">
-                            <input required id="addEmail" name = "addEmail" type="text" class="validateEmail">
+                            <input required id="addEmail" name = "addEmail" type="email" class="validate">
                             <label style="color:gray" for="email"><b> *Company Email Address </b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s6">
-                            <input required id="addCel" name = "addCel" type="text" class="validateCell" maxlength="11">
+                            <input required id="addCel" name = "addCel" type="text" class="validateCell" pattern="^[0-9]{11,11}$" maxlength="11">
                             <label style="color:gray" for="cellphone"><b> *Cellphone Number </b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s6">
-                            <input id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt" maxlength="11">
+                            <input id="addCelAlt" name = "addCelAlt" type="text" class="validateCellAlt" maxlength="11" pattern="^[0-9]{11,11}$">
                             <label style="color:gray" for="cellphone"><b> Cellphone Number (alternate)</b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s6">
-                            <input id="addPhone" name = "addPhone" type="text" class="validatePhone" maxlength="10">
+                            <input id="addPhone" name = "addPhone" type="text" class="validatePhone" maxlength="10" pattern="^[0-9]{6,10}$">
                             <label style="color:gray" for="tel"><b> Telephone Number </b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s6">
-                            <input id="addPhone" name = "addPhone" type="text" class="validatePhone" maxlength="10">
+                            <input id="addPhone" name = "addPhone" type="text" class="validatePhone" maxlength="10" pattern="^[0-9]{6,10}$">
                             <label style="color:gray" for="tel"><b> Fax Number </b></label>
                         </div>
                     </div>

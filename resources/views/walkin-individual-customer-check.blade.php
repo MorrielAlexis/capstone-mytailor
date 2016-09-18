@@ -48,20 +48,23 @@
 
 					
 					<!--this will appear once the user chose the button for existing customer-->
+					{!! Form::open(['url' => 'transaction/walkin-individual-show-measurement-view', 'method' => 'POST']) !!}
 					<div class="customer-form col s12" id="custname" style="display:none; padding:5%">
 					<div class="col s12"><div class="divider" style="height:2px; background-color:teal; margin-top:3%"></div></div>
 						<div class="container">
-							<div class="col s5" style="padding-top:3%"><center><b><font size="+1.5">Enter Customer Name</font></b></center></div>
+							<div class="col s5" style="padding-top:3%"><center><b><font size="+1.5">Enter Customer Email</font></b></center></div>
 							<div class="col s7">
 								<div class="input-field col s12">
-					          		<input id="email" type="email" class="validate">
+					          		<input id="strIndiEmail" name="strIndiEmail" type="email" class="validate">
+					          		<label class="hidden" for="email"></label>
 					          	</div>
 							</div>					  
 					    </div>
 					<br><br>
-			<div class="col s12"><div class="divider" style="height:2px; background-color:teal; margin-bottom:1%"></div></div>
-			<right><button type="submit" class="right btn" style="background-color:teal; color:white; margin-bottom:3%">Done!</button></right>
+					<div class="col s12"><div class="divider" style="height:2px; background-color:teal; margin-bottom:1%"></div></div>
+					<right><button type="submit" class="right btn" style="background-color:teal; color:white; margin-bottom:3%">Done!</button></right>
 					</div>
+					{!! Form::close() !!}
 
             	</div> <!-- end of col s12 -->
             </div> <!-- end of row -->

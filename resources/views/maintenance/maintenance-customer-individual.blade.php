@@ -163,17 +163,17 @@
 
                                 <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                   <div class="input-field col s4">
-                                    <input required id="editFName" name = "editFName" value = "{{$individual->strIndivFName}}"  type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
+                                    <input required id="editFName" name = "editFName" value = "{{$individual->strIndivFName}}"  type="text" class="validate" required data-position="bottom" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$" maxlength="30" minlength="2">
                                     <label for="first_name"> First Name <span class="red-text"><b>*</b></span></label>
                                   </div>
 
                                   <div class="input-field col s4">
-                                    <input  id="editMName" name = "editMName" value = "{{$individual->strIndivMName}}"  type="text" class="validate" data-position="bottom" pattern="^^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
+                                    <input  id="editMName" name = "editMName" value = "{{$individual->strIndivMName}}"  type="text" class="validate" data-position="bottom" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$" maxlength="30" minlength="2">
                                     <label for="middle_name"> Middle Name </label>
                                   </div>
 
                                   <div class="input-field col s4">
-                                    <input required id="editLName" name = "editLName" value = "{{$individual->strIndivLName}}" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
+                                    <input required id="editLName" name = "editLName" value = "{{$individual->strIndivLName}}" type="text" class="validate" required data-position="bottom" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$" maxlength="30" minlength="2">
                                     <label for="last_name"> Last Name <span class="red-text"><b>*</b></span></label>
                                   </div>
 
@@ -228,7 +228,7 @@
 
                                 <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                   <div class="input-field col s12">
-                                    <input id="editEmail" name = "editEmail" value = "{{$individual->strIndivEmailAddress}}" type="email" class="validate">
+                                    <input id="editEmail" name = "editEmail" value = "{{$individual->strIndivEmailAddress}}" type="email" class="validate" >
                                     <label for="email"> Email Address <span class="red-text"><b>*</b></label>
                                   </div>
                                 </div>
@@ -338,17 +338,17 @@
 
                     <div class = "col s12" style="padding:15px;  border:3px solid white;">
                         <div class="input-field col s4">
-                          <input required id="strIndivFName" name = "strIndivFName" placeholder="Hope" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
+                          <input required id="strIndivFName" name = "strIndivFName" placeholder="Hope" type="text" class="validate" required data-position="bottom" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$" maxlength="30" minlength="2">
                           <label for="first_name" > First Name <span class="red-text"><b>*</b></label>
                         </div>
 
                         <div class="input-field col s4">
-                          <input id="strIndivMName" name = "strIndivMName" placeholder="Elizabeth" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
+                          <input id="strIndivMName" name = "strIndivMName" placeholder="Elizabeth" type="text" class="validate" data-position="bottom" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$" maxlength="30" minlength="2">
                           <label for="middle_name"> Middle Name </label>
                         </div>
 
                         <div class="input-field col s4">
-                          <input required id="strIndivLName" name = "strIndivLName" placeholder="Soberano" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2">
+                          <input required id="strIndivLName" name = "strIndivLName" placeholder="Soberano" type="text" class="validate" required data-position="bottom" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$" maxlength="30" minlength="2">
                           <label for="last_name"> Last Name <span class="red-text"><b>*</b></label>
                         </div>
 

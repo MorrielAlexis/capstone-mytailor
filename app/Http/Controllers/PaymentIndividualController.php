@@ -30,36 +30,51 @@ class PaymentIndividualController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $search_custname = $request->input('cust_name');
+        session(['search_name' => $search_custname]);
 
-        return view('transaction-billingpayment-individual');
+
+        return view('transaction-billingpayment-individual-home')
+            ->with('search_name', $search_custname);
     }
 
     public function custInfo(Request $request)
     {
+
         $search_custname = $request->input('cust_name');
 
-        // $customer = \DB::table('tblCustIndividual AS a')
-        //         ->select('a.strIndivID', \DB::raw('CONCAT(a.strIndivFName, " ", strIndivMName, " ", strIndivLName) AS fullname'))
-        //         ->where(\DB::raw('CONCAT(a.strIndivFName, " ", strIndivMName, " ", strIndivLName)'), '=', $search_custname)
-        //         ->first();
-
-        $customer_info = \DB::table('tblJobOrder AS a')
-                ->leftJoin('tblCustIndividual AS b', 'a.strJO_CustomerFK', '=', 'b.strIndivID')
-                ->leftJoin('tblJOPayment AS c', 'a.strJobOrderID', '=', 'c.strTransactionFK')
-                ->select('a.*', 'b.strIndivID', \DB::raw('CONCAT(b.strIndivFName, " ", b.strIndivMName, " ", b.strIndivLName) AS fullname'), 'c.*')
-                ->where(\DB::raw('CONCAT(b.strIndivFName, " ", b.strIndivMName, " ", b.strIndivLName)'), '=', $search_custname)
+        $customer_info = \DB::table('tblCustIndividual AS a')
+                ->leftJoin('tblJobOrder AS b', 'a.strIndivID', '=', 'b.strJO_CustomerFK')
+                ->leftJoin('tblJOPayment AS c', 'b.strJobOrderID', '=', 'c.strTransactionFK')
+                ->select('a.strIndivID', \DB::raw('CONCAT(a.strIndivFName, " ", a.strIndivMName, " ", a.strIndivLName) AS fullname'), 'b.*', 'c.*')
+                ->where(\DB::raw('CONCAT(a.strIndivFName, " ", a.strIndivMName, " ", a.strIndivLName)'), '=', $search_custname)
                 ->first();
 
-        // session(['customer' => 'customer_info']);
-        // var_dump($customer_info);
-        // dd("");
-        // dd($search_custname, $customer_info);
+        $customer_orders = \DB::table('tblCustIndividual AS a')
+                ->leftJoin('tblJobOrder AS b', 'a.strIndivID', '=', 'b.strJO_CustomerFK')
+                ->select('a.strIndivID',\DB::raw('CONCAT(a.strIndivFName, " ", a.strIndivMName, " ", a.strIndivLName) AS fullname'),'b.*')
+                ->where(\DB::raw('CONCAT(a.strIndivFName, " ", a.strIndivMName, " ", a.strIndivLName)'), '=', $search_custname)
+                ->orderBy('b.strJobOrderID')
+                ->get();
+
+        $payments = \DB::table('tblJobOrder AS a')
+                ->leftJoin('tblJOPayment AS b', 'a.strJobOrderID', '=', 'b.strTransactionFK')
+                ->leftJoin('tblCustIndividual AS c', 'c.strIndivID', '=', 'a.strJO_CustomerFK')
+                ->select('a.*', 'b.*', 'c.strIndivID')
+                ->orderBy('a.strJobOrderID')
+                ->get();
+
+
+        //dd($customer_info);
+
 
         return view('transaction-billingpayment-individual')
                 ->with('search_custname', $search_custname)
-                ->with('customer_info', $customer_info);
+                ->with('customer_info', $customer_info)
+                ->with('customer_orders', $customer_orders)
+                ->with('payments', $payments);
     }
     /**
      * Show the form for creating a new resource.
