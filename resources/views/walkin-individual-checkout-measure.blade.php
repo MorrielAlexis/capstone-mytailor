@@ -42,6 +42,7 @@
 	      	</div>-->
 			{!! Form::open(['url' => 'transaction/walkin-individual-save-measurements', 'method' => 'POST']) !!}
 			@foreach($segments as $i => $segment)
+			@for($j = 0; $j < count($quantities[$i]); $j++)
 			<div class="col s12" style="margin-bottom:10px">
 				<div class="col s12">
 					<div class="col s4"><p style="color:gray"><b>Measurement Type</b></p></div>
@@ -88,6 +89,12 @@
 	            	<div class="col s12" style="padding:20px"> 
 	            		
 		            	<div id="for_top" class="col s12" style="color:black">
+
+		            		<div >
+					          	<input type="checkbox" name="cbx-measure-all[]"  class="filled-in cbx-measure-all" id="{{ $segment['strSegmentID'] }}" value="{{ $segment['strSegmentID'] }}" style="padding:5px"/>
+					          	<label for="{{ $segment['strSegmentID'] }}"><font size="+1"><b>Apply to all</b></font></label>
+					        </div>
+
 		            		<h5><b>Parts to be measured - {{ $segment['strSegmentName'] }}</b></h5>
 		            		
 							<!--if Body and Cloth Measurement-->
@@ -163,6 +170,7 @@
 	                    	<!-- <div class="col s1"><a href="#!" class="btn-floating" style="background-color:#a7ffeb; margin-top:20px"><i class="mdi-navigation-check" style="color:black;"></i></a></div> -->
 	            	</div>
                     <div class="col s12"><div class="divider" style="height:5px; color:gray; margin-top:15px; margin-bottom:15px"></div></div>
+				@endfor
 				@endforeach
 				
                 <button type="submit" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save measurements and begin processing" style="background-color:teal; margin-right:50px; padding:9.5px; padding-bottom:45px; color:white"><!--<i class="mdi-action-done"> -->Save Measurements<!--</i>--></button>

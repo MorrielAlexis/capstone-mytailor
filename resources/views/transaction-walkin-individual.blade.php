@@ -89,7 +89,7 @@
 										<div class="center col s12"><img src="{{URL::asset($garment->strSegmentImage)}}" style="height:200px; width:250px; padding:10px; border:3px gray solid"></div>
 									
 									<!--Eto yung buong quantity, hindi ko matanggal, baka magloko bigla ang process. Ikaw na lang
-									<!   Nai-comment ko naman na. If ever tatanggalin mo, eto lang-->
+									<!   Nai-comment ko naman na. If ever tatanggalin mo, eto lang-
 									<center><h6 style="color:darkgray"><b>Quantity</b></h6></center>
 					                  <div class="container"> 
 					                  	<div class="container">
@@ -98,7 +98,7 @@
 					                    </div>
 					                    </div>
 					                  </div>
-									<!--End nung para sa quantity-->
+									End nung para sa quantity-->
 								</div>
 						@endforeach
 						</div>
