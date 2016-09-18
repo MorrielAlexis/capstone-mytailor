@@ -451,52 +451,24 @@ class WalkInCompanyController extends Controller
 
         for($i = 0; $i < count($quantity); $i++)
             $totalQuantity = $totalQuantity + $quantity[$i];
-        //dd(session()->get('package_segment_fabric'));
-/*        for($l = 0; $l < count(session()->get('package_values')); $l++)
+        //dd(session()->get('package_segment_pattern'));
+/*        for($i = 0; $i < count(session()->get('package_values')); $i++)
         {
-            for($i = 0; $i < count(session()->get('package_segments')); $i++)
+            for($j = 0; $j < count(session()->get('package_segments')); $j++)
             {
-                for($j = 0; $j < count(session()->get('package_segments')[$i]); $j++)
+                for($k = 0; $k < count(session()->get('package_segments')[$j]); $k++)
                 {
-                }
-              if(session()->get('package_values')[$l]->strPackageID == session()->get('package_segment_fabric')[$l][0])
-                {
-                    var_dump(session()->get('package_segment_fabric')[$l][$i+1]->strFabricName);
+                    if(session()->get('package_values')[$i]->strPackageID == session()->get('package_segments')[$j][$k][0]->strPackageID)
+                    {
+                        for($l = 0; $l < count(session()->get('package_segment_pattern')[$j][$k]); $l++)
+                        {
+                            var_dump(session()->get('package_segment_fabric')[$j][$k][$l]->strSegPName);
+                        }
+                    }
                 }
             }
         }
         dd("");*/
-
-        //var_dump(session()->get('employee_set'), session()->get('employee_segment_qty'));
-
-/*        for($i = 0; $i < count(session()->get('employee_set')); $i++)
-        {
-            var_dump(session()->get('employee_set')[$i]);
-        }*/
-        
-         
-/*        $l = 0;
-        for($i = 0; $i < count(session()->get('package_segments')); $i++)
-        {
-            for($j = 0; $j < count(session()->get('package_segments')[$i]); $j++)
-            {   
-                //  for($k = 0; )
-                //var_dump(session()->get('package_segments')[$i][$j]);
-                if(session()->get('package_segment_fabric')[$j][0] == session()->get('package_segments')[$i][$j][0]->strPackageID)
-                {
-                    for($k = 0; $k < count(session()->get('package_segment_fabric')[$j]); $k++)
-                    {
-                        var_dump(session()->get('package_segment_fabric')[$j][$l+1]->strFabricName);
-                    }
-                //var_dump(session()->get('package_segment_fabric')[$j]);
-                }
-                //var_dump(session()->get('package_segments')[$i]);   
-            }
-        }*/
-        //dd(session()->get('package_segments'));
-        //dd(session()->get('package_segment_pattern'));
-        //var_dump(session()->get('package_segment_fabric'));
-        //dd("");
         return view('walkin-company-checkout-pay')
                 ->with('joID', session()->get('compJOID'))
                 ->with('package_values', session()->get('package_values'))

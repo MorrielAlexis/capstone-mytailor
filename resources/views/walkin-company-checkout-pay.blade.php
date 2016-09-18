@@ -64,8 +64,8 @@
 					              	<tbody>	
 								        @for($i = 0; $i < count($package_values); $i++)
 								        <tr style="border-top:1px teal solid; border-bottom:1px teal solid">
-								            <td style="border-right:1px teal solid; border-left:1px teal solid"><a class="btn-flat tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to expand and see package details" onclick="packageDetail(1)"><b><u>{{ $package_values[$i]->strPackageName}}</u></b></a></td>
-								            <td style="border-right:1px teal solid; border-left:1px teal solid">0.00 PHP</td>
+								            <td style="border-right:1px teal solid; border-left:1px teal solid"><a class="btn-flat tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to expand and see package details" onclick="packageDetail({{ $i }})"><b><u>{{ $package_values[$i]->strPackageName}}</u></b></a></td>
+								            <td style="border-right:1px teal solid; border-left:1px teal solid">{{ number_format($package_values[$i]->dblPackagePrice, 2) }} PHP</td>
 											<td style="border-right:1px teal solid; border-left:1px teal solid"><div id="style_price_total" name="style_price_total"> </div></td>
 							           		<td style="border-right:1px teal solid; border-bottom:1px teal solid; border-right:1px teal solid"></td> 
 							            </tr>						            		
@@ -78,7 +78,7 @@
 					<!--PACKAGE DETAIL WILL BE HERE-->
 					@for($i = 0; $i < count($package_values); $i++)
 						
-						<div class="card horizontal col s12" id="package-detail" style="display:block; margin-top:3%; padding-bottom:4%; background-color:#e0f2f1; border:1px #e0f2f1 outset;">
+						<div class="card horizontal col s12 package-detail" id="package-detail{{ $i }}" style="display:none; margin-top:3%; padding-bottom:4%; background-color:#e0f2f1; border:1px #e0f2f1 outset;">
 						<i class="right mdi-navigation-close tooltipped" data-poition="bottom" data-delay="50" data-tooltip="Click to close" onclick="packageDetail(2)" style="font-size:30px"></i>
 						<div class="container" style="margin-top:4%;">
 							<table class="table centered z-depth-1">
@@ -106,12 +106,24 @@
 									@if($package_values[$i]->strPackageID == $package_segments[$j][$k][0]->strPackageID)
 									<tr>
 										<td style="border:1px black solid">{{ $package_segments[$j][$k][0]->strSegmentName }}</td>
-										<td style="border:1px black solid">Fabric 1</td>
+										<td style="border:1px black solid">{{ $segment_fabrics[$j][$k]->strFabricName }}</td>
 										<td style="border:1px black solid">1</td>
-										<td style="border:1px black solid">123.00 PHP</td>
-										<td style="border:1px black solid">{{ $segment_patterns[$j][$k][0]->strSegStyleName }}</td>
-										<td style="border:1px black solid">{{ $segment_patterns[$j][$k][0]->strSegPName }}</td>
-										<td style="border:1px black solid">{{ number_format($segment_patterns[$j][$k][0]->dblPatternPrice, 2) }} PHP</td>
+										<td style="border:1px black solid">{{ number_format($package_segments[$j][$k][0]->dblSegmentPrice, 2) }} PHP</td>
+										<td style="border:1px black solid">
+											@for($l = 0; $l < count($segment_patterns[$j][$k]); $l++)
+												{{ $segment_patterns[$j][$k][$l]->strSegStyleName }}<br>
+											@endfor
+										</td>
+										<td style="border:1px black solid">
+											@for($l = 0; $l < count($segment_patterns[$j][$k]); $l++)
+												{{ $segment_patterns[$j][$k][$l]->strSegPName }}<br>
+											@endfor
+										</td>
+										<td style="border:1px black solid">
+											@for($l = 0; $l < count($segment_patterns[$j][$k]); $l++)
+												{{ number_format($segment_patterns[$j][$k][$l]->dblPatternPrice, 2) }} PHP <br>
+											@endfor
+										</td>
 									</tr>
 									@endif
 									@endfor
@@ -399,11 +411,12 @@
 	// });
 	function packageDetail(value) 
 	{
-		if(value == 1){
-			document.getElementById('package-detail').style.display = "block";
+		
+		if(value != null){
+			document.getElementById('package-detail' + value).style.display = "block";
 		}
 		else {
-			document.getElementById('package-detail').style.display = "none";
+			document.getElementById('package-detail' + value).style.display = "none";
 		}
 		
 	}
