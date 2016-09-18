@@ -41,17 +41,11 @@
 	            			<div class="col s6" style="color:gray;padding-left:50px;padding-top:15px"><p>Transaction No.:</p></div>
 			      			<div class="col s6" style="color:red;"><p><input value="{{ $joID }}" id="transac_no" name="transac_no" type="text" class="" readonly></p></div>
                         </div>
+	            		<div class="col s6">
+	            			<div class="col s2" style="color:gray;padding-top:15px"><p>Date:</div>
+	                        <div class="col s10" id="Date" style="color:teal;padding-top:30px"></div>
+                        </div>
 
-                        <div class="col s6">              
-	                        <div class="col s12">
-	                          <div class="col s4" style="color:gray"><p>Date:</div>
-	                          <div class="col s8" id="Date" style="padding:15px; color:teal;"></div>
-	                        </div>
-	                        <div class="col s12">
-	                           <div class="col s4" style="color:gray"><p>Time:</div>
-	                          <div class="col s8" id="clock" style="padding:15px; color:teal;"></div>
-	                        </div>
-	                    </div>
                     </div>
 					
 					<label style="font-size:23px; color:teal;"><center><b>ORDER SUMMARY</b></center></label>
@@ -61,66 +55,73 @@
 		                        <table class="table centered order-summary z-depth-1" border = "1">
 				       				<thead style="color:gray">
 					          			<tr style="border-top:1px teal solid; border-bottom:1px teal solid; background-color:teal; color:white">
-						                  <th data-field="product" style="border-right:1px teal solid; border-left:1px teal solid">Product</th> 
-						                  <th data-field="fabric" style="border-right:1px teal solid">Fabric</th>
+						                  <th data-field="product" style="border-right:1px teal solid; border-left:1px teal solid">Package</th> 
 						                  <th data-field="base-price" style="border-right:1px teal solid">Base Price</th>
 						                  <th data-field="style-price-total" style="border-right:1px teal solid">Style Price Total</th>
-						                  <th data-field="labor-price-per-segment" style="border-right:1px teal solid">Labor Price</th>
 						                  <th data-field="line-total" style="border-right:1px teal solid">Grand Total</th>        
 						              	</tr>
 					              	</thead>
 					              	<tbody>	
-								            <tr style="border-top:1px teal solid; border-bottom:1px teal solid">
-								                <td style="border-right:1px teal solid; border-left:1px teal solid"><a class="btn-flat tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to expand and see package details" onclick="packageDetail(1)"><b><u>Test</u></b></a></td>
-												<td style="border-right:1px teal solid">Test</td>
-								                <td style="border-right:1px teal solid">0.00 PHP</td>
-												<td style="border-right:1px teal solid"><div id="style_price_total" name="style_price_total"> </div></td>
-												<td style="border-right:1px teal solid">[ insert price here ]</td>
-	
-							            	<td style="border-right:1px teal solid; border-top:1px white solid; border-bottom:1px teal solid"></td>
-							            
-								            </tr>						            		
-							           
-
+								        @for($i = 0; $i < count($package_values); $i++)
+								        <tr style="border-top:1px teal solid; border-bottom:1px teal solid">
+								            <td style="border-right:1px teal solid; border-left:1px teal solid"><a class="btn-flat tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to expand and see package details" onclick="packageDetail(1)"><b><u>{{ $package_values[$i]->strPackageName}}</u></b></a></td>
+								            <td style="border-right:1px teal solid; border-left:1px teal solid">0.00 PHP</td>
+											<td style="border-right:1px teal solid; border-left:1px teal solid"><div id="style_price_total" name="style_price_total"> </div></td>
+							           		<td style="border-right:1px teal solid; border-bottom:1px teal solid; border-right:1px teal solid"></td> 
+							            </tr>						            		
+							            @endfor
 							        </tbody>
 							    </table>					
 						</div>
 
 
 					<!--PACKAGE DETAIL WILL BE HERE-->
-					<div class="card horizontal col s12" id="package-detail" style="display:none; margin-top:3%; padding-bottom:4%; background-color:#e0f2f1; border:1px #e0f2f1 outset;">
-					<i class="right mdi-navigation-close tooltipped" data-poition="bottom" data-delay="50" data-tooltip="Click to close" onclick="packageDetail(2)" style="font-size:30px"></i>
-					<div class="container" style="margin-top:4%;">
-						<table class="table centered z-depth-1">
-							<thead style="background-color:#b2dfdb">
-								<tr>
-									<th style="border:1px black solid" colspan="1">Product</th>
-									<th style="border:1px black solid" colspan="1">Qty</th>
-									<th style="border:1px black solid" colspan="1">Unit Price</th>
-									<th style="border:1px black solid" colspan="3">Style Description</th>
-								</tr>
-								<tr>
-									<th style="border:1px black solid"></th>
-									<th style="border:1px black solid"></th>
-									<th style="border:1px black solid"></th>
-									<th style="border:1px black solid">Style Category</th>
-									<th style="border:1px black solid">Segment Pattern</th>
-									<th style="border:1px black solid">Style Price</th>
-								</tr>
-							</thead>
-							<tbody style="border:1px #b2dfdb solid; background-color:#FFFFFF">
-								<tr>
-									<td style="border:1px black solid">Product 1</td>
-									<td style="border:1px black solid">1</td>
-									<td style="border:1px black solid">123.00 PHP</td>
-									<td style="border:1px black solid">Test</td>
-									<td style="border:1px black solid">Test</td>
-									<td style="border:1px black solid">0.00 PHP</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					</div>
+					@for($i = 0; $i < count($package_values); $i++)
+						
+						<div class="card horizontal col s12" id="package-detail" style="display:block; margin-top:3%; padding-bottom:4%; background-color:#e0f2f1; border:1px #e0f2f1 outset;">
+						<i class="right mdi-navigation-close tooltipped" data-poition="bottom" data-delay="50" data-tooltip="Click to close" onclick="packageDetail(2)" style="font-size:30px"></i>
+						<div class="container" style="margin-top:4%;">
+							<table class="table centered z-depth-1">
+								<thead style="background-color:#b2dfdb">
+									<tr>
+										<th style="border:1px black solid" colspan="1">Product</th>
+										<th style="border:1px black solid" colspan="1">Fabric</th>
+										<th style="border:1px black solid" colspan="1">Qty</th>
+										<th style="border:1px black solid" colspan="1">Unit Price</th>
+										<th style="border:1px black solid" colspan="3">Style Description</th>
+									</tr>
+									<tr>
+										<th style="border:1px black solid"></th>
+										<th style="border:1px black solid"></th>
+										<th style="border:1px black solid"></th>
+										<th style="border:1px black solid"></th>
+										<th style="border:1px black solid">Style Category</th>
+										<th style="border:1px black solid">Segment Pattern</th>
+										<th style="border:1px black solid">Style Price</th>
+									</tr>
+								</thead>
+								<tbody style="border:1px #b2dfdb solid; background-color:#FFFFFF">
+								@for($j = 0; $j < count($package_segments); $j++)	
+									@for($k = 0 ;$k < count($package_segments[$j]); $k++)
+									@if($package_values[$i]->strPackageID == $package_segments[$j][$k][0]->strPackageID)
+									<tr>
+										<td style="border:1px black solid">{{ $package_segments[$j][$k][0]->strSegmentName }}</td>
+										<td style="border:1px black solid">Fabric 1</td>
+										<td style="border:1px black solid">1</td>
+										<td style="border:1px black solid">123.00 PHP</td>
+										<td style="border:1px black solid">{{ $segment_patterns[$j][$k][0]->strSegStyleName }}</td>
+										<td style="border:1px black solid">{{ $segment_patterns[$j][$k][0]->strSegPName }}</td>
+										<td style="border:1px black solid">{{ number_format($segment_patterns[$j][$k][0]->dblPatternPrice, 2) }} PHP</td>
+									</tr>
+									@endif
+									@endfor
+								@endfor
+								</tbody>
+							</table>
+						</div>
+						</div>
+						
+					@endfor
 						<div class="col s12" style="margin-bottom:38px"></div>
 					</div>
 

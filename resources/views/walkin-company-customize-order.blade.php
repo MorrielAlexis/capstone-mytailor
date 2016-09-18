@@ -41,7 +41,7 @@
 						    </div>    
 
 						    
-						@foreach($values as $value)
+						@foreach($values as $i => $value)
 							{!! Form::open(['url' => 'transaction/walkin-company-customize-orders', 'method' => 'POST']) !!}
 							<!--Package Detail-->
 							<div class="col s6" style="margin-bottom:40px">
@@ -74,6 +74,7 @@
 
 								<div class="z-depth-2 card medium" style="margin-left:100px; margin-top:20px; height:350px; width:350px; border:3px gray solid">
 			           				<input type="hidden" name="hidden-package-id" value="{{ $value->strPackageID }}">
+			           				<input type="hidden" name="hidden-package-index" value="{{ $i++ }}">
 			           				<div class="card-image">
 			              				<img class="responsive-img" height = "80%" src="{{URL::asset($value->strPackageImage)}}">
 			           				</div>

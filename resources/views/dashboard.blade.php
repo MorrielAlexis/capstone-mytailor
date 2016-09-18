@@ -1,6 +1,64 @@
 @extends('layouts.master')
 
 @section('content')
+                        <div id="card-stats"  >
+                        <div class="row" style="margin-top:30px">
+                            <div class="col s12 m6 l3">
+                                <div class="card" >
+                                    <div class="card-content  green lighten-2 white-text" style="height:138px">
+                                        <p class="card-stats-title" style="font-size:18px"><i class="mdi-social-group-add"></i> Total Registered Customer</p>
+                                        <h4 class="card-stats-number">566</h4>
+                                        {{-- <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 15% <span class="green-text text-lighten-5">from yesterday</span>
+                                        </p> --}}
+                                    </div>
+                                    <div class="card-action  green " style="height:40px">
+                                        <div id="clients-bar"><canvas width="220" height="25" style="display: inline-block; width: 220px; height: 25px; vertical-align: top;"></canvas></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s12 m6 l3">
+                                <div class="card">
+                                    <div class="card-content cyan darken-1 white-text">
+                                        <p class="card-stats-title" style="font-size:20px"><i class="mdi-editor-attach-money"></i>Total Employees</p>
+                                        <h4 class="card-stats-number">35</h4>
+                                        {{-- <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 70% <span class="purple-text text-lighten-5">last month</span>
+                                        </p> --}}
+                                    </div>
+                                    <div class="card-action  cyan darken-2"  style="height:40px">
+                                        <div id="sales-compositebar"><canvas width="214" height="25" style="display: inline-block; width: 214px; height: 25px; vertical-align: top;"></canvas></div>
+
+                                    </div>
+                                </div>
+                            </div>                            
+                            <div class="col s12 m6 l3">
+                                <div class="card">
+                                    <div class="card-content blue-grey white-text">
+                                        <p class="card-stats-title" style="font-size:20px"><i class="mdi-action-trending-up"></i> Today Sales </p>
+                                        <h4 class="card-stats-number">Php.806.52</h4>
+                                        {{-- <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 80% <span class="blue-grey-text text-lighten-5">from yesterday</span>
+                                        </p> --}}
+                                    </div>
+                                    <div class="card-action blue-grey darken-2" style="height:40px">
+                                        <div id="profit-tristate"><canvas width="220" height="25" style="display: inline-block; width: 220px; height: 25px; vertical-align: top;"></canvas></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s12 m6 l3">
+                                <div class="card">
+                                    <div class="card-content deep-purple accent-1 white-text">
+                                        <p class="card-stats-title" style="font-size:20px"><i class="mdi-editor-insert-drive-file"></i> New Invoice</p>
+                                        <h4 class="card-stats-number">1806</h4>
+                                        {{-- <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-down"></i> 3% <span class="deep-purple-text text-lighten-5">from last month</span>
+                                        </p> --}}
+                                    </div>
+                                    <div class="card-action  deep-purple lighten-2" style="height:40px">
+                                        <div id="invoice-line"><canvas width="223" height="25" style="display: inline-block; width: 223px; height: 25px; vertical-align: top;"></canvas></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
 
     <div id="card-stats" style="padding:20px;">
         <div class="row">
