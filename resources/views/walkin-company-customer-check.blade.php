@@ -128,53 +128,73 @@
 
 @section('scripts')
 
-<script>
-	$('#checkCompany').click(function(){
+	<script>
+		$('#checkCompany').click(function(){
 
-		var comp = {!! json_encode($company) !!};
-		//var companyID = "";
-		var check = 0;
+			var comp = {!! json_encode($company) !!};
+			//var companyID = "";
+			var check = 0;
 
-		for(var i = 0; i < comp.length; i++){
+			for(var i = 0; i < comp.length; i++){
 
-			if((comp[i].strCompanyName).toLowerCase().trim() == $('#companyName').val().toLowerCase().trim())
+				if((comp[i].strCompanyName).toLowerCase().trim() == $('#companyName').val().toLowerCase().trim())
+				{
+					/*companyID = comp[i].strCompanyID;*/
+					check = 1;
+					$('#custID').val(comp[i].strCompanyID);
+					$('#summary-of-order').openModal();
+					//$('#companyForm').submit();
+					break;
+				}	
+
+			}
+			if(check == 0){
+				alert("That company does not exist!");	
+			}
+
+		});
+
+		$(document).ready(function(){
+			  $(window).keydown(function(event){
+				    if(event.keyCode == 13) {
+				      event.preventDefault();
+				      return false;
+				    }
+				  });
+		})
+
+	</script>
+
+	<script>
+		$(document).ready(function() {
+		
+			var a = {!! json_encode($packages) !!};
+			var b = {!! json_encode($prices) !!};
+			var c = {!! json_encode($quantity) !!};
+			var totalTime = 0, totalPrice = 0.0;
+
+			for(var i = 0; i < a.length; i++)
 			{
-				/*companyID = comp[i].strCompanyID;*/
-				check = 1;
-				$('#custID').val(comp[i].strCompanyID);
-				$('#summary-of-order').openModal();
-				//$('#companyForm').submit();
-				break;
-			}	
+				totalTime = totalTime + (a[i].intPackageMinDays * c[i]);
+				totalPrice = totalPrice + b[i];
+			}
 
+			$('#totalTime').text(totalTime + " days");
+			$('#totalPrice').text((totalPrice.toFixed(2)) + " PHP");
+
+	  	});
+	</script>	
+
+	<script type="text/javascript">
+
+		function showform() 
+		{
+			document.getElementById('custname').style.display = "block";
 		}
-		if(check == 0){
-			alert("That company does not exist!");	
-		}
-
-	});
-
-	$(document).ready(function(){
-		  $(window).keydown(function(event){
-			    if(event.keyCode == 13) {
-			      event.preventDefault();
-			      return false;
-			    }
-			  });
-	})
-
-</script>
-
-<script type="text/javascript">
-
-	function showform() 
-	{
-		document.getElementById('custname').style.display = "block";
-	}
-	// $('#button').on('click', function() {
-	// 	$('#custId').show();
-	// 	$('#custId').style.display = "block";
-	// });
-</script>
+		// $('#button').on('click', function() {
+		// 	$('#custId').show();
+		// 	$('#custId').style.display = "block";
+		// });
+	</script>
 
 @stop
