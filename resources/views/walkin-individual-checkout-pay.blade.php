@@ -7,7 +7,7 @@
       <div class="col s12 m12 l12">
         <span class="page-title"><center><h3><b>Welcome to <font color="white">MyTailor</font></b></h3></center></span>
         <center><h5>Walk-in Individual - Payout</h5></center>
-      </div>
+      </div> 
     </div>
 
 	<div class="row" style="padding:30px">
@@ -156,17 +156,17 @@
 								
 								<div class="col s12">
 									<div class="col s4" style="color:gray; font-size:15px"><p><b>Estimated Total Amount</b></p></div>
-			      					<div class="col s8" style="color:black;"><p><input id="estimated_total" name="estimated_total" type="text" class="" readonly></p></div>
+			      					<div class="col s8" style="color:black;"><p><input id="estimated_total" name="estimated_total" type="text" class="" readonly /></p></div>
 								</div>
 
 								<div class="col s12">
 									<div class="col s4" style="color:gray; font-size:15px"><p><b>Total Labor Price</b></p></div>
-			      					<div class="col s8" style="color:black;"><p><input id="labor_price_total" name="labor_price_total" type="text" class="" readonly></p></div>
+			      					<div class="col s8" style="color:black;"><p><input id="labor_price_total" name="labor_price_total" type="text" class="" readonly /></p></div>
 								</div>
 								
 								<div class="col s12">
 									<div class="col s4" style="color:gray; font-size:15px"><p><b>Additional Fee</b></p></div>
-			      					<div class="col s8" style="color:black;"><p><input id="addtnl_fee" name="addtnl_fee" type="text" class="" readonly></p></div>
+			      					<div class="col s8" style="color:black;"><p><input id="addtnl_fee" name="addtnl_fee" type="text" class="" readonly /></p></div>
 								</div>
 
 							</div>
@@ -325,30 +325,20 @@
 
 			var totalAmount = 0.00;
 			var minDays = 0;
-			var stylePriceTotal = 0.00;
 			var laborTotal = 0.00;
 			var addtnlFees = 0.00;
 			var estimatedTotal = 0.00;
 
-			//style price total
-			for(var i = 0; i < a.length; i++) {
-				for(var j = 0; j < b[i].length; j++) {
-					stylePriceTotal += b[i][j].dblPatternPrice;
-				}
-			}
-
 			//labor total
 			for(var i = 0; i < a.length; i++) {
-				for(var k = 0; k < c[i].length; k++) {
-					laborTotal += c[i][k].dblChargeDetPrice;
-				}
+					laborTotal += c[i].dblChargeDetPrice;
 			}
 
 			//additional total fees
 			for(var i = 0; i < a.length; i++) {
-				for(var j = 0; j < d[i].length; j++) {
-					addtnlFees += d[i][j].dblChargeDetPrice;
-				}
+				//for(var j = 0; j < d[i].length; j++) {
+					addtnlFees += d[i].dblChargeDetPrice;
+				//}
 			}
 
 			//grand total
@@ -356,7 +346,7 @@
 				totalAmount += a[i].dblSegmentPrice;
 				totalAmount += a[i].dblFabricPrice;
 				totalAmount += c[i].dblChargeDetPrice;
-				totalAmount += addtnlFees;
+				totalAmount += d[i].dblChargeDetPrice;
 					for(var j = 0; j < b[i].length; j++){
 						totalAmount += b[i][j].dblPatternPrice;
 					}
@@ -376,50 +366,13 @@
 			newDate.setDate(newDate.getDate());   
 			dueDate.setDate(newDate.getDate()+minDays); 
 
-			$('#style_price_total').text(stylePriceTotal.toFixed(2) + " " + "PHP");
 			$('#labor_price_total').val(laborTotal.toFixed(2));
 			$('#estimated_total').val(estimatedTotal.toFixed(2));
-			$('#grand_price').text(totalAmount.toFixed(2) + " " + "PHP");
 			$('#total_price').val(totalAmount.toFixed(2));
 			$('#addtnl_fee').val(addtnlFees.toFixed(2));
 			$('#due-date').text(dayNames[dueDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
 			$('#transaction_date').val(monthNames[(newDate.getMonth()+1)] + " " + newDate.getDate() + ", " + newDate.getFullYear());
 			$('#due_date').val(monthNames[(dueDate.getMonth()+1)] + " " + dueDate.getDate() + ", " + dueDate.getFullYear());
-		});
-	</script>
-
-	<script type="text/javascript">
-		function updateTotals ( )
-		 	{
-			var a = {!! json_encode($values) !!};
-			var b = {!! json_encode($styles) !!};
-			var c = {!! json_encode($laborfee) !!};
-			var d = {!! json_encode($othercharge) !!};
-
-			var totalAmount = 0.00;
-			var minDays = 0;
-			var stylePriceTotal = 0.00;
-			var lineTotal = 0.00;
-			var addtnlFees = 0.00;
-			var estimatedTotal = 0.00;
-
-			//style price total
-			for(var i = 0; i < a.length; i++) {
-				for(var j = 0; j < b[i].length; j++) {
-					stylePriceTotal += b[i][j].dblPatternPrice;
-				}
-			}
-
-			//line total
-		  	
-		  	
-		   	$("#clock").html(currentTimeString);
-		   	  	
-		 }
-
-		$(document).ready(function()
-		{	
-		    setInterval('updateClock()', 1000);
 		});
 	</script>
 
@@ -432,20 +385,12 @@
 					var c = {!! json_encode($laborfee) !!};
 					var d = {!! json_encode($othercharge) !!};
 					var totalAmount = 0.00;
-					var addtnlFees = 0.00;
-
-					//additional total fees
-					for(var i = 0; i < a.length; i++) {
-						for(var j = 0; j < d[i].length; j++) {
-							addtnlFees += d[i][j].dblChargeDetPrice;
-						}
-					}
 
 					for(var i = 0; i < a.length; i++){
 						totalAmount += a[i].dblSegmentPrice;
 						totalAmount += a[i].dblFabricPrice;
 						totalAmount += c[i].dblChargeDetPrice;
-						totalAmount += addtnlFees;
+						totalAmount += d[i].dblChargeDetPrice;
 							for(var j = 0; j < b[i].length; j++){
 								totalAmount += b[i][j].dblPatternPrice;
 							}
@@ -461,22 +406,13 @@
 					var b = {!! json_encode($styles) !!};
 					var c = {!! json_encode($laborfee) !!};
 					var d = {!! json_encode($othercharge) !!};
-
 					var totalAmount = 0.00;
-					var addtnlFees = 0.00;
-
-					//additional total fees
-					for(var i = 0; i < a.length; i++) {
-						for(var j = 0; j < d[i].length; j++) {
-							addtnlFees += d[i][j].dblChargeDetPrice;
-						}
-					}
 
 					for(var i = 0; i < a.length; i++){
 						totalAmount += a[i].dblSegmentPrice;
 						totalAmount += a[i].dblFabricPrice;
 						totalAmount += c[i].dblChargeDetPrice;
-						totalAmount += addtnlFees;
+						totalAmount += d[i].dblChargeDetPrice;
 							for(var j = 0; j < b[i].length; j++){
 								totalAmount += b[i][j].dblPatternPrice;
 							}

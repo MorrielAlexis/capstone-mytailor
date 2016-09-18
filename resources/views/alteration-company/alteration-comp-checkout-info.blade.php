@@ -5,7 +5,7 @@
 	<div class="row">
       <div class="col s12 m12 l12">
         <span class="page-title"><center><h3><b>Welcome to <font color="white">MyTailor</font></b></h3></center></span>
-        <center><h5>Walk-in Alteration - Payout</h5></center>
+        <center><h5>Walk-in Alteration - Company - Payout</h5></center>
       </div>
     </div>
 
@@ -31,8 +31,8 @@
               <div class="col s12">    
                 <div class="col s6">       
                   <div style="color:black; padding-left:140px" class="input-field col s12">                 
-                    <input value="{{ $custID }}" id="addIndiID" name="addIndiID" type="text" readonly>
-                    <label for="addIndiID" style="color:gray"><b>Individual ID </b></label>
+                    <input value="{{ $custID }}" id="addCompID" name="addCompID" type="text" readonly>
+                    <label for="addCompID" style="color:gray"><b>Company ID </b></label>
                   </div>
 
                   <div style="color:black; padding-left:140px; margin-left:1px" class="input-field col s12">    
@@ -54,59 +54,47 @@
             <span class="col s12" style="color:teal;"><b>Customer Detail</b></span>
             <div class="card-panel col s12" style="border:3px solid gray; padding:15px;">
                 <div style="color:black" class="input-field col s4">                 
-                  <input value="" id="first_name" name="first_name" type="text" class="">
-                  <label style="color:gray" for="first_name"><b><span class="red-text"><b>*</b></span>First Name</b></label>
+                  <input value="" id="company_name" name="company_name" type="text" class="">
+                  <label style="color:gray" for="company_name"><b><span class="red-text"><b>*</b></span>Company Name</b></label>
                 </div>
 
-                <div style="color:black" class="input-field col s4">                 
-                  <input value="" id="middle_name" name="middle_name" type="text" class="">
-                  <label style="color:gray" for="middle_name"><b>Middle Name</b></label>
-                </div>
-
-                <div style="color:black" class="input-field col s4">                 
-                  <input value="" id="last_name" name="last_name" type="text" class="">
-                  <label style="color:gray" for="last_name"><b><span class="red-text"><b>*</b></span>Last Name </b></label>
-                </div>
-
-                <div style="color:black" class="input-field col s6">
-                  <p style="color:gray"><b>Sex</b></p>
-                  <select name="cust-sex">
-                      <option value="F">Female</option>
-                      <option value="M">Male</option>
-                  </select>
-                </div>
+                 <div style="color:black" class="input-field col s4">                 
+                  <input value="" id="contact_person" name="contact_person" type="text" class="">
+                  <label style="color:gray" for="contact_person"><b><span class="red-text"><b>*</b></span>Contact Person</b></label>
+                </div>  
+                          
             </div>
 
             <span class="col s12" style="color:teal; margin-top:20px"><b>Customer Address</b></span>
             <div class="card-panel col s12" style="border:3px solid gray; padding:15px">
                 <div style="color:black" class="input-field col s4">
-                    <input required id="addCustPrivHouseNo" name="addCustPrivHouseNo" type="text" class="validateHouseNo">
-                    <label style="color:gray" for="house_no"><b><span class="red-text"><b>*</b></span>House No. </b></label>
+                    <input required id="addComBldgNo" name="addComBldgNo" type="text" class="validateHouseNo">
+                    <label style="color:gray" for="house_no"><b><span class="red-text"><b>*</b></span>Room/Building No. </b></label>
                 </div>
 
                 <div style="color:black" class="input-field col s4">
-                    <input required id="addCustPrivStreet" name="addCustPrivStreet" type="text" class="validateStreet">
+                    <input required id="addComStreet" name="addComStreet" type="text" class="validateStreet">
                     <label style="color:gray" for=" Street"><b><span class="red-text"><b>*</b></span>Street </b></label>
                 </div>
 
                 <div style="color:black" class="input-field col s4">
-                    <input  id="addCustPrivBarangay" name="addCustPrivBarangay" type="text" class="validateBarangay">
+                    <input  id="addComBarangay" name="addComBarangay" type="text" class="validateBarangay">
                     <label style="color:gray" for=" Brgy"><b>Barangay/Subd </b></label>
                 </div>
 
                 <div style="color:black" class="input-field col s4">
-                    <input required id="addCustPrivCity" name="addCustPrivCity" type="text" class="validateCity">
+                    <input required id="addComCity" name="addComCity" type="text" class="validateCity">
                     <label style="color:gray" for=" City"><b><span class="red-text"><b>*</b></span>City/Municipality </b></label>
                 </div>
 
 
                 <div style="color:black" class="input-field col s4">
-                    <input id="addCustPrivProvince" name="addCustPrivProvince" type="text" class="validateProvince">
+                    <input id="addComProvince" name="addComProvince" type="text" class="validateProvince">
                     <label style="color:gray" for=" Province"><b>Province/Region </b></label>
               </div>
 
                 <div style="color:black" class="input-field col s4">
-                    <input id="addCustPrivZipCode" name="addCustPrivZipCode" type="text" class="validateZip">
+                    <input id="addComZipCode" name="addComZipCode" type="text" class="validateZip">
                     <label style="color:gray" for=" Zip Code"><b>Zip Code </b></label>
               </div>
           </div>
