@@ -281,6 +281,7 @@ class WalkInIndividualController extends Controller
                     'strIndivFName' => trim($request->input('addIndiFirstName')),     
                     'strIndivMName' => trim($request->input('addIndiMiddleName')),
                     'strIndivLName' => trim($request->input('addIndiLastName')),
+                    'strIndivSex' => trim($request->input('strIndivSex')),
                     'strIndivHouseNo' => trim($request->input('addCustPrivHouseNo')), 
                     'strIndivStreet' => trim($request->input('addCustPrivStreet')),
                     'strIndivBarangay' => trim($request->input('addCustPrivBarangay')),   
@@ -292,7 +293,9 @@ class WalkInIndividualController extends Controller
                     'strIndivCPNumberAlt' => trim($request->input('addCelAlt')),
                     'strIndivEmailAddress' => trim($request->input('addEmail')),
                     'boolIsActive' => 1
-                    ));
+                    )); 
+
+dd($request->input('strIndivSex'));
 
                 $individual->save();
                 

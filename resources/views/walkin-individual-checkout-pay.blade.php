@@ -66,7 +66,7 @@
 						                  <th colspan="1" data-field="base-price" style="border-right:1px black solid">Base Price</th>
 						                  <th colspan="3" data-field="description" style="border-right:1px black solid">Description</th>  
 						                  <th colspan="1" data-field="style-price-total" style="border-right:1px black solid">Style Price Total</th>
-						                  <th colspan="1" data-field="labor-price-per-segment" style="border-right:1px black solid">Labor Price</th>
+						                  <!--<th colspan="1" data-field="labor-price-per-segment" style="border-right:1px black solid">Labor Price</th>-->
 						                  <th colspan="1" data-field="line-total" style="border-right:1px black solid">Line Total</th>        
 						             </tr>
 						             <tr style="border-top:1px black solid; border-bottom:1px black solid; background-color:teal; color:white">
@@ -129,7 +129,7 @@
 												</td>
 
 												<td style="border-right:1px black solid"><!--<div id="style_price_total" name="style_price_total"></div>-->{{ number_format($style_total[$i]['dblPatternPrice'] , 2) }} PHP</td>
-												<td style="border-right:1px black solid">{{ number_format(($laborfee[$i]['dblChargeDetPrice']) , 2) }} PHP</td>
+												<!--<td style="border-right:1px black solid">{{ number_format(($laborfee[$i]['dblChargeDetPrice']) , 2) }} PHP</td>-->
 												<td style="border-right:1px black solid">{{ number_format(($lineTotal[$i]) , 2) }} PHP</td>
 										
 
@@ -152,7 +152,7 @@
 							<!--Eto yung mga pinapadagdag non sa Capstone-->
 							<!--Ikinoment ko muna dahil hindi naman yata pina-require sa soft eng..... ADD NOTE: Dahil tapos na ang SOFTENG!!!-->
 							
-							<div class="col s12 z-depth-2" style=" padding:2%; margin-top:2%">
+							<!--<div class="col s12 z-depth-2" style=" padding:2%; margin-top:2%">
 								
 								<div class="col s12">
 									<div class="col s4" style="color:gray; font-size:15px"><p><b>Estimated Total Amount</b></p></div>
@@ -169,7 +169,7 @@
 			      					<div class="col s8" style="color:black;"><p><input id="addtnl_fee" name="addtnl_fee" type="text" class="" readonly /></p></div>
 								</div>
 
-							</div>
+							</div>-->
 
 							<div class="col s12"><div class="divider" style="margin:15px; height:5px"></div></div>
 							

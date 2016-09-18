@@ -14,8 +14,8 @@ class ChargeCategorySeeder extends Seeder
         $tblChargeCategory = array (
             array(
                 'strChargeCatID' => 'CHA001',
-                'strChargeCatName' => 'Labor Fee',
-                'txtChargeDesc' => 'Additional fee for sewers labor fee.',
+                'strChargeCatName' => 'Tax',
+                'txtChargeDesc' => 'Tax fees.',
                 'strChargeCatInactiveReason' =>'',
                 'boolIsActive' => '1'
             ),
