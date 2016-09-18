@@ -540,9 +540,9 @@ Route::group(['prefix' => 'transaction'], function(){
 		Route::resource('online-women-shirt-tutorial', 'OnlineWomenShirtTutorialController',
 				['only' => ['index']]);
 
-		Route::get('online-individual-checkout-info', 'OnlineCheckoutIndividualController@info');
-		Route::get('online-individual-checkout-payment', 'OnlineCheckoutIndividualController@payment');
-		Route::get('online-individual-checkout-measurement', 'OnlineCheckoutIndividualController@measuredetails');
+		Route::get('online-individual-checkout-info', 'OnlineIndividualController@info');
+		Route::get('online-individual-checkout-payment', 'OnlineIndividualController@payment');
+		Route::get('online-individual-checkout-measurement', 'OnlineIndividualController@measuredetails');
 
 
 		Route::get('online-company-checkout-info', 'OnlineCheckoutCompanyController@info');
@@ -580,23 +580,23 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::get('customize-gown-fabric', 'OnlineCustomizeGownController@fabricgown');
 	Route::get('customize-gown-style', 'OnlineCustomizeGownController@stylegown');
 
-	Route::get('customize-mens-choose-shirt', 'OnlineCustomizeMensController@choose');
-	Route::get('customize-mens-fabric', 'OnlineCustomizeMensController@fabric');
-	Route::post('customize-mens-style-collar', 'OnlineCustomizeMensController@stylecollar');
-	Route::post('customize-mens-style-cuffs', 'OnlineCustomizeMensController@stylecuffs');
-	Route::post('customize-mens-style-buttons', 'OnlineCustomizeMensController@stylebuttons');
-	Route::post('customize-mens-style-pocket-monogram', 'OnlineCustomizeMensController@stylepocketmonogram');
-	Route::get('customize-mens-style-others', 'OnlineCustomizeMensController@styleothers');
+	Route::get('customize-mens-choose-shirt', 'OnlineIndividualController@menchoose');
+	Route::get('customize-mens-fabric', 'OnlineIndividualController@menfabric');
+	Route::post('customize-mens-style-collar', 'OnlineIndividualController@menstylecollar');
+	Route::post('customize-mens-style-cuffs', 'OnlineIndividualController@menstylecuffs');
+	Route::post('customize-mens-style-buttons', 'OnlineIndividualController@menstylebuttons');
+	Route::post('customize-mens-style-pocket-monogram', 'OnlineIndividualController@menstylepocketmonogram');
+	Route::get('customize-mens-style-others', 'OnlineIndividualController@menstyleothers');
 
-	Route::post('customize-mens-fabrics', 'OnlineCustomizeMensController@fabric');
+	Route::post('customize-mens-fabrics', 'OnlineIndividualController@menfabric');
 
-	Route::get('customize-womens-choose-shirt', 'OnlineCustomizeWomensController@choose');
-	Route::get('customize-womens-fabric', 'OnlineCustomizeWomensController@fabric');
-	Route::post('customize-womens-style-collar', 'OnlineCustomizeWomensController@stylecollar');
-	Route::post('customize-womens-style-cuffs', 'OnlineCustomizeWomensController@stylecuffs');
-	Route::post('customize-womens-style-buttons', 'OnlineCustomizeWomensController@stylebuttons');
-	Route::post('customize-womens-style-pocket-monogram', 'OnlineCustomizeWomensController@stylepocketmonogram');
-	Route::get('customize-womens-style-others', 'OnlineCustomizeWomensController@styleothers');
+	Route::get('customize-womens-choose-shirt', 'OnlineIndividualController@womenchoose');
+	Route::get('customize-womens-fabric', 'OnlineIndividualController@womenfabric');
+	Route::post('customize-womens-style-collar', 'OnlineIndividualController@womenstylecollar');
+	Route::post('customize-womens-style-cuffs', 'OnlineIndividualController@womenstylecuffs');
+	Route::post('customize-womens-style-buttons', 'OnlineIndividualController@womenstylebuttons');
+	Route::post('customize-womens-style-pocket-monogram', 'OnlineIndividualController@womenstylepocketmonogram');
+	Route::get('customize-womens-style-others', 'OnlineIndividualController@womenstyleothers');
 
 
 	Route::get('customize-pants-choose-pants', 'OnlineCustomizePantsController@choose');
@@ -604,7 +604,7 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::post('customize-pants-style-pleats', 'OnlineCustomizePantsController@stylepleats');
 	Route::post('customize-pants-style-pockets', 'OnlineCustomizePantsController@stylepockets');
 	Route::post('customize-pants-style-bottom', 'OnlineCustomizePantsController@stylebottom');
-	Route::get('shopping-cart', 'OnlineCustomizePantsController@tocart');
+	Route::get('shopping-cart', 'OnlineIndividualController@tocart');
 
 	Route::get('customize-sets-choose-set', 'OnlineCustomizeSetsController@choose');
 	Route::get('customize-sets-list-of-orders', 'OnlineCustomizeSetsController@orderlist');
