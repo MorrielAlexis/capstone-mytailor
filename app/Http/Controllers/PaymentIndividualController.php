@@ -67,7 +67,7 @@ class PaymentIndividualController extends Controller
                 ->get();
 
 
-        //dd($customer_info);
+        // dd($customer_info, $customer_orders, $payments);
 
 
         return view('transaction-billingpayment-individual')
