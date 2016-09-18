@@ -160,23 +160,23 @@
                         </div>
 
                         <div style="color:black" class="input-field col s4">
-                            <input required id="addCustPrivStreet" name="addCustPrivStreet" type="text" class="" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$">
+                            <input required id="addCustPrivStreet" name="addCustPrivStreet" type="text" class="" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?">
                             <label style="color:gray" for=" Street"><b>*Street </b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s4">
-                            <input  id="addCustPrivBarangay" name="addCustPrivBarangay" type="text" class="validateBarangay" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$">
+                            <input  id="addCustPrivBarangay" name="addCustPrivBarangay" type="text" class="validateBarangay" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?">
                             <label style="color:gray" for=" Brgy"><b>*Barangay/Subd </b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s4">
-                            <input required id="addCustPrivCity" name="addCustPrivCity" type="text" class="validateCity" pattern="^[a-zA-Z\'\-]+( [a-zA-Z\'\-]+)*$">
+                            <input required id="addCustPrivCity" name="addCustPrivCity" type="text" class="validateCity" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?">
                             <label style="color:gray" for=" City"><b>*City/Municipality </b></label>
                         </div>
 
 
                         <div style="color:black" class="input-field col s4">
-                            <input id="addCustPrivProvince" name="addCustPrivProvince" type="text" class="validateProvince" pattern="^[a-zA-Z\'\-\.]+( [a-zA-Z\'\-\.]+)*$">
+                            <input id="addCustPrivProvince" name="addCustPrivProvince" type="text" class="validateProvince" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?">
                             <label style="color:gray" for=" Province"><b>Province/Region </b></label>
 	                    </div>
 

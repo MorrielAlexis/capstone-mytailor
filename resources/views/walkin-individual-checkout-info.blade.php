@@ -89,7 +89,7 @@
             						</div>
                     </div>
 
-                    
+
 
                     <span class="col s12" style="color:teal; margin-top:20px"><b>Customer Address</b></span>
                     <div class="card-panel col s12" style="border:3px solid gray; padding:15px">
@@ -99,23 +99,23 @@
                         </div>
 
                         <div style="color:black" class="input-field col s4">
-                            <input required id="addCustPrivStreet" name="addCustPrivStreet" type="text" class="validateStreet" placeholder="Dolce Amore" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$">
+                            <input required id="addCustPrivStreet" name="addCustPrivStreet" type="text" class="validateStreet" placeholder="Dolce Amore" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?">
                             <label style="color:gray" for=" Street"><b><span class="red-text"><b>*</b></span>Street </b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s4">
-                            <input  id="addCustPrivBarangay" name="addCustPrivBarangay" type="text" class="validateBarangay" placeholder="Willpower Homes" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$">
+                            <input  id="addCustPrivBarangay" name="addCustPrivBarangay" type="text" class="validateBarangay" placeholder="Willpower Homes" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?">
                             <label style="color:gray" for=" Brgy"><b><span class="red-text"><b>*</b></span>Barangay/Subd </b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s4">
-                            <input required id="addCustPrivCity" name="addCustPrivCity" type="text" class="validateCity" placeholder="Mandaluyong" pattern="^[a-zA-Z\'\-]+( [a-zA-Z\'\-]+)*$">
+                            <input required id="addCustPrivCity" name="addCustPrivCity" type="text" class="validateCity" placeholder="Mandaluyong" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?">
                             <label style="color:gray" for=" City"><b><span class="red-text"><b>*</b></span>City/Municipality </b></label>
                         </div>
 
 
                         <div style="color:black" class="input-field col s4">
-                            <input id="addCustPrivProvince" name="addCustPrivProvince" type="text" class="validateProvince" placeholder="Metro Manila" pattern="^[a-zA-Z\'\-\.]+( [a-zA-Z\'\-\.]+)*$">
+                            <input id="addCustPrivProvince" name="addCustPrivProvince" type="text" class="validateProvince" placeholder="Metro Manila" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?">
                             <label style="color:gray" for=" Province"><b>Province/Region </b></label>
 	                    </div>
 
@@ -138,7 +138,7 @@
                         </div>
 
                         <div style="color:black" class="input-field col s6">
-                            <input required id="addCel" name = "addCel" type="text" class="validateCell" maxlength="11" placeholder="09178919988" pattern="^[0-9]{11,11}$">
+                            <input required id="addCel" name = "addCel" type="text" class="validate" maxlength="11" placeholder="09178919988" pattern="^[0-9]{11,11}$">
                             <label style="color:gray" for="cellphone"><b> <span class="red-text"><b>*</b></span>Cellphone Number </b></label>
                         </div>
 
