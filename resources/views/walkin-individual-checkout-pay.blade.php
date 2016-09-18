@@ -129,7 +129,7 @@
 												</td>
 
 												<td style="border-right:1px black solid"><!--<div id="style_price_total" name="style_price_total"></div>-->{{ number_format($style_total[$i]['dblPatternPrice'] , 2) }} PHP</td>
-												<!--<td style="border-right:1px black solid">{{ number_format(($laborfee[$i]['dblChargeDetPrice']) , 2) }} PHP</td>-->
+												<!--<td style="border-right:1px black solid"> number_format(($laborfee[$i]['dblChargeDetPrice']) , 2) }} PHP</td>-->
 												<td style="border-right:1px black solid">{{ number_format(($lineTotal[$i]) , 2) }} PHP</td>
 										
 
@@ -152,14 +152,21 @@
 							<!--Eto yung mga pinapadagdag non sa Capstone-->
 							<!--Ikinoment ko muna dahil hindi naman yata pina-require sa soft eng..... ADD NOTE: Dahil tapos na ang SOFTENG!!!-->
 							
-							<!--<div class="col s12 z-depth-2" style=" padding:2%; margin-top:2%">
+							<div class="col s12 z-depth-2" style=" padding:2%; margin-top:2%">
 								
 								<div class="col s12">
-									<div class="col s4" style="color:gray; font-size:15px"><p><b>Estimated Total Amount</b></p></div>
+									<div class="col s4" style="color:grey; font-size:10px"><p><b>Labor Fee Inclusive</b>
+										<b style="color:gray; font-size:15px">Estimated Total Amount</b></p>
+									</div>
 			      					<div class="col s8" style="color:black;"><p><input id="estimated_total" name="estimated_total" type="text" class="" readonly /></p></div>
 								</div>
 
 								<div class="col s12">
+									<div class="col s4" style="color:gray; font-size:15px"><p><b>VAT (12%)</b></p></div>
+			      					<div class="col s8" style="color:black;"><p><input id="vat_total" name="vat_total" type="text" class="" readonly /></p></div>
+								</div>
+
+								<!--<div class="col s12">
 									<div class="col s4" style="color:gray; font-size:15px"><p><b>Total Labor Price</b></p></div>
 			      					<div class="col s8" style="color:black;"><p><input id="labor_price_total" name="labor_price_total" type="text" class="" readonly /></p></div>
 								</div>
@@ -167,15 +174,16 @@
 								<div class="col s12">
 									<div class="col s4" style="color:gray; font-size:15px"><p><b>Additional Fee</b></p></div>
 			      					<div class="col s8" style="color:black;"><p><input id="addtnl_fee" name="addtnl_fee" type="text" class="" readonly /></p></div>
-								</div>
+								</div>-->
 
-							</div>-->
+							</div>
 
 							<div class="col s12"><div class="divider" style="margin:15px; height:5px"></div></div>
 							
 							<!-- <div class="col s4" style="color:gray; font-size:15px"><p><b>Total Labor Price</b></p></div>
 			      			<div class="col s8" style="color:gray;"><p><input id="style_price_total" name="style_price_total" type="text" class="" readonly><b></b></p></div> -->
 
+			      			<!--<div class="col s12" style="color:grey; font-size:10px"><p><b>12% VAT Inclusive</b></p></div>-->
 			      			<div class="col s4" style="color:black; font-size:15px"><p><b>Grand Total</b></p></div>
 			      			<div class="col s8" style="color:black;"><p><input id="total_price" name="total_price" type="text" class="" readonly style="font-size:3em"></p></div>
 
@@ -320,17 +328,18 @@
 
 			var a = {!! json_encode($values) !!};
 			var b = {!! json_encode($styles) !!};
-			var c = {!! json_encode($laborfee) !!};
-			var d = {!! json_encode($othercharge) !!};
+			//var c =  json_encode($laborfee) !!};
+			//var d = { json_encode($othercharge) !!};
 
 			var totalAmount = 0.00;
 			var minDays = 0;
 			var laborTotal = 0.00;
 			var addtnlFees = 0.00;
-			var estimatedTotal = 0.00;
+			//var estimatedTotal = 0.00;
+			var grandtotal = 0.00;
 
 			//labor total
-			for(var i = 0; i < a.length; i++) {
+			/*for(var i = 0; i < a.length; i++) {
 					laborTotal += c[i].dblChargeDetPrice;
 			}
 
@@ -339,14 +348,14 @@
 				//for(var j = 0; j < d[i].length; j++) {
 					addtnlFees += d[i].dblChargeDetPrice;
 				//}
-			}
+			}*/
 
 			//grand total
 			for(var i = 0; i < a.length; i++){
 				totalAmount += a[i].dblSegmentPrice;
 				totalAmount += a[i].dblFabricPrice;
-				totalAmount += c[i].dblChargeDetPrice;
-				totalAmount += d[i].dblChargeDetPrice;
+				//totalAmount += c[i].dblChargeDetPrice;
+				//totalAmount += d[i].dblChargeDetPrice;
 					for(var j = 0; j < b[i].length; j++){
 						totalAmount += b[i][j].dblPatternPrice;
 					}
@@ -354,7 +363,10 @@
 			}
 
 			//estimated total
-			estimatedTotal = totalAmount - (addtnlFees + laborTotal);
+			//estimatedTotal = totalAmount - (addtnlFees + laborTotal);
+			var vat = 0.00;
+			vat = totalAmount * 0.12;
+			grandtotal = vat + totalAmount;
 
 			var monthNames = [ "January", "February", "March", "April", "May", "June",
 		    "July", "August", "September", "October", "November", "December" ];
@@ -366,10 +378,11 @@
 			newDate.setDate(newDate.getDate());   
 			dueDate.setDate(newDate.getDate()+minDays); 
 
-			$('#labor_price_total').val(laborTotal.toFixed(2));
-			$('#estimated_total').val(estimatedTotal.toFixed(2));
-			$('#total_price').val(totalAmount.toFixed(2));
-			$('#addtnl_fee').val(addtnlFees.toFixed(2));
+			//$('#labor_price_total').val(laborTotal.toFixed(2));
+			$('#estimated_total').val(totalAmount.toFixed(2));
+			$('#total_price').val(grandtotal.toFixed(2));
+			$('#vat_total').val(vat.toFixed(2));
+			//$('#addtnl_fee').val(addtnlFees.toFixed(2));
 			$('#due-date').text(dayNames[dueDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
 			$('#transaction_date').val(monthNames[(newDate.getMonth()+1)] + " " + newDate.getDate() + ", " + newDate.getFullYear());
 			$('#due_date').val(monthNames[(dueDate.getMonth()+1)] + " " + dueDate.getDate() + ", " + dueDate.getFullYear());
@@ -382,44 +395,48 @@
 
 					var a = {!! json_encode($values) !!};
 					var b = {!! json_encode($styles) !!};
-					var c = {!! json_encode($laborfee) !!};
-					var d = {!! json_encode($othercharge) !!};
+					//var c = { json_encode($laborfee) !!};
+					//var d = { json_encode($othercharge) !!};
 					var totalAmount = 0.00;
 
 					for(var i = 0; i < a.length; i++){
 						totalAmount += a[i].dblSegmentPrice;
 						totalAmount += a[i].dblFabricPrice;
-						totalAmount += c[i].dblChargeDetPrice;
-						totalAmount += d[i].dblChargeDetPrice;
+						//totalAmount += c[i].dblChargeDetPrice;
+						//totalAmount += d[i].dblChargeDetPrice;
 							for(var j = 0; j < b[i].length; j++){
 								totalAmount += b[i][j].dblPatternPrice;
 							}
 					}
+					var vat = 0.12;
+					grandtotal = (totalAmount * vat) + totalAmount;
 					
-					$('#amount-payable').val((totalAmount/2).toFixed(2));
-					$('#balance').val((totalAmount - (totalAmount/2)).toFixed(2));
+					$('#amount-payable').val((grandtotal/2).toFixed(2));
+					$('#balance').val((grandtotal - (grandtotal/2)).toFixed(2));
 				}
 
 				if($('#full_pay').prop("checked")){
 
 					var a = {!! json_encode($values) !!};
 					var b = {!! json_encode($styles) !!};
-					var c = {!! json_encode($laborfee) !!};
-					var d = {!! json_encode($othercharge) !!};
+					//var c = { json_encode($laborfee) !!};
+					//var d = { json_encode($othercharge) !!};
 					var totalAmount = 0.00;
 
 					for(var i = 0; i < a.length; i++){
 						totalAmount += a[i].dblSegmentPrice;
 						totalAmount += a[i].dblFabricPrice;
-						totalAmount += c[i].dblChargeDetPrice;
-						totalAmount += d[i].dblChargeDetPrice;
+						//totalAmount += c[i].dblChargeDetPrice;
+						//totalAmount += d[i].dblChargeDetPrice;
 							for(var j = 0; j < b[i].length; j++){
 								totalAmount += b[i][j].dblPatternPrice;
 							}
 					}
+					var vat = 0.12;
+					grandtotal = (totalAmount * vat) + totalAmount;
 					
-					$('#amount-payable').val(totalAmount.toFixed(2));
-					$('#balance').val((totalAmount - totalAmount).toFixed(2));
+					$('#amount-payable').val(grandtotal.toFixed(2));
+					$('#balance').val((grandtotal - grandtotal).toFixed(2));
 				}
 		});
 

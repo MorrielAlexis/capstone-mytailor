@@ -80,11 +80,12 @@
                         </div>
 
                         <div style="color:black" class="input-field col s12">
-            							<p style="color:gray"><b>Sex</b></p>
-            							<select>
-            							    <option value="M">Male</option>
+            							<!--<p style="color:gray"><b>Sex</b></p>-->
+            							<select value="" name='strIndivSex' id='strIndivSex' required>
+                              <option value="M">Male</option>
                               <option value="F">Female</option>
-            							</select>
+                          </select>    
+                          <label>Sex</label>
             						</div>
                     </div>
 
