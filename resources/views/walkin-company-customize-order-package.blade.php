@@ -23,6 +23,7 @@
 						<div class="row">
 						<div class="col s12">					
 				{!! Form::open(['url' => 'transaction/walkin-company-save-design', 'method' => 'POST']) !!}
+						<input type="hidden" name="hidden-package-index" value="{{ $customized_index }}">
 						@foreach($package as $package)
 							<div class="col s12" style="margin-top:2px; padding-top:5px; margin-bottom:30px;">
 						        <center><h4 style="color:teal"><b>Package: </b><font color="red">{{ $package->strPackageName  }}</font><!--<a class="right btn-floating tooltipped btn-large blue" data-position="bottom" data-delay="50"  data-tooltip="CLick to print a receipt for current transaction" href="#!" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-editor-mode-edit"></i></a>--></h4></center>
@@ -238,7 +239,7 @@
 										<div class="col s4" style="color:teal;"><p><b>Garment Segment:</b></p></div>
 										<div class="col s8"><p>{!! $segments[$i]->strSegmentName !!}</p></div>
 
-										<div class="col s4" style="color:teal;"><p><b>Price starts from:</b></p></div>z
+										<div class="col s4" style="color:teal;"><p><b>Price starts from:</b></p></div>
 										<div class="col s8" style="color:black;font-weight:bold"><p>{{ number_format($segments[$i]->dblSegmentPrice, 2) }} PHP</p></div>
 									</div>
 							</div>

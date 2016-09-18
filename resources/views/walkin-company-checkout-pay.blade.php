@@ -109,9 +109,9 @@
 										<td style="border:1px black solid">Fabric 1</td>
 										<td style="border:1px black solid">1</td>
 										<td style="border:1px black solid">123.00 PHP</td>
-										<td style="border:1px black solid">Test</td>
-										<td style="border:1px black solid">Test</td>
-										<td style="border:1px black solid">0.00 PHP</td>
+										<td style="border:1px black solid">{{ $segment_patterns[$j][$k][0]->strSegStyleName }}</td>
+										<td style="border:1px black solid">{{ $segment_patterns[$j][$k][0]->strSegPName }}</td>
+										<td style="border:1px black solid">{{ number_format($segment_patterns[$j][$k][0]->dblPatternPrice, 2) }} PHP</td>
 									</tr>
 									@endif
 									@endfor

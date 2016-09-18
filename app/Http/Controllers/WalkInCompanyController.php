@@ -92,7 +92,7 @@ class WalkInCompanyController extends Controller
                     'intPackageMinDays', 'strPackageDesc', 'boolIsActive')
                 ->whereIn('strPackageID', session()->get('package_data'))
                 ->get();
-
+        $j = 0;
         for($i = 0; $i < count($values); $i++){
             $segment1[$i] = \DB::table('tblPackages AS a')
                     ->leftJoin('tblSegment AS b', 'a.strPackageSeg1FK', '=', 'b.strSegmentID')
@@ -113,14 +113,15 @@ class WalkInCompanyController extends Controller
                     ->leftJoin('tblGarmentCategory AS c', 'b.strSegCategoryFK', '=', 'c.strGarmentCategoryID')
                     ->select('a.strPackageID', 'b.*', 'c.strGarmentCategoryName')
                     ->where('a.strPackageID', $values[$i]->strPackageID)
-                    ->get();               
+                    ->get();    
+            $segments[$i] = [$segment1[$i], $segment2[$i], $segment3[$i]];
         }
 
-        $segments = [$segment1, $segment2, $segment3];
+        //$segments = [$segment1, $segment2, $segment3];
+        //dd($segments);
 
         session(['package_segments' => $segments]);
         session(['package_values' => $values]);
-
         return view('walkin-company-customize-order')
                 ->with('values', $values);
     }//page before customization
@@ -192,8 +193,9 @@ class WalkInCompanyController extends Controller
                 ->select('*')
                 ->where('strPackageID', $to_be_customized)
                 ->get();
-
+        //dd(session()->get('package_customize_index'));
         return view('walkin-company-customize-order-package')
+                ->with('customized_index', session()->get('package_customize_index'))
                 ->with('segments', $segments)
                 ->with('package', $package)
                 ->with('fabrics', $fabrics)
@@ -208,8 +210,10 @@ class WalkInCompanyController extends Controller
     public function customize(Request $request)
     {   
         $to_be_customized = $request->input('hidden-package-id');
+        $customized_index = $request->input('hidden-package-index');
         session(['package_customize' => $to_be_customized]);
-
+        session(['package_customize_index' => $customized_index]);
+        //dd($customized_index);
         return redirect('transaction/walkin-company-show-customize');
     }
 
@@ -261,9 +265,17 @@ class WalkInCompanyController extends Controller
                 }
             }
         }  
-        
 
-        for($i = 0; $i < (count($values) + 1); $i++)
+/*        $tempPattern[(int)$request->input('hidden-package-index')] = $sqlStyles;
+        $tempFabric[(int)$request->input('hidden-package-index')] = $fabrics;*/
+        $tempPattern = session()->get('package_segment_pattern');
+        $tempPattern[(int)$request->input('hidden-package-index')] = $sqlStyles;
+        $tempFabric = session()->get('package_segment_fabric');
+        $tempFabric[(int)$request->input('hidden-package-index')] = $fabrics;
+        session(['package_segment_pattern' => $tempPattern]);
+        session(['package_segment_fabric' => $tempFabric]);
+
+/*        for($i = 0; $i < (count($values) + 1); $i++)
         {
             if($i == 0) 
             {
@@ -275,7 +287,7 @@ class WalkInCompanyController extends Controller
     
         $request->session()->push('package_segment_pattern', $sqlStyles);
         $request->session()->push('package_segment_fabric', $fabrics);
-
+*/
         //dd(session()->get('package_segment_pattern'));
         return redirect('transaction/walkin-company-show-order');
     }
@@ -463,7 +475,7 @@ class WalkInCompanyController extends Controller
         }*/
         
          
-        $l = 0;
+/*        $l = 0;
         for($i = 0; $i < count(session()->get('package_segments')); $i++)
         {
             for($j = 0; $j < count(session()->get('package_segments')[$i]); $j++)
@@ -480,8 +492,11 @@ class WalkInCompanyController extends Controller
                 }
                 //var_dump(session()->get('package_segments')[$i]);   
             }
-        }
-        dd("");
+        }*/
+        //dd(session()->get('package_segments'));
+        //dd(session()->get('package_segment_pattern'));
+        //var_dump(session()->get('package_segment_fabric'));
+        //dd("");
         return view('walkin-company-checkout-pay')
                 ->with('joID', session()->get('compJOID'))
                 ->with('package_values', session()->get('package_values'))
