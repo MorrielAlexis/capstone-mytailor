@@ -6,7 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <link rel="shortcut icon" href= "{{{ asset('img/logo.jpg') }}}">
-
       {!! Html::style('css/materialize.min.css'); !!}
       {!! Html::style('css/style.css'); !!}
       {!! Html::style('css/jquery.dataTables.min.css'); !!}
@@ -177,10 +176,11 @@
                             </ul>
                           </div>
                         </li>
-                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('transaction/alteration-walkin-transaction') || Request::is('transaction/alteration-online-transaction') ? 'active' : '' }}"><b>Alteration</b></a>
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('transaction/alteration-walkin-newcustomer') ? 'active' : '' ||Request::is('transaction/alteration-walkin-newcustomer/company') ? 'active' : '' || Request::is('transaction/alteration-online-transaction') ? 'active' : '' }}"><b>Alteration</b></a>
                           <div class="collapsible-body">
                             <ul>
                               <li><a style="color:black; font-weight:normal" class="waves-effect waves-white " href="{{URL::to('transaction/alteration-walkin-newcustomer')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Alteration - Walk In</font></i></a></li>
+                               <li><a style="color:black; font-weight:normal" class="waves-effect waves-white " href="{{URL::to('transaction/alteration-walkin-newcustomer/company')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Alteration - Walk In-Company</font></i></a></li>
                               <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('transaction/alteration-online-transaction')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Alteration - Online</font></i></a></li>
                              <div class="divider"></div>
                             </ul>
@@ -312,13 +312,12 @@
       <main>
         @yield('content')
       </main>
-
       {!! Html::script('js/jquery-2.1.4.min.js'); !!}
       {!! Html::script('js/materialize.min.js'); !!}
       {!! Html::script('js/jquery.dataTables.min.js'); !!}
       {!! Html::script('js/angular.min.js'); !!}
       {!! Html::script('js/knockout-3.4.0.js'); !!}
-
+      {!! Html::script('js/chart.min.js'); !!}
       <script>
         $(document).ready(function(){
         $('.button-collapse').sideNav({
@@ -352,7 +351,7 @@
           
       </script>
 
-        @yield('scripts')
+      @yield('scripts')
     </body>
 
 </html>

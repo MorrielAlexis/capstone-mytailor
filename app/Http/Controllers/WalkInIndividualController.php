@@ -52,12 +52,12 @@ class WalkInIndividualController extends Controller
     public function index()
     {   
         $values = [];
-        //$quantity = [];
+        $quantity = [];
         $data = [];
 
         session(['segment_data' => $data]);
         session(['segment_values' => $values]);
-        //session(['segment_quantity' => $quantity]);
+        session(['segment_quantity' => $quantity]);
 
         $categories = GarmentCategory::all();
         $garments = \DB::table('tblSegment AS a')
@@ -69,8 +69,8 @@ class WalkInIndividualController extends Controller
         return view('transaction-walkin-individual')
                     ->with('garments', $garments)
                     ->with('categories', $categories)
-                    ->with('values', $data);
-                    //->with('quantity', $quantity);
+                    ->with('values', $data)
+                    ->with('quantity', $quantity);
     }
 
     public function showItems()
@@ -78,15 +78,15 @@ class WalkInIndividualController extends Controller
         if(session()->get('segment_data') != null ){
             $values = session()->get('segment_values');
             $data = session()->get('segment_data');
-            //$quantity = session()->get('segment_quantity');
+            $quantity = session()->get('segment_quantity');
         }else{
             $values = [];
-            //$quantity = [];
+            $quantity = [];
             $data = [];
 
             session(['segment_data' => $data]);
             session(['segment_values' => $values]);
-           // session(['segment_quantity' => $quantity]);
+            session(['segment_quantity' => $quantity]);
         }
 
         $categories = GarmentCategory::all();
@@ -99,8 +99,8 @@ class WalkInIndividualController extends Controller
         return view('transaction-walkin-individual')
                     ->with('garments', $garments)
                     ->with('categories', $categories)
-                    ->with('values', $data);
-                    //->with('quantity', $quantity);
+                    ->with('values', $data)
+                    ->with('quantity', $quantity);
     }
 
     public function customizeOrder(Request $request)
@@ -171,6 +171,7 @@ class WalkInIndividualController extends Controller
     //if a customer already has an existing profile with the shop
     public function customerCheck(Request $request)
     {
+        $data_quantity = array_slice(array_filter($request->input('int-segment-qty')), 0);
         $values = session()->get('segment_values');
         $segmentStyles = SegmentStyle::all();
         $patterns = [];
@@ -226,6 +227,7 @@ class WalkInIndividualController extends Controller
 
         session()->forget('segment_values');
         session(['segment_values' => $values]);
+        session(['segment_quantity' => $data_quantity]);
 
         session(['segment_design' => $sqlStyles]);
         
@@ -301,6 +303,7 @@ class WalkInIndividualController extends Controller
     {
         $values = session()->get('segment_values');
         $data = session()->get('segment_data');
+        $quantity = session()->get('segment_quantity');
 
         $measurementCategory = MeasurementCategory::all();
         $standardSizeCategory = StandardSizeCategory::all();
@@ -314,6 +317,7 @@ class WalkInIndividualController extends Controller
 
         return view('walkin-individual-checkout-measure')
                 ->with('segments', $values)
+                ->with('quantities', $quantity)
                 ->with('measurements', $measurements)
                 ->with('categories', $measurementCategory)
                 ->with('standard_categories', $standardSizeCategory);
@@ -380,31 +384,35 @@ class WalkInIndividualController extends Controller
         for($i = 0; $i < count($values); $i++){
             for($j = 0; $j < count($sqlLabor); $j++){
                 if($data[$i] == $sqlLabor[$j]->strChargeDetSegFK){
+                    $chargefees[$i]['strChargeDetSegFK'] = $sqlLabor[$j]->strChargeDetSegFK;
                     $chargefees[$i]['dblChargeDetPrice'] = $sqlLabor[$j]->dblChargeDetPrice;
                 }
             }
         }  
-        session(['charge_laborfee' => $chargefees]); //dd($sqlLabor);
+        session(['charge_laborfee' => $chargefees]); //dd($chargefees);
 
-        for($i = 0; $i < count($values); $i++){
-            $sqlCharge[$i] = \DB::table('tblChargeCategory AS a')
+        //$sqlCharge = [];
+        //for($i = 0; $i < count($values); $i++){
+            $sqlCharge = \DB::table('tblChargeCategory AS a')
                         ->leftJoin('tblChargeDetail AS b', 'a.strChargeCatID', '=', 'b.strChargeCatFK')
                         ->where('a.strChargeCatName', 'NOT LIKE', '%'.$laborkey.'%')
                         ->whereIn('b.strChargeDetSegFK', $data)
-                        ->select('b.*')
+                        ->select('b.strChargeDetSegFK', 'b.dblChargeDetPrice')
                         ->get();
-        }
-        /*for($i = 0; $i < count($values); $i++){
+       // }
+
+        //for($i = 0; $i < count($values); $i++){
+        foreach ($values as $i => $value){
+            $totalcharge = 0.00;
             for($j = 0; $j < count($sqlCharge); $j++){
-             
+                if($data[$i] == $sqlCharge[$j]->strChargeDetSegFK){
                     $othercharges[$i]['strChargeDetSegFK'] = $sqlCharge[$j]->strChargeDetSegFK;
-                    $othercharges[$i]['dblChargeDetPrice'] = $sqlCharge[$j]->dblChargeDetPrice;
-
+                    $totalcharge += $sqlCharge[$j]->dblChargeDetPrice;
+                }
             }
-        }  */
-        session(['charge_others' => $sqlCharge]);
-       // dd($sqlCharge);
-
+            $othercharges[$i]['dblChargeDetPrice'] = $totalcharge;
+        } //dd($othercharges);
+        session(['charge_others' => $sqlCharge]); //dd($sqlCharge);
         /*$priceStyle = 0.00;
         $styleTotal = [];
         foreach ($values as $i => $value) { //dd($value);
@@ -437,7 +445,18 @@ class WalkInIndividualController extends Controller
         {
             $lineTotal[$i] = $values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice'] + $styleTotal[$i]['dblPatternPrice'] + $chargefees[$i]['dblChargeDetPrice'];
         }
+
         
+        /*    $add = 0.00;
+        foreach ($values as $i => $value) {
+            for($j = 0; $j < count($sqlCharge[$i]); $j++){
+                if($sqlCharge[$i]->strChargeDetSegFK == $value['strSegmentID']){
+                    $add += $sqlCharge[$i]->dblChargeDetPrice;
+                }
+            }
+            $addtot = $add;
+        } */
+
         return view('walkin-individual-checkout-pay')
                     ->with('values', $values)
                     ->with('styles', $styles)
