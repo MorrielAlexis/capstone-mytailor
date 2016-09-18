@@ -21,6 +21,9 @@ use App\SegmentStyle;
 
 use App\Company;
 
+use App\MeasurementCategory;
+use App\MeasurementDetail;
+
 class WalkInCompanyController extends Controller
 {
     /**
@@ -130,6 +133,20 @@ class WalkInCompanyController extends Controller
         session(['package_data' => $data_segment]);
         session(['package_quantity' => $data_quantity]);
 
+        $order = session()->get('package_data');
+        $quantity = session()->get('package_quantity');
+        $orderPackages = [];
+        $k = 0;
+
+        for($i = 0; $i < count($quantity); $i++){
+            for($j = 0; $j < $quantity[$i]; $j++){
+                $orderPackages[$k] = $order[$i];
+                $k++;
+            }
+        }
+
+        session(['package_ordered' => $orderPackages]);
+
         return redirect('transaction/walkin-company-show-order');
     }
 
@@ -202,31 +219,38 @@ class WalkInCompanyController extends Controller
         $to_be_customized = session()->get('package_customize');
         $segmentStyles = SegmentStyle::all();
         $segmentFabrics = Fabric::all();
-
         $k = 0;
 
-        for($i = 0; $i < (count($values) + 1); $i++){
-            if($i == 0) {
-                $patterns[$i] = $to_be_customized;
-                $fabrics[$i] = $to_be_customized;
-                continue;
-            }
+        for($l = 0; $l < count(session()->get('package_segment_pattern')); $l++)
+        {
+            if(!($to_be_customized == session()->get('package_segment_pattern')[$l][0]))
+            {   
+                for($i = 0; $i < (count($values) + 1); $i++)
+                {
+                    if($i == 0) 
+                    {
+                        $patterns[$i] = $to_be_customized;
+                        $fabrics[$i] = $to_be_customized;
+                        continue;
+                    }
 
-            $fabrics[$i] = $request->input('fabrics' . $i);
+                    $fabrics[$i] = $request->input('fabrics' . $i);
 
-            for($j = 0; $j < count($segmentStyles); $j++){
-                $tempPatterns = $request->input('rdb_pattern' . $segmentStyles[$j]->strSegStyleCatID . ($i));       
-                if($tempPatterns != null){
-                    $patterns[$i][$k] = $tempPatterns;
-                    $k++;
-                } 
+                    for($j = 0; $j < count($segmentStyles); $j++)
+                    {
+                        $tempPatterns = $request->input('rdb_pattern' . $segmentStyles[$j]->strSegStyleCatID . ($i));       
+                        if($tempPatterns != null){
+                            $patterns[$i][$k] = $tempPatterns;
+                            $k++;
+                        } 
+                    }
+                    $k = 0;
+                }
+                $request->session()->push('package_segment_pattern', $patterns);
+                $request->session()->push('package_segment_fabric', $fabrics);
             }
-            $k = 0;
         }
-
-        $request->session()->push('package_segment_pattern', $patterns);
-        $request->session()->push('package_segment_fabric', $fabrics);
-
+        //dd(session()->get('package_segment_pattern'));
         return redirect('transaction/walkin-company-show-order');
     }
 
@@ -237,23 +261,15 @@ class WalkInCompanyController extends Controller
         $segments = session()->get('package_segments');
         $packages = session()->get('package_values');
         $quantity = session()->get('package_quantity');
-        $orderPackages = [];
         $totalQuantity = 0  ;
         $k = 0;
 
         for($i = 0; $i < count($quantity); $i++)
             $totalQuantity = $totalQuantity + $quantity[$i];
 
-        for($i = 0; $i < count($quantity); $i++){
-            for($j = 0; $j < $quantity[$i]; $j++){
-                $orderPackages[$k] = $order[$i];
-                $k++;
-            }
-        }
-
         return view('walkin-company-add-employee')
                 ->with('total_quantity', $totalQuantity)
-                ->with('orderPackages', $orderPackages)
+                ->with('orderPackages', session()->get('package_ordered'))
                 ->with('packages', $packages)
                 ->with('orders', $order)
                 ->with('segments', $segments);
@@ -407,11 +423,43 @@ class WalkInCompanyController extends Controller
         for($i = 0; $i < count($quantity); $i++)
             $totalQuantity = $totalQuantity + $quantity[$i];
 
+        $measurementCategory = MeasurementCategory::all()->take(2);
+        $measurementDetail = \DB::table('tblMeasurementDetail')
+                        ->select('*')
+                        ->where('strMeasCategoryFK', 'MEASCAT002')
+                        ->get();
+        
+/*        for($l = 0; $l < count($totalQuantity); $l++)
+        {
+            for($i = 0; $i < count(session()->get('package_segments')); $i++)
+            {
+                for($j = 0; $j < count(session()->get('package_segments')[$i]); $j++)
+                {
+                    if(session()->get('package_ordered')[$l] == session()->get('package_segments')[$i][$j][0]->strPackageID)
+                    {
+                        foreach($measurementDetail as $detail)
+                        {
+                            if(session()->get('package_segments')[$i][$j][0]->strSegmentID == $detail->strMeasDetSegmentFK)
+                            {
+                                var_dump($detail->strMeasDetailName);      
+                            }
+                        }
+                    }
+                }
+                var_dump("===");
+            }
+        }
+        dd("");*/
         return view('walkin-company-add-measurement')
                 ->with('total_quantity', $totalQuantity)
+                ->with('package_ordered', session()->get('package_ordered'))
+                ->with('package_segments', session()->get('package_segments'))
+                ->with('package_values', session()->get('package_values'))
                 ->with('employee_fname', session()->get('employee_fname'))
                 ->with('employee_lname', session()->get('employee_lname'))
-                ->with('employee_mname', session()->get('employee_mname'));
+                ->with('employee_mname', session()->get('employee_mname'))
+                ->with('measurement_category', $measurementCategory)
+                ->with('measurement_detail', $measurementDetail);
     }
 
     public function measurement()

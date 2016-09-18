@@ -43,30 +43,30 @@
 							@for($i = 0; $i < $total_quantity; $i++)
 							<div class="col s12" style="margin-bottom:4%">
 								<div class="col s6" style="padding-top:1%"><font size="4.5em" color="dimgray">{{ $employee_fname[$i] }} {{ $employee_mname[$i] }} {{ $employee_lname[$i] }}</font></div>
-								<div class="col s5"><a style="color:white;" class="right modal-trigger btn tooltipped blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit the set purchased" href="#edit-emp-data">Edit Measurement</a></div>
+								<div class="col s5"><a style="color:white;" class="right modal-trigger btn tooltipped blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit the set purchased" href="#edit-emp-data{{ $i }}">Edit Measurement</a></div>
 								<!--<div class="col s3"><a style="color:white;" class="right modal-trigger btn tooltipped red" data-position="bottom" data-delay="50" data-tooltip="Click to edit the set purchased" href="#edit-emp-data">Delete Employee</a></div>-->
 								<div class="col s12"><div class="divider" style="margin-top:4%"></div></div>
 							</div>
 							@endfor
 						</div>
-						<!--End of Empployees List-->
-
-						<div id="edit-emp-data" class="modal modal-fixed-footer" style="max-height:50%; max-width:60%">
+						<!--End of Employees List-->
+						@for($i = 0; $i < $total_quantity; $i++)
+						<div id="edit-emp-data{{ $i }}" class="modal modal-fixed-footer" style="max-height:50%; max-width:60%">
 							<h5><font color="teal"><center><b>Add Measurement Profile</b></center></font></h5>
 							<div class="divider" style="height:2px"></div>
 								
 								<div class="modal-content col s12 overflow-x" style="padding-top:5%">
 									<div class="col s12" style="background-color:#e0f2f1; padding:3%">
 										<div class="col s9">
-											<div class="col s5"><font size="+1"><b>EMPLOYEE NAME:</b></font></div>
-											<div class="col s7"><font size="+1">Honey May Buenavides</font></div>
-										</div>
-										<div class="col s3">
-											<div class="col s6">
-												<b>Gender: </b>
-											</div>
-											<div class="col s6">
-												Female
+											<div class="col s5"><font size="+1"><b>PACKAGE NAME:</b></font></div>
+											<div class="col s7">
+												<font size="+1">
+													@foreach($package_values as $values)
+														@if($values->strPackageID == $package_ordered[$i])
+															{{ $values->strPackageName }}
+														@endif
+													@endforeach
+												</font>
 											</div>
 										</div>
 									</div>
@@ -75,52 +75,46 @@
 									<div class="col s12" style="margin-top:3%;">
 										<div class="col s4"><p><b>Measurement Type</b></p></div>
 										<div class="col s8">		
-											<select class="browser-default" id = "measurement-category">
-												<option value="standard-measure" class="circle">Standard Measurement</option>						
-												<option value="body-measure" class="circle">Body Measurement</option>
-												<option value="cloth-measure" class="circle">Clothing Measurement</option>
+											<select id = "measurement-category">
+												@foreach($measurement_category as $category)
+													<option value="{{ $category->strMeasurementCategoryID }}" class="circle">{{ $category->strMeasurementCategoryName }}</option>
+												@endforeach	
 											</select>
 										</div>
 									</div>
 
-
-									<div class="col s12" style="margin-top:3%; margin-bottom:5%; padding-left:3%; padding-right:3%">
-											<div class="center col s6">
-												<div class="right col s5">
-												<right><p>Shoulder</p></right>
+									@for($j = 0; $j < count($package_segments); $j++)
+										@for($k = 0; $k < count($package_segments[$j]); $k++)
+											@if($package_ordered[$i] == $package_segments[$j][$k][0]->strPackageID)	
+												<div class="col s12" style="margin-top:3%; margin-bottom:5%; padding-left:3%; padding-right:3%">
+													<div>{{ $package_segments[$j][$k][0]->strSegmentName }}</div>
+													@foreach($measurement_detail as $detail)
+														@if($package_segments[$j][$k][0]->strSegmentID == $detail->strMeasDetSegmentFK)
+															<div class="center col s6">
+																<div class="right col s5">
+																	<right><p>{{ $detail->strMeasDetailName }}</p></right>
+																</div>
+																<div class="col s7">
+																	<input name="{{ $detail->strMeasDetailName }}[]" id="measure_name" type="text" class="validate">
+																</div>
+															</div>
+														@endif
+													@endforeach
 												</div>
-												<div class="col s7">
-												<input id="measure_name" type="text" class="validate">
-												</div>
-											</div>
-											<div class="center col s6">
-												<div class="right col s5">
-												<right><p>Collar</p></right>
-												</div>
-												<div class="col s7">
-												<input id="measure_name" type="text" class="validate">
-												</div>
-											</div>
-											<div class="center col s6">
-												<div class="right col s5">
-												<right><p>Half Chest</p></right>
-												</div>
-												<div class="col s7">
-												<input id="measure_name" type="text" class="validate">
-												</div>
-											</div>	
-									</div>
-
+											@endif
+										@endfor
+									@endfor
 								</div>
 								<div class="modal-footer col s12">
-									<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+									<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Close</font></a>
 								</div>
 
 						</div>
-
+						@endfor
 						<div class="col s12">
 							<div class="col s12"><div class="divider" style="height:2px; margin-bottom:2%"></div></div>
 							<a href="{{URL::to('transaction/walkin-company-payment-measure-detail')}}" class="left btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to go back to measurement homepage!" style="background-color:#1976d2; opacity:0.80"><label style="font-size:15px; color:white">Go Back</label></a>
+							<a href="{{URL::to('transaction/walkin-company-payment-measure-detail')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to go save measurements!" style="background-color:#1976d2; opacity:0.80"><label style="font-size:15px; color:white">Save Measurements</label></a>
 						</div>
 
 	            	</div> <!-- end of col s12 -->
@@ -135,8 +129,10 @@
 
 @section('scripts')
 
-<script type="text/javascript">
+<script>
 	$(document).ready(function() {
 	    $('select').material_select();
 	  });       
 </script>
+
+@stop

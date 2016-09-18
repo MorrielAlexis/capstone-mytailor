@@ -6,7 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <link rel="shortcut icon" href= "{{{ asset('img/logo.jpg') }}}">
-
       {!! Html::style('css/materialize.min.css'); !!}
       {!! Html::style('css/style.css'); !!}
       {!! Html::style('css/jquery.dataTables.min.css'); !!}
@@ -313,13 +312,12 @@
       <main>
         @yield('content')
       </main>
-
       {!! Html::script('js/jquery-2.1.4.min.js'); !!}
       {!! Html::script('js/materialize.min.js'); !!}
       {!! Html::script('js/jquery.dataTables.min.js'); !!}
       {!! Html::script('js/angular.min.js'); !!}
       {!! Html::script('js/knockout-3.4.0.js'); !!}
-
+      {!! Html::script('js/chart.min.js'); !!}
       <script>
         $(document).ready(function(){
         $('.button-collapse').sideNav({
@@ -353,7 +351,7 @@
           
       </script>
 
-        @yield('scripts')
+      @yield('scripts')
     </body>
 
 </html>
