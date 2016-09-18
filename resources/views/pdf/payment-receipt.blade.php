@@ -73,7 +73,7 @@
 						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{{ $custname->fullname }}</b></td>
 						<td></td>
 						<td style="width:40%; font-size:18px; text-align:left"><b>Customer Id:</b></td>
-						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{!! session('custID') !!}</b></td>
+						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{{ $custId }}</b></td>
 					</tr>
 					<tr>
 						<td style="width:40%; font-size:18px; text-align:left"><b>Date:</b></td>

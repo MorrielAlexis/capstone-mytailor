@@ -266,6 +266,8 @@ class WalkInIndividualController extends Controller
             $custID = $this->smartCounter($ID);  
         }             
 
+        $custType = 0;
+        session(['custType' => $custType]);
         session(['custID' => $custID]);
         session(['joID' => $newID]);
 
@@ -275,12 +277,14 @@ class WalkInIndividualController extends Controller
     }
 
     public function addCustomer(Request $request)
-    {   
+    {   //dd($request->input('strIndivSex'));
+
         $individual = Individual::create(array(
                     'strIndivID' => $request->input('addIndiID'),
                     'strIndivFName' => trim($request->input('addIndiFirstName')),     
                     'strIndivMName' => trim($request->input('addIndiMiddleName')),
                     'strIndivLName' => trim($request->input('addIndiLastName')),
+                   // 'strIndivSex' => $request->input('strIndivSex'),
                     'strIndivHouseNo' => trim($request->input('addCustPrivHouseNo')), 
                     'strIndivStreet' => trim($request->input('addCustPrivStreet')),
                     'strIndivBarangay' => trim($request->input('addCustPrivBarangay')),   
@@ -292,15 +296,36 @@ class WalkInIndividualController extends Controller
                     'strIndivCPNumberAlt' => trim($request->input('addCelAlt')),
                     'strIndivEmailAddress' => trim($request->input('addEmail')),
                     'boolIsActive' => 1
-                    ));
+                    )); 
+
+//dd($request->input('strIndivSex'));
 
                 $individual->save();
                 
         return redirect('transaction/walkin-individual-show-measurement-view');
     }
 
-    public function showMeasurementView()
+    public function showMeasurementView(Request $request)
     {
+        $custEmail = trim($request->input('strIndiEmail')); //dd($custEmail);
+
+        $joID = \DB::table('tblJobOrder')
+            ->select('strJobOrderID')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('strJobOrderID', 'desc')
+            ->take(1)
+            ->get();
+
+        if($joID == null){
+            $newID = $this->smartCounter("JOB000"); 
+        }else{
+            $ID = $joID["0"]->strJobOrderID;
+            $newID = $this->smartCounter($ID);  
+        } 
+
+        session(['cust_email' => $custEmail]);
+        session(['joID' => $newID]);
+
         $values = session()->get('segment_values');
         $data = session()->get('segment_data');
         $quantity = session()->get('segment_quantity');
@@ -369,10 +394,10 @@ class WalkInIndividualController extends Controller
         $joID = session()->get('joID');
         $style_count = count(session()->get('segment_values'));
         $data = session()->get('segment_data');
-        $chargefees = [];
+        //$chargefees = [];
         $othercharges = [];
 
-        $laborkey = "Labor Fee";
+        /*$laborkey = "Labor Fee";
 
         $sqlLabor = \DB::table('tblChargeCategory AS a')
                     ->leftJoin('tblChargeDetail AS b', 'a.strChargeCatID', '=', 'b.strChargeCatFK')
@@ -389,13 +414,13 @@ class WalkInIndividualController extends Controller
                 }
             }
         }  
-        session(['charge_laborfee' => $chargefees]); //dd($chargefees);
+        session(['charge_laborfee' => $chargefees]); //dd($chargefees);*/
 
         //$sqlCharge = [];
         //for($i = 0; $i < count($values); $i++){
             $sqlCharge = \DB::table('tblChargeCategory AS a')
                         ->leftJoin('tblChargeDetail AS b', 'a.strChargeCatID', '=', 'b.strChargeCatFK')
-                        ->where('a.strChargeCatName', 'NOT LIKE', '%'.$laborkey.'%')
+                        //->where('a.strChargeCatName', 'NOT LIKE', '%'.$laborkey.'%')
                         ->whereIn('b.strChargeDetSegFK', $data)
                         ->select('b.strChargeDetSegFK', 'b.dblChargeDetPrice')
                         ->get();
@@ -443,7 +468,8 @@ class WalkInIndividualController extends Controller
         $lineTotal = [];
         for($i = 0; $i < count($values); $i++)
         {
-            $lineTotal[$i] = $values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice'] + $styleTotal[$i]['dblPatternPrice'] + $chargefees[$i]['dblChargeDetPrice'];
+            //$lineTotal[$i] = $values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice'] + $styleTotal[$i]['dblPatternPrice'] + $chargefees[$i]['dblChargeDetPrice'];
+            $lineTotal[$i] = $values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice'] + $styleTotal[$i]['dblPatternPrice'];
         }
 
         
@@ -461,7 +487,7 @@ class WalkInIndividualController extends Controller
                     ->with('values', $values)
                     ->with('styles', $styles)
                     ->with('style_total', $styleTotal)
-                    ->with('laborfee', $chargefees)
+                    //->with('laborfee', $chargefees)
                     ->with('othercharge', $othercharges)
                     ->with('joID', $joID)
                     ->with('style_count', $style_count)
@@ -486,8 +512,25 @@ class WalkInIndividualController extends Controller
         foreach($tempQuantity as $quantity)
             $totalQuantity += $quantity; //tblJobOrder
 
+        $type = session()->get('custType'); //dd($type);
+        $custEmail = session()->get('cust_email');
+        $existCust = \DB::table('tblCustIndividual')
+                            ->select('tblCustIndividual.strIndivID')
+                            ->where('tblCustIndividual.strIndivEmailAddress', 'LIKE', $custEmail)
+                            ->get();
+
+        if($type == 0)
+            $customerID = session()->get('custID');
+
+        if ($type == null) {         
+            for($i = 0; $i < count($existCust); $i++){
+                $customerID = $existCust[$i]->strIndivID;
+            }
+        }
+        //dd($customerID);
+
         $jobOrderID = session()->get('joID'); //tblJobOrder
-        $customerID = session()->get('custID'); //tblJobOrder
+        //$customerID = session()->get('custID'); //tblJobOrder
         $termsOfPayment = session()->get('termsOfPayment'); //tblJobOrder
         $modeOfPayment = "Cash"; //tblJobOrder
         $totalPrice = (double)session()->get('totalPrice'); //tblJobOrder
@@ -507,6 +550,8 @@ class WalkInIndividualController extends Controller
         ));
 
         $jobOrder->save();
+        session(['exist_cust' => $existCust]);
+        session(['cust_id' => $customerID]);
 
         $ids = \DB::table('tblJOPayment')
                 ->select('strPaymentID')
@@ -741,7 +786,20 @@ class WalkInIndividualController extends Controller
             ]
         ];
 
-        $custId = session()->get('custID');
+       /* $type = session()->get('custType');
+        $custEmail = session()->get('cust_email');
+        $existId = session()->get('exist_cust');
+        if($type == 0)
+            $custId = session()->get('custID');
+        if($type == null){
+            for($i = 0; $i < count($existId); $i++){
+                $custId = $existId[$i]->strIndivID;
+            }
+        }
+        //dd($custId);
+        session(['cust_id' => $custId]);*/
+        $custId = session()->get('cust_id'); //dd($custId);
+
         $custname = \DB::table('tblCustIndividual')
                     ->select('strIndivID', \DB::raw('CONCAT(strIndivFName, " ", strIndivMName, " ", strIndivLName) AS fullname'))
                     ->where('strIndivID', '=', $custId)
@@ -777,7 +835,7 @@ class WalkInIndividualController extends Controller
         $pdf = PDF::loadView('pdf/payment-receipt', 
                     compact('data', 'custname', 'empname', 'segments',
                         'values', 'styles', 'termsOfPayment', 'paymentid',
-                        'order_receipt', 'payment_receipt', 'fabric', 
+                        'order_receipt', 'payment_receipt', 'fabric', 'custId',
                         'amtTendered', 'amtChange', 'style_count'))
         ->setPaper('Letter')->setOrientation('portrait');
 
@@ -841,6 +899,10 @@ class WalkInIndividualController extends Controller
         session()->forget('jorReceiptId');
         session()->forget('pyrReceiptId');
         session()->forget('payment_id');
+        session()->forget('custType');
+        session()->forget('cust_email');
+        session()->forget('exist_cust');
+        
 
     }
 

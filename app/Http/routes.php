@@ -344,7 +344,7 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::post('walkin-individual-clear-order', 'WalkInIndividualController@clearOrder');
 
 	Route::get('walkin-individual-show-customize-orders', 'WalkInIndividualController@showCustomizeOrder');
-	Route::get('walkin-individual-show-measurement-view', 'WalkInIndividualController@showMeasurementView');
+	Route::post('walkin-individual-show-measurement-view', 'WalkInIndividualController@showMeasurementView');
 
 	Route::get('walkin-individual-catalogue-designs', 'WalkInIndividualController@catalogueDesign');
 
@@ -446,6 +446,7 @@ Route::get('/track', 'OnlineCustomerProfileIndividualController@trackJob');
 
 		Route::group(['prefix' => 'company'], function() {
 			Route::get('home', 'PaymentCompanyController@index');
+			Route::get('company-info', 'PaymentCompanyController@companyInfo'); //looks for the company and gets its payment data
 		});
 	});
 

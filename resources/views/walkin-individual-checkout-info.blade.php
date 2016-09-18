@@ -10,13 +10,12 @@
     </div>
 
 	<div class="row" style="padding:30px">
-    <div class="col s12" style="padding-left:15%">
-      <ul class="breadcrumb">
-  			<li><a class="col s12 active" href="#customer-info"><b>1.FILL-UP FORM</b></a></li>		
-  			<li><a class="col s12" style="margin-left:7%"><b>2.ADD MEASUREMENT DETAIL</b></a></li>
-        <li><a class="col s12" style="margin-left:33%"><b>3.PAYMENT</b></a></li>
-  		</ul>
-    </div>
+        
+    <ul class="col s12 breadcrumb">
+			<li><a class="active" style="padding-left:200px" href="#customer-info"><b>1.FILL-UP FORM</b></a></li>		
+			<li><a style="padding-left:200px"><b>2.ADD MEASUREMENT DETAIL</b></a></li>
+      <li><a style="padding-left:200px"><b>3.PAYMENT</b></a></li>
+		</ul>
 
 		<!-- Tab for Customer Info -->
 		<div id="customer-info" class = "hue col s12" style="background-color: white; border:2px outset">
@@ -81,11 +80,12 @@
                         </div>
 
                         <div style="color:black" class="input-field col s12">
-            							<p style="color:gray"><b>Sex</b></p>
-            							<select>
-            							    <option value="M">Male</option>
+            							<!--<p style="color:gray"><b>Sex</b></p>-->
+            							<select value="" name='strIndivSex' id='strIndivSex' required>
+                              <option value="M">Male</option>
                               <option value="F">Female</option>
-            							</select>
+                          </select>    
+                          <label>Sex</label>
             						</div>
                     </div>
 
