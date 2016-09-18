@@ -177,10 +177,11 @@
                             </ul>
                           </div>
                         </li>
-                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('transaction/alteration-walkin-transaction') || Request::is('transaction/alteration-online-transaction') ? 'active' : '' }}"><b>Alteration</b></a>
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('transaction/alteration-walkin-newcustomer') ? 'active' : '' ||Request::is('transaction/alteration-walkin-newcustomer/company') ? 'active' : '' || Request::is('transaction/alteration-online-transaction') ? 'active' : '' }}"><b>Alteration</b></a>
                           <div class="collapsible-body">
                             <ul>
                               <li><a style="color:black; font-weight:normal" class="waves-effect waves-white " href="{{URL::to('transaction/alteration-walkin-newcustomer')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Alteration - Walk In</font></i></a></li>
+                               <li><a style="color:black; font-weight:normal" class="waves-effect waves-white " href="{{URL::to('transaction/alteration-walkin-newcustomer/company')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Alteration - Walk In-Company</font></i></a></li>
                               <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('transaction/alteration-online-transaction')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Alteration - Online</font></i></a></li>
                              <div class="divider"></div>
                             </ul>
