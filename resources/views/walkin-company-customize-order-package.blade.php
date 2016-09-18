@@ -238,7 +238,7 @@
 										<div class="col s4" style="color:teal;"><p><b>Garment Segment:</b></p></div>
 										<div class="col s8"><p>{!! $segments[$i]->strSegmentName !!}</p></div>
 
-										<div class="col s4" style="color:teal;"><p><b>Price starts from:</b></p></div>
+										<div class="col s4" style="color:teal;"><p><b>Price starts from:</b></p></div>z
 										<div class="col s8" style="color:black;font-weight:bold"><p>{{ number_format($segments[$i]->dblSegmentPrice, 2) }} PHP</p></div>
 									</div>
 							</div>
