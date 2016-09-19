@@ -127,9 +127,9 @@
 													<div class="container">
 													<select class="browser-default unpaid-payments" id="unpaid-payments" style="margin-left:45%">
 														@foreach($customer_orders as $j => $order)
-														@foreach($payments as $i => $payment)
-														<option value="{{ $payment->strJobOrderID }}" @if($payment->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>{{ $order->dtOrderDate }} {{ $order->strJobOrderID }}</option>
-														@endforeach
+															@foreach($payments as $i => $payment)
+																<option value="{{ $payment->strJobOrderID }}" @if($payment->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>{{ $order->dtOrderDate }} {{ $order->strJobOrderID }}</option>
+															@endforeach
 														@endforeach
 													</select>
 													</div>

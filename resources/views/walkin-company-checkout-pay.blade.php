@@ -58,7 +58,7 @@
 						                  <th data-field="product" style="border-right:1px teal solid; border-left:1px teal solid">Package</th> 
 						                  <th data-field="base-price" style="border-right:1px teal solid">Base Price</th>
 						                  <th data-field="style-price-total" style="border-right:1px teal solid">Style Price Total</th>
-						                  <th data-field="line-total" style="border-right:1px teal solid">Grand Total</th>        
+						                  <th data-field="line-total" style="border-right:1px teal solid">Line Total</th>        
 						              	</tr>
 					              	</thead>
 					              	<tbody>	
@@ -151,17 +151,12 @@
 								
 								<div class="col s12">
 									<div class="col s4" style="color:gray; font-size:15px"><p><b>Estimated Total Amount</b></p></div>
-			      					<div class="col s8" style="color:black;"><p><input id="estimated_total" name="estimated_total" type="text" class=""></p></div>
+			      					<div class="col s8" style="color:black;"><p><input id="estimated_total" name="estimated_total" type="text" class="" reaonly></p></div>
 								</div>
 
 								<div class="col s12">
-									<div class="col s4" style="color:gray; font-size:15px"><p><b>Total Labor Price</b></p></div>
-			      			<div class="col s8" style="color:gray;"><p><input id="style_price_total" name="style_price_total" type="text" class="" readonly><b></b></p></div>
-								</div>
-								
-								<div class="col s12">
-									<div class="col s4" style="color:gray; font-size:15px"><p><b>Additional Fee</b></p></div>
-			      					<div class="col s8" style="color:black;"><p><input id="addtnl_fee" name="addtnl_fee" type="text" class=""></p></div>
+									<div class="col s4" style="color:gray; font-size:15px"><p><b>VAT (12%)</b></p></div>
+			      					<div class="col s8" style="color:gray;"><p><input id="style_price_total" name="style_price_total" type="text" class="" readonly><b></b></p></div>
 								</div>
 
 							</div>
