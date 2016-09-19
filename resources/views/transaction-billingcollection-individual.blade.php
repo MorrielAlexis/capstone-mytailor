@@ -18,10 +18,10 @@
 					<li class="tab col s12" style="border-top-left-radius: 20px; border-top-right-radius: 20px; background-color: #00b0ff;"><a style="color:black; padding-top:5px; opacity:0.80" href="#shoppingCart"></a></li>	
 					<div class="indicator white" style="z-index:1"></div>
 	            </ul>
-				<div id="shoppingCart" class="card-panel">
+				<!-- <div id="shoppingCart" class="card-panel">
 					<div class="card-content">
 						<div class="row">
-						<div class="col s12">
+					 <div class="col s12">
 							<center><p style="color:gray">Filter data records with the following:</p></center>
 							<div class="divider" style="color:gray; height:2px; margin-bottom:20px"></div>
 						</div>
@@ -35,16 +35,16 @@
 								</select>
 							</div>
 							<div class="col s6" hidden>
-								<select class="browser-default">
-									<option value="" style="color:gray">Payment Type</option>
-									<option value="1">All</option>
-									<option value="2">Cash</option>
-									<option value="3">Cheque</option>
+								<select class="browser-default" id="pay_type">
+									<option value="" style="color:gray" disabled="">Payment Type</option>								
+									<option value="PA" selected>All</option>
+									<option value="CA">Cash</option>
+									<option value="CQ">Cheque</option>
 								</select>
 							</div>
 						</div>
 
-						<div class="col s12">
+				<div class="col s12">
 							<div class="col s6" style="margin-top:25px">
 								<label for="billing-date"><font size="+0.8" color="gray">Payment Date</font></label>
 								<input id="billing-date" type="date" class="datepicker">			
@@ -55,22 +55,22 @@
 							</div>
 						</div>
 
-						<div class="col s12" style="margin-top:20px">
-							<a href="" class="left btn" style="background-color:teal; color:white; margin-left:10px">Cancel</a>
-							<a href="{{URL::to('/transaction/payment/individual/home')}}" class="left btn" style="background-color:teal; color:white; margin-left:10px">Go to Payment</a>
-							<a href="" class="right btn" style="background-color:teal; color:white; margin-right:10px">Save</a>
-							<a href="" class="right btn" style="background-color:teal; color:white; margin-right:40px">Edit</a>
-						</div>
+						<div class="col s12" style="margin-top:20px"> -->
+							<!-- <a href="" class="left btn" style="background-color:teal; color:white; margin-left:10px">Cancel</a> -->
+							<!-- <a href="{{URL::to('/transaction/payment/individual/home')}}" class="left btn" style="background-color:teal; color:white; margin-left:10px">Go to Payment</a> -->
+							<!-- <a href="" class="right btn" style="background-color:teal; color:white; margin-right:10px">Save</a>
+							<a href="" class="right btn" style="background-color:teal; color:white; margin-right:40px">Edit</a> -->
+					<!-- 	</div>
 
 
 						</div>
 					</div>
-				</div>
+				</div> --> 
 
 				<div id="data-record" class="card-panel">
 					<div class="card-content">
 						<div class="row">
-						<div class="col s12">
+						<div class="col s12" id="data-cust">
 
 							<center><h5 style="color:teal"><b>Payment Records of Individual Customers</b></h5></center>
 							<div class="col s12" style="margin-top:40px">
@@ -78,7 +78,7 @@
 								<div class="divider"></div>
 							</div>
 
-							<table>
+							<table id="data-cust">
 								<thead>
 									<tr>
 										<!-- <th class="center" style="color:gray">ID</th> -->
@@ -147,6 +147,11 @@
 								</tbody>
 							</table>
 
+
+						<div class="col s12" style="margin-top:6%">
+							<div class="divider"></div>
+							<a href="{{URL::to('/transaction/payment/individual/home')}}" class="right  btn" style="background-color:teal; color:white; margin-top:2%">Go to Payment</a>
+						</div>
 
 							<div id="view-detail" class="modal modal-fixed-footer">
 								{!! Form::open() !!}
@@ -332,5 +337,37 @@
 	});
 	</script>
 
+	<script>
+		var type = $('#pay_type');
+
+		type.change(function () {
+		  updateUI();
+		});
+
+
+		function updateUI () {
+		  $('.data-cust').hide();
+
+		  var typeValue = type.val();
+		  
+		  if (typeValue == 'PA'){
+		  	return $('.data-cust').show();
+		  } 
+		  else if (typeValue == 'CA'){
+		  	return $('.data-cust').show();
+		  } 
+		  else if (typeValue == 'CQ'){
+		  	return $('.data-cust').show();
+		  } 
+		  
+		  var typeClass = typeValue == 'PA' ? '' : '.' + typeValue;
+
+		  var classesToUpdate = typeClass;
+		  console.log(classesToUpdate);
+		  $(classesToUpdate).show();
+		}
+
+		updateUI();
+	</script>
 
 @stop
