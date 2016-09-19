@@ -17,32 +17,20 @@ class CustCompEmployeeSeeder extends Seeder
         		array(
         			'strCustCompEmployeeID' => 'CUSTCE001',
         			'strCustCompanyFK' => 'CUSTC001',
-        			'strCustCompEmpFullName' => 'Honey May Buenavides',
-        			'strCustCompEmpSex' => 'Female',
+        			'strCustCompEmpFirstName' => 'Honey May',
+                    'strCustCompEmpLastName' => 'Buenavides',
+                    'strCustCompEmpMiddleName' => '',
+        			'strCustCompEmpSex' => 'F',
         			'boolIsActive' => '1',
         			),
 
         		array(
         			'strCustCompEmployeeID' => 'CUSTCE002',
         			'strCustCompanyFK' => 'CUSTC001',
-        			'strCustCompEmpFullName' => 'Conrado Bataller Jr.',
-        			'strCustCompEmpSex' => 'Male',
-        			'boolIsActive' => '1',
-        			),
-
-        		array(
-        			'strCustCompEmployeeID' => 'CUSTCE003',
-        			'strCustCompanyFK' => 'CUSTC002',
-        			'strCustCompEmpFullName' => 'Ted Mosby',
-        			'strCustCompEmpSex' => 'Male',
-        			'boolIsActive' => '1',
-        			),
-
-        		array(
-        			'strCustCompEmployeeID' => 'CUSTCE004',
-        			'strCustCompanyFK' => 'CUSTC002',
-        			'strCustCompEmpFullName' => 'Robin Scherbatsky',
-        			'strCustCompEmpSex' => 'Female',
+                    'strCustCompEmpFirstName' => 'Conrado',
+                    'strCustCompEmpLastName' => 'Bataller Jr.',
+                    'strCustCompEmpMiddleName' => '',
+        			'strCustCompEmpSex' => 'M',
         			'boolIsActive' => '1',
         			)
         	);

@@ -126,6 +126,7 @@
 												<div class="input-field col s9">
 													<div class="container">
 													<select class="browser-default unpaid-payments" id="unpaid-payments" style="margin-left:45%">
+
 													<option value="0">Choose your option</option>
 													@foreach($customer_orders as $j => $order)
 														@foreach($payments as $i => $payment)													
@@ -133,7 +134,7 @@
 														<option value="{{ $payment->strJobOrderID }}" @if($payment->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>{{ $order->dtOrderDate }} {{ $order->strJobOrderID }}</option>
 														@endif
 														@endforeach
-														@endforeach
+													@endforeach
 													</select>
 													</div>
 													<label style="color:teal"><b>Choose a transaction date to pay:</b></label>

@@ -20,26 +20,30 @@
                             </div>
                             <div class="col s12 m6 l3">
                                 <div class="card">
-                                    <div class="card-content cyan darken-1 white-text">
-                                        <p class="card-stats-title" style="font-size:20px"><i class="mdi-editor-attach-money"></i>Total Employees</p>
-                                        <h4 class="card-stats-number">35</h4>
+                                    @foreach($totalCustComp as $totalCustComp)
+                                    <div class="card-content cyan darken-1 white-text" style="height:138px">
+                                        <p class="card-stats-title" style="font-size:18px"><i class="mdi-editor-attach-money"></i>Total Registered Companies</p>
+                                        <h4 class="card-stats-number">{{$totalCustComp->totalCompanies}}</h4>
                                         {{-- <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 70% <span class="purple-text text-lighten-5">last month</span>
                                         </p> --}}
                                     </div>
+                                    @endforeach
                                     <div class="card-action  cyan darken-2"  style="height:40px">
-                                        <div id="sales-compositebar"><canvas width="214" height="25" style="display: inline-block; width: 214px; height: 25px; vertical-align: top;"></canvas></div>
+                                        <div id="sales-compositebar"><canvas width="220" height="25" style="display: inline-block; width: 220px; height: 25px; vertical-align: top;"></canvas></div>
 
                                     </div>
                                 </div>
                             </div>                            
                             <div class="col s12 m6 l3">
                                 <div class="card">
+                                    @foreach($totalEmp as $totalEmp)
                                     <div class="card-content blue-grey white-text">
-                                        <p class="card-stats-title" style="font-size:20px"><i class="mdi-action-trending-up"></i> Today Sales </p>
-                                        <h4 class="card-stats-number">Php.806.52</h4>
+                                        <p class="card-stats-title" style="font-size:20px"><i class="mdi-action-trending-up"></i> Total Active Employees </p>
+                                        <h4 class="card-stats-number">{{$totalEmp->totalEmps}}</h4>
                                         {{-- <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 80% <span class="blue-grey-text text-lighten-5">from yesterday</span>
                                         </p> --}}
                                     </div>
+                                    @endforeach
                                     <div class="card-action blue-grey darken-2" style="height:40px">
                                         <div id="profit-tristate"><canvas width="220" height="25" style="display: inline-block; width: 220px; height: 25px; vertical-align: top;"></canvas></div>
                                     </div>
@@ -64,7 +68,7 @@
 
     <div id="card-stats" style="padding:20px;">
         <div class="row">
-            <div class="col s4" style="margin-top:-12px;">
+            <div class="col s12 m6 l4" style="margin-top:-12px;">
                 <div class="card z-depth-3" style="background-image:url('img/1.jpg');">
                     <div class="card-header blue-grey">
                         <div class="card-title">
@@ -85,7 +89,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col s4">
+            <div class="col s12 m6 l4">
                 <div class="col s12">
                     <ul id="task-card" class="collection with-header z-depth-3" style="border:0;  height:550px">
                         <li class="collection-header green">
@@ -106,7 +110,7 @@
                 </div>
             </div>
 
-            <div class="col s4">
+            <div class="col s12 m6 l4">
                 <div class="col s12">
                     <ul id="task-card" class="collection with-header z-depth-3" style="border:0; height:550px">
                         <li class="collection-header cyan">
@@ -128,7 +132,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col s6">
+            <div class="col s12 m12 l6">
                 <ul id="projects-collection" class="collection z-depth-3" style="height:550px">
                     <li class="collection-item avatar">
                         <i class="mdi-file-folder circle light-blue darken-2"></i>
@@ -152,7 +156,7 @@
                     @endforeach
                 </ul>
             </div>
-            <div class="col s6">
+            <div class="col s12 m12 l6">
                 <ul id="issues-collection" class="collection z-depth-3" style="height:550px">
                     <li class="collection-item avatar">
                         <i class="mdi-action-bug-report circle red darken-2"></i>

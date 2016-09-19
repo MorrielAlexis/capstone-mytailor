@@ -607,6 +607,7 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::post('customize-pants-style-pleats', 'OnlineCustomizePantsController@stylepleats');
 	Route::post('customize-pants-style-pockets', 'OnlineCustomizePantsController@stylepockets');
 	Route::post('customize-pants-style-bottom', 'OnlineCustomizePantsController@stylebottom');
+	
 	Route::get('shopping-cart', 'OnlineIndividualController@tocart');
 
 	Route::get('customize-sets-choose-set', 'OnlineCustomizeSetsController@choose');

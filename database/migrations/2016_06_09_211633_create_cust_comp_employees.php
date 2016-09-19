@@ -15,7 +15,9 @@ class CreateCustCompEmployees extends Migration
         Schema::create('tblCustCompEmployee', function (Blueprint $table) {
             $table->string('strCustCompEmployeeID')->primary();
             $table->string('strCustCompanyFK')->index();
-            $table->string('strCustCompEmpFullName');
+            $table->string('strCustCompEmpFirstName');
+            $table->string('strCustCompEmpLastName');
+            $table->string('strCustCompEmpMiddleName')->nullable();
             $table->string('strCustCompEmpSex');
             $table->boolean('boolIsActive');
             $table->timestamps();

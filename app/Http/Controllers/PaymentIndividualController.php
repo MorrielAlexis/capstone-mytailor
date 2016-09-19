@@ -71,7 +71,6 @@ class PaymentIndividualController extends Controller
         //dd($payments);
         // dd($customer_info, $customer_orders, $payments);
 
-
         return view('transaction-billingpayment-individual')
                 ->with('search_custname', $search_custname)
                 ->with('customer_info', $customer_info)

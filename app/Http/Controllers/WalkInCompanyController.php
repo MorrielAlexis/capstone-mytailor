@@ -20,6 +20,7 @@ use App\SegmentPattern;
 use App\SegmentStyle;
 
 use App\Company;
+use App\CompanyEmployee;
 
 use App\MeasurementCategory;
 use App\MeasurementDetail;
@@ -328,7 +329,7 @@ class WalkInCompanyController extends Controller
             $totalQuantity = $totalQuantity + $quantity[$i];
 
         for($i = 0; $i < $totalQuantity; $i++)
-        {
+        {   
             $employeeSegmentQuantity[$i] = $request->input('segment-qty' . $i);
         }
 
@@ -440,9 +441,43 @@ class WalkInCompanyController extends Controller
         session(['compID' => $custID]);
         session(['compJOID' => $newID]);
 
+        $this->saveCompanyEmployees($custID);
+
         return view('walkin-company-checkout-measure');
     }
 
+    public function saveCompanyEmployees($companyID)
+    {   
+        
+        for($i = 0; $i < count(session()->get('employee_set')); $i++)
+        {
+            $compEmpID = \DB::table('tblCustCompEmployee')
+                ->select('strCustCompEmployeeID')
+                ->orderBy('created_at', 'desc')
+                ->orderBy('strCustCompEmployeeID', 'desc')
+                ->take(1)
+                ->get();
+
+            if($compEmpID == null){
+                $newID = $this->smartCounter("CUSTCE000"); 
+            }else{
+                $ID = $compEmpID["0"]->strCustCompEmployeeID;
+                $newID = $this->smartCounter($ID);  
+            }
+
+            $companyEmployees = CompanyEmployee::create(array(
+                    'strCustCompEmployeeID' => $newID,
+                    'strCustCompanyFK' => $companyID,
+                    'strCustCompEmpFirstName' => session()->get('employee_fname')[$i],
+                    'strCustCompEmpLastName' => session()->get('employee_lname')[$i],
+                    'strCustCompEmpMiddleName' => session()->get('employee_mname')[$i],
+                    'strCustCompEmpSex' => session()->get('employee_sex')[$i],
+                    'boolIsActive' => 1
+            ));
+
+            $companyEmployees->save();
+        }
+    }
 
     public function payment()
     {   
