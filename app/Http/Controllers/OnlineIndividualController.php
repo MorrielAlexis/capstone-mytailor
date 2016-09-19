@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 
 use Session;
 
+use App\GarmentCategory;
+
 use App\Fabric;
 use App\FabricType;
 use App\FabricColor;
@@ -43,13 +45,16 @@ class OnlineIndividualController extends Controller
     
     public function menchoose()
     {
-        $mvalues = [];
-        $mdata = [];
+        $values = [];
+        $data = [];
 
-        session(['segment_data' => $mdata]);
-        session(['segment_values' => $mvalues]);
+        session(['segment_data' => $data]);
+        session(['segment_values' => $values]);
 
         $garmentKey = 'Men Shirt';
+
+
+        $categories = GarmentCategory::all();
 
         $garments = \DB::table('tblSegment')
             ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
@@ -58,14 +63,16 @@ class OnlineIndividualController extends Controller
             ->get();
 
         return view('customize.mens-choose-shirt')
+         ->with('categories', $categories)
          ->with('garments', $garments)
-         ->with('values', $mdata);
+         ->with('values', $data);
     }   
 
     public function menfabric(Request $request)
     {   
-        $data_segment = $request->input('menshirt');
-
+        $data_segment = $request->input('cbx-segment-name');
+        session(['segment_data' => $data_segment]);
+       
 
             $fabrics = Fabric::all();
             $fabricThreadCounts = FabricThreadCount::all();
@@ -86,6 +93,10 @@ class OnlineIndividualController extends Controller
 
     public function menstylecollar(Request $request)
     {
+         $data_segment = session()->get('segment_data');
+
+         dd($data_segment);
+
         $contrast = Fabric::all();
         $fabricThreadCounts = FabricThreadCount::all();
         $fabricColors = FabricColor::all();
@@ -464,7 +475,17 @@ class OnlineIndividualController extends Controller
 
     public function tocart()
     {
-        return redirect('online-order-now');
+        $data = session()->get('segment_data');
+
+        GarmentCategory::all();
+
+         $selected = \DB::table('tblSegment')
+                    ->select('tblSegment.*')
+                    ->where('strSegmentID', '=', $data)
+                    ->get();
+
+        return view('online.ordernow')
+            ->with('selecteds',$selected);
     } 
 
      public function info()
