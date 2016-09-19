@@ -36,12 +36,14 @@
                             </div>                            
                             <div class="col s12 m6 l3">
                                 <div class="card">
+                                    @foreach($totalEmp as $totalEmp)
                                     <div class="card-content blue-grey white-text">
-                                        <p class="card-stats-title" style="font-size:20px"><i class="mdi-action-trending-up"></i> Today Sales </p>
-                                        <h4 class="card-stats-number">Php.806.52</h4>
+                                        <p class="card-stats-title" style="font-size:20px"><i class="mdi-action-trending-up"></i> Total Active Employees </p>
+                                        <h4 class="card-stats-number">{{$totalEmp->totalEmps}}</h4>
                                         {{-- <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 80% <span class="blue-grey-text text-lighten-5">from yesterday</span>
                                         </p> --}}
                                     </div>
+                                    @endforeach
                                     <div class="card-action blue-grey darken-2" style="height:40px">
                                         <div id="profit-tristate"><canvas width="220" height="25" style="display: inline-block; width: 220px; height: 25px; vertical-align: top;"></canvas></div>
                                     </div>
