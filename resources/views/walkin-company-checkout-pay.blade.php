@@ -56,7 +56,6 @@
 				       				<thead style="color:gray">
 					          			<tr style="border-top:1px teal solid; border-bottom:1px teal solid; background-color:teal; color:white">
 						                  <th data-field="product" style="border-right:1px teal solid; border-left:1px teal solid">Package</th> 
-						                  <th data-field="base-price" style="border-right:1px teal solid">Base Price</th>
 						                  <th data-field="style-price-total" style="border-right:1px teal solid">Style Price Total</th>
 						                  <th data-field="line-total" style="border-right:1px teal solid">Line Total</th>        
 						              	</tr>
@@ -65,9 +64,8 @@
 								        @for($i = 0; $i < count($package_values); $i++)
 								        <tr style="border-top:1px teal solid; border-bottom:1px teal solid">
 								            <td style="border-right:1px teal solid; border-left:1px teal solid"><a class="btn-flat tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to expand and see package details" onclick="packageDetail({{ $i }})"><b><u>{{ $package_values[$i]->strPackageName}}</u></b></a></td>
-								            <td style="border-right:1px teal solid; border-left:1px teal solid">{{ number_format($package_values[$i]->dblPackagePrice, 2) }} PHP</td>
-											<td style="border-right:1px teal solid; border-left:1px teal solid"><div id="style_price_total" name="style_price_total"> </div></td>
-							           		<td style="border-right:1px teal solid; border-bottom:1px teal solid; border-right:1px teal solid"></td> 
+											<td style="border-right:1px teal solid; border-left:1px teal solid"><div id="style_price_total" name="style_price_total">{{ number_format($style_total[$i], 2) }} PHP</div></td>
+							           		<td style="border-right:1px teal solid; border-bottom:1px teal solid; border-right:1px teal solid">{{ number_format($style_total[$i] + $fabric_total[$i] + $segment_total[$i], 2) }} PHP</td> 
 							            </tr>						            		
 							            @endfor
 							        </tbody>
@@ -78,8 +76,8 @@
 					<!--PACKAGE DETAIL WILL BE HERE-->
 					@for($i = 0; $i < count($package_values); $i++)
 						
-						<div class="card horizontal col s12 package-detail" id="package-detail{{ $i }}" style="display:none; margin-top:3%; padding-bottom:4%; background-color:#e0f2f1; border:1px #e0f2f1 outset;">
-						<i class="right mdi-navigation-close tooltipped" data-poition="bottom" data-delay="50" data-tooltip="Click to close" onclick="packageDetail(2)" style="font-size:30px"></i>
+						<div class="card horizontal col s12 package-detail hidden" id="package-detail{{ $i }}" style="display:none; margin-top:3%; padding-bottom:4%; background-color:#e0f2f1; border:1px #e0f2f1 outset;">
+						<i class="right mdi-navigation-close tooltipped" data-poition="bottom" data-delay="50" data-tooltip="Click to close" onclick="packageClose({{$i}})" style="font-size:30px"></i>
 						<div class="container" style="margin-top:4%;">
 							<table class="table centered z-depth-1">
 								<thead style="background-color:#b2dfdb">
@@ -87,10 +85,12 @@
 										<th style="border:1px black solid" colspan="1">Product</th>
 										<th style="border:1px black solid" colspan="1">Fabric</th>
 										<th style="border:1px black solid" colspan="1">Qty</th>
+										<th style="border:1px black solid" colspan="1">Fabric Price</th>
 										<th style="border:1px black solid" colspan="1">Unit Price</th>
 										<th style="border:1px black solid" colspan="3">Style Description</th>
 									</tr>
 									<tr>
+										<th style="border:1px black solid"></th>
 										<th style="border:1px black solid"></th>
 										<th style="border:1px black solid"></th>
 										<th style="border:1px black solid"></th>
@@ -108,7 +108,8 @@
 										<td style="border:1px black solid">{{ $package_segments[$j][$k][0]->strSegmentName }}</td>
 										<td style="border:1px black solid">{{ $segment_fabrics[$j][$k]->strFabricName }}</td>
 										<td style="border:1px black solid">{{ $segment_qty[$i][0][$k] }}</td>
-										<td style="border:1px black solid">{{ number_format($package_segments[$j][$k][0]->dblSegmentPrice, 2) }} PHP</td>
+										<td style="border:1px black solid">{{ number_format($segment_fabrics[$j][$k]->dblFabricPrice * $segment_qty[$i][0][$k], 2) }} PHP</td>
+										<td style="border:1px black solid">{{ number_format($package_segments[$j][$k][0]->dblSegmentPrice * $segment_qty[$i][0][$k], 2) }} PHP</td>
 										<td style="border:1px black solid">
 											@for($l = 0; $l < count($segment_patterns[$j][$k]); $l++)
 												{{ $segment_patterns[$j][$k][$l]->strSegStyleName }}<br>
@@ -121,7 +122,7 @@
 										</td>
 										<td style="border:1px black solid">
 											@for($l = 0; $l < count($segment_patterns[$j][$k]); $l++)
-												{{ number_format($segment_patterns[$j][$k][$l]->dblPatternPrice, 2) }} PHP <br>
+												{{ number_format($segment_patterns[$j][$k][$l]->dblPatternPrice	* $segment_qty[$i][0][$k], 2) }} PHP <br>
 											@endfor
 										</td>
 									</tr>
@@ -150,13 +151,13 @@
 							<div class="col s12 z-depth-2" style=" padding:2%; margin-top:2%">
 								
 								<div class="col s12">
-									<div class="col s4" style="color:gray; font-size:15px"><p><b>Estimated Total Amount</b></p></div>
-			      					<div class="col s8" style="color:black;"><p><input id="estimated_total" name="estimated_total" type="text" class="" reaonly></p></div>
+									<div class="col s4" style="color:gray; font-size:15px"><p><b>Estimated Total Sales</b></p></div>
+			      					<div class="col s8" style="color:gray;"><p><input id="estimated_total_sales" name="estimated_total_sales" type="text" class="" readonly><b></b></p></div>
 								</div>
 
 								<div class="col s12">
 									<div class="col s4" style="color:gray; font-size:15px"><p><b>VAT (12%)</b></p></div>
-			      					<div class="col s8" style="color:gray;"><p><input id="style_price_total" name="style_price_total" type="text" class="" readonly><b></b></p></div>
+			      					<div class="col s8" style="color:gray;"><p><input id="vat_price" name="vat_price" type="text" class="" readonly><b></b></p></div>
 								</div>
 
 							</div>
@@ -294,7 +295,6 @@
 		$(document).ready(function(){
 			$('select').material_select();
 
-			$(document).ready(function(){
 		    	$('body').on('load', 'ul.tabs', function() {
 		   	 	$('ul.tabs').tabs();
 				});
@@ -304,10 +304,20 @@
 		  				$('ul.tabs').tabs();
 		  				$('#tabMeasurementDetail').style('display', 'block');
 		  			}, 2000);
-		*/  		});
+		*/  	});
 
-		  	});
+		  	var a = {!! json_encode($style_total) !!};
+		  	var b = {!! json_encode($fabric_total) !!};
+		  	var c = {!! json_encode($segment_total) !!};
+		  	var total = 0;
+		  	for(var i = 0; i < a.length; i++)
+		  	{
+		  		total += a[i] + b[i] + c[i];
+		  	}
 
+		  	$('#estimated_total_sales').val((total - (total * .12)).toFixed(2));
+		  	$('#vat_price').val((total * .12).toFixed(2));
+		  	$('#total_price').val(total.toFixed(2));
 
 
 			var monthNames = [ "January", "February", "March", "April", "May", "June",
@@ -326,6 +336,56 @@
 		});
 	</script>
 
+	<script>
+		$('.payment').change(function(){
+				if($('#half_pay').prop("checked")){
+
+				  	var a = {!! json_encode($style_total) !!};
+				  	var b = {!! json_encode($fabric_total) !!};
+				  	var c = {!! json_encode($segment_total) !!};
+				  	var total = 0;
+				  	for(var i = 0; i < a.length; i++)
+				  	{
+				  		total += a[i] + b[i] + c[i];
+				  	}
+					
+					$('#amount-payable').val((total/2).toFixed(2));
+					$('#balance').val((total - (total/2)).toFixed(2));
+				}
+
+				if($('#full_pay').prop("checked")){
+
+				  	var a = {!! json_encode($style_total) !!};
+				  	var b = {!! json_encode($fabric_total) !!};
+				  	var c = {!! json_encode($segment_total) !!};
+				  	var total = 0;
+				  	for(var i = 0; i < a.length; i++)
+				  	{
+				  		total += a[i] + b[i] + c[i];
+				  	}
+					
+					$('#amount-payable').val(total.toFixed(2));
+					$('#balance').val((total - total).toFixed(2));
+				}
+		});
+
+		$('#amount-tendered').blur(function(){	
+			var amountChange = $('#amount-tendered').val() - $('#amount-payable').val();
+			$('#amount-change').val(amountChange.toFixed(2));
+		});
+
+		$('#amount-payable').blur(function(){	
+			// if($('#amount-to-pay').val() > $('#total_price').val()){
+			// 	alert("You can't choose to pay more than the total.");
+			// 	$('#amount-to-pay').val("");
+			// }
+				var amountChange = $('#amount-tendered').val() - $('#amount-payable').val();
+				$('#amount-change').val(amountChange.toFixed(2));	
+				// $('#outstanding-bal').val(($('#total_price').val() - $('#amount-to-pay').val()).toFixed(2) + ' PHP');				
+
+		});
+		
+	</script>
 
 
 	<script>
@@ -406,13 +466,14 @@
 	// });
 	function packageDetail(value) 
 	{
+		document.getElementById('package-detail' + value).style.display = "block";
+
 		
-		if(value != null){
-			document.getElementById('package-detail' + value).style.display = "block";
-		}
-		else {
-			document.getElementById('package-detail' + value).style.display = "none";
-		}
+	}
+	function packageClose(value) 
+	{
+		document.getElementById('package-detail' + value).style.display = "none";
+
 		
 	}
 </script>
