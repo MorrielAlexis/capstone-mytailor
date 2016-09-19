@@ -79,7 +79,7 @@
                           <label style="color:gray" for="last_name"><b><span class="red-text"><b>*</b></span>Last Name </b></label>
                         </div>
 
-                        <div style="color:black" class="input-field col s12">
+                        <div class="input-field col s12" style="color:black">
             							<!--<p style="color:gray"><b>Sex</b></p>-->
             							<select value="" name='strIndivSex' id='strIndivSex' required>
                               <option value="M">Male</option>

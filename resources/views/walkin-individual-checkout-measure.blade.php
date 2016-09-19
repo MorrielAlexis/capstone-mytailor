@@ -41,8 +41,6 @@
 	      		<div class="divider"></div>
 	      	</div>-->
 			{!! Form::open(['url' => 'transaction/walkin-individual-save-measurements', 'method' => 'POST']) !!}
-			@foreach($segments as $i => $segment)
-			@for($j = 0; $j < count($quantities[$i]); $j++)
 			<div class="col s12" style="margin-bottom:10px">
 				<div class="col s12">
 					<div class="col s4"><p style="color:gray"><b>Measurement Type</b></p></div>
@@ -68,6 +66,7 @@
 			
 			</div>-->
 
+			@foreach($segments as $i => $segment)
 			<div class="col s12"><div class="divider" style="height:2px; background-color:gray"></div></div><!--divider-->
 
 
@@ -86,14 +85,17 @@
 		      					</div>
 	      			</div> -->
 
+		            		<div class="col s12" style="margin-top:20px">
+					          	<input type="checkbox" name="cbx-measure-all[]"  class="filled-in cbx-measure-all" id="{{ $segment['strSegmentID'] }}" value="{{ $segment['strSegmentID'] }}" style="padding:5px"/>
+					          	<label for="{{ $segment['strSegmentID'] }}"><font size="+1"><b>Apply to all</b></font></label>
+					        </div>
+
+			
+			@for($k = 0; $k < $quantities[$i]; $k++) 
 	            	<div class="col s12" style="padding:20px"> 
 	            		
 		            	<div id="for_top" class="col s12" style="color:black">
 
-		            		<div >
-					          	<input type="checkbox" name="cbx-measure-all[]"  class="filled-in cbx-measure-all" id="{{ $segment['strSegmentID'] }}" value="{{ $segment['strSegmentID'] }}" style="padding:5px"/>
-					          	<label for="{{ $segment['strSegmentID'] }}"><font size="+1"><b>Apply to all</b></font></label>
-					        </div>
 
 		            		<h5><b>Parts to be measured - {{ $segment['strSegmentName'] }}</b></h5>
 		            		
@@ -102,9 +104,9 @@
 			            		@if($measurement->strMeasDetSegmentFK == $segment['strSegmentID'])
 		            				<div class="container measurement-general {{ $measurement->strMeasCategoryFK }}"> 
 					            	   	<div style="color:black; padding-left:140px" class="input-field col s6 ">   
-					            	   		<input type="hidden" name="detailName{{ $i+1 }}{{ $j+1 }}" value="{{ $measurement->strMeasurementDetailID }}">              
-				                            <input name="{{ $measurement->strMeasurementDetailID }}{{ $i+1 }}" type="text">
-				                            <label style="color:teal" for="{{ $measurement->strMeasurementDetailID }} {{ $i+1 }}">{{ $measurement->strMeasDetailName }}: </label>
+					            	   		<input type="hidden" name="detailName{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" value="{{ $measurement->strMeasurementDetailID }}">              
+				                            <input name="{{ $measurement->strMeasurementDetailID }}{{ $i+1 }}{{ $k+1 }}" type="text">
+				                            <label style="color:teal" for="{{ $measurement->strMeasurementDetailID }} {{ $i+1 }}{{ $k+1 }}">{{ $measurement->strMeasDetailName }}: </label>
 				                        </div>
 		                    		</div>
 			                    @endif
@@ -169,9 +171,10 @@
 
 	                    	<!-- <div class="col s1"><a href="#!" class="btn-floating" style="background-color:#a7ffeb; margin-top:20px"><i class="mdi-navigation-check" style="color:black;"></i></a></div> -->
 	            	</div>
-                    <div class="col s12"><div class="divider" style="height:5px; color:gray; margin-top:15px; margin-bottom:15px"></div></div>
-				@endfor
+	    @endfor
 				@endforeach
+                    <div class="col s12"><div class="divider" style="height:5px; color:gray; margin-top:15px; margin-bottom:15px"></div></div>
+				
 				
                 <button type="submit" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save measurements and begin processing" style="background-color:teal; margin-right:50px; padding:9.5px; padding-bottom:45px; color:white"><!--<i class="mdi-action-done"> -->Save Measurements<!--</i>--></button>
 
