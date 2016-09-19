@@ -5,15 +5,17 @@
                         <div class="row" style="margin-top:30px">
                             <div class="col s12 m6 l3">
                                 <div class="card" >
+                                    @foreach($totalCustIndiv as $totalCustIndiv)
                                     <div class="card-content  green lighten-2 white-text" style="height:138px">
-                                        <p class="card-stats-title" style="font-size:18px"><i class="mdi-social-group-add"></i> Total Registered Customer</p>
-                                        <h4 class="card-stats-number">566</h4>
+                                        <p class="card-stats-title" style="font-size:18px"><i class="mdi-social-group-add"></i> Total Registered Individual Customer</p>
+                                        <h4 class="card-stats-number">{{$totalCustIndiv->ctr}}</h4>
                                         {{-- <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 15% <span class="green-text text-lighten-5">from yesterday</span>
                                         </p> --}}
                                     </div>
                                     <div class="card-action  green " style="height:40px">
                                         <div id="clients-bar"><canvas width="220" height="25" style="display: inline-block; width: 220px; height: 25px; vertical-align: top;"></canvas></div>
                                     </div>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="col s12 m6 l3">

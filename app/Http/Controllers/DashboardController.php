@@ -53,13 +53,29 @@ class DashboardController extends Controller
             ->whereRaw('DATEDIFF(tblJobOrder.dtOrderExpectedToBeDone, CurDate()) > 0')
             ->OrderBy('tblJobOrder.dtOrderExpectedToBeDone')
             ->select('tblcustindividual.*', 'tblcustcompany.*', 'tblJobOrder.*')
-            ->get();          
+            ->get();      
+
+         // $totalCustIndiv = \DB::select('SELECT SUM(strIndivID) as ctr FROM tblCustIndividual');
+
+         $totalCustIndiv = \DB::table('tblCustIndividual')
+            ->select('strIndivID as ctr')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('strIndivID', 'desc')
+            ->take(1)
+            ->get();
+
+
+            // dd($totalCustIndiv);
+
+        // $totalCustIndiv = \DB::SELECT('tblCustIndividual')
+
 
            
         return view('dashboard')
              ->with('joborder', $joborder)
              ->with('joborderongoing', $joborderongoing)
              ->with('joborderprog', $joborderprog)
-             ->with('neardue', $neardue);
+             ->with('neardue', $neardue)
+             ->with('totalCustIndiv', $totalCustIndiv);
     }
 }
