@@ -595,6 +595,8 @@ Route::group(['prefix' => 'transaction'], function(){
 
 	Route::post('save-customer', 'OnlineIndividualController@addCustomer');
 
+	Route::get('checkout-payment', 'OnlineIndividualController@payment');
+	
 	Route::get('customize-womens-choose-shirt', 'OnlineIndividualController@womenchoose');
 	Route::post('customize-womens-fabrics', 'OnlineIndividualController@womenfabric');
 	Route::post('customize-womens-style-collar', 'OnlineIndividualController@womenstylecollar');
