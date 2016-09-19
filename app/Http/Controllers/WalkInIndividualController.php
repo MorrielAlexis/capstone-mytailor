@@ -403,7 +403,7 @@ class WalkInIndividualController extends Controller
                     for($k=0; $k<count($quantity[$i]); $k++){
                         $measurementName[$i][$j] = $request->input('detailName' . ($i+1) . ($j+1) . ($k+1));
                         $measurementDetails[$i][$j] = $request->input($detail->strMeasurementDetailID . ($i+1) . ($k+1));
-                        $measurementDetails[$i][$j+1] = "cm";
+                        $measurementDetails[$i][$j] = "cm";
                         // $measurementDetails[$i][$j+1] = $request->input('uom' . ($i+1));
                     }
                 }
@@ -653,6 +653,7 @@ class WalkInIndividualController extends Controller
         $measurementName = session()->get('measurement_name');
 
         for($i = 0; $i < count($segments); $i++){
+            //for($a=0; $a<=count($tempQuantity[$i]); $a++){
 
             //for($k = 0; $k < count($tempQuantity[$i]); $k++){
                 $ids = \DB::table('tblJOSpecific')
@@ -720,38 +721,37 @@ class WalkInIndividualController extends Controller
 
             $joMeasurementProfile->save();
 
-             for($j = 0; $j < count($measurementName[$i]); $j++){
-                 //measurement specs
-                 $ids = \DB::table('tblJOMeasureSpecific')
-                         ->select('strJOMeasureSpecificID')
-                         ->orderBy('created_at', 'desc')
-                         ->orderBy('strJOMeasureSpecificID', 'desc')
-                         ->take(1)
-                         ->get();
+             /*for($j = 0; $j < count($measurementName[$i]); $j++){ 
+                 //measurement specs 
+                    $ids = \DB::table('tblJOMeasureSpecific')
+                             ->select('strJOMeasureSpecificID')
+                             ->orderBy('created_at', 'desc')
+                             ->orderBy('strJOMeasureSpecificID', 'desc')
+                             ->take(1)
+                             ->get();
 
                      if($ids == null){
-                         $joMeasSpecificID = $this->smartCounter("JOMP000"); 
+                         $joMeasSpecificID = $this->smartCounter("JOMS000"); 
                      }else{
                          $ID = $ids["0"]->strJOMeasureSpecificID;
                          $joMeasSpecificID = $this->smartCounter($ID);  
                      }
-
-                     for($a=0; $a<count($tempQuantity[$i]); $a++){
-                         $joMeasurementProfile = TransactionJobOrderMeasurementSpecifics::create(array(
-                                 'strJOMeasureSpecificID' => $joMeasSpecificID,
-                                 'strJobOrderSpecificFK' => $jobSpecsID,
-                                 'strMeasureProfileFK' => $joMeasProfileID,
-                                 'strMeasureDetailFK' => $measurementName[$i][$j],
-                                 'dblMeasureValue' => $measurementDetails[$i][$j],
-                                 'strUnitOfMeasurement' => $measurementDetails[$i][count($measurementName[$i][$a])],
-                                 'boolIsActive' => 1
-                         ));
-                     }
+                     //dd($tempQuantity[$i]);
+                     $joMeasurementSpecific = TransactionJobOrderMeasurementSpecifics::create(array(
+                             'strJOMeasureSpecificID' => $joMeasSpecificID,
+                             'strJobOrderSpecificFK' => $jobSpecsID,
+                             'strMeasureProfileFK' => $joMeasProfileID,
+                             'strMeasureDetailFK' => $measurementName[$i][$a][$j],
+                             'dblMeasureValue' => $measurementDetails[$i][$a][$j],
+                             'strUnitOfMeasurement' => $measurementDetails[$i][$a][$j],
+                             'boolIsActive' => 1
+                     ));
 
                       //dd($joMeasurementProfile);
 
-                     $joMeasurementProfile->save();
-            }//end of loop for meas specs
+                     $joMeasurementSpecific->save();
+                }//end of loop for meas specs
+           // }//end loop qty*/
         }//end of save loop for JO Specs
 
         $paymentid = session()->get('payment_id');
@@ -862,6 +862,16 @@ class WalkInIndividualController extends Controller
         }
         //dd($custId);
         session(['cust_id' => $custId]);*/
+        $empEmail = \Auth::user()->email; //dd($empEmail);
+        $emp = \DB::table('tblEmployee')
+                ->select('tblEmployee.strEmployeeID')
+                ->where('tblEmployee.strEmailAdd', 'LIKE', $empEmail)
+                ->get(); //dd($emp);
+
+        for($i = 0; $i < count($emp); $i++){
+            $empId = $emp[$i]->strEmployeeID;
+        } 
+        
         $custId = session()->get('cust_id'); //dd($custId);
 
         $custname = \DB::table('tblCustIndividual')
