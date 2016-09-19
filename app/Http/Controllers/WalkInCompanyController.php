@@ -329,8 +329,52 @@ class WalkInCompanyController extends Controller
             $totalQuantity = $totalQuantity + $quantity[$i];
 
         for($i = 0; $i < $totalQuantity; $i++)
+        {
+            $tempQuantity[$i] = array_map('intval', $request->input('segment-qty' . $i));
+
+        }
+
+        $j = 0;
+        
+        for($i = 0; $i < $totalQuantity; $i++)
         {   
-            $employeeSegmentQuantity[$i] = $request->input('segment-qty' . $i);
+            if($i == 0)
+            {
+                
+                $employeeSegmentQuantity[$employeeSet[$i]][$j] = $tempQuantity[$i];
+                continue;
+            }
+
+            if($employeeSet[$i] == $employeeSet[($i-1)])
+            {
+                $j += 1;  
+                
+                $employeeSegmentQuantity[$employeeSet[$i]][$j] = $tempQuantity[$i];  
+            }
+            else
+            {
+                $j = 0;
+                
+                $employeeSegmentQuantity[$employeeSet[$i]][$j] = $tempQuantity[$i]; 
+            }
+        }
+        $data = session()->get('package_data');
+        $l = 0;
+
+        for($i = 0; $i < count($employeeSegmentQuantity); $i++)
+        {
+            for($j = 0; $j < count($employeeSegmentQuantity[$data[$i]]); $j++)
+            {
+                for($k = 0; $k < count($employeeSegmentQuantity[$data[$i]][$j]); $k++)
+                {
+                    if($j == 0)
+                    {
+                        $employeeSegmentTotal[$i][$l][$k] = $employeeSegmentQuantity[$data[$i]][$j][$k];                    
+                    }else{
+                        $employeeSegmentTotal[$i][$l][$k] += $employeeSegmentQuantity[$data[$i]][$j][$k];
+                    }
+                }
+            }
         }
 
         session(['employee_fname' => $employeeFirstName]);
@@ -339,6 +383,7 @@ class WalkInCompanyController extends Controller
         session(['employee_sex'   => $employeeSex]);
         session(['employee_set'   => $employeeSet]);
         session(['employee_segment_qty' => $employeeSegmentQuantity]);
+        session(['employee_segment_total' => $employeeSegmentTotal]);
 
         return redirect('transaction/walkin-company-show-order');
     }//save employee specs
@@ -401,16 +446,35 @@ class WalkInCompanyController extends Controller
             ->take(1)
             ->get();
 
-        if($ids == null){
+       if($ids == null){
             $custID = $this->smartCounter("CUSTC000"); 
         }else{
             $ID = $ids["0"]->strCompanyID;
             $custID = $this->smartCounter($ID);  
         }             
 
+/*        $company = Company::create(array(
+                    'strCompanyID' => $request->input('strCompanyID'),
+                    'strCompanyName' => trim($request->input('strCompanyName')),     
+                    'strCompanyBuildingNo' => trim($request->input('strCompanyBuildingNo')),   
+                    'strCompanyStreet' => trim($request->input('strCompanyStreet')),
+                    'strCompanyBarangay' => trim($request->input('strCompanyBarangay')), 
+                    'strCompanyCity' => trim($request->input('strCompanyCity')), 
+                    'strCompanyProvince' => trim($request->input('strCompanyProvince')),
+                    'strCompanyZipCode' => trim($request->input('strCompanyZipCode')),
+                    'strContactPerson' => trim($request->input('strContactPerson')),
+                    'strCompanyEmailAddress' => trim($request->input('strCompanyEmailAddress')),         
+                    'strCompanyCPNumber' => trim($request->input('strCompanyCPNumber')), 
+                    'strCompanyCPNumberAlt' => trim($request->input('strCompanyCPNumberAlt')), 
+                    'strCompanyTelNumber' => trim($request->input('strCompanyTelNumber')),
+                    'strCompanyFaxNumber' => trim($request->input('strCompanyFaxNumber')),
+                    'boolIsActive' => 1
+                    ));
+
+            $company->save();*/
+
         session(['compID' => $custID]);
         session(['compJOID' => $newID]);
-
 
         return view('walkin-company-checkout-info')
                 ->with('quantity', $quantity)
@@ -448,7 +512,7 @@ class WalkInCompanyController extends Controller
 
     public function saveCompanyEmployees($companyID)
     {   
-        
+
         for($i = 0; $i < count(session()->get('employee_set')); $i++)
         {
             $compEmpID = \DB::table('tblCustCompEmployee')
@@ -504,12 +568,14 @@ class WalkInCompanyController extends Controller
             }
         }
         dd("");*/
+        //dd(session()->get('employee_segment_total'));
         return view('walkin-company-checkout-pay')
                 ->with('joID', session()->get('compJOID'))
                 ->with('package_values', session()->get('package_values'))
                 ->with('package_segments', session()->get('package_segments'))
                 ->with('segment_patterns', session()->get('package_segment_pattern'))
                 ->with('segment_fabrics', session()->get('package_segment_fabric'))
+                ->with('segment_qty', session()->get('employee_segment_total'))
                 ->with('total_quantity', $totalQuantity);
 
     }
