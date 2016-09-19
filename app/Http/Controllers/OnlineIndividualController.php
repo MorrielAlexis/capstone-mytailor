@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 
 use Session;
 
+use App\Individual;
+
 use App\GarmentCategory;
 
 use App\Fabric;
@@ -45,11 +47,11 @@ class OnlineIndividualController extends Controller
     
     public function menchoose()
     {
-        $values = [];
-        $data = [];
+        $mvalues = [];
+        $mdata = [];
 
-        session(['segment_data' => $data]);
-        session(['segment_values' => $values]);
+        session(['mensegment_data' => $mdata]);
+        session(['mensegment_values' => $mvalues]);
 
         $garmentKey = 'Men Shirt';
 
@@ -58,20 +60,20 @@ class OnlineIndividualController extends Controller
 
         $garments = \DB::table('tblSegment')
             ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
-            ->where('tblGarmentCategory.strGarmentCategoryName', 'LIKE', '%'.$garmentKey.'%')
+            ->where('tblGarmentCategory.strGarmentCategoryName', '=', $garmentKey)
             ->select('tblSegment.*')
             ->get();
 
         return view('customize.mens-choose-shirt')
          ->with('categories', $categories)
          ->with('garments', $garments)
-         ->with('values', $data);
+         ->with('values', $mdata);
     }   
 
     public function menfabric(Request $request)
     {   
-        $data_segment = $request->input('cbx-segment-name');
-        session(['segment_data' => $data_segment]);
+        $mendata_segment = $request->input('menshirt');
+        session(['mensegment_data' => $mendata_segment]);
        
 
             $fabrics = Fabric::all();
@@ -271,21 +273,35 @@ class OnlineIndividualController extends Controller
 
      public function womenchoose()
     {   
+        $wvalues = [];
+        $wdata = [];
+
+        session(['womensegment_data' => $wdata]);
+        session(['womensegment_values' => $wvalues]);
+
         $garmentKey = 'Women Shirt';
 
-        $segments = \DB::table('tblSegment')
+
+        $categories = GarmentCategory::all();
+
+        $garments = \DB::table('tblSegment')
             ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
             ->where('tblGarmentCategory.strGarmentCategoryName', 'LIKE', '%'.$garmentKey.'%')
             ->select('tblSegment.*')
             ->get();
 
         return view('customize.womens-choose-shirt')
-         ->with('segments', $segments);
+         ->with('categories', $categories)
+         ->with('garments', $garments)
+         ->with('values', $wdata);
         
     }    
 
-    public function womenfabric()
+    public function womenfabric(Request $request)
     {
+        $womendata_segment = $request->input('womenshirt');
+        session(['womensegment_data' => $womendata_segment]);
+
         $fabrics = Fabric::all();
         $fabricThreadCounts = FabricThreadCount::all();
         $fabricColors = FabricColor::all();
@@ -475,13 +491,20 @@ class OnlineIndividualController extends Controller
 
     public function tocart()
     {
-        $data = session()->get('segment_data');
+        $men= '';
+        $women = '';
+
+        $men = session()->get('mensegment_data');
+
+        $women = session()->get('womensegment_data');
+
 
         GarmentCategory::all();
 
          $selected = \DB::table('tblSegment')
                     ->select('tblSegment.*')
-                    ->where('strSegmentID', '=', $data)
+                    ->where('strSegmentID', '=', $men)
+                    ->orwhere('strSegmentID', '=' ,$women)
                     ->get();
 
         return view('online.ordernow')
@@ -490,11 +513,73 @@ class OnlineIndividualController extends Controller
 
      public function info()
     {
-        return view('online.individual-checkout-info');
+
+        $joID = \DB::table('tblJobOrder')
+            ->select('strJobOrderID')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('strJobOrderID', 'desc')
+            ->take(1)
+            ->get();
+
+        if($joID == null){
+            $newID = $this->smartCounter("JOB000"); 
+        }else{
+            $ID = $joID["0"]->strJobOrderID;
+            $newID = $this->smartCounter($ID);  
+        }
+
+        //get all the individuals
+        $ids = \DB::table('tblCustIndividual')
+            ->select('strIndivID')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('strIndivID', 'desc')
+            ->take(1)
+            ->get();
+
+        if($ids == null){
+            $custID = $this->smartCounter("CUSTP000"); 
+        }else{
+            $ID = $ids["0"]->strIndivID;
+            $custID = $this->smartCounter($ID);  
+        }             
+
+        $custType = 0;
+        session(['custType' => $custType]);
+        session(['custID' => $custID]);
+        session(['joID' => $newID]);
+
+        return view('online.individual-checkout-info')
+                    ->with('custID', $custID)
+                    ->with('joID', $newID);
+
     }
 
-    public function payment()
-    {
+    public function addCustomer(Request $request)
+    {   //dd($request->input('strIndivSex'));
+
+        $individual = Individual::create(array(
+                    'strIndivID' => session()->get('custID'),
+                    'strIndivFName' => trim($request->input('addIndiFirstName')),     
+                    'strIndivMName' => trim($request->input('addIndiMiddleName')),
+                    'strIndivLName' => trim($request->input('addIndiLastName')),
+                   // 'strIndivSex' => $request->input('strIndivSex'),
+                    'strIndivHouseNo' => trim($request->input('addCustPrivHouseNo')), 
+                    'strIndivStreet' => trim($request->input('addCustPrivStreet')),
+                    'strIndivBarangay' => trim($request->input('addCustPrivBarangay')),   
+                    'strIndivCity' => trim($request->input('addCustPrivCity')),   
+                    'strIndivProvince' => trim($request->input('addCustPrivProvince')),
+                    'strIndivZipCode' => trim($request->input('addCustPrivZipCode')),
+                    'strIndivLandlineNumber' => trim($request->input('addPhone')),
+                    'strIndivCPNumber' => trim($request->input('addCel')), 
+                    'strIndivCPNumberAlt' => trim($request->input('addCelAlt')),
+                    'strIndivEmailAddress' => trim($request->input('addEmail')),
+                    'boolIsActive' => 1
+                    )); 
+
+//dd($request->input('strIndivSex'));
+
+                $individual->save();
+                
         return view('online.individual-checkout-payment');
     }
 
@@ -503,9 +588,18 @@ class OnlineIndividualController extends Controller
         $categories = MeasurementCategory::all();
         $standardSizeCategory = StandardSizeCategory::all();
 
+         $men= '';
+        $women = '';
+
+        $men = session()->get('mensegment_data');
+
+        $women = session()->get('womensegment_data');
+
         $measurements = \DB::table('tblMeasurementCategory AS a')
                     ->leftJoin('tblMeasurementDetail AS b', 'a.strMeasurementCategoryID', '=', 'b.strMeasCategoryFK')
                     ->leftJoin('tblSegment AS c', 'b.strMeasDetSegmentFK', '=', 'c.strSegmentID')
+                    ->where('strMeasDetSegmentFK', '=', $men)
+                    ->orwhere('strMeasDetSegmentFK', '=' ,$women)
                     ->select('b.*')
                     ->get();
 
@@ -513,6 +607,47 @@ class OnlineIndividualController extends Controller
             ->with('categories', $categories)
             ->with('measurements', $measurements)
             ->with('standard_categories', $standardSizeCategory);
+    }
+
+    public function smartCounter($id)
+    {   
+
+        $lastID = str_split($id);
+
+        $ctr = 0;
+        $tempID = "";
+        $tempNew = [];
+        $newID = "";
+        $add = TRUE;
+
+        for($ctr = count($lastID)-1; $ctr >= 0; $ctr--){
+
+            $tempID = $lastID[$ctr];
+
+            if($add){
+                if(is_numeric($tempID) || $tempID == '0'){
+                    if($tempID == '9'){
+                        $tempID = '0';
+                        $tempNew[$ctr] = $tempID;
+
+                    }else{
+                        $tempID = $tempID + 1;
+                        $tempNew[$ctr] = $tempID;
+                        $add = FALSE;
+                    }
+                }else{
+                    $tempNew[$ctr] = $tempID;
+                }           
+            }
+            $tempNew[$ctr] = $tempID;   
+        }
+
+        
+        for($ctr = 0; $ctr < count($lastID); $ctr++){
+            $newID = $newID . $tempNew[$ctr];
+        }
+
+        return $newID;
     }    
 
     /**

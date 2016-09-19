@@ -24,23 +24,25 @@
 
   <div class="row">
     <div class="col s12">
-    <!--order 1-->
+   @foreach($selecteds as $selected)
       <div class="col s6">
         <div class="row">
             <div class="col s12">
                 <div class="card grey lighten-3 z-depth-0" style="border:1px solid pink; padding:2px;">
                   <div class="card-content" style="border:1px solid pink;">
                     
-                    <div class="row">
-                      <div class="col s6">
-                          <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#removeOrder"><i class="mdi-navigation-close"></i></a>
-                          <center><img src="{{URL::to('imgOnlineUniform/female-uniform-plain.jpg')}}" style="margin:20px;height:275px; width:275x; border:3px gray solid"></center>
-                          <center><a href="#!" class="container btn tooltipped"  data-position="bottom" data-delay="50" data-tooltip="Click to add similar garment and specify new design and fabric" style="margin-top:20px; background-color:teal; white:white">Add</a></center>
-                      </div>
-                      <div class="col s6">
+                      
+                      <div class="row">
+                        
+                          <div class="col s6">
+                            <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#removeOrder"><i class="mdi-navigation-close"></i></a>
+                            <center><img src="{{$selected->strSegmentImage}}" style="margin:20px;height:275px; width:275x; border:3px gray solid"></center>
+                            <center><a href="#!" class="container btn tooltipped"  data-position="bottom" data-delay="50" data-tooltip="Click to add similar garment and specify new design and fabric" style="margin-top:20px; background-color:teal; white:white">Add</a></center>
+                          </div>
+                          <div class="col s6">
                         <!-- <div class="col s12" style=""><a class="btn right container teal accent-4 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize order" href="{{URL::to('/customize-womens-fabric')}}" style="margin-left:10px;">Customize Order</a></div> -->
                         
-                        @foreach($selecteds as $selected)
+                        
                           <div class="col s12" style="margin-top:20px; color:gray"><p>Garment description below:</p></div>
                           <div class="col s12" style="padding:0">
                             <div style="padding:25px;">
@@ -75,14 +77,13 @@
                             <div class="col s6" style="margin-top:20px; padding:5px; margin-right:5px;"><input name="quantity" id="quantity" type="number" style="border:2px teal solid; padding-left:18%; padding-right:18%" placeholder="How many?"></div>
                           </div>
                         </div>
-                      @endforeach
                     </div>
                   </div>
                 </div>
             </div>
         </div>
       </div>
-
+    @endforeach
     </div>
   </div>
 

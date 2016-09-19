@@ -143,7 +143,9 @@
 								</div>
 
 								<!--Modal for custom-facbric-->
-								<!-- <div id="custom-fabric" class="modal modal-fixed-footer" style="width:80%; height:75%; margin-top:0">
+								@foreach($styles as $k => $style)
+										@if($style->boolIsActive == 1)
+								<div id="custom-fabric" class="modal modal-fixed-footer" style="width:80%; height:75%; margin-top:0">
 		 								<h5><font color = "#1b5e20"><center>List of Available Fabrics</center> </font> </h5>
 		    
 				                        <div class="divider" style="height:2px"></div>				
@@ -205,12 +207,11 @@
 												
 												<p style="color:gray; margin-left:20px">*Choose one of your desired fabric</p>
 
-												
 					                        	@foreach($fabrics as $j => $fabric)
-					                        	<div class="col s6">
+					                        	<div class="col s6 custom-fabrics {{ $fabric->strFabricTypeFK }} {{ $fabric->strFabricPatternFK }} {{ $fabric->strFabricColorFK }} {{ $fabric->strFabricThreadCountFK }} ">
 					                        	<div class="center col s2" style="margin-top:60px">
-					                        		<input name="custom-fabrics{{ $i+1 }}" type="radio" class="filled-in custom-segmentFabric{{ $i+1 }}" value="custom-{{ $fabric->strFabricID }}" id="custom-{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}" />					                        	
-					                        		<label for="custom-{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}"></label>
+					                        		<input name="custom-fabrics{{ $i+1 }}" type="radio" class="filled-in custom-segmentFabric{{ $i+1 }}" value="custom-{{ $fabric->strFabricID }}" id="custom-{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" />					                        	
+					                        		<label for="custom-{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}"></label>
 					                        	</div>
 					                        	 <div class="col s10">
 											        <div class="card-panel teal lighten-4 z-depth-1">
@@ -238,7 +239,9 @@
 			                          <a  class="right modal-action modal-close waves-effect waves-green btn-flat">OK</a>
 			                          <a  class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
 			                        </div>
-								</div> -->
+								</div>
+										  @endif
+										@endforeach
 								<!--End of modal for custom fabric-->
 								
 								<div class="col s6" style="margin-top:7%">
@@ -357,7 +360,7 @@
 				                        @elseif($segment['strSegmentSex'] == 'F') <div class="col s5"><p>Female</p></div>
 				                        @endif
 
-										<div class="col s7" style="color:teal;"><p><b>Price starts from:</b></p></div>
+										<div class="col s7" style="color:teal;"><p><b>Labor Fee:</b></p></div>
 										<div class="col s5" style="color:color:black;font-weight:bold"><p>{{ number_format($segment['dblSegmentPrice'], 2) }} PHP</p></div>
 										<input type="hidden" class="price-per-segment" id="{{ $segment['dblSegmentPrice'] }}">
 
@@ -475,6 +478,53 @@
 		}
 
 		updateUI();
+	</script>
+
+	<script>
+		var custom_type = $('#custom-fabric-type');
+		var custom_color = $('#custom-fabric-color');
+		var custom_pattern = $('#custom-fabric-pattern');
+		var custom_threadCount = $('#custom-fabric-thread-count');
+
+		custom_type.change(function () {
+		  updateCustomUI();
+		});
+
+		custom_color.change(function () {
+		  updateCustomUI();
+		});
+
+		custom_pattern.change(function () {
+		  updateCustomUI();
+		});
+
+		custom_threadCount.change(function () {
+		  updateCustomUI();
+		});
+
+		function updateCustomUI () {
+		  $('.custom-fabrics').hide();
+
+		  var cus_typeValue = custom_type.val();
+		  var cus_colorValue = custom_color.val();
+		  var cus_patternValue = custom_pattern.val();
+		  var cus_threadValue = custom_threadCount.val();
+		  
+		  if (cus_typeValue == 'TA' && cus_colorValue == 'CA' && cus_patternValue == 'PA' && cus_threadValue == 'TCA'){
+		  	return $('.custom-fabrics').show();
+		  } 
+		  
+		  var cus_typeClass = cus_typeValue == 'TA' ? '' : '.' + cus_typeValue;
+		  var cus_colorClass = cus_colorValue == 'CA' ? '' : '.' + cus_colorValue;
+		  var cus_patternClass = cus_patternValue == 'PA' ? '' : '.' + cus_patternValue;
+		  var cus_threadClass = cus_threadValue == 'TCA' ? '' : '.' + cus_threadValue;
+
+		  var cus_classesToUpdate = cus_typeClass + cus_colorClass + cus_patternClass + cus_threadClass;
+		  console.log(cus_classesToUpdate);
+		  $(cus_classesToUpdate).show();
+		}
+
+		updateCustomUI();
 	</script>
 
 	<script>

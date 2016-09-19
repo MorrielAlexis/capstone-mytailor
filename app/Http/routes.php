@@ -344,7 +344,8 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::post('walkin-individual-clear-order', 'WalkInIndividualController@clearOrder');
 
 	Route::get('walkin-individual-show-customize-orders', 'WalkInIndividualController@showCustomizeOrder');
-	Route::post('walkin-individual-show-measurement-view', 'WalkInIndividualController@showMeasurementView');
+	Route::get('walkin-individual-show-measurement-view', 'WalkInIndividualController@showMeasurementView');
+	Route::post('walkin-individual-existing-show-measurement-view', 'WalkInIndividualController@showMeasurementExistView');
 
 	Route::get('walkin-individual-catalogue-designs', 'WalkInIndividualController@catalogueDesign');
 
@@ -378,7 +379,6 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::post('walkin-company-customize-orders', 'WalkInCompanyController@customize');
 	Route::post('walkin-company-save-design', 'WalkInCompanyController@saveDesign');
 	Route::post('walkin-company-save-employees', 'WalkInCompanyController@saveEmployees');
-	Route::post('walkin-company-save-measurements', 'WalkInCompanyController@saveMeasurements');
 
 });
 
@@ -593,8 +593,10 @@ Route::group(['prefix' => 'transaction'], function(){
 
 	Route::post('customize-mens-fabrics', 'OnlineIndividualController@menfabric');
 
+	Route::post('save-customer', 'OnlineIndividualController@addCustomer');
+
 	Route::get('customize-womens-choose-shirt', 'OnlineIndividualController@womenchoose');
-	Route::get('customize-womens-fabric', 'OnlineIndividualController@womenfabric');
+	Route::post('customize-womens-fabrics', 'OnlineIndividualController@womenfabric');
 	Route::post('customize-womens-style-collar', 'OnlineIndividualController@womenstylecollar');
 	Route::post('customize-womens-style-cuffs', 'OnlineIndividualController@womenstylecuffs');
 	Route::post('customize-womens-style-buttons', 'OnlineIndividualController@womenstylebuttons');
