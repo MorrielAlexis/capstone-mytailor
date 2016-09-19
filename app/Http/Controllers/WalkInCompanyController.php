@@ -453,26 +453,6 @@ class WalkInCompanyController extends Controller
             $custID = $this->smartCounter($ID);  
         }             
 
-/*        $company = Company::create(array(
-                    'strCompanyID' => $request->input('strCompanyID'),
-                    'strCompanyName' => trim($request->input('strCompanyName')),     
-                    'strCompanyBuildingNo' => trim($request->input('strCompanyBuildingNo')),   
-                    'strCompanyStreet' => trim($request->input('strCompanyStreet')),
-                    'strCompanyBarangay' => trim($request->input('strCompanyBarangay')), 
-                    'strCompanyCity' => trim($request->input('strCompanyCity')), 
-                    'strCompanyProvince' => trim($request->input('strCompanyProvince')),
-                    'strCompanyZipCode' => trim($request->input('strCompanyZipCode')),
-                    'strContactPerson' => trim($request->input('strContactPerson')),
-                    'strCompanyEmailAddress' => trim($request->input('strCompanyEmailAddress')),         
-                    'strCompanyCPNumber' => trim($request->input('strCompanyCPNumber')), 
-                    'strCompanyCPNumberAlt' => trim($request->input('strCompanyCPNumberAlt')), 
-                    'strCompanyTelNumber' => trim($request->input('strCompanyTelNumber')),
-                    'strCompanyFaxNumber' => trim($request->input('strCompanyFaxNumber')),
-                    'boolIsActive' => 1
-                    ));
-
-            $company->save();*/
-
         session(['compID' => $custID]);
         session(['compJOID' => $newID]);
 
@@ -507,6 +487,33 @@ class WalkInCompanyController extends Controller
 
         $this->saveCompanyEmployees($custID);
 
+        return view('walkin-company-checkout-measure');
+    }
+
+    public function saveNewCompany(Request $request)
+    {
+        //dd($request->input('compID'));
+        $company = Company::create(array(
+                'strCompanyID' => $request->input('compID'),
+                'strCompanyName' => trim($request->input('company_name')),     
+                'strCompanyBuildingNo' => trim($request->input('comp_house_no')),   
+                'strCompanyStreet' => trim($request->input('comp_street')),
+                'strCompanyBarangay' => trim($request->input('comp_barangay')), 
+                'strCompanyCity' => trim($request->input('comp_city')), 
+                'strCompanyProvince' => trim($request->input('comp_province')),
+                'strCompanyZipCode' => trim($request->input('strCompanyZipCode')),
+                'strContactPerson' => trim($request->input('contact_person')),
+                'strCompanyEmailAddress' => trim($request->input('comp_email')),         
+                'strCompanyCPNumber' => trim($request->input('comp_cell')), 
+                'strCompanyCPNumberAlt' => trim($request->input('comp_cell_alt')), 
+                'strCompanyTelNumber' => trim($request->input('comp_tel')),
+                'strCompanyFaxNumber' => trim($request->input('comp_fax')),
+                'boolIsActive' => 1
+            ));
+
+        $company->save();
+
+        $this->saveCompanyEmployees($request->input('compID'));
         return view('walkin-company-checkout-measure');
     }
 
