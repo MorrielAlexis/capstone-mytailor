@@ -58,11 +58,16 @@ class DashboardController extends Controller
          // $totalCustIndiv = \DB::select('SELECT SUM(strIndivID) as ctr FROM tblCustIndividual');
 
          $totalCustIndiv = \DB::table('tblCustIndividual')
-            ->select('strIndivID as ctr')
+            ->select('strIndivID', \DB::raw('count(*) as ctr'))
             ->orderBy('created_at', 'desc')
             ->orderBy('strIndivID', 'desc')
-            ->take(1)
+            // ->take(1)
             ->get();
+
+        // $totalCustIndiv = \DB::table('tblCustIndividual')
+        //      ->select('strIndivID', \DB::raw('count(*) as ctr'))
+        //      ->groupBy('strIndivID')
+        //      ->lists('ctr','strIndivID')->all();
 
 
             // dd($totalCustIndiv);
