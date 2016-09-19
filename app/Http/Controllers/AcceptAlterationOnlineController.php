@@ -98,9 +98,7 @@ class AcceptAlterationOnlineController extends Controller
                     ->select(\DB::raw('CONCAT(b.strIndivFName, " " , b.strIndivMName, " " , b.strIndivLName) as custName'),\DB::raw('CONCAT(b.strIndivHouseNo, " ", b.strIndivStreet, " ", b.strIndivBarangay, " ", b.strIndivCity, " ", b.strIndivProvince, " ", b.strIndivZipCode) as address'), 'a.strNonShopAlterID as transID', 'a.dblOrderTotalPrice AS totalPrice', 'b.strIndivEmailAddress AS custEmail', 'b.strIndivCPNumber AS cpNo', 'd.strSegmentName as segment', 'e.strAlterationName as alteration')
                     ->where('b.strIndivID', $request->input('customerID'))
                     ->get();
-            // var_dump($results);
-            // dd("");
-
+            
 
             foreach( $results as $result){
                 $name = $result->custName;

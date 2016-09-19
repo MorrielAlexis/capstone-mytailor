@@ -33,6 +33,7 @@ class tblEmployee extends Migration {
 			$table->string('strEmailAdd')->nullable();
 			$table->string('strEmpInactiveReason')->nullable();
 			$table->string('strEmpImg')->nullable();
+            $table->string('userId')->index()->nullable();
 			$table->boolean('boolIsActive');
 			//$table->datetime('dtUpdatedAt');
 			$table->timestamps();
@@ -43,6 +44,10 @@ class tblEmployee extends Migration {
 
 			$table->foreign('strRole')->references('strEmpRoleID')->on('tblEmployeeRole');
 		});
+
+		Schema::table('tblEmployee', function (Blueprint $table){
+            $table->foreign('userId')->references('id')->on('users');
+        });
 	}
 
 	/**

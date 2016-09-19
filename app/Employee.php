@@ -27,6 +27,7 @@ class Employee extends Model
 								'strEmailAdd',
 								'strEmpImg',
 								'strEmpInactiveReason',
+								'userId',
 								'boolIsActive'
 								//
 								);

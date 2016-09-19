@@ -18,7 +18,7 @@
 					<li class="tab col s12" style="border-top-left-radius: 20px; border-top-right-radius: 20px; background-color: #00b0ff;"><a style="color:black; padding-top:5px; opacity:0.80" href="#shoppingCart"></a></li>	
 					<div class="indicator white" style="z-index:1"></div>
 	            </ul>
-				<div id="shoppingCart" class="card-panel">
+				<!-- <div id="shoppingCart" class="card-panel">
 					<div class="card-content">
 						<div class="row">
 						<div class="col s12">
@@ -66,7 +66,7 @@
 
 						</div>
 					</div>
-				</div>
+				</div> -->
 
 				<div id="data-record" class="card-panel">
 					<div class="card-content">
@@ -159,6 +159,11 @@
 								</tbody>
 							</table>
 
+
+							<div class="col s12" style="margin-top:6%">
+								<div class="divider"></div>
+								<a href="{{URL::to('/transaction/payment/individual/home')}}" class="right  btn" style="background-color:teal; color:white; margin-top:2%">Go to Payment</a>
+							</div>
 
 							<div id="view-detail" class="modal modal-fixed-footer">
 								{!! Form::open() !!}

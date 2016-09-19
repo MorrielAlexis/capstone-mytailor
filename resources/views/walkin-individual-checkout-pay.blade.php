@@ -61,6 +61,7 @@
 		                        <table class = "table centered order-summary z-depth-1" border = "1">
 				       				<thead style="color:gray">
 					          			<tr style="border-top:1px black solid; border-bottom:1px black solid; background-color:teal; color:white">
+						                  <th colspan="1" data-field="labor-price-per-segment" style="border-right:1px black solid">Quantity</th>
 						                  <th colspan="1" data-field="product" style="border-right:1px black solid; border-left:1px black solid">Product</th> 
 						                  <th colspan="1" data-field="fabric" style="border-right:1px black solid">Fabric</th>
 						                  <th colspan="1" data-field="base-price" style="border-right:1px black solid">Base Price</th>
@@ -73,10 +74,10 @@
 						             	<th style="border:1px black solid"></th>
 						             	<th style="border:1px black solid"></th>
 						             	<th style="border:1px black solid"></th>
+						             	<th style="border:1px black solid"></th>
 						             	<th style="border:1px black solid">Style Category</th>
 						             	<th style="border:1px black solid">Segment Pattern</th>
 						             	<th style="border:1px black solid">Style Price</th>
-						             	<th style="border:1px black solid"></th>
 						             	<th style="border:1px black solid"></th>
 						             	<th style="border:1px black solid"></th>
 						             </tr>
@@ -85,7 +86,8 @@
 					              	<tbody>
 					              		@for($i = 0; $i < count($values); $i++)
 								            <tr style="border-top:1px black solid; border-bottom:1px black solid">
-								                <td style="border-right:1px black solid; border-left:1px black solid">{{ $values[$i]['strGarmentCategoryName'] }}, {{ $values[$i]['strSegmentName'] }}</td>
+								                <td style="border-right:1px black solid; border-left:1px black solid">{{ $quantities[$i] }}</td>
+								                <td style="border-right:1px black solid">{{ $values[$i]['strGarmentCategoryName'] }}, {{ $values[$i]['strSegmentName'] }}</td>
 												<td style="border-right:1px black solid">{{ $values[$i]['strFabricName'] }}</td>
 								                <td style="border-right:1px black solid">{{ number_format(($values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice']) , 2) }} PHP</td>
 												<!-- <td style="border-right:1px black solid">
@@ -156,7 +158,7 @@
 								
 								<div class="col s12">
 									<div class="col s4" style="color:grey; font-size:10px"><p><b>Labor Fee Inclusive</b>
-										<b style="color:gray; font-size:15px">Estimated Total Amount</b></p>
+										<b style="color:gray; font-size:15px">Estimated Total Sales</b></p>
 									</div>
 			      					<div class="col s8" style="color:black;"><p><input id="estimated_total" name="estimated_total" type="text" class="" readonly /></p></div>
 								</div>
@@ -330,6 +332,7 @@
 			var b = {!! json_encode($styles) !!};
 			//var c =  json_encode($laborfee) !!};
 			//var d = { json_encode($othercharge) !!};
+			var c ={!! json_encode($lineTotal) !!};
 
 			var totalAmount = 0.00;
 			var minDays = 0;
@@ -352,21 +355,22 @@
 
 			//grand total
 			for(var i = 0; i < a.length; i++){
-				totalAmount += a[i].dblSegmentPrice;
+				/*totalAmount += a[i].dblSegmentPrice;
 				totalAmount += a[i].dblFabricPrice;
 				//totalAmount += c[i].dblChargeDetPrice;
 				//totalAmount += d[i].dblChargeDetPrice;
-					for(var j = 0; j < b[i].length; j++){
+					/*for(var j = 0; j < b[i].length; j++){
 						totalAmount += b[i][j].dblPatternPrice;
-					}
+					}*/
+				grandtotal += c[i];
 				minDays += a[i].intMinDays;
 			}
 
 			//estimated total
 			//estimatedTotal = totalAmount - (addtnlFees + laborTotal);
 			var vat = 0.00;
-			vat = totalAmount * 0.12;
-			grandtotal = vat + totalAmount;
+			vat = grandtotal * 0.12;
+			totalAmount = grandtotal - vat;
 
 			var monthNames = [ "January", "February", "March", "April", "May", "June",
 		    "July", "August", "September", "October", "November", "December" ];
@@ -395,21 +399,24 @@
 
 					var a = {!! json_encode($values) !!};
 					var b = {!! json_encode($styles) !!};
+					var c = {!! json_encode($lineTotal) !!};
 					//var c = { json_encode($laborfee) !!};
 					//var d = { json_encode($othercharge) !!};
 					var totalAmount = 0.00;
+					var grandtotal = 0.00;
 
 					for(var i = 0; i < a.length; i++){
-						totalAmount += a[i].dblSegmentPrice;
+						/*totalAmount += a[i].dblSegmentPrice;
 						totalAmount += a[i].dblFabricPrice;
 						//totalAmount += c[i].dblChargeDetPrice;
 						//totalAmount += d[i].dblChargeDetPrice;
-							for(var j = 0; j < b[i].length; j++){
+							/*for(var j = 0; j < b[i].length; j++){
 								totalAmount += b[i][j].dblPatternPrice;
-							}
+							}*/
+						grandtotal += c[i];
 					}
-					var vat = 0.12;
-					grandtotal = (totalAmount * vat) + totalAmount;
+					//var vat = 0.12;
+					//totalAmount = (grandtotal * vat) + grandtotal;
 					
 					$('#amount-payable').val((grandtotal/2).toFixed(2));
 					$('#balance').val((grandtotal - (grandtotal/2)).toFixed(2));
@@ -419,21 +426,24 @@
 
 					var a = {!! json_encode($values) !!};
 					var b = {!! json_encode($styles) !!};
+					var c = {!! json_encode($lineTotal) !!};
 					//var c = { json_encode($laborfee) !!};
 					//var d = { json_encode($othercharge) !!};
 					var totalAmount = 0.00;
+					var grandtotal = 0.00
 
 					for(var i = 0; i < a.length; i++){
-						totalAmount += a[i].dblSegmentPrice;
+						/*totalAmount += a[i].dblSegmentPrice;
 						totalAmount += a[i].dblFabricPrice;
 						//totalAmount += c[i].dblChargeDetPrice;
 						//totalAmount += d[i].dblChargeDetPrice;
-							for(var j = 0; j < b[i].length; j++){
+							/*for(var j = 0; j < b[i].length; j++){
 								totalAmount += b[i][j].dblPatternPrice;
-							}
+							}*/
+						grandtotal += c[i];
 					}
-					var vat = 0.12;
-					grandtotal = (totalAmount * vat) + totalAmount;
+					//var vat = 0.12;
+					//grandtotal = (totalAmount * vat) + totalAmount;
 					
 					$('#amount-payable').val(grandtotal.toFixed(2));
 					$('#balance').val((grandtotal - grandtotal).toFixed(2));

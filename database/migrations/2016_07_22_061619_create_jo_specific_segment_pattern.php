@@ -16,6 +16,7 @@ class CreateJoSpecificSegmentPattern extends Migration
             $table->increments('intJOSpecSegmentPatternID');
             $table->string('strJobOrderSpecificFK')->index();
             $table->string('strSegmentPatternFK')->index();
+            //$table->string('strPatternFabricFK')->index();
             //$table->primary('strJobOrderSpecificFK');
             $table->timestamps();
 
@@ -26,6 +27,10 @@ class CreateJoSpecificSegmentPattern extends Migration
             $table->foreign('strSegmentPatternFK')
                   ->references('strSegPatternID')
                   ->on('tblSegmentPattern');
+
+            /*$table->foreign('strPatternFabricFK')
+                  ->references('strFabricID')
+                  ->on('tblFabric');*/
         });
     }
 
