@@ -128,7 +128,7 @@
 													<select class="browser-default unpaid-payments" id="unpaid-payments" style="margin-left:45%">
 														@foreach($customer_orders as $j => $order)
 														@foreach($payments as $i => $payment)
-														<option id="{{ $order->strJobOrderID }}" value="{{ $order->strJobOrderID }}" @if($payment->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>{{ $order->dtOrderDate }} {{ $order->strJobOrderID }}</option>
+														<option value="{{ $payment->strJobOrderID }}" @if($payment->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>{{ $order->dtOrderDate }} {{ $order->strJobOrderID }}</option>
 														@endforeach
 														@endforeach
 													</select>
@@ -146,19 +146,19 @@
 													@foreach($customer_orders as $order)
 													@foreach($payments as $payment)
 														@if($payment->strTransactionFK == $order->strJobOrderID)
-														<div class="payment-summary">
+														<div class="payment-summary {{ $payment->strJobOrderID}}">
 															<div style="color:black" class="input-field col s7">                 
-											                  <input style="margin-left:80%; padding:1%; padding-left:1%" name="payment-info" type="text" class="" id="amount-to-pay" value="{{$order->dblOrderTotalPrice}}">
+											                  <input style="margin-left:80%; padding:1%; padding-left:1%" name="amount-to-pay" type="text" class="" id="amount-to-pay" readonly>
 											                  <label style="color:teal; margin-top:1%; margin-left:2%"><b>Total Amount to Pay:</b></label>
 											                </div>
 
 											                <div style="color:black" class="input-field col s7">                 
-											                  <input style="margin-left:80%; padding:1%; padding-left:1%" name="payment-info" type="text" class="" id="amount-paid" value="{{$payment->dblAmountToPay}}">
+											                  <input style="margin-left:80%; padding:1%; padding-left:1%" name="amount-paid" type="text" class="" id="amount-paid" readonly>
 											                  <label style="color:teal; margin-top:1%; margin-left:2%"><b>Total Amount Paid:</b></label>
 											                </div>
 
 											                <div style="color:black" class="input-field col s7">                 
-											                  <input style="margin-left:80%; padding:1%; padding-left:1%" name="payment-info" type="text" class="" id="outstanding-bal" value="{{$payment->dblOutstandingBal}}">
+											                  <input style="margin-left:80%; padding:1%; padding-left:1%" name="outstanding-bal" type="text" class="" id="outstanding-bal" readonly>
 											                  <label style="color:teal; margin-top:1%; margin-left:2%"><b>Outstanding Balance:</b></label>
 											                </div>
 											            </div>
@@ -423,23 +423,24 @@
 			var orders = {!! json_encode($customer_orders) !!}
 			var payment = {!! json_encode($payments) !!}
 
-				amount_to_pay = payment.dblOrderTotalPrice;
-				amount_paid = payment.dblAmountToPay;
-				bal = payment.dblOutstandingBal;
+				
+		for(var i = 0; i < orders.length; i++){
+		
+				amount_to_pay = payment[i].dblOrderTotalPrice;
+				amount_paid = payment[i].dblAmountToPay;
+				bal = payment[i].dblOutstandingBal;
 
-			
-
-			if($('#order.strJobOrderID').val() == orders.strJobOrderID)
+			if($('#unpaid-payments').val() == payment[i].strJobOrderID)
 			{
 				$('#amount-to-pay').val(amount_to_pay.toFixed(2));
 				$('#amount-paid').val(amount_paid.toFixed(2));
 				$('outstanding-bal').val(bal.toFixed(2));
 
-				alert(orders.strJobOrderID);
-				break;
+				return;
 			}
-
-
+		}
+		
+		
 			
 
 		});

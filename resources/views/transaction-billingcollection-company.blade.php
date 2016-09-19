@@ -79,46 +79,83 @@
 								<div class="divider"></div>
 							</div>
 
-							<table>
+							<table class="table centered data-company" align = "center" border = "1">
 								<thead>
 									<tr>
 										<!-- <th class="center" style="color:gray">ID</th> -->
 										<th class="center" style="color:gray">Customer Name</th>
+										<th class="center" style="color:gray">Job Order #</th>
 										<th class="center" style="color:gray">Payment Type</th>
 										<th class="center" style="color:gray">Cheque Number</th>
-										<th class="center" style="color:red">Total Amount</th>
+										<th class="center" style="color:teal">Total Amount</th>
 										<th class="center" style="color:gray">Downpayment (50%)</th>
 										<th class="center" style="color:gray">Amount Paid</th>
-										<th class="center" style="color:gray">Outstanding Balance</th>
-										<th class="center" style="color:red">Due Date</th>
+										<th class="center" style="color:teal">Outstanding Balance</th>
+										<th class="center" style="color:teal">Due Date</th>
 										<!-- <th class="center" style="color:gray">Date of Payment</th> -->
 										<th class="center" style="color:green">Status</th>
 									</tr>
 								</thead>
 								<tbody>
-									@if(isset($payments))
-									@foreach($payments as $payment)
-										@if($payment->boolIsActive == 1)
+									
+									@foreach($companies as $company)
+									@foreach($comp as $comps)
+										@if($company->boolIsActive == 1 AND $company->strJO_CustomerCompanyFK == $comps->strCompanyID)
 
-									<tr>
+									@if($company->strPaymentStatus == "Pending")
+									<tr style="background-color:rgba(54, 162, 235, 0.2)" @if($company->strTransactionFK != $comps->strJobOrderID AND $company->strJO_CustomerCompanyFK == $comps->strCompanyID) hidden @endif>
 										
-										<!--  -->
-										<td class="center">{{ $payment->fullname }}</td>
-										<td class="center">Cash</td>
-										<td class="center"> </td>
-										<td class="center" style="color:red">{{ number_format($payment->dblOrderTotalPrice, 2) }}</td>
-										<td class="center">{{ number_format(($payment->dblOrderTotalPrice/2), 2) }}</td>
-										<td class="center">{{ number_format($payment->dblAmountToPay, 2) }}</td>
-										<td class="center">{{ number_format($payment->dblOutstandingBal, 2)}}</td>
-										<td class="center" style="color:red">{{ $payment->dtPaymentDueDate }}</td>
-										<!-- <td class="center">{{ $payment->dtPaymentDate }}</td> -->
-										<td class="center" style="color:green"><i>{{ $payment->strPaymentStatus }}</i></td>
+										<td class="center" >{{ $company->strCompanyName }}</td>
+										<td class="center">{{ $company->strTransactionFK }}</td>
+										<td class="center">{{ $company->strModeOfPayment}}</td>
+										@if($company->strModeOfPayment != "Cash")
+										<td class="center">Cheque here</td>
+										@elseif($company->strModeOfPayment == "Cash")
+										<td class="center"> ---- </td>
+										@endif
+										<td class="center" style="color:teal">{{ number_format($company->dblOrderTotalPrice, 2) }}</td>
+										<td class="center">{{ number_format(($company->dblOrderTotalPrice/2), 2) }}</td>
+										<td class="center">{{ number_format($company->dblAmountToPay, 2) }}</td>
+										<td class="center">{{ number_format($company->dblOutstandingBal, 2)}}</td>
+										@if($company->strPaymentStatus != "Pending") 
+											<td class="center" style="color:teal">----</td>
+										@elseif($company->strPaymentStatus == "Pending")
+										<td class="center" style="color:teal" >{{ $company->dtPaymentDueDate }}</td>
+										@endif
+										<td class="center" style="color:green" ><i>{{ $company->strPaymentStatus }}</i></td>
 											
 									</tr>
+									
+									@elseif($company->strPaymentStatus != "Pending")
+									<tr @if($company->strTransactionFK != $comps->strJobOrderID) hidden @endif>
+										
+										<!--  -->
 
+										<td class="center" >{{ $company->strCompanyName }}</td>
+										<td class="center">{{ $company->strTransactionFK }}</td>
+										<td class="center">{{ $company->strModeOfPayment}}</td>
+										@if($company->strModeOfPayment != "Cash")
+										<td class="center">Cheque here</td>
+										@elseif($company->strModeOfPayment == "Cash")
+										<td class="center"> ---- </td>
+										@endif
+										<td class="center" style="color:teal">{{ number_format($company->dblOrderTotalPrice, 2) }}</td>
+										<td class="center">{{ number_format(($company->dblOrderTotalPrice/2), 2) }}</td>
+										<td class="center">{{ number_format($company->dblAmountToPay, 2) }}</td>
+										<td class="center">{{ number_format($company->dblOutstandingBal, 2)}}</td>
+										@if($company->strPaymentStatus != "Pending") 
+											<td class="center" style="color:teal">----</td>
+										@elseif($company->strPaymentStatus == "Pending")
+										<td class="center" style="color:teal" >{{ $company->dtPaymentDueDate }}</td>
+										@endif
+										<td class="center" style="color:green" ><i>{{ $company->strPaymentStatus }}</i></td>
+											
+									</tr>
+									@endif
 										@endif
 									@endforeach
-									@endif
+									@endforeach
+								
 								</tbody>
 							</table>
 
@@ -171,7 +208,7 @@
 
 					      					<div class="col s12">
 					      						<div class="container">
-					      						<table class = "table centered order-summary" border = "1" style="border:1px gray solid">
+					      						<table class = "table centered data-company" border = "1" style="border:1px gray solid">
 								       				<center><h6 style="color:black"><b>PAYMENT HISTORY</b></h6></center>
 								       				<thead style="color:gray">
 									          			<tr>
@@ -231,7 +268,7 @@
 
 							</div>
 
-							<div class="col s12" style="margin-top:60px">
+							<div class="col s12" style="margin-top:60px" hidden>
 								<div class="divider" style="margin-bottom:20px"></div>
 								<a href="" class="left btn" style="background-color:teal; color:white"><i class="large mdi-editor-insert-chart" style="padding-right:15px"></i>View Summary Report</a>
 								<a href="" class="right btn" style="background-color:teal; color:white;"><i class="large mdi-editor-insert-drive-file" style="padding-right:15px"></i>Export as PDF</a>
@@ -307,5 +344,11 @@
 	});
 	</script>
 
+	<script type="text/javascript">
+      $(document).ready(function() {
+          $('.data-company').DataTable();
+          $('select').material_select();
+      } );
+    </script>
 
 @stop

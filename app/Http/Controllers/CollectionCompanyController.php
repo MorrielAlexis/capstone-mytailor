@@ -14,9 +14,30 @@ class CollectionCompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        return view('transaction-billingcollection-company');
+        $companies = \DB::table('tblJobOrder AS a')
+                ->leftJoin('tblJOPayment AS b', 'a.strJobOrderID', '=', 'b.strTransactionFK')
+                ->leftJoin('tblCustCompany AS c', 'c.strCompanyID', '=', 'a.strJO_CustomerCompanyFK')
+                ->select('a.*', 'b.*', 'c.strCompanyID', 'c.strCompanyName')
+                ->orderBy('a.strJobOrderID')
+                ->get();
+
+        $comp = \DB::table('tblCustCompany AS a')
+                ->leftJoin('tblJobOrder AS b', 'a.strCompanyID', '=', 'b.strJO_CustomerCompanyFK')
+                ->select('a.strCompanyID', 'a.strCompanyName','b.*')
+                ->orderBy('b.strJobOrderID')
+                ->get();
+
+        return view('transaction-billingcollection-company')
+                ->with('companies', $companies)
+                ->with('comp', $comp);
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Individual;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -14,9 +15,30 @@ class CollectionIndividualController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        return view('transaction-billingcollection-individual');
+        $customers  = \DB::table('tblJobOrder AS a')
+                ->leftJoin('tblJOPayment AS b', 'a.strJobOrderID', '=', 'b.strTransactionFK')
+                ->leftJoin('tblCustIndividual AS c', 'c.strIndivID', '=', 'a.strJO_CustomerFK')
+                ->select('a.*', 'b.*', 'c.strIndivID', \DB::raw('CONCAT(c.strIndivFName, " ", c.strIndivMName, " ", c.strIndivLName) AS fullname'))
+                ->orderBy('a.strJobOrderID')
+                ->get();
+
+        $cust = \DB::table('tblCustIndividual AS a')
+                ->leftJoin('tblJobOrder AS b', 'a.strIndivID', '=', 'b.strJO_CustomerFK')
+                ->select('a.strIndivID', \DB::raw('CONCAT(a.strIndivFName, " ", a.strIndivMName, " ", a.strIndivLName) AS fullname'), 'b.*')
+                ->orderBy('b.strJobOrderID')
+                ->get();
+
+        return view('transaction-billingcollection-individual')
+            ->with('customers', $customers)
+            ->with('cust', $cust);
     }
 
     /**
