@@ -2,7 +2,7 @@
 <html>
     <head>
 
-      <title>Customer Module</title>
+      <title>MyTailor - Customer Module</title>
       
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -51,7 +51,7 @@
         <div class="navbar teal " >
           <nav style="height:40px">
             <div class="nav-wrapper">
-              <img src="../imgOnline/logo.jpg"  alt="" class="circle responsive-img valign profile-image center" style="height:90px; width:100px; margin-top:5px; margin-left:30px;">
+              <img src="../../{{ Session::get('shop_logo') }}"  alt="" class="circle responsive-img valign profile-image center" style="height:90px; width:100px; margin-top:5px; margin-left:30px;">
             </div>
       </nav>
         </div>
