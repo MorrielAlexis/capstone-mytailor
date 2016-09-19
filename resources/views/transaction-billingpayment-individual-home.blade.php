@@ -106,7 +106,7 @@
 										<div class="col s7">
 										<div class="card-panel">
 											<div class="card-content">
-												<div class="row">
+												<div class="row" style="display:none">
 													<div style="color:black" class="input-field col s7">                 
 							                          <input style="margin-left:80%; padding:1%; padding-left:1%" name="payment-info" type="text" class="" value="">
 							                          <label style="color:teal; margin-top:1%; margin-left:2%"><b>Total Amount to Pay:</b></label>
