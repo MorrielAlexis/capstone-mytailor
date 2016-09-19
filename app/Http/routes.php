@@ -444,12 +444,16 @@ Route::get('/track', 'OnlineCustomerProfileIndividualController@trackJob');
 			Route::get('home', 'PaymentIndividualController@index');
 			Route::get('customer-info', 'PaymentIndividualController@custInfo');
 			Route::post('save-payment', 'PaymentIndividualController@savePayment');
+			Route::get('print-receipt', 'PaymentIndividualController@printReceipt');
+			Route::get('generate-receipt', 'PaymentIndividualController@generateReceipt');
 		});
 
 		Route::group(['prefix' => 'company'], function() {
 			Route::get('home', 'PaymentCompanyController@index');
 			Route::get('company-info', 'PaymentCompanyController@companyInfo'); 
 			Route::post('save-payment', 'PaymentCompanyController@savePayment');
+			Route::get('print-receipt', 'PaymentIndividualController@printReceipt');
+			Route::get('generate-receipt', 'PaymentIndividualController@generateReceipt');
 		});
 	});
 

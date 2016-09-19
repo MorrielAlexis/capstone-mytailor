@@ -551,7 +551,11 @@ class WalkInCompanyController extends Controller
         for($i = 0; $i < count($quantity); $i++)
             $totalQuantity = $totalQuantity + $quantity[$i];
         //dd(session()->get('package_segment_pattern'));
-/*        for($i = 0; $i < count(session()->get('package_values')); $i++)
+        $tempStyleTotal = 0;
+        $tempFabricTotal = 0;
+        $tempSegmentTotal = 0;
+
+        for($i = 0; $i < count(session()->get('package_values')); $i++)
         {
             for($j = 0; $j < count(session()->get('package_segments')); $j++)
             {
@@ -561,13 +565,23 @@ class WalkInCompanyController extends Controller
                     {
                         for($l = 0; $l < count(session()->get('package_segment_pattern')[$j][$k]); $l++)
                         {
-                            var_dump(session()->get('package_segment_fabric')[$j][$k][$l]->strSegPName);
-                        }
+                            $tempStyleTotal += session()->get('package_segment_pattern')[$j][$k][$l]->dblPatternPrice * session()->get('employee_segment_total')[$i][0][$k];
+                        }   
+                        $tempFabricTotal += session()->get('package_segment_fabric')[$j][$k]->dblFabricPrice * session()->get('employee_segment_total')[$i][0][$k];
+                        $tempSegmentTotal += session()->get('package_segments')[$j][$k][0]->dblSegmentPrice * session()->get('employee_segment_total')[$i][0][$k];
+
+                        $styleTotal[$j] = $tempStyleTotal;
+                        $fabricTotal[$j] = $tempFabricTotal;
+                        $segmentTotal[$j] = $tempSegmentTotal;
                     }
                 }
+                $tempStyleTotal = 0;
+                $tempFabricTotal = 0;
+                $tempSegmentTotal = 0;
             }
         }
-        dd("");*/
+
+        //dd("");
         //dd(session()->get('employee_segment_total'));
         return view('walkin-company-checkout-pay')
                 ->with('joID', session()->get('compJOID'))
@@ -576,6 +590,9 @@ class WalkInCompanyController extends Controller
                 ->with('segment_patterns', session()->get('package_segment_pattern'))
                 ->with('segment_fabrics', session()->get('package_segment_fabric'))
                 ->with('segment_qty', session()->get('employee_segment_total'))
+                ->with('style_total', $styleTotal)
+                ->with('fabric_total', $fabricTotal)
+                ->with('segment_total', $segmentTotal)
                 ->with('total_quantity', $totalQuantity);
 
     }

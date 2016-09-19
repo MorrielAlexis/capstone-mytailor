@@ -152,8 +152,110 @@ class PaymentIndividualController extends Controller
         ));
         $payment->save();
 
+        $paymentid = session()->get('payment_id');
+
+
+        //Payment Receipt
+        $prId = \DB::table('tblPaymentReceipt')
+                ->select('strPaymentReceiptID')
+                ->orderBy('created_at', 'desc')
+                ->orderBy('strPaymentReceiptID', 'desc')
+                ->take(1)
+                ->get();
+
+            if($prId == null){
+                $payReceiptID = $this->smartCounter("PYR000"); 
+            }else{
+                $ID = $prId["0"]->strPaymentReceiptID;
+                $payReceiptID = $this->smartCounter($ID);  
+            }
+        
+        $paymentReceipt = TransactionPaymentReceipt::create(array(
+                'strPaymentReceiptID' => $payReceiptID,
+                'strPaymentFK' => session()->get('payment_id'), //tblJobOrder
+                'strIssuedByEmpNameFK' => "EMPL001", 
+                'boolIsActive' => 1
+        ));
+
+        session(['pyrReceiptId' => $payReceiptID]);
+
+        $paymentReceipt->save();
+
+
+        return view('billingpayment-submit-individual');
+    }
+
+    public function printReceipt(Request $request)
+    {
+        $request->session()->flash('success-message', 'Payment successfully processed!');  
+        $this->clearValues();
 
         return redirect('transaction/payment/individual/home');
+    }
+
+    public function generateReceipt()
+    {
+
+        $custId = session()->get('cust_id'); //dd($custId);
+        $custname = session()->get('name');
+
+        $customer_info = \DB::table('tblCustIndividual AS a')
+                ->leftJoin('tblJobOrder AS b', 'a.strIndivID', '=', 'b.strJO_CustomerFK')
+                ->leftJoin('tblJOPayment AS c', 'b.strJobOrderID', '=', 'c.strTransactionFK')
+                ->select('a.strIndivID', \DB::raw('CONCAT(a.strIndivFName, " ", a.strIndivMName, " ", a.strIndivLName) AS fullname'), 'b.*', 'c.*')
+                ->where(\DB::raw('CONCAT(a.strIndivFName, " ", a.strIndivMName, " ", a.strIndivLName)'), '=', $custname)
+                ->first();
+
+
+        $customer_orders = \DB::table('tblCustIndividual AS a')
+                ->leftJoin('tblJobOrder AS b', 'a.strIndivID', '=', 'b.strJO_CustomerFK')
+                ->select('a.strIndivID',\DB::raw('CONCAT(a.strIndivFName, " ", a.strIndivMName, " ", a.strIndivLName) AS fullname'),'b.*')
+                ->where(\DB::raw('CONCAT(a.strIndivFName, " ", a.strIndivMName, " ", a.strIndivLName)'), '=', $custname)
+                ->orderBy('b.strJobOrderID')
+                ->get();
+
+        $payments = \DB::table('tblJobOrder AS a')
+                ->leftJoin('tblJOPayment AS b', 'a.strJobOrderID', '=', 'b.strTransactionFK')
+                ->leftJoin('tblCustIndividual AS c', 'c.strIndivID', '=', 'a.strJO_CustomerFK')
+                ->leftJoin('tblJOSpecific AS d', 'a.strJobOrderID', '=', 'd.strJobOrderFK')
+                ->leftJoin('tblSegment AS e', 'd.strJOSegmentFK', '=', 'e.strSegmentID')
+                ->select('a.*', 'b.*', 'c.strIndivID', 'd.*', 'e.*')
+                ->orderBy('a.strJobOrderID')
+                ->get();
+
+
+        $empname = \DB::table('tblEmployee')
+                    ->select('strEmployeeID', \DB::raw('CONCAT(strEmpFName, " ", strEmpMName, " ", strEmpLName) AS employeename'))
+                    ->where('strEmployeeID', '=', 'EMPL001')//Temporary, since naka-hardcode pa yung pagset ng employee sa naunang process.
+                    ->first();
+
+        $paymentid = session()->get('payment_id');
+        $order_receipt = session()->get('jorReceiptId');
+        $payment_receipt = session()->get('pyrReceiptId');
+        $amtTendered = (double)session()->get('amountTendered');
+        $amtChange = (double)session()->get('amountChange');
+
+        $pdf = PDF::loadView('pdf/billpayment-individual-receipt', 
+                    compact('paymentid', 'order_receipt', 'payment_receipt', 'custId',
+                        'amtTendered', 'amtChange','empname', 'custname', 'payments', 'customer_orders', 'customer_info'))
+        ->setPaper('Letter')->setOrientation('portrait');
+
+        return $pdf->stream();
+
+    }
+
+    public function clearValues()
+    {
+        session()->forget('jo_ID');
+        session()->forget('cust_id');
+        session()->forget('amountToPay');
+        session()->forget('outstandingBal');
+        session()->forget('transaction_date');
+        session()->forget('dueDate');
+        session()->forget('jorReceiptId');
+        session()->forget('pyrReceiptId');
+        session()->forget('payment_id');        
+
     }
     /**
      * Show the form for creating a new resource.
