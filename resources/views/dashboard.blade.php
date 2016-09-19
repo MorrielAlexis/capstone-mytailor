@@ -20,14 +20,16 @@
                             </div>
                             <div class="col s12 m6 l3">
                                 <div class="card">
-                                    <div class="card-content cyan darken-1 white-text">
-                                        <p class="card-stats-title" style="font-size:20px"><i class="mdi-editor-attach-money"></i>Total Employees</p>
-                                        <h4 class="card-stats-number">35</h4>
+                                    @foreach($totalCustComp as $totalCustComp)
+                                    <div class="card-content cyan darken-1 white-text" style="height:138px">
+                                        <p class="card-stats-title" style="font-size:18px"><i class="mdi-editor-attach-money"></i>Total Registered Companies</p>
+                                        <h4 class="card-stats-number">{{$totalCustComp->totalCompanies}}</h4>
                                         {{-- <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 70% <span class="purple-text text-lighten-5">last month</span>
                                         </p> --}}
                                     </div>
+                                    @endforeach
                                     <div class="card-action  cyan darken-2"  style="height:40px">
-                                        <div id="sales-compositebar"><canvas width="214" height="25" style="display: inline-block; width: 214px; height: 25px; vertical-align: top;"></canvas></div>
+                                        <div id="sales-compositebar"><canvas width="220" height="25" style="display: inline-block; width: 220px; height: 25px; vertical-align: top;"></canvas></div>
 
                                     </div>
                                 </div>

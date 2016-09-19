@@ -55,25 +55,17 @@ class DashboardController extends Controller
             ->select('tblcustindividual.*', 'tblcustcompany.*', 'tblJobOrder.*')
             ->get();      
 
-         // $totalCustIndiv = \DB::select('SELECT SUM(strIndivID) as ctr FROM tblCustIndividual');
-
          $totalCustIndiv = \DB::table('tblCustIndividual')
             ->select('strIndivID', \DB::raw('count(*) as ctr'))
             ->orderBy('created_at', 'desc')
             ->orderBy('strIndivID', 'desc')
-            // ->take(1)
             ->get();
 
-        // $totalCustIndiv = \DB::table('tblCustIndividual')
-        //      ->select('strIndivID', \DB::raw('count(*) as ctr'))
-        //      ->groupBy('strIndivID')
-        //      ->lists('ctr','strIndivID')->all();
-
-
-            // dd($totalCustIndiv);
-
-        // $totalCustIndiv = \DB::SELECT('tblCustIndividual')
-
+         $totalCustComp = \DB::table('tblCustCompany')
+            ->select('strCompanyID', \DB::raw('count(*) as totalCompanies'))
+            ->orderBy('created_at', 'desc')
+            ->orderBy('strCompanyID', 'desc')
+            ->get();
 
            
         return view('dashboard')
@@ -81,6 +73,7 @@ class DashboardController extends Controller
              ->with('joborderongoing', $joborderongoing)
              ->with('joborderprog', $joborderprog)
              ->with('neardue', $neardue)
-             ->with('totalCustIndiv', $totalCustIndiv);
+             ->with('totalCustIndiv', $totalCustIndiv)
+             ->with('totalCustComp', $totalCustComp);
     }
 }
