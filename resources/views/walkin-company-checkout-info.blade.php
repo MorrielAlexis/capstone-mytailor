@@ -20,6 +20,7 @@
 			</div>
 
 			<!-- Tab for Customer Info -->
+		{!! Form::open(['url' => , 'method' => 'POST']) !!}
 		<div id="customer-info" class = "hue col s12" style="background-color: white; border:2px outset">
 	        <div class="row">
 		        <div class="col s12 m12 l12">
@@ -51,7 +52,7 @@
 					<div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
 						<h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
 							
-							{!! Form::open() !!}
+							
 								<div class="divider" style="height:2px"></div>
 								<div class="modal-content col s12">
 									<label>This is a summary of orders:</label>
@@ -92,7 +93,7 @@
 					                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-company-payment-measure-detail')}}"><font color="black">Yes</font></a>
 					                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
 					            </div>
-							{!! Form::close() !!}
+							
 					</div>
 					<!--End of modal for summary of orders-->
 
@@ -108,7 +109,7 @@
 								</div>
 
 								<div class="modal-footer col s12">
-					                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-company')}}"><font color="black">Yes</font></a>
+					                <button class="waves-effect waves-green btn-flat"><font color="black">Yes</font></button>
 					                <a href="{{URL::to('/transaction/walkin-company-payment-customer-info')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
 					            </div>
 							{!! Form::close() !!}
@@ -232,6 +233,7 @@
 	      	
 	      		<center><p><font color="gray">End of Customer Profile Information Form</font></p></center>
 	    </div>
+	    {!! Form::close() !!}
 	    <!-- End of tab for Customer Info-->
 
 		</div>
