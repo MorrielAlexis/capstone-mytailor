@@ -38,139 +38,48 @@
                           <center><a href="#!" class="container btn tooltipped"  data-position="bottom" data-delay="50" data-tooltip="Click to add similar garment and specify new design and fabric" style="margin-top:20px; background-color:teal; white:white">Add</a></center>
                       </div>
                       <div class="col s6">
-                        <div class="col s12" style=""><a class="btn right container teal accent-4 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize order" href="{{URL::to('/customize-womens-fabric')}}" style="margin-left:10px;">Customize Order</a></div>
-                        <div class="col s12" style="margin-top:20px; color:gray"><p>Garment description below:</p></div>
-                        <div class="col s12" style="padding:0">
-                          <div style="padding:25px;">
-                            <div class="col s7" style="color:teal;"><p><b>Garment Category:</b></p></div>
-                            <div class="col s5"><p>Uniform</p></div>
+                        <!-- <div class="col s12" style=""><a class="btn right container teal accent-4 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize order" href="{{URL::to('/customize-womens-fabric')}}" style="margin-left:10px;">Customize Order</a></div> -->
+                        
+                        @foreach($selecteds as $selected)
+                          <div class="col s12" style="margin-top:20px; color:gray"><p>Garment description below:</p></div>
+                          <div class="col s12" style="padding:0">
+                            <div style="padding:25px;">
+                              <div class="col s7" style="color:teal;"><p><b>Garment Category:</b></p></div>
+                              <div class="col s5"><p>{{$selected->strSegCategoryFK}}</p></div>
+                            </div>
+                            <div style="padding:25px;">
+                              <div class="col s7" style="color:teal;"><p><b>Garment Segment:</b></p></div>
+                              <div class="col s5"><p>{{$selected->strSegmentName}}</p></div>
+                            </div>
+                            <div style="padding:25px;">
+                              <div class="col s7" style="color:teal;"><p><b>Sex(Applicable):</b></p></div>
+                              <div class="col s5">
+                                @if($selected->strSegmentSex == 'f')
+                                  <p>Female</p>
+                                @else
+                                  <p>Male</p>
+                                @endif
+                              </div>
+                            </div>
+                            <div style="padding:25px;">
+                              <div class="col s7" style="color:teal;"><p><b>Price starts from:</b></p></div>
+                              <div class="col s5" style="color:red"><p>{{$selected->dblSegmentPrice}}</p></div>
+                            </div>
+                            <div style="padding:25px;">
+                              <div class="col s7" style="color:teal;"><p><b>Time to finish(min):</b></p></div>
+                              <div class="col s5" style="color:red"><p>{{$selected->intMinDays}}</p></div>
+                            </div>
                           </div>
-                          <div style="padding:25px;">
-                            <div class="col s7" style="color:teal;"><p><b>Garment Segment:</b></p></div>
-                            <div class="col s5"><p>Skirt</p></div>
-                          </div>
-                          <div style="padding:25px;">
-                            <div class="col s7" style="color:teal;"><p><b>Sex(Applicable):</b></p></div>
-                            <div class="col s5"><p>Female</p></div>
-                          </div>
-                          <div style="padding:25px;">
-                            <div class="col s7" style="color:teal;"><p><b>Price starts from:</b></p></div>
-                            <div class="col s5" style="color:red"><p>800.00 PHP</p></div>
-                          </div>
-                          <div style="padding:25px;">
-                            <div class="col s7" style="color:teal;"><p><b>Time to finish(min):</b></p></div>
-                            <div class="col s5" style="color:red"><p>3 days</p></div>
+                          <div class="col s12">
+                            <div class="col s3" style="margin-top:30px; color:red"><center><b style="font-size:18px">QTY</b></center></div>  
+                            <div class="col s6" style="margin-top:20px; padding:5px; margin-right:5px;"><input name="quantity" id="quantity" type="number" style="border:2px teal solid; padding-left:18%; padding-right:18%" placeholder="How many?"></div>
                           </div>
                         </div>
-                        <div class="col s12">
-                          <div class="col s3" style="margin-top:30px; color:red"><center><b style="font-size:18px">QTY</b></center></div>  
-                          <div class="col s6" style="margin-top:20px; padding:5px; margin-right:5px;"><input name="quantity" id="quantity" type="number" style="border:2px teal solid; padding-left:18%; padding-right:18%" placeholder="How many?"></div>
-                        </div>
-                      </div>
+                      @endforeach
                     </div>
                   </div>
                 </div>
             </div>
-        </div>
-      </div>
-      <!--order 2-->
-      <div class="col s6">
-        <div class="row">
-          <div class="col s12">
-              <div class="card grey lighten-3 z-depth-0" style="border:1px solid pink; padding:2px;">
-                <div class="card-content" style="border:1px solid pink;">
-                  
-                  <div class="row">
-                    <div class="col s6">
-                        <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#removeOrder"><i class="mdi-navigation-close"></i></a>
-                        <center><img src="{{URL::to('imgOnlineUniform/female-uniform-skirt.jpg')}}" style="margin:20px;height:275px; width:275x; border:3px gray solid"></center>
-                        <center><a href="#!" class="container btn tooltipped"  data-position="bottom" data-delay="50" data-tooltip="Click to add similar garment and specify new design and fabric" style="background-color:teal; white:white">Add</a></center>
-                    </div>
-                      <div class="col s6">
-                        <div class="col s12" style=""><a class="btn right container teal accent-4 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize order" href="{{URL::to('/customize-pants-fabric')}}" style="margin-left:10px;">Customize Order</a></div>                      
-                        <div class="col s12" style="margin-top:20px; color:gray"><p>Garment description below:</p></div>
-                        <div class="col s12" style="padding:0">
-                          <div style="padding:25px;">
-                            <div class="col s7" style="color:teal;"><p><b>Garment Category:</b></p></div>
-                            <div class="col s5"><p>Uniform</p></div>
-                          </div>
-                          <div style="padding:25px;">
-                            <div class="col s7" style="color:teal;"><p><b>Garment Segment:</b></p></div>
-                            <div class="col s5"><p>Polo</p></div>
-                          </div>
-                          <div style="padding:25px;">
-                            <div class="col s7" style="color:teal;"><p><b>Sex(Applicable):</b></p></div>
-                            <div class="col s5"><p>Female</p></div>
-                          </div>
-                          <div style="padding:25px;">
-                            <div class="col s7" style="color:teal;"><p><b>Price starts from:</b></p></div>
-                            <div class="col s5" style="color:red"><p>800.00 PHP</p></div>
-                          </div>
-                          <div style="padding:25px;">
-                            <div class="col s7" style="color:teal;"><p><b>Time to finish(min):</b></p></div>
-                            <div class="col s5" style="color:red"><p>3 days</p></div>
-                          </div>
-                        </div>
-                        <div class="col s12">
-                          <div class="col s3" style="margin-top:30px; color:red"><center><b style="font-size:18px">QTY</b></center></div>  
-                          <div class="col s6" style="margin-top:20px; padding:5px; margin-right:5px;"><input name="quantity" id="quantity" type="number" style="border:2px teal solid; padding-left:18%; padding-right:18%" placeholder="How many?"></div>
-                        </div>
-                      </div>
-                  </div>
-                </div>
-              </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col s12">
-    <!--order 3-->
-      <div class="col s6">
-        <div class="row">
-          <div class="col s12">
-              <div class="card grey lighten-3 z-depth-0" style="border:1px solid pink; padding:2px;">
-                <div class="card-content" style="border:1px solid pink;">
-                  
-                  <div class="row">
-                    <div class="col s6">
-                        <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#removeOrder"><i class="mdi-navigation-close"></i></a>
-                        <center><img src="{{URL::to('imgOnlineUniform/male-uniform-pants-plain.jpg')}}" style="margin:20px;height:275px; width:275x; border:3px gray solid"></center>
-                        <center><a href="#!" class="container btn tooltipped"  data-position="bottom" data-delay="50" data-tooltip="Click to add similar garment and specify new design and fabric" style="background-color:teal; white:white">Add</a></center>
-                    </div>
-                      <div class="col s6">
-                        <div class="col s12" style=""><a class="btn right container teal accent-4 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize order" href="{{URL::to('/customize-pants-fabric')}}" style="margin-left:10px;">Customize Order</a></div>                      
-                        <div class="col s12" style="margin-top:20px; color:gray"><p>Garment description below:</p></div>
-                        <div class="col s12" style="padding:0">
-                          <div style="padding:25px;">
-                            <div class="col s7" style="color:teal;"><p><b>Garment Category:</b></p></div>
-                            <div class="col s5"><p>Uniform</p></div>
-                          </div>
-                          <div style="padding:25px;">
-                            <div class="col s7" style="color:teal;"><p><b>Garment Segment:</b></p></div>
-                            <div class="col s5"><p>Pants</p></div>
-                          </div>
-                          <div style="padding:25px;">
-                            <div class="col s7" style="color:teal;"><p><b>Sex(Applicable):</b></p></div>
-                            <div class="col s5"><p>Male</p></div>
-                          </div>
-                          <div style="padding:25px;">
-                            <div class="col s7" style="color:teal;"><p><b>Price starts from:</b></p></div>
-                            <div class="col s5" style="color:red"><p>800.00 PHP</p></div>
-                          </div>
-                          <div style="padding:25px;">
-                            <div class="col s7" style="color:teal;"><p><b>Time to finish(min):</b></p></div>
-                            <div class="col s5" style="color:red"><p>3 days</p></div>
-                          </div>
-                        </div>
-                        <div class="col s12">
-                          <div class="col s3" style="margin-top:30px; color:red"><center><b style="font-size:18px">QTY</b></center></div>  
-                          <div class="col s6" style="margin-top:20px; padding:5px; margin-right:5px;"><input name="quantity" id="quantity" type="number" style="border:2px teal solid; padding-left:18%; padding-right:18%" placeholder="How many?"></div>
-                        </div>
-                      </div>
-                  </div>
-                </div>
-              </div>
-          </div>
         </div>
       </div>
 

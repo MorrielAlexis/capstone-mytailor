@@ -38,8 +38,8 @@
                 <div class="col s4">
 
                   <div class="center col s12">
-                    <input type="radio" name = "menshirt" class="filled-in cbx-segment-name" id="{{$garment->strSegmentName}}" value="{{$garment->strSegmentName}}" style="padding:5px"/>
-                    <label for="{{$garment->strSegmentName}}">{{$garment->strSegmentName}}</label>
+                    <input type="radio" name = "cbx-segment-name" class="filled-in cbx-segment-name" id="{{$garment->strSegmentID}}" value="{{$garment->strSegmentID}}" style="padding:5px"/>
+                    <label for="{{$garment->strSegmentID}}">{{$garment->strSegmentName}}</label>
                   </div>
 
                   <div class="center col s12">

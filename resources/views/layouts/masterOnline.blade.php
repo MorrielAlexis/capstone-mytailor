@@ -114,8 +114,8 @@
                 <li><a class="btn-flat" style="color: white;font-size:18px" href="{{URL::to('')}}"><b>CATALOGUE</b></a></li>
               </ul>
               <ul id="shoppingcart" class="right" style="margin-right:10px;">
-                <li><a href="{{URL::to('/online-order-now')}}" style="margin:0; padding:0;" class="btn-flat white-text">Shopping Cart</a></li>
-                <li><a href="{{URL::to('/online-order-now')}}" style="margin:0; padding:0;" class="btn-flat"><i class="white-text mdi-action-shopping-cart" style="font-size:30px; margin-top:-15px;"></i></a></li>
+                <li><a href="{{URL::to('/shopping-cart')}}" style="margin:0; padding:0;" class="btn-flat white-text">Shopping Cart</a></li>
+                <li><a href="{{URL::to('/shopping-cart')}}" style="margin:0; padding:0;" class="btn-flat"><i class="white-text mdi-action-shopping-cart" style="font-size:30px; margin-top:-15px;"></i></a></li>
               </ul>
             </div>
           </nav>
