@@ -40,24 +40,24 @@
 			            </div>
 
 			            <div class="input-field col s3">
-			                <input  required id="strCompanyStreet" name="strCompanyStreet" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$" type="text" placeholder="Malunggay" class="validate"/>
+			                <input  required id="strCompanyStreet" name="strCompanyStreet" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?" type="text" placeholder="Malunggay" class="validate"/>
 			                <label for=" Street">Street <span class="red-text"><b>*</b></span></label>
 			            </div>
 
 			            <div class="input-field col s3">
-			                <input id="strCompanyBarangay" name="strCompanyBarangay" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$" type="text" placeholder="Daang Bakal" class="validate"/>
+			                <input id="strCompanyBarangay" name="strCompanyBarangay" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?" type="text" placeholder="Daang Bakal" class="validate"/>
 			                <label for=" Brgy">Barangay/Subd </label>
 			            </div>
 
 			            <div class="input-field col s3">
-			                <input required="" id="strCompanyCity" name="strCompanyCity" pattern="^[a-zA-Z\'\-]+( [a-zA-Z\'\-]+)*$" type="text" placeholder="Mandaluyong" class="validate"/>
+			                <input required="" id="strCompanyCity" name="strCompanyCity" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?" type="text" placeholder="Mandaluyong" class="validate"/>
 			                <label for=" City">City/Municipality <span class="red-text"><b>*</b></span></label>
 			            </div>
 			        </div>
 
 			        <div class = "col s12" style="padding:15px;">
 			            <div class="input-field col s6">
-			                <input id="strCompanyProvince" name="strCompanyProvince" pattern="^[a-zA-Z\'\-\.]+( [a-zA-Z\'\-\.]+)*$" type="text" placeholder="Pampanga" class="validate"/>
+			                <input id="strCompanyProvince" name="strCompanyProvince" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?" type="text" placeholder="Pampanga" class="validate"/>
 			                <label for=" Province">Province </label>
 			            </div>
 

@@ -233,17 +233,19 @@
                           </div>
 
                            <div class="input-field col s3">
-                            <input required value="{{$employee->strEmpStreet}}" id="editEmpStreet" name="editEmpStreet" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$" type="text" placeholder="Malunggay" class="validate">
+                            <input required value="{{$employee->strEmpStreet}}" id="editEmpStreet" name="editEmpStreet" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?" type="text" placeholder="Malunggay" class="validate">
                             <label for="Emp Street">Street <span class="red-text"><b>*</b></span></label>
                           </div>
 
                           <div class="input-field col s3">
-                            <input value="{{$employee->strEmpBarangay}}" id="editEmpBarangay" name="editEmpBarangay" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$" type="text" placeholder="Daang Bakal" class="validate">
+                            <input value="{{$employee->strEmpBarangay}}" id="editEmpBarangay" name="editEmpBarangay" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?" type="text" placeholder="Daang Bakal" class="validate">
                             <label for="Emp Brgy">Barangay/Subd </label>
                           </div>
+                          
+                          {{-- ^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$ --}}
 
                           <div class="input-field col s3">
-                            <input required value="{{$employee->strEmpCity}}" id="editEmpCity" name="editEmpCity" pattern="^[a-zA-Z\'\-]+( [a-zA-Z\'\-]+)*$" type="text" placeholder="Mandaluyong" class="validate">
+                            <input required value="{{$employee->strEmpCity}}" id="editEmpCity" name="editEmpCity" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?" type="text" placeholder="Mandaluyong" class="validate">
                             <label for="Emp City">City/Municipality <span class="red-text"><b>*</b></span></label>
                           </div>
                         </div>
@@ -251,7 +253,7 @@
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s6">
-                            <input value="{{$employee->strEmpProvince}}" id="editEmpProvince" name="editEmpProvince" pattern="^[a-zA-Z\'\-\.]+( [a-zA-Z\'\-\.]+)*$" type="text" placeholder="Pampanga" class="validate">
+                            <input value="{{$employee->strEmpProvince}}" id="editEmpProvince" name="editEmpProvince" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?" type="text" placeholder="Pampanga" class="validate">
                             <label for="Emp Province">Province </label>
                           </div>
 
