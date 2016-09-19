@@ -28,14 +28,13 @@
 						<div class="col s12">
 							<div class="col s6">
 								<select class="browser-default">
-									<option value="" style="color:gray">Status</option>
+									<option value="" style="color:gray" disabled>Payment Status</option>
 									<option value="1">All</option>
 									<option value="2">Paid</option>
-									<option value="3">Partial</option>
-									<option value="4">Canceled</option>
+									<option value="3">Pending</option>
 								</select>
 							</div>
-							<div class="col s6">
+							<div class="col s6" hidden>
 								<select class="browser-default">
 									<option value="" style="color:gray">Payment Type</option>
 									<option value="1">All</option>
@@ -59,7 +58,7 @@
 						<div class="col s12" style="margin-top:20px">
 							<a href="" class="left btn" style="background-color:teal; color:white; margin-left:10px">Cancel</a>
 							<a href="{{URL::to('/transaction/payment/individual/home')}}" class="left btn" style="background-color:teal; color:white; margin-left:10px">Go to Payment</a>
-							<a href="" class="right btn" style="background-color:teal; color:white; margin-right:10px">Search</a>
+							<a href="" class="right btn" style="background-color:teal; color:white; margin-right:10px">Save</a>
 							<a href="" class="right btn" style="background-color:teal; color:white; margin-right:40px">Edit</a>
 						</div>
 
@@ -84,6 +83,7 @@
 									<tr>
 										<!-- <th class="center" style="color:gray">ID</th> -->
 										<th class="center" style="color:gray">Customer Name</th>
+										<th class="center" style="color:gray">Job Order #</th>
 										<th class="center" style="color:gray">Payment Type</th>
 										<th class="center" style="color:gray">Cheque Number</th>
 										<th class="center" style="color:red">Total Amount</th>
@@ -96,29 +96,54 @@
 									</tr>
 								</thead>
 								<tbody>
-									@if(isset($payments))
-									@foreach($payments as $payment)
-										@if($payment->boolIsActive == 1)
-
-									<tr>
-										
+								
+									@foreach($customers as $customer)
+									@foreach($cust as $custs)
+									@if($customer->boolIsActive == 1 AND $customer->strJO_CustomerFK == $custs->strIndivID AND $customer->strTransactionFK == $custs->strJobOrderID)
+								
+									@if($customer->strPaymentStatus == "Pending")	
+									<tr style="background-color:rgba(54, 162, 235, 0.2)" @if($customer->strJO_CustomerFK != $custs->strIndivID) hidden @endif>										
 										<!--  -->
-										<td class="center">{{ $payment->fullname }}</td>
+										<td class="center">{{ $customer->fullname }}</td>
+										<td class="center">{{ $customer->strTransactionFK }}</td>
 										<td class="center">Cash</td>
-										<td class="center"> </td>
-										<td class="center" style="color:red">{{ number_format($payment->dblOrderTotalPrice, 2) }}</td>
-										<td class="center">{{ number_format(($payment->dblOrderTotalPrice/2), 2) }}</td>
-										<td class="center">{{ number_format($payment->dblAmountToPay, 2) }}</td>
-										<td class="center">{{ number_format($payment->dblOutstandingBal, 2)}}</td>
-										<td class="center" style="color:red">{{ $payment->dtPaymentDueDate }}</td>
-										<!-- <td class="center">{{ $payment->dtPaymentDate }}</td> -->
-										<td class="center" style="color:green"><i>{{ $payment->strPaymentStatus }}</i></td>
+										<td class="center"> ---- </td>
+										<td class="center" style="color:red">{{ number_format($customer->dblOrderTotalPrice, 2) }}</td>
+										<td class="center">{{ number_format(($customer->dblOrderTotalPrice/2), 2) }}</td>
+										<td class="center">{{ number_format($customer->dblAmountToPay, 2) }}</td>
+										<td class="center">{{ number_format($customer->dblOutstandingBal, 2)}}</td>
+										<td class="center" style="color:red">{{ $customer->dtPaymentDueDate }}</td>
+										<td class="center" style="color:green"><i>{{ $customer->strPaymentStatus }}</i></td>
 											
 									</tr>
 
+									@elseif($customer->strPaymentStatus != "Pending")	
+									<tr @if($customer->strJO_CustomerFK != $custs->strIndivID) hidden @endif>										
+										<!--  -->
+										<td class="center">{{ $customer->fullname }}</td>
+										<td class="center">{{ $customer->strTransactionFK }}</td>
+										<td class="center">{{ $customer->strModeOfPayment }}</td>
+										@if($customer->strModeOfPayment != "Cash")
+										<td class="center">Cheque here</td>
+										@elseif($customer->strModeOfPayment == "Cash")
+										<td class="center"> ---- </td>
 										@endif
-									@endforeach
+										<td class="center" style="color:teal">{{ number_format($customer->dblOrderTotalPrice, 2) }}</td>
+										<td class="center">{{ number_format(($customer->dblOrderTotalPrice/2), 2) }}</td>
+										<td class="center">{{ number_format($customer->dblAmountToPay, 2) }}</td>
+										<td class="center">{{ number_format($customer->dblOutstandingBal, 2)}}</td>
+										@if($customer->strPaymentStatus != "Pending") 
+											<td class="center" style="color:teal">----</td>
+										@elseif($customer->strPaymentStatus == "Pending")
+										<td class="center" style="color:teal" >{{ $customer->dtPaymentDueDate }}</td>
+										@endif
+										<td class="center" style="color:green"><i>{{ $customer->strPaymentStatus }}</i></td>
+											
+									</tr>
 									@endif
+									@endif	
+									@endforeach
+									@endforeach
 								</tbody>
 							</table>
 
@@ -231,9 +256,9 @@
 
 							</div>
 
-							<div class="col s12" style="margin-top:60px">
+							<div class="col s12" style="margin-top:60px" hidden>
 								<div class="divider" style="margin-bottom:20px"></div>
-								<a href="" class="left btn" style="background-color:teal; color:white"><i class="large mdi-editor-insert-chart" style="padding-right:15px"></i>View Summary Report</a>
+								<!-- <a href="" class="left btn" style="background-color:teal; color:white"><i class="large mdi-editor-insert-chart" style="padding-right:15px" hidden=""></i>View Summary Report</a> -->
 								<a href="" class="right btn" style="background-color:teal; color:white;"><i class="large mdi-editor-insert-drive-file" style="padding-right:15px"></i>Export as PDF</a>
 								<a href="" class="right btn" style="background-color:teal; color:white; margin-right:50px"><i class="large mdi-action-print" style="padding-right:15px"></i>Print a copy</a>
 							</div>
