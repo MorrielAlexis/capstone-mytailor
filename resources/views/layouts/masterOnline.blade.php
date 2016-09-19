@@ -51,7 +51,8 @@
         <div class="navbar teal " >
           <nav style="height:40px">
             <div class="nav-wrapper">
-              <img src="../imgOnline/logo.jpg"  alt="" class="circle responsive-img valign profile-image center" style="height:90px; width:100px; margin-top:5px; margin-left:30px;">
+              <img src="../../{{ Session::get('shop_logo') }}"  alt="" class="circle responsive-img valign profile-image center" style="height:90px; width:100px; margin-top:5px; margin-left:30px;">
+        	  
             </div>
       </nav>
         </div>

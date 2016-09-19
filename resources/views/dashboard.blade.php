@@ -64,7 +64,7 @@
 
     <div id="card-stats" style="padding:20px;">
         <div class="row">
-            <div class="col s4" style="margin-top:-12px;">
+            <div class="col s12 m6 l4" style="margin-top:-12px;">
                 <div class="card z-depth-3" style="background-image:url('img/1.jpg');">
                     <div class="card-header blue-grey">
                         <div class="card-title">
@@ -85,7 +85,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col s4">
+            <div class="col s12 m6 l4">
                 <div class="col s12">
                     <ul id="task-card" class="collection with-header z-depth-3" style="border:0;  height:550px">
                         <li class="collection-header green">
@@ -106,7 +106,7 @@
                 </div>
             </div>
 
-            <div class="col s4">
+            <div class="col s12 m6 l4">
                 <div class="col s12">
                     <ul id="task-card" class="collection with-header z-depth-3" style="border:0; height:550px">
                         <li class="collection-header cyan">
@@ -128,7 +128,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col s6">
+            <div class="col s12 m12 l6">
                 <ul id="projects-collection" class="collection z-depth-3" style="height:550px">
                     <li class="collection-item avatar">
                         <i class="mdi-file-folder circle light-blue darken-2"></i>
@@ -152,7 +152,7 @@
                     @endforeach
                 </ul>
             </div>
-            <div class="col s6">
+            <div class="col s12 m12 l6">
                 <ul id="issues-collection" class="collection z-depth-3" style="height:550px">
                     <li class="collection-item avatar">
                         <i class="mdi-action-bug-report circle red darken-2"></i>
