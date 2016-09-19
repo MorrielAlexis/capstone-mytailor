@@ -79,17 +79,15 @@
                           <label style="color:gray" for="last_name"><b><span class="red-text"><b>*</b></span>Last Name </b></label>
                         </div>
 
-                        <div style="color:black" class="input-field col s12">
+                        <div class="input-field col s12" style="color:black">
             							<!--<p style="color:gray"><b>Sex</b></p>-->
-            							<select value="" name='strIndivSex' id='strIndivSex' required>
+            							<select value="" name='strIndivSex' required>
                               <option value="M">Male</option>
                               <option value="F">Female</option>
                           </select>    
                           <label>Sex</label>
             						</div>
-                    </div>
-
-
+                    </div>    
 
                     <span class="col s12" style="color:teal; margin-top:20px"><b>Customer Address</b></span>
                     <div class="card-panel col s12" style="border:3px solid gray; padding:15px">

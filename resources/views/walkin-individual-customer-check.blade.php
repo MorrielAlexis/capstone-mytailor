@@ -48,7 +48,7 @@
 
 					
 					<!--this will appear once the user chose the button for existing customer-->
-					{!! Form::open(['url' => 'transaction/walkin-individual-show-measurement-view', 'method' => 'POST']) !!}
+					{!! Form::open(['url' => 'transaction/walkin-individual-existing-show-measurement-view', 'method' => 'POST']) !!}
 					<div class="customer-form col s12" id="custname" style="display:none; padding:5%">
 					<div class="col s12"><div class="divider" style="height:2px; background-color:teal; margin-top:3%"></div></div>
 						<div class="container">
