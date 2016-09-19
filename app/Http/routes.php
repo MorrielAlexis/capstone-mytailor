@@ -301,9 +301,9 @@ Route::group(['prefix' => 'utilities'], function(){
 });
 
 //acceptance of order from online module
-Route::get('/acceptIndividual','OnlineCustomerIndividualController@accept');
-Route::get('/rejectIndividual','OnlineCustomerIndividualController@reject');
-Route::get('/acceptCompany','OnlineCustomerCompanyController@accept');
+Route::get('/acceptIndividual','ApproveOnlineCustomerIndividualController@accept');
+Route::get('/rejectIndividual','ApproveOnlineCustomerIndividualController@reject');
+Route::get('/acceptCompany','ApproveOnlineCustomerCompanyController@accept');
 
 Route::group(['prefix' => 'transaction'], function(){
 	

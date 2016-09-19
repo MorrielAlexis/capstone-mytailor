@@ -45,9 +45,9 @@
 		        		<table class="centered">
 		        			<thead>
 						    	<tr>
-						        	<th style="color:#1b5e20">Track#</th>
-						            <th style="color:#1b5e20">Company Name</th>
-						            <th style="color:#1b5e20">Due Date</th>
+						        	<th style="color:#1b5e20">Job Order #</th>
+						            <th style="color:#1b5e20">Customer Name</th>
+						            <th style="color:#1b5e20">Email</th>
 						            <th>
 						        </tr>
 						    </thead>
@@ -87,7 +87,7 @@
 								    <tbody>
 								        <tr>
 								        	<td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to accept online order" href="{{URL::to('/acceptIndividual')}}"><i class="mdi-action-done"></i></a>
-					                          <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to reject order." href="{{URL::to('/rejectIndividual')}}"><i class="mdi-action-delete"></i></a></td>
+					                          {{-- <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to reject order." href="{{URL::to('/rejectIndividual')}}"><i class="mdi-action-delete"></i></a> --}}</td>
 								        </tr>
 								    </tbody>
 								</table>
@@ -103,12 +103,11 @@
 						    	<table class = "centered">
 						    		<thead>
 						    			<tr>
-						    				<th>Garment Type</th>
-						    				<th>Garment Name</th>
-						    				<th>Garment Image</th>
+						    				<th>Segment Name</th>
+						    				<th>Segment Image</th>
 						    				<th>Quantity</th>
 						    				<th>Fabric Type</th>
-						    				<th>Swatch Fabric Name</th>
+						    				<th>Design</th>
 						    				<th>Swatch Image</th>
 						    				<th>Swatch Code</th>
 						    				<th></th>
@@ -116,27 +115,16 @@
 						    		</thead>
 						    		<tbody>
 						    			<tr>
-						    				<td>Uniform</td>
-						    				<td>Women's Uniform</td>
+						    				<td>Polo Shirt</td>
 						    				<td><img class="img hoverable" src="../img/uniform3.jpg"></td>
 						    				<td>1</td>
 						    				<td>Linen</td>
-						    				<td>Linen Keme</td>
+						    				<td>Collar - Button Down</td>
 						    				<td><img class="img hoverable" src="../imgSwatches/citadel alpine.jpg"></td>
 						    				<td>LINK001</td>
 						    				<td><a class="btn modal-trigger tooltipped" href="#measurementmodal" data-position="top" data-delay="50" data-tooltip="Measurements"><i class="mdi-action-view-headline"></i></a></td>
 						    			</tr>
 						    			<tr>
-						    				<td>Gown</td>
-						    				<td>Tube Cocktail</td>
-						    				<td><img class="img hoverable" src="../img/gown2.jpg"></td>
-						    				<td>1</td>
-						    				<td>Cotton</td>
-						    				<td>Cotton Keme</td>
-						    				<td><img class="img hoverable" src="../imgSwatches/citadel grape.jpg"></td>
-						    				<td>COT001</td>
-						    				<td><a class="btn modal-trigger tooltipped" href="#measurementmodal" data-position="top" data-delay="50" data-tooltip="Measurements"><i class="mdi-action-view-headline"></i></a></td>
-						    			</tr>
 						    		</tbody>
 						    	</table>
 						    </div>
