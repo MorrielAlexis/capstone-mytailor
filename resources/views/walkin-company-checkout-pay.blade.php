@@ -107,7 +107,7 @@
 									<tr>
 										<td style="border:1px black solid">{{ $package_segments[$j][$k][0]->strSegmentName }}</td>
 										<td style="border:1px black solid">{{ $segment_fabrics[$j][$k]->strFabricName }}</td>
-										<td style="border:1px black solid">1</td>
+										<td style="border:1px black solid">{{ $segment_qty[$i][0][$k] }}</td>
 										<td style="border:1px black solid">{{ number_format($package_segments[$j][$k][0]->dblSegmentPrice, 2) }} PHP</td>
 										<td style="border:1px black solid">
 											@for($l = 0; $l < count($segment_patterns[$j][$k]); $l++)

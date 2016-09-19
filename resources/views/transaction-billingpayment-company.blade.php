@@ -44,7 +44,7 @@
 										<div class="col s12 customer" style="background-color: #e0f2f1; padding-top:3%; padding-bottom:3%">
 												<div style="color:black" class="col s12">                   					                          
 						                          	<div class="col s3" style="color:black; margin-top:2%"><center><b>COMPANY NAME:</b></center></div>
-						                          	<div class="col s9"><input style="border:3px teal solid; padding:5px; padding-left:10px; background-color:white; color:teal" id="cust_name" name="cust_name" type="text" placeholder="ex. Honey Buenavides"></div>					                         			                          	
+						                          	<div class="col s9"><input style="border:3px teal solid; padding:5px; padding-left:10px; background-color:white; color:teal" id="cust_name" name="cust_name" type="text" placeholder="Input complete name here"></div>					                         			                          	
 						                        </div>
 
 					                         <button class="right btn" type="submit" id="getCustomer" style="background-color:#004d40; color:white">Start Payment</button> 
@@ -101,13 +101,21 @@
 							                    		</div>
 							                    		<!--eto ang iloloop beybe-->
 							                    		<div class="col s12" style="padding-left:15%">
-							                    			@foreach($payments as $payment)
-							                    			@if( ($customer_info->strCompanyID) == ($payment->strCompanyID)) 
-							                    			<div class="col s12" style="color:black; margin-top:3%; padding:0; font-size:18px"><b>{{ $payment->dtOrderDate }} {{ $payment->strJobOrderID }}</b>
-							                    				<a href=""><u>See transaction detail</u></a>
-							                    				<a style="background-color:#ef9a9a; color:white; padding-left:3%; padding-right:3%">Due date: {{$payment->dtPaymentDueDate }}</a>
-							                    			</div>
+							                    		@foreach($customer_orders as $j => $order)
+														@foreach($payments as $i => $payment)
+
+														@if($order->strTermsOfPayment == "Full Payment")
+						                    				 
+						                    				<div @if($payment->strTransactionFK != $order->strJobOrderID) hidden @endif> You have no pending payment</div>
+
+														@elseif($order->strTermsOfPayment != "Full Payment")
+							                    			<div class="col s12 {{$payment->strJobOrderID}}{{$i+1}}" style="color:black; margin-top:3%; padding:0; font-size:18px" id="{{$payment->strJobOrderID}}{{$i+1}}" @if($payment->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>{{ $order->dtOrderDate }} {{ $order->strJobOrderID }}</b>
+						                    				<!-- <a href=""><u>See transaction detail</u></a> -->
+						                    				<a class="{{$payment->strJobOrderID}}{{$i+1}}" style="background-color:#ef9a9a; color:white; padding-left:3%; padding-right:3%" id="{{$payment->dtPaymentDueDate}}">Due date: {{$payment->dtPaymentDueDate }}</a>
+						                    				</div>					                    				
+
 							                    			@endif
+							                    			@endforeach
 							                    			@endforeach
 							                    		</div>
 							                    		<!--ends here-->
@@ -124,9 +132,14 @@
 										<div class="col s12" style="padding-left:5%">
 											<div class="input-field col s9">
 												<div class="container">
-													<select class="browser-default" id="unpaid-payments" style="margin-left:45%">
-														@foreach($customer_orders as $order)
-														<option value="{{ $order->strJobOrderID }}">{{ $order->dtOrderDate }} {{ $order->strJobOrderID }}</option>
+													<select class="browser-default unpaid-payments" id="unpaid-payments" style="margin-left:45%">
+														<option value="0">Choose your option</option>
+														@foreach($customer_orders as $j => $order)
+															@foreach($payments as $i => $payment)													
+															@if($order->strTermsOfPayment != "Full Payment")
+															<option value="{{ $payment->strJobOrderID }}" @if($payment->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>{{ $order->dtOrderDate }} {{ $order->strJobOrderID }}</option>
+															@endif
+															@endforeach
 														@endforeach
 													</select>
 												</div>
@@ -139,55 +152,56 @@
 											<div class="col s7">
 												<div class="card-panel">
 													<div class="card-content">
-														<div class="row">
+														<div class="row" id="pay_form" style="display:none">
 														@foreach($payments as $payment)
-														@if( ($customer_info->strCompanyID) == ($payment->strCompanyID))
-															<div class="payment-summary {{ $order->strJobOrderID}}">
+														@if($payment->strTransactionFK == $customer_info->strJobOrderID)
+															<div class="payment-summary{{ $payment->strJobOrderID}}">
 																<div style="color:black" class="input-field col s7">                 
-										                          <input style="margin-left:80%; padding:1%; padding-left:1%" name="payment-info" type="text" class="" value="{{ number_format($payment->dblOrderTotalPrice, 2)}} PHP">
-										                          <label style="color:teal; margin-top:1%; margin-left:2%"><b>Total Amount to Pay:</b></label>
+										                          <input style="margin-left:80%; padding:1%; padding-left:1%" type="text" class="" name="amount-to-pay" id="amount-to-pay">
+										                          <label style="color:teal; margin-top:1%; margin-left:2%"><b>Job Order Total Price:</b></label>
 										                        </div>
 
 										                        <div style="color:black" class="input-field col s7">                 
-										                          <input style="margin-left:80%; padding:1%; padding-left:1%" name="payment-info" type="text" class="" value="{{ number_format($payment->dblAmountToPay, 2)}} PHP">
+										                          <input style="margin-left:80%; padding:1%; padding-left:1%" type="text" class="" name="amount-paid" id="amount-paid">
 										                          <label style="color:teal; margin-top:1%; margin-left:2%"><b>Total Amount Paid:</b></label>
 										                        </div>
 
 										                        <div style="color:black" class="input-field col s7">                 
-										                          <input style="margin-left:80%; padding:1%; padding-left:1%" name="payment-info" type="text" class="" value="{{ number_format($payment->dblOutstandingBal, 2)}} PHP">
+										                          <input style="margin-left:80%; padding:1%; padding-left:1%; color:teal" type="text" class="" name="outstanding-bal" id="outstanding-bal">
 										                          <label style="color:teal; margin-top:1%; margin-left:2%"><b>Outstanding Balance:</b></label>
 										                        </div>
 								                        	</div>
 								                        @endif
 								                    	@endforeach
+								                    {!! Form::close() !!} 
 								        		
 
 								                        <div class="col s12" style="margin-top:3%"><div class="divider" style="height:3px; color:gray"></div></div>
-								                    	
+								                    	{!! Form::open(['url' => 'transaction/payment/company/save-payment', 'method' => 'POST']) !!}
 								                    	<div class="payment-form" id="payment-form" style="display:block">
 									                        <div style="color:black" class="input-field col s7">                 
-									                          <input style="margin-left:80%; padding:1%; padding-left:1%; border:3px gray solid" name="payment-info" type="text" class="">
+									                          <input style="margin-left:80%; padding:1%; padding-left:1%; border:3px gray solid" name="amount-tendered" id="amount-tendered" type="text" class="">
 									                          <label style="color:black; margin-top:1%; margin-left:2%"><b>Amount Tendered:</b></label>
 									                        </div>
 
 									                        <div style="color:black" class="input-field col s7">                 
-									                          <input style="margin-left:80%; padding:1%; padding-left:1%; border:3px gray solid" name="payment-info" type="text" class="">
+									                          <input style="margin-left:80%; padding:1%; padding-left:1%; border:3px gray solid" name="amt-to-pay" id="amt-to-pay" type="text" class="">
 									                          <label style="color:black; margin-top:1%; margin-left:2%"><b>Amount to Pay :</b></label>
 									                        </div>
 
 									                        <div class="container">
 										                        <div style="color:black" class="input-field col s7">                 
-										                          <input style="margin-left:80%; padding:1%; padding-left:1%; border:3px gray solid" name="payment-info" type="text" class="">
+										                          <input style="margin-left:80%; padding:1%; padding-left:1%; border:3px gray solid" name="amount-change" id="amount-change" type="text" class="">
 										                          <label style="color:teal; margin-top:1%; margin-left:40px"><b>Change:</b></label>
 										                        </div>
 									                    	</div>
 
-									                    	<div style="color:black" class="input-field col s7">                 
+									                    	<div hidden style="color:black" class="input-field col s7">                 
 									                          <input style="margin-left:180px; padding:5px; padding-left:10px; border:3px gray solid" name="payment-info" type="text" class="">
-									                          <label style="color:black; margin-top:5px; margin-left:20px"><b>Remaining Balance:</b></label>							                          
+									                          <label style="color:teal; margin-top:5px; margin-left:20px"><b>Remaining Balance:</b></label>							                          
 									                        </div>
 
-									                        <div class="col s12">
+									                        <div class="col s12" hidden>
 									                        	<center><p style="color:gray">*** Pay balance before or on <font color="teal"><b><u>"DECEMBER 25, 2016"</u></b></font> ***</p></center>
 									                        </div>
 
@@ -197,11 +211,12 @@
 									                        </div>
 														
 															<div class="col s12" style="margin-top:30px">
-																<a href="{{ URL::to('billing-payment/payment-receipt-pdf') }}" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to print a copy of receipt" style="background-color:teal"><i class="large mdi-action-print" style="font-size:30px"></i></a>
-																<a href="" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="CLick to save data" style="background-color:teal; margin-left:20px">Save</a>
-																<a href="" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to clear all fields for payment process" style="background-color:teal">Cancel</a>
+																<!-- <a hidden href="{{ URL::to('billing-payment/payment-receipt-pdf') }}" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to print a copy of receipt" style="background-color:teal"><i class="large mdi-action-print" style="font-size:30px"></i></a> -->
+																<button type="submit" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="CLick to save data" style="background-color:teal; margin-left:20px">Save</button>
+																<a href="" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to clear all fields for payment process" style="background-color:teal">Cancel</a>
 															</div>
 														</div>
+														{!! Form::close() !!}
 														</div>
 													</div>
 												</div>
@@ -210,7 +225,10 @@
 											<div class="col s5">
 												<div class="card-panel">
 													<div class="card-content">
-														<div class="row">
+													@foreach($customer_orders as $j => $order)
+													@foreach($payments as $i => $payment)
+													@if($order->strTermsOfPayment != "Full Payment")
+														<div class="row" id="or_summary" style="display:none">
 														
 															<center><h6><b>ORDER SUMMARY</b></h6></center>
 															<div class="col s12" style="margin-top:10px"><div class="divider" style="height:3px; color:gray"></div></div>
@@ -232,21 +250,20 @@
 																		<th>Unit Price</th>
 																	</thead>
 																	<tbody>
+
 																		<tr>
-																			<td>GAR 0001</td>
-																			<td>5</td>
-																			<td>P 600.00</td>
-																		</tr>
-																		<tr>
-																			<td>GAR 1003</td>
-																			<td>1</td>
-																			<td>P 600.00</td>
+																			<td>{{ $payment->strPackageID }}</td>
+																			<td>{{ count($payment->strPackageID )}}</td>
+																			<td>{{ $payment->dblPackagePrice }}</td>
 																		</tr>
 																	</tbody>
 																</table>
 
-																<center><a href="#summary-of-order" class="btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to view summary of orders" style="background-color:teal">View Order Details</a></center>
+																<!-- <center><a href="#summary-of-order" class="btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to view summary of orders" style="background-color:teal">View Order Details</a></center> -->
 															</div>
+															@endif
+															@endforeach
+															@endforeach
 
 															<div class="col s12"><div class="divider" style="height:2px; color:gray; margin-top:15px; margin-bottom:15px"></div></div>
 														</div>
@@ -255,7 +272,7 @@
 											</div>
 										@endif
 										@endif       							                    												
-									{!! Form::close() !!}
+								
 									</div>
 									
 							</div>
@@ -277,6 +294,80 @@
 	    $('select').material_select();
 	  });
 	</script>	
+
+	<script>
+
+		var amount_to_pay = 0.00;
+		var amount_paid = 0.00;
+		var bal = 0.00;
+
+		var form = document.getElementById('pay_form');
+		var summary = document.getElementById('or_summary');
+
+		$('#unpaid-payments').change(function(){
+			var orders = {!! json_encode($customer_orders) !!}
+			var payment = {!! json_encode($payments) !!}
+
+				
+		for(var i = 0; i < payment.length; i++){
+		
+				amount_to_pay = payment[i].dblOrderTotalPrice;
+				amount_paid = payment[i].dblAmountToPay;
+				bal = payment[i].dblOutstandingBal;
+
+			if($('#unpaid-payments').val() == payment[i].strJobOrderID)
+			{
+				form.style.display = "block";
+				summary.style.display = "block";
+
+				$('#amount-to-pay').val(amount_to_pay.toFixed(2)) + "PHP";
+				$('#amount-paid').val(amount_paid.toFixed(2)) + "PHP";
+				$('#outstanding-bal').val(bal.toFixed(2)) + "PHP";
+
+				break;
+			}
+			else{
+
+				summary.style.display = "none";
+				form.style.display = "none";
+
+			}
+		}
+						
+
+		});
+
+		$('#amount-tendered').blur(function(){	
+			var amountChange = $('#amount-tendered').val() - $('#amt-to-pay').val();
+			$('#amount-change').val(amountChange.toFixed(2));
+		});
+
+		$('#amt-to-pay').blur(function(){	
+			// if($('#amount-to-pay').val() > $('#total_price').val()){
+			// 	alert("You can't choose to pay more than the total.");
+			// 	$('#amount-to-pay').val("");
+			// }
+				var amountChange = $('#amount-tendered').val() - $('#amt-to-pay').val();
+				$('#amount-change').val(amountChange.toFixed(2));	
+				// $('#outstanding-bal').val(($('#total_price').val() - $('#amount-to-pay').val()).toFixed(2) + ' PHP');				
+
+		});
+
+		var monthNames = [ "January", "February", "March", "April", "May", "June",
+		    "July", "August", "September", "October", "November", "December" ];
+			var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+
+			var newDate = new Date();
+			var dueDate = new Date();
+
+			newDate.setDate(newDate.getDate());   
+			dueDate.setDate(newDate.getDate()+minDays);
+
+			$('#due-date').text(dayNames[dueDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
+			$('#transaction_date').val(monthNames[(newDate.getMonth()+1)] + " " + newDate.getDate() + ", " + newDate.getFullYear());
+			$('#due_date').val(monthNames[(dueDate.getMonth()+1)] + " " + dueDate.getDate() + ", " + dueDate.getFullYear());
+		
+	</script>
 
 	<script type="text/javascript">
 		var monthNames = [ "January", "February", "March", "April", "May", "June",

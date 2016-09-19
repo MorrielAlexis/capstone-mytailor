@@ -67,6 +67,12 @@ class DashboardController extends Controller
             ->orderBy('strCompanyID', 'desc')
             ->get();
 
+        $totalEmp = \DB::table('tblEmployee')
+            ->select('strEmployeeID', \DB::raw('count(*) as totalEmps'))
+            ->orderBy('created_at', 'desc')
+            ->orderBy('strEmployeeID', 'desc')
+            ->get();
+
            
         return view('dashboard')
              ->with('joborder', $joborder)
@@ -74,6 +80,7 @@ class DashboardController extends Controller
              ->with('joborderprog', $joborderprog)
              ->with('neardue', $neardue)
              ->with('totalCustIndiv', $totalCustIndiv)
-             ->with('totalCustComp', $totalCustComp);
+             ->with('totalCustComp', $totalCustComp)
+             ->with('totalEmp', $totalEmp);
     }
 }

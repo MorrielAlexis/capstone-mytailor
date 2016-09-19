@@ -44,7 +44,7 @@
 										<div class="col s12 customer" style="background-color: #e0f2f1; padding-top:3%; padding-bottom:3%">
 												<div style="color:black" class="col s12">                   					                          
 						                          	<div class="col s3" style="color:black; margin-top:2%"><center><b>COMPANY NAME:</b></center></div>
-						                          	<div class="col s9"><input style="border:3px teal solid; padding:5px; padding-left:10px; background-color:white; color:teal" id="cust_name" name="cust_name" type="text" placeholder="ex. Honey Buenavides"></div>					                         			                          	
+						                          	<div class="col s9"><input style="border:3px teal solid; padding:5px; padding-left:10px; background-color:white; color:teal" id="cust_name" name="cust_name" type="text" placeholder="Input complete name here"></div>					                         			                          	
 						                        </div>
 
 					                         <button class="right btn" type="submit" id="getCustomer" style="background-color:#004d40; color:white">Start Payment</button> 
@@ -112,7 +112,7 @@
 										<div class="col s7">
 										<div class="card-panel">
 											<div class="card-content">
-												<div class="row">
+												<div class="row" style="display:none">
 													<div style="color:black" class="input-field col s7">                 
 							                          <input style="margin-left:180px; padding:5px; padding-left:10px" name="payment-info" type="text" class="">
 							                          <label style="color:teal; margin-top:5px; margin-left:20px"><b>Total Amount to Pay:</b></label>
