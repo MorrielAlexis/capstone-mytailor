@@ -34,17 +34,17 @@
                   <div class="col s12">
                       <div class="col s6">       
                         <div class="col s5" style="color:teal; font-size:17px"><p><b>Customer ID</b></p></div>
-                        <div class="col s7" style="color:red;"><p><input value="" id="addIndiID" name="addIndiID" type="text" readonly></p></div> 
+                        <div class="col s7" style="color:red;"><p><input value="{{$custID}}" id="addIndiID" name="addIndiID" type="text" readonly></p></div> 
                       </div>
                       <div class="col s6">
                         <div class="col s5" style="color:teal; font-size:17px"><p><b>Transaction No.</b></p></div>
-                        <div class="col s7" style="color:red;"><p><input value="" id="addJOID" name="addJOID" type="text" readonly></p></div> 
+                        <div class="col s7" style="color:red;"><p><input value="{{$joID}}" id="addJOID" name="addJOID" type="text" readonly></p></div> 
                       </div>
                 </div>
                 
               </div>
               <!--end of header for customer id and transaction no-->
-
+               {!! Form::open(['url' => 'save-customer', 'method' => 'POST']) !!}
               <!-- Start of Customer Information-->
                 <div class="col s12" style="margin-top:10px">
                   <div class="divider" style="height:2px; background-color:teal; margin-bottom:40px"></div>
@@ -134,16 +134,17 @@
                     </div>
 
                 </div>
+
               <!--End of Customer Information-->
               
               <!--Start of bottom button-->
               <div class="col s12" style="margin-top:30px">
-                  <a id="addPayment" href="{{URL::to('/online-individual-checkout-payment')}}" class="right btn-flat tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-left:40px; background-color:#00695c; color:white"><b><i class="mdi-navigation-check" style="padding-right:10px"></i>Save</b></a>                                
-                  <a id="cancelTransac" href="#cancel-order" class="right btn-flat modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel transaction and go back to homepage" style="background-color:#a7ffeb; color:black"><b><i class="mdi-navigation-close" style="padding-right:10px"></i>Cancel</b></a>                   
+                  <button type="submit" class="right btn-flat tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-left:40px; background-color:#00695c; color:white"><b><i class="mdi-navigation-check" style="padding-right:10px"></i>Save</b></button>                                
+                  <button id="cancelTransac" href="#cancel-order" class="right btn-flat modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel transaction and go back to homepage" style="background-color:#a7ffeb; color:black"><b><i class="mdi-navigation-close" style="padding-right:10px"></i>Cancel</b></a>                   
                   <div id="cancel-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:80px">
                       <h5><font color="red"><center><b>Warning!</b></center></font></h5>
                         
-                        {!! Form::open(['url' => 'transaction/walkin-individual-clear-order', 'method' => 'POST']) !!}
+                       <!--  {!! Form::open(['url' => 'transaction/walkin-individual-clear-order', 'method' => 'POST']) !!}
                           <div class="divider" style="height:2px"></div>
                             <div class="modal-content col s12">
                               <div class="center col s4"><i class="mdi-alert-warning" style="color:red; font-size:60px"></i></div>
@@ -152,11 +153,12 @@
 
                           <div class="modal-footer col s12">
                               <button type="submit" class="waves-effect waves-green btn-flat"><font color="black">Yes</font></button>
-                              <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+                              <button class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
                           </div>
-                        {!! Form::close() !!}
+                        {!! Form::close() !!} -->
                     </div>
                 </div>
+            {!! Form::close() !!} 
                 <!--End of bottom button-->
 
             </div>
