@@ -23,4 +23,10 @@ class Company extends Model
 
         return $this->hasOne('App\Customer', 'strCustomer_CompanyFK', 'strCompanyID');
     }
+
+    public function employees()
+    {
+        return $this->hasMany('App\CompanyEmployee','strCustCompanyFK','strCompanyID');
+    }
+
 }

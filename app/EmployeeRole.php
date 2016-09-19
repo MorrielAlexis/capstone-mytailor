@@ -17,8 +17,8 @@ class EmployeeRole extends Model
     					    'boolIsActive');
     					
 
-    // An role can be posess by many emloyees.
-   public function employees()
+    // An role can be by many emloyees.
+    public function employees()
 	{
 		return $this->hasMany('App\Employee','strRole','strEmpRoleID');
 	}
