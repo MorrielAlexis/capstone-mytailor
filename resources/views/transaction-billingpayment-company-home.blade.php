@@ -44,7 +44,7 @@
 										<div class="col s12 customer" style="background-color: #e0f2f1; padding-top:3%; padding-bottom:3%">
 												<div style="color:black" class="col s12">                   					                          
 						                          	<div class="col s3" style="color:black; margin-top:2%"><center><b>COMPANY NAME:</b></center></div>
-						                          	<div class="col s9"><input style="border:3px teal solid; padding:5px; padding-left:10px; background-color:white; color:teal" id="cust_name" name="cust_name" type="text" placeholder="ex. Honey Buenavides"></div>					                         			                          	
+						                          	<div class="col s9"><input style="border:3px teal solid; padding:5px; padding-left:10px; background-color:white; color:teal" id="cust_name" name="cust_name" type="text" placeholder="Input complete name here"></div>					                         			                          	
 						                        </div>
 
 					                         <button class="right btn" type="submit" id="getCustomer" style="background-color:#004d40; color:white">Start Payment</button> 

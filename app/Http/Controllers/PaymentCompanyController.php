@@ -57,14 +57,15 @@ class PaymentCompanyController extends Controller
         $payments = \DB::table('tblJobOrder AS a')
                 ->leftJoin('tblJOPayment AS b', 'a.strJobOrderID', '=', 'b.strTransactionFK')
                 ->leftJoin('tblCustCompany AS c', 'c.strCompanyID', '=', 'a.strJO_CustomerCompanyFK')
-                ->leftJoin()
-                ->leftJoin('tblPackage AS e', 'd.strJOSegmentFK', '=', 'e.strSegmentID')
-                ->select('a.*', 'b.*', 'c.strCompanyID')
+                ->leftJoin('tblJOSpecific AS d', 'a.strJobOrderID', '=', 'd.strJobOrderFK')
+                ->leftJoin('tblSegment AS e', 'd.strJOSegmentFK', '=', 'e.strSegmentID')
+                ->leftJoin('tblPackages AS f', 'f.strPackageSeg1FK', '=', 'e.strSegmentID')
+                ->select('a.*', 'b.*', 'c.strCompanyID', 'd.*', 'e.*', 'f.*')
                 ->orderBy('a.strJobOrderID')
                 ->get();
 
 
-        //dd($customer_info);
+        //dd($payments);
 
 
         return view('transaction-billingpayment-company')
