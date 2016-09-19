@@ -240,7 +240,7 @@
 	                        </div>
 
 
-							<input type="hidden" id="transaction_date" name="transaction_date">
+							<input type="hidden" id="Date" name="Date">
 							<input type="hidden" id="due_date" name="due_date">
 
 							<div class="col s12"><div class="divider" style="padding-top:10px"></div></div>								

@@ -442,12 +442,14 @@ Route::get('/track', 'OnlineCustomerProfileIndividualController@trackJob');
 		
 		Route::group(['prefix' => 'individual'], function() {
 			Route::get('home', 'PaymentIndividualController@index');
-			Route::get('customer-info', 'PaymentIndividualController@custInfo'); //looks for the customer and gets its payment data
+			Route::get('customer-info', 'PaymentIndividualController@custInfo');
+			Route::post('save-payment', 'PaymentIndividualController@savePayment');
 		});
 
 		Route::group(['prefix' => 'company'], function() {
 			Route::get('home', 'PaymentCompanyController@index');
-			Route::get('company-info', 'PaymentCompanyController@companyInfo'); //looks for the company and gets its payment data
+			Route::get('company-info', 'PaymentCompanyController@companyInfo'); 
+			Route::post('save-payment', 'PaymentCompanyController@savePayment');
 		});
 	});
 
@@ -605,6 +607,7 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::post('customize-pants-style-pleats', 'OnlineCustomizePantsController@stylepleats');
 	Route::post('customize-pants-style-pockets', 'OnlineCustomizePantsController@stylepockets');
 	Route::post('customize-pants-style-bottom', 'OnlineCustomizePantsController@stylebottom');
+	
 	Route::get('shopping-cart', 'OnlineIndividualController@tocart');
 
 	Route::get('customize-sets-choose-set', 'OnlineCustomizeSetsController@choose');
