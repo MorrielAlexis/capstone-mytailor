@@ -106,7 +106,7 @@
 					            	   	<div style="color:black; padding-left:140px" class="input-field col s6 ">   
 					            	   		<input type="hidden" name="detailName{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" value="{{ $measurement->strMeasurementDetailID }}">              
 				                            <input name="{{ $measurement->strMeasurementDetailID }}{{ $i+1 }}{{ $k+1 }}" type="text">
-				                            <label style="color:teal" for="{{ $measurement->strMeasurementDetailID }} {{ $i+1 }}{{ $k+1 }}">{{ $measurement->strMeasDetailName }}: </label>
+				                            <label style="color:teal" for="{{ $measurement->strMeasurementDetailID }} {{ $i+1 }}{{ $k+1 }}">{{ $measurement->strMeasDetailName }} (cm): </label>
 				                        </div>
 		                    		</div>
 			                    @endif

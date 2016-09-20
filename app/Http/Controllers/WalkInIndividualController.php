@@ -284,7 +284,7 @@ class WalkInIndividualController extends Controller
                     'strIndivFName' => trim($request->input('addIndiFirstName')),     
                     'strIndivMName' => trim($request->input('addIndiMiddleName')),
                     'strIndivLName' => trim($request->input('addIndiLastName')),
-                   // 'strIndivSex' => $request->input('strIndivSex'),
+                    //'strIndivSex' => $request->input('strIndivSex'),
                     'strIndivHouseNo' => trim($request->input('addCustPrivHouseNo')), 
                     'strIndivStreet' => trim($request->input('addCustPrivStreet')),
                     'strIndivBarangay' => trim($request->input('addCustPrivBarangay')),   
@@ -871,7 +871,7 @@ class WalkInIndividualController extends Controller
         for($i = 0; $i < count($emp); $i++){
             $empId = $emp[$i]->strEmployeeID;
         } 
-        
+
         $custId = session()->get('cust_id'); //dd($custId);
 
         $custname = \DB::table('tblCustIndividual')

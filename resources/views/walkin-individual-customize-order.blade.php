@@ -111,7 +111,7 @@
 														              <img src="{{URL::asset($pattern->strSegPImage)}}" alt="" class="responsive-img">
 														            </div>
 														            <div class="col s6"> 
-														              <span><b>{{ $pattern->strSegPName }}</b></span> <!-- This will be the name of the pattern -->
+														              <span><b>{{ $pattern->strSegPName }} - PHP {{ number_format($pattern->dblPatternPrice, 2) }} </b></span> <!-- This will be the name of the pattern -->
 														              <br/>
 														              <span class="black-text">
 														                {{ $pattern->txtSegPDesc }}
@@ -220,7 +220,7 @@
 											              <img src="{{URL::asset($fabric->strFabricImage)}}"class="responsive-img">
 											            </div>
 											            <div class="col s8"> 
-											              <p><b id="{{ 'fabricText'.$fabric->strFabricID }}">{{ $fabric->strFabricName }}</b></p> 
+											              <p><b id="{{ 'fabricText'.$fabric->strFabricID }}">{{ $fabric->strFabricName }} - PHP {{ number_format($fabric->dblFabricPrice, 2) }} </b></p> 
 											              <span class="black-text">
 											                {{ $fabric->txtFabricDesc }}
 											              </span>
@@ -322,7 +322,7 @@
 											              <img src="{{URL::asset($fabric->strFabricImage)}}"class="responsive-img"> <!-- notice the "circle" class -->
 											            </div>
 											            <div class="col s8"> 
-											              <p><b id="{{ 'fabricText'.$fabric->strFabricID }}">{{ $fabric->strFabricName }}</b></p> <!-- This will be the name of the pattern -->
+											              <p><b id="{{ 'fabricText'.$fabric->strFabricID }}">{{ $fabric->strFabricName }} - PHP {{ number_format($fabric->dblFabricPrice, 2) }} </b></p> <!-- This will be the name of the pattern -->
 											              <span class="black-text">
 											                {{ $fabric->txtFabricDesc }}
 											              </span>
@@ -360,7 +360,7 @@
 				                        @elseif($segment['strSegmentSex'] == 'F') <div class="col s5"><p>Female</p></div>
 				                        @endif
 
-										<div class="col s7" style="color:teal;"><p><b>Labor Fee:</b></p></div>
+										<div class="col s7" style="color:teal;"><p><b>Base Price:</b></p></div>
 										<div class="col s5" style="color:color:black;font-weight:bold"><p>{{ number_format($segment['dblSegmentPrice'], 2) }} PHP</p></div>
 										<input type="hidden" class="price-per-segment" id="{{ $segment['dblSegmentPrice'] }}">
 

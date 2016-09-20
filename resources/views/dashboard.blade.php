@@ -22,7 +22,7 @@
                                 <div class="card">
                                     @foreach($totalCustComp as $totalCustComp)
                                     <div class="card-content cyan darken-1 white-text" style="height:138px">
-                                        <p class="card-stats-title" style="font-size:18px"><i class="mdi-editor-attach-money"></i>Total Registered Companies</p>
+                                        <p class="card-stats-title" style="font-size:18px"><i class="mdi-action-account-child"></i>Total Registered Companies</p>
                                         <h4 class="card-stats-number">{{$totalCustComp->totalCompanies}}</h4>
                                         {{-- <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 70% <span class="purple-text text-lighten-5">last month</span>
                                         </p> --}}
@@ -38,7 +38,7 @@
                                 <div class="card">
                                     @foreach($totalEmp as $totalEmp)
                                     <div class="card-content blue-grey white-text">
-                                        <p class="card-stats-title" style="font-size:20px"><i class="mdi-action-trending-up"></i> Total Active Employees </p>
+                                        <p class="card-stats-title" style="font-size:20px"><i class="mdi-action-accessibility"></i> Total Active Employees </p>
                                         <h4 class="card-stats-number">{{$totalEmp->totalEmps}}</h4>
                                         {{-- <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 80% <span class="blue-grey-text text-lighten-5">from yesterday</span>
                                         </p> --}}
@@ -114,7 +114,7 @@
                 <div class="col s12">
                     <ul id="task-card" class="collection with-header z-depth-3" style="border:0; height:550px">
                         <li class="collection-header cyan">
-                            <h3 class="task-card-title white-text">Pending Orders</h3>
+                            <h3 class="task-card-title white-text">Pending Online Orders</h3>
                         </li>
                         @foreach($joborder as $joborder)
                             @if($joborder->strCompanyName == null)
@@ -136,7 +136,7 @@
                 <ul id="projects-collection" class="collection z-depth-3" style="height:550px">
                     <li class="collection-item avatar">
                         <i class="mdi-file-folder circle light-blue darken-2"></i>
-                        <span class="collection-header"><font size="+1">CUSTOMER NEAR DUE DATE</font></span>
+                        <span class="collection-header"><font size="+1">JOB ORDER NEAR DUE DATE</font></span>
                         <a href="#" class="secondary-content"><i class="mdi-action-grade"></i></a>
                     </li>
                     @foreach($neardue as $neardue)
