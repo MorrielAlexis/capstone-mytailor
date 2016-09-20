@@ -558,7 +558,7 @@ class OnlineIndividualController extends Controller
     {   //dd($request->input('strIndivSex'));
 
         $individual = Individual::create(array(
-                    'strIndivID' => session()->get('custID'),
+                    'strIndivID' =>  session()->get('joID'),
                     'strIndivFName' => trim($request->input('addIndiFirstName')),     
                     'strIndivMName' => trim($request->input('addIndiMiddleName')),
                     'strIndivLName' => trim($request->input('addIndiLastName')),
@@ -579,7 +579,16 @@ class OnlineIndividualController extends Controller
 //dd($request->input('strIndivSex'));
 
                 $individual->save();
-                
+            
+        return redirect('checkout-payment');
+    }
+
+    public function payment()
+    {
+        $men = session()->get('mensegment_data');
+
+        $women = session()->get('womensegment_data');
+
         return view('online.individual-checkout-payment');
     }
 
@@ -588,7 +597,7 @@ class OnlineIndividualController extends Controller
         $categories = MeasurementCategory::all();
         $standardSizeCategory = StandardSizeCategory::all();
 
-         $men= '';
+        $men= '';
         $women = '';
 
         $men = session()->get('mensegment_data');
