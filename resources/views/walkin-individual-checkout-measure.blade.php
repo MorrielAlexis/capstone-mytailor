@@ -104,9 +104,13 @@
 			            		@if($measurement->strMeasDetSegmentFK == $segment['strSegmentID'])
 		            				<div class="container measurement-general {{ $measurement->strMeasCategoryFK }}"> 
 					            	   	<div style="color:black; padding-left:140px" class="input-field col s6 ">   
-					            	   		<input type="hidden" name="detailName{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" value="{{ $measurement->strMeasurementDetailID }}">              
-				                            <input name="{{ $measurement->strMeasurementDetailID }}{{ $i+1 }}{{ $k+1 }}" type="text">
-				                            <label style="color:teal" for="{{ $measurement->strMeasurementDetailID }} {{ $i+1 }}{{ $k+1 }}">{{ $measurement->strMeasDetailName }} (cm): </label>
+					            	   		<div class="col s8">
+						            	   		<input class="right" type="hidden" name="detailName{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" value="{{ $measurement->strMeasurementDetailID }}">              
+					                            <input class="right" name="{{ $measurement->strMeasurementDetailID }}{{ $i+1 }}{{ $k+1 }}" type="text">
+					                        </div>
+					                        <div class="col s4">
+				                            	<label style="color:teal" for="{{ $measurement->strMeasurementDetailID }} {{ $i+1 }}{{ $k+1 }}"><b>{{ $measurement->strMeasDetailName }}</b> (cm): </label>
+				                        	</div>
 				                        </div>
 		                    		</div>
 			                    @endif
@@ -114,15 +118,15 @@
 							<!--End of Body and Cloth Measurement-->
 
 							<!--if Standard Size Measurement-->
-							<div class="col s12 z-depth-1 measurement-general MEASCAT001" style="padding:20px">
+							<div class="col s12 z-depth-1 measurement-general MEASCAT001" style="padding:2%">
 								<div class="container">
 									<div class="left col s6">
-										<center><img src="{{ URL::asset($segment['strSegmentImage']) }}" style="height:200px; width:200px; border:3px gray solid"></center>	
+										<center><img src="{{ URL::asset($segment['strSegmentImage']) }}" style="height:60%; width:60%; border:3px gray solid"></center>	
 										<p><center>{{ $segment['strSegmentName'] }}</center></p>							          	
 									</div><!--this will be the garment detail-->
 
-									<div class="right col s6" style="margin-top:20px">
-										<div class="col s6"><p style="color:teal" for="standard_size">Choose Fit Type:</p></div>  		
+									<div class="right col s6" style="margin-top:2%">
+										<div class="col s6"><p style="color:teal" for="standard_size"><b>Choose Fit Type:</b></p></div>  		
 					            	   	<div style="color:black;" class="col s6">                 	
 				                          	<select>
 			    								<option value="">Normal Fit</option>
@@ -130,9 +134,9 @@
 				                        </div>  
 				                    </div> 
 
-									<div class="right col s6">
-										<div class="col s6"><p style="color:teal" for="standard_size">Choose Standard Size:</p></div>  		
-					            	   	<div style="color:black;" class="col s6">                 	
+									<div class="right col s6" style="margin-top:5%">
+										<div class="col s6"><p style="color:teal" for="standard_size"><b>Choose Standard Size:</b></p></div>  		
+					            	   	<div style="color:black; margin-top:2%" class="col s6">                 	
 				                          	<select>
 				                          		@foreach($standard_categories as $standard_category)
 			    									<option value="{{ $standard_category->strStandardSizeCategoryID }}">{{ $standard_category->strStandardSizeCategoryName }}</option>
@@ -149,9 +153,9 @@
 	                    </div>
 
 	                    <p style="color:red">In case of multiple measurements</p>
-	                    	<div style="color:black; padding-left:160px" class="input-field col s5">                 
-	                          <input id="length" name="profile_name{{ $i+1 }}" type="text" class="">
-	                          <label style="color:gray" for="length">Measurement Profile Name: </label>
+	                    	<div style="color:black;" class="input-field col s5">                 
+	                          <div class="col s8" style="margin-left:55%; padding-right:18%"><input id="length" name="profile_name{{ $i+1 }}" type="text" class=""></div>
+	                          <div class="col s4"><label style="color:gray" for="length"><b>Measurement Profile Name: </b></label></div>
 	                    	</div>
 
 	                    	<div style="color:gray" class="input-field col s3">                 
