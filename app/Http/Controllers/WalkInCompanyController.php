@@ -683,6 +683,11 @@ class WalkInCompanyController extends Controller
         return view('walkin-company-checkout-measure');
     }
 
+    public function saveOrder()
+    {
+        //dd(session()->get('package_segments'));
+    }
+
     /*For downloadable forms*/
     public function downloadForms()
     {

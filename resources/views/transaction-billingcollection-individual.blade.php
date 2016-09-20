@@ -18,7 +18,7 @@
 					<li class="tab col s12" style="border-top-left-radius: 20px; border-top-right-radius: 20px; background-color: #00b0ff;"><a style="color:black; padding-top:5px; opacity:0.80" href="#shoppingCart"></a></li>	
 					<div class="indicator white" style="z-index:1"></div>
 	            </ul>
-				<!-- <div id="shoppingCart" class="card-panel">
+				<div id="shoppingCart" class="card-panel">
 					<div class="card-content">
 						<div class="row">
 					 <div class="col s12">
@@ -56,16 +56,16 @@
 						</div>
 
 						<div class="col s12" style="margin-top:20px"> -->
-							<!-- <a href="" class="left btn" style="background-color:teal; color:white; margin-left:10px">Cancel</a> -->
-							<!-- <a href="{{URL::to('/transaction/payment/individual/home')}}" class="left btn" style="background-color:teal; color:white; margin-left:10px">Go to Payment</a> -->
-							<!-- <a href="" class="right btn" style="background-color:teal; color:white; margin-right:10px">Save</a>
-							<a href="" class="right btn" style="background-color:teal; color:white; margin-right:40px">Edit</a> -->
-					<!-- 	</div>
+							<a href="" class="left btn" style="background-color:teal; color:white; margin-left:10px">Cancel</a> 
+							<a href="{{URL::to('/transaction/payment/individual/home')}}" class="left btn" style="background-color:teal; color:white; margin-left:10px">Go to Payment</a> -->
+							<a href="" class="right btn" style="background-color:teal; color:white; margin-right:10px">Save</a>
+							<a href="" class="right btn" style="background-color:teal; color:white; margin-right:40px">Edit</a>
+						</div>
 
 
 						</div>
 					</div>
-				</div> --> 
+				</div>
 
 				<div id="data-record" class="card-panel">
 					<div class="card-content">
@@ -81,7 +81,7 @@
 							<table id="data-cust">
 								<thead>
 									<tr>
-										<!-- <th class="center" style="color:gray">ID</th> -->
+										<th class="center" style="color:gray">ID</th>
 										<th class="center" style="color:gray">Customer Name</th>
 										<th class="center" style="color:gray">Job Order #</th>
 										<th class="center" style="color:gray">Payment Type</th>
@@ -103,7 +103,7 @@
 								
 									@if($customer->strPaymentStatus == "Pending")	
 									<tr style="background-color:rgba(54, 162, 235, 0.2)" @if($customer->strJO_CustomerFK != $custs->strIndivID) hidden @endif>										
-										<!--  -->
+										<td ><a class="modal-trigger" href="#view-detail">{{ $customer->strJobOrderID }}</a></td>
 										<td class="center">{{ $customer->fullname }}</td>
 										<td class="center">{{ $customer->strTransactionFK }}</td>
 										<td class="center">Cash</td>
@@ -263,7 +263,7 @@
 
 							<div class="col s12" style="margin-top:60px" hidden>
 								<div class="divider" style="margin-bottom:20px"></div>
-								<!-- <a href="" class="left btn" style="background-color:teal; color:white"><i class="large mdi-editor-insert-chart" style="padding-right:15px" hidden=""></i>View Summary Report</a> -->
+								<a href="" class="left btn" style="background-color:teal; color:white"><i class="large mdi-editor-insert-chart" style="padding-right:15px" hidden=""></i>View Summary Report</a>
 								<a href="" class="right btn" style="background-color:teal; color:white;"><i class="large mdi-editor-insert-drive-file" style="padding-right:15px"></i>Export as PDF</a>
 								<a href="" class="right btn" style="background-color:teal; color:white; margin-right:50px"><i class="large mdi-action-print" style="padding-right:15px"></i>Print a copy</a>
 							</div>

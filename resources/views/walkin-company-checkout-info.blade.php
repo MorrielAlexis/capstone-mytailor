@@ -62,8 +62,6 @@
 								          			<tr>
 									                  <th data-field="product">Package</th>         
 									                  <th data-field="quantity">Quantity</th>
-									                  <th data-field="price">Unit Price</th>
-									                  <th data-field="price">Total Price</th>
 									              	</tr>
 								              	</thead>
 								              	<tbody>
@@ -71,8 +69,6 @@
 										            <tr>
 										               <td>{{ $packages[$i]->strPackageName }}</td>
 										               <td>{{ $quantity[$i] }}</td>
-										               <td>{{ number_format($packages[$i]->dblPackagePrice, 2) }} PHP</td>
-										               <td>{{ number_format($prices[$i], 2) }} PHP</td>
 										            </tr>
 													@endfor
 										        </tbody>

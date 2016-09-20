@@ -140,7 +140,7 @@
 
 
 					<div class="col s12" style="margin:10px"></div>
-					{!! Form::open(['url' => 'transaction/walkin-individual-save-order', 'method' => 'POST']) !!}
+					{!! Form::open(['url' => 'transaction/walkin-company-save-order', 'method' => 'POST']) !!}
 						<div class="col s6">
 							<h5 style="color:teal"><b>Price Quotation*</b></h5>
 							<span>Determine terms of payment to get payment details</span>
@@ -212,7 +212,7 @@
 
 	                        <div style="color:black" class="col s12"> 
 								<div class="col s4"><p style="color:black; margin-top:5px; font-size:15px"><b>Amount Tendered:</b></p></div>                
-	                          	<div class="col s8"><input style="padding:5px; border:3px gray solid; font-size:1em" name="amount-tendered" id="amount-tendered" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="right"><right></right></div>	                          
+	                          	<div class="col s8"><input style="padding:5px; border:3px gray solid; font-size:1em" name="amount-tendered" id="amount-tendered" type="number" class="right"><right></right></div>	                          
 	                        </div>
 
 	                        <div style="color:black" class="col s12"> 
