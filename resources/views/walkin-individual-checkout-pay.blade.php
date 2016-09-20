@@ -416,14 +416,7 @@
 				$('#amount-payable').prop('readonly', false);
 				$('#amount-payable').val('');
 				$('#balance').val('');
-
-				function commaSeparateNumber(val){
-				    while (/(\d+)(\d{3})/.test(val.toString())){
-				      val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
-				    }
-				    return val;
-				 }
-
+				
 				if($('#half_pay').prop("checked")){
 
 					var a = {!! json_encode($values) !!};
@@ -434,9 +427,9 @@
 						grandtotal += c[i];
 					}
 					
-					$('#amount-payable').val(commaSeparateNumber((grandtotal/2).toFixed(2)));
+					$('#amount-payable').val((grandtotal/2).toFixed(2));
 					$('#amount-payable').prop('readonly', true);
-					$('#balance').val(commaSeparateNumber((grandtotal - (grandtotal/2)).toFixed(2)));
+					$('#balance').val((grandtotal - (grandtotal/2)).toFixed(2));
 				}
 
 				if($('#full_pay').prop("checked")){
@@ -449,9 +442,9 @@
 						grandtotal += c[i];
 					}
 					
-					$('#amount-payable').val(commaSeparateNumber(grandtotal.toFixed(2)));
+					$('#amount-payable').val(grandtotal.toFixed(2));
 					$('#amount-payable').prop('readonly', true);
-					$('#balance').val(commaSeparateNumber((grandtotal - grandtotal).toFixed(2)));
+					$('#balance').val((grandtotal - grandtotal).toFixed(2));
 				}
 
 				if($('specify_pay').prop("checked")){
