@@ -879,10 +879,10 @@ class WalkInIndividualController extends Controller
                 ->select('tblEmployee.strEmployeeID')
                 ->where('tblEmployee.strEmailAdd', 'LIKE', $empEmail)
                 ->get(); //dd($emp);
-
+        $empId;
         for($i = 0; $i < count($emp); $i++){
             $empId = $emp[$i]->strEmployeeID;
-        } 
+        } //dd($empId);
 
         $custId = session()->get('cust_id'); //dd($custId);
 
@@ -893,7 +893,7 @@ class WalkInIndividualController extends Controller
 
         $empname = \DB::table('tblEmployee')
                     ->select('strEmployeeID', \DB::raw('CONCAT(strEmpFName, " ", strEmpMName, " ", strEmpLName) AS employeename'))
-                    ->where('strEmployeeID', '=', 'EMPL001')//Temporary, since naka-hardcode pa yung pagset ng employee sa naunang process.
+                    ->where('strEmployeeID', '=', $empId)//Temporary, since naka-hardcode pa yung pagset ng employee sa naunang process.
                     ->first();
 
         $data_segment = session()->get('segment_data');
