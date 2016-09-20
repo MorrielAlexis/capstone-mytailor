@@ -108,8 +108,8 @@
 						    				<th>Quantity</th>
 						    				<th>Fabric Type</th>
 						    				<th>Design</th>
-						    				<th>Swatch Image</th>
-						    				<th>Swatch Code</th>
+						    				<th>Unit Price</th>
+						    			{{-- 	<th></th> --}}
 						    				<th></th>
 						    			</tr>
 						    		</thead>
@@ -120,8 +120,8 @@
 						    				<td>1</td>
 						    				<td>Linen</td>
 						    				<td>Collar - Button Down</td>
-						    				<td><img class="img hoverable" src="../imgSwatches/citadel alpine.jpg"></td>
-						    				<td>LINK001</td>
+						    				<td>3000</td>
+						    				{{-- <td>LINK001</td> --}}
 						    				<td><a class="btn modal-trigger tooltipped" href="#measurementmodal" data-position="top" data-delay="50" data-tooltip="Measurements"><i class="mdi-action-view-headline"></i></a></td>
 						    			</tr>
 						    			<tr>

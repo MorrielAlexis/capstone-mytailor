@@ -145,7 +145,7 @@
  -->
             </div>
 
-            <div class="col s6 z-depth-1"  style="border-left:2px gray solid">
+           <!--  <div class="col s6 z-depth-1"  style="border-left:2px gray solid">
               <h5 style="color:teal"><b>Payment</b></h5>
               <span>Fill up the following information</span>
               <div class="col s12"><div class="divider" style="margin:15px"></div></div>
@@ -201,7 +201,7 @@
                 </div>
                 
               </div>-->     
-            </div>
+            <!-- </div> -->
 
 
               <!--start of bottom button-->
