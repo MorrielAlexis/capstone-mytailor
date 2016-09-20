@@ -157,6 +157,11 @@
 							<div class="col s12 z-depth-2" style=" padding:2%; margin-top:2%">
 								
 								<div class="col s12">
+									<div class="col s4" style="color:gray; font-size:15px"><p><b>Total Amount Due</b></p></div>
+			      					<div class="col s8" style="color:black;"><p><input id="total_due" name="total_due" type="text" class="" readonly /></p></div>
+								</div>
+
+								<div class="col s12">
 									<div class="col s4" style="color:grey; font-size:10px"><p><b>Labor Fee Inclusive</b>
 										<b style="color:gray; font-size:15px">Estimated Total Sales</b></p>
 									</div>
@@ -198,6 +203,10 @@
 								<div class="col s6">
 				          			<input name="termsOfPayment" value="Full Payment" type="radio" class="filled-in payment" id="full_pay" />
 		      						<label for="full_pay">Full (100%)</label>
+		      					</div>
+								<div class="col s12 center" style="padding:18px; padding-top:20px">
+				          			<input name="termsOfPayment" value="Specify Amount" type="radio" class="filled-in payment" id="specify_pay" />
+		      						<label for="specify_pay">Specify Amount</label>
 		      					</div>
 	      					</div>
 							
@@ -368,6 +377,7 @@
 
 			//estimated total
 			//estimatedTotal = totalAmount - (addtnlFees + laborTotal);
+			var due = grandtotal;
 			var vat = 0.00;
 			vat = grandtotal * 0.12;
 			totalAmount = grandtotal - vat;
@@ -382,10 +392,18 @@
 			newDate.setDate(newDate.getDate());   
 			dueDate.setDate(newDate.getDate()+minDays); 
 
+			function commaSeparateNumber(val){
+			    while (/(\d+)(\d{3})/.test(val.toString())){
+			      val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
+			    }
+			    return val;
+			 }
+
 			//$('#labor_price_total').val(laborTotal.toFixed(2));
-			$('#estimated_total').val(totalAmount.toFixed(2));
-			$('#total_price').val(grandtotal.toFixed(2));
-			$('#vat_total').val(vat.toFixed(2));
+			$('#estimated_total').val(commaSeparateNumber(totalAmount.toFixed(2)));
+			$('#total_price').val(commaSeparateNumber(grandtotal.toFixed(2)));
+			$('#vat_total').val(commaSeparateNumber(vat.toFixed(2)));
+			$('#total_due').val(commaSeparateNumber(due.toFixed(2)));
 			//$('#addtnl_fee').val(addtnlFees.toFixed(2));
 			$('#due-date').text(dayNames[dueDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
 			$('#transaction_date').val(monthNames[(newDate.getMonth()+1)] + " " + newDate.getDate() + ", " + newDate.getFullYear());
@@ -395,64 +413,55 @@
 
 	<script>
 		$('.payment').change(function(){
+				$('#amount-payable').prop('readonly', false);
+				$('#amount-payable').val('');
+				$('#balance').val('');
+
 				if($('#half_pay').prop("checked")){
 
 					var a = {!! json_encode($values) !!};
-					var b = {!! json_encode($styles) !!};
 					var c = {!! json_encode($lineTotal) !!};
-					//var c = { json_encode($laborfee) !!};
-					//var d = { json_encode($othercharge) !!};
-					var totalAmount = 0.00;
 					var grandtotal = 0.00;
 
 					for(var i = 0; i < a.length; i++){
-						/*totalAmount += a[i].dblSegmentPrice;
-						totalAmount += a[i].dblFabricPrice;
-						//totalAmount += c[i].dblChargeDetPrice;
-						//totalAmount += d[i].dblChargeDetPrice;
-							/*for(var j = 0; j < b[i].length; j++){
-								totalAmount += b[i][j].dblPatternPrice;
-							}*/
 						grandtotal += c[i];
 					}
-					//var vat = 0.12;
-					//totalAmount = (grandtotal * vat) + grandtotal;
 					
 					$('#amount-payable').val((grandtotal/2).toFixed(2));
+					$('#amount-payable').prop('readonly', true);
 					$('#balance').val((grandtotal - (grandtotal/2)).toFixed(2));
 				}
 
 				if($('#full_pay').prop("checked")){
 
 					var a = {!! json_encode($values) !!};
-					var b = {!! json_encode($styles) !!};
 					var c = {!! json_encode($lineTotal) !!};
-					//var c = { json_encode($laborfee) !!};
-					//var d = { json_encode($othercharge) !!};
-					var totalAmount = 0.00;
 					var grandtotal = 0.00
 
 					for(var i = 0; i < a.length; i++){
-						/*totalAmount += a[i].dblSegmentPrice;
-						totalAmount += a[i].dblFabricPrice;
-						//totalAmount += c[i].dblChargeDetPrice;
-						//totalAmount += d[i].dblChargeDetPrice;
-							/*for(var j = 0; j < b[i].length; j++){
-								totalAmount += b[i][j].dblPatternPrice;
-							}*/
 						grandtotal += c[i];
 					}
-					//var vat = 0.12;
-					//grandtotal = (totalAmount * vat) + totalAmount;
 					
 					$('#amount-payable').val(grandtotal.toFixed(2));
+					$('#amount-payable').prop('readonly', true);
 					$('#balance').val((grandtotal - grandtotal).toFixed(2));
+				}
+
+				if($('specify_pay').prop("checked")){
+					//$("#amount-payable").removeAttr('readonly');
+					//$('#amount-payable').prop('readonly', false);
 				}
 		});
 
 		$('#amount-tendered').blur(function(){	
-			var amountChange = $('#amount-tendered').val() - $('#amount-payable').val();
-			$('#amount-change').val(amountChange.toFixed(2));
+			var tendered = $('#amount-tendered').val();
+
+			if(tendered == ''){
+				$('#amount-change').val('');
+			}else {
+				var amountChange = $('#amount-tendered').val() - $('#amount-payable').val();
+				$('#amount-change').val(amountChange.toFixed(2));
+			}
 		});
 
 		$('#amount-payable').blur(function(){	
@@ -460,9 +469,22 @@
 			// 	alert("You can't choose to pay more than the total.");
 			// 	$('#amount-to-pay').val("");
 			// }
-				var amountChange = $('#amount-tendered').val() - $('#amount-payable').val();
+				/*var amountChange = $('#amount-tendered').val() - $('#amount-payable').val();
 				$('#amount-change').val(amountChange.toFixed(2));	
-				// $('#outstanding-bal').val(($('#total_price').val() - $('#amount-to-pay').val()).toFixed(2) + ' PHP');				
+				// $('#outstanding-bal').val(($('#total_price').val() - $('#amount-to-pay').val()).toFixed(2) + ' PHP');*/
+				var a = {!! json_encode($values) !!};
+				var c = {!! json_encode($lineTotal) !!};
+				var grandtotal = 0.00;
+
+				for(var i = 0; i < a.length; i++){
+					grandtotal += c[i];
+				}
+
+				var payable = $('#amount-payable').val();
+				if(event.which >= 37 && event.which <= 40){
+			        event.preventDefault();
+			    }
+				$('#balance').val((grandtotal - payable).toFixed(2));			
 
 		});
 		
