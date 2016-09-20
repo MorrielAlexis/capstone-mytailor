@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
             array(
                 'id' => 'USER001',
                 'name' => 'Morriel Aquino',
-                'type'=> 'employee',
+                'type'=> 'admin',
                 'email' =>'morrielaquino@yahoo.com',
                 'password' =>bcrypt('adminpass'),
                 'confirmation_code' => null,

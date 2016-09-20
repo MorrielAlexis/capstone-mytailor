@@ -72,6 +72,10 @@ class OnlineIndividualController extends Controller
 
     public function menfabric(Request $request)
     {   
+        $mfabric = [];
+
+        session(['menfabric' => $mfabric]); 
+
         $mendata_segment = $request->input('menshirt');
         session(['mensegment_data' => $mendata_segment]);
        
@@ -95,9 +99,13 @@ class OnlineIndividualController extends Controller
 
     public function menstylecollar(Request $request)
     {
-         $data_segment = session()->get('segment_data');
+        
+        $mendata_fabric = $request->input('rdb_fabric');
+        session(['menfabric' => $mendata_fabric]);
 
-         dd($data_segment);
+        $fabric = session()->get('menfabric');
+
+        dd($fabric);
 
         $contrast = Fabric::all();
         $fabricThreadCounts = FabricThreadCount::all();
@@ -498,17 +506,50 @@ class OnlineIndividualController extends Controller
 
         $women = session()->get('womensegment_data');
 
-
         GarmentCategory::all();
 
-         $selected = \DB::table('tblSegment')
+        if($men == null && $women == null){
+
+            $selected = null;
+
+             return view('online.ordernow')
+             ->with('selecteds',$selected);
+        }
+
+        elseif($men == null && $women != null){
+        
+
+            $selected = \DB::table('tblSegment')
+                    ->select('tblSegment.*')
+                    ->where('strSegmentID', '=' ,$women)
+                    ->get();
+
+
+            return view('online.ordernow')
+            ->with('selecteds',$selected);
+        }
+        elseif ($women == null && $men != null ) {
+            
+            $selected = \DB::table('tblSegment')
+                    ->select('tblSegment.*')
+                    ->where('strSegmentID', '=', $men)
+                    ->get();
+
+            return view('online.ordernow')
+            ->with('selecteds',$selected);
+        }
+
+        else {
+
+            $selected = \DB::table('tblSegment')
                     ->select('tblSegment.*')
                     ->where('strSegmentID', '=', $men)
                     ->orwhere('strSegmentID', '=' ,$women)
                     ->get();
 
-        return view('online.ordernow')
-            ->with('selecteds',$selected);
+            return view('online.ordernow')
+                ->with('selecteds',$selected);
+        }
     } 
 
      public function info()

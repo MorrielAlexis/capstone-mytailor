@@ -518,6 +518,11 @@ class WalkInIndividualController extends Controller
             $lineTotal[$i] = (($values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice']) * $totalqty) + $styleTotal[$i]['dblPatternPrice'];
         }
 
+        $vatCharge = \DB::table('tblVat')
+                ->where('strTaxName', '=', 'Value Added Tax', 'OR', 'strTaxName', '=', 'VAT')
+                ->select('dblTaxPercentage')
+                ->get();
+        //dd($vatCharge);
         
         /*    $add = 0.00;
         foreach ($values as $i => $value) {
@@ -535,6 +540,7 @@ class WalkInIndividualController extends Controller
                     ->with('style_total', $styleTotal)
                     ->with('quantities', $quantity)
                     //->with('laborfee', $chargefees)
+                    ->with('vat', $vatCharge)
                     ->with('othercharge', $othercharges)
                     ->with('joID', $joID)
                     ->with('style_count', $style_count)
@@ -873,10 +879,10 @@ class WalkInIndividualController extends Controller
                 ->select('tblEmployee.strEmployeeID')
                 ->where('tblEmployee.strEmailAdd', 'LIKE', $empEmail)
                 ->get(); //dd($emp);
-
+        $empId;
         for($i = 0; $i < count($emp); $i++){
             $empId = $emp[$i]->strEmployeeID;
-        } 
+        } //dd($empId);
 
         $custId = session()->get('cust_id'); //dd($custId);
 
@@ -887,7 +893,7 @@ class WalkInIndividualController extends Controller
 
         $empname = \DB::table('tblEmployee')
                     ->select('strEmployeeID', \DB::raw('CONCAT(strEmpFName, " ", strEmpMName, " ", strEmpLName) AS employeename'))
-                    ->where('strEmployeeID', '=', 'EMPL001')//Temporary, since naka-hardcode pa yung pagset ng employee sa naunang process.
+                    ->where('strEmployeeID', '=', $empId)//Temporary, since naka-hardcode pa yung pagset ng employee sa naunang process.
                     ->first();
 
         $data_segment = session()->get('segment_data');

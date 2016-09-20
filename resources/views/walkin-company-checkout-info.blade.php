@@ -13,9 +13,9 @@
     	<div class="row" style="padding:30px">
         	<div class="col s12" style="padding-left:15%">
 		        <ul class="breadcrumb">
-					<li><a class="active col s12" href="#customer-info"><b>1. FILL-UP FORM</b></a></li>
-					<li><a class="col s12" style="margin-left:7%;" href="{{URL::to('transaction/walkin-company-payment-measure-detail')}}"><b>2. ADD MEASUREMENT DETAIL</b></a></li>
-					<li><a class="col s12" style="margin-left:33%" href="{{URL::to('transaction/walkin-company-payment-info')}}"><b>3. PAYMENT</b></a></li>				
+					<li><a class="active" href="#customer-info"><b>1. FILL-UP FORM</b></a></li>
+					<li><a href="{{URL::to('transaction/walkin-company-payment-measure-detail')}}"><b>2. ADD MEASUREMENT DETAIL</b></a></li>
+					<li><a href="{{URL::to('transaction/walkin-company-payment-info')}}"><b>3. PAYMENT</b></a></li>				
 				</ul>
 			</div>
 

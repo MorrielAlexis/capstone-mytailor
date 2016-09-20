@@ -10,12 +10,13 @@
     </div>
 
 	<div class="row" style="padding:30px">
-        
-    <ul class="col s12 breadcrumb">
-			<li><a class="active" style="padding-left:200px" href="#customer-info"><b>1.FILL-UP FORM</b></a></li>		
-			<li><a style="padding-left:200px"><b>2.ADD MEASUREMENT DETAIL</b></a></li>
-      <li><a style="padding-left:200px"><b>3.PAYMENT</b></a></li>
-		</ul>
+    <div class="col s12" style="padding-left:15%">    
+      <ul class="col s12 breadcrumb">
+  			<li><a class="active"href="#customer-info"><b>1.FILL-UP FORM</b></a></li>		
+  			<li><a><b>2.ADD MEASUREMENT DETAIL</b></a></li>
+        <li><a><b>3.PAYMENT</b></a></li>
+  		</ul>
+    </div>
 
 		<!-- Tab for Customer Info -->
 		<div id="customer-info" class = "hue col s12" style="background-color: white; border:2px outset">

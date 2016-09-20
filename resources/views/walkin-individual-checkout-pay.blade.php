@@ -13,9 +13,9 @@
 	<div class="row" style="padding:30px">
         <div class="col s12" style="padding-left:15%">
 	        <ul class="breadcrumb">
-				<li><a class="col s12"><b>1.FILL-UP FORM</b></a></li>
-				<li><a class="col s12" style="margin-left:7%"><b>2.ADD MEASUREMENT DETAIL</b></a></li>
-				<li><a class="col s12 active" style="margin-left:33%" href="#payment-info"><b>3.PAYMENT</b></a></li>
+				<li><a><b>1.FILL-UP FORM</b></a></li>
+				<li><a><b>2.ADD MEASUREMENT DETAIL</b></a></li>
+				<li><a class="active" href="#payment-info"><b>3.PAYMENT</b></a></li>
 			</ul>
 		</div>
 
@@ -345,7 +345,8 @@
 			var b = {!! json_encode($styles) !!};
 			//var c =  json_encode($laborfee) !!};
 			//var d = { json_encode($othercharge) !!};
-			var c ={!! json_encode($lineTotal) !!};
+			var c = {!! json_encode($lineTotal) !!};
+			var d = {!! json_encode($vat) !!};
 
 			var totalAmount = 0.00;
 			var minDays = 0;
@@ -383,7 +384,12 @@
 			//estimatedTotal = totalAmount - (addtnlFees + laborTotal);
 			var due = grandtotal;
 			var vat = 0.00;
-			vat = grandtotal * 0.12;
+			var vatValue;
+			for(var j = 0; j < d.length; j++){
+				vatValue = d[j].dblTaxPercentage;
+			}
+			vatValue = vatValue / 100;
+			vat = grandtotal * vatValue;
 			totalAmount = grandtotal - vat;
 
 			var monthNames = [ "January", "February", "March", "April", "May", "June",
