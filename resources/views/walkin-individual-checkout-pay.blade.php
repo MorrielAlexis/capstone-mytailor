@@ -193,6 +193,7 @@
 			      			<!--<div class="col s12" style="color:grey; font-size:10px"><p><b>12% VAT Inclusive</b></p></div>-->
 			      			<div class="col s4" style="color:black; font-size:15px"><p><b>Grand Total</b></p></div>
 			      			<div class="col s8" style="color:black;"><p><input id="total_price" name="total_price" type="text" class="" readonly style="font-size:3em"></p></div>
+			      			<input id="total_price_hidden" name="total_price_hidden" type="hidden" class="">
 
                         	<div class="col s4" style="color:gray; font-size:15px"><p><b>Terms of Payment</b></p></div>
                         	<div class="col s8" style="padding:18px; padding-top:30px">
@@ -205,7 +206,7 @@
 		      						<label for="full_pay">Full (100%)</label>
 		      					</div>
 								<div class="col s12 center" style="padding:18px; padding-top:20px">
-				          			<input name="termsOfPayment" value="Specify Amount" type="radio" class="filled-in payment" id="specify_pay" />
+				          			<input name="termsOfPayment" value="Specific Amount" type="radio" class="filled-in payment" id="specify_pay" />
 		      						<label for="specify_pay">Specify Amount</label>
 		      					</div>
 	      					</div>
@@ -231,21 +232,24 @@
 	                        <div style="color:black" class="col s12"> 
 								<div class="col s4"><p style="color:black; margin-top:5px; font-size:15px"><b>Amount To Pay:</b></p></div>                
 	                          	<div class="col s8"><b><input  style="padding:5px; border:3px gray solid; font-size:1.5em" id="amount-payable" name="amount-payable" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="right"></b></div>
+	                          	<input id="amount-payable-hidden" name="amount-payable-hidden" type="hidden" class="">
 	                        </div>
 
 	                        <div style="color:black" class="col s12"> 
 								<div class="col s4"><p style="color:black; margin-top:5px; font-size:15px"><b>Outstanding Balance*:</b></p></div>                
 	                          	<div class="col s8" style="color:black;"><b><input readonly style="padding:5px; border:3px gray solid; font-size:1.5em" id="balance" name="balance" type="text" class="right"></b></div>
+	                          	<input id="balance-hidden" name="balance-hidden" type="hidden" class="">
 	                        </div>
 
 	                        <div style="color:black" class="col s12"> 
 								<div class="col s4"><p style="color:black; margin-top:5px; font-size:15px"><b>Amount Tendered:</b></p></div>                
-	                          	<div class="col s8"><input style="padding:5px; border:3px gray solid; font-size:1em" name="amount-tendered" id="amount-tendered" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="right"><right></right></div>	                          
+	                          	<div class="col s8"><input style="padding:5px; border:3px gray solid; font-size:1em" name="amount-tendered" id="amount-tendered" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="right"><right></right></div>	     	                          
 	                        </div>
 
 	                        <div style="color:black" class="col s12"> 
 								<div class="col s4"><p style="color:black; margin-top:5px; font-size:15px"><b>Change*:</b></p></div>                
 	                          	<div class="col s8" style="color:black;"><input readonly style="padding:5px; border:3px gray solid; font-size:1em" name="amount-change" id="amount-change" type="text" class="right"></div>
+	                          	<input name="amount-change-hidden" id="amount-change-hidden" type="hidden" class="">
 	                        </div>
 
 
@@ -402,6 +406,7 @@
 			//$('#labor_price_total').val(laborTotal.toFixed(2));
 			$('#estimated_total').val(commaSeparateNumber(totalAmount.toFixed(2)));
 			$('#total_price').val(commaSeparateNumber(grandtotal.toFixed(2)));
+			$('#total_price_hidden').val(grandtotal.toFixed(2));
 			$('#vat_total').val(commaSeparateNumber(vat.toFixed(2)));
 			$('#total_due').val(commaSeparateNumber(due.toFixed(2)));
 			//$('#addtnl_fee').val(addtnlFees.toFixed(2));
@@ -435,8 +440,10 @@
 					}
 					
 					$('#amount-payable').val(commaSeparateNumber((grandtotal/2).toFixed(2)));
+					$('#amount-payable-hidden').val((grandtotal/2).toFixed(2));
 					$('#amount-payable').prop('readonly', true);
 					$('#balance').val(commaSeparateNumber((grandtotal - (grandtotal/2)).toFixed(2)));
+					$('#balance-hidden').val((grandtotal - (grandtotal/2)).toFixed(2));
 				}
 
 				if($('#full_pay').prop("checked")){
@@ -450,8 +457,10 @@
 					}
 					
 					$('#amount-payable').val(commaSeparateNumber(grandtotal.toFixed(2)));
+					$('#amount-payable-hidden').val(grandtotal.toFixed(2));
 					$('#amount-payable').prop('readonly', true);
 					$('#balance').val(commaSeparateNumber((grandtotal - grandtotal).toFixed(2)));
+					$('#balance-hidden').val((grandtotal - grandtotal).toFixed(2));
 				}
 
 				if($('specify_pay').prop("checked")){
@@ -472,13 +481,21 @@
 			    return parseFloat(result);
 			}
 
+			function commaSeparateNumber(val){
+			    while (/(\d+)(\d{3})/.test(val.toString())){
+			      val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
+			    }
+			    return val;
+			 }
+
 			var payable = parsePotentiallyGroupedFloat($('#amount-payable').val());
 
 			if(tendered == ''){
 				$('#amount-change').val('');
 			}else {
 				var amountChange = $('#amount-tendered').val() - payable;
-				$('#amount-change').val(amountChange.toFixed(2));
+				$('#amount-change').val(commaSeparateNumber(amountChange.toFixed(2)));
+				$('#amount-change-hidden').val(amountChange.toFixed(2));
 			}
 		});
 
@@ -499,16 +516,26 @@
 				}
 
 				var payable = $('#amount-payable').val();
+				$('#amount-payable-hidden').val($('#amount-payable').val());
+
 				if(event.which >= 37 && event.which <= 40){
 			        event.preventDefault();
 			    }
+
+			    function commaSeparateNumber(val){
+				    while (/(\d+)(\d{3})/.test(val.toString())){
+				      val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
+				    }
+				    return val;
+				 }
 
 			    if(payable == ''){
 					$('#balance').val('');
 				}else if(payable > grandtotal){
 					alert("You can't pay more than the total.")
 				}else{
-					$('#balance').val((grandtotal - payable).toFixed(2));	
+					$('#balance').val(commaSeparateNumber((grandtotal - payable).toFixed(2)));	
+					$('#balance-hidden').val((grandtotal - payable).toFixed(2));	
 				}
 
 		});
