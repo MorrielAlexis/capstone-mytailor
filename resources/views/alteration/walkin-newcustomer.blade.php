@@ -20,7 +20,7 @@
 
                               <div class="col s12">
                                   <label style="margin-left:10px;"><font size="+2" color="teal">Your Order:</font></label>
-                                  <div style="margin-right:20px; margin-top:-30px;"><button class="red accent-2 btn-flat modal-trigger right tooltipped white-text" href="#create-order" data-position="bottom" data-delay="50" data-tooltip="Click to create a new order">CREATE ORDER</button></button></div>
+                                  <div style="margin-right:20px; margin-top:-30px;"><button class="red accent-2 btn-flat modal-trigger right tooltipped white-text" href="#create-order" data-position="bottom" data-delay="50" data-tooltip="Click to create a new order">CREATE ALTERATION</button></button></div>
                               </div>
 
                               <div style="padding:20px;">
