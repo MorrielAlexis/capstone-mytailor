@@ -548,11 +548,11 @@ class WalkInIndividualController extends Controller
         $totalQuantity = 0;
 
         session(['termsOfPayment' => $request->input('termsOfPayment')]);
-        session(['totalPrice' => $request->input('total_price')]);
-        session(['amountToPay' => $request->input('amount-payable')]);
-        session(['outstandingBal' => $request->input('balance')]);
+        session(['totalPrice' => $request->input('total_price_hidden')]);
+        session(['amountToPay' => $request->input('amount-payable-hidden')]);
+        session(['outstandingBal' => $request->input('balance-hidden')]);
         session(['amountTendered' => $request->input('amount-tendered')]);
-        session(['amountChange' => $request->input('amount-change')]);
+        session(['amountChange' => $request->input('amount-change-hidden')]);
         session(['transaction_date' => $request->input('transaction_date')]);
         session(['dueDate' => $request->input('due_date')]);
 
@@ -592,6 +592,7 @@ class WalkInIndividualController extends Controller
                 'strModeOfPayment' => $modeOfPayment,
                 'intJO_OrderQuantity' => $totalQuantity,
                 'dblOrderTotalPrice' => $totalPrice,
+                'boolIsOrderAccepted' => 1,
                 'dtOrderDate' => $orderDate,
                 'boolIsActive' => 1
         ));
@@ -625,18 +626,23 @@ class WalkInIndividualController extends Controller
             $empId = $emp[$i]->strEmployeeID;
         } 
 
+        if($termsOfPayment == 'Full Payment'){
+            $payTerms = 'Paid';
+        } elseif ($termsOfPayment == 'Half Payment' || $termsOfPayment == 'Specific Amount') {
+            $payTerms = 'Pending';
+        }
 
         $payment = TransactionJobOrderPayment::create(array(
                 'strPaymentID' => $jobPaymentID,
                 'strTransactionFK' => session()->get('joID'), //tblJobOrder
-                'dblAmountToPay' => $request->input('amount-payable'), 
-                'dblOutstandingBal' => $request->input('balance'),
+                'dblAmountToPay' => $request->input('amount-payable-hidden'), 
+                'dblOutstandingBal' => $request->input('balance-hidden'),
                 'dblAmountTendered' => $amtTendered,
                 'dblAmountChange' => $amtChange,
                 'strReceivedByEmployeeNameFK' => 'EMPL001',
                 'dtPaymentDate' => $request->input('transaction_date'),
                 'dtPaymentDueDate' => session()->get('dueDate'),
-                'strPaymentStatus' => 'Pending',
+                'strPaymentStatus' => $payTerms,
                 'boolIsActive' => 1
 
         ));

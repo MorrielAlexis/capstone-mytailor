@@ -65,7 +65,7 @@
                     <span class="col s12" style="color:teal;"><b>Customer Details</b></span>
                     <div class="card-panel col s12" style="border:3px solid gray; padding:15px;">
                         <div style="color:black" class="input-field col s4">                 
-                          <input required value="" id="first_name" name="addIndiFirstName" type="text" class="" placeholder="Hope Elizabeth" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$">
+                          <input required value="" id="first_name" name="addIndiFirstName" type="text" class="" placeholder="Hope Elizabeth" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$" class="validate">
                           <label style="color:gray" for="first_name"><b><span class="red-text"><b>*</b></span>First Name</b></label>
                         </div>
 
