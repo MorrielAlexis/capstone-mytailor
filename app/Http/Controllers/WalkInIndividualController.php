@@ -518,6 +518,11 @@ class WalkInIndividualController extends Controller
             $lineTotal[$i] = (($values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice']) * $totalqty) + $styleTotal[$i]['dblPatternPrice'];
         }
 
+        $vatCharge = \DB::table('tblVat')
+                ->where('strTaxName', '=', 'Value Added Tax', 'OR', 'strTaxName', '=', 'VAT')
+                ->select('dblTaxPercentage')
+                ->get();
+        //dd($vatCharge);
         
         /*    $add = 0.00;
         foreach ($values as $i => $value) {
@@ -535,6 +540,7 @@ class WalkInIndividualController extends Controller
                     ->with('style_total', $styleTotal)
                     ->with('quantities', $quantity)
                     //->with('laborfee', $chargefees)
+                    ->with('vat', $vatCharge)
                     ->with('othercharge', $othercharges)
                     ->with('joID', $joID)
                     ->with('style_count', $style_count)
