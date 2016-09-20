@@ -498,17 +498,50 @@ class OnlineIndividualController extends Controller
 
         $women = session()->get('womensegment_data');
 
-
         GarmentCategory::all();
 
-         $selected = \DB::table('tblSegment')
+        if($men == null && $women == null){
+
+            $selected = null;
+
+             return view('online.ordernow')
+             ->with('selecteds',$selected);
+        }
+
+        elseif($men == null && $women != null){
+        
+
+            $selected = \DB::table('tblSegment')
+                    ->select('tblSegment.*')
+                    ->where('strSegmentID', '=' ,$women)
+                    ->get();
+
+
+            return view('online.ordernow')
+            ->with('selecteds',$selected);
+        }
+        elseif ($women == null && $men != null ) {
+            
+            $selected = \DB::table('tblSegment')
+                    ->select('tblSegment.*')
+                    ->where('strSegmentID', '=', $men)
+                    ->get();
+
+            return view('online.ordernow')
+            ->with('selecteds',$selected);
+        }
+
+        else {
+
+            $selected = \DB::table('tblSegment')
                     ->select('tblSegment.*')
                     ->where('strSegmentID', '=', $men)
                     ->orwhere('strSegmentID', '=' ,$women)
                     ->get();
 
-        return view('online.ordernow')
-            ->with('selecteds',$selected);
+            return view('online.ordernow')
+                ->with('selecteds',$selected);
+        }
     } 
 
      public function info()
