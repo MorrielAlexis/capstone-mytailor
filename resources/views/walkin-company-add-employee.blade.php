@@ -67,7 +67,7 @@
 									</div>
 
 									<div class="col s1">
-										<a style="color:white; margin-top:18px" class="modal-trigger btn tooltipped blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit the set purchased" href="#empSpecification{!! $i !!}"><i class="mdi-editor-mode-edit"></i></a>
+										<a style="color:white; margin-top:18px" class="modal-trigger btn tooltipped blue" data-position="bottom" data-delay="50" data-tooltip="Click to add additional segments from the set purchased" href="#empSpecification{!! $i !!}"><i class="mdi-editor-mode-edit"></i></a>
 									</div>
 
 									<!--Modal for editing employee -->
@@ -101,7 +101,7 @@
 																	<tr>
 																		<td>{{ $segments[$j][$k][0]->strGarmentCategoryName }}, <b>{{ $segments[$j][$k][0]->strSegmentName }}</b></td>
 																		<td><img src="../{{ $segments[$j][$k][0]->strSegmentImage }}"/></td>
-																		<td><input name="segment-qty{{ $i }}[]" id="add-garment" type="number" value="1" style="margin-top:20px" placeholder="How many?" ></td>
+																		<td><input name="segment-qty{{ $i }}[]" id="add-garment" type="number" value="" style="margin-top:20px" placeholder="How many additional {{ $segments[$j][$k][0]->strSegmentName }}?" ></td>
 																	</tr>
 																	@endif
 																@endfor

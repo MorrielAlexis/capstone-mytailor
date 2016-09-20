@@ -72,7 +72,7 @@
 														              <img src="{{URL::asset($pattern->strSegPImage)}}" alt="" class="responsive-img">
 														            </div>
 														            <div class="col s6"> 
-														              <span><b>{{ $pattern->strSegPName }}</b></span> <!-- This will be the name of the pattern -->
+														              <span><b>{{ $pattern->strSegPName }} <font color="red">({{ number_format($pattern->dblPatternPrice, 2) }} PHP)</font></b></span> <!-- This will be the name of the pattern -->
 														              <br/>
 														              <span class="black-text">
 														                {{ $pattern->txtSegPDesc }}
@@ -181,7 +181,7 @@
 											              <img src="{{URL::asset($fabric->strFabricImage)}}"class="responsive-img">
 											            </div>
 											            <div class="col s8"> 
-											              <p><b id="{{ 'fabricText'.$fabric->strFabricID }}">{{ $fabric->strFabricName }}</b></p> 
+											              <p><b id="{{ 'fabricText'.$fabric->strFabricID }}">{{ $fabric->strFabricName }} <font color="red">({{ number_format($fabric->dblFabricPrice, 2) }} PHP)</font></b></p> 
 											              <span class="black-text">
 											                {{ $fabric->txtFabricDesc }}
 											              </span>

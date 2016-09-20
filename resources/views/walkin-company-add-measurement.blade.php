@@ -92,12 +92,12 @@
 													@foreach($measurement_detail as $detail)
 														@if($package_segments[$j][$k][0]->strSegmentID == $detail->strMeasDetSegmentFK)
 															<div class="center col s6">
-																<div class="right col s5">
-																	<right><p>{{ $detail->strMeasDetailName }}</p></right>
-																</div>
 																<div class="col s7">
-																	<input name="measID{{ $i }}[]" type="hidden" value="{{ $detail->strMeasurementDetailID }}">
 																	<input name="{{ $i }}[]" id="measure_name" type="text" class="validate">
+																	<input name="measID{{ $i }}[]" type="hidden" value="{{ $detail->strMeasurementDetailID }}">
+																</div>
+																<div class="right col s5">
+																	<right><p>{{ $detail->strMeasDetailName }} <font color="red">(cm)</font></p></right>
 																</div>
 															</div>
 														@endif

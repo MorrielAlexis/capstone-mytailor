@@ -376,7 +376,7 @@ class WalkInCompanyController extends Controller
                 }
             }
         }
-
+        
         session(['employee_fname' => $employeeFirstName]);
         session(['employee_lname' => $employeeLastName]);
         session(['employee_mname' => $employeeMiddleName]);
@@ -466,7 +466,7 @@ class WalkInCompanyController extends Controller
 
     public function existingCompanyInformation(Request $request)
     {
-        $custID = $request->input('custID');
+/*        $custID = $request->input('custID');
 
         $joID = \DB::table('tblJobOrder')
             ->select('strJobOrderID')
@@ -485,7 +485,7 @@ class WalkInCompanyController extends Controller
         session(['compID' => $custID]);
         session(['compJOID' => $newID]);
 
-        $this->saveCompanyEmployees($custID);
+        $this->saveCompanyEmployees($custID);*/
 
         return view('walkin-company-checkout-measure');
     }

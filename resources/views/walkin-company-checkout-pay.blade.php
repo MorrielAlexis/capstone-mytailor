@@ -202,7 +202,8 @@
 
 	                        <div style="color:black" class="col s12"> 
 								<div class="col s4"><p style="color:black; margin-top:5px; font-size:15px"><b>Amount To Pay:</b></p></div>                
-	                          	<div class="col s8"><b><input  style="padding:5px; border:3px gray solid; font-size:1.5em" id="amount-payable" name="amount-payable" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="right"></b></div>
+	                          	<div class="col s8"><b><input readonly style="padding:5px; border:3px gray solid; font-size:1.5em" id="amount-payable" name="amount-payable" type="text" class="right"></b></div>
+	                        	<input type="hidden" id="hidden-amount-payable" name="hidden-amount-payable">
 	                        </div>
 
 	                        <div style="color:black" class="col s12"> 
@@ -315,9 +316,9 @@
 		  		total += a[i] + b[i] + c[i];
 		  	}
 
-		  	$('#estimated_total_sales').val((total - (total * .12)).toFixed(2));
-		  	$('#vat_price').val((total * .12).toFixed(2));
-		  	$('#total_price').val(total.toFixed(2));
+		  	$('#estimated_total_sales').val(((total - (total * .12)).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+		  	$('#vat_price').val(((total * .12).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+		  	$('#total_price').val((total.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 
 
 			var monthNames = [ "January", "February", "March", "April", "May", "June",
@@ -348,9 +349,10 @@
 				  	{
 				  		total += a[i] + b[i] + c[i];
 				  	}
-					
-					$('#amount-payable').val((total/2).toFixed(2));
-					$('#balance').val((total - (total/2)).toFixed(2));
+
+					$('#hidden-amount-payable').val((total/2).toFixed(2));
+					$('#amount-payable').val(((total/2).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+					$('#balance').val(((total - (total/2)).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 				}
 
 				if($('#full_pay').prop("checked")){
@@ -364,14 +366,20 @@
 				  		total += a[i] + b[i] + c[i];
 				  	}
 					
-					$('#amount-payable').val(total.toFixed(2));
-					$('#balance').val((total - total).toFixed(2));
+					$('#hidden-amount-payable').val(total.toFixed(2));
+					$('#amount-payable').val((total.toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+					$('#balance').val(((total - total).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 				}
 		});
 
 		$('#amount-tendered').blur(function(){	
-			var amountChange = $('#amount-tendered').val() - $('#amount-payable').val();
-			$('#amount-change').val(amountChange.toFixed(2));
+			var amountChange = $('#amount-tendered').val() - $('#hidden-amount-payable').val();
+
+			if($('#amount-tendered').val() == ''){
+				$('#amount-change').val('');
+			}else{
+				$('#amount-change').val(amountChange.toFixed(2));
+			}
 		});
 
 		$('#amount-payable').blur(function(){	
@@ -379,10 +387,31 @@
 			// 	alert("You can't choose to pay more than the total.");
 			// 	$('#amount-to-pay').val("");
 			// }
-				var amountChange = $('#amount-tendered').val() - $('#amount-payable').val();
+				var amountChange = $('#amount-tendered').val() - $('#hidden-amount-payable').val();
 				$('#amount-change').val(amountChange.toFixed(2));	
 				// $('#outstanding-bal').val(($('#total_price').val() - $('#amount-to-pay').val()).toFixed(2) + ' PHP');				
 
+				var a = {!! json_encode($style_total) !!};
+				var b = {!! json_encode($fabric_total) !!};
+				var c = {!! json_encode($segment_total) !!};
+				var total = 0;
+				for(var i = 0; i < a.length; i++)
+				{
+					total += a[i] + b[i] + c[i];
+				}
+
+				var payable = $('#amount-payable').val();
+				if(event.which >= 37 && event.which <= 40){
+			        event.preventDefault();
+			    }
+
+			    if(payable == ''){
+					$('#balance').val('');
+				}else if(payable > total){
+					alert("You can't pay more than the total.")
+				}else{
+					$('#balance').val((total - payable).toFixed(2));	
+				}
 		});
 		
 	</script>
