@@ -52,8 +52,8 @@
                             <div class="col s12 m6 l3">
                                 <div class="card">
                                     <div class="card-content deep-purple accent-1 white-text">
-                                        <p class="card-stats-title" style="font-size:20px"><i class="mdi-editor-insert-drive-file"></i> New Invoice</p>
-                                        <h4 class="card-stats-number">1806</h4>
+                                        <p class="card-stats-title" style="font-size:20px"><i class="mdi-editor-insert-drive-file"></i>Today's Sale</p>
+                                        <h4 class="card-stats-number">Php.1806</h4>
                                         {{-- <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-down"></i> 3% <span class="deep-purple-text text-lighten-5">from last month</span>
                                         </p> --}}
                                     </div>
@@ -77,7 +77,7 @@
                         </div>
                     </div>
                     <div class="white-text">
-                        <div class="card-content" style="height:400px;">
+                        <div class="card-content" style="height:385px;">
                             <div class="right" style="margin-top:-20px;">
                                 <a href="{{URL::to('/online-home')}}" style="font-family:cursive; font-size:30px; font-color:teal accent-4;">Go to shop<i class="mdi-maps-local-mall"></i></a>
                             </div>
@@ -89,74 +89,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col s12 m6 l4">
-                <div class="col s12">
-                    <ul id="task-card" class="collection with-header z-depth-3" style="border:0;  height:550px">
-                        <li class="collection-header green">
-                            <h3 class="task-card-title white-text">On Going Orders</h3>
-                        </li>
-                        @foreach($joborderongoing as $joborderongoing)
-                            @if($joborderongoing->strCompanyName == null)
-                                <li class="collection-item dismissable" style="padding:20px;">
-                                     <a href= "{{URL::to('transaction/orderProgress')}}" class="waves-effect waves-teal btn-flat"> {{$joborderongoing->dtOrderExpectedToBeDone}} {{$joborderongoing->strCompanyName}}{{$joborderongoing->strIndivFName}} {{$joborderongoing->strIndivLName}}</a>
-                                </li>
-                            @else
-                                <li class="collection-item dismissable" style="padding:20px;">
-                                     <a href= "{{URL::to('transaction/orderProgress')}}" class="waves-effect waves-teal btn-flat"> {{$joborderongoing->dtOrderExpectedToBeDone}} {{$joborderongoing->strCompanyName}}{{$joborderongoing->strIndivFName}} {{$joborderongoing->strIndivLName}}</a>
-                                </li>
-                            @endif        
-                        @endforeach    
-                    </ul>
-                </div>
-            </div>
-
-            <div class="col s12 m6 l4">
-                <div class="col s12">
-                    <ul id="task-card" class="collection with-header z-depth-3" style="border:0; height:550px">
-                        <li class="collection-header cyan">
-                            <h3 class="task-card-title white-text">Pending Online Orders</h3>
-                        </li>
-                        @foreach($joborder as $joborder)
-                            @if($joborder->strCompanyName == null)
-                                <li class="collection-item dismissable" style="padding:20px;">
-                                     <a href="{{URL::to('transaction/online-customer-individual')}}" class="waves-effect waves-teal btn-flat"> {{$joborder->dtOrderExpectedToBeDone}} {{$joborder->strCompanyName}}{{$joborder->strIndivFName}} {{$joborder->strIndivLName}}</a>
-                                </li>
-                            @else
-                                <li class="collection-item dismissable" style="padding:20px;">
-                                     <a href="{{URL::to('transaction/online-customer-company')}}" class="waves-effect waves-teal btn-flat"> {{$joborder->dtOrderExpectedToBeDone}} {{$joborder->strCompanyName}}{{$joborder->strIndivFName}} {{$joborder->strIndivLName}}</a>
-                                </li>
-                            @endif        
-                        @endforeach    
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s12 m12 l6">
-                <ul id="projects-collection" class="collection z-depth-3" style="height:550px">
-                    <li class="collection-item avatar">
-                        <i class="mdi-file-folder circle light-blue darken-2"></i>
-                        <span class="collection-header"><font size="+1">JOB ORDER NEAR DUE DATE</font></span>
-                        <a href="#" class="secondary-content"><i class="mdi-action-grade"></i></a>
-                    </li>
-                    @foreach($neardue as $neardue)
-                        <li class="collection-item">
-                            <div class="row">
-                                <div class="col s6">
-                                    <a href="{{URL::to('transaction/billing-collection')}}">
-                                        <p class="collections-title">{{$neardue->strJobOrderID}}</p>
-                                        <p class="collections-content">{{$neardue->strCompanyName}}{{$neardue->strIndivFName}} {{$neardue->strIndivLName}}</p>
-                                    </a>
-                                </div>
-                               <div class="col s6">
-                                    <p>{{$neardue->dtOrderExpectedToBeDone}}</p>
-                                </div>
-                            </div>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-            <div class="col s12 m12 l6">
+            <div class="col s12 m12 l8">
                 <ul id="issues-collection" class="collection z-depth-3" style="height:550px">
                     <li class="collection-item avatar">
                         <i class="mdi-action-bug-report circle red darken-2"></i>
@@ -186,6 +119,76 @@
                     
                 </ul>
             </div>
+            
+        <div class="row" style="padding:20px">
+            <div class="col s12 m6 l4" style="margin-top:30px;">
+                <ul id="projects-collection" class="collection z-depth-3" style="height:550px">
+                    <li class="collection-item avatar">
+                        <i class="mdi-file-folder circle light-blue darken-2"></i>
+                        <span class="collection-header"><font size="+1">JOB ORDER NEAR DUE DATE</font></span>
+                        <a href="#" class="secondary-content"><i class="mdi-action-grade"></i></a>
+                    </li>
+                    @foreach($neardue as $neardue)
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col s6">
+                                    <a href="{{URL::to('transaction/billing-collection')}}">
+                                        <p class="collections-title">{{$neardue->strJobOrderID}}</p>
+                                        <p class="collections-content">{{$neardue->strCompanyName}}{{$neardue->strIndivFName}} {{$neardue->strIndivLName}}</p>
+                                    </a>
+                                </div>
+                               <div class="col s6">
+                                    <p>{{$neardue->dtOrderExpectedToBeDone}}</p>
+                                </div>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+            <div class="col s12 m6 l4" style="margin-top:30px;">
+                <div class="col s12">
+                    <ul id="task-card" class="collection with-header z-depth-3" style="border:0;  height:550px">
+                        <li class="collection-header green">
+                            <h3 class="task-card-title white-text">Customers with Balances</h3>
+                        </li>
+                        @foreach($joborderongoing as $joborderongoing)
+                            @if($joborderongoing->strCompanyName == null)
+                                <li class="collection-item dismissable" style="padding:20px;">
+                                     <a href= "{{URL::to('transaction/orderProgress')}}" class="waves-effect waves-teal btn-flat"> {{$joborderongoing->dtOrderExpectedToBeDone}} {{$joborderongoing->strCompanyName}}{{$joborderongoing->strIndivFName}} {{$joborderongoing->strIndivLName}}</a>
+                                </li>
+                            @else
+                                <li class="collection-item dismissable" style="padding:20px;">
+                                     <a href= "{{URL::to('transaction/orderProgress')}}" class="waves-effect waves-teal btn-flat"> {{$joborderongoing->dtOrderExpectedToBeDone}} {{$joborderongoing->strCompanyName}}{{$joborderongoing->strIndivFName}} {{$joborderongoing->strIndivLName}}</a>
+                                </li>
+                            @endif        
+                        @endforeach    
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col s12 m6 l4" style="margin-top:30px">
+                <div class="col s12">
+                    <ul id="task-card" class="collection with-header z-depth-3" style="border:0; height:550px">
+                        <li class="collection-header cyan">
+                            <h3 class="task-card-title white-text">Pending Online Orders</h3>
+                        </li>
+                        @foreach($joborder as $joborder)
+                            @if($joborder->strCompanyName == null)
+                                <li class="collection-item dismissable" style="padding:20px;">
+                                     <a href="{{URL::to('transaction/online-customer-individual')}}" class="waves-effect waves-teal btn-flat"> {{$joborder->dtOrderExpectedToBeDone}} {{$joborder->strCompanyName}}{{$joborder->strIndivFName}} {{$joborder->strIndivLName}}</a>
+                                </li>
+                            @else
+                                <li class="collection-item dismissable" style="padding:20px;">
+                                     <a href="{{URL::to('transaction/online-customer-company')}}" class="waves-effect waves-teal btn-flat"> {{$joborder->dtOrderExpectedToBeDone}} {{$joborder->strCompanyName}}{{$joborder->strIndivFName}} {{$joborder->strIndivLName}}</a>
+                                </li>
+                            @endif        
+                        @endforeach    
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+            
         </div>
     </div>
 
