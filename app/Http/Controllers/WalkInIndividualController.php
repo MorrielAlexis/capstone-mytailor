@@ -633,7 +633,7 @@ class WalkInIndividualController extends Controller
                 'dblOutstandingBal' => $request->input('balance'),
                 'dblAmountTendered' => $amtTendered,
                 'dblAmountChange' => $amtChange,
-                'strReceivedByEmployeeNameFK' => $empId,
+                'strReceivedByEmployeeNameFK' => 'EMPL001',
                 'dtPaymentDate' => $request->input('transaction_date'),
                 'dtPaymentDueDate' => session()->get('dueDate'),
                 'strPaymentStatus' => 'Pending',
@@ -678,7 +678,7 @@ class WalkInIndividualController extends Controller
                             'intQuantity' => 1,
                             'dblUnitPrice' => $segments[$i]['dblSegmentPrice'],
                             'intEstimatedDaysToFinish' => $segments[$i]['intMinDays'],
-                            'strEmployeeNameFK' => $empId,
+                            'strEmployeeNameFK' => 'EMPL001',
                             'boolIsActive' => 1
                     ));
             //}
@@ -881,7 +881,7 @@ class WalkInIndividualController extends Controller
 
         $empname = \DB::table('tblEmployee')
                     ->select('strEmployeeID', \DB::raw('CONCAT(strEmpFName, " ", strEmpMName, " ", strEmpLName) AS employeename'))
-                    ->where('strEmployeeID', '=', $empId)//Temporary, since naka-hardcode pa yung pagset ng employee sa naunang process.
+                    ->where('strEmployeeID', '=', 'EMPL001')//Temporary, since naka-hardcode pa yung pagset ng employee sa naunang process.
                     ->first();
 
         $data_segment = session()->get('segment_data');
