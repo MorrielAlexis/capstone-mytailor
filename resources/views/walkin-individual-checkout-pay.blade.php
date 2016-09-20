@@ -345,7 +345,8 @@
 			var b = {!! json_encode($styles) !!};
 			//var c =  json_encode($laborfee) !!};
 			//var d = { json_encode($othercharge) !!};
-			var c ={!! json_encode($lineTotal) !!};
+			var c = {!! json_encode($lineTotal) !!};
+			var d = {!! json_encode($vat) !!};
 
 			var totalAmount = 0.00;
 			var minDays = 0;
@@ -383,7 +384,12 @@
 			//estimatedTotal = totalAmount - (addtnlFees + laborTotal);
 			var due = grandtotal;
 			var vat = 0.00;
-			vat = grandtotal * 0.12;
+			var vatValue;
+			for(var j = 0; j < d.length; j++){
+				vatValue = d[j].dblTaxPercentage;
+			}
+			vatValue = vatValue / 100;
+			vat = grandtotal * vatValue;
 			totalAmount = grandtotal - vat;
 
 			var monthNames = [ "January", "February", "March", "April", "May", "June",
