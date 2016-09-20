@@ -77,7 +77,7 @@ class HomeController extends Controller
 
             if($user->confirmed == 1)
             {   
-                if(Auth::user()->type == 'employee'){
+                if(Auth::user()->type == 'admin'){
                     return redirect()->intended('/dashboard');
                 }else if(Auth::user()->type == 'customer'){
                     return redirect()->intended('/online-home');
