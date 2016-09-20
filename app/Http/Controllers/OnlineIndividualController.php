@@ -72,6 +72,10 @@ class OnlineIndividualController extends Controller
 
     public function menfabric(Request $request)
     {   
+        $mfabric = [];
+
+        session(['menfabric' => $mfabric]); 
+
         $mendata_segment = $request->input('menshirt');
         session(['mensegment_data' => $mendata_segment]);
        
@@ -95,9 +99,13 @@ class OnlineIndividualController extends Controller
 
     public function menstylecollar(Request $request)
     {
-         $data_segment = session()->get('segment_data');
+        
+        $mendata_fabric = $request->input('rdb_fabric');
+        session(['menfabric' => $mendata_fabric]);
 
-         dd($data_segment);
+        $fabric = session()->get('menfabric');
+
+        dd($fabric);
 
         $contrast = Fabric::all();
         $fabricThreadCounts = FabricThreadCount::all();
