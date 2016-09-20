@@ -13,9 +13,9 @@
 	<div class="row" style="padding:30px">
         <div class="col s12" style="padding-left:15%">
 	        <ul class="breadcrumb">
-				<li><a class="col s12"><b>1.FILL-UP FORM</b></a></li>
-				<li><a class="col s12" style="margin-left:7%"><b>2.ADD MEASUREMENT DETAIL</b></a></li>
-				<li><a class="col s12 active" style="margin-left:33%" href="#payment-info"><b>3.PAYMENT</b></a></li>
+				<li><a><b>1.FILL-UP FORM</b></a></li>
+				<li><a><b>2.ADD MEASUREMENT DETAIL</b></a></li>
+				<li><a class="active" href="#payment-info"><b>3.PAYMENT</b></a></li>
 			</ul>
 		</div>
 
