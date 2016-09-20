@@ -81,7 +81,7 @@
 
                         <div class="input-field col s12" style="color:black">
             							<!--<p style="color:gray"><b>Sex</b></p>-->
-            							<select value="" name='strIndivSex' required>
+            							<select value="" name="strIndivSex" required>
                               <option value="M">Male</option>
                               <option value="F">Female</option>
                           </select>    
