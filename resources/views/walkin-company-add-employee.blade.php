@@ -29,17 +29,17 @@
 								<!--Employee Information starts here-->
 								<div class="col s12" style="margin-bottom:30px">
 									<div class="input-field col s3">
-							          	<input id="empFirstName{{ $i }}" name="empFirstName[]" required type="text" class="validate" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$">
+							          	<input id="empFirstName{{ $i }}" name="empFirstName[]" required type="text" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$">
 							          	<label for="empFirstName{{ $i }}">First Name</label>
 							        </div>
 
 							        <div class="input-field col s3">
-							          	<input id="empLastName{{ $i }}" name="empLastName[]" required type="text" class="validate" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$">
+							          	<input id="empLastName{{ $i }}" name="empLastName[]" required type="text" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$">
 							          	<label for="empLastName{{ $i }}">Last Name</label>
 							        </div>
 
 							        <div class="input-field col s2">
-							        	<input id="empMiddleName{{ $i }}" name="empMiddleName[]" type="text" class="validate" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$">
+							        	<input id="empMiddleName{{ $i }}" name="empMiddleName[]" type="text" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$">
 							          	<label for="empMiddleName{{ $i }}">Middle Name</label>
 							        </div>
 
