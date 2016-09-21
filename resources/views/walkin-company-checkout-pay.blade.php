@@ -112,17 +112,17 @@
 										<td style="border:1px black solid">{{ number_format($package_segments[$j][$k]->dblSegmentPrice * $segment_qty[$i][$k], 2) }} PHP</td>
 										<td style="border:1px black solid">
 											@for($l = 0; $l < count($segment_patterns[$j][$k]); $l++)
-												{{ $segment_patterns[$j][$k][$l]->strSegStyleName }}<br>
+												{{ $segment_patterns[$j][$k]->strSegStyleName }}<br>
 											@endfor
 										</td>
 										<td style="border:1px black solid">
 											@for($l = 0; $l < count($segment_patterns[$j][$k]); $l++)
-												{{ $segment_patterns[$j][$k][$l]->strSegPName }}<br>
+												{{ $segment_patterns[$j][$k]->strSegPName }}<br>
 											@endfor
 										</td>
 										<td style="border:1px black solid">
 											@for($l = 0; $l < count($segment_patterns[$j][$k]); $l++)
-												{{ number_format($segment_patterns[$j][$k][$l]->dblPatternPrice	* $segment_qty[$i][$k], 2) }} PHP <br>
+												{{ number_format($segment_patterns[$j][$k]->dblPatternPrice	* $segment_qty[$i][$k], 2) }} PHP <br>
 											@endfor
 										</td>
 									</tr>
@@ -315,11 +315,11 @@
 		  	{
 		  		total += a[i] + b[i] + c[i];
 		  	}
-
+		  	
 		  	$('#estimated_total_sales').val(((total - (total * .12)).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		  	$('#vat_price').val(((total * .12).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		  	$('#total_price').val((total.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-		  	$('#hidden_total_price').val(total.toFixed(2));
+		  	$('#hidden_total_price').val(total);
 
 			var monthNames = [ "January", "February", "March", "April", "May", "June",
 		    "July", "August", "September", "October", "November", "December" ];
