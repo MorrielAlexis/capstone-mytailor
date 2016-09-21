@@ -241,7 +241,7 @@ class SegmentStyleSeeder extends Seeder
                 'txtSegStyleCatDesc' => 'Lapels are the folded flaps of cloth on the front of a jacket or coat, and are most commonly found on formal clothing and suit jackets.  ',
                 'strSegStyleCatInactiveReason' => '',
                 'boolIsActive' => '1'
-            ),
+            )
 
         );
 

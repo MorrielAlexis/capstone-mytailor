@@ -410,36 +410,6 @@ class SegmentPatternSeeder extends Seeder
                 'boolIsActive' => '1'
             ),  
 
-            // array(
-            //     'strSegPatternID' => 'SPAT0040',
-            //     'strSegPStyleCategoryFK' => 'SEGSTY023',
-            //     'strSegPName'=>'No Vent',
-            //     'dblPatternPrice' => '10',
-            //     'txtSegPDesc' => 'Usually use  for winter.',
-            //     'strSegPImage' => 'imgDesignPatterns/novent.jpg',
-            //     'boolIsActive' => '1'
-            // ),
-
-            // array(
-            //     'strSegPatternID' => 'SPAT0041',
-            //     'strSegPStyleCategoryFK' => 'SEGSTY023',
-            //     'strSegPName'=>'Center Vent',
-            //     'dblPatternPrice' => '50',
-            //     'txtSegPDesc' => 'Usually use  for winter.',
-            //     'strSegPImage' => 'imgDesignPatterns/centervents.jpg',
-            //     'boolIsActive' => '1'
-            // ),  
-
-            // array(
-            //     'strSegPatternID' => 'SPAT0042',
-            //     'strSegPStyleCategoryFK' => 'SEGSTY023',
-            //     'strSegPName'=>'Side Vent',
-            //     'dblPatternPrice' => '50',
-            //     'txtSegPDesc' => 'Usually use  for winter.',
-            //     'strSegPImage' => 'imgDesignPatterns/sidevents.jpg',
-            //     'boolIsActive' => '1'
-            // ), 
-
             array(
                 'strSegPatternID' => 'SPAT0040',
                 'strSegPStyleCategoryFK' => 'SEGSTY023',
@@ -685,10 +655,10 @@ class SegmentPatternSeeder extends Seeder
             array(
                 'strSegPatternID' => 'SPAT0064',
                 'strSegPStyleCategoryFK' => 'SEGSTY013',
-                'strSegPName'=>'A-line',
+                'strSegPName'=>'Normal',
                 'dblPatternPrice' => '70',
                 'txtSegPDesc' => 'Usually use for formal events.',
-                'strSegPImage' => 'imgDesignPatterns/a-line.jpg',
+                'strSegPImage' => '',
                 'boolIsActive' => '1'
             ),
 
@@ -696,10 +666,10 @@ class SegmentPatternSeeder extends Seeder
             array(
                 'strSegPatternID' => 'SPAT0065',
                 'strSegPStyleCategoryFK' => 'SEGSTY013',
-                'strSegPName'=> 'Ball Gown',
+                'strSegPName'=> 'Slim Fit',
                 'dblPatternPrice' => '70',
                 'txtSegPDesc' => 'Use for parties and debuts.',
-                'strSegPImage' => 'imgDesignPatterns/ball-gown.jpg',
+                'strSegPImage' => '',
                 'boolIsActive' => '1'
             ),
 
@@ -781,7 +751,7 @@ class SegmentPatternSeeder extends Seeder
                 'txtSegPDesc' => 'Usually use as a lining for pants.',
                 'strSegPImage' => 'imgDesignPatterns/withoutcuffs.jpg',
                 'boolIsActive' => '1'
-            ),                                
+            )                                
 
         );
 
