@@ -33,13 +33,13 @@
               </thead>
 
               <tbody>
-                  {{-- @foreach($topAlterations as $topAlterations) --}}
+                  @foreach($results as $results)
                   <tr>
-                    <td>{{-- {{$topAlterations->name}} --}}</td>
-                    <td>{{-- {{$topAlterations->ctr}}  --}}</td>
-                    <td></td>
+                    <td>{{$results->custName}}</td>
+                    <td>{{$results->balance}} </td>
+                    <td>{{$results->dueDate}}</td>
                   </tr>
-                 {{--  @endforeach --}}
+                  @endforeach
               </tbody>
             </table>
 
