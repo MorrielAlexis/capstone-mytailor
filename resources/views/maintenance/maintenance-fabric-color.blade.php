@@ -128,7 +128,7 @@
               	   <!-- Update FabricColor Modal --> 
                     <div id="edit{{$fabricColor->strFabricColorID}}" class="modal modal-fixed-footer"> 
                       <h5><font color = "#1b5e20"><center>UPDATE COLOR</center> </font> </h5>
-                        {!! Form::open(['url' => 'maintenance/fabric-color/update']) !!}
+                        {!! Form::open(['url' => 'maintenance/fabric-color/update', 'method' => 'post']) !!}
                           <div class="divider" style="height:2px"></div>
                               <div class="modal-content col s12">
                         

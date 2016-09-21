@@ -129,8 +129,8 @@ class FabricPatternController extends Controller
         if(!$isAdded){
         $fabricPattern = FabricPattern::find($request->input('editfabricPattern'));
 
-                $fabricPattern->strFabricPatternName = trim($request->get('editFabricPatternName'));    
-                $fabricPattern->txtFabricPatternDesc = trim($request->get('editFabricPatternDesc'));
+                $fabricPattern->strFabricPatternName = trim($request->input('editFabricPatternName'));    
+                $fabricPattern->txtFabricPatternDesc = trim($request->input('editFabricPatternDesc'));
                 $fabricPattern->save();
 
         \Session::flash('flash_message_update','Pattern successfully updated.');

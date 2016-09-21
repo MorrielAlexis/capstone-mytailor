@@ -63,7 +63,7 @@
 		                        		<tr style="border:1px teal solid">
 		                        			<th style="border:1px teal solid">Quantity</th>
 		                        			<th colspan="3" style="border:1px teal solid">Description</th>
-		                        			<th style="border:1px teal solid; border-bottom:none">Total Unit Price</th>
+		                        			<th style="border:1px teal solid; border-bottom:none">Unit Price</th>
 		                        			<th style="border:1px teal solid">Total Price</th>
 		                        		</tr>
 		                        		<tr style="border:1px teal solid">

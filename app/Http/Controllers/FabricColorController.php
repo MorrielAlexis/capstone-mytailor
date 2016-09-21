@@ -131,8 +131,8 @@ class FabricColorController extends Controller
         if(!$isAdded){
         $fabricColor = FabricColor::find($request->input('editfabricColor'));
 
-                $fabricColor->strFabricColorName = trim($request->get('editColorName'));    
-                $fabricColor->txtFabricColorDesc = trim($request->get('editColorDesc'));
+                $fabricColor->strFabricColorName = trim($request->input('editColorName'));    
+                $fabricColor->txtFabricColorDesc = trim($request->input('editColorDesc'));
 
                 $fabricColor->save();
 
