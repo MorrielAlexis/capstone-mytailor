@@ -97,11 +97,11 @@
 														<tbody>
 															@for($j = 0; $j < count($packages); $j++)
 																@for($k = 0; $k < count($segments[$j]); $k++)
-																	@if($segments[$j][$k][0]->strPackageID == $orderPackages[$i])
+																	@if($segments[$j][$k]->strPackageID == $orderPackages[$i])
 																	<tr>
-																		<td>{{ $segments[$j][$k][0]->strGarmentCategoryName }}, <b>{{ $segments[$j][$k][0]->strSegmentName }}</b></td>
-																		<td><img src="../{{ $segments[$j][$k][0]->strSegmentImage }}"/></td>
-																		<td><input name="segment-qty{{ $i }}[]" id="add-garment" type="number" value="" style="margin-top:20px" placeholder="How many additional {{ $segments[$j][$k][0]->strSegmentName }}?" ></td>
+																		<td>{{ $segments[$j][$k]->strGarmentCategoryName }}, <b>{{ $segments[$j][$k]->strSegmentName }}</b></td>
+																		<td><img src="../{{ $segments[$j][$k]->strSegmentImage }}"/></td>
+																		<td><input name="segment-qty{{ $i }}[]" id="add-garment" type="number" value="" style="margin-top:20px" placeholder="How many additional {{ $segments[$j][$k]->strSegmentName }}?" ></td>
 																	</tr>
 																	@endif
 																@endfor

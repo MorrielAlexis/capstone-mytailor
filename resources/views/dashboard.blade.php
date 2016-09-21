@@ -26,8 +26,10 @@
                                     <div class="card-content cyan darken-1 white-text" style="height:138px">
                                         <p class="card-stats-title" style="font-size:18px"><i class="mdi-action-account-child"></i>Total Registered Companies</p>
                                         <h4 class="card-stats-number">{{$totalCustComp->totalCompanies}}</h4>
-                                        {{-- <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 70% <span class="purple-text text-lighten-5">last month</span>
-                                        </p> --}}
+                                          <a href="{{URL::to('maintenance/company')}}">
+                                        <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> Go to details
+                                        </p>
+                                        </a>
                                     </div>
                                     @endforeach
                                     <div class="card-action  cyan darken-2"  style="height:40px">
@@ -40,10 +42,12 @@
                                 <div class="card">
                                     @foreach($totalEmp as $totalEmp)
                                     <div class="card-content blue-grey white-text">
-                                        <p class="card-stats-title" style="font-size:20px"><i class="mdi-action-accessibility"></i> Total Active Employees </p>
+                                        <p class="card-stats-title" style="font-size:19px"><i class="mdi-action-accessibility"></i> Total Active Employees </p>
                                         <h4 class="card-stats-number">{{$totalEmp->totalEmps}}</h4>
-                                        {{-- <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 80% <span class="blue-grey-text text-lighten-5">from yesterday</span>
-                                        </p> --}}
+                                        <a href="{{URL::to('maintenance/employee')}}">
+                                        <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> Go to details
+                                        </p>
+                                        </a>
                                     </div>
                                     @endforeach
                                     <div class="card-action blue-grey darken-2" style="height:40px">

@@ -103,13 +103,13 @@
 								<tbody style="border:1px #b2dfdb solid; background-color:#FFFFFF">
 								@for($j = 0; $j < count($package_segments); $j++)	
 									@for($k = 0 ;$k < count($package_segments[$j]); $k++)
-									@if($package_values[$i]->strPackageID == $package_segments[$j][$k][0]->strPackageID)
+									@if($package_values[$i]->strPackageID == $package_segments[$j][$k]->strPackageID)
 									<tr>
-										<td style="border:1px black solid">{{ $package_segments[$j][$k][0]->strSegmentName }}</td>
+										<td style="border:1px black solid">{{ $package_segments[$j][$k]->strSegmentName }}</td>
 										<td style="border:1px black solid">{{ $segment_fabrics[$j][$k]->strFabricName }}</td>
-										<td style="border:1px black solid">{{ $segment_qty[$i][0][$k] }}</td>
-										<td style="border:1px black solid">{{ number_format($segment_fabrics[$j][$k]->dblFabricPrice * $segment_qty[$i][0][$k], 2) }} PHP</td>
-										<td style="border:1px black solid">{{ number_format($package_segments[$j][$k][0]->dblSegmentPrice * $segment_qty[$i][0][$k], 2) }} PHP</td>
+										<td style="border:1px black solid">{{ $segment_qty[$i][$k] }}</td>
+										<td style="border:1px black solid">{{ number_format($segment_fabrics[$j][$k]->dblFabricPrice * $segment_qty[$i][$k], 2) }} PHP</td>
+										<td style="border:1px black solid">{{ number_format($package_segments[$j][$k]->dblSegmentPrice * $segment_qty[$i][$k], 2) }} PHP</td>
 										<td style="border:1px black solid">
 											@for($l = 0; $l < count($segment_patterns[$j][$k]); $l++)
 												{{ $segment_patterns[$j][$k][$l]->strSegStyleName }}<br>
@@ -122,7 +122,7 @@
 										</td>
 										<td style="border:1px black solid">
 											@for($l = 0; $l < count($segment_patterns[$j][$k]); $l++)
-												{{ number_format($segment_patterns[$j][$k][$l]->dblPatternPrice	* $segment_qty[$i][0][$k], 2) }} PHP <br>
+												{{ number_format($segment_patterns[$j][$k][$l]->dblPatternPrice	* $segment_qty[$i][$k], 2) }} PHP <br>
 											@endfor
 										</td>
 									</tr>
@@ -169,6 +169,7 @@
 
 			      			<div class="col s4" style="color:black; font-size:15px"><p><b>Grand Total</b></p></div>
 			      			<div class="col s8" style="color:black;"><p><input id="total_price" name="total_price" type="text" class="" readonly style="font-size:3em"></p></div>
+							<input type="hidden" name="hidden_total_price" id="hidden_total_price">						
 
                         	<div class="col s4" style="color:gray; font-size:15px"><p><b>Terms of Payment</b></p></div>
                         	<div class="col s8" style="padding:18px; padding-top:30px">
@@ -181,8 +182,6 @@
 		      						<label for="full_pay">Full (100%)</label>
 		      					</div>
 	      					</div>
-							
-							<input type="hidden" id="transaction_date" name="transaction_date" />
 
 		      				<!-- <div class="col s4" style="color:gray; font-size:15px"><p><b>Amount Payable</b></p></div>
 		      				<div class="col s8" style="color:red;"><p><input value="" id="amount-payable" name="amount-payable" type="text" class="" readonly></p></div>
@@ -209,6 +208,7 @@
 	                        <div style="color:black" class="col s12"> 
 								<div class="col s4"><p style="color:black; margin-top:5px; font-size:15px"><b>Outstanding Balance*:</b></p></div>                
 	                          	<div class="col s8" style="color:black;"><b><input readonly style="padding:5px; border:3px gray solid; font-size:1.5em" id="balance" name="balance" type="text" class="right"></b></div>
+	                        	<input type="hidden" name="hidden-balance" id="hidden-balance">
 	                        </div>
 
 	                        <div style="color:black" class="col s12"> 
@@ -319,7 +319,7 @@
 		  	$('#estimated_total_sales').val(((total - (total * .12)).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		  	$('#vat_price').val(((total * .12).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		  	$('#total_price').val((total.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-
+		  	$('#hidden_total_price').val(total.toFixed(2));
 
 			var monthNames = [ "January", "February", "March", "April", "May", "June",
 		    "July", "August", "September", "October", "November", "December" ];
@@ -353,6 +353,7 @@
 					$('#hidden-amount-payable').val((total/2).toFixed(2));
 					$('#amount-payable').val(((total/2).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 					$('#balance').val(((total - (total/2)).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+					$('#hidden-balance').val((total - (total/2)).toFixed(2));
 				}
 
 				if($('#full_pay').prop("checked")){
@@ -369,6 +370,7 @@
 					$('#hidden-amount-payable').val(total.toFixed(2));
 					$('#amount-payable').val((total.toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 					$('#balance').val(((total - total).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+					$('#hidden-balance').val((total - (total)).toFixed(2));
 				}
 		});
 
