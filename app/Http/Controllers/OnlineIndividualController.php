@@ -497,6 +497,124 @@ class OnlineIndividualController extends Controller
                 ->with('plackets', $plackets);
     } 
 
+
+    public function pantschoose()
+    {
+        $garmentKey = 'Pants';
+
+        $segments = \DB::table('tblSegment')
+            ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
+            ->where('tblGarmentCategory.strGarmentCategoryName', 'LIKE', '%'.$garmentKey.'%')
+            ->select('tblSegment.*')
+            ->get();
+
+        return view('customize.pants-choose-pants')
+         ->with('segments', $segments);
+        
+    }
+
+    public function pantsfabric()
+    {
+        $fabrics = Fabric::all();
+        $fabricThreadCounts = FabricThreadCount::all();
+        $fabricColors = FabricColor::all();
+        $fabricTypes = FabricType::all();
+        $fabricPatterns = FabricPattern::all();
+
+        return view('customize.pants-fabric')
+                ->with('fabrics', $fabrics)
+                ->with('fabricThreadCounts', $fabricThreadCounts)
+                ->with('fabricColors', $fabricColors)
+                ->with('fabricTypes', $fabricTypes)
+                ->with('fabricPatterns', $fabricPatterns);
+    }    
+
+    public function pantsstylepleats(Request $request)
+    {
+        $pattern = SegmentPattern::all();
+        $selectedFabric = \DB::table('tblFabric AS a')
+                    ->leftJoin('tblFabricType AS b', 'a.strFabricTypeFK', '=','b.strFabricTypeID')
+                    ->select('a.*', 'b.strFabricTypeName')
+                    ->where('a.strFabricID', $request->input('rdb_fabric'))
+                    ->get();
+
+        $garmentKey = 'Pants';
+        $segment = \DB::table('tblSegment')
+                        ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
+                        ->select('tblSegment.*', 'tblGarmentCategory.strGarmentCategoryName')
+                        ->where('tblGarmentCategory.strGarmentCategoryName', 'LIKE', '%'.$garmentKey.'%')
+                        ->orderBy('strSegmentID')
+                        ->get();
+
+        $key = 'Pleat';
+        $pleatsSegment = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName', 'strSegmentFK', 'boolIsActive')
+                    ->where('strSegStyleName', 'LIKE', '%'.$key.'%')
+                    ->get();
+
+        return view('customize.pants-style-pleats')
+            ->with('pattern', $pattern)
+            ->with('segments', $segment)
+            ->with('style', $pleatsSegment)
+            ->with('fabrics', $selectedFabric);
+    }   
+
+    public function pantsstylepockets()
+    {
+        $patterns = SegmentPattern::all();
+
+        $garmentKey = 'Pants';
+        $segment = \DB::table('tblSegment')
+                        ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
+                        ->select('tblSegment.*', 'tblGarmentCategory.strGarmentCategoryName')
+                        ->where('tblGarmentCategory.strGarmentCategoryName', 'LIKE', '%'.$garmentKey.'%')
+                        ->orderBy('strSegmentID')
+                        ->get();
+
+        $keypocket = 'Pants Pocket';
+        $pocketSegment = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName', 'strSegmentFK', 'boolIsActive')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keypocket.'%')
+                    ->get();
+
+        $keyback = 'Backpockets';
+        $backSegment = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName', 'strSegmentFK', 'boolIsActive')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keyback.'%')
+                    ->get();
+
+        return view('customize.pants-style-pockets')
+                    ->with('patterns', $patterns)
+                    ->with('segments', $segment)
+                    ->with('pocketSegment', $pocketSegment)
+                    ->with('backSegment', $backSegment);
+    }   
+
+    public function pantsstylebottom()
+    {
+        $pattern = SegmentPattern::all();
+
+
+        $garmentKey = 'Pants';
+        $segment = \DB::table('tblSegment')
+                        ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
+                        ->select('tblSegment.*', 'tblGarmentCategory.strGarmentCategoryName')
+                        ->where('tblGarmentCategory.strGarmentCategoryName', 'LIKE', '%'.$garmentKey.'%')
+                        ->orderBy('strSegmentID')
+                        ->get();
+
+        $keybottom = 'Pants Bottom';
+        $style = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName', 'strSegmentFK', 'boolIsActive')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keybottom.'%')
+                    ->get();
+
+        return view('customize.pants-style-bottom')
+                    ->with('patterns', $pattern)
+                    ->with('segments', $segment)
+                    ->with('style', $style);
+    }
+
     public function tocart()
     {
         $men= '';
