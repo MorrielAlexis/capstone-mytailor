@@ -16,19 +16,22 @@ class QueriesCustomerWithBalancesController extends Controller
      */
     public function index()
     {       
-        //  $results = \DB::table('tblNonShopAlteration AS a')
-        //             ->join('tblCustIndividual AS b', 'a.strCustIndFK', '=', 'b.strIndivID')
-        //             ->join('tblNonShopAlterSpecific as c','a.strNonShopAlterID',  '=' , 'c.strNonShopAlterFK')
-        //             ->join('tblSegment as d', 'c.strGarmentSegmentFK', '=' , 'd.strSegmentID')
-        //             ->join('tblAlteration as e', 'c.strAlterationTypeFK', '=' , 'e.strAlterationID')
-        //             ->select(\DB::raw('CONCAT(b.strIndivFName, " " , b.strIndivMName, " " , b.strIndivLName) as custName'),\DB::raw('CONCAT(b.strIndivHouseNo, " ", b.strIndivStreet, " ", b.strIndivBarangay, " ", b.strIndivCity, " ", b.strIndivProvince, " ", b.strIndivZipCode) as address'), 'a.strNonShopAlterID as transID', 'a.dblOrderTotalPrice AS totalPrice', 'b.strIndivEmailAddress AS custEmail', 'b.strIndivCPNumber AS cpNo', 'd.strSegmentName as segment', 'e.strAlterationName as alteration')
-        //             ->where('b.strIndivID', $request->input('customerID'))
-        //             ->get();
+         $results = \DB::table('tblJOPayment AS a')
+                    ->join('tblJobOrder as b','a.strTransactionFK',  '=' , 'b.strJobOrderID')
+                    ->join('tblCustIndividual AS c', 'b.strJO_CustomerFK', '=', 'c.strIndivID')
+                    ->select(\DB::raw('CONCAT(c.strIndivFName, " " , c.strIndivMName, " " , c.strIndivLName) as custName'),'a.dblOutstandingBal as balance', 'a.dtPaymentDueDate as dueDate')
+                    // ->where('c.strIndivID', '=' , 'b.strJO_CustomerFK')
+                    ->orderBy('strIndivID', 'desc')
+                    // ->take(1)
+                    ->get();
+
+                    // dd($results);
 
         // $topCustomers = \DB::select('SELECT Concat(tblCustIndividual.strIndivFName, " " , tblCustIndividual.strIndivMName, " " , tblCustIndividual.strIndivLName)as name, COUNT(strIndivID) as ctr FROM tblJobOrder,tblCustIndividual WHERE tblCustIndividual.strIndivID = tblJobOrder.strJO_CustomerFK GROUP BY strIndivID ORDER BY ctr DESC limit 3');
         
 
-        return view('queries.queries-customers-with-balances');
+        return view('queries.queries-customers-with-balances')
+              ->with('results', $results);
     }
 
     /**
