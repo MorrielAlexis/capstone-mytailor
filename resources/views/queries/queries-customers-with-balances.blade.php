@@ -36,7 +36,7 @@
                   @foreach($results as $results)
                   <tr>
                     <td>{{$results->custName}}</td>
-                    <td>{{$results->balance}} </td>
+                    <td>{{ number_format($results->balance, 2) . ' PHP' }} </td>
                     <td>{{$results->dueDate}}</td>
                   </tr>
                   @endforeach
