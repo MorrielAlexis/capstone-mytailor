@@ -30,7 +30,7 @@
     </p>
     <div class="container">
         <div class="video-container">
-            <iframe width="540" height="200" src="http://www.youtube.com/embed/9GYuh5EwhDs" frameborder="0" allowfullscreen></iframe>
+            <iframe width="540" height="200" src="vidOnlineTutorial/Seat_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
     <center>
@@ -46,7 +46,7 @@
     </p>
     <div class="container">
         <div class="video-container">
-            <iframe width="540" height="200" src="http://www.youtube.com/embed/lV7W7d9Y4TY" frameborder="0" allowfullscreen></iframe>
+            <iframe width="540" height="200" src="vidOnlineTutorial/Hip_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
     <center>
@@ -70,7 +70,7 @@
       The seat measurement is a circumferential measurement taken around the seat at your widest point
     </p>
     <div class="container" align="center" >
-        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/seat.JPG">
+        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/womens_seat.JPG">
     </div>
     <center>
         <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
@@ -86,7 +86,7 @@
         <b>NOTE!</b> please measure directly on the body i.e. not outside of the garment or on top of a belt.
     </p>
     <div class="container" align="center" >
-        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/hip.JPG">
+        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/womens_hip.JPG">
     </div>
     <center>
         <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">

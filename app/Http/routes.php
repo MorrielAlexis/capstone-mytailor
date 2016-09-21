@@ -381,6 +381,7 @@ Route::group(['prefix' => 'transaction'], function(){
 
 Route::get('/pdf', 'PdfController@converToPdf');
 
+
 /*---------------------------------------ADMIN TRANSACTION ALTERATION--------------------------------------------------*/
 Route::group(['prefix' => 'transaction'], function(){		
 		Route::get('alteration-walkin-transaction', 'AlterationWalkInController@index');
@@ -564,6 +565,8 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::get('list-of-top-pick-design','QueriesTopPickDesignController@index');
 	Route::get('list-of-top-pick-segment','QueriesTopPickSegmentController@index');
 		
+
+Route::get('online-forms', 'OnlineFormsController@measurementforms');
 
 
 });
