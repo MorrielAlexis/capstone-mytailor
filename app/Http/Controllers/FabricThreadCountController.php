@@ -137,8 +137,8 @@ class FabricThreadCountController extends Controller
         if(!$isAdded){
         $threadCount = FabricThreadCount::find($request->input('editThreadCount'));
 
-                $threadCount->strFabricThreadCountName = trim($request->get('editThreadCountName'));    
-                $threadCount->txtFabricThreadCountDesc = trim($request->get('editThreadCountDesc'));
+                $threadCount->strFabricThreadCountName = trim($request->input('editThreadCountName'));    
+                $threadCount->txtFabricThreadCountDesc = trim($request->input('editThreadCountDesc'));
 
                 $threadCount->save();
 

@@ -266,7 +266,10 @@ Route::get('generate-payment-receipt', 'WalkInIndividualController@generateRecei
 Route::group(['prefix' => 'utilities'], function(){
 	Route::get('utilities-general','UtilitiesGeneralController@index');
 	Route::post('utilities-general/update','UtilitiesGeneralController@updateSettings');
-	Route::get('utilities-VAT','UtilitiesVATController@index');
+
+	Route::resource('utilities-VAT', 'UtilitiesVATController');
+		Route::get('utilities-VAT','UtilitiesVATController@index');
+		Route::post('utilities-VAT/update','UtilitiesVATController@updateVat');
 	// Route::get('utilities-general/general','UtilitiesGeneralController@general');
 
 	Route::resource('inactive-data', 'InactiveDataController');
@@ -614,11 +617,11 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::get('customize-womens-style-others', 'OnlineIndividualController@womenstyleothers');
 
 
-	Route::get('customize-pants-choose-pants', 'OnlineCustomizePantsController@choose');
-	Route::get('customize-pants-fabric', 'OnlineCustomizePantsController@fabric');
-	Route::post('customize-pants-style-pleats', 'OnlineCustomizePantsController@stylepleats');
-	Route::post('customize-pants-style-pockets', 'OnlineCustomizePantsController@stylepockets');
-	Route::post('customize-pants-style-bottom', 'OnlineCustomizePantsController@stylebottom');
+	Route::get('customize-pants-choose-pants', 'OnlineIndividualController@pantschoose');
+	Route::get('customize-pants-fabric', 'OnlineIndividualController@pantsfabric');
+	Route::post('customize-pants-style-pleats', 'OnlineIndividualController@pantsstylepleats');
+	Route::post('customize-pants-style-pockets', 'OnlineIndividualController@pantsstylepockets');
+	Route::post('customize-pants-style-bottom', 'OnlineIndividualController@pantsstylebottom');
 	
 	Route::get('shopping-cart', 'OnlineIndividualController@tocart');
 
