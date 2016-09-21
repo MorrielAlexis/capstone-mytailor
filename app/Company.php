@@ -16,11 +16,17 @@ class Company extends Model
     					'strCompanyZipCode', 'strContactPerson',
     					'strCompanyEmailAddress', 'strCompanyTelNumber',
     					'strCompanyCPNumber', 'strCompanyCPNumberAlt',
-    					'strCompanyFaxNumber', 'boolIsActive', 'userId',
+    					'strCompanyFaxNumber', 'strCompanyImg','boolIsActive', 'userId',
     					'strCompanyInactiveReason');   
 
     public function customer_comp(){
 
         return $this->hasOne('App\Customer', 'strCustomer_CompanyFK', 'strCompanyID');
     }
+
+    public function employees()
+    {
+        return $this->hasMany('App\CompanyEmployee','strCustCompanyFK','strCompanyID');
+    }
+
 }

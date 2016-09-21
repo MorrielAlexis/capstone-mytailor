@@ -2,7 +2,7 @@
 <html>
     <head>
 
-      <title>Customer Module</title>
+      <title>MyTailor - Customer Module</title>
       
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -43,7 +43,7 @@
         <div class="navbar teal " >
           <nav style="height:40px">
             <div class="nav-wrapper">
-              <img src="../imgOnline/logo.jpg"  alt="" class="circle responsive-img valign profile-image center" style="height:90px; width:100px; margin-top:5px; margin-left:30px;">
+              <img src="../../{{ Session::get('shop_logo') }}"  alt="" class="circle responsive-img valign profile-image center" style="height:90px; width:100px; margin-top:5px; margin-left:30px;">
             </div>
       </nav>
         </div>
@@ -106,8 +106,8 @@
                 <li><a class="btn-flat" style="color: white;font-size:18px" href="{{URL::to('/online-forms')}}"><b>FORMS</b></a></li>
               </ul>
               <ul id="shoppingcart" class="right" style="margin-right:10px;">
-                <li><a href="{{URL::to('/online-order-now')}}" style="margin:0; padding:0;" class="btn-flat white-text">Shopping Cart</a></li>
-                <li><a href="{{URL::to('/online-order-now')}}" style="margin:0; padding:0;" class="btn-flat"><i class="white-text mdi-action-shopping-cart" style="font-size:30px; margin-top:-15px;"></i></a></li>
+                <li><a href="{{URL::to('/shopping-cart')}}" style="margin:0; padding:0;" class="btn-flat white-text">Shopping Cart</a></li>
+                <li><a href="{{URL::to('/shopping-cart')}}" style="margin:0; padding:0;" class="btn-flat"><i class="white-text mdi-action-shopping-cart" style="font-size:30px; margin-top:-15px;"></i></a></li>
               </ul>
             </div>
           </nav>

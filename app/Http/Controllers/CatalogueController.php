@@ -47,7 +47,7 @@ class CatalogueController extends Controller
                 // ->orderBy('created_at')
                 ->get();
 
-        return view ('maintenance-catalogue')
+        return view ('maintenance.maintenance-catalogue')
                     ->with('newID', $newID)
                     ->with('catalogue', $catalogue)
                     ->with('category', $category);

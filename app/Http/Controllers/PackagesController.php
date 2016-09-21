@@ -52,7 +52,7 @@ class PackagesController extends Controller
 
 
         //load the view and pass the employees
-        return view('maintenance-sets')
+        return view('maintenance.maintenance-sets')
                     ->with('sets', $sets)
                     ->with('segment', $segment)
                     ->with('newID', $newID);

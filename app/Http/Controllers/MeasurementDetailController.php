@@ -49,7 +49,7 @@ class MeasurementDetailController extends Controller
             ->get();
                 
         //load the view and pass the individuals
-        return view('maintenance-measurement-detail')
+        return view('maintenance.maintenance-measurement-detail')
                     ->with('detail', $detail)
                     ->with('segment', $segment)
                     ->with('measurementCategory', $measurementCategory)

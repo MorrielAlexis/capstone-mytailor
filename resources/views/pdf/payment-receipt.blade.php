@@ -73,7 +73,7 @@
 						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{{ $custname->fullname }}</b></td>
 						<td></td>
 						<td style="width:40%; font-size:18px; text-align:left"><b>Customer Id:</b></td>
-						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{!! session('custID') !!}</b></td>
+						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{{ $custId }}</b></td>
 					</tr>
 					<tr>
 						<td style="width:40%; font-size:18px; text-align:left"><b>Date:</b></td>
@@ -86,8 +86,8 @@
 						<td style="width:40%; font-size:18px; text-align:left"><b>Issued By:</b></td>
 						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{{ $empname->employeename }}</b></td>
 						<td></td>
-						<td style="width:40%; font-size:18px; text-align:left"><b>Employee Position:</b></td>
-						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>Cashier</b></td>
+						<td></td>
+						<td></td>
 					</tr>
 				</tbody>
         	</table>
@@ -96,6 +96,65 @@
       
 
 		<div class="col s12 page-break" style="margin-top:1%;">
+			<!--Style Summary-->
+			<table class="col s12" style="width:98%; margin-bottom:0">
+				<thead>
+					<tr>
+						<th style="background-color:teal; color:white;">STYLE SUMMARY</th>
+					</tr>
+				</thead>
+			</table>
+			<table class="col s12" style="width:98%; margin-top:0">
+				<thead style="color:teal">		
+					<tr>
+						<th>STYLE CATEGORY</th>
+						<th>PATTERN NAME</th>
+						<th>STYLE PRICE</th>
+					</tr>
+				</thead>
+				<tbody>
+					@for($i = 0; $i < count($values); $i++)
+					@for($j = 0; $j < count($styles[$i]); $j++)
+						@if($styles[$i][$j]->strSegmentID == $values[$i]['strSegmentID'])
+					<tr>
+						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">{{ $styles[$i][$j]->strSegStyleName }}</td>
+						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">{{ $styles[$i][$j]->strSegPName }}</td>
+						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">{{ number_format($styles[$i][$j]->dblPatternPrice, 2) }} PHP</td>
+					</tr>
+						@endif
+					@endfor
+					@endfor
+				</tbody>
+			</table>
+			<!--End of Style Summary-->
+
+			<!--Fabric Summary-->
+			<table class="col s12" style="width:98%; margin-bottom:0">
+				<thead>
+					<tr>
+						<th style="background-color:teal; color:white;">FABRIC SUMMARY</th>
+					</tr>
+				</thead>
+			</table>
+			<table class="col s12" style="width:98%; margin-top:0">
+				<thead style="color:teal">
+					<tr>
+						<th>FABRIC NAME</th>
+						<th>FABRIC PRICE</th>
+					</tr>
+				</thead>
+				<tbody>
+					@for($i = 0; $i < count($values); $i++)
+					<tr>
+						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">{{ $values[$i]['strFabricName'] }}	</td>
+						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">{{ number_format($values[$i]['dblFabricPrice'], 2) }} PHP</td>
+					</tr>
+					@endfor
+				</tbody>
+			</table>
+			<!--End of Fabric Summary-->
+			
+			<!-- Start of Order Summary -->
 	        <table class="col s12" style="width:98%;">
 				<thead>
 					<tr>
@@ -157,64 +216,7 @@
 					
 				</tbody>
 			</table>
-
-			<!--Style Summary-->
-			<table class="col s12" style="width:98%; margin-bottom:0">
-				<thead>
-					<tr>
-						<th style="background-color:teal; color:white;">STYLE SUMMARY</th>
-					</tr>
-				</thead>
-			</table>
-			<table class="col s12" style="width:98%; margin-top:0">
-				<thead style="color:teal">		
-					<tr>
-						<th>STYLE CATEGORY</th>
-						<th>PATTERN NAME</th>
-						<th>STYLE PRICE</th>
-					</tr>
-				</thead>
-				<tbody>
-					@for($i = 0; $i < count($values); $i++)
-					@for($j = 0; $j < count($styles[$i]); $j++)
-						@if($styles[$i][$j]->strSegmentID == $values[$i]['strSegmentID'])
-					<tr>
-						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">{{ $styles[$i][$j]->strSegStyleName }}</td>
-						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">{{ $styles[$i][$j]->strSegPName }}</td>
-						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">{{ number_format($styles[$i][$j]->dblPatternPrice, 2) }} PHP</td>
-					</tr>
-						@endif
-					@endfor
-					@endfor
-				</tbody>
-			</table>
-			<!--End of Style Summary-->
-
-			<!--Fabric Summary-->
-			<table class="col s12" style="width:98%; margin-bottom:0">
-				<thead>
-					<tr>
-						<th style="background-color:teal; color:white;">FABRIC SUMMARY</th>
-					</tr>
-				</thead>
-			</table>
-			<table class="col s12" style="width:98%; margin-top:0">
-				<thead style="color:teal">
-					<tr>
-						<th>FABRIC NAME</th>
-						<th>FABRIC PRICE</th>
-					</tr>
-				</thead>
-				<tbody>
-					@for($i = 0; $i < count($values); $i++)
-					<tr>
-						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">{{ $values[$i]['strFabricName'] }}	</td>
-						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">{{ number_format($values[$i]['dblFabricPrice'], 2) }} PHP</td>
-					</tr>
-					@endfor
-				</tbody>
-			</table>
-			<!--End of Fabric Summary-->
+			<!-- End of Order Summary -->
 		</div>
 
 		
@@ -254,7 +256,7 @@
 						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{{ $custname->fullname }}</b></td>
 						<td></td>
 						<td style="width:40%; font-size:18px; text-align:left"><b>Customer Id:</b></td>
-						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{!! session('custID') !!}</b></td>
+						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{{ $custId }}</b></td>
 					</tr>
 					<tr>
 						<td style="width:40%; font-size:18px; text-align:left"><b>Date:</b></td>
@@ -267,8 +269,8 @@
 						<td style="width:40%; font-size:18px; text-align:left"><b>Issued By:</b></td>
 						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{{ $empname->employeename }}</b></td>
 						<td></td>
-						<td style="width:40%; font-size:18px; text-align:left"><b>Employee Position:</b></td>
-						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>Cashier</b></td>
+						<td></td>
+						<td></td>
 					</tr>
 				</tbody>
         	</table>

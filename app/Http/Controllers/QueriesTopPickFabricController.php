@@ -13,10 +13,15 @@ class QueriesTopPickFabricController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */
+     */  
     public function index()
     {
-        return view('queries.queries-top-pick-fabric');
+        $topFabrics = \DB::select('SELECT tblFabric.strFabricName as name, tblFabric.strFabricImage as image, COUNT(strFabricID) as ctr FROM tblJOSpecific,tblFabric WHERE tblFabric.strFabricID = tblJOSpecific.strJOFabricFK GROUP BY strFabricID ORDER BY ctr DESC limit 3');
+
+        // dd($topFabrics);
+
+        return view('queries.queries-top-pick-fabric')
+        ->with('topFabrics', $topFabrics);
     }
 
     /**

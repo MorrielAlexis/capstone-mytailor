@@ -25,7 +25,9 @@ class Employee extends Model
 								'strCellNoAlt',
 								'strPhoneNo',
 								'strEmailAdd',
+								'strEmpImg',
 								'strEmpInactiveReason',
+								'userId',
 								'boolIsActive'
 								//
 								);

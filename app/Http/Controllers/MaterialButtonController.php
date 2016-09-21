@@ -37,7 +37,7 @@ class MaterialButtonController extends Controller
 
         $button = Button::all();
 
-        return view('maintenance-material-button')
+        return view('maintenance.maintenance-material-button')
                     ->with('buttons', $button)
                     ->with('newButtonID', $newButtonID);
     }

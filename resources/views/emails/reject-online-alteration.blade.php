@@ -6,20 +6,19 @@
     <body>
         <h2>Hi {{$name}}, </h2>
         <br>
-        <p>Good day! This is to inform you that your online order has been rejected due to job order schedule. Thank you for your understanding!</p>
+        <p>Good day! This is to inform you that your online order has been rejected due to job order schedule. Thank you for your understanding! Meanwhile, please try and order different set of products. Thank you!</p>
 
-        <div>
+        {{-- <div>
           <h2>Customer Details</h2>
 
-          <b>Alteration Number: </b><br>
-          <b>Name: </b><br>
-          <b>Email: </b><br>
-          <b>Primary Number: </b><br>
-          <b>Alternative Number: </b><br>
-          <b>Address: </b><br><br>
-        </div>
+          <b>Alteration Number: {{$order}}</b><br>
+          <b>Name: {{$name}}</b><br>
+          <b>Email: {{$email}}</b><br>
+          <b>Primary Number: {{$cp}}</b><br>
+          <b>Address: {{$address}}</b><br><br>
+        </div> --}}
 
-        <div>
+        {{-- <div>
             <h2>Order Details</h2>
 
             <div class="container">
@@ -29,30 +28,21 @@
                           <th data-field="product">Segment</th>         
                           <th data-field="quantity" hidden>Alteration Type</th>
                           <th data-field="fabric">Description</th>
-                          <th data-field="price">Unit Price</th>
-                          <!--<th data-field="price">Total Price</th>-->
+                          <th data-field="price">Total Price</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                           <td>Uniform, Dress</td>
-                           <td hidden>Hem</td>
-                           <td>Blue Striped Soft</td>
-                           <td>PHP 600.00</td>
-                           <!--<td> </td>-->
-                        </tr>
-                        
+                          <td>{{$segment}}</td>
+                           <td hidden>{{$alteration}}</td>
+                           <td>Decrease by 2cm</td>
+                           <td>{{ number_format($totPrice, 2) . ' PHP' }}</td>
+                        </tr>   
                     </tbody>
                 </table>
             </div>
 
-            <div class="col s12" style="margin-bottom:50px; margin-top:30px">
-                <div class="col s12"><div class="divider" style="height:2px"></div></div>
-                <div class="col s6"><p>Estimated time to finish all orders: 3 days</p></div>
-                <div class="col s6"><p>Total Amount to Pay: 600.00 PHP</p></div>
-            </div>
-
-        </div>
+        </div> --}}
 
     </body>
 </html>

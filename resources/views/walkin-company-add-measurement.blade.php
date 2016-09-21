@@ -27,17 +27,8 @@
 						
 						<!-- <h1>Search a company and list of employees will appear here</h1> -->
 						<!--Employees List-->
-						<div style="color:black" class="col s12">                   					                          
-                          	<div class="col s4" style="color:darkgray; margin-top:1%; font-size:18px"><center><b>Search for a company name here:</b></center></div>
-                          	<div class="col s8"><input style="border:3px teal solid; padding:5px; padding-left:10px; background-color:white; color:teal" id="cust_name" name="cust_name" type="text" placeholder="ex. Pfizer Philippines"></div>
 
-                          	<button class="right btn" type="submit" id="getCustomer" style="background-color:teal; color:white;">Search</button> 					                         			                          	
-                        </div>
-
-                        <div class="col s12"><div class="divider" style="height:5px; margin-bottom:3%; margin-top:3%"></div></div>
-						
 						<div class="col s12">
-							<a class="left waves-effect waves-light modal-trigger btn-floating tooltipped btn-large teal" data-position="bottom" data-delay="50" data-tooltip="Click to add a new employee" href="#addDesign" style="color:black;"><i class="large mdi-content-add"></i></a>
 							<center><h5 style="color:teal; margin-bottom:5%">List of Employees</h5></center>
 
 							<table class="col s12" style="color:teal; margin-bottom:3%; border-top:1px lightgray solid">
@@ -48,27 +39,86 @@
 									</tr>
 								</thead>
 							</table>
-
+							
+							@for($i = 0; $i < $total_quantity; $i++)
 							<div class="col s12" style="margin-bottom:4%">
-								<div class="col s6" style="padding-top:1%"><font size="4.5em" color="dimgray">Honey May Buenavides</font></div>
-								<div class="col s3"><a style="color:white;" class="right modal-trigger btn tooltipped blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit the set purchased" href="#edit-emp-data">Edit Measurement</a></div>
-								<div class="col s3"><a style="color:white;" class="right modal-trigger btn tooltipped red" data-position="bottom" data-delay="50" data-tooltip="Click to edit the set purchased" href="#edit-emp-data">Delete Employee</a></div>
+								<div class="col s6" style="padding-top:1%"><font size="4.5em" color="dimgray">{{ $employee_fname[$i] }} {{ $employee_mname[$i] }} {{ $employee_lname[$i] }}</font></div>
+								<div class="col s5"><a style="color:white;" class="right modal-trigger btn tooltipped blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit the set purchased" href="#edit-emp-data{{ $i }}">Edit Measurement</a></div>
+								<!--<div class="col s3"><a style="color:white;" class="right modal-trigger btn tooltipped red" data-position="bottom" data-delay="50" data-tooltip="Click to edit the set purchased" href="#edit-emp-data">Delete Employee</a></div>-->
 								<div class="col s12"><div class="divider" style="margin-top:4%"></div></div>
 							</div>
-
-							<div class="col s12" style="margin-bottom:4%">
-								<div class="col s6" style="padding-top:1%"><font size="4.5em" color="dimgray">Conrado Bataller Jr.</font></div>
-								<div class="col s3"><a style="color:white;" class="right modal-trigger btn tooltipped blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit the set purchased" href="#edit-emp-data">Edit Measurement</a></div>
-								<div class="col s3"><a style="color:white;" class="right modal-trigger btn tooltipped red" data-position="bottom" data-delay="50" data-tooltip="Click to edit the set purchased" href="#edit-emp-data">Delete Employee</a></div>
-							</div>
+							@endfor
 						</div>
-						<!--End of Empployees List-->
+						<!--End of Employees List-->
+						{!! Form::open(['url' => 'transaction/walkin-company-save-measurements', 'method' => 'POST']) !!}
+						@for($i = 0; $i < $total_quantity; $i++)
+						<div id="edit-emp-data{{ $i }}" class="modal modal-fixed-footer" style="max-height:50%; max-width:60%">
+							<h5><font color="teal"><center><b>Add Measurement Profile</b></center></font></h5>
+							<div class="divider" style="height:2px"></div>
+								
+								<div class="modal-content col s12 overflow-x" style="padding-top:5%">
+									<div class="col s12" style="background-color:#e0f2f1; padding:3%">
+										<div class="col s9">
+											<div class="col s5"><font size="+1"><b>PACKAGE NAME:</b></font></div>
+											<div class="col s7">
+												<font size="+1">
+													@foreach($package_values as $values)
+														@if($values->strPackageID == $package_ordered[$i])
+															{{ $values->strPackageName }}
+														@endif
+													@endforeach
+												</font>
+											</div>
+										</div>
+									</div>
+									<div class="col s12"><div class="divider" style="height:2px; background-color:#e0f2f1"></div></div>
 
+									<div class="col s12" style="margin-top:3%;">
+										<div class="col s4"><p><b>Measurement Type</b></p></div>
+										<div class="col s8">		
+											<select id = "measurement-category">
+												@foreach($measurement_category as $category)
+													<option value="{{ $category->strMeasurementCategoryID }}" class="circle">{{ $category->strMeasurementCategoryName }}</option>
+												@endforeach	
+											</select>
+										</div>
+									</div>
+
+									@for($j = 0; $j < count($package_segments); $j++)
+										@for($k = 0; $k < count($package_segments[$j]); $k++)
+											@if($package_ordered[$i] == $package_segments[$j][$k]->strPackageID)
+												<div class="col s12" style="margin-top:3%; margin-bottom:5%; padding-left:3%; padding-right:3%">
+													<div>{{ $package_segments[$j][$k]->strSegmentName }}</div>
+													@foreach($measurement_detail as $detail)
+														@if($package_segments[$j][$k]->strSegmentID == $detail->strMeasDetSegmentFK)
+															<div class="center col s6">
+																<div class="right col s5">
+																	<right><p>{{ $detail->strMeasDetailName }} <font color="red">(cm)</font></p></right>
+																</div>
+																<div class="col s7">
+																	<input name="{{ $i }}{{ $k }}[]" id="measure_name" type="text" class="validate" required>
+																	<input name="measID{{ $i }}{{ $k }}[]" type="hidden" value="{{ $detail->strMeasurementDetailID }}">
+																</div>
+															</div>
+														@endif
+													@endforeach
+												</div>
+											@endif
+										@endfor
+									@endfor
+								</div>
+								<div class="modal-footer col s12">
+									<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Close</font></a>
+								</div>
+
+						</div>
+						@endfor
 						<div class="col s12">
 							<div class="col s12"><div class="divider" style="height:2px; margin-bottom:2%"></div></div>
 							<a href="{{URL::to('transaction/walkin-company-payment-measure-detail')}}" class="left btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to go back to measurement homepage!" style="background-color:#1976d2; opacity:0.80"><label style="font-size:15px; color:white">Go Back</label></a>
+							<button type="submit" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to go save measurements!" style="background-color:#1976d2; opacity:0.80"><label style="font-size:15px; color:white">Save Measurements</label></button>
 						</div>
-
+						{!! Form::close() !!}
 	            	</div> <!-- end of col s12 -->
 	            </div> <!-- end of row -->
 		    </div> <!-- end of payment info -->
@@ -80,3 +130,11 @@
 @stop
 
 @section('scripts')
+
+<script>
+	$(document).ready(function() {
+	    $('select').material_select();
+	  });       
+</script>
+
+@stop

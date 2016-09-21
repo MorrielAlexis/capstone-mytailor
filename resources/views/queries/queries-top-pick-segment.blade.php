@@ -6,7 +6,7 @@
       
     <div class="row">
       <div class="col s12 m12 l12">
-        <span class="page-title"><h4>Utilities -  Top Pick Segment</h4></span>
+        <span class="page-title"><h4>Queries -  Top Pick Segment</h4></span>
       </div>
     </div>
 
@@ -16,7 +16,7 @@
   <div class="row">
       <div class="col s12 m12 l12">
         <div class="card-panel">
-          <span class="card-title"><h5 style="color:#1b5e20"><center>List of Most Requested Segment</center></h5></span>
+          <span class="card-title"><h5 style="color:#1b5e20"><center>List of Most Ordered Segment</center></h5></span>
           <div class="divider"></div>
           <div class="card-content">
 
@@ -27,21 +27,19 @@
                   <tr>
                     <!--<th data-field="id">Garment ID</th>-->
                     <th data-field="garmentName">Segment Name</th>
-                    <th data-field="garmentDescription">Customer Name</th>
-                    <th data-field="Edit">Date</th>
-                    <!-- <th>Deactivate</th> -->
+                    <th data-field="Image">Image</th>
+                    <th data-field="Total">Total Orders</th>
                   </tr>
               </thead>
 
               <tbody>
+                  @foreach($topSegments as $topSegments)
                   <tr>
-                    <td>Sample</td>
-                    <td>Sample</td>
-                    <td>Sample</td>
-              
-                      
-                      
+                    <td>{{$topSegments->name}}</td>
+                     <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($topSegments->image)}}"></td>
+                    <td>{{$topSegments->ctr}}</td>
                   </tr>
+                  @endforeach
               </tbody>
             </table>
 

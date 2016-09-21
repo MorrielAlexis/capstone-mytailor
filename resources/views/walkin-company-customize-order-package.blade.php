@@ -23,6 +23,7 @@
 						<div class="row">
 						<div class="col s12">					
 				{!! Form::open(['url' => 'transaction/walkin-company-save-design', 'method' => 'POST']) !!}
+						<input type="hidden" name="hidden-package-index" value="{{ $customized_index }}">
 						@foreach($package as $package)
 							<div class="col s12" style="margin-top:2px; padding-top:5px; margin-bottom:30px;">
 						        <center><h4 style="color:teal"><b>Package: </b><font color="red">{{ $package->strPackageName  }}</font><!--<a class="right btn-floating tooltipped btn-large blue" data-position="bottom" data-delay="50"  data-tooltip="CLick to print a receipt for current transaction" href="#!" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-editor-mode-edit"></i></a>--></h4></center>
@@ -71,7 +72,7 @@
 														              <img src="{{URL::asset($pattern->strSegPImage)}}" alt="" class="responsive-img">
 														            </div>
 														            <div class="col s6"> 
-														              <span><b>{{ $pattern->strSegPName }}</b></span> <!-- This will be the name of the pattern -->
+														              <span><b>{{ $pattern->strSegPName }} ({{ number_format($pattern->dblPatternPrice, 2) }} PHP)</b></span> <!-- This will be the name of the pattern -->
 														              <br/>
 														              <span class="black-text">
 														                {{ $pattern->txtSegPDesc }}
@@ -180,7 +181,7 @@
 											              <img src="{{URL::asset($fabric->strFabricImage)}}"class="responsive-img">
 											            </div>
 											            <div class="col s8"> 
-											              <p><b id="{{ 'fabricText'.$fabric->strFabricID }}">{{ $fabric->strFabricName }}</b></p> 
+											              <p><b id="{{ 'fabricText'.$fabric->strFabricID }}">{{ $fabric->strFabricName }} ({{ number_format($fabric->dblFabricPrice, 2) }} PHP)	</b></p> 
 											              <span class="black-text">
 											                {{ $fabric->txtFabricDesc }}
 											              </span>
@@ -206,8 +207,8 @@
 
 
 							<div class="col s6">
-								<div class="col s6" style="margin-top:50px">
-											<a style="color:white; margin-top:10px" class="modal-trigger btn tooltipped teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a segment pattern" href="#pattern{{ $i+1 }}"><i class="mdi-content-content-cut" style="padding-right:10px"></i>Choose Design</a>
+								<div class="col s6" style="margin-top:7%">
+											<a style="color:white; margin-top:10px" class="modal-trigger btn tooltipped teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a segment pattern" href="#pattern{{ $i+1 }}"><i class="mdi-content-content-cut" style="padding-right:0.5%"></i><font size="-1" style="padding-bottom:-5%"><b>Choose Design</b></font></a>
 											
 											<!--<div class="file-field input-field">
 												<a style="color:black" class="modal-trigger btn tooltipped btn-floating teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a segment pattern" href="#editDesign"><i class="mdi-editor-mode-edit"></i></a>
@@ -218,8 +219,8 @@
 											</div>-->
 								</div>
 								
-								<div class="col s6" style="margin-top:50px;">
-											<a style="color:white; margin-top:10px" class="modal-trigger btn tooltipped teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#fabric{{ $i+1 }}"><i class="mdi-maps-layers" style="padding-right:10px"></i>Choose Fabric</a>
+								<div class="col s6" style="margin-top:7%;">
+											<a style="color:white; margin-top:10px" class="modal-trigger btn tooltipped teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#fabric{{ $i+1 }}"><i class="mdi-maps-layers" style="padding-right:0.5%"></i><font size="-1" style="padding-bottom:-5%"><b>Choose Design</b></font></a>
 											<!--<div class="file-field input-field">	
 												<a style="color:black" class="modal-trigger btn tooltipped btn-floating teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#editFabric"><i class="mdi-editor-mode-edit"></i></a>
                      								
@@ -230,16 +231,18 @@
 								</div>
 
 								<!--Garment Description Here-->
-								<div class="col s12" style="margin-top:10px; color:gray"><p>Garment description below:</p></div>
-									<div class="col s12" style="margin-left:130px">
-										<div class="col s4" style="color:teal;"><p><b>Garment Category:</b></p></div>
-										<div class="col s8"><p>{!! $segments[$i]->strGarmentCategoryName !!}</p></div>
+								<div class="col s12" style="margin-top:1%; color:gray"><p>Garment description below:</p></div>
+									<div class="col s12" style="margin-left:0">
+									<div class="container">
+										<div class="col s7" style="color:teal;"><p><b>Garment Category:</b></p></div>
+										<div class="col s5"><p>{!! $segments[$i]->strGarmentCategoryName !!}</p></div>
 
-										<div class="col s4" style="color:teal;"><p><b>Garment Segment:</b></p></div>
-										<div class="col s8"><p>{!! $segments[$i]->strSegmentName !!}</p></div>
+										<div class="col s7" style="color:teal;"><p><b>Garment Segment:</b></p></div>
+										<div class="col s5"><p>{!! $segments[$i]->strSegmentName !!}</p></div>
 
-										<div class="col s4" style="color:teal;"><p><b>Price starts from:</b></p></div>
-										<div class="col s8" style="color:black;font-weight:bold"><p>{{ number_format($segments[$i]->dblSegmentPrice, 2) }} PHP</p></div>
+										<div class="col s7" style="color:teal;"><p><b>Price starts from:</b></p></div>
+										<div class="col s5" style="color:black;font-weight:bold"><p>{{ number_format($segments[$i]->dblSegmentPrice, 2) }} PHP</p></div>
+									</div>
 									</div>
 							</div>
 							<div class="col s12"><div class="divider" style="height:2px; margin-top:10px; margin-bottom:10px"></div></div>

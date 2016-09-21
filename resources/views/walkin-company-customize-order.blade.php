@@ -27,7 +27,7 @@
 								
 								<div class="col s6"><p><h5><b>Customize Orders Per Package</b></h5></p></div>
 									<div class="right col s1"><a style="margin-top:15px; background-color:teal" type="submit" class="waves-effect waves-green btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to go back home" href="{{URL::to('/transaction/walkin-company')}}"><i class="mdi-action-home" style="color:white; opacity:0.90; font-size:30px;"></i></a></div>
-									<div class="right col s5"><a style="background-color:teal; margin-top:15px" type="submit" class="right waves-effect waves-green btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to proceed to payment of orders" href="{{URL::to('/transaction/walkin-company-payment-customer-info')}}"><font color="white" size="+1"><!--<i class="mdi-action-payment" style="font-size:20px;">  -->Proceed to Checkout<!--</i>--></font></a></div>				
+									<div class="right col s5"><a style="background-color:teal; margin-top:15px" type="submit" class="right waves-effect waves-green btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to proceed to payment of orders" href="{{URL::to('/transaction/walkin-company/customer-check')}}"><font color="white" size="+1"><!--<i class="mdi-action-payment" style="font-size:20px;">  -->Proceed to Checkout<!--</i>--></font></a></div>				
 							</div>
 							
 							<div class="divider" style="margin-bottom:30px"></div>
@@ -41,7 +41,7 @@
 						    </div>    
 
 						    
-						@foreach($values as $value)
+						@foreach($values as $i => $value)
 							{!! Form::open(['url' => 'transaction/walkin-company-customize-orders', 'method' => 'POST']) !!}
 							<!--Package Detail-->
 							<div class="col s6" style="margin-bottom:40px">
@@ -74,6 +74,7 @@
 
 								<div class="z-depth-2 card medium" style="margin-left:100px; margin-top:20px; height:350px; width:350px; border:3px gray solid">
 			           				<input type="hidden" name="hidden-package-id" value="{{ $value->strPackageID }}">
+			           				<input type="hidden" name="hidden-package-index" value="{{ $i++ }}">
 			           				<div class="card-image">
 			              				<img class="responsive-img" height = "80%" src="{{URL::asset($value->strPackageImage)}}">
 			           				</div>
@@ -100,13 +101,15 @@
 
 
 					<div class="divider" style="height:2px;margin-top:40px"></div>
-					<div class="col s12" style="padding:30px">
-						<div class="col s6">
+					<div class="col s12" style="padding:3%">
+						<div class="left col s5">
 							<a class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to edit data for company employees" href="{{URL::to('transaction/walkin-company-add-employees')}}" style="color:white; background-color:#03a9f4;"><label style="font-size:15px; color:white"> Add Employees Now</label></a>
 						</div>	
-						<div class="col s6">
-							<a href="{{URL::to('transaction/walkin-company')}}" class="btn" style="color:white; background-color:teal; border:3px teal solid">Cancel Transaction</a>
-							<a href="{{URL::to('transaction/walkin-company')}}" class="right btn" style="color:white; background-color:teal; margin-left:20px; border:3px teal solid">Add another set</a>
+
+						<div class="col s7">
+							<a href="{{URL::to('transaction/walkin-company')}}" class="left btn" style="color:white; background-color:teal; border:3px teal solid">Cancel Transaction</a>
+							<a href="{{URL::to('transaction/walkin-company-show-packages')}}" class="right btn" style="color:white; background-color:teal; border:3px teal solid">Add another set</a>
+
 							<!--<a href="{{URL::to('transaction/walkin-company-retail-products')}}" class="right btn" style="color:white; background-color:teal; border:3px teal solid">Add a retail order</a>-->
 						</div>
 						

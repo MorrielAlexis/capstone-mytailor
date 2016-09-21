@@ -25,23 +25,18 @@
             <table class = "table centered data-WalkIn" align = "center" border = "1">
               <thead>
                   <tr>
-                    <!--<th data-field="id">Garment ID</th>-->
-                    <th data-field="CustID">Customer ID</th>
                     <th data-field="Customer Name">Customer Name</th>
                     <th data-field="Total Orders">Total Orders</th>
-                    <!-- <th>Deactivate</th> -->
                   </tr>
               </thead>
 
               <tbody>
+                    @foreach($topCustomers as $topCustomer)
                   <tr>
-                    <td>Sample</td>
-                    <td>Sample</td>
-                    <td>Sample</td>
-              
-                      
-                      
+                    <td>{{$topCustomer->name}}</td>
+                    <td>{{$topCustomer->ctr}}</td> 
                   </tr>
+                  @endforeach
               </tbody>
             </table>
 

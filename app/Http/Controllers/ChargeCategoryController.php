@@ -35,7 +35,7 @@ class ChargeCategoryController extends Controller
         $chargeCat = ChargeCategoryModel::all();
         
         //load the view and pass the charges
-       return view('maintenance-charge-category')
+       return view('maintenance.maintenance-charge-category')
                     ->with('chargeCat', $chargeCat)
                     ->with('newID', $newID);
     }

@@ -36,7 +36,7 @@
           <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Cuffs</li>
           <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Buttons</li>
           <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Pocket & Monogram</li>
-          <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Others</li>
+<!--           <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Others</li> -->
           <div class="indicator teal accent-4" style="z-index:1"></div>
         </ul>
 
@@ -65,8 +65,8 @@
           </div>
           @endforeach
 
-          @foreach($segments as $segment)
-          @foreach($collars as $collar)
+          @foreach($segments as $i => $segment)
+          @foreach($collars as $j => $collar)
           @if($collar->boolIsActive == 1)
           <div class="col s12" style="margin-top:20px;">
             <ul class="collapsible" data-collapsible="accordion" style="border:none;" @if($segment->strSegmentID != $collar->strSegmentFK) hidden @endif>
@@ -74,12 +74,12 @@
                 <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $collar->strSegStyleName }}</div>
                 <div class="collapsible-body row overflow-x" style="padding:20px;">  
                   <div class="col s12">
-                    @foreach($patterns as $pattern)
+                    @foreach($patterns as $k => $pattern)
                     <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $collar->strSegStyleCatID) hidden @endif>
                       <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
                       <p>
-                        <input name="rdb_pattern{{ $collar->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
-                        <label for="{{$pattern->strSegPatternID}}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
+                        <input name="rdb_pattern{{ $collar->strSegStyleCatID }} {{ $i+1 }}" type="radio" class="filled-in" id="{{$pattern->strSegPatternID}}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" />
+                        <label for="{{$pattern->strSegPatternID}}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}">{{$pattern->strSegPName}}</label>
                       </p>
                     </div>
                     @endforeach
@@ -111,6 +111,7 @@
               </div> 
             </div>
           </div>
+
 
           <div class="col s12">
 
@@ -250,7 +251,13 @@
 @stop
 
 @section('scripts')
-
+<script>
+     $(document).ready(function(){
+        $('.collapsible').collapsible({
+          accordion : true // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+        });
+      });
+  </script>
   <script>
     
     $(document).ready(function(){
@@ -267,6 +274,10 @@
 
     $(document).ready(function() {
       Materialize.updateTextFields();
+    });
+
+     $(document).ready(function(){
+      $('.materialboxed').materialbox();
     });
 
   </script>

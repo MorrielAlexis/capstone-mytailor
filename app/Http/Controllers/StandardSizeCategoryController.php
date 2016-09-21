@@ -30,7 +30,7 @@ class StandardSizeCategoryController extends Controller
         $newID = $this->smartCounter($ID);  
         $standard = StandardSizeCategory::all();
        
-        return view('maintenance-measurement-standard-cat')
+        return view('maintenance.maintenance-measurement-standard-cat')
                     ->with('standard', $standard)
                     ->with('newID', $newID);
     }

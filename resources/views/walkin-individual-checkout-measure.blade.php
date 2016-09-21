@@ -11,12 +11,13 @@
     </div>
 
 	<div class="row" style="padding:30px">
-        
-        <ul class="col s12 breadcrumb">
-			<li><a style="padding-left:200px"><b>1.FILL-UP FORM</b></a></li>
-			<li><a class="active" style="padding-left:200px" href="#measure-detail"><b>2.ADD MEASUREMENT DETAIL</b></a></li>
-			<li><a style="padding-left:200px"><b>3.PAYMENT</b></a></li>
-		</ul>
+        <div class="col s12" style="padding-left:15%">
+	        <ul class="breadcrumb">
+				<li><a><b>1.FILL-UP FORM</b></a></li>
+				<li><a class="active" href="#measure-detail"><b>2.ADD MEASUREMENT DETAIL</b></a></li>
+				<li><a><b>3.PAYMENT</b></a></li>
+			</ul>
+		</div>
 
 		<!-- Tab for Adding Measurement Detail-->
 	    <div id="measure-detail" class = "hue col s12" style="background-color: white; border:2px outset">
@@ -40,7 +41,6 @@
 	      		<div class="divider"></div>
 	      	</div>-->
 			{!! Form::open(['url' => 'transaction/walkin-individual-save-measurements', 'method' => 'POST']) !!}
-			@foreach($segments as $i => $segment)
 			<div class="col s12" style="margin-bottom:10px">
 				<div class="col s12">
 					<div class="col s4"><p style="color:gray"><b>Measurement Type</b></p></div>
@@ -66,6 +66,7 @@
 			
 			</div>-->
 
+			@foreach($segments as $i => $segment)
 			<div class="col s12"><div class="divider" style="height:2px; background-color:gray"></div></div><!--divider-->
 
 
@@ -84,9 +85,18 @@
 		      					</div>
 	      			</div> -->
 
+		            		<div class="col s12" style="margin-top:20px">
+					          	<input type="checkbox" name="cbx-measure-all[]"  class="filled-in cbx-measure-all" id="{{ $segment['strSegmentID'] }}" value="{{ $segment['strSegmentID'] }}" style="padding:5px"/>
+					          	<label for="{{ $segment['strSegmentID'] }}"><font size="+1"><b>Apply to all</b></font></label>
+					        </div>
+
+			
+			@for($k = 0; $k < $quantities[$i]; $k++) 
 	            	<div class="col s12" style="padding:20px"> 
 	            		
 		            	<div id="for_top" class="col s12" style="color:black">
+
+
 		            		<h5><b>Parts to be measured - {{ $segment['strSegmentName'] }}</b></h5>
 		            		
 							<!--if Body and Cloth Measurement-->
@@ -94,9 +104,13 @@
 			            		@if($measurement->strMeasDetSegmentFK == $segment['strSegmentID'])
 		            				<div class="container measurement-general {{ $measurement->strMeasCategoryFK }}"> 
 					            	   	<div style="color:black; padding-left:140px" class="input-field col s6 ">   
-					            	   		<input type="hidden" name="detailName{{ $i+1 }}{{ $j+1 }}" value="{{ $measurement->strMeasurementDetailID }}">              
-				                            <input name="{{ $measurement->strMeasurementDetailID }}{{ $i+1 }}" type="text">
-				                            <label style="color:teal" for="{{ $measurement->strMeasurementDetailID }} {{ $i+1 }}">{{ $measurement->strMeasDetailName }}: </label>
+					            	   		<div class="col s8">
+						            	   		<input class="right" type="hidden" name="detailName{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" value="{{ $measurement->strMeasurementDetailID }}">              
+					                            <input class="right" name="{{ $measurement->strMeasurementDetailID }}{{ $i+1 }}{{ $k+1 }}" type="text">
+					                        </div>
+					                        <div class="col s4">
+				                            	<label style="color:teal" for="{{ $measurement->strMeasurementDetailID }} {{ $i+1 }}{{ $k+1 }}"><b>{{ $measurement->strMeasDetailName }}</b> (cm): </label>
+				                        	</div>
 				                        </div>
 		                    		</div>
 			                    @endif
@@ -104,15 +118,15 @@
 							<!--End of Body and Cloth Measurement-->
 
 							<!--if Standard Size Measurement-->
-							<div class="col s12 z-depth-1 measurement-general MEASCAT001" style="padding:20px">
+							<div class="col s12 z-depth-1 measurement-general MEASCAT001" style="padding:2%">
 								<div class="container">
 									<div class="left col s6">
-										<center><img src="{{ URL::asset($segment['strSegmentImage']) }}" style="height:200px; width:200px; border:3px gray solid"></center>	
+										<center><img src="{{ URL::asset($segment['strSegmentImage']) }}" style="height:60%; width:60%; border:3px gray solid"></center>	
 										<p><center>{{ $segment['strSegmentName'] }}</center></p>							          	
 									</div><!--this will be the garment detail-->
 
-									<div class="right col s6" style="margin-top:20px">
-										<div class="col s6"><p style="color:teal" for="standard_size">Choose Fit Type:</p></div>  		
+									<div class="right col s6" style="margin-top:2%">
+										<div class="col s6"><p style="color:teal" for="standard_size"><b>Choose Fit Type:</b></p></div>  		
 					            	   	<div style="color:black;" class="col s6">                 	
 				                          	<select>
 			    								<option value="">Normal Fit</option>
@@ -120,9 +134,9 @@
 				                        </div>  
 				                    </div> 
 
-									<div class="right col s6">
-										<div class="col s6"><p style="color:teal" for="standard_size">Choose Standard Size:</p></div>  		
-					            	   	<div style="color:black;" class="col s6">                 	
+									<div class="right col s6" style="margin-top:5%">
+										<div class="col s6"><p style="color:teal" for="standard_size"><b>Choose Standard Size:</b></p></div>  		
+					            	   	<div style="color:black; margin-top:2%" class="col s6">                 	
 				                          	<select>
 				                          		@foreach($standard_categories as $standard_category)
 			    									<option value="{{ $standard_category->strStandardSizeCategoryID }}">{{ $standard_category->strStandardSizeCategoryName }}</option>
@@ -139,9 +153,9 @@
 	                    </div>
 
 	                    <p style="color:red">In case of multiple measurements</p>
-	                    	<div style="color:black; padding-left:160px" class="input-field col s5">                 
-	                          <input id="length" name="profile_name{{ $i+1 }}" type="text" class="">
-	                          <label style="color:gray" for="length">Measurement Profile Name: </label>
+	                    	<div style="color:black;" class="input-field col s5">                 
+	                          <div class="col s8" style="margin-left:55%; padding-right:18%"><input id="length" name="profile_name{{ $i+1 }}" type="text" class=""></div>
+	                          <div class="col s4"><label style="color:gray" for="length"><b>Measurement Profile Name: </b></label></div>
 	                    	</div>
 
 	                    	<div style="color:gray" class="input-field col s3">                 
@@ -161,8 +175,10 @@
 
 	                    	<!-- <div class="col s1"><a href="#!" class="btn-floating" style="background-color:#a7ffeb; margin-top:20px"><i class="mdi-navigation-check" style="color:black;"></i></a></div> -->
 	            	</div>
-                    <div class="col s12"><div class="divider" style="height:5px; color:gray; margin-top:15px; margin-bottom:15px"></div></div>
+	    @endfor
 				@endforeach
+                    <div class="col s12"><div class="divider" style="height:5px; color:gray; margin-top:15px; margin-bottom:15px"></div></div>
+				
 				
                 <button type="submit" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save measurements and begin processing" style="background-color:teal; margin-right:50px; padding:9.5px; padding-bottom:45px; color:white"><!--<i class="mdi-action-done"> -->Save Measurements<!--</i>--></button>
 

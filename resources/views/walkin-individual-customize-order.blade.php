@@ -50,7 +50,7 @@
 										@endforeach
 								<div class="col s6"><p><h5><b>Customize Order</b></h5></p></div>							
 									<div class="right col s1"><a style="margin-top:15px; background-color:teal" type="submit" class="waves-effect waves-green btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to go back home" href="{{URL::to('/transaction/walkin-individual')}}"><i class="mdi-action-home" style="color:white; opacity:0.90; font-size:30px;"></i></a></div>
-							{!! Form::open(['url' => 'transaction/walkin-individual-customer-information', 'method' => 'post']) !!}
+							{!! Form::open(['url' => 'transaction/walkin-individual/customer-check', 'method' => 'POST']) !!} <!--changed this to the url of view for the customer check-->
 									@if($segments != null) 
 										<div class="right col s5"><button style="margin-top:15px; background-color:teal" type="submit" class="right waves-effect waves-green btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to proceed to payment of orders" ><font color="white" size="+1"><!--<i class="mdi-action-payment" style="font-size:20px;">-->  Proceed to Checkout<!--</i>--></font></button>
 										</div>
@@ -77,9 +77,9 @@
 							<br>
 							<div class="col s6">
 								<div class="col s6" style="margin-top:7%">
-									<a style="background-color:#a7ffeb; color:black; margin-top:10px" class="modal-trigger btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to choose a segment pattern" href="#pattern{{ $i+1 }}"><i class="mdi-content-content-cut" style="padding-right:10px"></i><b>Choose Design</b></a>
+									<a style="background-color:#a7ffeb; color:black; margin-top:10px" class="modal-trigger btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to choose a segment pattern" href="#pattern{{ $i+1 }}"><i class="mdi-content-content-cut" style="padding-right:0.5%"></i><font size="-1" style="padding-bottom:-5%"><b>Choose Design</b></font></a>
 								<!--Modal for Choosing design-->
-								<div id="pattern{{ $i+1 }}" class="modal modal-fixed-footer" style="width:80%; height:85%;">
+								<div id="pattern{{ $i+1 }}" class="modal modal-fixed-footer" style="width:80%; height:85%; margin-top:0">
 									<h5><font color = "#1b5e20"><center>List of Available Designs</center> </font> </h5>
 				                        <div class="divider" style="height:2px"></div>
 				                        <div class="modal-content col s12">
@@ -111,7 +111,7 @@
 														              <img src="{{URL::asset($pattern->strSegPImage)}}" alt="" class="responsive-img">
 														            </div>
 														            <div class="col s6"> 
-														              <span><b>{{ $pattern->strSegPName }}</b></span> <!-- This will be the name of the pattern -->
+														              <span><b>{{ $pattern->strSegPName }} - PHP {{ number_format($pattern->dblPatternPrice, 2) }} </b></span> <!-- This will be the name of the pattern -->
 														              <br/>
 														              <span class="black-text">
 														                {{ $pattern->txtSegPDesc }}
@@ -143,7 +143,9 @@
 								</div>
 
 								<!--Modal for custom-facbric-->
-								<div id="custom-fabric" class="modal modal-fixed-footer" style="width:80%; height:85%;">
+								@foreach($styles as $k => $style)
+										@if($style->boolIsActive == 1)
+								<div id="custom-fabric" class="modal modal-fixed-footer" style="width:80%; height:75%; margin-top:0">
 		 								<h5><font color = "#1b5e20"><center>List of Available Fabrics</center> </font> </h5>
 		    
 				                        <div class="divider" style="height:2px"></div>				
@@ -205,12 +207,11 @@
 												
 												<p style="color:gray; margin-left:20px">*Choose one of your desired fabric</p>
 
-												
 					                        	@foreach($fabrics as $j => $fabric)
-					                        	<div class="col s6">
+					                        	<div class="col s6 custom-fabrics {{ $fabric->strFabricTypeFK }} {{ $fabric->strFabricPatternFK }} {{ $fabric->strFabricColorFK }} {{ $fabric->strFabricThreadCountFK }} ">
 					                        	<div class="center col s2" style="margin-top:60px">
-					                        		<input name="custom-fabrics{{ $i+1 }}" type="radio" class="filled-in custom-segmentFabric{{ $i+1 }}" value="custom-{{ $fabric->strFabricID }}" id="custom-{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}" />					                        	
-					                        		<label for="custom-{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}"></label>
+					                        		<input name="custom-fabrics{{ $i+1 }}" type="radio" class="filled-in custom-segmentFabric{{ $i+1 }}" value="custom-{{ $fabric->strFabricID }}" id="custom-{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" />					                        	
+					                        		<label for="custom-{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}"></label>
 					                        	</div>
 					                        	 <div class="col s10">
 											        <div class="card-panel teal lighten-4 z-depth-1">
@@ -219,7 +220,7 @@
 											              <img src="{{URL::asset($fabric->strFabricImage)}}"class="responsive-img">
 											            </div>
 											            <div class="col s8"> 
-											              <p><b id="{{ 'fabricText'.$fabric->strFabricID }}">{{ $fabric->strFabricName }}</b></p> 
+											              <p><b id="{{ 'fabricText'.$fabric->strFabricID }}">{{ $fabric->strFabricName }} - PHP {{ number_format($fabric->dblFabricPrice, 2) }} </b></p> 
 											              <span class="black-text">
 											                {{ $fabric->txtFabricDesc }}
 											              </span>
@@ -239,11 +240,13 @@
 			                          <a  class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
 			                        </div>
 								</div>
+										  @endif
+										@endforeach
 								<!--End of modal for custom fabric-->
 								
 								<div class="col s6" style="margin-top:7%">
-									<a style="background-color:#a7ffeb; color:black; margin-top:10px" class="modal-trigger btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#fabric{{ $i+1 }}"><i class="mdi-maps-layers" style="padding-right:10px"></i><b>Choose Fabric</b></a>
-									<div id="fabric{{ $i+1 }}" class="modal modal-fixed-footer" style="width:1100px; height:600px">
+									<a style="background-color:#a7ffeb; color:black; margin-top:10px" class="modal-trigger btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#fabric{{ $i+1 }}"><i class="mdi-maps-layers" style="padding-right:0.5%"></i><font size="-1" style="padding-bottom:-5%"><b>Choose Fabric</b></font></a>
+									<div id="fabric{{ $i+1 }}" class="modal modal-fixed-footer" style="width:80%; height:85%; margin-top:0">
 	 									<h5><font color = "#1b5e20"><center>List of Available Fabrics</center> </font> </h5>
 	    
 					                        <div class="divider" style="height:2px"></div>				
@@ -319,7 +322,7 @@
 											              <img src="{{URL::asset($fabric->strFabricImage)}}"class="responsive-img"> <!-- notice the "circle" class -->
 											            </div>
 											            <div class="col s8"> 
-											              <p><b id="{{ 'fabricText'.$fabric->strFabricID }}">{{ $fabric->strFabricName }}</b></p> <!-- This will be the name of the pattern -->
+											              <p><b id="{{ 'fabricText'.$fabric->strFabricID }}">{{ $fabric->strFabricName }} - PHP {{ number_format($fabric->dblFabricPrice, 2) }} </b></p> <!-- This will be the name of the pattern -->
 											              <span class="black-text">
 											                {{ $fabric->txtFabricDesc }}
 											              </span>
@@ -344,35 +347,35 @@
 
 								<!--Garment Description Here-->
 								<div class="col s12" style="margin-top:1%; color:gray"><p>Garment description below:</p></div>
-								<div class="col s12" style="margin-left:130px">
+								<div class="col s12" style="margin-left:0">
+									<div class="container">
+										<div class="col s7" style="color:teal;"><p><b>Garment Category:</b></p></div>
+										<div class="col s5"><p>{{ $segment['strGarmentCategoryName'] }}</p></div>
 									
-										<div class="col s4" style="color:teal;"><p><b>Garment Category:</b></p></div>
-										<div class="col s8"><p>{{ $segment['strGarmentCategoryName'] }}</p></div>
+										<div class="col s7" style="color:teal;"><p><b>Garment Segment:</b></p></div>
+										<div class="col s5"><p>{{ $segment['strSegmentName'] }}</p></div>									
 									
-										<div class="col s4" style="color:teal;"><p><b>Garment Segment:</b></p></div>
-										<div class="col s8"><p>{{ $segment['strSegmentName'] }}</p></div>									
-									
-										<div class="col s4" style="color:teal;"><p><b>Sex(Applicable):</b></p></div>
-										@if($segment['strSegmentSex'] == 'M') <div class="col s8"><p>Male</p></div>
-				                        @elseif($segment['strSegmentSex'] == 'F') <div class="col s8"><p>Female</p></div>
+										<div class="col s7" style="color:teal;"><p><b>Sex(Applicable):</b></p></div>
+										@if($segment['strSegmentSex'] == 'M') <div class="col s5"><p>Male</p></div>
+				                        @elseif($segment['strSegmentSex'] == 'F') <div class="col s5"><p>Female</p></div>
 				                        @endif
 
-										<div class="col s4" style="color:teal;"><p><b>Price starts from:</b></p></div>
-										<div class="col s8" style="color:color:black;font-weight:bold"><p>{{ number_format($segment['dblSegmentPrice'], 2) }} PHP</p></div>
+										<div class="col s7" style="color:teal;"><p><b>Base Price:</b></p></div>
+										<div class="col s5" style="color:color:black;font-weight:bold"><p>{{ number_format($segment['dblSegmentPrice'], 2) }} PHP</p></div>
 										<input type="hidden" class="price-per-segment" id="{{ $segment['dblSegmentPrice'] }}">
 
-									<div class="col s4" style="color:teal;"><p><b>Time to finish(min):</b></p></div>
-									<div class="col s8 " style="color:gray;font-weight:bold" ><p>{{ $segment['intMinDays'] }} days</p></div>
-									<input type="hidden" class="time-to-finish" id="{{ $segment['intMinDays'] }}">
+										<div class="col s7" style="color:teal;"><p><b>Time to finish(min):</b></p></div>
+										<div class="col s5" style="color:gray;font-weight:bold" ><p>{{ $segment['intMinDays'] }} days</p></div>
+										<input type="hidden" class="time-to-finish" id="{{ $segment['intMinDays'] }}">
+									
+										<!--To identify the quantity of garments with similar design and fabrics-->
+						                	<div class="col s7" style="padding-top:3%; color:black"><center><b style="font-size:18px">QTY</b> (Input quantity)</center></div>    
+						               		<div class="col s5" style="padding-left:0; margin-left:0;"><input class="center int-segment-qty {{ $segment['strSegmentID'] }} qty{{ $segment['strSegmentID'] }}" name="int-segment-qty[]" id="{{ $segment['strSegmentID'] }}"  type="number" style="border:2px teal solid; padding-left:18%; padding-right:8%" placeholder="How many?"></div>
+						                <!--end-->
+									</div>
 																	
 								</div>
-
-								<!--To identify the quantity of garments with similar design and fabrics-->
-				                <div class="col s8" style="margin-top:4%">
-				                <div class="col s8" style="padding-top:3%; padding-left:50%; color:black"><center><b style="font-size:18px">QTY</b></center></div>   
-				               	<div class="col s4" style="padding-left:0; margin-left:0;"><input name="quantity" id="quantity" type="number" style="border:2px teal solid; padding-left:18%; padding-right:18%" placeholder="How many?"></div>
-				                </div>
-				                <!--end-->
+								
 							</div>
 						<!--dati dito yung div-->
 
@@ -382,7 +385,6 @@
 						<br>
 						<div class="divider" style="height:2px;margin-top:40px"></div>
 <!-- END OF LOOP -->	@endforeach
-						{!! Form::close() !!}
 						<!--/// END OF AN ITERATION  ///-->
 
 
@@ -401,10 +403,11 @@
 								</div>
 							</div>
 						</div> <!--end of list-->
+						{!! Form::close() !!}
 
 						<div class="col s12">
 							<div class="divider" style="height:2px; margin-top:30px"></div>      	
-				      		<center><p><font color="gray">End of order list wanting to purchase</font></p></center>
+				      		<center><p><font color="gray">End of order list to purchase</font></p></center>
 						</div>
 						</div>
 					</div>
@@ -475,6 +478,53 @@
 		}
 
 		updateUI();
+	</script>
+
+	<script>
+		var custom_type = $('#custom-fabric-type');
+		var custom_color = $('#custom-fabric-color');
+		var custom_pattern = $('#custom-fabric-pattern');
+		var custom_threadCount = $('#custom-fabric-thread-count');
+
+		custom_type.change(function () {
+		  updateCustomUI();
+		});
+
+		custom_color.change(function () {
+		  updateCustomUI();
+		});
+
+		custom_pattern.change(function () {
+		  updateCustomUI();
+		});
+
+		custom_threadCount.change(function () {
+		  updateCustomUI();
+		});
+
+		function updateCustomUI () {
+		  $('.custom-fabrics').hide();
+
+		  var cus_typeValue = custom_type.val();
+		  var cus_colorValue = custom_color.val();
+		  var cus_patternValue = custom_pattern.val();
+		  var cus_threadValue = custom_threadCount.val();
+		  
+		  if (cus_typeValue == 'TA' && cus_colorValue == 'CA' && cus_patternValue == 'PA' && cus_threadValue == 'TCA'){
+		  	return $('.custom-fabrics').show();
+		  } 
+		  
+		  var cus_typeClass = cus_typeValue == 'TA' ? '' : '.' + cus_typeValue;
+		  var cus_colorClass = cus_colorValue == 'CA' ? '' : '.' + cus_colorValue;
+		  var cus_patternClass = cus_patternValue == 'PA' ? '' : '.' + cus_patternValue;
+		  var cus_threadClass = cus_threadValue == 'TCA' ? '' : '.' + cus_threadValue;
+
+		  var cus_classesToUpdate = cus_typeClass + cus_colorClass + cus_patternClass + cus_threadClass;
+		  console.log(cus_classesToUpdate);
+		  $(cus_classesToUpdate).show();
+		}
+
+		updateCustomUI();
 	</script>
 
 	<script>

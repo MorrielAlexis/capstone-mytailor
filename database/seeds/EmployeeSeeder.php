@@ -17,9 +17,9 @@ class EmployeeSeeder extends Seeder
         $tblEmployee = array (
             array(
                 'strEmployeeID' => 'EMPL001',
-                'strEmpFName' => 'Earvin',
-                'strEmpMName' => 'Aquino',
-                'strEmpLName' => 'Tolentino',
+                'strEmpFName' => 'Morriel',
+                'strEmpMName' => 'Tolentino',
+                'strEmpLName' => 'Aquino',
                 'dtEmpBday' =>'1996-07-02',
                 'strSex' => 'M',
                 'strEmpHouseNo' => '44',
@@ -32,7 +32,9 @@ class EmployeeSeeder extends Seeder
                 'strCellNo' =>'09162451291',
                 'strCellNoAlt' =>'09155432875',
                 'strPhoneNo' => '02345890',
-                'strEmailAdd' => 'earvintol@gmail.com',
+                'strEmpImg' => 'imgUsers/Morriel IBITS Background.jpg',
+                'strEmailAdd' => 'morrielaquino@yahoo.com',
+                'userId' => 'USER001',
                 'boolIsActive' => '1'
             ),
 
@@ -53,7 +55,9 @@ class EmployeeSeeder extends Seeder
                 'strCellNo' =>'09197864523',
                 'strCellNoAlt' =>'0923098567',
                 'strPhoneNo' => '02341276',
+                'strEmpImg' => '',
                 'strEmailAdd' => 'amberaq@gmail.com',
+                'userId' => null,
                 'boolIsActive' => '1'
             )
 

@@ -11,12 +11,13 @@
     </div>
 
     	<div class="row" style="padding:30px">
-        
-	        <ul class="col s12 breadcrumb">
-				<li><a style="padding-left:200px" href="{{URL::to('transaction/walkin-company-payment-customer-info')}}"><b>1.FILL-UP FORM</b></a></li>
-				<li><a class="active" style="padding-left:200px" href="#measure-detail"><b>2.ADD MEASUREMENT DETAIL</b></a></li>
-				<li><a style="padding-left:200px" href="{{URL::to('transaction/walkin-company-payment-payment-info')}}"><b>3.PAYMENT</b></a></li>	
-			</ul>
+        	<div class="col s12" style="padding-left:15%">
+		        <ul class="breadcrumb">
+					<li><a href="{{URL::to('transaction/walkin-company-payment-customer-info')}}"><b>1.FILL-UP FORM</b></a></li>
+					<li><a class="active" href="#measure-detail"><b>2.ADD MEASUREMENT DETAIL</b></a></li>
+					<li><a href="{{URL::to('transaction/walkin-company-payment-info')}}"><b>3.PAYMENT</b></a></li>	
+				</ul>
+			</div>
 
 
 			<!-- Tab for Adding Measurement Detail-->
@@ -137,7 +138,7 @@
 	        	</div>
 
 
-                    		<a href="{{URL::to('transaction/walkin-company-payment-payment-info')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to go back to home and start shopping!" style="background-color:#1976d2; padding:9.5px; padding-bottom:45px; margin-top:80px; margin-right:60px"><label style="font-size:15px; color:white">Save and Go to Payment</label></a>
+                    		<a href="{{URL::to('transaction/walkin-company-payment-info')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to go back to home and start shopping!" style="background-color:#1976d2; padding:9.5px; padding-bottom:45px; margin-top:80px; margin-right:60px"><label style="font-size:15px; color:white">Save and Go to Payment</label></a>
                     		<a href="{{URL::to('transaction/walkin-company')}}" class="left btn tooltipped" data-position="top" data-delay="50" data-tooltip="Transfers you back home and clears current unsaved transaction" style="background-color:#26a69a; padding:9.5px; padding-bottom:45px; margin-left:30px; margin-top:80px;"><label style="font-size:15px; color:white">Cancel Transaction</label></a>
                     	
 

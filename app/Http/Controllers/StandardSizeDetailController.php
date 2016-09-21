@@ -44,7 +44,7 @@ class StandardSizeDetailController extends Controller
             ->orderBy('strStandardSizeDetID')
             ->get();
 
-       return view('maintenance-measurement-standard-size-detail')
+       return view('maintenance.maintenance-measurement-standard-size-detail')
                     ->with('standard', $standard)
                     ->with('measurementCategory', $measurementCategory)
                     ->with('segment', $segment)

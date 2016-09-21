@@ -27,23 +27,19 @@
                   <tr>
                     <!--<th data-field="id">Garment ID</th>-->
                     <th data-field="garmentName">Fabric Name</th>
-                    <th data-field="garmentDescription">Type</th>
-                    <th data-field="Edit">Color</th>
-                    <th data-field="Edit">Pattern</th>
-                    <!-- <th>Deactivate</th> -->
+                    <th data-field="Image">Image</th>
+                    <th data-field="garmentDescription">Total Picks</th>      
                   </tr>
               </thead>
 
               <tbody>
+                    @foreach($topFabrics as $topFabrics)
                   <tr>
-                    <td>Sample</td>
-                    <td>Sample</td>
-                    <td>Sample</td>
-                    <td>Sample</td>
-              
-                      
-                      
+                    <td>{{$topFabrics->name}}</td>
+                    <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($topFabrics->image)}}"></td>
+                    <td>{{$topFabrics->ctr}}</td>   
                   </tr>
+                   @endforeach
               </tbody>
             </table>
 

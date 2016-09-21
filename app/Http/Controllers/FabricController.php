@@ -56,7 +56,7 @@ class FabricController extends Controller
 
 
         //load the view and pass the fabrics
-        return view('maintenance-fabric')
+        return view('maintenance.maintenance-fabric')
                     ->with('fabric', $fabric)
                     ->with('fabricColor', $fabricColor)
                     ->with('fabricType', $fabricType)

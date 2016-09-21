@@ -18,7 +18,7 @@ class Individual extends Model
     					'strIndivProvince', 'strIndivZipCode',
     					'strIndivLandlineNumber', 'strIndivCPNumber',
     					'strIndivCPNumberAlt', 'strIndivEmailAddress',
-                        'strIndivInactiveReason', 'userId',
+                        'strIndivInactiveReason', 'strIndivImg','userId',
     					'boolIsActive');   
 
     public function customer_ind(){

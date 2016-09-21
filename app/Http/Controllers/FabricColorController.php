@@ -33,7 +33,7 @@ class FabricColorController extends Controller
 
 
         //load the view and pass the employees
-        return view('maintenance-fabric-color')
+        return view('maintenance.maintenance-fabric-color')
                 ->with('fabricColor', $fabricColor)
                 ->with('newID', $newID);
         
@@ -131,8 +131,8 @@ class FabricColorController extends Controller
         if(!$isAdded){
         $fabricColor = FabricColor::find($request->input('editfabricColor'));
 
-                $fabricColor->strFabricColorName = trim($request->get('editColorName'));    
-                $fabricColor->txtFabricColorDesc = trim($request->get('editColorDesc'));
+                $fabricColor->strFabricColorName = trim($request->input('editColorName'));    
+                $fabricColor->txtFabricColorDesc = trim($request->input('editColorDesc'));
 
                 $fabricColor->save();
 

@@ -31,7 +31,25 @@ class HomeController extends Controller
         $ID = $ids["0"]->id;
         $newUser = $this->smartCounter($ID);  
 
-    	return view('login')->with('newUserId', $newUser);
+         $shopLogo = \DB::table('tblUtilitiesGeneral')
+            ->where('intUtilsGenID','1')
+            ->orderBy('created_at', 'desc')
+            ->pluck('strShopImage');
+
+        session(['shop_logo' => $shopLogo]);
+
+        $shopName = \DB::table('tblUtilitiesGeneral')
+            ->where('intUtilsGenID','1')
+            ->orderBy('created_at', 'desc')
+            ->pluck('strShopName');
+
+        session(['shop_name' => $shopName]);
+                
+
+    	return view('login')
+        ->with('newUserId', $newUser)
+        ->with('shop_logo', $shopLogo)
+        ->with('shop_name', $shopName);
     }
 
     public function LogIn()
@@ -59,7 +77,7 @@ class HomeController extends Controller
 
             if($user->confirmed == 1)
             {   
-                if(Auth::user()->type == 'employee'){
+                if(Auth::user()->type == 'admin'){
                     return redirect()->intended('/dashboard');
                 }else if(Auth::user()->type == 'customer'){
                     return redirect()->intended('/online-home');

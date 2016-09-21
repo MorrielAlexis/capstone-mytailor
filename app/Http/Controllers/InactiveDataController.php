@@ -116,7 +116,7 @@ class InactiveDataController extends Controller
 //$reason = Individual::all(); 
 
 
-        return view('inactiveData')
+        return view('utilities.inactiveData')
             ->with('individual', $individual)
             ->with('company', $company)
             ->with('role', $role)

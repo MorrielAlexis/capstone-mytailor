@@ -39,7 +39,7 @@ class FabricThreadCountController extends Controller
 
 
         //load the view and pass the employees
-        return view('maintenance-fabric-thread-count')
+        return view('maintenance.maintenance-fabric-thread-count')
                     ->with('threadCount', $threadCount)
                     ->with('newID', $newID);
         
@@ -137,8 +137,8 @@ class FabricThreadCountController extends Controller
         if(!$isAdded){
         $threadCount = FabricThreadCount::find($request->input('editThreadCount'));
 
-                $threadCount->strFabricThreadCountName = trim($request->get('editThreadCountName'));    
-                $threadCount->txtFabricThreadCountDesc = trim($request->get('editThreadCountDesc'));
+                $threadCount->strFabricThreadCountName = trim($request->input('editThreadCountName'));    
+                $threadCount->txtFabricThreadCountDesc = trim($request->input('editThreadCountDesc'));
 
                 $threadCount->save();
 

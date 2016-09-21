@@ -29,34 +29,36 @@ class PackagesSeeder extends Seeder
     					'boolIsActive'  =>  '1'      
         			),
 
-        			array(
-        			'strPackageID' => 'PACK0002',
-        			'strPackageName' =>  'Female Pair B',
-              'strPackageSex' =>  'F',
-        			'strPackageSeg1FK' =>  'SEGM003',
-				    	'strPackageSeg2FK' =>  'SEGM005',
-      		  	'strPackageSeg3FK' =>  'SEGM009',
-              // 'strPackageSeg4FK' =>  'SEGM002',
-              // 'strPackageSeg5FK' =>  'SEGM001',
-              'dblPackagePrice' => '3500.00',
+              array(
+              'strPackageID' => 'PACK0002',
+              'strPackageName' =>  'Male Pair A',
+              'strPackageSex' =>  'M',
+              'strPackageSeg1FK' =>  'SEGM004',
+              'strPackageSeg2FK' =>  'SEGM006',
+              'strPackageSeg3FK' =>  'SEGM008',
+              'dblPackagePrice' => '2500.00',
               'intPackageMinDays' => '60',
-					    'strPackageImage' =>  'imgPackages/blouse-skirt-blazer-female.jpg',
-					    'strPackageDesc' =>  'Pair of skirt and blouse plus a blazer.',
-					    'boolIsActive'  =>  '1'     
-					)
+              'strPackageImage' =>  'imgPackages/whitepants-polo-shirt-male.png',
+              'strPackageDesc' =>  'Pair of polo,long sleeve and pants for male employees.',
+              'boolIsActive'  =>  '1'     
+          )
 
-          // array(
-          //     'strPackageID' => 'PACK0003',
-          //     'strPackageName' =>  'Male Pair A',
-          //     'strPackageSex' =>  'M',
-          //     'strPackageSeg1FK' =>  'SEGM004',
-          //     'strPackageSeg2FK' =>  'SEGM006',
-          //     'dblPackagePrice' => '2500.00',
-          //     'intPackageMinDays' => '60',
-          //     'strPackageImage' =>  'imgPackages/whitepants-polo-shirt-male.png',
-          //     'strPackageDesc' =>  'Pair of polo and pants for male employees.',
-          //     'boolIsActive'  =>  '1'     
-          // )
+     //    			array(
+     //    			'strPackageID' => 'PACK0002',
+     //    			'strPackageName' =>  'Female Pair B',
+     //          'strPackageSex' =>  'F',
+     //    			'strPackageSeg1FK' =>  'SEGM001',
+				 //    	'strPackageSeg2FK' =>  'SEGM005',
+     //  		  	'strPackageSeg3FK' =>  'SEGM009',
+     //          // 'strPackageSeg4FK' =>  'SEGM002',
+     //          // 'strPackageSeg5FK' =>  'SEGM001',
+     //          'dblPackagePrice' => '3500.00',
+     //          'intPackageMinDays' => '60',
+					//     'strPackageImage' =>  'imgPackages/blouse-skirt-blazer-female.jpg',
+					//     'strPackageDesc' =>  'Pair of skirt and blouse plus a blazer.',
+					//     'boolIsActive'  =>  '1'     
+					// )
+
 
         );
 

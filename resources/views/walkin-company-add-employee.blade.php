@@ -29,29 +29,31 @@
 								<!--Employee Information starts here-->
 								<div class="col s12" style="margin-bottom:30px">
 									<div class="input-field col s3">
-							          	<input id="empFirstName{{ $i }}" name="empFirstName[]" type="text" class="validate">
+							          	<input id="empFirstName{{ $i }}" name="empFirstName[]" required type="text" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$">
 							          	<label for="empFirstName{{ $i }}">First Name</label>
 							        </div>
 
 							        <div class="input-field col s3">
-							          	<input id="empLastName{{ $i }}" name="empLastName[]" type="text" class="validate">
+							          	<input id="empLastName{{ $i }}" name="empLastName[]" required type="text" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$">
 							          	<label for="empLastName{{ $i }}">Last Name</label>
 							        </div>
 
 							        <div class="input-field col s2">
-							        	<input id="empMiddleName{{ $i }}" name="empMiddleName[]" type="text" class="validate">
+							        	<input id="empMiddleName{{ $i }}" name="empMiddleName[]" type="text" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$">
 							          	<label for="empMiddleName{{ $i }}">Middle Name</label>
 							        </div>
 
 							        <div class="input-field col s1">
 								        @foreach($packages as $package)
-											@if($package->strPackageSex == 'M')
-										    	<input type="hidden" name="empSex[]" value="M">
-												<input type="text" id="empSex{{ $i }}" value="Male">
-										    @elseif($package->strPackageSex == 'F')
-										    	<input type="hidden" name="empSex[]" value="F">
-												<input type="text" id="empSex{{ $i }}" value="Female">
-										    @endif
+								        	@if($orderPackages[$i] == $package->strPackageID)
+												@if($package->strPackageSex == 'M')
+											    	<input type="hidden" name="empSex[]" value="M">
+													<input type="text" id="empSex{{ $i }}" value="Male" readonly>
+											    @elseif($package->strPackageSex == 'F')
+											    	<input type="hidden" name="empSex[]" value="F">
+													<input type="text" id="empSex{{ $i }}" value="Female" readonly>
+											    @endif
+											@endif
 										@endforeach
 									</div>
 
@@ -65,7 +67,7 @@
 									</div>
 
 									<div class="col s1">
-										<a style="color:white; margin-top:18px" class="modal-trigger btn tooltipped blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit the set purchased" href="#empSpecification{!! $i !!}"><i class="mdi-editor-mode-edit"></i></a>
+										<a style="color:white; margin-top:18px" class="modal-trigger btn tooltipped blue" data-position="bottom" data-delay="50" data-tooltip="Click to add additional segments from the set purchased" href="#empSpecification{!! $i !!}"><i class="mdi-editor-mode-edit"></i></a>
 									</div>
 
 									<!--Modal for editing employee -->
@@ -93,17 +95,17 @@
 														</thead>
 
 														<tbody>
-															@foreach($packages as $j => $package)
-																@for($k = 0; $k < count($segments); $k++)
-																@if($segments[$k][$j][0]->strPackageID == $orderPackages[$i])
-																<tr>
-																	<td>{{ $segments[$k][$j][0]->strGarmentCategoryName }}, <b>{{ $segments[$k][$j][0]->strSegmentName }}</b></td>
-																	<td><img src="../{{ $segments[$k][$j][0]->strSegmentImage }}"/></td>
-																	<td><input class="" name="add-garment" id="add-garment" type="number" value="" style="margin-top:20px" placeholder="How many?"></td>
-																</tr>
-																@endif
+															@for($j = 0; $j < count($packages); $j++)
+																@for($k = 0; $k < count($segments[$j]); $k++)
+																	@if($segments[$j][$k]->strPackageID == $orderPackages[$i])
+																	<tr>
+																		<td>{{ $segments[$j][$k]->strGarmentCategoryName }}, <b>{{ $segments[$j][$k]->strSegmentName }}</b></td>
+																		<td><img src="../{{ $segments[$j][$k]->strSegmentImage }}"/></td>
+																		<td><input name="segment-qty{{ $i }}[]" id="add-garment" type="number" value="" style="margin-top:20px" placeholder="How many additional {{ $segments[$j][$k]->strSegmentName }}?" ></td>
+																	</tr>
+																	@endif
 																@endfor
-															@endforeach
+															@endfor
 														</tbody>
 													</table>
 												</div>
@@ -113,8 +115,7 @@
 										
 
 										<div class="modal-footer col s12">
-							                <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Save</font></button>
-							                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Cancel</font></a>	
+							                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Close</font></a>	
 							            </div>
 									</div>
 									<!--End of modal for editing employee data-->

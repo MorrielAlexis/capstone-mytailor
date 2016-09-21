@@ -37,7 +37,7 @@ class MaterialNeedleController extends Controller
         
         $needle = Needle::all();
 
-        return view('maintenance-material-needle')
+        return view('maintenance.maintenance-material-needle')
                     ->with('needles', $needle)
                     ->with('newNeedleID', $newNeedleID);
     }

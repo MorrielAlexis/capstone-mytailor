@@ -57,7 +57,7 @@
 										    <option value="M" class="circle">Male</option>
 										    <option value="F" class="circle">Female</option>
 										</select>
-										<label><font size="3" color="Red">Show garments for(gender):</font></label>
+										<label><font size="3" color="Red">Show garments for (sex):</font></label>
 								</div>
 							</div>
 
@@ -77,7 +77,7 @@
 							<p class="center-align" style="color:teal; margin-bottom:40px"><b>CHOOSE AMONG AVAILABLE PRODUCTS</b></p>
 						
 						@foreach($garments as $garment)
-								<div class="col s4 segment-general {{ $garment->strSegCategoryFK }} {{ $garment->strSegmentSex }}">
+								<div class="col s4 segment-general {{ $garment->strSegCategoryFK }} {{ $garment->strSegmentSex }}" style="margin-top:5%">
 										<div class="center col s12">
 					          				<input type="checkbox" name="cbx-segment-name[]"  class="filled-in cbx-segment-name" id="{{ $garment->strSegmentID }}" value="{{ $garment->strSegmentID }}" style="padding:5px"/>
 			      							<label for="{{ $garment->strSegmentID }}"><font size="+1"><b>{{ $garment->strSegmentName }}</b></font></label>
@@ -89,8 +89,8 @@
 										<div class="center col s12"><img src="{{URL::asset($garment->strSegmentImage)}}" style="height:200px; width:250px; padding:10px; border:3px gray solid"></div>
 									
 									<!--Eto yung buong quantity, hindi ko matanggal, baka magloko bigla ang process. Ikaw na lang
-									<!   Nai-comment ko naman na. If ever tatanggalin mo, eto lang-->
-									<!--<center><h6 style="color:darkgray"><b>Quantity</b></h6></center>
+									<!   Nai-comment ko naman na. If ever tatanggalin mo, eto lang-
+									<center><h6 style="color:darkgray"><b>Quantity</b></h6></center>
 					                  <div class="container"> 
 					                  	<div class="container">
 					                    <div class="input-field col s12" style="margin-top:-2px;">
@@ -98,7 +98,7 @@
 					                    </div>
 					                    </div>
 					                  </div>
-									<!End nung para sa quantity-->
+									End nung para sa quantity-->
 								</div>
 						@endforeach
 						</div>

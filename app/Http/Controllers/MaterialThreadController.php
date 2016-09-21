@@ -37,7 +37,7 @@ class MaterialThreadController extends Controller
 
         $thread = Thread::all();
 
-        return view('maintenance-material-thread')
+        return view('maintenance.maintenance-material-thread')
                     ->with('threads', $thread)
                     ->with('newThreadID', $newThreadID);
     }

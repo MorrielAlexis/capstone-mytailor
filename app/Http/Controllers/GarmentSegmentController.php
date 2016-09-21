@@ -44,7 +44,7 @@ class GarmentSegmentController extends Controller
 
             ->get();
 
-        return view('maintenance-garment-segment')
+        return view('maintenance.maintenance-garment-segment')
                     ->with('segment', $segment)
                     ->with('garment', $garment)
                     ->with('newID', $newID);

@@ -15,6 +15,7 @@ use App\SegmentPattern;
 use App\GarmentSegment; 
 use App\Alteration; 
 use App\Individual;
+use App\Company;
 
 use App\TransactionJOAlteration;
 use App\TransactionNonShopAlteration;
@@ -35,24 +36,30 @@ class AcceptAlterationOnlineController extends Controller
     
     public function index()
     {
+        
         $onlineAlteration = \DB::table('tblNonShopAlteration')
             ->leftjoin('tblcustindividual', 'tblNonShopAlteration.strCustIndFK', '=', 'tblcustindividual.strIndivID')
             ->leftjoin('tblcustcompany', 'tblNonShopAlteration.strCustCompFK', '=', 'tblcustcompany.strCompanyID')
             // ->where('boolisOnline','=', 1)
             ->orderby('tblNonShopAlteration.strNonShopAlterID')
             ->select('tblcustindividual.*', 'tblcustcompany.*', 'tblNonShopAlteration.*')
+            ->where('boolIsOnline', 1)
             ->get(); 
-    
+        
 
         $specifics = TransactionNonShopAlterationSpecifics::with("alterationNonShop")->get();
 
-        dd($specifics);
+         $onlineAltSpecifics = \DB::table('tblNonShopAlterSpecific')
+            ->join('tblNonShopAlteration', 'tblNonShopAlteration.strNonShopAlterID', '=', 'tblNonShopAlterSpecific.strNonShopAlterFK')
+            ->join('tblSegment', 'tblSegment.strSegmentID', '=', 'tblNonShopAlterSpecific.strGarmentSegmentFK')
+            ->join('tblAlteration', 'tblAlteration.strAlterationID', '=', 'tblNonShopAlterSpecific.strAlterationTypeFK')
+            ->orderby('tblNonShopAlterSpecific.strNonAlterSpecificID')
+            ->select('tblNonShopAlterSpecific.*', 'tblAlteration.strAlterationName', 'tblSegment.strSegmentName', 'tblNonShopAlteration.strNonShopAlterID')
+            ->get();   
 
-        return view('alteration.acceptonlinealteration')
+        return view('alteration.accept-online-alteration')
             ->with('onlineAlteration', $onlineAlteration)
-            ->with('specifics', $specifics);
-
-        
+            ->with('specifics', $onlineAltSpecifics);       
     }
 
 
@@ -76,19 +83,45 @@ class AcceptAlterationOnlineController extends Controller
            
     }
 
-    // public function accept()
-    // {
-        
-    //     return view('alteration.acceptorder');
-    // }
 
-    public function accept()
-    {
-        //$email = 'arianne_spice@yahoo.com';
-        $name = 'Morriel Aquino'; //name ng pagsesendan
-        Mail::send('emails.accept-online-alteration', ['name' => $name], function($message) {
-            $message->to('morriel.aquino@yahoo.com', 'Arianne Labtic')->subject('Order Confirmation!');
 
+    public function accept(Request $request)
+    {           
+
+            //actual fetching from database
+
+            $results = \DB::table('tblNonShopAlteration AS a')
+                    ->join('tblCustIndividual AS b', 'a.strCustIndFK', '=', 'b.strIndivID')
+                    ->join('tblNonShopAlterSpecific as c','a.strNonShopAlterID',  '=' , 'c.strNonShopAlterFK')
+                    ->join('tblSegment as d', 'c.strGarmentSegmentFK', '=' , 'd.strSegmentID')
+                    ->join('tblAlteration as e', 'c.strAlterationTypeFK', '=' , 'e.strAlterationID')
+                    ->select(\DB::raw('CONCAT(b.strIndivFName, " " , b.strIndivMName, " " , b.strIndivLName) as custName'),\DB::raw('CONCAT(b.strIndivHouseNo, " ", b.strIndivStreet, " ", b.strIndivBarangay, " ", b.strIndivCity, " ", b.strIndivProvince, " ", b.strIndivZipCode) as address'), 'a.strNonShopAlterID as transID', 'a.dblOrderTotalPrice AS totalPrice', 'b.strIndivEmailAddress AS custEmail', 'b.strIndivCPNumber AS cpNo', 'd.strSegmentName as segment', 'e.strAlterationName as alteration')
+                    ->where('b.strIndivID', $request->input('customerID'))
+                    ->get();
+            
+
+            foreach( $results as $result){
+                $name = $result->custName;
+                $order = $result->transID;
+                $totPrice = $result->totalPrice;
+                $email = $result->custEmail;
+                $cpNo = $result->cpNo;
+                $segment = $result->segment;
+                $alteration = $result->alteration;
+                $address = $result->address;
+            }
+
+
+
+        Mail::send('emails.accept-online-alteration', ['name' => $name, 'order' => $order, 'totPrice' => $totPrice, 'email' => $email, 'cp' => $cpNo, 'segment' => $segment, 'alteration' => $alteration, 'address' => $address], function($message) use($results) {
+
+                foreach($results as $value){
+                    $email = $value->custEmail;  
+                    break;
+                }
+
+                $message->to("$email")->subject('Order Confirmation!'); //sending of email to selected customer
+     
         });
 
          \Session::flash('flash_message','Order accepted! Email successfully sent to customer.'); //flash message
@@ -96,13 +129,36 @@ class AcceptAlterationOnlineController extends Controller
         return redirect('transaction/alteration-online-transaction');
     }
 
-    public function reject()
+    public function reject(Request $request)
     {
 
-        $name = 'Morriel Aquino'; //name ng pagsesendan
-        Mail::send('emails.reject-online-alteration', ['name' => $name], function($message) {
-            $message->to('morriel.aquino@yahoo.com', 'Morriel Aquino')->subject('Order Confirmation!');
+         //actual fetching from database
 
+            $rejects = \DB::table('tblNonShopAlteration AS a')
+                    ->join('tblCustIndividual AS b', 'a.strCustIndFK', '=', 'b.strIndivID')
+                    ->join('tblNonShopAlterSpecific as c','a.strNonShopAlterID',  '=' , 'c.strNonShopAlterFK')
+                    ->select(\DB::raw('CONCAT(b.strIndivFName, " " , b.strIndivMName, " " , b.strIndivLName) as custName'), 'b.strIndivEmailAddress AS custEmail')
+                    ->where('b.strIndivID', $request->input('customerID'))
+                    ->get();
+            var_dump($rejects);
+            dd("");
+
+
+            foreach( $results as $result){
+                $name = $result->custName;
+            }
+
+
+
+        Mail::send('emails.accept-online-alteration', ['name' => $name], function($message) use($results) {
+
+                foreach($rejects as $value){
+                    $email = $value->custEmail;  
+                    break;
+                }
+
+                $message->to("$email")->subject('Order declined!'); //sending of email to selected customer
+     
         });
 
          \Session::flash('flash_message_delete','Order rejected! Email successfully sent to customer.'); //flash message
