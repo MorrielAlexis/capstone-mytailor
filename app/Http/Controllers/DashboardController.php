@@ -82,10 +82,10 @@ class DashboardController extends Controller
 
         $topCustomers = \DB::select('SELECT Concat(tblCustIndividual.strIndivFName, " " , tblCustIndividual.strIndivMName, " " , tblCustIndividual.strIndivLName)as name, COUNT(strIndivID) as ctr FROM tblJobOrder,tblCustIndividual WHERE tblCustIndividual.strIndivID = tblJobOrder.strJO_CustomerFK ORDER BY ctr');
 
-        $totalSegments = \DB::select('SELECT tblSegment.strSegmentName as name, tblSegment.strSegmentImage as image, SUM(intJO_OrderQuantity) as ctr FROM tblJOSpecific,tblSegment WHERE tblSegment.strSegmentID = tblJOSpecific.strJOSegmentFK ORDER BY ctr ');
+        // $totalSegments = \DB::select('SELECT tblSegment.strSegmentName as name, tblSegment.strSegmentImage as image, SUM(intJO_OrderQuantity) as ctr FROM tblJOSpecific,tblSegment WHERE tblSegment.strSegmentID = tblJOSpecific.strJOSegmentFK ORDER BY ctr ');
 
 
-        $total = \DB::select('SELECT tblSegment.strSegmentName as name, tblSegment.strSegmentImage as image, SUM(intJO_OrderQuantity) as ctr FROM tblJOSpecific,tblSegment WHERE tblSegment.strSegmentID = tblJOSpecific.strJOSegmentFK ORDER BY ctr ');
+        // $total = \DB::select('SELECT tblSegment.strSegmentName as name, tblSegment.strSegmentImage as image, SUM(intJO_OrderQuantity) as ctr FROM tblJOSpecific,tblSegment WHERE tblSegment.strSegmentID = tblJOSpecific.strJOSegmentFK ORDER BY ctr ');
     
 
         return view('dashboard')
@@ -96,7 +96,7 @@ class DashboardController extends Controller
              ->with('totalCustIndiv', $totalCustIndiv)
              ->with('totalCustComp', $totalCustComp)
              ->with('totalEmp', $totalEmp)
-             ->with('topCustomers', $topCustomers)
-             ->with('totalSegments', $totalSegments);
+             ->with('topCustomers', $topCustomers);
+             // ->with('totalSegments', $totalSegments);
     }
 }

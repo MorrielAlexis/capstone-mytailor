@@ -57,14 +57,14 @@
                             </div>
                             <div class="col s12 m6 l3">
                                 <div class="card">
-                                    @foreach($totalSegments as $totalSegments)
+                                   {{--  @foreach($totalSegments as $totalSegments) --}}
                                     <div class="card-content deep-purple accent-1 white-text">
                                         <p class="card-stats-title" style="font-size:20px"><i class="mdi-editor-insert-drive-file"></i>Total Job Orders</p>
-                                        <h4 class="card-stats-number">{{$totalSegments->ctr}}</h4>
+                                        <h4 class="card-stats-number">{{-- {{$totalSegments->ctr}} --}}</h4>
                                         {{-- <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-down"></i> 3% <span class="deep-purple-text text-lighten-5">from last month</span>
                                         </p> --}}
                                     </div>
-                                    @endforeach
+                                  {{--   @endforeach --}}
                                     <div class="card-action  deep-purple lighten-2" style="height:40px">
                                         <div id="invoice-line"><canvas width="223" height="25" style="display: inline-block; width: 223px; height: 25px; vertical-align: top;"></canvas></div>
                                     </div>
