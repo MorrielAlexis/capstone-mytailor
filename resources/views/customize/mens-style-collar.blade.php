@@ -78,7 +78,7 @@
                     <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $collar->strSegStyleCatID) hidden @endif>
                       <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
                       <p>
-                        <input name="rdb_pattern{{ $collar->strSegStyleCatID }} {{ $i+1 }}" type="radio" class="filled-in" id="{{$pattern->strSegPatternID}}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" />
+                        <input name="rdb_pattern" value = "{{$pattern->strSegPatternID}}" type="radio" class="filled-in" id="{{$pattern->strSegPatternID}}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" />
                         <label for="{{$pattern->strSegPatternID}}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}">{{$pattern->strSegPName}}</label>
                       </p>
                     </div>
@@ -260,10 +260,6 @@
   </script>
   <script>
     
-    $(document).ready(function(){
-      $('.modal-trigger').leanModal();
-    });
-
     $(document).ready(function(){
       $('ul.tabs').tabs('select_tab', 'tab_id');
     });

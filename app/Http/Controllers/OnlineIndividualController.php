@@ -99,13 +99,12 @@ class OnlineIndividualController extends Controller
 
     public function menstylecollar(Request $request)
     {
-        
+        $mfabric = [];
+
+        session(['menfabric' => $mfabric]);
+
         $mendata_fabric = $request->input('rdb_fabric');
         session(['menfabric' => $mendata_fabric]);
-
-        $fabric = session()->get('menfabric');
-
-        dd($fabric);
 
         $contrast = Fabric::all();
         $fabricThreadCounts = FabricThreadCount::all();
@@ -147,8 +146,16 @@ class OnlineIndividualController extends Controller
                 ->with('collars', $collars);
     }
 
-    public function menstylecuffs()
+    public function menstylecuffs(Request $request)
     {
+        $mcollar = [];
+
+        session(['mencollar' => $mcollar]);
+
+        $mendata_collar = $request->input('rdb_pattern');
+        session(['mencollar' => $mendata_collar]);
+
+
         $contrast = Fabric::all();
         $fabricThreadCounts = FabricThreadCount::all();
         $fabricColors = FabricColor::all();
@@ -218,7 +225,7 @@ class OnlineIndividualController extends Controller
         $segment = \DB::table('tblSegment')
                     ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
                     ->select('tblSegment.*', 'tblGarmentCategory.strGarmentCategoryName')
-                    ->where('tblGarmentCategory.strGarmentCategoryName', 'LIKE', '%'.$garmentKey.'%')
+                    ->where('tblGarmentCategory.strGarmentCategoryName', '=', $garmentKey)
                     ->orderBy('strSegmentID')
                     ->get();
 
@@ -244,6 +251,11 @@ class OnlineIndividualController extends Controller
                 ->with('patterns', $patterns)
                 ->with('pockets', $pockets)
                 ->with('monograms', $monograms);
+    }
+
+    public function returnsave()
+    {
+        return redirect('');
     }
 
     public function menstyleothers()
@@ -326,6 +338,13 @@ class OnlineIndividualController extends Controller
 
     public function womenstylecollar(Request $request)
     {
+         $wfabric = [];
+
+        session(['womenfabric' => $wfabric]);
+
+        $womendata_fabric = $request->input('rdb_fabric');
+        session(['womenfabric' => $womendata_fabric]);
+
         $contrast = Fabric::all();
         $fabricThreadCounts = FabricThreadCount::all();
         $fabricColors = FabricColor::all();
@@ -367,6 +386,13 @@ class OnlineIndividualController extends Controller
 
     public function womenstylecuffs()
     {
+        $wcollar = [];
+
+        session(['womencollar' => $wcollar]);
+
+        $womendata_collar = $request->input('rdb_pattern');
+        session(['womencollar' => $womendata_collar]);
+
         $contrast = Fabric::all();
         $fabricThreadCounts = FabricThreadCount::all();
         $fabricColors = FabricColor::all();

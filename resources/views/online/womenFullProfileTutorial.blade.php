@@ -31,7 +31,7 @@
     </p>
     <div class="container">
         <div class="video-container">
-            <iframe width="540" height="200" src="http://www.youtube.com/embed/6Eal93QzCGE" frameborder="0" allowfullscreen></iframe>
+            <iframe width="540" height="200" src="vidOnlineTutorial/Neck_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
     <center>
@@ -49,7 +49,7 @@
     </p>
     <div class="container">
         <div class="video-container">
-            <iframe width="540" height="200" src="http://www.youtube.com/embed/X_NBlhA1_pQ" frameborder="0" allowfullscreen></iframe>
+            <iframe width="540" height="200" src="vidOnlineTutorial/Chest_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
     <center>
@@ -67,7 +67,7 @@
     </p>
     <div class="container">
         <div class="video-container">
-            <iframe width="540" height="200" src="http://www.youtube.com/embed/u2pXOlx9xTw" frameborder="0" allowfullscreen></iframe>
+            <iframe width="540" height="200" src="vidOnlineTutorial/Shoulder_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
     <center>
@@ -84,7 +84,7 @@
     </p>
     <div class="container">
         <div class="video-container">
-            <iframe width="540" height="200" src="http://www.youtube.com/embed/Coa4_YE2rog" frameborder="0" allowfullscreen></iframe>
+            <iframe width="540" height="200" src="vidOnlineTutorial/Biceps_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
     <center>
@@ -102,7 +102,7 @@
          where you want your short sleeve to end.
     <div class="container">
         <div class="video-container">
-            <iframe width="540" height="200" src="http://www.youtube.com/embed/WXnNlZh4mFI" frameborder="0" allowfullscreen></iframe>
+            <iframe width="540" height="200" src="vidOnlineTutorial/ShortSleeveLength_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
     <center>
@@ -118,7 +118,7 @@
          (where you took the shoulder width measurement), following your bent arm down to where you want the sleeve to end.
     <div class="container">
         <div class="video-container">
-            <iframe width="540" height="200" src="http://www.youtube.com/embed/CWw6NOkh3Uw" frameborder="0" allowfullscreen></iframe>
+            <iframe width="540" height="200" src="vidOnlineTutorial/ArmLength_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
     <center>
@@ -134,7 +134,7 @@
          close to the mid side of your neck, following your body down to the point where you took the seat measurement.
     <div class="container">
         <div class="video-container">
-            <iframe width="540" height="200" src="http://www.youtube.com/embed/BnyrFwlg8kA" frameborder="0" allowfullscreen></iframe>
+            <iframe width="540" height="200" src="vidOnlineTutorial/LengthToSeat_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
     <center>
@@ -150,7 +150,7 @@
         just above your belly button. Stand in a relaxed posture and breathe out.
     <div class="container">
         <div class="video-container">
-            <iframe width="540" height="200" src="http://www.youtube.com/embed/KvbI2YXc0Vc" frameborder="0" allowfullscreen></iframe>
+            <iframe width="540" height="200" src="vidOnlineTutorial/Waist_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>  
     <center>
@@ -166,7 +166,7 @@
         close to the mid side of your neck, following your body down to the point where you want your shirt to end.
     <div class="container">
         <div class="video-container">
-            <iframe width="540" height="200" src="http://www.youtube.com/embed/rdB90Rbbnks" frameborder="0" allowfullscreen></iframe>
+            <iframe width="540" height="200" src="vidOnlineTutorial/ShirtLength_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>  
     <center>
@@ -182,7 +182,7 @@
         close to the mid side of your neck, following your body down to the point where you want your piqué polos to end. 
     <div class="container">
         <div class="video-container">
-            <iframe width="540" height="200" src="http://www.youtube.com/embed/kUriRjD6raY" frameborder="0" allowfullscreen></iframe>
+            <iframe width="540" height="200" src="vidOnlineTutorial/PiquetPolo_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>  
     <center>
@@ -199,7 +199,7 @@
         took the waist measurement. 
     <div class="container">
         <div class="video-container">
-            <iframe width="540" height="200" src="http://www.youtube.com/embed/6lvygS6SLCU" frameborder="0" allowfullscreen></iframe>
+            <iframe width="540" height="200" src="vidOnlineTutorial/LengthToWaist_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
     <center>
@@ -214,7 +214,7 @@
         Measure across your chest between the points where your arms meet your torso. Measure across your chest
     <div class="container">
         <div class="video-container">
-            <iframe width="540" height="200" src="http://www.youtube.com/embed/P4kcunqpQRo" frameborder="0" allowfullscreen></iframe>
+            <iframe width="540" height="200" src="vidOnlineTutorial/ChestWidth_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
     <center>
@@ -230,7 +230,7 @@
        following your body over the chest down to the point where you took the hip measurement.
     <div class="container">
         <div class="video-container">
-            <iframe width="540" height="200" src="http://www.youtube.com/embed/0_7aJzE-abk" frameborder="0" allowfullscreen></iframe>
+            <iframe width="540" height="200" src="vidOnlineTutorial/LengthToHip_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
     <center>
@@ -247,7 +247,7 @@
        <b>NOTE!</b> We will add movement ease according to the cuff you select.
     <div class="container">
         <div class="video-container">
-            <iframe width="540" height="200" src="http://www.youtube.com/embed/pb8F99cC4ZY" frameborder="0" allowfullscreen></iframe>
+            <iframe width="540" height="200" src="vidOnlineTutorial/Wrist_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
     <center>
@@ -263,7 +263,7 @@
        close to the mid side of your neck, down to the point where you took the chest circumference measurement.
     <div class="container">
         <div class="video-container">
-            <iframe width="540" height="200" src="http://www.youtube.com/embed/H8u58wgVZ5Q" frameborder="0" allowfullscreen></iframe>
+            <iframe width="540" height="200" src="vidOnlineTutorial/LengthToChest_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
     <center>
@@ -283,7 +283,7 @@
     </p>
     <div class="container">
         <div class="video-container">
-            <iframe width="540" height="200" src="http://www.youtube.com/embed/9GYuh5EwhDs" frameborder="0" allowfullscreen></iframe>
+            <iframe width="540" height="200" src="vidOnlineTutorial/Seat_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
     <center>
@@ -299,7 +299,7 @@
     </p>
     <div class="container">
         <div class="video-container">
-            <iframe width="540" height="200" src="http://www.youtube.com/embed/lV7W7d9Y4TY" frameborder="0" allowfullscreen></iframe>
+            <iframe width="540" height="200" src="vidOnlineTutorial/Hip_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
     <center>
@@ -324,7 +324,7 @@
            You should put one finger between the tape and the neck if you want to allow for some extra room.
     </p>
     <div class="container" align="center" >
-        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/neck.JPG">
+        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/womens_neck.JPG">
     </div>
     <center>
         <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
@@ -342,7 +342,7 @@
          Stand in a relaxed posture and breathe out.
     </p>
     <div class="container" align="center" >
-        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/chest.JPG">
+        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/womens_chest.JPG">
     </div>
     <center>
         <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
@@ -364,7 +364,7 @@
           For short sleeve and 3/4 sleeve you should still measure the full length of the arm
     </p>
     <div class="container" align="center" >
-        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/sleeve length.JPG">
+        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/womens_arm length.JPG">
     </div>
     <center>
         <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
@@ -382,7 +382,7 @@
          Measure between those two points and hold the tape measure straight.
     </p>
     <div class="container" align="center" >
-        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/shoulder.JPG">
+        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/womens_shoulder.JPG">
     </div>
     <center>
         <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
@@ -399,7 +399,7 @@
          belly button. Stand in a relaxed posture and breathe out.
     </p>
     <div class="container" align="center" >
-        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/waist.JPG">
+        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/womens_waist.JPG">
     </div>
     <center>
         <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
@@ -417,7 +417,7 @@
          belly button. Stand in a relaxed posture and breathe out.
     </p>
     <div class="container" align="center" >
-        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/wrist.JPG">
+        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/womens_wrist.JPG">
     </div>
     <center>
         <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
@@ -435,7 +435,7 @@
         close to the mid side of your neck, following your body down to the point where you want your shirt to end.
     </p>
     <div class="container" align="center" >
-        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/front length.JPG">
+        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/womens_shirt_length.JPG">
     </div>
     <center>
         <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
@@ -454,7 +454,7 @@
       The seat measurement is a circumferential measurement taken around the seat at your widest point
     </p>
     <div class="container" align="center" >
-        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/seat.JPG">
+        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/womens_seat.JPG">
     </div>
     <center>
         <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
@@ -471,7 +471,7 @@
         <b>NOTE!</b> please measure directly on the body i.e. not outside of the garment or on top of a belt.
     </p>
     <div class="container" align="center" >
-        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/hip.JPG">
+        <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/womens_hip.JPG">
     </div>
     <center>
         <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
