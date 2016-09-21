@@ -6,7 +6,7 @@
       
     <div class="row">
       <div class="col s12 m12 l12">
-        <span class="page-title"><h4>Queries - Customers With Balances</h4></span>
+        <span class="page-title"><h4>Queries - Customers With Balance</h4></span>
       </div>
     </div>
 
@@ -16,7 +16,7 @@
   <div class="row">
       <div class="col s12 m12 l12">
         <div class="card-panel">
-          <span class="card-title"><h5 style="color:#1b5e20"><center>List of Customers with Balances</center></h5></span>
+          <span class="card-title"><h5 style="color:#1b5e20"><center>List of Customers with Balance</center></h5></span>
           <div class="divider"></div>
           <div class="card-content">
 
@@ -33,13 +33,13 @@
               </thead>
 
               <tbody>
-                  {{-- @foreach($topAlterations as $topAlterations) --}}
+                  @foreach($results as $results)
                   <tr>
-                    <td>{{-- {{$topAlterations->name}} --}}</td>
-                    <td>{{-- {{$topAlterations->ctr}}  --}}</td>
-                    <td></td>
+                    <td>{{$results->custName}}</td>
+                    <td>{{ number_format($results->balance, 2) . ' PHP' }} </td>
+                    <td>{{$results->dueDate}}</td>
                   </tr>
-                 {{--  @endforeach --}}
+                  @endforeach
               </tbody>
             </table>
 

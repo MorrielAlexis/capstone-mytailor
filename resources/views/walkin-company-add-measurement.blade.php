@@ -96,8 +96,8 @@
 																	<right><p>{{ $detail->strMeasDetailName }} <font color="red">(cm)</font></p></right>
 																</div>
 																<div class="col s7">
-																	<input name="{{ $i }}[]" id="measure_name" type="text" class="validate" required>
-																	<input name="measID{{ $i }}[]" type="hidden" value="{{ $detail->strMeasurementDetailID }}">
+																	<input name="{{ $i }}{{ $k }}[]" id="measure_name" type="text" class="validate" required>
+																	<input name="measID{{ $i }}{{ $k }}[]" type="hidden" value="{{ $detail->strMeasurementDetailID }}">
 																</div>
 															</div>
 														@endif

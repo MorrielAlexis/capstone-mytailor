@@ -397,6 +397,7 @@ Route::get('transaction-modifycompanyorders-modifyemployeeorder','ModifyCompanyO
 
 
 
+
 /*---------------------------------------ADMIN TRANSACTION ALTERATION--------------------------------------------------*/
 Route::group(['prefix' => 'transaction'], function(){		
 		Route::get('alteration-walkin-transaction', 'AlterationWalkInController@index');
@@ -640,6 +641,7 @@ Route::group(['prefix' => 'transaction'], function(){
 		Route::get('list-of-top-pick-segment','QueriesTopPickSegmentController@index');
 		Route::get('most-availed-alteration-service', 'QueriesAvailedAlterServiceController@index');
 		Route::get('customers-with-balances', 'QueriesCustomerWithBalancesController@index');
+		Route::get('companies-with-balances', 'QueriesCustomerWithBalancesController@company');
 			
 	});
 
@@ -655,6 +657,8 @@ Route::group(['prefix' => 'transaction'], function(){
 	});
 	//Customers with Balance
 	Route::group(['prefix' => 'reports/customers-with-balance'], function(){
+
+Route::get('online-forms', 'OnlineFormsController@measurementforms');
 
 		Route::get('individual', 'IndividualCustomerWithBalanceController@index'); //controlller for individuals with balance
 		Route::get('company', 'CompanyCustomerWithBalanceController@index'); //controller for companies with balance		

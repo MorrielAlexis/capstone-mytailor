@@ -386,9 +386,6 @@
 
   <script>
     
-    $(document).ready(function(){
-      $('.modal-trigger').leanModal();
-    });
 
     $(document).ready(function(){
       $('ul.tabs').tabs('select_tab', 'tab_id');

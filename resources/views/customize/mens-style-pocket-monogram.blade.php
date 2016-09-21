@@ -51,27 +51,27 @@
 
           <div class="col s12">
             <ul class="collapsible" data-collapsible="accordion" style="border:none;">
-              @foreach($segments as $segment)
-              @foreach($pockets as $pocket)
+              @foreach($segments as $i => $segment)
+              @foreach($pockets as $j => $pocket)
               @if($pocket->boolIsActive == 1)
               <li @if($segment->strSegmentID != $pocket->strSegmentFK) hidden @endif>
                 <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $pocket->strSegStyleName }}</div>
                 <div class="collapsible-body row overflow-x" style="padding:20px;">
                   <div class="col s12">
                     <p>
-                      <input class="with-gap" name="classic" type="radio" id="small" />
+                      <input class="with-gap" name="rdb_pattern" type="radio" id="small" />
                       <label for="small"><font size="+1"><b>No Pocket</b></font></label>
                     </p>
                   </div>
       
                     <div class="col s12">
-                      @foreach($patterns as $pattern)
+                      @foreach($patterns as $k => $pattern)
                       <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $pocket->strSegStyleCatID) hidden @endif>
                         <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
                         <p>
-                          <input name="rdb_pattern{{ $pocket->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
-                          <label for="{{$pattern->strSegPatternID}}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
-                        </p>
+                          <input name="rdb_pattern" value = "{{ $pocket->strSegStyleCatID }}" type="radio" class="filled-in" id="{{ $pocket->strSegStyleCatID }}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" />
+                          <label for="{{ $pocket->strSegStyleCatID }}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}">{{$pattern->strSegPName}}</label>
+                      </p>
                       </div>
                       @endforeach
                     </div>  
@@ -176,6 +176,10 @@
                             <div class="center col s2" style="margin-top:60px">
                               <input name="rdb_fabricContrast" type="radio" class="filled-in" value="{{ $contrast->strFabricID }}" id="{{ $contrast->strFabricID }}" />                                    
                               <label for="{{ $contrast->strFabricID }}"></label>
+
+                              <input name="rdb_patternContrast" value = "{{$pattern->strSegPatternID}}" type="radio" class="filled-in" id="{{$pattern->strSegPatternID}}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" />
+                              <label for="{{$pattern->strSegPatternID}}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}">{{$pattern->strSegPName}}</label>
+                      
                             </div>
                             <div class="col s10">
                               <div class="card-panel teal lighten-4 z-depth-1">
@@ -310,19 +314,19 @@
                 <div class="collapsible-body row overflow-x" style="padding:20px;">
                   <div class="col s12">
                     <p>
-                      <input class="with-gap" name="classic" type="radio" id="small" />
+                      <input class="filled-in" name="rdb_monogram" type="radio" id="small" />
                       <label for="small"><font size="+1"><b>No Monogram</b></font></label>
                     </p>
                   </div>                
-                  @foreach($monograms as $monogram)
+                  @foreach($monograms as $j => $monogram) 
                     <div class="col s12">
-                      @foreach($patterns as $pattern)
+                      @foreach($patterns as $k => $pattern)
                       <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $monogram->strSegStyleCatID) hidden @endif>
                         <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
                         <p>
-                          <input name="rdb_pattern{{ $monogram->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
-                          <label for="{{$pattern->strSegPatternID}}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
-                        </p>
+                          <input name="rdb_monogram" value = "{{$pattern->strSegPatternID}}" type="radio" class="filled-in" id="{{$pattern->strSegPatternID}}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" />
+                          <label for="{{$pattern->strSegPatternID}}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}">{{$pattern->strSegPName}}</label>
+                       </p>
                       </div>
                       @endforeach
                     </div>
