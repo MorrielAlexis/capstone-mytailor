@@ -29,17 +29,17 @@
 								<!--Employee Information starts here-->
 								<div class="col s12" style="margin-bottom:30px">
 									<div class="input-field col s3">
-							          	<input id="empFirstName{{ $i }}" name="empFirstName[]" required type="text" class="validate" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$">
+							          	<input id="empFirstName{{ $i }}" name="empFirstName[]" required type="text" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$">
 							          	<label for="empFirstName{{ $i }}">First Name</label>
 							        </div>
 
 							        <div class="input-field col s3">
-							          	<input id="empLastName{{ $i }}" name="empLastName[]" required type="text" class="validate" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$">
+							          	<input id="empLastName{{ $i }}" name="empLastName[]" required type="text" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$">
 							          	<label for="empLastName{{ $i }}">Last Name</label>
 							        </div>
 
 							        <div class="input-field col s2">
-							        	<input id="empMiddleName{{ $i }}" name="empMiddleName[]" type="text" class="validate" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$">
+							        	<input id="empMiddleName{{ $i }}" name="empMiddleName[]" type="text" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$">
 							          	<label for="empMiddleName{{ $i }}">Middle Name</label>
 							        </div>
 
@@ -97,11 +97,11 @@
 														<tbody>
 															@for($j = 0; $j < count($packages); $j++)
 																@for($k = 0; $k < count($segments[$j]); $k++)
-																	@if($segments[$j][$k][0]->strPackageID == $orderPackages[$i])
+																	@if($segments[$j][$k]->strPackageID == $orderPackages[$i])
 																	<tr>
-																		<td>{{ $segments[$j][$k][0]->strGarmentCategoryName }}, <b>{{ $segments[$j][$k][0]->strSegmentName }}</b></td>
-																		<td><img src="../{{ $segments[$j][$k][0]->strSegmentImage }}"/></td>
-																		<td><input name="segment-qty{{ $i }}[]" id="add-garment" type="number" value="" style="margin-top:20px" placeholder="How many additional {{ $segments[$j][$k][0]->strSegmentName }}?" ></td>
+																		<td>{{ $segments[$j][$k]->strGarmentCategoryName }}, <b>{{ $segments[$j][$k]->strSegmentName }}</b></td>
+																		<td><img src="../{{ $segments[$j][$k]->strSegmentImage }}"/></td>
+																		<td><input name="segment-qty{{ $i }}[]" id="add-garment" type="number" value="" style="margin-top:20px" placeholder="How many additional {{ $segments[$j][$k]->strSegmentName }}?" ></td>
 																	</tr>
 																	@endif
 																@endfor

@@ -86,18 +86,18 @@
 
 									@for($j = 0; $j < count($package_segments); $j++)
 										@for($k = 0; $k < count($package_segments[$j]); $k++)
-											@if($package_ordered[$i] == $package_segments[$j][$k][0]->strPackageID)	
+											@if($package_ordered[$i] == $package_segments[$j][$k]->strPackageID)
 												<div class="col s12" style="margin-top:3%; margin-bottom:5%; padding-left:3%; padding-right:3%">
-													<div>{{ $package_segments[$j][$k][0]->strSegmentName }}</div>
+													<div>{{ $package_segments[$j][$k]->strSegmentName }}</div>
 													@foreach($measurement_detail as $detail)
-														@if($package_segments[$j][$k][0]->strSegmentID == $detail->strMeasDetSegmentFK)
+														@if($package_segments[$j][$k]->strSegmentID == $detail->strMeasDetSegmentFK)
 															<div class="center col s6">
-																<div class="col s7">
-																	<input name="{{ $i }}[]" id="measure_name" type="text" class="validate">
-																	<input name="measID{{ $i }}[]" type="hidden" value="{{ $detail->strMeasurementDetailID }}">
-																</div>
 																<div class="right col s5">
 																	<right><p>{{ $detail->strMeasDetailName }} <font color="red">(cm)</font></p></right>
+																</div>
+																<div class="col s7">
+																	<input name="{{ $i }}{{ $k }}[]" id="measure_name" type="text" class="validate" required>
+																	<input name="measID{{ $i }}{{ $k }}[]" type="hidden" value="{{ $detail->strMeasurementDetailID }}">
 																</div>
 															</div>
 														@endif

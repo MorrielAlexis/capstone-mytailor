@@ -399,7 +399,7 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input required  id="strFabricCode" name= "strFabricCode" type="text" class="validate"  data-position="bottom" pattern="^[a-zA-Z\-'`\s\d]{2,}$" >
+                            <input required  id="strFabricCode" name= "strFabricCode" type="text" class="validate"  data-position="bottom" pattern="^[a-zA-Z\-'`\s\d]{2,}$" maxlength="4" minlength="4">
                             <label for="days"><span class="red-text"><b>*</b></span>Fabric Code:</label>
                           </div>
                   </div>

@@ -6,7 +6,7 @@
       
     <div class="row">
       <div class="col s12 m12 l12">
-        <span class="page-title"><h4>Queries -  Top Pick Segment</h4></span>
+        <span class="page-title"><h4>Queries - Customers With Balances</h4></span>
       </div>
     </div>
 
@@ -16,7 +16,7 @@
   <div class="row">
       <div class="col s12 m12 l12">
         <div class="card-panel">
-          <span class="card-title"><h5 style="color:#1b5e20"><center>List of Most Ordered Segment</center></h5></span>
+          <span class="card-title"><h5 style="color:#1b5e20"><center>List of Customers with Balances</center></h5></span>
           <div class="divider"></div>
           <div class="card-content">
 
@@ -26,20 +26,20 @@
               <thead>
                   <tr>
                     <!--<th data-field="id">Garment ID</th>-->
-                    <th data-field="garmentName">Segment Name</th>
-                    <th data-field="Image">Image</th>
-                    <th data-field="Total">Total Orders</th>
+                    <th data-field="Customer Name">Customer Name</th>
+                    <th data-field="Outstanding Balance">Outstanding Balance</th>
+                    <th data-field="Due Date">Due Date</th>
                   </tr>
               </thead>
 
               <tbody>
-                  @foreach($topSegments as $topSegments)
+                  {{-- @foreach($topAlterations as $topAlterations) --}}
                   <tr>
-                    <td>{{$topSegments->name}}</td>
-                     <td><img class="materialboxed" width="100%" height="100%" src="{{URL::asset($topSegments->image)}}"></td>
-                    <td>{{$topSegments->ctr}}</td>
+                    <td>{{-- {{$topAlterations->name}} --}}</td>
+                    <td>{{-- {{$topAlterations->ctr}}  --}}</td>
+                    <td></td>
                   </tr>
-                  @endforeach
+                 {{--  @endforeach --}}
               </tbody>
             </table>
 

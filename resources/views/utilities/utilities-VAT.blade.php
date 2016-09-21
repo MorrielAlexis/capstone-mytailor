@@ -3,6 +3,20 @@
 @section('content')
   <div class="main-wrapper" style="margin-top:30px">
 
+    <!-- Flash Messages -->
+    <!--Edit -->
+      @if (Session::has('flash_message_update'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel blue accent-1">
+              <span class="alert alert-success"><i class="tiny mdi-navigation-close right" onclick="$('#flash_message').hide()"></i></span>
+              <em> {!! session('flash_message_update') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif
+
+
    <div class="row">
       <div class="col s12 m12 l12">
       <span class="page-title"><h4>Utilities - Tax Settings</h4></span>
@@ -12,7 +26,7 @@
     <div class="row">
       <div class="col s12 m12 l12">
         <div class="card-panel">
-          <span class="card-title"><h5 style="color:#1b5e20"><center>List of Tax</center></h5></span>
+          <span class="card-title"><h5 style="color:#1b5e20"><center>Tax Settings</center></h5></span>
           <div class="divider"></div>
           <div class="card-content">
 
@@ -20,44 +34,45 @@
 
             <table class = "table centered data-VAT" align = "center" border = "1">
               <thead>
+                  @foreach($tax as $tax)
                   <tr>
                     <!--<th data-field="id">Garment ID</th>-->
-                    <th data-field="garmentName">Tax Name</th>
-                    <th data-field="garmentDescription">Tax Percentage</th>
-                    <th data-field="Edit">Actions</th>
+                    <th data-field="tax name">Tax Name</th>
+                    <th data-field="tax percentage">Tax Percentage</th>
+                    <th data-field="Action">Actions</th>
                   </tr>
               </thead>
 
               <tbody>
                   
                   <tr>
-                    <td></td>
-                    <td></td>
-                    <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of garment category" href="#edit"><i class="mdi-editor-mode-edit"></i></a>
+                    <td>{{$tax->strTaxName}}</td>
+                    <td>{{$tax->dblTaxPercentage}}</td>
+                    <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of garment category" href="#edit{{$tax->intVatID}}"><i class="mdi-editor-mode-edit"></i></a>
 
-                    <!-- Modal Structure for Edit Garment Category> -->
-                      <div id="edit" class="modal modal-fixed-footer">
-                        <h5><font color = "#1b5e20"><center>EDIT GARMENT CATEGORY</center> </font> </h5>                          
+                    <!-- Modal Structure for update vat settings --> 
+                      <div id="edit{{$tax->intVatID}}" class="modal modal-fixed-footer">
+                        <h5><font color = "#1b5e20"><center>UPDATE VAT SETTINGS</center> </font> </h5>                          
                             
-                           {{--  {!! Form::open(['url' => 'maintenance/garment-category/update']) !!} --}}
+                            {!! Form::open(['url' => 'utilities/utilities-VAT/update', 'method'=> 'post']) !!}
                               <div class="divider" style="height:2px"></div>
                               <div class="modal-content col s12">
                                 
                               <div class="input-field">
-                                <input value="" id="editGarmentID" name="editGarmentID" type="hidden">
+                                <input value="" id="editVatID" name="editVatID" type="hidden">
                               </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input required value="" id="editGarmentName" name="editGarmentName" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2" >
-                                <label for="garment_name"> Garment Name   <span class="red-text"><b>*</b></span></label>
+                                <input required value="{{$tax->strTaxName}}" id="editTaxName" name="editTaxName" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2" >
+                                <label for="name"> Tax Name  <span class="red-text"><b>*</b></span></label>
                               </div>
                           </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                               <div class="input-field col s12">
-                                <input  value= "" id="editGarmentDescription" name="editGarmentDescription" type="text" class="validate">
-                                <label for="garment_description"> Garment Desription </label>
+                                <input required value= "{{$tax->dblTaxPercentage}}" id="editTaxPercent" name="editTaxPercent" type="text" class="validate" maxlength="5" pattern="^[1-9]\d{0,7}(?:\.\d{1,4})?|\.\d{1,4}$">
+                                <label for="percentage"> Tax Percentage <span class="red-text"><b>*</b></span></label>
                               </div>
                           </div>
                           </div>
@@ -66,10 +81,10 @@
                               <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">Update</button>
                               <a href="#!"  class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a> 
                           </div>
-                    {{-- {!! Form::close() !!} --}}
+                    {!! Form::close() !!}
                   </div>
                   </tr>
-                  
+                  @endforeach
               </tbody>
             </table>
 

@@ -50,9 +50,96 @@
 					
 					<label style="font-size:23px; color:teal;"><center><b>ORDER SUMMARY</b></center></label>
 					<div class="col s12 overflow-x" style="min-height:300px; max-height:550px; border: 3px gray solid; padding:10px">
-						<div class="col s12">		                    
+						<div class="col s12">	
+
 		                        <div class="col s12" style="margin-bottom:30px"><!-- <div class="divider" style="height:2px; background-color:teal"></div> --></div>
-		                        <table class="table centered order-summary z-depth-1" border = "1">
+		                        <table class="table centered" border="1">
+		                        	<thead style="border:1px teal solid; background-color:rgba(54, 162, 235, 0.8)">
+		                        		<tr style="border:1px teal solid">
+		                        			<th style="border:1px teal solid">Quantity</th>
+		                        			<th colspan="3" style="border:1px teal solid">Description</th>
+		                        			<th style="border:1px teal solid; border-bottom:none">Unit Price</th>
+		                        			<th style="border:1px teal solid">Total Price</th>
+		                        		</tr>
+		                        		<tr style="border:1px teal solid">
+		                        			<th style="border:1px teal solid; border-top:none"></th>
+		                        			<th style="border:1px teal solid" colspan="2">Item Name</th>
+		                        			<th style="border:1px teal solid">Price</th>
+		                        			<th style="border:1px teal solid"></th>
+		                        			<th style="border:1px teal solid"></th>
+		                        		</tr>
+		                        	</thead>
+		                        	<tbody style="border:1px teal solid">
+		                        	@for($i = 0; $i < count($package_values); $i++)
+		                        		<tr style="border:1px teal solid">
+		                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>1</b></td>
+		                        			<td style="border:1px teal solid; padding-left:5%; padding-right:5%; background-color:rgba(52, 162, 232, 0.2)"><a class="btn-flat tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to expand and see package details" onclick="packageDetail({{ $i }})" style="color:black"><b>One (1) set {{ $package_values[$i]->strPackageName}}</b></a></td>
+		                        			<td style="border:1px teal solid; padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"></td>
+		                        			<td style="border:1px teal solid; padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($style_total[$i] + $fabric_total[$i] + $segment_total[$i], 2) }}</b></td>
+		                        			<td style="border:1px teal solid; padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($style_total[$i] + $fabric_total[$i] + $segment_total[$i], 2) }}</b></td>
+		                        			<td style="border:1px teal solid; padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($style_total[$i] + $fabric_total[$i] + $segment_total[$i], 2) }}</b></td>
+		                        		</tr>
+		                        		@endfor
+		                        	
+		                        		<!-- <tr>
+		                        			<td style="border-left:1px teal solid;"></td>
+		                        			<td style="border:1px teal solid; color:black; padding-left:10%; padding-top:1%; padding-bottom:1%; color:black"><b></b></td>
+		                        			<td style="padding-top:1%; padding-bottom:1%; border:1px teal solid"><b>Fabric Name</b></td>
+		                        			<td style=""></td>
+		                        			<td style="border:1px teal solid"></td>
+		                        			<td style="border:1px teal solid"></td>
+		                        		</tr> -->
+		                        		<!-- <tr>
+		                        			<td style="border-left:1px teal solid"></td>
+		                        			<td style="border:1px teal solid; color:black; padding-left:10%; padding-top:1%; padding-bottom:1%; color:black"><b>Style Name</b></td>
+		                        			<td style="padding-top:1%; padding-bottom:1%; border:1px teal solid"><b>Segment Pattern</b></td>
+		                        			<td style=""></td>
+		                        			<td style="border:1px teal solid"></td>
+		                        			<td style="border:1px teal solid"></td>
+		                        		</tr> -->
+		                        	<!-- <div class="package-detail" id="package-detail{{ $i }}" style="display:none">
+		                        		@for($i = 0; $i < count($package_values); $i++)
+		                        			@for($j = 0; $j < count($package_segments); $j++)	
+											@for($k = 0 ;$k < count($package_segments[$j]); $k++)
+											@if($package_values[$i]->strPackageID == $package_segments[$j][$k]->strPackageID)
+			                        		<tr style="border:1px teal solid">
+			                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"></td>
+			                        			<td style="border:none; background-color:rgba(52, 162, 232, 0.2)"><div class="col s5" style="padding-left:5%; padding-top:0; padding-bottom:0;">{{ $segment_qty[$i][$k] }} (pcs)</div><div class="col s7" style="padding-left:0">{{ $package_segments[$j][$k]->strSegmentName }}</div></td>
+			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)"><br> <font color="gray"><b><i></i></b></font></td>
+			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">P {{ number_format($package_segments[$j][$k]->dblSegmentPrice, 2) }}</td>
+			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)"></td>
+			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)"></td>
+			                        			
+			                        		</tr>
+			                        		<tr style="border:1px teal solid">
+			                        			<td style="border:1px teal solid"></td>
+			                        			<td class="right" style="border:none; color:teal; padding-right:10%">Fabric Name</td>
+			                        			<td style="border:1px teal solid">{{ $segment_fabrics[$j][$k]->strFabricName }}</td>
+			                        			<td style="border:1px teal solid">P {{ number_format($segment_fabrics[$j][$k]->dblFabricPrice, 2)}}</td>
+			                        			<td style="border:1px teal solid"></td>
+			                        			<td style="border:1px teal solid"></td>		                        			
+		                        			</tr>
+		                        			@for($l = 0; $l < count($segment_patterns[$j][$k]); $l++)
+			                        		<tr style="border:1px teal solid">
+			                        			<td style="border:1px teal solid"></td>
+			                        			<td class="right" style="border:none; color:teal; padding-right:10%">Style Name and Pattern</td>
+			                        			<td style="border:1px teal solid">{{ $segment_patterns[$j][$k][$l]->strSegStyleName }}<br> <font color="gray"><b><i>{{ $segment_patterns[$j][$k][$l]->strSegPName }}</i></b></font></td>
+			                        			<td style="border:1px teal solid">P {{ number_format($segment_patterns[$j][$k][$l]->dblPatternPrice, 2		) }}</td>
+			                        			<td style="border:1px teal solid"></td>
+			                        			<td style="border:1px teal solid"></td>		                        			
+		                        			</tr>
+		                        			@endfor
+			                        		@endif
+										@endfor
+										@endfor
+		                        		</div> -->
+		                        		@endfor
+		                        	</tbody>
+		                        </table>
+
+		       
+
+		                        <!-- <table class="table centered order-summary z-depth-1" border = "1">
 				       				<thead style="color:gray">
 					          			<tr style="border-top:1px teal solid; border-bottom:1px teal solid; background-color:teal; color:white">
 						                  <th data-field="product" style="border-right:1px teal solid; border-left:1px teal solid">Package</th> 
@@ -69,69 +156,71 @@
 							            </tr>						            		
 							            @endfor
 							        </tbody>
-							    </table>					
+							    </table> -->					
 						</div>
 
 
 					<!--PACKAGE DETAIL WILL BE HERE-->
 					@for($i = 0; $i < count($package_values); $i++)
 						
-						<div class="card horizontal col s12 package-detail hidden" id="package-detail{{ $i }}" style="display:none; margin-top:3%; padding-bottom:4%; background-color:#e0f2f1; border:1px #e0f2f1 outset;">
+						<div class="card horizontal col s12 package-detail hidden" id="package-detail{{ $i }}" style="display:none; margin-top:3%; padding-bottom:4%; border:1px #e0f2f1 outset;">
 						<i class="right mdi-navigation-close tooltipped" data-poition="bottom" data-delay="50" data-tooltip="Click to close" onclick="packageClose({{$i}})" style="font-size:30px"></i>
-						<div class="container" style="margin-top:4%;">
+							<center><h7 style="padding-top:1%"><b>Package Detail for <font color="teal">{{ $package_values[$i]->strPackageName}}</font></b></h7></center>
 							<table class="table centered z-depth-1">
-								<thead style="background-color:#b2dfdb">
+								<thead style="background-color:rgba(255, 99, 132, 0.2)">
 									<tr>
-										<th style="border:1px black solid" colspan="1">Product</th>
-										<th style="border:1px black solid" colspan="1">Fabric</th>
-										<th style="border:1px black solid" colspan="1">Qty</th>
-										<th style="border:1px black solid" colspan="1">Fabric Price</th>
-										<th style="border:1px black solid" colspan="1">Unit Price</th>
-										<th style="border:1px black solid" colspan="3">Style Description</th>
+										<th style="border:1px rgba(255, 99, 132, 1) solid">Quantity</th>
+										<th style="border:1px rgba(255, 99, 132, 1) solid" colspan="3">Description</th>
+										<th style="border:1px rgba(255, 99, 132, 1) solid">Unit Price</th>
+										<th style="border:1px rgba(255, 99, 132, 1) solid">Total Price</th>
 									</tr>
 									<tr>
-										<th style="border:1px black solid"></th>
-										<th style="border:1px black solid"></th>
-										<th style="border:1px black solid"></th>
-										<th style="border:1px black solid"></th>
-										<th style="border:1px black solid"></th>
-										<th style="border:1px black solid">Style Category</th>
-										<th style="border:1px black solid">Segment Pattern</th>
-										<th style="border:1px black solid">Style Price</th>
+										<th style="border:1px rgba(255, 99, 132, 1) solid"></th>
+										<th style="border:1px rgba(255, 99, 132, 1) solid">Item</th>
+										<th style="border:1px rgba(255, 99, 132, 1) solid"></th>
+										<th style="border:1px rgba(255, 99, 132, 1) solid">Price</th>
+										<th style="border:1px rgba(255, 99, 132, 1) solid"></th>
+										<th style="border:1px rgba(255, 99, 132, 1) solid"></th>
 									</tr>
 								</thead>
-								<tbody style="border:1px #b2dfdb solid; background-color:#FFFFFF">
-								@for($j = 0; $j < count($package_segments); $j++)	
-									@for($k = 0 ;$k < count($package_segments[$j]); $k++)
-									@if($package_values[$i]->strPackageID == $package_segments[$j][$k][0]->strPackageID)
-									<tr>
-										<td style="border:1px black solid">{{ $package_segments[$j][$k][0]->strSegmentName }}</td>
-										<td style="border:1px black solid">{{ $segment_fabrics[$j][$k]->strFabricName }}</td>
-										<td style="border:1px black solid">{{ $segment_qty[$i][0][$k] }}</td>
-										<td style="border:1px black solid">{{ number_format($segment_fabrics[$j][$k]->dblFabricPrice * $segment_qty[$i][0][$k], 2) }} PHP</td>
-										<td style="border:1px black solid">{{ number_format($package_segments[$j][$k][0]->dblSegmentPrice * $segment_qty[$i][0][$k], 2) }} PHP</td>
-										<td style="border:1px black solid">
-											@for($l = 0; $l < count($segment_patterns[$j][$k]); $l++)
-												{{ $segment_patterns[$j][$k][$l]->strSegStyleName }}<br>
-											@endfor
-										</td>
-										<td style="border:1px black solid">
-											@for($l = 0; $l < count($segment_patterns[$j][$k]); $l++)
-												{{ $segment_patterns[$j][$k][$l]->strSegPName }}<br>
-											@endfor
-										</td>
-										<td style="border:1px black solid">
-											@for($l = 0; $l < count($segment_patterns[$j][$k]); $l++)
-												{{ number_format($segment_patterns[$j][$k][$l]->dblPatternPrice	* $segment_qty[$i][0][$k], 2) }} PHP <br>
-											@endfor
-										</td>
-									</tr>
-									@endif
-									@endfor
-								@endfor
-								</tbody>
+
+								<tbody>								
+		                        			@for($j = 0; $j < count($package_segments); $j++)	
+											@for($k = 0 ;$k < count($package_segments[$j]); $k++)
+											@if($package_values[$i]->strPackageID == $package_segments[$j][$k]->strPackageID)
+			                        		<tr style="border:1px teal solid">
+			                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)">{{ $segment_qty[$i][$k] }}</td>
+			                        			<td style="border:none; background-color:rgba(52, 162, 232, 0.2)">{{ $package_segments[$j][$k]->strSegmentName }}</td>
+			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)"><br> <font color="gray"><b><i></i></b></font></td>
+			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">P {{ number_format($package_segments[$j][$k]->dblSegmentPrice, 2) }}</td>
+			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">P {{ number_format($package_segments[$j][$k]->dblSegmentPrice, 2) }}</td>
+			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">P {{ number_format($package_segments[$j][$k]->dblSegmentPrice * $segment_qty[$i][$k], 2) }}</td>
+			                        			
+			                        		</tr>
+			                        		<tr style="border:1px teal solid">
+			                        			<td style="border:1px teal solid"></td>
+			                        			<td class="right" style="border:none; color:teal; padding-right:10%">Fabric Name</td>
+			                        			<td style="border:1px teal solid">{{ $segment_fabrics[$j][$k]->strFabricName }}</td>
+			                        			<td style="border:1px teal solid">P {{ number_format($segment_fabrics[$j][$k]->dblFabricPrice, 2)}}</td>
+			                        			<td style="border:1px teal solid"></td>
+			                        			<td style="border:1px teal solid"></td>		                        			
+		                        			</tr>
+		                        			@for($l = 0; $l < count($segment_patterns[$j][$k]); $l++)
+			                        		<tr style="border:1px teal solid">
+			                        			<td style="border:1px teal solid"></td>
+			                        			<td class="right" style="border:none; color:teal; padding-right:10%">Style Name and Pattern</td>
+			                        			<td style="border:1px teal solid">{{ $segment_patterns[$j][$k][$l]->strSegStyleName }}<br> <font color="gray"><b><i>{{ $segment_patterns[$j][$k][$l]->strSegPName }}</i></b></font></td>
+			                        			<td style="border:1px teal solid">P {{ number_format($segment_patterns[$j][$k][$l]->dblPatternPrice, 2		) }}</td>
+			                        			<td style="border:1px teal solid"></td>
+			                        			<td style="border:1px teal solid"></td>		                        			
+		                        			</tr>
+		                        			@endfor
+			                        		@endif
+										@endfor
+										@endfor
+									
+									</tbody>
 							</table>
-						</div>
 						</div>
 						
 					@endfor
@@ -169,6 +258,7 @@
 
 			      			<div class="col s4" style="color:black; font-size:15px"><p><b>Grand Total</b></p></div>
 			      			<div class="col s8" style="color:black;"><p><input id="total_price" name="total_price" type="text" class="" readonly style="font-size:3em"></p></div>
+							<input type="hidden" name="hidden_total_price" id="hidden_total_price">						
 
                         	<div class="col s4" style="color:gray; font-size:15px"><p><b>Terms of Payment</b></p></div>
                         	<div class="col s8" style="padding:18px; padding-top:30px">
@@ -181,8 +271,6 @@
 		      						<label for="full_pay">Full (100%)</label>
 		      					</div>
 	      					</div>
-							
-							<input type="hidden" id="transaction_date" name="transaction_date" />
 
 		      				<!-- <div class="col s4" style="color:gray; font-size:15px"><p><b>Amount Payable</b></p></div>
 		      				<div class="col s8" style="color:red;"><p><input value="" id="amount-payable" name="amount-payable" type="text" class="" readonly></p></div>
@@ -209,6 +297,7 @@
 	                        <div style="color:black" class="col s12"> 
 								<div class="col s4"><p style="color:black; margin-top:5px; font-size:15px"><b>Outstanding Balance*:</b></p></div>                
 	                          	<div class="col s8" style="color:black;"><b><input readonly style="padding:5px; border:3px gray solid; font-size:1.5em" id="balance" name="balance" type="text" class="right"></b></div>
+	                        	<input type="hidden" name="hidden-balance" id="hidden-balance">
 	                        </div>
 
 	                        <div style="color:black" class="col s12"> 
@@ -315,11 +404,11 @@
 		  	{
 		  		total += a[i] + b[i] + c[i];
 		  	}
-
+		  	
 		  	$('#estimated_total_sales').val(((total - (total * .12)).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		  	$('#vat_price').val(((total * .12).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		  	$('#total_price').val((total.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-
+		  	$('#hidden_total_price').val(total);
 
 			var monthNames = [ "January", "February", "March", "April", "May", "June",
 		    "July", "August", "September", "October", "November", "December" ];
@@ -353,6 +442,7 @@
 					$('#hidden-amount-payable').val((total/2).toFixed(2));
 					$('#amount-payable').val(((total/2).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 					$('#balance').val(((total - (total/2)).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+					$('#hidden-balance').val((total - (total/2)).toFixed(2));
 				}
 
 				if($('#full_pay').prop("checked")){
@@ -369,6 +459,7 @@
 					$('#hidden-amount-payable').val(total.toFixed(2));
 					$('#amount-payable').val((total.toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 					$('#balance').val(((total - total).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+					$('#hidden-balance').val((total - (total)).toFixed(2));
 				}
 		});
 

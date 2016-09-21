@@ -40,8 +40,8 @@
         <div>
           <a class="green-text" style="margin-left:20px;" href="{{URL::to('/online-home')}}"><i style="size:20px;" class="mdi-hardware-keyboard-arrow-left"></i>CONTINUE SHOPPING</a>
         </div>
-
-      @else
+      @endif
+      @if($selecteds != null)
        @foreach($selecteds as $selected)
           <div class="col s6">
             <div class="row">
@@ -117,20 +117,6 @@
   </div>
 
  
-
-    <div class="divider" style="margin-bottom:20px;"></div>
-    <div>
-      <a class="green-text" style="margin-left:20px;" href="{{URL::to('/online-home')}}"><i style="size:20px;" class="mdi-hardware-keyboard-arrow-left"></i>CONTINUE SHOPPING</a>
-    </div>
-            
-    </div>
-
-    <!--EMPTY SHOPPING CART-->
-    <div class="section white" style="margin:40px; padding:40px;"> 
-
-
-    
-  </div>
 
   <!--Remove Order Modal-->
   <div id="removeOrder" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">

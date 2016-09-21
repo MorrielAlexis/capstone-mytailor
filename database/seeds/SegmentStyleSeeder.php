@@ -224,15 +224,7 @@ class SegmentStyleSeeder extends Seeder
                 'boolIsActive' => '1'
             ),
              
-            // array(
-            //     'strSegStyleCatID' => 'SEGSTY023',
-            //     'strSegmentFK' => 'SEGM002',
-            //     'strSegStyleName' =>'Skirt - Slit',
-            //     'txtSegStyleCatDesc' => 'Stylish detail added to a skirt which is a long, narrow cut or opening.  ',
-            //     'strSegStyleCatInactiveReason' => '',
-            //     'boolIsActive' => '1'
-            // )
-
+            
             array(
                 'strSegStyleCatID' => 'SEGSTY024',
                 'strSegmentFK' => 'SEGM009',

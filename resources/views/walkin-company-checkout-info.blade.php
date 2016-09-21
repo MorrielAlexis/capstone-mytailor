@@ -46,53 +46,6 @@
 	            	    </div>
                 	</div>
 
-            
-
-					<!--Modal for summary of orders-->
-					<div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
-						<h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
-							
-							
-								<div class="divider" style="height:2px"></div>
-								<div class="modal-content col s12">
-									<label>This is a summary of orders:</label>
-										<div class="container">
-					                        <table class = "table centered order-summary" border = "1">
-							       				<thead style="color:gray">
-								          			<tr>
-									                  <th data-field="product">Package</th>         
-									                  <th data-field="quantity">Quantity</th>
-									              	</tr>
-								              	</thead>
-								              	<tbody>
-								              		@for($i = 0; $i < count($packages); $i++)
-										            <tr>
-										               <td>{{ $packages[$i]->strPackageName }}</td>
-										               <td>{{ $quantity[$i] }}</td>
-										            </tr>
-													@endfor
-										        </tbody>
-										    </table>
-							      		</div>
-
-							      		
-							      		<div class="col s12"><div class="divider"></div></div>
-
-								      	<div class="col s12" style="margin-bottom:50px" >
-											<div class="col s6"><p style="color:gray">Estimated time to finish all orders:<p style="color:black" id="totalTime"></p></p></div>
-											<div class="col s6"><p style="color:gray">Total Amount to Pay:<p style="color:black" id="totalPrice"></p></p></div>
-										</div>
-								</div>
-
-								<div class="modal-footer col s12">
-									<p class="left" style="margin-left:10px; color:gray;">Continue to payment?</p>
-					                <button type="submit" class="waves-effect waves-green btn-flat"><font color="black">Yes</font></button>
-					                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
-					            </div>
-							
-					</div>
-					<!--End of modal for summary of orders-->
-
 					<!--Modal for Cancel Transaction-->
 					<div id="cancel-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:80px">
 						<h5><font color="red"><center><b>Warning!</b></center></font></h5>
@@ -210,7 +163,7 @@
 
 					<!--Start of bottom button-->
 					<div class="col s12" style="margin-top:30px">
-						<a id="addPayment" href="#summary-of-order" class="right btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-left:40px; background-color:teal; color:white"><b>Save and Proceed</b></a>
+						<button type="submit" id="addPayment" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-left:40px; background-color:teal; color:white"><b>Save and Proceed</b></button>
 	            		<a id="cancelTransac" href="#cancel-order" class="right btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel transaction and go back to homepage" style="background-color:#a7ffeb; color:black"><b>Cancel Transaction</b></a>
 					</div>
 					<!--End of bottom button-->
