@@ -237,7 +237,7 @@
                          <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('queries/list-of-top-pick-segment')}}">Top Pick - Segment</a></li>
                          <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('queries/most-availed-alteration-service')}}">Most Availed - Alteration Service</a></li>
                         <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('queries/list-of-top-pick-design')}}">Top Pick -  Design</a></li>
-                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('queries/list-of-top-pick-design')}}">Top Pick -  Design</a></li>
+                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('queries/customers-with-balances')}}">Customer with Balances</a></li>
 
                       </ul>
                     </li>

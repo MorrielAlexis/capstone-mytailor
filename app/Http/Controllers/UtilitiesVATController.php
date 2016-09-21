@@ -52,6 +52,7 @@ class UtilitiesVATController extends Controller
          // }else \Session::flash('flash_message_duplicate','Color already exists.'); //flash message
 
         return redirect('maintenance/utilities-VAT');
+        // dd($tax);
 
     }
     
