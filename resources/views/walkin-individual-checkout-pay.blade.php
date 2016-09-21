@@ -57,8 +57,73 @@
 					<label style="font-size:23px; color:teal;"><center><b>ORDER SUMMARY</b></center></label>
 					<div class="col s12 overflow-x" style="min-height:300px; max-height:550px; border: 3px gray solid; padding:10px">
 						<div class="col s12">		                    
-		                        <div class="col s12" style="margin-bottom:30px"><!-- <div class="divider" style="height:2px; background-color:teal"></div> --></div>
-		                        <table class = "table centered order-summary z-depth-1" border = "1">
+		                        <div class="col s12" style="margin-bottom:30px"></div>
+		                        <table class="table centered" border="1">
+		                        	<thead style="border:1px teal solid; background-color:rgba(54, 162, 235, 0.5)">
+		                        		<tr style="border:1px teal solid">
+		                        			<th style="border:1px teal solid">Quantity</th>
+		                        			<th colspan="3" style="border:1px teal solid">Description</th>
+		                        			<th style="border:1px teal solid; border-bottom:none">Total Unit Price</th>
+		                        			<th style="border:1px teal solid">Total Price</th>
+		                        		</tr>
+		                        		<tr style="border:1px teal solid">
+		                        			<th style="border:1px teal solid; border-top:none"></th>
+		                        			<th style="border:1px teal solid" colspan="2">Item Name</th>
+		                        			<th style="border:1px teal solid">Price</th>
+		                        			<th style="border:1px teal solid"></th>
+		                        			<th style="border:1px teal solid"></th>
+		                        		</tr>
+		                        	</thead>
+		                        	<tbody style="border:1px teal solid">
+		                        	@for($i = 0; $i < count($values); $i++)
+		                        		<tr style="border:1px teal solid">
+		                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>{{ $quantities[$i] }}</b></td>
+		                        			<td style="border:1px teal solid; padding-left:5%; padding-right:5%; background-color:rgba(52, 162, 232, 0.2)"><b>{{ $values[$i]['strGarmentCategoryName'] }}, {{ $values[$i]['strSegmentName'] }}</b></td>
+		                        			<td style="padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"></td>
+		                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format( $values[$i]['dblSegmentPrice'] , 2)}}</b></td>
+		                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format(($values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice'] + $style_total[$i]['dblPatternPrice']) , 2) }}</b></td>
+		                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format(($lineTotal[$i]) , 2) }}</b></td>
+		                        		</tr>
+		                        		<!-- <tr>
+		                        			<td style="border-left:1px teal solid;"></td>
+		                        			<td style="border:1px teal solid; color:black; padding-left:10%; padding-top:1%; padding-bottom:1%; color:black"><b></b></td>
+		                        			<td style="padding-top:1%; padding-bottom:1%; border:1px teal solid"><b>Fabric Name</b></td>
+		                        			<td style=""></td>
+		                        			<td style="border:1px teal solid"></td>
+		                        			<td style="border:1px teal solid"></td>
+		                        		</tr> -->
+		                        		<tr style="border:1px teal solid">
+		                        			<td style="border:1px teal solid"></td>
+		                        			<td style="border:none; color:teal; padding-left:10%">Fabric Name</td>
+		                        			<td style="padding-left:4%; padding-right:4%; border:1px teal solid">{{ $values[$i]['strFabricName'] }}</td>
+		                        			<td style="border:1px teal solid">P {{ number_format($values[$i]['dblFabricPrice'], 2) }}</td>
+		                        			<td style="border:1px teal solid"></td>
+		                        			<td style="border:1px teal solid"></td>
+		                        		</tr>
+		                        		<!-- <tr>
+		                        			<td style="border-left:1px teal solid"></td>
+		                        			<td style="border:1px teal solid; color:black; padding-left:10%; padding-top:1%; padding-bottom:1%; color:black"><b>Style Name</b></td>
+		                        			<td style="padding-top:1%; padding-bottom:1%; border:1px teal solid"><b>Segment Pattern</b></td>
+		                        			<td style=""></td>
+		                        			<td style="border:1px teal solid"></td>
+		                        			<td style="border:1px teal solid"></td>
+		                        		</tr> -->
+		                        		@for($j = 0; $j < count($styles[$i]); $j++)
+											@if($styles[$i][$j]->strSegmentID == $values[$i]['strSegmentID'])
+		                        		<tr style="border:1px teal solid">
+		                        			<td style="border:1px teal solid"></td>
+		                        			<td class="right" style="border:none; color:teal; padding-right:10%">Style Name and Pattern</td>
+		                        			<td style="border:1px teal solid">{{ $styles[$i][$j]->strSegStyleName }} <br> <font color="gray"><b><i>{{ $styles[$i][$j]->strSegPName }}</i></b></font></td>
+		                        			<td style="border:1px teal solid">P {{ number_format($styles[$i][$j]->dblPatternPrice, 2) }}</td>
+		                        			<td style="border:1px teal solid"></td>
+		                        			<td style="border:1px teal solid"></td>
+		                        			@endif
+										@endfor
+		                        		</tr>
+		                        	@endfor
+		                        	</tbody>
+		                        </table>
+		                        <!-- <table class = "table centered order-summary z-depth-1" border = "1">
 				       				<thead style="color:gray">
 					          			<tr style="border-top:1px black solid; border-bottom:1px black solid; background-color:teal; color:white">
 						                  <th colspan="1" data-field="labor-price-per-segment" style="border-right:1px black solid">Quantity</th>
@@ -67,7 +132,7 @@
 						                  <th colspan="1" data-field="base-price" style="border-right:1px black solid">Base Price</th>
 						                  <th colspan="3" data-field="description" style="border-right:1px black solid">Description</th>  
 						                  <th colspan="1" data-field="style-price-total" style="border-right:1px black solid">Style Price Total</th>
-						                  <!--<th colspan="1" data-field="labor-price-per-segment" style="border-right:1px black solid">Labor Price</th>-->
+						                  
 						                  <th colspan="1" data-field="line-total" style="border-right:1px black solid">Line Total</th>        
 						             </tr>
 						             <tr style="border-top:1px black solid; border-bottom:1px black solid; background-color:teal; color:white">
@@ -90,23 +155,6 @@
 								                <td style="border-right:1px black solid">{{ $values[$i]['strGarmentCategoryName'] }}, {{ $values[$i]['strSegmentName'] }}</td>
 												<td style="border-right:1px black solid">{{ $values[$i]['strFabricName'] }}</td>
 								                <td style="border-right:1px black solid">{{ number_format(($values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice']) , 2) }} PHP</td>
-												<!-- <td style="border-right:1px black solid">
-													<div class="col s12">	
-													<div class="col s4"><b style="color:teal">Style Category</b></div>
-													<div class="col s4"><b style="color:teal">Segment Pattern</b></div>
-													<div class="col s4"><b style="color:teal">Style Price</b></div>
-													<div class="col s12"><div class="divider"></div></div>
-												</div>
-														@for($j = 0; $j < count($styles[$i]); $j++)
-															@if($styles[$i][$j]->strSegmentID == $values[$i]['strSegmentID'])
-																
-																	<div class="col s4">{{ $styles[$i][$j]->strSegStyleName }}</div>
-																	<div class="col s4">{{ $styles[$i][$j]->strSegPName }}</div>
-																	<div class="col s4">{{ number_format($styles[$i][$j]->dblPatternPrice, 2) }} PHP</div>
-
-																@endif
-												        @endfor
-												</td> -->
 												
 												<td style="border-right:1px black solid">
 													@for($j = 0; $j < count($styles[$i]); $j++)
@@ -130,8 +178,8 @@
 													@endfor
 												</td>
 
-												<td style="border-right:1px black solid"><!--<div id="style_price_total" name="style_price_total"></div>-->{{ number_format($style_total[$i]['dblPatternPrice'] , 2) }} PHP</td>
-												<!--<td style="border-right:1px black solid"> number_format(($laborfee[$i]['dblChargeDetPrice']) , 2) }} PHP</td>-->
+												<td style="border-right:1px black solid">{{ number_format($style_total[$i]['dblPatternPrice'] , 2) }} PHP</td>
+												
 												<td style="border-right:1px black solid">{{ number_format(($lineTotal[$i]) , 2) }} PHP</td>
 										
 
@@ -140,7 +188,7 @@
 							           
 
 							        </tbody>
-							    </table>					
+							    </table> -->					
 						</div>
 						<div class="col s12" style="margin-bottom:38px"></div>
 					</div>
