@@ -10,7 +10,7 @@
                                         <p class="card-stats-title" style="font-size:18px"><i class="mdi-social-group-add"></i> Total Registered Individual Customer</p>
                                         <h4 class="card-stats-number">{{$totalCustIndiv->ctr}}</h4>
                                         <a href="{{URL::to('maintenance/individual')}}">
-                                        <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> Go to details</p>
+                                        <p class="card-stats-compare white-text"><i class="mdi-hardware-keyboard-arrow-up white-text"></i> Go to details</p>
                                         </a>
 
                                     </div>
@@ -26,8 +26,8 @@
                                     <div class="card-content cyan darken-1 white-text" style="height:138px">
                                         <p class="card-stats-title" style="font-size:18px"><i class="mdi-action-account-child"></i>Total Registered Companies</p>
                                         <h4 class="card-stats-number">{{$totalCustComp->totalCompanies}}</h4>
-                                          <a href="{{URL::to('maintenance/company')}}">
-                                        <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> Go to details
+                                        <a href="{{URL::to('maintenance/company')}}">
+                                        <p class="card-stats-compare white-text"><i class="mdi-hardware-keyboard-arrow-up white-text"></i> Go to details
                                         </p>
                                         </a>
                                     </div>
@@ -41,11 +41,11 @@
                             <div class="col s12 m6 l3">
                                 <div class="card">
                                     @foreach($totalEmp as $totalEmp)
-                                    <div class="card-content blue-grey white-text">
+                                    <div class="card-content blue-grey white-text" style="height:138px">
                                         <p class="card-stats-title" style="font-size:19px"><i class="mdi-action-accessibility"></i> Total Active Employees </p>
-                                        <h4 class="card-stats-number">{{$totalEmp->totalEmps}}</h4>
+                                        <h4 class="card-stats-number" style="margin-top:44px">{{$totalEmp->totalEmps}}</h4>
                                         <a href="{{URL::to('maintenance/employee')}}">
-                                        <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> Go to details
+                                        <p class="card-stats-compare white-text"><i class="mdi-hardware-keyboard-arrow-up white-text"></i> Go to details
                                         </p>
                                         </a>
                                     </div>

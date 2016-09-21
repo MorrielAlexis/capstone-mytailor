@@ -91,7 +91,7 @@
                 <li><div class="divider" style="margin-top:20px; width:1px; height:30px;"></div></li>
                 <li>
                   <a style="color: white;font-size:18px" class="dropdown-button btn-flat" data-beloworigin="true" data-activates="downdown"><b>GARMENTS</b></a>
-                  <ul id="downdown" class="dropdown-content">
+                  <ul id="downdown" class="dropdown-content" style="margin-left:14px">
                     <li><a href="{{URL::to('/online-garment-suit')}}">SUITS</a></li>
                    <!-- <li><a href="{{URL::to('/online-garment-gown')}}">GOWNS</a></li> -->
                     <li><a href="{{URL::to('/online-garment-uniform-male')}}">MEN'S SHIRT</a></li>
@@ -103,7 +103,7 @@
                 <li><div class="divider" style="margin-top:20px; width:1px; height:30px;"></div></li>
                 <li>
                   <a style="color: white;font-size:18px" class="dropdown-button btn-flat" data-beloworigin="true" href="#" data-activates="alter"><b>ALTERATION</b></a>
-                  <ul id="alter" class="dropdown-content">
+                  <ul id="alter" class="dropdown-content" style="margin-left:14px">
                     <li><a href="{{URL::to('transaction/online-alteration')}}">SERVICES</a></li>
                     <li><a href="{{URL::to('transaction/online-alteration-transact')}}">TRANSACTION</a></li>
                   </ul>

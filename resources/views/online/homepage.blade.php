@@ -40,7 +40,7 @@
 
     <div class="row">
 
-        <div class="col s6 center">
+        <div class="col s12 m12 l6 center" style="margin-top:40px">
             <section id="gallery" >
                 <h2><a style="background-color:transparent; color:#009688; font-weight:normal;font-family: 'Mada', sans-serif;" href="{{URL::to('/online-garment-uniform-female')}}">Custom Uniform</a></h2>
                 <img alt="" src="imgOnline/uniform.jpg"  style="">
@@ -53,7 +53,7 @@
             </section>
         </div>
         
-        <div class="col s6 center">
+        <div class="col s12 m12 l6 center" style="margin-top:40px"> 
             <section id="gallery" >
                 <h2><a style="background-color:transparent; color:#009688; font-weight:normal;font-family: 'Mada', sans-serif;" href="{{URL::to('/online-garment-gown')}}">Custom Gown</a></h2>
                 <img alt=""  src="imgOnline/gown.jpg" style="">
@@ -70,7 +70,7 @@
     <div class="col s12" style="margin:75px"></div>
 
     <div class="row">
-        <div class="col s6 center">
+        <div class="col s12 m12 l6 center" style="margin-top:40px">
             <section id="gallery" >
                 <h2><a style="background-color:transparent; color:#009688; font-weight:normal;font-family: 'Mada', sans-serif;" href="{{URL::to('/online-garment-suit')}}">Custom Suits</a></h2>
                 <img alt="" src="imgOnline/suit4.jpg" style="">
@@ -82,7 +82,7 @@
             </section>
         </div>
         
-        <div class="col s6 center">
+        <div class="col s12 m12 l6 center" style="margin-top:40px">
             <section id="gallery" >
                 <h2><a style="background-color:transparent; color:#009688; font-weight:normal;font-family: 'Mada', sans-serif;" href="{{URL::to('/online-order-tracking')}}">Order Tracking</a></h2>
                 <img alt="" src="imgOnline/csuit.jpg" style="">
