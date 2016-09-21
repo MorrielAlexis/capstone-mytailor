@@ -6,7 +6,7 @@
       
     <div class="row">
       <div class="col s12 m12 l12">
-        <span class="page-title"><h4>Queries - Customers With Balance</h4></span>
+        <span class="page-title"><h4>Queries - Companies With Balance</h4></span>
       </div>
     </div>
 
@@ -26,18 +26,18 @@
               <thead>
                   <tr>
                     <!--<th data-field="id">Garment ID</th>-->
-                    <th data-field="Customer Name">Customer Name</th>
+                    <th data-field="Customer Name">Company Name</th>
                     <th data-field="Outstanding Balance">Outstanding Balance</th>
                     <th data-field="Due Date">Due Date</th>
                   </tr>
               </thead>
 
               <tbody>
-                  @foreach($results as $results)
+                  @foreach($companyBal as $companyBal)
                   <tr>
-                    <td>{{$results->custName}}</td>
-                    <td>{{ number_format($results->balance, 2) . ' PHP' }} </td>
-                    <td>{{$results->dueDate}}</td>
+                    <td>{{$companyBal->name}}</td>
+                    <td>{{ number_format($companyBal->balance, 2) . ' PHP' }} </td>
+                    <td>{{$companyBal->dueDate}}</td>
                   </tr>
                   @endforeach
               </tbody>

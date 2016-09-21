@@ -20,18 +20,26 @@ class QueriesCustomerWithBalancesController extends Controller
                     ->join('tblJobOrder as b','a.strTransactionFK',  '=' , 'b.strJobOrderID')
                     ->join('tblCustIndividual AS c', 'b.strJO_CustomerFK', '=', 'c.strIndivID')
                     ->select(\DB::raw('CONCAT(c.strIndivFName, " " , c.strIndivMName, " " , c.strIndivLName) as custName'),'a.dblOutstandingBal as balance', 'a.dtPaymentDueDate as dueDate')
-                    // ->where('c.strIndivID', '=' , 'b.strJO_CustomerFK')
                     ->orderBy('strIndivID', 'desc')
-                    // ->take(1)
                     ->get();
-
-                    // dd($results);
-
-        // $topCustomers = \DB::select('SELECT Concat(tblCustIndividual.strIndivFName, " " , tblCustIndividual.strIndivMName, " " , tblCustIndividual.strIndivLName)as name, COUNT(strIndivID) as ctr FROM tblJobOrder,tblCustIndividual WHERE tblCustIndividual.strIndivID = tblJobOrder.strJO_CustomerFK GROUP BY strIndivID ORDER BY ctr DESC limit 3');
         
 
         return view('queries.queries-customers-with-balances')
               ->with('results', $results);
+    }
+
+    public function company()
+    {       
+         $companyBal = \DB::table('tblJOPayment AS a')
+                    ->join('tblJobOrder as b','a.strTransactionFK',  '=' , 'b.strJobOrderID')
+                    ->join('tblCustCompany AS c', 'b.strJO_CustomerCompanyFK', '=', 'c.strCompanyID')
+                    ->select('c.strCompanyName as name','a.dblOutstandingBal as balance', 'a.dtPaymentDueDate as dueDate')
+                    ->orderBy('strCompanyID', 'desc')
+                    ->get();
+        
+
+        return view('queries.queries-companies-with-balances')
+              ->with('companyBal', $companyBal);
     }
 
     /**
