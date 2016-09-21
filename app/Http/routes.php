@@ -614,11 +614,11 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::get('customize-womens-style-others', 'OnlineIndividualController@womenstyleothers');
 
 
-	Route::get('customize-pants-choose-pants', 'OnlineCustomizePantsController@choose');
-	Route::get('customize-pants-fabric', 'OnlineCustomizePantsController@fabric');
-	Route::post('customize-pants-style-pleats', 'OnlineCustomizePantsController@stylepleats');
-	Route::post('customize-pants-style-pockets', 'OnlineCustomizePantsController@stylepockets');
-	Route::post('customize-pants-style-bottom', 'OnlineCustomizePantsController@stylebottom');
+	Route::get('customize-pants-choose-pants', 'OnlineIndividualController@pantschoose');
+	Route::get('customize-pants-fabric', 'OnlineIndividualController@pantsfabric');
+	Route::post('customize-pants-style-pleats', 'OnlineIndividualController@pantsstylepleats');
+	Route::post('customize-pants-style-pockets', 'OnlineIndividualController@pantsstylepockets');
+	Route::post('customize-pants-style-bottom', 'OnlineIndividualController@pantsstylebottom');
 	
 	Route::get('shopping-cart', 'OnlineIndividualController@tocart');
 
