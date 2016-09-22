@@ -79,86 +79,10 @@
 		                        			<td style="border:1px teal solid; padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($style_total[$i] + $fabric_total[$i] + $segment_total[$i], 2) }}</b></td>
 		                        			<td style="border:1px teal solid; padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($style_total[$i] + $fabric_total[$i] + $segment_total[$i], 2) }}</b></td>
 		                        		</tr>
-		                        		@endfor
-		                        	
-		                        		<!-- <tr>
-		                        			<td style="border-left:1px teal solid;"></td>
-		                        			<td style="border:1px teal solid; color:black; padding-left:10%; padding-top:1%; padding-bottom:1%; color:black"><b></b></td>
-		                        			<td style="padding-top:1%; padding-bottom:1%; border:1px teal solid"><b>Fabric Name</b></td>
-		                        			<td style=""></td>
-		                        			<td style="border:1px teal solid"></td>
-		                        			<td style="border:1px teal solid"></td>
-		                        		</tr> -->
-		                        		<!-- <tr>
-		                        			<td style="border-left:1px teal solid"></td>
-		                        			<td style="border:1px teal solid; color:black; padding-left:10%; padding-top:1%; padding-bottom:1%; color:black"><b>Style Name</b></td>
-		                        			<td style="padding-top:1%; padding-bottom:1%; border:1px teal solid"><b>Segment Pattern</b></td>
-		                        			<td style=""></td>
-		                        			<td style="border:1px teal solid"></td>
-		                        			<td style="border:1px teal solid"></td>
-		                        		</tr> -->
-		                        	<!-- <div class="package-detail" id="package-detail{{ $i }}" style="display:none">
-		                        		@for($i = 0; $i < count($package_values); $i++)
-		                        			@for($j = 0; $j < count($package_segments); $j++)	
-											@for($k = 0 ;$k < count($package_segments[$j]); $k++)
-											@if($package_values[$i]->strPackageID == $package_segments[$j][$k]->strPackageID)
-			                        		<tr style="border:1px teal solid">
-			                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"></td>
-			                        			<td style="border:none; background-color:rgba(52, 162, 232, 0.2)"><div class="col s5" style="padding-left:5%; padding-top:0; padding-bottom:0;">{{ $segment_qty[$i][$k] }} (pcs)</div><div class="col s7" style="padding-left:0">{{ $package_segments[$j][$k]->strSegmentName }}</div></td>
-			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)"><br> <font color="gray"><b><i></i></b></font></td>
-			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">P {{ number_format($package_segments[$j][$k]->dblSegmentPrice, 2) }}</td>
-			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)"></td>
-			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)"></td>
-			                        			
-			                        		</tr>
-			                        		<tr style="border:1px teal solid">
-			                        			<td style="border:1px teal solid"></td>
-			                        			<td class="right" style="border:none; color:teal; padding-right:10%">Fabric Name</td>
-			                        			<td style="border:1px teal solid">{{ $segment_fabrics[$j][$k]->strFabricName }}</td>
-			                        			<td style="border:1px teal solid">P {{ number_format($segment_fabrics[$j][$k]->dblFabricPrice, 2)}}</td>
-			                        			<td style="border:1px teal solid"></td>
-			                        			<td style="border:1px teal solid"></td>		                        			
-		                        			</tr>
-		                        			@for($l = 0; $l < count($segment_patterns[$j][$k]); $l++)
-			                        		<tr style="border:1px teal solid">
-			                        			<td style="border:1px teal solid"></td>
-			                        			<td class="right" style="border:none; color:teal; padding-right:10%">Style Name and Pattern</td>
-			                        			<td style="border:1px teal solid">{{ $segment_patterns[$j][$k][$l]->strSegStyleName }}<br> <font color="gray"><b><i>{{ $segment_patterns[$j][$k][$l]->strSegPName }}</i></b></font></td>
-			                        			<td style="border:1px teal solid">P {{ number_format($segment_patterns[$j][$k][$l]->dblPatternPrice, 2		) }}</td>
-			                        			<td style="border:1px teal solid"></td>
-			                        			<td style="border:1px teal solid"></td>		                        			
-		                        			</tr>
-		                        			@endfor
-			                        		@endif
-										@endfor
-										@endfor
-		                        		</div> -->
-		                        		@endfor
+		                        		@endfor			                        	
 		                        	</tbody>
-		                        </table>
-
-		       
-
-		                        <!-- <table class="table centered order-summary z-depth-1" border = "1">
-				       				<thead style="color:gray">
-					          			<tr style="border-top:1px teal solid; border-bottom:1px teal solid; background-color:teal; color:white">
-						                  <th data-field="product" style="border-right:1px teal solid; border-left:1px teal solid">Package</th> 
-						                  <th data-field="style-price-total" style="border-right:1px teal solid">Style Price Total</th>
-						                  <th data-field="line-total" style="border-right:1px teal solid">Line Total</th>        
-						              	</tr>
-					              	</thead>
-					              	<tbody>	
-								        @for($i = 0; $i < count($package_values); $i++)
-								        <tr style="border-top:1px teal solid; border-bottom:1px teal solid">
-								            <td style="border-right:1px teal solid; border-left:1px teal solid"><a class="btn-flat tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to expand and see package details" onclick="packageDetail({{ $i }})"><b><u>{{ $package_values[$i]->strPackageName}}</u></b></a></td>
-											<td style="border-right:1px teal solid; border-left:1px teal solid"><div id="style_price_total" name="style_price_total">{{ number_format($style_total[$i], 2) }} PHP</div></td>
-							           		<td style="border-right:1px teal solid; border-bottom:1px teal solid; border-right:1px teal solid">{{ number_format($style_total[$i] + $fabric_total[$i] + $segment_total[$i], 2) }} PHP</td> 
-							            </tr>						            		
-							            @endfor
-							        </tbody>
-							    </table> -->					
+		                        </table>			
 						</div>
-
 
 					<!--PACKAGE DETAIL WILL BE HERE-->
 					@for($i = 0; $i < count($package_values); $i++)
@@ -183,48 +107,43 @@
 										<th style="border:1px rgba(255, 99, 132, 1) solid"></th>
 									</tr>
 								</thead>
-
 								<tbody>								
-		                        			@for($j = 0; $j < count($package_segments); $j++)	
-											@for($k = 0 ;$k < count($package_segments[$j]); $k++)
-											@if($package_values[$i]->strPackageID == $package_segments[$j][$k]->strPackageID)
+		                        	@for($j = 0; $j < count($package_segments[$i]); $j++)	
+										@if($package_values[$i]->strPackageID == $package_segments[$i][$j]->strPackageID)
 			                        		<tr style="border:1px teal solid">
-			                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)">{{ $segment_qty[$i][$k] }}</td>
-			                        			<td style="border:none; background-color:rgba(52, 162, 232, 0.2)">{{ $package_segments[$j][$k]->strSegmentName }}</td>
+			                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)">{{ $segment_qty[$i][$j] }}</td>
+			                        			<td style="border:none; background-color:rgba(52, 162, 232, 0.2)">{{ $package_segments[$i][$j]->strSegmentName }}</td>
 			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)"><br> <font color="gray"><b><i></i></b></font></td>
-			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">P {{ number_format($package_segments[$j][$k]->dblSegmentPrice, 2) }}</td>
-			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">P {{ number_format($package_segments[$j][$k]->dblSegmentPrice, 2) }}</td>
-			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">P {{ number_format($package_segments[$j][$k]->dblSegmentPrice * $segment_qty[$i][$k], 2) }}</td>
+			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">P {{ number_format($package_segments[$i][$j]->dblSegmentPrice, 2) }}</td>
+			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">P {{ number_format($package_segments[$i][$j]->dblSegmentPrice, 2) }}</td>
+			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">P {{ number_format($package_segments[$i][$j]->dblSegmentPrice * $segment_qty[$i][$j], 2) }}</td>
 			                        			
 			                        		</tr>
 			                        		<tr style="border:1px teal solid">
 			                        			<td style="border:1px teal solid"></td>
 			                        			<td class="right" style="border:none; color:teal; padding-right:10%">Fabric Name</td>
-			                        			<td style="border:1px teal solid">{{ $segment_fabrics[$j][$k]->strFabricName }}</td>
-			                        			<td style="border:1px teal solid">P {{ number_format($segment_fabrics[$j][$k]->dblFabricPrice, 2)}}</td>
+			                        			<td style="border:1px teal solid">{{ $segment_fabrics[$i][$j]->strFabricName }}</td>
+			                        			<td style="border:1px teal solid">P {{ number_format($segment_fabrics[$i][$j]->dblFabricPrice, 2)}}</td>
 			                        			<td style="border:1px teal solid"></td>
 			                        			<td style="border:1px teal solid"></td>		                        			
 		                        			</tr>
-		                        			@for($l = 0; $l < count($segment_patterns[$j][$k]); $l++)
-			                        		<tr style="border:1px teal solid">
-			                        			<td style="border:1px teal solid"></td>
-			                        			<td class="right" style="border:none; color:teal; padding-right:10%">Style Name and Pattern</td>
-			                        			<td style="border:1px teal solid">{{ $segment_patterns[$j][$k][$l]->strSegStyleName }}<br> <font color="gray"><b><i>{{ $segment_patterns[$j][$k][$l]->strSegPName }}</i></b></font></td>
-			                        			<td style="border:1px teal solid">P {{ number_format($segment_patterns[$j][$k][$l]->dblPatternPrice, 2		) }}</td>
-			                        			<td style="border:1px teal solid"></td>
-			                        			<td style="border:1px teal solid"></td>		                        			
-		                        			</tr>
-		                        			@endfor
-			                        		@endif
-										@endfor
-										@endfor
+				                        	<tr style="border:1px teal solid">
+				                        		<td style="border:1px teal solid"></td>
+				                        		<td class="right" style="border:none; color:teal; padding-right:10%">Style Name and Pattern</td>
+				                        		<td style="border:1px teal solid">{{ $segment_patterns[$i][$j][0]->strSegStyleName }}<br> <font color="gray"><b><i>{{ $segment_patterns[$i][$j][0]->strSegPName }}</i></b></font></td>
+				                        		<td style="border:1px teal solid">P {{ number_format($segment_patterns[$i][$j][0]->dblPatternPrice, 2		) }}</td>
+				                        		<td style="border:1px teal solid"></td>
+				                        		<td style="border:1px teal solid"></td>		                        			
+			                        		</tr>
+			                        	@endif
+									@endfor
 									
-									</tbody>
+								</tbody>
 							</table>
 						</div>
 						
 					@endfor
-						<div class="col s12" style="margin-bottom:38px"></div>
+					<div class="col s12" style="margin-bottom:38px"></div>
 					</div>
 
 
@@ -245,7 +164,7 @@
 								</div>
 
 								<div class="col s12">
-									<div class="col s4" style="color:gray; font-size:15px"><p><b>VAT (12%)</b></p></div>
+									<div class="col s4" style="color:gray; font-size:15px"><p><b>VAT ({{ $vat }}%)</b></p></div>
 			      					<div class="col s8" style="color:gray;"><p><input id="vat_price" name="vat_price" type="text" class="" readonly><b></b></p></div>
 								</div>
 
@@ -274,10 +193,8 @@
 
 		      				<!-- <div class="col s4" style="color:gray; font-size:15px"><p><b>Amount Payable</b></p></div>
 		      				<div class="col s8" style="color:red;"><p><input value="" id="amount-payable" name="amount-payable" type="text" class="" readonly></p></div>
-
 		      				<div class="col s4" style="color:gray; font-size:15px"><p><b>Additional Charge (*)</b></p></div>
 		      				<div class="col s8" style="color:red;"><p><input value="" id="add-charge" name="add-charge" type="text" class="" readonly></p></div> 
-
 		      				<div class="col s4" style="color:gray; font-size:15px"><p><b>Remaining Balance</b></p></div>
 		      				<div class="col s8" style="color:red;"><p><input value="" id="balance" name="balance" type="text" class="" readonly></p></div>		
  -->
@@ -318,7 +235,6 @@
 								<!-- <div class="modal-content col s12" style="padding-bottom:20px;">
 										<div class="col s5" style="padding-top:10px"><h5><font color="teal"><center><b>Due Date</b></center></font></h5></div>
 										<div class="col s7"><p style="font-size:20px" ><b id="due-date"></b></p></div>
-
 										<div class="col s12" style="padding-left:10px"><p style="color:gray;">Pay balance on (or before) the said due date above</p></div>
 								</div> -->
 	                        <!--<div class="right col s12" style="padding:18px"><a style="margin-top:5px; background-color:red" type="submit" class="right waves-effect waves-green btn modal-trigger tooltipped z-depth-2" data-position="bottom" data-delay="50" data-tooltip="Click to continue payment process" href="#due-date"><font color="white" size="+1">Pay for Order</font></a>		
@@ -328,16 +244,13 @@
 											<div class="modal-content col s12" style="padding:40px;">
 												<div class="col s5" style="padding-top:10px"><h5><font color="teal"><center><b>Due Date</b></center></font></h5></div>
 												<div class="col s7"><p style="font-size:20px"><b>August 16,2016</b></p></div>
-
 												<div class="col s12" style="padding-left:10px"><p style="color:gray;">Pay balance on (or before) the said due date above</p></div>
 											</div>
-
 											<div class="modal-footer col s12">
 												<p class="left" style="margin-left:10px; color:gray; font-size:15px">Continue with payment?</p>
 								                <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat" ><font color="black">Yes</font></button>
 								                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
 								            </div>
-
 								</div>
 								
 							</div>-->			
@@ -357,7 +270,6 @@
 							                          <div class="center col s4"><i class="mdi-alert-warning" style="color:green; font-size:60px"></i></div>
 							                          <div class="col s8"><p style="font-size:18px">Print Receipt</p></div>
 							                        </div>
-
 							                      <div class="modal-footer col s12">
 							                          <button type="submit"  href="{{ URL::to('/transaction/walkin-individual') }}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">OK</font></button>
 							                      </div>
@@ -384,7 +296,6 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('select').material_select();
-
 		    	$('body').on('load', 'ul.tabs', function() {
 		   	 	$('ul.tabs').tabs();
 				});
@@ -395,31 +306,29 @@
 		  				$('#tabMeasurementDetail').style('display', 'block');
 		  			}, 2000);
 		*/  	});
-
 		  	var a = {!! json_encode($style_total) !!};
 		  	var b = {!! json_encode($fabric_total) !!};
 		  	var c = {!! json_encode($segment_total) !!};
+		  	var vat = {!! json_encode($vat) !!};
+
 		  	var total = 0;
 		  	for(var i = 0; i < a.length; i++)
 		  	{
 		  		total += a[i] + b[i] + c[i];
 		  	}
-		  	
-		  	$('#estimated_total_sales').val(((total - (total * .12)).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-		  	$('#vat_price').val(((total * .12).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+
+		  	$('#estimated_total_sales').val(((total - (total * (vat/100))).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+		  	$('#vat_price').val(((total * (vat/100)).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		  	$('#total_price').val((total.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-		  	$('#hidden_total_price').val(total);
+		  	$('#hidden_total_price').val(total.toFixed(2));
 
 			var monthNames = [ "January", "February", "March", "April", "May", "June",
 		    "July", "August", "September", "October", "November", "December" ];
 			var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
-
 			var newDate = new Date();
 			var dueDate = new Date();
-
 			newDate.setDate(newDate.getDate());   
 			dueDate.setDate(newDate.getDate()+minDays); 
-
 			$('#due-date').text(dayNames[dueDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
 			$('#transaction_date').val(monthNames[(newDate.getMonth()+1)] + " " + newDate.getDate() + ", " + newDate.getFullYear());
 			$('#due_date').val(monthNames[(dueDate.getMonth()+1)] + " " + dueDate.getDate() + ", " + dueDate.getFullYear());
@@ -429,7 +338,6 @@
 	<script>
 		$('.payment').change(function(){
 				if($('#half_pay').prop("checked")){
-
 				  	var a = {!! json_encode($style_total) !!};
 				  	var b = {!! json_encode($fabric_total) !!};
 				  	var c = {!! json_encode($segment_total) !!};
@@ -438,15 +346,12 @@
 				  	{
 				  		total += a[i] + b[i] + c[i];
 				  	}
-
 					$('#hidden-amount-payable').val((total/2).toFixed(2));
 					$('#amount-payable').val(((total/2).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 					$('#balance').val(((total - (total/2)).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 					$('#hidden-balance').val((total - (total/2)).toFixed(2));
 				}
-
 				if($('#full_pay').prop("checked")){
-
 				  	var a = {!! json_encode($style_total) !!};
 				  	var b = {!! json_encode($fabric_total) !!};
 				  	var c = {!! json_encode($segment_total) !!};
@@ -462,17 +367,14 @@
 					$('#hidden-balance').val((total - (total)).toFixed(2));
 				}
 		});
-
 		$('#amount-tendered').blur(function(){	
 			var amountChange = $('#amount-tendered').val() - $('#hidden-amount-payable').val();
-
 			if($('#amount-tendered').val() == ''){
 				$('#amount-change').val('');
 			}else{
 				$('#amount-change').val(amountChange.toFixed(2));
 			}
 		});
-
 		$('#amount-payable').blur(function(){	
 			// if($('#amount-to-pay').val() > $('#total_price').val()){
 			// 	alert("You can't choose to pay more than the total.");
@@ -481,7 +383,6 @@
 				var amountChange = $('#amount-tendered').val() - $('#hidden-amount-payable').val();
 				$('#amount-change').val(amountChange.toFixed(2));	
 				// $('#outstanding-bal').val(($('#total_price').val() - $('#amount-to-pay').val()).toFixed(2) + ' PHP');				
-
 				var a = {!! json_encode($style_total) !!};
 				var b = {!! json_encode($fabric_total) !!};
 				var c = {!! json_encode($segment_total) !!};
@@ -490,12 +391,10 @@
 				{
 					total += a[i] + b[i] + c[i];
 				}
-
 				var payable = $('#amount-payable').val();
 				if(event.which >= 37 && event.which <= 40){
 			        event.preventDefault();
 			    }
-
 			    if(payable == ''){
 					$('#balance').val('');
 				}else if(payable > total){
@@ -512,7 +411,6 @@
 	function tabInit() {
     $('ul.tabs').tabs();
 	}
-
 	$.ajax({
 	    type: "GET",
 	    //Url to the XML-file
@@ -526,12 +424,10 @@
 		var monthNames = [ "January", "February", "March", "April", "May", "June",
 	    "July", "August", "September", "October", "November", "December" ];
 		var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
-
 		var newDate = new Date();
 		newDate.setDate(newDate.getDate());    
 		$('#Date').html(dayNames[newDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
    	 	$('#transaction_date').val(newDate.getFullYear() + "-" +  (newDate.getMonth()+1) + "-" + newDate.getDate());
-
 	</script>
 
 	<script type="text/javascript">
@@ -541,20 +437,15 @@
 		  	var currentHours = currentTime.getHours ( );
 		  	var currentMinutes = currentTime.getMinutes ( );
 		  	//var currentSeconds = currentTime.getSeconds ( );
-
 		  	// Pad the minutes and seconds with leading zeros, if required
 		  	currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
 		  	//currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
-
 		  	// Choose either "AM" or "PM" as appropriate
 		  	var timeOfDay = ( currentHours < 12 ) ? "AM" : "PM";
-
 		  	// Convert the hours component to 12-hour format if needed
 		  	currentHours = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
-
 		  	// Convert an hours component of "0" to "12"
 		  	currentHours = ( currentHours == 0 ) ? 12 : currentHours;
-
 		  	// Compose the string for display
 		  	var currentTimeString = currentHours + ":" + currentMinutes + " " + timeOfDay;
 		  	
@@ -562,7 +453,6 @@
 		   	$("#clock").html(currentTimeString);
 		   	  	
 		 }
-
 		$(document).ready(function()
 		{	
 		    setInterval('updateClock()', 1000);
@@ -575,7 +465,6 @@
 				// window.open($this.)
 			});
 		});
-
 	</script>
 
 	<script type="text/javascript">
@@ -587,13 +476,11 @@
 	function packageDetail(value) 
 	{
 		document.getElementById('package-detail' + value).style.display = "block";
-
 		
 	}
 	function packageClose(value) 
 	{
 		document.getElementById('package-detail' + value).style.display = "none";
-
 		
 	}
 </script>

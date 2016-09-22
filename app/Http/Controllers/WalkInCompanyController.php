@@ -34,6 +34,8 @@ use App\TransactionJobOrderMeasurementSpecifics;
 use App\TransactionJobOrderReceipt;
 use App\TransactionPaymentReceipt;
 
+use App\UtilitiesVat;
+
 class WalkInCompanyController extends Controller
 {
     /**
@@ -239,15 +241,20 @@ class WalkInCompanyController extends Controller
 
         for($i = 0; $i < count($values); $i++){
             for($j = 0; $j < count($segmentStyles); $j++){
-                $tempPatterns = $request->input('rdb_pattern' . $segmentStyles[$j]->strSegStyleCatID . ($i+1));       
+                $tempPatterns = $request->input('rdb_pattern' . $segmentStyles[$j]->strSegStyleCatID . ($i+1));  
+                $tempCustomFabrics = $request->input('custom-fabrics' . ($j+1));  
+
+                if($tempCustomFabrics == null) $tempCustomFabrics = $request->input('fabrics' . ($i+1));
+
                 if($tempPatterns != null){
                     $patterns[$i][$k] = $tempPatterns;
+                    $customFabric[$i][$k] = $tempCustomFabrics;
                     $k++;
                 } 
             }
             $k = 0;
         }
-
+        dd($customFabric);
         for($i = 0; $i < count($values); $i++){
             $sqlStyles[$i] = \DB::table('tblSegmentPattern AS a')
             ->leftJoin('tblSegmentStyleCategory AS b', 'a.strSegPStyleCategoryFK', '=', 'b.strSegStyleCatID')
@@ -255,7 +262,7 @@ class WalkInCompanyController extends Controller
             ->select('c.strSegmentID', 'a.strSegPStyleCategoryFK', 'a.strSegPatternID', 
                'a.strSegPName', 'b.strSegStyleName', 'a.dblPatternPrice')
             ->whereIn('a.strSegPatternID', $patterns[$i])
-            ->first();
+            ->get();
         }
         for($i = 0; $i < count($values); $i++)
         {   
@@ -562,9 +569,9 @@ class WalkInCompanyController extends Controller
                 {
                     if(session()->get('package_values')[$i]->strPackageID == session()->get('package_segments')[$j][$k]->strPackageID)
                     {
-                        for($l = 0; $l < count(session()->get('package_segment_pattern')[$j][$k]); $l++)
+                        for($l = 0; $l < count(session()->get('package_segment_pattern')[$j][$k][0]); $l++)
                         {
-                            $tempStyleTotal += session()->get('package_segment_pattern')[$j][$k]->dblPatternPrice * session()->get('employee_segment_total')[$i][$k];
+                            $tempStyleTotal += session()->get('package_segment_pattern')[$j][$k][0]->dblPatternPrice * session()->get('employee_segment_total')[$i][$k];
                         }   
                         $tempFabricTotal += session()->get('package_segment_fabric')[$j][$k]->dblFabricPrice * session()->get('employee_segment_total')[$i][$k];
                         $tempSegmentTotal += session()->get('package_segments')[$j][$k]->dblSegmentPrice * session()->get('employee_segment_total')[$i][$k];
@@ -580,19 +587,21 @@ class WalkInCompanyController extends Controller
             }
         }
 
-            //dd("");
-            //dd(session()->get('employee_segment_total'));
+        $vat = UtilitiesVat::first();
+
+            //dd(count(session()->get('package_segments')));
         return view('walkin-company-checkout-pay')
-        ->with('joID', session()->get('compJOID'))
-        ->with('package_values', session()->get('package_values'))
-        ->with('package_segments', session()->get('package_segments'))
-        ->with('segment_patterns', session()->get('package_segment_pattern'))
-        ->with('segment_fabrics', session()->get('package_segment_fabric'))
-        ->with('segment_qty', session()->get('employee_segment_total'))
-        ->with('style_total', $styleTotal)
-        ->with('fabric_total', $fabricTotal)
-        ->with('segment_total', $segmentTotal)
-        ->with('total_quantity', $totalQuantity);
+            ->with('vat', $vat->dblTaxPercentage)
+            ->with('joID', session()->get('compJOID'))
+            ->with('package_values', session()->get('package_values'))
+            ->with('package_segments', session()->get('package_segments'))
+            ->with('segment_patterns', session()->get('package_segment_pattern'))
+            ->with('segment_fabrics', session()->get('package_segment_fabric'))
+            ->with('segment_qty', session()->get('employee_segment_total'))
+            ->with('style_total', $styleTotal)
+            ->with('fabric_total', $fabricTotal)
+            ->with('segment_total', $segmentTotal)
+            ->with('total_quantity', $totalQuantity);
 
     }
 

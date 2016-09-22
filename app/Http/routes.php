@@ -650,10 +650,19 @@ Route::group(['prefix' => 'transaction'], function(){
 	/** Reports **/
 	//Sales Part
 	Route::group(['prefix' => 'reports/sales'], function(){
+		//controller for sales by job order
+		Route::get('by-job-order', 'ReportsSalesByJobOrderController@index'); 
+		Route::post('by-job-order-custom', 'ReportsSalesByJobOrderController@custom');
+		Route::post('by-job-order-generate', 'ReportsSalesByJobOrderController@generate');
+		//controller for sales by product
+		Route::get('by-product', 'ReportsSalesByProductController@index'); 
+		Route::post('by-product-custom', 'ReportsSalesByProductController@custom');
+		Route::post('by-product-generate', 'ReportsSalesByProductController@generate');
+		//controller for sales by customer
+		Route::get('by-customer', 'ReportsSalesByCustomerController@index'); 
+		Route::post('by-customer-custom', 'ReportsSalesByCustomerController@custom');
+		Route::post('by-customer-generate', 'ReportsSalesByCustomerController@generate');
 
-		Route::get('by-job-order', 'ReportsSalesByJobOrderController@index'); //controller for sales by job order
-		Route::get('by-product', 'ReportsSalesByProductController@index'); //controller for sales by product
-		Route::get('by-customer', 'ReportsSalesByCustomerController@index'); //controller for sales by customer
 		
 	});
 	//Customers with Balance
