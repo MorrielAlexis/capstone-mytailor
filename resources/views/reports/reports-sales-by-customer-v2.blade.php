@@ -33,19 +33,25 @@
 					<ul class="tabs white">
 						<li class="tab col s3"><a href="#tabular">Tabular</a></li>
 						<li class="tab col s3"><a class="active" href="#graphical">Graphical</a></li>
+						<li class="tab col s3"><a href="#custom">Custom</a></li>
 					</ul>
 				</div>
 				<div class="col s12">
 					<div id="tabular" class="col white s12">
 						<p align="center">
-							<input name="tabular" type="radio" id="weeklyTab1" onclick="showTab('weeklyTab')"/>
+							{!! Form::open(['url' => 'reports/sales/by-customer-generate',
+							'class' => 'col s12 offset-s3']) !!} 
+							<input name="tabular" type="radio" id="weeklyTab1" onclick="showTab('weeklyTab')" value="1" />
 					    	<label for="weeklyTab1">Weekly</label>
-					    	<input name="tabular" type="radio" id="monthlyTab1" onclick="showTab('monthlyTab')" />
+					    	<input name="tabular" type="radio" id="monthlyTab1" onclick="showTab('monthlyTab')" value="2" />
 					    	<label for="monthlyTab1">Monthly</label>
-					    	<input name="tabular" type="radio" id="quarterlyTab1" onclick="showTab('quarterlyTab')"/>
+					    	<input name="tabular" type="radio" id="quarterlyTab1" onclick="showTab('quarterlyTab')" value="3" />
 					    	<label for="quarterlyTab1">Quarterly</label>
-					    	<input name="tabular" type="radio" id="annuallyTab1" onclick="showTab('annuallyTab')"/>
+					    	<input name="tabular" type="radio" id="annuallyTab1" onclick="showTab('annuallyTab')" value="4" />
 					    	<label for="annuallyTab1">Annually</label>
+					    	<br><br>
+					    	<input type="submit" class="btn col s5" name="btnGenerate" value="Generate PDF" style="margin-bottom:2%">
+					    	{!! Form::close() !!}
 					    </p>
 					    <div id="weeklyTab">
 					    	<div class="row">
@@ -240,6 +246,24 @@
 					    		<canvas id="{{$value->Annual}}"></canvas><br>
 					    	@endforeach
 					    </div>
+					</div>
+					<div id="custom">
+						<div class="col white s12">
+							<h6 align="center">Customize Reports</h6>
+							{!! Form::open(['url' => 'reports/sales/by-customer-custom']) !!} 
+								<select name = "selType" class="col s8 offset-s2">
+								    <option value="" disabled selected>Choose Report Type</option>
+								    <option value="1">Weekly</option>
+								    <option value="2">Monthly</option>
+								    <option value="3">Quarterly</option>
+								    <option value="4">Annually</option>
+								</select>
+								<input type="date" class="datepicker col s3 offset-s2" name="datFrom" id="date_from">
+								<div class="center col s1" style="margin-top:2%; color:gray" id="to"><b> to </b></div>
+								<input type="date" class="datepicker col s4" name="datTo" id="date_to">	
+								<input type="submit" class="btn col s8 offset-s2" name="btnGenerate" value="Generate Report" style="margin-bottom:2%">
+							{!! Form::close() !!}
+						</div>
 					</div>
 				</div>
 			</div>

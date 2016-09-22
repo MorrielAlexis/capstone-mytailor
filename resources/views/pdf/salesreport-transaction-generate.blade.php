@@ -42,44 +42,37 @@
     </div>
         <div class="col s12"><div class="divider" style="height:3px; background-color:teal"></div></div>
 
-        <h2 style="color:dimgray;"><center>CUSTOMER SALES REPORT</center></h2>
+        <h2 style="color:dimgray;"><center>PRODUCT SALES REPORT</center></h2>
         <p>Report Type: <strong>{{$ReportType}}</strong></p>
-        <p>From: <strong>{{$datFrom}}</strong></p>
-        <p>To: &nbsp;&nbsp;&nbsp;&nbsp;<strong>{{$datTo}}</strong></p>
-        <table width="100%" id="list">
+        <p>Date: <strong>{{date('D, M. d Y h:i a')}}</strong></p>
+         <table width="100%">
             <thead>
-				<tr>
-					<th>#</th>
-					<th>Customer Name</th>
-					<th>Employee Name</th>
-					<th class="right-align">Partial Amount</th>
-					<th class="right-align">Fee</th>
-					<th class="right-align">Total</th>
-					<th class="right-align">Cumulative Amount</th>
-				</tr>
-			</thead>
-			<tbody>
-				<?php $Cumulative = 0; ?>
-				@foreach($data as $value)
-				<tr>
-					<td>{{$Name}} {{$value->columnOne}}</td>
-					<td>
-						@if($value->strCompanyName == null)
-							{{$value->IndividualCustomer}}
-						@else
-							{{$value->strCompanyName}}
-						@endif
-					</td>
-					<td>{{$value->EmployeeName}}</td>
-					<td class="right-align">{{number_format($value->Total)}}</td>
-					<td class="right-align">{{number_format($value->Fee)}}</td>
-					<td class="right-align">{{number_format($value->Total+$value->Fee)}}</td>
-					<?php $Cumulative += $value->Total+$value->Fee?>
-					<td class="right-align">{{number_format($Cumulative)}}</td>
-				</tr>
-				@endforeach
-			</tbody>
-		</table>
+              <tr>
+                <th>Job Order ID</th>
+                <th>Customer Name</th>
+                <th>Total</th>
+                <th>Employee Name</th>
+                <th>Date Finished</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($data as $value)
+        <tr>
+          <td>{{$value->strJobOrderId}}</td>
+          <td>
+            @if($value->strCompanyName == null)
+              {{$value->IndividualCustomer}}
+            @else
+              {{$value->strCompanyName}}
+            @endif
+          </td>
+          <td>{{number_format($value->Total + $value->Fee)}}</td>
+          <td>{{$value->EmployeeName}}</td>
+          <td>{{$value->Finished}}</td>
+        </tr>
+      @endforeach 
+            </tbody>
+        </table> 
   </body>
 
 </html>
