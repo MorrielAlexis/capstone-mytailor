@@ -236,10 +236,10 @@ class WalkInIndividualController extends Controller
     //if a customer already has an existing profile with the shop
     public function customerCheck()
     {
+        dd("asdsdfadf");
         $individual = Individual::all();
-        
         return view('walkin-individual-customer-check')
-                ->with('individual', $individual);
+            ->with('individual', $individual);
     }
 
     public function customerInformation(Request $request)
