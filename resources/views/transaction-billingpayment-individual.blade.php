@@ -153,17 +153,17 @@
 														<div class="payment-summary {{ $payment->strJobOrderID}}">
 															<div style="color:black" class="input-field col s7">                 
 											                  <input style="margin-left:80%; padding:1%; padding-left:1%" name="amount-to-pay" type="text" class="" id="amount-to-pay" readonly>
-											                  <label style="color:teal; margin-top:1%; margin-left:2%"><b>Job Order Total Price:</b></label>
+											                  <label style="color:teal; margin-top:1%; margin-left:2%"><center><b>Total Amount Due<br> <font style="opacity:0.80">(Php)</font>:</b></center></label>
 											                </div>
 
 											                <div style="color:black" class="input-field col s7">                 
 											                  <input style="margin-left:80%; padding:1%; padding-left:1%" name="amount-paid" type="text" class="" id="amount-paid" readonly>
-											                  <label style="color:teal; margin-top:1%; margin-left:2%"><b>Total Amount Paid:</b></label>
+											                  <label style="color:teal; margin-top:1%; margin-left:2%"><center><b>Total Amount Paid<br><font style="opacity:0.80">(Php)</font>:</b></center></label>
 											                </div>
 
 											                <div style="color:black" class="input-field col s7">                 
 											                  <input style="margin-left:80%; padding:1%; padding-left:1%; color:teal; font-style:bold" name="outstanding-bal" type="text" class="outstanding-bal" id="outstanding-bal" readonly>
-											                  <label style="color:teal; margin-top:1%; margin-left:2%"><b>Outstanding Balance:</b></label>
+											                  <label style="color:teal; margin-top:1%; margin-left:2%"><center><b>Outstanding Balance<br><font style="opacity:0.80">(Php)</font>:</b></center></label>
 											                </div>
 											            </div>
 											            @endif
@@ -175,35 +175,35 @@
 								                        <div class="col s12" style="margin-top:3%"><div class="divider" style="height:3px; color:gray"></div></div>
 								                    {!! Form::open(['url' => 'transaction/payment/individual/save-payment', 'method' => 'POST']) !!}
 								                    <div class="payment-form" id="payment-form" style="display:block">
-								                        <div style="color:black" class="input-field col s7">                 
-								                          <input style="margin-left:80%; padding:1%; padding-left:1%; border:3px gray solid" name="amount-tendered" id="amount-tendered" type="text" class="">
-								                          <label style="color:black; margin-top:1%; margin-left:2%"><b>Amount Tendered:</b></label>
+								                        <div style="color:black" class="input-field col s12">                 
+								                          <div class="col s8"><input style="margin-left:60%; padding:1%; padding-left:1%; border:3px gray solid" name="amount-tendered" id="amount-tendered" type="text" class=""></div>
+								                          <div class="col s4"><label style="color:black; margin-top:1%; margin-left:2%"><center><b>Amount Tendered<br><font style="opacity:0.80">(Php)</font>:</b></center></label></div>
 								                        </div>
 
-								                        <div style="color:black" class="input-field col s7">                 
-								                          <input style="margin-left:80%; padding:1%; padding-left:1%; border:3px gray solid" name="amt-to-pay" id="amt-to-pay" type="text" class="">
-								                          <label style="color:black; margin-top:1%; margin-left:2%"><b>Amount to Pay :</b></label>
+								                        <div style="color:black" class="input-field col s12">                 
+								                          <div class="col s8"><input style="margin-left:60%; padding:1%; padding-left:1%; border:3px gray solid" name="amt-to-pay" id="amt-to-pay" type="text" class=""></div>
+								                          <div class="col s4"><label style="color:black; margin-top:1%; margin-left:2%"><center><b>Amount to Pay<br> <font style="opacity:0.80">(Php)</font>:</b></center></label></div>
 								                        </div>
 
 								                        <div class="container">
-									                        <div style="color:black" class="input-field col s7">                 
-									                          <input readonly style="margin-left:80%; padding:1%; padding-left:1%; border:3px gray solid" name="amount-change" id="amount-change" type="text" class="">
-									                          <label style="color:teal; margin-top:1%; margin-left:40px"><b>Change:</b></label>
+									                        <div style="color:black" class="input-field col s12">                 
+									                          <div class="col s8"><input readonly style="margin-left:55%; padding:1%; padding-left:1%; border:3px gray solid" name="amount-change" id="amount-change" type="text" class=""></div>
+									                          <div class="col s4"><label style="color:teal; margin-top:1%; margin-left:10%"><center><b>Change<br> <font style="opacity:0.80">(Php)</font>:</b></center></label></div>
 									                        </div>
 								                    	</div>
 
 								                    	<div style="color:black" class="input-field col s7" hidden>                 
-								                          <input style="margin-left:180px; padding:5px; padding-left:10px; border:3px gray solid" name="payment-info" type="text" class="">
-								                          <label style="color:black; margin-top:5px; margin-left:20px"><b>Remaining Balance:</b></label>							                          
+								                          <div class="col s8"><input style="margin-left:180px; padding:5px; padding-left:10px; border:3px gray solid" name="payment-info" type="text" class=""></div>
+								                          <div class="col s4"><label style="color:black; margin-top:5px; margin-left:20px"><b>Remaining Balance:</b></label></div>							                          
 								                        </div>
 
 								                        <div class="col s12" hidden>
 								                        	<center><p style="color:gray">*** Pay balance before or on <font color="teal"><b><u>"DECEMBER 25, 2016"</u></b></font> ***</p></center>
 								                        </div>
 
-								                        <div style="color:black" class="input-field col s7">                 
-								                          <input style="margin-left:180px; padding:5px; padding-left:10px;" value="Honey May Buenavides - Cashier" name="payment-info" type="text" class="">
-								                          <label style="color:black; margin-top:5px; margin-left:20px"><b>Process Done By:</b></label>							                          
+								                        <div style="color:black" class="input-field col s12">                 
+								                          <div class="col s8"><input style="margin-left:60%; padding:5px; padding-left:10px;" value="{{ $empname->employeename }}" name="payment-info" type="text" class=""></div>
+								                          <div class="col s4"><label style="color:black; margin-top:5px; margin-left:20px"><b>Process Done By:</b></label></div>							                          
 								                        </div>
 
 								                        <input type="hidden" id="transaction_date" name="transaction_date">
@@ -225,7 +225,6 @@
 											<div class="card-panel">
 											<div class="card-content">
 												@foreach($customer_orders as $j => $order)
-													@foreach($payments as $i => $payment)
 													@if($order->strTermsOfPayment != "Full Payment")
 
 												<div class="row" id="or_summary" style="display:none">
@@ -244,16 +243,16 @@
 													<div class="col s12">
 														<table class="table centered order-summary">
 															<thead style="color:gray">
-																<th>Product Code</th>
+																<th>Product Name</th>
 																<th>Quantity</th>
 																<th>Unit Price</th>
 															</thead>
 															<tbody>
 
 																<tr>
-																	<td>{{ $payment->strSegmentID }}</td>
-																	<td>{{ $payment->intQuantity }}</td>
-																	<td>{{ $payment->dblUnitPrice }}</td>
+																	<td>{{ $order->strGarmentCategoryName }},<br> {{ $order->strSegmentName }}</td>
+																	<td>{{ $order->intQuantity }}</td>
+																	<td>P {{ number_format(($order->dblOrderTotalPrice / $order->intJO_OrderQuantity), 2) }}</td>
 																</tr>
 														</table>
 
@@ -265,7 +264,6 @@
 												</div>
 
 													@endif
-												@endforeach
 												@endforeach
 											</div>
 										</div>
@@ -433,6 +431,7 @@
 
 		var form = document.getElementById('pay_form');
 		var summary = document.getElementById('or_summary');
+		var dropdown = document.getElementById('unpaid-payments');
 
 		$('#unpaid-payments').change(function(){
 			var orders = {!! json_encode($customer_orders) !!}
@@ -450,9 +449,9 @@
 				form.style.display = "block";
 				summary.style.display = "block";
 
-				$('#amount-to-pay').val(amount_to_pay.toFixed(2)) + "PHP";
-				$('#amount-paid').val(amount_paid.toFixed(2)) + "PHP";
-				$('#outstanding-bal').val(bal.toFixed(2)) + "PHP";
+				$('#amount-to-pay').val(amount_to_pay.toFixed(2));
+				$('#amount-paid').val(amount_paid.toFixed(2));
+				$('#outstanding-bal').val(bal.toFixed(2));
 
 				break;
 			}
@@ -462,6 +461,7 @@
 				form.style.display = "none";
 
 			}
+			alert($('#unpaid-payments').val());
 		}
 						
 

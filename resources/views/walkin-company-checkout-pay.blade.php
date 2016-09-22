@@ -183,7 +183,6 @@
 										<th style="border:1px rgba(255, 99, 132, 1) solid"></th>
 									</tr>
 								</thead>
-
 								<tbody>								
 		                        			@for($j = 0; $j < count($package_segments); $j++)	
 											@for($k = 0 ;$k < count($package_segments[$j]); $k++)
@@ -404,11 +403,11 @@
 		  	{
 		  		total += a[i] + b[i] + c[i];
 		  	}
-		  	
+
 		  	$('#estimated_total_sales').val(((total - (total * .12)).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		  	$('#vat_price').val(((total * .12).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		  	$('#total_price').val((total.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-		  	$('#hidden_total_price').val(total);
+		  	$('#hidden_total_price').val(total.toFixed(2));
 
 			var monthNames = [ "January", "February", "March", "April", "May", "June",
 		    "July", "August", "September", "October", "November", "December" ];
