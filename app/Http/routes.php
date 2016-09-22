@@ -421,21 +421,6 @@ Route::group(['prefix' => 'transaction'], function(){
 		Route::post('alteration-walkin-newcustomer-save-transaction', 'AlterationWalkInController@saveTransaction');
 		Route::post('alteration-walkin-newcustomer-cancel', 'AlterationWalkInController@cancelOrder');
 
-/*---------------------------------------ADMIN TRANSACTION COMPANY ALTERATION--------------------------------------------------*/		
-		Route::get('alteration-walkin-transaction', 'AlterationWalkInCompanyController@index');
-		Route::get('alteration-walkin-newcustomer/company', 'AlterationWalkInCompanyController@showCart');
-		Route::get('alteration-walkin-newcustomer-update', 'AlterationWalkInCompanyController@updateCart');
-		Route::get('alteration-walkin-oldcustomer', 'AlterationWalkInCompanyController@oldcust');
-		Route::get('alteration-checkout-info', 'AlterationWalkInCompanyController@checkoutCustInfo');
-		Route::get('alteration-checkout-payment', 'AlterationWalkInCompanyController@checkoutPayment');
-		Route::get('alteration-checkout-measurement', 'AlterationWalkInCompanyController@checkoutAddMeasurement');
-
-		Route::post('alteration-walkin-newcustomer', 'AlterationWalkInCompanyController@addValues');
-		Route::post('alteration-walkin-newcustomer-delete', 'AlterationWalkInCompanyController@deleteOrder');
-		Route::post('alteration-walkin-add-newcustomer-info', 'AlterationWalkInCompanyController@addNewCustomer');
-		Route::post('alteration-walkin-newcustomer-save-transaction', 'AlterationWalkInCompanyController@saveTransaction');
-		Route::post('alteration-walkin-newcustomer-cancel', 'AlterationWalkInCompanyController@cancelOrder');
-
 
 
 		/*---------------------------------------ACCEPTANCE OF ONLINE TRANSACTION ALTERATION--------------------------------------------------*/

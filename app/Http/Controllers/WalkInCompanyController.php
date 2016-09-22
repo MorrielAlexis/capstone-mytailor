@@ -299,7 +299,6 @@ class WalkInCompanyController extends Controller
 
     public function addEmployees()
     {   
-        $order = session()->get('package_data');
         $segments = session()->get('package_segments');
         $packages = session()->get('package_values');
         $quantity = session()->get('package_quantity');
@@ -308,6 +307,19 @@ class WalkInCompanyController extends Controller
 
         for($i = 0; $i < count($quantity); $i++)
             $totalQuantity = $totalQuantity + $quantity[$i];
+
+        $order = session()->get('package_data');
+        $orderPackages = [];
+
+        $k = 0;
+        for($i = 0; $i < count($quantity); $i++){
+            for($j = 0; $j < $quantity[$i]; $j++){
+                $orderPackages[$k] = $order[$i];
+                $k++;
+            }
+        }
+
+        session(['package_ordered' => $orderPackages]);
 
         return view('walkin-company-add-employee')
         ->with('total_quantity', $totalQuantity)
@@ -365,9 +377,9 @@ class WalkInCompanyController extends Controller
                 {
                     if($j == 0)
                     {
-                        $employeeSegmentTotal[$i][$k] = $employeeSegmentQuantity[$data[$i]][$j][$k];                    
+                        $employeeSegmentTotal[$i][$k] = $employeeSegmentQuantity[$data[$i]][$j][$k] + 1;                    
                     }else{
-                        $employeeSegmentTotal[$i][$k] += $employeeSegmentQuantity[$data[$i]][$j][$k];
+                        $employeeSegmentTotal[$i][$k] += $employeeSegmentQuantity[$data[$i]][$j][$k] + 1;
                     }
                 }
             }
@@ -420,12 +432,12 @@ class WalkInCompanyController extends Controller
 
         for($i = 0; $i < count($packages); $i++) $prices[$i] = $packages[$i]->dblPackagePrice * $quantity[$i]; 
 
-            $joID = \DB::table('tblJobOrder')
-        ->select('strJobOrderID')
-        ->orderBy('created_at', 'desc')
-        ->orderBy('strJobOrderID', 'desc')
-        ->take(1)
-        ->get();
+        $joID = \DB::table('tblJobOrder')
+            ->select('strJobOrderID')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('strJobOrderID', 'desc')
+            ->take(1)
+            ->get();
 
         if($joID == null){
             $newID = $this->smartCounter("JOB000"); 
@@ -434,7 +446,7 @@ class WalkInCompanyController extends Controller
             $newID = $this->smartCounter($ID);  
         }
 
-        //get all the individuals
+        //get all the company
         $ids = \DB::table('tblCustCompany')
             ->select('strCompanyID')
             ->orderBy('created_at', 'desc')
@@ -453,11 +465,11 @@ class WalkInCompanyController extends Controller
         session(['compJOID' => $newID]);
 
         return view('walkin-company-checkout-info')
-        ->with('quantity', $quantity)
-        ->with('packages', $packages)
-        ->with('prices', $prices)
-        ->with('custID', $custID)
-        ->with('joID', $newID);
+            ->with('quantity', $quantity)
+            ->with('packages', $packages)
+            ->with('prices', $prices)
+            ->with('custID', $custID)
+            ->with('joID', $newID);
     }
 
     public function existingCompanyInformation(Request $request)
@@ -588,11 +600,11 @@ class WalkInCompanyController extends Controller
         }
 
         $vat = UtilitiesVat::first();
-
             //dd(count(session()->get('package_segments')));
         return view('walkin-company-checkout-pay')
             ->with('vat', $vat->dblTaxPercentage)
             ->with('joID', session()->get('compJOID'))
+            ->with('package_quantity', $quantity)
             ->with('package_values', session()->get('package_values'))
             ->with('package_segments', session()->get('package_segments'))
             ->with('segment_patterns', session()->get('package_segment_pattern'))
@@ -938,6 +950,70 @@ class WalkInCompanyController extends Controller
 
     }//end of job order
 
+<<<<<<< HEAD
+=======
+    public function removePackage(Request $request)
+    {
+        $to_be_deleted = ((int)$request->input('hidden_remove_package'));
+        $values = session()->get('package_values');
+        $data = session()->get('package_data');
+        $quantity = session()->get('package_quantity');
+
+        unset($values[$to_be_deleted]);
+        unset($data[$to_be_deleted]);
+        unset($quantity[$to_be_deleted]);
+
+        $values = array_slice($values, 0);
+        $data = array_slice($data, 0);
+        $quantity = array_slice($quantity, 0);
+
+        session()->forget('package_values');
+        session()->forget('package_data');
+        session()->forget('package_quantity');
+
+        session(['package_values' => $values]);
+        session(['package_data' => $data]);
+        session(['package_quantity' => $package_quantity]);
+ 
+        return redirect('transaction/walkin-company-show-order');
+    }
+
+    public function resetOrder()
+    {
+        $this->clearValues();
+
+        return redirect('transaction/walkin-company');
+    }
+
+    public function clearValues()
+    {
+        session()->forget('package_data');
+        session()->forget('package_values');
+        session()->forget('package_quantity');
+        session()->forget('package_segments');
+        session()->forget('package_ordered');
+        session()->forget('package_segments_customize');
+        session()->forget('package_customize_index');
+        session()->forget('package_customize');
+        session()->forget('package_segment_pattern');
+        session()->forget('package_segment_fabric');
+        session()->forget('package_pattern_fabric');
+        session()->forget('employee_fname');
+        session()->forget('employee_lname');
+        session()->forget('employee_mname');
+        session()->forget('employee_set');
+        session()->forget('employee_sex');
+        session()->forget('employee_segment_qty');
+        session()->forget('employee_segment_total');
+        session()->forget('compID');
+        session()->forget('compJOID');
+        session()->forget('employee_id');
+        session()->forget('measurement_value');
+        session()->forget('measurement_id');
+        session()->forget('payment_id');
+    }
+
+>>>>>>> 69d556dec8db90b2871dad1bb0b41826db095ac5
     /*For downloadable forms*/
     public function downloadForms()
     {
