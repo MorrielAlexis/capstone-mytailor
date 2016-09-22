@@ -86,20 +86,9 @@ class SegmentSeeder extends Seeder
                 'boolIsActive' => '1'
             ),
 
-            //  array(
-            //     'strSegmentID' => 'SEGM007',
-            //     'strSegCategoryFK' => 'GARM001',    
-            //     'strSegmentName' =>'Dress',
-            //     'dblSegmentPrice' => '600.00',
-            //     'strSegmentSex' => 'F',
-            //     'intMinDays' => '3',
-            //     'strSegmentImage' => 'imgSegments/dressfinal.jpg',
-            //     'textSegmentDesc' => 'Formal for womens uniform.',
-            //     'boolIsActive' => '1'
-            // ),
 
             array(
-                'strSegmentID' => 'SEGM008',
+                'strSegmentID' => 'SEGM007',
                 'strSegCategoryFK' => 'GARM003',    
                 'strSegmentName' =>'Long Sleeve Shirt',
                 'dblSegmentPrice' => '150.00',
@@ -111,7 +100,7 @@ class SegmentSeeder extends Seeder
             ),
 
             array(
-                'strSegmentID' => 'SEGM009',
+                'strSegmentID' => 'SEGM008',
                 'strSegCategoryFK' => 'GARM001',    
                 'strSegmentName' =>'Blazers',
                 'dblSegmentPrice' => '300.00',
@@ -120,19 +109,19 @@ class SegmentSeeder extends Seeder
                 'strSegmentImage' => 'imgSegments/blazer-woman.jpg',
                 'textSegmentDesc' => 'Upper part wear.',
                 'boolIsActive' => '1'
-            ),
-
-            array(
-                'strSegmentID' => 'SEGM010',
-                'strSegCategoryFK' => 'GARM003',    
-                'strSegmentName' =>'Polo Shirts',
-                'dblSegmentPrice' => '100.00',
-                'strSegmentSex' => 'M',
-                'intMinDays' => '5',
-                'strSegmentImage' => 'imgSegments/whitepolowithblack.jpg',
-                'textSegmentDesc' => 'Upper part wear for mens uniform.',
-                'boolIsActive' => '1'
             )
+
+            // array(
+            //     'strSegmentID' => 'SEGM009',
+            //     'strSegCategoryFK' => 'GARM003',    
+            //     'strSegmentName' =>'Polo Shirts',
+            //     'dblSegmentPrice' => '100.00',
+            //     'strSegmentSex' => 'M',
+            //     'intMinDays' => '5',
+            //     'strSegmentImage' => 'imgSegments/whitepolowithblack.jpg',
+            //     'textSegmentDesc' => 'Upper part wear for mens uniform.',
+            //     'boolIsActive' => '1'
+            // )
 
 
         );

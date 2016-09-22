@@ -172,7 +172,7 @@ class SegmentStyleSeeder extends Seeder
 
             array(
                 'strSegStyleCatID' => 'SEGSTY018',
-                'strSegmentFK' => 'SEGM008',
+                'strSegmentFK' => 'SEGM007',
                 'strSegStyleName' =>'Long Sleeve Shirt - Collar',
                 'txtSegStyleCatDesc' => 'The part of a garment that encircles the neck, especially when raised or folded.',
                 'strSegStyleCatInactiveReason' => '',
@@ -181,7 +181,7 @@ class SegmentStyleSeeder extends Seeder
 
              array(
                 'strSegStyleCatID' => 'SEGSTY019',
-                'strSegmentFK' => 'SEGM008',
+                'strSegmentFK' => 'SEGM007',
                 'strSegStyleName' =>'Long Sleeve Shirt - Shirt Pocket',
                 'txtSegStyleCatDesc' => 'Stylish accent on the chest side of the jacket.  ',
                 'strSegStyleCatInactiveReason' => '',
@@ -227,7 +227,7 @@ class SegmentStyleSeeder extends Seeder
             
             array(
                 'strSegStyleCatID' => 'SEGSTY024',
-                'strSegmentFK' => 'SEGM009',
+                'strSegmentFK' => 'SEGM008',
                 'strSegStyleName' =>'Blazer - Cuffs',
                 'txtSegStyleCatDesc' => 'A fold or band serving as a trimming or finish for the bottom of a sleeve.  ',
                 'strSegStyleCatInactiveReason' => '',
@@ -236,7 +236,7 @@ class SegmentStyleSeeder extends Seeder
 
             array(
                 'strSegStyleCatID' => 'SEGSTY025',
-                'strSegmentFK' => 'SEGM009',
+                'strSegmentFK' => 'SEGM008',
                 'strSegStyleName' =>'Blazer - Lapel',
                 'txtSegStyleCatDesc' => 'Lapels are the folded flaps of cloth on the front of a jacket or coat, and are most commonly found on formal clothing and suit jackets.  ',
                 'strSegStyleCatInactiveReason' => '',

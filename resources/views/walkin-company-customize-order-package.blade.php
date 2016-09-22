@@ -57,7 +57,7 @@
 										      	<div class="collapsible-body overflow-x">
 										      		<div class="col s12">
 												      	<div class="left col s6"><p style="color:gray; margin-left:20px">*Choose one of your desired design</p></div>
-												      	<div class="pull-right col s6"  style="margin-top:2.8%; font-size:15px; padding-left:10%"><a class="modal-trigger tooltipped" href="#custom-fabric" data-position="bottom" data-delay="50" data-tooltip="Click this if you want a separate fabric for this specific style category"><u><b>Click to specify fabric for this specific style category</b></u></a></div>
+												      	<div class="pull-right col s6"  style="margin-top:2.8%; font-size:15px; padding-left:10%"><a class="modal-trigger tooltipped" href="#custom-fabric{{ $i+1 }}{{ $j+1 }}" data-position="bottom" data-delay="50" data-tooltip="Click this if you want a separate fabric for this specific style category"><u><b>Click to specify fabric for this specific style category</b></u></a></div>
 												    </div>
 												      	@foreach($patterns as $k => $pattern)
 												      	<div class="col s6" @if($pattern->strSegPStyleCategoryFK != $style->strSegStyleCatID) hidden @endif>
@@ -84,7 +84,6 @@
 														</div>
 														@endforeach
 														
-														
 										      	</div>
 										    </li>
 										  </ul>
@@ -102,6 +101,9 @@
 			                        </div>
 								</div>
 							<!--End of modal for choosing design-->
+
+
+
 
 							
 							<!--Modal for choosing fabric facbric-->
@@ -220,7 +222,7 @@
 								</div>
 								
 								<div class="col s6" style="margin-top:7%;">
-											<a style="color:white; margin-top:10px" class="modal-trigger btn tooltipped teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#fabric{{ $i+1 }}"><i class="mdi-maps-layers" style="padding-right:0.5%"></i><font size="-1" style="padding-bottom:-5%"><b>Choose Design</b></font></a>
+											<a style="color:white; margin-top:10px" class="modal-trigger btn tooltipped teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#fabric{{ $i+1 }}"><i class="mdi-maps-layers" style="padding-right:0.5%"></i><font size="-1" style="padding-bottom:-5%"><b>Choose Fabric</b></font></a>
 											<!--<div class="file-field input-field">	
 												<a style="color:black" class="modal-trigger btn tooltipped btn-floating teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#editFabric"><i class="mdi-editor-mode-edit"></i></a>
                      								
@@ -252,7 +254,6 @@
 						</div>
 
 						<div class="col s12">
-							<a href="{{URL::to('transaction/walkin-company-catalogue-designs')}}" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Design the whole set once by choosing among the available designs in the catalogue" style="background-color:teal; color:white">Choose design from Catalogue</a>
 							<button type="submit" class="right waves-effect waves-green btn" style="background-color:teal; margin-left:80px; margin-right:30px">Save</button>
 							<a href="{{URL::to('transaction/walkin-company-customize-orders')}}" class="right waves-effect waves-green btn" style="background-color:teal">Cancel</a>
 						</div>
