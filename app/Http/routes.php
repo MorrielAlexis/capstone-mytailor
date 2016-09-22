@@ -329,9 +329,9 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::post('walkin-individual-save-segment', 'WalkInIndividualController@saveSegments');
 
 	//customer check - new or existing
-	Route::group(['prefix' => 'walkin-individual'], function(){
-		Route::get('customer-check', 'WalkInIndividualController@customerCheck');
-	});
+
+	Route::get('customer-check', 'WalkInIndividualController@customerCheck');
+
 	
 	//customer information view
 	Route::post('walkin-individual-customer-information', 'WalkInIndividualController@existingCustomerInformation');

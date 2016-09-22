@@ -322,11 +322,11 @@ class WalkInCompanyController extends Controller
         session(['package_ordered' => $orderPackages]);
 
         return view('walkin-company-add-employee')
-        ->with('total_quantity', $totalQuantity)
-        ->with('orderPackages', session()->get('package_ordered'))
-        ->with('packages', $packages)
-        ->with('orders', $order)
-        ->with('segments', $segments);
+            ->with('total_quantity', $totalQuantity)
+            ->with('orderPackages', session()->get('package_ordered'))
+            ->with('packages', $packages)
+            ->with('orders', $order)
+            ->with('segments', $segments);
     }//specifications ng employee
 
     public function saveEmployees(Request $request)

@@ -170,13 +170,37 @@ class WalkInIndividualController extends Controller
 
     public function saveSegments(Request $request)
     {
-        $company = Company::all();
+        $data_quantity = array_slice(array_filter($request->input('int-segment-qty')), 0);
+        $values = session()->get('segment_values');
+        $segmentStyles = SegmentStyle::all();
+        $patterns = [];
+        $i = 0;
+        $k = 0;
 
-        $quantity = session()->get('package_quantity');
-        $packages = session()->get('package_values');
-        $prices = [];
+        for($i = 0; $i < count($values); $i++){
+            $segmentFabric[$i] = $request->input('fabrics' . ($i+1));
+        }
+
+        for($i = 0; $i < count($values); $i++){
+            for($j = 0; $j < count($segmentStyles); $j++){
+                $tempPatterns = $request->input('rdb_pattern' . $segmentStyles[$j]->strSegStyleCatID . ($i+1));       
+                if($tempPatterns != null){
+                    $patterns[$i][$k] = $tempPatterns;
+                    $k++;
+                } 
+            }
+            $k = 0;
+        }
         
-        for($i = 0; $i < count($packages); $i++) $prices[$i] = $packages[$i]->dblPackagePrice * $quantity[$i]; 
+        for($i = 0; $i < count($values); $i++){
+            $sqlStyles[$i] = \DB::table('tblSegmentPattern AS a')
+                    ->leftJoin('tblSegmentStyleCategory AS b', 'a.strSegPStyleCategoryFK', '=', 'b.strSegStyleCatID')
+                    ->leftJoin('tblSegment AS c', 'b.strSegmentFK', '=', 'strSegmentID')
+                    ->select('c.strSegmentID', 'a.strSegPStyleCategoryFK', 'a.strSegPatternID', 
+                             'a.strSegPName', 'b.strSegStyleName', 'a.dblPatternPrice')
+                    ->whereIn('a.strSegPatternID', $patterns[$i])
+                    ->get();
+        }
 
         $sqlFabric = \DB::table('tblFabric')
                 ->select('strFabricID', 'strFabricName', 'dblFabricPrice')
@@ -206,13 +230,13 @@ class WalkInIndividualController extends Controller
 
         session(['segment_design' => $sqlStyles]);
 
-        return redirect('transaction/walkin-individual/customer-check');
+        return redirect('transaction/customer-check');
     }
 
     //if a customer already has an existing profile with the shop
     public function customerCheck()
     {
-        dd("asdsdfadf");
+
         $individual = Individual::all();
         return view('walkin-individual-customer-check')
             ->with('individual', $individual);
