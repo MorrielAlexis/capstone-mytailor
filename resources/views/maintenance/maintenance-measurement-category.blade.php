@@ -131,7 +131,7 @@
                           <a style = "color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to edit measurement information" href="#del{{$meas_category->strMeasurementCategoryID}}"><i class="mdi-action-delete"></i></a>
                         
                           <div id="edit{{$meas_category->strMeasurementCategoryID}}" class="modal modal-fixed-footer">
-                            <h5><font color = "#1b5e20"><center>EDIT MEASUREMENT INFORMATION</center> </font> </h5>
+                            <h5><font color = "#1b5e20"><center>UPDATE MEASUREMENT CATEGORY</center> </font> </h5>
                               {!! Form::open(['url' => 'maintenance/measurement-category/update', 'method' => 'POST']) !!}
                                 <div class="divider" style="height:2px"></div>
                                 <div class="modal-content col s12"> 

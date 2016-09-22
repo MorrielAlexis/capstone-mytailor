@@ -5,14 +5,6 @@
       <title>MyTailor - Customer Module</title>
       
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css?family=Cormorant+Infant|Lemonada|Lobster+Two|Pacifico|Yatra+One|Philosopher" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css?family=Sintony:400,700" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css?family=Mada" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css?family=Rambla" rel="stylesheet">
 
       {!! Html::style('css/materialize.min.css') !!}
       {!! Html::style('css/styleOnline.css'); !!}
@@ -91,7 +83,7 @@
                 <li><div class="divider" style="margin-top:20px; width:1px; height:30px;"></div></li>
                 <li>
                   <a style="color: white;font-size:18px" class="dropdown-button btn-flat" data-beloworigin="true" data-activates="downdown"><b>GARMENTS</b></a>
-                  <ul id="downdown" class="dropdown-content">
+                  <ul id="downdown" class="dropdown-content" style="margin-left:14px">
                     <li><a href="{{URL::to('/online-garment-suit')}}">SUITS</a></li>
                    <!-- <li><a href="{{URL::to('/online-garment-gown')}}">GOWNS</a></li> -->
                     <li><a href="{{URL::to('/online-garment-uniform-male')}}">MEN'S SHIRT</a></li>
@@ -103,7 +95,7 @@
                 <li><div class="divider" style="margin-top:20px; width:1px; height:30px;"></div></li>
                 <li>
                   <a style="color: white;font-size:18px" class="dropdown-button btn-flat" data-beloworigin="true" href="#" data-activates="alter"><b>ALTERATION</b></a>
-                  <ul id="alter" class="dropdown-content">
+                  <ul id="alter" class="dropdown-content" style="margin-left:14px">
                     <li><a href="{{URL::to('transaction/online-alteration')}}">SERVICES</a></li>
                     <li><a href="{{URL::to('transaction/online-alteration-transact')}}">TRANSACTION</a></li>
                   </ul>
@@ -111,7 +103,7 @@
                 <li><div class="divider" style="margin-top:20px; width:1px; height:30px;"></div></li>
                 <li><a class="btn-flat" style="color: white;font-size:18px" href="{{URL::to('/online-how-it-works')}}"><b>HOW IT WORKS</b></a></li>
                 <li><div class="divider" style="margin-top:20px; width:1px; height:30px;"></div></li>
-                <li><a class="btn-flat" style="color: white;font-size:18px" href="{{URL::to('')}}"><b>CATALOGUE</b></a></li>
+                <li><a class="btn-flat" style="color: white;font-size:18px" href="{{URL::to('/online-forms')}}"><b>FORMS</b></a></li>
               </ul>
               <ul id="shoppingcart" class="right" style="margin-right:10px;">
                 <li><a href="{{URL::to('/shopping-cart')}}" style="margin:0; padding:0;" class="btn-flat white-text">Shopping Cart</a></li>

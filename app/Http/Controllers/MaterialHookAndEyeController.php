@@ -160,11 +160,11 @@ class MaterialHookAndEyeController extends Controller
         $destinationPath = 'imgMaterialHooks';
         $isAdded = FALSE;
 
-        foreach ($checkThreads as $checkThread)
-            if(!strcasecmp($checkThread->intHookID, $request->input('editHookID')) == 0 &&
-                strcasecmp($checkThread->strHookBrand, trim($request->input('editHookBrand'))) == 0 &&
-                strcasecmp($checkThread->strHookSize, trim($request->input('editHookSize'))) == 0 &&
-                strcasecmp($checkThread->strHookColor, trim($request->input('editHookColor'))) == 0)
+        foreach ($checkHooks as $checkHook)
+            if(!strcasecmp($checkHook->intHookID, $request->input('editHookID')) == 0 &&
+                strcasecmp($checkHook->strHookBrand, trim($request->input('editHookBrand'))) == 0 &&
+                strcasecmp($checkHook->strHookSize, trim($request->input('editHookSize'))) == 0 &&
+                strcasecmp($checkHook->strHookColor, trim($request->input('editHookColor'))) == 0)
                 $isAdded = TRUE;
 
         if(!$isAdded){

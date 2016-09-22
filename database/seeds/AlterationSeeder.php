@@ -31,7 +31,7 @@ class AlterationSeeder extends Seeder
                 'strAlterationSegmentFK' => 'SEGM004',
                 'intAlterationMinDays' => 2, 
                 'txtAlterationDesc' =>'Use in almost all classes of shirt for resizing.',
-                'dblAlterationPrice' => 200.00,
+                'dblAlterationPrice' => 100.00,
                 'boolIsActive' => '1'
             ),
 
@@ -41,7 +41,7 @@ class AlterationSeeder extends Seeder
                 'strAlterationSegmentFK' => 'SEGM004',
                 'intAlterationMinDays' => 2, 
                 'txtAlterationDesc' =>'Use in almost all classes of shirt for resizing.',
-                'dblAlterationPrice' => 100.00,
+                'dblAlterationPrice' => 150.00,
                 'boolIsActive' => '1'
             ),
 
@@ -51,7 +51,7 @@ class AlterationSeeder extends Seeder
                 'strAlterationSegmentFK' => 'SEGM004',
                 'intAlterationMinDays' => 2, 
                 'txtAlterationDesc' =>'Use in almost all classes of shirt for resizing.',
-                'dblAlterationPrice' => 100.00,
+                'dblAlterationPrice' => 150.00,
                 'boolIsActive' => '1'
             ),
 
@@ -61,7 +61,7 @@ class AlterationSeeder extends Seeder
                 'strAlterationSegmentFK' => 'SEGM004',
                 'intAlterationMinDays' => 5, 
                 'txtAlterationDesc' =>'Use in almost all classes of shirt for resizing.',
-                'dblAlterationPrice' => 250.00,
+                'dblAlterationPrice' => 120.00,
                 'boolIsActive' => '1'
             ),
 
@@ -71,7 +71,7 @@ class AlterationSeeder extends Seeder
                 'strAlterationSegmentFK' => 'SEGM006',
                 'intAlterationMinDays' => 2, 
                 'txtAlterationDesc' =>'Use in almost all classes of shirt for resizing.',
-                'dblAlterationPrice' => 150.00,
+                'dblAlterationPrice' => 100.00,
                 'boolIsActive' => '1'
             ),
 
@@ -81,7 +81,7 @@ class AlterationSeeder extends Seeder
                 'strAlterationSegmentFK' => 'SEGM006',
                 'intAlterationMinDays' => 2, 
                 'txtAlterationDesc' =>'Use in almost all classes of shirt for resizing.',
-                'dblAlterationPrice' => 200.00,
+                'dblAlterationPrice' => 120.00,
                 'boolIsActive' => '1'
             ),
 
@@ -91,7 +91,7 @@ class AlterationSeeder extends Seeder
                 'strAlterationSegmentFK' => 'SEGM006',
                 'intAlterationMinDays' => 2, 
                 'txtAlterationDesc' =>'Use in almost all classes of shirt for resizing.',
-                'dblAlterationPrice' => 200.00,
+                'dblAlterationPrice' => 70.00,
                 'boolIsActive' => '1'
             )
 

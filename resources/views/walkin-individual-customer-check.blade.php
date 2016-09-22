@@ -55,7 +55,7 @@
 							<div class="col s5" style="padding-top:3%"><center><b><font size="+1.5">Enter Customer Email</font></b></center></div>
 							<div class="col s7">
 								<div class="input-field col s12">
-					          		<input id="strIndiEmail" name="strIndiEmail" type="email" class="validate">
+					          		<input id="strIndiEmail" name="strIndiEmail" type="email" class="validate" required>
 					          		<label class="hidden" for="email"></label>
 					          	</div>
 							</div>					  

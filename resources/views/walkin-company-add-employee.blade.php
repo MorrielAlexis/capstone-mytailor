@@ -61,7 +61,7 @@
 										@foreach($packages as $package)
 											@if($orderPackages[$i] == $package->strPackageID)
 												<input type="hidden" name="empSet[]" value="{{ $orderPackages[$i] }}" >
-												<input readonly type="text" id="empSet{!! $i !!}" value="{!! $package->strPackageName !!}"> 
+												<input readonly type="text" id="empSet{!! $i !!}" value="{!! $package->strPackageName !!}">
 											@endif
 										@endforeach
 									</div>

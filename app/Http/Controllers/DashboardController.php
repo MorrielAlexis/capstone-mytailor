@@ -38,6 +38,13 @@ class DashboardController extends Controller
             ->select('tblcustindividual.*', 'tblcustcompany.*', 'tblJobOrder.*')
             ->get();
 
+        $results = \DB::table('tblJOPayment AS a')
+            ->join('tblJobOrder as b','a.strTransactionFK',  '=' , 'b.strJobOrderID')
+            ->join('tblCustIndividual AS c', 'b.strJO_CustomerFK', '=', 'c.strIndivID')
+            ->select(\DB::raw('CONCAT(c.strIndivFName, " " , c.strIndivMName, " " , c.strIndivLName) as custName'),'a.dblOutstandingBal as balance', 'a.dtPaymentDueDate as dueDate')
+            ->orderBy('strIndivID', 'desc')
+            ->get();
+
         $joborderprog = \DB::table('tblJobOrder')
             ->leftjoin('tblcustindividual', 'tblJobOrder.strJo_CustomerFK', '=', 'tblcustindividual.strIndivID')
             ->leftjoin('tblcustcompany', 'tblJobOrder.strJo_CustomerCompanyFK', '=', 'tblcustcompany.strCompanyID')
@@ -73,14 +80,23 @@ class DashboardController extends Controller
             ->orderBy('strEmployeeID', 'desc')
             ->get();
 
-           
+        $topCustomers = \DB::select('SELECT Concat(tblCustIndividual.strIndivFName, " " , tblCustIndividual.strIndivMName, " " , tblCustIndividual.strIndivLName)as name, COUNT(strIndivID) as ctr FROM tblJobOrder,tblCustIndividual WHERE tblCustIndividual.strIndivID = tblJobOrder.strJO_CustomerFK ORDER BY ctr');
+
+        // $totalSegments = \DB::select('SELECT tblSegment.strSegmentName as name, tblSegment.strSegmentImage as image, SUM(intJO_OrderQuantity) as ctr FROM tblJOSpecific,tblSegment WHERE tblSegment.strSegmentID = tblJOSpecific.strJOSegmentFK ORDER BY ctr ');
+
+
+        // $total = \DB::select('SELECT tblSegment.strSegmentName as name, tblSegment.strSegmentImage as image, SUM(intJO_OrderQuantity) as ctr FROM tblJOSpecific,tblSegment WHERE tblSegment.strSegmentID = tblJOSpecific.strJOSegmentFK ORDER BY ctr ');
+    
+
         return view('dashboard')
              ->with('joborder', $joborder)
-             ->with('joborderongoing', $joborderongoing)
+             ->with('results', $results)
              ->with('joborderprog', $joborderprog)
              ->with('neardue', $neardue)
              ->with('totalCustIndiv', $totalCustIndiv)
              ->with('totalCustComp', $totalCustComp)
-             ->with('totalEmp', $totalEmp);
+             ->with('totalEmp', $totalEmp)
+             ->with('topCustomers', $topCustomers);
+             // ->with('totalSegments', $totalSegments);
     }
 }

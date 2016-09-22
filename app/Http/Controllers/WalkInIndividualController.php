@@ -829,7 +829,7 @@ class WalkInIndividualController extends Controller
 
     public function submit(Request $request)
     {
-        $request->session()->flash('success-message', 'Order successfully sent!');  
+        $request->session()->flash('success-message', 'Order successfully processed!');  
         $this->clearValues();
 
         return redirect('transaction/walkin-individual');

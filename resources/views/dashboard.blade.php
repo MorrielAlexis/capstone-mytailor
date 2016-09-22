@@ -10,7 +10,7 @@
                                         <p class="card-stats-title" style="font-size:18px"><i class="mdi-social-group-add"></i> Total Registered Individual Customer</p>
                                         <h4 class="card-stats-number">{{$totalCustIndiv->ctr}}</h4>
                                         <a href="{{URL::to('maintenance/individual')}}">
-                                        <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> Go to details</p>
+                                        <p class="card-stats-compare white-text"><i class="mdi-hardware-keyboard-arrow-up white-text"></i> Go to details</p>
                                         </a>
 
                                     </div>
@@ -26,8 +26,8 @@
                                     <div class="card-content cyan darken-1 white-text" style="height:138px">
                                         <p class="card-stats-title" style="font-size:18px"><i class="mdi-action-account-child"></i>Total Registered Companies</p>
                                         <h4 class="card-stats-number">{{$totalCustComp->totalCompanies}}</h4>
-                                          <a href="{{URL::to('maintenance/company')}}">
-                                        <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> Go to details
+                                        <a href="{{URL::to('maintenance/company')}}">
+                                        <p class="card-stats-compare white-text"><i class="mdi-hardware-keyboard-arrow-up white-text"></i> Go to details
                                         </p>
                                         </a>
                                     </div>
@@ -41,11 +41,11 @@
                             <div class="col s12 m6 l3">
                                 <div class="card">
                                     @foreach($totalEmp as $totalEmp)
-                                    <div class="card-content blue-grey white-text">
+                                    <div class="card-content blue-grey white-text" style="height:138px">
                                         <p class="card-stats-title" style="font-size:19px"><i class="mdi-action-accessibility"></i> Total Active Employees </p>
-                                        <h4 class="card-stats-number">{{$totalEmp->totalEmps}}</h4>
+                                        <h4 class="card-stats-number" style="margin-top:44px">{{$totalEmp->totalEmps}}</h4>
                                         <a href="{{URL::to('maintenance/employee')}}">
-                                        <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> Go to details
+                                        <p class="card-stats-compare white-text"><i class="mdi-hardware-keyboard-arrow-up white-text"></i> Go to details
                                         </p>
                                         </a>
                                     </div>
@@ -57,12 +57,14 @@
                             </div>
                             <div class="col s12 m6 l3">
                                 <div class="card">
+                                   {{--  @foreach($totalSegments as $totalSegments) --}}
                                     <div class="card-content deep-purple accent-1 white-text">
-                                        <p class="card-stats-title" style="font-size:20px"><i class="mdi-editor-insert-drive-file"></i>Today's Sale</p>
-                                        <h4 class="card-stats-number">Php.1806</h4>
+                                        <p class="card-stats-title" style="font-size:20px"><i class="mdi-editor-insert-drive-file"></i>Total Job Orders</p>
+                                        <h4 class="card-stats-number">{{-- {{$totalSegments->ctr}} --}}</h4>
                                         {{-- <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-down"></i> 3% <span class="deep-purple-text text-lighten-5">from last month</span>
                                         </p> --}}
                                     </div>
+                                  {{--   @endforeach --}}
                                     <div class="card-action  deep-purple lighten-2" style="height:40px">
                                         <div id="invoice-line"><canvas width="223" height="25" style="display: inline-block; width: 223px; height: 25px; vertical-align: top;"></canvas></div>
                                     </div>
@@ -95,7 +97,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col s12 m12 l8">
+            <div class="col s12 m12 l4">
                 <ul id="issues-collection" class="collection z-depth-3" style="height:550px">
                     <li class="collection-item avatar">
                         <i class="mdi-action-bug-report circle red darken-2"></i>
@@ -125,6 +127,21 @@
                     
                 </ul>
             </div>
+            <div class="col s12 m6 l4" >
+                <div class="col s12">
+                    <ul id="task-card" class="collection with-header z-depth-3" style="border:0;  height:550px">
+                        <li class="collection-header cyan darken-1">
+                            <h3 class="task-card-title white-text">Top Customers</h3>
+                        </li>
+                        @foreach($topCustomers as $topCustomers)
+                                <li class="collection-item dismissable" style="padding:20px;">
+                                     <a href= "{{URL::to('queries/list-of-top-customers')}}" class="waves-effect waves-teal btn-flat">{{$topCustomers->name}}</a>
+                                </li>     
+                        @endforeach    
+                    </ul>
+                </div>
+            </div>
+        </div>
             
         <div class="row" style="padding:20px">
             <div class="col s12 m6 l4" style="margin-top:30px;">
@@ -155,18 +172,18 @@
                 <div class="col s12">
                     <ul id="task-card" class="collection with-header z-depth-3" style="border:0;  height:550px">
                         <li class="collection-header green">
-                            <h3 class="task-card-title white-text">Customers with Balances</h3>
+                            <h3 class="task-card-title white-text">Customers with Balance</h3>
                         </li>
-                        @foreach($joborderongoing as $joborderongoing)
-                            @if($joborderongoing->strCompanyName == null)
+                        @foreach($results as $results)
+                           {{--  @if($results->custName == null) --}}
                                 <li class="collection-item dismissable" style="padding:20px;">
-                                     <a href= "{{URL::to('transaction/orderProgress')}}" class="waves-effect waves-teal btn-flat"> {{$joborderongoing->dtOrderExpectedToBeDone}} {{$joborderongoing->strCompanyName}}{{$joborderongoing->strIndivFName}} {{$joborderongoing->strIndivLName}}</a>
+                                     <a href= "{{URL::to('queries/customers-with-balances')}}" class="waves-effect waves-teal btn-flat">{{$results->custName}}</a>
                                 </li>
-                            @else
+                          {{--   @else
                                 <li class="collection-item dismissable" style="padding:20px;">
-                                     <a href= "{{URL::to('transaction/orderProgress')}}" class="waves-effect waves-teal btn-flat"> {{$joborderongoing->dtOrderExpectedToBeDone}} {{$joborderongoing->strCompanyName}}{{$joborderongoing->strIndivFName}} {{$joborderongoing->strIndivLName}}</a>
-                                </li>
-                            @endif        
+                                     <a href= "{{URL::to('queries/customers-with-balances')}}" class="waves-effect waves-teal btn-flat"> {{$results->custName}} </a>
+                                </li> --}}
+                        {{--     @endif    --}}     
                         @endforeach    
                     </ul>
                 </div>
