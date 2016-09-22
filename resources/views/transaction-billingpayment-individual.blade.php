@@ -461,7 +461,7 @@
 				form.style.display = "none";
 
 			}
-			alert($('#unpaid-payments').val());
+			// alert($('#unpaid-payments').val());
 		}
 						
 

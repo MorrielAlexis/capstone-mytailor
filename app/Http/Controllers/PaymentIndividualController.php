@@ -11,11 +11,18 @@ use Session;
 use PDF;
 
 use App\Individual;
+use App\Employee;
+
+
 use App\TransactionJobOrder;
 use App\TransactionJobOrderPayment;
+use App\TransactionJobOrderSpecifics;
+use App\TransactionJobOrderSpecificsPattern;
+use App\TransactionJobOrderMeasurementProfile;
+use App\TransactionJobOrderMeasurementSpecifics;
+use App\TransactionJobOrderReceipt;
 use App\TransactionPaymentReceipt;
 
-use App\Employee;
 
 class PaymentIndividualController extends Controller
 {
