@@ -940,8 +940,6 @@ class WalkInCompanyController extends Controller
 
     }//end of job order
 
-<<<<<<< HEAD
-=======
     public function removePackage(Request $request)
     {
         $to_be_deleted = ((int)$request->input('hidden_remove_package'));
@@ -1003,7 +1001,6 @@ class WalkInCompanyController extends Controller
         session()->forget('payment_id');
     }
 
->>>>>>> 69d556dec8db90b2871dad1bb0b41826db095ac5
     /*For downloadable forms*/
     public function downloadForms()
     {
