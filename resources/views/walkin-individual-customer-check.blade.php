@@ -25,7 +25,7 @@
 					
 					<!--If the customer is new-->
 					<div class="col s6">
-					{!! Form::open(['url' => 'transaction/walkin-individual-customer-information', 'method' => 'POST']) !!}
+					{!! Form::open(['url' => 'transaction/walkin-individual-customer-information', 'method' => 'GET']) !!}
 						<div class="center col s12" style="padding-top:5%">
 							<button type="submit" class="center teal lighten-2" style="padding:10%;">
 								<center><i class="mdi-social-person-add" style="font-size:80px"></i></center>
@@ -48,21 +48,21 @@
 
 					
 					<!--this will appear once the user chose the button for existing customer-->
-					{!! Form::open(['url' => 'transaction/walkin-individual-existing-show-measurement-view', 'method' => 'POST']) !!}
+					{!! Form::open(['url' => 'transaction/walkin-individual-customer-information', 'method' => 'POST', 'id' => 'customerForm']) !!}
 					<div class="customer-form col s12" id="custname" style="display:none; padding:5%">
 					<div class="col s12"><div class="divider" style="height:2px; background-color:teal; margin-top:3%"></div></div>
 						<div class="container">
 							<div class="col s5" style="padding-top:3%"><center><b><font size="+1.5">Enter Customer Email</font></b></center></div>
 							<div class="col s7">
 								<div class="input-field col s12">
-					          		<input id="strIndiEmail" name="strIndiEmail" type="email" class="validate" required>
-					          		<label class="hidden" for="email"></label>
+									<input id="custId" name="custId" type="hidden">
+					          		<input id="customerEmail" type="email" class="validate">
 					          	</div>
 							</div>					  
 					    </div>
 					<br><br>
 					<div class="col s12"><div class="divider" style="height:2px; background-color:teal; margin-bottom:1%"></div></div>
-					<right><button type="submit" class="right btn" style="background-color:teal; color:white; margin-bottom:3%">Done!</button></right>
+					<right><button type="submit" id="checkCustomer" class="right btn" style="background-color:teal; color:white; margin-bottom:3%">Done!</button></right>
 					</div>
 					{!! Form::close() !!}
 
@@ -90,3 +90,41 @@
 		document.getElementById('custname').style.display = "block";
 	}
 </script>
+
+<script >
+	$('#checkCustomer').click(function(){
+
+			var indiv = {!! json_encode($individual) !!};
+			//var companyID = "";
+			var check = 0;
+
+			for(var i = 0; i < indiv.length; i++){
+
+				if((indiv[i].strIndivEmailAddress).trim() == $('#customerEmail').val().trim())
+				{
+					/*companyID = comp[i].strCompanyID;*/
+					check = 1;
+					$('#custId').val(indiv[i].strIndivID);
+					$('#customerForm').submit();
+					break;
+				}	
+
+			}
+			if(check == 0){
+				alert("That customer does not exist!");	
+				$('#customerForm').preventDefault();
+			}
+
+		});
+
+		$(document).ready(function(){
+			  $(window).keydown(function(event){
+				    if(event.keyCode == 13) {
+				      event.preventDefault();
+				      return false;
+				    }
+				  });
+		})
+</script>
+
+@stop
