@@ -947,7 +947,7 @@ class WalkInIndividualController extends Controller
 
     public function removeItem(Request $request)
     {   
-        dd($request->input('delete-item-id'));
+
         $to_be_deleted = ((int)$request->input('delete-item-id') - 1);
         $values = session()->get('segment_values');
 
@@ -988,8 +988,6 @@ class WalkInIndividualController extends Controller
         session()->forget('custType');
         session()->forget('cust_email');
         session()->forget('exist_cust');
-        
-
     }
 
 

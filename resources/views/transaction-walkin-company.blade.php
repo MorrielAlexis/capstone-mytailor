@@ -39,7 +39,7 @@
 						<!--Modal for Reset Order-->
 						<div id="reset-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:120px;">
 							<h5><font color="red"><center><b>Warning!</b></center></font></h5>	
-							{!! Form::open() !!}
+							{!! Form::open(['url' => 'transaction/walkin-company-reset-order', 'method' => 'POST']) !!}
 									<div class="divider" style="height:2px"></div>
 									<div class="modal-content col s12">
 										<div class="col s3">
@@ -51,10 +51,10 @@
 									</div>
 
 									<div class="modal-footer col s12">
-						                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/walkin-company')}}"><font color="black"><b>OK</b></font></a>
+						                <button class="waves-effect waves-green btn-flat"><font color="black"><b>OK</b></font></button>
 						                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black"><b>Cancel</b></font></a>
 						            </div>
-								{!! Form::close() !!}
+							{!! Form::close() !!}
 						</div>
 						<!--End of Modal for Reset Order-->
 

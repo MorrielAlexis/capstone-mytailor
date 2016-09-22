@@ -386,6 +386,8 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::post('walkin-company-save-new-company','WalkInCompanyController@saveNewCompany');
 	Route::post('walkin-company-save-measurements', 'WalkInCompanyController@saveMeasurements');
 	Route::post('walkin-company-save-order', 'WalkInCompanyController@saveOrder');
+	Route::post('walkin-company-reset-order', 'WalkInCompanyController@resetOrder');
+	Route::post('walkin-company-remove-package', 'WalkInCompanyController@removePackage');
 
 });
 
