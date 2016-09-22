@@ -517,7 +517,7 @@
 					$('#balance-hidden').val((grandtotal - grandtotal).toFixed(2));
 				}
 
-				if($('specify_pay').prop("checked")){
+				if($('#specify_pay').prop("checked")){
 					//$("#amount-payable").removeAttr('readonly');
 					//$('#amount-payable').prop('readonly', false);
 				}

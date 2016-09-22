@@ -80,15 +80,13 @@
                           <label style="color:gray" for="last_name"><b><span class="red-text"><b>*</b></span>Last Name </b></label>
                         </div>
 
-                        <div class="input-field col s12" style="color:black">
-            							<!--<p style="color:gray"><b>Sex</b></p>-->
-            							<select value="" name="strIndivSex" required>
-                              <option value="M">Male</option>
-                              <option value="F">Female</option>
-                          </select>    
-                          <label>Sex</label>
-            						</div>
-                    </div>    
+                        <div style="color:black" class="input-field col s12">                 
+                            <select name="addSex">
+                              <option value="" disabled selected color="red">Sex</option>
+                              <option value="M">Female</option>
+                              <option value="F">Male</option>
+                            </select>
+                        </div>    
 
                     <span class="col s12" style="color:teal; margin-top:20px"><b>Customer Address</b></span>
                     <div class="card-panel col s12" style="border:3px solid gray; padding:15px">
@@ -210,16 +208,11 @@
 
 @stop
 
-@section('scripts')
-
-	<script>
-	  $(document).ready(function() {
-	    $('select').material_select();
-	  });
-	</script>	
+@section('scripts')	
 
 	<script>
 	$(document).ready(function(){
+      $('select').material_select();
     	$('body').on('load', 'ul.tabs', function() {
    	 	$('ul.tabs').tabs();
 		});
