@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UtilitiesVatModel extends Model
+class UtilitiesVat extends Model
 {
     protected $table = 'tblVat';
     

@@ -93,7 +93,7 @@
 														@if($package_segments[$j][$k]->strSegmentID == $detail->strMeasDetSegmentFK)
 															<div class="center col s6">
 																<div class="right col s5">
-																	<right><p>{{ $detail->strMeasDetailName }} <font color="red">(cm)</font></p></right>
+																	<right><p><font color="teal"><b>{{ $detail->strMeasDetailName }}<b>(cm)</font></p></right>
 																</div>
 																<div class="col s7">
 																	<input name="{{ $i }}{{ $k }}[]" id="measure_name" type="text" class="validate" required>

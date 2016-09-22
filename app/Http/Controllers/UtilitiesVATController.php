@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Session;
 use App\UtilitiesGeneral;
-use App\UtilitiesVatModel;
+use App\UtilitiesVat;
 
 
 class UtilitiesVATController extends Controller
@@ -32,7 +32,7 @@ class UtilitiesVATController extends Controller
 
         $ID = $ids["0"]->intVatID;
         $newID = $this->smartCounter($ID);  
-        $tax = UtilitiesVatModel::all();
+        $tax = UtilitiesVat::all();
 
         return view('utilities.utilities-VAT')
         ->with('tax', $tax);
@@ -42,7 +42,7 @@ class UtilitiesVATController extends Controller
     public function updateVat(Request $request)
     {
         
-        $tax = UtilitiesVatModel::find($request->input('editVatID'));
+        $tax = UtilitiesVat::find($request->input('editVatID'));
 
                 $tax->strTaxName = trim($request->input('editTaxName'));    
                 $tax->dblTaxPercentage = trim($request->input('editTaxPercent'));
