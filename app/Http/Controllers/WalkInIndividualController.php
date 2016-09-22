@@ -697,7 +697,7 @@ class WalkInIndividualController extends Controller
                     //dd($jobSpecsID);    
             $jobOrderSpecifics->save();
 
-            for($j = 0; $j < count($designs); $j++){ //dd($designs);
+            for($j = 0; $j <= count($designs); $j++){ //dd($designs);
                 //for($k = 0; $k < count($tempQuantity[$j]); $k++){
                     $jobOrderSpecificsPattern = TransactionJobOrderSpecificsPattern::create(array(
                             'strJobOrderSpecificFK' => $jobSpecsID,
