@@ -311,7 +311,7 @@
 
 							<div class="col s6">
 								<div class="col s6" style="margin-top:7%">
-											<a style="color:white; margin-top:10px" class="modal-trigger btn tooltipped teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a segment pattern" href="#pattern{{ $i+1 }}"><i class="mdi-content-content-cut" style="padding-right:0.5%"></i><font size="-1" style="padding-bottom:-5%"><b>Choose Design</b></font></a>
+											<a style="color:white; margin-top:10px" class="modal-trigger btn tooltipped teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a segment pattern" href="#pattern{{ $i+1 }}"><i class="mdi-content-content-cut"></i><font size="-1" style="padding-bottom:-5%"><b>Choose Design</b></font></a>
 											
 											<!--<div class="file-field input-field">
 												<a style="color:black" class="modal-trigger btn tooltipped btn-floating teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a segment pattern" href="#editDesign"><i class="mdi-editor-mode-edit"></i></a>
@@ -323,7 +323,7 @@
 								</div>
 								
 								<div class="col s6" style="margin-top:7%;">
-											<a style="color:white; margin-top:10px" class="modal-trigger btn tooltipped teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#fabric{{ $i+1 }}"><i class="mdi-maps-layers" style="padding-right:0.5%"></i><font size="-1" style="padding-bottom:-5%"><b>Choose Fabric</b></font></a>
+											<a style="color:white; margin-top:10px" class="modal-trigger btn tooltipped teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#fabric{{ $i+1 }}"><i class="mdi-maps-layers"></i><font size="-1" style="padding-bottom:-5%"><b>Choose Fabric</b></font></a>
 											<!--<div class="file-field input-field">	
 												<a style="color:black" class="modal-trigger btn tooltipped btn-floating teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#editFabric"><i class="mdi-editor-mode-edit"></i></a>
                      								
@@ -356,7 +356,7 @@
 
 						<div class="col s12">
 							<button type="submit" class="right waves-effect waves-green btn" style="background-color:teal; margin-left:80px; margin-right:30px">Save</button>
-							<a href="{{URL::to('transaction/walkin-company-customize-orders')}}" class="right waves-effect waves-green btn" style="background-color:teal">Cancel</a>
+							<a href="{{URL::to('transaction/walkin-company-customize-orders')}}" class="left waves-effect waves-green btn" style="background-color:teal; margin-left:30px">Cancel</a>
 						</div>
 					{!! Form::close() !!}
 						<div class="col s12"><div class="divider" style="height:2px; margin-top:20px; margin-bottom:20px"></div></div>      	

@@ -68,7 +68,7 @@
 
 <!-- END OF LOOP -->		@foreach($segments as $i => $segment)
 							<div class="col s6">
-							<a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#remove{{ $i+1 }}"><i class="mdi-navigation-close"></i></a>
+							<a style="color:black; margin-bottom: 3%" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#remove{{ $i+1 }}"><i class="mdi-navigation-close"></i></a>
 
 							<center><img src="{{URL::asset($segment['strSegmentImage'])}}" style="height:450px; width:450px; border:3px gray solid"></center>								          	
 							<center><a href="#!" class="btn tooltipped"  data-position="bottom" data-delay="50" data-tooltip="Click to add similar garment and specify new design and fabric" style="background-color:teal; white:white">Add</a></center>
@@ -77,7 +77,7 @@
 							<br>
 							<div class="col s6">
 								<div class="col s6" style="margin-top:7%">
-									<a style="background-color:#a7ffeb; color:black; margin-top:10px" class="modal-trigger btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to choose a segment pattern" href="#pattern{{ $i+1 }}"><i class="mdi-content-content-cut" style="padding-right:0.5%"></i><font size="-1" style="padding-bottom:-5%"><b>Choose Design</b></font></a>
+									<a style="background-color:#a7ffeb; color:black; margin-top:10px" class="modal-trigger btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to choose a segment pattern" href="#pattern{{ $i+1 }}"><i class="mdi-content-content-cut"></i><font size="-1" style="padding-bottom:-5%"><b>Choose Design</b></font></a>
 								<!--Modal for Choosing design-->
 								<div id="pattern{{ $i+1 }}" class="modal modal-fixed-footer" style="width:80%; height:85%; margin-top:0">
 									<h5><font color = "#1b5e20"><center>List of Available Designs</center> </font> </h5>
@@ -245,7 +245,7 @@
 								<!--End of modal for custom fabric-->
 								
 								<div class="col s6" style="margin-top:7%">
-									<a style="background-color:#a7ffeb; color:black; margin-top:10px" class="modal-trigger btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#fabric{{ $i+1 }}"><i class="mdi-maps-layers" style="padding-right:0.5%"></i><font size="-1" style="padding-bottom:-5%"><b>Choose Fabric</b></font></a>
+									<a style="background-color:#a7ffeb; color:black; margin-top:10px" class="modal-trigger btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#fabric{{ $i+1 }}"><i class="mdi-maps-layers"></i><font size="-1" style="padding-bottom:-5%"><b>Choose Fabric</b></font></a>
 									<div id="fabric{{ $i+1 }}" class="modal modal-fixed-footer" style="width:80%; height:85%; margin-top:0">
 	 									<h5><font color = "#1b5e20"><center>List of Available Fabrics</center> </font> </h5>
 	    
