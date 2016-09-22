@@ -59,8 +59,6 @@ class WalkInCompanyController extends Controller
         session(['package_values' => $values]);
         session(['package_quantity' => (int)$quantity]);
         session(['package_segment_pattern' => $data]);
-        session(['package_segment_fabric' => $data]);
-        session(['package_pattern_fabric' => $data]);
         session(['employee_fname' => $data]);
         session(['employee_lname' => $data]);
         session(['employee_mname' => $data]);
@@ -70,9 +68,9 @@ class WalkInCompanyController extends Controller
         $packages = Package::all();
 
         return view('transaction-walkin-company')
-            ->with('packages', $packages)
-            ->with('values', $values)
-            ->with('quantity', $quantity);
+        ->with('packages', $packages)
+        ->with('values', $values)
+        ->with('quantity', $quantity);
     }
 
     public function showPackages()
@@ -95,9 +93,9 @@ class WalkInCompanyController extends Controller
         $packages = Package::all();
 
         return view('transaction-walkin-company')
-            ->with('packages', $packages)
-            ->with('values', $values)
-            ->with('quantity', $quantity);
+        ->with('packages', $packages)
+        ->with('values', $values)
+        ->with('quantity', $quantity);
     }
 
     public function showOrder()
@@ -138,9 +136,8 @@ class WalkInCompanyController extends Controller
 
         session(['package_segments' => $segments]);
         session(['package_values' => $values]);
-
         return view('walkin-company-customize-order')
-            ->with('values', $values);
+        ->with('values', $values);
     }//page before customization
 
     public function listOfOrders(Request $request)
@@ -150,6 +147,20 @@ class WalkInCompanyController extends Controller
 
         session(['package_data' => $data_segment]);
         session(['package_quantity' => $data_quantity]);
+
+        $order = session()->get('package_data');
+        $quantity = session()->get('package_quantity');
+        $orderPackages = [];
+        $k = 0;
+
+        for($i = 0; $i < count($quantity); $i++){
+            for($j = 0; $j < $quantity[$i]; $j++){
+                $orderPackages[$k] = $order[$i];
+                $k++;
+            }
+        }
+
+        session(['package_ordered' => $orderPackages]);
 
         return redirect('transaction/walkin-company-show-order');
     }
@@ -214,7 +225,6 @@ class WalkInCompanyController extends Controller
     {   
         $to_be_customized = $request->input('hidden-package-id');
         $customized_index = $request->input('hidden-package-index');
-
         session(['package_customize' => $to_be_customized]);
         session(['package_customize_index' => $customized_index]);
         //dd($customized_index);
@@ -244,18 +254,16 @@ class WalkInCompanyController extends Controller
             }
             $k = 0;
         }
+        dd($customFabric);
         for($i = 0; $i < count($values); $i++){
-            for($j = 0; $j < count($patterns[$i]); $j++){
-                $sqlStyles[$i][$j] = \DB::table('tblSegmentPattern AS a')
-                    ->leftJoin('tblSegmentStyleCategory AS b', 'a.strSegPStyleCategoryFK', '=', 'b.strSegStyleCatID')
-                    ->leftJoin('tblSegment AS c', 'b.strSegmentFK', '=', 'strSegmentID')
-                    ->select('c.strSegmentID', 'a.strSegPStyleCategoryFK', 'a.strSegPatternID', 
-                       'a.strSegPName', 'b.strSegStyleName', 'a.dblPatternPrice')
-                    ->where('a.strSegPatternID', $patterns[$i][$j])
-                    ->first();
-            }
+            $sqlStyles[$i] = \DB::table('tblSegmentPattern AS a')
+            ->leftJoin('tblSegmentStyleCategory AS b', 'a.strSegPStyleCategoryFK', '=', 'b.strSegStyleCatID')
+            ->leftJoin('tblSegment AS c', 'b.strSegmentFK', '=', 'strSegmentID')
+            ->select('c.strSegmentID', 'a.strSegPStyleCategoryFK', 'a.strSegPatternID', 
+               'a.strSegPName', 'b.strSegStyleName', 'a.dblPatternPrice')
+            ->whereIn('a.strSegPatternID', $patterns[$i])
+            ->get();
         }
-
         for($i = 0; $i < count($values); $i++)
         {   
             $tempFabrics[$i] = $request->input('fabrics' . ($i+1));
@@ -263,11 +271,11 @@ class WalkInCompanyController extends Controller
 
         $sqlFabric = \DB::table('tblFabric')
             ->select('strFabricID', 'strFabricName', 'dblFabricPrice')
+            ->whereIn('strFabricID', $tempFabrics)
             ->get();
             
         $fabrics;
-        $tempCustomFabrics = [];
-        //dd(count($customFabric[1]));
+
         for($i = 0; $i < count($values); $i++){
             for($j = 0; $j < count($sqlFabric); $j++){
                 if($tempFabrics[$i] == $sqlFabric[$j]->strFabricID){
@@ -276,27 +284,15 @@ class WalkInCompanyController extends Controller
             }
         }  
 
-        for($i = 0; $i < count($values); $i++){
-            for($j = 0; $j < count($customFabric[$i]); $j++){
-                for($k = 0; $k < count($sqlFabric); $k++){
-                    if($customFabric[$i][$j] == $sqlFabric[$k]->strFabricID){
-                        $tempCustomFabrics[$i][$j] = $sqlFabric[$k];
-                    }
-                }
-            }
-        }
-
-        $tempPattern = session()->get('package_segment_pattern');
-        $tempPattern[(int)$request->input('hidden-package-index')] = $sqlStyles;
-        $tempFabric = session()->get('package_segment_fabric');
-        $tempFabric[(int)$request->input('hidden-package-index')] = $fabrics;
-        $tempCustomFabric = session()->get('package_pattern_fabric');
-        $tempCustomFabric[(int)$request->input('hidden-package-index')] = $tempCustomFabrics;
-
-        session(['package_segment_pattern' => $tempPattern]);
-        session(['package_segment_fabric' => $tempFabric]);
-        session(['package_pattern_fabric' => $tempCustomFabric]);
-
+/*        $tempPattern[(int)$request->input('hidden-package-index')] = $sqlStyles;
+            $tempFabric[(int)$request->input('hidden-package-index')] = $fabrics;*/
+            $tempPattern = session()->get('package_segment_pattern');
+            $tempPattern[(int)$request->input('hidden-package-index')] = $sqlStyles;
+            $tempFabric = session()->get('package_segment_fabric');
+            $tempFabric[(int)$request->input('hidden-package-index')] = $fabrics;
+            session(['package_segment_pattern' => $tempPattern]);
+            session(['package_segment_fabric' => $tempFabric]);
+            
         return redirect('transaction/walkin-company-show-order');
     }
 
@@ -313,24 +309,12 @@ class WalkInCompanyController extends Controller
         for($i = 0; $i < count($quantity); $i++)
             $totalQuantity = $totalQuantity + $quantity[$i];
 
-        $order = session()->get('package_data');
-        $quantity = session()->get('package_quantity');
-        $orderPackages = [];
-
-        for($i = 0; $i < count($quantity); $i++){
-            for($j = 0; $j < $quantity[$i]; $j++){
-                $orderPackages[$j] = $order[$i];
-            }
-        }
-
-        session(['package_ordered' => $orderPackages]);
-
         return view('walkin-company-add-employee')
-            ->with('total_quantity', $totalQuantity)
-            ->with('orderPackages', session()->get('package_ordered'))
-            ->with('packages', $packages)
-            ->with('orders', $order)
-            ->with('segments', $segments);
+        ->with('total_quantity', $totalQuantity)
+        ->with('orderPackages', session()->get('package_ordered'))
+        ->with('packages', $packages)
+        ->with('orders', $order)
+        ->with('segments', $segments);
     }//specifications ng employee
 
     public function saveEmployees(Request $request)
@@ -397,7 +381,7 @@ class WalkInCompanyController extends Controller
         session(['employee_segment_qty' => $employeeSegmentQuantity]);
         session(['employee_segment_total' => $employeeSegmentTotal]);
 
-        return redirect('transaction/walkin-company/customer-check');
+        return redirect('transaction/walkin-company-show-order');
     }//save employee specs
 
     public function retailProduct()
@@ -953,66 +937,6 @@ class WalkInCompanyController extends Controller
         //dd(session()->get('package_segments'));
 
     }//end of job order
-
-    public function removePackage(Request $request)
-    {
-        $to_be_deleted = ((int)$request->input('hidden_remove_package'));
-        $values = session()->get('package_values');
-        $data = session()->get('package_data');
-        $quantity = session()->get('package_quantity');
-
-        unset($values[$to_be_deleted]);
-        unset($data[$to_be_deleted]);
-        unset($quantity[$to_be_deleted]);
-        $values = array_slice($values, 0);
-        $data = array_slice($data, 0);
-        $quantity = array_slice($quantity, 0);
-
-        session()->forget('package_values');
-        session()->forget('package_data');
-        session()->forget('package_quantity');
-
-        session(['package_values' => $values]);
-        session(['package_data' => $data]);
-        session(['package_quantity' => $quantity]);
- 
-        return redirect('transaction/walkin-company-show-order');
-    }
-
-    public function resetOrder()
-    {
-        $this->clearValues();
-
-        return redirect('transaction/walkin-company');
-    }
-
-    public function clearValues()
-    {
-        session()->forget('package_data');
-        session()->forget('package_values');
-        session()->forget('package_quantity');
-        session()->forget('package_segments');
-        session()->forget('package_ordered');
-        session()->forget('package_segments_customize');
-        session()->forget('package_customize_index');
-        session()->forget('package_customize');
-        session()->forget('package_segment_pattern');
-        session()->forget('package_segment_fabric');
-        session()->forget('package_pattern_fabric');
-        session()->forget('employee_fname');
-        session()->forget('employee_lname');
-        session()->forget('employee_mname');
-        session()->forget('employee_set');
-        session()->forget('employee_sex');
-        session()->forget('employee_segment_qty');
-        session()->forget('employee_segment_total');
-        session()->forget('compID');
-        session()->forget('compJOID');
-        session()->forget('employee_id');
-        session()->forget('measurement_value');
-        session()->forget('measurement_id');
-        session()->forget('payment_id');
-    }
 
     /*For downloadable forms*/
     public function downloadForms()

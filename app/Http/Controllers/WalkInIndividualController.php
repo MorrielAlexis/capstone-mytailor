@@ -168,8 +168,7 @@ class WalkInIndividualController extends Controller
         return view('walkin-individual-catalogue-design');
     }
 
-    //if a customer already has an existing profile with the shop
-    public function customerCheck(Request $request)
+    public function saveSegments(Request $request)
     {
         $data_quantity = array_slice(array_filter($request->input('int-segment-qty')), 0);
         $values = session()->get('segment_values');
@@ -230,9 +229,17 @@ class WalkInIndividualController extends Controller
         session(['segment_quantity' => $data_quantity]);
 
         session(['segment_design' => $sqlStyles]);
+
+        return redirect('transaction/walkin-individual/customer-check');
+    }
+
+    //if a customer already has an existing profile with the shop
+    public function customerCheck()
+    {
+        $individual = Individual::all();
         
         return view('walkin-individual-customer-check')
-                ->with('segments', $values);
+                ->with('individual', $individual);
     }
 
     public function customerInformation(Request $request)
@@ -266,8 +273,6 @@ class WalkInIndividualController extends Controller
             $custID = $this->smartCounter($ID);  
         }             
 
-        $custType = 0;
-        session(['custType' => $custType]);
         session(['custID' => $custID]);
         session(['joID' => $newID]);
 
@@ -298,46 +303,15 @@ class WalkInIndividualController extends Controller
                     'boolIsActive' => 1
                     )); 
 
-//dd($request->input('strIndivSex'));
-
                 $individual->save();
                 
         return redirect('transaction/walkin-individual-show-measurement-view');
     }
 
-    public function showMeasurementView(Request $request)
+    public function existingCustomerInformation(Request $request)
     {
-        $values = session()->get('segment_values');
-        $data = session()->get('segment_data');
-        $quantity = session()->get('segment_quantity');
-        for($i=0; $i<count($quantity); $i++){
-            $totalqty = $quantity[$i];
-        }
-        //dd($totalqty);
-
-        $measurementCategory = MeasurementCategory::all();
-        $standardSizeCategory = StandardSizeCategory::all();
-
-        $measurements = \DB::table('tblMeasurementCategory AS a')
-                    ->leftJoin('tblMeasurementDetail AS b', 'a.strMeasurementCategoryID', '=', 'b.strMeasCategoryFK')
-                    ->leftJoin('tblSegment AS c', 'b.strMeasDetSegmentFK', '=', 'c.strSegmentID')
-                    ->select('b.*')
-                    ->whereIn('b.strMeasDetSegmentFK', $data)
-                    ->get();
-
-        return view('walkin-individual-checkout-measure')
-                ->with('segments', $values)
-                ->with('quantities', $quantity)
-                ->with('measurements', $measurements)
-                ->with('categories', $measurementCategory)
-                ->with('standard_categories', $standardSizeCategory);
-    }
-
-    public function showMeasurementExistView(Request $request)
-    {
-        //$type = session()->get('custType');
-        //if($type == null){
-            $custEmail = trim($request->input('strIndiEmail')); //dd($custEmail);
+        $custID = $request->input('custId'); //dd($custID);
+        //$custEmail = trim($request->input('strIndiEmail')); //dd($custEmail);
 
             $joID = \DB::table('tblJobOrder')
                 ->select('strJobOrderID')
@@ -353,14 +327,14 @@ class WalkInIndividualController extends Controller
                 $newID = $this->smartCounter($ID);  
             } 
 
-            session(['cust_email' => $custEmail]);
+            session(['custID' => $custID]);
             session(['joID' => $newID]);
-        //}
 
-        //if($type == 0){ //do nothing
-        //}
-        
+        return redirect('transaction/walkin-individual-show-measurement-view');
+    }
 
+    public function showMeasurementView(Request $request)
+    {
         $values = session()->get('segment_values');
         $data = session()->get('segment_data');
         $quantity = session()->get('segment_quantity');
