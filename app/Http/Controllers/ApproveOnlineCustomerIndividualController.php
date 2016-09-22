@@ -53,7 +53,7 @@ class ApproveOnlineCustomerIndividualController extends Controller
             ->select('tblJOSpecific.*', 'tblFabric.strFabricName', 'tblSegment.strSegmentName')
             ->get();   
 
-            //dd($JOSpecs);
+            // dd($JOSpecs);
 
             //dd($onlineJO->strJobOrderID);
         return view('transaction-onlinecustomerindividual')
