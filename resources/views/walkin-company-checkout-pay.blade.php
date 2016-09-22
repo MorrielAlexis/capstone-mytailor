@@ -58,28 +58,28 @@
 		                        		<tr style="border:1px teal solid">
 		                        			<th style="border:1px teal solid">Quantity</th>
 		                        			<th colspan="3" style="border:1px teal solid">Description</th>
-		                        			<th style="border:1px teal solid; border-bottom:none">Unit Price</th>
-		                        			<th style="border:1px teal solid">Total Price</th>
+		                        			<th style="border:1px teal solid; border-bottom:none"></th>
+		                        			<th style="border:1px teal solid"></th>
 		                        		</tr>
 		                        		<tr style="border:1px teal solid">
 		                        			<th style="border:1px teal solid; border-top:none"></th>
 		                        			<th style="border:1px teal solid" colspan="2">Item Name</th>
-		                        			<th style="border:1px teal solid">Price</th>
-		                        			<th style="border:1px teal solid"></th>
-		                        			<th style="border:1px teal solid"></th>
+		                        			<th style="border:1px teal solid">Package Price</th>
+		                        			<th style="border:1px teal solid">Unit Price</th>
+		                        			<th style="border:1px teal solid">Total Price</th>
 		                        		</tr>
 		                        	</thead>
 		                        	<tbody style="border:1px teal solid">
 		                        	@for($i = 0; $i < count($package_values); $i++)
 		                        		<tr style="border:1px teal solid">
-		                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>1</b></td>
-		                        			<td style="border:1px teal solid; padding-left:5%; padding-right:5%; background-color:rgba(52, 162, 232, 0.2)"><a class="btn-flat tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to expand and see package details" onclick="packageDetail({{ $i }})" style="color:black"><b>One (1) set {{ $package_values[$i]->strPackageName}}</b></a></td>
+		                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>{{ $package_quantity[$i] }}</b></td>
+		                        			<td style="border:1px teal solid; padding-left:5%; padding-right:5%; background-color:rgba(52, 162, 232, 0.2)"><a class="btn-flat tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to expand and see package details" onclick="packageDetail({{ $i }})" style="color:black"><b>{{ $package_values[$i]->strPackageName}}</b></a></td>
 		                        			<td style="border:1px teal solid; padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"></td>
-		                        			<td style="border:1px teal solid; padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($style_total[$i] + $fabric_total[$i] + $segment_total[$i], 2) }}</b></td>
-		                        			<td style="border:1px teal solid; padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($style_total[$i] + $fabric_total[$i] + $segment_total[$i], 2) }}</b></td>
-		                        			<td style="border:1px teal solid; padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($style_total[$i] + $fabric_total[$i] + $segment_total[$i], 2) }}</b></td>
+		                        			<td style="border:1px teal solid; padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)">{{ number_format($package_values[$i]->dblPackagePrice, 2) }} PHP</td>
+		                        			<td style="border:1px teal solid; padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)">{{ number_format($package_values[$i]->dblPackagePrice * $package_quantity[$i] , 2) }}</b></td>
+		                        			<td style="border:1px teal solid; padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"><b>{{ number_format($style_total[$i] + $fabric_total[$i] + $segment_total[$i] + ($package_values[$i]->dblPackagePrice * $package_quantity[$i]), 2) }} PHP</b></td>
 		                        		</tr>
-		                        		@endfor			                        	
+		                        	@endfor			                        	
 		                        	</tbody>
 		                        </table>			
 						</div>
@@ -87,7 +87,7 @@
 					<!--PACKAGE DETAIL WILL BE HERE-->
 					@for($i = 0; $i < count($package_values); $i++)
 						
-						<div class="card horizontal col s12 package-detail hidden" id="package-detail{{ $i }}" style="display:none; margin-top:3%; padding-bottom:4%; border:1px #e0f2f1 outset;">
+						<div class="card horizontal col s12 package-detail" id="package-detail{{ $i }}" style="display:none; margin-top:3%; padding-bottom:4%; border:1px #e0f2f1 outset;">
 						<i class="right mdi-navigation-close tooltipped" data-poition="bottom" data-delay="50" data-tooltip="Click to close" onclick="packageClose({{$i}})" style="font-size:30px"></i>
 							<center><h7 style="padding-top:1%"><b>Package Detail for <font color="teal">{{ $package_values[$i]->strPackageName}}</font></b></h7></center>
 							<table class="table centered z-depth-1">
@@ -114,16 +114,16 @@
 			                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)">{{ $segment_qty[$i][$j] }}</td>
 			                        			<td style="border:none; background-color:rgba(52, 162, 232, 0.2)">{{ $package_segments[$i][$j]->strSegmentName }}</td>
 			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)"><br> <font color="gray"><b><i></i></b></font></td>
-			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">P {{ number_format($package_segments[$i][$j]->dblSegmentPrice, 2) }}</td>
-			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">P {{ number_format($package_segments[$i][$j]->dblSegmentPrice, 2) }}</td>
-			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">P {{ number_format($package_segments[$i][$j]->dblSegmentPrice * $segment_qty[$i][$j], 2) }}</td>
+			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">{{ number_format($package_segments[$i][$j]->dblSegmentPrice, 2) }} PHP</td>
+			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">{{ number_format($package_segments[$i][$j]->dblSegmentPrice + $segment_fabrics[$i][$j]->dblFabricPrice + $segment_patterns[$i][$j][0]->dblPatternPrice, 2) }} PHP</td>
+			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">{{ number_format(($package_segments[$i][$j]->dblSegmentPrice + $segment_fabrics[$i][$j]->dblFabricPrice + $segment_patterns[$i][$j][0]->dblPatternPrice) * $segment_qty[$i][$j], 2) }} PHP</td>
 			                        			
 			                        		</tr>
 			                        		<tr style="border:1px teal solid">
 			                        			<td style="border:1px teal solid"></td>
 			                        			<td class="right" style="border:none; color:teal; padding-right:10%">Fabric Name</td>
 			                        			<td style="border:1px teal solid">{{ $segment_fabrics[$i][$j]->strFabricName }}</td>
-			                        			<td style="border:1px teal solid">P {{ number_format($segment_fabrics[$i][$j]->dblFabricPrice, 2)}}</td>
+			                        			<td style="border:1px teal solid">{{ number_format($segment_fabrics[$i][$j]->dblFabricPrice, 2)}} PHP</td>
 			                        			<td style="border:1px teal solid"></td>
 			                        			<td style="border:1px teal solid"></td>		                        			
 		                        			</tr>
@@ -131,7 +131,7 @@
 				                        		<td style="border:1px teal solid"></td>
 				                        		<td class="right" style="border:none; color:teal; padding-right:10%">Style Name and Pattern</td>
 				                        		<td style="border:1px teal solid">{{ $segment_patterns[$i][$j][0]->strSegStyleName }}<br> <font color="gray"><b><i>{{ $segment_patterns[$i][$j][0]->strSegPName }}</i></b></font></td>
-				                        		<td style="border:1px teal solid">P {{ number_format($segment_patterns[$i][$j][0]->dblPatternPrice, 2		) }}</td>
+				                        		<td style="border:1px teal solid">{{ number_format($segment_patterns[$i][$j][0]->dblPatternPrice, 2) }}PHP</td>
 				                        		<td style="border:1px teal solid"></td>
 				                        		<td style="border:1px teal solid"></td>		                        			
 			                        		</tr>
@@ -182,12 +182,16 @@
                         	<div class="col s4" style="color:gray; font-size:15px"><p><b>Terms of Payment</b></p></div>
                         	<div class="col s8" style="padding:18px; padding-top:30px">
 	                        	<div class="col s6">
-			          				<input name="termsOfPayment" value="Half Payment" type="radio" class="filled-in payment" id="half_pay"/>
+			          				<input name="termsOfPayment" value="Half Payment" readonly type="radio" class="filled-in payment" id="half_pay"/>
 	      							<label for="half_pay">Half (50%)</label>
 								</div>
 								<div class="col s6">
-				          			<input name="termsOfPayment" value="Full Payment" type="radio" class="filled-in payment" id="full_pay" />
+				          			<input name="termsOfPayment" value="Full Payment" readonly type="radio" class="filled-in payment" id="full_pay" />
 		      						<label for="full_pay">Full (100%)</label>
+		      					</div>
+								<div class="col s12 center" style="padding:18px; padding-top:20px">
+				          			<input name="termsOfPayment" value="Specific Amount" type="radio" class="filled-in payment" id="specify_pay" />
+		      						<label for="specify_pay">Specify Amount</label>
 		      					</div>
 	      					</div>
 
@@ -306,17 +310,21 @@
 		  				$('#tabMeasurementDetail').style('display', 'block');
 		  			}, 2000);
 		*/  	});
+
 		  	var a = {!! json_encode($style_total) !!};
 		  	var b = {!! json_encode($fabric_total) !!};
 		  	var c = {!! json_encode($segment_total) !!};
+		  	var d = {!! json_encode($package_values) !!};
+		  	var e = {!! json_encode($package_quantity) !!};
+
 		  	var vat = {!! json_encode($vat) !!};
 
 		  	var total = 0;
 		  	for(var i = 0; i < a.length; i++)
 		  	{
-		  		total += a[i] + b[i] + c[i];
+		  		total += a[i] + b[i] + c[i] + (d[i].dblPackagePrice * e[i]);
 		  	}
-
+		  	
 		  	$('#estimated_total_sales').val(((total - (total * (vat/100))).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		  	$('#vat_price').val(((total * (vat/100)).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		  	$('#total_price').val((total.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ","));
@@ -338,33 +346,52 @@
 	<script>
 		$('.payment').change(function(){
 				if($('#half_pay').prop("checked")){
+					$("#amount-tendered").prop("readonly", false);
 				  	var a = {!! json_encode($style_total) !!};
 				  	var b = {!! json_encode($fabric_total) !!};
 				  	var c = {!! json_encode($segment_total) !!};
+				  	var d = {!! json_encode($package_values) !!};
+				  	var e = {!! json_encode($package_quantity) !!};
+
+				  	var vat = {!! json_encode($vat) !!};
+
 				  	var total = 0;
 				  	for(var i = 0; i < a.length; i++)
 				  	{
-				  		total += a[i] + b[i] + c[i];
+				  		total += a[i] + b[i] + c[i] + (d[i].dblPackagePrice * e[i]);
 				  	}
+		  	
 					$('#hidden-amount-payable').val((total/2).toFixed(2));
 					$('#amount-payable').val(((total/2).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 					$('#balance').val(((total - (total/2)).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 					$('#hidden-balance').val((total - (total/2)).toFixed(2));
 				}
 				if($('#full_pay').prop("checked")){
+					$("#amount-tendered").prop("readonly", false);
 				  	var a = {!! json_encode($style_total) !!};
 				  	var b = {!! json_encode($fabric_total) !!};
 				  	var c = {!! json_encode($segment_total) !!};
+				  	var d = {!! json_encode($package_values) !!};
+				  	var e = {!! json_encode($package_quantity) !!};
+
+				  	var vat = {!! json_encode($vat) !!};
+
 				  	var total = 0;
 				  	for(var i = 0; i < a.length; i++)
 				  	{
-				  		total += a[i] + b[i] + c[i];
-				  	}
+				  		total += a[i] + b[i] + c[i] + (d[i].dblPackagePrice * e[i]);
+				  	}		  	
 					
 					$('#hidden-amount-payable').val(total.toFixed(2));
 					$('#amount-payable').val((total.toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 					$('#balance').val(((total - total).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 					$('#hidden-balance').val((total - (total)).toFixed(2));
+				}
+				if($('#specify_pay').prop("checked")){
+					$("#amount-payable").removeAttr('readonly');
+					$("#amount-payable").val("");
+					$("#amount-tendered").prop("readonly", true);
+					$("#amount-tendered").val("");
 				}
 		});
 		$('#amount-tendered').blur(function(){	
@@ -374,27 +401,51 @@
 			}else{
 				$('#amount-change').val(amountChange.toFixed(2));
 			}
+
 		});
 		$('#amount-payable').blur(function(){	
 			// if($('#amount-to-pay').val() > $('#total_price').val()){
 			// 	alert("You can't choose to pay more than the total.");
 			// 	$('#amount-to-pay').val("");
 			// }
-				var amountChange = $('#amount-tendered').val() - $('#hidden-amount-payable').val();
-				$('#amount-change').val(amountChange.toFixed(2));	
-				// $('#outstanding-bal').val(($('#total_price').val() - $('#amount-to-pay').val()).toFixed(2) + ' PHP');				
+			$('#amount-tendered').val($("#amount-payable").val());
+
+			if($('#specify_pay').is(":checked"))
+			{
+
 				var a = {!! json_encode($style_total) !!};
 				var b = {!! json_encode($fabric_total) !!};
 				var c = {!! json_encode($segment_total) !!};
+				var d = {!! json_encode($package_values) !!};
+				var e = {!! json_encode($package_quantity) !!};
+
 				var total = 0;
 				for(var i = 0; i < a.length; i++)
 				{
-					total += a[i] + b[i] + c[i];
-				}
+				  	total += a[i] + b[i] + c[i] + (d[i].dblPackagePrice * e[i]);
+				}	
+
+				$('#hidden-amount-payable').val($("#amount-payable").val());
+				$('#balance').val(parseFloat(($("#amount-payable").val())).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+				$('#hidden-balance').val((total - $("#amount-payable").val()).toFixed(2));
+			}
+
+				var amountChange = $('#amount-tendered').val() - $('#hidden-amount-payable').val();
+				$('#amount-change').val(amountChange.toFixed(2));	
+				// $('#outstanding-bal').val(($('#total_price').val() - $('#amount-to-pay').val()).toFixed(2) + ' PHP');				
+				  	var a = {!! json_encode($style_total) !!};
+				  	var b = {!! json_encode($fabric_total) !!};
+				  	var c = {!! json_encode($segment_total) !!};
+				  	var d = {!! json_encode($package_values) !!};
+				  	var e = {!! json_encode($package_quantity) !!};
+
+				  	var total = 0;
+				  	for(var i = 0; i < a.length; i++)
+				  	{
+				  		total += a[i] + b[i] + c[i] + (d[i].dblPackagePrice * e[i]);
+				  	}	
 				var payable = $('#amount-payable').val();
-				if(event.which >= 37 && event.which <= 40){
-			        event.preventDefault();
-			    }
+
 			    if(payable == ''){
 					$('#balance').val('');
 				}else if(payable > total){
@@ -475,6 +526,7 @@
 	// });
 	function packageDetail(value) 
 	{
+		$('.package-detail').css('display', "none");
 		document.getElementById('package-detail' + value).style.display = "block";
 		
 	}

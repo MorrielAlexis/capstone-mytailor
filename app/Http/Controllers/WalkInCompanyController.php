@@ -317,9 +317,11 @@ class WalkInCompanyController extends Controller
         $quantity = session()->get('package_quantity');
         $orderPackages = [];
 
+        $k = 0;
         for($i = 0; $i < count($quantity); $i++){
             for($j = 0; $j < $quantity[$i]; $j++){
-                $orderPackages[$j] = $order[$i];
+                $orderPackages[$k] = $order[$i];
+                $k++;
             }
         }
 
@@ -381,9 +383,9 @@ class WalkInCompanyController extends Controller
                 {
                     if($j == 0)
                     {
-                        $employeeSegmentTotal[$i][$k] = $employeeSegmentQuantity[$data[$i]][$j][$k];                    
+                        $employeeSegmentTotal[$i][$k] = $employeeSegmentQuantity[$data[$i]][$j][$k] + 1;                    
                     }else{
-                        $employeeSegmentTotal[$i][$k] += $employeeSegmentQuantity[$data[$i]][$j][$k];
+                        $employeeSegmentTotal[$i][$k] += $employeeSegmentQuantity[$data[$i]][$j][$k] + 1;
                     }
                 }
             }
@@ -436,12 +438,12 @@ class WalkInCompanyController extends Controller
 
         for($i = 0; $i < count($packages); $i++) $prices[$i] = $packages[$i]->dblPackagePrice * $quantity[$i]; 
 
-            $joID = \DB::table('tblJobOrder')
-        ->select('strJobOrderID')
-        ->orderBy('created_at', 'desc')
-        ->orderBy('strJobOrderID', 'desc')
-        ->take(1)
-        ->get();
+        $joID = \DB::table('tblJobOrder')
+            ->select('strJobOrderID')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('strJobOrderID', 'desc')
+            ->take(1)
+            ->get();
 
         if($joID == null){
             $newID = $this->smartCounter("JOB000"); 
@@ -450,7 +452,7 @@ class WalkInCompanyController extends Controller
             $newID = $this->smartCounter($ID);  
         }
 
-        //get all the individuals
+        //get all the company
         $ids = \DB::table('tblCustCompany')
             ->select('strCompanyID')
             ->orderBy('created_at', 'desc')
@@ -469,11 +471,11 @@ class WalkInCompanyController extends Controller
         session(['compJOID' => $newID]);
 
         return view('walkin-company-checkout-info')
-        ->with('quantity', $quantity)
-        ->with('packages', $packages)
-        ->with('prices', $prices)
-        ->with('custID', $custID)
-        ->with('joID', $newID);
+            ->with('quantity', $quantity)
+            ->with('packages', $packages)
+            ->with('prices', $prices)
+            ->with('custID', $custID)
+            ->with('joID', $newID);
     }
 
     public function existingCompanyInformation(Request $request)
@@ -604,11 +606,11 @@ class WalkInCompanyController extends Controller
         }
 
         $vat = UtilitiesVat::first();
-
             //dd(count(session()->get('package_segments')));
         return view('walkin-company-checkout-pay')
             ->with('vat', $vat->dblTaxPercentage)
             ->with('joID', session()->get('compJOID'))
+            ->with('package_quantity', $quantity)
             ->with('package_values', session()->get('package_values'))
             ->with('package_segments', session()->get('package_segments'))
             ->with('segment_patterns', session()->get('package_segment_pattern'))
@@ -964,6 +966,7 @@ class WalkInCompanyController extends Controller
         unset($values[$to_be_deleted]);
         unset($data[$to_be_deleted]);
         unset($quantity[$to_be_deleted]);
+
         $values = array_slice($values, 0);
         $data = array_slice($data, 0);
         $quantity = array_slice($quantity, 0);
@@ -974,7 +977,7 @@ class WalkInCompanyController extends Controller
 
         session(['package_values' => $values]);
         session(['package_data' => $data]);
-        session(['package_quantity' => $quantity]);
+        session(['package_quantity' => $package_quantity]);
  
         return redirect('transaction/walkin-company-show-order');
     }
