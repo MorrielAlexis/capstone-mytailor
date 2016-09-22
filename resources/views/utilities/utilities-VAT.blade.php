@@ -59,7 +59,7 @@
                               <div class="modal-content col s12">
                                 
                               <div class="input-field">
-                                <input value="" id="editVatID" name="editVatID" type="hidden">
+                                <input value="{{$tax->intVatID}}" id="editVatID" name="editVatID" type="hidden">
                               </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
@@ -83,6 +83,7 @@
                           </div>
                     {!! Form::close() !!}
                   </div>
+                  </td>
                   </tr>
                   @endforeach
               </tbody>
