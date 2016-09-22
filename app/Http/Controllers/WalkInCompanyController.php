@@ -209,16 +209,16 @@ class WalkInCompanyController extends Controller
         ->get();
         //dd(session()->get('package_customize_index'));
         return view('walkin-company-customize-order-package')
-        ->with('customized_index', session()->get('package_customize_index'))
-        ->with('segments', $segments)
-        ->with('package', $package)
-        ->with('fabrics', $fabrics)
-        ->with('fabricThreadCounts', $fabricThreadCounts)
-        ->with('fabricColors', $fabricColors)
-        ->with('fabricTypes', $fabricTypes)
-        ->with('fabricPatterns', $fabricPatterns)
-        ->with('patterns', $segmentPatterns)
-        ->with('styles', $segmentStyles);
+            ->with('customized_index', session()->get('package_customize_index'))
+            ->with('segments', $segments)
+            ->with('package', $package)
+            ->with('fabrics', $fabrics)
+            ->with('fabricThreadCounts', $fabricThreadCounts)
+            ->with('fabricColors', $fabricColors)
+            ->with('fabricTypes', $fabricTypes)
+            ->with('fabricPatterns', $fabricPatterns)
+            ->with('patterns', $segmentPatterns)
+            ->with('styles', $segmentStyles);
     }//mismong customize na.
 
     public function customize(Request $request)
@@ -322,11 +322,11 @@ class WalkInCompanyController extends Controller
         session(['package_ordered' => $orderPackages]);
 
         return view('walkin-company-add-employee')
-        ->with('total_quantity', $totalQuantity)
-        ->with('orderPackages', session()->get('package_ordered'))
-        ->with('packages', $packages)
-        ->with('orders', $order)
-        ->with('segments', $segments);
+            ->with('total_quantity', $totalQuantity)
+            ->with('orderPackages', session()->get('package_ordered'))
+            ->with('packages', $packages)
+            ->with('orders', $order)
+            ->with('segments', $segments);
     }//specifications ng employee
 
     public function saveEmployees(Request $request)
@@ -417,11 +417,11 @@ class WalkInCompanyController extends Controller
         
         for($i = 0; $i < count($packages); $i++) $prices[$i] = $packages[$i]->dblPackagePrice * $quantity[$i]; 
 
-            return view('walkin-company-customer-check')
-        ->with('company', $company)
-        ->with('quantity', $quantity)
-        ->with('packages', $packages)
-        ->with('prices', $prices);;
+        return view('walkin-company-customer-check')
+            ->with('company', $company)
+            ->with('quantity', $quantity)
+            ->with('packages', $packages)
+            ->with('prices', $prices);
     }
 
     public function companyInformation()
@@ -744,16 +744,6 @@ class WalkInCompanyController extends Controller
 
             }
 
-/*        $empEmail = \Auth::user()->email; //dd($empEmail);
-        $emp = \DB::table('tblEmployee')
-                ->select('tblEmployee.strEmployeeID')
-                ->where('tblEmployee.strEmailAdd', 'LIKE', $empEmail)
-                ->get(); //dd($emp);
-
-        for($i = 0; $i < count($emp); $i++){
-            $empId = $emp[$i]->strEmployeeID;
-        } */
-
         if($termsOfPayment == 'Full Payment'){
             $payTerms = 'Paid';
         } elseif ($termsOfPayment == 'Half Payment' || $termsOfPayment == 'Specific Amount') {
@@ -971,7 +961,7 @@ class WalkInCompanyController extends Controller
 
         session(['package_values' => $values]);
         session(['package_data' => $data]);
-        session(['package_quantity' => $package_quantity]);
+        session(['package_quantity' => $quantity]);
  
         return redirect('transaction/walkin-company-show-order');
     }

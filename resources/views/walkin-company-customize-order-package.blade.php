@@ -26,7 +26,7 @@
 						<input type="hidden" name="hidden-package-index" value="{{ $customized_index }}">
 						@foreach($package as $package)
 							<div class="col s12" style="margin-top:2px; padding-top:5px; margin-bottom:30px;">
-						        <center><h4 style="color:teal"><b>Package: </b><font color="red">{{ $package->strPackageName  }}</font><!--<a class="right btn-floating tooltipped btn-large blue" data-position="bottom" data-delay="50"  data-tooltip="CLick to print a receipt for current transaction" href="#!" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-editor-mode-edit"></i></a>--></h4></center>
+						        <center><h4 style="color:teal"><b>Package: </b>{{ $package->strPackageName  }}<!--<a class="right btn-floating tooltipped btn-large blue" data-position="bottom" data-delay="50"  data-tooltip="CLick to print a receipt for current transaction" href="#!" style="color:black; margin-right:35px; margin-left: 20px;"><i class="large mdi-editor-mode-edit"></i></a>--></h4></center>
 						        <center><p style="color:gray">All garments included in the set are listed below.</p></center>
 						        <div class="divider" style="margin-bottom:5px; background-color:teal; height:2px"></div>
 						    </div>   

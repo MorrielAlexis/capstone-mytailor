@@ -230,17 +230,18 @@ class WalkInIndividualController extends Controller
 
         session(['segment_design' => $sqlStyles]);
 
-        return redirect('transaction/walkin-individual/customer-check');
+        return redirect('transaction/customer-check');
     }
 
     //if a customer already has an existing profile with the shop
     public function customerCheck()
     {
-        dd("asdsdfadf");
+
         $individual = Individual::all();
         return view('walkin-individual-customer-check')
             ->with('individual', $individual);
     }
+
 
     public function customerInformation(Request $request)
     {   
