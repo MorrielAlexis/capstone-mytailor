@@ -225,9 +225,8 @@ Route::group(['prefix' => 'transaction'], function(){
 });
 
 Route::group(['prefix' => 'transaction'], function(){
-	Route::resource('online-customer-individual', 'OnlineCustomerIndividualController',
-		['only' => ['index']]);
-	Route::resource('online-customer-company', 'OnlineCustomerCompanyController',
+	Route::resource('online-customer-individual', 'ApproveOnlineCustomerIndividualController@index');
+	Route::resource('online-customer-company', 'ApproveOnlineCustomerCompanyController',
 		['only' => ['index']]);
 });
 

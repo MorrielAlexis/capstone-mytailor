@@ -4,8 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Mail;
+use Session;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+
+use App\GarmentCategory;
+use App\SegmentPattern;
+use App\GarmentSegment; 
+use App\Fabric; 
+use App\Individual;
+use App\Company;
+
+use App\TransactionJobOrder;
+use App\TransactionJobOrderSpecifics;
+use App\TransactionJobOrderPayment;
 
 class ApproveOnlineCustomerIndividualController extends Controller
 {
@@ -22,7 +34,33 @@ class ApproveOnlineCustomerIndividualController extends Controller
     
     public function index()
     {
-        return view('transaction-onlinecustomerindividual');
+        $onlineJO = \DB::table('tblJobOrder')
+            ->leftjoin('tblcustindividual', 'tblJobOrder.strJO_CustomerFK', '=', 'tblcustindividual.strIndivID')
+            ->leftjoin('tblcustcompany', 'tblJobOrder.strJO_CustomerCompanyFK', '=', 'tblcustcompany.strCompanyID')
+            ->orderby('tblJobOrder.strJobOrderID')
+            ->select('tblcustindividual.*', 'tblcustcompany.*', 'tblJobOrder.*')
+            // ->where('boolIsOnline', 1)
+            ->get(); 
+
+
+        $onlineJOSpecs = TransactionJobOrderSpecifics::with("onlineJobOrder")->get();
+
+         $JOSpecs = \DB::table('tblJOSpecific')
+            ->join('tblJobOrder', 'tblJobOrder.strJobOrderID', '=', 'tblJOSpecific.strJobOrderFK')
+            ->join('tblSegment', 'tblSegment.strSegmentID', '=', 'tblJOSpecific.strJOSegmentFK')
+            ->join('tblFabric', 'tblFabric.strFabricID', '=', 'tblJOSpecific.strJOFabricFK')
+            ->orderby('tblJOSpecific.strJOSpecificID')
+            ->select('tblJOSpecific.*', 'tblFabric.strFabricName', 'tblSegment.strSegmentName')
+            ->get();   
+
+            //dd($JOSpecs);
+
+            //dd($onlineJO->strJobOrderID);
+        return view('transaction-onlinecustomerindividual')
+            ->with('onlineJO', $onlineJO)
+            ->with('onlineJOSpecs', $JOSpecs);
+
+            
     }
 
     public function accept()

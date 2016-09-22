@@ -25,4 +25,9 @@ class TransactionJobOrder extends Model
     						'dtFinished',
     						'dtDelivered',
     						'boolIsActive');
+
+    public function joSpecifics()
+    {
+        return $this->hasMany('App\TransactionJobOrderSpecifics');
+    }
 }
