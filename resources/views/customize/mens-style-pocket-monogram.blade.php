@@ -45,7 +45,6 @@
           
           <div class="col s12">
            <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/online-order-now')}}">Go to Shopping Cart</a></div>
-            <div><a class="left btn-flat teal accent-4 white-text" href="{{URL::to('/customize-mens-style-buttons')}}">Previous step</a></div>
           </div>
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
 
@@ -57,21 +56,19 @@
               <li @if($segment->strSegmentID != $pocket->strSegmentFK) hidden @endif>
                 <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $pocket->strSegStyleName }}</div>
                 <div class="collapsible-body row overflow-x" style="padding:20px;">
-                  <div class="col s12">
-                    <p>
-                      <input class="with-gap" name="rdb_pattern" type="radio" id="small" />
-                      <label for="small"><font size="+1"><b>No Pocket</b></font></label>
-                    </p>
-                  </div>
       
                     <div class="col s12">
+                      <p>
+                        <input class="with-gap" name="rdb_pattern" value = "null" type="radio" id="small" />
+                        <label for="small"><font size="+1"><b>No Pocket</b></font></label>
+                      </p>
                       @foreach($patterns as $k => $pattern)
                       <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $pocket->strSegStyleCatID) hidden @endif>
                         <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
                         <p>
                           <input name="rdb_pattern" value = "{{ $pocket->strSegStyleCatID }}" type="radio" class="filled-in" id="{{ $pocket->strSegStyleCatID }}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" />
                           <label for="{{ $pocket->strSegStyleCatID }}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}">{{$pattern->strSegPName}}</label>
-                      </p>
+                        </p>
                       </div>
                       @endforeach
                     </div>  
@@ -423,8 +420,7 @@
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12">
-            <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/customize-mens-style-others')}}">Next step</a></div>
-            <div><a class="left btn-flat teal accent-4 white-text" href="{{URL::to('/customize-mens-style-buttons')}}">Previous step</a></div>
+            <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/online-order-now')}}">GO TO SHOPPING CART</a></div>
           </div>
 
         </div>
@@ -440,10 +436,6 @@
 
   <script>
     
-    $(document).ready(function(){
-      $('.modal-trigger').leanModal();
-    });
-
     $(document).ready(function(){
       $('ul.tabs').tabs('select_tab', 'tab_id');
     });
