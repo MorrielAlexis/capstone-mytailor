@@ -273,6 +273,8 @@ class AlterationWalkInController extends Controller
         session()->forget('orders');
         session()->forget('alteration_id');
 
+        \Session::flash('flash_message','Alteration successfully created.Order is not being processed.'); //flash message
+
         return redirect('transaction/alteration-walkin-newcustomer');
     }
 
