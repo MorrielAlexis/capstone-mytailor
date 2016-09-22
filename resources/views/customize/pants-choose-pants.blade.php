@@ -23,44 +23,40 @@
     </div>
 
   <div class="row">
-    <div class="card col s12 m12 l12">          
+    <div class="card col s12 m12 l12">     
 
-      <div class="col s12" style="margin-top:15px">
-        <div class="divider" style="margin-bottom:40px; height:2px"></div>
-        <p class="center-align" style="color:teal; margin-bottom:40px"><b>CHOOSE AMONG AVAILABLE PRODUCTS</b></p>
-      
-        @foreach($segments as $segment)
-          @if($segment->boolIsActive==1)
-            <div class="col s4">
+      {!! Form::open(['url' => 'customize-pants-fabric', 'method' => 'POST', "id" => "order-form"]) !!}
+     
 
-              <div class="center col s12">
-                <input type="checkbox" name="cbx-segment-name[]"  class="filled-in cbx-segment-name" id="" value="{{$segment->strSegmentName}}" style="padding:5px"/>
-                <label>{{$segment->strSegmentName}}</label>
-              </div>
+        <div class="col s12" style="margin-top:15px">
+          <div class="divider" style="margin-bottom:40px; height:2px"></div>
+          <p class="center-align" style="color:teal; margin-bottom:40px"><b>CHOOSE AMONG AVAILABLE PRODUCTS</b></p>
+        
+          @foreach($garments as $garment)
+              @if($garment->boolIsActive==1)
+               
+                  <div class="col s4">
 
-              <div class="center col s12">
-                <img src="{{$segment->strSegmentImage}}" style="height:200px; width:250px; padding:10px; border:3px gray solid">
-              </div>
-            
-              <center><h6 style="color:darkgray"><b>Quantity</b></h6></center>
-              <div class="container"> 
-                <div class="container">
-                  <div class="input-field col s12" style="margin-top:-2px;">
-                    <center><input class="center int-segment-qty" name="" id="" type="number"></center>
+                    <div class="center col s12">
+                      <input type="radio" name = "pants" class="filled-in cbx-segment-name" id="{{$garment->strSegmentID}}" value="{{$garment->strSegmentID}}" style="padding:5px"/>
+                      <label for="{{$garment->strSegmentID}}">{{$garment->strSegmentName}}</label>
+                    </div>
+
+                    <div class="center col s12">
+                      <img src="{{$garment->strSegmentImage}}" style="height:200px; width:250px; padding:10px; border:3px gray solid">
+                    </div>
                   </div>
-                </div>
-              </div>
-            </div>
-          @endif
-        @endforeach
-      </div>
+              @endif
+            @endforeach
+        </div>
 
-            
-      <div class="col s12">
-        <div class="divider"></div>
-        <a href="{{ URL::to('customize-pants-fabric') }}" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize orders" style="padding-left:10px; padding-right:10px; margin-top:20px; margin-bottom: 20px; font-size:15px; color:white; background-color: teal; opacity:0.90;">Customize Orders</a>
-        <a class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel orders" style="padding-left:10px; padding-right:10px; margin-top:20px; margin-bottom: 20px; font-size:15px; color:white; background-color: teal; opacity:0.90;">Reset Order</a>
-      </div>
+              
+        <div class="col s12">
+          <div class="divider"></div>
+          <button type = "submit" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize orders" style="padding-left:10px; padding-right:10px; margin-top:20px; margin-bottom: 20px; font-size:15px; color:white; background-color: teal; opacity:0.90;">Customize Orders</button>
+          <button class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel orders" style="padding-left:10px; padding-right:10px; margin-top:20px; margin-bottom: 20px; font-size:15px; color:white; background-color: teal; opacity:0.90;">Reset Order</button>
+        </div>
+      {!! Form::close() !!}
 
     </div>
   </div>

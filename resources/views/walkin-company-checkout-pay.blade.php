@@ -316,10 +316,12 @@
 		  	{
 		  		total += a[i] + b[i] + c[i];
 		  	}
+
 		  	$('#estimated_total_sales').val(((total - (total * (vat/100))).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		  	$('#vat_price').val(((total * (vat/100)).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		  	$('#total_price').val((total.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		  	$('#hidden_total_price').val(total.toFixed(2));
+
 			var monthNames = [ "January", "February", "March", "April", "May", "June",
 		    "July", "August", "September", "October", "November", "December" ];
 			var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]

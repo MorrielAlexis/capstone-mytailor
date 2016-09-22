@@ -44,8 +44,7 @@
 
         <h2 style="color:dimgray;"><center>CUSTOMER SALES REPORT</center></h2>
         <p>Report Type: <strong>{{$ReportType}}</strong></p>
-        <p>From: <strong>{{$datFrom}}</strong></p>
-        <p>To: &nbsp;&nbsp;&nbsp;&nbsp;<strong>{{$datTo}}</strong></p>
+        <p>Date: <strong>{{date('D, M. d Y h:i a')}}</strong></p>
         <table width="100%" id="list">
             <thead>
 				<tr>

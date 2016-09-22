@@ -49,7 +49,7 @@
 										<!--This will be the "style categories" na ic-customize ni customer-->
 										<!--Under each "style category" ay may mga segment pattern na pipiliin-->
 										<!--Check maintenance for a better understanding. Under Garments-->
-										@foreach($styles as $j => $style)
+									@foreach($styles as $j => $style)
 										@if($style->boolIsActive == 1)
 										<ul class="collapsible z-depth-2" data-collapsible="accordion" style="border:none" @if($segments[$i]->strSegmentID != $style->strSegmentFK) hidden @endif>
 										    <li style="margin-bottom:10px;">
@@ -83,12 +83,12 @@
 														     </div>
 														</div>
 														@endforeach
-														
+	
 										      	</div>
 										    </li>
 										  </ul>
 										  @endif
-										@endforeach
+									@endforeach
 										<!--End of Collapsible Accordion-->
 
 										<div class="col s12" style="margin:20px"></div>
@@ -102,6 +102,107 @@
 								</div>
 							<!--End of modal for choosing design-->
 
+
+							<!--Modal for choosing fabric facbric-->
+							@foreach($patterns as $j => $pattern)
+								<div id="custom-fabric{{ $i+1 }}{{ $j+1 }}" class="modal modal-fixed-footer" style="width:80%; height:85%;">
+		 								<h5><font color = "#1b5e20"><center>List of Available Fabrics</center> </font> </h5>
+		    
+				                        <div class="divider" style="height:2px"></div>				
+				                        <div class="modal-content col s12">
+												
+												<div class="col s3">
+													<div class="input-field col s12">
+															<select class = "custom-fabric-type" id = "custom-fabric-type">
+																<option value="TA" class="circle" selected>All</option>
+																@foreach($fabricTypes as $fabricType)
+																	<option value="{{ $fabricType->strFabricTypeID }}">{{ $fabricType->strFabricTypeName }}</option>
+																@endforeach
+															</select>
+															<label><font size="3" color="gray">Fabric Type</font></label>
+													</div>
+												</div>
+
+												<div class="col s3">
+													<div class="input-field col s12">
+															<select class = "custom-fabric-color" id = "custom-fabric-color">
+																<option value="CA" class="circle" selected>All</option>
+																@foreach($fabricColors as $fabricColor)
+																	<option value="{{ $fabricColor->strFabricColorID }}">{{ $fabricColor->strFabricColorName }}</option>
+																@endforeach
+															</select>
+															<label><font size="3" color="gray">Fabric Color</font></label>
+													</div>
+												</div>
+
+												<div class="col s3">
+													<div class="input-field col s12">
+															<select class = "custom-fabric-pattern" id = "custom-fabric-pattern">
+																<option value="PA" class="circle" selected>All</option>
+																@foreach($fabricPatterns as $fabricPattern)
+																	<option value="{{ $fabricPattern->strFabricPatternID }}">{{ $fabricPattern->strFabricPatternName }}</option>
+																@endforeach
+															</select>
+															<label><font size="3" color="gray">Fabric Pattern</font></label>
+													</div>
+												</div>
+
+												<div class="col s3">
+													<div class="input-field col s12">
+															<select class = "custom-fabric-thread-count" id = "custom-fabric-thread-count">
+																<option value="TCA" class="circle" selected>All</option>
+																@foreach($fabricThreadCounts as $fabricThreadCount)
+																	<option value="{{ $fabricThreadCount->strFabricThreadCountID }}">{{ $fabricThreadCount->strFabricThreadCountName }}</option>
+																@endforeach
+															</select>
+															<label><font size="3" color="gray">Fabric Thread Count</font></label>
+													</div>
+												</div>
+												
+												
+												<div class="col s12" style="margin:20px">
+													<div class="divider" style="height:2px gray solid"></div>
+													<div class="divider" style="height:2px gray solid"></div>
+												</div> 
+												
+												<p style="color:gray; margin-left:20px">*Choose one of your desired fabric</p>
+
+												
+					                        	@foreach($fabrics as $k => $fabric)
+					                        	<div class="col s6 custom-fabric-general">
+					                        	<div class="center col s2" style="margin-top:60px">
+					                        		<input name="custom-fabrics{{ $j+1 }}" id="custom{{ $fabric->strFabricID }}{{ $i + 1}}{{ $j+1 }}"  type="radio" class="filled-in segmentFabric{{ $j+1 }}" value="{{ $fabric->strFabricID }}"/>					                        	
+					                        		<label for="custom{{ $fabric->strFabricID }}{{ $i + 1}}{{ $j+1 }}"></label>
+					                        	</div>
+					                        	 <div class="col s10">
+											        <div class="card-panel teal lighten-4 z-depth-1">
+											          <div class="row valign-wrapper">
+											            <div class="center col s4">
+											              <img src="{{URL::asset($fabric->strFabricImage)}}"class="responsive-img">
+											            </div>
+											            <div class="col s8"> 
+											              <p><b id="{{ 'fabricText'.$fabric->strFabricID }}">{{ $fabric->strFabricName }} ({{ number_format($fabric->dblFabricPrice, 2) }} PHP)	</b></p> 
+											              <span class="black-text">
+											              	{{ $fabric->txtFabricDesc }}
+											              </span>
+											            </div>
+											          </div>
+											        </div>
+											      </div>
+											    </div>
+												@endforeach
+												
+											<div class="col s12" style="margin:20px"></div>
+											
+									</div>
+								
+									<div class="modal-footer col s12">
+			                          <a  class="right modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+			                          <a  class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+			                        </div>
+								</div>
+						@endforeach
+							<!--End of Modal for choosing fabric-->
 
 
 
@@ -171,7 +272,7 @@
 
 												
 					                        	@foreach($fabrics as $j => $fabric)
-					                        	<div class="col s6">
+					                        	<div class="col s6 fabric-general">
 					                        	<div class="center col s2" style="margin-top:60px">
 					                        		<input name="fabrics{{ $i+1 }}" type="radio" class="filled-in segmentFabric{{ $i+1 }}" value="{{ $fabric->strFabricID }}" id="{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}" />					                        	
 					                        		<label for="{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}"></label>
@@ -297,7 +398,6 @@
 		  updateUI();
 		});
 
-
 		function updateUI () {
 		  $('.fabric-general').hide();
 
@@ -316,7 +416,54 @@
 		  var threadClass = threadValue == 'TCA' ? '' : '.' + threadValue;
 
 		  var classesToUpdate = typeClass + colorClass + patternClass + threadClass;
-		  console.log(classesToUpdate);
+
+		  $(classesToUpdate).show();
+		}
+
+		updateUI();
+	</script>
+
+	<script>
+		var type = $('#custom-fabric-type');
+		var color = $('#custom-fabric-color');
+		var pattern = $('#custom-fabric-pattern');
+		var threadCount = $('#custom-fabric-thread-count');
+
+		type.change(function () {
+		  updateUI();
+		});
+
+		color.change(function () {
+		  updateUI();
+		});
+
+		pattern.change(function () {
+		  updateUI();
+		});
+
+		threadCount.change(function () {
+		  updateUI();
+		});
+
+		function updateUI () {
+		  $('.custom-fabric-general').hide();
+
+		  var typeValue = type.val();
+		  var colorValue = color.val();
+		  var patternValue = pattern.val();
+		  var threadValue = threadCount.val();
+		  
+		  if (typeValue == 'TA' && colorValue == 'CA' && patternValue == 'PA' && threadValue == 'TCA'){
+		  	return $('.custom-fabric-general').show();
+		  } 
+		  
+		  var typeClass = typeValue == 'TA' ? '' : '.' + typeValue;
+		  var colorClass = colorValue == 'CA' ? '' : '.' + colorValue;
+		  var patternClass = patternValue == 'PA' ? '' : '.' + patternValue;
+		  var threadClass = threadValue == 'TCA' ? '' : '.' + threadValue;
+
+		  var classesToUpdate = typeClass + colorClass + patternClass + threadClass;
+
 		  $(classesToUpdate).show();
 		}
 

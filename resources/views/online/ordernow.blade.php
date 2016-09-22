@@ -55,7 +55,6 @@
                               <div class="col s6">
                                 <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#removeOrder"><i class="mdi-navigation-close"></i></a>
                                 <center><img src="{{$selected->strSegmentImage}}" style="margin:20px;height:275px; width:275x; border:3px gray solid"></center>
-                                <center><a href="#!" class="container btn tooltipped"  data-position="bottom" data-delay="50" data-tooltip="Click to add similar garment and specify new design and fabric" style="margin-top:20px; background-color:teal; white:white">Add</a></center>
                               </div>
                               <div class="col s6">
                             <!-- <div class="col s12" style=""><a class="btn right container teal accent-4 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize order" href="{{URL::to('/customize-womens-fabric')}}" style="margin-left:10px;">Customize Order</a></div> -->
@@ -65,7 +64,7 @@
                               <div class="col s12" style="padding:0">
                                 <div style="padding:25px;">
                                   <div class="col s7" style="color:teal;"><p><b>Garment Category:</b></p></div>
-                                  <div class="col s5"><p>{{$selected->strSegCategoryFK}}</p></div>
+                                  <div class="col s5"><p>{{$selected->strGarmentCategoryName}}</p></div>
                                 </div>
                                 <div style="padding:25px;">
                                   <div class="col s7" style="color:teal;"><p><b>Garment Segment:</b></p></div>
@@ -143,10 +142,6 @@
 
   <script>
     
-    $(document).ready(function(){
-      // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-      $('.modal-trigger').leanModal();
-    });
 
   </script>
 

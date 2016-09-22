@@ -241,15 +241,20 @@ class WalkInCompanyController extends Controller
 
         for($i = 0; $i < count($values); $i++){
             for($j = 0; $j < count($segmentStyles); $j++){
-                $tempPatterns = $request->input('rdb_pattern' . $segmentStyles[$j]->strSegStyleCatID . ($i+1));       
+                $tempPatterns = $request->input('rdb_pattern' . $segmentStyles[$j]->strSegStyleCatID . ($i+1));  
+                $tempCustomFabrics = $request->input('custom-fabrics' . ($j+1));  
+
+                if($tempCustomFabrics == null) $tempCustomFabrics = $request->input('fabrics' . ($i+1));
+
                 if($tempPatterns != null){
                     $patterns[$i][$k] = $tempPatterns;
+                    $customFabric[$i][$k] = $tempCustomFabrics;
                     $k++;
                 } 
             }
             $k = 0;
         }
-
+        dd($customFabric);
         for($i = 0; $i < count($values); $i++){
             $sqlStyles[$i] = \DB::table('tblSegmentPattern AS a')
             ->leftJoin('tblSegmentStyleCategory AS b', 'a.strSegPStyleCategoryFK', '=', 'b.strSegStyleCatID')
