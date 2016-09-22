@@ -228,19 +228,47 @@
 													@if($order->strTermsOfPayment != "Full Payment")
 
 												<div class="row" id="or_summary" style="display:none">
-													<center><h6><b>ORDER SUMMARY</b></h6></center>
+													<center><h6><b>Payment History</b></h6></center>
 													<div class="col s12" style="margin-top:10px"><div class="divider" style="height:3px; color:gray"></div></div>
 												
 												<!--In case of multiple pending transactions...-->
-													<div  class="col s6">
-														<h6>Order No.: <p style="color:teal"><b>{{ $order->strJobOrderID }}</b></p></h6>
+													<div  class="col s6" style="border-right:1px darkgray solid">
+														<h6>Order No.: <p style="color:teal"><b><a href="#summary-of-order" class="modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to view summary of order" style="color:teal"><u>{{ $order->strJobOrderID }}</u></a></b></p></h6>
 													</div>
 
 													<div  class="col s6">
 														<h6>Transaction Date: <p style="color:teal"><b>{{ $order->dtOrderDate}}</b></p></h6>
 													</div>
 
+													<div class="col s12"><div class="divider" style="background-color: gray; height:2px; margin-bottom: 2%"></div></div>
+
 													<div class="col s12">
+													<center><font color="gray" size="-1">Recent payment(s) made for this job order:</font></center>
+														<table class="table centered" style="font-size:12px; font-weight:bold">
+															<thead style="color:gray">
+																<tr>
+																	<th>Payment ID</th>
+																	<th>Amt Paid</th>
+																	<th>Balance</th>
+																	<th>Date Paid</th>
+																</tr>
+															</thead>
+															<tbody>
+															@foreach($payments as $payment)
+															@if($payment->strTransactionFK == $order->strJobOrderID)
+																<tr>
+																	<td>{{ $payment->strPaymentID }}</td>
+																	<td>{{ number_format($payment->dblAmountToPay, 2) }}</td>
+																	<td>{{ number_format($payment->dblOutstandingBal ,2) }}</td>
+																	<td>{{ $payment->dtPaymentDate }}</td>
+																</tr>
+															@endif
+															@endforeach
+															</tbody>
+														</table>
+													</div>
+
+													<!-- <div class="col s12">
 														<table class="table centered order-summary">
 															<thead style="color:gray">
 																<th>Product Name</th>
@@ -257,9 +285,8 @@
 														</table>
 
 														<!-- <center><a href="#summary-of-order" class="btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to view summary of orders" style="background-color:teal">View Order Details</a></center> -->
-													</div>
+													<!-- </div> -->
 
-													<div class="col s12"><div class="divider" style="height:2px; color:gray; margin-top:15px; margin-bottom:15px"></div></div>
 
 												</div>
 
@@ -336,7 +363,7 @@
 										</div>
 									</div> -->
 									
-									<!-- <div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
+									 <div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
 									<h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
 										
 											<div class="divider" style="height:2px"></div>
@@ -353,23 +380,73 @@
 														
 												</div>
 
-														<div class="container">
-									                        <table class = "table centered order-summary" border = "1">
-											       				<thead style="color:gray">
-												          			<tr>
-													                  <th data-field="product">Item</th>         
-													                  <th data-field="quantity">Quantity</th>
-													                  <th data-field="price">Unit Price</th>
-													                  
-													              	</tr>
-												              	</thead>
-												              	<tbody>
-												              	
-												              	
-																
-														        </tbody>
-														    </table>
-											      		</div>
+							                        <table class="table centered" border="1">
+							                        	<thead style="border:1px teal solid; background-color:rgba(54, 162, 235, 0.5)">
+							                        		<tr style="border:1px teal solid">
+							                        			<th style="border:1px teal solid">Quantity</th>
+							                        			<th colspan="3" style="border:1px teal solid">Description</th>
+							                        			<th style="border:1px teal solid; border-bottom:none">Unit Price</th>
+							                        			<th style="border:1px teal solid">Total Price</th>
+							                        		</tr>
+							                        		<tr style="border:1px teal solid">
+							                        			<th style="border:1px teal solid; border-top:none"></th>
+							                        			<th style="border:1px teal solid" colspan="2">Item Name</th>
+							                        			<th style="border:1px teal solid">Price</th>
+							                        			<th style="border:1px teal solid"></th>
+							                        			<th style="border:1px teal solid"></th>
+							                        		</tr>
+							                        	</thead>
+							                        	<tbody style="border:1px teal solid">
+							                        	@foreach($payments as $payment)
+							                        		@if($payment->strTransactionFK == $customer_info->strJobOrderID)
+							                        		<tr style="border:1px teal solid">
+							                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>{{ $payment->intQuantity }}</b></td>
+							                        			<td style="border:1px teal solid; padding-left:5%; padding-right:5%; background-color:rgba(52, 162, 232, 0.2)"><b>{{ $payment->strGarmentCategoryName }}, {{ $payment->strSegmentName }}</b></td>
+							                        			<td style="padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"></td>
+							                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($payment->dblSegmentPrice, 2) }}</b></td>
+							                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($payment->dblUnitPrice, 2) }}</b></td>
+							                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($payment->dblUnitPrice * $payment->intQuantity, 2) }}</b></td>
+							                        		</tr>
+							                        		<!-- <tr>
+							                        			<td style="border-left:1px teal solid;"></td>
+							                        			<td style="border:1px teal solid; color:black; padding-left:10%; padding-top:1%; padding-bottom:1%; color:black"><b></b></td>
+							                        			<td style="padding-top:1%; padding-bottom:1%; border:1px teal solid"><b>Fabric Name</b></td>
+							                        			<td style=""></td>
+							                        			<td style="border:1px teal solid"></td>
+							                        			<td style="border:1px teal solid"></td>
+							                        		</tr> -->
+							                        		<tr style="border:1px teal solid">
+							                        			<td style="border:1px teal solid"></td>
+							                        			<td style="border:none; color:teal; padding-left:10%">Fabric Name</td>
+							                        			<td style="padding-left:4%; padding-right:4%; border:1px teal solid">{{ $payment->strFabricName }}</td>
+							                        			<td style="border:1px teal solid">P {{ number_format($payment->dblFabricPrice, 2) }}</td>
+							                        			<td style="border:1px teal solid"></td>
+							                        			<td style="border:1px teal solid"></td>
+							                        		</tr>
+							                        		<!-- <tr>
+							                        			<td style="border-left:1px teal solid"></td>
+							                        			<td style="border:1px teal solid; color:black; padding-left:10%; padding-top:1%; padding-bottom:1%; color:black"><b>Style Name</b></td>
+							                        			<td style="padding-top:1%; padding-bottom:1%; border:1px teal solid"><b>Segment Pattern</b></td>
+							                        			<td style=""></td>
+							                        			<td style="border:1px teal solid"></td>
+							                        			<td style="border:1px teal solid"></td>
+							                        		</tr> -->
+
+							                        		<tr style="border:1px teal solid">
+							                        			<td style="border:1px teal solid"></td>
+							                        			<td class="right" style="border:none; color:teal; padding-right:10%">Style Name and Pattern</td>
+							                        			<td style="border:1px teal solid">{{ $payment->strSegStyleName }} <br> <font color="gray"><b><i>{{ $payment->strSegPName }}</i></b></font></td>
+							                        			<td style="border:1px teal solid">P {{ number_format($payment->dblPatternPrice, 2) }}</td>
+							                        			<td style="border:1px teal solid"></td>
+							                        			<td style="border:1px teal solid"></td>
+							                        			
+							                        		</tr>
+							                        		
+							                        		@endif
+							                        	@endforeach
+							                        	</tbody>
+							                        </table>
+											      		
 
 											      		<div class="divider"></div>
 											      		<div class="divider"></div>
@@ -390,7 +467,7 @@
 								                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">OK</font></a>								                
 								            </div>
 									
-									</div> --><!--modal to-->
+									</div><!--modal to-->
 
 								<div class="col s12" style="margin-top:4%" hidden>
 									<div class="col s12" style="margin-top:3%"><div class="divider" style="height:3px; color:gray; margin-bottom:4%"></div></div>

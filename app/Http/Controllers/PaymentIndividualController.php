@@ -78,7 +78,11 @@ class PaymentIndividualController extends Controller
                 ->leftJoin('tblJOSpecific AS d', 'a.strJobOrderID', '=', 'd.strJobOrderFK')
                 ->leftJoin('tblSegment AS e', 'd.strJOSegmentFK', '=', 'e.strSegmentID')
                 ->leftJoin('tblGarmentCategory as f', 'e.strSegCategoryFK', '=', 'f.strGarmentCategoryID')
-                ->select('a.*', 'b.*', 'c.strIndivID', 'd.*', 'e.*', 'f.*')
+                ->leftJoin('tblFabric AS g', 'd.strJOFabricFK', '=', 'g.strFabricID')
+                ->leftJoin('tblJOSpecificSegmentPattern AS h', 'd.strJOSpecificID', '=', 'h.strJobOrderSpecificFK')
+                ->leftJoin('tblSegmentPattern AS i', 'h.strSegmentPatternFK', '=', 'i.strSegPatternID')
+                ->leftJoin('tblSegmentStyleCategory AS j', 'i.strSegPStyleCategoryFK', '=', 'j.strSegStyleCatID')
+                ->select('a.*', 'b.*', 'c.strIndivID', 'd.*', 'e.*', 'f.*', 'g.*', 'h.*', 'i.*', 'j.*')
                 ->orderBy('a.strJobOrderID')
                 ->get();
 
