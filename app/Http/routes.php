@@ -584,11 +584,12 @@ Route::group(['prefix' => 'transaction'], function(){
 
 /*-------------------------------------------ONLINE CUSTOMIZE GARMENTS---------------------------------------------------*/
 
-	Route::get('customize-suit-fabric', 'OnlineCustomizeSuitController@fabric');
-	Route::post('customize-suit-style-jacket', 'OnlineCustomizeSuitController@stylejacket');
+	Route::get('customize-suit-choose-suits', 'OnlineIndividualController@suitschoose');
+	Route::post('customize-suit-fabric', 'OnlineIndividualController@suitsfabric');
+	Route::post('customize-suit-style-jacket', 'OnlineIndividualController@suitsstylejacket');
 	//Route::post('customize-suit-style-collar-pocket', 'OnlineCustomizeSuitController@stylecollarpocket');
-	Route::post('customize-suit-style-pants', 'OnlineCustomizeSuitController@stylepants');
-	Route::post('customize-suit-style-monogram', 'OnlineCustomizeSuitController@stylemonogram');
+	Route::post('customize-suit-style-pants', 'OnlineIndividualController@suitsstylepants');
+	Route::post('customize-suit-style-monogram', 'OnlineIndividualController@suitsstylemonogram');
 
 	//Route::post('customize-suit-fabric-customize', 'OnlineCustomizeSuitController@customfabricsuit');
 
@@ -619,7 +620,7 @@ Route::group(['prefix' => 'transaction'], function(){
 
 
 	Route::get('customize-pants-choose-pants', 'OnlineIndividualController@pantschoose');
-	Route::get('customize-pants-fabric', 'OnlineIndividualController@pantsfabric');
+	Route::post('customize-pants-fabric', 'OnlineIndividualController@pantsfabric');
 	Route::post('customize-pants-style-pleats', 'OnlineIndividualController@pantsstylepleats');
 	Route::post('customize-pants-style-pockets', 'OnlineIndividualController@pantsstylepockets');
 	Route::post('customize-pants-style-bottom', 'OnlineIndividualController@pantsstylebottom');

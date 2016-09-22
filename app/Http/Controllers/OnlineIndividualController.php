@@ -526,21 +526,38 @@ class OnlineIndividualController extends Controller
 
     public function pantschoose()
     {
+        $pvalues = [];
+        $pdata = [];
+
+        session(['pantssegment_data' => $pdata]);
+        session(['pantssegment_values' => $pvalues]);
+
         $garmentKey = 'Pants';
 
-        $segments = \DB::table('tblSegment')
+        $categories = GarmentCategory::all();
+
+        $garments = \DB::table('tblSegment')
             ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
-            ->where('tblGarmentCategory.strGarmentCategoryName', 'LIKE', '%'.$garmentKey.'%')
+            ->where('tblGarmentCategory.strGarmentCategoryName', '=', $garmentKey)
             ->select('tblSegment.*')
             ->get();
 
         return view('customize.pants-choose-pants')
-         ->with('segments', $segments);
+         ->with('categories', $categories)
+         ->with('garments', $garments)
+         ->with('values', $pdata);
         
     }
 
-    public function pantsfabric()
+    public function pantsfabric(Request $request)
     {
+        $pfabric = [];
+
+        session(['pantssfabric' => $pfabric]);
+
+        $pantsdata_segment = $request->input('pants');
+        session(['pantssegment_data' => $pantsdata_segment]);
+
         $fabrics = Fabric::all();
         $fabricThreadCounts = FabricThreadCount::all();
         $fabricColors = FabricColor::all();
@@ -641,18 +658,214 @@ class OnlineIndividualController extends Controller
                     ->with('style', $style);
     }
 
+    public function suitschoose()
+    {   
+        $svalues = [];
+        $sdata = [];
+
+        session(['suitsegment_data' => $sdata]);
+        session(['suitsegment_values' => $svalues]);
+
+        $garmentKey = 'Suits';
+
+
+        $categories = GarmentCategory::all();
+
+        $garments = \DB::table('tblSegment')
+            ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
+            ->where('tblGarmentCategory.strGarmentCategoryName', 'LIKE', '%'.$garmentKey.'%')
+            ->select('tblSegment.*')
+            ->get();
+
+        return view('customize.suit-choose-suits')
+         ->with('categories', $categories)
+         ->with('garments', $garments)
+         ->with('values', $sdata);
+        
+    }
+
+     public function suitsfabric(Request $request)
+    {   
+        $sfabric = [];
+
+        session(['suitsfabric' => $sfabric]);
+
+        $suitsdata_segment = $request->input('suits');
+        session(['suitssegment_data' => $suitsdata_segment]);
+
+        $fabrics = Fabric::all();
+        $fabricThreadCounts = FabricThreadCount::all();
+        $fabricColors = FabricColor::all();
+        $fabricTypes = FabricType::all();
+        $fabricPatterns = FabricPattern::all();
+
+        return view('customize.suit-fabric')
+                ->with('fabrics', $fabrics)
+                ->with('fabricThreadCounts', $fabricThreadCounts)
+                ->with('fabricColors', $fabricColors)
+                ->with('fabricTypes', $fabricTypes)
+                ->with('fabricPatterns', $fabricPatterns);
+
+    }
+
+    public function suitsstylejacket(Request $request)
+    {
+       $selectedFabric = \DB::table('tblFabric AS a')
+                    ->leftJoin('tblFabricType AS b', 'a.strFabricTypeFK', '=','b.strFabricTypeID')
+                    ->select('a.*', 'b.strFabricTypeName')
+                    ->where('a.strFabricID', $request->input('rdb_fabric'))
+                    ->get();
+
+        $patterns = SegmentPattern::all();
+        $threads = Thread::all();
+
+        $garmentKey = 'Suits';
+        $segment = \DB::table('tblSegment')
+                    ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
+                    ->select('tblSegment.*', 'tblGarmentCategory.strGarmentCategoryName')
+                    ->where('tblGarmentCategory.strGarmentCategoryName', 'LIKE', '%'.$garmentKey.'%')
+                    ->orderBy('strSegmentID')
+                    ->get();
+
+        $keysingle = 'Single Breasted';
+        $singleSegment = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName', 'strSegmentFK', 'boolIsActive')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keysingle.'%')
+                    ->get();
+
+        $keydouble = 'Double Breasted';
+        $doubleSegment = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName', 'strSegmentFK', 'boolIsActive')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keydouble.'%')
+                    ->get();
+
+        $keyjacket = 'Bottom';
+        $jacketSegment = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName', 'strSegmentFK', 'boolIsActive')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keyjacket.'%')
+                    ->get();
+
+        $keyvents = 'Vents';
+        $ventsSegment = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName', 'strSegmentFK', 'boolIsActive')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keyvents.'%')
+                    ->get();
+
+        $keycollar = 'Collar';
+        $keychest = 'Chest Pocket';
+        $keyjacket = 'Pocket';
+
+        $collarSegment =\DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName', 'strSegmentFK', 'boolIsActive')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keycollar.'%')
+                    ->get();
+
+        $chestSegment = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName', 'strSegmentFK', 'boolIsActive')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keychest.'%')
+                    ->get();
+
+        $jackpotSegment = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName', 'strSegmentFK', 'boolIsActive')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keyjacket.'%')
+                    ->get();
+
+        return view('customize.suit-style-jacket')
+            ->with('fabrics', $selectedFabric)
+            ->with('segments', $segment)
+            ->with('patterns', $patterns)
+            ->with('ventsSegment', $ventsSegment)
+            ->with('singleSegment', $singleSegment)
+            ->with('doubleSegment', $doubleSegment)
+            ->with('jacketSegment', $jacketSegment)
+            ->with('threads', $threads)
+            ->with('collarSegment', $collarSegment)
+            ->with('chestSegment', $chestSegment)
+            ->with('jackpotSegment', $jackpotSegment);
+
+    }
+
+
+    public function suitsstylepants()
+    {
+        $patterns = SegmentPattern::all();
+
+        $key = 'Pleat';
+        $pleatsSegment = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName', 'strSegmentFK', 'boolIsActive')
+                    ->where('strSegStyleName', 'LIKE', '%'.$key.'%')
+                    ->get();
+
+        $garmentKey = 'Pants';
+        $segment = \DB::table('tblSegment')
+                    ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
+                    ->select('tblSegment.*', 'tblGarmentCategory.strGarmentCategoryName')
+                    ->where('tblGarmentCategory.strGarmentCategoryName', 'LIKE', '%'.$garmentKey.'%')
+                    ->orderBy('strSegmentID')
+                    ->get();
+
+        $keypocket = 'Pocket';
+        $pocketSegment = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName', 'strSegmentFK', 'boolIsActive')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keypocket.'%')
+                    ->get();
+
+        $keyback = 'Backpocket';
+        $backSegment = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName', 'strSegmentFK', 'boolIsActive')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keyback.'%')
+                    ->get();
+
+        $keybottom = 'Bottom';
+        $bottomSegment = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName', 'strSegmentFK', 'boolIsActive')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keybottom.'%')
+                    ->get();
+
+        return view('customize.suit-style-pants')
+                    ->with('patterns', $patterns)
+                    ->with('segments', $segment)
+                    ->with('pleatsSegment', $pleatsSegment)
+                    ->with('pocketSegment', $pocketSegment)
+                    ->with('backSegment', $backSegment)
+                    ->with('bottomSegment', $bottomSegment);
+
+    }
+
+    public function suitsstylemonogram()
+    {
+        $patterns = SegmentPattern::all();
+
+        $keymonogram = 'Monogram';
+        $monograms = \DB::table('tblSegmentStyleCategory')
+                    ->select('strSegStyleCatID', 'strSegStyleName')
+                    ->where('strSegStyleName', 'LIKE', '%'.$keymonogram.'%')
+                    ->get();
+
+        return view('customize.suit-style-monogram')
+                    ->with('patterns', $patterns)
+                    ->with('monograms', $monograms);
+    }
+
+
     public function tocart()
     {
         $men= '';
         $women = '';
+        $pants = '';
+        $suits = '';
 
         $men = session()->get('mensegment_data');
 
         $women = session()->get('womensegment_data');
 
-        GarmentCategory::all();
+        $pants = session()->get('pantssegment_data');
 
-        if($men == null && $women == null){
+        $suit = session()->get('suitssegment_data');
+
+
+
+        if($men == null && $women == null && $pants == null && $suit == null){
 
             $selected = null;
 
@@ -660,11 +873,12 @@ class OnlineIndividualController extends Controller
              ->with('selecteds',$selected);
         }
 
-        elseif($men == null && $women != null){
+        elseif($men == null && $women != null && $pants == null && $suit == null){
         
 
             $selected = \DB::table('tblSegment')
-                    ->select('tblSegment.*')
+                    ->leftJoin('tblGarmentCategory', 'tblGarmentCategory.strGarmentCategoryID', '=', 'tblSegment.strSegCategoryFK')
+                    ->select('tblSegment.*', 'tblGarmentCategory.*')
                     ->where('strSegmentID', '=' ,$women)
                     ->get();
 
@@ -672,11 +886,145 @@ class OnlineIndividualController extends Controller
             return view('online.ordernow')
             ->with('selecteds',$selected);
         }
-        elseif ($women == null && $men != null ) {
+        elseif ($men != null  && $women == null && $pants == null && $suit == null ) {
             
             $selected = \DB::table('tblSegment')
-                    ->select('tblSegment.*')
+                    ->leftJoin('tblGarmentCategory', 'tblGarmentCategory.strGarmentCategoryID', '=', 'tblSegment.strSegCategoryFK')
+                    ->select('tblSegment.*', 'tblGarmentCategory.*')
                     ->where('strSegmentID', '=', $men)
+                    ->get();
+
+            return view('online.ordernow')
+            ->with('selecteds',$selected);
+        }
+
+         else if($men == null && $women == null && $pants != null && $suit == null){
+             $selected = \DB::table('tblSegment')
+                    ->leftJoin('tblGarmentCategory', 'tblGarmentCategory.strGarmentCategoryID', '=', 'tblSegment.strSegCategoryFK')
+                    ->select('tblSegment.*', 'tblGarmentCategory.*')
+                    ->where('strSegmentID', '=', $pants)
+                    ->get();
+
+            return view('online.ordernow')
+            ->with('selecteds',$selected);
+        }
+
+        else if($men == null && $women == null && $pants == null && $suit != null){
+             $selected = \DB::table('tblSegment')
+                    ->leftJoin('tblGarmentCategory', 'tblGarmentCategory.strGarmentCategoryID', '=', 'tblSegment.strSegCategoryFK')
+                    ->select('tblSegment.*', 'tblGarmentCategory.*')
+                    ->where('strSegmentID', '=', $suit)
+                    ->get();
+
+            return view('online.ordernow')
+            ->with('selecteds',$selected);
+        }
+
+        else if($men != null && $women == null && $pants == null && $suit != null){
+             $selected = \DB::table('tblSegment')
+                    ->leftJoin('tblGarmentCategory', 'tblGarmentCategory.strGarmentCategoryID', '=', 'tblSegment.strSegCategoryFK')
+                    ->select('tblSegment.*', 'tblGarmentCategory.*')
+                    ->where('strSegmentID', '=', $men)
+                    ->orwhere('strSegmentID', '=', $suit)
+                    ->get();
+
+            return view('online.ordernow')
+            ->with('selecteds',$selected);
+        }
+
+        else if($men != null && $women != null && $pants == null && $suit == null){
+             $selected = \DB::table('tblSegment')
+                    ->leftJoin('tblGarmentCategory', 'tblGarmentCategory.strGarmentCategoryID', '=', 'tblSegment.strSegCategoryFK')
+                    ->select('tblSegment.*', 'tblGarmentCategory.*')
+                    ->where('strSegmentID', '=', $men)
+                    ->orwhere('strSegmentID', '=', $women)
+                    ->get();
+
+            return view('online.ordernow')
+            ->with('selecteds',$selected);
+        }
+
+        else if($men == null && $women != null && $pants == null && $suit != null){
+             $selected = \DB::table('tblSegment')
+                    ->leftJoin('tblGarmentCategory', 'tblGarmentCategory.strGarmentCategoryID', '=', 'tblSegment.strSegCategoryFK')
+                    ->select('tblSegment.*', 'tblGarmentCategory.*')
+                    ->where('strSegmentID', '=', $women)
+                    ->orwhere('strSegmentID', '=', $suit)
+                    ->get();
+
+            return view('online.ordernow')
+            ->with('selecteds',$selected);
+        }
+
+        else if($men != null && $women == null && $pants != null && $suit == null){
+             $selected = \DB::table('tblSegment')
+                    ->leftJoin('tblGarmentCategory', 'tblGarmentCategory.strGarmentCategoryID', '=', 'tblSegment.strSegCategoryFK')
+                    ->select('tblSegment.*', 'tblGarmentCategory.*')
+                    ->where('strSegmentID', '=', $men)
+                    ->orwhere('strSegmentID', '=', $pants)
+                    ->get();
+
+            return view('online.ordernow')
+            ->with('selecteds',$selected);
+        }
+
+        else if($men == null && $women != null && $pants != null && $suit == null){
+             $selected = \DB::table('tblSegment')
+                    ->leftJoin('tblGarmentCategory', 'tblGarmentCategory.strGarmentCategoryID', '=', 'tblSegment.strSegCategoryFK')
+                    ->select('tblSegment.*', 'tblGarmentCategory.*')
+                    ->where('strSegmentID', '=', $women)
+                    ->orwhere('strSegmentID', '=', $pants)
+                    ->get();
+
+            return view('online.ordernow')
+            ->with('selecteds',$selected);
+        }
+
+        else if($men == null && $women != null && $pants != null && $suit != null){
+             $selected = \DB::table('tblSegment')
+                    ->leftJoin('tblGarmentCategory', 'tblGarmentCategory.strGarmentCategoryID', '=', 'tblSegment.strSegCategoryFK')
+                    ->select('tblSegment.*', 'tblGarmentCategory.*')
+                    ->where('strSegmentID', '=', $pants)
+                    ->orwhere('strSegmentID', '=', $suit)
+                    ->get();
+
+            return view('online.ordernow')
+            ->with('selecteds',$selected);
+        }
+
+        else if($men != null && $women != null && $pants != null && $suit == null){
+             $selected = \DB::table('tblSegment')
+                    ->leftJoin('tblGarmentCategory', 'tblGarmentCategory.strGarmentCategoryID', '=', 'tblSegment.strSegCategoryFK')
+                    ->select('tblSegment.*', 'tblGarmentCategory.*')
+                    ->where('strSegmentID', '=', $men)
+                    ->prwhere('strSegmentID', '=', $women)
+                    ->orwhere('strSegmentID', '=', $pants)
+                    ->get();
+
+            return view('online.ordernow')
+            ->with('selecteds',$selected);
+        }
+
+        else if($men == null && $women != null && $pants != null && $suit != null){
+             $selected = \DB::table('tblSegment')
+                    ->leftJoin('tblGarmentCategory', 'tblGarmentCategory.strGarmentCategoryID', '=', 'tblSegment.strSegCategoryFK')
+                    ->select('tblSegment.*', 'tblGarmentCategory.*')
+                    ->where('strSegmentID', '=', $women)
+                    ->prwhere('strSegmentID', '=', $pants)
+                    ->orwhere('strSegmentID', '=', $suit)
+                    ->get();
+
+            return view('online.ordernow')
+            ->with('selecteds',$selected);
+        }
+
+        else if($men != null && $women != null && $pants == null && $suit != null){
+             $selected = \DB::table('tblSegment')
+                    ->leftJoin('tblGarmentCategory', 'tblGarmentCategory.strGarmentCategoryID', '=', 'tblSegment.strSegCategoryFK')
+                    ->select('tblSegment.*', 'tblGarmentCategory.*')
+                    ->where('strSegmentID', '=', $men)
+                    ->orwhere('strSegmentID', '=', $women)
+                    ->orwhere('strSegmentID', '=', $suit)
                     ->get();
 
             return view('online.ordernow')
@@ -686,9 +1034,12 @@ class OnlineIndividualController extends Controller
         else {
 
             $selected = \DB::table('tblSegment')
-                    ->select('tblSegment.*')
+                    ->leftjoin('tblGarmentCategory', 'tblGarmentCategory.strGarmentCategoryID', '=', 'tblSegment.strSegCategoryFK')
+                    ->select('tblSegment.*', 'tblGarmentCategory.*')
                     ->where('strSegmentID', '=', $men)
                     ->orwhere('strSegmentID', '=' ,$women)
+                    ->orwhere('strSegmentID', '=', $pants)
+                    ->orwhere('strSegmentID', '=', $suit)
                     ->get();
 
             return view('online.ordernow')
