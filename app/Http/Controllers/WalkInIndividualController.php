@@ -169,71 +169,23 @@ class WalkInIndividualController extends Controller
     }
 
     //if a customer already has an existing profile with the shop
-    public function customerCheck(Request $request)
+    public function customerCheck()
     {
-        $data_quantity = array_slice(array_filter($request->input('int-segment-qty')), 0);
-        $values = session()->get('segment_values');
-        $segmentStyles = SegmentStyle::all();
-        $patterns = [];
-        $i = 0;
-        $k = 0;
+        $company = Company::all();
 
-        for($i = 0; $i < count($values); $i++){
-            $segmentFabric[$i] = $request->input('fabrics' . ($i+1));
-        }
-
-        for($i = 0; $i < count($values); $i++){
-            for($j = 0; $j < count($segmentStyles); $j++){
-                $tempPatterns = $request->input('rdb_pattern' . $segmentStyles[$j]->strSegStyleCatID . ($i+1));       
-                if($tempPatterns != null){
-                    $patterns[$i][$k] = $tempPatterns;
-                    $k++;
-                } 
-            }
-            $k = 0;
-        }
+        $quantity = session()->get('package_quantity');
+        $packages = session()->get('package_values');
+        $prices = [];
         
-        for($i = 0; $i < count($values); $i++){
-            $sqlStyles[$i] = \DB::table('tblSegmentPattern AS a')
-                    ->leftJoin('tblSegmentStyleCategory AS b', 'a.strSegPStyleCategoryFK', '=', 'b.strSegStyleCatID')
-                    ->leftJoin('tblSegment AS c', 'b.strSegmentFK', '=', 'strSegmentID')
-                    ->select('c.strSegmentID', 'a.strSegPStyleCategoryFK', 'a.strSegPatternID', 
-                             'a.strSegPName', 'b.strSegStyleName', 'a.dblPatternPrice')
-                    ->whereIn('a.strSegPatternID', $patterns[$i])
-                    ->get();
-        }
+        for($i = 0; $i < count($packages); $i++) $prices[$i] = $packages[$i]->dblPackagePrice * $quantity[$i]; 
 
-        $sqlFabric = \DB::table('tblFabric')
-                ->select('strFabricID', 'strFabricName', 'dblFabricPrice')
-                ->whereIn('strFabricID', $segmentFabric)
-                ->get();
-
-        $fabrics;
-        //dd($segmentFabric);
-        for($i = 0; $i < count($values); $i++){
-            for($j = 0; $j < count($sqlFabric); $j++){
-                if($segmentFabric[$i] == $sqlFabric[$j]->strFabricID){
-                    $fabrics[$i] = $sqlFabric[$j];
-                }
-            }
-        }  
-        session(['segment_fabric' => $fabrics]); 
-
-        for($i = 0; $i < count($values); $i++){
-            $values[$i]['strFabricID'] = $fabrics[$i]->strFabricID;
-            $values[$i]['strFabricName'] = $fabrics[$i]->strFabricName;
-            $values[$i]['dblFabricPrice'] = $fabrics[$i]->dblFabricPrice;
-        }
-
-        session()->forget('segment_values');
-        session(['segment_values' => $values]);
-        session(['segment_quantity' => $data_quantity]);
-
-        session(['segment_design' => $sqlStyles]);
-        
-        return view('walkin-individual-customer-check')
-                ->with('segments', $values);
+        return view('walkin-company-customer-check')
+            ->with('company', $company)
+            ->with('quantity', $quantity)
+            ->with('packages', $packages)
+            ->with('prices', $prices);
     }
+
 
     public function customerInformation(Request $request)
     {   
