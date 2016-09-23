@@ -150,7 +150,7 @@ class PaymentIndividualController extends Controller
 
         session(['cust_id' => $customerID]);
         session(['jo_ID' => $joID]);
-
+        $balance = (double)session()->get('outstandingBal');
         $modeOfPayment = "Cash";
         $amtTendered = (double)session()->get('amountTendered');
         $amtChange = (double)session()->get('amountChange');
@@ -172,25 +172,28 @@ class PaymentIndividualController extends Controller
             }
         session(['payment_id' => $jobPaymentID]);
 
-        $payment = TransactionJobOrderPayment::create(array(
-                'strPaymentID' => $jobPaymentID,
-                'strTransactionFK' => session()->get('jo_ID'),//tblJobOrder
-                'dblAmountToPay' => session()->get('amountToPay'), 
-                'dblOutstandingBal' => 0.00,
-                'dblAmountTendered' => $amtTendered,
-                'dblAmountChange' => $amtChange,
-                'strReceivedByEmployeeNameFK' => session()->get('employee'),
-                'dtPaymentDate' => 2013-08-21,
-                'dtPaymentDueDate' => 2013-08-22,
-                'strPaymentStatus' => 'Paid',
-                'boolIsActive' => 1
+        
+            $payment = TransactionJobOrderPayment::create(array(
+                    'strPaymentID' => $jobPaymentID,
+                    'strTransactionFK' => session()->get('jo_ID'),//tblJobOrder
+                    'dblAmountToPay' => session()->get('amountToPay'), 
+                    'dblOutstandingBal' => 0.00,
+                    'dblAmountTendered' => $amtTendered,
+                    'dblAmountChange' => $amtChange,
+                    'strReceivedByEmployeeNameFK' => session()->get('employee'),
+                    'dtPaymentDate' => 2013-08-21,
+                    'dtPaymentDueDate' => 2013-08-22,
+                    'strPaymentStatus' => 'Paid',
+                    'boolIsActive' => 1
 
-        ));
+            ));
+     
+
         $payment->save();
 
         $paymentid = session()->get('payment_id');
 
-
+            dd($balance);
         //Payment Receipt
         $prId = \DB::table('tblPaymentReceipt')
                 ->select('strPaymentReceiptID')
