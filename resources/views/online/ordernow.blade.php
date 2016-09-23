@@ -88,10 +88,12 @@
                                   <div class="col s7" style="color:teal;"><p><b>Time to finish(min):</b></p></div>
                                   <div class="col s5" style="color:red"><p>{{$selected->intMinDays}}</p></div>
                                 </div>
-                              </div>
-                              <div class="col s12">
-                                <div class="col s3" style="margin-top:30px; color:red"><center><b style="font-size:18px">QTY</b></center></div>  
-                                <div class="col s6" style="margin-top:20px; padding:5px; margin-right:5px;"><input name="quantity" id="quantity" type="number" style="border:2px teal solid; padding-left:18%; padding-right:18%" placeholder="How many?"></div>
+                                <div style="padding:25px;">
+                                  <div class="col s7" style="color:teal;"><p><b>Quantity:</b></p></div>
+                                  @if($selected->strGarmentCategoryName = 'MEN SHIRT')
+                                    <div class="col s5" style="color:red"><p>{{$mquantity}}</p></div>
+                                  @endif
+                                </div>
                               </div>
                             </div>
                         </div>
@@ -108,8 +110,10 @@
           </div>
 
           <div class="divider" style="margin-bottom:20px;"></div>
-          <div>
-            <a class="green-text" style="margin-left:20px;" href="{{URL::to('/online-home')}}"><i style="size:20px;" class="mdi-hardware-keyboard-arrow-left"></i>CONTINUE SHOPPING</a>
+          <div class = "col s12">
+            <div class = "row">
+              <a class="green-text" style="margin-left:20px;" href="{{URL::to('/online-home')}}"><i style="size:20px;" class="mdi-hardware-keyboard-arrow-left"></i>CONTINUE SHOPPING</a>
+            </div>
           </div>
       @endif
     </div>

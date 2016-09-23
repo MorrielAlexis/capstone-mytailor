@@ -59,8 +59,7 @@
                             <div style="color:black; padding-left:140px" class="input-field col s6 ">   
                               <input type="hidden" name="" value="{{ $measurement->strMeasurementDetailID }}">              
                                     <input name="" type="text">
-                                    <label style="color:teal" for="">{{ $measurement->strMeasDetailName }} </label>
-                                    <label style="color:teal">cm </label>
+                                    <label style="color:teal" for="">{{ $measurement->strMeasDetailName }} (cm): </label>
                                 </div>
                             </div>
                      

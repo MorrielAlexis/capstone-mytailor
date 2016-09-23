@@ -16,21 +16,21 @@
 	
 			<div class="row">
 
-				<div class="col s4 center" style="padding:30px;">
+				<div class="col s12 m12 l4  center" style="padding:30px;">
 		            <figure>
 			            <img class = "responsive-img" src="imgOnlineSuit/suit2.jpg">
 			            <figcaption style="background-color:#4db6ac;color:white;">Price starts at Php 2000.00</figcaption>
 			        </figure>
 				</div>
 
-				<div class="col s4 center" style="padding:30px;">
+				<div class="col s12 m12 l4 center" style="padding:30px;">
 		            <figure>
 			            <img class = "responsive-img" src="imgOnlineSuit/suit4.jpg">
 			            <figcaption style="background-color:#4db6ac;color:white;">Price starts at Php 2000.00</figcaption>
 			        </figure>
 				</div>
 
-				<div class="col s4 center" style="padding:30px;">
+				<div class="col s12 m12 l4 center" style="padding:30px;">
 		            <figure>
 			            <img class = "responsive-img" src="imgOnlineSuit/suit5.jpg">
 			            <figcaption style="background-color:#4db6ac;color:white;">Price starts at Php 2000.00</figcaption>
@@ -44,10 +44,10 @@
 		<div class="section white container" style="width:95%; padding-left:20px; padding-right:20px;">
 
 			<div class="row">
-				<div class="col s6 center">
+				<div class="col s12 m12 l6 center">
 					<img class="responsive-img" src="imgOnline/suity.jpg" style="border-style: solid;border-color: #595959;border-width: 2px 2px 2px 2px;padding:20px;">
 				</div>
-				<div class="col s6" style="padding:20px;">
+				<div class="col s12 m12 l6" style="padding:20px;">
 					<h4 style="font-family: 'Mada', sans-serif;color:#009688">Fine custom mens suits - expert tailoring</h4>
 					<h6  style="font-family: 'Rambla', sans-serif;font-size:18px">Trust us to tailor your new suit. Our experienced tailors will stop at nothing to give you:</h6>
 					<ul>
@@ -59,12 +59,12 @@
 			</div>
 
 			<div class="row">
-				<div class="col s6" style="padding:20px;">
+				<div class="col s12 m12 l6" style="padding:20px;">
 					<h4 style="font-family: 'Mada', sans-serif;color:#009688">Custom made - to your measurements</h4>
 					<p style="font-family: 'Rambla', sans-serif;font-size:18px">With our unique suit customizer, you can easily create a suit that perfectly matches your personality.</p>
 					<p style="font-family: 'Rambla', sans-serif;font-size:18px">Tailored to your individual measurements, we dare to guarantee a perfect fit - every time.</p>
 				</div>
-				<div class="col s6 center">
+				<div class="col s12 m12 l6 center">
 					<img class="responsive-img" src="imgOnline/suitmehe.jpg" style="border-style: solid;border-color: #595959;border-width: 2px 2px 2px 2px;padding:20px;">
 				</div>
 			</div>
