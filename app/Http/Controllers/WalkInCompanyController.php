@@ -299,7 +299,8 @@ class WalkInCompanyController extends Controller
                 }
             }
         }
-
+        //dd($fabrics);
+        
         $tempPattern = session()->get('package_segment_pattern');
         $tempPattern[(int)$request->input('hidden-package-index')] = $sqlStyles;
         $tempFabric = session()->get('package_segment_fabric');
@@ -361,7 +362,9 @@ class WalkInCompanyController extends Controller
         for($i = 0; $i < count($quantity); $i++)
             $totalQuantity = $totalQuantity + $quantity[$i];
 
-        for($i = 0; $i < $totalQuantity; $i++) $tempQuantity[$i] = array_map('intval', $request->input('segment-qty' . $i));
+        for($i = 0; $i < $totalQuantity; $i++) {
+            $tempQuantity[$i] = array_map('intval', $request->input('segment-qty' . $i));
+        }
 
         $j = 0;
         
@@ -384,6 +387,7 @@ class WalkInCompanyController extends Controller
                 $employeeSegmentQuantity[$employeeSet[$i]][$j] = $tempQuantity[$i]; 
             }
         }
+
         $data = session()->get('package_data');
         $l = 0;
 
@@ -395,9 +399,9 @@ class WalkInCompanyController extends Controller
                 {
                     if($j == 0)
                     {
-                        $employeeSegmentTotal[$i][$k] = $employeeSegmentQuantity[$data[$i]][$j][$k] + 1;                    
+                        $employeeSegmentTotal[$i][$k] = $employeeSegmentQuantity[$data[$i]][$j][$k];                    
                     }else{
-                        $employeeSegmentTotal[$i][$k] += $employeeSegmentQuantity[$data[$i]][$j][$k] + 1;
+                        $employeeSegmentTotal[$i][$k] += $employeeSegmentQuantity[$data[$i]][$j][$k];
                     }
                 }
             }
@@ -590,25 +594,35 @@ class WalkInCompanyController extends Controller
         $tempStyleTotal = 0;
         $tempFabricTotal = 0;
         $tempSegmentTotal = 0;
-        
+        $tempPatternFabricTotal = 0;
+
+        $rawTempStyleTotal = 0;
+        $rawTempFabricTotal = 0;
+        $rawTempSegmentTotal = 0;
+        $rawTempPatternFabricTotal = 0;
+
+        $i = 0;
         for($j = 0; $j < count(session()->get('package_segments')); $j++)
         {
             for($k = 0; $k < count(session()->get('package_segments')[$j]); $k++)
             {
-                for($l = 0; $l < count(session()->get('package_segment_pattern')[$j][$k]); $l++)
+                for($l = 0; $l < count(session()->get('package_pattern_fabric')[$j][$k]); $l++)
                 {
-                    $tempStyleTotal += session()->get('package_segment_pattern')[$j][$k][$l]->dblPatternPrice * session()->get('employee_segment_total')[$j][$k];
-                }   
-                $tempFabricTotal += session()->get('package_segment_fabric')[$j][$k]->dblFabricPrice * session()->get('employee_segment_total')[$j][$k];
-                $tempSegmentTotal += session()->get('package_segments')[$j][$k]->dblSegmentPrice * session()->get('employee_segment_total')[$j][$k];
+                    if(session()->get('package_pattern_fabric')[$j][$k][$l]->strFabricID != session()->get('package_segment_fabric')[$j][$k]->strFabricID)
+                    {
+                        if($l == 0)
+                        {
+                            $unitCustomFabricTotal[$j][$k] = session()->get('package_pattern_fabric')[$j][$k][$l]->dblFabricPrice;
+                            continue;
+                        }
+                        else{
+                            $unitCustomFabricTotal[$j][$k] += session()->get('package_pattern_fabric')[$j][$k][$l]->dblFabricPrice; 
+                            
+                        }
+                    }else $unitCustomFabricTotal[$j][$k] = 0.0;
 
-                $styleTotal[$j] = $tempStyleTotal;
-                $fabricTotal[$j] = $tempFabricTotal;
-                $segmentTotal[$j] = $tempSegmentTotal;
+                }   
             }
-            $tempStyleTotal = 0;
-            $tempFabricTotal = 0;
-            $tempSegmentTotal = 0;
         }
 
         $i = 0;
@@ -636,35 +650,43 @@ class WalkInCompanyController extends Controller
                 }   
             }
         }
-
-        $i = 0;
+        //dd(session()->get('package_segment_pattern'));
         for($j = 0; $j < count(session()->get('package_segments')); $j++)
         {
             for($k = 0; $k < count(session()->get('package_segments')[$j]); $k++)
             {
-                for($l = 0; $l < count(session()->get('package_pattern_fabric')[$j][$k]); $l++)
-                {
-                    if(session()->get('package_pattern_fabric')[$j][$k][$l]->strFabricID != session()->get('package_segment_fabric')[$j][$k]->strFabricID){
-                        if($l == 0)
-                        {
-                            $unitCustomFabricTotal[$j][$k] = session()->get('package_pattern_fabric')[$j][$k][$l]->dblFabricPrice;
-                            continue;
-                        }
-                        else if(session()->get('package_pattern_fabric')[$j][$k][$l]->strFabricID == session()->get('package_pattern_fabric')[$j][$k][$l-1]->strSegmentID)
-                        {
-                            $unitCustomFabricTotal[$j][$k] += session()->get('package_pattern_fabric')[$j][$k][$l]->dblFabricPrice; 
-                            $i += 1;
-                        }
-                        else
-                        {
-                            $i = 0;
-                            $unitCustomFabricTotal[$j][$k] = session()->get('package_pattern_fabric')[$j][$k][$i]->dblFabricPrice;
-                        }
-                    }else $unitCustomFabricTotal[$j][$k] = 0.0;
-                }   
+                $rawTempStyleTotal += $unitStyleTotal[$j][$k];
+                $rawTempFabricTotal += session()->get('package_segment_fabric')[$j][$k]->dblFabricPrice;
+                $rawTempSegmentTotal += session()->get('package_segments')[$j][$k]->dblSegmentPrice;
+                $rawTempPatternFabricTotal += $unitCustomFabricTotal[$j][$k];
+
+                $tempStyleTotal += $unitStyleTotal[$j][$k] * session()->get('employee_segment_total')[$j][$k];
+                $tempFabricTotal += session()->get('package_segment_fabric')[$j][$k]->dblFabricPrice * session()->get('employee_segment_total')[$j][$k];
+                $tempSegmentTotal += session()->get('package_segments')[$j][$k]->dblSegmentPrice * session()->get('employee_segment_total')[$j][$k];
+                $tempPatternFabricTotal += $unitCustomFabricTotal[$j][$k] * session()->get('employee_segment_total')[$j][$k];
+
+                $styleTotal[$j] = $tempStyleTotal;
+                $fabricTotal[$j] = $tempFabricTotal;
+                $segmentTotal[$j] = $tempSegmentTotal;
+                $patternFabricTotal[$j] = $tempPatternFabricTotal;
+
+                $rawStyleTotal[$j] = $rawTempStyleTotal;
+                $rawFabricTotal[$j] = $rawTempFabricTotal;
+                $rawSegmentTotal[$j] = $rawTempSegmentTotal;
+                $rawPatternFabricTotal[$j] = $rawTempPatternFabricTotal;
             }
+            $tempStyleTotal = 0;
+            $tempFabricTotal = 0;
+            $tempSegmentTotal = 0;
+            $tempPatternFabricTotal = 0;
+
+            $rawTempStyleTotal = 0;
+            $rawTempFabricTotal = 0;
+            $rawTempSegmentTotal = 0;
+            $rawTempPatternFabricTotal = 0;
         }
-        //dd(session()->get('package_pattern_fabric'), session()->get('package_segment_pattern'));
+        //dd($unitCustomFabricTotal);
+
         $vat = UtilitiesVat::first();
             //dd(count(session()->get('package_segments')));
         return view('walkin-company-checkout-pay')
@@ -682,6 +704,11 @@ class WalkInCompanyController extends Controller
             ->with('style_total', $styleTotal)
             ->with('fabric_total', $fabricTotal)
             ->with('segment_total', $segmentTotal)
+            ->with('pattern_fabric_total', $patternFabricTotal)
+            ->with('raw_style_total', $rawStyleTotal)
+            ->with('raw_fabric_total', $rawFabricTotal)
+            ->with('raw_segment_total', $rawSegmentTotal)
+            ->with('raw_pattern_fabric_total', $rawPatternFabricTotal)
             ->with('total_quantity', $totalQuantity);
 
     }
@@ -1027,7 +1054,7 @@ class WalkInCompanyController extends Controller
     }//end of job order
 
     public function removePackage(Request $request)
-    {
+    {   
         $to_be_deleted = ((int)$request->input('hidden_remove_package'));
         $values = session()->get('package_values');
         $data = session()->get('package_data');

@@ -660,3 +660,7 @@ Route::group(['prefix' => 'transaction'], function(){
 		Route::get('company', 'CompanyCustomerWithBalanceController@index'); //controller for companies with balance		
 	});
 
+
+Route::get('company-checkout', 'CompanyCheckoutController@index');
+Route::get('company-checkout-measure', 'CompanyCheckoutMeasureController@index');
+Route::get('company-checkout-pay', 'CompanyCheckoutPayController@index');

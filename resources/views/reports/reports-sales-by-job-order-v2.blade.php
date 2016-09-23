@@ -53,7 +53,9 @@
 					<div id="tabular" class="col white s12">
 						<p align="center">
 							{!! Form::open(['url' => 'reports/sales/by-job-order-generate',
-							'class' => 'col s12 offset-s3']) !!} 
+							'class' => 'col s12 offset-s2']) !!} 
+							<input name="tabular" type="radio" id="dailyTab1" onclick="showTab('dailyTab')" value="0" />
+							<label for="dailyTab1">Daily</label>
 							<input name="tabular" type="radio" id="weeklyTab1" onclick="showTab('weeklyTab')" value="1" />
 					    	<label for="weeklyTab1">Weekly</label>
 					    	<input name="tabular" type="radio" id="monthlyTab1" onclick="showTab('monthlyTab')" value="2" />
@@ -65,9 +67,35 @@
 					    	<input name="tabular" type="radio" id="transactionTab1" onclick="showTab('transactionTab')" value="5" />
 					    	<label for="transactionTab1">Transaction</label>
 					    	<br><br>
-					    	<input type="submit" class="btn col s5" name="btnGenerate" value="Generate PDF" style="margin-bottom:2%;margin-left: 6%">
+					    	<input type="submit" class="btn col s5" name="btnGenerate" value="Generate PDF" style="margin-bottom:2%;margin-left: 10%">
 					    	{!! Form::close() !!}
 					    </p>
+					    <div id="dailyTab">
+					    	<div class="row">
+						    	<div class="col s12">
+									<table class="highlight">
+										<thead>
+											<tr>
+												<th data-field="id">Day</th>
+												<th data-field="name" class="right-align">Sum Amount</th>
+												<th data-field="price" class="right-align">Cumulative Amount</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php $Cumulative = 0; ?>
+											@foreach($Daily as $value)
+											<tr>
+												<td>{{$value->Day}}</td>
+												<td class="right-align">{{number_format($value->Total + $value->Fee)}}</td>
+												<?php $Cumulative += $value->Total + $value->Fee ?>
+												<td class="right-align">{{number_format($Cumulative)}}</td>
+											</tr>
+											@endforeach
+										</tbody>
+									</table>
+								</div>
+							</div>
+					    </div>
 					    <div id="weeklyTab">
 					    	<div class="row">
 						    	<div class="col s12">
@@ -213,6 +241,8 @@
 					</div>
 					<div id="graphical" class="col white s12">
 						<p align="center">
+							<input name="group" type="radio" id="daily1" onclick="show('daily')"/>
+							<label for="daily1">Daily</label>
 							<input name="group" type="radio" id="weekly1" onclick="show('weekly')"/>
 					    	<label for="weekly1">Weekly</label>
 					    	<input name="group" type="radio" id="monthly1" onclick="show('monthly')" />
@@ -222,6 +252,7 @@
 					    	<input name="group" type="radio" id="annually1" onclick="show('annually')"/>
 					    	<label for="annually1">Annually</label>
 					    </p>
+					    <canvas id="daily"></canvas>
 						<canvas id="monthly"></canvas>
 						<canvas id="annually"></canvas>
 						<canvas id="weekly"></canvas>
@@ -233,6 +264,7 @@
 							{!! Form::open(['url' => 'reports/sales/by-job-order-custom']) !!} 
 								<select name = "selType" class="col s8 offset-s2">
 								    <option value="" disabled selected>Choose Report Type</option>
+								    <option value="0">Daily</option>
 								    <option value="1">Weekly</option>
 								    <option value="2">Monthly</option>
 								    <option value="3">Quarterly</option>
@@ -253,6 +285,72 @@
 @stop
 
 @section('scripts')
+	<script type="text/javascript">
+		var ctx = document.getElementById("daily");
+		var myChart = new Chart(ctx, {
+		    type: 'bar',
+		    data: {
+		        labels: [
+		        	@foreach($Daily as $value)
+			                "{{$value->Day}}",
+		            @endforeach
+		        ],
+		        datasets: [
+			        {
+			            label: 'Sum of Amount',
+			            data: [
+				            @foreach($Daily as $value)
+				                {{$value->Total + $value->Fee}},
+			                @endforeach
+			            ],
+			            backgroundColor: [
+			            	@foreach($Daily as $MonthAmount)
+				                'rgba(255, 99, 132, 0.2)',
+			                @endforeach
+			            ],
+			            borderColor: [
+			            	@foreach($Daily as $MonthAmount)
+				                'rgba(255,99,132,1)',
+			                @endforeach
+			                
+			            ],
+			            borderWidth: 1
+			        },
+			        {
+			            label: 'Cumulative Amount',
+			            data: [
+			            	<?php $Cumulative = 0; ?>
+				            @foreach($Daily as $value)
+				            	<?php $Cumulative += $value->Total + $value->Fee?>
+				                {{$Cumulative}},
+			                @endforeach
+			            ],
+			            backgroundColor: [
+			            	@foreach($Daily as $MonthAmount)
+				                'rgba(54, 162, 235, 0.2)',
+			                @endforeach
+			            ],
+			            borderColor: [
+			            	@foreach($Daily as $MonthAmount)
+				                'rgba(54, 162, 235, 1)',
+			                @endforeach
+			                
+			            ],
+			            borderWidth: 1
+			        }
+		        ]
+		    },
+		    options: {
+		        scales: {
+		            yAxes: [{
+		                ticks: {
+		                    beginAtZero:true
+		                }
+		            }]
+		        }
+		    }
+		});
+	</script>
 	<script type="text/javascript">
 		var ctx = document.getElementById("monthly");
 		var myChart = new Chart(ctx, {
@@ -519,6 +617,7 @@
 	</script>
 	<script>
 		function show(id){
+			$( "#daily" ).addClass("hide");
 			$( "#weekly" ).addClass("hide");
 			$( "#annually" ).addClass("hide");
 			$( "#monthly" ).addClass("hide");
@@ -526,6 +625,7 @@
 			$( '#'+id ).removeClass("hide");
 		}
 		function showTab(id){
+			$( "#dailyTab" ).addClass("hide");
 			$( "#weeklyTab" ).addClass("hide");
 			$( "#annuallyTab" ).addClass("hide");
 			$( "#monthlyTab" ).addClass("hide");
@@ -535,12 +635,14 @@
 		}
 		$(window).load(function() {
 			//Graphical
+			$( "#daily" ).addClass("hide");
             $( "#weekly" ).addClass("hide");
             $( "#annually" ).addClass("hide");
             $( "#monthly" ).addClass("hide");
             $( "#quarterly" ).addClass("hide");
-            $("#weekly1").click()
+            $("#daily1").click()
             // Tabular
+            $( "#dailyTab" ).addClass("hide");
             $( "#weeklyTab" ).addClass("hide");
             $( "#annuallyTab" ).addClass("hide");
             $( "#monthlyTab" ).addClass("hide");
