@@ -118,13 +118,13 @@
 								                    				@endif
 							                    				@elseif($payment->strPaymentStatus != "Pending")
 								                    				@if($payment->strTransactionFK == $customer_info->strJobOrderID)
-								                    					<div @if($payment->strTransactionFK != $order->strJobOrderID) hidden @endif> You have no pending payment</div>
+								                    					<div @if($payment->strTransactionFK != $order->strJobOrderID) hidden @endif><center> You have no pending payment</center></div>
 								                    				@endif
 								                    			@endif				                    				
 						                    					
 							                    			@endif
 							                    			@endforeach
-							                    			@endforeach
+							                    		@endforeach
 							                    		</div>
 							                    		<!--ends here-->
 						                    		</div>

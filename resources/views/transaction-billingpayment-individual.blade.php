@@ -87,10 +87,10 @@
 							                    			<center><b>*** Customer has no pending balance ***</b></center>
 							                    		</div>		
 						                    		<div class="col s9">				                    				
-							                    		@elseif(count($customer_info->strPaymentID) != 0)
-							                    		<div class="col s7" style="color:black; margin-top:3%; padding:0; font-size:18px;"><b></b>
+						                    		@elseif(count($customer_info->strPaymentID) != 0)
+						                    		<div class="col s7" style="color:black; margin-top:3%; padding:0; font-size:18px;"><b></b>
 
-							                    		</div>
+						                    		</div>
 						                    		</div>
 					                    		</div>
 
@@ -101,18 +101,30 @@
 						                    		</div>
 						                    		<!--eto ang iloloop beybe-->
 						                    		<div class="col s12" style="padding-left:15%">
-						                    			
-						                    			@foreach($customer_orders as $j => $order)
-														@foreach($payments as $i => $payment)
-														@if($order->boolIsActive == 1 AND $order->strTermsOfPayment != "Full Payment")
-						                    			<div class="col s12 {{$payment->strJobOrderID}}{{$i+1}}" style="color:black; margin-top:3%; padding:0; font-size:18px" id="{{$payment->strJobOrderID}}{{$i+1}}" @if($payment->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>{{ $order->dtOrderDate }} {{ $order->strJobOrderID }}</b>
-						                    				<!-- <a href=""><u>See transaction detail</u></a> -->
-						                    				<a class="{{$payment->strJobOrderID}}{{$i+1}}" style="background-color:#ef9a9a; color:white; padding-left:3%; padding-right:3%" id="{{$payment->dtPaymentDueDate}}">Due date: {{$payment->dtPaymentDueDate }}</a>
-						                    			</div>
-						                    			@endif
-						                    			@endforeach
-						                    			@endforeach
-						                    			
+						                    		@foreach($customer_orders as $j => $order)
+															@foreach($payments as $i => $payment)
+
+															@if($order->strTermsOfPayment == "Full Payment")
+
+						                    					<div @if($payment->strTransactionFK != $order->strJobOrderID) hidden @endif> You have no pending payment</div>
+
+															@elseif($order->strTermsOfPayment != "Full Payment")
+																@if($payment->strPaymentStatus == "Pending")
+																	@if($payment->strTransactionFK == $customer_info->strJobOrderID)
+									                    			<div class="col s12 {{$payment->strJobOrderID}}{{$i+1}}" style="color:black; margin-top:3%; padding:0; font-size:18px" id="{{$payment->strJobOrderID}}{{$i+1}}" @if($payment->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>{{ $order->dtOrderDate }} {{ $order->strJobOrderID }}
+								                    				<!-- <a href=""><u>See transaction detail</u></a> -->
+								                    				<a class="{{$payment->strJobOrderID}}{{$i+1}}" style="background-color:#ef9a9a; color:white; padding-left:3%; padding-right:3%" id="{{$payment->dtPaymentDueDate}}">Due date: {{$payment->dtPaymentDueDate }}</a>
+								                    				</div>	
+								                    				@endif
+							                    				@elseif($payment->strPaymentStatus != "Pending")
+								                    				@if($payment->strTransactionFK == $customer_info->strJobOrderID)
+								                    					<div @if($payment->strTransactionFK != $order->strJobOrderID) hidden @endif><center> You have no pending payment</center></div>
+								                    				@endif
+								                    			@endif				                    				
+						                    					
+							                    			@endif
+							                    			@endforeach
+							                    		@endforeach
 						                    		</div>
 						                    		<!--ends here-->
 					                    		</div>
