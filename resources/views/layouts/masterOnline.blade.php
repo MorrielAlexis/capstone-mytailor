@@ -5,6 +5,7 @@
       <title>MyTailor - Customer Module</title>
       
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
       {!! Html::style('css/materialize.min.css') !!}
       {!! Html::style('css/styleOnline.css'); !!}
@@ -14,7 +15,7 @@
       </style>
 
       <style>
-
+        $menu-width: 250px!default;
         body{
           background: #f2f2f2;
           background-size: cover;
@@ -24,9 +25,19 @@
           padding: 0;
           
         }
-        
-        
-        
+
+        .header__icon {
+            position: relative;
+            display: block;
+            float: left;
+            width: 50px;
+            height: 66px;
+            
+            cursor: pointer;
+            
+            }
+
+
         .btn{
           background: #cccccc;
           padding: 0;
@@ -38,8 +49,8 @@
     </head>
 
     <body>
-
-      <nav>
+      <a href="#" class="header__icon" id="header__icon"></a>
+      <nav class="menu">
         <div class="navbar teal " >
           <nav style="height:40px">
             <div class="nav-wrapper">
@@ -73,7 +84,7 @@
           </ul>
         </div>
 
-
+        <a href="#" class="header__icon" id="header__icon"></a>
         <div class="navbar  teal">
           <nav style=" font-family:'Sintony', sans-serif;  ">
             <div style="border-bottom:1px solid grey" class="nav-wrapper">
@@ -194,6 +205,24 @@
         $('.fixed-action-btn').closeFAB();
       </script>
 
+      <script type="text/javascript">
+        $(document).ready(function(){
+
+  (function($) {
+
+    $('#header__icon').click(function(e){
+      e.preventDefault();
+      $('body').toggleClass('with--sidebar');
+    });
+    
+    $('#site-cache').click(function(e){
+      $('body').removeClass('with--sidebar');
+    });
+
+  })(jQuery);
+
+});
+      </script>
         @yield('scripts')
 
 

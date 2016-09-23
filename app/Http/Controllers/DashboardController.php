@@ -25,11 +25,12 @@ class DashboardController extends Controller
         //$user = Auth::user();
 
         $joborder = \DB::table('tblJobOrder')
-            ->leftjoin('tblcustindividual', 'tblJobOrder.strJo_CustomerFK', '=', 'tblcustindividual.strIndivID')
-            ->leftjoin('tblcustcompany', 'tblJobOrder.strJo_CustomerCompanyFK', '=', 'tblcustcompany.strCompanyID')
-            ->where('tblJobOrder.boolIsOrderAccepted', '!=', '1')
-            ->select('tblcustindividual.*', 'tblcustcompany.*', 'tblJobOrder.*')
-            ->get();
+            ->leftjoin('tblcustindividual', 'tblJobOrder.strJO_CustomerFK', '=', 'tblcustindividual.strIndivID')
+            ->leftjoin('tblcustcompany', 'tblJobOrder.strJO_CustomerCompanyFK', '=', 'tblcustcompany.strCompanyID')
+            ->orderby('tblJobOrder.strJobOrderID')
+            ->select('tblcustindividual.*', 'tblJobOrder.*')
+            ->where('boolIsOnline', 1)
+            ->get(); 
 
         $joborderongoing = \DB::table('tblJobOrder')
             ->leftjoin('tblcustindividual', 'tblJobOrder.strJo_CustomerFK', '=', 'tblcustindividual.strIndivID')
@@ -81,11 +82,6 @@ class DashboardController extends Controller
             ->get();
 
         $topCustomers = \DB::select('SELECT Concat(tblCustIndividual.strIndivFName, " " , tblCustIndividual.strIndivMName, " " , tblCustIndividual.strIndivLName)as name, COUNT(strIndivID) as ctr FROM tblJobOrder,tblCustIndividual WHERE tblCustIndividual.strIndivID = tblJobOrder.strJO_CustomerFK ORDER BY ctr');
-
-        // $totalSegments = \DB::select('SELECT tblSegment.strSegmentName as name, tblSegment.strSegmentImage as image, SUM(intJO_OrderQuantity) as ctr FROM tblJOSpecific,tblSegment WHERE tblSegment.strSegmentID = tblJOSpecific.strJOSegmentFK ORDER BY ctr ');
-
-
-        // $total = \DB::select('SELECT tblSegment.strSegmentName as name, tblSegment.strSegmentImage as image, SUM(intJO_OrderQuantity) as ctr FROM tblJOSpecific,tblSegment WHERE tblSegment.strSegmentID = tblJOSpecific.strJOSegmentFK ORDER BY ctr ');
     
 
         return view('dashboard')

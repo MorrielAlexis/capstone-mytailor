@@ -71,7 +71,6 @@
 							<a style="color:black; margin-bottom: 3%" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#remove{{ $i+1 }}"><i class="mdi-navigation-close"></i></a>
 
 							<center><img src="{{URL::asset($segment['strSegmentImage'])}}" style="height:450px; width:450px; border:3px gray solid"></center>								          	
-							<center><a href="#!" class="btn tooltipped"  data-position="bottom" data-delay="50" data-tooltip="Click to add similar garment and specify new design and fabric" style="background-color:teal; white:white">Add</a></center>
 							</div>
 							
 							<br>
@@ -90,13 +89,13 @@
 										<!--Check maintenance for a better understanding. Under Garments-->
 										@foreach($styles as $j => $style)
 										@if($style->boolIsActive == 1)
-										<ul class="collapsible z-depth-2" data-collapsible="accordion" style="border:none" @if($segment['strSegmentID'] != $style->strSegmentFK) hidden @endif>
+										<ul class="collapsible z-depth-2" data-collapsible="accordion" style="border:none" @if($segment['strSegmentID'] != $style->strSegmentFK) hidden @endif> 
 										    <li style="margin-bottom:10px;">
 										      	<div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $style->strSegStyleName }}</div>
 										      	<div class="collapsible-body overflow-x">
 										      		<div class="col s12">
 												      	<div class="left col s6"><p style="color:gray; margin-left:20px">*Choose one of your desired design</p></div>
-												      	<div class="pull-right col s6"  style="margin-top:2.8%; font-size:15px; padding-left:10%"><a class="modal-trigger tooltipped" href="#custom-fabric" data-position="bottom" data-delay="50" data-tooltip="Click this if you want a separate fabric for this specific style category"><u><b>Click to specify fabric for this specific style category</b></u></a></div>
+												      	<div class="pull-right col s6"  style="margin-top:2.8%; font-size:15px; padding-left:10%"><a class="modal-trigger tooltipped" href="#custom-fabric{{ $i+1 }}{{ $j+1 }}" data-position="bottom" data-delay="50" data-tooltip="Click this if you want a separate fabric for this specific style category"><u><b>Click to specify fabric for this specific style category</b></u></a></div>
 												    </div>
 												      	@foreach($patterns as $k => $pattern)
 												      	<div class="col s6" @if($pattern->strSegPStyleCategoryFK != $style->strSegStyleCatID) hidden @endif>
@@ -111,7 +110,7 @@
 														              <img src="{{URL::asset($pattern->strSegPImage)}}" alt="" class="responsive-img">
 														            </div>
 														            <div class="col s6"> 
-														              <span><b>{{ $pattern->strSegPName }} - PHP {{ number_format($pattern->dblPatternPrice, 2) }} </b></span> <!-- This will be the name of the pattern -->
+														              <span><b>{{ $pattern->strSegPName }} ({{ number_format($pattern->dblPatternPrice, 2) }} PHP)</b></span> <!-- This will be the name of the pattern -->
 														              <br/>
 														              <span class="black-text">
 														                {{ $pattern->txtSegPDesc }}
@@ -143,9 +142,8 @@
 								</div>
 
 								<!--Modal for custom-facbric-->
-								@foreach($styles as $k => $style)
-										@if($style->boolIsActive == 1)
-								<div id="custom-fabric" class="modal modal-fixed-footer" style="width:80%; height:75%; margin-top:0">
+								@foreach($patterns as $j => $pattern)
+								<div id="custom-fabric{{ $i+1 }}{{ $j+1 }}" class="modal modal-fixed-footer" style="width:80%; height:75%; margin-top:0">
 		 								<h5><font color = "#1b5e20"><center>List of Available Fabrics</center> </font> </h5>
 		    
 				                        <div class="divider" style="height:2px"></div>				
@@ -207,11 +205,11 @@
 												
 												<p style="color:gray; margin-left:20px">*Choose one of your desired fabric</p>
 
-					                        	@foreach($fabrics as $j => $fabric)
-					                        	<div class="col s6 custom-fabrics {{ $fabric->strFabricTypeFK }} {{ $fabric->strFabricPatternFK }} {{ $fabric->strFabricColorFK }} {{ $fabric->strFabricThreadCountFK }} ">
+					                        	@foreach($fabrics as $k => $fabric)
+					                        	<div class="col s6 custom-fabric-general">
 					                        	<div class="center col s2" style="margin-top:60px">
-					                        		<input name="custom-fabrics{{ $i+1 }}" type="radio" class="filled-in custom-segmentFabric{{ $i+1 }}" value="custom-{{ $fabric->strFabricID }}" id="custom-{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" />					                        	
-					                        		<label for="custom-{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}"></label>
+					                        		<input name="custom-fabrics{{ $j+1 }}" id="custom{{ $fabric->strFabricID }}{{ $i + 1}}{{ $j+1 }}"  type="radio" class="filled-in segmentFabric{{ $j+1 }}" value="{{ $fabric->strFabricID }}"/>					                        	
+					                        		<label for="custom{{ $fabric->strFabricID }}{{ $i + 1}}{{ $j+1 }}"></label>
 					                        	</div>
 					                        	 <div class="col s10">
 											        <div class="card-panel teal lighten-4 z-depth-1">
@@ -220,9 +218,9 @@
 											              <img src="{{URL::asset($fabric->strFabricImage)}}"class="responsive-img">
 											            </div>
 											            <div class="col s8"> 
-											              <p><b id="{{ 'fabricText'.$fabric->strFabricID }}">{{ $fabric->strFabricName }} - PHP {{ number_format($fabric->dblFabricPrice, 2) }} </b></p> 
+											              <p><b id="{{ 'fabricText'.$fabric->strFabricID }}">{{ $fabric->strFabricName }} ({{ number_format($fabric->dblFabricPrice, 2) }} PHP)	</b></p> 
 											              <span class="black-text">
-											                {{ $fabric->txtFabricDesc }}
+											              	{{ $fabric->txtFabricDesc }}
 											              </span>
 											            </div>
 											          </div>
@@ -240,8 +238,7 @@
 			                          <a  class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
 			                        </div>
 								</div>
-										  @endif
-										@endforeach
+								@endforeach
 								<!--End of modal for custom fabric-->
 								
 								<div class="col s6" style="margin-top:7%">
@@ -322,7 +319,7 @@
 											              <img src="{{URL::asset($fabric->strFabricImage)}}"class="responsive-img"> <!-- notice the "circle" class -->
 											            </div>
 											            <div class="col s8"> 
-											              <p><b id="{{ 'fabricText'.$fabric->strFabricID }}">{{ $fabric->strFabricName }} - PHP {{ number_format($fabric->dblFabricPrice, 2) }} </b></p> <!-- This will be the name of the pattern -->
+											              <p><b id="{{ 'fabricText'.$fabric->strFabricID }}">{{ $fabric->strFabricName }} ({{ number_format($fabric->dblFabricPrice, 2) }} PHP)</b></p> <!-- This will be the name of the pattern -->
 											              <span class="black-text">
 											                {{ $fabric->txtFabricDesc }}
 											              </span>
