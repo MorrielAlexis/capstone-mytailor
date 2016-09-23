@@ -36,12 +36,6 @@
             <iframe width="540" height="200" src="vidOnlineTutorial/Neck_Men.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="neck_measure" type="text" class="validate">
-              <label for="neck_measure">Input Measurement</label>
-        </div>
-    </center>
   
     <h2 align="center" style="margin-top:80px">Chest</h2>
     <p style="left-align; text-align:center;">
@@ -54,13 +48,7 @@
           <iframe width="540" height="200" src="vidOnlineTutorial/Chest_Men.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
-     <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="chest_measure" type="text" style="align:center" class="validate">
-              <label for="chest_measure">Input Measurement</label>
-        </div>
-    </center>
-
+  
     <h2 align="center" style="margin-top:80px">Arm Length</h2>
     <p style="left-align; text-align:center;">
           The sleeve length measurement is taken from the point of your shoulder (where you took the shoulder width measurement), 
@@ -77,13 +65,7 @@
           <iframe width="540" height="200" src="vidOnlineTutorial/ArmLength_Men.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
-     <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="arm_length_measure" type="text" style="align:center" class="validate">
-              <label for="arm_length_measure">Input Measurement</label>
-        </div>
-    </center>
-
+    
     <h2 align="center" style="margin-top:80px">Shoulder</h2>
     <p style="left-align; text-align:center;">
           Think of a line going from your armpit straight upwards to your shoulder. 
@@ -95,13 +77,6 @@
            <iframe width="540" height="200" src="vidOnlineTutorial/ShoulderWidth_Men.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
-     <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="shoulder_measure" type="text" style="align:center" class="validate">
-              <label for="shoulder_measure">Input Measurement</label>
-        </div>
-    </center>
-
     <h2 align="center" style="margin-top:80px">Short Sleeve Length</h2>
     <p style="left-align; text-align:center;">
          The short sleeve length measurement is taken from the point of your shoulder 
@@ -113,13 +88,7 @@
            <iframe width="540" height="200" src="vidOnlineTutorial/ShortSleeve_Men.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
-     <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="short_sleeve_measure" type="text" style="align:center" class="validate">
-              <label for="short_sleeve_measure">Input Measurement</label>
-        </div>
-    </center>
-
+     
     <h2 align="center" style="margin-top:80px">Biceps</h2>
     <p style="left-align; text-align:center;">
          The biceps measurement is taken as a circumference measurement around your biceps.
@@ -131,13 +100,7 @@
            <iframe width="540" height="200" src="vidOnlineTutorial/Biceps_Men.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
-     <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="biceps_measure" type="text" style="align:center" class="validate">
-              <label for="biceps_measure">Input Measurement</label>
-        </div>
-    </center>
-
+     
     <h2 align="center" style="margin-top:80px">Shirt/Piquet Polo Length</h2>
     <p style="left-align; text-align:center;">
          The shirt/piqué polo length measurement is taken from the top of the shoulder, close to the mid side of your neck, 
@@ -149,13 +112,7 @@
             <iframe width="540" height="200" src="vidOnlineTutorial/ShirtPiquet_Men.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
-     <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="shirt_piquet_measure" type="text" style="align:center" class="validate">
-              <label for="shirt_piquet_measure">Input Measurement</label>
-        </div>
-    </center>
-
+     
     <h2 align="center" style="margin-top:80px">Waist</h2>
     <p style="left-align; text-align:center;">
          The waist measurement is taken as a circumference measurement around your waist just above your 
@@ -167,12 +124,7 @@
            <iframe width="540" height="200" src="vidOnlineTutorial/Waist_Men.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
-     <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="waist_measure" type="text" style="align:center" class="validate">
-              <label for="waist_measure">Input Measurement</label>
-        </div>
-    </center>
+     
 
      <h2 align="center" style="margin-top:80px">Wrist</h2>
     <p style="left-align; text-align:center;">
@@ -186,13 +138,7 @@
            <iframe width="540" height="200" src="vidOnlineTutorial/Wrist_Men.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
-   <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="wrist_measure" type="text" style="align:center" class="validate">
-              <label for="wrist_measure">Input Measurement</label>
-        </div>
-    </center>
-
+  
 <!--Pants Measurement-->
 
     <div class="divider" style="background-color:teal;"></div> 
@@ -273,11 +219,6 @@
               <label for="inseam_short_measure">Input Measurement</label>
         </div>
     </center>
-
-    <div style="margin-bottom:200px;">
-      <a class="left btn-flat tooltipped modal-trigger" data-position="bottom" data-delay="50" data-tooltip="Click to go back" style="font-size:15px; color:white; background-color: teal; opacity:0.90" href="{{URL::to('/online-measuring-tutorial')}}"><i class="mdi-content-reply"> BACK</i></a>
-      <a type="submit" class="right btn-flat tooltipped modal-trigger" data-position="bottom" data-delay="50" data-tooltip="Click to save measurements" style="background-color: teal; font-size:15px; color:white" href="#savemodal"><i class="mdi-content-save"> SAVE</i></a>              
-    </div>
 </div>
 
 
@@ -292,16 +233,7 @@
     <div class="container" align="center" >
         <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/neck.JPG">
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="neck_measure" type="text" style="align:center" class="validate">
-              <label for="neck_measure">Input Measurement</label>
-        </div>
-    </center>
-
- 
-
-
+  
     <h2 align="center" style="margin-top:80px">Chest</h2>
     <p style="left-align; text-align:center;">
           The chest measurement is taken as a circumference measurement around your chest at the widest point. 
@@ -310,14 +242,6 @@
     <div class="container" align="center" >
         <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/chest.JPG">
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="chest_measure" type="text" style="align:center" class="validate">
-              <label for="chest_measure">Input Measurement</label>
-        </div>
-    </center>
- 
-
 
     <h2 align="center" style="margin-top:80px">Arm Length</h2>
     <p style="left-align; text-align:center;">
@@ -332,15 +256,6 @@
     <div class="container" align="center" >
         <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/sleeve length.JPG">
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="arm_length_measure" type="text" style="align:center" class="validate">
-              <label for="arm_length_measure">Input Measurement</label>
-        </div>
-    </center>
-
- 
-
 
     <h2 align="center" style="margin-top:80px">Shoulder</h2>
     <p style="left-align; text-align:center;">
@@ -350,15 +265,7 @@
     <div class="container" align="center" >
         <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/shoulder.JPG">
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="shoulder_measure" type="text" style="align:center" class="validate">
-              <label for="shoulder_measure">Input Measurement</label>
-        </div>
-    </center>
- 
-
-
+  
     <h2 align="center" style="margin-top:80px">Waist</h2>
     <p style="left-align; text-align:center;">
          The waist measurement is taken as a circumference measurement around your waist just above your 
@@ -367,15 +274,6 @@
     <div class="container" align="center" >
         <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/waist.JPG">
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="waist_measure" type="text" style="align:center" class="validate">
-              <label for="waist_measure">Input Measurement</label>
-        </div>
-    </center>
-
- 
-
 
     <h2 align="center" style="margin-top:80px">Wrist</h2>
     <p style="left-align; text-align:center;">
@@ -385,13 +283,7 @@
     <div class="container" align="center" >
         <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/wrist.JPG">
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="wrist_measure" type="text" style="align:center" class="validate">
-              <label for="wrist_measure">Input Measurement</label>
-        </div>
-    </center>
-    
+
     <!--pants measurement-->
     <div class="divider" style="background-color:teal;"></div> 
     <div class="divider" style="background-color:teal;"></div> 
@@ -404,12 +296,6 @@
     <div class="container" align="center" >
         <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/seat.JPG">
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="wrist_measure" type="text" style="align:center" class="validate">
-              <label for="wrist_measure">Input Measurement</label>
-        </div>
-    </center>
       
 
     <h2 align="center" style="margin-top:80px">Hip</h2>
@@ -421,13 +307,7 @@
     <div class="container" align="center" >
         <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/hip.JPG">
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="wrist_measure" type="text" style="align:center" class="validate">
-              <label for="wrist_measure">Input Measurement</label>
-        </div>
-    </center>
-    
+
 
     <h2 align="center" style="margin-top:80px">Inseam</h2>
     <p style="left-align; text-align:center;">
@@ -437,20 +317,6 @@
     <div class="container" align="center" >
         <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/inseam.JPG">
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="wrist_measure" type="text" style="align:center" class="validate">
-              <label for="wrist_measure">Input Measurement</label>
-        </div>
-    </center>
-
-
-    <div style="margin-bottom:200px;">
-      <a class="left btn-flat tooltipped modal-trigger" data-position="bottom" data-delay="50" data-tooltip="Click to go back" style="font-size:15px; color:white; background-color: teal; opacity:0.90" href="{{URL::to('/online-measuring-tutorial')}}"><i class="mdi-content-reply"> BACK</i></a>
-      <a type="submit" class="right btn-flat tooltipped modal-trigger" data-position="bottom" data-delay="50" data-tooltip="Click to save measurements" style="background-color: teal; font-size:15px; color:white" href="#savemodal"><i class="mdi-content-save"> SAVE</i></a>              
-    </div>
-
-
 </div>
 
 
