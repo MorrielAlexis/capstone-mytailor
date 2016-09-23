@@ -196,15 +196,9 @@
                             <h3 style="font-size:38px" class="task-card-title white-text"><i class=" small material-icons" style="margin-right:10px">assignment</i>Pending Online Orders</h3>
                         </li>
                         @foreach($joborder as $joborder)
-                            @if($joborder->strCompanyName == null)
                                 <li class="collection-item dismissable" style="padding:20px;">
-                                     <a href="{{URL::to('transaction/online-customer-individual')}}" class="waves-effect waves-teal btn-flat"> {{$joborder->dtOrderExpectedToBeDone}} {{$joborder->strCompanyName}}{{$joborder->strIndivFName}} {{$joborder->strIndivLName}}</a>
-                                </li>
-                            @else
-                                <li class="collection-item dismissable" style="padding:20px;">
-                                     <a href="{{URL::to('transaction/online-customer-company')}}" class="waves-effect waves-teal btn-flat"> {{$joborder->dtOrderExpectedToBeDone}} {{$joborder->strCompanyName}}{{$joborder->strIndivFName}} {{$joborder->strIndivLName}}</a>
-                                </li>
-                            @endif        
+                                     <a href="{{URL::to('transaction/online-customer-individual')}}" class="waves-effect waves-teal btn-flat"> <i style="font-size:17px" class ="mdi-action-credit-card"> {{$joborder->strIndivFName}} {{$joborder->strIndivLName}}</i></a>
+                                </li>   
                         @endforeach    
                     </ul>
                 </div>
