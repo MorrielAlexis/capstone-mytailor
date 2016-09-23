@@ -24,5 +24,6 @@ class TransactionJobOrder extends Model
     						'dtExpectedDeliveryDate',
     						'dtFinished',
     						'dtDelivered',
-    						'boolIsActive');
+    						'boolIsActive',
+                            'boolIsOnline');
 }

@@ -42,8 +42,17 @@
                     <label for="{{$garment->strSegmentID}}">{{$garment->strSegmentName}}</label>
                   </div>
 
+                  <input type="hidden" value="{{$garment->strSegmentName}}" name="mname">
+                  <input type="hidden" value="{{$garment->dblSegmentPrice}}" name="msegprice">
+                  <input type="hidden" value="{{$garment->intMinDays}}" name="mdays">
+
                   <div class="center col s12">
                     <img src="{{$garment->strSegmentImage}}" style="height:200px; width:250px; padding:10px; border:3px gray solid">
+                  </div>
+
+                  <div class = "row">
+                    <div class="center col s3" style="margin-top:30px; color:red"><center><b style="font-size:18px">QTY</b></center></div>  
+                    <div class="col s4" style="margin-top:20px; padding:5px; margin-right:5px;"><input name="menquantity" id="quantity" type="number" style="border:2px teal solid; padding-left:18%; padding-right:18%" placeholder="How many?"></div>
                   </div>
                 </div>
             @endif
