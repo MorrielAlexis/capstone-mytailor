@@ -457,16 +457,16 @@
 			    return val;
 			 }
 
-			//$('#labor_price_total').val(laborTotal.toFixed(2));
 			$('#estimated_total').val(commaSeparateNumber(totalAmount.toFixed(2)));
 			$('#total_price').val(commaSeparateNumber(grandtotal.toFixed(2)));
 			$('#total_price_hidden').val(grandtotal.toFixed(2));
 			$('#vat_total').val(commaSeparateNumber(vat.toFixed(2)));
 			$('#total_due').val(commaSeparateNumber(due.toFixed(2)));
-			//$('#addtnl_fee').val(addtnlFees.toFixed(2));
 			$('#due-date').text(dayNames[dueDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
-			$('#transaction_date').val(monthNames[(newDate.getMonth()+1)] + " " + newDate.getDate() + ", " + newDate.getFullYear());
-			$('#due_date').val(monthNames[(dueDate.getMonth()+1)] + " " + dueDate.getDate() + ", " + dueDate.getFullYear());
+			//$('#transaction_date').val(monthNames[(newDate.getMonth())] + " " + newDate.getDate() + ", " + newDate.getFullYear());
+			$('#transaction_date').val(newDate.getDate);
+			$('#due_date').val(monthNames[(dueDate.getMonth())] + " " + dueDate.getDate() + ", " + dueDate.getFullYear());
+			//$('#due_date').val(dueDate.getDate);
 		});
 	</script>
 
