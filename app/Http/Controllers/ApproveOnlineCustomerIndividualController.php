@@ -39,7 +39,7 @@ class ApproveOnlineCustomerIndividualController extends Controller
             ->leftjoin('tblcustcompany', 'tblJobOrder.strJO_CustomerCompanyFK', '=', 'tblcustcompany.strCompanyID')
             ->orderby('tblJobOrder.strJobOrderID')
             ->select('tblcustindividual.*', 'tblJobOrder.*')
-            // ->where('boolIsOnline', 1)
+            ->where('boolIsOnline', 1)
             ->get(); 
 
 
@@ -102,7 +102,7 @@ class ApproveOnlineCustomerIndividualController extends Controller
      
         });
 
-         \Session::flash('flash_message','Order accepted! Email successfully sent to customer.'); //flash message
+         \Session::flash('flash_message_update','Order accepted! Email successfully sent to customer.'); //flash message
 
         return redirect('transaction/online-customer-individual');
     }

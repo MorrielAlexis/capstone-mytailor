@@ -16,7 +16,7 @@ class SegmentSeeder extends Seeder
         $tblSegment = array (
             array(
                 'strSegmentID' => 'SEGM001',
-                'strSegCategoryFK' => 'GARM001',    
+                'strSegCategoryFK' => 'GARM004',    
                 'strSegmentName' =>'Skirt',
                 'dblSegmentPrice' => '100.00',
                 'strSegmentSex' => 'F',
@@ -40,7 +40,7 @@ class SegmentSeeder extends Seeder
 
              array(
                 'strSegmentID' => 'SEGM003',
-                'strSegCategoryFK' => 'GARM001',    
+                'strSegCategoryFK' => 'GARM004',    
                 'strSegmentName' =>'Ladies Slacks',
                 'dblSegmentPrice' => '150.00',
                 'strSegmentSex' => 'F',
@@ -52,7 +52,7 @@ class SegmentSeeder extends Seeder
 
               array(
                 'strSegmentID' => 'SEGM004',
-                'strSegCategoryFK' => 'GARM001',    
+                'strSegCategoryFK' => 'GARM003',    
                 'strSegmentName' =>'Polo Shirt',
                 'dblSegmentPrice' => '100.00',
                 'strSegmentSex' => 'M',
@@ -64,7 +64,7 @@ class SegmentSeeder extends Seeder
 
                array(
                 'strSegmentID' => 'SEGM005',
-                'strSegCategoryFK' => 'GARM001',    
+                'strSegCategoryFK' => 'GARM005',    
                 'strSegmentName' =>'Blouse',
                 'dblSegmentPrice' => '100.00',
                 'strSegmentSex' => 'F',
@@ -76,7 +76,7 @@ class SegmentSeeder extends Seeder
 
             array(
                 'strSegmentID' => 'SEGM006',
-                'strSegCategoryFK' => 'GARM001',    
+                'strSegCategoryFK' => 'GARM004',    
                 'strSegmentName' =>'Pants',
                 'dblSegmentPrice' => '150.00',
                 'strSegmentSex' => 'M',
@@ -101,7 +101,7 @@ class SegmentSeeder extends Seeder
 
             array(
                 'strSegmentID' => 'SEGM008',
-                'strSegCategoryFK' => 'GARM001',    
+                'strSegCategoryFK' => 'GARM005',    
                 'strSegmentName' =>'Blazers',
                 'dblSegmentPrice' => '300.00',
                 'strSegmentSex' => 'F',

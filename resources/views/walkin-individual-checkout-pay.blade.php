@@ -302,7 +302,7 @@
 
 
 							<input type="hidden" id="Date" name="Date">
-							<input type="hidden" id="due_date" name="due_date">
+							<input type="hidden" id="dueDate" name="dueDate" />
 
 							<div class="col s12"><div class="divider" style="padding-top:10px"></div></div>								
 								<!-- <div class="modal-content col s12" style="padding-bottom:20px;">
@@ -391,8 +391,6 @@
 
 			var a = {!! json_encode($values) !!};
 			var b = {!! json_encode($styles) !!};
-			//var c =  json_encode($laborfee) !!};
-			//var d = { json_encode($othercharge) !!};
 			var c = {!! json_encode($lineTotal) !!};
 			var d = {!! json_encode($vat) !!};
 
@@ -400,36 +398,14 @@
 			var minDays = 0;
 			var laborTotal = 0.00;
 			var addtnlFees = 0.00;
-			//var estimatedTotal = 0.00;
 			var grandtotal = 0.00;
-
-			//labor total
-			/*for(var i = 0; i < a.length; i++) {
-					laborTotal += c[i].dblChargeDetPrice;
-			}
-
-			//additional total fees
-			for(var i = 0; i < a.length; i++) {
-				//for(var j = 0; j < d[i].length; j++) {
-					addtnlFees += d[i].dblChargeDetPrice;
-				//}
-			}*/
 
 			//grand total
 			for(var i = 0; i < a.length; i++){
-				/*totalAmount += a[i].dblSegmentPrice;
-				totalAmount += a[i].dblFabricPrice;
-				//totalAmount += c[i].dblChargeDetPrice;
-				//totalAmount += d[i].dblChargeDetPrice;
-					/*for(var j = 0; j < b[i].length; j++){
-						totalAmount += b[i][j].dblPatternPrice;
-					}*/
 				grandtotal += c[i];
 				minDays += a[i].intMinDays;
 			}
 
-			//estimated total
-			//estimatedTotal = totalAmount - (addtnlFees + laborTotal);
 			var due = grandtotal;
 			var vat = 0.00;
 			var vatValue;
@@ -447,8 +423,20 @@
 			var newDate = new Date();
 			var dueDate = new Date();
 
+			/*Date.prototype.addDays = function(days)
+			{
+			    var dueDate = new Date();
+			    dueDate.setDate(dueDate.getDate() + days);
+			    return dueDate;
+			}*/
+
 			newDate.setDate(newDate.getDate());   
 			dueDate.setDate(newDate.getDate()+minDays); 
+
+			/*var yy = dueDate.getFullYear();
+			var mm = dueDate.getMonth() + 1;
+			var dd = dueDate.getDate();
+			var formattedDueDate = yy + '-' + mm + '-' + dd;*/
 
 			function commaSeparateNumber(val){
 			    while (/(\d+)(\d{3})/.test(val.toString())){
@@ -456,17 +444,17 @@
 			    }
 			    return val;
 			 }
-
-			//$('#labor_price_total').val(laborTotal.toFixed(2));
+			 //alert(dueDate.getFullYear() + "-" +  (dueDate.getMonth()+1) + "-" + dueDate.getDate());
 			$('#estimated_total').val(commaSeparateNumber(totalAmount.toFixed(2)));
 			$('#total_price').val(commaSeparateNumber(grandtotal.toFixed(2)));
 			$('#total_price_hidden').val(grandtotal.toFixed(2));
 			$('#vat_total').val(commaSeparateNumber(vat.toFixed(2)));
 			$('#total_due').val(commaSeparateNumber(due.toFixed(2)));
-			//$('#addtnl_fee').val(addtnlFees.toFixed(2));
-			$('#due-date').text(dayNames[dueDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
-			$('#transaction_date').val(monthNames[(newDate.getMonth()+1)] + " " + newDate.getDate() + ", " + newDate.getFullYear());
-			$('#due_date').val(monthNames[(dueDate.getMonth()+1)] + " " + dueDate.getDate() + ", " + dueDate.getFullYear());
+			//$('#due-date').text(dayNames[dueDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
+			//$('#transaction_date').val(monthNames[(newDate.getMonth())] + " " + newDate.getDate() + ", " + newDate.getFullYear());
+			//$('#transaction_date').val(newDate.getDate);
+			//$('#due_date').val(monthNames[(dueDate.getMonth())] + " " + dueDate.getDate() + ", " + dueDate.getFullYear());
+			$('#dueDate').val(dueDate.getFullYear() + "-" +  (dueDate.getMonth()+1) + "-" + dueDate.getDate());
 		});
 	</script>
 

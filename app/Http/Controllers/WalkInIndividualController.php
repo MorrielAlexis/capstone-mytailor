@@ -178,29 +178,38 @@ class WalkInIndividualController extends Controller
         $k = 0;
 
         for($i = 0; $i < count($values); $i++){
-            $segmentFabric[$i] = $request->input('fabrics' . ($i+1));
-        }
-
-        for($i = 0; $i < count($values); $i++){
             for($j = 0; $j < count($segmentStyles); $j++){
-                $tempPatterns = $request->input('rdb_pattern' . $segmentStyles[$j]->strSegStyleCatID . ($i+1));       
+                $tempPatterns = $request->input('rdb_pattern' . $segmentStyles[$j]->strSegStyleCatID . ($i+1));  
+                $tempCustomFabrics = $request->input('custom-fabrics' . ($j+1));  
+
+                if($tempCustomFabrics == null) $tempCustomFabrics = $request->input('fabrics' . ($i+1));
+
                 if($tempPatterns != null){
                     $patterns[$i][$k] = $tempPatterns;
+                    $customFabric[$i][$k] = $tempCustomFabrics;
                     $k++;
                 } 
             }
             $k = 0;
         }
+        //dd($customFabric);
+
+        for($i = 0; $i < count($values); $i++){
+            $segmentFabric[$i] = $request->input('fabrics' . ($i+1));
+        }  
         
         for($i = 0; $i < count($values); $i++){
-            $sqlStyles[$i] = \DB::table('tblSegmentPattern AS a')
-                    ->leftJoin('tblSegmentStyleCategory AS b', 'a.strSegPStyleCategoryFK', '=', 'b.strSegStyleCatID')
-                    ->leftJoin('tblSegment AS c', 'b.strSegmentFK', '=', 'strSegmentID')
-                    ->select('c.strSegmentID', 'a.strSegPStyleCategoryFK', 'a.strSegPatternID', 
-                             'a.strSegPName', 'b.strSegStyleName', 'a.dblPatternPrice')
-                    ->whereIn('a.strSegPatternID', $patterns[$i])
-                    ->get();
+            for($j = 0; $j < count($patterns[$i]); $j++){
+                    $sqlStyles[$i][$j] = \DB::table('tblSegmentPattern AS a')
+                        ->leftJoin('tblSegmentStyleCategory AS b', 'a.strSegPStyleCategoryFK', '=', 'b.strSegStyleCatID')
+                        ->leftJoin('tblSegment AS c', 'b.strSegmentFK', '=', 'strSegmentID')
+                        ->select('c.strSegmentID', 'a.strSegPStyleCategoryFK', 'a.strSegPatternID', 
+                           'a.strSegPName', 'b.strSegStyleName', 'a.dblPatternPrice')
+                        ->where('a.strSegPatternID', $patterns[$i][$j])
+                        ->first();
+            }
         }
+        session(['segment_design' => $sqlStyles]);//dd($sqlStyles);
 
         $sqlFabric = \DB::table('tblFabric')
                 ->select('strFabricID', 'strFabricName', 'dblFabricPrice')
@@ -218,6 +227,18 @@ class WalkInIndividualController extends Controller
         }  
         session(['segment_fabric' => $fabrics]); 
 
+        $customFab =[];
+        for($i = 0; $i < count($values); $i++){
+           for($j = 0; $j < count($customFabric[$i]); $j++){
+                for($k = 0; $k < count($sqlFabric); $k++){
+                    if($customFabric[$i][$j] == $sqlFabric[$k]->strFabricID){
+                        $customFab[$i][$j] = $sqlFabric[$k];
+                    }
+                }
+            }
+        }
+            //dd($customFab);
+
         for($i = 0; $i < count($values); $i++){
             $values[$i]['strFabricID'] = $fabrics[$i]->strFabricID;
             $values[$i]['strFabricName'] = $fabrics[$i]->strFabricName;
@@ -225,18 +246,18 @@ class WalkInIndividualController extends Controller
         }
 
         session()->forget('segment_values');
-        session(['segment_values' => $values]);
-        session(['segment_quantity' => $data_quantity]);
-
+        session(['segment_values' => $values]); 
         session(['segment_design' => $sqlStyles]);
+        session(['segment_quantity' => $data_quantity]);
+        session(['segment_style_fabric' => $customFab]);
+        session(['segment_style_patterns' => $tempPatterns]);
 
-        return redirect('transaction/customer-check');
+        return redirect('transaction/walkin-individual-customer-check');
     }
 
     //if a customer already has an existing profile with the shop
     public function customerCheck()
     {
-
         $individual = Individual::all();
         return view('walkin-individual-customer-check')
             ->with('individual', $individual);
@@ -283,14 +304,14 @@ class WalkInIndividualController extends Controller
     }
 
     public function addCustomer(Request $request)
-    {   dd($request->input('addSex'));
+    {   //dd($request->input('addSex'));
 
         $individual = Individual::create(array(
                     'strIndivID' => $request->input('addIndiID'),
                     'strIndivFName' => trim($request->input('addIndiFirstName')),     
                     'strIndivMName' => trim($request->input('addIndiMiddleName')),
                     'strIndivLName' => trim($request->input('addIndiLastName')),
-                    'strIndivSex' => $request->input('addSex'),
+                    //'strIndivSex' => $request->input('addSex'),
                     'strIndivHouseNo' => trim($request->input('addCustPrivHouseNo')), 
                     'strIndivStreet' => trim($request->input('addCustPrivStreet')),
                     'strIndivBarangay' => trim($request->input('addCustPrivBarangay')),   
@@ -312,7 +333,6 @@ class WalkInIndividualController extends Controller
     public function existingCustomerInformation(Request $request)
     {
         $custID = $request->input('custId'); //dd($custID);
-        //$custEmail = trim($request->input('strIndiEmail')); //dd($custEmail);
 
             $joID = \DB::table('tblJobOrder')
                 ->select('strJobOrderID')
@@ -415,39 +435,15 @@ class WalkInIndividualController extends Controller
         for($i=0; $i<count($quantity); $i++){
             $totalqty = $quantity[$i];
         }
-        //$chargefees = [];
         $othercharges = [];
 
-        /*$laborkey = "Labor Fee";
-
-        $sqlLabor = \DB::table('tblChargeCategory AS a')
+        $sqlCharge = \DB::table('tblChargeCategory AS a')
                     ->leftJoin('tblChargeDetail AS b', 'a.strChargeCatID', '=', 'b.strChargeCatFK')
-                    ->select('b.*')
+                    //->where('a.strChargeCatName', 'NOT LIKE', '%'.$laborkey.'%')
                     ->whereIn('b.strChargeDetSegFK', $data)
-                    ->where('a.strChargeCatName', 'LIKE', '%'.$laborkey.'%')
+                    ->select('b.strChargeDetSegFK', 'b.dblChargeDetPrice')
                     ->get();
 
-        for($i = 0; $i < count($values); $i++){
-            for($j = 0; $j < count($sqlLabor); $j++){
-                if($data[$i] == $sqlLabor[$j]->strChargeDetSegFK){
-                    $chargefees[$i]['strChargeDetSegFK'] = $sqlLabor[$j]->strChargeDetSegFK;
-                    $chargefees[$i]['dblChargeDetPrice'] = $sqlLabor[$j]->dblChargeDetPrice;
-                }
-            }
-        }  
-        session(['charge_laborfee' => $chargefees]); //dd($chargefees);*/
-
-        //$sqlCharge = [];
-        //for($i = 0; $i < count($values); $i++){
-            $sqlCharge = \DB::table('tblChargeCategory AS a')
-                        ->leftJoin('tblChargeDetail AS b', 'a.strChargeCatID', '=', 'b.strChargeCatFK')
-                        //->where('a.strChargeCatName', 'NOT LIKE', '%'.$laborkey.'%')
-                        ->whereIn('b.strChargeDetSegFK', $data)
-                        ->select('b.strChargeDetSegFK', 'b.dblChargeDetPrice')
-                        ->get();
-       // }
-
-        //for($i = 0; $i < count($values); $i++){
         foreach ($values as $i => $value){
             $totalcharge = 0.00;
             for($j = 0; $j < count($sqlCharge); $j++){
@@ -459,22 +455,7 @@ class WalkInIndividualController extends Controller
             $othercharges[$i]['dblChargeDetPrice'] = $totalcharge;
         } //dd($othercharges);
         session(['charge_others' => $sqlCharge]); //dd($sqlCharge);
-        /*$priceStyle = 0.00;
-        $styleTotal = [];
-        foreach ($values as $i => $value) { //dd($value);
-                foreach ($styles as $j => $style) { //dd($style);
-                    if($style[$i]->strSegmentID == $values[$i]['strSegmentID']){
-                        for($j = 0; $j < count($style[$i]); $j++){  //dd($style);
-                                $priceStyle += $style[$i]->dblPatternPrice;
-                        } 
-                        $styleTotal[$i]['strSegmentID'] = $style[$i]->strSegmentID;
-                    }
-                } dd($priceStyle);
-            $styleTotal[$i]['dblPatternPrice'] = $priceStyle;
-             //dd($styleTotal);//dd($priceStyle);
-        } dd($priceStyle);
-            dd($styleTotal);
-        session(['style_totalprice' => $styleTotal]);*/
+        
         $styleTotal = [];
         foreach ($values as $i => $value){//{dd($values);
             $priceStyle = 0.00;
@@ -489,8 +470,10 @@ class WalkInIndividualController extends Controller
         $lineTotal = [];
         for($i = 0; $i < count($values); $i++)
         {
+            for($j=0; $j<count($quantity[$i]); $j++){
             //$lineTotal[$i] = $values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice'] + $styleTotal[$i]['dblPatternPrice'] + $chargefees[$i]['dblChargeDetPrice'];
-            $lineTotal[$i] = (($values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice']) * $totalqty) + $styleTotal[$i]['dblPatternPrice'];
+            $lineTotal[$i] = (($values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice']) + $styleTotal[$i]['dblPatternPrice'])  * $quantity[$i][$j];
+            }
         }
        
         $vatCharge = \DB::table('tblVat')
@@ -498,23 +481,12 @@ class WalkInIndividualController extends Controller
                 ->select('dblTaxPercentage')
                 ->get();
         //dd($vatCharge);
-        
-        /*    $add = 0.00;
-        foreach ($values as $i => $value) {
-            for($j = 0; $j < count($sqlCharge[$i]); $j++){
-                if($sqlCharge[$i]->strChargeDetSegFK == $value['strSegmentID']){
-                    $add += $sqlCharge[$i]->dblChargeDetPrice;
-                }
-            }
-            $addtot = $add;
-        } */
 
         return view('walkin-individual-checkout-pay')
                     ->with('values', $values)
                     ->with('styles', $styles)
                     ->with('style_total', $styleTotal)
                     ->with('quantities', $quantity)
-                    //->with('laborfee', $chargefees)
                     ->with('vat', $vatCharge)
                     ->with('othercharge', $othercharges)
                     ->with('joID', $joID)
@@ -525,7 +497,7 @@ class WalkInIndividualController extends Controller
     public function saveOrder(Request $request)
     {
         //tblJobOrder
-        $tempQuantity = session()->get('segment_quantity');
+        $tempQuantity = session()->get('segment_quantity'); //dd($tempQuantity);
         $totalQuantity = 0;
 
         session(['termsOfPayment' => $request->input('termsOfPayment')]);
@@ -535,36 +507,23 @@ class WalkInIndividualController extends Controller
         session(['amountTendered' => $request->input('amount-tendered')]);
         session(['amountChange' => $request->input('amount-change-hidden')]);
         session(['transaction_date' => $request->input('transaction_date')]);
-        session(['dueDate' => $request->input('due_date')]);
-
+        session(['dueDate' => $request->input('dueDate')]);
+//dd($request->input('due_date'));
         foreach($tempQuantity as $quantity)
             $totalQuantity += $quantity; //tblJobOrder
 
-        $type = session()->get('custType'); //dd($type);
-        $custEmail = session()->get('cust_email');
-        $existCust = \DB::table('tblCustIndividual')
-                            ->select('tblCustIndividual.strIndivID')
-                            ->where('tblCustIndividual.strIndivEmailAddress', 'LIKE', $custEmail)
-                            ->get();
-
-        if($type == 0)
-            $customerID = session()->get('custID');
-
-        if ($type == null) {         
-            for($i = 0; $i < count($existCust); $i++){
-                $customerID = $existCust[$i]->strIndivID;
-            }
-        }
-        //dd($customerID);
-
         $jobOrderID = session()->get('joID'); //tblJobOrder
-        //$customerID = session()->get('custID'); //tblJobOrder
+        $customerID = session()->get('custID'); //tblJobOrder
         $termsOfPayment = session()->get('termsOfPayment'); //tblJobOrder
         $modeOfPayment = "Cash"; //tblJobOrder
         $totalPrice = (double)session()->get('totalPrice'); //tblJobOrder
         $amtTendered = (double)session()->get('amountTendered');
         $amtChange = (double)session()->get('amountChange');
         $orderDate = session()->get('transaction_date'); //tblJobOrder
+        $orderToBeDone = session()->get('dueDate');
+        $payDueDate = session()->get('dueDate');
+
+        //dd($payDueDate);
 
         $jobOrder = TransactionJobOrder::create(array(
                 'strJobOrderID' => $jobOrderID,
@@ -575,12 +534,14 @@ class WalkInIndividualController extends Controller
                 'dblOrderTotalPrice' => $totalPrice,
                 'boolIsOrderAccepted' => 1,
                 'dtOrderDate' => $orderDate,
+                'dtOrderApproved' => $orderDate,
+                'dtOrderExpectedToBeDone' => $orderToBeDone,
+                'dtExpectedDeliveryDate' => $orderToBeDone,
                 'boolIsActive' => 1
         ));
 
         $jobOrder->save();
-        session(['exist_cust' => $existCust]);
-        session(['cust_id' => $customerID]);
+        //session(['cust_id' => $customerID]);
 
         $ids = \DB::table('tblJOPayment')
                 ->select('strPaymentID')
@@ -620,9 +581,9 @@ class WalkInIndividualController extends Controller
                 'dblOutstandingBal' => $request->input('balance-hidden'),
                 'dblAmountTendered' => $amtTendered,
                 'dblAmountChange' => $amtChange,
-                'strReceivedByEmployeeNameFK' => 'EMPL001',
-                'dtPaymentDate' => $request->input('transaction_date'),
-                'dtPaymentDueDate' => session()->get('dueDate'),
+                'strReceivedByEmployeeNameFK' => $empId,
+                'dtPaymentDate' => $orderDate,
+                'dtPaymentDueDate' => $payDueDate,
                 'strPaymentStatus' => $payTerms,
                 'boolIsActive' => 1
 
@@ -634,56 +595,61 @@ class WalkInIndividualController extends Controller
         //tblJobSpecs
         $segments = session()->get('segment_values'); //tblJobSpecs
         $designs = session()->get('segment_design'); //tblJOSpecs_Design
+        $styleFabric = session()->get('segment_style_fabric'); //tblJOSpecsSegPat
+        $patterns = session()->get('segment_style_patterns'); //dd($styleFabric);
+//dd($styleFabric);
+        for($i=0; $i<count($styleFabric); $i){
+            $styleFab = $styleFabric[$i];
+        } //dd($styleFab);
 
         $measurementProfile = session()->get('measurement_profile');
         $measurementDetails = session()->get('measurement_detail');
         $measurementName = session()->get('measurement_name');
 
         for($i = 0; $i < count($segments); $i++){
-            //for($a=0; $a<=count($tempQuantity[$i]); $a++){
+//dd($segments);
+            $ids = \DB::table('tblJOSpecific')
+                ->select('strJOSpecificID')
+                ->orderBy('created_at', 'desc')
+                ->orderBy('strJOSpecificID', 'desc')
+                ->take(1)
+                ->get();
 
-            //for($k = 0; $k < count($tempQuantity[$i]); $k++){
-                $ids = \DB::table('tblJOSpecific')
-                    ->select('strJOSpecificID')
-                    ->orderBy('created_at', 'desc')
-                    ->orderBy('strJOSpecificID', 'desc')
-                    ->take(1)
-                    ->get();
+            if($ids == null){
+                $jobSpecsID = $this->smartCounter("JOS000"); 
+            }else{
+                $ID = $ids["0"]->strJOSpecificID;
+                $jobSpecsID = $this->smartCounter($ID);  
+            }
 
-                if($ids == null){
-                    $jobSpecsID = $this->smartCounter("JOS000"); 
-                }else{
-                    $ID = $ids["0"]->strJOSpecificID;
-                    $jobSpecsID = $this->smartCounter($ID);  
-                }
-
-                    $jobOrderSpecifics = TransactionJobOrderSpecifics::create(array(
-                            'strJOSpecificID' => $jobSpecsID,
-                            'strJobOrderFK' => $jobOrderID,
-                            'strJOSegmentFK' => $segments[$i]['strSegmentID'],
-                            'strJOFabricFK' => $segments[$i]['strFabricID'],
-                            'intQuantity' => 1,
-                            'dblUnitPrice' => $segments[$i]['dblSegmentPrice'],
-                            'intEstimatedDaysToFinish' => $segments[$i]['intMinDays'],
-                            'strEmployeeNameFK' => 'EMPL001',
-                            'boolIsActive' => 1
-                    ));
-            //}
-                    //dd($jobSpecsID);    
+            $jobOrderSpecifics = TransactionJobOrderSpecifics::create(array(
+                    'strJOSpecificID' => $jobSpecsID,
+                    'strJobOrderFK' => $jobOrderID,
+                    'strJOSegmentFK' => $segments[$i]['strSegmentID'],
+                    'strJOFabricFK' => $segments[$i]['strFabricID'],
+                    'intQuantity' => $tempQuantity[$i],
+                    'dblUnitPrice' => $segments[$i]['dblSegmentPrice'],
+                    'intEstimatedDaysToFinish' => $segments[$i]['intMinDays'],
+                    'strEmployeeNameFK' => 'EMPL001',
+                    'boolIsActive' => 1
+            ));
+                    //dd($tempQuantity);    
             $jobOrderSpecifics->save();
 
-            for($j = 0; $j <= count($designs); $j++){ //dd($designs);
-                //for($k = 0; $k < count($tempQuantity[$j]); $k++){
+            for($j = 0; $j <= count($patterns); $j++){ //dd($designs);
+                //dd($styleFabric[$i][$j]->strFabricID);
                     $jobOrderSpecificsPattern = TransactionJobOrderSpecificsPattern::create(array(
                             'strJobOrderSpecificFK' => $jobSpecsID,
-                            'strSegmentPatternFK' => $designs[$i][$j]->strSegPatternID
+                            'strSegmentPatternFK' => $designs[$i][$j]->strSegPatternID,
+                            'strPatternFabricFK' => $styleFab[$i][$j]->strFabricID 
                     ));  //dd($jobOrderSpecificsPattern);
 
                     $jobOrderSpecificsPattern->save();
-                //} 
             }
+        }
 
             //measurement profile
+        for($i = 0; $i < count($segments); $i++){
             $ids = \DB::table('tblJO_MeasureProfile')
                     ->select('strJOMeasureProfileID')
                     ->orderBy('created_at', 'desc')
@@ -708,8 +674,9 @@ class WalkInIndividualController extends Controller
 
             $joMeasurementProfile->save();
 
-             /*for($j = 0; $j < count($measurementName[$i]); $j++){ 
+             /*for($j = 0; $j < count($measurementName[$i]); $j++){  //dd($measurementName);
                  //measurement specs 
+                foreach($tempQuantity as $k => $quantity){
                     $ids = \DB::table('tblJOMeasureSpecific')
                              ->select('strJOMeasureSpecificID')
                              ->orderBy('created_at', 'desc')
@@ -723,22 +690,22 @@ class WalkInIndividualController extends Controller
                          $ID = $ids["0"]->strJOMeasureSpecificID;
                          $joMeasSpecificID = $this->smartCounter($ID);  
                      }
-                     //dd($tempQuantity[$i]);
+                     //dd($$measurementName[$i][$j]);
                      $joMeasurementSpecific = TransactionJobOrderMeasurementSpecifics::create(array(
                              'strJOMeasureSpecificID' => $joMeasSpecificID,
                              'strJobOrderSpecificFK' => $jobSpecsID,
                              'strMeasureProfileFK' => $joMeasProfileID,
-                             'strMeasureDetailFK' => $measurementName[$i][$a][$j],
-                             'dblMeasureValue' => $measurementDetails[$i][$a][$j],
-                             'strUnitOfMeasurement' => $measurementDetails[$i][$a][$j],
+                             'strMeasureDetailFK' => $measurementName[$i][$j][$k],
+                             'dblMeasureValue' => $measurementDetails[$i][$j][$k],
+                             'strUnitOfMeasurement' => $measurementDetails[$i][$j][$k],
                              'boolIsActive' => 1
                      ));
 
                       //dd($joMeasurementProfile);
 
                      $joMeasurementSpecific->save();
-                }//end of loop for meas specs
-           // }//end loop qty*/
+                }//end loop qty
+            }//end of loop for meas specs*/
         }//end of save loop for JO Specs
 
         $paymentid = session()->get('payment_id');
@@ -837,18 +804,6 @@ class WalkInIndividualController extends Controller
             ]
         ];
 
-       /* $type = session()->get('custType');
-        $custEmail = session()->get('cust_email');
-        $existId = session()->get('exist_cust');
-        if($type == 0)
-            $custId = session()->get('custID');
-        if($type == null){
-            for($i = 0; $i < count($existId); $i++){
-                $custId = $existId[$i]->strIndivID;
-            }
-        }
-        //dd($custId);
-        session(['cust_id' => $custId]);*/
         $empEmail = \Auth::user()->email; //dd($empEmail);
         $emp = \DB::table('tblEmployee')
                 ->select('tblEmployee.strEmployeeID')
@@ -859,7 +814,7 @@ class WalkInIndividualController extends Controller
             $empId = $emp[$i]->strEmployeeID;
         } //dd($empId);
 
-        $custId = session()->get('cust_id'); //dd($custId);
+        $custId = session()->get('custID'); //dd($custId);
 
         $custname = \DB::table('tblCustIndividual')
                     ->select('strIndivID', \DB::raw('CONCAT(strIndivFName, " ", strIndivMName, " ", strIndivLName) AS fullname'))
