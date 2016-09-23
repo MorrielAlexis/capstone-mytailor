@@ -68,7 +68,7 @@ class ApproveOnlineCustomerIndividualController extends Controller
                     ->join('tblJOSpecific as c','a.strJobOrderID',  '=' , 'c.strJobOrderFK')
                     ->join('tblSegment as d', 'c.strJOSegmentFK', '=' , 'd.strSegmentID')
                     ->join('tblFabric as e', 'c.strJOFabricFK', '=' , 'e.strFabricID')
-                    ->select(\DB::raw('CONCAT(b.strIndivFName, " " , b.strIndivMName, " " , b.strIndivLName) as custName'),\DB::raw('CONCAT(b.strIndivHouseNo, " ", b.strIndivStreet, " ", b.strIndivBarangay, " ", b.strIndivCity, " ", b.strIndivProvince, " ", b.strIndivZipCode) as address'), 'a.strJobOrderID as transID', 'a.dblOrderTotalPrice AS totalPrice', 'b.strIndivEmailAddress AS custEmail', 'b.strIndivCPNumber AS cpNo', 'd.strSegmentName as segment', 'e.strFabricName as fabric')
+                    ->select(\DB::raw('CONCAT(b.strIndivFName, " " , b.strIndivMName, " " , b.strIndivLName) as custName'),\DB::raw('CONCAT(b.strIndivHouseNo, " ", b.strIndivStreet, " ", b.strIndivBarangay, " ", b.strIndivCity, " ", b.strIndivProvince, " ", b.strIndivZipCode) as address'), 'a.strJobOrderID as transID', 'a.dblOrderTotalPrice AS totalPrice', 'b.strIndivEmailAddress AS custEmail', 'b.strIndivCPNumber AS cpNo', 'd.strSegmentName as segment', 'e.strFabricName as fabric', 'c.intQuantity as qty', 'c.dblUnitPrice as unitPrice', 'a.dtOrderExpectedToBeDone as expDatetoFinish')
                     ->where('b.strIndivID', $request->input('customerID'))
                     ->get();
             
@@ -82,13 +82,16 @@ class ApproveOnlineCustomerIndividualController extends Controller
                 $segment = $Content->segment;
                 $fabric = $Content->fabric;
                 $address = $Content->address;
+                $intQuantity = $Content->qty;
+                $unitPrice = $Content->unitPrice;
+                $expDate = $Content->expDatetoFinish;
             }
 
 
              // dd($emailContents);    
 
 
-        Mail::send('emails.accept-order', ['name' => $name, 'order' => $order, 'totPrice' => $totPrice, 'email' => $email, 'cp' => $cpNo, 'segment' => $segment, 'fabric' => $fabric, 'address' => $address], function($message) use($emailContents) {
+        Mail::send('emails.accept-order', ['name' => $name, 'order' => $order, 'totPrice' => $totPrice, 'email' => $email, 'cp' => $cpNo, 'segment' => $segment, 'fabric' => $fabric, 'address' => $address, 'intQuantity' => $intQuantity], function($message) use($emailContents) {
 
                 foreach($emailContents as $value){
                     $email = $value->custEmail;  
