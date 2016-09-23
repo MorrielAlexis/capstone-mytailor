@@ -178,17 +178,7 @@
                           <div class="collapsible-body">
                             <ul>
                               <li><a style="color:black; font-weight:normal" class="waves-effect waves-white " href="{{URL::to('transaction/alteration-walkin-newcustomer')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Alteration - Walk In</font></i></a></li>
-                               {{-- <li><a style="color:black; font-weight:normal" class="waves-effect waves-white " href="{{URL::to('transaction/alteration-walkin-newcustomer/company')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Alteration - Walk In-Company</font></i></a></li> --}}
                               <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('transaction/alteration-online-transaction')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Alteration - Online</font></i></a></li>
-                             <div class="divider"></div>
-                            </ul>
-                          </div>
-                        </li>
-                        <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('transaction/modifyIndividual') || Request::is('transaction/modifyCompany') ? 'active' : '' }}"><b>Modify Job Order</b></a>
-                          <div class="collapsible-body">
-                            <ul>
-                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white " href="{{URL::to('transaction/modifyIndividual')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Modify - Individual Order</font></i></a></li>
-                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('transaction/modifyCompany')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Modify - Company Order</font></i></a></li>
                              <div class="divider"></div>
                             </ul>
                           </div>
@@ -238,6 +228,15 @@
                          <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('queries/most-availed-alteration-service')}}">Most Availed - Alteration Service</a></li>
                         <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('queries/customers-with-balances')}}">Customers with Balance</a></li>
                          <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('queries/companies-with-balances')}}">Companies with Balance</a></li>
+                          <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('queries/modifyIndividual') || Request::is('queries/modifyCompany') ? 'active' : '' }}"><b>Modify Job Order</b></a>
+                          <div class="collapsible-body">
+                            <ul>
+                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white " href="{{URL::to('queries/modifyIndividual')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Modify - Individual Order</font></i></a></li>
+                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('queries/modifyCompany')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Modify - Company Order</font></i></a></li>
+                             <div class="divider"></div>
+                            </ul>
+                          </div>
+                        </li>
 
                       </ul>
                     </li>

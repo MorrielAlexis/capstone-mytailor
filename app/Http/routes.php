@@ -232,12 +232,6 @@ Route::group(['prefix' => 'transaction'], function(){
 });
 
 
-Route::group(['prefix' => 'transaction'], function(){
-	Route::resource('modifyIndividual', 'ModifyIndividualOrdersController',
-		['only' => ['index']]);
-	Route::resource('modifyCompany', 'ModifyCompanyOrdersController',
-		['only' => ['index']]);
-});
 
 Route::group(['prefix' => 'transaction'], function(){
 	Route::resource('orderProgress', 'JobOrderProgressController',
@@ -634,8 +628,11 @@ Route::group(['prefix' => 'transaction'], function(){
 		Route::get('most-availed-alteration-service', 'QueriesAvailedAlterServiceController@index');
 		Route::get('customers-with-balances', 'QueriesCustomerWithBalancesController@index');
 		Route::get('companies-with-balances', 'QueriesCustomerWithBalancesController@company');
-			
+		Route::get('modifyIndividual', 'ModifyIndividualOrdersController@index');
+		Route::get('modifyCompany', 'ModifyCompanyOrdersController@index');
 	});
+			
+	
 
 
 	/** Reports **/
