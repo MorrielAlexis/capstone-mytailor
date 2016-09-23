@@ -36,8 +36,6 @@ class DatabaseSeeder extends Seeder
         $this->call(FabricPatternSeeder::class);
         $this->call(FabricColorSeeder::class);
         $this->call(FabricSeeder::class);
-        $this->call(BodyPartCategorySeeder::class);
-        $this->call(BodyPartFormsSeeder::class);
         $this->call(MeasurementCategorySeeder::class);
         $this->call(StandardSizeCategorySeeder::class);
         $this->call(MeasurementDetailSeeder::class); 

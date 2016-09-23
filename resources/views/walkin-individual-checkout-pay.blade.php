@@ -13,9 +13,9 @@
 	<div class="row" style="padding:30px">
         <div class="col s12" style="padding-left:15%">
 	        <ul class="breadcrumb">
-				<li><a><b>1.FILL-UP FORM</b></a></li>
-				<li><a><b>2.ADD MEASUREMENT DETAIL</b></a></li>
-				<li><a class="active" href="#payment-info"><b>3.PAYMENT</b></a></li>
+				<li><a>1. Fill-up form</a></li>
+				<li><a>2. Add measurement detail</a></li>
+				<li><a class="active" href="#payment-info">3. Payment</a></li>
 			</ul>
 		</div>
 
@@ -517,7 +517,7 @@
 					$('#balance-hidden').val((grandtotal - grandtotal).toFixed(2));
 				}
 
-				if($('specify_pay').prop("checked")){
+				if($('#specify_pay').prop("checked")){
 					//$("#amount-payable").removeAttr('readonly');
 					//$('#amount-payable').prop('readonly', false);
 				}

@@ -292,7 +292,7 @@
                           @foreach($contrasts as $contrast)
                           <div class="col s6 fabric-general {{ $contrast->strFabricTypeFK }} {{ $contrast->strFabricPatternFK }} {{ $contrast->strFabricColorFK }} {{ $contrast->strFabricThreadCountFK }}">
                             <div class="center col s2" style="margin-top:60px">
-                              <input name="rdb_fabricContrast" type="radio" class="filled-in" value="{{ $contrast->strFabricID }}" id="{{ $contrast->strFabricID }}" />                                    
+                              <input name="rdb_fabricCon" type="radio" class="filled-in" value="{{ $contrast->strFabricID }}" id="{{ $contrast->strFabricID }}" />                                    
                               <label for="{{ $contrast->strFabricID }}"></label>
                             </div>
                             <div class="col s10">
@@ -334,7 +334,7 @@
                           @foreach($cufflinks as $link)
                           <div class="col s6 fabric-general {{ $link->strFabricTypeFK }} {{ $link->strFabricPatternFK }} {{ $link->strFabricColorFK }} {{ $link->strFabricThreadCountFK }}">
                             <div class="center col s2" style="margin-top:60px">
-                              <input name="rdb_fabricContrast" type="radio" class="filled-in" value="{{ $link->strFabricID }}" id="{{ $link->strFabricID }}" />                                    
+                              <input name="rdb_fabricCufflinks" type="radio" value="{{ $link->strFabricID }}" id="{{ $link->strFabricID }}" />                                    
                               <label for="{{ $link->strFabricID }}"></label>
                             </div>
                             <div class="col s10">

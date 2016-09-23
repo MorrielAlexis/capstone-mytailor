@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use PDF;
+use Redirect;
+use Validator;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -111,64 +113,217 @@ class ReportsSalesByProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function custom(Request $request)
     {
-        //
-    }
+        // 1 - Weekly
+        // 2 - Monthly
+        // 3 - Quarterly
+        // 4 - Annually
+        $intRepType = $request->input('selType');
+        $datRepFrom = $request->input('datFrom');
+        $datRepTo = $request->input('datTo');
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        $rules = array(
+            'datFrom' => 'required|date|before:today',
+            'datTo' => 'required|date|after:datFrom',
+            'selType' => 'required'
+        );
+        $messages = [
+            'required' => 'The :attribute field is required.',
+        ];
+        $niceNames = array(
+            'intRepType' => 'Report Type',
+            'datFrom' => 'From',
+            'datTo' => 'To'
+        );
+        $validator = Validator::make($request->all(),$rules,$messages);
+        $validator->setAttributeNames($niceNames); 
+        if ($validator->fails()) {
+            return Redirect::back()->withErrors($validator);
+        } else {
+            // [0] - DAY
+            // [1] - MONTH
+            // [2] - YEAR
+            $convertedFrom = date('M j, Y',strtotime($datRepFrom));
+            $convertedTo = date('M j, Y',strtotime($datRepTo));
+            if ($intRepType == 1) {
+                // Weekly
+                $qrWeekly = DB::select('SELECT s.strSegmentID,
+                                        s.strSegmentName, 
+                                        SUM(js.intQuantity) AS TimesOrdered,
+                                        SUM(js.intQuantity * js.dblUnitPrice) AS Amount,
+                                        WEEK(jo.dtFinished) AS columnOne
+                                FROM        tbljoborder AS jo LEFT JOIN
+                                            tbljospecific as js 
+                                                ON jo.strJobOrderID= js.strJobOrderFK
+                                INNER JOIN  tblSegment AS s
+                                                ON js.strJOSegmentFK = s.strSegmentID
+                                WHERE       jo.boolIsOrderAccepted = 1 AND (jo.dtFinished BETWEEN ? AND ?)
+                                GROUP BY    s.strSegmentID, WEEK(jo.dtFinished)
+                                ORDER BY    jo.dtFinished',[$datRepFrom,$datRepTo]);
+                $pdf = PDF::loadView('pdf.salesreport-product',['data' => $qrWeekly, 'ReportType' => 'Weekly Report', 'datFrom' => $convertedFrom, 'datTo' => $convertedTo, 'Name' => "Week"])
+                    ->setPaper('Letter')
+                    ->setOrientation('portrait');
+                return $pdf->stream();
+            } else if ($intRepType == 2){
+                // Monthly
+                $qrMonthly = DB::select('SELECT s.strSegmentID,
+                                        s.strSegmentName, 
+                                        SUM(js.intQuantity) AS TimesOrdered,
+                                        SUM(js.intQuantity * js.dblUnitPrice) AS Amount,
+                                        MONTHNAME(jo.dtFinished) AS columnOne
+                                FROM        tbljoborder AS jo LEFT JOIN
+                                            tbljospecific as js 
+                                                ON jo.strJobOrderID= js.strJobOrderFK
+                                INNER JOIN  tblSegment AS s
+                                                ON js.strJOSegmentFK = s.strSegmentID
+                                WHERE       jo.boolIsOrderAccepted = 1 AND (jo.dtFinished BETWEEN ? AND ?)
+                                GROUP BY    s.strSegmentID, MONTH(jo.dtFinished)
+                                ORDER BY    jo.dtFinished',[$datRepFrom,$datRepTo]);
+                $pdf = PDF::loadView('pdf.salesreport-product',['data' => $qrMonthly, 'ReportType' => 'Monthly Report', 'datFrom' => $convertedFrom, 'datTo' => $convertedTo, 'Name' => ""])
+                    ->setPaper('Letter')
+                    ->setOrientation('portrait');
+                return $pdf->stream();
+            } else if ($intRepType == 3){
+                // Quarterly
+                $qrQuarterly = DB::select('SELECT s.strSegmentID,
+                                        s.strSegmentName, 
+                                        SUM(js.intQuantity) AS TimesOrdered,
+                                        SUM(js.intQuantity * js.dblUnitPrice) AS Amount,
+                                        QUARTER(jo.dtFinished) AS columnOne
+                                FROM        tbljoborder AS jo LEFT JOIN
+                                            tbljospecific as js 
+                                                ON jo.strJobOrderID= js.strJobOrderFK
+                                INNER JOIN  tblSegment AS s
+                                                ON js.strJOSegmentFK = s.strSegmentID
+                                WHERE       jo.boolIsOrderAccepted = 1 AND (jo.dtFinished BETWEEN ? AND ?)
+                                GROUP BY    s.strSegmentID, QUARTER(jo.dtFinished)
+                                ORDER BY    jo.dtFinished',[$datRepFrom,$datRepTo]);
+                $pdf = PDF::loadView('pdf.salesreport-product',['data' => $qrQuarterly, 'ReportType' => 'Quarter Report', 'datFrom' => $convertedFrom, 'datTo' => $convertedTo, 'Name' => "Quarter"])
+                    ->setPaper('Letter')
+                    ->setOrientation('portrait');
+                return $pdf->stream();
+            } else if ($intRepType == 4){
+                // Yearly
+                $qrAnnually = DB::select('SELECT s.strSegmentID,
+                                        s.strSegmentName, 
+                                        SUM(js.intQuantity) AS TimesOrdered,
+                                        SUM(js.intQuantity * js.dblUnitPrice) AS Amount,
+                                        YEAR(jo.dtFinished) AS columnOne
+                                FROM        tbljoborder AS jo LEFT JOIN
+                                            tbljospecific as js 
+                                                ON jo.strJobOrderID= js.strJobOrderFK
+                                INNER JOIN  tblSegment AS s
+                                                ON js.strJOSegmentFK = s.strSegmentID
+                                WHERE       jo.boolIsOrderAccepted = 1 AND (jo.dtFinished BETWEEN ? AND ?)
+                                GROUP BY    s.strSegmentID, YEAR(jo.dtFinished)
+                                ORDER BY    jo.dtFinished',[$datRepFrom,$datRepTo]);
+                $pdf = PDF::loadView('pdf.salesreport-product',['data' => $qrAnnually, 'ReportType' => 'Annual Report', 'datFrom' => $convertedFrom, 'datTo' => $convertedTo, 'Name' => "Year"])
+                    ->setPaper('Letter')
+                    ->setOrientation('portrait');
+                return $pdf->stream();
+            }
+        }
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function generate(Request $request)
     {
-        //
-    }
+        // 1 - Weekly
+        // 2 - Monthly
+        // 3 - Quarterly
+        // 4 - Annually
+        $intRepType = $request->input('tabular');
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $rules = array(
+            'tabular' => 'required'
+        );
+        $messages = [
+            'required' => 'The :attribute field is required.',
+        ];
+        $niceNames = array(
+            'intRepType' => 'Report Type',
+        );
+        $validator = Validator::make($request->all(),$rules,$messages);
+        $validator->setAttributeNames($niceNames); 
+        if ($validator->fails()) {
+            return Redirect::back()->withErrors($validator);
+        } else {
+            if ($intRepType == 1) {
+                // Weekly
+                $qrWeekly = DB::select('SELECT s.strSegmentID,
+                                        s.strSegmentName, 
+                                        SUM(js.intQuantity) AS TimesOrdered,
+                                        SUM(js.intQuantity * js.dblUnitPrice) AS Amount,
+                                        WEEK(jo.dtFinished) AS columnOne
+                                FROM        tbljoborder AS jo LEFT JOIN
+                                            tbljospecific as js 
+                                                ON jo.strJobOrderID= js.strJobOrderFK
+                                INNER JOIN  tblSegment AS s
+                                                ON js.strJOSegmentFK = s.strSegmentID
+                                WHERE       jo.boolIsOrderAccepted = 1
+                                GROUP BY    s.strSegmentID, WEEK(jo.dtFinished)
+                                ORDER BY    jo.dtFinished');
+                $pdf = PDF::loadView('pdf.salesreport-product-generate',['data' => $qrWeekly, 'ReportType' => 'Weekly Report', 'Name' => "Week"])
+                    ->setPaper('Letter')
+                    ->setOrientation('portrait');
+                return $pdf->stream();
+            } else if ($intRepType == 2){
+                // Monthly
+                $qrMonthly = DB::select('SELECT s.strSegmentID,
+                                        s.strSegmentName, 
+                                        SUM(js.intQuantity) AS TimesOrdered,
+                                        SUM(js.intQuantity * js.dblUnitPrice) AS Amount,
+                                        MONTHNAME(jo.dtFinished) AS columnOne
+                                FROM        tbljoborder AS jo LEFT JOIN
+                                            tbljospecific as js 
+                                                ON jo.strJobOrderID= js.strJobOrderFK
+                                INNER JOIN  tblSegment AS s
+                                                ON js.strJOSegmentFK = s.strSegmentID
+                                WHERE       jo.boolIsOrderAccepted = 1 
+                                GROUP BY    s.strSegmentID, MONTH(jo.dtFinished)
+                                ORDER BY    jo.dtFinished');
+                $pdf = PDF::loadView('pdf.salesreport-product-generate',['data' => $qrMonthly, 'ReportType' => 'Monthly Report', 'Name' => ""])
+                    ->setPaper('Letter')
+                    ->setOrientation('portrait');
+                return $pdf->stream();
+            } else if ($intRepType == 3){
+                // Quarterly
+                $qrQuarterly = DB::select('SELECT s.strSegmentID,
+                                        s.strSegmentName, 
+                                        SUM(js.intQuantity) AS TimesOrdered,
+                                        SUM(js.intQuantity * js.dblUnitPrice) AS Amount,
+                                        QUARTER(jo.dtFinished) AS columnOne
+                                FROM        tbljoborder AS jo LEFT JOIN
+                                            tbljospecific as js 
+                                                ON jo.strJobOrderID= js.strJobOrderFK
+                                INNER JOIN  tblSegment AS s
+                                                ON js.strJOSegmentFK = s.strSegmentID
+                                WHERE       jo.boolIsOrderAccepted = 1 
+                                GROUP BY    s.strSegmentID, QUARTER(jo.dtFinished)
+                                ORDER BY    jo.dtFinished');
+                $pdf = PDF::loadView('pdf.salesreport-product-generate',['data' => $qrQuarterly, 'ReportType' => 'Quarter Report', 'Name' => "Quarter"])
+                    ->setPaper('Letter')
+                    ->setOrientation('portrait');
+                return $pdf->stream();
+            } else if ($intRepType == 4){
+                // Yearly
+                $qrAnnually = DB::select('SELECT s.strSegmentID,
+                                        s.strSegmentName, 
+                                        SUM(js.intQuantity) AS TimesOrdered,
+                                        SUM(js.intQuantity * js.dblUnitPrice) AS Amount,
+                                        YEAR(jo.dtFinished) AS columnOne
+                                FROM        tbljoborder AS jo LEFT JOIN
+                                            tbljospecific as js 
+                                                ON jo.strJobOrderID= js.strJobOrderFK
+                                INNER JOIN  tblSegment AS s
+                                                ON js.strJOSegmentFK = s.strSegmentID
+                                WHERE       jo.boolIsOrderAccepted = 1
+                                GROUP BY    s.strSegmentID, YEAR(jo.dtFinished)
+                                ORDER BY    jo.dtFinished');
+                $pdf = PDF::loadView('pdf.salesreport-product-generate',['data' => $qrAnnually, 'ReportType' => 'Annual Report', 'Name' => "Year"])
+                    ->setPaper('Letter')
+                    ->setOrientation('portrait');
+                return $pdf->stream();
+            }
+        }
     }
 }

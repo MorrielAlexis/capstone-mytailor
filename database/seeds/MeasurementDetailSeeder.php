@@ -547,7 +547,7 @@ class MeasurementDetailSeeder extends Seeder
 
             array(
                 'strMeasurementDetailID' => 'MEASDET0045',
-                'strMeasDetSegmentFK' => 'SEGM008', 
+                'strMeasDetSegmentFK' => 'SEGM007', 
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Chest',
                 'txtMeasDetailDesc' =>'',
@@ -559,7 +559,7 @@ class MeasurementDetailSeeder extends Seeder
 
             array(
                 'strMeasurementDetailID' => 'MEASDET0046',
-                'strMeasDetSegmentFK' => 'SEGM008', 
+                'strMeasDetSegmentFK' => 'SEGM007', 
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Hips',
                 'txtMeasDetailDesc' =>'',
@@ -571,7 +571,7 @@ class MeasurementDetailSeeder extends Seeder
 
             array(
                 'strMeasurementDetailID' => 'MEASDET0047',
-                'strMeasDetSegmentFK' => 'SEGM008', 
+                'strMeasDetSegmentFK' => 'SEGM007', 
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Back Length',
                 'txtMeasDetailDesc' =>'',
@@ -583,7 +583,7 @@ class MeasurementDetailSeeder extends Seeder
 
             array(
                 'strMeasurementDetailID' => 'MEASDET0048',
-                'strMeasDetSegmentFK' => 'SEGM008', 
+                'strMeasDetSegmentFK' => 'SEGM007', 
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Shoulder',
                 'txtMeasDetailDesc' =>'',
@@ -595,7 +595,7 @@ class MeasurementDetailSeeder extends Seeder
 
             array(
                 'strMeasurementDetailID' => 'MEASDET0049',
-                'strMeasDetSegmentFK' => 'SEGM008', 
+                'strMeasDetSegmentFK' => 'SEGM007', 
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Neck',
                 'txtMeasDetailDesc' =>'',
@@ -607,7 +607,7 @@ class MeasurementDetailSeeder extends Seeder
 
             array(
                 'strMeasurementDetailID' => 'MEASDET0050',
-                'strMeasDetSegmentFK' => 'SEGM008', 
+                'strMeasDetSegmentFK' => 'SEGM007', 
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Bicep',
                 'txtMeasDetailDesc' =>'',
@@ -619,7 +619,7 @@ class MeasurementDetailSeeder extends Seeder
 
             array(
                 'strMeasurementDetailID' => 'MEASDET0051',
-                'strMeasDetSegmentFK' => 'SEGM008', 
+                'strMeasDetSegmentFK' => 'SEGM007', 
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Wrist',
                 'txtMeasDetailDesc' =>'',
@@ -631,7 +631,7 @@ class MeasurementDetailSeeder extends Seeder
 
             array(
                 'strMeasurementDetailID' => 'MEASDET0052',
-                'strMeasDetSegmentFK' => 'SEGM008', 
+                'strMeasDetSegmentFK' => 'SEGM007', 
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Elbow',
                 'txtMeasDetailDesc' =>'',
@@ -822,56 +822,8 @@ class MeasurementDetailSeeder extends Seeder
                 'boolIsActive' => '1'
             ),
 
-            // array(
-            //     'strMeasurementDetailID' => 'MEASDET0068',
-            //     'strMeasDetSegmentFK' => 'SEGM007', 
-            //     'strMeasCategoryFK' =>'MEASCAT002',
-            //     'strMeasDetailName' =>'Dress Length',
-            //     'txtMeasDetailDesc' =>'',
-            //     'strMeaDetailImage' => '',
-            //     'dblMeasDetailMinCm' =>'11',
-            //     'dblMeasDetailMinInch' =>'2',
-            //     'boolIsActive' => '1'
-            // ),
-
-            // array(
-            //     'strMeasurementDetailID' => 'MEASDET0069',
-            //     'strMeasDetSegmentFK' => 'SEGM007', 
-            //     'strMeasCategoryFK' =>'MEASCAT002',
-            //     'strMeasDetailName' =>'Shoulder Width',
-            //     'txtMeasDetailDesc' =>'',
-            //     'strMeaDetailImage' => '',
-            //     'dblMeasDetailMinCm' =>'11',
-            //     'dblMeasDetailMinInch' =>'2',
-            //     'boolIsActive' => '1'
-            // ),
-
-            // array(
-            //     'strMeasurementDetailID' => 'MEASDET0070',
-            //     'strMeasDetSegmentFK' => 'SEGM007', 
-            //     'strMeasCategoryFK' =>'MEASCAT002',
-            //     'strMeasDetailName' =>'Hips',
-            //     'txtMeasDetailDesc' =>'',
-            //     'strMeaDetailImage' => '',
-            //     'dblMeasDetailMinCm' =>'11',
-            //     'dblMeasDetailMinInch' =>'2',
-            //     'boolIsActive' => '1'
-            // ),
-
-            // array(
-            //     'strMeasurementDetailID' => 'MEASDET0071',
-            //     'strMeasDetSegmentFK' => 'SEGM007', 
-            //     'strMeasCategoryFK' =>'MEASCAT002',
-            //     'strMeasDetailName' =>'Breasts',
-            //     'txtMeasDetailDesc' =>'',
-            //     'strMeaDetailImage' => '',
-            //     'dblMeasDetailMinCm' =>'11',
-            //     'dblMeasDetailMinInch' =>'2',
-            //     'boolIsActive' => '1'
-            // ),
-
             array(
-                'strMeasurementDetailID' => 'MEASDET0072',
+                'strMeasurementDetailID' => 'MEASDET0068',
                 'strMeasDetSegmentFK' => 'SEGM002', 
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Neck',
@@ -883,7 +835,7 @@ class MeasurementDetailSeeder extends Seeder
             ),
 
             array(
-                'strMeasurementDetailID' => 'MEASDET0073',
+                'strMeasurementDetailID' => 'MEASDET0069',
                 'strMeasDetSegmentFK' => 'SEGM002', 
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Chest',
@@ -895,7 +847,7 @@ class MeasurementDetailSeeder extends Seeder
             ),
 
             array(
-                'strMeasurementDetailID' => 'MEASDET0074',
+                'strMeasurementDetailID' => 'MEASDET0070',
                 'strMeasDetSegmentFK' => 'SEGM002', 
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Stomach',
@@ -907,7 +859,7 @@ class MeasurementDetailSeeder extends Seeder
             ),
 
              array(
-                'strMeasurementDetailID' => 'MEASDET0075',
+                'strMeasurementDetailID' => 'MEASDET0071',
                 'strMeasDetSegmentFK' => 'SEGM002', 
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Hips',
@@ -920,7 +872,7 @@ class MeasurementDetailSeeder extends Seeder
 
 
             array(
-                'strMeasurementDetailID' => 'MEASDET0076',
+                'strMeasurementDetailID' => 'MEASDET0072',
                 'strMeasDetSegmentFK' => 'SEGM002', 
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Coat Length',
@@ -932,7 +884,7 @@ class MeasurementDetailSeeder extends Seeder
             ),
 
             array(
-                'strMeasurementDetailID' => 'MEASDET0077',
+                'strMeasurementDetailID' => 'MEASDET0073',
                 'strMeasDetSegmentFK' => 'SEGM002', 
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Should Width',
@@ -945,7 +897,7 @@ class MeasurementDetailSeeder extends Seeder
 
             array(
                 'strMeasurementDetailID' => 'MEASDET0078',
-                'strMeasDetSegmentFK' => 'SEGM002', 
+                'strMeasDetSegmentFK' => 'SEGM004', 
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Sleeve Length',
                 'txtMeasDetailDesc' =>'',
@@ -957,7 +909,7 @@ class MeasurementDetailSeeder extends Seeder
 
             array(
                 'strMeasurementDetailID' => 'MEASDET0079',
-                'strMeasDetSegmentFK' => 'SEGM002', 
+                'strMeasDetSegmentFK' => 'SEGM005', 
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Bicep',
                 'txtMeasDetailDesc' =>'',
@@ -969,7 +921,7 @@ class MeasurementDetailSeeder extends Seeder
 
             array(
                 'strMeasurementDetailID' => 'MEASDET0080',
-                'strMeasDetSegmentFK' => 'SEGM002', 
+                'strMeasDetSegmentFK' => 'SEGM006', 
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Wrist',
                 'txtMeasDetailDesc' =>'',
@@ -981,7 +933,7 @@ class MeasurementDetailSeeder extends Seeder
 
               array(
                 'strMeasurementDetailID' => 'MEASDET0081',
-                'strMeasDetSegmentFK' => 'SEGM009', 
+                'strMeasDetSegmentFK' => 'SEGM007', 
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Chest',
                 'txtMeasDetailDesc' =>'',
@@ -993,7 +945,7 @@ class MeasurementDetailSeeder extends Seeder
 
             array(
                 'strMeasurementDetailID' => 'MEASDET0082',
-                'strMeasDetSegmentFK' => 'SEGM009', 
+                'strMeasDetSegmentFK' => 'SEGM007', 
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Stomach',
                 'txtMeasDetailDesc' =>'',
@@ -1005,7 +957,7 @@ class MeasurementDetailSeeder extends Seeder
 
              array(
                 'strMeasurementDetailID' => 'MEASDET0083',
-                'strMeasDetSegmentFK' => 'SEGM009', 
+                'strMeasDetSegmentFK' => 'SEGM008', 
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Hips',
                 'txtMeasDetailDesc' =>'',
@@ -1018,7 +970,7 @@ class MeasurementDetailSeeder extends Seeder
 
             array(
                 'strMeasurementDetailID' => 'MEASDET0084',
-                'strMeasDetSegmentFK' => 'SEGM009', 
+                'strMeasDetSegmentFK' => 'SEGM008', 
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Coat Length',
                 'txtMeasDetailDesc' =>'',
@@ -1030,7 +982,7 @@ class MeasurementDetailSeeder extends Seeder
 
             array(
                 'strMeasurementDetailID' => 'MEASDET0085',
-                'strMeasDetSegmentFK' => 'SEGM009', 
+                'strMeasDetSegmentFK' => 'SEGM008', 
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Should Width',
                 'txtMeasDetailDesc' =>'',
@@ -1042,7 +994,7 @@ class MeasurementDetailSeeder extends Seeder
 
             array(
                 'strMeasurementDetailID' => 'MEASDET0086',
-                'strMeasDetSegmentFK' => 'SEGM009', 
+                'strMeasDetSegmentFK' => 'SEGM008', 
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Sleeve Length',
                 'txtMeasDetailDesc' =>'',
@@ -1054,7 +1006,7 @@ class MeasurementDetailSeeder extends Seeder
 
             array(
                 'strMeasurementDetailID' => 'MEASDET0087',
-                'strMeasDetSegmentFK' => 'SEGM009', 
+                'strMeasDetSegmentFK' => 'SEGM008', 
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Bicep',
                 'txtMeasDetailDesc' =>'',
@@ -1066,7 +1018,7 @@ class MeasurementDetailSeeder extends Seeder
 
             array(
                 'strMeasurementDetailID' => 'MEASDET0088',
-                'strMeasDetSegmentFK' => 'SEGM009', 
+                'strMeasDetSegmentFK' => 'SEGM008', 
                 'strMeasCategoryFK' =>'MEASCAT002',
                 'strMeasDetailName' =>'Wrist',
                 'txtMeasDetailDesc' =>'',
@@ -1074,7 +1026,7 @@ class MeasurementDetailSeeder extends Seeder
                 'dblMeasDetailMinCm' =>'11',
                 'dblMeasDetailMinInch' =>'2',
                 'boolIsActive' => '1'
-            ),
+            )
 
         );
 

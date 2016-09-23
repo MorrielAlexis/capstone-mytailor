@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Session;
 use App\UtilitiesGeneral;
-use App\UtilitiesVatModel;
+use App\UtilitiesVat;
 
 
 class UtilitiesVATController extends Controller
@@ -21,7 +21,8 @@ class UtilitiesVATController extends Controller
     public function index()
     {
 
-        //get all the fabric colors
+        //get all the vat
+
 
         $ids = \DB::table('tblVat')
             ->select('intVatID')
@@ -32,7 +33,8 @@ class UtilitiesVATController extends Controller
 
         $ID = $ids["0"]->intVatID;
         $newID = $this->smartCounter($ID);  
-        $tax = UtilitiesVatModel::all();
+        $tax = UtilitiesVat::all();
+    
 
         return view('utilities.utilities-VAT')
         ->with('tax', $tax);
@@ -42,17 +44,18 @@ class UtilitiesVATController extends Controller
     public function updateVat(Request $request)
     {
         
-        $tax = UtilitiesVatModel::find($request->input('editVatID'));
+        $tax = UtilitiesVat::find($request->input('editVatID'));
+
 
                 $tax->strTaxName = trim($request->input('editTaxName'));    
                 $tax->dblTaxPercentage = trim($request->input('editTaxPercent'));
                 $tax->save();
 
             \Session::flash('flash_message_update','VAT successfully updated.');
-         // }else \Session::flash('flash_message_duplicate','Color already exists.'); //flash message
+       
 
-        return redirect('maintenance/utilities-VAT');
-        // dd($tax);
+        return redirect('utilities/utilities-VAT');
+        
 
     }
     

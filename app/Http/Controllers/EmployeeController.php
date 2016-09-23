@@ -178,7 +178,7 @@ class EmployeeController extends Controller
     function updateEmployee(Request $request)
     {        
         $employee = Employee::find($request->input('editEmpID'));
-         $checkEmployees = Employee::all();
+        $checkEmployees = Employee::all();
         $isAdded=FALSE;
         $count = 0; $count2 = 0;
 

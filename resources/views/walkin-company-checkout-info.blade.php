@@ -13,9 +13,9 @@
     	<div class="row" style="padding:30px">
         	<div class="col s12" style="padding-left:15%">
 		        <ul class="breadcrumb">
-					<li><a class="active" href="#customer-info"><b>1. FILL-UP FORM</b></a></li>
-					<li><a href="{{URL::to('transaction/walkin-company-payment-measure-detail')}}"><b>2. ADD MEASUREMENT DETAIL</b></a></li>
-					<li><a href="{{URL::to('transaction/walkin-company-payment-info')}}"><b>3. PAYMENT</b></a></li>				
+					<li><a class="active" href="#customer-info">1. Fill-up form</a></li>
+					<li><a href="{{URL::to('transaction/walkin-company-payment-measure-detail')}}">2. Add measurement detail</a></li>
+					<li><a href="{{URL::to('transaction/walkin-company-payment-info')}}">3. Payment</a></li>				
 				</ul>
 			</div>
 
@@ -30,8 +30,8 @@
               	</div>
 	       	</div>
 
-	       	<div class="row" style="background-color:white;">
-	       		<div class="container">
+	       	<div class="row" style="background-color:white; padding-left:4%; padding-right: 4%">
+	       		
 
 	       		<!--Start of header with company id and transaction no-->
 	            <div class="col s12">   
@@ -134,7 +134,7 @@
 	                <span class="col s12" style="color:teal; margin-top:20px"><b>Company Contact Information</b></span>
                     <div class="card-panel col s12" style="border:3px solid gray; padding:15px">
 	                    <div style="color:black" class="input-field col s12">
-                            <input required id="comp_email" name = "comp_email" type="email" class="validate">
+                            <input required id="comp_email" name = "comp_email" type="email">
                             <label style="color:gray" for="comp_email"><b> *Company Email Address </b></label>
                         </div>
 
@@ -168,7 +168,7 @@
 					</div>
 					<!--End of bottom button-->
 
-	       		</div>
+	       		
 	       		        <div style="color:gray; margin-top:30px; margin-left:20px" class="col s12">
                             <h6>IMPORTANT NOTE: Fields with asterisk (*) must not be left blank.</h6>
                         </div>

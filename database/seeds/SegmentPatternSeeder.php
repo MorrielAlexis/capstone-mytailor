@@ -261,43 +261,45 @@ class SegmentPatternSeeder extends Seeder
             array(
                 'strSegPatternID' => 'SPAT0025',
                 'strSegPStyleCategoryFK' => 'SEGSTY019',
-                'strSegPName'=>'Button Down',
-                'dblPatternPrice' => '70',
-                'txtSegPDesc' => 'A collar on a shirt that has the pointed ends fastened to the shirt by buttons',
-                'strSegPImage' => 'imgDesignPatterns/button-down.jpg',
-                'boolIsActive' => '1'
+                'strSegPName'=>' LS - Square Cut ',
+                'dblPatternPrice' => '50',
+                'txtSegPDesc' => 'A pocket on a shirt that has square cut.',
+                'strSegPImage' => 'imgDesignPatterns/pocket_square_cut.jpg',
+                'boolIsActive' => '1' 
             ),
 
             array(
                 'strSegPatternID' => 'SPAT0026',
                 'strSegPStyleCategoryFK' => 'SEGSTY019',
-                'strSegPName'=>'Riley Collar',
-                'dblPatternPrice' => '70',
-                'txtSegPDesc' => 'Usually use as a collar for tuxedos.',
-                'strSegPImage' => 'imgDesignPatterns/1ButtonRileyCollar.jpg',
-                'boolIsActive' => '1'
+                'strSegPName'=>' LS - Vertical Pockets ',
+                'dblPatternPrice' => '50',
+                'txtSegPDesc' => 'Pants pockets vertically cut',
+                'strSegPImage' => 'imgDesignPatterns/verticalpantspockets.jpg',
+                'boolIsActive' => '1' 
+               
             ),
 
 
             array(
                 'strSegPatternID' => 'SPAT0027',
                 'strSegPStyleCategoryFK' => 'SEGSTY019',
-                'strSegPName'=>' Band Collar',
-                'dblPatternPrice' => '70',
-                'txtSegPDesc' => 'Usually use as a collar for chinese formal wears.',
-                'strSegPImage' => 'imgDesignPatterns/band.jpg',
-                'boolIsActive' => '1'
+                'strSegPName'=>' LS -  Portofino ',
+                'dblPatternPrice' => '50',
+                'txtSegPDesc' => 'A cuff that is a portofino.',
+                'strSegPImage' => 'imgDesignPatterns/portofino.jpg',
+                'boolIsActive' => '1' 
+                
             ),
 
 
             array(
                 'strSegPatternID' => 'SPAT0028',
                 'strSegPStyleCategoryFK' => 'SEGSTY019',
-                'strSegPName'=>' Italian Collar',
-                'dblPatternPrice' => '70',
-                'txtSegPDesc' => 'Usually use as a collar for dress shirts.',
-                'strSegPImage' => 'imgDesignPatterns/italiancollar.jpg',
-                'boolIsActive' => '1'
+                'strSegPName'=>' LS - French Square ',
+                'dblPatternPrice' => '50',
+                'txtSegPDesc' => 'A cuff that is a french square.',
+                'strSegPImage' => 'imgDesignPatterns/french-square.jpg',
+                'boolIsActive' => '1' 
             ),
 
             array(
@@ -409,36 +411,6 @@ class SegmentPatternSeeder extends Seeder
                 'strSegPImage' => 'imgDesignPatterns/rightangled-edge.jpg',
                 'boolIsActive' => '1'
             ),  
-
-            // array(
-            //     'strSegPatternID' => 'SPAT0040',
-            //     'strSegPStyleCategoryFK' => 'SEGSTY023',
-            //     'strSegPName'=>'No Vent',
-            //     'dblPatternPrice' => '10',
-            //     'txtSegPDesc' => 'Usually use  for winter.',
-            //     'strSegPImage' => 'imgDesignPatterns/novent.jpg',
-            //     'boolIsActive' => '1'
-            // ),
-
-            // array(
-            //     'strSegPatternID' => 'SPAT0041',
-            //     'strSegPStyleCategoryFK' => 'SEGSTY023',
-            //     'strSegPName'=>'Center Vent',
-            //     'dblPatternPrice' => '50',
-            //     'txtSegPDesc' => 'Usually use  for winter.',
-            //     'strSegPImage' => 'imgDesignPatterns/centervents.jpg',
-            //     'boolIsActive' => '1'
-            // ),  
-
-            // array(
-            //     'strSegPatternID' => 'SPAT0042',
-            //     'strSegPStyleCategoryFK' => 'SEGSTY023',
-            //     'strSegPName'=>'Side Vent',
-            //     'dblPatternPrice' => '50',
-            //     'txtSegPDesc' => 'Usually use  for winter.',
-            //     'strSegPImage' => 'imgDesignPatterns/sidevents.jpg',
-            //     'boolIsActive' => '1'
-            // ), 
 
             array(
                 'strSegPatternID' => 'SPAT0040',
@@ -685,10 +657,10 @@ class SegmentPatternSeeder extends Seeder
             array(
                 'strSegPatternID' => 'SPAT0064',
                 'strSegPStyleCategoryFK' => 'SEGSTY013',
-                'strSegPName'=>'A-line',
+                'strSegPName'=>'Normal',
                 'dblPatternPrice' => '70',
                 'txtSegPDesc' => 'Usually use for formal events.',
-                'strSegPImage' => 'imgDesignPatterns/a-line.jpg',
+                'strSegPImage' => '',
                 'boolIsActive' => '1'
             ),
 
@@ -696,10 +668,10 @@ class SegmentPatternSeeder extends Seeder
             array(
                 'strSegPatternID' => 'SPAT0065',
                 'strSegPStyleCategoryFK' => 'SEGSTY013',
-                'strSegPName'=> 'Ball Gown',
+                'strSegPName'=> 'Slim Fit',
                 'dblPatternPrice' => '70',
                 'txtSegPDesc' => 'Use for parties and debuts.',
-                'strSegPImage' => 'imgDesignPatterns/ball-gown.jpg',
+                'strSegPImage' => '',
                 'boolIsActive' => '1'
             ),
 
@@ -781,7 +753,7 @@ class SegmentPatternSeeder extends Seeder
                 'txtSegPDesc' => 'Usually use as a lining for pants.',
                 'strSegPImage' => 'imgDesignPatterns/withoutcuffs.jpg',
                 'boolIsActive' => '1'
-            ),                                
+            )                                
 
         );
 

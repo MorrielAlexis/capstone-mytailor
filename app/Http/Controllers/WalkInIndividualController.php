@@ -168,8 +168,7 @@ class WalkInIndividualController extends Controller
         return view('walkin-individual-catalogue-design');
     }
 
-    //if a customer already has an existing profile with the shop
-    public function customerCheck(Request $request)
+    public function saveSegments(Request $request)
     {
         $data_quantity = array_slice(array_filter($request->input('int-segment-qty')), 0);
         $values = session()->get('segment_values');
@@ -230,10 +229,19 @@ class WalkInIndividualController extends Controller
         session(['segment_quantity' => $data_quantity]);
 
         session(['segment_design' => $sqlStyles]);
-        
-        return view('walkin-individual-customer-check')
-                ->with('segments', $values);
+
+        return redirect('transaction/customer-check');
     }
+
+    //if a customer already has an existing profile with the shop
+    public function customerCheck()
+    {
+
+        $individual = Individual::all();
+        return view('walkin-individual-customer-check')
+            ->with('individual', $individual);
+    }
+
 
     public function customerInformation(Request $request)
     {   
@@ -266,8 +274,6 @@ class WalkInIndividualController extends Controller
             $custID = $this->smartCounter($ID);  
         }             
 
-        $custType = 0;
-        session(['custType' => $custType]);
         session(['custID' => $custID]);
         session(['joID' => $newID]);
 
@@ -277,14 +283,14 @@ class WalkInIndividualController extends Controller
     }
 
     public function addCustomer(Request $request)
-    {   //dd($request->input('strIndivSex'));
+    {   dd($request->input('addSex'));
 
         $individual = Individual::create(array(
                     'strIndivID' => $request->input('addIndiID'),
                     'strIndivFName' => trim($request->input('addIndiFirstName')),     
                     'strIndivMName' => trim($request->input('addIndiMiddleName')),
                     'strIndivLName' => trim($request->input('addIndiLastName')),
-                    //'strIndivSex' => $request->input('strIndivSex'),
+                    'strIndivSex' => $request->input('addSex'),
                     'strIndivHouseNo' => trim($request->input('addCustPrivHouseNo')), 
                     'strIndivStreet' => trim($request->input('addCustPrivStreet')),
                     'strIndivBarangay' => trim($request->input('addCustPrivBarangay')),   
@@ -298,46 +304,15 @@ class WalkInIndividualController extends Controller
                     'boolIsActive' => 1
                     )); 
 
-//dd($request->input('strIndivSex'));
-
                 $individual->save();
                 
         return redirect('transaction/walkin-individual-show-measurement-view');
     }
 
-    public function showMeasurementView(Request $request)
+    public function existingCustomerInformation(Request $request)
     {
-        $values = session()->get('segment_values');
-        $data = session()->get('segment_data');
-        $quantity = session()->get('segment_quantity');
-        for($i=0; $i<count($quantity); $i++){
-            $totalqty = $quantity[$i];
-        }
-        //dd($totalqty);
-
-        $measurementCategory = MeasurementCategory::all();
-        $standardSizeCategory = StandardSizeCategory::all();
-
-        $measurements = \DB::table('tblMeasurementCategory AS a')
-                    ->leftJoin('tblMeasurementDetail AS b', 'a.strMeasurementCategoryID', '=', 'b.strMeasCategoryFK')
-                    ->leftJoin('tblSegment AS c', 'b.strMeasDetSegmentFK', '=', 'c.strSegmentID')
-                    ->select('b.*')
-                    ->whereIn('b.strMeasDetSegmentFK', $data)
-                    ->get();
-
-        return view('walkin-individual-checkout-measure')
-                ->with('segments', $values)
-                ->with('quantities', $quantity)
-                ->with('measurements', $measurements)
-                ->with('categories', $measurementCategory)
-                ->with('standard_categories', $standardSizeCategory);
-    }
-
-    public function showMeasurementExistView(Request $request)
-    {
-        //$type = session()->get('custType');
-        //if($type == null){
-            $custEmail = trim($request->input('strIndiEmail')); //dd($custEmail);
+        $custID = $request->input('custId'); //dd($custID);
+        //$custEmail = trim($request->input('strIndiEmail')); //dd($custEmail);
 
             $joID = \DB::table('tblJobOrder')
                 ->select('strJobOrderID')
@@ -353,14 +328,14 @@ class WalkInIndividualController extends Controller
                 $newID = $this->smartCounter($ID);  
             } 
 
-            session(['cust_email' => $custEmail]);
+            session(['custID' => $custID]);
             session(['joID' => $newID]);
-        //}
 
-        //if($type == 0){ //do nothing
-        //}
-        
+        return redirect('transaction/walkin-individual-show-measurement-view');
+    }
 
+    public function showMeasurementView(Request $request)
+    {
         $values = session()->get('segment_values');
         $data = session()->get('segment_data');
         $quantity = session()->get('segment_quantity');
@@ -697,7 +672,7 @@ class WalkInIndividualController extends Controller
                     //dd($jobSpecsID);    
             $jobOrderSpecifics->save();
 
-            for($j = 0; $j < count($designs); $j++){ //dd($designs);
+            for($j = 0; $j <= count($designs); $j++){ //dd($designs);
                 //for($k = 0; $k < count($tempQuantity[$j]); $k++){
                     $jobOrderSpecificsPattern = TransactionJobOrderSpecificsPattern::create(array(
                             'strJobOrderSpecificFK' => $jobSpecsID,
@@ -829,7 +804,7 @@ class WalkInIndividualController extends Controller
 
     public function submit(Request $request)
     {
-        $request->session()->flash('success-message', 'Order successfully sent!');  
+        $request->session()->flash('success-message', 'Order successfully processed!');  
         $this->clearValues();
 
         return redirect('transaction/walkin-individual');
@@ -947,7 +922,7 @@ class WalkInIndividualController extends Controller
 
     public function removeItem(Request $request)
     {   
-        dd($request->input('delete-item-id'));
+
         $to_be_deleted = ((int)$request->input('delete-item-id') - 1);
         $values = session()->get('segment_values');
 
@@ -988,8 +963,6 @@ class WalkInIndividualController extends Controller
         session()->forget('custType');
         session()->forget('cust_email');
         session()->forget('exist_cust');
-        
-
     }
 
 

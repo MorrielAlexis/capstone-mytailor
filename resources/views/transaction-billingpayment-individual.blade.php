@@ -153,57 +153,172 @@
 														<div class="payment-summary {{ $payment->strJobOrderID}}">
 															<div style="color:black" class="input-field col s7">                 
 											                  <input style="margin-left:80%; padding:1%; padding-left:1%" name="amount-to-pay" type="text" class="" id="amount-to-pay" readonly>
-											                  <label style="color:teal; margin-top:1%; margin-left:2%"><b>Job Order Total Price:</b></label>
+											                  <label style="color:teal; margin-top:1%; margin-left:2%"><center><b>Total Amount Due<br> <font style="opacity:0.80">(Php)</font>:</b></center></label>
 											                </div>
 
 											                <div style="color:black" class="input-field col s7">                 
 											                  <input style="margin-left:80%; padding:1%; padding-left:1%" name="amount-paid" type="text" class="" id="amount-paid" readonly>
-											                  <label style="color:teal; margin-top:1%; margin-left:2%"><b>Total Amount Paid:</b></label>
+											                  <label style="color:teal; margin-top:1%; margin-left:2%"><center><b>Total Amount Paid<br><font style="opacity:0.80">(Php)</font>:</b></center></label>
 											                </div>
 
 											                <div style="color:black" class="input-field col s7">                 
 											                  <input style="margin-left:80%; padding:1%; padding-left:1%; color:teal; font-style:bold" name="outstanding-bal" type="text" class="outstanding-bal" id="outstanding-bal" readonly>
-											                  <label style="color:teal; margin-top:1%; margin-left:2%"><b>Outstanding Balance:</b></label>
+											                  <label style="color:teal; margin-top:1%; margin-left:2%"><center><b>Outstanding Balance<br><font style="opacity:0.80">(Php)</font>:</b></center></label>
 											                </div>
 											            </div>
 											            @endif
 											           
 											        @endforeach
+
+											        <div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
+													<h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
+														
+															<div class="divider" style="height:2px"></div>
+															<div class="modal-content col s12">
+
+																<div class="col s6" style="margin-top:20px;">
+																<label>This is a summary of orders:</label>
+																</div>
+
+																<div class="col s6">
+																	<div class="col s6"><h6 style="color:gray">Date of Transaction:</h6></div>
+																	
+																	<div class="col s6"><h6 style="color:teal; margin-top:6%"><b>{{ $customer_info->dtOrderDate }}</b></h6></div>
+																		
+																</div>
+
+											                        <table class="table centered" border="1">
+											                        	<thead style="border:1px teal solid; background-color:rgba(54, 162, 235, 0.5)">
+											                        		<tr style="border:1px teal solid">
+											                        			<th style="border:1px teal solid">Quantity</th>
+											                        			<th colspan="3" style="border:1px teal solid">Description</th>
+											                        			<th style="border:1px teal solid; border-bottom:none">Unit Price</th>
+											                        			<th style="border:1px teal solid">Total Price</th>
+											                        		</tr>
+											                        		<tr style="border:1px teal solid">
+											                        			<th style="border:1px teal solid; border-top:none"></th>
+											                        			<th style="border:1px teal solid" colspan="2">Item Name</th>
+											                        			<th style="border:1px teal solid">Price</th>
+											                        			<th style="border:1px teal solid"></th>
+											                        			<th style="border:1px teal solid"></th>
+											                        		</tr>
+											                        	</thead>
+											                        	<tbody style="border:1px teal solid">
+											                        	@foreach($payments as $payment)
+											                        		@if($payment->strTransactionFK == $customer_info->strJobOrderID)
+											                        		<tr style="border:1px teal solid">
+											                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>{{ $payment->intQuantity }}</b></td>
+											                        			<td style="border:1px teal solid; padding-left:5%; padding-right:5%; background-color:rgba(52, 162, 232, 0.2)"><b>{{ $payment->strGarmentCategoryName }}, {{ $payment->strSegmentName }}</b></td>
+											                        			<td style="padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"></td>
+											                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($payment->dblSegmentPrice, 2) }}</b></td>
+											                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($payment->dblUnitPrice, 2) }}</b></td>
+											                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($payment->dblUnitPrice * $payment->intQuantity, 2) }}</b></td>
+											                        		</tr>
+											                        		<!-- <tr>
+											                        			<td style="border-left:1px teal solid;"></td>
+											                        			<td style="border:1px teal solid; color:black; padding-left:10%; padding-top:1%; padding-bottom:1%; color:black"><b></b></td>
+											                        			<td style="padding-top:1%; padding-bottom:1%; border:1px teal solid"><b>Fabric Name</b></td>
+											                        			<td style=""></td>
+											                        			<td style="border:1px teal solid"></td>
+											                        			<td style="border:1px teal solid"></td>
+											                        		</tr> -->
+											                        		<tr style="border:1px teal solid">
+											                        			<td style="border:1px teal solid"></td>
+											                        			<td style="border:none; color:teal; padding-left:10%">Fabric Name</td>
+											                        			<td style="padding-left:4%; padding-right:4%; border:1px teal solid">{{ $payment->strFabricName }}</td>
+											                        			<td style="border:1px teal solid">P {{ number_format($payment->dblFabricPrice, 2) }}</td>
+											                        			<td style="border:1px teal solid"></td>
+											                        			<td style="border:1px teal solid"></td>
+											                        		</tr>
+											                        		<!-- <tr>
+											                        			<td style="border-left:1px teal solid"></td>
+											                        			<td style="border:1px teal solid; color:black; padding-left:10%; padding-top:1%; padding-bottom:1%; color:black"><b>Style Name</b></td>
+											                        			<td style="padding-top:1%; padding-bottom:1%; border:1px teal solid"><b>Segment Pattern</b></td>
+											                        			<td style=""></td>
+											                        			<td style="border:1px teal solid"></td>
+											                        			<td style="border:1px teal solid"></td>
+											                        		</tr> -->
+
+											                        		<tr style="border:1px teal solid">
+											                        			<td style="border:1px teal solid"></td>
+											                        			<td class="right" style="border:none; color:teal; padding-right:10%">Style Name and Pattern</td>
+											                        			<td style="border:1px teal solid">{{ $payment->strSegStyleName }} <br> <font color="gray"><b><i>{{ $payment->strSegPName }}</i></b></font></td>
+											                        			<td style="border:1px teal solid">P {{ number_format($payment->dblPatternPrice, 2) }}</td>
+											                        			<td style="border:1px teal solid"></td>
+											                        			<td style="border:1px teal solid"></td>
+											                        			
+											                        		</tr>
+											                        		
+											                        		@endif
+											                        	@endforeach
+											                        	</tbody>
+											                        </table>
+															      		
+
+															      		<div class="divider"></div>
+															      		<div class="divider"></div>
+																		
+																      	<div class="col s12" style="margin-bottom: 5%">
+																			<!-- <div class="right col s6" hidden><p style="color:gray">Estimated time to finish all orders:<p style="color:black">60 days</p></p></div> -->
+																			<div class="right col s6" style="font-size:15px; margin-top: 1.5%">
+																				<div class="col s6"><p style="color:gray">Terms of Payment:</p></div>
+
+																				<div class="col s6"><p style="color:black"><font color="teal"><b>{{ $customer_info->strTermsOfPayment }}</b></font></p></div>
+																			</div>
+																			<div class="left col s6" style="font-size:20px">
+																				<div class="col s7"><p style="color:gray">Order Total Price:</p></div>
+
+																				<div class="col s5"><p style="color:black"><font size="+2" color="teal"><b>P {{ number_format($customer_info->dblOrderTotalPrice, 2) }}</b></font></p></div>
+																			</div>
+																		</div>
+
+																		<!-- <div class="col s12" style="margin-bottom:50px">
+																			<p style="color:red"><b>Due date of payment (pay balance before or on the said date):</b></p>
+																		</div> -->
+																		
+
+																	</div>
+
+															<div class="modal-footer col s12">	
+												                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">OK</font></a>								                
+												            </div>
+													
+													</div><!--modal to-->
 											    {!! Form::close() !!}   
 								        		
 
 								                        <div class="col s12" style="margin-top:3%"><div class="divider" style="height:3px; color:gray"></div></div>
 								                    {!! Form::open(['url' => 'transaction/payment/individual/save-payment', 'method' => 'POST']) !!}
 								                    <div class="payment-form" id="payment-form" style="display:block">
-								                        <div style="color:black" class="input-field col s7">                 
-								                          <input style="margin-left:80%; padding:1%; padding-left:1%; border:3px gray solid" name="amount-tendered" id="amount-tendered" type="text" class="">
-								                          <label style="color:black; margin-top:1%; margin-left:2%"><b>Amount Tendered:</b></label>
+								                        <div style="color:black" class="input-field col s12">                 
+								                          <div class="col s8"><input style="margin-left:60%; padding:1%; padding-left:1%; border:3px gray solid" name="amount-tendered" id="amount-tendered" type="text" class=""></div>
+								                          <div class="col s4"><label style="color:black; margin-top:1%; margin-left:2%"><center><b>Amount Tendered<br><font style="opacity:0.80">(Php)</font>:</b></center></label></div>
 								                        </div>
 
-								                        <div style="color:black" class="input-field col s7">                 
-								                          <input style="margin-left:80%; padding:1%; padding-left:1%; border:3px gray solid" name="amt-to-pay" id="amt-to-pay" type="text" class="">
-								                          <label style="color:black; margin-top:1%; margin-left:2%"><b>Amount to Pay :</b></label>
+								                        <div style="color:black" class="input-field col s12">                 
+								                          <div class="col s8"><input style="margin-left:60%; padding:1%; padding-left:1%; border:3px gray solid" name="amt-to-pay" id="amt-to-pay" type="text" class=""></div>
+								                          <div class="col s4"><label style="color:black; margin-top:1%; margin-left:2%"><center><b>Amount to Pay<br> <font style="opacity:0.80">(Php)</font>:</b></center></label></div>
 								                        </div>
 
 								                        <div class="container">
-									                        <div style="color:black" class="input-field col s7">                 
-									                          <input readonly style="margin-left:80%; padding:1%; padding-left:1%; border:3px gray solid" name="amount-change" id="amount-change" type="text" class="">
-									                          <label style="color:teal; margin-top:1%; margin-left:40px"><b>Change:</b></label>
+									                        <div style="color:black" class="input-field col s12">                 
+									                          <div class="col s8"><input readonly style="margin-left:55%; padding:1%; padding-left:1%; border:3px gray solid" name="amount-change" id="amount-change" type="text" class=""></div>
+									                          <div class="col s4"><label style="color:teal; margin-top:1%; margin-left:10%"><center><b>Change<br> <font style="opacity:0.80">(Php)</font>:</b></center></label></div>
 									                        </div>
 								                    	</div>
 
 								                    	<div style="color:black" class="input-field col s7" hidden>                 
-								                          <input style="margin-left:180px; padding:5px; padding-left:10px; border:3px gray solid" name="payment-info" type="text" class="">
-								                          <label style="color:black; margin-top:5px; margin-left:20px"><b>Remaining Balance:</b></label>							                          
+								                          <div class="col s8"><input style="margin-left:180px; padding:5px; padding-left:10px; border:3px gray solid" name="payment-info" type="text" class=""></div>
+								                          <div class="col s4"><label style="color:black; margin-top:5px; margin-left:20px"><b>Remaining Balance:</b></label></div>							                          
 								                        </div>
 
 								                        <div class="col s12" hidden>
 								                        	<center><p style="color:gray">*** Pay balance before or on <font color="teal"><b><u>"DECEMBER 25, 2016"</u></b></font> ***</p></center>
 								                        </div>
 
-								                        <div style="color:black" class="input-field col s7">                 
-								                          <input style="margin-left:180px; padding:5px; padding-left:10px;" value="Honey May Buenavides - Cashier" name="payment-info" type="text" class="">
-								                          <label style="color:black; margin-top:5px; margin-left:20px"><b>Process Done By:</b></label>							                          
+								                        <div style="color:black" class="input-field col s12">                 
+								                          <div class="col s8"><input style="margin-left:60%; padding:5px; padding-left:10px;" value="{{ $empname->employeename }}" name="payment-info" type="text" class=""></div>
+								                          <div class="col s4"><label style="color:black; margin-top:5px; margin-left:20px"><b>Process Done By:</b></label></div>							                          
 								                        </div>
 
 								                        <input type="hidden" id="transaction_date" name="transaction_date">
@@ -225,54 +340,79 @@
 											<div class="card-panel">
 											<div class="card-content">
 												@foreach($customer_orders as $j => $order)
-													@foreach($payments as $i => $payment)
 													@if($order->strTermsOfPayment != "Full Payment")
 
 												<div class="row" id="or_summary" style="display:none">
-													<center><h6><b>ORDER SUMMARY</b></h6></center>
+													<center><h6><b>Payment History</b></h6></center>
 													<div class="col s12" style="margin-top:10px"><div class="divider" style="height:3px; color:gray"></div></div>
 												
 												<!--In case of multiple pending transactions...-->
-													<div  class="col s6">
-														<h6>Order No.: <p style="color:teal"><b>{{ $order->strJobOrderID }}</b></p></h6>
+													<div  class="col s6" style="border-right:1px darkgray solid">
+														<h6>Order No.: <p style="color:teal"><b><a href="#summary-of-order" class="modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to view summary of order" style="color:teal"><u>{{ $order->strJobOrderID }}</u></a></b></p></h6>
 													</div>
 
 													<div  class="col s6">
 														<h6>Transaction Date: <p style="color:teal"><b>{{ $order->dtOrderDate}}</b></p></h6>
 													</div>
 
+													<div class="col s12"><div class="divider" style="background-color: gray; height:2px; margin-bottom: 2%"></div></div>
+
 													<div class="col s12">
+													<center><font color="gray" size="-1">Recent payment(s) made for this job order:</font></center>
+														<table class="table centered" style="font-size:12px; font-weight:bold">
+															<thead style="color:gray">
+																<tr>
+																	<th>Payment ID</th>
+																	<th>Amt Paid</th>
+																	<th>Balance</th>
+																	<th>Date Paid</th>
+																</tr>
+															</thead>
+															<tbody>
+															@foreach($payments as $payment)
+															@if($payment->strTransactionFK == $order->strJobOrderID)
+																<tr>
+																	<td>{{ $payment->strPaymentID }}</td>
+																	<td>{{ number_format($payment->dblAmountToPay, 2) }}</td>
+																	<td>{{ number_format($payment->dblOutstandingBal ,2) }}</td>
+																	<td>{{ $payment->dtPaymentDate }}</td>
+																</tr>
+															@endif
+															@endforeach
+															</tbody>
+														</table>
+													</div>
+
+													<!-- <div class="col s12">
 														<table class="table centered order-summary">
 															<thead style="color:gray">
-																<th>Product Code</th>
+																<th>Product Name</th>
 																<th>Quantity</th>
 																<th>Unit Price</th>
 															</thead>
 															<tbody>
 
 																<tr>
-																	<td>{{ $payment->strSegmentID }}</td>
-																	<td>{{ $payment->intQuantity }}</td>
-																	<td>{{ $payment->dblUnitPrice }}</td>
+																	<td>{{ $order->strGarmentCategoryName }},<br> {{ $order->strSegmentName }}</td>
+																	<td>{{ $order->intQuantity }}</td>
+																	<td>P {{ number_format(($order->dblOrderTotalPrice / $order->intJO_OrderQuantity), 2) }}</td>
 																</tr>
 														</table>
 
 														<!-- <center><a href="#summary-of-order" class="btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to view summary of orders" style="background-color:teal">View Order Details</a></center> -->
-													</div>
+													<!-- </div> -->
 
-													<div class="col s12"><div class="divider" style="height:2px; color:gray; margin-top:15px; margin-bottom:15px"></div></div>
 
 												</div>
 
 													@endif
-												@endforeach
 												@endforeach
 											</div>
 										</div>
 										</div>
 										@endif
 										@endif       							                    												
-											
+										{!! Form::close() !!}
 
 									</div>
 
@@ -338,61 +478,7 @@
 										</div>
 									</div> -->
 									
-									<!-- <div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
-									<h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
-										
-											<div class="divider" style="height:2px"></div>
-											<div class="modal-content col s12">
-
-												<div class="col s6" style="margin-top:20px;">
-												<label>This is a summary of orders:</label>
-												</div>
-
-												<div class="col s6">
-													<div class="col s6"><p style="color:gray">Date of Transaction:</p></div>
-													
-													<div class="col s6"><h6 style="color:red; margin-top:15px"><b></b></h6></div>
-														
-												</div>
-
-														<div class="container">
-									                        <table class = "table centered order-summary" border = "1">
-											       				<thead style="color:gray">
-												          			<tr>
-													                  <th data-field="product">Item</th>         
-													                  <th data-field="quantity">Quantity</th>
-													                  <th data-field="price">Unit Price</th>
-													                  
-													              	</tr>
-												              	</thead>
-												              	<tbody>
-												              	
-												              	
-																
-														        </tbody>
-														    </table>
-											      		</div>
-
-											      		<div class="divider"></div>
-											      		<div class="divider"></div>
-														
-												      	<div class="col s12">
-															<div class="col s6"><p style="color:gray">Estimated time to finish all orders:<p style="color:black">60 days</p></p></div>
-															<div class="col s6"><p style="color:gray">Total Amoun to Pay:<p style="color:black"></p></p></div>
-														</div>
-
-														<div class="col s12" style="margin-bottom:50px">
-															<p style="color:red"><b>Due date of payment (pay balance before or on the said date):</b></p>
-														</div>
-														
-
-													</div>
-
-											<div class="modal-footer col s12">	
-								                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">OK</font></a>								                
-								            </div>
-									
-									</div> --><!--modal to-->
+									 
 
 								<div class="col s12" style="margin-top:4%" hidden>
 									<div class="col s12" style="margin-top:3%"><div class="divider" style="height:3px; color:gray; margin-bottom:4%"></div></div>
@@ -431,8 +517,13 @@
 		var amount_paid = 0.00;
 		var bal = 0.00;
 
+		//Gets the days needed to finish the product
+
+
+
 		var form = document.getElementById('pay_form');
 		var summary = document.getElementById('or_summary');
+		var dropdown = document.getElementById('unpaid-payments');
 
 		$('#unpaid-payments').change(function(){
 			var orders = {!! json_encode($customer_orders) !!}
@@ -450,9 +541,9 @@
 				form.style.display = "block";
 				summary.style.display = "block";
 
-				$('#amount-to-pay').val(amount_to_pay.toFixed(2)) + "PHP";
-				$('#amount-paid').val(amount_paid.toFixed(2)) + "PHP";
-				$('#outstanding-bal').val(bal.toFixed(2)) + "PHP";
+				$('#amount-to-pay').val(amount_to_pay.toFixed(2));
+				$('#amount-paid').val(amount_paid.toFixed(2));
+				$('#outstanding-bal').val(bal.toFixed(2));
 
 				break;
 			}
@@ -462,6 +553,7 @@
 				form.style.display = "none";
 
 			}
+			// alert($('#unpaid-payments').val());
 		}
 						
 

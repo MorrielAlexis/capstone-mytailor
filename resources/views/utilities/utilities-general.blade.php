@@ -42,10 +42,20 @@
                     <label for="shop_name">Shop Name</label>
                   </div>
               </div> 
-            </div>    
+            </div>  
+
+            <div class="row">
+              <div class="col s12">
+                  <div class="input-field">
+                    <input id="updateShopAddress" name="updateShopAddress" type="text" value="{{ $shop_address }}" class="validate">
+
+                    <label for="shop_address">Shop Address</label>
+                  </div>
+              </div> 
+            </div>   
             <div class="row">
               <div class="col offset-s10 s6">
-                  <button class="btn waves-effect waves-black tooltipped teal accent-4 white-text" type="submit" name="action">Submit
+                  <button class="btn waves-effect waves-black tooltipped teal accent-4 white-text" type="submit" name="action">APPLY
                     <i class="material-icons right">send</i>
                   </button>
               </div> 
