@@ -448,6 +448,7 @@ Route::get('/track', 'OnlineCustomerProfileIndividualController@trackJob');
 	Route::group(['prefix' => 'transaction/collection'], function() {
 		Route::group(['prefix' => 'individual'], function() {
 			Route::get('home', 'CollectionIndividualController@index');
+			Route::get('payment-records', 'CollectionIndividualController@paymentRecord');
 		});
 
 		Route::group(['prefix' => 'company'], function() {
@@ -593,6 +594,8 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::post('save-customer', 'OnlineIndividualController@addCustomer');
 
 	Route::post('men-customize', 'OnlineIndividualController@menCustomize');
+
+	Route::post('women-customize', 'OnlineIndividualController@womenCustomize');
 
 	Route::post('save-order', 'OnlineIndividualController@saveOrder');
 

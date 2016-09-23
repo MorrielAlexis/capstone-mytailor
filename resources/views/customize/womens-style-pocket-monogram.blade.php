@@ -40,35 +40,36 @@
         </ul>
 
         <!--POCKETS & MONOGRAM TAB-->
+        {!! Form::open(['url' => 'women-customize', 'method' => 'POST']) !!}
         <div id="tabPocketMonogram" class="col s12 white" style="padding:20px; border 2px teal accent-4 white-text;">
           
           <div class="col s12">
-            <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/customize-womens-style-others')}}">Next step</a></div>
+            <div><button type= "submit" class="right btn-flat teal accent-4 white-text">GO TO SHOPPING CART</button></div>
           </div>
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
 
           <div class="col s12">
             <ul class="collapsible" data-collapsible="accordion" style="border:none;">
-              @foreach($segments as $segment)
-              @foreach($pockets as $pocket)
+              @foreach($segments as $i => $segment)
+              @foreach($pockets as $j => $pocket)
               @if($pocket->boolIsActive == 1)
               <li @if($segment->strSegmentID != $pocket->strSegmentFK) hidden @endif>
                 <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $pocket->strSegStyleName }}</div>
                 <div class="collapsible-body row overflow-x" style="padding:20px;">
                   <div class="col s12">
                     <p>
-                      <input class="with-gap" name="classic" type="radio" id="small" />
+                      <input class="filled-in" name="pocket" type="radio" id="small" />
                       <label for="small"><font size="+1"><b>No Pocket</b></font></label>
                     </p>
                   </div>
       
                   <div class="col s12">
-                    @foreach($patterns as $pattern)
+                    @foreach($patterns as $k => $pattern)
                     <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $pocket->strSegStyleCatID) hidden @endif>
                       <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
                       <p>
-                        <input name="rdb_pattern{{ $pocket->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
-                        <label for="{{$pattern->strSegPatternID}}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
+                        <input name="pocket" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" />
+                        <label for="{{$pattern->strSegPatternID}}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
                       </p>
                     </div>
                     @endforeach
@@ -417,10 +418,11 @@
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12">
-            <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/customize-womens-style-others')}}">Next step</a></div>
+            <div><button type= "submit" class="right btn-flat teal accent-4 white-text">GO TO SHOPPING CART</button></div>
           </div>
 
         </div>
+        {!! Form::close() !!}
         <!--END OF POCKETS & MONOGRAM-->      
 
       </div>

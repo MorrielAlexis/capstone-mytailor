@@ -18,7 +18,7 @@
 					<li class="tab col s12" style="border-top-left-radius: 20px; border-top-right-radius: 20px; background-color: #00b0ff;"><a style="color:black; padding-top:5px; opacity:0.80" href="#shoppingCart"></a></li>	
 					<div class="indicator white" style="z-index:1"></div>
 	            </ul>
-				<!-- <div id="shoppingCart" class="card-panel">
+				<div id="shoppingCart" class="card-panel">
 					<div class="card-content">
 						<div class="row">
 						<div class="col s12">
@@ -31,11 +31,11 @@
 									<option value="" style="color:gray">Status</option>
 									<option value="1">All</option>
 									<option value="2">Paid</option>
-									<option value="3">Partial</option>
-									<option value="4">Canceled</option>
+									<option value="3">Pending</option>
+									<!-- <option value="4">Canceled</option> -->
 								</select>
 							</div>
-							<div class="col s6">
+							<div class="col s6" hidden>
 								<select class="browser-default">
 									<option value="" style="color:gray">Payment Type</option>
 									<option value="1">All</option>
@@ -57,16 +57,16 @@
 						</div>
 
 						<div class="col s12" style="margin-top:20px">
-							<a href="" class="left btn" style="background-color:teal; color:white; margin-left:10px">Cancel</a>
-							<a href="{{URL::to('/transaction/payment/individual/home')}}" class="left btn" style="background-color:teal; color:white; margin-left:10px">Go to Payment</a>
-							<a href="" class="right btn" style="background-color:teal; color:white; margin-right:10px">Search</a>
-							<a href="" class="right btn" style="background-color:teal; color:white; margin-right:40px">Edit</a>
+							<!-- <a href="" class="left btn" style="background-color:teal; color:white; margin-left:10px">Cancel</a>
+							<a href="{{URL::to('/transaction/payment/individual/home')}}" class="left btn" style="background-color:teal; color:white; margin-left:10px">Go to Payment</a> -->
+							<a href="" class="right btn" style="background-color:teal; color:white; margin-right:10px">Save Filter</a>
+							<a href="" class="left btn" style="background-color:teal; color:white; margin-right:40px">Edit</a>
 						</div>
 
 
 						</div>
 					</div>
-				</div> -->
+				</div>
 
 				<div id="data-record" class="card-panel">
 					<div class="card-content">
@@ -82,15 +82,16 @@
 							<table class="table centered data-company" align = "center" border = "1">
 								<thead>
 									<tr>
-										<!-- <th class="center" style="color:gray">ID</th> -->
-										<th class="center" style="color:gray">Customer Name</th>
+										<th class="center" style="color:gray">Payment Id</th>
 										<th class="center" style="color:gray">Job Order #</th>
+										<th class="center" style="color:gray">Customer Name</th>
+										
 										<th class="center" style="color:gray">Payment Type</th>
-										<th class="center" style="color:gray">Cheque Number</th>
+										<!-- <th class="center" style="color:gray">Cheque Number</th> -->
 										<th class="center" style="color:teal">Total Amount</th>
 										<th class="center" style="color:gray">Downpayment (50%)</th>
 										<th class="center" style="color:gray">Amount Paid</th>
-										<th class="center" style="color:teal">Outstanding Balance</th>
+										<th class="center" style="color:gray">Outstanding Balance</th>
 										<th class="center" style="color:teal">Due Date</th>
 										<!-- <th class="center" style="color:gray">Date of Payment</th> -->
 										<th class="center" style="color:green">Status</th>
@@ -105,20 +106,16 @@
 									@if($company->strPaymentStatus == "Pending")
 									<tr style="background-color:rgba(54, 162, 235, 0.2)" @if($company->strTransactionFK != $comps->strJobOrderID AND $company->strJO_CustomerCompanyFK == $comps->strCompanyID) hidden @endif>
 										
+										<td class="center">{{ $company->strPaymentID }}</td>
+										<td ><a class="modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to see order summary" href="#view-detail">{{ $company->strJobOrderID }}</a></td>
 										<td class="center" >{{ $company->strCompanyName }}</td>
-										<td class="center">{{ $company->strTransactionFK }}</td>
 										<td class="center">{{ $company->strModeOfPayment}}</td>
-										@if($company->strModeOfPayment != "Cash")
-										<td class="center">Cheque here</td>
-										@elseif($company->strModeOfPayment == "Cash")
-										<td class="center"> ---- </td>
-										@endif
 										<td class="center" style="color:teal">{{ number_format($company->dblOrderTotalPrice, 2) }}</td>
 										<td class="center">{{ number_format(($company->dblOrderTotalPrice/2), 2) }}</td>
 										<td class="center">{{ number_format($company->dblAmountToPay, 2) }}</td>
 										<td class="center">{{ number_format($company->dblOutstandingBal, 2)}}</td>
 										@if($company->strPaymentStatus != "Pending") 
-											<td class="center" style="color:teal">----</td>
+											<td class="center" style="color:teal">Completed</td>
 										@elseif($company->strPaymentStatus == "Pending")
 										<td class="center" style="color:teal" >{{ $company->dtPaymentDueDate }}</td>
 										@endif
@@ -130,21 +127,16 @@
 									<tr @if($company->strTransactionFK != $comps->strJobOrderID) hidden @endif>
 										
 										<!--  -->
-
+										<td class="center">{{ $company->strPaymentID }}</td>
+										<td ><a class="modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to see order summary" href="#view-detail">{{ $company->strJobOrderID }}</a></td>
 										<td class="center" >{{ $company->strCompanyName }}</td>
-										<td class="center">{{ $company->strTransactionFK }}</td>
 										<td class="center">{{ $company->strModeOfPayment}}</td>
-										@if($company->strModeOfPayment != "Cash")
-										<td class="center">Cheque here</td>
-										@elseif($company->strModeOfPayment == "Cash")
-										<td class="center"> ---- </td>
-										@endif
 										<td class="center" style="color:teal">{{ number_format($company->dblOrderTotalPrice, 2) }}</td>
 										<td class="center">{{ number_format(($company->dblOrderTotalPrice/2), 2) }}</td>
 										<td class="center">{{ number_format($company->dblAmountToPay, 2) }}</td>
 										<td class="center">{{ number_format($company->dblOutstandingBal, 2)}}</td>
 										@if($company->strPaymentStatus != "Pending") 
-											<td class="center" style="color:teal">----</td>
+											<td class="center" style="color:teal">Completed</td>
 										@elseif($company->strPaymentStatus == "Pending")
 										<td class="center" style="color:teal" >{{ $company->dtPaymentDueDate }}</td>
 										@endif

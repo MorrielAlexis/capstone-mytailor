@@ -26,7 +26,7 @@ class CollectionCompanyController extends Controller
                 ->leftJoin('tblJOPayment AS b', 'a.strJobOrderID', '=', 'b.strTransactionFK')
                 ->leftJoin('tblCustCompany AS c', 'c.strCompanyID', '=', 'a.strJO_CustomerCompanyFK')
                 ->select('a.*', 'b.*', 'c.strCompanyID', 'c.strCompanyName')
-                ->orderBy('a.strJobOrderID')
+                ->orderBy('b.strPaymentID')
                 ->get();
 
         $comp = \DB::table('tblCustCompany AS a')

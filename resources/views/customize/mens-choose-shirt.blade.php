@@ -31,6 +31,10 @@
 
           <div class="divider" style="margin-bottom:40px; height:2px"></div>
           <p class="center-align" style="color:teal; margin-bottom:40px"><b>CHOOSE AMONG AVAILABLE PRODUCTS</b></p>
+          <div class = "row">
+            <div class="center col s4" style="margin-top:30px; margin-left:60px; color:red"><center><b style="font-size:18px">Quantity of Men Shirt</b></center></div>  
+            <div class="col s3" style="margin-top:20px; padding:5px; margin-right:5px;"><input name="menquantity" id="menquantity" type="number" style="border:2px teal solid; padding-left:18%; padding-right:18%" placeholder="How many?"></div>
+          </div>
         
           @foreach($garments as $garment)
             @if($garment->boolIsActive==1)
@@ -49,15 +53,13 @@
                   <div class="center col s12">
                     <img src="{{$garment->strSegmentImage}}" style="height:200px; width:250px; padding:10px; border:3px gray solid">
                   </div>
-
-                  <div class = "row">
-                    <div class="center col s3" style="margin-top:30px; margin-left:60px; color:red"><center><b style="font-size:18px">QTY</b></center></div>  
-                    <div class="col s3" style="margin-top:20px; padding:5px; margin-right:5px;"><input name="menquantity" id="quantity" type="number" style="border:2px teal solid; padding-left:18%; padding-right:18%" placeholder="How many?"></div>
-                  </div>
                 </div>
+
             @endif
           @endforeach
         </div>
+
+                
 
                 
         <div class="col s12">
