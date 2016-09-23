@@ -148,11 +148,20 @@ class MeasurementDetailController extends Controller
 
     function update_measurementdetail(Request $request)
     {
-
+        
         $detail = MeasurementDetail::find($request->input('editDetailID'));
-
+        $isAdded = FALSE;
         $file = $request->input('editImage');
         $destinationPath = 'imgMeasurementDetail';
+        $checkmeasurementDets = MeasurementDetail::all();
+
+
+        foreach ($checkmeasurementDets as $checkmeasurementDet)
+            if(!strcasecmp($checkmeasurementDet->strMeasurementDetailID, $request->input('editDetailID')) == 0 &&
+                strcasecmp($checkmeasurementDet->strMeasDetSegmentFK, $request->input('editMeasSegment')) == 0 && strcasecmp($checkmeasurementDet->strMeasCategoryFK,$request->input('editMeasCategory')) == 0 && strcasecmp($checkmeasurementDet->strMeasDetailName, trim($request->input('editMeasDetailName'))) == 0);
+                $isAdded = TRUE;
+
+            if(!$isAdded){
 
                 if($file == $detail->strMeaDetailImage)
                 {
@@ -181,6 +190,7 @@ class MeasurementDetailController extends Controller
         $detail->save();
 
         \Session::flash('flash_message_update','Measurement detail successfully updated.'); //flash message
+             }else \Session::flash('flash_message_work','Measurement detail already exists.'); //flash message 
 
         return redirect('maintenance/measurement-detail');
 
