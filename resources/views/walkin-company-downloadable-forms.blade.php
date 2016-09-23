@@ -30,7 +30,7 @@
 						<div class="col s12" style="margin-bottom:4%">
 							<div class="col s6 z-depth-2" style="padding:2%; background-color:teal; opacity:0.80">
 								<center><a href=""><img class="responsive-image z-depth-2" src="{{URL::to('imgMeasurementDetail/chest.png')}}" style="border:2px gray solid"></a></center>	                    	
-		                    	<center><p><a href="#!" class="modal-trigger" style="color:white"><font size="+1"><u>Click to download PDF</u></font></a></p></center>
+		                    	<center><p><a href="../pdf/male-measurement-form-admin2.pdf" class="modal-trigger" style="color:white"><font size="+1"><u>Click to download PDF</u></font></a></p></center>
 							</div>
 							<div class="col s6" style="padding:3%;">
 								<center><h5 style="color:teal">Uniform - Male Measurement Form</h5></center>
@@ -41,7 +41,7 @@
 						<div class="col s12" style="margin-bottom:4%">
 							<div class="col s6 z-depth-2" style="padding:2%; background-color:teal; opacity:0.80">
 								<center><a href=""><img class="responsive-image z-depth-2" src="{{URL::to('imgMeasurementDetail/chest.png')}}" style="border:2px gray solid"></a></center>	                    	
-		                    	<center><p><a href="#!" class="modal-trigger" style="color:white"><font size="+1"><u>Click to download PDF</u></font></a></p></center>
+		                    	<center><p><a href="../pdf/female-measurement-form-admin2.pdf" class="modal-trigger" style="color:white"><font size="+1"><u>Click to download PDF</u></font></a></p></center>
 							</div>
 							<div class="col s6" style="padding:3%;">
 								<center><h5 style="color:teal">Uniform - Female Measurement Form</h5></center>
