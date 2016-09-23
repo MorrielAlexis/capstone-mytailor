@@ -448,6 +448,7 @@ Route::get('/track', 'OnlineCustomerProfileIndividualController@trackJob');
 	Route::group(['prefix' => 'transaction/collection'], function() {
 		Route::group(['prefix' => 'individual'], function() {
 			Route::get('home', 'CollectionIndividualController@index');
+			Route::get('payment-records', 'CollectionIndividualController@paymentRecord');
 		});
 
 		Route::group(['prefix' => 'company'], function() {
@@ -481,6 +482,11 @@ Route::group(['prefix' => 'transaction'], function(){
 		Route::post('online-alteration-add-newcustomer-checkout-info', 'OnlineAlterationController@addNewCustomer');
 		Route::post('online-alteration-newcustomer-save-transaction', 'OnlineAlterationController@saveTransaction');
 		Route::post('online-alteration-newcustomer-cancel', 'OnlineAlterationController@cancelOrder');
+
+
+		//Downloadable Forms
+		Route::get('online-forms', 'OnlineFormsController@measurementforms');
+
 
 });
 
@@ -589,6 +595,8 @@ Route::group(['prefix' => 'transaction'], function(){
 
 	Route::post('men-customize', 'OnlineIndividualController@menCustomize');
 
+	Route::post('women-customize', 'OnlineIndividualController@womenCustomize');
+
 	Route::post('save-order', 'OnlineIndividualController@saveOrder');
 
 	Route::get('checkout-payment', 'OnlineIndividualController@payment');
@@ -651,9 +659,11 @@ Route::group(['prefix' => 'transaction'], function(){
 	//Customers with Balance
 	Route::group(['prefix' => 'reports/customers-with-balance'], function(){
 
-Route::get('online-forms', 'OnlineFormsController@measurementforms');
-
 		Route::get('individual', 'IndividualCustomerWithBalanceController@index'); //controlller for individuals with balance
 		Route::get('company', 'CompanyCustomerWithBalanceController@index'); //controller for companies with balance		
 	});
 
+
+Route::get('company-checkout', 'CompanyCheckoutController@index');
+Route::get('company-checkout-measure', 'CompanyCheckoutMeasureController@index');
+Route::get('company-checkout-pay', 'CompanyCheckoutPayController@index');

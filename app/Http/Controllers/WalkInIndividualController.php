@@ -510,7 +510,8 @@ class WalkInIndividualController extends Controller
         session(['amountChange' => $request->input('amount-change-hidden')]);
         session(['transaction_date' => $request->input('transaction_date')]);
         session(['dueDate' => $request->input('dueDate')]);
-//dd($request->input('due_date'));
+        session(['deliveryDate' => $request->input('deliveryDate')]);
+//dd($request->input('dueDate'));
         foreach($tempQuantity as $quantity)
             $totalQuantity += $quantity; //tblJobOrder
 
@@ -524,6 +525,7 @@ class WalkInIndividualController extends Controller
         $orderDate = session()->get('transaction_date'); //tblJobOrder
         $orderToBeDone = session()->get('dueDate');
         $payDueDate = session()->get('dueDate');
+        $deliveryDate = session()->get('deliveryDate');
 
         //dd($payDueDate);
 
@@ -538,7 +540,7 @@ class WalkInIndividualController extends Controller
                 'dtOrderDate' => $orderDate,
                 'dtOrderApproved' => $orderDate,
                 'dtOrderExpectedToBeDone' => $orderToBeDone,
-                'dtExpectedDeliveryDate' => $orderToBeDone,
+                'dtExpectedDeliveryDate' => $deliveryDate,
                 'boolIsActive' => 1
         ));
 

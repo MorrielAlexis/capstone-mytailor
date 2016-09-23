@@ -48,82 +48,86 @@
               </select>
           </div>
         </div>
-                <div class="col s12" style="padding:20px"> 
+
+        @foreach($segments as $segment)
+        <div class="col s12" style="padding:20px"> 
                   
-                  <div id="for_top" class="col s12" style="color:black">
-                    <h5><b>Parts to be measured - </b></h5>
-                    
-              <!--if Body and Cloth Measurement-->
-                       @foreach($measurements as $j => $measurement)
-                        <div class="container measurement-general {{ $measurement->strMeasCategoryFK }}"> 
-                            <div style="color:black; padding-left:140px" class="input-field col s6 ">   
-                              <input type="hidden" name="" value="{{ $measurement->strMeasurementDetailID }}">              
-                                    <input name="" type="text">
-                                    <label style="color:teal" for="">{{ $measurement->strMeasDetailName }} (cm): </label>
-                                </div>
-                            </div>
-                     
-                        @endforeach
-              <!--End of Body and Cloth Measurement-->
+              <div id="for_top" class="col s12" style="color:black">
+                <h5><b>Parts to be measured - {{$segment->strSegmentName}}</b></h5>
+                      
+                `<!--if Body and Cloth Measurement-->
+                   @foreach($measurements as $j => $measurement)
+                      <div class="container measurement-general {{ $measurement->strMeasCategoryFK }}"> 
+                          <div style="color:black; padding-left:140px" class="input-field col s6 ">   
+                            <input type="hidden" name="" value="{{ $measurement->strMeasurementDetailID }}">              
+                            <input name="" type="text">
+                            <label style="color:teal" for="">{{ $measurement->strMeasDetailName }} (cm): </label>
+                        </div>
+                      </div>
+                 
+                    @endforeach
+                  <!--End of Body and Cloth Measurement-->
+                
+                <!--if Standard Size Measurement-->
+                <div class="col s12 z-depth-1 measurement-general MEASCAT001" style="padding:20px">
+                  <div class="container">
+                    <div class="left col s6">
+                      <center><img src="{{$segment->strSegmentImage}}" style="height:200px; width:200px; border:3px gray solid"></center> 
+                      <p><center></center></p>                          
+                    </div><!--this will be the garment detail-->
 
-              <!--if Standard Size Measurement-->
-              
-              <!--if Standard Size Measurement-->
-              <div class="col s12 z-depth-1 measurement-general MEASCAT001" style="padding:20px">
-                <div class="container">
-                  <div class="left col s6">
-                    <center><img src="" style="height:200px; width:200px; border:3px gray solid"></center> 
-                    <p><center></center></p>                          
-                  </div><!--this will be the garment detail-->
+                    <div class="right col s6" style="margin-top:20px">
+                      <div class="col s6"><p style="color:teal" for="standard_size">Choose Fit Type:</p></div>      
+                      <div style="color:black;" class="col s6">                   
+                            <select>
+                              <option value="">Normal Fit</option>
+                            </select><!--Standard sizes for the specific Garment-->
+                      </div>  
+                    </div> 
 
-                  <div class="right col s6" style="margin-top:20px">
-                    <div class="col s6"><p style="color:teal" for="standard_size">Choose Fit Type:</p></div>      
-                            <div style="color:black;" class="col s6">                   
-                                    <select>
-                          <option value="">Normal Fit</option>
-                        </select><!--Standard sizes for the specific Garment-->
-                                </div>  
-                            </div> 
-
-                  <div class="right col s6">
-                    <div class="col s6"><p style="color:teal" for="standard_size">Choose Standard Size:</p></div>     
-                            <div style="color:black;" class="col s6">                   
-                                    <select>
-                                      @foreach($standard_categories as $standard_category)
+                    <div class="right col s6">
+                      <div class="col s6"><p style="color:teal" for="standard_size">Choose Standard Size:</p></div>     
+                      <div style="color:black;" class="col s6">                   
+                        <select>
+                          @foreach($standard_categories as $standard_category)
                             <option value="{{ $standard_category->strStandardSizeCategoryID }}">{{ $standard_category->strStandardSizeCategoryName }}</option>
                           @endforeach
                         </select><!--Standard sizes for the specific Garment-->
-                                </div>  
-                            </div> 
-                          </div>
-                      </div>
-
-                      <div class="col s12"><div class="divider" style="height:2px gray solid; margin:20px"></div></div>
-              <!--End of standard size measurement-->
-
-                      </div>
-
-                      <p style="color:red">In case of multiple measurements</p>
-                        <div style="color:black; padding-left:160px" class="input-field col s5">                 
-                            <input id="length" name="profile_name" type="text" class="">
-                            <label style="color:gray" for="length">Measurement Profile Name: </label>
-                        </div>
-
-                        <div style="color:gray" class="input-field col s3">                 
-                            <select name="profile_sex">
-                              <option value="" disabled selected color="red">Sex</option>
-                              <option value="M">Female</option>
-                              <option value="F">Male</option>
-                            </select>
-                        </div>
-              
-                        <div style="color:gray" class="input-field col s3">                 
-                            <select>
-                              <option value="" disabled selected color="red">Target Garment</option>
-                              <option value="1"></option>
-                            </select>
-                        </div>
+                      </div>  
+                    </div> 
+                  </div>
                 </div>
+
+                <div class="col s12"><div class="divider" style="height:2px gray solid; margin:20px"></div></div>
+                  <!--End of standard size measurement-->
+
+              </div>
+           
+
+            <p style="color:red">In case of multiple measurements</p>
+            <div style="color:black; padding-left:160px" class="input-field col s5">                 
+                <input id="length" name="profile_name" type="text" class="">
+                <label style="color:gray" for="length">Measurement Profile Name: </label>
+            </div>
+
+            <div style="color:gray" class="input-field col s3">                 
+                <select name="profile_sex">
+                  <option value="" disabled selected color="red">Sex</option>
+                  <option value="M">Female</option>
+                  <option value="F">Male</option>
+                </select>
+            </div>
+  
+            <div style="color:gray" class="input-field col s3">                 
+                <select>
+                  <option value="" disabled selected color="red">Target Garment</option>
+                  @foreach($segments as $segment)
+                    <option value="{{$segment->strSegmentID}}">{{$segment->strSegmentName}}</option>
+                  @endforeach
+                </select>
+            </div>
+           @endforeach
+          </div>
 
 
         <!--bottom buttons-->

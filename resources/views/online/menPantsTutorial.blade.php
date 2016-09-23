@@ -33,12 +33,7 @@
             <iframe width="540" height="200" src="vidOnlineTutorial/Seat_Men.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="seat_measure" type="text" style="align:center" class="validate">
-              <label for="seat_measure">Input Measurement</label>
-        </div>
-    </center>
+
   
     <h2 align="center" style="margin-top:80px">Hip</h2>
     <p style="left-align; text-align:center;">
@@ -53,12 +48,6 @@
             <iframe width="540" height="200" src="vidOnlineTutorial/Waist_Men.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="hip_measure" type="text" style="align:center" class="validate">
-              <label for="hip_measure">Input Measurement</label>
-        </div>
-    </center>
   
     <h2 align="center" style="margin-top:80px">Inseam</h2>
     <p style="left-align; text-align:center;">
@@ -72,17 +61,7 @@
            <iframe width="540" height="200" src="vidOnlineTutorial/Inseam_Men.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="inseam_measure" type="text" style="align:center" class="validate">
-              <label for="inseam_measure">Input Measurement</label>
-        </div>
-    </center>
 
-    <div style="margin-bottom:200px;">
-      <a class="left btn-flat tooltipped modal-trigger" data-position="bottom" data-delay="50" data-tooltip="Click to go back" style="font-size:15px; color:white; background-color: teal; opacity:0.90" href="{{URL::to('/online-measuring-tutorial')}}"><i class="mdi-content-reply"> BACK</i></a>
-      <a type="submit" class="right btn-flat tooltipped modal-trigger" data-position="bottom" data-delay="50" data-tooltip="Click to save measurements" style="background-color: teal; font-size:15px; color:white" href="#savemodal"><i class="mdi-content-save"> SAVE</i></a>              
-    </div>
   </div>
 
   <!--Tutorial Images-->
@@ -94,13 +73,7 @@
     <div class="container" align="center" >
         <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/seat.JPG">
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="seat_measure" type="text" style="align:center" class="validate">
-              <label for="seat_measure">Input Measurement</label>
-        </div>
-    </center>     
-
+   
     <h2 align="center" style="margin-top:80px">Hip</h2>
     <p style="left-align; text-align:center;">
         The hip measurement is a circumferential measurement.
@@ -110,13 +83,7 @@
     <div class="container" align="center" >
         <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/hip.JPG">
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="hip_measure" type="text" style="align:center" class="validate">
-              <label for="hip_measure">Input Measurement</label>
-        </div>
-    </center>   
-
+  
     <h2 align="center" style="margin-top:80px">Inseam</h2>
     <p style="left-align; text-align:center;">
         The inseam is measured from the crotch along the inner side of the leg straight down to the floor. Stand upright, do not bend the leg and ask someone to help
@@ -125,19 +92,7 @@
     <div class="container" align="center" >
         <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/inseam.JPG">
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="inseam_measure" type="text" style="align:center" class="validate">
-              <label for="inseam_measure">Input Measurement</label>
-        </div>
-    </center>
-
-    <div style="margin-bottom:200px;">
-      <a class="left btn-flat tooltipped modal-trigger" data-position="bottom" data-delay="50" data-tooltip="Click to go back" style="font-size:15px; color:white; background-color: teal; opacity:0.90" href="{{URL::to('/online-measuring-tutorial')}}"><i class="mdi-content-reply"> BACK</i></a>
-      <a type="submit" class="right btn-flat tooltipped modal-trigger" data-position="bottom" data-delay="50" data-tooltip="Click to save measurements" style="background-color: teal; font-size:15px; color:white" href="#savemodal"><i class="mdi-content-save"> SAVE</i></a>              
-    </div>
-
-
+  
   </div>
 
 

@@ -15,6 +15,83 @@
       </style>
 
       <style>
+                .breadcrumb { 
+            list-style: none; 
+            overflow: hidden; 
+            font: 20px Helvetica, Arial, Sans-Serif;
+        }
+        .breadcrumb li { 
+            float: left; 
+        }
+        .breadcrumb li a {
+            color: black;
+            text-decoration: none; 
+            padding: 10px 0 10px 65px;
+            background: #00b0ff;                   /* fallback color */
+            background: hsla(186, 95%, 41%, 1);
+            position: relative; 
+            display: block;
+            float: left;
+        }
+
+        .breadcrumb li a:after { 
+            content: " "; 
+            display: block; 
+            width: 0; 
+            height: 0;
+            border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
+            border-bottom: 50px solid transparent;
+            border-left: 30px solid hsla(186, 95%, 41%, 1);
+            position: absolute;
+            top: 50%;
+            margin-top: -50px; 
+            left: 100%;
+            z-index: 2; 
+        }
+
+        .breadcrumb li a:before { 
+            content: " "; 
+            display: block; 
+            width: 0; 
+            height: 0;
+            border-top: 50px solid transparent;       
+            border-bottom: 50px solid transparent;
+            border-left: 30px solid white;
+            position: absolute;
+            top: 50%;
+            margin-top: -50px; 
+            margin-left: 1px;
+            left: 100%;
+            z-index: 2; 
+        }
+
+
+        .breadcrumb li:first-child a {
+            padding-left: 10px;
+        }
+        .breadcrumb li:nth-child(2) a       { background:        hsla(186, 95%, 50%, 1); }
+        .breadcrumb li:nth-child(2) a:after { border-left-color: hsla(186, 95%, 50%, 1); }
+        .breadcrumb li:nth-child(3) a       { background:        hsla(186, 95%, 71%, 1); }
+        .breadcrumb li:nth-child(3) a:after { border-left-color: hsla(186, 95%, 71%, 1); }
+
+
+        .breadcrumb li a:hover { background: hsla(186, 95%, 31%, 1); }
+        .breadcrumb li a:hover:after { border-left-color: hsla(186, 95%, 31%, 1) !important; }
+
+        .breadcrumb li a.active{
+            background: hsla(186, 95%, 11%, 1);
+            color: white;
+            font-weight:bold;
+        }
+
+        .breadcrumb li a.active:after{
+            border-left-color: hsla(186, 95%, 11%, 1) !important;
+        }
+        
+
+
+
+
         $menu-width: 250px!default;
         body{
           background: #f2f2f2;
@@ -37,7 +114,7 @@
             
             }
 
-
+            
         .btn{
           background: #cccccc;
           padding: 0;
@@ -61,7 +138,7 @@
 
         <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
           @if(Auth::check())
-          <a class="btn-floating btn-large red accent-3 tooltipped" data-position="left" data-delay="50" data-tooltip="Hi, {{ Auth::user()->name }}">
+           <a class="btn-floating btn-large red accent-3 tooltipped" data-position="left" data-delay="50" data-tooltip="Hi, {{ Auth::user()->name }}">
             @endif
             <i class="large mdi-action-perm-identity" style="font-size:30px;"></i>
           </a>
@@ -114,7 +191,7 @@
                 <li><div class="divider" style="margin-top:20px; width:1px; height:30px;"></div></li>
                 <li><a class="btn-flat" style="color: white;font-size:18px" href="{{URL::to('/online-how-it-works')}}"><b>HOW IT WORKS</b></a></li>
                 <li><div class="divider" style="margin-top:20px; width:1px; height:30px;"></div></li>
-                <li><a class="btn-flat" style="color: white;font-size:18px" href="{{URL::to('/online-forms')}}"><b>FORMS</b></a></li>
+                <li><a class="btn-flat" style="color: white;font-size:18px" href="{{URL::to('transaction/online-forms')}}"><b>DOWNLOADS</b></a></li>
               </ul>
               <ul id="shoppingcart" class="right" style="margin-right:10px;">
                 <li><a href="{{URL::to('/shopping-cart')}}" style="margin:0; padding:0;" class="btn-flat white-text">Shopping Cart</a></li>

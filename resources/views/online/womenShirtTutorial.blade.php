@@ -33,12 +33,7 @@
             <iframe width="540" height="200" src="vidOnlineTutorial/Neck_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="neck_measure" type="text" class="validate">
-              <label for="neck_measure">Input Measurement</label>
-        </div>
-    </center>
+   
 
      
     <h2 align="center" style="margin-top:80px">Chest</h2>
@@ -52,12 +47,6 @@
             <iframe width="540" height="200" src="vidOnlineTutorial/Chest_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="chest_measure" type="text" style="align:center" class="validate">
-              <label for="chest_measure">Input Measurement</label>
-        </div>
-    </center>
 
 
     <h2 align="center" style="margin-top:80px">Shoulder</h2>
@@ -71,12 +60,6 @@
             <iframe width="540" height="200" src="vidOnlineTutorial/Shoulder_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="shoulder_measure" type="text" style="align:center" class="validate">
-              <label for="shoulder_measure">Input Measurement</label>
-        </div>
-    </center>
 
     <h2 align="center" style="margin-top:80px">Biceps</h2>
     <p style="left-align; text-align:center;">
@@ -88,12 +71,6 @@
             <iframe width="540" height="200" src="vidOnlineTutorial/Biceps_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="biceps_measure" type="text" style="align:center" class="validate">
-              <label for="biceps_measure">Input Measurement</label>
-        </div>
-    </center>
 
     <h2 align="center" style="margin-top:80px">Short Sleeve Length</h2>
     <p style="left-align; text-align:center;">
@@ -106,12 +83,6 @@
             <iframe width="540" height="200" src="vidOnlineTutorial/ShortSleeveLength_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="short_sleeve_measure" type="text" style="align:center" class="validate">
-              <label for="short_sleeve_measure">Input Measurement</label>
-        </div>
-    </center>
 
     <h2 align="center" style="margin-top:80px">Arm Length</h2>
     <p style="left-align; text-align:center;">
@@ -122,12 +93,6 @@
             <iframe width="540" height="200" src="vidOnlineTutorial/ArmLength_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="arm_length_measure" type="text" style="align:center" class="validate">
-              <label for="arm_length_measure">Input Measurement</label>
-        </div>
-    </center>
 
     <h2 align="center" style="margin-top:80px">Length to Seat</h2>
     <p style="left-align; text-align:center;">
@@ -138,12 +103,7 @@
             <iframe width="540" height="200" src="vidOnlineTutorial/ArmLength_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="length_seat_measure" type="text" style="align:center" class="validate">
-              <label for="length_seat_measure">Input Measurement</label>
-        </div>
-    </center>
+   
 
     <h2 align="center" style="margin-top:80px">Waist</h2>
     <p style="left-align; text-align:center;">
@@ -154,12 +114,6 @@
             <iframe width="540" height="200" src="vidOnlineTutorial/Waist_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>  
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="waist_measure" type="text" style="align:center" class="validate">
-              <label for="waist_measure">Input Measurement</label>
-        </div>
-    </center>
 
     <h2 align="center" style="margin-top:80px">Shirt Length</h2>
     <p style="left-align; text-align:center;">
@@ -170,12 +124,6 @@
             <iframe width="540" height="200" src="vidOnlineTutorial/ShirtLength_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>  
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="shirt_length_measure" type="text" style="align:center" class="validate">
-              <label for="shirt_length_measure">Input Measurement</label>
-        </div>
-    </center>
 
     <h2 align="center" style="margin-top:80px">Piquet Polo Length</h2>
     <p style="left-align; text-align:center;">
@@ -186,13 +134,6 @@
             <iframe width="540" height="200" src="vidOnlineTutorial/PiquetPolo_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>  
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="piquet_measure" type="text" style="align:center" class="validate">
-              <label for="piquet_measure">Input Measurement</label>
-        </div>
-    </center>
-
 
     <h2 align="center" style="margin-top:80px">Length to Waist</h2>
     <p style="left-align; text-align:center;">
@@ -204,12 +145,6 @@
             <iframe width="540" height="200" src="vidOnlineTutorial/LengthToWaist_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="length_waist_measure" type="text" style="align:center" class="validate">
-              <label for="length_waist_measure">Input Measurement</label>
-        </div>
-    </center>
 
     <h2 align="center" style="margin-top:80px">Chest Width</h2>
     <p style="left-align; text-align:center;">
@@ -219,12 +154,7 @@
             <iframe width="540" height="200" src="vidOnlineTutorial/ChestWidth_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="chest_width_measure" type="text" style="align:center" class="validate">
-              <label for="chest_width_measure">Input Measurement</label>
-        </div>
-    </center>
+    
 
     <h2 align="center" style="margin-top:80px">Length to Hip</h2>
     <p style="left-align; text-align:center;">
@@ -235,12 +165,7 @@
             <iframe width="540" height="200" src="vidOnlineTutorial/LengthToHip_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="length_hip_measure" type="text" style="align:center" class="validate">
-              <label for="length_hip_measure">Input Measurement</label>
-        </div>
-    </center>
+   
 
     <h2 align="center" style="margin-top:80px">Wrist</h2>
     <p style="left-align; text-align:center;">
@@ -252,12 +177,7 @@
             <iframe width="540" height="200" src="vidOnlineTutorial/Wrist_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="wrist_measure" type="text" style="align:center" class="validate">
-              <label for="wrist_measure">Input Measurement</label>
-        </div>
-    </center>
+   
 
     <h2 align="center" style="margin-top:80px">Length to Chest</h2>
     <p style="left-align; text-align:center;">
@@ -268,17 +188,7 @@
             <iframe width="540" height="200" src="vidOnlineTutorial/LengthToChest_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="length_chest_measure" type="text" style="align:center" class="validate">
-              <label for="length_chest_measure">Input Measurement</label>
-        </div>
-    </center>
-
-    <div style="margin-bottom:200px;">
-      <a class="left btn-flat tooltipped modal-trigger" data-position="bottom" data-delay="50" data-tooltip="Click to go back" style="font-size:15px; color:white; background-color: teal; opacity:0.90" href="{{URL::to('/online-measuring-tutorial')}}"><i class="mdi-content-reply"> BACK</i></a>
-      <a type="submit" class="right btn-flat tooltipped modal-trigger" data-position="bottom" data-delay="50" data-tooltip="Click to save measurements" style="background-color: teal; font-size:15px; color:white" href="#savemodal"><i class="mdi-content-save"> SAVE</i></a>              
-    </div>
+    
   </div>
 
  <!--Tutorial Images-->
@@ -306,12 +216,6 @@
     <div class="container" align="center" >
         <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/womens_chest.JPG">
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="chest_measure" type="text" style="align:center" class="validate">
-              <label for="chest_measure">Input Measurement</label>
-        </div>
-    </center>
 
     <h2 align="center" style="margin-top:80px">Arm Length</h2>
     <p style="left-align; text-align:center;">
@@ -326,12 +230,7 @@
     <div class="container" align="center" >
         <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/womens_arm length.JPG">
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="arm_length_measure" type="text" style="align:center" class="validate">
-              <label for="arm_length_measure">Input Measurement</label>
-        </div>
-    </center>
+   
 
     <h2 align="center" style="margin-top:80px">Shoulder</h2>
     <p style="left-align; text-align:center;">
@@ -341,12 +240,7 @@
     <div class="container" align="center" >
         <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/womens_shoulder.JPG">
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="shoulder_measure" type="text" style="align:center" class="validate">
-              <label for="shoulder_measure">Input Measurement</label>
-        </div>
-    </center>
+    
 
     <h2 align="center" style="margin-top:80px">Waist</h2>
     <p style="left-align; text-align:center;">
@@ -356,12 +250,7 @@
     <div class="container" align="center" >
         <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/womens_waist.JPG">
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="waist_measure" type="text" style="align:center" class="validate">
-              <label for="waist_measure">Input Measurement</label>
-        </div>
-    </center>
+   
 
     <h2 align="center" style="margin-top:80px">Wrist</h2>
     <p style="left-align; text-align:center;">
@@ -371,12 +260,7 @@
     <div class="container" align="center" >
         <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/womens_wrist.JPG">
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="wrist_measure" type="text" style="align:center" class="validate">
-              <label for="wrist_measure">Input Measurement</label>
-        </div>
-    </center>
+    
 
     <h2 align="center" style="margin-top:80px">Shirt Length</h2>
     <p style="left-align; text-align:center;">
@@ -386,17 +270,12 @@
     <div class="container" align="center" >
         <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/womens_shirt_length.JPG">
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="shirt_length_measure" type="text" style="align:center" class="validate">
-              <label for="shirt_length_measure">Input Measurement</label>
-        </div>
-    </center>
+   
 
-    <div style="margin-bottom:200px;">
+  {{--   <div style="margin-bottom:200px;">
       <a class="left btn-flat tooltipped modal-trigger" data-position="bottom" data-delay="50" data-tooltip="Click to go back" style="font-size:15px; color:white; background-color: teal; opacity:0.90" href="{{URL::to('/online-measuring-tutorial')}}"><i class="mdi-content-reply"> BACK</i></a>
       <a type="submit" class="right btn-flat tooltipped modal-trigger" data-position="bottom" data-delay="50" data-tooltip="Click to save measurements" style="background-color: teal; font-size:15px; color:white" href="#savemodal"><i class="mdi-content-save"> SAVE</i></a>              
-    </div>
+    </div> --}}
   </div>
 
 </div>
