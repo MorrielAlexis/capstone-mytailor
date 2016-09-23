@@ -85,11 +85,8 @@ class ApproveOnlineCustomerIndividualController extends Controller
                 $fabric = $Content->fabric;
                 $address = $Content->address;
             }
-             dd($emailContents);
 
-
-
-        Mail::send('emails.accept-order', ['name' => $name, 'order' => $order, 'totPrice' => $totPrice, 'email' => $email, 'cp' => $cpNo, 'segment' => $segment, 'fabric' => $fabric, 'address' => $address], function($message) use($results) {
+        Mail::send('emails.accept-order', ['name' => $name, 'order' => $order, 'totPrice' => $totPrice, 'email' => $email, 'cp' => $cpNo, 'segment' => $segment, 'fabric' => $fabric, 'address' => $address], function($message) use($emailContents) {
 
                 foreach($emailContents as $value){
                     $email = $value->custEmail;  

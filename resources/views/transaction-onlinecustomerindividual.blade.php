@@ -47,16 +47,17 @@
 
               <tbody>
               @foreach($onlineJO as $jo)
-               {!! Form::open(['url' => 'transaction/accept-online-customer-individuall', 'method' => 'POST']) !!} 
-                         <input type="hidden" name="customerID" value="{!! $jo->strIndivID !!}"> 
                 <tr>
                   <td>{{$jo->strJobOrderID}}</td>
                   <td>{{$jo->strIndivFName}} {{$jo->strIndivMName}} {{$jo->strIndivLName}}</td>
                   <td>{{$jo->strIndivEmailAddress}}</td>
                   <td>{{'PHP'  . number_format($jo->dblOrderTotalPrice, 2)}}</td>
+               {!! Form::open(['url' => 'transaction/accept-online-customer-individual', 'method' => 'POST']) !!} 
                   <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating yellow" data-position="bottom" data-delay="50" data-tooltip="Click to view Order Specification" href="#{{$jo->strJobOrderID}}"><i class="mdi-action-view-headline"></i></a>
-                      <a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to accept online order" href="{{URL::to('transaction/accept-online-customer-individual')}}"><i class="mdi-action-done"></i></a>
+                      <button type="submit" style="color:black" class="btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to accept online order"><i class="mdi-action-done"></i></button>
                       <a class="btn modal-trigger tooltipped btn-floating green" href="#measurementmodal" data-position="top" data-delay="50" data-tooltip="Measurements"><i class="mdi-action-view-headline"></i></a>
+                      <input type="hidden" name="customerID" value="{!! $jo->strIndivID !!}"> 
+                {!! Form::close() !!}
                   </td>
                 </tr>
               @endforeach
@@ -106,7 +107,7 @@
                       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
                   </div>
               </div>
-              {!! Form::close() !!}
+              
             @endforeach
             <div class = "clearfix">
 
@@ -195,7 +196,7 @@
 @stop
 
 @section('scripts')
-    
+
              <!--DATA TABLE SCRIPT-->
     <script type="text/javascript">
 
