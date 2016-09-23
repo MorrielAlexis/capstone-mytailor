@@ -53,9 +53,7 @@ class ApproveOnlineCustomerIndividualController extends Controller
             ->select('tblJOSpecific.*', 'tblFabric.strFabricName', 'tblSegment.strSegmentName')
             ->get();   
 
-            // dd($JOSpecs);
-
-            //dd($onlineJO->strJobOrderID);
+            
         return view('transaction-onlinecustomerindividual')
             ->with('onlineJO', $onlineJO)
             ->with('onlineJOSpecs', $JOSpecs);
@@ -85,6 +83,10 @@ class ApproveOnlineCustomerIndividualController extends Controller
                 $fabric = $Content->fabric;
                 $address = $Content->address;
             }
+
+
+             // dd($emailContents);    
+
 
         Mail::send('emails.accept-order', ['name' => $name, 'order' => $order, 'totPrice' => $totPrice, 'email' => $email, 'cp' => $cpNo, 'segment' => $segment, 'fabric' => $fabric, 'address' => $address], function($message) use($emailContents) {
 
