@@ -198,10 +198,10 @@
 								                        	@foreach($orders as $order)
 								                        	@if($order->strTransactionFK == $custs->strJobOrderID)
 								                        		<tr style="border:1px teal solid">
-								                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>{{ $order->intQuantity}}</b></td>
-								                        			<td style="border:1px teal solid; padding-left:5%; padding-right:5%; background-color:rgba(52, 162, 232, 0.2)"><b>{{ $order->strGarmentCategoryName }}, {{ $order->strSegmentName }}</b></td>
-								                        			<td style="padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"></td>
-								                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($order->dblSegmentPrice, 2) }}</b></td>
+								                        			<td style="border:1px teal solid"><b>{{ $order->intQuantity}}</b></td>
+								                        			<td style="border:1px teal solid; padding-left:5%; padding-right:5%"><b>{{ $order->strGarmentCategoryName }}, {{ $order->strSegmentName }}</b></td>
+								                        			<td style="padding-left:2%; padding-right:2%"></td>
+								                        			<td style="border:1px teal solid"><b>P {{ number_format($order->dblSegmentPrice, 2) }}</b></td>
 								                        			<!-- <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($order->dblUnitPrice ,2) }}</b></td> -->
 								                        			<!-- <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($order->dblUnitPrice * $order->intQuantity, 2) }}</b></td> -->
 								                        		</tr>
@@ -213,14 +213,14 @@
 								                        			<td style="border:1px teal solid"></td>
 								                        			<td style="border:1px teal solid"></td>
 								                        		</tr> -->
-								                        		<tr style="border:1px teal solid">
+								                        		<!-- <tr style="border:1px teal solid">
 								                        			<td style="border:1px teal solid"></td>
 								                        			<td style="border:none; color:teal; padding-left:10%">Fabric Name</td>
 								                        			<td style="padding-left:4%; padding-right:4%; border:1px teal solid">{{ $order->strFabricName }}</td>
 								                        			<td style="border:1px teal solid">P {{ number_format($order->dblFabricPrice ,2) }}</td>
-								                        			<!-- <td style="border:1px teal solid"></td>
-								                        			<td style="border:1px teal solid"></td> -->
-								                        		</tr>
+								                        			<td style="border:1px teal solid"></td>
+								                        			<td style="border:1px teal solid"></td>
+								                        		</tr> -->
 								                        		<!-- <tr>
 								                        			<td style="border-left:1px teal solid"></td>
 								                        			<td style="border:1px teal solid; color:black; padding-left:10%; padding-top:1%; padding-bottom:1%; color:black"><b>Style Name</b></td>
@@ -229,16 +229,16 @@
 								                        			<td style="border:1px teal solid"></td>
 								                        			<td style="border:1px teal solid"></td>
 								                        		</tr> -->
-								                        		
-								                        		<tr style="border:1px teal solid">
+
+								                        		<!-- <tr style="border:1px teal solid">
 								                        			<td style="border:1px teal solid"></td>
 								                        			<td class="right" style="border:none; color:teal; padding-right:10%">Style Name and Pattern</td>
 								                        			<td style="border:1px teal solid">{{ $order->strSegStyleName }} <br> <font color="gray"><b><i>{{ $order->strSegPName }}</i></b></font></td>
 								                        			<td style="border:1px teal solid">P {{ number_format($order->dblPatternPrice, 2) }}</td>
-								                        			<!-- <td style="border:1px teal solid"></td>
-								                        			<td style="border:1px teal solid"></td> -->
+								                        			<td style="border:1px teal solid"></td>
+								                        			<td style="border:1px teal solid"></td>
 								                        			
-								                        		</tr>
+								                        		</tr> -->
 								                        		@endif
 								                        	@endforeach
 								                        	</tbody>
@@ -304,7 +304,7 @@
 							      			@endforeach
 											</div>
 
-											<div class="modal-footer col s12">
+											<div class="modal-footer col s12" style="margin-top: 5%">
 								                <!-- <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/billing-collection')}}"><font color="black">OK</font></a> -->
 								                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">OK</font></a>
 								            </div>

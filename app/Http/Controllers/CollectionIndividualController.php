@@ -55,15 +55,16 @@ class CollectionIndividualController extends Controller
                 ->orderBy('b.strJobOrderID')
                 ->get();
 
+
         $empEmail = \Auth::user()->email; //dd($empEmail);
         $emp = \DB::table('tblEmployee')
                 ->select('tblEmployee.strEmployeeID')
                 ->where('tblEmployee.strEmailAdd', 'LIKE', $empEmail)
                 ->get(); //dd($emp);
-        $empId;
+
         for($i = 0; $i < count($emp); $i++){
             $empId = $emp[$i]->strEmployeeID;
-        } //dd($empId);
+        } 
 
         $empname = \DB::table('tblEmployee')
                     ->select('strEmployeeID', \DB::raw('CONCAT(strEmpFName, " ", strEmpMName, " ", strEmpLName) AS employeename'))
