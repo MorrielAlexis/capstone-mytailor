@@ -98,16 +98,10 @@
 												      	<div class="left col s6"><p style="color:gray; margin-left:20px">*Choose one of your desired design</p></div>
 												      	<div class="pull-right col s6"  style="margin-top:2.8%; font-size:15px; padding-left:10%"><a class="modal-trigger tooltipped" href="#custom-fabric{{ $i+1 }}{{ $j+1 }}" data-position="bottom" data-delay="50" data-tooltip="Click this if you want a separate fabric for this specific style category"><u><b>Click to specify fabric for this specific style category</b></u></a></div>
 												    </div>
-												      	<?php $intCounterUnique = 0; ?>
 												      	@foreach($patterns as $k => $pattern)
 												      	<div class="col s6" @if($pattern->strSegPStyleCategoryFK != $style->strSegStyleCatID) hidden @endif>
 								                        	<div class="center col s2 " style="margin-top:60px">
-								                        		@if($intCounterUnique == 0 AND $pattern->strSegPStyleCategoryFK == $style->strSegStyleCatID)
-								                        		<input name="rdb_pattern{{ $style->strSegStyleCatID }}{{ $i+1 }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" checked/>
-								                        		<?php $intCounterUnique++;?>
-								                        		@else
-								                        		<input name="rdb_pattern{{ $style->strSegStyleCatID }}{{ $i+1 }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}"/>
-								                        		@endif
+								                        		<input name="rdb_pattern{{ $style->strSegStyleCatID }}{{ $i+1 }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" />
 								                        		<label for="{{ $pattern->strSegPatternID }}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}"></label>
 								                        	</div>
 								                        	 <div class="col s10">
@@ -311,15 +305,12 @@
 												</div> 
 												
 												<p style="color:gray; margin-left:20px">*Choose one of your desired fabric</p>
-												<?php $intCounterUnique = 0;?>
+
+												
 					                        	@foreach($fabrics as $j => $fabric)
 					                        	<div class="col s6 fabric-general {{ $fabric->strFabricTypeFK }} {{ $fabric->strFabricPatternFK }} {{ $fabric->strFabricColorFK }} {{ $fabric->strFabricThreadCountFK }}">
 					                        	<div class="center col s2" style="margin-top:60px">
-					                        		@if($intCounterUnique == 0)
-					                        		<input name="fabrics{{ $i+1 }}" type="radio" class="filled-in segmentFabric{{ $i+1 }}" value="{{ $fabric->strFabricID }}" id="{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}" checked />	
-					                        		@else
-					                        		<input name="fabrics{{ $i+1 }}" type="radio" class="filled-in segmentFabric{{ $i+1 }}" value="{{ $fabric->strFabricID }}" id="{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}" />
-					                        		@endif
+					                        		<input name="fabrics{{ $i+1 }}" type="radio" class="filled-in segmentFabric{{ $i+1 }}" value="{{ $fabric->strFabricID }}" id="{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}" />					                        	
 					                        		<label for="{{ $fabric->strFabricID }}{{ $i+1 }}{{ $j+1 }}"></label>
 					                        	</div>
 					                        	 <div class="col s10">
