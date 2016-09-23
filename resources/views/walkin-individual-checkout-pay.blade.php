@@ -81,7 +81,7 @@
 		                        			<td style="border:1px teal solid; padding-left:5%; padding-right:5%; background-color:rgba(52, 162, 232, 0.2)"><b>{{ $values[$i]['strGarmentCategoryName'] }}, {{ $values[$i]['strSegmentName'] }}</b></td>
 		                        			<td style="padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"></td>
 		                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format( $values[$i]['dblSegmentPrice'] , 2)}}</b></td>
-		                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format(($values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice'] + $style_total[$i]['dblPatternPrice']) , 2) }}</b></td>
+		                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format(($unitPrice[$i]) , 2) }}</b></td>
 		                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format(($lineTotal[$i]) , 2) }}</b></td>
 		                        		</tr>
 		                        		<!-- <tr>
@@ -113,8 +113,16 @@
 		                        		<tr style="border:1px teal solid">
 		                        			<td style="border:1px teal solid"></td>
 		                        			<td class="right" style="border:none; color:teal; padding-right:10%">Style Name and Pattern</td>
+		                        			@if($styleFabric[$i][$j]->strFabricName != $values[$i]['strFabricName'])
+		                        			<td style="border:1px teal solid">{{ $styles[$i][$j]->strSegStyleName }} <br> <font color="gray"><b><i>{{ $styles[$i][$j]->strSegPName }} ({{ $styleFabric[$i][$j]->strFabricName}})</i></b></font></td>
+		                        			@elseif($styleFabric[$i][$j]->strFabricName == $values[$i]['strFabricName'])
 		                        			<td style="border:1px teal solid">{{ $styles[$i][$j]->strSegStyleName }} <br> <font color="gray"><b><i>{{ $styles[$i][$j]->strSegPName }}</i></b></font></td>
+		                        			@endif
+		                        			@if($styleFabric[$i][$j]->strFabricName != $values[$i]['strFabricName'])
+		                        			<td style="border:1px teal solid">P {{ number_format(($styles[$i][$j]->dblPatternPrice + $styleFabric[$i][$j]->dblFabricPrice), 2) }}</td>
+		                        			@elseif($styleFabric[$i][$j]->strFabricName == $values[$i]['strFabricName'])
 		                        			<td style="border:1px teal solid">P {{ number_format($styles[$i][$j]->dblPatternPrice, 2) }}</td>
+		                        			@endif
 		                        			<td style="border:1px teal solid"></td>
 		                        			<td style="border:1px teal solid"></td>
 		                        			@endif

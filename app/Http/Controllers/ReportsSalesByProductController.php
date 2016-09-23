@@ -19,6 +19,19 @@ class ReportsSalesByProductController extends Controller
      */
     public function index()
     {   
+        $qrDaily = DB::select('SELECT s.strSegmentID,
+                                        s.strSegmentName, 
+                                        SUM(js.intQuantity) AS TimesOrdered,
+                                        SUM(js.intQuantity * js.dblUnitPrice) AS Amount,
+                                        CONCAT(DAYNAME(jo.dtFinished)," ",MONTH(jo.dtFinished),"-",DAY(jo.dtFinished)) AS Day
+                                FROM        tbljoborder AS jo LEFT JOIN
+                                            tbljospecific as js 
+                                                ON jo.strJobOrderID= js.strJobOrderFK
+                                INNER JOIN  tblSegment AS s
+                                                ON js.strJOSegmentFK = s.strSegmentID
+                                WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtFinished 
+                                GROUP BY    s.strSegmentID, jo.dtFinished
+                                ORDER BY    jo.dtFinished');
         $qrMonthly = DB::select('SELECT s.strSegmentID,
                                         s.strSegmentName, 
                                         SUM(js.intQuantity) AS TimesOrdered,
@@ -29,7 +42,7 @@ class ReportsSalesByProductController extends Controller
                                                 ON jo.strJobOrderID= js.strJobOrderFK
                                 INNER JOIN  tblSegment AS s
                                                 ON js.strJOSegmentFK = s.strSegmentID
-                                WHERE       jo.boolIsOrderAccepted = 1
+                                WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtFinished 
                                 GROUP BY    s.strSegmentID, MONTH(jo.dtFinished)
                                 ORDER BY    jo.dtFinished');
         $qrQuarterly = DB::select('SELECT   s.strSegmentID,
@@ -42,7 +55,7 @@ class ReportsSalesByProductController extends Controller
                                                     ON jo.strJobOrderID= js.strJobOrderFK
                                     INNER JOIN  tblSegment AS s
                                                     ON js.strJOSegmentFK = s.strSegmentID
-                                    WHERE       jo.boolIsOrderAccepted = 1
+                                    WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtFinished 
                                     GROUP BY    s.strSegmentID, QUARTER(jo.dtFinished)
                                     ORDER BY    jo.dtFinished');
         $qrWeekly = DB::select('SELECT  s.strSegmentID,
@@ -55,7 +68,7 @@ class ReportsSalesByProductController extends Controller
                                                 ON jo.strJobOrderID= js.strJobOrderFK
                                 INNER JOIN  tblSegment AS s
                                                 ON js.strJOSegmentFK = s.strSegmentID
-                                WHERE       jo.boolIsOrderAccepted = 1
+                                WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtFinished 
                                 GROUP BY    s.strSegmentID, WEEK(jo.dtFinished)
                                 ORDER BY    jo.dtFinished');
         $qrAnnually = DB::select('SELECT    s.strSegmentID,
@@ -68,7 +81,7 @@ class ReportsSalesByProductController extends Controller
                                                     ON jo.strJobOrderID= js.strJobOrderFK
                                     INNER JOIN  tblSegment AS s
                                                     ON js.strJOSegmentFK = s.strSegmentID
-                                    WHERE       jo.boolIsOrderAccepted = 1
+                                    WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtFinished 
                                     GROUP BY    s.strSegmentID, YEAR(jo.dtFinished)
                                     ORDER BY    jo.dtFinished');
         $qrTransaction = DB::select('SELECT     s.strSegmentID,
@@ -81,14 +94,16 @@ class ReportsSalesByProductController extends Controller
                                                         ON jo.strJobOrderID= js.strJobOrderFK
                                         INNER JOIN  tblSegment AS s
                                                         ON js.strJOSegmentFK = s.strSegmentID
-                                        WHERE       jo.boolIsOrderAccepted = 1
+                                        WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtFinished 
                                         GROUP BY    s.strSegmentID
                                         ORDER BY    s.strSegmentID');
-        $qrMonths = DB::select('SELECT DISTINCT(MONTHNAME(dtFinished)) AS Month FROM tbljoborder');
-        $qrWeeks = DB::select('SELECT DISTINCT(WEEK(dtFinished)) AS Week FROM tbljoborder');
-        $qrQuarter = DB::select('SELECT DISTINCT(QUARTER(dtFinished)) AS Quarter FROM tbljoborder');
-        $qrAnnual = DB::select('SELECT DISTINCT(YEAR(dtFinished)) AS Annual FROM tbljoborder');
+        $qrDays = DB::select('SELECT DISTINCT (CONCAT(DAYNAME(dtFinished)," ",MONTH(dtFinished),"-",DAY(dtFinished))) AS Day FROM tbljoborder WHERE dtFinished IS NOT NULL');
+        $qrMonths = DB::select('SELECT DISTINCT(MONTHNAME(dtFinished)) AS Month FROM tbljoborder WHERE dtFinished IS NOT NULL');
+        $qrWeeks = DB::select('SELECT DISTINCT(WEEK(dtFinished)) AS Week FROM tbljoborder WHERE dtFinished IS NOT NULL');
+        $qrQuarter = DB::select('SELECT DISTINCT(QUARTER(dtFinished)) AS Quarter FROM tbljoborder WHERE dtFinished IS NOT NULL');
+        $qrAnnual = DB::select('SELECT DISTINCT(YEAR(dtFinished)) AS Annual FROM tbljoborder WHERE dtFinished IS NOT NULL');
         return view('reports.reports-sales-by-product-v2')
+                    ->with('Daily', $qrDaily)
                     ->with('Monthly', $qrMonthly)
                     ->with('Quarterly', $qrQuarterly)
                     ->with('Weekly', $qrWeekly)
@@ -97,7 +112,8 @@ class ReportsSalesByProductController extends Controller
                     ->with('Months', $qrMonths)
                     ->with('Weeks', $qrWeeks)
                     ->with('Quarter', $qrQuarter)
-                    ->with('Annual', $qrAnnual);
+                    ->with('Annual', $qrAnnual)
+                    ->with('Days', $qrDays);
     }
 
     public function generatePDF() 
@@ -146,7 +162,25 @@ class ReportsSalesByProductController extends Controller
             // [2] - YEAR
             $convertedFrom = date('M j, Y',strtotime($datRepFrom));
             $convertedTo = date('M j, Y',strtotime($datRepTo));
-            if ($intRepType == 1) {
+            if ($intRepType == 0) {
+                $qrDaily = DB::select('SELECT s.strSegmentID,
+                                        s.strSegmentName, 
+                                        SUM(js.intQuantity) AS TimesOrdered,
+                                        SUM(js.intQuantity * js.dblUnitPrice) AS Amount,
+                                        CONCAT(DAYNAME(jo.dtFinished)," ",MONTH(jo.dtFinished),"-",DAY(jo.dtFinished)) AS columnOne
+                                FROM        tbljoborder AS jo LEFT JOIN
+                                            tbljospecific as js 
+                                                ON jo.strJobOrderID= js.strJobOrderFK
+                                INNER JOIN  tblSegment AS s
+                                                ON js.strJOSegmentFK = s.strSegmentID
+                                WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtFinished AND (jo.dtFinished BETWEEN ? AND ?) 
+                                GROUP BY    s.strSegmentID, jo.dtFinished
+                                ORDER BY    jo.dtFinished',[$datRepFrom,$datRepTo]);
+                $pdf = PDF::loadView('pdf.salesreport-product',['data' => $qrDaily, 'ReportType' => 'Daily Report', 'datFrom' => $convertedFrom, 'datTo' => $convertedTo, 'Name' => ""])
+                    ->setPaper('Letter')
+                    ->setOrientation('portrait');
+                return $pdf->stream();
+            } else if ($intRepType == 1) {
                 // Weekly
                 $qrWeekly = DB::select('SELECT s.strSegmentID,
                                         s.strSegmentName, 
@@ -158,7 +192,7 @@ class ReportsSalesByProductController extends Controller
                                                 ON jo.strJobOrderID= js.strJobOrderFK
                                 INNER JOIN  tblSegment AS s
                                                 ON js.strJOSegmentFK = s.strSegmentID
-                                WHERE       jo.boolIsOrderAccepted = 1 AND (jo.dtFinished BETWEEN ? AND ?)
+                                WHERE       jo.boolIsOrderAccepted = 1  AND jo.dtFinished AND (jo.dtFinished BETWEEN ? AND ?)
                                 GROUP BY    s.strSegmentID, WEEK(jo.dtFinished)
                                 ORDER BY    jo.dtFinished',[$datRepFrom,$datRepTo]);
                 $pdf = PDF::loadView('pdf.salesreport-product',['data' => $qrWeekly, 'ReportType' => 'Weekly Report', 'datFrom' => $convertedFrom, 'datTo' => $convertedTo, 'Name' => "Week"])
@@ -177,7 +211,7 @@ class ReportsSalesByProductController extends Controller
                                                 ON jo.strJobOrderID= js.strJobOrderFK
                                 INNER JOIN  tblSegment AS s
                                                 ON js.strJOSegmentFK = s.strSegmentID
-                                WHERE       jo.boolIsOrderAccepted = 1 AND (jo.dtFinished BETWEEN ? AND ?)
+                                WHERE       jo.boolIsOrderAccepted = 1  AND jo.dtFinished AND (jo.dtFinished BETWEEN ? AND ?)
                                 GROUP BY    s.strSegmentID, MONTH(jo.dtFinished)
                                 ORDER BY    jo.dtFinished',[$datRepFrom,$datRepTo]);
                 $pdf = PDF::loadView('pdf.salesreport-product',['data' => $qrMonthly, 'ReportType' => 'Monthly Report', 'datFrom' => $convertedFrom, 'datTo' => $convertedTo, 'Name' => ""])
@@ -196,7 +230,7 @@ class ReportsSalesByProductController extends Controller
                                                 ON jo.strJobOrderID= js.strJobOrderFK
                                 INNER JOIN  tblSegment AS s
                                                 ON js.strJOSegmentFK = s.strSegmentID
-                                WHERE       jo.boolIsOrderAccepted = 1 AND (jo.dtFinished BETWEEN ? AND ?)
+                                WHERE       jo.boolIsOrderAccepted = 1  AND jo.dtFinished AND (jo.dtFinished BETWEEN ? AND ?)
                                 GROUP BY    s.strSegmentID, QUARTER(jo.dtFinished)
                                 ORDER BY    jo.dtFinished',[$datRepFrom,$datRepTo]);
                 $pdf = PDF::loadView('pdf.salesreport-product',['data' => $qrQuarterly, 'ReportType' => 'Quarter Report', 'datFrom' => $convertedFrom, 'datTo' => $convertedTo, 'Name' => "Quarter"])
@@ -215,7 +249,7 @@ class ReportsSalesByProductController extends Controller
                                                 ON jo.strJobOrderID= js.strJobOrderFK
                                 INNER JOIN  tblSegment AS s
                                                 ON js.strJOSegmentFK = s.strSegmentID
-                                WHERE       jo.boolIsOrderAccepted = 1 AND (jo.dtFinished BETWEEN ? AND ?)
+                                WHERE       jo.boolIsOrderAccepted = 1  AND jo.dtFinished AND (jo.dtFinished BETWEEN ? AND ?)
                                 GROUP BY    s.strSegmentID, YEAR(jo.dtFinished)
                                 ORDER BY    jo.dtFinished',[$datRepFrom,$datRepTo]);
                 $pdf = PDF::loadView('pdf.salesreport-product',['data' => $qrAnnually, 'ReportType' => 'Annual Report', 'datFrom' => $convertedFrom, 'datTo' => $convertedTo, 'Name' => "Year"])
@@ -247,7 +281,25 @@ class ReportsSalesByProductController extends Controller
         if ($validator->fails()) {
             return Redirect::back()->withErrors($validator);
         } else {
-            if ($intRepType == 1) {
+            if ($intRepType == 0){
+                 $qrDaily = DB::select('SELECT s.strSegmentID,
+                                        s.strSegmentName, 
+                                        SUM(js.intQuantity) AS TimesOrdered,
+                                        SUM(js.intQuantity * js.dblUnitPrice) AS Amount,
+                                        CONCAT(DAYNAME(jo.dtFinished)," ",MONTH(jo.dtFinished),"-",DAY(jo.dtFinished)) AS columnOne
+                                FROM        tbljoborder AS jo LEFT JOIN
+                                            tbljospecific as js 
+                                                ON jo.strJobOrderID= js.strJobOrderFK
+                                INNER JOIN  tblSegment AS s
+                                                ON js.strJOSegmentFK = s.strSegmentID
+                                WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtFinished
+                                GROUP BY    s.strSegmentID, jo.dtFinished
+                                ORDER BY    jo.dtFinished');
+                $pdf = PDF::loadView('pdf.salesreport-product-generate',['data' => $qrDaily, 'ReportType' => 'Daily Report', 'Name' => ""])
+                    ->setPaper('Letter')
+                    ->setOrientation('portrait');
+                return $pdf->stream();
+            } else if ($intRepType == 1) {
                 // Weekly
                 $qrWeekly = DB::select('SELECT s.strSegmentID,
                                         s.strSegmentName, 
@@ -259,7 +311,7 @@ class ReportsSalesByProductController extends Controller
                                                 ON jo.strJobOrderID= js.strJobOrderFK
                                 INNER JOIN  tblSegment AS s
                                                 ON js.strJOSegmentFK = s.strSegmentID
-                                WHERE       jo.boolIsOrderAccepted = 1
+                                WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtFinished 
                                 GROUP BY    s.strSegmentID, WEEK(jo.dtFinished)
                                 ORDER BY    jo.dtFinished');
                 $pdf = PDF::loadView('pdf.salesreport-product-generate',['data' => $qrWeekly, 'ReportType' => 'Weekly Report', 'Name' => "Week"])
@@ -278,7 +330,7 @@ class ReportsSalesByProductController extends Controller
                                                 ON jo.strJobOrderID= js.strJobOrderFK
                                 INNER JOIN  tblSegment AS s
                                                 ON js.strJOSegmentFK = s.strSegmentID
-                                WHERE       jo.boolIsOrderAccepted = 1 
+                                WHERE       jo.boolIsOrderAccepted = 1  AND jo.dtFinished 
                                 GROUP BY    s.strSegmentID, MONTH(jo.dtFinished)
                                 ORDER BY    jo.dtFinished');
                 $pdf = PDF::loadView('pdf.salesreport-product-generate',['data' => $qrMonthly, 'ReportType' => 'Monthly Report', 'Name' => ""])
@@ -297,7 +349,7 @@ class ReportsSalesByProductController extends Controller
                                                 ON jo.strJobOrderID= js.strJobOrderFK
                                 INNER JOIN  tblSegment AS s
                                                 ON js.strJOSegmentFK = s.strSegmentID
-                                WHERE       jo.boolIsOrderAccepted = 1 
+                                WHERE       jo.boolIsOrderAccepted = 1  AND jo.dtFinished 
                                 GROUP BY    s.strSegmentID, QUARTER(jo.dtFinished)
                                 ORDER BY    jo.dtFinished');
                 $pdf = PDF::loadView('pdf.salesreport-product-generate',['data' => $qrQuarterly, 'ReportType' => 'Quarter Report', 'Name' => "Quarter"])
@@ -316,7 +368,7 @@ class ReportsSalesByProductController extends Controller
                                                 ON jo.strJobOrderID= js.strJobOrderFK
                                 INNER JOIN  tblSegment AS s
                                                 ON js.strJOSegmentFK = s.strSegmentID
-                                WHERE       jo.boolIsOrderAccepted = 1
+                                WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtFinished 
                                 GROUP BY    s.strSegmentID, YEAR(jo.dtFinished)
                                 ORDER BY    jo.dtFinished');
                 $pdf = PDF::loadView('pdf.salesreport-product-generate',['data' => $qrAnnually, 'ReportType' => 'Annual Report', 'Name' => "Year"])

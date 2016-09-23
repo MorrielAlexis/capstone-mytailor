@@ -41,6 +41,8 @@
 						<p align="center">
 							{!! Form::open(['url' => 'reports/sales/by-customer-generate',
 							'class' => 'col s12 offset-s3']) !!} 
+							<input name="tabular" type="radio" id="dailyTab1" onclick="showTab('dailyTab')" value="0" />
+					    	<label for="dailyTab1">Daily</label>
 							<input name="tabular" type="radio" id="weeklyTab1" onclick="showTab('weeklyTab')" value="1" />
 					    	<label for="weeklyTab1">Weekly</label>
 					    	<input name="tabular" type="radio" id="monthlyTab1" onclick="showTab('monthlyTab')" value="2" />
@@ -53,6 +55,57 @@
 					    	<input type="submit" class="btn col s5" name="btnGenerate" value="Generate PDF" style="margin-bottom:2%">
 					    	{!! Form::close() !!}
 					    </p>
+					    <div id="dailyTab">
+					    	<div class="row">
+						    	<div class="col s12">
+									<table class="highlight">
+										<thead>
+											<tr>
+												<th>#</th>
+												<th>Customer Name</th>
+												<th>Employee Name</th>
+												<th class="right-align">Partial Amount</th>
+												<th class="right-align">Fee</th>
+												<th class="right-align">Total</th>
+												<th class="right-align">Cumulative Amount</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php 
+												$Cumulative = 0; 
+												$CurValue = "";
+											?>
+											@foreach($Daily as $value)
+											<tr>
+												<td>
+												@if($CurValue == $value->Day)
+													{{""}}
+													<?php $CurValue = $value->Day?>
+												@else
+													{{$value->Day}}
+													<?php $CurValue = $value->Day?>
+												@endif
+												</td>
+												<td>
+													@if($value->strCompanyName == null)
+														{{$value->IndividualCustomer}}
+													@else
+														{{$value->strCompanyName}}
+													@endif
+												</td>
+												<td>{{$value->EmployeeName}}</td>
+												<td class="right-align">{{number_format($value->Total)}}</td>
+												<td class="right-align">{{number_format($value->Fee)}}</td>
+												<td class="right-align">{{number_format($value->Total+$value->Fee)}}</td>
+												<?php $Cumulative += $value->Total+$value->Fee?>
+												<td class="right-align">{{number_format($Cumulative)}}</td>
+											</tr>
+											@endforeach
+										</tbody>
+									</table>
+								</div>
+							</div>
+					    </div>
 					    <div id="weeklyTab">
 					    	<div class="row">
 						    	<div class="col s12">
@@ -69,10 +122,21 @@
 											</tr>
 										</thead>
 										<tbody>
-											<?php $Cumulative = 0; ?>
+											<?php 
+												$Cumulative = 0; 
+												$CurValue = "";
+											?>
 											@foreach($Weekly as $value)
 											<tr>
-												<td>Week {{$value->Week}}</td>
+												<td>
+												@if($CurValue == $value->Week)
+													{{""}}
+													<?php $CurValue = $value->Week?>
+												@else
+													Week {{$value->Week}}
+													<?php $CurValue = $value->Week?>
+												@endif
+												</td>
 												<td>
 													@if($value->strCompanyName == null)
 														{{$value->IndividualCustomer}}
@@ -109,10 +173,21 @@
 											</tr>
 										</thead>
 										<tbody>
-											<?php $Cumulative = 0; ?>
+											<?php 
+												$Cumulative = 0; 
+												$CurValue = "";
+											?>
 											@foreach($Monthly as $value)
 											<tr>
-												<td>{{$value->Month}}</td>
+												<td>
+												@if($CurValue == $value->Month)
+													{{""}}
+													<?php $CurValue = $value->Month?>
+												@else
+													{{$value->Month}}
+													<?php $CurValue = $value->Month?>
+												@endif
+												</td>
 												<td>
 													@if($value->strCompanyName == null)
 														{{$value->IndividualCustomer}}
@@ -149,10 +224,21 @@
 											</tr>
 										</thead>
 										<tbody>
-											<?php $Cumulative = 0; ?>
+											<?php 
+												$Cumulative = 0; 
+												$CurValue = "";
+											?>
 											@foreach($Quarterly as $value)
 											<tr>
-												<td>Quarter {{$value->Quarter}}</td>
+												<td>
+												@if($CurValue == $value->Quarter)
+													{{""}}
+													<?php $CurValue = $value->Quarter?>
+												@else
+													Quarter {{$value->Quarter}}
+													<?php $CurValue = $value->Quarter?>
+												@endif
+												</td>
 												<td>
 													@if($value->strCompanyName == null)
 														{{$value->IndividualCustomer}}
@@ -189,10 +275,21 @@
 											</tr>
 										</thead>
 										<tbody>
-											<?php $Cumulative = 0; ?>
+											<?php 
+												$Cumulative = 0; 
+												$CurValue = "";
+											?>
 											@foreach($Annually as $value)
 											<tr>
-												<td>{{$value->Year}}</td>
+												<td>
+												@if($CurValue == $value->Year)
+													{{""}}
+													<?php $CurValue = $value->Year?>
+												@else
+													{{$value->Year}}
+													<?php $CurValue = $value->Year?>
+												@endif
+												</td>
 												<td>
 													@if($value->strCompanyName == null)
 														{{$value->IndividualCustomer}}
@@ -216,6 +313,8 @@
 					</div>
 					<div id="graphical" class="col white s12">
 						<p align="center">
+							<input name="group" type="radio" id="daily1" onclick="show('daily')"/>
+					    	<label for="daily1">Daily</label>
 							<input name="group" type="radio" id="weekly1" onclick="show('weekly')"/>
 					    	<label for="weekly1">Weekly</label>
 					    	<input name="group" type="radio" id="monthly1" onclick="show('monthly')" />
@@ -225,6 +324,11 @@
 					    	<input name="group" type="radio" id="annually1" onclick="show('annually')"/>
 					    	<label for="annually1">Annually</label>
 					    </p>
+					    <div id="daily">
+					    	@foreach($Days as $value)
+					    		<canvas id="{{$value->Day}}"></canvas><br>
+					    	@endforeach
+					    </div>
 					    <div id="monthly">
 					    	@foreach($Months as $value)
 					    		<canvas id="{{$value->Month}}"></canvas><br>
@@ -253,6 +357,7 @@
 							{!! Form::open(['url' => 'reports/sales/by-customer-custom']) !!} 
 								<select name = "selType" class="col s8 offset-s2">
 								    <option value="" disabled selected>Choose Report Type</option>
+								    <option value="0">Daily</option>
 								    <option value="1">Weekly</option>
 								    <option value="2">Monthly</option>
 								    <option value="3">Quarterly</option>
@@ -282,7 +387,47 @@
             }
             return color;
         }
-     
+     	@foreach($Days as $valueDay)
+		var ctx = document.getElementById("{{$valueDay->Day}}");
+		var myChart = new Chart(ctx, {
+		    type: 'bar',
+		    data: {
+		        labels: [
+		        	"{{$valueDay->Day}}",
+		        ],
+		        datasets: [
+		        	@foreach($Daily as $value)
+			        	@if($value->Day == $valueDay->Day)
+					        {
+					            label: 
+					            	@if($value->strCompanyName == null)
+										"{{$value->IndividualCustomer}}",
+									@else
+										"{{$value->strCompanyName}}",
+									@endif
+					            data: [
+						                {{$value->Total+$value->Fee}},
+					            ],
+					            backgroundColor: [
+					            	getRandomColor()
+					            ],
+					            borderWidth: 1
+					        },
+				        @endif
+			        @endforeach
+		        ]
+		    },
+		    options: {
+		        scales: {
+		            yAxes: [{
+		                ticks: {
+		                    beginAtZero:true
+		                }
+		            }]
+		        }
+		    }
+		});
+		@endforeach
 		@foreach($Months as $valueMonth)
 		var ctx = document.getElementById("{{$valueMonth->Month}}");
 		var myChart = new Chart(ctx, {
@@ -451,9 +596,9 @@
 		});
 		@endforeach
 	</script>
-	
 	<script>
 		function show(id){
+			$( "#daily" ).addClass("hide");
 			$( "#weekly" ).addClass("hide");
 			$( "#annually" ).addClass("hide");
 			$( "#monthly" ).addClass("hide");
@@ -461,6 +606,7 @@
 			$( '#'+id ).removeClass("hide");
 		}
 		function showTab(id){
+			$( "#dailyTab" ).addClass("hide");
 			$( "#weeklyTab" ).addClass("hide");
 			$( "#annuallyTab" ).addClass("hide");
 			$( "#monthlyTab" ).addClass("hide");
@@ -469,17 +615,19 @@
 		}
 		$(window).load(function() {
 			//Graphical
+			$( "#daily" ).addClass("hide");
             $( "#weekly" ).addClass("hide");
             $( "#annually" ).addClass("hide");
             $( "#monthly" ).addClass("hide");
             $( "#quarterly" ).addClass("hide");
-            $("#weekly1").click()
+            $("#daily1").click()
             // Tabular
+            $( "#dailyTab" ).addClass("hide");
             $( "#weeklyTab" ).addClass("hide");
             $( "#annuallyTab" ).addClass("hide");
             $( "#monthlyTab" ).addClass("hide");
             $( "#quarterlyTab" ).addClass("hide");
-            $("#weeklyTab1").click()
+            $("#dailyTab1").click()
            
         });
 	</script>

@@ -6,7 +6,7 @@
 	<div class="row">
       <div class="col s12 m12 l12">
         <span class="page-title"><center><h3><b>Welcome to <font color="white">MyTailor</font></b></h3></center></span>
-        <center><h5>Walk-in Individual - Payout</h5></center>
+        <center><h5>Walk-in Company - Payout</h5></center>
       </div>
     </div>
 
@@ -76,8 +76,8 @@
 		                        			<td style="border:1px teal solid; padding-left:5%; padding-right:5%; background-color:rgba(52, 162, 232, 0.2)"><a class="btn-flat tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to expand and see package details" onclick="packageDetail({{ $i }})" style="color:black"><b>{{ $package_values[$i]->strPackageName}}</b></a></td>
 		                        			<td style="border:1px teal solid; padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"></td>
 		                        			<td style="border:1px teal solid; padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)">{{ number_format($package_values[$i]->dblPackagePrice, 2) }} PHP</td>
-		                        			<td style="border:1px teal solid; padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)">{{ number_format($package_values[$i]->dblPackagePrice * $package_quantity[$i] , 2) }}</b></td>
-		                        			<td style="border:1px teal solid; padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"><b>{{ number_format($style_total[$i] + $fabric_total[$i] + $segment_total[$i] + ($package_values[$i]->dblPackagePrice * $package_quantity[$i]), 2) }} PHP</b></td>
+		                        			<td style="border:1px teal solid; padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)">{{ number_format(($raw_pattern_fabric_total[$i] + $raw_style_total[$i] + $raw_fabric_total[$i] + $package_values[$i]->dblPackagePrice) * $package_quantity[$i] , 2) }}</b></td>
+		                        			<td style="border:1px teal solid; padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"><b>{{ number_format($raw_pattern_fabric_total[$i] + $raw_style_total[$i] + $raw_fabric_total[$i] + $pattern_fabric_total[$i] + $segment_total[$i] + $style_total[$i] + $fabric_total[$i] + ($package_values[$i]->dblPackagePrice * $package_quantity[$i]), 2) }} PHP</b></td>
 		                        		</tr>
 		                        	@endfor			                        	
 		                        	</tbody>
@@ -93,10 +93,10 @@
 							<table class="table centered z-depth-1">
 								<thead style="background-color:rgba(255, 99, 132, 0.2)">
 									<tr>
-										<th style="border:1px rgba(255, 99, 132, 1) solid">Quantity</th>
+										<th style="border:1px rgba(255, 99, 132, 1) solid">Excess Quantity</th>
 										<th style="border:1px rgba(255, 99, 132, 1) solid" colspan="3">Description</th>
-										<th style="border:1px rgba(255, 99, 132, 1) solid">Unit Price</th>
-										<th style="border:1px rgba(255, 99, 132, 1) solid">Total Price</th>
+										<th style="border:1px rgba(255, 99, 132, 1) solid">Style Price</th>
+										<th style="border:1px rgba(255, 99, 132, 1) solid">Additional Price</th>
 									</tr>
 									<tr>
 										<th style="border:1px rgba(255, 99, 132, 1) solid"></th>
@@ -110,12 +110,12 @@
 								<tbody>								
 		                        	@for($j = 0; $j < count($package_segments[$i]); $j++)	
 			                        		<tr style="border:1px teal solid">
-			                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)">{{ $segment_qty[$i][$j] }}</td>
+			                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)">@if($segment_qty[$i][$j] == 0) None @else {{ $segment_qty[$i][$j] }}@endif</td>
 			                        			<td style="border:none; background-color:rgba(52, 162, 232, 0.2)">{{ $package_segments[$i][$j]->strSegmentName }}</td>
 			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)"><br> <font color="gray"><b><i></i></b></font></td>
 			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">{{ number_format($package_segments[$i][$j]->dblSegmentPrice, 2) }} PHP</td>
-			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">{{ number_format($package_segments[$i][$j]->dblSegmentPrice + $segment_fabrics[$i][$j]->dblFabricPrice + $unit_style[$i][$j]  + $unit_style_fabric[$i][$j], 2) }} PHP</td>
-			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">{{ number_format(($package_segments[$i][$j]->dblSegmentPrice + $segment_fabrics[$i][$j]->dblFabricPrice +  $unit_style[$i][$j] + $unit_style_fabric[$i][$j]) * $segment_qty[$i][$j], 2) }} PHP</td>
+			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">{{ number_format($segment_fabrics[$i][$j]->dblFabricPrice + $unit_style[$i][$j]  + $unit_style_fabric[$i][$j], 2) }} PHP</td>
+			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">{{ number_format(($package_segments[$i][$j]->dblSegmentPrice + $segment_fabrics[$i][$j]->dblFabricPrice +  $unit_style[$i][$j] + $unit_style_fabric[$i][$j]) * ($segment_qty[$i][$j]), 2) }} PHP</td>
 			                        			
 			                        		</tr>
 			                        		<tr style="border:1px teal solid">
@@ -142,9 +142,11 @@
 				                        		</td>
 				                        		<td style="border:1px teal solid">
 				                        			@for($k = 0; $k < count($segment_patterns[$i][$j]); $k++)
-					                        			{{ number_format($segment_patterns[$i][$j][$k]->dblPatternPrice + $unit_style_fabric[$i][$j], 2) }} PHP<br>
+					                        			{{ number_format($segment_patterns[$i][$j][$k]->dblPatternPrice, 2) }} PHP
+					                        			@if($pattern_fabrics[$i][$j][$k]->strFabricID != $segment_fabrics[$i][$j]->strFabricID)
+					                        			(<i>{{ number_format($pattern_fabrics[$i][$j][$k]->dblFabricPrice, 2) }} PHP</i>)<br>
+					                        			@endif
 													@endfor
-				                        			
 				                        		</td>
 				                        		<td style="border:1px teal solid"></td>
 				                        		<td style="border:1px teal solid"></td>		                        			
