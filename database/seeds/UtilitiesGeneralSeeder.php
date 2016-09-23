@@ -16,6 +16,7 @@ class UtilitiesGeneralSeeder extends Seeder
                 'intUtilsGenID' => '1',
                 'strShopName' => 'Tailoring Management System',
                 'strShopImage' =>'img/logo.jpg',
+                'strShopAddress' => '3 Liberty St., Legaspi Village, Makati City',
                 'boolIsActive' => '1'
             )
 

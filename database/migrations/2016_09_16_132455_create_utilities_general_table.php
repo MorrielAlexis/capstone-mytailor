@@ -16,6 +16,7 @@ class CreateUtilitiesGeneralTable extends Migration
             $table->increments('intUtilsGenID');
             $table->string('strShopName');
             $table->string('strShopImage')->nullable();
+            $table->string('strShopAddress');
             $table->boolean('boolIsActive');
             $table->timestamps();
         });
