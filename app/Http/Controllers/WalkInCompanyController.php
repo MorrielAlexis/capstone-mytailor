@@ -241,9 +241,10 @@ class WalkInCompanyController extends Controller
         $segmentStyles = SegmentStyle::all();
         $segmentFabrics = Fabric::all();
         $k = 0;
-
+        $l = 0;
         for($i = 0; $i < count($values); $i++){
             for($j = 0; $j < count($segmentStyles); $j++){
+
                 $tempPatterns = $request->input('rdb_pattern' . $segmentStyles[$j]->strSegStyleCatID . ($i+1));  
                 $tempCustomFabrics = $request->input('custom-fabrics' . ($j+1));  
 
@@ -253,12 +254,12 @@ class WalkInCompanyController extends Controller
                     $patterns[$i][$k] = $tempPatterns;
                     $customFabric[$i][$k] = $tempCustomFabrics;
                     $k++;
-                } 
+                }
             }
             $k = 0;
         }
-       
-         for($i = 0; $i < count($values); $i++){
+
+        for($i = 0; $i < count($values); $i++){
             for($j = 0; $j < count($patterns[$i]); $j++){
                 $sqlStyles[$i][$j] = \DB::table('tblSegmentPattern AS a')
                     ->leftJoin('tblSegmentStyleCategory AS b', 'a.strSegPStyleCategoryFK', '=', 'b.strSegStyleCatID')
@@ -635,11 +636,40 @@ class WalkInCompanyController extends Controller
                 }   
             }
         }
-        
+
+        $i = 0;
+        for($j = 0; $j < count(session()->get('package_segments')); $j++)
+        {
+            for($k = 0; $k < count(session()->get('package_segments')[$j]); $k++)
+            {
+                for($l = 0; $l < count(session()->get('package_pattern_fabric')[$j][$k]); $l++)
+                {
+                    if(session()->get('package_pattern_fabric')[$j][$k][$l]->strFabricID != session()->get('package_segment_fabric')[$j][$k]->strFabricID){
+                        if($l == 0)
+                        {
+                            $unitCustomFabricTotal[$j][$k] = session()->get('package_pattern_fabric')[$j][$k][$l]->dblFabricPrice;
+                            continue;
+                        }
+                        else if(session()->get('package_pattern_fabric')[$j][$k][$l]->strFabricID == session()->get('package_pattern_fabric')[$j][$k][$l-1]->strSegmentID)
+                        {
+                            $unitCustomFabricTotal[$j][$k] += session()->get('package_pattern_fabric')[$j][$k][$l]->dblFabricPrice; 
+                            $i += 1;
+                        }
+                        else
+                        {
+                            $i = 0;
+                            $unitCustomFabricTotal[$j][$k] = session()->get('package_pattern_fabric')[$j][$k][$i]->dblFabricPrice;
+                        }
+                    }else $unitCustomFabricTotal[$j][$k] = 0.0;
+                }   
+            }
+        }
+        //dd(session()->get('package_pattern_fabric'), session()->get('package_segment_pattern'));
         $vat = UtilitiesVat::first();
             //dd(count(session()->get('package_segments')));
         return view('walkin-company-checkout-pay')
             ->with('unit_style', $unitStyleTotal)
+            ->with('unit_style_fabric', $unitCustomFabricTotal)
             ->with('vat', $vat->dblTaxPercentage)
             ->with('joID', session()->get('compJOID'))
             ->with('package_quantity', $quantity)
@@ -647,6 +677,7 @@ class WalkInCompanyController extends Controller
             ->with('package_segments', session()->get('package_segments'))
             ->with('segment_patterns', session()->get('package_segment_pattern'))
             ->with('segment_fabrics', session()->get('package_segment_fabric'))
+            ->with('pattern_fabrics', session()->get('package_pattern_fabric'))
             ->with('segment_qty', session()->get('employee_segment_total'))
             ->with('style_total', $styleTotal)
             ->with('fabric_total', $fabricTotal)
@@ -720,6 +751,7 @@ class WalkInCompanyController extends Controller
 
         session(['measurement_value' => $measurement_value]);
         session(['measurement_id'    => $measurement_id]);
+
         return redirect('transaction/walkin-company-payment-measure-detail');
     }
 
@@ -1059,74 +1091,6 @@ class WalkInCompanyController extends Controller
     public function downloadForms()
     {
         return view('walkin-company-downloadable-forms');
-    }
-
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 
     public function smartCounter($id)
