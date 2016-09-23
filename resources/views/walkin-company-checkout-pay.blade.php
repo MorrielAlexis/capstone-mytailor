@@ -114,8 +114,8 @@
 			                        			<td style="border:none; background-color:rgba(52, 162, 232, 0.2)">{{ $package_segments[$i][$j]->strSegmentName }}</td>
 			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)"><br> <font color="gray"><b><i></i></b></font></td>
 			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">{{ number_format($package_segments[$i][$j]->dblSegmentPrice, 2) }} PHP</td>
-			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">{{ number_format($package_segments[$i][$j]->dblSegmentPrice + $segment_fabrics[$i][$j]->dblFabricPrice + $unit_style[$i][$j], 2) }} PHP</td>
-			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">{{ number_format(($package_segments[$i][$j]->dblSegmentPrice + $segment_fabrics[$i][$j]->dblFabricPrice +  $unit_style[$i][$j]) * $segment_qty[$i][$j], 2) }} PHP</td>
+			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">{{ number_format($package_segments[$i][$j]->dblSegmentPrice + $segment_fabrics[$i][$j]->dblFabricPrice + $unit_style[$i][$j]  + $unit_style_fabric[$i][$j], 2) }} PHP</td>
+			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">{{ number_format(($package_segments[$i][$j]->dblSegmentPrice + $segment_fabrics[$i][$j]->dblFabricPrice +  $unit_style[$i][$j] + $unit_style_fabric[$i][$j]) * $segment_qty[$i][$j], 2) }} PHP</td>
 			                        			
 			                        		</tr>
 			                        		<tr style="border:1px teal solid">
@@ -128,16 +128,21 @@
 		                        			</tr>
 				                        	<tr style="border:1px teal solid">
 				                        		<td style="border:1px teal solid"></td>
-				                        		<td class="right" style="border:none; color:teal; padding-right:10%">Style Name and Pattern</td>
+				                        		<td class="right" style="border:none; color:teal; padding-right:10%">Style name and pattern (with custom fabric)</td>
 				                        		<td style="border:1px teal solid">
 				                        			@for($k = 0; $k < count($segment_patterns[$i][$j]); $k++)
+				                        				@if($pattern_fabrics[$i][$j][$k]->strFabricID != $segment_fabrics[$i][$j]->strFabricID)
 					                        			{{ $segment_patterns[$i][$j][$k]->strSegStyleName }}<br> 
+					                        			<font color="gray"><b><i>{{ $segment_patterns[$i][$j][$k]->strSegPName }} ({{ $pattern_fabrics[$i][$j][$k]->strFabricName }})</i></b></font><br>
+														@else
+														{{ $segment_patterns[$i][$j][$k]->strSegStyleName }}<br> 
 					                        			<font color="gray"><b><i>{{ $segment_patterns[$i][$j][$k]->strSegPName }}</i></b></font><br>
+														@endif
 													@endfor
 				                        		</td>
 				                        		<td style="border:1px teal solid">
 				                        			@for($k = 0; $k < count($segment_patterns[$i][$j]); $k++)
-					                        			{{ number_format($segment_patterns[$i][$j][$k]->dblPatternPrice, 2) }} PHP<br>
+					                        			{{ number_format($segment_patterns[$i][$j][$k]->dblPatternPrice + $unit_style_fabric[$i][$j], 2) }} PHP<br>
 													@endfor
 				                        			
 				                        		</td>
@@ -190,7 +195,7 @@
                         	<div class="col s4" style="color:gray; font-size:15px"><p><b>Terms of Payment</b></p></div>
                         	<div class="col s8" style="padding:18px; padding-top:30px">
 	                        	<div class="col s6">
-			          				<input name="termsOfPayment" value="Half Payment" readonly type="radio" class="filled-in payment" id="half_pay"/>
+			          				<input checked name="termsOfPayment" value="Half Payment" readonly type="radio" class="filled-in payment" id="half_pay"/>
 	      							<label for="half_pay">Half (50%)</label>
 								</div>
 								<div class="col s6">
@@ -333,6 +338,28 @@
 		  		total += a[i] + b[i] + c[i] + (d[i].dblPackagePrice * e[i]);
 		  	}
 		  	
+				if($('#half_pay').prop("checked")){
+					$("#amount-tendered").prop("readonly", false);
+				  	var a = {!! json_encode($style_total) !!};
+				  	var b = {!! json_encode($fabric_total) !!};
+				  	var c = {!! json_encode($segment_total) !!};
+				  	var d = {!! json_encode($package_values) !!};
+				  	var e = {!! json_encode($package_quantity) !!};
+
+				  	var vat = {!! json_encode($vat) !!};
+
+				  	var total = 0;
+				  	for(var i = 0; i < a.length; i++)
+				  	{
+				  		total += a[i] + b[i] + c[i] + (d[i].dblPackagePrice * e[i]);
+				  	}
+		  	
+					$('#hidden-amount-payable').val((total/2).toFixed(2));
+					$('#amount-payable').val(((total/2).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+					$('#balance').val(((total - (total/2)).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+					$('#hidden-balance').val((total - (total/2)).toFixed(2));
+				}
+
 		  	$('#estimated_total_sales').val(((total - (total * (vat/100))).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		  	$('#vat_price').val(((total * (vat/100)).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		  	$('#total_price').val((total.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ","));

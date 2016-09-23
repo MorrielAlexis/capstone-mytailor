@@ -303,6 +303,7 @@
 
 							<input type="hidden" id="Date" name="Date">
 							<input type="hidden" id="dueDate" name="dueDate" />
+							<input type="hidden" id="deliveryDate" name="deliveryDate" />
 
 							<div class="col s12"><div class="divider" style="padding-top:10px"></div></div>								
 								<!-- <div class="modal-content col s12" style="padding-bottom:20px;">
@@ -422,6 +423,7 @@
 
 			var newDate = new Date();
 			var dueDate = new Date();
+			var deliveryDate = new Date();
 
 			/*Date.prototype.addDays = function(days)
 			{
@@ -429,14 +431,11 @@
 			    dueDate.setDate(dueDate.getDate() + days);
 			    return dueDate;
 			}*/
+			var parameter = minDays + 2;
 
 			newDate.setDate(newDate.getDate());   
-			dueDate.setDate(newDate.getDate()+minDays); 
-
-			/*var yy = dueDate.getFullYear();
-			var mm = dueDate.getMonth() + 1;
-			var dd = dueDate.getDate();
-			var formattedDueDate = yy + '-' + mm + '-' + dd;*/
+			dueDate.setDate(newDate.getDate()+minDays);
+			deliveryDate.setDate(newDate.getDate()+parameter);
 
 			function commaSeparateNumber(val){
 			    while (/(\d+)(\d{3})/.test(val.toString())){
@@ -452,9 +451,8 @@
 			$('#total_due').val(commaSeparateNumber(due.toFixed(2)));
 			//$('#due-date').text(dayNames[dueDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
 			//$('#transaction_date').val(monthNames[(newDate.getMonth())] + " " + newDate.getDate() + ", " + newDate.getFullYear());
-			//$('#transaction_date').val(newDate.getDate);
-			//$('#due_date').val(monthNames[(dueDate.getMonth())] + " " + dueDate.getDate() + ", " + dueDate.getFullYear());
 			$('#dueDate').val(dueDate.getFullYear() + "-" +  (dueDate.getMonth()+1) + "-" + dueDate.getDate());
+			$('#deliveryDate').val(deliveryDate.getFullYear() + "-" +  (deliveryDate.getMonth()+1) + "-" + deliveryDate.getDate());
 		});
 	</script>
 
