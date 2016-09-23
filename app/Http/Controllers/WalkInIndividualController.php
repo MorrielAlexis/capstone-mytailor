@@ -283,7 +283,7 @@ class WalkInIndividualController extends Controller
     }
 
     public function addCustomer(Request $request)
-    {   dd($request->input('addSex'));
+    {   //dd($request->input('addSex'));
 
         $individual = Individual::create(array(
                     'strIndivID' => $request->input('addIndiID'),
