@@ -102,7 +102,7 @@ class ApproveOnlineCustomerIndividualController extends Controller
      
         });
 
-         \Session::flash('flash_message','Order accepted! Email successfully sent to customer.'); //flash message
+         \Session::flash('flash_message_update','Order accepted! Email successfully sent to customer.'); //flash message
 
         return redirect('transaction/online-customer-individual');
     }
