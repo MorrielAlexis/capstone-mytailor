@@ -52,18 +52,18 @@
                     <span class="col s12" style="color:teal;"><b>Customer Detail</b></span>
                     <div class="card-panel col s12" style="border:3px solid gray; padding:15px;">
                         <div style="color:black" class="input-field col s4">                 
-                          <input required value="" id="first_name" name="first_name" type="text" class="" placeholder="Hope Elizabeth">
-                          <label style="color:gray" for="first_name"><b><span class="red-text"><b>*</b></span>First Name</b></label>
+                          <input required value="" id="addIndiFirstName" name="addIndiFirstName" type="text" class="" placeholder="Hope Elizabeth">
+                          <label style="color:gray" for="addIndiFirstName"><b><span class="red-text"><b>*</b></span>First Name</b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s4">                 
-                          <input value="" id="middle_name" name="middle_name" type="text" class="" placeholder="Soberano">
-                          <label style="color:gray" for="middle_name"><b>Middle Name</b></label>
+                          <input value="" id="addIndiMiddleName" name="addIndiMiddleName" type="text" class="" placeholder="Soberano">
+                          <label style="color:gray" for="addIndiMiddleName"><b>Middle Name</b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s4">                 
-                          <input required value="" id="last_name" name="last_name" type="text" class="" placeholder="Aquino">
-                          <label style="color:gray" for="last_name"><b><span class="red-text"><b>*</b></span>Last Name </b></label>
+                          <input required value="" id="addIndiLastName" name="addIndiLastName" type="text" class="" placeholder="Aquino">
+                          <label style="color:gray" for="addIndiLastName"><b><span class="red-text"><b>*</b></span>Last Name </b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s12">

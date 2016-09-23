@@ -977,7 +977,7 @@ class OnlineIndividualController extends Controller
             $selected = \DB::table('tblSegment')
                     ->leftJoin('tblGarmentCategory', 'tblGarmentCategory.strGarmentCategoryID', '=', 'tblSegment.strSegCategoryFK')
                     ->select('tblSegment.*', 'tblGarmentCategory.*')
-                    ->where('strSegmentID', '=' ,$women)
+                    ->where('strSegmentID', '=', $women)
                     ->get();
 
 
@@ -994,7 +994,7 @@ class OnlineIndividualController extends Controller
 
             return view('online.ordernow')
             ->with('selecteds',$selected)
-            ->with('mquantity', $mquantity);
+            ->with('mqty', $mqty);
         }
 
          else if($men == null && $women == null && $pants != null && $suit == null){
@@ -1149,7 +1149,7 @@ class OnlineIndividualController extends Controller
         }
     } 
 
-     public function info()
+     public function info(Request $request)
     {   
 
         $joID = \DB::table('tblJobOrder')
@@ -1187,6 +1187,8 @@ class OnlineIndividualController extends Controller
         session(['joID' => $newID]);
 
 
+        // $request->session()->flush();
+        
         return view('online.individual-checkout-info')                   
                     ->with('joID', $newID)
                     ->with('custID', $custID);
@@ -1198,7 +1200,6 @@ class OnlineIndividualController extends Controller
 
         // $mendata_collar = $request->input('rdb_pattern');
         // session(['mencollar' => $mendata_collar]);
-
 
         $individual = Individual::create(array(
                     'strIndivID' =>  session()->get('custID'),
@@ -1544,7 +1545,7 @@ class OnlineIndividualController extends Controller
 
             $jobOrder->save();
 
-        if($men != null)
+        if($men != null && $women == null)
         {
 
 
@@ -1597,6 +1598,10 @@ class OnlineIndividualController extends Controller
                         $jobOrderSpecificsPattern->save();
 
                     }
+
+        }
+        elseif($men != null && women != null)
+        {
 
         }
 
