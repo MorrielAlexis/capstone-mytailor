@@ -249,8 +249,10 @@ class WalkInIndividualController extends Controller
         session(['segment_values' => $values]); 
         session(['segment_design' => $sqlStyles]);
         session(['segment_quantity' => $data_quantity]);
-        session(['segment_style_fabric' => $customFab]);
+        session(['segment_style_fabric' => $customFabric]);
         session(['segment_style_patterns' => $tempPatterns]);
+
+        //$segg = session()->get('segment_style_fabric'); dd($segg);
 
         return redirect('transaction/walkin-individual-customer-check');
     }
@@ -596,11 +598,8 @@ class WalkInIndividualController extends Controller
         $segments = session()->get('segment_values'); //tblJobSpecs
         $designs = session()->get('segment_design'); //tblJOSpecs_Design
         $styleFabric = session()->get('segment_style_fabric'); //tblJOSpecsSegPat
-        $patterns = session()->get('segment_style_patterns'); //dd($styleFabric);
-//dd($styleFabric);
-        for($i=0; $i<count($styleFabric); $i){
-            $styleFab = $styleFabric[$i];
-        } //dd($styleFab);
+        $patterns = session()->get('segment_style_patterns'); //dd($styleFabric); 
+        //dd($styleFabric);
 
         $measurementProfile = session()->get('measurement_profile');
         $measurementDetails = session()->get('measurement_detail');
@@ -641,7 +640,7 @@ class WalkInIndividualController extends Controller
                     $jobOrderSpecificsPattern = TransactionJobOrderSpecificsPattern::create(array(
                             'strJobOrderSpecificFK' => $jobSpecsID,
                             'strSegmentPatternFK' => $designs[$i][$j]->strSegPatternID,
-                            'strPatternFabricFK' => $styleFab[$i][$j]->strFabricID 
+                            'strPatternFabricFK' => $styleFabric[$i][$j] 
                     ));  //dd($jobOrderSpecificsPattern);
 
                     $jobOrderSpecificsPattern->save();
