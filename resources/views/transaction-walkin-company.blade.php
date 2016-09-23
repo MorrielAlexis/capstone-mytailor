@@ -135,7 +135,7 @@
 				      							<label for="{!! $package->strPackageID !!}"></label>
 					      					</div>
 					      					<div class="col s10">
-					      						<input class="center int-package-qty {{ $package->strPackageID }} qty{{ $package->strPackageID }}" disabled="true" name="int-package-qty[]" id="{{ $package->strPackageID }}" type="number">
+					      						<input min=1 class="center int-package-qty {{ $package->strPackageID }} qty{{ $package->strPackageID }}" disabled="true" name="int-package-qty[]" id="{{ $package->strPackageID }}" type="number">
 					      					</div>
 					      				</div>
 

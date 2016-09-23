@@ -125,7 +125,7 @@
 																	<right><p><font color="teal"><b>{{ $detail->strMeasDetailName }}</b> (cm)</font></p></right>
 																</div>
 																<div class="col s7">
-																	<input name="{{ $i }}{{ $k }}[]" id="measure_name" type="text" class="validate" required>
+																	<input min=1 name="{{ $i }}{{ $k }}[]" id="measure_name" type="text" pattern="^[1-9][0-9]*$" required>
 																	<input name="measID{{ $i }}{{ $k }}[]" type="hidden" value="{{ $detail->strMeasurementDetailID }}">
 																</div>
 															</div>
