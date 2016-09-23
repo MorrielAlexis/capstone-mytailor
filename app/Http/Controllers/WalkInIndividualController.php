@@ -506,7 +506,7 @@ class WalkInIndividualController extends Controller
         session(['amountChange' => $request->input('amount-change-hidden')]);
         session(['transaction_date' => $request->input('transaction_date')]);
         session(['dueDate' => $request->input('due_date')]);
-dd($request->input('due_date'));
+//dd($request->input('due_date'));
         foreach($tempQuantity as $quantity)
             $totalQuantity += $quantity; //tblJobOrder
 
@@ -520,7 +520,7 @@ dd($request->input('due_date'));
         $orderDate = session()->get('transaction_date'); //tblJobOrder
         $payDueDate = session()->get('dueDate');
 
-        dd($payDueDate);
+        //dd($payDueDate);
 
         $jobOrder = TransactionJobOrder::create(array(
                 'strJobOrderID' => $jobOrderID,
@@ -593,7 +593,7 @@ dd($request->input('due_date'));
         $segments = session()->get('segment_values'); //tblJobSpecs
         $designs = session()->get('segment_design'); //tblJOSpecs_Design
         $styleFabric = session()->get('segment_style_fabric'); //tblJOSpecsSegPat
-        $patterns = session()->get('segment_style_patterns');
+        $patterns = session()->get('segment_style_patterns'); dd($styleFabric);
 
         $measurementProfile = session()->get('measurement_profile');
         $measurementDetails = session()->get('measurement_detail');

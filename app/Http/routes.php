@@ -319,42 +319,29 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::get('walkin-individual-bulk-orders-measure-now', 'WalkInIndividualController@bulkOrderMeasureNow');
 
 	Route::get('walkin-individual-show-items', 'WalkInIndividualController@showItems');
-
 	//customize view
 	Route::post('walkin-individual-customize-orders', 'WalkInIndividualController@customizeOrder');
 	Route::get('walkin-individual-show-customize-orders', 'WalkInIndividualController@showCustomizeOrder');
-
 	//save segments
 	Route::post('walkin-individual-save-segment', 'WalkInIndividualController@saveSegments');
-
 	//customer check - new or existing
-
-	Route::get('customer-check', 'WalkInIndividualController@customerCheck');
-
-	
+	Route::get('walkin-individual-customer-check', 'WalkInIndividualController@customerCheck');
 	//customer information view
 	Route::post('walkin-individual-customer-information', 'WalkInIndividualController@existingCustomerInformation');
 	Route::get('walkin-individual-customer-information', 'WalkInIndividualController@customerInformation');
 	Route::post('walkin-individual-save-customer', 'WalkInIndividualController@addCustomer');
-
 	//measurements
 	Route::get('walkin-individual-show-measurement-view', 'WalkInIndividualController@showMeasurementView');
 	Route::post('walkin-individual-save-measurements', 'WalkInIndividualController@saveMeasurements');
-
 	//payment view
 	Route::get('walkin-individual-payment-information', 'WalkInIndividualController@showPayment');
 	Route::post('walkin-individual-save-order', 'WalkInIndividualController@saveOrder');
-
 	//for printing purposes
 	// Route::get('walkin-individual-before-proceeding', 'WalkInIndividualController@print');
 	Route::get('walkin-individual-print-receipt', 'WalkInIndividualController@submit');
-	
-
 	Route::post('walkin-individual-remove-item', 'WalkInIndividualController@removeItem');
 	Route::post('walkin-individual-add-design', 'WalkInIndividualController@addDesign');
 	Route::post('walkin-individual-clear-order', 'WalkInIndividualController@clearOrder');
-
-
 	Route::get('walkin-individual-catalogue-designs', 'WalkInIndividualController@catalogueDesign');
 
 });
