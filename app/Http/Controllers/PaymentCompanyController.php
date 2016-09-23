@@ -24,6 +24,13 @@ class PaymentCompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    
     public function index(Request $request)
     {
         $search_custname = $request->input('cust_name');
@@ -49,7 +56,10 @@ class PaymentCompanyController extends Controller
 
         $customer_orders = \DB::table('tblCustCompany AS a')
                 ->leftJoin('tblJobOrder AS b', 'a.strCompanyID', '=', 'b.strJO_CustomerCompanyFK')
-                ->select('a.strCompanyID', 'a.strCompanyName','b.*')
+                 ->leftJoin('tblJOSpecific AS c', 'b.strJobOrderID', '=', 'c.strJobOrderFK')
+                ->leftJoin('tblSegment AS d', 'c.strJOSegmentFK', '=', 'd.strSegmentID')
+                ->leftJoin('tblGarmentCategory as e', 'd.strSegCategoryFK', '=', 'e.strGarmentCategoryID')
+                ->select('a.strCompanyID', 'a.strCompanyName','b.*', 'c.*', 'd.*', 'e.*')
                 ->where('a.strCompanyName', '=', $search_custname)
                 ->orderBy('b.strJobOrderID')
                 ->get();
@@ -60,19 +70,42 @@ class PaymentCompanyController extends Controller
                 ->leftJoin('tblJOSpecific AS d', 'a.strJobOrderID', '=', 'd.strJobOrderFK')
                 ->leftJoin('tblSegment AS e', 'd.strJOSegmentFK', '=', 'e.strSegmentID')
                 ->leftJoin('tblPackages AS f', 'f.strPackageSeg1FK', '=', 'e.strSegmentID')
-                ->select('a.*', 'b.*', 'c.strCompanyID', 'd.*', 'e.*', 'f.*')
+                ->leftJoin('tblGarmentCategory as g', 'e.strSegCategoryFK', '=', 'g.strGarmentCategoryID')
+                ->leftJoin('tblFabric AS h', 'd.strJOFabricFK', '=', 'h.strFabricID')
+                ->leftJoin('tblJOSpecificSegmentPattern AS i', 'd.strJOSpecificID', '=', 'i.strJobOrderSpecificFK')
+                ->leftJoin('tblSegmentPattern AS j', 'i.strSegmentPatternFK', '=', 'j.strSegPatternID')
+                ->leftJoin('tblSegmentStyleCategory AS k', 'j.strSegPStyleCategoryFK', '=', 'k.strSegStyleCatID')
+                ->select('a.*', 'b.*', 'c.strCompanyID', 'd.*', 'e.*', 'f.*', 'g.*', 'h.*', 'i.*', 'j.*', 'k.*')
                 ->orderBy('a.strJobOrderID')
                 ->get();
 
 
         //dd($payments);
+        $empEmail = \Auth::user()->email; //dd($empEmail);
+
+        $emp = \DB::table('tblEmployee')
+                ->select('tblEmployee.strEmployeeID')
+                ->where('tblEmployee.strEmailAdd', 'LIKE', $empEmail)
+                ->get(); //dd($emp);
+        $empId;
+        for($i = 0; $i < count($emp); $i++){
+            $empId = $emp[$i]->strEmployeeID;
+        } //dd($empId);
+
+        $empname = \DB::table('tblEmployee')
+                    ->select('strEmployeeID', \DB::raw('CONCAT(strEmpFName, " ", strEmpMName, " ", strEmpLName) AS employeename'))
+                    ->where('strEmployeeID', '=', $empId)//Temporary, since naka-hardcode pa yung pagset ng employee sa naunang process.
+                    ->first(); 
+
+        session(['employee' => $empname]);
 
 
         return view('transaction-billingpayment-company')
                 ->with('search_custname', $search_custname)
                 ->with('customer_info', $customer_info)
                 ->with('customer_orders', $customer_orders)
-                ->with('payments', $payments);
+                ->with('payments', $payments)
+                ->with('empname', $empname);
     }
 
     public function savePayment(Request $request)
