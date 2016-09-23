@@ -39,7 +39,7 @@ class ApproveOnlineCustomerIndividualController extends Controller
             ->leftjoin('tblcustcompany', 'tblJobOrder.strJO_CustomerCompanyFK', '=', 'tblcustcompany.strCompanyID')
             ->orderby('tblJobOrder.strJobOrderID')
             ->select('tblcustindividual.*', 'tblJobOrder.*')
-            // ->where('boolIsOnline', 1)
+            ->where('boolIsOnline', 1)
             ->get(); 
 
 
