@@ -448,6 +448,7 @@ Route::get('/track', 'OnlineCustomerProfileIndividualController@trackJob');
 	Route::group(['prefix' => 'transaction/collection'], function() {
 		Route::group(['prefix' => 'individual'], function() {
 			Route::get('home', 'CollectionIndividualController@index');
+			Route::get('payment-records', 'CollectionIndividualController@paymentRecord');
 		});
 
 		Route::group(['prefix' => 'company'], function() {
