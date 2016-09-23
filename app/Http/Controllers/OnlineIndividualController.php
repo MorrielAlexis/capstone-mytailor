@@ -1398,6 +1398,62 @@ class OnlineIndividualController extends Controller
                     ->with('msegment', $msegment)
                     ->with('wsegment', $wsegment);
         }
+
+        else if ($men == null && $women != null)
+        {
+
+                $msegment = 0;
+                $wsegment = 1;
+
+                $wstyles = \DB::table('tblSegmentPattern')
+                        ->leftjoin('tblSegmentStyleCategory', 'tblSegmentPattern.strSegPStyleCategoryFK', '=', 'tblSegmentStyleCategory.strSegStyleCatID')
+                        ->select('tblSegmentPattern.*', 'tblSegmentStyleCategory.*')
+                        ->where('strSegPatternID', '=', $wpocket)
+                        ->orwhere('strSegPatternID', '=', $wcollar)
+                        ->orwhere('strSegPatternID', '=', $wcuff)
+                        ->orwhere('strSegPatternID', '=', $wsleeve)
+                        ->get();
+
+                $wstylePrice = 0.00;
+                
+                for($i = 0; $i < count($wstyles); $i++)
+                {
+                    $wstylePrice += $wstyles[$i]->dblPatternPrice;
+                }
+
+                $wlinetotal = 0.00;
+
+                $wlinetotal = $wstylePrice + $wprice + $wfprice;
+
+                $wtotal = $wqty * $wlinetotal;
+
+                $grand = $wtotal;
+                $totalqty = $wqty;
+
+                session(['grand' => $grand]);
+                session(['totalqty' => $totalqty]);
+
+                $vat_total = ($grand * 12)/100;
+
+                $estimated = $grand - $vat_total;
+
+               
+                return view('online.individual-checkout-payment')
+                    ->with('joID', $joID)
+                    ->with('wwame', $wname)
+                    ->with('wprice', $wprice)
+                    ->with('wfname', $wfname)
+                    ->with('wfprice', $wfprice)
+                    ->with('wqty', $wqty)
+                    ->with('wstyles', $wstyles)
+                    ->with('wlinetotal', $wlinetotal)
+                    ->with('wtotal', $wtotal)
+                    ->with('grand', $grand)
+                    ->with('vat_total', $vat_total)
+                    ->with('estimated', $estimated)
+                    ->with('msegment', $msegment)
+                    ->with('wsegment', $wsegment);
+        }
         else if ($men != null && $women != null)
         {
             $mstyles = \DB::table('tblSegmentPattern')
@@ -1675,9 +1731,45 @@ class OnlineIndividualController extends Controller
             $jobOrderSpecifics->save();
         }
 
-        return view('online.homepage');
+    return redirect('clear-values');
     }
 
+    public function clearValues(Request $request)
+    {
+        session()->forget('joID');
+
+        session()->forget('custID');
+
+        session()->forget('mid');
+
+        session()->forget('mid');
+
+        session()->forget('mfid');
+
+        session()->forget('mqty');
+
+        session()->forget('mdays');
+
+        session()->forget('mpocket');
+
+        session()->forget('mcollar');
+
+        session()->forget('wid');
+
+        session()->forget('wfid');
+
+        session()->forget('wqty');
+
+        session()->forget('wdays');
+
+        session()->forget('wcuff');
+        
+        session()->forget('suitsegment_data');
+
+        session()->forget('pantssegment_data');
+        
+        return view('online.homepage');
+    }
     public function smartCounter($id)
     {   
 
