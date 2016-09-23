@@ -98,7 +98,7 @@ class PaymentIndividualController extends Controller
                     ->where('strEmployeeID', '=', $empId)//Temporary, since naka-hardcode pa yung pagset ng employee sa naunang process.
                     ->first(); 
 
-        dd($payments);
+        // dd($payments);
 
 
         session(['employee' => $empname]);
