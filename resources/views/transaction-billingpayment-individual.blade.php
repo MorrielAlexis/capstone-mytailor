@@ -101,36 +101,31 @@
 						                    		</div>
 						                    		<!--eto ang iloloop beybe-->
 						                    		<div class="col s12" style="padding-left:15%">
-						                    		@foreach($customer_orders as $j => $order)
-															@foreach($payments as $i => $payment)
+						                    			@foreach($customer_orders as $j => $order)
+						                    				@for($i = 0; $i < count($payments); $i++)
+																@if($order->strTermsOfPayment == "Full Payment")
 
-															@if($order->strTermsOfPayment == "Full Payment")
+						                    						<div @if($payments[$i]->strTransactionFK != $order->strJobOrderID) hidden @endif><center> You have no pending payment</center></div>
 
-						                    					<div @if($payment->strTransactionFK != $order->strJobOrderID) hidden @endif> You have no pending payment</div>
-
-															@elseif($order->strTermsOfPayment != "Full Payment")
-																@if($payment->strPaymentStatus == "Pending")
-																	@if($payment->strTransactionFK == $customer_info->strJobOrderID)
-																	@if($payment->strPaymentStatus == "Pending")
-									                    			<div class="col s12 {{$payment->strJobOrderID}}{{$i+1}}" style="color:black; margin-top:3%; padding:0; font-size:18px" id="{{$payment->strJobOrderID}}{{$i+1}}" @if($payment->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>{{ $order->dtOrderDate }} {{ $order->strJobOrderID }}
-								                    				<!-- <a href=""><u>See transaction detail</u></a> -->
-								                    				<a class="{{$payment->strJobOrderID}}{{$i+1}}" style="background-color:#ef9a9a; color:white; padding-left:3%; padding-right:3%" id="{{$payment->dtPaymentDueDate}}">Due date: {{$payment->dtPaymentDueDate }}</a>
-								                    				</div>
-								                    				@elseif($payment->strPaymentStatus != "Pending")
-								                    				<div hidden class="col s12 {{$payment->strJobOrderID}}{{$i+1}}" style="color:black; margin-top:3%; padding:0; font-size:18px" id="{{$payment->strJobOrderID}}{{$i+1}}" @if($payment->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>{{ $order->dtOrderDate }} {{ $order->strJobOrderID }}
-								                    				<!-- <a href=""><u>See transaction detail</u></a> -->
-								                    				<a class="{{$payment->strJobOrderID}}{{$i+1}}" style="background-color:#ef9a9a; color:white; padding-left:3%; padding-right:3%" id="{{$payment->dtPaymentDueDate}}">Due date: {{$payment->dtPaymentDueDate }}</a>
-								                    				</div>
-								                    				@endif	
+																@elseif($order->strTermsOfPayment != "Full Payment")
+																		
+																	@if($payments[$i]->strPaymentStatus == "Pending")
+																			@if($payments[$i]->strTransactionFK != $payments[$i+1]->strJobOrderID)
+																				@if($payments[$i]->strPaymentStatus == "Pending")
+													                    			<div class="col s12 {{$payments[$i]->strJobOrderID}}" style="color:black; margin-top:3%; padding:0; font-size:18px" id="{{$payments[$i]->strJobOrderID}}" @if($payments[$i]->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>{{ $order->dtOrderDate }} {{ $order->strJobOrderID }}
+												                    				<!-- <a href=""><u>See transaction detail</u></a> -->
+												                    				<a class="{{$payments[$i]->strJobOrderID}}" style="background-color:#ef9a9a; color:white; padding-left:3%; padding-right:3%" id="{{$payments[$i]->dtPaymentDueDate}}">Due date: {{$payments[$i]->dtPaymentDueDate }}</a>
+												                    				</div>
+												                    			@elseif($payments[$i]->strPaymentStatus != "Pending")
+												                    			<div @if($payments[$i]->strTransactionFK != $order->strJobOrderID) hidden @endif><center> You have no pending payment</center></div>
+											                    				@endif	
+								                    						@endif
+								                    					
 								                    				@endif
-							                    				@elseif($payment->strPaymentStatus != "Pending")
-								                    				@if($payment->strTransactionFK == $customer_info->strJobOrderID)
-								                    					<div @if($payment->strTransactionFK != $order->strJobOrderID) hidden @endif><center> You have no pending payment</center></div>
-								                    				@endif
-								                    			@endif				                    				
+									                    							                    				
 						                    					
-							                    			@endif
-							                    			@endforeach
+							                    				@endif
+							                    			@endfor
 							                    		@endforeach
 						                    		</div>
 						                    		<!--ends here-->
@@ -148,22 +143,23 @@
 
 													<option value="0">Choose your option</option>
 													@foreach($customer_orders as $j => $order)
-														@foreach($payments as $i => $payment)													
+														@for($i = 0; $i < count($payments); $i++)												
 														@if($order->strTermsOfPayment != "Full Payment")
-
-															@if($payment->strPaymentStatus == "Pending")
-																@if($payment->strTransactionFK == $customer_info->strJobOrderID)
-																@if($payment->strPaymentStatus == "Pending")
-																<option value="{{ $payment->strJobOrderID }}" @if($payment->strTransactionFK != $order->strJobOrderID) hidden @endif>{{ $order->dtOrderDate }} {{ $order->strJobOrderID }}</option>
-																@elseif($payment->strPaymentStatus != "Pending")
-																<option hidden value="{{ $payment->strJobOrderID }}" @if($payment->strTransactionFK != $order->strJobOrderID) hidden @endif>{{ $order->dtOrderDate }} {{ $order->strJobOrderID }}</option>
+															
+															@if($payments[$i]->strPaymentStatus == "Pending")
+															
+																@if($payments[$i]->strTransactionFK != $payments[$i+1]->strJobOrderID)
+																	@if($payments[$i]->strPaymentStatus == "Pending")
+																	<option value="{{ $payments[$i]->strJobOrderID }}" @if($payments[$i]->strTransactionFK != $order->strJobOrderID) hidden @endif>{{ $order->dtOrderDate }} {{ $order->strJobOrderID }}</option>
+																	@elseif($payments[$i]->strPaymentStatus != "Pending")
+																	<option hidden value="{{ $payments[$i]->strJobOrderID }}" @if($payments[$i]->strTransactionFK != $order->strJobOrderID) hidden @endif>{{ $order->dtOrderDate }} {{ $order->strJobOrderID }}</option>
+																	@endif
 																@endif
-																@endif
-															@elseif($payment->strPaymentStatus != "Pending")
+															
 															@endif
-
+															
 														@endif
-														@endforeach
+														@endfor
 													@endforeach
 													</select>
 													</div>
@@ -194,6 +190,7 @@
 											                <div style="color:black" class="input-field col s12">                 
 											                  <div class="col s8" style="padding-right: 15%"><input style="margin-left:80%; padding:1%; padding-left:1%; color:teal; font-style:bold" name="outstanding-bal" type="text" class="outstanding-bal" id="outstanding-bal" readonly></div>
 											                  <div class="col s4"><label style="color:teal; margin-top:1%; margin-left:2%"><center><b>Outstanding Balance<br><font style="opacity:0.80">(Php)</font>:</b></center></label></div>
+											                	
 											                </div>
 											            </div>
 											            @endif
@@ -241,43 +238,9 @@
 											                        			<td style="border:1px teal solid; padding-left:5%; padding-right:5%"><b>{{ $payment->strGarmentCategoryName }}, {{ $payment->strSegmentName }}</b></td>
 											                        			<td style="padding-left:2%; padding-right:2%"></td>
 											                        			<td style="border:1px teal solid;"><b>P {{ number_format($payment->dblSegmentPrice, 2) }}</b></td>
-											                        			<!-- <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($payment->dblUnitPrice, 2) }}</b></td> -->
-											                        			<!-- <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($payment->dblUnitPrice * $payment->intQuantity, 2) }}</b></td> -->
-											                        		</tr>
-											                        		<!-- <tr>
-											                        			<td style="border-left:1px teal solid;"></td>
-											                        			<td style="border:1px teal solid; color:black; padding-left:10%; padding-top:1%; padding-bottom:1%; color:black"><b></b></td>
-											                        			<td style="padding-top:1%; padding-bottom:1%; border:1px teal solid"><b>Fabric Name</b></td>
-											                        			<td style=""></td>
-											                        			<td style="border:1px teal solid"></td>
-											                        			<td style="border:1px teal solid"></td>
-											                        		</tr> -->
-											                        		<!-- <tr style="border:1px teal solid">
-											                        			<td style="border:1px teal solid"></td>
-											                        			<td style="border:none; color:teal; padding-left:10%">Fabric Name</td>
-											                        			<td style="padding-left:4%; padding-right:4%; border:1px teal solid">{{ $payment->strFabricName }}</td>
-											                        			<td style="border:1px teal solid">P {{ number_format($payment->dblFabricPrice, 2) }}</td>
-											                        			<td style="border:1px teal solid"></td>
-											                        			<td style="border:1px teal solid"></td>
-											                        		</tr> -->
-											                        		<!-- <tr>
-											                        			<td style="border-left:1px teal solid"></td>
-											                        			<td style="border:1px teal solid; color:black; padding-left:10%; padding-top:1%; padding-bottom:1%; color:black"><b>Style Name</b></td>
-											                        			<td style="padding-top:1%; padding-bottom:1%; border:1px teal solid"><b>Segment Pattern</b></td>
-											                        			<td style=""></td>
-											                        			<td style="border:1px teal solid"></td>
-											                        			<td style="border:1px teal solid"></td>
-											                        		</tr> -->
-
-											                        		<!-- <tr style="border:1px teal solid">
-											                        			<td style="border:1px teal solid"></td>
-											                        			<td class="right" style="border:none; color:teal; padding-right:10%">Style Name and Pattern</td>
-											                        			<td style="border:1px teal solid">{{ $payment->strSegStyleName }} <br> <font color="gray"><b><i>{{ $payment->strSegPName }}</i></b></font></td>
-											                        			<td style="border:1px teal solid">P {{ number_format($payment->dblPatternPrice, 2) }}</td>
-											                        			<td style="border:1px teal solid"></td>
-											                        			<td style="border:1px teal solid"></td>
 											                        			
-											                        		</tr> -->
+											                        		</tr>
+											                        		
 											                        		
 											                        		@endif
 											                        	@endforeach
@@ -302,9 +265,7 @@
 																			</div>
 																		</div>
 
-																		<!-- <div class="col s12" style="margin-bottom:50px">
-																			<p style="color:red"><b>Due date of payment (pay balance before or on the said date):</b></p>
-																		</div> -->
+																		
 																		
 
 																	</div>
@@ -321,12 +282,12 @@
 								                    {!! Form::open(['url' => 'transaction/payment/individual/save-payment', 'method' => 'POST']) !!}
 								                    <div class="payment-form" id="payment-form" style="display:block">
 								                        <div style="color:black" class="input-field col s12">                 
-								                          <div class="col s8"><input style="margin-left:60%; padding:1%; padding-left:1%; border:3px gray solid" name="amount-tendered" id="amount-tendered" type="text" class=""></div>
+								                          <div class="col s8"><input style="margin-left:60%; padding:1%; padding-left:1%; border:3px gray solid" name="amount-tendered" id="amount-tendered" type="text" class="" onkeypress='return event.charCode >= 48 && event.charCode <= 57'></div>
 								                          <div class="col s4"><label style="color:black; margin-top:1%; margin-left:2%"><center><b>Amount Tendered<br><font style="opacity:0.80">(Php)</font>:</b></center></label></div>
 								                        </div>
 
 								                        <div style="color:black" class="input-field col s12">                 
-								                          <div class="col s8"><input style="margin-left:60%; padding:1%; padding-left:1%; border:3px gray solid" name="amt-to-pay" id="amt-to-pay" type="text" class=""></div>
+								                          <div class="col s8"><input style="margin-left:60%; padding:1%; padding-left:1%; border:3px gray solid" name="amount-payable" id="amount-payable" type="text" class=""  onkeypress='return event.charCode >= 48 && event.charCode <= 57' ></div>
 								                          <div class="col s4"><label style="color:black; margin-top:1%; margin-left:2%"><center><b>Amount to Pay<br> <font style="opacity:0.80">(Php)</font>:</b></center></label></div>
 								                        </div>
 
@@ -350,9 +311,10 @@
 								                          <div class="col s8"><input style="margin-left:60%; padding:5px; padding-left:10px;" value="{{ $empname->employeename }}" name="payment-info" type="text" class=""></div>
 								                          <div class="col s4"><label style="color:black; margin-top:5px; margin-left:20px"><b>Process Done By:</b></label></div>							                          
 								                        </div>
-
-								                        <input type="hidden" id="transaction_date" name="transaction_date">
-														<input type="hidden" id="due_date" name="due_date">
+														<input type="hidden" id="hidden-outstanding-bal" name="hidden-outstanding-bal">
+								                        <input type="hidden" id="Date" name="Date">
+								                        <input type="hidden" id="transaction_date" name="transaction_date" />
+														<input type="hidden" id="dueDate" name="dueDate" />
 														
 														<div class="col s12" style="margin-top:30px">
 															<!-- <a hidden href="{{ URL::to('billing-payment/payment-receipt-pdf') }}" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to print a copy of receipt" style="background-color:teal"><i class="large mdi-action-print" style="font-size:30px"></i></a> -->
@@ -574,6 +536,7 @@
 				$('#amount-to-pay').val(amount_to_pay.toFixed(2));
 				$('#amount-paid').val(amount_paid.toFixed(2));
 				$('#outstanding-bal').val(bal.toFixed(2));
+				$('#hidden-outstanding-bal').val(bal.toFixed(2));
 
 				break;
 			}
@@ -590,16 +553,16 @@
 		});
 
 		$('#amount-tendered').blur(function(){	
-			var amountChange = $('#amount-tendered').val() - $('#amt-to-pay').val();
+			var amountChange = $('#amount-tendered').val() - $('#amount-payable').val();
 			$('#amount-change').val(amountChange.toFixed(2));
 		});
 
-		$('#amt-to-pay').blur(function(){	
+		$('#amount-payable').blur(function(){	
 			// if($('#amount-to-pay').val() > $('#total_price').val()){
 			// 	alert("You can't choose to pay more than the total.");
 			// 	$('#amount-to-pay').val("");
 			// }
-				var amountChange = $('#amount-tendered').val() - $('#amt-to-pay').val();
+				var amountChange = $('#amount-tendered').val() - $('#amount-payable').val();
 				$('#amount-change').val(amountChange.toFixed(2));	
 				// $('#outstanding-bal').val(($('#total_price').val() - $('#amount-to-pay').val()).toFixed(2) + ' PHP');				
 
@@ -612,8 +575,19 @@
 			var newDate = new Date();
 			var dueDate = new Date();
 
+			var parameter = minDays + 2;
+
 			newDate.setDate(newDate.getDate());   
 			dueDate.setDate(newDate.getDate()+minDays);
+	  
+			function commaSeparateNumber(val){
+			    while (/(\d+)(\d{3})/.test(val.toString())){
+			      val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
+			    }
+			    return val;
+			 }
+
+			 $('#dueDate').val(dueDate.getFullYear() + "-" +  (dueDate.getMonth()+1) + "-" + dueDate.getDate());
 
 			$('#due-date').text(dayNames[dueDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
 			$('#transaction_date').val(monthNames[(newDate.getMonth()+1)] + " " + newDate.getDate() + ", " + newDate.getFullYear());
@@ -627,8 +601,21 @@
 		var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
 
 		var newDate = new Date();
-		newDate.setDate(newDate.getDate());    
-		$('#Date').html(dayNames[newDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
+		var dueDate = new Date();
+
+		var parameter = minDays + 2;
+
+		newDate.setDate(newDate.getDate());   
+		dueDate.setDate(newDate.getDate()+minDays);
+  
+		function commaSeparateNumber(val){
+		    while (/(\d+)(\d{3})/.test(val.toString())){
+		      val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
+		    }
+		    return val;
+		 }
+
+		 $('#dueDate').val(dueDate.getFullYear() + "-" +  (dueDate.getMonth()+1) + "-" + dueDate.getDate());
 	
 	</script>
 
