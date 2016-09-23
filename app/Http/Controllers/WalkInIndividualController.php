@@ -433,6 +433,15 @@ class WalkInIndividualController extends Controller
         $joID = session()->get('joID');
         $style_count = count(session()->get('segment_values'));
         $data = session()->get('segment_data');
+        $fabric = session()->get('segment_style_fabric'); //dd($styleFab);
+        for($i=0; $i<count($values); $i++){
+            $styleFab = $fabric[$i];
+            $fab[$i] = \DB::table('tblFabric')
+                    ->select('strFabricName', 'dblFabricPrice')
+                    ->whereIn('strFabricID', $styleFab)
+                    ->get();
+        }//dd($styleFab);
+                //dd($fab);
         $quantity = session()->get('segment_quantity');
         for($i=0; $i<count($quantity); $i++){
             $totalqty = $quantity[$i];
@@ -466,15 +475,34 @@ class WalkInIndividualController extends Controller
                     $priceStyle += $styles[$i][$j]->dblPatternPrice;
                 }
             }//dd($priceStyle);
-            $styleTotal[$i]['dblPatternPrice'] = $priceStyle * $totalqty;
+            $styleTotal[$i]['dblPatternPrice'] = $priceStyle;
         }   
+        //dd($styleTotal);
+        $styFabPrice = 0.00;
+        foreach ($values as $i => $value){ 
+            for($j = 0; $j < count($fabric[$i]); $j++){
+                $styFabPrice += $fab[$i][$j]->dblFabricPrice;
+            }
+        } 
+        //dd($fabrics);
+        //dd($fabrics);
+        $unitPrice = [];
+        for($i = 0; $i < count($values); $i++){
+            for($j = 0; $j < count($styleTotal[$i]); $j++){ //dd($fab[$i][$j]->strFabricName);
+                if($fab[$i][$j]->strFabricName != $fabrics[$i]->strFabricName){
+                    $unitPrice[] = ($values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice']) + ($styleTotal[$i]['dblPatternPrice'] + $fab[$i][$j]->dblFabricPrice);
+                }else if($fab[$i][$j]->strFabricName == $fabrics[$i]->strFabricName){
+                    $unitPrice[] = ($values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice']) + ($styleTotal[$i]['dblPatternPrice']);
+                }
+             }
+        } //dd($unitPrice);
 
         $lineTotal = [];
         for($i = 0; $i < count($values); $i++)
         {
             for($j=0; $j<count($quantity[$i]); $j++){
             //$lineTotal[$i] = $values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice'] + $styleTotal[$i]['dblPatternPrice'] + $chargefees[$i]['dblChargeDetPrice'];
-            $lineTotal[$i] = (($values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice']) + $styleTotal[$i]['dblPatternPrice'])  * $quantity[$i][$j];
+            $lineTotal[$i] = ($unitPrice[$i]) * $quantity[$i][$j];
             }
         }
        
@@ -489,6 +517,8 @@ class WalkInIndividualController extends Controller
                     ->with('styles', $styles)
                     ->with('style_total', $styleTotal)
                     ->with('quantities', $quantity)
+                    ->with('unitPrice', $unitPrice)
+                    ->with('styleFabric', $fab)
                     ->with('vat', $vatCharge)
                     ->with('othercharge', $othercharges)
                     ->with('joID', $joID)
