@@ -11,7 +11,7 @@
     <div class="section">
  	
     	<div class="row">
-			<div class="col s6 center">
+			<div class="col s12 m12 l6 center">
 				<div style="padding:50px; margin-right:-25px;">
 					<!--TOPS-->
 					<div class="white" style="border:5px solid #69f0ae;">
@@ -21,7 +21,7 @@
 								<h4>Tops, Shirts & Blouses</h4>
 				            	<div class="divider"></div>
 				            	<div style="height:30px;"></div>
-								<img class="responsive-img" src="imgOnline/altertop.jpg">
+								<img class="responsive-img" src="../imgOnline/altertop.jpg">
 							</div>
 							<div class="col s6">
 								<div class="divider" style="margin-top:40px; margin-bottom:10px;"></div>
@@ -65,7 +65,7 @@
 								<h4>Denim</h4>
 								<div class="divider"></div>
 				            	<div style="height:30px;"></div>
-								<img class="responsive-img" src="imgOnline/alterdenim.jpg">
+								<img class="responsive-img" src="../imgOnline/alterdenim.jpg">
 							</div>
 							<div class="col s6">
 								<div class="divider" style="margin-top:40px; margin-bottom:10px;"></div>
@@ -98,7 +98,7 @@
 								<h4>Dresses & Skirts</h4>
 								<div class="divider"></div>
 				            	<div style="height:30px;"></div>
-								<img class="responsive-img" src="imgOnline/alterdress.jpg">
+								<img class="responsive-img" src="../imgOnline/alterdress.jpg">
 							</div>
 							<div class="col s6">
 								<div class="divider" style="margin-top:40px; margin-bottom:10px;"></div>
@@ -137,7 +137,7 @@
 				</div>
 			</div>
 			<!--BOTTOM-->
-			<div class="col s6 center">
+			<div class="col s12 m12 l6 center">
 				<div style="padding:50px; margin-left:-25px;">
 					<div class="white" style="border:5px solid #69f0ae;">
 						<div class="row">
@@ -146,7 +146,7 @@
 								<h4>Pants & Bottoms</h4>
 								<div class="divider"></div>
 				            	<div style="height:30px;"></div>
-								<img class="responsive-img" src="imgOnline/alterbottom.jpg">
+								<img class="responsive-img" src="../imgOnline/alterbottom.jpg">
 							</div>
 							<div class="col s6">
 								<div style="height:90px;"></div>
@@ -177,7 +177,7 @@
 								<h4>Jackets & Coats</h4>
 								<div class="divider"></div>
 				            	<div style="height:30px;"></div>
-								<img class="responsive-img" src="imgOnline/altercoat.jpg">
+								<img class="responsive-img" src="../imgOnline/altercoat.jpg">
 							</div>
 							<div class="col s6">
 								<div style="height:35px;"></div>
@@ -221,7 +221,7 @@
 							<div class="col s6">
 								<h4>Others</h4>
 								<div class="divider"></div>
-				            	<div style="height:30px;"></div>								<img class="responsive-img" src="imgOnline/dashboard.jpg">
+				            	<div style="height:30px;"></div>								<img class="responsive-img" src="../imgOnline/dashboard.jpg">
 							</div>
 							<div class="col s6">
 								<div style="height:100px;"></div>
