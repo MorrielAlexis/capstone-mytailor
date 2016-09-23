@@ -1264,6 +1264,7 @@ class OnlineIndividualController extends Controller
 
     public function payment(Request $request)
     {
+
         $men = '';
         $women = '';
         $suits = '';
@@ -1319,33 +1320,39 @@ class OnlineIndividualController extends Controller
         if ($men != null && $women == null)
         {
 
-                $styles = \DB::table('tblSegmentPattern')
+                $msegment = 1;
+                $wsegment = 0;
+                $mstyles = \DB::table('tblSegmentPattern')
                         ->leftjoin('tblSegmentStyleCategory', 'tblSegmentPattern.strSegPStyleCategoryFK', '=', 'tblSegmentStyleCategory.strSegStyleCatID')
                         ->select('tblSegmentPattern.*', 'tblSegmentStyleCategory.*')
                         ->where('strSegPatternID', '=', $mcollar)
                         ->orwhere('strSegPatternID', '=', $mpocket)
                         ->get();
 
+                $mfprice = 0.00;
+                $mfname ='';
+
                 $menfabric = \DB::table('tblFabric')
                         ->select('tblFabric.*')
                         ->where('strFabricID', '=', $mfabric)
                         ->get();
+
 
                 for($i = 0; $i < count($menfabric); $i++)
                 {
                     $mfname = $menfabric[$i]->strFabricName;
                     $mfprice = $menfabric[$i]->dblFabricPrice;
                 }
-
                 
                 $mstylePrice = 0.00;
                 
-                for($i = 0; $i < count($styles); $i++)
+                for($i = 0; $i < count($mstyles); $i++)
                 {
-                    $mstylePrice += $styles[$i]->dblPatternPrice;
+                    $mstylePrice += $mstyles[$i]->dblPatternPrice;
                 }
 
                 $mlinetotal = 0.00;
+
                 $mlinetotal = $mstylePrice + $mprice + $mfprice;
 
                 $mtotal = $mqty * $mlinetotal;
@@ -1370,12 +1377,14 @@ class OnlineIndividualController extends Controller
                     ->with('mfname', $mfname)
                     ->with('mfprice', $mfprice)
                     ->with('mqty', $mqty)
-                    ->with('styles', $styles)
+                    ->with('mstyles', $mstyles)
                     ->with('mlinetotal', $mlinetotal)
                     ->with('mtotal', $mtotal)
                     ->with('grand', $grand)
                     ->with('vat_total', $vat_total)
-                    ->with('estimated', $estimated);
+                    ->with('estimated', $estimated)
+                    ->with('msegment', $msegment)
+                    ->with('wsegment', $wsegment);
         }
         else if ($men != null && $women != null)
         {
