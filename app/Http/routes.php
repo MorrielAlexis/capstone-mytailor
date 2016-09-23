@@ -629,7 +629,7 @@ Route::group(['prefix' => 'transaction'], function(){
 		Route::get('customers-with-balances', 'QueriesCustomerWithBalancesController@index');
 		Route::get('companies-with-balances', 'QueriesCustomerWithBalancesController@company');
 		Route::get('modifyIndividual', 'ModifyIndividualOrdersController@index');
-		Route::get('modifyCompany', 'ModifyCompanyOrdersController@index');
+		
 	});
 			
 	
