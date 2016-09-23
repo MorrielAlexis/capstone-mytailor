@@ -470,8 +470,10 @@ class WalkInIndividualController extends Controller
         $lineTotal = [];
         for($i = 0; $i < count($values); $i++)
         {
+            for($j=0; $j<count($quantity[$i]); $j++){
             //$lineTotal[$i] = $values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice'] + $styleTotal[$i]['dblPatternPrice'] + $chargefees[$i]['dblChargeDetPrice'];
-            $lineTotal[$i] = (($values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice']) * $totalqty) + $styleTotal[$i]['dblPatternPrice'];
+            $lineTotal[$i] = (($values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice']) + $styleTotal[$i]['dblPatternPrice'])  * $quantity[$i][$j];
+            }
         }
        
         $vatCharge = \DB::table('tblVat')
@@ -505,7 +507,7 @@ class WalkInIndividualController extends Controller
         session(['amountTendered' => $request->input('amount-tendered')]);
         session(['amountChange' => $request->input('amount-change-hidden')]);
         session(['transaction_date' => $request->input('transaction_date')]);
-        session(['dueDate' => $request->input('due_date')]);
+        session(['dueDate' => $request->input('dueDate')]);
 //dd($request->input('due_date'));
         foreach($tempQuantity as $quantity)
             $totalQuantity += $quantity; //tblJobOrder
@@ -518,6 +520,7 @@ class WalkInIndividualController extends Controller
         $amtTendered = (double)session()->get('amountTendered');
         $amtChange = (double)session()->get('amountChange');
         $orderDate = session()->get('transaction_date'); //tblJobOrder
+        $orderToBeDone = session()->get('dueDate');
         $payDueDate = session()->get('dueDate');
 
         //dd($payDueDate);
@@ -532,8 +535,8 @@ class WalkInIndividualController extends Controller
                 'boolIsOrderAccepted' => 1,
                 'dtOrderDate' => $orderDate,
                 'dtOrderApproved' => $orderDate,
-                'dtOrderExpectedToBeDone' => $payDueDate,
-                'dtExpectedDeliveryDate' => $payDueDate +2,
+                'dtOrderExpectedToBeDone' => $orderToBeDone,
+                'dtExpectedDeliveryDate' => $orderToBeDone,
                 'boolIsActive' => 1
         ));
 
@@ -593,7 +596,11 @@ class WalkInIndividualController extends Controller
         $segments = session()->get('segment_values'); //tblJobSpecs
         $designs = session()->get('segment_design'); //tblJOSpecs_Design
         $styleFabric = session()->get('segment_style_fabric'); //tblJOSpecsSegPat
-        $patterns = session()->get('segment_style_patterns'); dd($styleFabric);
+        $patterns = session()->get('segment_style_patterns'); //dd($styleFabric);
+//dd($styleFabric);
+        for($i=0; $i<count($styleFabric); $i){
+            $styleFab = $styleFabric[$i];
+        } //dd($styleFab);
 
         $measurementProfile = session()->get('measurement_profile');
         $measurementDetails = session()->get('measurement_detail');
@@ -615,17 +622,17 @@ class WalkInIndividualController extends Controller
                 $jobSpecsID = $this->smartCounter($ID);  
             }
 
-                $jobOrderSpecifics = TransactionJobOrderSpecifics::create(array(
-                        'strJOSpecificID' => $jobSpecsID,
-                        'strJobOrderFK' => $jobOrderID,
-                        'strJOSegmentFK' => $segments[$i]['strSegmentID'],
-                        'strJOFabricFK' => $segments[$i]['strFabricID'],
-                        'intQuantity' => $tempQuantity[$i],
-                        'dblUnitPrice' => $segments[$i]['dblSegmentPrice'],
-                        'intEstimatedDaysToFinish' => $segments[$i]['intMinDays'],
-                        'strEmployeeNameFK' => 'EMPL001',
-                        'boolIsActive' => 1
-                ));
+            $jobOrderSpecifics = TransactionJobOrderSpecifics::create(array(
+                    'strJOSpecificID' => $jobSpecsID,
+                    'strJobOrderFK' => $jobOrderID,
+                    'strJOSegmentFK' => $segments[$i]['strSegmentID'],
+                    'strJOFabricFK' => $segments[$i]['strFabricID'],
+                    'intQuantity' => $tempQuantity[$i],
+                    'dblUnitPrice' => $segments[$i]['dblSegmentPrice'],
+                    'intEstimatedDaysToFinish' => $segments[$i]['intMinDays'],
+                    'strEmployeeNameFK' => 'EMPL001',
+                    'boolIsActive' => 1
+            ));
                     //dd($tempQuantity);    
             $jobOrderSpecifics->save();
 
@@ -634,7 +641,7 @@ class WalkInIndividualController extends Controller
                     $jobOrderSpecificsPattern = TransactionJobOrderSpecificsPattern::create(array(
                             'strJobOrderSpecificFK' => $jobSpecsID,
                             'strSegmentPatternFK' => $designs[$i][$j]->strSegPatternID,
-                            'strPatternFabricFK' => $styleFabric[$i][$j]->strFabricID 
+                            'strPatternFabricFK' => $styleFab[$i][$j]->strFabricID 
                     ));  //dd($jobOrderSpecificsPattern);
 
                     $jobOrderSpecificsPattern->save();
