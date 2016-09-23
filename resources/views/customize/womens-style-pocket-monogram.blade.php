@@ -1,4 +1,4 @@
-@extends('layouts.masterOnline')
+++@extends('layouts.masterOnline')
 
 @section('content')
 
@@ -35,8 +35,7 @@
           <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Collar</li>
           <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Cuffs</li>
           <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Buttons</li>
-          <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab active"><a style="color:black" href="#tabPocketMonogram">Pocket & Monogram</a></li>
-          <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Others</li>
+          <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab active"><a style="color:black" href="#tabPocketMonogram">Pocket</a></li>
           <div class="indicator light-blue" style="z-index:1"></div>
         </ul>
 
@@ -45,7 +44,6 @@
           
           <div class="col s12">
             <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/customize-womens-style-others')}}">Next step</a></div>
-            <div><a class="left btn-flat teal accent-4 white-text" href="{{URL::to('/customize-womens-style-buttons')}}">Previous step</a></div>
           </div>
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
 
@@ -305,7 +303,7 @@
                   </div>
               <!--End of modal for Pocket Flap Contrast -->
 
-              <li>
+              <!-- <li>
                 <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Monogram</div>
                 <div class="collapsible-body row overflow-x" style="padding:20px;">
                   <div class="col s12">
@@ -328,8 +326,8 @@
                     </div>
                   @endforeach                  
                 </div>
-              </li>
-              
+              </li> -->
+              <!-- 
               <li>
                 <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Monogram Position</div>
                 <div class="collapsible-body row overflow-x" style="padding:20px;">
@@ -413,14 +411,13 @@
                   </div>
 
                 </div>
-              </li>              
+              </li>               -->
             </ul>
           </div>                        
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12">
             <div><a class="right btn-flat teal accent-4 white-text" href="{{URL::to('/customize-womens-style-others')}}">Next step</a></div>
-            <div><a class="left btn-flat teal accent-4 white-text" href="{{URL::to('/customize-womens-style-buttons')}}">Previous step</a></div>
           </div>
 
         </div>

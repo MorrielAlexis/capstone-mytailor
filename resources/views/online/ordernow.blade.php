@@ -92,6 +92,12 @@
                                   <div class="col s7" style="color:teal;"><p><b>Quantity:</b></p></div>
                                   @if($selected->strGarmentCategoryName = 'MEN SHIRT')
                                     <div class="col s5" style="color:red"><p>{{$mquantity}}</p></div>
+                                  @elseif($selected->strGarmentCategoryName = 'WOMEN SHIRT')
+                                    <div class="col s5" style="color:red"><p>{{$wquantity}}</p></div>
+                                  @elseif($selected->strGarmentCategoryName = 'PANTS')
+                                    <div class="col s5" style="color:red"><p>{{$pquantity}}</p></div>
+                                  @elseif($selected->strGarmentCategoryName = 'SUITS')
+                                    <div class="col s5" style="color:red"><p>{{$squantity}}</p></div>
                                   @endif
                                 </div>
                               </div>

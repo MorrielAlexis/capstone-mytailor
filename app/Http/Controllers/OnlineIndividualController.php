@@ -361,6 +361,24 @@ class OnlineIndividualController extends Controller
         $womendata_segment = $request->input('womenshirt');
         session(['womensegment_data' => $womendata_segment]);
 
+        $womenquantity = $request->input('womenquantity');
+        session(['womenquantity' => $womenquantity]);
+
+        $wname = $request->input('wname');
+        session(['wname' => $wname]);
+
+        // $qty = session()->get('menquantity');
+        // dd($qty);
+
+        $wsegprice = $request->input('wsegprice');
+        session(['wprice' => $wsegprice]);
+
+        $wdays = $request->input('wdays');
+        session(['wdays' => $wdays]);
+
+        $wqty = session()->get('womenquantity');
+        $wsegprice = session()->get('wsegprice');
+
         $fabrics = Fabric::all();
         $fabricThreadCounts = FabricThreadCount::all();
         $fabricColors = FabricColor::all();
@@ -423,13 +441,13 @@ class OnlineIndividualController extends Controller
                 ->with('collars', $collars);
     }    
 
-    public function womenstylecuffs()
+    public function womenstylecuffs(Request $request)
     {
         $wcollar = [];
 
         session(['womencollar' => $wcollar]);
 
-        $womendata_collar = $request->input('rdb_pattern');
+        $womendata_collar = $request->input('wcollar');
         session(['womencollar' => $womendata_collar]);
 
         $contrast = Fabric::all();
@@ -478,7 +496,7 @@ class OnlineIndividualController extends Controller
                 ->with('sleeves', $sleeves);
     }    
 
-    public function stylebuttons()
+    public function womenstylebuttons()
     {
         $buttonthreads = Thread::all();
         $buttons = Button::all();
@@ -1270,6 +1288,14 @@ class OnlineIndividualController extends Controller
 
         $women = session()->get('womensegment_data');
 
+
+        $segments  = \DB::table('tblSegment')
+                    ->select('strSegmentName')
+                    ->where('strSegmentID', '=', $men)
+                    ->orwhere('strSegmentID', '=' ,$women)
+                    ->get();
+
+                    dd($segments);
 
         $measurements = \DB::table('tblMeasurementCategory AS a')
                     ->leftJoin('tblMeasurementDetail AS b', 'a.strMeasurementCategoryID', '=', 'b.strMeasCategoryFK')
