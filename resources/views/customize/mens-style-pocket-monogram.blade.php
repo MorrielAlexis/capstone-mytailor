@@ -74,7 +74,7 @@
                         @endforeach
                       </div>  
 
-                    <div class="col s12" style="margin:20px;">
+                   <!--  <div class="col s12" style="margin:20px;">
                       <div class="col s4">
                       <h5><b>Contrast Pocket</b></h5>
                         <div class="card-panel teal lighten-4 z-depth-1" style="height:230px">
@@ -98,7 +98,7 @@
                           </div>
                         </div>  
                       </div> 
-                    </div>                                      
+                    </div>              -->                         
                   </div>
                 </li>
                 @endif
@@ -106,14 +106,14 @@
                 @endforeach 
 
                 <!-- Pocket COntrast -->
-                <div id="pocketContrast" class="modal modal-fixed-footer" style="width:1100px; height:600px">
+              <!--   <div id="pocketContrast" class="modal modal-fixed-footer" style="width:1100px; height:600px">
                     <h5><font color = "#1b5e20"><center>List of Available Fabrics</center> </font> </h5>
         
                       <div class="divider" style="height:2px"></div>        
                       <div class="modal-content col s12">
-                          <!--Select-->
-                          <div class="col s3"><!--fabric type-->
-                            <div class="input-field col s12">
+                          <!Select-->
+                          <!-- <div class="col s3"> --><!--fabric type-->
+                            <!-- div class="input-field col s12">
                                 <select class = "fabric-type" id = "fabric-type">
                                   <option value="TA" class="circle" selected>All</option>
                                   @foreach($fabricTypes as $fabricType)
@@ -124,8 +124,8 @@
                             </div>
                           </div>
 
-                          <div class="col s3"><!--fabric color-->
-                            <div class="input-field col s12">
+                          <div class="col s3"> --><!--fabric color-->
+                            <!-- <div class="input-field col s12">
                                 <select class = "fabric-color" id = "fabric-color">
                                   <option value="CA" class="circle" selected>All</option>
                                   @foreach($fabricColors as $fabricColor)
@@ -136,8 +136,8 @@
                             </div>
                           </div>
 
-                          <div class="col s3"><!--fabric pattern-->
-                            <div class="input-field col s12">
+                          <div class="col s3"> --><!--fabric pattern-->
+                            <!-- <div class="input-field col s12">
                                 <select class = "fabric-pattern" id = "fabric-pattern">
                                   <option value="PA" class="circle" selected>All</option>
                                   @foreach($fabricPatterns as $fabricPattern)
@@ -148,8 +148,8 @@
                             </div>
                           </div>
 
-                          <div class="col s3"><!--fabric thread count-->
-                            <div class="input-field col s12">
+                          <div class="col s3"> --><!--fabric thread count-->
+                            <!-- <div class="input-field col s12">
                                 <select class = "fabric-thread-count" id = "fabric-thread-count">
                                   <option value="TCA" class="circle" selected>All</option>
                                   @foreach($fabricThreadCounts as $fabricThreadCount)
@@ -158,10 +158,10 @@
                                 </select>
                                 <label><font size="3" color="gray">Fabric Thread Count</font></label>
                             </div>
-                          </div>
+                          </div> -->
                           <!--end of select-->
                           
-                          <div class="col s12" style="margin:20px">
+                         <!--  <div class="col s12" style="margin:20px">
                             <div class="divider" style="height:2px gray solid"></div>
                             <div class="divider" style="height:2px gray solid"></div>
                           </div> 
@@ -183,11 +183,11 @@
                                 <div class="card-panel teal lighten-4 z-depth-1">
                                   <div class="row valign-wrapper">
                                     <div class="center col s4">
-                                      <img src="{{URL::asset($contrast->strFabricImage)}}"class="responsive-img"> <!-- notice the "circle" class -->
-                                    </div>
+                                      <img src="{{URL::asset($contrast->strFabricImage)}}"class="responsive-img"> --> <!-- notice the "circle" class -->
+                                    <!-- </div>
                                     <div class="col s8"> 
-                                      <p><b id="{{ 'fabricText'.$contrast->strFabricID }}">{{ $contrast->strFabricName }}</b></p> <!-- This will be the name of the pattern -->
-                                      <span class="black-text">
+                                      <p><b id="{{ 'fabricText'.$contrast->strFabricID }}">{{ $contrast->strFabricName }}</b></p> --> <!-- This will be the name of the pattern -->
+                                     <!--  <span class="black-text">
                                         {{ $contrast->txtFabricDesc }}
                                       </span>
                                     </div>
@@ -195,28 +195,28 @@
                                 </div>
                               </div>
                             </div>
-                            @endforeach
+                            @endforeach -->
                           
-                        <div class="col s12" style="margin:20px"></div>
+                        <!-- div class="col s12" style="margin:20px"></div>
                         
                         </div>
                   
                       <div class="modal-footer col s12">
                         <a  class="right modal-action modal-close waves-effect waves-green btn-flat">OK</a>
-                        <!--<a  class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>-->
+                        <a  class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
                       </div>
-                    </div>
+                    </div> -->
                 <!--End of modal for Pocket Contrast -->
 
                 <!-- Pocket Flap COntrast -->
-                <div id="flapContrast" class="modal modal-fixed-footer" style="width:1100px; height:600px">
+                <!-- <div id="flapContrast" class="modal modal-fixed-footer" style="width:1100px; height:600px">
                     <h5><font color = "#1b5e20"><center>List of Available Fabrics</center> </font> </h5>
         
                       <div class="divider" style="height:2px"></div>        
-                      <div class="modal-content col s12">
+                      <div class="modal-content col s12"> -->
                           <!--Select-->
-                          <div class="col s3"><!--fabric type-->
-                            <div class="input-field col s12">
+                         <!--  <div class="col s3"> --><!--fabric type-->
+                           <!--  <div class="input-field col s12">
                                 <select class = "fabric-type" id = "fabric-type">
                                   <option value="TA" class="circle" selected>All</option>
                                   @foreach($fabricTypes as $fabricType)
@@ -227,8 +227,8 @@
                             </div>
                           </div>
 
-                          <div class="col s3"><!--fabric color-->
-                            <div class="input-field col s12">
+                          <div class="col s3"> --><!--fabric color-->
+                            <!-- <div class="input-field col s12">
                                 <select class = "fabric-color" id = "fabric-color">
                                   <option value="CA" class="circle" selected>All</option>
                                   @foreach($fabricColors as $fabricColor)
@@ -237,10 +237,10 @@
                                 </select>
                                 <label><font size="3" color="gray">Fabric Color</font></label>
                             </div>
-                          </div>
+                          </div> -->
 
-                          <div class="col s3"><!--fabric pattern-->
-                            <div class="input-field col s12">
+                         <!--  <div class="col s3"> --><!--fabric pattern-->
+                           <!--  <div class="input-field col s12">
                                 <select class = "fabric-pattern" id = "fabric-pattern">
                                   <option value="PA" class="circle" selected>All</option>
                                   @foreach($fabricPatterns as $fabricPattern)
@@ -249,10 +249,10 @@
                                 </select>
                                 <label><font size="3" color="gray">Fabric Pattern</font></label>
                             </div>
-                          </div>
+                          </div> -->
 
-                          <div class="col s3"><!--fabric thread count-->
-                            <div class="input-field col s12">
+                          <!-- <div class="col s3"> --><!--fabric thread count-->
+                            <!-- <div class="input-field col s12">
                                 <select class = "fabric-thread-count" id = "fabric-thread-count">
                                   <option value="TCA" class="circle" selected>All</option>
                                   @foreach($fabricThreadCounts as $fabricThreadCount)
@@ -261,10 +261,10 @@
                                 </select>
                                 <label><font size="3" color="gray">Fabric Thread Count</font></label>
                             </div>
-                          </div>
+                          </div> -->
                           <!--end of select-->
                           
-                          <div class="col s12" style="margin:20px">
+                         <!--  <div class="col s12" style="margin:20px">
                             <div class="divider" style="height:2px gray solid"></div>
                             <div class="divider" style="height:2px gray solid"></div>
                           </div> 
@@ -282,11 +282,11 @@
                                 <div class="card-panel teal lighten-4 z-depth-1">
                                   <div class="row valign-wrapper">
                                     <div class="center col s4">
-                                      <img src="{{URL::asset($contrast->strFabricImage)}}"class="responsive-img"> <!-- notice the "circle" class -->
-                                    </div>
+                                      <img src="{{URL::asset($contrast->strFabricImage)}}"class="responsive-img"> --> <!-- notice the "circle" class -->
+<!--                                     </div>
                                     <div class="col s8"> 
-                                      <p><b id="{{ 'fabricText'.$contrast->strFabricID }}">{{ $contrast->strFabricName }}</b></p> <!-- This will be the name of the pattern -->
-                                      <span class="black-text">
+                                      <p><b id="{{ 'fabricText'.$contrast->strFabricID }}">{{ $contrast->strFabricName }}</b></p> <! This will be the name of the pattern -->
+                                     <!-- span class="black-text">
                                         {{ $contrast->txtFabricDesc }}
                                       </span>
                                     </div>
@@ -301,11 +301,11 @@
                         </div>
                   
                       <div class="modal-footer col s12">
-                        <a  class="right modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+                        <a  class="right modal-action modal-close waves-effect waves-green btn-flat">OK</a> -->
                         <!--<a  class="right modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>-->
-                      </div>
-                    </div>
-                <!--End of modal for Pocket Flap Contrast -->
+                     <!--  </div>
+                    </div> -->
+                <!--End of modal for Pocket Flap Contrast --> 
 
                 <!-- <li>
                   <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">Monogram</div>

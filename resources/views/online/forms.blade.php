@@ -12,7 +12,7 @@
           <div class="card grey lighten-4" style="margin:20px;">
             <div class="col s12 card-content">
                 <div class="col s7">
-                    <img style="height:80px;" src="img/measurement-guide-suit.jpg">
+                    <img style="height:80px;" src="../img/measurement-guide-suit.jpg">
                 </div>
                 <div class="col s5">
                     <h4>Men's Body Measurement</h4>
@@ -20,7 +20,7 @@
             </div>
             <div class="divider"></div>
             <div class="card-action">
-              <a href="{{ URL::to('') }}">Click here to view and download pdf file</a>
+              <a href="../pdf/mens-body-measurement.pdf">Click here to view and download pdf file</a>
             </div>
           </div>
         </div>
@@ -31,7 +31,7 @@
           <div class="card grey lighten-4" style="margin:20px;">
             <div class="col s12 card-content">
                 <div class="col s7">
-                    <img style="height:80px;" src="img/measurement-guide-shirt.jpg">
+                    <img style="height:80px;" src="../img/measurement-guide-shirt.jpg">
                 </div>
                 <div class="col s5">
                     <h4>Men's Shirt Measurement</h4>
@@ -39,7 +39,7 @@
             </div>
             <div class="divider"></div>
             <div class="card-action">
-              <a href="{{ URL::to('') }}">Click here to view and download pdf file</a>
+              <a href="../pdf/men-shirt-measurement.pdf">Click here to view and download pdf file</a>
             </div>
           </div>
         </div>
@@ -50,7 +50,7 @@
           <div class="card grey lighten-4" style="margin:20px;">
             <div class="col s12 card-content">
                 <div class="col s7">
-                    <img style="height:80px;" src="img/measurement-guide-women.jpg">
+                    <img style="height:80px;" src="../img/measurement-guide-women.jpg">
                 </div>
                 <div class="col s5">
                     <h4>Women's Body Measurement</h4>
@@ -58,7 +58,7 @@
             </div>
             <div class="divider"></div>
             <div class="card-action">
-              <a href="{{ URL::to('') }}">Click here to view and download pdf file</a>
+              <a href="../pdf/womens-body-measurement.pdf">Click here to view and download pdf file</a>
             </div>
           </div>
         </div>
