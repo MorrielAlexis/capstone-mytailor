@@ -1331,8 +1331,12 @@ class OnlineIndividualController extends Controller
                         ->where('strFabricID', '=', $mfabric)
                         ->get();
 
-                $mfname = $menfabric->strFabricName;
-                $mfprice = $menfabric->dblFabricPrice;
+                for($i = 0; $i < count($menfabric); $i++)
+                {
+                    $mfname = $menfabric[$i]->strFabricName;
+                    $mfprice = $menfabric[$i]->dblFabricPrice;
+                }
+
                 
                 $mstylePrice = 0.00;
                 
