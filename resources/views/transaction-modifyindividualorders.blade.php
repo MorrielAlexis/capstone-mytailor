@@ -19,7 +19,7 @@
 
    <div class="row">
       <div class="col s12 m12 l12">
-      <span class="page-title"><h4>Individual Customers</h4></span>
+      <span class="page-title"><h4>List of All Job Orders</h4></span>
       </div>
     </div>
 
@@ -34,26 +34,23 @@
 
             <table class = "table centered data-MIO" align = "center" border = "1">
               <thead>
-                 
                   <tr>
                     <!--<th data-field="id">Garment ID</th>-->
-                    <th data-field="order_name">Order Name</th>
+                    <th data-field="order_name">JO No.</th>
                     <th data-field="customer_name">Customer Name</th>
                     <th data-field="Action">Actions</th>
                   </tr>
               </thead>
 
               <tbody>
-                  
+                    @foreach($joborder as $jo)
                   <tr>
-                    <td>01</td>
-                    <td>liza</td>
-                    <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating yellow" data-position="bottom" data-delay="50" data-tooltip="Click to view Order Specification" href="#view"><i class="mdi-action-view-headline"></i></a>
-                      <a class=" btn modal-trigger tooltipped btn-floating purple" href="#measurementmodal" data-position="top" data-delay="50" data-tooltip="Measurements"><i class="mdi-action-view-headline"></i></a>
-                      <a class=" btn modal-trigger tooltipped btn-floating blue" href="{{URL::to('transaction-modifyindividualorders-modifyorder')}}" data-position="top" data-delay="50" data-tooltip="Edit/Modify Order"><i class=" mdi-editor-mode-edit"></i></a>
-                      <a class="btn modal-trigger tooltipped btn-floating red" href="#removeOrder" data-position="top" data-delay="50" data-tooltip="Delete Order" style="border-radius:180px;"><i class="mdi-content-clear"></i></a>
+                    <td>{{$jo->strJobOrderID}}</td>
+                    <td>{{$jo->strIndivFName}} {{$jo->strIndivMName}} {{$jo->strIndivLName}} {{$jo->strCompanyName}}</td>
+                    <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating yellow" data-position="bottom" data-delay="50" data-tooltip="Click to view Order Specification" href="#{{$jo->strJobOrderID}}"><i class="mdi-action-view-headline"></i></a></td>
+                  
                   </tr>
-                
+                  @endforeach
               </tbody>
             </table>
 
@@ -67,8 +64,9 @@
         </div>
       </div>
 
+            @foreach($joborder as $specs)  
                     <!-- Modal Structure for update vat settings --> 
-                      <div id="view" class="modal modal-fixed-footer">
+                      <div id="{{$specs->strJobOrderID}}" class="modal modal-fixed-footer">
                             <h5 style="color:#1b5e20; margin-left:20px;">Order Specification</h5>
 
             <div class = "row">
@@ -77,45 +75,39 @@
                   <table class = "centered" >
                     <thead>
                       <tr>
-                        <th>Garment Type</th>
-                        <th>Garment Image</th>
                         <th>Garment Segment</th>
-                        <th>Segment Pattern</th>
                         <th>Quantity</th>
                         <th>Fabric Type</th>
-                        <th>Swatch Pattern</th>
                         <th></th>
                         <th></th>
                         <th></th>
                       </tr>
                     </thead>
                     <tbody>
+                        @foreach($onlineJOSpecs as $onlineJOSpec)
+                          @if($specs->strJobOrderID == $onlineJOSpec->strJobOrderFK)
                       <tr>
-                        <td>Uniform</td>
-                        <td><img src="{{URL::to('img/female-uniform-plain.jpeg')}}"></td>
-                        <td>Polo</td>
-                        <td>Pencil Cut</td>
-                        <td>1</td>
-                        <td>Linen</td>
-                        <td><img src="../imgSwatches/citadel alpine.jpg"></td>
+                        <td>{{$onlineJOSpec->strSegmentName}}</td>
+                        <td>{{$onlineJOSpec->intQuantity}}</td>
+                        <td>{{$onlineJOSpec->strFabricName}}</td>
                       </tr>
+                          @endif
+                        @endforeach
                     </tbody>
                   </table>
                 </div>
-                          
+                       
                     <div class = "clearfix"></div>
-                    <div class="input-field col offset-s9">
-                    <input color="black" placeholder="07 / 07 / 2016" id="delivery_date" type="text" class="validate" readonly>
-                      <label for="delivery_date">Estimated Delivery Date</label>
-                  </div>
                 </div>
                   
 
                 <div class="modal-footer" style="background-color:#26a69a">
-                    <a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
                     
                 </div>
               </div>
+              @endforeach
+               <div class = "clearfix">
             
                   
 
@@ -184,8 +176,6 @@
   </div>  
 
 
-
-
 @stop
 
 @section('scripts')
@@ -208,17 +198,6 @@
 
       } );
     </script>
-
-      <script>
-    $('.modal-trigger').leanModal({
-        dismissible: true, // Modal can be dismissed by clicking outside of the modal
-        opacity: .5, // Opacity of modal background
-        in_duration: 300, // Transition in duration
-        out_duration: 200, // Transition out duration
-        width:400,
-      }
-    );
-  </script>
 
   <script>
     $(document).ready(function() {
