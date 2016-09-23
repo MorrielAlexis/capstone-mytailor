@@ -51,8 +51,8 @@
                   </div>
 
                   <div class = "row">
-                    <div class="center col s3" style="margin-top:30px; color:red"><center><b style="font-size:18px">QTY</b></center></div>  
-                    <div class="col s4" style="margin-top:20px; padding:5px; margin-right:5px;"><input name="menquantity" id="quantity" type="number" style="border:2px teal solid; padding-left:18%; padding-right:18%" placeholder="How many?"></div>
+                    <div class="center col s3" style="margin-top:30px; margin-left:60px; color:red"><center><b style="font-size:18px">QTY</b></center></div>  
+                    <div class="col s3" style="margin-top:20px; padding:5px; margin-right:5px;"><input name="menquantity" id="quantity" type="number" style="border:2px teal solid; padding-left:18%; padding-right:18%" placeholder="How many?"></div>
                   </div>
                 </div>
             @endif
