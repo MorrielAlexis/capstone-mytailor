@@ -657,3 +657,7 @@ Route::get('online-forms', 'OnlineFormsController@measurementforms');
 		Route::get('company', 'CompanyCustomerWithBalanceController@index'); //controller for companies with balance		
 	});
 
+
+Route::get('company-checkout', 'CompanyCheckoutController@index');
+Route::get('company-checkout-measure', 'CompanyCheckoutMeasureController@index');
+Route::get('company-checkout-pay', 'CompanyCheckoutPayController@index');
