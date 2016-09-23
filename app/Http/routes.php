@@ -593,6 +593,8 @@ Route::group(['prefix' => 'transaction'], function(){
 
 	Route::post('save-order', 'OnlineIndividualController@saveOrder');
 
+	Route::get('clear-values', 'OnlineIndividualController@clearValues');
+
 	Route::get('checkout-payment', 'OnlineIndividualController@payment');
 	
 	Route::get('customize-womens-choose-shirt', 'OnlineIndividualController@womenchoose');
