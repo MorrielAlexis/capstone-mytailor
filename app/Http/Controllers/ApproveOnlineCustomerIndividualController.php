@@ -38,7 +38,7 @@ class ApproveOnlineCustomerIndividualController extends Controller
             ->leftjoin('tblcustindividual', 'tblJobOrder.strJO_CustomerFK', '=', 'tblcustindividual.strIndivID')
             ->leftjoin('tblcustcompany', 'tblJobOrder.strJO_CustomerCompanyFK', '=', 'tblcustcompany.strCompanyID')
             ->orderby('tblJobOrder.strJobOrderID')
-            ->select('tblcustindividual.*', 'tblcustcompany.*', 'tblJobOrder.*')
+            ->select('tblcustindividual.*', 'tblJobOrder.*')
             // ->where('boolIsOnline', 1)
             ->get(); 
 
@@ -53,9 +53,7 @@ class ApproveOnlineCustomerIndividualController extends Controller
             ->select('tblJOSpecific.*', 'tblFabric.strFabricName', 'tblSegment.strSegmentName')
             ->get();   
 
-            // dd($JOSpecs);
-
-            //dd($onlineJO->strJobOrderID);
+            
         return view('transaction-onlinecustomerindividual')
             ->with('onlineJO', $onlineJO)
             ->with('onlineJOSpecs', $JOSpecs);
@@ -85,11 +83,12 @@ class ApproveOnlineCustomerIndividualController extends Controller
                 $fabric = $Content->fabric;
                 $address = $Content->address;
             }
-             dd($emailContents);
 
 
+             // dd($emailContents);    
 
-        Mail::send('emails.accept-order', ['name' => $name, 'order' => $order, 'totPrice' => $totPrice, 'email' => $email, 'cp' => $cpNo, 'segment' => $segment, 'fabric' => $fabric, 'address' => $address], function($message) use($results) {
+
+        Mail::send('emails.accept-order', ['name' => $name, 'order' => $order, 'totPrice' => $totPrice, 'email' => $email, 'cp' => $cpNo, 'segment' => $segment, 'fabric' => $fabric, 'address' => $address], function($message) use($emailContents) {
 
                 foreach($emailContents as $value){
                     $email = $value->custEmail;  

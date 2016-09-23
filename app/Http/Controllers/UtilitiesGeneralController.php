@@ -33,13 +33,18 @@ class UtilitiesGeneralController extends Controller
 
         session::put('shop_name',$shopName);
 
+         $shopAddress = \DB::table('tblUtilitiesGeneral')
+            ->where('intUtilsGenID','1')
+            ->orderBy('created_at', 'desc')
+            ->pluck('strShopAddress');
+
+        session::put('shop_address', $shopAddress);
+
+
         return view('utilities.utilities-general')
                 ->with('shop_logo', $shopLogo)
+                ->with('shop_address', $shopAddress)
                 ->with('shop_name', $shopName);
-
-            // ->select('strSegmentName')
-            //         ->where('strSegmentID', $segment)
-            //         ->pluck('segment');
     }
 
     public function updateSettings(Request $request)
@@ -51,10 +56,12 @@ class UtilitiesGeneralController extends Controller
 
         if($file == $utilities->strShopImage)
         {
-            $utilities->strShopName = $request->input('updateShopName'); 
+            $utilities->strShopName = $request->input('updateShopName');
+            $utilities->strShopAddress = $request->input('updateShopAddress'); 
         }else{
             $request->file('updateLogo')->move($destinationPath);
             $utilities->strShopName = $request->input('updateShopName'); 
+            $utilities->strShopAddress = $request->input('updateShopAddress'); 
             $utilities->strShopImage = 'img/'.$file;
         }
 
@@ -62,6 +69,7 @@ class UtilitiesGeneralController extends Controller
          
         session::put('shop_logo', $request->input('updateFile'));
         session::put('shop_name', $request->input('updateShopName'));
+        session::put('shop_address', $request->input('updateShopAddress'));
         
         return redirect('utilities/utilities-general');
     }   

@@ -226,8 +226,6 @@ Route::group(['prefix' => 'transaction'], function(){
 
 Route::group(['prefix' => 'transaction'], function(){
 	Route::get('online-customer-individual', 'ApproveOnlineCustomerIndividualController@index');
-	//acceptance of order from online module
-	Route::post('accept-online-customer-individual','ApproveOnlineCustomerIndividualController@accept');
 	// Route::resource('online-customer-company', 'ApproveOnlineCustomerCompanyController',
 	// 	['only' => ['index']]);
 });
