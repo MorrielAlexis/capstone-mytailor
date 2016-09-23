@@ -386,7 +386,7 @@
 
 													<div class="col s12">
 													<center><font color="gray" size="-1">Recent payment(s) made for this job order:</font></center>
-														<table class="table centered" style="font-size:12px; font-weight:bold">
+														<table class="table centered" style="font-size:15px; font-weight:bold">
 															<thead style="color:gray">
 																<tr>
 																	<th>Payment ID</th>

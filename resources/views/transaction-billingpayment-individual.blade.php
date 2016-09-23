@@ -237,10 +237,10 @@
 											                        	@foreach($payments as $payment)
 											                        		@if($payment->strTransactionFK == $customer_info->strJobOrderID)
 											                        		<tr style="border:1px teal solid">
-											                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>{{ $payment->intQuantity }}</b></td>
-											                        			<td style="border:1px teal solid; padding-left:5%; padding-right:5%; background-color:rgba(52, 162, 232, 0.2)"><b>{{ $payment->strGarmentCategoryName }}, {{ $payment->strSegmentName }}</b></td>
-											                        			<td style="padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"></td>
-											                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($payment->dblSegmentPrice, 2) }}</b></td>
+											                        			<td style="border:1px teal solid"><b>{{ $payment->intQuantity }}</b></td>
+											                        			<td style="border:1px teal solid; padding-left:5%; padding-right:5%"><b>{{ $payment->strGarmentCategoryName }}, {{ $payment->strSegmentName }}</b></td>
+											                        			<td style="padding-left:2%; padding-right:2%"></td>
+											                        			<td style="border:1px teal solid;"><b>P {{ number_format($payment->dblSegmentPrice, 2) }}</b></td>
 											                        			<!-- <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($payment->dblUnitPrice, 2) }}</b></td> -->
 											                        			<!-- <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($payment->dblUnitPrice * $payment->intQuantity, 2) }}</b></td> -->
 											                        		</tr>
@@ -252,14 +252,14 @@
 											                        			<td style="border:1px teal solid"></td>
 											                        			<td style="border:1px teal solid"></td>
 											                        		</tr> -->
-											                        		<tr style="border:1px teal solid">
+											                        		<!-- <tr style="border:1px teal solid">
 											                        			<td style="border:1px teal solid"></td>
 											                        			<td style="border:none; color:teal; padding-left:10%">Fabric Name</td>
 											                        			<td style="padding-left:4%; padding-right:4%; border:1px teal solid">{{ $payment->strFabricName }}</td>
 											                        			<td style="border:1px teal solid">P {{ number_format($payment->dblFabricPrice, 2) }}</td>
-											                        			<!-- <td style="border:1px teal solid"></td> -->
-											                        			<!-- <td style="border:1px teal solid"></td> -->
-											                        		</tr>
+											                        			<td style="border:1px teal solid"></td>
+											                        			<td style="border:1px teal solid"></td>
+											                        		</tr> -->
 											                        		<!-- <tr>
 											                        			<td style="border-left:1px teal solid"></td>
 											                        			<td style="border:1px teal solid; color:black; padding-left:10%; padding-top:1%; padding-bottom:1%; color:black"><b>Style Name</b></td>
@@ -269,15 +269,15 @@
 											                        			<td style="border:1px teal solid"></td>
 											                        		</tr> -->
 
-											                        		<tr style="border:1px teal solid">
+											                        		<!-- <tr style="border:1px teal solid">
 											                        			<td style="border:1px teal solid"></td>
 											                        			<td class="right" style="border:none; color:teal; padding-right:10%">Style Name and Pattern</td>
 											                        			<td style="border:1px teal solid">{{ $payment->strSegStyleName }} <br> <font color="gray"><b><i>{{ $payment->strSegPName }}</i></b></font></td>
 											                        			<td style="border:1px teal solid">P {{ number_format($payment->dblPatternPrice, 2) }}</td>
-											                        			<!-- <td style="border:1px teal solid"></td> -->
-											                        			<!-- <td style="border:1px teal solid"></td> -->
+											                        			<td style="border:1px teal solid"></td>
+											                        			<td style="border:1px teal solid"></td>
 											                        			
-											                        		</tr>
+											                        		</tr> -->
 											                        		
 											                        		@endif
 											                        	@endforeach
@@ -389,7 +389,7 @@
 
 													<div class="col s12">
 													<center><font color="gray" size="-1">Recent payment(s) made for this job order:</font></center>
-														<table class="table centered" style="font-size:12px; font-weight:bold">
+														<table class="table centered" style="font-size:15px; font-weight:normal">
 															<thead style="color:gray">
 																<tr>
 																	<th>Payment ID</th>
