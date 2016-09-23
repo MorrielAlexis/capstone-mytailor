@@ -590,35 +590,56 @@ class WalkInCompanyController extends Controller
         $tempFabricTotal = 0;
         $tempSegmentTotal = 0;
         
-        for($i = 0; $i < count(session()->get('package_values')); $i++)
+        for($j = 0; $j < count(session()->get('package_segments')); $j++)
         {
-            for($j = 0; $j < count(session()->get('package_segments')); $j++)
+            for($k = 0; $k < count(session()->get('package_segments')[$j]); $k++)
             {
-                for($k = 0; $k < count(session()->get('package_segments')[$j]); $k++)
+                for($l = 0; $l < count(session()->get('package_segment_pattern')[$j][$k]); $l++)
                 {
-                    if(session()->get('package_values')[$i]->strPackageID == session()->get('package_segments')[$j][$k]->strPackageID)
-                    {
-                        for($l = 0; $l < count(session()->get('package_segment_pattern')[$j][$k][0]); $l++)
-                        {
-                            $tempStyleTotal += session()->get('package_segment_pattern')[$j][$k][0]->dblPatternPrice * session()->get('employee_segment_total')[$i][$k];
-                        }   
-                        $tempFabricTotal += session()->get('package_segment_fabric')[$j][$k]->dblFabricPrice * session()->get('employee_segment_total')[$i][$k];
-                        $tempSegmentTotal += session()->get('package_segments')[$j][$k]->dblSegmentPrice * session()->get('employee_segment_total')[$i][$k];
+                    $tempStyleTotal += session()->get('package_segment_pattern')[$j][$k][$l]->dblPatternPrice * session()->get('employee_segment_total')[$j][$k];
+                }   
+                $tempFabricTotal += session()->get('package_segment_fabric')[$j][$k]->dblFabricPrice * session()->get('employee_segment_total')[$j][$k];
+                $tempSegmentTotal += session()->get('package_segments')[$j][$k]->dblSegmentPrice * session()->get('employee_segment_total')[$j][$k];
 
-                        $styleTotal[$j] = $tempStyleTotal;
-                        $fabricTotal[$j] = $tempFabricTotal;
-                        $segmentTotal[$j] = $tempSegmentTotal;
-                    }
-                }
-                $tempStyleTotal = 0;
-                $tempFabricTotal = 0;
-                $tempSegmentTotal = 0;
+                $styleTotal[$j] = $tempStyleTotal;
+                $fabricTotal[$j] = $tempFabricTotal;
+                $segmentTotal[$j] = $tempSegmentTotal;
             }
+            $tempStyleTotal = 0;
+            $tempFabricTotal = 0;
+            $tempSegmentTotal = 0;
         }
 
+        $i = 0;
+        for($j = 0; $j < count(session()->get('package_segments')); $j++)
+        {
+            for($k = 0; $k < count(session()->get('package_segments')[$j]); $k++)
+            {
+                for($l = 0; $l < count(session()->get('package_segment_pattern')[$j][$k]); $l++)
+                {
+                    if($l == 0)
+                    {
+                        $unitStyleTotal[$j][$k] = session()->get('package_segment_pattern')[$j][$k][$l]->dblPatternPrice;
+                        continue;
+                    }
+                    else if(session()->get('package_segment_pattern')[$j][$k][$l]->strSegmentID == session()->get('package_segment_pattern')[$j][$k][$l-1]->strSegmentID)
+                    {
+                        $unitStyleTotal[$j][$k] += session()->get('package_segment_pattern')[$j][$k][$l]->dblPatternPrice; 
+                        $i += 1;
+                    }
+                    else
+                    {
+                        $i = 0;
+                        $unitStyleTotal[$j][$k] = session()->get('package_segment_pattern')[$j][$k][$i]->dblPatternPrice;
+                    }
+                }   
+            }
+        }
+        
         $vat = UtilitiesVat::first();
             //dd(count(session()->get('package_segments')));
         return view('walkin-company-checkout-pay')
+            ->with('unit_style', $unitStyleTotal)
             ->with('vat', $vat->dblTaxPercentage)
             ->with('joID', session()->get('compJOID'))
             ->with('package_quantity', $quantity)
