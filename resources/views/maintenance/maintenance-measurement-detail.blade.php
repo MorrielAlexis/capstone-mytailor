@@ -100,6 +100,18 @@
       </div>
     @endif
 
+     <!--Work -->
+        @if(Session::has('flash_message_work'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel red">
+              <span class="alert alert-success"> <i class="tiny mdi-navigation-close right" onclick="$('#flash_message').hide()"></i></span>
+             <em> {!! session('flash_message') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif
+
 
     <div class="row">
       <div class="col s12 m12 l12">

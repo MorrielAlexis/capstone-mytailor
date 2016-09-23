@@ -4,10 +4,22 @@
 
 <div class="main-wrapper" style="margin-top:30px; margin:40px;">
 
+<!--Flash Message-->
+        @if(Session::has('flash_message'))
+        <div class="row" id="flash_message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel yellow accent-1">
+              <span class="alert alert-success"> <i class="tiny mdi-navigation-close right" onclick="$('#flash_message').hide()"></i></span>
+             <em> {!! session('flash_message') !!}</em>
+            </div>
+          </div>
+        </div>
+      @endif
+
       <div class="row">
         <div class="col s12 m12 l12">
           <span class="page-title"><center><h3><b>Welcome to <font color="white">MyTailor</font></b></h3></center></span>
-          <center><h5>Walk-in Alteration </h5></center>
+          <center><h5>Walk-in Alteration - Individual </h5></center>
         </div>
       </div>
 

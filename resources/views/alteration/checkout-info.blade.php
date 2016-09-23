@@ -5,7 +5,7 @@
 	<div class="row">
       <div class="col s12 m12 l12">
         <span class="page-title"><center><h3><b>Welcome to <font color="white">MyTailor</font></b></h3></center></span>
-        <center><h5>Walk-in Alteration - Payout</h5></center>
+        <center><h5>Walk-in Alteration - Individual - Payout</h5></center>
       </div>
     </div>
 

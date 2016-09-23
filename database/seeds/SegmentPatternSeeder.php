@@ -261,43 +261,45 @@ class SegmentPatternSeeder extends Seeder
             array(
                 'strSegPatternID' => 'SPAT0025',
                 'strSegPStyleCategoryFK' => 'SEGSTY019',
-                'strSegPName'=>'Button Down',
-                'dblPatternPrice' => '70',
-                'txtSegPDesc' => 'A collar on a shirt that has the pointed ends fastened to the shirt by buttons',
-                'strSegPImage' => 'imgDesignPatterns/button-down.jpg',
-                'boolIsActive' => '1'
+                'strSegPName'=>' LS - Square Cut ',
+                'dblPatternPrice' => '50',
+                'txtSegPDesc' => 'A pocket on a shirt that has square cut.',
+                'strSegPImage' => 'imgDesignPatterns/pocket_square_cut.jpg',
+                'boolIsActive' => '1' 
             ),
 
             array(
                 'strSegPatternID' => 'SPAT0026',
                 'strSegPStyleCategoryFK' => 'SEGSTY019',
-                'strSegPName'=>'Riley Collar',
-                'dblPatternPrice' => '70',
-                'txtSegPDesc' => 'Usually use as a collar for tuxedos.',
-                'strSegPImage' => 'imgDesignPatterns/1ButtonRileyCollar.jpg',
-                'boolIsActive' => '1'
+                'strSegPName'=>' LS - Vertical Pockets ',
+                'dblPatternPrice' => '50',
+                'txtSegPDesc' => 'Pants pockets vertically cut',
+                'strSegPImage' => 'imgDesignPatterns/verticalpantspockets.jpg',
+                'boolIsActive' => '1' 
+               
             ),
 
 
             array(
                 'strSegPatternID' => 'SPAT0027',
                 'strSegPStyleCategoryFK' => 'SEGSTY019',
-                'strSegPName'=>' Band Collar',
-                'dblPatternPrice' => '70',
-                'txtSegPDesc' => 'Usually use as a collar for chinese formal wears.',
-                'strSegPImage' => 'imgDesignPatterns/band.jpg',
-                'boolIsActive' => '1'
+                'strSegPName'=>' LS -  Portofino ',
+                'dblPatternPrice' => '50',
+                'txtSegPDesc' => 'A cuff that is a portofino.',
+                'strSegPImage' => 'imgDesignPatterns/portofino.jpg',
+                'boolIsActive' => '1' 
+                
             ),
 
 
             array(
                 'strSegPatternID' => 'SPAT0028',
                 'strSegPStyleCategoryFK' => 'SEGSTY019',
-                'strSegPName'=>' Italian Collar',
-                'dblPatternPrice' => '70',
-                'txtSegPDesc' => 'Usually use as a collar for dress shirts.',
-                'strSegPImage' => 'imgDesignPatterns/italiancollar.jpg',
-                'boolIsActive' => '1'
+                'strSegPName'=>' LS - French Square ',
+                'dblPatternPrice' => '50',
+                'txtSegPDesc' => 'A cuff that is a french square.',
+                'strSegPImage' => 'imgDesignPatterns/french-square.jpg',
+                'boolIsActive' => '1' 
             ),
 
             array(
@@ -604,20 +606,20 @@ class SegmentPatternSeeder extends Seeder
             array(
                 'strSegPatternID' => 'SPAT0059',
                 'strSegPStyleCategoryFK' => 'SEGSTY005',
-                'strSegPName'=>' Portofino ',
-                'dblPatternPrice' => '50',
-                'txtSegPDesc' => 'A cuff that is a portofino.',
-                'strSegPImage' => 'imgDesignPatterns/portofino.jpg',
+                'strSegPName'=>'Normal Fit',
+                'dblPatternPrice' => '10',
+                'txtSegPDesc' => 'Recommended fit for slim people.',
+                'strSegPImage' => '',
                 'boolIsActive' => '1' 
             ),
 
             array(
                 'strSegPatternID' => 'SPAT0060',
                 'strSegPStyleCategoryFK' => 'SEGSTY005',
-                'strSegPName'=>' Round Cut ',
-                'dblPatternPrice' => '50',
-                'txtSegPDesc' => 'A cuff that is a round cut.',
-                'strSegPImage' => 'imgDesignPatterns/round-cut-1-button.jpg',
+                'strSegPName'=>' Loose Fit ',
+                'dblPatternPrice' => '20',
+                'txtSegPDesc' => 'Recommended fit for chubby people.',
+                'strSegPImage' => '',
                 'boolIsActive' => '1' 
             ),
 

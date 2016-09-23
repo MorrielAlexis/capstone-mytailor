@@ -20,7 +20,7 @@ class SegmentSeeder extends Seeder
                 'strSegmentName' =>'Skirt',
                 'dblSegmentPrice' => '100.00',
                 'strSegmentSex' => 'F',
-                'intMinDays' => '7',
+                'intMinDays' => '2',
                 'strSegmentImage' => 'imgSegments/female-uniform-skirt.jpg',
                 'textSegmentDesc' => 'Pangibabang kasuotan sa babae.',
                 'boolIsActive' => '1'
@@ -32,7 +32,7 @@ class SegmentSeeder extends Seeder
                 'strSegmentName' =>'Coat',
                 'dblSegmentPrice' => '300.00',
                 'strSegmentSex' => 'M',
-                'intMinDays' => '7',
+                'intMinDays' => '4',
                 'strSegmentImage' => 'imgSegments/blazer.jpg',
                 'textSegmentDesc' => 'Upper part wear for men.',
                 'boolIsActive' => '1'
@@ -44,7 +44,7 @@ class SegmentSeeder extends Seeder
                 'strSegmentName' =>'Ladies Slacks',
                 'dblSegmentPrice' => '150.00',
                 'strSegmentSex' => 'F',
-                'intMinDays' => '4',
+                'intMinDays' => '2',
                 'strSegmentImage' => 'imgSegments/female-uniform-pants.jpg',
                 'textSegmentDesc' => 'For ladies who prefered to wear pants instead of skirt.',
                 'boolIsActive' => '1'
@@ -56,7 +56,7 @@ class SegmentSeeder extends Seeder
                 'strSegmentName' =>'Polo Shirt',
                 'dblSegmentPrice' => '100.00',
                 'strSegmentSex' => 'M',
-                'intMinDays' => '5',
+                'intMinDays' => '2',
                 'strSegmentImage' => 'imgSegments/whitepolowithblack.jpg',
                 'textSegmentDesc' => 'Upper part wear for mens uniform.',
                 'boolIsActive' => '1'
@@ -68,7 +68,7 @@ class SegmentSeeder extends Seeder
                 'strSegmentName' =>'Blouse',
                 'dblSegmentPrice' => '100.00',
                 'strSegmentSex' => 'F',
-                'intMinDays' => '4',
+                'intMinDays' => '2',
                 'strSegmentImage' => 'imgSegments/whiteplainpolo.jpg',
                 'textSegmentDesc' => 'Upper part wear for womens`s uniform.',
                 'boolIsActive' => '1'

@@ -12,9 +12,9 @@
 	<div class="row" style="padding:30px">
     <div class="col s12" style="padding-left:15%">    
       <ul class="col s12 breadcrumb">
-  			<li><a class="active"href="#customer-info"><b>1.FILL-UP FORM</b></a></li>		
-  			<li><a><b>2.ADD MEASUREMENT DETAIL</b></a></li>
-        <li><a><b>3.PAYMENT</b></a></li>
+  			<li><a class="active" href="#customer-info">1. Fill-up form</a></li>		
+  			<li><a>2. Add measurement detail</a></li>
+        <li><a>3. Payment</a></li>
   		</ul>
     </div>
 
@@ -28,8 +28,8 @@
               	</div>
 	       	</div>
 
-	       	<div class="row" style="background-color:white;">
-	       		<div class="container">
+	       	<div class="row" style="background-color:white; padding-left:4%; padding-right: 4%">
+
 
               <!--Start of header with customer id and transaction no-->
 	            <div class="col s12">
@@ -80,15 +80,14 @@
                           <label style="color:gray" for="last_name"><b><span class="red-text"><b>*</b></span>Last Name </b></label>
                         </div>
 
-                        <div class="input-field col s12" style="color:black">
-            							<!--<p style="color:gray"><b>Sex</b></p>-->
-            							<select value="" name="strIndivSex" required>
-                              <option value="M">Male</option>
-                              <option value="F">Female</option>
-                          </select>    
-                          <label>Sex</label>
-            						</div>
-                    </div>    
+                        <div style="color:black" class="input-field col s12">                 
+                            <select name="addSex">
+                              <option value="" disabled selected color="red">Sex</option>
+                              <option value="M">Female</option>
+                              <option value="F">Male</option>
+                            </select>
+                        </div> 
+                    </div>   
 
                     <span class="col s12" style="color:teal; margin-top:20px"><b>Customer Address</b></span>
                     <div class="card-panel col s12" style="border:3px solid gray; padding:15px">
@@ -148,8 +147,13 @@
                     </div>
 
                 </div>
-                  <a href="#confirm-submission" class="right btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-left:40px; background-color:#00695c; color:white"><b><i class="mdi-navigation-check" style="padding-right:10px"></i>Save</b></a>                                
-                  <a href="#cancel-order" class="right btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel transaction and go back to homepage" style="background-color:#a7ffeb; color:black"><b><i class="mdi-navigation-close" style="padding-right:10px"></i>Cancel</b></a>                   
+                <div style="color:gray;" class="col s12">
+                      <h6>IMPORTANT NOTE: Fields with asterisk (*) must not be left blank.</h6>
+                </div>
+                <div class="col s12" style="margin-top:2%">
+                  <a href="#confirm-submission" class="right btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-left:40px; background-color:#00695c; color:white"><b><i class="mdi-navigation-check" style="padding-right:10px"></i>Save and Proceed</b></a>                                
+                  <a href="#cancel-order" class="left btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel transaction and go back to homepage" style="background-color:#a7ffeb; color:black"><b><i class="mdi-navigation-close" style="padding-right:10px"></i>Cancel Transaction</b></a>
+                </div>                   
               
               <div class="col s12" style="margin-top:30px">
                   <div id="confirm-submission" class="modal modal-fixed-footer" style="height:300px; width:500px; margin-top:80px">
@@ -167,6 +171,7 @@
                           </div>
                     </div>
               </div>
+
 
             {!! Form::close() !!}
               <!--End of Customer Information-->
@@ -193,12 +198,9 @@
                 <!--End of bottom button-->
 
 	       		</div>
-
-	       		 		<div style="color:gray; margin-top:10px; margin-left:20px" class="col s12">
-                      <h6>IMPORTANT NOTE: Fields with asterisk (*) must not be left blank.</h6>
-                </div>
-	       	</div>
-	      	<div class="divider" style="height:2px; margin-bottom:20px; margin-top:30px"></div>
+	       	
+                
+	      	<div class="col s12"><div class="divider" style="height:2px; margin-bottom:2%"></div></div>
 	      	
 	      		<center><p><font color="gray">End of Customer Profile Information Form</font></p></center>
 	    </div>
@@ -210,16 +212,11 @@
 
 @stop
 
-@section('scripts')
-
-	<script>
-	  $(document).ready(function() {
-	    $('select').material_select();
-	  });
-	</script>	
+@section('scripts')	
 
 	<script>
 	$(document).ready(function(){
+      $('select').material_select();
     	$('body').on('load', 'ul.tabs', function() {
    	 	$('ul.tabs').tabs();
 		});

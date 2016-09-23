@@ -102,21 +102,29 @@
 							                    		<!--eto ang iloloop beybe-->
 							                    		<div class="col s12" style="padding-left:15%">
 							                    		@foreach($customer_orders as $j => $order)
-														@foreach($payments as $i => $payment)
+															@foreach($payments as $i => $payment)
 
-														@if($order->strTermsOfPayment == "Full Payment")
-						                    				 
-						                    				<div @if($payment->strTransactionFK != $order->strJobOrderID) hidden @endif> You have no pending payment</div>
+															@if($order->strTermsOfPayment == "Full Payment")
 
-														@elseif($order->strTermsOfPayment != "Full Payment")
-							                    			<div class="col s12 {{$payment->strJobOrderID}}{{$i+1}}" style="color:black; margin-top:3%; padding:0; font-size:18px" id="{{$payment->strJobOrderID}}{{$i+1}}" @if($payment->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>{{ $order->dtOrderDate }} {{ $order->strJobOrderID }}</b>
-						                    				<!-- <a href=""><u>See transaction detail</u></a> -->
-						                    				<a class="{{$payment->strJobOrderID}}{{$i+1}}" style="background-color:#ef9a9a; color:white; padding-left:3%; padding-right:3%" id="{{$payment->dtPaymentDueDate}}">Due date: {{$payment->dtPaymentDueDate }}</a>
-						                    				</div>					                    				
+						                    					<div @if($payment->strTransactionFK != $order->strJobOrderID) hidden @endif> You have no pending payment</div>
 
+															@elseif($order->strTermsOfPayment != "Full Payment")
+																@if($payment->strPaymentStatus == "Pending")
+																	@if($payment->strTransactionFK == $customer_info->strJobOrderID)
+									                    			<div hidden class="col s12 {{$payment->strJobOrderID}}{{$i+1}}" style="color:black; margin-top:3%; padding:0; font-size:18px" id="{{$payment->strJobOrderID}}{{$i+1}}" @if($payment->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>{{ $order->dtOrderDate }} {{ $order->strJobOrderID }}
+								                    				<!-- <a href=""><u>See transaction detail</u></a> -->
+								                    				<a class="{{$payment->strJobOrderID}}{{$i+1}}" style="background-color:#ef9a9a; color:white; padding-left:3%; padding-right:3%" id="{{$payment->dtPaymentDueDate}}">Due date: {{$payment->dtPaymentDueDate }}</a>
+								                    				</div>	
+								                    				@endif
+							                    				@elseif($payment->strPaymentStatus != "Pending")
+								                    				@if($payment->strTransactionFK == $customer_info->strJobOrderID)
+								                    					<div @if($payment->strTransactionFK != $order->strJobOrderID) hidden @endif><center> You have no pending payment</center></div>
+								                    				@endif
+								                    			@endif				                    				
+						                    					
 							                    			@endif
 							                    			@endforeach
-							                    			@endforeach
+							                    		@endforeach
 							                    		</div>
 							                    		<!--ends here-->
 						                    		</div>
@@ -173,6 +181,121 @@
 								                        	</div>
 								                        @endif
 								                    	@endforeach
+
+								                    	<div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
+													<h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
+														
+															<div class="divider" style="height:2px"></div>
+															<div class="modal-content col s12">
+
+																<div class="col s6" style="margin-top:20px;">
+																<label>This is a summary of orders:</label>
+																</div>
+
+																<div class="col s6">
+																	<div class="col s6"><h6 style="color:gray">Date of Transaction:</h6></div>
+																	
+																	<div class="col s6"><h6 style="color:teal; margin-top:6%"><b>{{ $customer_info->dtOrderDate }}</b></h6></div>
+																		
+																</div>
+
+											                        <table class="table centered" border="1">
+											                        	<thead style="border:1px teal solid; background-color:rgba(54, 162, 235, 0.5)">
+											                        		<tr style="border:1px teal solid">
+											                        			<th style="border:1px teal solid">Quantity</th>
+											                        			<th colspan="1" style="border:1px teal solid">Description</th>
+											                        			<th style="border:1px teal solid; border-bottom:none">Unit Price</th>
+											                        			<th style="border:1px teal solid">Total Price</th>
+											                        		</tr>
+											                        		<tr style="border:1px teal solid">
+											                        			<th style="border:1px teal solid; border-top:none"></th>
+											                        			<th style="border:1px teal solid">Item Name</th>
+											                        			<!-- <th style="border:1px teal solid">Price</th> -->
+											                        			<th style="border:1px teal solid"></th>
+											                        			<th style="border:1px teal solid"></th>
+											                        		</tr>
+											                        	</thead>
+											                        	<tbody style="border:1px teal solid">
+											                        	@foreach($payments as $payment)
+											                        		@if($payment->strTransactionFK == $customer_info->strJobOrderID)
+											                        		<tr style="border:1px teal solid">
+											                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>{{ $payment->intQuantity }}</b></td>
+											                        			<td style="border:1px teal solid; padding-left:5%; padding-right:5%; background-color:rgba(52, 162, 232, 0.2)"><b>{{ $payment->strPackageName }}</b></td>
+											                        			<!-- <td style="padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"></td> -->
+											                        			<!-- <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b></b></td> -->
+											                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($payment->dblPackagePrice, 2) }}</b></td>
+											                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($payment->dblPackagePrice * count($payment->strPackageName), 2) }}</b></td>
+											                        		</tr>
+											                        		<!-- <tr>
+											                        			<td style="border-left:1px teal solid;"></td>
+											                        			<td style="border:1px teal solid; color:black; padding-left:10%; padding-top:1%; padding-bottom:1%; color:black"><b></b></td>
+											                        			<td style="padding-top:1%; padding-bottom:1%; border:1px teal solid"><b>Fabric Name</b></td>
+											                        			<td style=""></td>
+											                        			<td style="border:1px teal solid"></td>
+											                        			<td style="border:1px teal solid"></td>
+											                        		</tr> -->
+											                        		<!-- <tr style="border:1px teal solid">
+											                        			<td style="border:1px teal solid"></td>
+											                        			<td style="border:none; color:teal; padding-left:10%">Fabric Name</td>
+											                        			<td style="padding-left:4%; padding-right:4%; border:1px teal solid">{{ $payment->strFabricName }}</td>
+											                        			<td style="border:1px teal solid">P {{ number_format($payment->dblFabricPrice, 2) }}</td>
+											                        			<td style="border:1px teal solid"></td>
+											                        			<td style="border:1px teal solid"></td>
+											                        		</tr> -->
+											                        		<!-- <tr>
+											                        			<td style="border-left:1px teal solid"></td>
+											                        			<td style="border:1px teal solid; color:black; padding-left:10%; padding-top:1%; padding-bottom:1%; color:black"><b>Style Name</b></td>
+											                        			<td style="padding-top:1%; padding-bottom:1%; border:1px teal solid"><b>Segment Pattern</b></td>
+											                        			<td style=""></td>
+											                        			<td style="border:1px teal solid"></td>
+											                        			<td style="border:1px teal solid"></td>
+											                        		</tr> -->
+
+											                        		<!-- <tr style="border:1px teal solid">
+											                        			<td style="border:1px teal solid"></td>
+											                        			<td class="right" style="border:none; color:teal; padding-right:10%">Style Name and Pattern</td>
+											                        			<td style="border:1px teal solid">{{ $payment->strSegStyleName }} <br> <font color="gray"><b><i>{{ $payment->strSegPName }}</i></b></font></td>
+											                        			<td style="border:1px teal solid">P {{ number_format($payment->dblPatternPrice, 2) }}</td>
+											                        			<td style="border:1px teal solid"></td>
+											                        			<td style="border:1px teal solid"></td>
+											                        			
+											                        		</tr> -->
+											                        		
+											                        		@endif
+											                        	@endforeach
+											                        	</tbody>
+											                        </table>
+															      		
+
+															      		<div class="divider"></div>
+															      		<div class="divider"></div>
+																		
+																      	<div class="col s12" style="margin-bottom: 5%">
+																			<!-- <div class="right col s6" hidden><p style="color:gray">Estimated time to finish all orders:<p style="color:black">60 days</p></p></div> -->
+																			<div class="right col s6" style="font-size:15px; margin-top: 1.5%">
+																				<div class="col s6"><p style="color:gray">Terms of Payment:</p></div>
+
+																				<div class="col s6"><p style="color:black"><font color="teal"><b>{{ $customer_info->strTermsOfPayment }}</b></font></p></div>
+																			</div>
+																			<div class="left col s6" style="font-size:20px">
+																				<div class="col s7"><p style="color:gray">Order Total Price:</p></div>
+
+																				<div class="col s5"><p style="color:black"><font size="+2" color="teal"><b>P {{ number_format($customer_info->dblOrderTotalPrice, 2) }}</b></font></p></div>
+																			</div>
+																		</div>
+
+																		<!-- <div class="col s12" style="margin-bottom:50px">
+																			<p style="color:red"><b>Due date of payment (pay balance before or on the said date):</b></p>
+																		</div> -->
+																		
+
+																	</div>
+
+															<div class="modal-footer col s12">	
+												                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">OK</font></a>								                
+												            </div>
+													
+													</div><!--modal to-->
 								                    {!! Form::close() !!} 
 								        		
 
@@ -206,72 +329,99 @@
 									                        </div>
 
 									                        <div style="color:black" class="input-field col s7">                 
-									                          <input style="margin-left:180px; padding:5px; padding-left:10px;" value="Honey May Buenavides - Cashier" name="payment-info" type="text" class="">
+									                          <input style="margin-left:180px; padding:5px; padding-left:10px;" name="payment-info" type="text" class="">
 									                          <label style="color:black; margin-top:5px; margin-left:20px"><b>Process Done By:</b></label>							                          
 									                        </div>
 														
 															<div class="col s12" style="margin-top:30px">
 																<!-- <a hidden href="{{ URL::to('billing-payment/payment-receipt-pdf') }}" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to print a copy of receipt" style="background-color:teal"><i class="large mdi-action-print" style="font-size:30px"></i></a> -->
 																<button type="submit" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="CLick to save data" style="background-color:teal; margin-left:20px">Save</button>
-																<a href="" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to clear all fields for payment process" style="background-color:teal">Cancel</a>
+																<a href="" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to clear all fields for payment process" style="background-color:teal" href="{{ URL::to('transaction/payment/company/home') }}">Cancel</a>
 															</div>
 														</div>
-														{!! Form::close() !!}
+														
 														</div>
 													</div>
 												</div>
 											</div>
 
 											<div class="col s5">
-												<div class="card-panel">
-													<div class="card-content">
-													@foreach($customer_orders as $j => $order)
-													@foreach($payments as $i => $payment)
+											<div class="card-panel">
+											<div class="card-content">
+												@foreach($customer_orders as $j => $order)
 													@if($order->strTermsOfPayment != "Full Payment")
-														<div class="row" id="or_summary" style="display:none">
-														
-															<center><h6><b>ORDER SUMMARY</b></h6></center>
-															<div class="col s12" style="margin-top:10px"><div class="divider" style="height:3px; color:gray"></div></div>
-													
-															<!--In case of multiple pending transactions...-->
-															<div  class="col s6">
-																<h6>Order No.: <p style="color:teal"><b>ORN 001</b></p></h6>
-															</div>
 
-															<div  class="col s6">
-																<h6>Transaction Date: <p style="color:teal"><b>2016-05-03</b></p></h6>
-															</div>
+												<div class="row" id="or_summary" style="display:none">
+													<center><h6><b>Payment History</b></h6></center>
+													<div class="col s12" style="margin-top:10px"><div class="divider" style="height:3px; color:gray"></div></div>
+												
+												<!--In case of multiple pending transactions...-->
+													<div  class="col s6" style="border-right:1px darkgray solid">
+														<h6>Order No.: <p style="color:teal"><b><a href="#summary-of-order" class="modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to view summary of order" style="color:teal"><u>{{ $order->strJobOrderID }}</u></a></b></p></h6>
+													</div>
 
-															<div class="col s12">
-																<table class="table centered order-summary">
-																	<thead style="color:gray">
-																		<th>Product Code</th>
-																		<th>Quantity</th>
-																		<th>Unit Price</th>
-																	</thead>
-																	<tbody>
+													<div  class="col s6">
+														<h6>Transaction Date: <p style="color:teal"><b>{{ $order->dtOrderDate}}</b></p></h6>
+													</div>
 
-																		<tr>
-																			<td>{{ $payment->strPackageID }}</td>
-																			<td>{{ count($payment->strPackageID )}}</td>
-																			<td>{{ $payment->dblPackagePrice }}</td>
-																		</tr>
-																	</tbody>
-																</table>
+													<div class="col s12"><div class="divider" style="background-color: gray; height:2px; margin-bottom: 2%"></div></div>
 
-																<!-- <center><a href="#summary-of-order" class="btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to view summary of orders" style="background-color:teal">View Order Details</a></center> -->
-															</div>
+													<div class="col s12">
+													<center><font color="gray" size="-1">Recent payment(s) made for this job order:</font></center>
+														<table class="table centered" style="font-size:12px; font-weight:bold">
+															<thead style="color:gray">
+																<tr>
+																	<th>Payment ID</th>
+																	<th>Amt Paid</th>
+																	<th>Balance</th>
+																	<th>Date Paid</th>
+																</tr>
+															</thead>
+															<tbody>
+															@foreach($payments as $payment)
+															@if($payment->strTransactionFK == $order->strJobOrderID)
+																<tr>
+																	<td>{{ $payment->strPaymentID }}</td>
+																	<td>{{ number_format($payment->dblAmountToPay, 2) }}</td>
+																	<td>{{ number_format($payment->dblOutstandingBal ,2) }}</td>
+																	<td>{{ $payment->dtPaymentDate }}</td>
+																</tr>
 															@endif
 															@endforeach
-															@endforeach
-
-															<div class="col s12"><div class="divider" style="height:2px; color:gray; margin-top:15px; margin-bottom:15px"></div></div>
-														</div>
+															</tbody>
+														</table>
 													</div>
+
+													<!-- <div class="col s12">
+														<table class="table centered order-summary">
+															<thead style="color:gray">
+																<th>Product Name</th>
+																<th>Quantity</th>
+																<th>Unit Price</th>
+															</thead>
+															<tbody>
+
+																<tr>
+																	<td>{{ $order->strGarmentCategoryName }},<br> {{ $order->strSegmentName }}</td>
+																	<td>{{ $order->intQuantity }}</td>
+																	<td>P {{ number_format(($order->dblOrderTotalPrice / $order->intJO_OrderQuantity), 2) }}</td>
+																</tr>
+														</table>
+
+														<!-- <center><a href="#summary-of-order" class="btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to view summary of orders" style="background-color:teal">View Order Details</a></center> -->
+													<!-- </div> -->
+
+
 												</div>
+
+													@endif
+												@endforeach
 											</div>
+										</div>
+										</div>
 										@endif
-										@endif       							                    												
+										@endif       							                    
+										{!! Form::close() !!}						
 								
 									</div>
 									

@@ -225,10 +225,10 @@ Route::group(['prefix' => 'transaction'], function(){
 });
 
 Route::group(['prefix' => 'transaction'], function(){
-	Route::resource('online-customer-individual', 'OnlineCustomerIndividualController',
-		['only' => ['index']]);
-	Route::resource('online-customer-company', 'OnlineCustomerCompanyController',
-		['only' => ['index']]);
+	Route::get('online-customer-individual', 'ApproveOnlineCustomerIndividualController@index');
+	Route::post('accept-online-customer-individual','ApproveOnlineCustomerIndividualController@accept');
+	// Route::resource('online-customer-company', 'ApproveOnlineCustomerCompanyController',
+	// 	['only' => ['index']]);
 });
 
 
@@ -304,8 +304,8 @@ Route::group(['prefix' => 'utilities'], function(){
 		
 });
 
-//acceptance of order from online module
-Route::get('/acceptIndividual','ApproveOnlineCustomerIndividualController@accept');
+// //acceptance of order from online module
+// Route::post('/accept-online-customer-individual','ApproveOnlineCustomerIndividualController@accept');
 Route::get('/rejectIndividual','ApproveOnlineCustomerIndividualController@reject');
 Route::get('/acceptCompany','ApproveOnlineCustomerCompanyController@accept');
 
@@ -323,15 +323,23 @@ Route::group(['prefix' => 'transaction'], function(){
 
 	//customize view
 	Route::post('walkin-individual-customize-orders', 'WalkInIndividualController@customizeOrder');
+	Route::get('walkin-individual-show-customize-orders', 'WalkInIndividualController@showCustomizeOrder');
+
+	//save segments
+	Route::post('walkin-individual-save-segment', 'WalkInIndividualController@saveSegments');
 
 	//customer check - new or existing
-	Route::group(['prefix' => 'walkin-individual'], function(){
-		Route::post('customer-check', 'WalkInIndividualController@customerCheck');
-	});
+
+	Route::get('customer-check', 'WalkInIndividualController@customerCheck');
+
 	
 	//customer information view
-	Route::post('walkin-individual-customer-information', 'WalkInIndividualController@customerInformation');
+	Route::post('walkin-individual-customer-information', 'WalkInIndividualController@existingCustomerInformation');
+	Route::get('walkin-individual-customer-information', 'WalkInIndividualController@customerInformation');
 	Route::post('walkin-individual-save-customer', 'WalkInIndividualController@addCustomer');
+
+	//measurements
+	Route::get('walkin-individual-show-measurement-view', 'WalkInIndividualController@showMeasurementView');
 	Route::post('walkin-individual-save-measurements', 'WalkInIndividualController@saveMeasurements');
 
 	//payment view
@@ -347,9 +355,6 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::post('walkin-individual-add-design', 'WalkInIndividualController@addDesign');
 	Route::post('walkin-individual-clear-order', 'WalkInIndividualController@clearOrder');
 
-	Route::get('walkin-individual-show-customize-orders', 'WalkInIndividualController@showCustomizeOrder');
-	Route::get('walkin-individual-show-measurement-view', 'WalkInIndividualController@showMeasurementView');
-	Route::post('walkin-individual-existing-show-measurement-view', 'WalkInIndividualController@showMeasurementExistView');
 
 	Route::get('walkin-individual-catalogue-designs', 'WalkInIndividualController@catalogueDesign');
 
@@ -386,6 +391,8 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::post('walkin-company-save-new-company','WalkInCompanyController@saveNewCompany');
 	Route::post('walkin-company-save-measurements', 'WalkInCompanyController@saveMeasurements');
 	Route::post('walkin-company-save-order', 'WalkInCompanyController@saveOrder');
+	Route::post('walkin-company-reset-order', 'WalkInCompanyController@resetOrder');
+	Route::post('walkin-company-remove-package', 'WalkInCompanyController@removePackage');
 
 });
 
@@ -413,21 +420,6 @@ Route::group(['prefix' => 'transaction'], function(){
 		Route::post('alteration-walkin-add-newcustomer-info', 'AlterationWalkInController@addNewCustomer');
 		Route::post('alteration-walkin-newcustomer-save-transaction', 'AlterationWalkInController@saveTransaction');
 		Route::post('alteration-walkin-newcustomer-cancel', 'AlterationWalkInController@cancelOrder');
-
-/*---------------------------------------ADMIN TRANSACTION COMPANY ALTERATION--------------------------------------------------*/		
-		Route::get('alteration-walkin-transaction', 'AlterationWalkInCompanyController@index');
-		Route::get('alteration-walkin-newcustomer/company', 'AlterationWalkInCompanyController@showCart');
-		Route::get('alteration-walkin-newcustomer-update', 'AlterationWalkInCompanyController@updateCart');
-		Route::get('alteration-walkin-oldcustomer', 'AlterationWalkInCompanyController@oldcust');
-		Route::get('alteration-checkout-info', 'AlterationWalkInCompanyController@checkoutCustInfo');
-		Route::get('alteration-checkout-payment', 'AlterationWalkInCompanyController@checkoutPayment');
-		Route::get('alteration-checkout-measurement', 'AlterationWalkInCompanyController@checkoutAddMeasurement');
-
-		Route::post('alteration-walkin-newcustomer', 'AlterationWalkInCompanyController@addValues');
-		Route::post('alteration-walkin-newcustomer-delete', 'AlterationWalkInCompanyController@deleteOrder');
-		Route::post('alteration-walkin-add-newcustomer-info', 'AlterationWalkInCompanyController@addNewCustomer');
-		Route::post('alteration-walkin-newcustomer-save-transaction', 'AlterationWalkInCompanyController@saveTransaction');
-		Route::post('alteration-walkin-newcustomer-cancel', 'AlterationWalkInCompanyController@cancelOrder');
 
 
 

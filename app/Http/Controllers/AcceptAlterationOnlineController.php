@@ -40,7 +40,6 @@ class AcceptAlterationOnlineController extends Controller
         $onlineAlteration = \DB::table('tblNonShopAlteration')
             ->leftjoin('tblcustindividual', 'tblNonShopAlteration.strCustIndFK', '=', 'tblcustindividual.strIndivID')
             ->leftjoin('tblcustcompany', 'tblNonShopAlteration.strCustCompFK', '=', 'tblcustcompany.strCompanyID')
-            // ->where('boolisOnline','=', 1)
             ->orderby('tblNonShopAlteration.strNonShopAlterID')
             ->select('tblcustindividual.*', 'tblcustcompany.*', 'tblNonShopAlteration.*')
             ->where('boolIsOnline', 1)
@@ -140,8 +139,8 @@ class AcceptAlterationOnlineController extends Controller
                     ->select(\DB::raw('CONCAT(b.strIndivFName, " " , b.strIndivMName, " " , b.strIndivLName) as custName'), 'b.strIndivEmailAddress AS custEmail')
                     ->where('b.strIndivID', $request->input('customerID'))
                     ->get();
-            var_dump($rejects);
-            dd("");
+            // var_dump($rejects);
+            // dd("");
 
 
             foreach( $results as $result){

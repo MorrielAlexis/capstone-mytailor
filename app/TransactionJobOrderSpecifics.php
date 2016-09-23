@@ -20,4 +20,9 @@ class TransactionJobOrderSpecifics extends Model
     						'strEmployeeNameFK',
     						'dtDateModified',
     						'boolIsActive');
+
+     public function onlineJobOrder()
+    {
+        return $this->belongsTo('App\TransactionJobOrder', 'strJobOrderFK');
+    }
 }

@@ -11,11 +11,18 @@ use Session;
 use PDF;
 
 use App\Individual;
+use App\Employee;
+
+
 use App\TransactionJobOrder;
 use App\TransactionJobOrderPayment;
+use App\TransactionJobOrderSpecifics;
+use App\TransactionJobOrderSpecificsPattern;
+use App\TransactionJobOrderMeasurementProfile;
+use App\TransactionJobOrderMeasurementSpecifics;
+use App\TransactionJobOrderReceipt;
 use App\TransactionPaymentReceipt;
 
-use App\Employee;
 
 class PaymentIndividualController extends Controller
 {
@@ -71,7 +78,11 @@ class PaymentIndividualController extends Controller
                 ->leftJoin('tblJOSpecific AS d', 'a.strJobOrderID', '=', 'd.strJobOrderFK')
                 ->leftJoin('tblSegment AS e', 'd.strJOSegmentFK', '=', 'e.strSegmentID')
                 ->leftJoin('tblGarmentCategory as f', 'e.strSegCategoryFK', '=', 'f.strGarmentCategoryID')
-                ->select('a.*', 'b.*', 'c.strIndivID', 'd.*', 'e.*', 'f.*')
+                ->leftJoin('tblFabric AS g', 'd.strJOFabricFK', '=', 'g.strFabricID')
+                ->leftJoin('tblJOSpecificSegmentPattern AS h', 'd.strJOSpecificID', '=', 'h.strJobOrderSpecificFK')
+                ->leftJoin('tblSegmentPattern AS i', 'h.strSegmentPatternFK', '=', 'i.strSegPatternID')
+                ->leftJoin('tblSegmentStyleCategory AS j', 'i.strSegPStyleCategoryFK', '=', 'j.strSegStyleCatID')
+                ->select('a.*', 'b.*', 'c.strIndivID', 'd.*', 'e.*', 'f.*', 'g.*', 'h.*', 'i.*', 'j.*')
                 ->orderBy('a.strJobOrderID')
                 ->get();
 
@@ -139,7 +150,7 @@ class PaymentIndividualController extends Controller
 
         session(['cust_id' => $customerID]);
         session(['jo_ID' => $joID]);
-
+        $balance = (double)session()->get('outstandingBal');
         $modeOfPayment = "Cash";
         $amtTendered = (double)session()->get('amountTendered');
         $amtChange = (double)session()->get('amountChange');
@@ -161,25 +172,28 @@ class PaymentIndividualController extends Controller
             }
         session(['payment_id' => $jobPaymentID]);
 
-        $payment = TransactionJobOrderPayment::create(array(
-                'strPaymentID' => $jobPaymentID,
-                'strTransactionFK' => session()->get('jo_ID'),//tblJobOrder
-                'dblAmountToPay' => session()->get('amountToPay'), 
-                'dblOutstandingBal' => 0.00,
-                'dblAmountTendered' => $amtTendered,
-                'dblAmountChange' => $amtChange,
-                'strReceivedByEmployeeNameFK' => session()->get('employee'),
-                'dtPaymentDate' => 2013-08-21,
-                'dtPaymentDueDate' => 2013-08-22,
-                'strPaymentStatus' => 'Paid',
-                'boolIsActive' => 1
+        
+            $payment = TransactionJobOrderPayment::create(array(
+                    'strPaymentID' => $jobPaymentID,
+                    'strTransactionFK' => session()->get('jo_ID'),//tblJobOrder
+                    'dblAmountToPay' => session()->get('amountToPay'), 
+                    'dblOutstandingBal' => 0.00,
+                    'dblAmountTendered' => $amtTendered,
+                    'dblAmountChange' => $amtChange,
+                    'strReceivedByEmployeeNameFK' => session()->get('employee'),
+                    'dtPaymentDate' => 2013-08-21,
+                    'dtPaymentDueDate' => 2013-08-22,
+                    'strPaymentStatus' => 'Paid',
+                    'boolIsActive' => 1
 
-        ));
+            ));
+     
+
         $payment->save();
 
         $paymentid = session()->get('payment_id');
 
-
+            dd($balance);
         //Payment Receipt
         $prId = \DB::table('tblPaymentReceipt')
                 ->select('strPaymentReceiptID')

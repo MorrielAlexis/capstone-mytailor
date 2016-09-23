@@ -27,7 +27,7 @@
 								
 								<div class="col s6"><p><h5><b>Customize Orders Per Package</b></h5></p></div>
 									<div class="right col s1"><a style="margin-top:15px; background-color:teal" type="submit" class="waves-effect waves-green btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to go back home" href="{{URL::to('/transaction/walkin-company')}}"><i class="mdi-action-home" style="color:white; opacity:0.90; font-size:30px;"></i></a></div>
-									<div class="right col s5"><a style="background-color:teal; margin-top:15px" type="submit" class="right waves-effect waves-green btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to proceed to payment of orders" href="{{URL::to('/transaction/walkin-company/customer-check')}}"><font color="white" size="+1"><!--<i class="mdi-action-payment" style="font-size:20px;">  -->Proceed to Checkout<!--</i>--></font></a></div>				
+									<div class="right col s5"><a style="background-color:teal; margin-top:15px" type="submit" class="right waves-effect waves-green btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to edit data for company employees" href="{{URL::to('transaction/walkin-company-add-employees')}}"><font color="white" size="+1"><!--<i class="mdi-action-payment" style="font-size:20px;">  -->Add Employees Now<!--</i>--></font></a></div>				
 							</div>
 							
 							<div class="divider" style="margin-bottom:30px"></div>
@@ -41,48 +41,27 @@
 						    </div>    
 
 						    
-						@foreach($values as $i => $value)
+						@for($i = 0; $i < count($values); $i++)
+
 							{!! Form::open(['url' => 'transaction/walkin-company-customize-orders', 'method' => 'POST']) !!}
 							<!--Package Detail-->
 							<div class="col s6" style="margin-bottom:40px">
 								
-								<a style="color:black; margin-left:50px" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#removeOrder"><i class="mdi-navigation-close"></i></a>
+								<a style="color:black; margin-left:50px" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#removeOrder{{ $i }}"><i class="mdi-navigation-close"></i></a>
 								
 
-								<!--Modal for Remove Order-->
-								<div id="removeOrder" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
-							  		
-									<h5><font color="red"><center><b>Warning!</b></center></font></h5>
-										
-											<div class="divider" style="height:2px"></div>
-											<div class="modal-content col s12">
-												<div class="col s3">
-													<i class="mdi-alert-warning" style="font-size:50px; color:red"></i>
-												</div>
-												<div class="col s9">
-													<p><font size="+1">Are you sure to remove this order from cart?</font></p>
-												</div>
-											</div>
-
-											<div class="modal-footer col s12">
-								                <button type="submit" class="waves-effect waves-green btn-flat" href="#!"><font color="black">Yes</font></button>
-								                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
-								            </div>
-
-								</div>
-								<!--End of modal for remove order-->
 
 								<div class="z-depth-2 card medium" style="margin-left:100px; margin-top:20px; height:350px; width:350px; border:3px gray solid">
-			           				<input type="hidden" name="hidden-package-id" value="{{ $value->strPackageID }}">
-			           				<input type="hidden" name="hidden-package-index" value="{{ $i++ }}">
+			           				<input type="hidden" name="hidden-package-id" value="{{ $values[$i]->strPackageID }}">
+			           				<input type="hidden" name="hidden-package-index" value="{{ $i }}">
 			           				<div class="card-image">
-			              				<img class="responsive-img" height = "80%" src="{{URL::asset($value->strPackageImage)}}">
+			              				<img class="responsive-img" height = "80%" src="{{URL::asset($values[$i]->strPackageImage)}}">
 			           				</div>
 			            			<div class="card-content">
 			             				<p class="center-align">
-			             				 	<span class="card-title" style="color:black"><b>{{ $value->strPackageName }}</b></span>
+			             				 	<span class="card-title" style="color:black"><b>{{ $values[$i]->strPackageName }}</b></span>
 			             						<p class="center-align" style="color:teal">Package includes:</p>
-			             						<p class="center-align" style="color:gray">{{ $value->strPackageDesc }}</p>
+			             						<p class="center-align" style="color:gray">{{ $values[$i]->strPackageDesc }}</p>
 			           				 	</p>
 			           				</div>
 			           				<div style="margin-top:20px">		
@@ -92,7 +71,32 @@
 	                  			
 							</div>
 							{!! Form::close() !!}
-						@endforeach
+
+
+							{!! Form::open(['url' => 'transaction/walkin-company-remove-package', 'method' => 'POST']) !!}
+							<!--Modal for Remove Order-->
+							<div id="removeOrder{{ $i }}" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
+							  		
+								<h5><font color="red"><center><b>Warning!</b></center></font></h5>
+									
+									<input type="hidden" name="hidden_remove_package" value="{{ $i }}">
+									<div class="divider" style="height:2px"></div>
+									<div class="modal-content col s12">
+										<div class="col s3">
+											<i class="mdi-alert-warning" style="font-size:50px; color:red"></i>
+										</div>
+										<div class="col s9">
+											<p><font size="+1">Are you sure you to remove this order from the cart?</font></p>
+										</div>
+									</div>
+									<div class="modal-footer col s12">
+							            <button type="submit" class="waves-effect waves-green btn-flat"><font color="black">Yes</font></button>
+							            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
+							        </div>
+							</div>
+							{!! Form::close() !!}
+							<!--End of modal for remove order-->
+						@endfor
 						<!--End of package detail-->
         
 
@@ -103,13 +107,11 @@
 					<div class="divider" style="height:2px;margin-top:40px"></div>
 					<div class="col s12" style="padding:3%">
 						<div class="left col s5">
-							<a class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to edit data for company employees" href="{{URL::to('transaction/walkin-company-add-employees')}}" style="color:white; background-color:#03a9f4;"><label style="font-size:15px; color:white"> Add Employees Now</label></a>
+							<a href="{{URL::to('transaction/walkin-company')}}" class="left btn" style="color:white; background-color:teal; border:3px teal solid">Cancel Transaction</a>
 						</div>	
 
 						<div class="col s7">
-							<a href="{{URL::to('transaction/walkin-company')}}" class="left btn" style="color:white; background-color:teal; border:3px teal solid">Cancel Transaction</a>
 							<a href="{{URL::to('transaction/walkin-company-show-packages')}}" class="right btn" style="color:white; background-color:teal; border:3px teal solid">Add another set</a>
-
 							<!--<a href="{{URL::to('transaction/walkin-company-retail-products')}}" class="right btn" style="color:white; background-color:teal; border:3px teal solid">Add a retail order</a>-->
 						</div>
 						
@@ -134,17 +136,6 @@
 @stop
 
 @section('scripts')
-
-	<script>
-	  $('.modal-trigger').leanModal({
-	      dismissible: true, // Modal can be dismissed by clicking outside of the modal
-	      opacity: .5, // Opacity of modal background
-	      in_duration: 300, // Transition in duration
-	      out_duration: 200, // Transition out duration
-	      width:400,
-	    }
-	  );
-	</script>
 
 	<script>
 	  $(document).ready(function() {
