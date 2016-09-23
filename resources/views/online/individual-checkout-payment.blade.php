@@ -70,33 +70,64 @@
                       </thead>
                       <tbody style="border:1px teal solid">
                       
-                        <tr style="border:1px teal solid">
-                          <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)">{{$mqty}}<b></b></td>
-                          <td style="border:1px teal solid; padding-left:5%; padding-right:5%; background-color:rgba(52, 162, 232, 0.2)"><b>{{$mname}}</b></td>
-                          <td style="padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"></td>
-                          <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>PHP {{number_format($mprice, 2)}}</b></td>
-                          <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>PHP {{number_format($mlinetotal, 2)}}</b></td>
-                          <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b></b>PHP {{number_format($mtotal, 2)}}</td>
-                        </tr>
-                        <tr style="border:1px teal solid">
-                          <td style="border:1px teal solid"></td>
-                          <td style="border:none; color:teal; padding-left:10%">Fabric Name</td>
-                          <td style="padding-left:4%; padding-right:4%; border:1px teal solid">{{$mfname}}</td>
-                          <td style="border:1px teal solid">PHP {{number_format($mfprice, 2)}}</td>
-                          <td style="border:1px teal solid"></td>
-                          <td style="border:1px teal solid"></td>
-                        </tr>
-
-                        @foreach($styles as $style)
+                        @if($msegment == 1)
+                          <tr style="border:1px teal solid">
+                            <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)">{{$mqty}}<b></b></td>
+                            <td style="border:1px teal solid; padding-left:5%; padding-right:5%; background-color:rgba(52, 162, 232, 0.2)"><b>{{$mname}}</b></td>
+                            <td style="padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"></td>
+                            <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>PHP {{number_format($mprice, 2)}}</b></td>
+                            <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>PHP {{number_format($mlinetotal, 2)}}</b></td>
+                            <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b></b>PHP {{number_format($mtotal, 2)}}</td>
+                          </tr>
                           <tr style="border:1px teal solid">
                             <td style="border:1px teal solid"></td>
-                            <td class="right" style="border:none; color:teal; padding-right:10%">Style Name and Pattern</td>
-                            <td style="border:1px teal solid"> <br> <font color="gray"><b><i>{{$style->strSegStyleName}} {{$style->strSegPName}}</i></b></font></td>
-                            <td style="border:1px teal solid">PHP {{number_format ($style->dblPatternPrice , 2)}}</td>
+                            <td style="border:none; color:teal; padding-left:10%">Fabric Name</td>
+                            <td style="padding-left:4%; padding-right:4%; border:1px teal solid">{{$mfname}}</td>
+                            <td style="border:1px teal solid">PHP {{number_format($mfprice, 2)}}</td>
                             <td style="border:1px teal solid"></td>
-                            <td style="border:1px teal solid"></td>  
+                            <td style="border:1px teal solid"></td>
                           </tr>
-                        @endforeach
+
+                          @foreach($mstyles as $mstyle)
+                            <tr style="border:1px teal solid">
+                              <td style="border:1px teal solid"></td>
+                              <td class="right" style="border:none; color:teal; padding-right:10%">Style Name and Pattern</td>
+                              <td style="border:1px teal solid"> <br> <font color="gray"><b><i>{{$mstyle->strSegStyleName}} {{$mstyle->strSegPName}}</i></b></font></td>
+                              <td style="border:1px teal solid">PHP {{number_format ($mstyle->dblPatternPrice , 2)}}</td>
+                              <td style="border:1px teal solid"></td>
+                              <td style="border:1px teal solid"></td>  
+                            </tr>
+                          @endforeach
+                        @endif
+                         @if($wsegment == 1)
+                          <tr style="border:1px teal solid">
+                            <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)">{{$wqty}}<b></b></td>
+                            <td style="border:1px teal solid; padding-left:5%; padding-right:5%; background-color:rgba(52, 162, 232, 0.2)"><b>{{$wname}}</b></td>
+                            <td style="padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"></td>
+                            <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>PHP {{number_format($wprice, 2)}}</b></td>
+                            <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>PHP {{number_format($wlinetotal, 2)}}</b></td>
+                            <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b></b>PHP {{number_format($wtotal, 2)}}</td>
+                          </tr>
+                          <tr style="border:1px teal solid">
+                            <td style="border:1px teal solid"></td>
+                            <td style="border:none; color:teal; padding-left:10%">Fabric Name</td>
+                            <td style="padding-left:4%; padding-right:4%; border:1px teal solid">{{$wfname}}</td>
+                            <td style="border:1px teal solid">PHP {{number_format($wfprice, 2)}}</td>
+                            <td style="border:1px teal solid"></td>
+                            <td style="border:1px teal solid"></td>
+                          </tr>
+
+                          @foreach($wstyles as $wstyle)
+                            <tr style="border:1px teal solid">
+                              <td style="border:1px teal solid"></td>
+                              <td class="right" style="border:none; color:teal; padding-right:10%">Style Name and Pattern</td>
+                              <td style="border:1px teal solid"> <br> <font color="gray"><b><i>{{$wstyle->strSegStyleName}} {{$wstyle->strSegPName}}</i></b></font></td>
+                              <td style="border:1px teal solid">PHP {{number_format ($wstyle->dblPatternPrice , 2)}}</td>
+                              <td style="border:1px teal solid"></td>
+                              <td style="border:1px teal solid"></td>  
+                            </tr>
+                          @endforeach
+                        @endif
                     
                       </tbody>
                     </table>         

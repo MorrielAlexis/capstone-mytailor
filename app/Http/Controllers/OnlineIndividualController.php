@@ -121,15 +121,14 @@ class OnlineIndividualController extends Controller
     public function menstylecollar(Request $request)
     {
 
-        $mendata_fabric = $request->input('rdb_fabric');
-        session(['menfabric' => $mendata_fabric]);
+        $mfabric = $request->input('mfabric');
+        session(['mfabric' => $mfabric]);
 
-        $mfname = $request->input('mfname');
-        session(['mfname' => $mfname]);
+        // $mfname = $request->input('mfname');
+        // session(['mfname' => $mfname]);
 
-        $mfprice = $request->input('mfprice');
-        session(['mfprice' => $mfprice]);
-
+        // $mfprice = $request->input('mfprice');
+        // session(['mfprice' => $mfprice]);
         $contrast = Fabric::all();
         $fabricThreadCounts = FabricThreadCount::all();
         $fabricColors = FabricColor::all();
@@ -143,12 +142,13 @@ class OnlineIndividualController extends Controller
                     ->where('a.strFabricID', $request->input('rdb_fabric'))
                     ->get();
 
+        // dd(session()->get('mensegment_data'));
         $garmentKey = 'Men Shirt';
         $segment = \DB::table('tblSegment')
                     ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
                     ->select('tblSegment.*', 'tblGarmentCategory.strGarmentCategoryName')
                     ->where('tblGarmentCategory.strGarmentCategoryName', 'LIKE', '%'.$garmentKey.'%')
-                    ->where('tblGarmentCategory.strGarmentCategoryName', 'LIKE', '%'. $data_segment = $request->input('menshirt').'%')
+                    ->where('tblSegment.strSegmentID', '=', session()->get('mensegment_data'))
                     ->orderBy('strSegmentID')
                     ->get();
 
@@ -174,10 +174,9 @@ class OnlineIndividualController extends Controller
     {
         $mcollar = [];
 
-        session(['mencollar' => $mcollar]);
 
-        $mendata_collar = $request->input('rdb_pattern');
-        session(['mencollar' => $mendata_collar]);
+        $mcollar = $request->input('mcollar');
+        session(['mcollar' => $mcollar]);
 
         $contrast = Fabric::all();
         $fabricThreadCounts = FabricThreadCount::all();
@@ -191,6 +190,7 @@ class OnlineIndividualController extends Controller
                     ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
                     ->select('tblSegment.*', 'tblGarmentCategory.strGarmentCategoryName')
                     ->where('tblGarmentCategory.strGarmentCategoryName', 'LIKE', '%'.$garmentKey.'%')
+                    ->where('tblSegment.strSegmentID', '=', session()->get('mensegment_data'))
                     ->orderBy('strSegmentID')
                     ->get();
 
@@ -251,6 +251,7 @@ class OnlineIndividualController extends Controller
                     ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
                     ->select('tblSegment.*', 'tblGarmentCategory.strGarmentCategoryName')
                     ->where('tblGarmentCategory.strGarmentCategoryName', '=', $garmentKey)
+                    ->where('tblSegment.strSegmentID', '=', session()->get('mensegment_data'))
                     ->orderBy('strSegmentID')
                     ->get();
 
@@ -364,10 +365,11 @@ class OnlineIndividualController extends Controller
         $womenquantity = $request->input('womenquantity');
         session(['womenquantity' => $womenquantity]);
 
+
         $wname = $request->input('wname');
         session(['wname' => $wname]);
 
-        // $qty = session()->get('menquantity');
+        // $qty = session()->get('womenquantity');
         // dd($qty);
 
         $wsegprice = $request->input('wsegprice');
@@ -399,8 +401,14 @@ class OnlineIndividualController extends Controller
 
         session(['womenfabric' => $wfabric]);
 
-        $womendata_fabric = $request->input('rdb_fabric');
-        session(['womenfabric' => $womendata_fabric]);
+        $womendata_fabric = $request->input('wfabric');
+        session(['wfabric' => $womendata_fabric]);
+
+        $mfname = $request->input('mfname');
+        session(['mfname' => $mfname]);
+
+        $mfprice = $request->input('mfprice');
+        session(['mfprice' => $mfprice]);
 
         $contrast = Fabric::all();
         $fabricThreadCounts = FabricThreadCount::all();
@@ -447,8 +455,10 @@ class OnlineIndividualController extends Controller
 
         session(['womencollar' => $wcollar]);
 
-        $womendata_collar = $request->input('wcollar');
-        session(['womencollar' => $womendata_collar]);
+        $wcollar = $request->input('wcollar');
+        session(['wcollar' => $wcollar]);
+
+
 
         $contrast = Fabric::all();
         $fabricThreadCounts = FabricThreadCount::all();
@@ -496,8 +506,17 @@ class OnlineIndividualController extends Controller
                 ->with('sleeves', $sleeves);
     }    
 
-    public function womenstylebuttons()
+    public function womenstylebuttons(Request $request)
     {
+
+        $wsleeve = $request->input('wsleeve');
+
+        session(['wsleeve' => $wsleeve]);
+
+        $wcuff = $request->input('wcuff');
+        session(['wcuff' => $wcuff]);
+
+
         $buttonthreads = Thread::all();
         $buttons = Button::all();
 
@@ -579,6 +598,20 @@ class OnlineIndividualController extends Controller
                 ->with('fabricPatterns', $fabricPatterns)
                 ->with('plackets', $plackets);
     } 
+
+    public function womenCustomize(Request $request)
+    {
+       $wpocket = [];
+
+        session(['wpocket' => $wpocket]);
+
+        $wpocket = $request->input('pocket');
+        session(['wpocket' => $wpocket]);
+
+         // dd($wpocket);
+
+        return redirect('shopping-cart');
+    }
 
 
     public function pantschoose()
@@ -911,19 +944,23 @@ class OnlineIndividualController extends Controller
         $women = '';
         $pants = '';
         $suits = '';
-        $mquantity = '';
 
         // $request->session()->flush();
 
         $men = session()->get('mensegment_data');
-        $mquantity = session()->get('menquantity');
+        $mqty = session()->get('menquantity');
 
         $women = session()->get('womensegment_data');
+        $wqty = session()->get('womenquantity');
+
 
         $pants = session()->get('pantssegment_data');
+        $pqty = session()->get('pantsquantity');
 
         $suit = session()->get('suitssegment_data');
+        $sqty = session()->get('suitquantity');
 
+        // dd($men,$women,$pants,$suit);
 
 
         if($men == null && $women == null && $pants == null && $suit == null){
@@ -940,7 +977,7 @@ class OnlineIndividualController extends Controller
             $selected = \DB::table('tblSegment')
                     ->leftJoin('tblGarmentCategory', 'tblGarmentCategory.strGarmentCategoryID', '=', 'tblSegment.strSegCategoryFK')
                     ->select('tblSegment.*', 'tblGarmentCategory.*')
-                    ->where('strSegmentID', '=' ,$women)
+                    ->where('strSegmentID', '=', $women)
                     ->get();
 
 
@@ -957,7 +994,7 @@ class OnlineIndividualController extends Controller
 
             return view('online.ordernow')
             ->with('selecteds',$selected)
-            ->with('mquantity', $mquantity);
+            ->with('mqty', $mqty);
         }
 
          else if($men == null && $women == null && $pants != null && $suit == null){
@@ -1002,8 +1039,11 @@ class OnlineIndividualController extends Controller
                     ->orwhere('strSegmentID', '=', $women)
                     ->get();
 
+
             return view('online.ordernow')
-            ->with('selecteds',$selected);
+            ->with('selecteds',$selected)
+            ->with('mqty', $mqty)
+            ->with('wqty', $wqty);
         }
 
         else if($men == null && $women != null && $pants == null && $suit != null){
@@ -1109,7 +1149,7 @@ class OnlineIndividualController extends Controller
         }
     } 
 
-     public function info()
+     public function info(Request $request)
     {   
 
         $joID = \DB::table('tblJobOrder')
@@ -1147,6 +1187,8 @@ class OnlineIndividualController extends Controller
         session(['joID' => $newID]);
 
 
+        // $request->session()->flush();
+        
         return view('online.individual-checkout-info')                   
                     ->with('joID', $newID)
                     ->with('custID', $custID);
@@ -1158,7 +1200,6 @@ class OnlineIndividualController extends Controller
 
         // $mendata_collar = $request->input('rdb_pattern');
         // session(['mencollar' => $mendata_collar]);
-
 
         $individual = Individual::create(array(
                     'strIndivID' =>  session()->get('custID'),
@@ -1186,96 +1227,7 @@ class OnlineIndividualController extends Controller
         return redirect('checkout-payment');
     }
 
-    public function payment(Request $request)
-    {
-        $men = '';
-        $women = '';
-        $suits = '';
-        $pants = '';
-       
-        $joID = session()->get('joID');
-
-        $men = session()->get('mensegment_data');
-
-        $mprice = session()->get('mprice');
-
-        $mfname= session()->get('mfname');
-
-        $mfprice = session()->get('mfprice');
-
-        $mpocket = session()->get('menpocket');
-
-        $mcollar = session()->get('mencollar');
-
-        $mqty = session()->get('menquantity');
-
-        $mname = session()->get('mname');
-
-        $women = session()->get('womensegment_data');
-
-        $suits = session()->get('suitsegment_data');
-
-        $pants = session()->get('pantssegment_data');
-
-        $vat = \DB::table('tblVat')
-                    ->select('tblVat.dblTaxPercentage')
-                    ->where('strTaxName', '=', 'Value Added Tax')
-                    ->get();
-
-
-        if ($men != null) {
-
-             $styles = \DB::table('tblSegmentPattern')
-                    ->leftjoin('tblSegmentStyleCategory', 'tblSegmentPattern.strSegPStyleCategoryFK', '=', 'tblSegmentStyleCategory.strSegStyleCatID')
-                    ->select('tblSegmentPattern.*', 'tblSegmentStyleCategory.*')
-                    ->where('strSegPatternID', '=', $mcollar)
-                    ->orwhere('strSegPatternID', '=', $mpocket)
-                    ->get();
-        
-
-            $mstylePrice = 0.00;
-            
-            for($i = 0; $i < count($styles); $i++)
-            {
-                $mstylePrice += $styles[$i]->dblPatternPrice;
-            }
-
-            $mlinetotal = 0.00;
-            $mlinetotal = $mstylePrice + $mprice + $mfprice;
-
-            $mtotal = $mqty * $mlinetotal;
-
-            $grand = $mtotal;
-            $totalqty = $mqty;
-
-            session(['grand' => $grand]);
-            session(['totalqty' => $totalqty]);
-
-            $vat_total = ($grand * 12)/100;
-
-            $estimated = $grand - $vat_total;
-
-           
-
-
-            return view('online.individual-checkout-payment')
-                ->with('joID', $joID)
-                ->with('mname', $mname)
-                ->with('mprice', $mprice)
-                ->with('mfname', $mfname)
-                ->with('mfprice', $mfprice)
-                ->with('mqty', $mqty)
-                ->with('styles', $styles)
-                ->with('mlinetotal', $mlinetotal)
-                ->with('mtotal', $mtotal)
-                ->with('grand', $grand)
-                ->with('vat_total', $vat_total)
-                ->with('estimated', $estimated);
-        }
-
-
-    }
-
+    
     public function measuredetails()
     {
         $categories = MeasurementCategory::all();
@@ -1290,12 +1242,10 @@ class OnlineIndividualController extends Controller
 
 
         $segments  = \DB::table('tblSegment')
-                    ->select('strSegmentName')
+                    ->select('strSegmentName', 'strSegmentID', 'strSegmentImage')
                     ->where('strSegmentID', '=', $men)
                     ->orwhere('strSegmentID', '=' ,$women)
                     ->get();
-
-                    dd($segments);
 
         $measurements = \DB::table('tblMeasurementCategory AS a')
                     ->leftJoin('tblMeasurementDetail AS b', 'a.strMeasurementCategoryID', '=', 'b.strMeasCategoryFK')
@@ -1308,8 +1258,244 @@ class OnlineIndividualController extends Controller
         return view('online.individual-checkout-measurement')
             ->with('categories', $categories)
             ->with('measurements', $measurements)
+            ->with('segments', $segments)
             ->with('standard_categories', $standardSizeCategory);
     }
+
+    public function payment(Request $request)
+    {
+
+        $men = '';
+        $women = '';
+        $suits = '';
+        $pants = '';
+       
+        $joID = session()->get('joID');
+
+        $men = session()->get('mensegment_data');
+
+        $mprice = session()->get('mprice');
+
+        $mfabric= session()->get('mfabric');
+
+        $mpocket = session()->get('menpocket');
+
+        $mcollar = session()->get('mcollar');
+
+        $mqty = session()->get('menquantity');
+
+        $mname = session()->get('mname');
+
+
+        $women = session()->get('womensegment_data');
+
+        $wprice = session()->get('wprice');
+
+        $wname = session()->get('wname');
+
+        $wqty = session()->get('womenquantity');
+
+        $wprice =  session()->get('wprice');
+
+        $wfabric = session()->get('wfabric');
+
+        $wcollar = session()->get('wcollar');
+
+        $wpocket = session()->get('wpocket');
+
+        $wcuff = session()->get('wcuff');
+
+        $wsleeve = session()->get('wsleeve');
+
+        $suits = session()->get('suitsegment_data');
+
+        $pants = session()->get('pantssegment_data');
+
+        $vat = \DB::table('tblVat')
+                    ->select('tblVat.dblTaxPercentage')
+                    ->where('strTaxName', '=', 'Value Added Tax')
+                    ->get();
+
+
+        if ($men != null && $women == null)
+        {
+
+                $msegment = 1;
+                $wsegment = 0;
+                $mstyles = \DB::table('tblSegmentPattern')
+                        ->leftjoin('tblSegmentStyleCategory', 'tblSegmentPattern.strSegPStyleCategoryFK', '=', 'tblSegmentStyleCategory.strSegStyleCatID')
+                        ->select('tblSegmentPattern.*', 'tblSegmentStyleCategory.*')
+                        ->where('strSegPatternID', '=', $mcollar)
+                        ->orwhere('strSegPatternID', '=', $mpocket)
+                        ->get();
+
+                $mfprice = 0.00;
+                $mfname ='';
+
+                $menfabric = \DB::table('tblFabric')
+                        ->select('tblFabric.*')
+                        ->where('strFabricID', '=', $mfabric)
+                        ->get();
+
+
+                for($i = 0; $i < count($menfabric); $i++)
+                {
+                    $mfname = $menfabric[$i]->strFabricName;
+                    $mfprice = $menfabric[$i]->dblFabricPrice;
+                }
+                
+                $mstylePrice = 0.00;
+                
+                for($i = 0; $i < count($mstyles); $i++)
+                {
+                    $mstylePrice += $mstyles[$i]->dblPatternPrice;
+                }
+
+                $mlinetotal = 0.00;
+
+                $mlinetotal = $mstylePrice + $mprice + $mfprice;
+
+                $mtotal = $mqty * $mlinetotal;
+
+                $grand = $mtotal;
+                $totalqty = $mqty;
+
+                session(['grand' => $grand]);
+                session(['totalqty' => $totalqty]);
+
+                $vat_total = ($grand * 12)/100;
+
+                $estimated = $grand - $vat_total;
+
+               
+
+
+                return view('online.individual-checkout-payment')
+                    ->with('joID', $joID)
+                    ->with('mname', $mname)
+                    ->with('mprice', $mprice)
+                    ->with('mfname', $mfname)
+                    ->with('mfprice', $mfprice)
+                    ->with('mqty', $mqty)
+                    ->with('mstyles', $mstyles)
+                    ->with('mlinetotal', $mlinetotal)
+                    ->with('mtotal', $mtotal)
+                    ->with('grand', $grand)
+                    ->with('vat_total', $vat_total)
+                    ->with('estimated', $estimated)
+                    ->with('msegment', $msegment)
+                    ->with('wsegment', $wsegment);
+        }
+        else if ($men != null && $women != null)
+        {
+            $mstyles = \DB::table('tblSegmentPattern')
+                        ->leftjoin('tblSegmentStyleCategory', 'tblSegmentPattern.strSegPStyleCategoryFK', '=', 'tblSegmentStyleCategory.strSegStyleCatID')
+                        ->select('tblSegmentPattern.*', 'tblSegmentStyleCategory.*')
+                        ->where('strSegPatternID', '=', $mcollar)
+                        ->orwhere('strSegPatternID', '=', $mpocket)
+                        ->get();
+            
+            $menfabric = \DB::table('tblFabric')
+                        ->select('tblFabric.*')
+                        ->where('strFabricID', '=', $mfabric)
+                        ->get();
+
+                for($i = 0; $i < count($menfabric); $i++)
+                {
+                    $mfname = $menfabric[$i]->strFabricName;
+                    $mfprice = $menfabric[$i]->dblFabricPrice;
+                }
+
+
+            $womenfabric = \DB::table('tblFabric')
+                        ->select('tblFabric.*')
+                        ->where('strFabricID', '=', $wfabric)
+                        ->get();
+
+                for($i = 0; $i < count($menfabric); $i++)
+                {
+                    $wfname = $womenfabric[$i]->strFabricName;
+                    $wfprice = $womenfabric[$i]->dblFabricPrice;
+                }    
+
+                $mstylePrice = 0.00;
+                
+                for($i = 0; $i < count($mstyles); $i++)
+                {
+                    $mstylePrice += $mstyles[$i]->dblPatternPrice;
+                }
+
+                $mlinetotal = 0.00;
+                $mlinetotal = $mstylePrice + $mprice + $mfprice;
+
+                $wstyles = \DB::table('tblSegmentPattern')
+                        ->leftjoin('tblSegmentStyleCategory', 'tblSegmentPattern.strSegPStyleCategoryFK', '=', 'tblSegmentStyleCategory.strSegStyleCatID')
+                        ->select('tblSegmentPattern.*', 'tblSegmentStyleCategory.*')
+                        ->where('strSegPatternID', '=', $wpocket)
+                        ->orwhere('strSegPatternID', '=', $wcollar)
+                        ->orwhere('strSegPatternID', '=', $wcuff)
+                        ->orwhere('strSegPatternID', '=', $wsleeve)
+                        ->get();
+
+                $wstylePrice = 0.00;
+                
+                for($i = 0; $i < count($wstyles); $i++)
+                {
+                    $wstylePrice += $wstyles[$i]->dblPatternPrice;
+                }
+
+                $wlinetotal = 0.00;
+                $wlinetotal = $wstylePrice + $wprice + $wfprice;
+
+                $wtotal = $wqty * $wlinetotal;
+
+                $mtotal = $mqty * $mlinetotal;
+
+                $grand = $mtotal + $wtotal;
+                $totalqty = $mqty + $wqty;
+
+                session(['grand' => $grand]);
+                session(['totalqty' => $totalqty]);
+
+                $vat_total = ($grand * 12)/100;
+
+                $estimated = $grand - $vat_total;
+
+                $msegment = 1;
+                $wsegment = 1;
+               
+
+
+                return view('online.individual-checkout-payment')
+                    ->with('joID', $joID)
+                    ->with('mname', $mname)
+                    ->with('wname', $wname)
+                    ->with('mprice', $mprice)
+                    ->with('wprice', $wprice)
+                    ->with('mfname', $mfname)
+                    ->with('mfprice', $mfprice)
+                     ->with('mname', $mname)
+                    ->with('mprice', $mprice)
+                    ->with('wfname', $wfname)
+                    ->with('wfprice', $wfprice)
+                    ->with('mqty', $mqty)
+                    ->with('wqty', $wqty)
+                    ->with('mstyles', $mstyles)
+                    ->with('wstyles', $wstyles)
+                    ->with('mlinetotal', $mlinetotal)
+                    ->with('wlinetotal', $wlinetotal)
+                    ->with('mtotal', $mtotal)
+                    ->with('wtotal', $wtotal)
+                    ->with('grand', $grand)
+                    ->with('vat_total', $vat_total)
+                    ->with('estimated', $estimated)
+                    ->with('msegment', $msegment)
+                    ->with('wsegment', $wsegment);
+        }
+
+
+    }
+
 
     public function saveOrder(Request $request)
     {
@@ -1372,7 +1558,7 @@ class OnlineIndividualController extends Controller
 
             $jobOrder->save();
 
-        if($men != null)
+        if($men != null && $women == null)
         {
 
 
@@ -1425,6 +1611,10 @@ class OnlineIndividualController extends Controller
                         $jobOrderSpecificsPattern->save();
 
                     }
+
+        }
+        elseif($men != null && women != null)
+        {
 
         }
 

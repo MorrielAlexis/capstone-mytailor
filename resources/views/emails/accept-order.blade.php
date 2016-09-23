@@ -6,7 +6,7 @@
     <body>
         <h2>Hi {{$name}}, </h2>
         <br>
-        <p>Good day! This is to inform you that your online order is already confirmed and currently being processed. Your order/s have been processed at [time]. Any concerns, changes and/or additions to your order, please contact us through our hotline [set phone here] or email us at [mytailorsystems@gmail.com]. You have 1 day parameter to change or add your order.</p>
+        <p>Good day! This is to inform you that your online order is already confirmed and currently being processed. Your order/s have been processed at {{$time}}. Any concerns, changes and/or additions to your order, please contact us through our hotline [set phone here] or email us at [mytailorsystems@gmail.com .</p>
 
         <div>
           <h2>Customer Details</h2>
@@ -14,7 +14,7 @@
           <b>JO Number:{{$order}} </b><br>
           <b>Name:{{$name}} </b><br>
           <b>Email:{{$email}} </b><br>
-          <b>Mobile Number:{{-- {{$cpNo}} --}} </b><br>
+          <b>Mobile Number:{{$cpNo}} </b><br>
           <b>Address: {{$address}}</b><br><br>
         </div>
 
@@ -37,7 +37,7 @@
                            <td>{{$segment}}</td>
                            <td hidden>{{$intQuantity}}</td>
                            <td>{{$fabric}}</td>
-                           <td>{{-- {{$unitPrice}} --}}</td>
+                           <td>{{$unitPrice}}</td>
                            <!--<td> </td>-->
                         </tr>
                         

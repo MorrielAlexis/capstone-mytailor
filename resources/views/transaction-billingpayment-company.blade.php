@@ -222,8 +222,8 @@
 											                        		<tr style="border:1px teal solid">
 											                        			<th style="border:1px teal solid">Quantity</th>
 											                        			<th style="border:1px teal solid">Package Name</th>
-											                        			<th style="border:1px teal solid; border-bottom:none">Unit Price</th>
-											                        			<th style="border:1px teal solid">Total Price</th>
+											                        			<!-- <th style="border:1px teal solid; border-bottom:none">Unit Price</th>
+											                        			<th style="border:1px teal solid">Total Price</th> -->
 											                        		</tr>
 											                        		<!-- <tr style="border:1px teal solid">
 											                        			<th style="border:1px teal solid; border-top:none"></th>
@@ -237,12 +237,12 @@
 											                        	@foreach($payments as $payment)
 											                        		@if($payment->strTransactionFK == $customer_info->strJobOrderID)
 											                        		<tr style="border:1px teal solid">
-											                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>{{ $payment->intQuantity }}</b></td>
-											                        			<td style="border:1px teal solid; padding-left:5%; padding-right:5%; background-color:rgba(52, 162, 232, 0.2)"><b>{{ $payment->strPackageName }}</b></td>
+											                        			<td style="border:1px teal solid"><b>{{ $payment->intQuantity }}</b></td>
+											                        			<td style="border:1px teal solid; padding-left:5%; padding-right:5%"><b>{{ $payment->strPackageName }}</b></td>
 											                        			<!-- <td style="padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"></td> -->
 											                        			<!-- <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b></b></td> -->
-											                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($payment->dblPackagePrice, 2) }}</b></td>
-											                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($payment->dblPackagePrice * count($payment->strPackageName), 2) }}</b></td>
+											                        			<!-- <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($payment->dblPackagePrice, 2) }}</b></td>
+											                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($payment->dblPackagePrice * count($payment->strPackageName), 2) }}</b></td> -->
 											                        		</tr>
 											                        		<!-- <tr>
 											                        			<td style="border-left:1px teal solid;"></td>
@@ -386,7 +386,7 @@
 
 													<div class="col s12">
 													<center><font color="gray" size="-1">Recent payment(s) made for this job order:</font></center>
-														<table class="table centered" style="font-size:12px; font-weight:bold">
+														<table class="table centered" style="font-size:15px; font-weight:bold">
 															<thead style="color:gray">
 																<tr>
 																	<th>Payment ID</th>
