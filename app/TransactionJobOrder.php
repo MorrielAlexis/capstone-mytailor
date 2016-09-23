@@ -24,7 +24,10 @@ class TransactionJobOrder extends Model
     						'dtExpectedDeliveryDate',
     						'dtFinished',
     						'dtDelivered',
-    						'boolIsActive');
+
+    						'boolIsActive',
+                            'boolIsOnline');
+
 
     public function joSpecifics()
     {

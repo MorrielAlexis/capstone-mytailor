@@ -271,10 +271,10 @@ class SegmentPatternSeeder extends Seeder
             array(
                 'strSegPatternID' => 'SPAT0026',
                 'strSegPStyleCategoryFK' => 'SEGSTY019',
-                'strSegPName'=>' LS - Vertical Pockets ',
+                'strSegPName'=>' LS - Round Cut ',
                 'dblPatternPrice' => '50',
-                'txtSegPDesc' => 'Pants pockets vertically cut',
-                'strSegPImage' => 'imgDesignPatterns/verticalpantspockets.jpg',
+                'txtSegPDesc' => 'A pocket on a shirt that has round cut.',
+                'strSegPImage' => 'imgDesignPatterns/pocket_round_cut.jpg',
                 'boolIsActive' => '1' 
                
             ),
@@ -283,10 +283,10 @@ class SegmentPatternSeeder extends Seeder
             array(
                 'strSegPatternID' => 'SPAT0027',
                 'strSegPStyleCategoryFK' => 'SEGSTY019',
-                'strSegPName'=>' LS -  Portofino ',
-                'dblPatternPrice' => '50',
-                'txtSegPDesc' => 'A cuff that is a portofino.',
-                'strSegPImage' => 'imgDesignPatterns/portofino.jpg',
+                'strSegPName'=>' LS - V-Shaped Cut ',
+                'dblPatternPrice' => '0',
+                'txtSegPDesc' => 'A pocket on a shirt that has v-shaped cut.',
+                'strSegPImage' => 'imgDesignPatterns/pocket_vshaped.jpg',
                 'boolIsActive' => '1' 
                 
             ),
@@ -295,10 +295,10 @@ class SegmentPatternSeeder extends Seeder
             array(
                 'strSegPatternID' => 'SPAT0028',
                 'strSegPStyleCategoryFK' => 'SEGSTY019',
-                'strSegPName'=>' LS - French Square ',
-                'dblPatternPrice' => '50',
-                'txtSegPDesc' => 'A cuff that is a french square.',
-                'strSegPImage' => 'imgDesignPatterns/french-square.jpg',
+                'strSegPName'=>' LS - Angle Cut ',
+                'dblPatternPrice' => '40',
+                'txtSegPDesc' => 'A pocket with angles on its edge.',
+                'strSegPImage' => 'imgDesignPatterns/pocket_angle_cut.jpg',
                 'boolIsActive' => '1' 
             ),
 
@@ -606,20 +606,20 @@ class SegmentPatternSeeder extends Seeder
             array(
                 'strSegPatternID' => 'SPAT0059',
                 'strSegPStyleCategoryFK' => 'SEGSTY005',
-                'strSegPName'=>' Portofino ',
-                'dblPatternPrice' => '50',
-                'txtSegPDesc' => 'A cuff that is a portofino.',
-                'strSegPImage' => 'imgDesignPatterns/portofino.jpg',
+                'strSegPName'=>'Normal Fit',
+                'dblPatternPrice' => '10',
+                'txtSegPDesc' => 'Recommended fit for slim people.',
+                'strSegPImage' => '',
                 'boolIsActive' => '1' 
             ),
 
             array(
                 'strSegPatternID' => 'SPAT0060',
                 'strSegPStyleCategoryFK' => 'SEGSTY005',
-                'strSegPName'=>' Round Cut ',
-                'dblPatternPrice' => '50',
-                'txtSegPDesc' => 'A cuff that is a round cut.',
-                'strSegPImage' => 'imgDesignPatterns/round-cut-1-button.jpg',
+                'strSegPName'=>' Loose Fit ',
+                'dblPatternPrice' => '20',
+                'txtSegPDesc' => 'Recommended fit for chubby people.',
+                'strSegPImage' => '',
                 'boolIsActive' => '1' 
             ),
 

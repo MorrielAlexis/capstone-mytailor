@@ -89,7 +89,6 @@
 
       </div>
      
-      <center><span class="red-text"><font size="+1">Click fabric photo to view fabric in detail</font></span></center>
       <div class="col s12 divider dashed" style="height:4px; margin-top:10px; margin-bottom:10px;"></div>
       
       
@@ -103,6 +102,10 @@
             <input name="rdb_fabric" type="radio" class="filled-in" value = "{{$fabric->strFabricID}}" id="{{$fabric->strFabricID}}" />
             <label for="{{$fabric->strFabricID}}"></label>
           </div>
+
+          <input type="hidden" value="{{$fabric->strFabricName}}" name="mfname">
+          <input type="hidden" value="{{$fabric->dblFabricPrice}}" name="mfprice">
+
           <div class="col s10">
             <div class="card-panel teal lighten-4 z-depth-1" style="height:265px">
               <div class="row valign-wrapper">
@@ -126,8 +129,6 @@
       {!! Form::close() !!}
       
       <div class="col s12 divider dashed" style="height:4px; margin-bottom:10px;"></div>
-      <center><span class="red-text"><font size="+1">Click fabric photo to view fabric in detail</font></span></center>
-
     </div>
     </div>
 
@@ -137,10 +138,6 @@
 @section('scripts')
 
   <script>
-    
-    $(document).ready(function(){
-      $('.modal-trigger').leanModal();
-    });
 
     $(document).ready(function(){
       $('.materialboxed').materialbox();
