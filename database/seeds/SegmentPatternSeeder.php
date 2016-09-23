@@ -606,20 +606,20 @@ class SegmentPatternSeeder extends Seeder
             array(
                 'strSegPatternID' => 'SPAT0059',
                 'strSegPStyleCategoryFK' => 'SEGSTY005',
-                'strSegPName'=>' Portofino ',
-                'dblPatternPrice' => '50',
-                'txtSegPDesc' => 'A cuff that is a portofino.',
-                'strSegPImage' => 'imgDesignPatterns/portofino.jpg',
+                'strSegPName'=>'Normal Fit',
+                'dblPatternPrice' => '10',
+                'txtSegPDesc' => 'Recommended fit for slim people.',
+                'strSegPImage' => '',
                 'boolIsActive' => '1' 
             ),
 
             array(
                 'strSegPatternID' => 'SPAT0060',
                 'strSegPStyleCategoryFK' => 'SEGSTY005',
-                'strSegPName'=>' Round Cut ',
-                'dblPatternPrice' => '50',
-                'txtSegPDesc' => 'A cuff that is a round cut.',
-                'strSegPImage' => 'imgDesignPatterns/round-cut-1-button.jpg',
+                'strSegPName'=>' Loose Fit ',
+                'dblPatternPrice' => '20',
+                'txtSegPDesc' => 'Recommended fit for chubby people.',
+                'strSegPImage' => '',
                 'boolIsActive' => '1' 
             ),
 
