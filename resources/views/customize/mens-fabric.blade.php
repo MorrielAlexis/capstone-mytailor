@@ -103,9 +103,6 @@
             <label for="{{$fabric->strFabricID}}"></label>
           </div>
 
-          <input type="hidden" value="{{$fabric->strFabricName}}" name="mfname">
-          <input type="hidden" value="{{$fabric->dblFabricPrice}}" name="mfprice">
-
           <div class="col s10">
             <div class="card-panel teal lighten-4 z-depth-1" style="height:265px">
               <div class="row valign-wrapper">
