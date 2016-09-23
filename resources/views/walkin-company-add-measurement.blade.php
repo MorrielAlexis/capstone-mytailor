@@ -73,12 +73,12 @@
 									</div>
 									<div class="col s12"><div class="divider" style="height:2px; background-color:#e0f2f1"></div></div>
 
-									<div class="col s12" style="margin-top:3%;">
+								<!--	<div class="col s12" style="margin-top:3%;">
 										<div class="col s4"><p><b>Measurement Type</b></p></div>
 										<div class="col s8">		
-											<select id = "measurement-category">
+											<select class="measurement-category" id="measurement-category{{ $i }}" name="measurement-category">
 												@foreach($measurement_category as $category)
-													<option value="{{ $category->strMeasurementCategoryID }}" class="circle">{{ $category->strMeasurementCategoryName }}</option>
+													<option id="{{ $category->strMeasurementCategoryID }}{{ $i }}" value="{{ $category->strMeasurementCategoryID }}" class="circle">{{ $category->strMeasurementCategoryName }}</option>
 												@endforeach	
 											</select>
 										</div>
@@ -87,13 +87,42 @@
 									@for($j = 0; $j < count($package_segments); $j++)
 										@for($k = 0; $k < count($package_segments[$j]); $k++)
 											@if($package_ordered[$i] == $package_segments[$j][$k]->strPackageID)
-												<div class="col s12" style="margin-top:3%; margin-bottom:5%; padding-left:3%; padding-right:3%">
-													<div>{{ $package_segments[$j][$k]->strSegmentName }}</div>
+												<div class="col s12" id="MEASCAT001{{ $i }}" style="margin-top:3%; margin-bottom:5%; padding-left:3%; padding-right:3%">
+													<div><font color="teal" size="+2"><b>{{ $package_segments[$j][$k]->strSegmentName }}</b></font></div>
+														<div class="center col s6">
+															<div class="right col s6">
+																<select id = "standard-fit-type">
+																	<option value="Slim Fit" class="circle">Slim Fit</option>
+																	<option value="Normal Fit" class="circle">Normal Fit</option>
+																	<option value="Loose Fit" class="circle">Loose Fit</option>
+																</select>
+																<label for="standard-fit-type">Choose a fit type:</label>
+															</div>
+															<div class="col s6">
+																<select id = "standard-category">
+																	@foreach($standard_category as $category)
+																		<option value="{{ $category->strStandardSizeCategoryID }}" class="circle">{{ $category->strStandardSizeCategoryName }}</option>
+																	@endforeach	
+																</select>
+																<label for="standard-category">Choose a standard size:</label>
+															</div>
+														</div>
+												</div>
+											@endif
+										@endfor
+									@endfor-->
+
+
+									@for($j = 0; $j < count($package_segments); $j++)
+										@for($k = 0; $k < count($package_segments[$j]); $k++)
+											@if($package_ordered[$i] == $package_segments[$j][$k]->strPackageID)
+												<div class="col s12 measurement" id="MEASCAT002{{ $i }}" style="margin-top:3%; margin-bottom:5%; padding-left:3%; padding-right:3%">
+													<div><font color="teal" size="+2"><b>{{ $package_segments[$j][$k]->strSegmentName }}</b></font></div>
 													@foreach($measurement_detail as $detail)
 														@if($package_segments[$j][$k]->strSegmentID == $detail->strMeasDetSegmentFK)
 															<div class="center col s6">
 																<div class="right col s5">
-																	<right><p><font color="teal"><b>{{ $detail->strMeasDetailName }}<b>(cm)</font></p></right>
+																	<right><p><font color="teal"><b>{{ $detail->strMeasDetailName }}</b> (cm)</font></p></right>
 																</div>
 																<div class="col s7">
 																	<input name="{{ $i }}{{ $k }}[]" id="measure_name" type="text" class="validate" required>
@@ -106,6 +135,7 @@
 											@endif
 										@endfor
 									@endfor
+
 								</div>
 								<div class="modal-footer col s12">
 									<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Close</font></a>
@@ -130,11 +160,12 @@
 @stop
 
 @section('scripts')
+	
 
-<script>
-	$(document).ready(function() {
-	    $('select').material_select();
-	  });       
-</script>
+	<script>
+		$(document).ready(function() {
+		    $('select').material_select();
+		  });       
+	</script>
 
 @stop
