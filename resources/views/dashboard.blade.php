@@ -131,7 +131,7 @@
                 <div class="col s12">
                     <ul id="task-card" class="collection with-header z-depth-3" style="border:0;  height:550px">
                         <li class="collection-header cyan darken-1">
-                            <h3 class="task-card-title white-text">Top Customers</h3>
+                        <h3 style="font-size:40px" class="task-card-title white-text"><i class=" small material-icons">perm_identity</i>Top Customers</h3>
                         </li>
                         @foreach($topCustomers as $topCustomers)
                                 <li class="collection-item dismissable" style="padding:20px;">
@@ -172,7 +172,7 @@
                 <div class="col s12">
                     <ul id="task-card" class="collection with-header z-depth-3" style="border:0;  height:550px">
                         <li class="collection-header green">
-                            <h3 class="task-card-title white-text">Customers with Balance</h3>
+                            <h3 style="font-size:38px" class="task-card-title white-text"><i class=" small material-icons" style="margin-right:10px">recent_actors</i>Customers with Balance</h3>
                         </li>
                         @foreach($results as $results)
                            {{--  @if($results->custName == null) --}}
@@ -193,7 +193,7 @@
                 <div class="col s12">
                     <ul id="task-card" class="collection with-header z-depth-3" style="border:0; height:550px">
                         <li class="collection-header cyan">
-                            <h3 class="task-card-title white-text">Pending Online Orders</h3>
+                            <h3 style="font-size:38px" class="task-card-title white-text"><i class=" small material-icons" style="margin-right:10px">assignment</i>Pending Online Orders</h3>
                         </li>
                         @foreach($joborder as $joborder)
                             @if($joborder->strCompanyName == null)
