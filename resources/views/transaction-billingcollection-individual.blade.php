@@ -108,7 +108,7 @@
 								
 									@if($customer->strPaymentStatus == "Pending")	
 									<tr style="background-color:rgba(54, 162, 235, 0.2)" @if($customer->strJO_CustomerFK != $custs->strIndivID) hidden @endif>	
-										<td class="center"><a class="modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to see order summary" href="#view{{ $customer->strPaymentID }}">{{ $customer->strPaymentID }}</a></td>									
+										<td class="center"><a class="modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to see order summary" href="#view{{ $customer->strPaymentID }}"><b>{{ $customer->strPaymentID }}</b></a></td>									
 										<td class="center">{{ $customer->strJobOrderID }}</td>
 										
 										<td class="center">{{ $customer->fullname }}</td>
@@ -126,7 +126,7 @@
 
 									@elseif($customer->strPaymentStatus != "Pending")	
 									<tr @if($customer->strJO_CustomerFK != $custs->strIndivID) hidden @endif>							
-										<td class="center"><a class="modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to see order summary" href="#view{{ $customer->strPaymentID }}">{{ $customer->strPaymentID }}</a></td>
+										<td class="center"><a class="modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to see order summary" href="#view{{ $customer->strPaymentID }}"><b>{{ $customer->strPaymentID }}</b></a></td>
 										<td class="center">{{ $customer->strJobOrderID }}</td>
 										<!--Modal for order summary-->
 										
