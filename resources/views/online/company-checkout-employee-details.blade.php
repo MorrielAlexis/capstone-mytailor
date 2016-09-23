@@ -2,133 +2,120 @@
 
 @section('content')
 
-    <div class="container" style="width:100%;">
-      <div class="row" style="margin:40px;">
-        <ul class="col s12 breadcrumb">
-          <li><a style="padding-left:100px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Select Fabric</b></a></li>
-          <li><a style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Choose Style</b></a></li>
-          <li><a class="active" style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Step 3: Measurement</b></a></li>
-          <li><a style="padding-left:140px; padding-top:20px; padding-bottom:20px; padding-right:20px;"><b>Check Out</b></a></li>
-        </ul>
-      </div>
-    </div>
-  
-	<div class="container">
-	    <div class="section white row" style="padding:20px; margin-bottom:20px;"> 
 
-	      	<div id="measure-detail" class = "hue col s12" style="padding:20px;">
-	        	<div class="row">
-		            <div class="col s12 m12 l12">
-		                <span class="page-title" style="margin:15px"><center><h5><b>Employee Detail</b></h5></center></span>
-		                <div class="divider" style="height:1px; background-color:#80d8ff"></div>
-		                <div class="divider" style="height:1px; background-color:#80d8ff"></div>
-		            </div>
+<div class="row">
+		<div class="col s12 m12 l12">
 
-		<div class="col s6" style="margin:20px;">
-	        <div style="color:gray" class="col s8"> 
-	          	<div class="col s7"><p style="color:gray; margin-top:5px; font-size:15px"><b>No. of Employees:</b></p></div>                
-	          	<div class="col s5"><center><input class="center" name="num-meas-profile" id="num-meas-profile" type="number" value=""></div>
-	        </div>
-	        <div class="col s2"><a href="" class="btn-flat" style="background-color:teal; color:white; margin-top:10px">Add</a></div>
-	    </div>        
+			<div class="col s12">
+				<ul class="tabs transparent" style="margin-top:15px">
+					<li class="tab col s12" style="border-top-left-radius: 20px; border-top-right-radius: 20px; background-color: #00b0ff;"><a style="color:black; padding-top:5px; opacity:0.80" href="#shoppingCart"></a></li>	
+					<div class="indicator white" style="z-index:1"></div>
+	            </ul>
+				<div id="add-employees" class="card-panel">
+					<div class="card-content">
+						<div class="row">
+							<span class="page-title" style="margin-top:15px"><center><h4 style="color:teal"><b>Company Employees Information</b></h4></center></span>
+							<center><p style="color:gray">(Add necessary detail about the company's employees and distinguish which package suits which.)</p></center>
+							<div class="divider" style="height:3.5px; background-color:teal; margin-bottom:40px"></div>
+							
+								<!--Employee Information starts here-->
+								<div class="col s12" style="margin-bottom:30px">
+									<div class="input-field col s3">
+							          	<input id="" name="empFirstName[]" required type="text" pattern="">
+							          	<label for="empFirstName">First Name</label>
+							        </div>
 
-					<div class="col s12" style="margin-bottom:30px">
-						<div class="input-field col s3">
-				          <input id="first_name" type="text" class="validate">
-				          <label for="first_name">First Name</label>
-				        </div>
+							        <div class="input-field col s3">
+							          	<input id="empLastName" name="empLastName[]" required type="text" pattern="">
+							          	<label for="empLastName">Last Name</label>
+							        </div>
 
-				        <div class="input-field col s3">
-				          <input id="last_name" type="text" class="validate">
-				          <label for="last_name">Last Name</label>
-				        </div>
+							        <div class="input-field col s2">
+							        	<input id="empMiddleName" name="empMiddleName[]" type="text" pattern="">
+							          	<label for="empMiddleName">Middle Name</label>
+							        </div>
 
-				        <div class="input-field col s1">
-				          <input id="middle_initial" type="text" class="validate">
-				          <label for="middle_initial">M.I</label>
-				        </div>
-
-				        <div class="input-field col s1">
-						    <select>
-						      
-						      <option value="1">F</option>
-						      <option value="2">M</option>
-						    </select>
-						    <label>Sex</label>
-						</div>
-
-						<div class="input-field col s2">
-						    <select>
-						      
-						      <option value="1">Men Set A</option>	
-						      <option value="2">Women Set A</option>
-						      <option value="3">Unisex Set A</option>
-						    </select>
-						    <label>Choose a package</label>
-						</div>
-
-						<div class="col s2">
-							<a style="color:black; margin-top:15px" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove employee data from list" href="#removeOrder"><i class="mdi-navigation-close"></i></a>
-							<div id="removeOrder" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:150px">
-								<h5><font color="red"><center><b>Warning!</b></center></font></h5>
-									
-								{!! Form::open() !!}
-								<div class="divider" style="height:2px"></div>
-								<div class="modal-content col s12">
-									<div class="col s3">
-										<i class="mdi-alert-warning" style="font-size:50px; color:red"></i>
+							        <div class="input-field col s1">
+								       
+											    	<input type="hidden" name="empSex[]" value="M">
+													<input type="text" id="empSex" value="Male" readonly>
+											
+											    	<input type="hidden" name="empSex[]" value="F">
+													<input type="text" id="empSex" value="Female" readonly>
+											
 									</div>
-									<div class="col s9">
-										<p><font size="+1">Are you sure to remove this order from cart?</font></p>
-									</div>
-								</div>
 
-								<div class="modal-footer col s12" style="background-color:red; opacity:0.85">
-					                <button type="submit" class="waves-effect waves-green btn-flat" href="#!"><font color="black">Yes</font></button>
-					                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
-					            </div>
-								{!! Form::close() !!}
+									<div class="input-field col s2">
+										
+												<input type="hidden" name="empSet[]" value="" >
+												<input readonly type="text" id="empSet">
+										
+									</div>
+
+									<div class="col s1">
+										<a style="color:white; margin-top:18px;width:100px" class="modal-trigger btn tooltipped blue" data-position="bottom" data-delay="50" data-tooltip="Click to add additional segments from the set purchased" href="#empSpecification"><i class="mdi-editor-mode-edit"></i></a>
+									</div>
+
+									<!--Modal for editing employee -->
+									<div id="empSpecification" class="modal modal-fixed-footer" style="width:70%; height:80%">
+										<h5><font color="teal"><center><b>Employee's Specification</b></center></font></h5>
+										<div class="divider" style="height:2px"></div>
+										<div class="modal-content col s12" style="padding-bottom:10%">
+
+											<div class="col s12">
+												<div class="col s12" style="font-size:1.5em">
+												
+													<p>Package Availed: <font color="red" style="padding-left:5%"><b><i></i></b></font></p>
+													
+												</div>
+												<div class="col s12 z-depth-1">
+													<table class = "table centered" border = "1">
+														<thead>
+															<tr>
+																<th>Item</th>
+																<th>Image</th>
+																<th>Quantity</th>										
+															</tr>
+														</thead>
+
+														<tbody>
+															
+																	<tr>
+																		<td></b></td>
+																		<td><img src=""/></td>
+																		<td><input min=0 name="segment-qty[]" id="add-garment" type="number" value="" style="margin-top:20px" placeholder="How many additional ?" ></td>
+																	</tr>
+																	
+														</tbody>
+													</table>
+												</div>
+											</div>
+
+										</div>
+										
+
+										<div class="modal-footer col s12">
+							                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Close</font></a>	
+							            </div>
+									</div>
+									<!--End of modal for editing employee data-->
 							</div>
-							<a style="color:black; margin-top:15px" class="btn tooltipped btn-floating teal accent-4" data-position="bottom" data-delay="50" data-tooltip="Click to edit the set purchased" href="{{URL::to('/online-company-checkout-edit-set')}}"><i class="mdi-editor-border-color"></i></a>
+							<!--Employee Information ends here-->
+					
+						<div class="col s12"><div class="divider" style="margin-bottom:20px; margin-top:20px"></div>
+			                <a href="{{URL::to('company-checkout')}}" type="submit" class="right waves-effect waves-green btn" style="background-color:teal; margin-right:10px;width:100px"><font color="white">Save</font></a>
+			                <a href="{{URL::to('online/company-checkout-customer-check')}}" class="left modal-action modal-close waves-effect waves-green btn" style="background-color:teal; margin-left:10px;width:100px"><font color="white">Cancel</font></a>
+		            	</div>
+		            
+		            </div>
+					
+				</div>
+
 						</div>
 					</div>
-
-		<!--bottom buttons-->
-          <a href="#cancel-order" class="left btn modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Clears current transaction" style="background-color:teal; padding:9.5px; padding-bottom:45px; color:white">Cancel</a>
-            <div id="cancel-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:80px">
-              <h5><font color="red"><center><b>Warning!</b></center></font></h5>
-                
-              <div class="divider" style="height:2px"></div>
-              <div class="modal-content col s12">
-                <div class="center col s4"><i class="mdi-alert-warning" style="color:red; font-size:60px"></i></div>
-                <div class="col s8"><p style="font-size:18px">Are you sure? Doing this will delete current transaction.</p></div>
-              </div>
-
-              <div class="modal-footer col s12">
-                <a class="waves-effect waves-green btn-flat" href="{{URL::to('/online-home')}}"><font color="black">Yes</font></a>
-                <a href="{{URL::to('/online-company-checkout-measurement')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
-              </div>
-          	</div>
-
-          <a href="{{URL::to('/customize-sets-list-of-orders')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to save employee information and measurement" style="background-color:#00695c; padding:9.5px; padding-bottom:45px; margin-left:30px"><label style="font-size:15px; color:white"><b>Save</b></label></a>
-
-        <!--end of bottom buttons-->					
-
-
-
-	        	</div>
-		    </div>
-
-	    </div>
-  	</div>
-@stop
-
-@section('scripts')
-
-  <script>
-    $(document).ready(function() {
-      $('select').material_select();
-    });
-  </script> 
+				</div>
+			</div>
+		</div>
+	</div>
 
 @stop

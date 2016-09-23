@@ -99,12 +99,9 @@
       <div class="col s12 fabric-general {{ $fabric->strFabricTypeFK }} {{ $fabric->strFabricPatternFK }} {{ $fabric->strFabricColorFK }} {{ $fabric->strFabricThreadCountFK }}" style="margin-bottom:20px; padding:20px; padding-top:0;">
         <div class="col s6">
           <div class="center col s2 " style="margin-top:100px">
-            <input name="fabric" type="radio" class="filled-in" value = "{{$fabric->strFabricID}}" id="{{$fabric->strFabricID}}" />
+            <input name="mfabric" type="radio" class="filled-in" value = "{{$fabric->strFabricID}}" id="{{$fabric->strFabricID}}" />
             <label for="{{$fabric->strFabricID}}"></label>
           </div>
-
-          <input type="hidden" value="{{$fabric->strFabricName}}" name="mfname">
-          <input type="hidden" value="{{$fabric->dblFabricPrice}}" name="mfprice">
 
           <div class="col s10">
             <div class="card-panel teal lighten-4 z-depth-1" style="height:265px">

@@ -53,7 +53,6 @@
                           <div class="row">
                             
                               <div class="col s6">
-                                <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#removeOrder"><i class="mdi-navigation-close"></i></a>
                                 <center><img src="{{$selected->strSegmentImage}}" style="margin:20px;height:275px; width:275x; border:3px gray solid"></center>
                               </div>
                               <div class="col s6">
@@ -108,7 +107,7 @@
         @endforeach
          <div class="divider"></div>
           <div class="col s12" style="padding:30px">
-              <a href="{{URL::to('/online-order-now')}}" class="btn-flat white-text" style="color:white; background-color:teal;">Cancel Transaction</a>
+              <a href="{{URL::to('/cancel-online-order-now')}}" class="btn-flat white-text" style="color:white; background-color:teal;">Cancel Transaction</a>
               <a href="{{URL::to('/online-individual-checkout-measurement')}}" class="right btn-flat white-text red" style="color:white; background-color:teal;">Proceed to MEASUREMENT</a>
           </div>
 

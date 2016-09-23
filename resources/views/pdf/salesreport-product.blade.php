@@ -57,10 +57,21 @@
                 </tr>
             </thead>
             <tbody>
-                <?php $Cumulative = 0; ?>
-                @foreach($data as $value)
-                    <tr>
-                        <td>{{$Name}} {{$value->columnOne}}</td>
+                <?php 
+                        $Cumulative = 0; 
+                        $CurValue = "";
+                      ?>
+                      @foreach($data as $value)
+                      <tr>
+                        <td>
+                        @if($CurValue == $value->columnOne)
+                          {{""}}
+                          <?php $CurValue = $value->columnOne?>
+                        @else
+                          {{$Name}} {{$value->columnOne}}
+                          <?php $CurValue = $value->columnOne?>
+                        @endif
+                        </td>
                         <td>{{$value->strSegmentName}}</td>
                         <td>{{$value->TimesOrdered}}</td>
                         <td class="right-align">{{number_format($value->Amount)}}</td>
