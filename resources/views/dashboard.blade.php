@@ -61,8 +61,6 @@
                                     <div class="card-content deep-purple accent-1 white-text">
                                         <p class="card-stats-title" style="font-size:20px"><i class="mdi-editor-insert-drive-file"></i>Total Job Orders</p>
                                         <h4 class="card-stats-number">{{-- {{$totalSegments->ctr}} --}}</h4>
-                                        {{-- <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-down"></i> 3% <span class="deep-purple-text text-lighten-5">from last month</span>
-                                        </p> --}}
                                     </div>
                                   {{--   @endforeach --}}
                                     <div class="card-action  deep-purple lighten-2" style="height:40px">
@@ -148,7 +146,7 @@
                 <ul id="projects-collection" class="collection z-depth-3" style="height:550px">
                     <li class="collection-item avatar">
                         <i class="mdi-file-folder circle light-blue darken-2"></i>
-                        <span class="collection-header"><font size="+1">JOB ORDER NEAR DUE DATE</font></span>
+                        <span class="collection-header"><font size="+1">JOB ORDER NEAR PAYMENT DUE DATE</font></span>
                         <a href="#" class="secondary-content"><i class="mdi-action-grade"></i></a>
                     </li>
                     @foreach($neardue as $neardue)
