@@ -14,8 +14,7 @@
           <b>JO Number: </b><br>
           <b>Name: </b><br>
           <b>Email: </b><br>
-          <b>Primary Number: </b><br>
-          <b>Alternative Number: </b><br>
+          <b>Mobile Number: </b><br>
           <b>Address: </b><br><br>
         </div>
 
