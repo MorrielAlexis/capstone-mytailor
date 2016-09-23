@@ -47,13 +47,15 @@
 
               <tbody>
               @foreach($onlineJO as $jo)
+               {!! Form::open(['url' => 'transaction/accept-online-customer-individuall', 'method' => 'POST']) !!} 
+                         <input type="hidden" name="customerID" value="{!! $jo->strIndivID !!}"> 
                 <tr>
                   <td>{{$jo->strJobOrderID}}</td>
                   <td>{{$jo->strIndivFName}} {{$jo->strIndivMName}} {{$jo->strIndivLName}}</td>
                   <td>{{$jo->strIndivEmailAddress}}</td>
                   <td>{{'PHP'  . number_format($jo->dblOrderTotalPrice, 2)}}</td>
                   <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating yellow" data-position="bottom" data-delay="50" data-tooltip="Click to view Order Specification" href="#{{$jo->strJobOrderID}}"><i class="mdi-action-view-headline"></i></a>
-                      <a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to accept online order" href="{{URL::to('/acceptIndividual')}}"><i class="mdi-action-done"></i></a>
+                      <a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to accept online order" href="{{URL::to('transaction/accept-online-customer-individual')}}"><i class="mdi-action-done"></i></a>
                       <a class="btn modal-trigger tooltipped btn-floating green" href="#measurementmodal" data-position="top" data-delay="50" data-tooltip="Measurements"><i class="mdi-action-view-headline"></i></a>
                   </td>
                 </tr>
@@ -76,7 +78,7 @@
                                 <th>Segment Name</th>
                                 <th>Quantity</th>
                                 <th>Fabric Type</th>
-                                <th>Design</th>
+                         {{--        <th>Design</th> --}}
                                 <th>Unit Price</th>
                               </tr>
                             </thead>
@@ -86,9 +88,9 @@
                                     <tr>
                                       <td>{{$onlineJOSpec->strSegmentName}}</td>
                                       <td>{{$onlineJOSpec->intQuantity}}</td>
-                                      <td>{{$onlineJOSpec->intQuantity}}</td>
-                                      <td>Collar - Button Down</td>
-                                      <td>{{$onlineJOSpec->dblUnitPrice}}</td>
+                                      <td>{{$onlineJOSpec->strFabricName}}</td>
+                                   {{--    <td>Collar - Button Down</td> --}}
+                                      <td>{{"PHP" . number_format($onlineJOSpec->dblUnitPrice, 2)}}</td>
                                     </tr>
                                {{--  <tr> --}}
                                   @endif
@@ -104,7 +106,7 @@
                       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
                   </div>
               </div>
-
+              {!! Form::close() !!}
             @endforeach
             <div class = "clearfix">
 
