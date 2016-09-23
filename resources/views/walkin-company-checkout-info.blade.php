@@ -134,7 +134,7 @@
 	                <span class="col s12" style="color:teal; margin-top:20px"><b>Company Contact Information</b></span>
                     <div class="card-panel col s12" style="border:3px solid gray; padding:15px">
 	                    <div style="color:black" class="input-field col s12">
-                            <input required id="comp_email" name = "comp_email" type="email" class="validate">
+                            <input required id="comp_email" name = "comp_email" type="email">
                             <label style="color:gray" for="comp_email"><b> *Company Email Address </b></label>
                         </div>
 
