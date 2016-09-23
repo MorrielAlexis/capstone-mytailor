@@ -162,10 +162,10 @@ class CustomerCompanyController extends Controller
 
 
 
-        foreach($checkCompany as $company)
-        if(!strcasecmp($company->strCompanyID, $request->input('editComID')) == 0 &&
-            strcasecmp($company->strCompanyName, trim($request->input('editComName'))) == 0 &&
-            strcasecmp($company->strContactPerson, trim($request->input('editConPerson'))) == 0)
+        foreach($checkCompany as $check)
+        if(!strcasecmp($check->strCompanyID, $request->input('editComID')) == 0 &&
+            strcasecmp($check->strCompanyName, trim($request->input('editComName'))) == 0 &&
+            strcasecmp($check->strContactPerson, trim($request->input('editConPerson'))) == 0)
             $isAdded = TRUE;   
             
 
@@ -210,6 +210,8 @@ class CustomerCompanyController extends Controller
                 $company->strCompanyInactiveReason = trim($request->input('delInactiveComp'));
                 $company->boolIsActive = 0;
                 $company->save();
+
+
 
         \Session::flash('flash_message_delete','Customer successfully deactivated.');
 

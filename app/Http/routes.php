@@ -225,10 +225,11 @@ Route::group(['prefix' => 'transaction'], function(){
 });
 
 Route::group(['prefix' => 'transaction'], function(){
-	Route::resource('online-customer-individual', 'OnlineCustomerIndividualController',
-		['only' => ['index']]);
-	Route::resource('online-customer-company', 'OnlineCustomerCompanyController',
-		['only' => ['index']]);
+	Route::get('online-customer-individual', 'ApproveOnlineCustomerIndividualController@index');
+	//acceptance of order from online module
+	Route::post('accept-online-customer-individual','ApproveOnlineCustomerIndividualController@accept');
+	// Route::resource('online-customer-company', 'ApproveOnlineCustomerCompanyController',
+	// 	['only' => ['index']]);
 });
 
 
@@ -304,8 +305,8 @@ Route::group(['prefix' => 'utilities'], function(){
 		
 });
 
-//acceptance of order from online module
-Route::get('/acceptIndividual','ApproveOnlineCustomerIndividualController@accept');
+// //acceptance of order from online module
+// Route::post('/accept-online-customer-individual','ApproveOnlineCustomerIndividualController@accept');
 Route::get('/rejectIndividual','ApproveOnlineCustomerIndividualController@reject');
 Route::get('/acceptCompany','ApproveOnlineCustomerCompanyController@accept');
 

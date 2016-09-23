@@ -4,8 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Mail;
+use Session;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+
+use App\GarmentCategory;
+use App\SegmentPattern;
+use App\GarmentSegment; 
+use App\Fabric; 
+use App\Individual;
+use App\Company;
+
+use App\TransactionJobOrder;
+use App\TransactionJobOrderSpecifics;
+use App\TransactionJobOrderPayment;
 
 class ApproveOnlineCustomerIndividualController extends Controller
 {
@@ -22,16 +34,70 @@ class ApproveOnlineCustomerIndividualController extends Controller
     
     public function index()
     {
-        return view('transaction-onlinecustomerindividual');
+        $onlineJO = \DB::table('tblJobOrder')
+            ->leftjoin('tblcustindividual', 'tblJobOrder.strJO_CustomerFK', '=', 'tblcustindividual.strIndivID')
+            ->leftjoin('tblcustcompany', 'tblJobOrder.strJO_CustomerCompanyFK', '=', 'tblcustcompany.strCompanyID')
+            ->orderby('tblJobOrder.strJobOrderID')
+            ->select('tblcustindividual.*', 'tblcustcompany.*', 'tblJobOrder.*')
+            // ->where('boolIsOnline', 1)
+            ->get(); 
+
+
+        $onlineJOSpecs = TransactionJobOrderSpecifics::with("onlineJobOrder")->get();
+
+         $JOSpecs = \DB::table('tblJOSpecific')
+            ->join('tblJobOrder', 'tblJobOrder.strJobOrderID', '=', 'tblJOSpecific.strJobOrderFK')
+            ->join('tblSegment', 'tblSegment.strSegmentID', '=', 'tblJOSpecific.strJOSegmentFK')
+            ->join('tblFabric', 'tblFabric.strFabricID', '=', 'tblJOSpecific.strJOFabricFK')
+            ->orderby('tblJOSpecific.strJOSpecificID')
+            ->select('tblJOSpecific.*', 'tblFabric.strFabricName', 'tblSegment.strSegmentName')
+            ->get();   
+
+            // dd($JOSpecs);
+
+            //dd($onlineJO->strJobOrderID);
+        return view('transaction-onlinecustomerindividual')
+            ->with('onlineJO', $onlineJO)
+            ->with('onlineJOSpecs', $JOSpecs);
+
+            
     }
 
-    public function accept()
+    public function accept(Request $request)
     {
-        //$email = 'arianne_spice@yahoo.com';
-        $name = 'Arianne Labtic'; //name ng pagsesendan
-        Mail::send('emails.accept-order', ['name' => $name], function($message) {
-            $message->to('morriel.aquino@yahoo.com', 'Arianne Labtic')->subject('Hello!');
+       $emailContents = \DB::table('tblJobOrder AS a')
+                    ->join('tblCustIndividual AS b', 'a.strJO_CustomerFK', '=', 'b.strIndivID')
+                    ->join('tblJOSpecific as c','a.strJobOrderID',  '=' , 'c.strJobOrderFK')
+                    ->join('tblSegment as d', 'c.strJOSegmentFK', '=' , 'd.strSegmentID')
+                    ->join('tblFabric as e', 'c.strJOFabricFK', '=' , 'e.strFabricID')
+                    ->select(\DB::raw('CONCAT(b.strIndivFName, " " , b.strIndivMName, " " , b.strIndivLName) as custName'),\DB::raw('CONCAT(b.strIndivHouseNo, " ", b.strIndivStreet, " ", b.strIndivBarangay, " ", b.strIndivCity, " ", b.strIndivProvince, " ", b.strIndivZipCode) as address'), 'a.strJobOrderID as transID', 'a.dblOrderTotalPrice AS totalPrice', 'b.strIndivEmailAddress AS custEmail', 'b.strIndivCPNumber AS cpNo', 'd.strSegmentName as segment', 'e.strFabricName as fabric')
+                    ->where('b.strIndivID', $request->input('customerID'))
+                    ->get();
+            
 
+            foreach($emailContents as $Content){
+                $name = $Content->custName;
+                $order = $Content->transID;
+                $totPrice = $Content->totalPrice;
+                $email = $Content->custEmail;
+                $cpNo = $Content->cpNo;
+                $segment = $Content->segment;
+                $fabric = $Content->fabric;
+                $address = $Content->address;
+            }
+             dd($emailContents);
+
+
+
+        Mail::send('emails.accept-order', ['name' => $name, 'order' => $order, 'totPrice' => $totPrice, 'email' => $email, 'cp' => $cpNo, 'segment' => $segment, 'fabric' => $fabric, 'address' => $address], function($message) use($results) {
+
+                foreach($emailContents as $value){
+                    $email = $value->custEmail;  
+                    break;
+                }
+
+                $message->to("$email")->subject('Order Confirmation!'); //sending of email to selected customer
+     
         });
 
          \Session::flash('flash_message','Order accepted! Email successfully sent to customer.'); //flash message

@@ -47,7 +47,7 @@ class AcceptAlterationOnlineController extends Controller
             ->get(); 
         
 
-        $specifics = TransactionNonShopAlterationSpecifics::with("alterationNonShop")->get();
+        $specifics = TransactionNonShopAlterationSpecifics::with("onlineJobOrder")->get();
 
          $onlineAltSpecifics = \DB::table('tblNonShopAlterSpecific')
             ->join('tblNonShopAlteration', 'tblNonShopAlteration.strNonShopAlterID', '=', 'tblNonShopAlterSpecific.strNonShopAlterFK')
@@ -140,8 +140,8 @@ class AcceptAlterationOnlineController extends Controller
                     ->select(\DB::raw('CONCAT(b.strIndivFName, " " , b.strIndivMName, " " , b.strIndivLName) as custName'), 'b.strIndivEmailAddress AS custEmail')
                     ->where('b.strIndivID', $request->input('customerID'))
                     ->get();
-            var_dump($rejects);
-            dd("");
+            // var_dump($rejects);
+            // dd("");
 
 
             foreach( $results as $result){

@@ -260,6 +260,7 @@
         .breadcrumb li a.active{
             background: hsla(186, 95%, 11%, 1);
             color: white;
+            font-weight:bold;
         }
 
         .breadcrumb li a.active:after{
