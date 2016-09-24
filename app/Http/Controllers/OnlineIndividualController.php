@@ -1586,13 +1586,11 @@ class OnlineIndividualController extends Controller
 
         $westDays = $wqty * $wdays;
 
-        dd($orderDate);
+        $dtOrderExpect = Carbon::now()->addDay($mestDays + $westDays);
 
-        $dtOrderExpect = $orderDate + strtotime($mestDays + $westDays);
+        $dtDelivery = Carbon::now()->addDay($mestDays + $westDays + 2);
 
-        dd($dtOrderExpect);
-
-        $wcuff = session()->get('wcuff');
+        $wcuff = session()->get('wcuff'); 
         
         $suits = session()->get('suitsegment_data');
 
@@ -1619,6 +1617,8 @@ class OnlineIndividualController extends Controller
                 'dblOrderTotalPrice' => $grand,
                 'boolIsOrderAccepted' => 1,
                 'dtOrderDate' => $orderDate,
+                'dtOrderExpectedToBeDone' => $dtOrderExpect,
+                'dtExpectedDeliveryDate' => $dtDelivery,
                 'boolIsActive' => 1,
                 'boolIsOnline' => 1
                 

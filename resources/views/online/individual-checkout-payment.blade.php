@@ -52,7 +52,7 @@
                 
                 <label style="font-size:23px; color:teal;"><center><b>ORDER SUMMARY</b></center></label>
                 
-                <div class="col s12 overflow-x" style="min-height:300px; max-height:550px; border: 3px gray solid; padding:3%">
+                <div class="col s12 overflow-x" style="min-height:300px; max-height:40%; border: 3px gray solid; padding:3%">
                   <div class="col s12">                       
                     <div class="col s12" style="margin-bottom:30px"></div>
                     <table class="table centered" border="1">
