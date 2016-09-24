@@ -71,28 +71,28 @@ class ApproveOnlineCustomerIndividualController extends Controller
                     ->select(\DB::raw('CONCAT(b.strIndivFName, " " , b.strIndivMName, " " , b.strIndivLName) as custName'),\DB::raw('CONCAT(b.strIndivHouseNo, " ", b.strIndivStreet, " ", b.strIndivBarangay, " ", b.strIndivCity, " ", b.strIndivProvince, " ", b.strIndivZipCode) as address'), 'a.strJobOrderID as transID', 'a.dblOrderTotalPrice AS totalPrice', 'b.strIndivEmailAddress AS custEmail', 'b.strIndivCPNumber AS cpNo', 'd.strSegmentName as segment', 'e.strFabricName as fabric', 'c.intQuantity as qty', 'c.dblUnitPrice as unitPrice', 'a.dtOrderExpectedToBeDone as expDatetoFinish', 'a.created_at as time')
                     ->where('b.strIndivID', $request->input('customerID'))
                     ->get();
+
             
 
-            foreach($emailContents as $Content){
-                $name = $Content->custName;
-                $order = $Content->transID;
-                $totPrice = $Content->totalPrice;
-                $email = $Content->custEmail;
-                $cpNo = $Content->cpNo;
-                $segment = $Content->segment;
-                $fabric = $Content->fabric;
-                $address = $Content->address;
-                $intQuantity = $Content->qty;
-                $unitPrice = $Content->unitPrice;
-                $expDate = $Content->expDatetoFinish;
-                $time = $Content->time;
+
+            foreach($emailContents as $emailContent){
+                $name = $emailContent->custName;
+                $order = $emailContent->transID;
+                $totPrice = $emailContent->totalPrice;
+                $email = $emailContent->custEmail;
+                $cpNo = $emailContent->cpNo;
+                $segment = $emailContent->segment;
+                $fabric = $emailContent->fabric;
+                $address = $emailContent->address;
+                $intQuantity = $emailContent->qty;
+                $unitPrice = $emailContent->unitPrice;
+                $expDate = $emailContent->expDatetoFinish;
+                $time = $emailContent->time;
+
             }
 
 
-             // dd($emailContents);    
-
-
-        Mail::send('emails.accept-order', ['name' => $name, 'order' => $order, 'totPrice' => $totPrice, 'email' => $email, 'cp' => $cpNo, 'segment' => $segment, 'fabric' => $fabric, 'address' => $address, 'intQuantity' => $intQuantity, 'time' => $time], function($message) use($emailContents) {
+        Mail::send('emails.accept-order', ['name' => $name, 'order' => $order, 'totPrice' => $totPrice, 'email' => $email, 'cp' => $cpNo, 'segment' => $segment, 'fabric' => $fabric, 'address' => $address, 'intQuantity' => $intQuantity, 'unitPrice' => $unitPrice, 'time' => $time], function($message) use($emailContents) {
 
                 foreach($emailContents as $value){
                     $email = $value->custEmail;  

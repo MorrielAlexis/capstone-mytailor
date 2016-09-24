@@ -29,8 +29,8 @@
               		<div class="divider" style="height:1px; background-color:#80d8ff"></div>
               	</div>
 	       	</div>
-
-	       	<!-- <div class="container" style="color:gray">
+{{-- 
+	       	<div class="container" style="color:gray">
 		       	<center><h6><b>NOTES WHEN TAKING MEASUREMENTS:</b></h6></center>
 		       	<center><h6>* Use "inches" (no allowance).</h6></center>
 	      		<center><h6>* Place one (1) finger between bust and measuring tape while measuring waist.</h6></center>
@@ -40,7 +40,7 @@
 	      		<center><h6>* Measure from waistline to knee to get measurement of length of skirt.</h6></center>
 	      		<div class="divider"></div>
 	      		<div class="divider"></div>
-	      	</div> -->
+	      	</div> --}}
 
 
 	       	<div class="row" style="background-color:white; margin-top:20px">

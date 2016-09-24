@@ -9,6 +9,21 @@
       </div>
     </div>
 
+    <!-- Flash Messages-->
+    @if(Session::has('success-message'))
+        <div class="row" id="success-message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel yellow accent-1">
+              <span class="alert alert-success"> 
+              	<i class="tiny mdi-navigation-close" onclick="$('#success-message').hide()"></i>
+              	<!-- <a href="{{ URL::to('generate-payment-receipt') }}" class="right btn btn-flat">Print Receipt</a> -->
+              </span>
+              <strong> {!! session('success-message') !!}</strong>
+            </div>
+          </div>
+        </div>
+      @endif
+
 	<div class="row">
 		<div class="col s12 m12 l12">
 
@@ -368,7 +383,7 @@
 									
 										<!--To identify the quantity of garments with similar design and fabrics-->
 						                	<div class="col s7" style="padding-top:3%; color:black"><center><b style="font-size:18px">QTY</b> (Input quantity)</center></div>    
-						               		<div class="col s5" style="padding-left:0; margin-left:0;"><input required class="center int-segment-qty {{ $segment['strSegmentID'] }} qty{{ $segment['strSegmentID'] }}" name="int-segment-qty[]" id="{{ $segment['strSegmentID'] }}"  type="number" style="border:2px teal solid; padding-left:18%; padding-right:8%" placeholder="How many?"></div>
+						               		<div class="col s5" style="padding-left:0; margin-left:0;"><input required min=1 class="center int-segment-qty {{ $segment['strSegmentID'] }} qty{{ $segment['strSegmentID'] }}" name="int-segment-qty[]" id="{{ $segment['strSegmentID'] }}"  type="number" style="border:2px teal solid; padding-left:18%; padding-right:8%" placeholder="How many?"></div>
 						                <!--end-->
 									</div>
 																	

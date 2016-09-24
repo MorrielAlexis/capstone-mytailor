@@ -94,7 +94,7 @@ class AcceptAlterationOnlineController extends Controller
                     ->join('tblNonShopAlterSpecific as c','a.strNonShopAlterID',  '=' , 'c.strNonShopAlterFK')
                     ->join('tblSegment as d', 'c.strGarmentSegmentFK', '=' , 'd.strSegmentID')
                     ->join('tblAlteration as e', 'c.strAlterationTypeFK', '=' , 'e.strAlterationID')
-                    ->select(\DB::raw('CONCAT(b.strIndivFName, " " , b.strIndivMName, " " , b.strIndivLName) as custName'),\DB::raw('CONCAT(b.strIndivHouseNo, " ", b.strIndivStreet, " ", b.strIndivBarangay, " ", b.strIndivCity, " ", b.strIndivProvince, " ", b.strIndivZipCode) as address'), 'a.strNonShopAlterID as transID', 'a.dblOrderTotalPrice AS totalPrice', 'b.strIndivEmailAddress AS custEmail', 'b.strIndivCPNumber AS cpNo', 'd.strSegmentName as segment', 'e.strAlterationName as alteration')
+                    ->select(\DB::raw('CONCAT(b.strIndivFName, " " , b.strIndivMName, " " , b.strIndivLName) as custName'),\DB::raw('CONCAT(b.strIndivHouseNo, " ", b.strIndivStreet, " ", b.strIndivBarangay, " ", b.strIndivCity, " ", b.strIndivProvince, " ", b.strIndivZipCode) as address'), 'a.strNonShopAlterID as transID', 'a.dblOrderTotalPrice AS totalPrice', 'b.strIndivEmailAddress AS custEmail', 'b.strIndivCPNumber AS cpNo', 'd.strSegmentName as segment', 'e.strAlterationName as alteration', 'a.created_at as time')
                     ->where('b.strIndivID', $request->input('customerID'))
                     ->get();
             
@@ -108,11 +108,12 @@ class AcceptAlterationOnlineController extends Controller
                 $segment = $result->segment;
                 $alteration = $result->alteration;
                 $address = $result->address;
+                $time = $result->time;
             }
 
 
 
-        Mail::send('emails.accept-online-alteration', ['name' => $name, 'order' => $order, 'totPrice' => $totPrice, 'email' => $email, 'cp' => $cpNo, 'segment' => $segment, 'alteration' => $alteration, 'address' => $address], function($message) use($results) {
+        Mail::send('emails.accept-online-alteration', ['name' => $name, 'order' => $order, 'totPrice' => $totPrice, 'email' => $email, 'cp' => $cpNo, 'segment' => $segment, 'alteration' => $alteration, 'address' => $address, 'time' => $time], function($message) use($results) {
 
                 foreach($results as $value){
                     $email = $value->custEmail;  

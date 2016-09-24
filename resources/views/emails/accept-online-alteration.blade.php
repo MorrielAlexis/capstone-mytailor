@@ -7,7 +7,7 @@
 
         <h2>Hi {{$name}}, </h2>
         <br>
-        <p>Good day! This is to inform you that your online alteration is already confirmed and currently being processed. Your order/s have been processed at [time]. Any concerns, changes and/or additions to your order, please contact us through our hotline [set phone here] or email us at [mytailorsystems@gmail.com]. Please send your clothing at our office, #44 Liberty St, Makati City. You have 1 day parameter to send your clothing.</p>
+        <p>Good day! This is to inform you that your online alteration is already confirmed and currently being processed. Your order/s have been processed at {{$time}}. Any concerns, changes and/or additions to your order, please contact us through our hotline [set phone here] or email us at [mytailorsystems@gmail.com]. Please send your clothing at our office, #44 Liberty St, Makati City.</p>
 
         <div>
           <h2>Customer Details</h2>

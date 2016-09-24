@@ -14,7 +14,7 @@
           <b>JO Number:{{$order}} </b><br>
           <b>Name:{{$name}} </b><br>
           <b>Email:{{$email}} </b><br>
-          <b>Mobile Number:{{$cpNo}} </b><br>
+          <b>Mobile Number:{{$cp}} </b><br>
           <b>Address: {{$address}}</b><br><br>
         </div>
 
