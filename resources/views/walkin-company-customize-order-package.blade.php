@@ -356,7 +356,7 @@
 
 						<div class="col s12">
 							<button type="submit" class="right waves-effect waves-green btn" style="background-color:teal; margin-left:80px; margin-right:30px">Save</button>
-							<a href="{{URL::to('transaction/walkin-company-customize-orders')}}" class="left waves-effect waves-green btn" style="background-color:teal; margin-left:30px">Cancel</a>
+							<a href="{{URL::to('transaction/walkin-company-show-order')}}" class="left waves-effect waves-green btn" style="background-color:teal; margin-left:30px">Cancel</a>
 						</div>
 					{!! Form::close() !!}
 						<div class="col s12"><div class="divider" style="height:2px; margin-top:20px; margin-bottom:20px"></div></div>      	

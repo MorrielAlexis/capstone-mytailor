@@ -249,6 +249,7 @@
 
 							<input type="hidden" id="transaction_date" name="transaction_date">
 							<input type="hidden" id="due_date" name="due_date">
+							<input type="hidden" id="delivery_date" name="delivery_date" />
 
 							<div class="col s12"><div class="divider" style="padding-top:10px"></div></div>								
 								<!-- <div class="modal-content col s12" style="padding-bottom:20px;">
@@ -329,22 +330,36 @@
 		  	var a = {!! json_encode($style_total) !!};
 		  	var b = {!! json_encode($fabric_total) !!};
 		  	var c = {!! json_encode($segment_total) !!};
+		  	var f = {!! json_encode($pattern_fabric_total) !!};
+		  	var g = {!! json_encode($raw_style_total) !!};
+		  	var h = {!! json_encode($raw_fabric_total) !!};
+		  	var j = {!! json_encode($raw_pattern_fabric_total) !!};
+
 		  	var d = {!! json_encode($package_values) !!};
 		  	var e = {!! json_encode($package_quantity) !!};
 
 		  	var vat = {!! json_encode($vat) !!};
 
 		  	var total = 0;
+		  	var minDays = 0;
+
 		  	for(var i = 0; i < a.length; i++)
 		  	{
-		  		total += a[i] + b[i] + c[i] + (d[i].dblPackagePrice * e[i]);
+		  		total += a[i] + b[i] + c[i] + f[i] + g[i] + h[i] + j[i] + (d[i].dblPackagePrice * e[i]);
+		  		minDays = d[i].intPackageMinDays;
 		  	}
 		  	
 				if($('#half_pay').prop("checked")){
 					$("#amount-tendered").prop("readonly", false);
+
 				  	var a = {!! json_encode($style_total) !!};
 				  	var b = {!! json_encode($fabric_total) !!};
 				  	var c = {!! json_encode($segment_total) !!};
+				  	var f = {!! json_encode($pattern_fabric_total) !!};
+				  	var g = {!! json_encode($raw_style_total) !!};
+				  	var h = {!! json_encode($raw_fabric_total) !!};
+				  	var j = {!! json_encode($raw_pattern_fabric_total) !!};
+
 				  	var d = {!! json_encode($package_values) !!};
 				  	var e = {!! json_encode($package_quantity) !!};
 
@@ -353,7 +368,7 @@
 				  	var total = 0;
 				  	for(var i = 0; i < a.length; i++)
 				  	{
-				  		total += a[i] + b[i] + c[i] + (d[i].dblPackagePrice * e[i]);
+				  		total += a[i] + b[i] + c[i] + f[i] + g[i] + h[i] + j[i] + (d[i].dblPackagePrice * e[i]);
 				  	}
 		  	
 					$('#hidden-amount-payable').val((total/2).toFixed(2));
@@ -372,11 +387,14 @@
 			var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
 			var newDate = new Date();
 			var dueDate = new Date();
+			var deliveryDate = new Date();
+
 			newDate.setDate(newDate.getDate());   
-			dueDate.setDate(newDate.getDate()+minDays); 
-			$('#due-date').text(dayNames[dueDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
-			$('#transaction_date').val(monthNames[(newDate.getMonth()+1)] + " " + newDate.getDate() + ", " + newDate.getFullYear());
-			$('#due_date').val(monthNames[(dueDate.getMonth()+1)] + " " + dueDate.getDate() + ", " + dueDate.getFullYear());
+			dueDate.setDate(newDate.getDate() + minDays); 
+			deliveryDate.setDate(newDate.getDate() + (minDays + 2));
+
+			$('#due_date').val(dueDate.getFullYear() + "-" +  (dueDate.getMonth()+1) + "-" + dueDate.getDate());
+			$('#delivery_date').val(deliveryDate.getFullYear() + "-" +  (deliveryDate.getMonth()+1) + "-" + deliveryDate.getDate());
 		});
 	</script>
 
@@ -387,6 +405,11 @@
 				  	var a = {!! json_encode($style_total) !!};
 				  	var b = {!! json_encode($fabric_total) !!};
 				  	var c = {!! json_encode($segment_total) !!};
+				  	var f = {!! json_encode($pattern_fabric_total) !!};
+				  	var g = {!! json_encode($raw_style_total) !!};
+				  	var h = {!! json_encode($raw_fabric_total) !!};
+				  	var j = {!! json_encode($raw_pattern_fabric_total) !!};
+
 				  	var d = {!! json_encode($package_values) !!};
 				  	var e = {!! json_encode($package_quantity) !!};
 
@@ -395,7 +418,7 @@
 				  	var total = 0;
 				  	for(var i = 0; i < a.length; i++)
 				  	{
-				  		total += a[i] + b[i] + c[i] + (d[i].dblPackagePrice * e[i]);
+				  		total += a[i] + b[i] + c[i] + f[i] + g[i] + h[i] + j[i] + (d[i].dblPackagePrice * e[i]);
 				  	}
 		  	
 					$('#hidden-amount-payable').val((total/2).toFixed(2));
@@ -405,9 +428,15 @@
 				}
 				if($('#full_pay').prop("checked")){
 					$("#amount-tendered").prop("readonly", false);
+
 				  	var a = {!! json_encode($style_total) !!};
 				  	var b = {!! json_encode($fabric_total) !!};
 				  	var c = {!! json_encode($segment_total) !!};
+				  	var f = {!! json_encode($pattern_fabric_total) !!};
+				  	var g = {!! json_encode($raw_style_total) !!};
+				  	var h = {!! json_encode($raw_fabric_total) !!};
+				  	var j = {!! json_encode($raw_pattern_fabric_total) !!};
+
 				  	var d = {!! json_encode($package_values) !!};
 				  	var e = {!! json_encode($package_quantity) !!};
 
@@ -416,8 +445,8 @@
 				  	var total = 0;
 				  	for(var i = 0; i < a.length; i++)
 				  	{
-				  		total += a[i] + b[i] + c[i] + (d[i].dblPackagePrice * e[i]);
-				  	}		  	
+				  		total += a[i] + b[i] + c[i] + f[i] + g[i] + h[i] + j[i] + (d[i].dblPackagePrice * e[i]);
+				  	}	  	
 					
 					$('#hidden-amount-payable').val(total.toFixed(2));
 					$('#amount-payable').val((total.toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
@@ -450,17 +479,24 @@
 			if($('#specify_pay').is(":checked"))
 			{
 
-				var a = {!! json_encode($style_total) !!};
-				var b = {!! json_encode($fabric_total) !!};
-				var c = {!! json_encode($segment_total) !!};
-				var d = {!! json_encode($package_values) !!};
-				var e = {!! json_encode($package_quantity) !!};
+				  	var a = {!! json_encode($style_total) !!};
+				  	var b = {!! json_encode($fabric_total) !!};
+				  	var c = {!! json_encode($segment_total) !!};
+				  	var f = {!! json_encode($pattern_fabric_total) !!};
+				  	var g = {!! json_encode($raw_style_total) !!};
+				  	var h = {!! json_encode($raw_fabric_total) !!};
+				  	var j = {!! json_encode($raw_pattern_fabric_total) !!};
 
-				var total = 0;
-				for(var i = 0; i < a.length; i++)
-				{
-				  	total += a[i] + b[i] + c[i] + (d[i].dblPackagePrice * e[i]);
-				}	
+				  	var d = {!! json_encode($package_values) !!};
+				  	var e = {!! json_encode($package_quantity) !!};
+
+				  	var vat = {!! json_encode($vat) !!};
+
+				  	var total = 0;
+				  	for(var i = 0; i < a.length; i++)
+				  	{
+				  		total += a[i] + b[i] + c[i] + f[i] + g[i] + h[i] + j[i] + (d[i].dblPackagePrice * e[i]);
+				  	}	
 
 				$('#hidden-amount-payable').val($("#amount-payable").val());
 				$('#balance').val(parseFloat(($("#amount-payable").val())).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
@@ -473,14 +509,22 @@
 				  	var a = {!! json_encode($style_total) !!};
 				  	var b = {!! json_encode($fabric_total) !!};
 				  	var c = {!! json_encode($segment_total) !!};
+				  	var f = {!! json_encode($pattern_fabric_total) !!};
+				  	var g = {!! json_encode($raw_style_total) !!};
+				  	var h = {!! json_encode($raw_fabric_total) !!};
+				  	var j = {!! json_encode($raw_pattern_fabric_total) !!};
+
 				  	var d = {!! json_encode($package_values) !!};
 				  	var e = {!! json_encode($package_quantity) !!};
+
+				  	var vat = {!! json_encode($vat) !!};
 
 				  	var total = 0;
 				  	for(var i = 0; i < a.length; i++)
 				  	{
-				  		total += a[i] + b[i] + c[i] + (d[i].dblPackagePrice * e[i]);
-				  	}	
+				  		total += a[i] + b[i] + c[i] + f[i] + g[i] + h[i] + j[i] + (d[i].dblPackagePrice * e[i]);
+				  	}
+
 				var payable = $('#amount-payable').val();
 
 			    if(payable == ''){
