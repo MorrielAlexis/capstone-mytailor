@@ -239,6 +239,8 @@ class WalkInCompanyController extends Controller
         $values = session()->get('package_segments_customize');
         $to_be_customized = session()->get('package_customize');
         $segmentStyles = SegmentStyle::all();
+        //dd($segmentStyles);
+        dd($values);
         $segmentFabrics = Fabric::all();
         $k = 0;
         $l = 0;
@@ -258,7 +260,7 @@ class WalkInCompanyController extends Controller
             }
             $k = 0;
         }
-
+        dd($tempPatterns);
         for($i = 0; $i < count($values); $i++){
             for($j = 0; $j < count($patterns[$i]); $j++){
                 $sqlStyles[$i][$j] = \DB::table('tblSegmentPattern AS a')
@@ -803,7 +805,7 @@ class WalkInCompanyController extends Controller
         $fabrics = session()->get('package_segment_fabric'); //tblJOSpecs_Design
         $patterns = session()->get('package_segment_pattern');
         $quantity = session()->get('employee_segment_total');
-        $customFabrics = session()->get('package_pattern_fabric');
+        $customFabrics = session()->get('package_pattern_faabric');
 
         for($i = 0; $i < count(session()->get('employee_set')); $i++)
         {
