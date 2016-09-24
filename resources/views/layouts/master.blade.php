@@ -169,7 +169,7 @@
                           <div class="collapsible-body">
                             <ul>
                               <li><a style="color:black; font-weight:normal" class="waves-effect waves-white " href="{{URL::to('transaction/online-customer-individual')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Online - Individual</font></i></a></li>
-                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('transaction/online-customer-company')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Online - Company</font></i></a></li>
+                            {{--   <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('transaction/online-customer-company')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Online - Company</font></i></a></li> --}}
                              <div class="divider"></div>
                             </ul>
                           </div>

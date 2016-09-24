@@ -3,12 +3,12 @@
 @section('content')
                         <div id="card-stats"  >
                         <div class="row" style="margin-top:30px">
-                            <div class="col s12 m6 l3">
+                            <div class="col s12 m6 l4">
                                 <div class="card" >
                                     @foreach($totalCustIndiv as $totalCustIndiv)
                                     <div class="card-content  green lighten-2 white-text overflow-x" style="max-height: 40%; min-height: 40%">
                                         <center>
-                                            <p class="card-stats-title" style="font-size:19px"><i class="mdi-social-group-add"></i> Total Registered Individual Customer</p>
+                                            <p class="card-stats-title" style="font-size:16px"><i class="mdi-social-group-add"></i> Total Registered Individual Customer</p>
                                             <h4 class="card-stats-number">{{$totalCustIndiv->ctr}}</h4>
                                         </center>
 
@@ -24,7 +24,7 @@
                                     @endforeach
                                 </div>
                             </div>
-                            <div class="col s12 m6 l3">
+                            <div class="col s12 m6 l4">
                                 <div class="card">
                                     @foreach($totalCustComp as $totalCustComp)
                                     <div class="card-content cyan darken-1 white-text" style="max-height: 40%; min-height: 40%">
@@ -45,7 +45,7 @@
                                     </div>
                                 </div>
                             </div>                            
-                            <div class="col s12 m6 l3">
+                            <div class="col s12 m6 l4">
                                 <div class="card">
                                     @foreach($totalEmp as $totalEmp)
                                     <div class="card-content blue-grey white-text" style="max-height: 40%; min-height: 40%">
@@ -63,21 +63,6 @@
                                         
                                         </a>
                                         <canvas width="220" height="25" style="display: inline-block; width: 220px; height: 25px; vertical-align: top;"></canvas></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col s12 m6 l3">
-                                <div class="card">
-                                   {{--  @foreach($totalSegments as $totalSegments) --}}
-                                    <div class="card-content deep-purple accent-1 white-text" style="max-height: 40%; min-height: 40%">
-                                        <center>
-                                            <p class="card-stats-title" style="font-size:19px"><i class="mdi-editor-insert-drive-file"></i>Total Job Orders</p>
-                                            <h4 class="card-stats-number">{{-- {{$totalSegments->ctr}} --}}</h4>
-                                        </center>
-                                    </div>
-                                  {{--   @endforeach --}}
-                                    <div class="card-action  deep-purple lighten-2" style="height:40px; padding-top: 2%; padding-bottom: 2%">
-                                        <div id="invoice-line"><canvas width="223" height="25" style="display: inline-block; width: 223px; height: 25px; vertical-align: top;"></canvas></div>
                                     </div>
                                 </div>
                             </div>
