@@ -63,17 +63,17 @@
 				<tbody>
 					<tr>
 						<td style="width:40%; font-size:18px; text-align:left"><b>Job Order No:</b></td>
-						<td style="width:60%; font-size:18px; color:teal; text-align:right;"><b>job order here</b></td>
+						<td style="width:60%; font-size:18px; color:teal; text-align:right;"><b>{{$jobOrderID}}</b></td>
 						<td style="margin:15px; color:white">Hahah</td>
 						<td style="width:40%; font-size:18px; text-align:left"><b>Receipt No:</b></td>
-						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>receipt no. here</b></td>
+						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{{$joReceiptID}}</b></td>
 					</tr>
 					<tr>
 						<td style="width:40%; font-size:18px; text-align:left"><b>Company Name:</b></td>
-						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>company name</b></td>
+						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{{$companyName->strCompanyName}}</b></td>
 						<td></td>
 						<td style="width:40%; font-size:18px; text-align:left"><b>Company Id:</b></td>
-						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>company id</b></td>
+						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{{$companyName->strCompanyID}}</b></td>
 					</tr>
 					<tr>
 						<td style="width:40%; font-size:18px; text-align:left"><b>Date:</b></td>
@@ -84,14 +84,14 @@
 					</tr>
 					<tr>
 						<td style="width:40%; font-size:18px; text-align:left"><b>Contact Person:</b></td>
-						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>contact person name</b></td>
+						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{{$companyName->strContactPerson}}</b></td>
 						<td></td>
 						<td></td>
 						<td></td>
 					</tr>
 					<tr>
 						<td style="width:40%; font-size:18px; text-align:left"><b>Issued By:</b></td>
-						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>employee name</b></td>
+						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{{$empname->employeename}}</b></td>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -238,17 +238,17 @@
 				<tbody>
 					<tr>
 						<td style="width:40%; font-size:18px; text-align:left"><b>Order Payment No:</b></td>
-						<td style="width:60%; font-size:18px; color:teal; text-align:right;"><b>payment id</b></td>
+						<td style="width:60%; font-size:18px; color:teal; text-align:right;"><b>{{$paymentID}}</b></td>
 						<td style="margin:15px; color:white">Hahah</td>
 						<td style="width:40%; font-size:18px; text-align:left"><b>Receipt No:</b></td>
-						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>payment receipt id</b></td>
+						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{{$paymentReceipt}}</b></td>
 					</tr>
 					<tr>
 						<td style="width:40%; font-size:18px; text-align:left"><b>Customer Name:</b></td>
-						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>company name</b></td>
+						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{{$companyName->strCompanyName}}</b></td>
 						<td></td>
 						<td style="width:40%; font-size:18px; text-align:left"><b>Customer Id:</b></td>
-						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>company id</b></td>
+						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{{$companyName->strCompanyID}}</b></td>
 					</tr>
 					<tr>
 						<td style="width:40%; font-size:18px; text-align:left"><b>Date:</b></td>
@@ -259,7 +259,7 @@
 					</tr>
 					<tr>
 						<td style="width:40%; font-size:18px; text-align:left"><b>Issued By:</b></td>
-						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>employee</b></td>
+						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{{$empname->employeename}}</b></td>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -283,16 +283,16 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%"><b>job order id</b></td>
-						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%">terms of payment</td>
-						<!--condition ng terms of payment dito-->
-							<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%">P balance</td>
-						<!-- end -->
+						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%"><b>{{$jobOrderID}}</b></td>
+						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%">{{$termsOfPayment}}</td>
+						@if( $termsOfPayment != 'Full Payment')
+							<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%">P {!! session('outstandingBal') !!}</td>
+						@endif
 						<td style="width:60%">
-							<b>Sub total: </b>P sub total<br>
+							<b>Sub total: </b>P {!! session('totalPrice') !!}<br>
 							<b>Additional Fee: </b>P 0.00<br><br>
 							<div class="col s12"><div class="divider" style="height:1px; background-color:gray; margin-left:10%; margin-right:10%"></div></div>
-							<b style="color:teal; padding-left:3%">Grand Total: </b><b>grand total</b>
+							<b style="color:teal; padding-left:3%">Grand Total: </b><b>P {!! session('totalPrice') !!}</b>
 						</td>
 					</tr>
 				</tbody>
@@ -304,27 +304,27 @@
 				<tbody>
 					<tr>
 						<td style="width:50%; padding-top:10px; padding-bottom:10px; background-color:teal; color:white; border: 2px white solid">AMOUNT PAID</td>
-						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1.2em"><b>P amount na binayaran</b></td>
+						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1.2em"><b>P {!! number_format(session('amountToPay'), 2) !!}</b></td>
 					</tr>
 					<tr>
 						<td style="width:50%; padding-top:10px; padding-bottom:10px; background-color:teal; color:white; border: 2px white solid">AMOUNT TENDERED</td>
-						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1em">amount na inabot</td>
+						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1em">P {{ number_format($amtTendered, 2) }}</td>
 					</tr>
 					<tr>
 						<td style="width:50%; padding-top:10px; padding-bottom:10px; background-color:teal; color:white; border: 2px white solid">CHANGE</td>
-						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1em">amount na sukli</td>
+						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1em">P {{ number_format($amtChange, 2) }}</td>
 					</tr>
 					
 					<tr>
 						<td style="width:50%; padding-top:10px; padding-bottom:10px; background-color:teal; color:white; border: 2px white solid">OUTSTANDING BALANCE<p></p></td>
 						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1.2em">
-							<b> balance</b>
+							<b>P {!! session('outstandingBal') !!}</b>
 						</td>
 					</tr>
 					<!-- condition ng terms of payment dito -->
 					<tr>
 						<td style="width:50%; padding-top:10px; padding-bottom:10px; background-color:teal; opacity:0.80; color:white; border: 2px white solid">DUE DATE FOR PAYMENT</td>
-						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1.2em; color:teal"><b>due date ng balance</b> <br><font color="gray" size="15px">*Pay balance before or on the said date</font></td>
+						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1.2em; color:teal"><b>{!! session('dueDate') !!}</b> <br><font color="gray" size="15px">*Pay balance before or on the said date</font></td>
 					</tr>
 					<!-- end -->
 				</tbody>
