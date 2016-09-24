@@ -52,41 +52,41 @@
 						</select>
 					</div>
 				</div>
-			@foreach($segments as $i => $segment)
+			@for($i = 0; $i < count($segments); $i++)
 			<div class="col s12"><div class="divider" style="height:2px; background-color:gray"></div></div><!--divider-->
 		       	<div class="row" style="background-color:white; margin-top:20px">
 		    		<div class="col s12" style="margin-top:20px">
-			          	<input type="checkbox" name="cbx-measure-all[]"  class="filled-in cbx-measure-all" id="{{ $segment['strSegmentID'] }}" value="{{ $segment['strSegmentID'] }}" style="padding:5px"/>
-			          	<label for="{{ $segment['strSegmentID'] }}"><font size="+1"><b>Apply to all</b></font></label>
+			          	<input type="checkbox" name="cbx-measure-all[]"  class="filled-in cbx-measure-all" id="{{ $segments[$i]['strSegmentID'] }}" value="{{ $segments[$i]['strSegmentID'] }}" style="padding:5px"/>
+			          	<label for="{{ $segments[$i]['strSegmentID'] }}"><font size="+1"><b>Apply to all</b></font></label>
 			        </div>
-				@for($k = 0; $k < $quantities[$i]; $k++) 
+				@for($j = 0; $j < $quantities[$i]; $j++) 
 	            	<div class="col s12" style="padding:20px"> 
 		            	<div id="for_top" class="col s12" style="color:black">
-		            		<h5><b>Parts to be measured - {{ $segment['strSegmentName'] }}</b></h5>
+		            		<h5><b>Parts to be measured - {{ $segments[$i]['strSegmentName'] }}</b></h5>
 							<!--if Body and Cloth Measurement-->
-			            	@foreach($measurements as $j => $measurement)
-			            		@if($measurement->strMeasDetSegmentFK == $segment['strSegmentID'])
-		            				<div class="container measurement-general {{ $measurement->strMeasCategoryFK }}"> 
+			            	@for($k = 0; $k < count($measurements); $k++)
+			            		@if($measurements[$k]->strMeasDetSegmentFK == $segments[$i]['strSegmentID'])
+		            				<div class="container measurement-general {{ $measurements[$k]->strMeasCategoryFK }}"> 
 					            	   	<div style="color:black; padding-left:140px" class="input-field col s6 ">   
 					            	   		<div class="col s8">
-						            	   		<input class="right" type="hidden" name="detailName{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" value="{{ $measurement->strMeasurementDetailID }}">              
-					                            <input class="right" name="{{ $measurement->strMeasurementDetailID }}{{ $i+1 }}{{ $k+1 }}" type="text">
+						            	   		<input class="right" type="hidden" name="measID{{ $i }}{{ $j }}[]" value="{{ $measurements[$k]->strMeasurementDetailID }}">              
+					                            <input class="right" name="{{ $i }}{{ $j }}[]" type="text">
 					                        </div>
 					                        <div class="col s4">
-				                            	<label style="color:teal" for="{{ $measurement->strMeasurementDetailID }} {{ $i+1 }}{{ $k+1 }}"><b>{{ $measurement->strMeasDetailName }}</b> (cm): </label>
+				                            	<label style="color:teal" for="{{ $measurements[$k]->strMeasurementDetailID }} {{ $i }}{{ $k }}"><b>{{ $measurements[$k]->strMeasDetailName }}</b> (cm): </label>
 				                        	</div>
 				                        </div>
 		                    		</div>
 			                    @endif
-		                    @endforeach
+		                    @endfor
 							<!--End of Body and Cloth Measurement-->
 
 							<!--if Standard Size Measurement-->
 							<div class="col s12 z-depth-1 measurement-general MEASCAT001" style="padding:2%">
 								<div class="container">
 									<div class="left col s6">
-										<center><img src="{{ URL::asset($segment['strSegmentImage']) }}" style="height:60%; width:60%; border:3px gray solid"></center>	
-										<p><center>{{ $segment['strSegmentName'] }}</center></p>							          	
+										<center><img src="{{ URL::asset($segments[$i]['strSegmentImage']) }}" style="height:60%; width:60%; border:3px gray solid"></center>	
+										<p><center>{{ $segments[$i]['strSegmentName'] }}</center></p>							          	
 									</div><!--this will be the garment detail-->
 
 									<div class="right col s6" style="margin-top:2%">
@@ -115,25 +115,25 @@
 	                    </div>
 	                    <p style="color:red">In case of multiple measurements</p>
 	                    	<div style="color:black;" class="input-field col s5">                 
-	                          <div class="col s8" style="margin-left:55%; padding-right:18%"><input id="length" name="profile_name{{ $i+1 }}" type="text" class=""></div>
+	                          <div class="col s8" style="margin-left:55%; padding-right:18%"><input required id="length" name="profile_name{{ $i }}{{ $j }}" type="text" class=""></div>
 	                          <div class="col s4"><label style="color:gray" for="length"><b>Measurement Profile Name: </b></label></div>
 	                    	</div>
 	                    	<div style="color:gray" class="input-field col s3">
-	                          <select name="profile_sex{{ $i+1 }}">
+	                          <select name="profile_sex{{ $i }}{{ $j }}">
 							    <option value="" disabled selected color="red">Sex</option>
-							    <option value="M">Female</option>
-							    <option value="F">Male</option>
+							    <option value="M">Male</option>
+							    <option value="F">Female</option>
 							  </select>
 	                    	</div>
 	                    	<div style="color:gray" class="input-field col s3">
 	                          <select>
 							    <option value="" disabled selected color="red">Target Garment</option>
-							    <option value="1">{{ $segment['strGarmentCategoryName'] }} - {{ $segment['strSegmentName'] }}</option>
+							    <option value="1">{{ $segments[$i]['strGarmentCategoryName'] }} - {{ $segments[$i]['strSegmentName'] }}</option>
 							  </select>
 	                    	</div>
 	            		</div>
 			    	@endfor
-				@endforeach
+				@endfor
                 <div class="col s12"><div class="divider" style="height:5px; color:gray; margin-top:15px; margin-bottom:15px"></div></div>
 				
 				
