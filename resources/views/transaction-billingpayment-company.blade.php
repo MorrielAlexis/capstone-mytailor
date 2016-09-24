@@ -101,35 +101,14 @@
 							                    		</div>
 							                    		<!--eto ang iloloop beybe-->
 							                    		<div class="col s12" style="padding-left:15%">
-															@for($i = 0; $i < count($payments); $i++)
-
-															@if($customer_info->strTermsOfPayment == "Full Payment")
-
-						                    					<div @if($payments[$i]->strTransactionFK != $customer_info->strJobOrderID) hidden @endif> You have no pending payment</div>
-
-															@elseif($customer_info->strTermsOfPayment != "Full Payment")
-																@if($payments[$i]->strPaymentStatus == "Pending")
-																	@if($payments[$i]->strTransactionFK == $customer_info->strJobOrderID)
-																	@if($payments[$i]->strPaymentStatus == "Pending")
-									                    			<div class="col s12 {{$payments[$i]->strJobOrderID}}" style="color:black; margin-top:3%; padding:0; font-size:18px" id="{{$payments[$i]->strJobOrderID}}{{$i+1}}" @if($payments[$i]->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>{{ $customer_info->dtOrderDate }} {{ $customer_info->strJobOrderID }}
-								                    				<!-- <a href=""><u>See transaction detail</u></a> -->
-								                    				<a class="{{$payments[$i]->strJobOrderID}}" style="background-color:#ef9a9a; color:white; padding-left:3%; padding-right:3%" id="{{$payments[$i]->dtPaymentDueDate}}">Due date: {{$payments[$i]->dtPaymentDueDate }}</a>
-								                    				</div>
-								                    				@elseif($payments[$i]->strPaymentStatus != "Pending")
-								                    				<div hidden class="col s12 {{$payments[$i]->strJobOrderID}}" style="color:black; margin-top:3%; padding:0; font-size:18px" id="{{$payments[$i]->strJobOrderID}}{{$i+1}}" @if($payments[$i]->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>{{ $customer_info->dtOrderDate }} {{ $customer_info->strJobOrderID }}
-								                    				<!-- <a href=""><u>See transaction detail</u></a> -->
-								                    				<a class="{{$payments[$i]->strJobOrderID}}" style="background-color:#ef9a9a; color:white; padding-left:3%; padding-right:3%" id="{{$payments[$i]->dtPaymentDueDate}}">Due date: {{$payments[$i]->dtPaymentDueDate }}</a>
-								                    				</div>
-								                    				@endif	
-								                    				@endif
-							                    				@elseif($payments[$i]->strPaymentStatus != "Pending")
-								                    				@if($payments[$i]->strTransactionFK == $customer_info->strJobOrderID)
-								                    					<div @if($payments[$i]->strTransactionFK != $customer_info->strJobOrderID) hidden @endif><center> You have no pending payment</center></div>
-								                    				@endif
-								                    			@endif				                    				
-						                    					
-							                    			@endif
-							                    			@endfor
+															@for($j = 0; $j < count($orders); $j++)											
+																@if($orders[$j]->strTermsOfPayment != "Full Payment")
+																	@if($orders[$j]->strPaymentStatus == "Pending")
+																	<div class="col s12 {{$orders[$j]->strJobOrderID}}" style="color:black; margin-top:3%; padding:0; font-size:18px" id="{{$orders[$j]->strJobOrderID}}">{{ $orders[$j]->dtOrderDate }} {{ $orders[$j]->strJobOrderID }}
+								                    				<a class="{{$orders[$j]->strJobOrderID}}" style="background-color:#ef9a9a; color:white; padding-left:3%; padding-right:3%" id="{{$orders[$j]->dtPaymentDueDate}}">Due date: {{$orders[$j]->dtPaymentDueDate }}</a>
+																	@endif
+																@endif
+															@endfor
 							                    		</div>
 							                    		<!--ends here-->
 						                    		</div>
@@ -148,22 +127,13 @@
 													<select class="browser-default unpaid-payments" id="unpaid-payments" style="margin-left:45%">
 														<option value="0">Choose your option</option>
 														
-														@foreach($payments as $i => $payment)													
-														@if($customer_info->strTermsOfPayment != "Full Payment")
-
-															@if($payment->strPaymentStatus == "Pending")
-																@if($payment->strTransactionFK == $customer_info->strJobOrderID)
-																@if($payment->strPaymentStatus == "Pending")
-																<option value="{{ $payment->strJobOrderID }}" @if($payment->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>{{ $customer_info->dtOrderDate }} {{ $customer_info->strJobOrderID }}</option>
-																@elseif($payment->strPaymentStatus != "Pending")
-																<option hidden value="{{ $payment->strJobOrderID }}" @if($payment->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>{{ $customer_info->dtOrderDate }} {{ $customer_info->strJobOrderID }}</option>
+															@for($j = 0; $j < count($orders); $j++)											
+																@if($orders[$j]->strTermsOfPayment != "Full Payment")
+																	@if($orders[$j]->strPaymentStatus == "Pending")
+																		<option value="{{ $orders[$j]->strJobOrderID }}">{{ $orders[$j]->dtOrderDate }} {{ $orders[$j]->strJobOrderID }}</option>	
+																	@endif
 																@endif
-																@endif
-															@elseif($payment->strPaymentStatus != "Pending")
-															@endif
-
-														@endif
-														@endforeach
+															@endfor
 													
 													</select>
 												</div>

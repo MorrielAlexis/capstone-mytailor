@@ -147,23 +147,14 @@
 													<select class="browser-default unpaid-payments" id="unpaid-payments" style="margin-left:45%">
 
 													<option value="0">Choose your option</option>
-											
-														@for($i = 0; $i < count($payments); $i++)													
-														@if($customer_info->strTermsOfPayment != "Full Payment")
-
-															@if($payments[$i]->strPaymentStatus == "Pending")
-																@if($payments[$i]->strTransactionFK == $customer_info->strJobOrderID)
-																@if($payments[$i]->strPaymentStatus == "Pending")
-																<option value="{{ $payments[$i]->strJobOrderID }}" @if($payments[$i]->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>{{ $customer_info->dtOrderDate }} {{ $customer_info->strJobOrderID }}</option>
-																@elseif($payments[$i]->strPaymentStatus != "Pending")
-																<option hidden value="{{ $payments[$i]->strJobOrderID }}" @if($payments[$i]->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>{{ $customer_info->dtOrderDate }} {{ $customer_info->strJobOrderID }}</option>
+													
+															@for($j = 0; $j < count($orders); $j++)											
+																@if($orders[$j]->strTermsOfPayment != "Full Payment")
+																	@if($orders[$j]->strPaymentStatus == "Pending")
+																		<option value="{{ $orders[$j]->strJobOrderID }}">{{ $orders[$j]->dtOrderDate }} {{ $orders[$j]->strJobOrderID }}</option>	
+																	@endif
 																@endif
-																@endif
-															@elseif($payments[$i]->strPaymentStatus != "Pending")
-															@endif
-
-														@endif
-														@endfor
+															@endfor
 													
 													</select>
 													</div>
