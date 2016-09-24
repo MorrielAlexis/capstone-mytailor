@@ -62,7 +62,7 @@
 						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{{ $custname }}</b></td>
 						<td></td>
 						<td style="width:40%; font-size:18px; text-align:left"><b>Customer Id:</b></td>
-						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{!! session('custID') !!}</b></td>
+						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{{ $custId }}</b></td>
 					</tr>
 					<tr>
 						<td style="width:40%; font-size:18px; text-align:left"><b>Date:</b></td>
@@ -75,57 +75,39 @@
 						<td style="width:40%; font-size:18px; text-align:left"><b>Issued By:</b></td>
 						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>{{ $empname->employeename }}</b></td>
 						<td></td>
-						<td style="width:40%; font-size:18px; text-align:left"><b>Employee Position:</b></td>
-						<td style="width:60%; font-size:18px; text-align:right; color:teal"><b>Cashier</b></td>
+						
 					</tr>
 				</tbody>
         	</table>
         </div>
 
-        @foreach($customer_orders as $j => $order)
-			@foreach($payments as $i => $payment)
-			@if($payment->strTransactionFK != $customer_info->strJobOrderID AND $payment->strJO_CustomerFK == $customer_info->strCompanyID)
-		<div class="col s12" style="margin-top:2%" @if($payment->strJO_CustomerFK == $customer_info->strCompanyID) hidden @endif>
-			<table style="width:98%">
-			
-				<thead style="background-color:teal; opacity:0.90; color:white">
-					<tr>
-						<th>JOB ORDER ID</th>
-						<th>TERM OF PAYMENT</th>
-						<th>TOTAL AMOUNT PRICE</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%"><b>{{ $payment->strJobOrderID }}</b></td>
-						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%">{{ $payment->strTermsOfPayment }}</td>
-						<td style="width:60%">
-							{{ $payment->dblOrderTotalPrice }} PHP
-						</td>
-					</tr>
-				</tbody>
-				
-
-			</table>
-		</div>
-
-		
-		<div class="col s12" style="margin-top:1%" @if($payment->strJO_CustomerFK == $customer_info->strCompanyID) hidden @endif>
+        <div class="col s12" style="margin-top:1%">
 			<table width="98%">
 				<tbody>
 					<tr>
 						<td style="width:50%; padding-top:10px; padding-bottom:10px; background-color:teal; color:white; border: 2px white solid">AMOUNT PAID</td>
-						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1.2em"><b>{{ $payment->dblAmountToPay }} PHP</b></td>
+						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1.2em"><b>P {{ number_format($payments->dblAmountToPay,2) }}</b></td>
 					</tr>
 					<tr>
 						<td style="width:50%; padding-top:10px; padding-bottom:10px; background-color:teal; color:white; border: 2px white solid">AMOUNT TENDERED</td>
-						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1em">{{ number_format($amtTendered, 2) }} PHP</td>
+						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1em">P {{ number_format($amtTendered, 2) }}</td>
 					</tr>
 					<tr>
 						<td style="width:50%; padding-top:10px; padding-bottom:10px; background-color:teal; color:white; border: 2px white solid">CHANGE</td>
-						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1em">{{ number_format($amtChange, 2) }} PHP</td>
+						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1em">P {{ number_format($amtChange, 2) }}</td>
 					</tr>
-					
+					<tr>
+						@if( $payments->dblOutstandingBal != 0)
+							<td style="width:50%; padding-top:10px; padding-bottom:10px; background-color:teal; color:white; border: 2px white solid">OUTSTANDING BALANCE</td>
+							<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1.2em"><b>P {{ number_format($newBalance, 2) }}</b></td>
+						@endif
+					</tr>
+					@if( $payments->dblOutstandingBal != 0 )
+					<tr>
+						<td style="width:50%; padding-top:10px; padding-bottom:10px; background-color:teal; opacity:0.80; color:white; border: 2px white solid">DUE DATE FOR PAYMENT</td>
+						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1.2em; color:teal"><b>{{ $payments->dtPaymentDueDate }}</b> <br><font color="gray" size="15px">*Pay balance before or on the said date</font></td>
+					</tr>
+					@endif
 					<!-- <tr>
 						<td style="width:50%; padding-top:10px; padding-bottom:10px; background-color:teal; color:white; border: 2px white solid">OUTSTANDING BALANCE<p></p></td>
 						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1.2em">
@@ -135,13 +117,9 @@
 
 				</tbody>
 			</table>
-
-						@endif
-				@endforeach
-				@endforeach
-			
 		</div>
 
-	</body>
 
 	</body>
+
+	</html>

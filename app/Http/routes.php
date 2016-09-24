@@ -255,7 +255,7 @@ Route::group(['prefix' => 'transaction'], function(){
 Route::get('billing-payment/pending-payment-pdf', 'BillingPaymentController@generateBill');
 Route::get('billing-payment/payment-receipt-pdf', 'BillingPaymentController@generateReceipt');
 
-Route::get('generate-payment-receipt', 'WalkInIndividualController@generateReceipt');
+
 
 Route::group(['prefix' => 'utilities'], function(){
 	Route::get('utilities-general','UtilitiesGeneralController@index');
@@ -331,6 +331,10 @@ Route::group(['prefix' => 'transaction'], function(){
 	//payment view
 	Route::get('walkin-individual-payment-information', 'WalkInIndividualController@showPayment');
 	Route::post('walkin-individual-save-order', 'WalkInIndividualController@saveOrder');
+
+	//pdf
+	
+
 	//for printing purposes
 	// Route::get('walkin-individual-before-proceeding', 'WalkInIndividualController@print');
 	Route::get('walkin-individual-print-receipt', 'WalkInIndividualController@submit');
@@ -372,6 +376,11 @@ Route::group(['prefix' => 'transaction'], function(){
 	Route::post('walkin-company-save-new-company','WalkInCompanyController@saveNewCompany');
 	Route::post('walkin-company-save-measurements', 'WalkInCompanyController@saveMeasurements');
 	Route::post('walkin-company-save-order', 'WalkInCompanyController@saveOrder');
+
+	//pdf print
+	Route::get('walkin-company-print-receipt', 'WalkInCompanyController@submit');
+	
+
 	Route::post('walkin-company-reset-order', 'WalkInCompanyController@resetOrder');
 	Route::post('walkin-company-remove-package', 'WalkInCompanyController@removePackage');
 
@@ -382,8 +391,8 @@ Route::get('transaction-modifycompanyorders-modifyorder','ModifyCompanyOrdersCon
 Route::get('transaction-modifycompanyorders-modifyemployee','ModifyCompanyOrdersController@employee');
 Route::get('transaction-modifycompanyorders-modifyemployeeorder','ModifyCompanyOrdersController@package');
 
-
-
+Route::get('walkin-company-receipt', 'WalkInCompanyController@generateReceipt');
+Route::get('walkin-individual-receipt', 'WalkInIndividualController@generateReceipt');
 
 
 /*---------------------------------------ADMIN TRANSACTION ALTERATION--------------------------------------------------*/

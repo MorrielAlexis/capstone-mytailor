@@ -6,14 +6,14 @@
 	<div class="row">
       <div class="col s12 m12 l12">
         <span class="page-title"><center><h3><b>Welcome to <font color="white">MyTailor</font></b></h3></center></span>
-        <center><h5>Walk-in Individual</h5></center>
+        <center><h5>Walk-in Company</h5></center>
       </div>
     </div>
 
     <div class="row" style="padding:30px">
 		
 		<div class="col s12">
-			{!! Form::open(['url' => 'transaction/walkin-individual-print-receipt', 'method' => 'GET']) !!}
+			{!! Form::open(['url' => 'transaction/walkin-company-print-receipt', 'method' => 'GET']) !!}
 			<div id="payment-info" class = "hue col s12 active" style="background-color: white; border:2px outset">
 		        <div class="row">
 			        <div class="col s12 m12 l12">
@@ -26,7 +26,7 @@
 		       	<div class="row" style="background-color:white; padding:40px">
 	            	<div class="col s12">
 						
-						<a class="center" href="#!" onclick="window.open('/walkin-individual-receipt')">
+						<a class="center" href="#!" onclick="window.open('/walkin-company-receipt')">
 							<center><img style="height:20%; width:20%" src="{{URL::to('img/temp-online.png')}}"></center>
 							<p align="center" style="font-size:30px; color:teal"><center><b><u><font size="4em">Print order receipt</font></u></b></center></p>
 						</a>

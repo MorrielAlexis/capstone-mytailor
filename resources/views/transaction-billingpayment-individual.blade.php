@@ -101,37 +101,37 @@
 						                    		</div>
 						                    		<!--eto ang iloloop beybe-->
 						                    		<div class="col s12" style="padding-left:15%">
-						                    		@foreach($customer_orders as $j => $order)
-															@foreach($payments as $i => $payment)
+						                    		
+															@for($i = 0; $i < count($payments); $i++)
 
-															@if($order->strTermsOfPayment == "Full Payment")
+															@if($customer_info->strTermsOfPayment == "Full Payment")
 
-						                    					<div @if($payment->strTransactionFK != $order->strJobOrderID) hidden @endif> You have no pending payment</div>
+						                    					<div @if($payments[$i]->strTransactionFK != $customer_info->strJobOrderID) hidden @endif> You have no pending payment</div>
 
-															@elseif($order->strTermsOfPayment != "Full Payment")
-																@if($payment->strPaymentStatus == "Pending")
-																	@if($payment->strTransactionFK == $customer_info->strJobOrderID)
-																	@if($payment->strPaymentStatus == "Pending")
-									                    			<div class="col s12 {{$payment->strJobOrderID}}{{$i+1}}" style="color:black; margin-top:3%; padding:0; font-size:18px" id="{{$payment->strJobOrderID}}{{$i+1}}" @if($payment->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>{{ $order->dtOrderDate }} {{ $order->strJobOrderID }}
+															@elseif($customer_info->strTermsOfPayment != "Full Payment")
+																@if($payments[$i]->strPaymentStatus == "Pending")
+																	@if($payments[$i]->strTransactionFK == $customer_info->strJobOrderID)
+																	@if($payments[$i]->strPaymentStatus == "Pending")
+									                    			<div class="col s12 {{$payments[$i]->strJobOrderID}}" style="color:black; margin-top:3%; padding:0; font-size:18px" id="{{$payments[$i]->strJobOrderID}}" @if($payments[$i]->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>{{ $customer_info->dtOrderDate }} {{ $customer_info->strJobOrderID }}
 								                    				<!-- <a href=""><u>See transaction detail</u></a> -->
-								                    				<a class="{{$payment->strJobOrderID}}{{$i+1}}" style="background-color:#ef9a9a; color:white; padding-left:3%; padding-right:3%" id="{{$payment->dtPaymentDueDate}}">Due date: {{$payment->dtPaymentDueDate }}</a>
+								                    				<a class="{{$payments[$i]->strJobOrderID}}{{$i+1}}" style="background-color:#ef9a9a; color:white; padding-left:3%; padding-right:3%" id="{{$payments[$i]->dtPaymentDueDate}}">Due date: {{$payments[$i]->dtPaymentDueDate }}</a>
 								                    				</div>
-								                    				@elseif($payment->strPaymentStatus != "Pending")
-								                    				<div hidden class="col s12 {{$payment->strJobOrderID}}{{$i+1}}" style="color:black; margin-top:3%; padding:0; font-size:18px" id="{{$payment->strJobOrderID}}{{$i+1}}" @if($payment->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>{{ $order->dtOrderDate }} {{ $order->strJobOrderID }}
+								                    				@elseif($payments[$i]->strPaymentStatus != "Pending")
+								                    				<div hidden class="col s12 {{$payments[$i]->strJobOrderID}}" style="color:black; margin-top:3%; padding:0; font-size:18px" id="{{$payments[$i]->strJobOrderID}}" @if($payments[$i]->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>{{ $customer_info->dtOrderDate }} {{ $customer_info->strJobOrderID }}
 								                    				<!-- <a href=""><u>See transaction detail</u></a> -->
-								                    				<a class="{{$payment->strJobOrderID}}{{$i+1}}" style="background-color:#ef9a9a; color:white; padding-left:3%; padding-right:3%" id="{{$payment->dtPaymentDueDate}}">Due date: {{$payment->dtPaymentDueDate }}</a>
+								                    				<a class="{{$payments[$i]->strJobOrderID}}{{$i+1}}" style="background-color:#ef9a9a; color:white; padding-left:3%; padding-right:3%" id="{{$payments[$i]->dtPaymentDueDate}}">Due date: {{$payments[$i]->dtPaymentDueDate }}</a>
 								                    				</div>
 								                    				@endif	
 								                    				@endif
-							                    				@elseif($payment->strPaymentStatus != "Pending")
-								                    				@if($payment->strTransactionFK == $customer_info->strJobOrderID)
-								                    					<div @if($payment->strTransactionFK != $order->strJobOrderID) hidden @endif><center> You have no pending payment</center></div>
+							                    				@elseif($payments[$i]->strPaymentStatus != "Pending")
+								                    				@if($payments[$i]->strTransactionFK == $customer_info->strJobOrderID)
+								                    					<div @if($payments[$i]->strTransactionFK != $customer_info->strJobOrderID) hidden @endif><center> You have no pending payment</center></div>
 								                    				@endif
 								                    			@endif				                    				
 						                    					
 							                    			@endif
-							                    			@endforeach
-							                    		@endforeach
+							                    			@endfor
+							                    		
 						                    		</div>
 						                    		<!--ends here-->
 					                    		</div>
@@ -147,24 +147,24 @@
 													<select class="browser-default unpaid-payments" id="unpaid-payments" style="margin-left:45%">
 
 													<option value="0">Choose your option</option>
-													@foreach($customer_orders as $j => $order)
-														@foreach($payments as $i => $payment)													
-														@if($order->strTermsOfPayment != "Full Payment")
+											
+														@for($i = 0; $i < count($payments); $i++)													
+														@if($customer_info->strTermsOfPayment != "Full Payment")
 
-															@if($payment->strPaymentStatus == "Pending")
-																@if($payment->strTransactionFK == $customer_info->strJobOrderID)
-																@if($payment->strPaymentStatus == "Pending")
-																<option value="{{ $payment->strJobOrderID }}" @if($payment->strTransactionFK != $order->strJobOrderID) hidden @endif>{{ $order->dtOrderDate }} {{ $order->strJobOrderID }}</option>
-																@elseif($payment->strPaymentStatus != "Pending")
-																<option hidden value="{{ $payment->strJobOrderID }}" @if($payment->strTransactionFK != $order->strJobOrderID) hidden @endif>{{ $order->dtOrderDate }} {{ $order->strJobOrderID }}</option>
+															@if($payments[$i]->strPaymentStatus == "Pending")
+																@if($payments[$i]->strTransactionFK == $customer_info->strJobOrderID)
+																@if($payments[$i]->strPaymentStatus == "Pending")
+																<option value="{{ $payments[$i]->strJobOrderID }}" @if($payments[$i]->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>{{ $customer_info->dtOrderDate }} {{ $customer_info->strJobOrderID }}</option>
+																@elseif($payments[$i]->strPaymentStatus != "Pending")
+																<option hidden value="{{ $payments[$i]->strJobOrderID }}" @if($payments[$i]->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>{{ $customer_info->dtOrderDate }} {{ $customer_info->strJobOrderID }}</option>
 																@endif
 																@endif
-															@elseif($payment->strPaymentStatus != "Pending")
+															@elseif($payments[$i]->strPaymentStatus != "Pending")
 															@endif
 
 														@endif
-														@endforeach
-													@endforeach
+														@endfor
+													
 													</select>
 													</div>
 													<label style="color:teal"><b>Choose a transaction date to pay:</b></label>
@@ -178,9 +178,9 @@
 													<div class="row" id="pay_form" style="display:none">
 													
 												
-													@foreach($payments as $payment)
-														@if($payment->strTransactionFK == $customer_info->strJobOrderID)
-														<div class="payment-summary {{ $payment->strJobOrderID}}" @if($payment->strTransactionFK != $order->strJobOrderID) hidden @endif>
+													@for($i = 0; $i < count($payments); $i++)
+														@if($payments[$i]->strTransactionFK == $customer_info->strJobOrderID)
+														<div class="payment-summary {{ $payments[$i]->strJobOrderID}}" @if($payments[$i]->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>
 															<div style="color:black" class="input-field col s12">                 
 											                  <div class="col s8" style="padding-right: 15%"><input style="margin-left:80%; padding:1%; padding-left:1%" name="amount-to-pay" type="text" class="" id="amount-to-pay" readonly></div>
 											                  <div class="col s4"><label style="color:teal; margin-top:1%; margin-left:2%"><center><b>Total Amount Due<br> <font style="opacity:0.80">(Php)</font>:</b></center></label></div>
@@ -199,7 +199,7 @@
 											            </div>
 											            @endif
 											           
-											        @endforeach
+											        @endfor
 
 											        <div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
 													<h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>

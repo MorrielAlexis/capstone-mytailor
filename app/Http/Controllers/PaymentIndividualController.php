@@ -80,6 +80,7 @@ class PaymentIndividualController extends Controller
                 ->leftJoin('tblGarmentCategory as f', 'e.strSegCategoryFK', '=', 'f.strGarmentCategoryID')
                 ->select('a.*', 'b.*', 'c.strIndivID', 'd.*', 'e.*', 'f.*')
                 ->where('b.strPaymentStatus', 'Pending')
+                ->where(\DB::raw('CONCAT(c.strIndivFName, " ", c.strIndivMName, " ", c.strIndivLName)'), $search_custname)
                 ->orderBy('a.strJobOrderID')
                 ->get();
 
@@ -190,6 +191,7 @@ class PaymentIndividualController extends Controller
             $payTerms = "Pending";
         }
 
+
         //dd($payTerms);
             $payment = TransactionJobOrderPayment::create(array(
                     'strPaymentID' => $jobPaymentID,
@@ -255,6 +257,20 @@ class PaymentIndividualController extends Controller
 
         $custId = session()->get('cust_id'); //dd($custId);
         $custname = session()->get('name');
+        $joId = session()->get('jo_ID');
+        
+        $amtPaid = session()->get('amountToPay');
+        $joBalance = session()->get('outstandingBal');
+
+
+
+        $newBalance = (double)$joBalance - $amtPaid;
+
+        $paymentid = session()->get('payment_id');
+        $order_receipt = session()->get('jorReceiptId');
+        $payment_receipt = session()->get('pyrReceiptId');
+        $amtTendered = (double)session()->get('amountTendered');
+        $amtChange = (double)session()->get('amountChange');
 
         $customer_info = \DB::table('tblCustIndividual AS a')
                 ->leftJoin('tblJobOrder AS b', 'a.strIndivID', '=', 'b.strJO_CustomerFK')
@@ -277,8 +293,10 @@ class PaymentIndividualController extends Controller
                 ->leftJoin('tblJOSpecific AS d', 'a.strJobOrderID', '=', 'd.strJobOrderFK')
                 ->leftJoin('tblSegment AS e', 'd.strJOSegmentFK', '=', 'e.strSegmentID')
                 ->select('a.*', 'b.*', 'c.strIndivID', 'd.*', 'e.*')
+                ->where('a.strJO_CustomerFK', $custId)
+                ->where('b.strPaymentID', $paymentid)
                 ->orderBy('a.strJobOrderID')
-                ->get();
+                ->first();
 
 
         $empname = \DB::table('tblEmployee')
@@ -286,15 +304,9 @@ class PaymentIndividualController extends Controller
                     ->where('strEmployeeID', '=', 'EMPL001')//Temporary, since naka-hardcode pa yung pagset ng employee sa naunang process.
                     ->first();
 
-        $paymentid = session()->get('payment_id');
-        $order_receipt = session()->get('jorReceiptId');
-        $payment_receipt = session()->get('pyrReceiptId');
-        $amtTendered = (double)session()->get('amountTendered');
-        $amtChange = (double)session()->get('amountChange');
-
         $pdf = PDF::loadView('pdf/billpayment-individual-receipt', 
                     compact('paymentid', 'order_receipt', 'payment_receipt', 'custId',
-                        'amtTendered', 'amtChange','empname', 'custname', 'payments', 'customer_orders', 'customer_info'))
+                        'amtTendered', 'amtChange','empname', 'custname', 'payments', 'customer_orders', 'customer_info', 'joId', 'newBalance'))
         ->setPaper('Letter')->setOrientation('portrait');
 
         return $pdf->stream();
@@ -306,12 +318,18 @@ class PaymentIndividualController extends Controller
         session()->forget('jo_ID');
         session()->forget('cust_id');
         session()->forget('amountToPay');
+        session()->forget('amountTendered');
+        session()->forget('amountChange');
         session()->forget('outstandingBal');
         session()->forget('transaction_date');
         session()->forget('dueDate');
         session()->forget('jorReceiptId');
         session()->forget('pyrReceiptId');
-        session()->forget('payment_id');        
+        session()->forget('payment_id');
+        session()->forget('search_custname');
+        session()->forget('name');
+        session()->forget('employee');
+
 
     }
     /**

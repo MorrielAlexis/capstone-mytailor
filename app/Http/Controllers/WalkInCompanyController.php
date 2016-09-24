@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use PDF;
 use App\Package;
 
 use App\Fabric;
@@ -1048,10 +1048,29 @@ class WalkInCompanyController extends Controller
 
                 ));*/
         //dd(session()->get('package_segments'));
+
+        return view('for-printing-company');
+                
+        
+    }//end of job order
+
+    public function submit(Request $request)
+    {
+        $request->session()->flash('success-message', 'Order successfully processed!');  
         $this->clearValues();
 
         return redirect('transaction/walkin-company');
-    }//end of job order
+    }
+
+    public function generateReceipt()
+    {
+        $pdf = PDF::loadView('pdf/payment-receipt-company')//use compact 
+                    
+        ->setPaper('Letter')->setOrientation('portrait'); //compact - diyan mo ilalagay ang mga variables na ipapasa sa blade file ng pdf
+
+        return $pdf->stream();
+    }
+
 
     public function removePackage(Request $request)
     {   
