@@ -182,17 +182,6 @@
 
 @section('scripts')
 
-	<script type="text/javascript">
-	  $('.modal-trigger').leanModal({
-	      dismissible: true, // Modal can be dismissed by clicking outside of the modal
-	      opacity: .5, // Opacity of modal background
-	      in_duration: 300, // Transition in duration
-	      out_duration: 200, // Transition out duration
-	      width:400,
-	    }
-	  );
-	</script>
-
 	<script>
 	  $(document).ready(function() {
 	    $('select').material_select();

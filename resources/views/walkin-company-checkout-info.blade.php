@@ -63,20 +63,6 @@
 
 					</div>
 					<!--End of modal for cancel transaction-->
-
-	
-
-	            	<div class="col s4" style="margin-top:5px">
-	            		<div class="fixed-action-btn vertical" style="bottom: 45px; right: 24px;">
-						        <a class="mdi-maps-store-mall-directory btn-floating btn-large red " style="font-size:40px; height:70px; width:70px; padding:5px; padding-bottom:3px; margin-right:40px" ></a>
-						        <ul>
-      						      <li><a href="{{URL::to('transaction/walkin-company')}}" class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="Forgot something? Click to go back shopping" style="height:50px; width:50px; margin-right:40px; padding-top:5px;"><i class="mdi-action-shopping-basket"></i></a></li>
-      						      <li><a href="{{URL::to('transaction/walkin-company-customize-orders')}}" class="btn-floating yellow darken-1 tooltipped" data-position="left" data-delay="50" data-tooltip="Click to go back editing your order" style="height:50px; width:50px; margin-right:40px; padding-top:5px;"><i class="mdi-action-description">Return to Customize Order</i></a></li>
-      						    </ul>
-						</div>	
-	            		
-	            	</div>
-
 	            </div> <!--End of header-->
 
 
