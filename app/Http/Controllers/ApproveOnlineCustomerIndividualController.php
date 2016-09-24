@@ -78,7 +78,7 @@ class ApproveOnlineCustomerIndividualController extends Controller
                 $order = $Content->transID;
                 $totPrice = $Content->totalPrice;
                 $email = $Content->custEmail;
-                $cpNo = $Content->cpNo;
+                $cpNum = $Content->cpNo;
                 $segment = $Content->segment;
                 $fabric = $Content->fabric;
                 $address = $Content->address;
@@ -92,7 +92,7 @@ class ApproveOnlineCustomerIndividualController extends Controller
              // dd($emailContents);    
 
 
-        Mail::send('emails.accept-order', ['name' => $name, 'order' => $order, 'totPrice' => $totPrice, 'email' => $email, 'cp' => $cpNo, 'segment' => $segment, 'fabric' => $fabric, 'address' => $address, 'intQuantity' => $intQuantity, 'time' => $time], function($message) use($emailContents) {
+        Mail::send('emails.accept-order', ['name' => $name, 'order' => $order, 'totPrice' => $totPrice, 'email' => $email, 'cp' => $cpNum, 'segment' => $segment, 'fabric' => $fabric, 'address' => $address, 'intQuantity' => $intQuantity, 'unitPrice' => $unitPrice, 'time' => $time], function($message) use($emailContents) {
 
                 foreach($emailContents as $value){
                     $email = $value->custEmail;  

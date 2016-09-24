@@ -55,10 +55,10 @@
 			@for($i = 0; $i < count($segments); $i++)
 			<div class="col s12"><div class="divider" style="height:2px; background-color:gray"></div></div><!--divider-->
 		       	<div class="row" style="background-color:white; margin-top:20px">
-		    		<div class="col s12" style="margin-top:20px">
+		    		<!--<div class="col s12" style="margin-top:20px">
 			          	<input type="checkbox" name="cbx-measure-all[]"  class="filled-in cbx-measure-all" id="{{ $segments[$i]['strSegmentID'] }}" value="{{ $segments[$i]['strSegmentID'] }}" style="padding:5px"/>
 			          	<label for="{{ $segments[$i]['strSegmentID'] }}"><font size="+1"><b>Apply to all</b></font></label>
-			        </div>
+			        </div>-->
 				@for($j = 0; $j < $quantities[$i]; $j++) 
 	            	<div class="col s12" style="padding:20px"> 
 		            	<div id="for_top" class="col s12" style="color:black">

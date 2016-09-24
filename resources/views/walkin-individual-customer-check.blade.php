@@ -62,7 +62,7 @@
 					    </div>
 					<br><br>
 					<div class="col s12"><div class="divider" style="height:2px; background-color:teal; margin-bottom:1%"></div></div>
-					<right><button type="submit" id="checkCustomer" class="right btn" style="background-color:teal; color:white; margin-bottom:3%">Done!</button></right>
+					<right><button type="button" id="checkCustomer" class="right btn" style="background-color:teal; color:white; margin-bottom:3%">Done!</button></right>
 					</div>
 					{!! Form::close() !!}
 

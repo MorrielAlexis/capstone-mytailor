@@ -723,7 +723,7 @@ class WalkInIndividualController extends Controller
                         $ID = $ids["0"]->strJOMeasureSpecificID;
                         $joMeasSpecificID = $this->smartCounter($ID);  
                     }
-                    //dd($$measurementName[$i][$j]);
+                    dd($$measurementName[$i][$j]);
                     $joMeasurementSpecific = TransactionJobOrderMeasurementSpecifics::create(array(
                             'strJOMeasureSpecificID' => $joMeasSpecificID,
                             'strJobOrderSpecificFK' => $jobSpecsID,
