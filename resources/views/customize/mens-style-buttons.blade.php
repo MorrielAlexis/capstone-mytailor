@@ -72,12 +72,12 @@
 
         <div class="divider dashed" style="height:2px;"></div>
 
-          <div class="col s12" style="margin-top:20px;">
+          {{-- <div class="col s12" style="margin-top:20px;">
             <div class="col s6" style="padding-left:20px;"><h5><b>Coloured Button Threads</b></h5></div>
             <div class="col s6" style="padding-left:20px;"><h5><b>Coloured Buttonholes</b></h5></div>
-          </div>
+          </div> --}}
 
-          <div class="col s12">
+          {{-- <div class="col s12">
             <div class="col s3 button-thread" style="padding:40px;">
             <input type="hidden" name="hidden_thread_id" value="">
               <img class="materialboxed responsive-img" src="imgDesignPatterns/buttonthread.png">
@@ -112,7 +112,7 @@
             </div>         
 
           </div>
-
+ --}}
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12">
