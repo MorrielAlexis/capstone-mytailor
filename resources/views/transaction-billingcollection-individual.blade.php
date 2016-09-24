@@ -102,55 +102,52 @@
 								</thead>
 								<tbody>
 								
-									@foreach($customers as $customer)
+								@foreach($customers as $customer)
 									@foreach($cust as $custs)
-									@if($customer->boolIsActive == 1 AND $customer->strJO_CustomerFK == $custs->strIndivID AND $customer->strTransactionFK == $custs->strJobOrderID)
-								
-									@if($customer->strPaymentStatus == "Pending")	
-									<tr style="background-color:rgba(54, 162, 235, 0.2)" @if($customer->strJO_CustomerFK != $custs->strIndivID) hidden @endif>	
-										<td class="center"><a class="modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to see order summary" href="#view{{ $customer->strPaymentID }}"><b>{{ $customer->strPaymentID }}</b></a></td>									
-										<td class="center">{{ $customer->strJobOrderID }}</td>
-										
-										<td class="center">{{ $customer->fullname }}</td>
-										<!-- <td class="center">{{ $customer->strTransactionFK }}</td> -->
-										<td class="center">{{ $customer->strModeOfPayment }}</td>
-										
-										<td class="center" style="color:teal">P {{ number_format($customer->dblOrderTotalPrice, 2) }}</td>
-										<td class="center">P {{ number_format(($customer->dblOrderTotalPrice/2), 2) }}</td>
-										<td class="center">P {{ number_format($customer->dblAmountToPay, 2) }}</td>
-										<td class="center">P {{ number_format($customer->dblOutstandingBal, 2)}}</td>
-										<td class="center" style="color:teal">{{ $customer->dtPaymentDueDate }}</td>
-										<td class="center" style="color:green"><i>{{ $customer->strPaymentStatus }}</i></td>
-											
-									</tr>
+										@if($customer->boolIsActive == 1 AND $customer->strJO_CustomerFK == $custs->strIndivID AND $customer->strTransactionFK == $custs->strJobOrderID)				
+											@if($customer->strPaymentStatus == "Pending")	
+											<tr style="background-color:rgba(54, 162, 235, 0.2)" @if($customer->strJO_CustomerFK != $custs->strIndivID) hidden @endif>	
+												<td class="center"><a class="modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to see order summary" href="#view{{ $customer->strPaymentID }}"><b>{{ $customer->strPaymentID }}</b></a></td>									
+												<td class="center">{{ $customer->strJobOrderID }}</td>
+												
+												<td class="center">{{ $customer->fullname }}</td>
+												<!-- <td class="center">{{ $customer->strTransactionFK }}</td> -->
+												<td class="center">{{ $customer->strModeOfPayment }}</td>
+												
+												<td class="center" style="color:teal">P {{ number_format($customer->dblOrderTotalPrice, 2) }}</td>
+												<td class="center">P {{ number_format(($customer->dblOrderTotalPrice/2), 2) }}</td>
+												<td class="center">P {{ number_format($customer->dblAmountToPay, 2) }}</td>
+												<td class="center">P {{ number_format($customer->dblOutstandingBal, 2)}}</td>
+												<td class="center" style="color:teal">{{ $customer->dtPaymentDueDate }}</td>
+												<td class="center" style="color:green"><i>{{ $customer->strPaymentStatus }}</i></td>
+													
+											</tr>
 
-									@elseif($customer->strPaymentStatus != "Pending")	
-									<tr @if($customer->strJO_CustomerFK != $custs->strIndivID) hidden @endif>							
-										<td class="center"><a class="modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to see order summary" href="#view{{ $customer->strPaymentID }}"><b>{{ $customer->strPaymentID }}</b></a></td>
-										<td class="center">{{ $customer->strJobOrderID }}</td>
-										<!--Modal for order summary-->
-										
-										<td class="center">{{ $customer->fullname }}</td>
-										<!-- <td class="center">{{ $customer->strTransactionFK }}</td> -->
-										<td class="center">{{ $customer->strModeOfPayment }}</td>
-										<td class="center" style="color:teal">P {{ number_format($customer->dblOrderTotalPrice, 2) }}</td>
-										<td class="center">P {{ number_format(($customer->dblOrderTotalPrice/2), 2) }}</td>
-										<td class="center">P {{ number_format($customer->dblAmountToPay, 2) }}</td>
-										<td class="center">P {{ number_format($customer->dblOutstandingBal, 2)}}</td>
-										@if($customer->strPaymentStatus != "Pending") 
-											<td class="center" style="color:teal">Completed</td>
-										@elseif($customer->strPaymentStatus == "Pending")
-										<td class="center" style="color:teal" >{{ $customer->dtPaymentDueDate }}</td>
-										@endif
-										<td class="center" style="color:green"><i>{{ $customer->strPaymentStatus }}</i></td>
-											
-									</tr>
-
-									
-									@endif
-									@endif	
+											@elseif($customer->strPaymentStatus != "Pending")	
+											<tr @if($customer->strJO_CustomerFK != $custs->strIndivID) hidden @endif>							
+												<td class="center"><a class="modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to see order summary" href="#view{{ $customer->strPaymentID }}"><b>{{ $customer->strPaymentID }}</b></a></td>
+												<td class="center">{{ $customer->strJobOrderID }}</td>
+												<!--Modal for order summary-->
+												
+												<td class="center">{{ $customer->fullname }}</td>
+												<!-- <td class="center">{{ $customer->strTransactionFK }}</td> -->
+												<td class="center">{{ $customer->strModeOfPayment }}</td>
+												<td class="center" style="color:teal">P {{ number_format($customer->dblOrderTotalPrice, 2) }}</td>
+												<td class="center">P {{ number_format(($customer->dblOrderTotalPrice/2), 2) }}</td>
+												<td class="center">P {{ number_format($customer->dblAmountToPay, 2) }}</td>
+												<td class="center">P {{ number_format($customer->dblOutstandingBal, 2)}}</td>
+													@if($customer->strPaymentStatus != "Pending") 
+														<td class="center" style="color:teal">Completed</td>
+													@elseif($customer->strPaymentStatus == "Pending")
+														<td class="center" style="color:teal" >{{ $customer->dtPaymentDueDate }}</td>
+													@endif
+												<td class="center" style="color:green"><i>{{ $customer->strPaymentStatus }}</i></td>
+													
+											</tr>
+											@endif
+										@endif	
 									@endforeach
-									@endforeach
+								@endforeach
 								</tbody>
 							</table>
 
@@ -159,7 +156,7 @@
 							<div class="divider"></div>
 							<a href="{{URL::to('/transaction/payment/individual/home')}}" class="right  btn" style="background-color:teal; color:white; margin-top:2%">Go to Payment</a>
 						</div>
-
+						<!-- PUT THIS INSIDE THE LOOP -->
 						<div id="view{{ $customer->strPaymentID }}" class="modal modal-fixed-footer" style="width:70%; height:80%">
 											<center><h5 style="color:teal">Order and Payment Information of Customer</h5></center>
 											<div class="divider" style="height:2px"></div>

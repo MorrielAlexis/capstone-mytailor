@@ -34,7 +34,7 @@ class CollectionIndividualController extends Controller
                 ->select('a.*', 'b.*', 'c.strIndivID', \DB::raw('CONCAT(c.strIndivFName, " ", c.strIndivMName, " ", c.strIndivLName) AS fullname'))
                 ->orderBy('b.strPaymentID')
                 ->get();
-
+        //dd($customers);
         $cust = \DB::table('tblCustIndividual AS a')
                 ->leftJoin('tblJobOrder AS b', 'a.strIndivID', '=', 'b.strJO_CustomerFK')
                 ->select('a.strIndivID', \DB::raw('CONCAT(a.strIndivFName, " ", a.strIndivMName, " ", a.strIndivLName) AS fullname'), 'b.*')
@@ -43,7 +43,7 @@ class CollectionIndividualController extends Controller
 
         $orders = \DB::table('tblCustIndividual AS a')
                 ->leftJoin('tblJobOrder AS b', 'a.strIndivID', '=', 'b.strJO_CustomerFK')
-                 ->leftJoin('tblJOSpecific AS c', 'b.strJobOrderID', '=', 'c.strJobOrderFK')
+                ->leftJoin('tblJOSpecific AS c', 'b.strJobOrderID', '=', 'c.strJobOrderFK')
                 ->leftJoin('tblSegment AS d', 'c.strJOSegmentFK', '=', 'd.strSegmentID')
                 ->leftJoin('tblGarmentCategory as e', 'd.strSegCategoryFK', '=', 'e.strGarmentCategoryID')
                 ->leftJoin('tblFabric AS f', 'c.strJOFabricFK', '=', 'f.strFabricID')

@@ -1769,10 +1769,11 @@ class OnlineIndividualController extends Controller
                             'strEmployeeNameFK' => 'EMPL001',
                             'boolIsActive' => 1
                     ));
-            //}
-                    //dd($jobSpecsID);    
+             
             $jobOrderSpecifics->save();
         }
+
+            \Session::flash('flash_message','Order successfully sent. Wait for email confirmation.'); //flash message
 
     return redirect('clear-values');
     }

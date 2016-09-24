@@ -94,7 +94,7 @@
 
           <div class="divider dashed" style="height:2px;"></div>
 
-          <div class="col s12" style="margin-top:20px;">
+         <!-- <div class="col s12" style="margin-top:20px;">
             <div class="col s3" style="padding:20px;"><h5><b>Collar Lining</b></h5>
               <p>Choose the rigidity or the hardness you wish for your collar. It concerns the whole collar, not just the collar points.</p>
             </div>
@@ -110,12 +110,12 @@
                 <div><a style="color:white; margin-top:10px" class="modal-trigger btn tooltipped teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#fabricContrast"><font size="+1">Select Fabric</font></a></div>
               </div> 
             </div>
-          </div>
+          </div> !-->
 
 
           <div class="col s12">
 
-            <div class="col s3" style="padding:20px;">
+            {{-- <div class="col s3" style="padding:20px;">
               <div class="input-field">
                 <select class="browser-default">
                   <option value="" disabled selected>Choose your option</option>
@@ -124,9 +124,9 @@
                   <option value="3">Soft</option>
                 </select>
               </div>
-            </div>
+            </div> --}}
 
-            <div class="col s3" style="padding:20px;">
+           {{--  <div class="col s3" style="padding:20px;">
               <div class="input-field">
                 <select class="browser-default">
                   <option value="" disabled selected>Choose your option</option>
@@ -135,7 +135,7 @@
                   <option value="3">RSewn-in Collar Stay</option>
                 </select>
               </div>             
-            </div>
+            </div> --}}
 
           </div>   
 
