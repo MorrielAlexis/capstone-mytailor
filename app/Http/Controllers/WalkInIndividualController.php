@@ -493,6 +493,8 @@ class WalkInIndividualController extends Controller
                     $unitPrice[] = ($values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice']) + ($styleTotal[$i]['dblPatternPrice'] + $fab[$i][$j]->dblFabricPrice);
                 }else if($fab[$i][$j]->strFabricName == $fabrics[$i]->strFabricName){
                     $unitPrice[] = ($values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice']) + ($styleTotal[$i]['dblPatternPrice']);
+                }else if($fab[$i][$j]->strFabricName == null){
+                    $unitPrice[] = ($values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice']) + ($styleTotal[$i]['dblPatternPrice']);
                 }
              }
         } //dd($unitPrice);
@@ -669,7 +671,7 @@ class WalkInIndividualController extends Controller
             $jobOrderSpecifics->save();
 
             for($j = 0; $j <= count($patterns); $j++){ //dd($designs);
-                //dd($styleFabric[$i][$j]->strFabricID);
+                //dd($designs[$i][$j]->strSegPatternID);
                     $jobOrderSpecificsPattern = TransactionJobOrderSpecificsPattern::create(array(
                             'strJobOrderSpecificFK' => $jobSpecsID,
                             'strSegmentPatternFK' => $designs[$i][$j]->strSegPatternID,

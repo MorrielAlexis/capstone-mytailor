@@ -83,8 +83,8 @@
                         <div style="color:black" class="input-field col s12">                 
                             <select name="addSex">
                               <option value="" disabled selected color="red">Sex</option>
-                              <option value="M">Female</option>
-                              <option value="F">Male</option>
+                              <option value="1">Female</option>
+                              <option value="2">Male</option>
                             </select>
                         </div> 
                     </div>   

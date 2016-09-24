@@ -593,6 +593,8 @@ Route::group(['prefix' => 'transaction'], function(){
 
 	Route::post('save-order', 'OnlineIndividualController@saveOrder');
 
+	Route::get('clear-values', 'OnlineIndividualController@clearValues');
+
 	Route::get('checkout-payment', 'OnlineIndividualController@payment');
 	
 	Route::get('customize-womens-choose-shirt', 'OnlineIndividualController@womenchoose');
@@ -629,7 +631,7 @@ Route::group(['prefix' => 'transaction'], function(){
 		Route::get('customers-with-balances', 'QueriesCustomerWithBalancesController@index');
 		Route::get('companies-with-balances', 'QueriesCustomerWithBalancesController@company');
 		Route::get('modifyIndividual', 'ModifyIndividualOrdersController@index');
-		Route::get('modifyCompany', 'ModifyCompanyOrdersController@index');
+		
 	});
 			
 	

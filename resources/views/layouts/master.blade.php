@@ -228,16 +228,8 @@
                          <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('queries/most-availed-alteration-service')}}">Most Availed - Alteration Service</a></li>
                         <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('queries/customers-with-balances')}}">Customers with Balance</a></li>
                          <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white" href= "{{URL::to('queries/companies-with-balances')}}">Companies with Balance</a></li>
-                          <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('queries/modifyIndividual') || Request::is('queries/modifyCompany') ? 'active' : '' }}"><b>Modify Job Order</b></a>
-                          <div class="collapsible-body">
-                            <ul>
-                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white " href="{{URL::to('queries/modifyIndividual')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Modify - Individual Order</font></i></a></li>
-                              <li><a style="color:black; font-weight:normal" class="waves-effect waves-white" href="{{URL::to('queries/modifyCompany')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Modify - Company Order</font></i></a></li>
-                             <div class="divider"></div>
-                            </ul>
-                          </div>
-                        </li>
-
+                          <li><a style="color:black; font-weight:normal" class="waves-effect waves-white " href="{{URL::to('queries/modifyIndividual')}}"><i style="font-size:15px" class="mdi-action-label-outline" style="color:#ccff90;"><font font-family: "Century Gothic">Job Orders</font></i></a></li>
+                
                       </ul>
                     </li>
                   </ul>

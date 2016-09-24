@@ -92,19 +92,16 @@
       <div class="col s12 divider dashed" style="height:4px; margin-top:10px; margin-bottom:10px;"></div>
       
       
-      {!! Form::open(['url' => 'customize-mens-style-collar', 'method' => 'post']) !!}
+      {!! Form::open(['url' => 'customize-mens-style-collar', 'method' => 'post', "id" => "order-form"]) !!}
       <div class="col s12" style="margin-bottom:20px;"><button class="right btn-flat teal accent-4 white-text" type="submit">Continue</button></div>
 
       @foreach($fabrics as $fabric)
       <div class="col s12 fabric-general {{ $fabric->strFabricTypeFK }} {{ $fabric->strFabricPatternFK }} {{ $fabric->strFabricColorFK }} {{ $fabric->strFabricThreadCountFK }}" style="margin-bottom:20px; padding:20px; padding-top:0;">
         <div class="col s6">
           <div class="center col s2 " style="margin-top:100px">
-            <input name="mfabric" type="radio" class="filled-in" value = "{{$fabric->strFabricID}}" id="{{$fabric->strFabricID}}" />
+            <input name="mfabric" type="radio" class="cbx-fabric filled-in" value = "{{$fabric->strFabricID}}" id="{{$fabric->strFabricID}}" />
             <label for="{{$fabric->strFabricID}}"></label>
           </div>
-
-          <input type="hidden" value="{{$fabric->strFabricName}}" name="mfname">
-          <input type="hidden" value="{{$fabric->dblFabricPrice}}" name="mfprice">
 
           <div class="col s10">
             <div class="card-panel teal lighten-4 z-depth-1" style="height:265px">
@@ -199,6 +196,16 @@
       $('select').material_select();
     });
 
+  </script>
+
+  <script type="text/javascript">
+    $("#order-form").submit(function(){
+      if(!$('.cbx-fabric').is(":checked"))
+      {
+          alert('Please select at least one item.');
+          return false;
+      }
+    })
   </script>
 
 @stop

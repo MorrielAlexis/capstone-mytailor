@@ -33,7 +33,7 @@
           <p class="center-align" style="color:teal; margin-bottom:40px"><b>CHOOSE AMONG AVAILABLE PRODUCTS</b></p>
           <div class = "row">
             <div class="center col s4" style="margin-top:30px; margin-left:60px; color:red"><center><b style="font-size:18px">Quantity of Men Shirt</b></center></div>  
-            <div class="col s3" style="margin-top:20px; padding:5px; margin-right:5px;"><input name="menquantity" id="menquantity" type="number" style="border:2px teal solid; padding-left:18%; padding-right:18%" placeholder="How many?"></div>
+            <div class="menquantity col s3" style="margin-top:20px; padding:5px; margin-right:5px;"><input name="menquantity" value = "1" id="menquantity" type="number" style="border:2px teal solid; padding-left:18%; padding-right:18%" placeholder="How many?"></div>
           </div>
         
           @foreach($garments as $garment)

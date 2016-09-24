@@ -78,11 +78,8 @@ class PaymentIndividualController extends Controller
                 ->leftJoin('tblJOSpecific AS d', 'a.strJobOrderID', '=', 'd.strJobOrderFK')
                 ->leftJoin('tblSegment AS e', 'd.strJOSegmentFK', '=', 'e.strSegmentID')
                 ->leftJoin('tblGarmentCategory as f', 'e.strSegCategoryFK', '=', 'f.strGarmentCategoryID')
-                ->leftJoin('tblFabric AS g', 'd.strJOFabricFK', '=', 'g.strFabricID')
-                ->leftJoin('tblJOSpecificSegmentPattern AS h', 'd.strJOSpecificID', '=', 'h.strJobOrderSpecificFK')
-                ->leftJoin('tblSegmentPattern AS i', 'h.strSegmentPatternFK', '=', 'i.strSegPatternID')
-                ->leftJoin('tblSegmentStyleCategory AS j', 'i.strSegPStyleCategoryFK', '=', 'j.strSegStyleCatID')
-                ->select('a.*', 'b.*', 'c.strIndivID', 'd.*', 'e.*', 'f.*', 'g.*', 'h.*', 'i.*', 'j.*')
+                ->select('a.*', 'b.*', 'c.strIndivID', 'd.*', 'e.*', 'f.*')
+                ->where('b.strPaymentStatus', 'Pending')
                 ->orderBy('a.strJobOrderID')
                 ->get();
 
@@ -101,6 +98,9 @@ class PaymentIndividualController extends Controller
                     ->where('strEmployeeID', '=', $empId)//Temporary, since naka-hardcode pa yung pagset ng employee sa naunang process.
                     ->first(); 
 
+        // dd($payments);
+
+
         session(['employee' => $empname]);
         // dd($payments);
         // dd($customer_info, $customer_orders, $payments);
@@ -112,6 +112,8 @@ class PaymentIndividualController extends Controller
                 ->with('payments', $payments)
                 ->with('payment_lists', $payment_lists)
                 ->with('empname', $empname);
+
+
     }
 
 
@@ -121,8 +123,8 @@ class PaymentIndividualController extends Controller
 
         //session(['termsOfPayment' => $request->input('termsOfPayment')]);
         //session(['totalPrice' => $request->input('total_price')]);
-        session(['amountToPay' => $request->input('amt-to-pay')]);
-        session(['outstandingBal' => $request->input('outstanding-bal')]);
+        session(['amountToPay' => $request->input('amount-payable')]);
+        session(['outstandingBal' => (double)$request->input('hidden-outstanding-bal')]);
         session(['amountTendered' => $request->input('amount-tendered')]);
         session(['amountChange' => $request->input('amount-change')]);
         session(['transaction_date' => $request->input('transaction_date')]);
@@ -150,7 +152,7 @@ class PaymentIndividualController extends Controller
 
         session(['cust_id' => $customerID]);
         session(['jo_ID' => $joID]);
-        $balance = (double)session()->get('outstandingBal');
+
         $modeOfPayment = "Cash";
         $amtTendered = (double)session()->get('amountTendered');
         $amtChange = (double)session()->get('amountChange');
@@ -158,11 +160,11 @@ class PaymentIndividualController extends Controller
 
         $ids = \DB::table('tblJOPayment')
                 ->select('strPaymentID')
-                ->orderBy('created_at', 'asc')
+                ->orderBy('created_at', 'desc')
                 ->orderBy('strPaymentID', 'asc')
                 ->take(1)
                 ->get();
-
+        
             if($ids == null){
                 $jobPaymentID = $this->smartCounter("JOPY000"); 
             }else{
@@ -172,18 +174,34 @@ class PaymentIndividualController extends Controller
             }
         session(['payment_id' => $jobPaymentID]);
 
+        $employee = session()->get('employee');
+        $joId = session()->get('jo_ID');
+        $amtToPay = (double)session()->get('amountToPay');
+        $amtBalance = (double)session()->get('outstandingBal');
         
+        if($amtToPay == $amtBalance){
+
+            $balance = 0.00;
+            $payTerms = "Paid";
+        }
+        else{
+
+            $balance = (double)$amtBalance - $amtToPay;
+            $payTerms = "Pending";
+        }
+
+        //dd($payTerms);
             $payment = TransactionJobOrderPayment::create(array(
                     'strPaymentID' => $jobPaymentID,
-                    'strTransactionFK' => session()->get('jo_ID'),//tblJobOrder
-                    'dblAmountToPay' => session()->get('amountToPay'), 
-                    'dblOutstandingBal' => 0.00,
+                    'strTransactionFK' => $joId,//tblJobOrder
+                    'dblAmountToPay' => $amtToPay, 
+                    'dblOutstandingBal' => $balance,
                     'dblAmountTendered' => $amtTendered,
                     'dblAmountChange' => $amtChange,
-                    'strReceivedByEmployeeNameFK' => session()->get('employee'),
+                    'strReceivedByEmployeeNameFK' => "EMPL001",
                     'dtPaymentDate' => 2013-08-21,
                     'dtPaymentDueDate' => 2013-08-22,
-                    'strPaymentStatus' => 'Paid',
+                    'strPaymentStatus' => $payTerms,
                     'boolIsActive' => 1
 
             ));
@@ -193,8 +211,8 @@ class PaymentIndividualController extends Controller
 
         $paymentid = session()->get('payment_id');
 
-            dd($balance);
-        //Payment Receipt
+        //     dd($balance);
+        // //Payment Receipt
         $prId = \DB::table('tblPaymentReceipt')
                 ->select('strPaymentReceiptID')
                 ->orderBy('created_at', 'desc')
@@ -212,7 +230,7 @@ class PaymentIndividualController extends Controller
         $paymentReceipt = TransactionPaymentReceipt::create(array(
                 'strPaymentReceiptID' => $payReceiptID,
                 'strPaymentFK' => session()->get('payment_id'), //tblJobOrder
-                'strIssuedByEmpNameFK' => session()->get('employee'), 
+                'strIssuedByEmpNameFK' => "EMPL001", 
                 'boolIsActive' => 1
         ));
 
