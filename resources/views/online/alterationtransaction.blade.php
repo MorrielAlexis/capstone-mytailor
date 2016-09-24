@@ -15,9 +15,9 @@
           <center><div><a class="btn waves-effect teal accent-4 waves-teal container" href="{{URL::to('transaction/online-alterationtransaction-newcustomer')}}" style="height:100px; padding:10px;"><font size="+5">NEW CUSTOMER</font></a></div></center>
         </div>
 
-        <div class="col s12 m12 l6" style="padding:20px">
+      {{--   <div class="col s12 m12 l6" style="padding:20px">
           <center><div><a class="btn waves-effect teal accent-4 waves-teal container" href="{{URL::to('transaction/online-alterationtransaction-patron')}}" style="height:100px; padding:30px;"><font size="+5">PATRON</font></a></div></center>
-        </div>
+        </div> --}}
       </div>
 
     </div>
