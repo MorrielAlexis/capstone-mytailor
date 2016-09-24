@@ -807,6 +807,13 @@ class WalkInCompanyController extends Controller
         $quantity = session()->get('employee_segment_total');
         $customFabrics = session()->get('package_pattern_faabric');
 
+        $ttlPrice = $request->get('hidden_total_price'); //tblJobOrder   
+        $amtTendered = $request->get('amount-tendered');
+        $amtChange = $request->get('amount-change');
+        session(['amountTendered' => $amtTendered]);
+        session(['amountChange' => $amtChange]);
+        session(['totalPrice' => $ttlPrice]);
+
         for($i = 0; $i < count(session()->get('employee_set')); $i++)
         {
             if(session()->get('employee_mname')[$i] != "")
@@ -881,6 +888,11 @@ class WalkInCompanyController extends Controller
 
         ));
         session(['payment_id' => $jobPaymentID]);
+        $balance = $request->input('hidden-balance');
+        $amountToPay = $request->input('hidden-amount-payable');
+        session(['outstandingBal' => $balance]);
+        session(['amountToPay' => $amountToPay]);
+        session(['dueDate' => $orderDate]);
 
         $payment->save();
         
@@ -994,8 +1006,8 @@ class WalkInCompanyController extends Controller
             }//end of loop for measurement specs
         }//end of loop for package quantity
 
-//        $paymentid = session()->get('payment_id');
-/*
+        $paymentid = session()->get('payment_id');
+
         //Job Order Receipt
         $jorId = \DB::table('tblJobOrderReceipt')
                 ->select('strOrderReceiptID')
@@ -1013,7 +1025,7 @@ class WalkInCompanyController extends Controller
 
         $jobOrderReceipt = TransactionJobOrderReceipt::create(array(
                 'strOrderReceiptID' => $joReceiptID,
-                'strJobOrderFK' => session()->get('joID'), //tblJobOrder
+                'strJobOrderFK' => session()->get('compJOID'), //tblJobOrder
                 'strIssuedByEmpNameFK' => "EMPL001", 
                 'boolIsActive' => 1
 
@@ -1022,8 +1034,8 @@ class WalkInCompanyController extends Controller
         session(['jorReceiptId' => $joReceiptID]);
 
         $jobOrderReceipt->save();
-*/
-/*
+
+
         //Payment Receipt
         $prId = \DB::table('tblPaymentReceipt')
                 ->select('strPaymentReceiptID')
@@ -1049,12 +1061,13 @@ class WalkInCompanyController extends Controller
         session(['pyrReceiptId' => $payReceiptID]);
 
         $paymentReceipt->save();
-        $jobOrder = TransactionJobOrder::create(array(
+        /*$jobOrder = TransactionJobOrder::create(array(
                 'strJobOrderID' => ,
 
 
                 ));*/
         //dd(session()->get('package_segments'));
+        session(['termsOfPayment' => $termsOfPayment]);
 
         return view('for-printing-company');
                 
@@ -1071,7 +1084,62 @@ class WalkInCompanyController extends Controller
 
     public function generateReceipt()
     {
-        $pdf = PDF::loadView('pdf/payment-receipt-company')//use compact 
+        $values = 'null';
+        $patterns = [];
+        $i = 0;
+        $k = 0;
+        $termsOfPayment = 'null';
+        $paymentid = 'null';
+
+        $data = [
+            'orders' => [
+                [
+                  'job_order_id' => 'JOB001',
+                  'segment_data'  => 'Name 1',
+                  'segment_quantity' => 1,
+                  'segment_fabric' => 'Cotton',
+                  'segment_design' => 'Design 1',
+                  'totalPrice' => 52.00,
+                  'amountToPay' => 60.00,
+                  'outstandingBal' => 70.00,
+                ]
+            ]
+        ];
+
+        $empEmail = \Auth::user()->email; //dd($empEmail);
+        $emp = \DB::table('tblEmployee')
+                ->select('tblEmployee.strEmployeeID')
+                ->where('tblEmployee.strEmailAdd', 'LIKE', $empEmail)
+                ->get(); //dd($emp);
+        $empId;
+        for($i = 0; $i < count($emp); $i++){
+            $empId = $emp[$i]->strEmployeeID;
+        }
+
+        $empname = \DB::table('tblEmployee')
+                    ->select('strEmployeeID', \DB::raw('CONCAT(strEmpFName, " ", strEmpMName, " ", strEmpLName) AS employeename'))
+                    ->where('strEmployeeID', '=', $empId)//Temporary, since naka-hardcode pa yung pagset ng employee sa naunang process.
+                    ->first();
+
+        $jobOrderID = session()->get('compJOID'); //tblJobOrder
+        $companyID = session()->get('compID'); //tblJobOrder
+
+        $companyName = \DB::table('tblCustCompany')
+                ->select('strCompanyID', 'strCompanyName', 'strContactPerson')
+                ->where('strCompanyID', $companyID)
+                ->first();
+
+        $paymentReceipt = session()->get('pyrReceiptId');
+        $joReceiptID = session()->get('jorReceiptId');
+        $paymentID = session()->get('payment_id');
+        $termsOfPayment = session()->get('termsOfPayment');
+        $amtTendered = session()->get('amountTendered');
+        $amtChange = session()->get('amountChange');
+        $outstandingBal = session()->get('outstandingBal');
+
+        $pdf = PDF::loadView('pdf/payment-receipt-company', 
+                compact('empname', 'companyName', 'companyID', 'jobOrderID', 'termsOfPayment', 'joReceiptID', 
+                'paymentReceipt', 'paymentID', 'amtChange', 'amtTendered', 'outstandingBal'))//use compact 
                     
         ->setPaper('Letter')->setOrientation('portrait'); //compact - diyan mo ilalagay ang mga variables na ipapasa sa blade file ng pdf
 

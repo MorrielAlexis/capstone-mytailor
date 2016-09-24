@@ -783,9 +783,9 @@ class OnlineIndividualController extends Controller
 
         $categories = GarmentCategory::all();
 
-        $garments = \DB::table('tblSegment')
+         $garments = \DB::table('tblSegment')
             ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
-            ->where('tblGarmentCategory.strGarmentCategoryName', 'LIKE', '%'.$garmentKey.'%')
+            ->where('tblGarmentCategory.strGarmentCategoryName', '=', $garmentKey)
             ->select('tblSegment.*')
             ->get();
 
@@ -802,8 +802,28 @@ class OnlineIndividualController extends Controller
 
         session(['suitsfabric' => $sfabric]);
 
-        $suitsdata_segment = $request->input('suits');
-        session(['suitssegment_data' => $suitsdata_segment]);
+        $sqty = $request->input('suitquantity');
+        session(['sqty' => $sqty]);
+
+        $suitsegment= \DB::table('tblSegment')
+                    ->select('tblSegment.*')
+                    ->where('tblSegment.strSegmentID', '=', $request->input('suits'))
+                    ->get();
+
+        
+        
+                for($i = 0; $i < count($suitsegment); $i++)
+                {
+                    $sid = $suitsegment[$i]->strSegmentID;
+                    $sname = $suitsegment[$i]->strSegmentName;
+                    $sprice = $suitsegment[$i]->dblSegmentPrice;
+                    $sdays = $suitsegment[$i]->intMinDays;
+                }
+
+                 session(['sid' => $sid]);
+                 session(['sname' => $sname]);
+                 session(['sprice' => $sprice]);
+                 session(['sdays' => $sdays]);
 
         $fabrics = Fabric::all();
         $fabricThreadCounts = FabricThreadCount::all();
@@ -822,12 +842,21 @@ class OnlineIndividualController extends Controller
 
     public function suitsstylejacket(Request $request)
     {
-       $selectedFabric = \DB::table('tblFabric AS a')
-                    ->leftJoin('tblFabricType AS b', 'a.strFabricTypeFK', '=','b.strFabricTypeID')
-                    ->select('a.*', 'b.strFabricTypeName')
-                    ->where('a.strFabricID', $request->input('rdb_fabric'))
-                    ->get();
+       $suitfabric = \DB::table('tblFabric')
+                        ->select('tblFabric.*')
+                        ->where('strFabricID', '=', $request->input('sfabric'))
+                        ->get();
 
+                for($i = 0; $i < count($suitfabric); $i++)
+                {
+                    $sfid = $suitfabric[$i]->strFabricID;
+                    $sfname = $suitfabric[$i]->strFabricName;
+                    $sfprice = $suitfabric[$i]->dblFabricPrice;
+                }
+
+                session(['sfid' => $sfid]);
+                session(['sfname' => $sfname]);
+                session(['sfprice' => $sfprice]);
         $patterns = SegmentPattern::all();
         $threads = Thread::all();
 
@@ -836,6 +865,7 @@ class OnlineIndividualController extends Controller
                     ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
                     ->select('tblSegment.*', 'tblGarmentCategory.strGarmentCategoryName')
                     ->where('tblGarmentCategory.strGarmentCategoryName', 'LIKE', '%'.$garmentKey.'%')
+                    ->where('tblSegment.strSegmentID', '=', session()->get('wid'))
                     ->orderBy('strSegmentID')
                     ->get();
 
@@ -913,6 +943,7 @@ class OnlineIndividualController extends Controller
                     ->join('tblGarmentCategory', 'tblSegment.strSegCategoryFK', '=', 'tblGarmentCategory.strGarmentCategoryID')
                     ->select('tblSegment.*', 'tblGarmentCategory.strGarmentCategoryName')
                     ->where('tblGarmentCategory.strGarmentCategoryName', 'LIKE', '%'.$garmentKey.'%')
+                    ->where('tblSegment.strSegmentID', '=', session()->get('sid'))
                     ->orderBy('strSegmentID')
                     ->get();
 
