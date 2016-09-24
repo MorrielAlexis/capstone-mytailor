@@ -239,8 +239,7 @@ class WalkInCompanyController extends Controller
         $values = session()->get('package_segments_customize');
         $to_be_customized = session()->get('package_customize');
         $segmentStyles = SegmentStyle::all();
-        //dd($segmentStyles);
-        dd($values);
+
         $segmentFabrics = Fabric::all();
         $k = 0;
         $l = 0;
@@ -260,7 +259,8 @@ class WalkInCompanyController extends Controller
             }
             $k = 0;
         }
-        dd($tempPatterns);
+
+
         for($i = 0; $i < count($values); $i++){
             for($j = 0; $j < count($patterns[$i]); $j++){
                 $sqlStyles[$i][$j] = \DB::table('tblSegmentPattern AS a')
@@ -296,7 +296,7 @@ class WalkInCompanyController extends Controller
             for($j = 0; $j < count($customFabric[$i]); $j++){
                 for($k = 0; $k < count($sqlFabric); $k++){
                     if($customFabric[$i][$j] == $sqlFabric[$k]->strFabricID){
-                        $tempCustomFabrics[$i][$j] = $sqlFabric[$k];
+                        $tesaveOmpCustomFabrics[$i][$j] = $sqlFabric[$k];
                     }
                 }
             }
@@ -805,7 +805,7 @@ class WalkInCompanyController extends Controller
         $fabrics = session()->get('package_segment_fabric'); //tblJOSpecs_Design
         $patterns = session()->get('package_segment_pattern');
         $quantity = session()->get('employee_segment_total');
-        $customFabrics = session()->get('package_pattern_faabric');
+        $customFabrics = session()->get('package_pattern_fabric');
 
         $ttlPrice = $request->get('hidden_total_price'); //tblJobOrder   
         $amtTendered = $request->get('amount-tendered');
@@ -828,13 +828,20 @@ class WalkInCompanyController extends Controller
         $measurementProfileSex = session()->get('employee_sex');
         $measurementValue = session()->get('measurement_value');
         $measurementID = session()->get('measurement_id');
+
         if($termsOfPayment == 'Full Payment'){
             $payTerms = 'Paid';
-        } elseif ($termsOfPayment == 'Half Payment' || $termsOfPayment == 'Specific Amount') {
+        }elseif ($termsOfPayment == 'Half Payment' ) {
             $payTerms = 'Pending';
+        }elseif($termsOfPayment == 'Specific Amount'){
+            if((double)$request->input('hidden-amount-payable') == $totalPrice){
+                $payTerms = 'Paid';
+            }else{
+                $payTerms = 'Pending';
+            }
         }
     
-
+        
         $jobOrder = TransactionJobOrder::create(array(
                 'strJobOrderID' => $jobOrderID,
                 'strJO_CustomerCompanyFK' => $companyID,
@@ -869,8 +876,14 @@ class WalkInCompanyController extends Controller
 
         if($termsOfPayment == 'Full Payment'){
             $payTerms = 'Paid';
-        } elseif ($termsOfPayment == 'Half Payment' || $termsOfPayment == 'Specific Amount') {
+        }elseif ($termsOfPayment == 'Half Payment' ) {
             $payTerms = 'Pending';
+        }elseif($termsOfPayment == 'Specific Amount'){
+            if((double)$request->input('hidden-amount-payable') == $totalPrice){
+                $payTerms = 'Paid';
+            }else{
+                $payTerms = 'Pending';
+            }
         }
   
         $payment = TransactionJobOrderPayment::create(array(
