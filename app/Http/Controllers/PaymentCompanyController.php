@@ -64,6 +64,13 @@ class PaymentCompanyController extends Controller
                 ->orderBy('b.strJobOrderID')
                 ->get();
 
+        $order = \DB::table('tblJobOrder AS a')
+                ->leftJoin('tblCustCompany AS b', 'a.strJO_CustomerCompanyFK', '=', 'b.strCompanyID')
+                ->leftJoin('tblJOPayment AS c', 'a.strJobOrderID', '=', 'c.strTransactionFK')
+                ->select('a.*', 'c.*', 'b.strCompanyID', 'b.strCompanyName')
+                ->where('b.strCompanyName', $search_custname)
+                ->get();
+
         $payments = \DB::table('tblJobOrder AS a')
                 ->leftJoin('tblJOPayment AS b', 'a.strJobOrderID', '=', 'b.strTransactionFK')
                 ->leftJoin('tblCustCompany AS c', 'c.strCompanyID', '=', 'a.strJO_CustomerCompanyFK')
@@ -102,6 +109,7 @@ class PaymentCompanyController extends Controller
                 ->with('search_custname', $search_custname)
                 ->with('customer_info', $customer_info)
                 ->with('customer_orders', $customer_orders)
+                ->with('orders', $order)
                 ->with('payments', $payments)
                 ->with('empname', $empname);
     }

@@ -60,8 +60,8 @@
                       <div class="container measurement-general {{ $measurement->strMeasCategoryFK }}"> 
                           <div style="color:black; padding-left:140px" class="input-field col s6 ">   
                             <input type="hidden" name="" value="{{ $measurement->strMeasurementDetailID }}">              
-                            <input name="" type="text">
-                            <label style="color:teal"><b>{{ $measurement->strMeasDetailName }}</b> (cm): </label>
+                            <input name="{{ $measurement->strMeasurementDetailID }}" required class= "" type="number">
+                            <label style="color:teal" for = "{{ $measurement->strMeasurementDetailID }}"><b>{{ $measurement->strMeasDetailName }}</b> (cm): </label>
                         </div>
                       </div>
                  

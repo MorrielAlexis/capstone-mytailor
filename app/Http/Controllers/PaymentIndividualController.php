@@ -70,6 +70,14 @@ class PaymentIndividualController extends Controller
                 ->orderBy('b.strJobOrderID')
                 ->get();
 
+        $order = \DB::table('tblJobOrder AS a')
+                ->leftJoin('tblCustIndividual AS b', 'a.strJO_CustomerFK', '=', 'b.strIndivID')
+                ->leftJoin('tblJOPayment AS c', 'a.strJobOrderID', '=', 'c.strTransactionFK')
+                ->select('b.strIndivID',\DB::raw('CONCAT(b.strIndivFName, " ", b.strIndivMName, " ", b.strIndivLName) AS fullname'),'a.*', 'c.*')
+                ->where(\DB::raw('CONCAT(b.strIndivFName, " ", b.strIndivMName, " ", b.strIndivLName)'), '=', $search_custname)
+                ->get();
+       
+
         $payment_lists = TransactionJobOrderPayment::all();
 
         $payments = \DB::table('tblJobOrder AS a')
@@ -104,12 +112,13 @@ class PaymentIndividualController extends Controller
 
         session(['employee' => $empname]);
         // dd($payments);
-        // dd($customer_info, $customer_orders, $payments);
+        //dd($customer_orders, $payments);
 
         return view('transaction-billingpayment-individual')
                 ->with('search_custname', $search_custname)
                 ->with('customer_info', $customer_info)
                 ->with('customer_orders', $customer_orders)
+                ->with('orders', $order)
                 ->with('payments', $payments)
                 ->with('payment_lists', $payment_lists)
                 ->with('empname', $empname);
