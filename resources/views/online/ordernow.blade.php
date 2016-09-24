@@ -107,7 +107,7 @@
         @endforeach
          <div class="divider"></div>
           <div class="col s12" style="padding:30px">
-              <a href="{{URL::to('/cancel-online-order-now')}}" class="btn-flat white-text" style="color:white; background-color:teal;">Cancel Transaction</a>
+              <a href="{{URL::to('/clear-values')}}" class="btn-flat white-text" style="color:white; background-color:teal;">Cancel Transaction</a>
               <a href="{{URL::to('/online-individual-checkout-measurement')}}" class="right btn-flat white-text red" style="color:white; background-color:teal;">Proceed to MEASUREMENT</a>
           </div>
 

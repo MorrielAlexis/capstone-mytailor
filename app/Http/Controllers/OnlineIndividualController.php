@@ -31,6 +31,8 @@ use App\TransactionJobOrderSpecificsPattern;
 use App\Thread;
 use App\Button;
 
+use Carbon\Carbon;
+
 class OnlineIndividualController extends Controller
 {
     /**
@@ -147,7 +149,7 @@ class OnlineIndividualController extends Controller
         $selectedFabric = \DB::table('tblFabric AS a')
                     ->leftJoin('tblFabricType AS b', 'a.strFabricTypeFK', '=','b.strFabricTypeID')
                     ->select('a.*', 'b.strFabricTypeName')
-                    ->where('a.strFabricID', $request->input('rdb_fabric'))
+                    ->where('a.strFabricID', $request->input('mfabric'))
                     ->get();
 
         // dd(session()->get('mensegment_data'));
@@ -423,8 +425,8 @@ class OnlineIndividualController extends Controller
                 }
 
                 session(['wfid' => $wfid]);
-                 session(['wfname' => $wfname]);
-                 session(['wfprice' => $wfprice]);
+                session(['wfname' => $wfname]);
+                session(['wfprice' => $wfprice]);
         
 
 
@@ -435,10 +437,11 @@ class OnlineIndividualController extends Controller
         $fabricPatterns = FabricPattern::all();
         $patterns = SegmentPattern::all();
 
+
         $selectedFabric = \DB::table('tblFabric AS a')
                     ->leftJoin('tblFabricType AS b', 'a.strFabricTypeFK', '=','b.strFabricTypeID')
                     ->select('a.*', 'b.strFabricTypeName')
-                    ->where('a.strFabricID', $request->input('wfid'))
+                    ->where('a.strFabricID', '=', $request->input('wfabric'))
                     ->get();
 
         $garmentKey = 'Women Shirt';
@@ -1002,7 +1005,8 @@ class OnlineIndividualController extends Controller
 
 
             return view('online.ordernow')
-            ->with('selecteds',$selected);
+            ->with('selecteds',$selected)
+            ->with('wqty', $wqty);
         }
         elseif ($men != null  && $women == null && $pants == null && $suit == null ) {
             
@@ -1271,7 +1275,7 @@ class OnlineIndividualController extends Controller
                     ->leftJoin('tblMeasurementDetail AS b', 'a.strMeasurementCategoryID', '=', 'b.strMeasCategoryFK')
                     ->leftJoin('tblSegment AS c', 'b.strMeasDetSegmentFK', '=', 'c.strSegmentID')
                     ->where('strMeasDetSegmentFK', '=', $men)
-                    ->orwhere('strMeasDetSegmentFK', '=' ,$women)
+                    ->orwhere('strMeasDetSegmentFK', '=', $women)
                     ->select('b.*')
                     ->get();
 
@@ -1440,7 +1444,7 @@ class OnlineIndividualController extends Controller
                
                 return view('online.individual-checkout-payment')
                     ->with('joID', $joID)
-                    ->with('wwame', $wname)
+                    ->with('wname', $wname)
                     ->with('wprice', $wprice)
                     ->with('wfname', $wfname)
                     ->with('wfprice', $wfprice)
@@ -1549,7 +1553,10 @@ class OnlineIndividualController extends Controller
         $suits = '';
         $pants = '';
 
-        $orderDate = $request->input('date');
+        $mestDays = 0;
+        $westDays = 0;
+
+        $orderDate = Carbon::now();
 
         $joID = session()->get('joID');
 
@@ -1579,7 +1586,11 @@ class OnlineIndividualController extends Controller
 
         $westDays = $wqty * $wdays;
 
-        $wcuff = session()->get('wcuff');
+        $dtOrderExpect = Carbon::now()->addDay($mestDays + $westDays);
+
+        $dtDelivery = Carbon::now()->addDay($mestDays + $westDays + 2);
+
+        $wcuff = session()->get('wcuff'); 
         
         $suits = session()->get('suitsegment_data');
 
@@ -1587,7 +1598,7 @@ class OnlineIndividualController extends Controller
 
         $mode = 'CASH';
 
-        session(['termsOfPayment' => $request->input('termsOfPayment')]);
+        session(['termsOfPayment' => 'Full payment']);
 
         $terms = session()->get('termsOfPayment');
 
@@ -1606,6 +1617,8 @@ class OnlineIndividualController extends Controller
                 'dblOrderTotalPrice' => $grand,
                 'boolIsOrderAccepted' => 1,
                 'dtOrderDate' => $orderDate,
+                'dtOrderExpectedToBeDone' => $dtOrderExpect,
+                'dtExpectedDeliveryDate' => $dtDelivery,
                 'boolIsActive' => 1,
                 'boolIsOnline' => 1
                 
@@ -1615,7 +1628,6 @@ class OnlineIndividualController extends Controller
 
         if($men != null && $women == null)
         {
-            dd($mqty);
 
             $ids = \DB::table('tblJOSpecific')
                     ->select('strJOSpecificID')
@@ -1767,7 +1779,7 @@ class OnlineIndividualController extends Controller
         session()->forget('suitsegment_data');
 
         session()->forget('pantssegment_data');
-        
+
         return view('online.homepage');
     }
     public function smartCounter($id)
