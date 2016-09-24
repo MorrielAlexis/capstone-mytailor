@@ -900,7 +900,7 @@ class WalkInCompanyController extends Controller
                         'strJobOrderFK' => $jobOrderID,
                         'strJOSegmentFK' => $segments[$i][$j]->strSegmentID,
                         'strJOFabricFK' => $fabrics[$i][$j]->strFabricID,
-                        'intQuantity' => $quantity[$i][$j],
+                        'intQuantity' => $quantity[$i][$j] + 1,
                         'dblUnitPrice' => $segments[$i][$j]->dblSegmentPrice,
                         'intEstimatedDaysToFinish' => $segments[$i][$j]->intMinDays,
                         'strEmployeeNameFK' => 'EMPL001',
