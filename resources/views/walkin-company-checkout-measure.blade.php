@@ -13,9 +13,9 @@
     	<div class="row" style="padding:30px">
         	<div class="col s12" style="padding-left:15%">
 		        <ul class="breadcrumb">
-					<li><a href="{{URL::to('transaction/walkin-company-payment-customer-info')}}"><b>1.FILL-UP FORM</b></a></li>
-					<li><a class="active" href="#measure-detail"><b>2.ADD MEASUREMENT DETAIL</b></a></li>
-					<li><a href="{{URL::to('transaction/walkin-company-payment-info')}}"><b>3.PAYMENT</b></a></li>	
+					<li><a>1. Fill-up form</a></li>
+					<li><a class="active" href="#measure-detail">2. Add measurement detail</a></li>
+					<li><a>3. Payment</a></li>	
 				</ul>
 			</div>
 
@@ -29,8 +29,8 @@
               		<div class="divider" style="height:1px; background-color:#80d8ff"></div>
               	</div>
 	       	</div>
-
-	       	<!-- <div class="container" style="color:gray">
+{{-- 
+	       	<div class="container" style="color:gray">
 		       	<center><h6><b>NOTES WHEN TAKING MEASUREMENTS:</b></h6></center>
 		       	<center><h6>* Use "inches" (no allowance).</h6></center>
 	      		<center><h6>* Place one (1) finger between bust and measuring tape while measuring waist.</h6></center>
@@ -40,7 +40,7 @@
 	      		<center><h6>* Measure from waistline to knee to get measurement of length of skirt.</h6></center>
 	      		<div class="divider"></div>
 	      		<div class="divider"></div>
-	      	</div> -->
+	      	</div> --}}
 
 
 	       	<div class="row" style="background-color:white; margin-top:20px">
@@ -137,12 +137,29 @@
 				</div>-->
 	        	</div>
 
-
                     		<a href="{{URL::to('transaction/walkin-company-payment-info')}}" class="right btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click to go back to home and start shopping!" style="background-color:#1976d2; padding:9.5px; padding-bottom:45px; margin-top:80px; margin-right:60px"><label style="font-size:15px; color:white">Save and Go to Payment</label></a>
-                    		<a href="{{URL::to('transaction/walkin-company')}}" class="left btn tooltipped" data-position="top" data-delay="50" data-tooltip="Transfers you back home and clears current unsaved transaction" style="background-color:#26a69a; padding:9.5px; padding-bottom:45px; margin-left:30px; margin-top:80px;"><label style="font-size:15px; color:white">Cancel Transaction</label></a>
-                    	
+                    		<a href="#reset-order" class="left btn modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Transfers you back home and clears current unsaved transaction" style="background-color:#26a69a; padding:9.5px; padding-bottom:45px; margin-left:30px; margin-top:80px;"><label style="font-size:15px; color:white">Cancel Transaction</label></a>
 
+						<!--Modal for Reset Order-->
+						<div id="reset-order" class="modal modal-fixed-footer" style="height:250px; width:500px; margin-top:120px;">
+							<h5><font color="red"><center><b>Warning!</b></center></font></h5>	
+							{!! Form::open(['url' => 'transaction/walkin-company-reset-order', 'method' => 'POST']) !!}
+									<div class="divider" style="height:2px"></div>
+									<div class="modal-content col s12">
+										<div class="col s3">
+											<i class="mdi-alert-error" style="font-size:50px; color:red"></i>
+										</div>
+										<div class="col s9">
+											<p><font size="+1">Doing this will clear all orders made!</font></p>
+										</div>
+									</div>
 
+									<div class="modal-footer col s12">
+						                <button class="waves-effect waves-green btn-flat"><font color="black"><b>OK</b></font></button>
+						                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black"><b>Cancel</b></font></a>
+						            </div>
+							{!! Form::close() !!}
+						</div>
 
 	        </div>
 

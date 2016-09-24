@@ -119,7 +119,7 @@
 					<tr>
 						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">{{ $styles[$i][$j]->strSegStyleName }}</td>
 						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">{{ $styles[$i][$j]->strSegPName }}</td>
-						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">{{ number_format($styles[$i][$j]->dblPatternPrice, 2) }} PHP</td>
+						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">P {{ number_format($styles[$i][$j]->dblPatternPrice, 2) }}</td>
 					</tr>
 						@endif
 					@endfor
@@ -147,7 +147,7 @@
 					@for($i = 0; $i < count($values); $i++)
 					<tr>
 						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">{{ $values[$i]['strFabricName'] }}	</td>
-						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">{{ number_format($values[$i]['dblFabricPrice'], 2) }} PHP</td>
+						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%;">P {{ number_format($values[$i]['dblFabricPrice'], 2) }}</td>
 					</tr>
 					@endfor
 				</tbody>
@@ -197,7 +197,7 @@
 							</table>
 						</td>
 <!-- 						<td style="width:30%">{!! session('totalPrice') !!} PHP</td> -->
-						<td style="width:40%">{{ number_format($values[$i]['dblSegmentPrice'] , 2) }} PHP</td>
+						<td style="width:40%">P {{ number_format($values[$i]['dblSegmentPrice'] , 2) }}</td>
 					</tr>
 
 					@endfor
@@ -211,7 +211,7 @@
 						<td style="width:50%; border-right:1px teal solid; background-color:teal; opacity:0.90; height:5%"></td>
 						<td style="width:50%; border-right:1px teal solid; background-color:teal; opacity:0.90; height:5%"></td>
 						<td class="right" style="width:50%; background-color:teal; border-right:1px teal solid; opacity:0.90; color:white; font-size:1em; height:5%;"><b>GRAND TOTAL</b></td>
-						<td style="width:50%; height:5%; color:teal"><b>{!! session('totalPrice') !!} PHP</b></td>
+						<td style="width:50%; height:5%; color:teal"><b>P {!! session('totalPrice') !!}</b></td>
 					</tr>
 					
 				</tbody>
@@ -283,7 +283,7 @@
 					<tr>
 						<th>JOB ORDER ID</th>
 						<th>TERM OF PAYMENT</th>
-						@if( $termsOfPayment == 'Half Payment')
+						@if( $termsOfPayment != 'Full Payment')
 							<th>DOWNPAYMENT (50%)</th>
 						@endif
 						<th>TOTAL AMOUNT PRICE</th>
@@ -293,14 +293,14 @@
 					<tr>
 						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%"><b>{!! session('joID') !!}</b></td>
 						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%">{{ $termsOfPayment }}</td>
-						@if( $termsOfPayment == 'Half Payment')
-							<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%">{!! session('outstandingBal') !!} PHP</td>
+						@if( $termsOfPayment != 'Full Payment')
+							<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%">P {!! session('outstandingBal') !!}</td>
 						@endif
 						<td style="width:60%">
-							<b>Sub total: </b> {!! session('totalPrice') !!} PHP<br>
-							<b>Additional Fee: </b> 0.00 PHP<br><br>
+							<b>Sub total: </b>P {!! session('totalPrice') !!}<br>
+							<b>Additional Fee: </b>P 0.00<br><br>
 							<div class="col s12"><div class="divider" style="height:1px; background-color:gray; margin-left:10%; margin-right:10%"></div></div>
-							<b style="color:teal; padding-left:3%">Grand Total: </b><b>{!! session('totalPrice') !!} PHP</b>
+							<b style="color:teal; padding-left:3%">Grand Total: </b><b>P {!! session('totalPrice') !!}</b>
 						</td>
 					</tr>
 				</tbody>
@@ -312,24 +312,24 @@
 				<tbody>
 					<tr>
 						<td style="width:50%; padding-top:10px; padding-bottom:10px; background-color:teal; color:white; border: 2px white solid">AMOUNT PAID</td>
-						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1.2em"><b>{!! session('amountToPay') !!} PHP</b></td>
+						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1.2em"><b>P {!! number_format(session('amountToPay'), 2) !!}</b></td>
 					</tr>
 					<tr>
 						<td style="width:50%; padding-top:10px; padding-bottom:10px; background-color:teal; color:white; border: 2px white solid">AMOUNT TENDERED</td>
-						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1em">{{ number_format($amtTendered, 2) }} PHP</td>
+						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1em">P {{ number_format($amtTendered, 2) }}</td>
 					</tr>
 					<tr>
 						<td style="width:50%; padding-top:10px; padding-bottom:10px; background-color:teal; color:white; border: 2px white solid">CHANGE</td>
-						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1em">{{ number_format($amtChange, 2) }} PHP</td>
+						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1em">P {{ number_format($amtChange, 2) }}</td>
 					</tr>
 					
 					<tr>
 						<td style="width:50%; padding-top:10px; padding-bottom:10px; background-color:teal; color:white; border: 2px white solid">OUTSTANDING BALANCE<p></p></td>
 						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1.2em">
-							<b>{!! session('outstandingBal') !!} PHP</b>
+							<b>P {!! session('outstandingBal') !!}</b>
 						</td>
 					</tr>
-					@if( $termsOfPayment == 'Half Payment')
+					@if( $termsOfPayment != 'Full Payment')
 					<tr>
 						<td style="width:50%; padding-top:10px; padding-bottom:10px; background-color:teal; opacity:0.80; color:white; border: 2px white solid">DUE DATE FOR PAYMENT</td>
 						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1.2em; color:teal"><b>{!! session('dueDate') !!}</b> <br><font color="gray" size="15px">*Pay balance before or on the said date</font></td>

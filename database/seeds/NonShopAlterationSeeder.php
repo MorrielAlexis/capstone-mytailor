@@ -18,6 +18,7 @@ class NonShopAlterationSeeder extends Seeder
                 'strCustCompFK' => '',
                 'dblOrderTotalPrice' => 200, 
                 'dtAlteration' =>'2016-09-04',
+                'boolIsAccepted' => '1'
                 
                 )
 

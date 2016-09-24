@@ -25,9 +25,11 @@
 							<center><p style="color:gray">Filter data records with the following:</p></center>
 							<div class="divider" style="color:gray; height:2px; margin-bottom:20px"></div>
 						</div>
+
+					<div class="filter-record" id="filter-record">
 						<div class="col s12">
 							<div class="col s6">
-								<select class="browser-default">
+								<select class="browser-default" id="pay-status">
 									<option value="" style="color:gray" disabled>Payment Status</option>
 									<option value="1">All</option>
 									<option value="2">Paid</option>
@@ -44,7 +46,7 @@
 							</div>
 						</div>
 
-				<div class="col s12">
+						<div class="col s12">
 							<div class="col s6" style="margin-top:25px">
 								<label for="billing-date"><font size="+0.8" color="gray">Payment Date</font></label>
 								<input id="billing-date" type="date" class="datepicker">			
@@ -54,12 +56,13 @@
 								<input id="due-date" type="date" class="datepicker">			
 							</div>
 						</div>
+					</div>
 
-						<div class="col s12" style="margin-top:20px"> -->
-							<a href="" class="left btn" style="background-color:teal; color:white; margin-left:10px">Cancel</a> 
+						<div class="col s12" style="margin-top:20px"> 
+							<!-- <a href="" class="left btn" style="background-color:teal; color:white; margin-left:10px">Cancel</a> 
 							<a href="{{URL::to('/transaction/payment/individual/home')}}" class="left btn" style="background-color:teal; color:white; margin-left:10px">Go to Payment</a> -->
-							<a href="" class="right btn" style="background-color:teal; color:white; margin-right:10px">Save</a>
-							<a href="" class="right btn" style="background-color:teal; color:white; margin-right:40px">Edit</a>
+							<a href="" class="right btn" style="background-color:teal; color:white; margin-right:10px">Save Filter</a>
+							<a href="" class="left btn" style="background-color:teal; color:white; margin-right:40px">Edit</a>
 						</div>
 
 
@@ -68,6 +71,7 @@
 				</div>
 
 				<div id="data-record" class="card-panel">
+				{!! Form::open(['url' => 'transaction/collection/individual/home', 'method' => 'GET']) !!}
 					<div class="card-content">
 						<div class="row">
 						<div class="col s12" id="data-cust">
@@ -81,16 +85,17 @@
 							<table id="data-cust">
 								<thead>
 									<tr>
-										<th class="center" style="color:gray">ID</th>
-										<th class="center" style="color:gray">Customer Name</th>
+										<th class="center" style="color:gray">Payment Id</th>
 										<th class="center" style="color:gray">Job Order #</th>
+										<th class="center" style="color:gray">Customer Name</th>
+										
 										<th class="center" style="color:gray">Payment Type</th>
-										<th class="center" style="color:gray">Cheque Number</th>
-										<th class="center" style="color:red">Total Amount</th>
+										<!-- <th class="center" style="color:gray">Cheque Number</th> -->
+										<th class="center" style="color:teal">Total Amount</th>
 										<th class="center" style="color:gray">Downpayment (50%)</th>
 										<th class="center" style="color:gray">Amount Paid</th>
 										<th class="center" style="color:gray">Outstanding Balance</th>
-										<th class="center" style="color:red">Due Date</th>
+										<th class="center" style="color:teal">Due Date</th>
 										<!-- <th class="center" style="color:gray">Date of Payment</th> -->
 										<th class="center" style="color:green">Status</th>
 									</tr>
@@ -102,44 +107,46 @@
 									@if($customer->boolIsActive == 1 AND $customer->strJO_CustomerFK == $custs->strIndivID AND $customer->strTransactionFK == $custs->strJobOrderID)
 								
 									@if($customer->strPaymentStatus == "Pending")	
-									<tr style="background-color:rgba(54, 162, 235, 0.2)" @if($customer->strJO_CustomerFK != $custs->strIndivID) hidden @endif>										
-										<td ><a class="modal-trigger" href="#view-detail">{{ $customer->strJobOrderID }}</a></td>
+									<tr style="background-color:rgba(54, 162, 235, 0.2)" @if($customer->strJO_CustomerFK != $custs->strIndivID) hidden @endif>	
+										<td class="center"><a class="modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to see order summary" href="#view{{ $customer->strPaymentID }}"><b>{{ $customer->strPaymentID }}</b></a></td>									
+										<td class="center">{{ $customer->strJobOrderID }}</td>
+										
 										<td class="center">{{ $customer->fullname }}</td>
-										<td class="center">{{ $customer->strTransactionFK }}</td>
-										<td class="center">Cash</td>
-										<td class="center"> ---- </td>
-										<td class="center" style="color:red">{{ number_format($customer->dblOrderTotalPrice, 2) }}</td>
-										<td class="center">{{ number_format(($customer->dblOrderTotalPrice/2), 2) }}</td>
-										<td class="center">{{ number_format($customer->dblAmountToPay, 2) }}</td>
-										<td class="center">{{ number_format($customer->dblOutstandingBal, 2)}}</td>
-										<td class="center" style="color:red">{{ $customer->dtPaymentDueDate }}</td>
+										<!-- <td class="center">{{ $customer->strTransactionFK }}</td> -->
+										<td class="center">{{ $customer->strModeOfPayment }}</td>
+										
+										<td class="center" style="color:teal">P {{ number_format($customer->dblOrderTotalPrice, 2) }}</td>
+										<td class="center">P {{ number_format(($customer->dblOrderTotalPrice/2), 2) }}</td>
+										<td class="center">P {{ number_format($customer->dblAmountToPay, 2) }}</td>
+										<td class="center">P {{ number_format($customer->dblOutstandingBal, 2)}}</td>
+										<td class="center" style="color:teal">{{ $customer->dtPaymentDueDate }}</td>
 										<td class="center" style="color:green"><i>{{ $customer->strPaymentStatus }}</i></td>
 											
 									</tr>
 
 									@elseif($customer->strPaymentStatus != "Pending")	
-									<tr @if($customer->strJO_CustomerFK != $custs->strIndivID) hidden @endif>										
-										<!--  -->
+									<tr @if($customer->strJO_CustomerFK != $custs->strIndivID) hidden @endif>							
+										<td class="center"><a class="modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to see order summary" href="#view{{ $customer->strPaymentID }}"><b>{{ $customer->strPaymentID }}</b></a></td>
+										<td class="center">{{ $customer->strJobOrderID }}</td>
+										<!--Modal for order summary-->
+										
 										<td class="center">{{ $customer->fullname }}</td>
-										<td class="center">{{ $customer->strTransactionFK }}</td>
+										<!-- <td class="center">{{ $customer->strTransactionFK }}</td> -->
 										<td class="center">{{ $customer->strModeOfPayment }}</td>
-										@if($customer->strModeOfPayment != "Cash")
-										<td class="center">Cheque here</td>
-										@elseif($customer->strModeOfPayment == "Cash")
-										<td class="center"> ---- </td>
-										@endif
-										<td class="center" style="color:teal">{{ number_format($customer->dblOrderTotalPrice, 2) }}</td>
-										<td class="center">{{ number_format(($customer->dblOrderTotalPrice/2), 2) }}</td>
-										<td class="center">{{ number_format($customer->dblAmountToPay, 2) }}</td>
-										<td class="center">{{ number_format($customer->dblOutstandingBal, 2)}}</td>
+										<td class="center" style="color:teal">P {{ number_format($customer->dblOrderTotalPrice, 2) }}</td>
+										<td class="center">P {{ number_format(($customer->dblOrderTotalPrice/2), 2) }}</td>
+										<td class="center">P {{ number_format($customer->dblAmountToPay, 2) }}</td>
+										<td class="center">P {{ number_format($customer->dblOutstandingBal, 2)}}</td>
 										@if($customer->strPaymentStatus != "Pending") 
-											<td class="center" style="color:teal">----</td>
+											<td class="center" style="color:teal">Completed</td>
 										@elseif($customer->strPaymentStatus == "Pending")
 										<td class="center" style="color:teal" >{{ $customer->dtPaymentDueDate }}</td>
 										@endif
 										<td class="center" style="color:green"><i>{{ $customer->strPaymentStatus }}</i></td>
 											
 									</tr>
+
+									
 									@endif
 									@endif	
 									@endforeach
@@ -153,113 +160,159 @@
 							<a href="{{URL::to('/transaction/payment/individual/home')}}" class="right  btn" style="background-color:teal; color:white; margin-top:2%">Go to Payment</a>
 						</div>
 
-							<div id="view-detail" class="modal modal-fixed-footer">
-								{!! Form::open() !!}
-									<div class="divider" style="height:2px"></div>
-									<div class="modal-content col s12" style="padding:30px">
-											
-											<div class="col s6">
-									          	<input id="customer-name" type="text" class="validate" placeholder="Customer Name">	          
-					      					</div>
-					      					<div class="col s6">
-									          <input id="customer-id" type="text" class="validate" placeholder="Customer ID">
-					      					</div>
+						<div id="view{{ $customer->strPaymentID }}" class="modal modal-fixed-footer" style="width:70%; height:80%">
+											<center><h5 style="color:teal">Order and Payment Information of Customer</h5></center>
+											<div class="divider" style="height:2px"></div>
+											<div class="modal-content col s12" style="padding:3%">
+												@foreach($customers as $customer)
+												@foreach($cust as $custs)
+													@if($customer->boolIsActive == 1 AND $customer->strJO_CustomerFK == $custs->strIndivID AND $customer->strTransactionFK == $custs->strJobOrderID)	
+													<div class="col s7">
+											          	<div class="right col s8"><b><input id="customer-name" type="text" class="validate" value="{{ $customer->fullname }}" readonly></b></div>
+											          	<div class="left col s4" style="margin-top: 4%; color:teal">Customer Name</div>	          
+							      					</div>
+							      					<div class="col s5" style="margin-left: 0">
+											          <div class="right col s8"><b><input id="customer-id" type="text" class="validate" value="{{ $customer->strIndivID }}" readonly></b></div>
+											          <div class="left col s4" style="margin-top: 4%; color:teal">Customer ID</div>
+							      					</div>
 
-					      					<div class="col s12">
-					      						<div class="container">
-					      						<table class = "table centered order-summary" border = "1" style="border:1px gray solid">
-								       				<center><h6 style="color:teal"><b>ORDER SUMMARY</b></h6></center>
-								       				<thead style="color:gray">
-									          			<tr>
-										                  <th data-field="product">Package</th>         
-										                  <th data-field="quantity">Quantity</th>
-										                  <th data-field="price">Unit Price</th>
-										                  <th data-field="price">Total Price</th>
-										              	</tr>
-									              	</thead>
-									              	<tbody>
-											            <tr>
-											               <td>Men Set A</td>
-											               <td>19</td>
-											               <td>1,400.00 PHP</td>
-											               <td>26,600.00 PHP</td>
-											            </tr>
+							      					<div class="col s12" style="margin-top:3%">
+							      						<table class="table centered" border="1">
+							      						<center><h6 style="color:black"><b>Order Summary</b></h6></center>
+								                        	<thead style="border:1px teal solid; background-color:rgba(54, 162, 235, 0.5)">
+								                        		<tr style="border:1px teal solid">
+								                        			<th style="border:1px teal solid">Quantity</th>
+								                        			<th colspan="3" style="border:1px teal solid">Description</th>
+								                        			<!-- <th style="border:1px teal solid; border-bottom:none">Unit Price</th> -->
+								                        			<!-- <th style="border:1px teal solid">Total Price</th> -->
+								                        		</tr>
+								                        		<tr style="border:1px teal solid">
+								                        			<th style="border:1px teal solid; border-top:none"></th>
+								                        			<th style="border:1px teal solid" colspan="2">Item Name</th>
+								                        			<th style="border:1px teal solid">Price</th>
+								                        			<!-- <th style="border:1px teal solid"></th> -->
+								                        			<!-- <th style="border:1px teal solid"></th> -->
+								                        		</tr>
+								                        	</thead>
+								                        	<tbody style="border:1px teal solid">
+								                        	@foreach($orders as $order)
+								                        	@if($order->strTransactionFK == $custs->strJobOrderID)
+								                        		<tr style="border:1px teal solid">
+								                        			<td style="border:1px teal solid"><b>{{ $order->intQuantity}}</b></td>
+								                        			<td style="border:1px teal solid; padding-left:5%; padding-right:5%"><b>{{ $order->strGarmentCategoryName }}, {{ $order->strSegmentName }}</b></td>
+								                        			<td style="padding-left:2%; padding-right:2%"></td>
+								                        			<td style="border:1px teal solid"><b>P {{ number_format($order->dblSegmentPrice, 2) }}</b></td>
+								                        			<!-- <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($order->dblUnitPrice ,2) }}</b></td> -->
+								                        			<!-- <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($order->dblUnitPrice * $order->intQuantity, 2) }}</b></td> -->
+								                        		</tr>
+								                        		<!-- <tr>
+								                        			<td style="border-left:1px teal solid;"></td>
+								                        			<td style="border:1px teal solid; color:black; padding-left:10%; padding-top:1%; padding-bottom:1%; color:black"><b></b></td>
+								                        			<td style="padding-top:1%; padding-bottom:1%; border:1px teal solid"><b>Fabric Name</b></td>
+								                        			<td style=""></td>
+								                        			<td style="border:1px teal solid"></td>
+								                        			<td style="border:1px teal solid"></td>
+								                        		</tr> -->
+								                        		<!-- <tr style="border:1px teal solid">
+								                        			<td style="border:1px teal solid"></td>
+								                        			<td style="border:none; color:teal; padding-left:10%">Fabric Name</td>
+								                        			<td style="padding-left:4%; padding-right:4%; border:1px teal solid">{{ $order->strFabricName }}</td>
+								                        			<td style="border:1px teal solid">P {{ number_format($order->dblFabricPrice ,2) }}</td>
+								                        			<td style="border:1px teal solid"></td>
+								                        			<td style="border:1px teal solid"></td>
+								                        		</tr> -->
+								                        		<!-- <tr>
+								                        			<td style="border-left:1px teal solid"></td>
+								                        			<td style="border:1px teal solid; color:black; padding-left:10%; padding-top:1%; padding-bottom:1%; color:black"><b>Style Name</b></td>
+								                        			<td style="padding-top:1%; padding-bottom:1%; border:1px teal solid"><b>Segment Pattern</b></td>
+								                        			<td style=""></td>
+								                        			<td style="border:1px teal solid"></td>
+								                        			<td style="border:1px teal solid"></td>
+								                        		</tr> -->
 
-											            <tr>
-											               <td>Women Set A</td>
-											               <td>38</td>
-											               <td>1,300.00 PHP</td>
-											               <td>49,400.00 PHP</td>
-											            </tr>
+								                        		<!-- <tr style="border:1px teal solid">
+								                        			<td style="border:1px teal solid"></td>
+								                        			<td class="right" style="border:none; color:teal; padding-right:10%">Style Name and Pattern</td>
+								                        			<td style="border:1px teal solid">{{ $order->strSegStyleName }} <br> <font color="gray"><b><i>{{ $order->strSegPName }}</i></b></font></td>
+								                        			<td style="border:1px teal solid">P {{ number_format($order->dblPatternPrice, 2) }}</td>
+								                        			<td style="border:1px teal solid"></td>
+								                        			<td style="border:1px teal solid"></td>
+								                        			
+								                        		</tr> -->
+								                        		@endif
+								                        	@endforeach
+								                        	</tbody>
+								                        </table>
+							      					</div>
 
-											        </tbody>
-											    </table>
+							      					<div class="col s12"><div class="divider" style="margin-top:5%; margin-bottom:5%; height:4px; background-color: darkgray"></div></div>
+
+							      					<div class="col s12 overflow-x" style="max-height:60%">
+							      						<table class = "table centered order-summary" border = "1" style="border:1px gray solid">
+										       				<center><h6 style="color:black"><b>Payment Summary</b></h6></center>
+										       				<thead style="border:1px teal solid; background-color:rgba(54, 162, 235, 0.5)">
+								                        		<tr style="border:1px teal solid">
+								                        			<th style="border:1px teal solid">Order Total Price</th>
+								                        			<th style="border:1px teal solid">Amount Paid</th>
+								                        			<th style="border:1px teal solid">Outstanding Balance</th>
+								                        			<th style="border:1px teal solid; border-bottom:none">Payment Date</th>
+								                        			<th style="border:1px teal solid">Issued By</th>
+								                        		</tr>
+								                        	</thead>
+											              	<tbody>
+											              	@foreach($orders as $order)
+								                        	@if($order->strTransactionFK == $custs->strJobOrderID)
+													            <tr>
+													               <td  style="border:1px gray solid">P {{ number_format($order->dblOrderTotalPrice, 2) }}</td>
+													               <td  style="border:1px gray solid">P {{ number_format($order->dblAmountToPay ,2)}}</td>
+													               <td  style="border:1px gray solid">P {{ number_format($order->dblOutstandingBal, 2) }}</td>
+													               <td  style="border:1px gray solid">{{ $order->dtPaymentDate }}</td>
+													               <td  style="border:1px gray solid">{{ $empname->employeename }}</td>
+													            </tr>
+													         @endif
+													         @endforeach
+													        </tbody>
+													    </table>
+							      					</div>
+
+							      					<div class="col s12" style="margin-top:20px"><div class="divider" style="height:3px; margin-bottom:10px"></div></div>
+
+							      					<div class="col s12 overflow-x" style="max-height: 50%">
+							      						<div class="left col s6" style="margin-top:25px; color:teal">
+															<label for="due-date"><font size="+0.8" color="teal"><b>Due Date</b></font> (Pay balance before or on the said date)</label>
+															<b><input id="due-date" type="date" class="center datepicker" value="{{ $order->dtPaymentDueDate }}" readonly></b>			
+														</div>
+														<div class="right col s6" style="margin-top:25px; color:teal">
+														<label for="due-date"><font size="+0.8" color="teal"><b>Payment Status</b></font> (Current status of payment)</label>
+															<b><input readonly id="status" type="text" class="center validate" value="{{ $order->strPaymentStatus }}" readonly></b>
+														</div>
+							      					</div>
+
+							      					@if($order->strPaymentStatus == "Pending")
+							      					<div class="col s12" style="margin-top:5%">			
+
+							      						<a href="" class="right btn tooltipped" data-position="left" data-delay="50" data-tooltip="Send an email to customer as a reminder on their pending payment near due date" style="background-color:teal;"><i class="mdi-communication-email" style="margin-right: 1%"></i></a>		      		
+												        <!-- <a href="" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Send email to remind customer of due date" style="background-color:red; margin-right:15px"><i class="mdi-communication-quick-contacts-dialer" style="font-size:30px"></i></a>
+												        <a href="" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Send SMS to remind customer of due date" style="background-color:red"><i class="mdi-communication-quick-contacts-mail" style="font-size:30px"></i></a>
+												        <a href="" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Print this data and have a personal copy" style="background-color:teal;">Print a copy</a>
+												        <a href="" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Send a copy of this data through email" style="background-color:teal; margin-right:8px;">Send a copy</a>
+												        <a href="" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Save this data in a PDF format" style="background-color:teal; margin-right:8px">Save as PDF</a> -->
+							      					</div>
+							      					@endif
+							      					@endif
+							      				@endforeach
+							      			@endforeach
 											</div>
-					      					</div>
 
-					      					<div class="col s12"><div class="divider" style="margin-bottom:40px"></div></div>
-
-					      					<div class="col s12">
-					      						<div class="container">
-					      						<table class = "table centered order-summary" border = "1" style="border:1px gray solid">
-								       				<center><h6 style="color:black"><b>PAYMENT HISTORY</b></h6></center>
-								       				<thead style="color:gray">
-									          			<tr>
-										                  <th data-field="product">Amount Paid</th>         
-										                  <th data-field="quantity">Outstanding Balance</th>
-										                  <th data-field="price">Payment Date</th>
-										                  <th data-field="status">Made By</th>
-										              	</tr>
-									              	</thead>
-									              	<tbody>
-											            <tr>
-											               <td>5,000.00 Php</td>
-											               <td>10,000.00 Php</td>
-											               <td>2016-06-17</td>
-											               <td>Wakalu Papito</td>
-											            </tr>
-
-											            <tr>
-											               <td>3,000.00 Php</td>
-											               <td>37,000.00 Php</td>
-											               <td>2016-06-17</td>
-											               <td>Wakalu Papito</td>
-											            </tr>
-
-											        </tbody>
-											    </table>
-											</div>
-					      					</div>
-
-					      					<div class="col s12" style="margin-top:20px"><div class="divider" style="height:3px; margin-bottom:10px"></div></div>
-
-					      					<div class="col s12">
-					      						<div class="col s6" style="margin-top:25px; color:red">
-													<label for="due-date"><font size="+0.8" color="red"><b>Due Date</b></font></label>
-													<input id="due-date" type="date" class="datepicker" readonly>			
-												</div>
-												<div class="col s6" style="margin-top:48px; color:red">
-													<input readonly id="status" type="text" class="validate" placeholder="Current Status">
-												</div>
-					      					</div>
-
-					      					<div class="col s12" style="margin-top:40px">					      							
-										        <a href="" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Send email to remind customer of due date" style="background-color:red; margin-right:15px"><i class="mdi-communication-quick-contacts-dialer" style="font-size:30px"></i></a>
-										        <a href="" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Send SMS to remind customer of due date" style="background-color:red"><i class="mdi-communication-quick-contacts-mail" style="font-size:30px"></i></a>
-										        <a href="" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Print this data and have a personal copy" style="background-color:teal;">Print a copy</a>
-										        <a href="" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Send a copy of this data through email" style="background-color:teal; margin-right:8px;">Send a copy</a>
-										        <a href="" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Save this data in a PDF format" style="background-color:teal; margin-right:8px">Save as PDF</a>
-					      					</div>
-
+											<div class="modal-footer col s12" style="margin-top: 5%">
+								                <!-- <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/billing-collection')}}"><font color="black">OK</font></a> -->
+								                <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">OK</font></a>
+								            </div>
+										
 									</div>
+										<!--end-->
+							
 
-									<div class="modal-footer col s12">
-						                <a class="waves-effect waves-green btn-flat" href="{{URL::to('transaction/billing-collection')}}"><font color="black">OK</font></a>
-						                <a href="{{URL::to('transaction/billing-collection')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Cancel</font></a>
-						            </div>
-								{!! Form::close() !!}
-
-							</div>
 
 							<div class="col s12" style="margin-top:60px" hidden>
 								<div class="divider" style="margin-bottom:20px"></div>
@@ -272,7 +325,7 @@
 						</div>
 					</div>
 				</div>
-
+				{!! Form::close() !!}
 			</div>
 
 		</div>
@@ -283,16 +336,6 @@
 
 @section('scripts')
 
-	<script type="text/javascript">
-	  $('.modal-trigger').leanModal({
-	      dismissible: true, // Modal can be dismissed by clicking outside of the modal
-	      opacity: .5, // Opacity of modal background
-	      in_duration: 300, // Transition in duration
-	      out_duration: 200, // Transition out duration
-	      width:400,
-	    }
-	  );
-	</script>
 
 	<script>
 	  $(document).ready(function() {
@@ -369,5 +412,6 @@
 
 		updateUI();
 	</script>
+
 
 @stop

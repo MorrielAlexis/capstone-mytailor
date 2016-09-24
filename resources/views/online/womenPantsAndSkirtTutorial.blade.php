@@ -33,12 +33,7 @@
             <iframe width="540" height="200" src="vidOnlineTutorial/Seat_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="seat_measure" type="text" style="align:center" class="validate">
-              <label for="seat_measure">Input Measurement</label>
-        </div>
-    </center>
+    
   
     <h2 align="center" style="margin-top:80px">Hip</h2>
     <p style="left-align; text-align:center;">
@@ -49,12 +44,7 @@
             <iframe width="540" height="200" src="vidOnlineTutorial/Hip_Women.mp4" frameborder="0" allowfullscreen></iframe>
         </div>    
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="hip_measure" type="text" style="align:center" class="validate">
-              <label for="hip_measure">Input Measurement</label>
-        </div>
-    </center>
+    
 
     <div style="margin-bottom:200px;">
       <a class="left btn-flat tooltipped modal-trigger" data-position="bottom" data-delay="50" data-tooltip="Click to go back" style="font-size:15px; color:white; background-color: teal; opacity:0.90" href="{{URL::to('/online-measuring-tutorial')}}"><i class="mdi-content-reply"> BACK</i></a>
@@ -72,12 +62,7 @@
     <div class="container" align="center" >
         <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/womens_seat.JPG">
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="seat_measure" type="text" style="align:center" class="validate">
-              <label for="seat_measure">Input Measurement</label>
-        </div>
-    </center>     
+      
 
     <h2 align="center" style="margin-top:80px">Hip</h2>
     <p style="left-align; text-align:center;">
@@ -88,12 +73,7 @@
     <div class="container" align="center" >
         <img class="responsive-img hoverable" height="200" width="600" src="imgOnlineTutorial/womens_hip.JPG">
     </div>
-    <center>
-        <div class="input-field col s16" style="width:250px; margin-bottom:80px; margin-top:30px">
-              <input id="hip_measure" type="text" style="align:center" class="validate">
-              <label for="hip_measure">Input Measurement</label>
-        </div>
-    </center>
+    
 
     <div style="margin-bottom:200px;">
       <a class="left btn-flat tooltipped modal-trigger" data-position="bottom" data-delay="50" data-tooltip="Click to go back" style="font-size:15px; color:white; background-color: teal; opacity:0.90" href="{{URL::to('/online-measuring-tutorial')}}"><i class="mdi-content-reply"> BACK</i></a>

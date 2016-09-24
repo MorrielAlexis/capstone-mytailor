@@ -19,6 +19,7 @@ class CreateNonShopAlterationTable extends Migration
             $table->double('dblOrderTotalPrice');
             $table->date('dtAlteration');
             $table->boolean('boolIsOnline');
+            $table->boolean('boolIsAccepted');
 
             $table->foreign('strCustIndFK')
                   ->references('strIndivID')

@@ -12,9 +12,9 @@
 	<div class="row" style="padding:30px">
     <div class="col s12" style="padding-left:15%">    
       <ul class="col s12 breadcrumb">
-  			<li><a class="active"href="#customer-info"><b>1.FILL-UP FORM</b></a></li>		
-  			<li><a><b>2.ADD MEASUREMENT DETAIL</b></a></li>
-        <li><a><b>3.PAYMENT</b></a></li>
+  			<li><a class="active" href="#customer-info">1. Fill-up form</a></li>		
+  			<li><a>2. Add measurement detail</a></li>
+        <li><a>3. Payment</a></li>
   		</ul>
     </div>
 
@@ -28,8 +28,8 @@
               	</div>
 	       	</div>
 
-	       	<div class="row" style="background-color:white;">
-	       		<div class="container">
+	       	<div class="row" style="background-color:white; padding-left:4%; padding-right: 4%">
+
 
               <!--Start of header with customer id and transaction no-->
 	            <div class="col s12">
@@ -81,12 +81,14 @@
                         </div>
 
                         <div style="color:black" class="input-field col s12">                 
-                            <select name="addSex">
+                            <select name="sex">
                               <option value="" disabled selected color="red">Sex</option>
-                              <option value="M">Female</option>
-                              <option value="F">Male</option>
+                              <option id="female" value="F">Female</option>
+                              <option id="male" value="M">Male</option>
                             </select>
-                        </div>    
+                            <input type="hidden" id="addSex" name="addSex" />
+                        </div> 
+                    </div>   
 
                     <span class="col s12" style="color:teal; margin-top:20px"><b>Customer Address</b></span>
                     <div class="card-panel col s12" style="border:3px solid gray; padding:15px">
@@ -96,23 +98,23 @@
                         </div>
 
                         <div style="color:black" class="input-field col s4">
-                            <input required id="addCustPrivStreet" name="addCustPrivStreet" type="text" class="validateStreet" placeholder="Dolce Amore" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?">
+                            <input required id="addCustPrivStreet" name="addCustPrivStreet" type="text" class="validateStreet" placeholder="Dolce Amore" pattern="^[a-zA-Z\d\-'`.]+(\s[a-zA-Z\-'`.]+)?">
                             <label style="color:gray" for=" Street"><b><span class="red-text"><b>*</b></span>Street </b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s4">
-                            <input  id="addCustPrivBarangay" name="addCustPrivBarangay" type="text" class="validateBarangay" placeholder="Willpower Homes" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?">
+                            <input  id="addCustPrivBarangay" name="addCustPrivBarangay" type="text" class="validateBarangay" placeholder="Willpower Homes" pattern="^[a-zA-Z\d\-'`.]+(\s[a-zA-Z\-'`.]+)?">
                             <label style="color:gray" for=" Brgy"><b><span class="red-text"><b>*</b></span>Barangay/Subd </b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s4">
-                            <input required id="addCustPrivCity" name="addCustPrivCity" type="text" class="validateCity" placeholder="Mandaluyong" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?">
+                            <input required id="addCustPrivCity" name="addCustPrivCity" type="text" class="validateCity" placeholder="Mandaluyong" pattern="^[a-zA-Z\d\-'`.]+(\s[a-zA-Z\-'`.]+)?">
                             <label style="color:gray" for=" City"><b><span class="red-text"><b>*</b></span>City/Municipality </b></label>
                         </div>
 
 
                         <div style="color:black" class="input-field col s4">
-                            <input id="addCustPrivProvince" name="addCustPrivProvince" type="text" class="validateProvince" placeholder="Metro Manila" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?">
+                            <input id="addCustPrivProvince" name="addCustPrivProvince" type="text" class="validateProvince" placeholder="Metro Manila" pattern="^[a-zA-Z\d\-'`.]+(\s[a-zA-Z\-'`.]+)?">
                             <label style="color:gray" for=" Province"><b>Province/Region </b></label>
 	                    </div>
 
@@ -146,8 +148,13 @@
                     </div>
 
                 </div>
-                  <a href="#confirm-submission" class="right btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-left:40px; background-color:#00695c; color:white"><b><i class="mdi-navigation-check" style="padding-right:10px"></i>Save</b></a>                                
-                  <a href="#cancel-order" class="right btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel transaction and go back to homepage" style="background-color:#a7ffeb; color:black"><b><i class="mdi-navigation-close" style="padding-right:10px"></i>Cancel</b></a>                   
+                <div style="color:gray;" class="col s12">
+                      <h6>IMPORTANT NOTE: Fields with asterisk (*) must not be left blank.</h6>
+                </div>
+                <div class="col s12" style="margin-top:2%">
+                  <a href="#confirm-submission" class="right btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to save data and proceed to next step" style="margin-left:40px; background-color:#00695c; color:white"><b><i class="mdi-navigation-check" style="padding-right:10px"></i>Save and Proceed</b></a>                                
+                  <a href="#cancel-order" class="left btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel transaction and go back to homepage" style="background-color:#a7ffeb; color:black"><b><i class="mdi-navigation-close" style="padding-right:10px"></i>Cancel Transaction</b></a>
+                </div>                   
               
               <div class="col s12" style="margin-top:30px">
                   <div id="confirm-submission" class="modal modal-fixed-footer" style="height:300px; width:500px; margin-top:80px">
@@ -165,6 +172,7 @@
                           </div>
                     </div>
               </div>
+
 
             {!! Form::close() !!}
               <!--End of Customer Information-->
@@ -191,12 +199,9 @@
                 <!--End of bottom button-->
 
 	       		</div>
-
-	       		 		<div style="color:gray; margin-top:10px; margin-left:20px" class="col s12">
-                      <h6>IMPORTANT NOTE: Fields with asterisk (*) must not be left blank.</h6>
-                </div>
-	       	</div>
-	      	<div class="divider" style="height:2px; margin-bottom:20px; margin-top:30px"></div>
+	       	
+                
+	      	<div class="col s12"><div class="divider" style="height:2px; margin-bottom:2%"></div></div>
 	      	
 	      		<center><p><font color="gray">End of Customer Profile Information Form</font></p></center>
 	    </div>
@@ -212,7 +217,15 @@
 
 	<script>
 	$(document).ready(function(){
-      $('select').material_select();
+      $('select').material_select(function(){
+        if($('#male').prop("selected")){
+          $('#addSex').val('M');
+        }
+
+        if($('#female').prop("selected")){
+          $('#addSex').val('F');
+        }
+      });
     	$('body').on('load', 'ul.tabs', function() {
    	 	$('ul.tabs').tabs();
 		});
@@ -227,6 +240,18 @@
   	});
 
 	</script>
+
+  <script>
+    $('.sex').change(function(){
+        if($('#male').prop("selected")){
+          $('#addSex').val('M');
+        }
+
+        if($('#female').prop("selected")){
+          $('#addSex').val('F');
+        }
+    });
+  </script>
 
 	<script>
 	function tabInit() {

@@ -26,7 +26,7 @@
 		       	<div class="row" style="background-color:white; padding:40px">
 	            	<div class="col s12">
 						
-						<a class="center" href="#!" onclick="window.open('/generate-payment-receipt')">
+						<a class="center" href="#!" onclick="window.open('/walkin-individual-receipt')">
 							<center><img style="height:20%; width:20%" src="{{URL::to('img/temp-online.png')}}"></center>
 							<p align="center" style="font-size:30px; color:teal"><center><b><u><font size="4em">Print order receipt</font></u></b></center></p>
 						</a>

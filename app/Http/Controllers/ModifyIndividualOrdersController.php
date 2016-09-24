@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\TransactionJobOrderSpecifics;
 
 class ModifyIndividualOrdersController extends Controller
 {
@@ -22,7 +23,26 @@ class ModifyIndividualOrdersController extends Controller
     
     public function index()
     {
-        return view('transaction-modifyindividualorders');
+        $joborder = \DB::table('tblJobOrder')
+            ->leftjoin('tblcustindividual', 'tblJobOrder.strJo_CustomerFK', '=', 'tblcustindividual.strIndivID')
+            ->leftjoin('tblcustcompany', 'tblJobOrder.strJo_CustomerCompanyFK', '=', 'tblcustcompany.strCompanyID')
+            ->where('tblJobOrder.boolIsOrderAccepted', '=', '1')
+            ->select('tblcustindividual.*', 'tblcustcompany.*', 'tblJobOrder.*')
+            ->get();
+
+         $onlineJOSpecs = TransactionJobOrderSpecifics::with("onlineJobOrder")->get();
+
+         $JOSpecs = \DB::table('tblJOSpecific')
+            ->join('tblJobOrder', 'tblJobOrder.strJobOrderID', '=', 'tblJOSpecific.strJobOrderFK')
+            ->join('tblSegment', 'tblSegment.strSegmentID', '=', 'tblJOSpecific.strJOSegmentFK')
+            ->join('tblFabric', 'tblFabric.strFabricID', '=', 'tblJOSpecific.strJOFabricFK')
+            ->orderby('tblJOSpecific.strJOSpecificID')
+            ->select('tblJOSpecific.*', 'tblFabric.strFabricName', 'tblSegment.strSegmentName')
+            ->get();   
+
+        return view('transaction-modifyindividualorders')
+            ->with('joborder', $joborder) 
+            ->with('onlineJOSpecs', $JOSpecs); 
     }
 
     public function modify()

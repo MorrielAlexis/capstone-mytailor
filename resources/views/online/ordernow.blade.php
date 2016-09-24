@@ -53,7 +53,6 @@
                           <div class="row">
                             
                               <div class="col s6">
-                                <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove order" href="#removeOrder"><i class="mdi-navigation-close"></i></a>
                                 <center><img src="{{$selected->strSegmentImage}}" style="margin:20px;height:275px; width:275x; border:3px gray solid"></center>
                               </div>
                               <div class="col s6">
@@ -88,10 +87,15 @@
                                   <div class="col s7" style="color:teal;"><p><b>Time to finish(min):</b></p></div>
                                   <div class="col s5" style="color:red"><p>{{$selected->intMinDays}}</p></div>
                                 </div>
-                              </div>
-                              <div class="col s12">
-                                <div class="col s3" style="margin-top:30px; color:red"><center><b style="font-size:18px">QTY</b></center></div>  
-                                <div class="col s6" style="margin-top:20px; padding:5px; margin-right:5px;"><input name="quantity" id="quantity" type="number" style="border:2px teal solid; padding-left:18%; padding-right:18%" placeholder="How many?"></div>
+                                <div style="padding:25px;">
+                                  <div class="col s7" style="color:teal;"><p><b>Quantity:</b></p></div>
+
+                                  @if($selected->strGarmentCategoryName == 'Men Shirt')
+                                    <div class="col s5" style="color:red"><p>{{$mqty}}</p></div>
+                                  @elseif($selected->strGarmentCategoryName == 'Women Shirt')
+                                    <div class="col s5" style="color:red"><p>{{$wqty}}</p></div>
+                                  @endif
+                                </div>
                               </div>
                             </div>
                         </div>
@@ -103,13 +107,15 @@
         @endforeach
          <div class="divider"></div>
           <div class="col s12" style="padding:30px">
-              <a href="{{URL::to('/online-order-now')}}" class="btn-flat white-text" style="color:white; background-color:teal;">Cancel Transaction</a>
+              <a href="{{URL::to('/clear-values')}}" class="btn-flat white-text" style="color:white; background-color:teal;">Cancel Transaction</a>
               <a href="{{URL::to('/online-individual-checkout-measurement')}}" class="right btn-flat white-text red" style="color:white; background-color:teal;">Proceed to MEASUREMENT</a>
           </div>
 
           <div class="divider" style="margin-bottom:20px;"></div>
-          <div>
-            <a class="green-text" style="margin-left:20px;" href="{{URL::to('/online-home')}}"><i style="size:20px;" class="mdi-hardware-keyboard-arrow-left"></i>CONTINUE SHOPPING</a>
+          <div class = "col s12">
+            <div class = "row">
+              <a class="green-text" style="margin-left:20px;" href="{{URL::to('/online-home')}}"><i style="size:20px;" class="mdi-hardware-keyboard-arrow-left"></i>CONTINUE SHOPPING</a>
+            </div>
           </div>
       @endif
     </div>

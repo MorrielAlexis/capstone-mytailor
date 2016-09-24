@@ -35,8 +35,7 @@
           <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Collar</li>
           <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Cuffs</li>
           <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab active"><a style="color:black" href="#tabButtons">Buttons</a></li>
-          <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Pocket & Monogram</li>
-          <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Others</li>
+          <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Pocket</li>
           <div class="indicator light-blue" style="z-index:1"></div>
         </ul>
 
@@ -47,7 +46,6 @@
 
           <div class="col s12">
             <div><button class="right btn-flat teal accent-4 white-text" type="submit">Next step</button></div>
-            <div><a class="left btn-flat teal accent-4 white-text" href="{{URL::to('/customize-womens-style-cuffs')}}">Previous step</a></div>
           </div>
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
 
@@ -119,7 +117,6 @@
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12">
             <div><button class="right btn-flat teal accent-4 white-text" type="submit">Next step</button></div>
-            <div><a class="left btn-flat teal accent-4 white-text" href="{{URL::to('/customize-womens-style-cuffs')}}">Previous step</a></div>
           </div>
 
         </div>
@@ -136,9 +133,6 @@
 
   <script>
     
-    $(document).ready(function(){
-      $('.modal-trigger').leanModal();
-    });
 
     $(document).ready(function(){
       $('ul.tabs').tabs('select_tab', 'tab_id');

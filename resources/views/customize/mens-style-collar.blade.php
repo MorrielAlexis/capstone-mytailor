@@ -35,7 +35,7 @@
           <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab active"><a style="color:black" href="#tabCollar">Collar</a></li>
           <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Cuffs</li>
           <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Buttons</li>
-          <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Pocket & Monogram</li>
+          <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Pocket</li>
 <!--           <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Others</li> -->
           <div class="indicator teal accent-4" style="z-index:1"></div>
         </ul>
@@ -78,8 +78,8 @@
                     <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $collar->strSegStyleCatID) hidden @endif>
                       <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
                       <p>
-                        <input name="rdb_pattern" value = "{{$pattern->strSegPatternID}}" type="radio" class="filled-in" id="{{$pattern->strSegPatternID}}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" />
-                        <label for="{{$pattern->strSegPatternID}}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}">{{$pattern->strSegPName}}</label>
+                        <input name="mcollar" value = "{{$pattern->strSegPatternID}}" type="radio" class="filled-in" id="{{$pattern->strSegPatternID}}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" />
+                        <label for="{{$pattern->strSegPatternID}}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}">{{$pattern->strSegPName}} {{ number_format($pattern->dblPatternPrice, 2) }} PHP</label>
                       </p>
                     </div>
                     @endforeach

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use PDF;
 
 class OnlineFormsController extends Controller
 {
@@ -17,7 +18,11 @@ class OnlineFormsController extends Controller
     
     public function measurementforms()
     {
-        return view('online.forms');
+        // $pdf = PDF::loadView('pdf/mens-body-measurement')    
+        // ->setPaper('Letter')->setOrientation('portrait');
+
+        // return $pdf->stream();        
+           return view('online.forms');
     }
 
     

@@ -6,16 +6,16 @@
 	<div class="row">
       <div class="col s12 m12 l12">
         <span class="page-title"><center><h3><b>Welcome to <font color="white">MyTailor</font></b></h3></center></span>
-        <center><h5>Walk-in Individual - Payout</h5></center>
+        <center><h5>Walk-in Company - Payout</h5></center>
       </div>
     </div>
 
 	<div class="row" style="padding:30px">
         <div class="col s12" style="padding-left:15%">
 	        <ul class="breadcrumb">
-				<li><a><b>1.FILL-UP FORM</b></a></li>
-				<li><a><b>2.ADD MEASUREMENT DETAIL</b></a></li>
-				<li><a class="active" href="#payment-info"><b>3.PAYMENT</b></a></li>
+				<li><a>1. Fill-up form</a></li>
+				<li><a>2. Add measurement detail</a></li>
+				<li><a class="active" href="#payment-info">3. Payment</a></li>
 			</ul>
 		</div>
 
@@ -76,8 +76,8 @@
 		                        			<td style="border:1px teal solid; padding-left:5%; padding-right:5%; background-color:rgba(52, 162, 232, 0.2)"><a class="btn-flat tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to expand and see package details" onclick="packageDetail({{ $i }})" style="color:black"><b>{{ $package_values[$i]->strPackageName}}</b></a></td>
 		                        			<td style="border:1px teal solid; padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"></td>
 		                        			<td style="border:1px teal solid; padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)">{{ number_format($package_values[$i]->dblPackagePrice, 2) }} PHP</td>
-		                        			<td style="border:1px teal solid; padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)">{{ number_format($package_values[$i]->dblPackagePrice * $package_quantity[$i] , 2) }}</b></td>
-		                        			<td style="border:1px teal solid; padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"><b>{{ number_format($style_total[$i] + $fabric_total[$i] + $segment_total[$i] + ($package_values[$i]->dblPackagePrice * $package_quantity[$i]), 2) }} PHP</b></td>
+		                        			<td style="border:1px teal solid; padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)">{{ number_format(($raw_pattern_fabric_total[$i] + $raw_style_total[$i] + $raw_fabric_total[$i] + $package_values[$i]->dblPackagePrice) * $package_quantity[$i] , 2) }}</b></td>
+		                        			<td style="border:1px teal solid; padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"><b>{{ number_format($raw_pattern_fabric_total[$i] + $raw_style_total[$i] + $raw_fabric_total[$i] + $pattern_fabric_total[$i] + $segment_total[$i] + $style_total[$i] + $fabric_total[$i] + ($package_values[$i]->dblPackagePrice * $package_quantity[$i]), 2) }} PHP</b></td>
 		                        		</tr>
 		                        	@endfor			                        	
 		                        	</tbody>
@@ -93,10 +93,10 @@
 							<table class="table centered z-depth-1">
 								<thead style="background-color:rgba(255, 99, 132, 0.2)">
 									<tr>
-										<th style="border:1px rgba(255, 99, 132, 1) solid">Quantity</th>
+										<th style="border:1px rgba(255, 99, 132, 1) solid">Excess Quantity</th>
 										<th style="border:1px rgba(255, 99, 132, 1) solid" colspan="3">Description</th>
-										<th style="border:1px rgba(255, 99, 132, 1) solid">Unit Price</th>
-										<th style="border:1px rgba(255, 99, 132, 1) solid">Total Price</th>
+										<th style="border:1px rgba(255, 99, 132, 1) solid">Style Price</th>
+										<th style="border:1px rgba(255, 99, 132, 1) solid">Additional Price</th>
 									</tr>
 									<tr>
 										<th style="border:1px rgba(255, 99, 132, 1) solid"></th>
@@ -109,14 +109,13 @@
 								</thead>
 								<tbody>								
 		                        	@for($j = 0; $j < count($package_segments[$i]); $j++)	
-										@if($package_values[$i]->strPackageID == $package_segments[$i][$j]->strPackageID)
 			                        		<tr style="border:1px teal solid">
-			                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)">{{ $segment_qty[$i][$j] }}</td>
+			                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)">@if($segment_qty[$i][$j] == 0) None @else {{ $segment_qty[$i][$j] }}@endif</td>
 			                        			<td style="border:none; background-color:rgba(52, 162, 232, 0.2)">{{ $package_segments[$i][$j]->strSegmentName }}</td>
 			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)"><br> <font color="gray"><b><i></i></b></font></td>
 			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">{{ number_format($package_segments[$i][$j]->dblSegmentPrice, 2) }} PHP</td>
-			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">{{ number_format($package_segments[$i][$j]->dblSegmentPrice + $segment_fabrics[$i][$j]->dblFabricPrice + $segment_patterns[$i][$j][0]->dblPatternPrice, 2) }} PHP</td>
-			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">{{ number_format(($package_segments[$i][$j]->dblSegmentPrice + $segment_fabrics[$i][$j]->dblFabricPrice + $segment_patterns[$i][$j][0]->dblPatternPrice) * $segment_qty[$i][$j], 2) }} PHP</td>
+			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">{{ number_format($segment_fabrics[$i][$j]->dblFabricPrice + $unit_style[$i][$j]  + $unit_style_fabric[$i][$j], 2) }} PHP</td>
+			                        			<td style="border:1px teal solid; padding-top:0; padding-bottom:0; background-color:rgba(52, 162, 232, 0.2)">{{ number_format(($package_segments[$i][$j]->dblSegmentPrice + $segment_fabrics[$i][$j]->dblFabricPrice +  $unit_style[$i][$j] + $unit_style_fabric[$i][$j]) * ($segment_qty[$i][$j]), 2) }} PHP</td>
 			                        			
 			                        		</tr>
 			                        		<tr style="border:1px teal solid">
@@ -129,13 +128,29 @@
 		                        			</tr>
 				                        	<tr style="border:1px teal solid">
 				                        		<td style="border:1px teal solid"></td>
-				                        		<td class="right" style="border:none; color:teal; padding-right:10%">Style Name and Pattern</td>
-				                        		<td style="border:1px teal solid">{{ $segment_patterns[$i][$j][0]->strSegStyleName }}<br> <font color="gray"><b><i>{{ $segment_patterns[$i][$j][0]->strSegPName }}</i></b></font></td>
-				                        		<td style="border:1px teal solid">{{ number_format($segment_patterns[$i][$j][0]->dblPatternPrice, 2) }}PHP</td>
+				                        		<td class="right" style="border:none; color:teal; padding-right:10%">Style name and pattern (with custom fabric)</td>
+				                        		<td style="border:1px teal solid">
+				                        			@for($k = 0; $k < count($segment_patterns[$i][$j]); $k++)
+				                        				@if($pattern_fabrics[$i][$j][$k]->strFabricID != $segment_fabrics[$i][$j]->strFabricID)
+					                        			{{ $segment_patterns[$i][$j][$k]->strSegStyleName }}<br> 
+					                        			<font color="gray"><b><i>{{ $segment_patterns[$i][$j][$k]->strSegPName }} ({{ $pattern_fabrics[$i][$j][$k]->strFabricName }})</i></b></font><br>
+														@else
+														{{ $segment_patterns[$i][$j][$k]->strSegStyleName }}<br> 
+					                        			<font color="gray"><b><i>{{ $segment_patterns[$i][$j][$k]->strSegPName }}</i></b></font><br>
+														@endif
+													@endfor
+				                        		</td>
+				                        		<td style="border:1px teal solid">
+				                        			@for($k = 0; $k < count($segment_patterns[$i][$j]); $k++)
+					                        			{{ number_format($segment_patterns[$i][$j][$k]->dblPatternPrice, 2) }} PHP
+					                        			@if($pattern_fabrics[$i][$j][$k]->strFabricID != $segment_fabrics[$i][$j]->strFabricID)
+					                        			(<i>{{ number_format($pattern_fabrics[$i][$j][$k]->dblFabricPrice, 2) }} PHP</i>)<br>
+					                        			@endif
+													@endfor
+				                        		</td>
 				                        		<td style="border:1px teal solid"></td>
 				                        		<td style="border:1px teal solid"></td>		                        			
 			                        		</tr>
-			                        	@endif
 									@endfor
 									
 								</tbody>
@@ -182,7 +197,7 @@
                         	<div class="col s4" style="color:gray; font-size:15px"><p><b>Terms of Payment</b></p></div>
                         	<div class="col s8" style="padding:18px; padding-top:30px">
 	                        	<div class="col s6">
-			          				<input name="termsOfPayment" value="Half Payment" readonly type="radio" class="filled-in payment" id="half_pay"/>
+			          				<input checked name="termsOfPayment" value="Half Payment" readonly type="radio" class="filled-in payment" id="half_pay"/>
 	      							<label for="half_pay">Half (50%)</label>
 								</div>
 								<div class="col s6">
@@ -234,6 +249,7 @@
 
 							<input type="hidden" id="transaction_date" name="transaction_date">
 							<input type="hidden" id="due_date" name="due_date">
+							<input type="hidden" id="delivery_date" name="delivery_date" />
 
 							<div class="col s12"><div class="divider" style="padding-top:10px"></div></div>								
 								<!-- <div class="modal-content col s12" style="padding-bottom:20px;">
@@ -314,17 +330,53 @@
 		  	var a = {!! json_encode($style_total) !!};
 		  	var b = {!! json_encode($fabric_total) !!};
 		  	var c = {!! json_encode($segment_total) !!};
+		  	var f = {!! json_encode($pattern_fabric_total) !!};
+		  	var g = {!! json_encode($raw_style_total) !!};
+		  	var h = {!! json_encode($raw_fabric_total) !!};
+		  	var j = {!! json_encode($raw_pattern_fabric_total) !!};
+
 		  	var d = {!! json_encode($package_values) !!};
 		  	var e = {!! json_encode($package_quantity) !!};
 
 		  	var vat = {!! json_encode($vat) !!};
 
 		  	var total = 0;
+		  	var minDays = 0;
+
 		  	for(var i = 0; i < a.length; i++)
 		  	{
-		  		total += a[i] + b[i] + c[i] + (d[i].dblPackagePrice * e[i]);
+		  		total += a[i] + b[i] + c[i] + f[i] + g[i] + h[i] + j[i] + (d[i].dblPackagePrice * e[i]);
+		  		minDays = d[i].intPackageMinDays;
 		  	}
 		  	
+				if($('#half_pay').prop("checked")){
+					$("#amount-tendered").prop("readonly", false);
+
+				  	var a = {!! json_encode($style_total) !!};
+				  	var b = {!! json_encode($fabric_total) !!};
+				  	var c = {!! json_encode($segment_total) !!};
+				  	var f = {!! json_encode($pattern_fabric_total) !!};
+				  	var g = {!! json_encode($raw_style_total) !!};
+				  	var h = {!! json_encode($raw_fabric_total) !!};
+				  	var j = {!! json_encode($raw_pattern_fabric_total) !!};
+
+				  	var d = {!! json_encode($package_values) !!};
+				  	var e = {!! json_encode($package_quantity) !!};
+
+				  	var vat = {!! json_encode($vat) !!};
+
+				  	var total = 0;
+				  	for(var i = 0; i < a.length; i++)
+				  	{
+				  		total += a[i] + b[i] + c[i] + f[i] + g[i] + h[i] + j[i] + (d[i].dblPackagePrice * e[i]);
+				  	}
+		  	
+					$('#hidden-amount-payable').val((total/2).toFixed(2));
+					$('#amount-payable').val(((total/2).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+					$('#balance').val(((total - (total/2)).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+					$('#hidden-balance').val((total - (total/2)).toFixed(2));
+				}
+
 		  	$('#estimated_total_sales').val(((total - (total * (vat/100))).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		  	$('#vat_price').val(((total * (vat/100)).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		  	$('#total_price').val((total.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ","));
@@ -335,11 +387,14 @@
 			var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
 			var newDate = new Date();
 			var dueDate = new Date();
+			var deliveryDate = new Date();
+
 			newDate.setDate(newDate.getDate());   
-			dueDate.setDate(newDate.getDate()+minDays); 
-			$('#due-date').text(dayNames[dueDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
-			$('#transaction_date').val(monthNames[(newDate.getMonth()+1)] + " " + newDate.getDate() + ", " + newDate.getFullYear());
-			$('#due_date').val(monthNames[(dueDate.getMonth()+1)] + " " + dueDate.getDate() + ", " + dueDate.getFullYear());
+			dueDate.setDate(newDate.getDate() + minDays); 
+			deliveryDate.setDate(newDate.getDate() + (minDays + 2));
+
+			$('#due_date').val(dueDate.getFullYear() + "-" +  (dueDate.getMonth()+1) + "-" + dueDate.getDate());
+			$('#delivery_date').val(deliveryDate.getFullYear() + "-" +  (deliveryDate.getMonth()+1) + "-" + deliveryDate.getDate());
 		});
 	</script>
 
@@ -350,6 +405,11 @@
 				  	var a = {!! json_encode($style_total) !!};
 				  	var b = {!! json_encode($fabric_total) !!};
 				  	var c = {!! json_encode($segment_total) !!};
+				  	var f = {!! json_encode($pattern_fabric_total) !!};
+				  	var g = {!! json_encode($raw_style_total) !!};
+				  	var h = {!! json_encode($raw_fabric_total) !!};
+				  	var j = {!! json_encode($raw_pattern_fabric_total) !!};
+
 				  	var d = {!! json_encode($package_values) !!};
 				  	var e = {!! json_encode($package_quantity) !!};
 
@@ -358,7 +418,7 @@
 				  	var total = 0;
 				  	for(var i = 0; i < a.length; i++)
 				  	{
-				  		total += a[i] + b[i] + c[i] + (d[i].dblPackagePrice * e[i]);
+				  		total += a[i] + b[i] + c[i] + f[i] + g[i] + h[i] + j[i] + (d[i].dblPackagePrice * e[i]);
 				  	}
 		  	
 					$('#hidden-amount-payable').val((total/2).toFixed(2));
@@ -368,9 +428,15 @@
 				}
 				if($('#full_pay').prop("checked")){
 					$("#amount-tendered").prop("readonly", false);
+
 				  	var a = {!! json_encode($style_total) !!};
 				  	var b = {!! json_encode($fabric_total) !!};
 				  	var c = {!! json_encode($segment_total) !!};
+				  	var f = {!! json_encode($pattern_fabric_total) !!};
+				  	var g = {!! json_encode($raw_style_total) !!};
+				  	var h = {!! json_encode($raw_fabric_total) !!};
+				  	var j = {!! json_encode($raw_pattern_fabric_total) !!};
+
 				  	var d = {!! json_encode($package_values) !!};
 				  	var e = {!! json_encode($package_quantity) !!};
 
@@ -379,8 +445,8 @@
 				  	var total = 0;
 				  	for(var i = 0; i < a.length; i++)
 				  	{
-				  		total += a[i] + b[i] + c[i] + (d[i].dblPackagePrice * e[i]);
-				  	}		  	
+				  		total += a[i] + b[i] + c[i] + f[i] + g[i] + h[i] + j[i] + (d[i].dblPackagePrice * e[i]);
+				  	}	  	
 					
 					$('#hidden-amount-payable').val(total.toFixed(2));
 					$('#amount-payable').val((total.toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
@@ -413,17 +479,24 @@
 			if($('#specify_pay').is(":checked"))
 			{
 
-				var a = {!! json_encode($style_total) !!};
-				var b = {!! json_encode($fabric_total) !!};
-				var c = {!! json_encode($segment_total) !!};
-				var d = {!! json_encode($package_values) !!};
-				var e = {!! json_encode($package_quantity) !!};
+				  	var a = {!! json_encode($style_total) !!};
+				  	var b = {!! json_encode($fabric_total) !!};
+				  	var c = {!! json_encode($segment_total) !!};
+				  	var f = {!! json_encode($pattern_fabric_total) !!};
+				  	var g = {!! json_encode($raw_style_total) !!};
+				  	var h = {!! json_encode($raw_fabric_total) !!};
+				  	var j = {!! json_encode($raw_pattern_fabric_total) !!};
 
-				var total = 0;
-				for(var i = 0; i < a.length; i++)
-				{
-				  	total += a[i] + b[i] + c[i] + (d[i].dblPackagePrice * e[i]);
-				}	
+				  	var d = {!! json_encode($package_values) !!};
+				  	var e = {!! json_encode($package_quantity) !!};
+
+				  	var vat = {!! json_encode($vat) !!};
+
+				  	var total = 0;
+				  	for(var i = 0; i < a.length; i++)
+				  	{
+				  		total += a[i] + b[i] + c[i] + f[i] + g[i] + h[i] + j[i] + (d[i].dblPackagePrice * e[i]);
+				  	}	
 
 				$('#hidden-amount-payable').val($("#amount-payable").val());
 				$('#balance').val(parseFloat(($("#amount-payable").val())).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
@@ -436,14 +509,22 @@
 				  	var a = {!! json_encode($style_total) !!};
 				  	var b = {!! json_encode($fabric_total) !!};
 				  	var c = {!! json_encode($segment_total) !!};
+				  	var f = {!! json_encode($pattern_fabric_total) !!};
+				  	var g = {!! json_encode($raw_style_total) !!};
+				  	var h = {!! json_encode($raw_fabric_total) !!};
+				  	var j = {!! json_encode($raw_pattern_fabric_total) !!};
+
 				  	var d = {!! json_encode($package_values) !!};
 				  	var e = {!! json_encode($package_quantity) !!};
+
+				  	var vat = {!! json_encode($vat) !!};
 
 				  	var total = 0;
 				  	for(var i = 0; i < a.length; i++)
 				  	{
-				  		total += a[i] + b[i] + c[i] + (d[i].dblPackagePrice * e[i]);
-				  	}	
+				  		total += a[i] + b[i] + c[i] + f[i] + g[i] + h[i] + j[i] + (d[i].dblPackagePrice * e[i]);
+				  	}
+
 				var payable = $('#amount-payable').val();
 
 			    if(payable == ''){

@@ -12,5 +12,6 @@ class TransactionJobOrderSpecificsPattern extends Model
 
     protected $fillable = array('intJOSpecSegmentPatternID',
     							'strJobOrderSpecificFK', 
-						    	'strSegmentPatternFK');
+						    	'strSegmentPatternFK',
+						    	'strPatternFabricFK');
 }

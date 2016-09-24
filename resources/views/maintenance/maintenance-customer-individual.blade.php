@@ -199,7 +199,7 @@
                                   </div>
 
                                   <div class="input-field col s3">
-                                    <input required value="{{$individual->strIndivStreet }}" id="editCustPrivStreet" name="editCustPrivStreet" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?" type="text" placeholder="Malunggay" class="validate">
+                                    <input required value="{{$individual->strIndivStreet }}" id="editCustPrivStreet" name="editCustPrivStreet" pattern="^[a-zA-Z\d\-'`.]+(\s[a-zA-Z\-'`.]+)?" type="text" placeholder="Malunggay" class="validate">
                                     <label for=" Street">Street <span class="red-text"><b>*</b></label>
                                   </div>
 
@@ -369,7 +369,7 @@
                         </div>
 
                            <div class="input-field col s3">
-                            <input required id="strIndivStreet" name="strIndivStreet" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?" type="text" placeholder="Malunggay" class="validate">
+                            <input required id="strIndivStreet" name="strIndivStreet" pattern="^[a-zA-Z\d\-'`.]+(\s[a-zA-Z\-'`.]+)?" type="text" placeholder="Malunggay" class="validate">
                             <label for=" Street">Street <span class="red-text"><b>*</b></label>
                           </div>
                           <!-- ^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)? -->

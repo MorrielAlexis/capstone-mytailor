@@ -9,6 +9,21 @@
       </div>
     </div>
 
+     <!--Add Order-->
+        @if(Session::has('success-message'))
+        <div class="row" id="success-message">
+          <div class="col s12 m12 l12">
+            <div class="card-panel yellow accent-1">
+              <span class="alert alert-success"> 
+              	<i class="tiny mdi-navigation-close" onclick="$('#success-message').hide()"></i>
+              	<!-- <a href="{{ URL::to('generate-payment-receipt') }}" class="right btn btn-flat">Print Receipt</a> -->
+              </span>
+              <strong> {!! session('success-message') !!}</strong>
+            </div>
+          </div>
+        </div>
+      @endif
+
 	<div class="row">
 		<div class="col s12 m12 l12">
 
@@ -135,7 +150,7 @@
 				      							<label for="{!! $package->strPackageID !!}"></label>
 					      					</div>
 					      					<div class="col s10">
-					      						<input class="center int-package-qty {{ $package->strPackageID }} qty{{ $package->strPackageID }}" disabled="true" name="int-package-qty[]" id="{{ $package->strPackageID }}" type="number">
+					      						<input min=1 class="center int-package-qty {{ $package->strPackageID }} qty{{ $package->strPackageID }}" disabled="true" name="int-package-qty[]" id="{{ $package->strPackageID }}" type="number">
 					      					</div>
 					      				</div>
 

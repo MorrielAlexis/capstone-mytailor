@@ -12,6 +12,7 @@ class UtilitiesGeneral extends Model
 	protected $fillable = array('intUtilsGenID',
 								'strShopName',
 								'strShopImage',
+								'strShopAddress',
 								'boolIsActive'
 								//
 								);}

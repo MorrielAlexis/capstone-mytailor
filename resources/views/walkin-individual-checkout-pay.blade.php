@@ -13,9 +13,9 @@
 	<div class="row" style="padding:30px">
         <div class="col s12" style="padding-left:15%">
 	        <ul class="breadcrumb">
-				<li><a><b>1.FILL-UP FORM</b></a></li>
-				<li><a><b>2.ADD MEASUREMENT DETAIL</b></a></li>
-				<li><a class="active" href="#payment-info"><b>3.PAYMENT</b></a></li>
+				<li><a>1. Fill-up form</a></li>
+				<li><a>2. Add measurement detail</a></li>
+				<li><a class="active" href="#payment-info">3. Payment</a></li>
 			</ul>
 		</div>
 
@@ -81,7 +81,7 @@
 		                        			<td style="border:1px teal solid; padding-left:5%; padding-right:5%; background-color:rgba(52, 162, 232, 0.2)"><b>{{ $values[$i]['strGarmentCategoryName'] }}, {{ $values[$i]['strSegmentName'] }}</b></td>
 		                        			<td style="padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"></td>
 		                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format( $values[$i]['dblSegmentPrice'] , 2)}}</b></td>
-		                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format(($values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice'] + $style_total[$i]['dblPatternPrice']) , 2) }}</b></td>
+		                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format(($unitPrice[$i]) , 2) }}</b></td>
 		                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format(($lineTotal[$i]) , 2) }}</b></td>
 		                        		</tr>
 		                        		<!-- <tr>
@@ -113,8 +113,16 @@
 		                        		<tr style="border:1px teal solid">
 		                        			<td style="border:1px teal solid"></td>
 		                        			<td class="right" style="border:none; color:teal; padding-right:10%">Style Name and Pattern</td>
+		                        			@if($styleFabric[$i][$j]->strFabricName != $values[$i]['strFabricName'])
+		                        			<td style="border:1px teal solid">{{ $styles[$i][$j]->strSegStyleName }} <br> <font color="gray"><b><i>{{ $styles[$i][$j]->strSegPName }} ({{ $styleFabric[$i][$j]->strFabricName}})</i></b></font></td>
+		                        			@elseif($styleFabric[$i][$j]->strFabricName == $values[$i]['strFabricName'])
 		                        			<td style="border:1px teal solid">{{ $styles[$i][$j]->strSegStyleName }} <br> <font color="gray"><b><i>{{ $styles[$i][$j]->strSegPName }}</i></b></font></td>
+		                        			@endif
+		                        			@if($styleFabric[$i][$j]->strFabricName != $values[$i]['strFabricName'])
+		                        			<td style="border:1px teal solid">P {{ number_format(($styles[$i][$j]->dblPatternPrice + $styleFabric[$i][$j]->dblFabricPrice), 2) }}</td>
+		                        			@elseif($styleFabric[$i][$j]->strFabricName == $values[$i]['strFabricName'])
 		                        			<td style="border:1px teal solid">P {{ number_format($styles[$i][$j]->dblPatternPrice, 2) }}</td>
+		                        			@endif
 		                        			<td style="border:1px teal solid"></td>
 		                        			<td style="border:1px teal solid"></td>
 		                        			@endif
@@ -279,7 +287,7 @@
 
 	                        <div style="color:black" class="col s12"> 
 								<div class="col s4"><p style="color:black; margin-top:5px; font-size:15px"><b>Amount To Pay:</b></p></div>                
-	                          	<div class="col s8"><b><input  style="padding:5px; border:3px gray solid; font-size:1.5em" id="amount-payable" name="amount-payable" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="right"></b></div>
+	                          	<div class="col s8"><b><input  style="padding:5px; border:3px gray solid; font-size:1.5em" id="amount-payable" name="amount-payable" type="text" class="right"></b></div>
 	                          	<input id="amount-payable-hidden" name="amount-payable-hidden" type="hidden" class="">
 	                        </div>
 
@@ -291,7 +299,7 @@
 
 	                        <div style="color:black" class="col s12"> 
 								<div class="col s4"><p style="color:black; margin-top:5px; font-size:15px"><b>Amount Tendered:</b></p></div>                
-	                          	<div class="col s8"><input style="padding:5px; border:3px gray solid; font-size:1em" name="amount-tendered" id="amount-tendered" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="right"><right></right></div>	     	                          
+	                          	<div class="col s8"><input style="padding:5px; border:3px gray solid; font-size:1em" name="amount-tendered" id="amount-tendered" type="text" class="right"><right></right></div>	     	                          
 	                        </div>
 
 	                        <div style="color:black" class="col s12"> 
@@ -302,7 +310,8 @@
 
 
 							<input type="hidden" id="Date" name="Date">
-							<input type="hidden" id="due_date" name="due_date">
+							<input type="hidden" id="dueDate" name="dueDate" />
+							<input type="hidden" id="deliveryDate" name="deliveryDate" />
 
 							<div class="col s12"><div class="divider" style="padding-top:10px"></div></div>								
 								<!-- <div class="modal-content col s12" style="padding-bottom:20px;">
@@ -391,8 +400,6 @@
 
 			var a = {!! json_encode($values) !!};
 			var b = {!! json_encode($styles) !!};
-			//var c =  json_encode($laborfee) !!};
-			//var d = { json_encode($othercharge) !!};
 			var c = {!! json_encode($lineTotal) !!};
 			var d = {!! json_encode($vat) !!};
 
@@ -400,36 +407,14 @@
 			var minDays = 0;
 			var laborTotal = 0.00;
 			var addtnlFees = 0.00;
-			//var estimatedTotal = 0.00;
 			var grandtotal = 0.00;
-
-			//labor total
-			/*for(var i = 0; i < a.length; i++) {
-					laborTotal += c[i].dblChargeDetPrice;
-			}
-
-			//additional total fees
-			for(var i = 0; i < a.length; i++) {
-				//for(var j = 0; j < d[i].length; j++) {
-					addtnlFees += d[i].dblChargeDetPrice;
-				//}
-			}*/
 
 			//grand total
 			for(var i = 0; i < a.length; i++){
-				/*totalAmount += a[i].dblSegmentPrice;
-				totalAmount += a[i].dblFabricPrice;
-				//totalAmount += c[i].dblChargeDetPrice;
-				//totalAmount += d[i].dblChargeDetPrice;
-					/*for(var j = 0; j < b[i].length; j++){
-						totalAmount += b[i][j].dblPatternPrice;
-					}*/
 				grandtotal += c[i];
 				minDays += a[i].intMinDays;
 			}
 
-			//estimated total
-			//estimatedTotal = totalAmount - (addtnlFees + laborTotal);
 			var due = grandtotal;
 			var vat = 0.00;
 			var vatValue;
@@ -446,9 +431,19 @@
 
 			var newDate = new Date();
 			var dueDate = new Date();
+			var deliveryDate = new Date();
+
+			/*Date.prototype.addDays = function(days)
+			{
+			    var dueDate = new Date();
+			    dueDate.setDate(dueDate.getDate() + days);
+			    return dueDate;
+			}*/
+			var parameter = minDays + 2;
 
 			newDate.setDate(newDate.getDate());   
-			dueDate.setDate(newDate.getDate()+minDays); 
+			dueDate.setDate(newDate.getDate()+minDays);
+			deliveryDate.setDate(newDate.getDate()+parameter);
 
 			function commaSeparateNumber(val){
 			    while (/(\d+)(\d{3})/.test(val.toString())){
@@ -456,17 +451,16 @@
 			    }
 			    return val;
 			 }
-
-			//$('#labor_price_total').val(laborTotal.toFixed(2));
+			 //alert(dueDate.getFullYear() + "-" +  (dueDate.getMonth()+1) + "-" + dueDate.getDate());
 			$('#estimated_total').val(commaSeparateNumber(totalAmount.toFixed(2)));
 			$('#total_price').val(commaSeparateNumber(grandtotal.toFixed(2)));
 			$('#total_price_hidden').val(grandtotal.toFixed(2));
 			$('#vat_total').val(commaSeparateNumber(vat.toFixed(2)));
 			$('#total_due').val(commaSeparateNumber(due.toFixed(2)));
-			//$('#addtnl_fee').val(addtnlFees.toFixed(2));
-			$('#due-date').text(dayNames[dueDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
-			$('#transaction_date').val(monthNames[(newDate.getMonth()+1)] + " " + newDate.getDate() + ", " + newDate.getFullYear());
-			$('#due_date').val(monthNames[(dueDate.getMonth()+1)] + " " + dueDate.getDate() + ", " + dueDate.getFullYear());
+			//$('#due-date').text(dayNames[dueDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
+			//$('#transaction_date').val(monthNames[(newDate.getMonth())] + " " + newDate.getDate() + ", " + newDate.getFullYear());
+			$('#dueDate').val(dueDate.getFullYear() + "-" +  (dueDate.getMonth()+1) + "-" + dueDate.getDate());
+			$('#deliveryDate').val(deliveryDate.getFullYear() + "-" +  (deliveryDate.getMonth()+1) + "-" + deliveryDate.getDate());
 		});
 	</script>
 

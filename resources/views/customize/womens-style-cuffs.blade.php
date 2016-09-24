@@ -35,8 +35,7 @@
           <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Collar</li>
           <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab active"><a style="color:black" href="#tabCuffs">Cuffs</a></li>
           <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Buttons</li>
-          <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Pocket & Monogram</li>
-          <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Others</li>
+          <li style="background:#00b0ff; border-top-left-radius: 20px; border-top-right-radius: 40px;" class="tab black-text">Pocket</li>
           <div class="indicator light-blue" style="z-index:1"></div>
         </ul>
 
@@ -51,21 +50,21 @@
           </div>
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
 
-          @foreach($segments as $segment)
+          @foreach($segments as $i => $segment)
           <div class="col s12">
             <ul class="collapsible" data-collapsible="accordion" style="border:none;">
-              @foreach($sleeves as $sleeve)
+              @foreach($sleeves as $j => $sleeve)
               @if($sleeve->boolIsActive == 1)
               <li @if($segment->strSegmentID != $sleeve->strSegmentFK) hidden @endif>
                 <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $sleeve->strSegStyleName }}</div>
                 <div class="collapsible-body row overflow-x" style="padding:20px;">       
                   <div class="col s12">
-                    @foreach($patterns as $pattern)
+                    @foreach($patterns as $k => $pattern)
                     <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $sleeve->strSegStyleCatID) hidden @endif>
                       <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
                       <p>
-                        <input name="rdb_pattern{{ $sleeve->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
-                        <label for="{{$pattern->strSegPatternID}}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
+                        <input name="wsleeve" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" />
+                        <label for="{{$pattern->strSegPatternID}}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
                       </p>
                     </div>
                     @endforeach
@@ -75,18 +74,18 @@
               @endif
               @endforeach 
      
-              @foreach($cuffs as $cuff)
+              @foreach($cuffs as $j => $cuff)
               @if($cuff->boolIsActive == 1)
               <li @if($segment->strSegmentID != $cuff->strSegmentFK) hidden @endif>
                 <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $cuff->strSegStyleName }}</div>
                 <div class="collapsible-body row overflow-x" style="padding:20px;">  
                   <div class="col s12">
-                    @foreach($patterns as $pattern)
+                    @foreach($patterns as $k => $pattern)
                     <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $cuff->strSegStyleCatID) hidden @endif>
                       <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
                       <p>
-                        <input name="rdb_pattern{{ $cuff->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
-                        <label for="{{$pattern->strSegPatternID}}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
+                        <input name="wcuff" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" />
+                        <label for="{{$pattern->strSegPatternID}}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
                       </p>
                     </div>
                     @endforeach

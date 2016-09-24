@@ -101,7 +101,7 @@
 																	<tr>
 																		<td>{{ $segments[$j][$k]->strGarmentCategoryName }}, <b>{{ $segments[$j][$k]->strSegmentName }}</b></td>
 																		<td><img src="../{{ $segments[$j][$k]->strSegmentImage }}"/></td>
-																		<td><input name="segment-qty{{ $i }}[]" id="add-garment" type="number" value="" style="margin-top:20px" placeholder="How many additional {{ $segments[$j][$k]->strSegmentName }}?" ></td>
+																		<td><input min=0 name="segment-qty{{ $i }}[]" id="add-garment" type="number" value="" style="margin-top:20px" placeholder="How many additional {{ $segments[$j][$k]->strSegmentName }}?" ></td>
 																	</tr>
 																	@endif
 																@endfor
@@ -123,7 +123,7 @@
 							<!--Employee Information ends here-->
 						@endfor
 						<div class="col s12"><div class="divider" style="margin-bottom:20px; margin-top:20px"></div>
-			                <button type="submit" class="right waves-effect waves-green btn" style="background-color:teal; margin-right:10px"><font color="white">Save</font></button>
+			                <button  type="submit" class="right waves-effect waves-green btn" style="background-color:teal; margin-right:10px"><font color="white">Save</font></button>
 			                <a href="{{URL::to('transaction/walkin-company-show-order')}}" class="left modal-action modal-close waves-effect waves-green btn" style="background-color:teal; margin-left:10px;"><font color="white">Cancel</font></a>
 		            	</div>
 		            	{!! Form::close() !!}

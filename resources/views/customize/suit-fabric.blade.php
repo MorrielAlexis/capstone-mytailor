@@ -93,14 +93,14 @@
       <div class="col s12 divider dashed" style="height:4px; margin-top:10px; margin-bottom:10px;"></div>
       
 
-      {!! Form::open(['url' => 'customize-suit-style-jacket', 'method' => 'post']) !!}
+      {!! Form::open(['url' => 'customize-suit-style-jacket', 'method' => 'post', "id" => "order-form"]) !!}
       <div class="col s12" style="margin-bottom:20px;"><button class="right btn-flat teal accent-4 white-text" type="submit">Continue</button></div>
 
       @foreach($fabrics as $fabric)
       <div class="col s12 fabric-general {{ $fabric->strFabricTypeFK }} {{ $fabric->strFabricPatternFK }} {{ $fabric->strFabricColorFK }} {{ $fabric->strFabricThreadCountFK }}" style="margin-bottom:20px; padding:20px; padding-top:0;">
         <div class="col s6">
           <div class="center col s2 " style="margin-top:100px">
-            <input name="rdb_fabric" type="radio" class="filled-in" value = "{{$fabric->strFabricID}}" id="{{$fabric->strFabricID}}" />
+            <input name="sfabric" type="radio" class="cbx-fabric filled-in" value = "{{$fabric->strFabricID}}" id="{{$fabric->strFabricID}}" />
             <label for="{{$fabric->strFabricID}}"></label>
           </div>
           <div class="col s10">
@@ -202,6 +202,16 @@
     $('.tooltipped').tooltip({delay: 50});
     });
     
+  </script>
+
+  <script type="text/javascript">
+    $("#order-form").submit(function(){
+      if(!$('.cbx-fabric').is(":checked"))
+      {
+          alert('Please select at least one item.');
+          return false;
+      }
+    })
   </script>
 
 @stop

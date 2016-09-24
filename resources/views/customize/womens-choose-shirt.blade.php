@@ -31,6 +31,10 @@
 
           <div class="divider" style="margin-bottom:40px; height:2px"></div>
           <p class="center-align" style="color:teal; margin-bottom:40px"><b>CHOOSE AMONG AVAILABLE PRODUCTS</b></p>
+          <div class = "row">
+            <div class="center col s3" style="margin-top:30px; margin-left:60px; color:red"><center><b style="font-size:18px">Quantity of Women Shirt</b></center></div>  
+            <div class="col s3" style="margin-top:20px; padding:5px; margin-right:5px;"><input min= "1" required class = "womenquantity" name="womenquantity" value = "1" id="quantity" type="number" style="border:2px teal solid; padding-left:18%; padding-right:18%" placeholder="How many?"></div>
+          </div>
         
           @foreach($garments as $garment)
             @if($garment->boolIsActive==1)
@@ -41,6 +45,11 @@
                     <input type="radio" name = "womenshirt" class="filled-in cbx-segment-name" id="{{$garment->strSegmentID}}" value="{{$garment->strSegmentID}}" style="padding:5px"/>
                     <label for="{{$garment->strSegmentID}}">{{$garment->strSegmentName}}</label>
                   </div>
+
+
+                  <input type="hidden" value="{{$garment->strSegmentName}}" name="wname">
+                  <input type="hidden" value="{{$garment->dblSegmentPrice}}" name="wsegprice">
+                  <input type="hidden" value="{{$garment->intMinDays}}" name="wdays">
 
                   <div class="center col s12">
                     <img src="{{$garment->strSegmentImage}}" style="height:200px; width:250px; padding:10px; border:3px gray solid">
@@ -55,7 +64,6 @@
           <div class="divider"></div>
           <button type="submit" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize orders" style="padding-left:10px; padding-right:10px; margin-top:20px; margin-bottom: 20px; font-size:15px; color:white; background-color: teal; opacity:0.90;">Customize Orders</a>
           
-          <button class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel orders" style="padding-left:10px; padding-right:10px; margin-top:20px; margin-bottom: 20px; font-size:15px; color:white; background-color: teal; opacity:0.90;">Reset Order</a>
         </div>
       {!! Form::close() !!}
 

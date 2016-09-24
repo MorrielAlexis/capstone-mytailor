@@ -24,5 +24,13 @@ class TransactionJobOrder extends Model
     						'dtExpectedDeliveryDate',
     						'dtFinished',
     						'dtDelivered',
-    						'boolIsActive');
+
+    						'boolIsActive',
+                            'boolIsOnline');
+
+
+    public function joSpecifics()
+    {
+        return $this->hasMany('App\TransactionJobOrderSpecifics');
+    }
 }
