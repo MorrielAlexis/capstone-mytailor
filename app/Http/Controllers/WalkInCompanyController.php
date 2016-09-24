@@ -797,6 +797,8 @@ class WalkInCompanyController extends Controller
         $amountTendered = (double)$request->get('amount-tendered');
         $amountChange = (double)$request->get('amount-change');
         $orderDate = $request->get('transaction_date'); //tblJobOrder
+        $orderDateToBeDone = $request->input('due_date');
+        $deliveryDate = $request->input('delivery_date');
         $segments = session()->get('package_segments'); //tblJobSpecs
         $fabrics = session()->get('package_segment_fabric'); //tblJOSpecs_Design
         $patterns = session()->get('package_segment_pattern');
@@ -833,6 +835,9 @@ class WalkInCompanyController extends Controller
                 'dblOrderTotalPrice' => $totalPrice,
                 'boolIsOrderAccepted' => 1,
                 'dtOrderDate' => $orderDate,
+                'dtOrderApproved' => $orderDate,
+                'dtOrderExpectedToBeDone' => $orderDateToBeDone,
+                'dtExpectedDeliveryDate' => $deliveryDate,
                 'boolIsActive' => 1
         ));
 
@@ -867,8 +872,8 @@ class WalkInCompanyController extends Controller
                 'dblAmountTendered' => $amountTendered,
                 'dblAmountChange' => $amountChange,
                 'strReceivedByEmployeeNameFK' => 'EMPL001',
-                'dtPaymentDate' => '2016-07-23',
-                'dtPaymentDueDate' => '2016-07-23',
+                'dtPaymentDate' => $orderDate,
+                'dtPaymentDueDate' => $orderDateToBeDone,
                 'strPaymentStatus' => $payTerms,
                 'boolIsActive' => 1
 
