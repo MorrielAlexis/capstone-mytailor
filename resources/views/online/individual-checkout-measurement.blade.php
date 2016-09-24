@@ -49,7 +49,7 @@
           </div>
         </div>
 
-        @foreach($segments as $segment)
+        @foreach($segments as $i => $segment)
         <div class="col s12" style="padding:20px"> 
                   
               <div id="for_top" class="col s12" style="color:black">
@@ -61,7 +61,7 @@
                           <div style="color:black; padding-left:140px" class="input-field col s6 ">   
                             <input type="hidden" name="" value="{{ $measurement->strMeasurementDetailID }}">              
                             <input name="" type="text">
-                            <label style="color:teal" for=""><b>{{ $measurement->strMeasDetailName }}</b> (cm): </label>
+                            <label style="color:teal"><b>{{ $measurement->strMeasDetailName }}</b> (cm): </label>
                         </div>
                       </div>
                  
