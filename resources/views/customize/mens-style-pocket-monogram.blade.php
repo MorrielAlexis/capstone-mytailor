@@ -59,10 +59,6 @@
                   <div class="collapsible-body row overflow-x" style="padding:20px;">
         
                       <div class="col s12">
-                        <p>
-                          <input class="with-gap" name="rdb_pattern" value = "null" type="radio" id="small" />
-                          <label for="small"><font size="+1"><b>No Pocket</b></font></label>
-                        </p>
                         @foreach($patterns as $k => $pattern)
                         <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $pocket->strSegStyleCatID) hidden @endif>
                           <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">

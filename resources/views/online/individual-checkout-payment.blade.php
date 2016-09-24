@@ -39,6 +39,9 @@
                       <div class="col s4" style="color:gray"><p>Date:</p></div>
                       <div class="col s8" id="Date" style="padding:15px; color:teal;"></div>
                     </div>
+                    <input type="hidden" id="transaction_date" name="transaction_date" />
+                    <input type="hidden" id="dueDate" name="dueDate" />
+                    <input type="hidden" id="deliveryDate" name="deliveryDate" />
                     <div class="col s12">
                       <div class="col s4" style="color:gray"><p>Time:</p></div>
                       <div class="col s8" id="clock" style="padding:15px; color:teal;"></div>
@@ -159,19 +162,6 @@
                             <div class="col s8" style="color:black;"><p><input id="vat_total" value = "PHP {{number_format($vat_total, 2)}}" name="vat_total" type="text" class="" readonly /></p></div>
                       </div>
 
-                      
-                      <div class="col s4" style="color:gray; font-size:15px"><p><b>Terms of Payment</b></p></div>
-                      <div class="col s8" style="padding:18px; padding-top:30px">
-                        <div class="col s6">
-                            <input name="termsOfPayment" value="Half Payment" type="radio" class="filled-in payment" id="half_pay"/>
-                            <label for="half_pay">Half (50%)</label>
-                        </div>
-                        <div class="col s6">
-                          <input name="termsOfPayment" value="Full Payment" type="radio" class="filled-in payment" id="full_pay" />
-                          <label for="full_pay">Full (100%)</label>
-                        </div>
-                      </div>
-
 
                     </div>
 
@@ -209,7 +199,7 @@
         var newDate = new Date();
         newDate.setDate(newDate.getDate());    
         $('#Date').html(dayNames[newDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
-    
+        $('#transaction_date').val(newDate.getFullYear() + "-" +  (newDate.getMonth()+1) + "-" + newDate.getDate());
     </script>
 
     <script type="text/javascript">
