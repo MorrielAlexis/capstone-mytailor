@@ -21,8 +21,8 @@ class ReportsSalesByJobOrderController extends Controller
     {
         $qrDaily = DB::select('SELECT SUM(js.intQuantity * js.dblUnitPrice) AS Total,
                                         SUM(js.intQuantity * cd.dblChargeDetPrice) AS Fee,
-                                        jo.dtFinished,
-                                        CONCAT(DAYNAME(jo.dtFinished)," (",MONTH(jo.dtFinished),"-",DAY(jo.dtFinished),")") as Day
+                                        jo.dtOrderDate,
+                                        CONCAT(DAYNAME(jo.dtOrderDate)," (",MONTH(jo.dtOrderDate),"-",DAY(jo.dtOrderDate),")") as Day
                                         FROM        tbljoborder AS jo LEFT JOIN
                                                     tbljospecific as js 
                                                         ON jo.strJobOrderID= js.strJobOrderFK
@@ -35,14 +35,14 @@ class ReportsSalesByJobOrderController extends Controller
                                         LEFT JOIN   tblChargeDetail AS cd
                                                         ON js.strJOSegmentFK = cd.strChargeDetSegFK
                                                         
-                                        WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtFinished AND YEAR(dtFinished) = YEAR(CURDATE()) 
-                                        GROUP BY    jo.dtFinished
-                                        ORDER BY    jo.dtFinished;');
+                                        WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtOrderDate AND YEAR(dtOrderDate) = YEAR(CURDATE()) 
+                                        GROUP BY    jo.dtOrderDate
+                                        ORDER BY    jo.dtOrderDate;');
         $qrMonthly = DB::select('SELECT SUM(js.intQuantity * js.dblUnitPrice) AS Total,
                                         SUM(js.intQuantity * cd.dblChargeDetPrice) AS Fee,
-                                        jo.dtFinished,
-                                        CONCAT(MONTHNAME(jo.dtFinished),"-",YEAR(CURDATE())) as Month,
-                                        MONTH(jo.dtFinished) AS MonthNumber
+                                        jo.dtOrderDate,
+                                        CONCAT(MONTHNAME(jo.dtOrderDate),"-",YEAR(CURDATE())) as Month,
+                                        MONTH(jo.dtOrderDate) AS MonthNumber
                                         FROM        tbljoborder AS jo LEFT JOIN
                                                     tbljospecific as js 
                                                         ON jo.strJobOrderID= js.strJobOrderFK
@@ -55,13 +55,13 @@ class ReportsSalesByJobOrderController extends Controller
                                         LEFT JOIN   tblChargeDetail AS cd
                                                         ON js.strJOSegmentFK = cd.strChargeDetSegFK
                                                         
-                                        WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtFinished AND YEAR(dtFinished) = YEAR(CURDATE()) 
-                                        GROUP BY    MONTH(jo.dtFinished)
-                                        ORDER BY    jo.dtFinished;
+                                        WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtOrderDate AND YEAR(dtOrderDate) = YEAR(CURDATE()) 
+                                        GROUP BY    MONTH(jo.dtOrderDate)
+                                        ORDER BY    jo.dtOrderDate;
                                 ');
         $qrQuarterly = DB::select('SELECT SUM(js.intQuantity * js.dblUnitPrice) AS Total,
                                         SUM(js.intQuantity * cd.dblChargeDetPrice) AS Fee,
-                                        QUARTER(jo.dtFinished) as Quarter
+                                        QUARTER(jo.dtOrderDate) as Quarter
                                         FROM        tbljoborder AS jo LEFT JOIN
                                                     tbljospecific as js 
                                                         ON jo.strJobOrderID= js.strJobOrderFK
@@ -74,14 +74,14 @@ class ReportsSalesByJobOrderController extends Controller
                                         LEFT JOIN   tblChargeDetail AS cd
                                                         ON js.strJOSegmentFK = cd.strChargeDetSegFK
                                                         
-                                        WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtFinished AND YEAR(dtFinished) = YEAR(CURDATE())
-                                        GROUP BY    QUARTER(jo.dtFinished)
-                                        ORDER BY    jo.dtFinished;
+                                        WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtOrderDate AND YEAR(dtOrderDate) = YEAR(CURDATE())
+                                        GROUP BY    QUARTER(jo.dtOrderDate)
+                                        ORDER BY    jo.dtOrderDate;
                                 ');
         $qrWeekly = DB::select('SELECT  SUM(js.intQuantity * js.dblUnitPrice) AS Total,
                                         SUM(js.intQuantity * cd.dblChargeDetPrice) AS Fee,
-                                        jo.dtFinished,
-                                        WEEK(jo.dtFinished) AS WeekNumber
+                                        jo.dtOrderDate,
+                                        WEEK(jo.dtOrderDate) AS WeekNumber
                                     FROM        tbljoborder AS jo LEFT JOIN
                                                 tbljospecific as js 
                                                     ON jo.strJobOrderID= js.strJobOrderFK
@@ -94,14 +94,14 @@ class ReportsSalesByJobOrderController extends Controller
                                     LEFT JOIN   tblChargeDetail AS cd
                                                     ON js.strJOSegmentFK = cd.strChargeDetSegFK
                                                     
-                                    WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtFinished AND YEAR(dtFinished) = YEAR(CURDATE())
-                                    GROUP BY    WEEK(jo.dtFinished)
-                                    ORDER BY    jo.dtFinished;
+                                    WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtOrderDate AND YEAR(dtOrderDate) = YEAR(CURDATE())
+                                    GROUP BY    WEEK(jo.dtOrderDate)
+                                    ORDER BY    jo.dtOrderDate;
                                 ');
         $qrAnnually = DB::select('SELECT  SUM(js.intQuantity * js.dblUnitPrice) AS Total,
                                         SUM(js.intQuantity * cd.dblChargeDetPrice) AS Fee,
-                                        jo.dtFinished,
-                                        YEAR(jo.dtFinished) AS YearNumber
+                                        jo.dtOrderDate,
+                                        YEAR(jo.dtOrderDate) AS YearNumber
                                     FROM        tbljoborder AS jo LEFT JOIN
                                                 tbljospecific as js 
                                                     ON jo.strJobOrderID= js.strJobOrderFK
@@ -114,9 +114,9 @@ class ReportsSalesByJobOrderController extends Controller
                                     LEFT JOIN   tblChargeDetail AS cd
                                                     ON js.strJOSegmentFK = cd.strChargeDetSegFK
                                                     
-                                    WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtFinished AND YEAR(dtFinished) = YEAR(CURDATE())
-                                    GROUP BY    YEAR(jo.dtFinished)
-                                    ORDER BY    jo.dtFinished;
+                                    WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtOrderDate AND YEAR(dtOrderDate) = YEAR(CURDATE())
+                                    GROUP BY    YEAR(jo.dtOrderDate)
+                                    ORDER BY    jo.dtOrderDate;
                                 ');
         $qrTransaction = DB::select('SELECT jo.strJobOrderId, 
                                             cn.strCompanyName, 
@@ -124,7 +124,7 @@ class ReportsSalesByJobOrderController extends Controller
                                             SUM(js.intQuantity * js.dblUnitPrice) AS Total,
                                             SUM(js.intQuantity * cd.dblChargeDetPrice) AS Fee,
                                             CONCAT(e.strEmpFName," ",e.strEmpLName) AS EmployeeName,
-                                            CONCAT(MONTHNAME(jo.dtFinished)," ",DAY(jo.dtFinished),", ",YEAR(jo.dtFinished)) AS Finished
+                                            CONCAT(MONTHNAME(jo.dtOrderDate)," ",DAY(jo.dtOrderDate),", ",YEAR(jo.dtOrderDate)) AS Finished
                                     FROM        tbljoborder AS jo LEFT JOIN
                                                 tbljospecific as js 
                                                     ON jo.strJobOrderID= js.strJobOrderFK
@@ -137,7 +137,7 @@ class ReportsSalesByJobOrderController extends Controller
                                     LEFT JOIN   tblChargeDetail AS cd
                                                     ON js.strJOSegmentFK = cd.strChargeDetSegFK
                                                     
-                                    WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtFinished
+                                    WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtOrderDate
                                     GROUP BY    js.strJobOrderFK
                                     ORDER BY    jo.strJobOrderId
                                                     ');
@@ -180,8 +180,8 @@ class ReportsSalesByJobOrderController extends Controller
             if ($intRepType == 0){
                 $qrDaily = DB::select('SELECT SUM(js.intQuantity * js.dblUnitPrice) AS Total,
                                         SUM(js.intQuantity * cd.dblChargeDetPrice) AS Fee,
-                                        jo.dtFinished,
-                                        CONCAT(DAYNAME(jo.dtFinished)," (",MONTH(jo.dtFinished),"-",DAY(jo.dtFinished),")") as columnOne
+                                        jo.dtOrderDate,
+                                        CONCAT(DAYNAME(jo.dtOrderDate)," (",MONTH(jo.dtOrderDate),"-",DAY(jo.dtOrderDate),")") as columnOne
                                         FROM        tbljoborder AS jo LEFT JOIN
                                                     tbljospecific as js 
                                                         ON jo.strJobOrderID= js.strJobOrderFK
@@ -194,9 +194,9 @@ class ReportsSalesByJobOrderController extends Controller
                                         LEFT JOIN   tblChargeDetail AS cd
                                                         ON js.strJOSegmentFK = cd.strChargeDetSegFK
                                                         
-                                        WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtFinished AND YEAR(dtFinished) = YEAR(CURDATE()) 
-                                        GROUP BY    jo.dtFinished
-                                        ORDER BY    jo.dtFinished;');
+                                        WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtOrderDate AND YEAR(dtOrderDate) = YEAR(CURDATE()) 
+                                        GROUP BY    jo.dtOrderDate
+                                        ORDER BY    jo.dtOrderDate;');
                 $pdf = PDF::loadView('pdf.salesreport-joborder-generate',['data' => $qrDaily, 'ReportType' => 'Daily Report', 'Name' => ""])
                     ->setPaper('Letter')
                     ->setOrientation('portrait');
@@ -205,8 +205,8 @@ class ReportsSalesByJobOrderController extends Controller
                 // Weekly
                 $qrWeekly = DB::select('SELECT  SUM(js.intQuantity * js.dblUnitPrice) AS Total,
                                         SUM(js.intQuantity * cd.dblChargeDetPrice) AS Fee,
-                                        jo.dtFinished,
-                                        WEEK(jo.dtFinished) AS columnOne
+                                        jo.dtOrderDate,
+                                        WEEK(jo.dtOrderDate) AS columnOne
                                     FROM        tbljoborder AS jo LEFT JOIN
                                                 tbljospecific as js 
                                                     ON jo.strJobOrderID= js.strJobOrderFK
@@ -219,9 +219,9 @@ class ReportsSalesByJobOrderController extends Controller
                                     LEFT JOIN   tblChargeDetail AS cd
                                                     ON js.strJOSegmentFK = cd.strChargeDetSegFK
                                                     
-                                    WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtFinished AND YEAR(dtFinished) = YEAR(CURDATE())
-                                    GROUP BY    WEEK(jo.dtFinished)
-                                    ORDER BY    jo.dtFinished;');
+                                    WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtOrderDate AND YEAR(dtOrderDate) = YEAR(CURDATE())
+                                    GROUP BY    WEEK(jo.dtOrderDate)
+                                    ORDER BY    jo.dtOrderDate;');
                 $pdf = PDF::loadView('pdf.salesreport-joborder-generate',['data' => $qrWeekly, 'ReportType' => 'Weekly Report', 'Name' => "Week"])
                     ->setPaper('Letter')
                     ->setOrientation('portrait');
@@ -230,9 +230,9 @@ class ReportsSalesByJobOrderController extends Controller
                 // Monthly
                 $qrMonthly = DB::select('SELECT SUM(js.intQuantity * js.dblUnitPrice) AS Total,
                                         SUM(js.intQuantity * cd.dblChargeDetPrice) AS Fee,
-                                        jo.dtFinished,
-                                        MONTHNAME(jo.dtFinished) as columnOne,
-                                        MONTH(jo.dtFinished) AS Month
+                                        jo.dtOrderDate,
+                                        MONTHNAME(jo.dtOrderDate) as columnOne,
+                                        MONTH(jo.dtOrderDate) AS Month
                                         FROM        tbljoborder AS jo LEFT JOIN
                                                     tbljospecific as js 
                                                         ON jo.strJobOrderID= js.strJobOrderFK
@@ -245,9 +245,9 @@ class ReportsSalesByJobOrderController extends Controller
                                         LEFT JOIN   tblChargeDetail AS cd
                                                         ON js.strJOSegmentFK = cd.strChargeDetSegFK
                                                         
-                                        WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtFinished
-                                        GROUP BY    MONTH(jo.dtFinished)
-                                        ORDER BY    jo.dtFinished');
+                                        WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtOrderDate
+                                        GROUP BY    MONTH(jo.dtOrderDate)
+                                        ORDER BY    jo.dtOrderDate');
                 $pdf = PDF::loadView('pdf.salesreport-joborder-generate',['data' => $qrMonthly, 'ReportType' => 'Monthly Report', 'Name' => ""])
                     ->setPaper('Letter')
                     ->setOrientation('portrait');
@@ -256,7 +256,7 @@ class ReportsSalesByJobOrderController extends Controller
                 // Quarterly
                 $qrQuarterly = DB::select('SELECT SUM(js.intQuantity * js.dblUnitPrice) AS Total,
                                         SUM(js.intQuantity * cd.dblChargeDetPrice) AS Fee,
-                                        QUARTER(jo.dtFinished) as columnOne
+                                        QUARTER(jo.dtOrderDate) as columnOne
                                         FROM        tbljoborder AS jo LEFT JOIN
                                                     tbljospecific as js 
                                                         ON jo.strJobOrderID= js.strJobOrderFK
@@ -269,9 +269,9 @@ class ReportsSalesByJobOrderController extends Controller
                                         LEFT JOIN   tblChargeDetail AS cd
                                                         ON js.strJOSegmentFK = cd.strChargeDetSegFK
                                                         
-                                        WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtFinished
-                                        GROUP BY    QUARTER(jo.dtFinished)
-                                        ORDER BY    jo.dtFinished');
+                                        WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtOrderDate
+                                        GROUP BY    QUARTER(jo.dtOrderDate)
+                                        ORDER BY    jo.dtOrderDate');
                 $pdf = PDF::loadView('pdf.salesreport-joborder-generate',['data' => $qrQuarterly, 'ReportType' => 'Quarter Report', 'Name' => "Quarter"])
                     ->setPaper('Letter')
                     ->setOrientation('portrait');
@@ -280,8 +280,8 @@ class ReportsSalesByJobOrderController extends Controller
                 // Yearly
                 $qrAnnually = DB::select('SELECT  SUM(js.intQuantity * js.dblUnitPrice) AS Total,
                                         SUM(js.intQuantity * cd.dblChargeDetPrice) AS Fee,
-                                        jo.dtFinished,
-                                        YEAR(jo.dtFinished) AS columnOne
+                                        jo.dtOrderDate,
+                                        YEAR(jo.dtOrderDate) AS columnOne
                                     FROM        tbljoborder AS jo LEFT JOIN
                                                 tbljospecific as js 
                                                     ON jo.strJobOrderID= js.strJobOrderFK
@@ -294,9 +294,9 @@ class ReportsSalesByJobOrderController extends Controller
                                     LEFT JOIN   tblChargeDetail AS cd
                                                     ON js.strJOSegmentFK = cd.strChargeDetSegFK
                                                     
-                                    WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtFinished
-                                    GROUP BY    YEAR(jo.dtFinished)
-                                    ORDER BY    jo.dtFinished');
+                                    WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtOrderDate
+                                    GROUP BY    YEAR(jo.dtOrderDate)
+                                    ORDER BY    jo.dtOrderDate');
                 $pdf = PDF::loadView('pdf.salesreport-joborder-generate',['data' => $qrAnnually, 'ReportType' => 'Annual Report', 'Name' => "Year"])
                     ->setPaper('Letter')
                     ->setOrientation('portrait');
@@ -308,7 +308,7 @@ class ReportsSalesByJobOrderController extends Controller
                                             SUM(js.intQuantity * js.dblUnitPrice) AS Total,
                                             SUM(js.intQuantity * cd.dblChargeDetPrice) AS Fee,
                                             CONCAT(e.strEmpFName," ",e.strEmpLName) AS EmployeeName,
-                                            CONCAT(MONTHNAME(jo.dtFinished)," ",DAY(jo.dtFinished),", ",YEAR(jo.dtFinished)) AS Finished
+                                            CONCAT(MONTHNAME(jo.dtOrderDate)," ",DAY(jo.dtOrderDate),", ",YEAR(jo.dtOrderDate)) AS Finished
                                     FROM        tbljoborder AS jo LEFT JOIN
                                                 tbljospecific as js 
                                                     ON jo.strJobOrderID= js.strJobOrderFK
@@ -321,7 +321,7 @@ class ReportsSalesByJobOrderController extends Controller
                                     LEFT JOIN   tblChargeDetail AS cd
                                                     ON js.strJOSegmentFK = cd.strChargeDetSegFK
                                                     
-                                    WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtFinished
+                                    WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtOrderDate
                                     GROUP BY    js.strJobOrderFK
                                     ORDER BY    jo.strJobOrderId
                                                     ');
@@ -365,8 +365,8 @@ class ReportsSalesByJobOrderController extends Controller
             if ($intRepType == 0){
                 $qrDaily = DB::select('SELECT SUM(js.intQuantity * js.dblUnitPrice) AS Total,
                                         SUM(js.intQuantity * cd.dblChargeDetPrice) AS Fee,
-                                        jo.dtFinished,
-                                        CONCAT(DAYNAME(jo.dtFinished)," (",MONTH(jo.dtFinished),"-",DAY(jo.dtFinished),")") as columnOne
+                                        jo.dtOrderDate,
+                                        CONCAT(DAYNAME(jo.dtOrderDate)," (",MONTH(jo.dtOrderDate),"-",DAY(jo.dtOrderDate),")") as columnOne
                                         FROM        tbljoborder AS jo LEFT JOIN
                                                     tbljospecific as js 
                                                         ON jo.strJobOrderID= js.strJobOrderFK
@@ -379,9 +379,9 @@ class ReportsSalesByJobOrderController extends Controller
                                         LEFT JOIN   tblChargeDetail AS cd
                                                         ON js.strJOSegmentFK = cd.strChargeDetSegFK
                                                         
-                                        WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtFinished AND (jo.dtFinished BETWEEN ? AND ?) 
-                                        GROUP BY    jo.dtFinished
-                                        ORDER BY    jo.dtFinished',
+                                        WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtOrderDate AND (jo.dtOrderDate BETWEEN ? AND ?) 
+                                        GROUP BY    jo.dtOrderDate
+                                        ORDER BY    jo.dtOrderDate',
                                         [$datRepFrom,$datRepTo]);
                 $pdf = PDF::loadView('pdf.salesreport-joborder',['data' => $qrDaily, 'ReportType' => 'Daily Report', 'datFrom' => $convertedFrom, 'datTo' => $convertedTo, 'Name' => ""])
                     ->setPaper('Letter')
@@ -391,8 +391,8 @@ class ReportsSalesByJobOrderController extends Controller
                 // Weekly
                 $qrWeekly = DB::select('SELECT  SUM(js.intQuantity * js.dblUnitPrice) AS Total,
                                         SUM(js.intQuantity * cd.dblChargeDetPrice) AS Fee,
-                                        jo.dtFinished,
-                                        WEEK(jo.dtFinished) AS columnOne
+                                        jo.dtOrderDate,
+                                        WEEK(jo.dtOrderDate) AS columnOne
                                     FROM        tbljoborder AS jo LEFT JOIN
                                                 tbljospecific as js 
                                                     ON jo.strJobOrderID= js.strJobOrderFK
@@ -404,9 +404,9 @@ class ReportsSalesByJobOrderController extends Controller
                                                     ON js.strEmployeeNameFK = e.strEmployeeID
                                     LEFT JOIN   tblChargeDetail AS cd
                                                     ON js.strJOSegmentFK = cd.strChargeDetSegFK  
-                                    WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtFinished AND (jo.dtFinished BETWEEN ? AND ?)
-                                    GROUP BY    WEEK(jo.dtFinished)
-                                    ORDER BY    jo.dtFinished
+                                    WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtOrderDate AND (jo.dtOrderDate BETWEEN ? AND ?)
+                                    GROUP BY    WEEK(jo.dtOrderDate)
+                                    ORDER BY    jo.dtOrderDate
                                 ',[$datRepFrom,$datRepTo]);
                 $pdf = PDF::loadView('pdf.salesreport-joborder',['data' => $qrWeekly, 'ReportType' => 'Weekly Report', 'datFrom' => $convertedFrom, 'datTo' => $convertedTo, 'Name' => "Week"])
                     ->setPaper('Letter')
@@ -416,9 +416,9 @@ class ReportsSalesByJobOrderController extends Controller
                 // Monthly
                 $qrMonthly = DB::select('SELECT SUM(js.intQuantity * js.dblUnitPrice) AS Total,
                                         SUM(js.intQuantity * cd.dblChargeDetPrice) AS Fee,
-                                        jo.dtFinished,
-                                        MONTHNAME(jo.dtFinished) as columnOne,
-                                        MONTH(jo.dtFinished) AS Month
+                                        jo.dtOrderDate,
+                                        MONTHNAME(jo.dtOrderDate) as columnOne,
+                                        MONTH(jo.dtOrderDate) AS Month
                                         FROM        tbljoborder AS jo LEFT JOIN
                                                     tbljospecific as js 
                                                         ON jo.strJobOrderID= js.strJobOrderFK
@@ -431,9 +431,9 @@ class ReportsSalesByJobOrderController extends Controller
                                         LEFT JOIN   tblChargeDetail AS cd
                                                         ON js.strJOSegmentFK = cd.strChargeDetSegFK
                                                         
-                                        WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtFinished AND (jo.dtFinished BETWEEN ? AND ?)
-                                        GROUP BY    MONTH(jo.dtFinished)
-                                        ORDER BY    jo.dtFinished;
+                                        WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtOrderDate AND (jo.dtOrderDate BETWEEN ? AND ?)
+                                        GROUP BY    MONTH(jo.dtOrderDate)
+                                        ORDER BY    jo.dtOrderDate;
                                 ',[$datRepFrom,$datRepTo]);
                 $pdf = PDF::loadView('pdf.salesreport-joborder',['data' => $qrMonthly, 'ReportType' => 'Monthly Report', 'datFrom' => $convertedFrom, 'datTo' => $convertedTo, 'Name' => ""])
                     ->setPaper('Letter')
@@ -443,7 +443,7 @@ class ReportsSalesByJobOrderController extends Controller
                 // Quarterly
                 $qrQuarterly = DB::select('SELECT SUM(js.intQuantity * js.dblUnitPrice) AS Total,
                                         SUM(js.intQuantity * cd.dblChargeDetPrice) AS Fee,
-                                        QUARTER(jo.dtFinished) as columnOne
+                                        QUARTER(jo.dtOrderDate) as columnOne
                                         FROM        tbljoborder AS jo LEFT JOIN
                                                     tbljospecific as js 
                                                         ON jo.strJobOrderID= js.strJobOrderFK
@@ -456,9 +456,9 @@ class ReportsSalesByJobOrderController extends Controller
                                         LEFT JOIN   tblChargeDetail AS cd
                                                         ON js.strJOSegmentFK = cd.strChargeDetSegFK
                                                         
-                                        WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtFinished AND (jo.dtFinished BETWEEN ? AND ?)
-                                        GROUP BY    QUARTER(jo.dtFinished)
-                                        ORDER BY    jo.dtFinished;
+                                        WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtOrderDate AND (jo.dtOrderDate BETWEEN ? AND ?)
+                                        GROUP BY    QUARTER(jo.dtOrderDate)
+                                        ORDER BY    jo.dtOrderDate;
                                 ',[$datRepFrom,$datRepTo]);
                 $pdf = PDF::loadView('pdf.salesreport-joborder',['data' => $qrQuarterly, 'ReportType' => 'Quarter Report', 'datFrom' => $convertedFrom, 'datTo' => $convertedTo, 'Name' => "Quarter"])
                     ->setPaper('Letter')
@@ -468,8 +468,8 @@ class ReportsSalesByJobOrderController extends Controller
                 // Yearly
                 $qrAnnually = DB::select('SELECT  SUM(js.intQuantity * js.dblUnitPrice) AS Total,
                                         SUM(js.intQuantity * cd.dblChargeDetPrice) AS Fee,
-                                        jo.dtFinished,
-                                        YEAR(jo.dtFinished) AS columnOne
+                                        jo.dtOrderDate,
+                                        YEAR(jo.dtOrderDate) AS columnOne
                                     FROM        tbljoborder AS jo LEFT JOIN
                                                 tbljospecific as js 
                                                     ON jo.strJobOrderID= js.strJobOrderFK
@@ -482,9 +482,9 @@ class ReportsSalesByJobOrderController extends Controller
                                     LEFT JOIN   tblChargeDetail AS cd
                                                     ON js.strJOSegmentFK = cd.strChargeDetSegFK
                                                     
-                                    WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtFinished AND (jo.dtFinished BETWEEN ? AND ?)
-                                    GROUP BY    YEAR(jo.dtFinished)
-                                    ORDER BY    jo.dtFinished;
+                                    WHERE       jo.boolIsOrderAccepted = 1 AND jo.dtOrderDate AND (jo.dtOrderDate BETWEEN ? AND ?)
+                                    GROUP BY    YEAR(jo.dtOrderDate)
+                                    ORDER BY    jo.dtOrderDate;
                                 ',[$datRepFrom,$datRepTo]);
                 $pdf = PDF::loadView('pdf.salesreport-joborder',['data' => $qrAnnually, 'ReportType' => 'Annual Report', 'datFrom' => $convertedFrom, 'datTo' => $convertedTo, 'Name' => "Year"])
                     ->setPaper('Letter')
