@@ -147,9 +147,9 @@
 												<div class="card-panel">
 													<div class="card-content">
 														<div class="row" id="pay_form" style="display:none">
-														@foreach($payments as $payment)
-														@if($payment->strTransactionFK == $customer_info->strJobOrderID)
-															<div class="payment-summary{{ $payment->strJobOrderID}}">
+														@for($i = 0; $i < count($payments); $i++)
+														@if($payments[$i]->strTransactionFK == $customer_info->strJobOrderID)
+															<div class="payment-summary{{ $payments[$i]->strJobOrderID}}">
 																<div style="color:black" class="input-field col s12">                 
 										                          <div class="col s8" style="padding-right: 15%"><input readonly style="margin-left:80%; padding:1%; padding-left:1%" type="text" class="" name="amount-to-pay" id="amount-to-pay"></div>
 										                          <div class="col s4"><label style="color:teal; margin-top:1%; margin-left:2%"><center><b>Job Order Total Price<br><font style="opacity:0.80">(Php)</font>:</b></center></label></div>
@@ -166,7 +166,7 @@
 										                        </div>
 								                        	</div>
 								                        @endif
-								                    	@endforeach
+								                    	@endfor
 
 								                    	<div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
 													<h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
@@ -202,20 +202,20 @@
 											                        		</tr> -->
 											                        	</thead>
 											                        	<tbody style="border:1px teal solid">
-											                        	@foreach($payments as $payment)
-											                        		@if($payment->strTransactionFK == $customer_info->strJobOrderID)
+											                        	@for($i = 0; $i < count($payments); $i++)
+											                        		@if($payments[$i]->strTransactionFK == $customer_info->strJobOrderID)
 											                        		<tr style="border:1px teal solid">
-											                        			<td style="border:1px teal solid"><b>{{ $payment->intQuantity }}</b></td>
-											                        			<td style="border:1px teal solid; padding-left:5%; padding-right:5%"><b>{{ $payment->strPackageName }}</b></td>
+											                        			<td style="border:1px teal solid"><b>{{ $payments[$i]->intQuantity }}</b></td>
+											                        			<td style="border:1px teal solid; padding-left:5%; padding-right:5%"><b>{{ $payments[$i]->strPackageName }}</b></td>
 											                        			<!-- <td style="padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"></td> -->
 											                        			<!-- <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b></b></td> -->
-											                        			<!-- <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($payment->dblPackagePrice, 2) }}</b></td>
-											                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P {{ number_format($payment->dblPackagePrice * count($payment->strPackageName), 2) }}</b></td> -->
+											                        			<!-- <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P /b></td>
+											                        			<td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>P </b></td> -->
 											                        		</tr>
 
 											                        		
 											                        		@endif
-											                        	@endforeach
+											                        	@endfor
 											                        	</tbody>
 											                        </table>
 															      		
@@ -261,7 +261,7 @@
 									                        </div>
 
 									                        <div style="color:black" class="input-field col s12">                 
-									                          <div class="col s8" style="padding-right: 15%"><input style="margin-left:80%; padding:1%; padding-left:1%; border:3px gray solid" name="amt-to-pay" id="amt-to-pay" type="text" class=""></div>
+									                          <div class="col s8" style="padding-right: 15%"><input style="margin-left:80%; padding:1%; padding-left:1%; border:3px gray solid" name="amount-payable" id="amount-payable" type="text" class=""></div>
 									                          <div class="col s4"><label style="color:black; margin-top:1%; margin-left:2%"><center><b>Amount to Pay<br><font style="opacity:0.80">(Php)</font> :</b></center></label></div>
 									                        </div>
 

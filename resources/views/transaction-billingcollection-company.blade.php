@@ -21,12 +21,12 @@
 				<div id="shoppingCart" class="card-panel">
 					<div class="card-content">
 						<div class="row">
-						<div class="col s12">
+						<div class="col s12" hidden>
 							<center><p style="color:gray">Filter data records with the following:</p></center>
 							<div class="divider" style="color:gray; height:2px; margin-bottom:20px"></div>
 						</div>
 						<div class="col s12">
-							<div class="col s6">
+							<div class="col s6" hidden>
 								<select class="browser-default">
 									<option value="" style="color:gray">Status</option>
 									<option value="1">All</option>
@@ -45,7 +45,7 @@
 							</div>
 						</div>
 
-						<div class="col s12">
+						<div class="col s12" hidden>
 							<div class="col s6" style="margin-top:25px">
 								<label for="billing-date"><font size="+0.8" color="gray">Payment Date</font></label>
 								<input id="billing-date" type="date" class="datepicker">			
@@ -56,7 +56,7 @@
 							</div>
 						</div>
 
-						<div class="col s12" style="margin-top:20px">
+						<div class="col s12" style="margin-top:20px" hidden>
 							<!-- <a href="" class="left btn" style="background-color:teal; color:white; margin-left:10px">Cancel</a>
 							<a href="{{URL::to('/transaction/payment/individual/home')}}" class="left btn" style="background-color:teal; color:white; margin-left:10px">Go to Payment</a> -->
 							<a href="" class="right btn" style="background-color:teal; color:white; margin-right:10px">Save Filter</a>
