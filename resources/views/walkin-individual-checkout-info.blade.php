@@ -81,11 +81,12 @@
                         </div>
 
                         <div style="color:black" class="input-field col s12">                 
-                            <select name="addSex">
+                            <select name="sex">
                               <option value="" disabled selected color="red">Sex</option>
-                              <option value="1">Female</option>
-                              <option value="2">Male</option>
+                              <option id="female" value="F">Female</option>
+                              <option id="male" value="M">Male</option>
                             </select>
+                            <input type="hidden" id="addSex" name="addSex" />
                         </div> 
                     </div>   
 
@@ -97,23 +98,23 @@
                         </div>
 
                         <div style="color:black" class="input-field col s4">
-                            <input required id="addCustPrivStreet" name="addCustPrivStreet" type="text" class="validateStreet" placeholder="Dolce Amore" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?">
+                            <input required id="addCustPrivStreet" name="addCustPrivStreet" type="text" class="validateStreet" placeholder="Dolce Amore" pattern="^[a-zA-Z\d\-'`.]+(\s[a-zA-Z\-'`.]+)?">
                             <label style="color:gray" for=" Street"><b><span class="red-text"><b>*</b></span>Street </b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s4">
-                            <input  id="addCustPrivBarangay" name="addCustPrivBarangay" type="text" class="validateBarangay" placeholder="Willpower Homes" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?">
+                            <input  id="addCustPrivBarangay" name="addCustPrivBarangay" type="text" class="validateBarangay" placeholder="Willpower Homes" pattern="^[a-zA-Z\d\-'`.]+(\s[a-zA-Z\-'`.]+)?">
                             <label style="color:gray" for=" Brgy"><b><span class="red-text"><b>*</b></span>Barangay/Subd </b></label>
                         </div>
 
                         <div style="color:black" class="input-field col s4">
-                            <input required id="addCustPrivCity" name="addCustPrivCity" type="text" class="validateCity" placeholder="Mandaluyong" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?">
+                            <input required id="addCustPrivCity" name="addCustPrivCity" type="text" class="validateCity" placeholder="Mandaluyong" pattern="^[a-zA-Z\d\-'`.]+(\s[a-zA-Z\-'`.]+)?">
                             <label style="color:gray" for=" City"><b><span class="red-text"><b>*</b></span>City/Municipality </b></label>
                         </div>
 
 
                         <div style="color:black" class="input-field col s4">
-                            <input id="addCustPrivProvince" name="addCustPrivProvince" type="text" class="validateProvince" placeholder="Metro Manila" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?">
+                            <input id="addCustPrivProvince" name="addCustPrivProvince" type="text" class="validateProvince" placeholder="Metro Manila" pattern="^[a-zA-Z\d\-'`.]+(\s[a-zA-Z\-'`.]+)?">
                             <label style="color:gray" for=" Province"><b>Province/Region </b></label>
 	                    </div>
 
@@ -216,7 +217,15 @@
 
 	<script>
 	$(document).ready(function(){
-      $('select').material_select();
+      $('select').material_select(function(){
+        if($('#male').prop("selected")){
+          $('#addSex').val('M');
+        }
+
+        if($('#female').prop("selected")){
+          $('#addSex').val('F');
+        }
+      });
     	$('body').on('load', 'ul.tabs', function() {
    	 	$('ul.tabs').tabs();
 		});
@@ -231,6 +240,18 @@
   	});
 
 	</script>
+
+  <script>
+    $('.sex').change(function(){
+        if($('#male').prop("selected")){
+          $('#addSex').val('M');
+        }
+
+        if($('#female').prop("selected")){
+          $('#addSex').val('F');
+        }
+    });
+  </script>
 
 	<script>
 	function tabInit() {

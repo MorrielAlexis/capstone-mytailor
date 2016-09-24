@@ -313,7 +313,7 @@ class WalkInIndividualController extends Controller
                     'strIndivFName' => trim($request->input('addIndiFirstName')),     
                     'strIndivMName' => trim($request->input('addIndiMiddleName')),
                     'strIndivLName' => trim($request->input('addIndiLastName')),
-                    //'strIndivSex' => $request->input('addSex'),
+                    'strIndivSex' => $request->input('addSex'),
                     'strIndivHouseNo' => trim($request->input('addCustPrivHouseNo')), 
                     'strIndivStreet' => trim($request->input('addCustPrivStreet')),
                     'strIndivBarangay' => trim($request->input('addCustPrivBarangay')),   
@@ -910,7 +910,7 @@ class WalkInIndividualController extends Controller
 
     public function removeItem(Request $request)
     {   
-
+        $request->session()->flash('success-message', 'Item has been removed.'); 
         $to_be_deleted = ((int)$request->input('delete-item-id') - 1);
         $values = session()->get('segment_values');
 
@@ -925,6 +925,7 @@ class WalkInIndividualController extends Controller
 
     public function clearOrder(Request $request)
     {   
+        $request->session()->flash('success-message', 'Order was reset.'); 
         $this->clearValues();
 
         return redirect('transaction/walkin-individual');
