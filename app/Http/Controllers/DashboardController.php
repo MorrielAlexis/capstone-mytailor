@@ -30,6 +30,7 @@ class DashboardController extends Controller
             ->orderby('tblJobOrder.strJobOrderID')
             ->select('tblcustindividual.*', 'tblJobOrder.*')
             ->where('boolIsOnline', 1)
+            ->where('boolIsOrderAccepted', 0)
             ->get(); 
 
         $joborderongoing = \DB::table('tblJobOrder')
@@ -42,6 +43,7 @@ class DashboardController extends Controller
         $results = \DB::table('tblJOPayment AS a')
             ->join('tblJobOrder as b','a.strTransactionFK',  '=' , 'b.strJobOrderID')
             ->join('tblCustIndividual AS c', 'b.strJO_CustomerFK', '=', 'c.strIndivID')
+            ->where('a.dblOutstandingBal', '!=', 0)
             ->select(\DB::raw('CONCAT(c.strIndivFName, " " , c.strIndivMName, " " , c.strIndivLName) as custName'),'a.dblOutstandingBal as balance', 'a.dtPaymentDueDate as dueDate')
             ->orderBy('strIndivID', 'desc')
             ->get();
