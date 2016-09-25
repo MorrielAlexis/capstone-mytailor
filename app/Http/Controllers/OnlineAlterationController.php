@@ -227,7 +227,8 @@ class OnlineAlterationController extends Controller
             'strCustIndFK' => session()->get('customer_id'),
             'dblOrderTotalPrice' => $totalPrice,
             'dtAlteDate' => $transaction_date,
-            'boolIsOnline' => 1
+            'boolIsOnline' => 1,
+            'boolIsAccepted' => 0
         ));
 
         $alteration->save();

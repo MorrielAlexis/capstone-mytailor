@@ -63,6 +63,7 @@
                 @foreach($onlineAlteration as $onlineAlteration)
                 {!! Form::open(['url' => 'transaction/alteration-accept-online-order', 'method' => 'POST']) !!}
                         <input type="hidden" name="customerID" value="{!! $onlineAlteration->strIndivID !!}">
+                        <input type="hidden" name="joID" value="{{$onlineAlteration->strNonShopAlterID}}">
                         <tr>
                           <td>{{$onlineAlteration->strNonShopAlterID}}</td>                        
                           <td>{{$onlineAlteration->strCompanyName}}{{$onlineAlteration->strIndivFName}} {{$onlineAlteration->strIndivMName}} {{$onlineAlteration->strIndivLName}}</td>

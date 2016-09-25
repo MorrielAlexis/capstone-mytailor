@@ -43,6 +43,7 @@ class AcceptAlterationOnlineController extends Controller
             ->orderby('tblNonShopAlteration.strNonShopAlterID')
             ->select('tblcustindividual.*', 'tblcustcompany.*', 'tblNonShopAlteration.*')
             ->where('boolIsOnline', 1)
+            ->where('boolIsAccepted', 0)
             ->get(); 
         
 
@@ -86,7 +87,9 @@ class AcceptAlterationOnlineController extends Controller
 
     public function accept(Request $request)
     {           
-
+        $nonShop = TransactionJOAlteration::find($request->input('joID'));
+        $nonShop->boolIsAccepted = 1;
+        $nonShop->save();
             //actual fetching from database
 
             $results = \DB::table('tblNonShopAlteration AS a')
