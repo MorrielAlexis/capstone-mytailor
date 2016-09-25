@@ -296,7 +296,7 @@ class WalkInCompanyController extends Controller
             for($j = 0; $j < count($customFabric[$i]); $j++){
                 for($k = 0; $k < count($sqlFabric); $k++){
                     if($customFabric[$i][$j] == $sqlFabric[$k]->strFabricID){
-                        $tesaveOmpCustomFabrics[$i][$j] = $sqlFabric[$k];
+                        $tempCustomFabrics[$i][$j] = $sqlFabric[$k];
                     }
                 }
             }
@@ -602,7 +602,7 @@ class WalkInCompanyController extends Controller
         $rawTempFabricTotal = 0;
         $rawTempSegmentTotal = 0;
         $rawTempPatternFabricTotal = 0;
-
+        
         $i = 0;
         for($j = 0; $j < count(session()->get('package_segments')); $j++)
         {
