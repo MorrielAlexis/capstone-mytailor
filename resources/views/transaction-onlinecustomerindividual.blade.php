@@ -57,6 +57,7 @@
                       <button type="submit" style="color:black" class="btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to accept online order"><i class="mdi-action-done"></i></button>
                       <a class="btn modal-trigger tooltipped btn-floating green" href="#measurementmodal" data-position="top" data-delay="50" data-tooltip="Measurements"><i class="mdi-action-view-headline"></i></a>
                       <input type="hidden" name="customerID" value="{!! $jo->strIndivID !!}"> 
+                  <input type="hidden" name="joID" value="{{$jo->strJobOrderID}}">
                 {!! Form::close() !!}
                   </td>
                 </tr>

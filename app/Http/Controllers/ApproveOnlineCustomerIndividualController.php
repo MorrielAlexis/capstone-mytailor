@@ -40,6 +40,7 @@ class ApproveOnlineCustomerIndividualController extends Controller
             ->orderby('tblJobOrder.strJobOrderID')
             ->select('tblcustindividual.*', 'tblJobOrder.*')
             ->where('boolIsOnline', 1)
+            ->where('boolIsOrderAccepted', 0)
             ->get(); 
 
 
@@ -63,7 +64,11 @@ class ApproveOnlineCustomerIndividualController extends Controller
 
     public function accept(Request $request)
     {
-       $emailContents = \DB::table('tblJobOrder AS a')
+        $order = TransactionJobOrder::find($request->input('joID'));
+        $order->boolIsOrderAccepted = 1;
+        $order->save();
+
+        $emailContents = \DB::table('tblJobOrder AS a')
                     ->join('tblCustIndividual AS b', 'a.strJO_CustomerFK', '=', 'b.strIndivID')
                     ->join('tblJOSpecific as c','a.strJobOrderID',  '=' , 'c.strJobOrderFK')
                     ->join('tblSegment as d', 'c.strJOSegmentFK', '=' , 'd.strSegmentID')

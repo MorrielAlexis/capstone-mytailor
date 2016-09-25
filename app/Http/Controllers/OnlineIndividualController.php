@@ -1646,7 +1646,7 @@ class OnlineIndividualController extends Controller
                 'strModeOfPayment' => $mode,
                 'intJO_OrderQuantity' => $totalqty,
                 'dblOrderTotalPrice' => $grand,
-                'boolIsOrderAccepted' => 1,
+                'boolIsOrderAccepted' => 0,
                 'dtOrderDate' => $orderDate,
                 'dtOrderExpectedToBeDone' => $dtOrderExpect,
                 'dtExpectedDeliveryDate' => $dtDelivery,
