@@ -87,7 +87,7 @@ class AcceptAlterationOnlineController extends Controller
 
     public function accept(Request $request)
     {           
-        $nonShop = TransactionJOAlteration::find($request->input('joID'));
+        $nonShop = TransactionNonShopAlteration::find($request->input('joID'));
         $nonShop->boolIsAccepted = 1;
         $nonShop->save();
             //actual fetching from database
@@ -101,7 +101,7 @@ class AcceptAlterationOnlineController extends Controller
                     ->where('b.strIndivID', $request->input('customerID'))
                     ->get();
             
-
+           
             foreach( $results as $result){
                 $name = $result->custName;
                 $order = $result->transID;
