@@ -177,7 +177,7 @@ class FabricController extends Controller
         $checkFabrics = Fabric::all();
 
         $file = $request->input('editImage');
-        $destinationPath = 'imgFabrics';
+        $destinationPath = '..\imgFabrics';
         $isAdded = FALSE;
 
         foreach ($checkFabrics as $checkFabric)
@@ -205,12 +205,10 @@ class FabricController extends Controller
                     
                 }else{
                     $request->file('editImg')->move($destinationPath);
-
                     $fabric->strFabricTypeFK = $request->input('editFabricType');
                     $fabric->strFabricPatternFK = $request->input('editFabricPattern');
                     $fabric->strFabricColorFK = $request->input('editFabricColor');
                     $fabric->strFabricThreadCountFK = $request->input('editFabricThreadCount');
-                    $fabric->strPackageSeg5FK = $request->input('editSegment5');
                     $fabric->strFabricName = trim($request->input('editFabricName'));
                     $fabric->dblFabricPrice = trim($request->input('editFabricPrice'));
                     $fabric->strFabricCode = trim($request->input('editFabricCode'));
