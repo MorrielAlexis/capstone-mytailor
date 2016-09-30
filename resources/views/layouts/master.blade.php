@@ -104,7 +104,7 @@
                           </div>
                         </li>
 
-                          <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('maintenance/standard-size-category') || Request::is('maintenance/standard-size-detail')|| Request::is('maintenance/measurement-category') || Request::is('maintenance/measurement-detail') ? 'active' : '' }}"><b>Measurements & Body Forms</b></a>
+                          <li class="bold"><a style="color:#212121; opacity:0.90" class="collapsible-header waves-effect waves-white {{ Request::is('maintenance/standard-size-category') || Request::is('maintenance/standard-size-detail')|| Request::is('maintenance/measurement-category') || Request::is('maintenance/measurement-detail') ? 'active' : '' }}"><b>Measurements</b></a>
 
                           <div class="collapsible-body">
                             <ul>  

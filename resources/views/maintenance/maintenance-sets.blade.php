@@ -392,7 +392,7 @@
                       </div>
                   </div>
 
-                  <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                 
                     <div class="input-field col s12" style="margin-top:47px">
                         <select value="" name='strPackageSex' id='strPackageSex' required>
                             <option value="M">Male</option>
@@ -400,7 +400,6 @@
                         </select>    
                       <label>Sex</label>
                     </div>
-                  </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
