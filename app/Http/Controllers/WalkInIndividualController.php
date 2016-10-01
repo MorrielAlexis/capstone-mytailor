@@ -417,9 +417,9 @@ class WalkInIndividualController extends Controller
             }
         }
 
-        session(['measurement_id' => $measurementID]);
+        session(['measurement_id' => $measurementID]); //dd($measurementID);
         session(['measurement_values' => $measurementValues]);
-        session(['measurement_name' => $measurementProfileName]);
+        session(['measurement_name' => $measurementProfileName]); 
         session(['measurement_sex' => $measurementProfileSex]);
 
         return redirect('transaction/walkin-individual-payment-information');
@@ -665,8 +665,8 @@ class WalkInIndividualController extends Controller
             ));
                     //dd($tempQuantity);    
             $jobOrderSpecifics->save();
-
-            for($j = 0; $j <= count($patterns); $j++){ //dd($designs);
+//dd($patterns);
+            for($j = 0; $j < count($patterns); $j++){ //dd($designs);
                 //dd($designs[$i][$j]->strSegPatternID);
                     $jobOrderSpecificsPattern = TransactionJobOrderSpecificsPattern::create(array(
                             'strJobOrderSpecificFK' => $jobSpecsID,
@@ -703,7 +703,7 @@ class WalkInIndividualController extends Controller
                 ));
 
                 $joMeasurementProfile->save();
-
+                //dd($measurementID[$i][$k]);
                 for($l = 0; $l < count($measurementID[$i][$k]); $l++)
                 {  
                     $ids = \DB::table('tblJOMeasureSpecific')
@@ -719,7 +719,7 @@ class WalkInIndividualController extends Controller
                         $ID = $ids["0"]->strJOMeasureSpecificID;
                         $joMeasSpecificID = $this->smartCounter($ID);  
                     }
-                    dd($$measurementName[$i][$j]);
+                    //dd($measurementID[$i][$k][$l]);
                     $joMeasurementSpecific = TransactionJobOrderMeasurementSpecifics::create(array(
                             'strJOMeasureSpecificID' => $joMeasSpecificID,
                             'strJobOrderSpecificFK' => $jobSpecsID,
