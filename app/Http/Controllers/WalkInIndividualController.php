@@ -18,7 +18,7 @@ use App\FabricPattern;
 use App\FabricThreadCount;
 
 use App\Individual;
-
+use App\UtilitiesVat;
 use App\Segment;
 use App\SegmentPattern;
 use App\SegmentStyle;
@@ -479,7 +479,7 @@ class WalkInIndividualController extends Controller
         }   
         //dd($styleTotal);
         $styFabPrice = 0.00;
-        foreach ($values as $i => $value){ 
+        for($i = 0; $i < count($values); $i++){ 
             for($j = 0; $j < count($fabric[$i]); $j++){
                 $styFabPrice += $fab[$i][$j]->dblFabricPrice;
             }
@@ -508,11 +508,7 @@ class WalkInIndividualController extends Controller
             }
         }
        
-        $vatCharge = \DB::table('tblVat')
-                ->where('strTaxName', '=', 'Value Added Tax', 'OR', 'strTaxName', '=', 'VAT')
-                ->select('dblTaxPercentage')
-                ->get();
-        //dd($vatCharge);
+        $vatCharge = UtilitiesVat::first();
 
         return view('walkin-individual-checkout-pay')
                     ->with('values', $values)
@@ -521,7 +517,7 @@ class WalkInIndividualController extends Controller
                     ->with('quantities', $quantity)
                     ->with('unitPrice', $unitPrice)
                     ->with('styleFabric', $fab)
-                    ->with('vat', $vatCharge)
+                    ->with('vat', $vatCharge->dblTaxPercentage)
                     ->with('othercharge', $othercharges)
                     ->with('joID', $joID)
                     ->with('style_count', $style_count)

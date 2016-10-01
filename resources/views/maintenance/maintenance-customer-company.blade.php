@@ -176,12 +176,12 @@
                           </div>
 
                            <div class="input-field col s3">
-                            <input required value="{{$company->strCompanyStreet }}" id="editCustCompanyStreet" name="editCustCompanyStreet" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?" type="text" placeholder="Malunggay"class="validate">
+                            <input required value="{{$company->strCompanyStreet }}" id="editCustCompanyStreet" name="editCustCompanyStreet" pattern="^[a-zA-Z\d\-'`.]+(\s[a-zA-Z\-'`.]+)?" type="text" placeholder="Malunggay"class="validate">
                             <label for=" Street">Street <span class="red-text"><b>*</b></span></label>
                           </div>
 
                           <div class="input-field col s3">
-                            <input value="{{$company->strCompanyBarangay}}" id="editCustCompanyBarangay" name="editCustCompanyBarangay" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?" type="text" placeholder="Daang Bakal" class="validate">
+                            <input value="{{$company->strCompanyBarangay}}" id="editCustCompanyBarangay" name="editCustCompanyBarangay" pattern="^[a-zA-Z\d\-'`.]+(\s[a-zA-Z\-'`.]+)?" type="text" placeholder="Daang Bakal" class="validate">
                             <label for=" Brgy">Barangay/Subd </label>
                           </div>
 
@@ -358,12 +358,12 @@
               </div>
 
                <div class="input-field col s3">
-                <input  required id="strCompanyStreet" name="strCompanyStreet" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?" type="text" placeholder="Malunggay" class="validate">
+                <input  required id="strCompanyStreet" name="strCompanyStreet" pattern="^[a-zA-Z\d\-'`.]+(\s[a-zA-Z\-'`.]+)?" type="text" placeholder="Malunggay" class="validate">
                 <label for=" Street">Street <span class="red-text"><b>*</b></span></label>
               </div>
 
               <div class="input-field col s3">
-                <input id="strCompanyBarangay" name="strCompanyBarangay" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?" type="text" placeholder="Daang Bakal" class="validate">
+                <input id="strCompanyBarangay" name="strCompanyBarangay" pattern="^[a-zA-Z\d\-'`.]+(\s[a-zA-Z\-'`.]+)?" type="text" placeholder="Daang Bakal" class="validate">
                 <label for=" Brgy">Barangay/Subd </label>
               </div>
 

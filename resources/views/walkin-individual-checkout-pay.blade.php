@@ -225,7 +225,7 @@
 								</div>
 
 								<div class="col s12">
-									<div class="col s4" style="color:gray; font-size:15px"><p><b>VAT (12%)</b></p></div>
+									<div class="col s4" style="color:gray; font-size:15px"><p><b>VAT ( {{$vat}}% )</b></p></div>
 			      					<div class="col s8" style="color:black;"><p><input id="vat_total" name="vat_total" type="text" class="" readonly /></p></div>
 								</div>
 
@@ -418,9 +418,7 @@
 			var due = grandtotal;
 			var vat = 0.00;
 			var vatValue;
-			for(var j = 0; j < d.length; j++){
-				vatValue = d[j].dblTaxPercentage;
-			}
+			vatValue = d;
 			vatValue = vatValue / 100;
 			vat = grandtotal * vatValue;
 			totalAmount = grandtotal - vat;
