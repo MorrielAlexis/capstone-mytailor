@@ -181,8 +181,7 @@
 
 											                <div style="color:black" class="input-field col s12">                 
 											                  <div class="col s8" style="padding-right: 15%"><input style="margin-left:80%; padding:1%; padding-left:1%; color:teal; font-style:bold" name="outstanding-bal" type="text" class="outstanding-bal" id="outstanding-bal" readonly></div>
-											                  <div class="col s4"><label style="color:teal; margin-top:1%; margin-left:2%"><center><b>Outstanding Balance<br><font style="opacity:0.80">(Php)</font>:</b></center></label></div>
-											                	
+											                  <div class="col s4"><label style="color:teal; margin-top:1%; margin-left:2%"><center><b>Outstanding Balance<br><font style="opacity:0.80">(Php)</font>:</b></center></label></div>											                	
 											                </div>
 											            </div>
 											          @endif
@@ -309,7 +308,8 @@
 														<input type="hidden" id="hidden-outstanding-bal" name="hidden-outstanding-bal">
 								                        <input type="hidden" id="Date" name="Date">
 								                        <input type="hidden" id="transaction_date" name="transaction_date" />
-														<input type="hidden" id="dueDate" name="dueDate" />
+														<input type="hidden" id="due_date" name="due_date" />
+														<input type="hidden" id="joID" name="joID" />
 														
 														<div class="col s12" style="margin-top:30px">
 															<!-- <a hidden href="{{ URL::to('billing-payment/payment-receipt-pdf') }}" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to print a copy of receipt" style="background-color:teal"><i class="large mdi-action-print" style="font-size:30px"></i></a> -->
@@ -486,6 +486,7 @@
 		var amount_to_pay = 0.00;
 		var amount_paid = 0.00;
 		var bal = 0.00;
+		var dueDate;
 
 		//Gets the days needed to finish the product
 
@@ -499,12 +500,15 @@
 			var orders = {!! json_encode($orders) !!}
 			var payment = {!! json_encode($payments) !!}
 
+			var joId = $('#unpaid-payments').val();
+			$('#joID').val(joId);
 				
 		for(var i = 0; i < orders.length; i++){
 		
 				amount_to_pay = orders[i].dblOrderTotalPrice;
 				amount_paid = orders[i].dblAmountToPay;
 				bal = orders[i].dblOutstandingBal;
+				dueDate = orders[i].dtPaymentDueDate;
 
 			if($('#unpaid-payments').val() == orders[i].strJobOrderID)
 			{
@@ -526,7 +530,8 @@
 			}
 			// alert($('#unpaid-payments').val());
 		}
-						
+		
+		$('#due_date').val(dueDate);			
 
 		});
 
@@ -546,31 +551,10 @@
 
 		});
 
-		var monthNames = [ "January", "February", "March", "April", "May", "June",
-		    "July", "August", "September", "October", "November", "December" ];
-			var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+		var newDate = new Date();
 
-			var newDate = new Date();
-			var dueDate = new Date();
-
-			var parameter = minDays + 2;
-
-			newDate.setDate(newDate.getDate());   
-			dueDate.setDate(newDate.getDate()+minDays);
-	  
-			function commaSeparateNumber(val){
-			    while (/(\d+)(\d{3})/.test(val.toString())){
-			      val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
-			    }
-			    return val;
-			 }
-
-			 $('#dueDate').val(dueDate.getFullYear() + "-" +  (dueDate.getMonth()+1) + "-" + dueDate.getDate());
-
-			$('#due-date').text(dayNames[dueDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
-			$('#transaction_date').val(monthNames[(newDate.getMonth()+1)] + " " + newDate.getDate() + ", " + newDate.getFullYear());
-			$('#due_date').val(monthNames[(dueDate.getMonth()+1)] + " " + dueDate.getDate() + ", " + dueDate.getFullYear());
-		
+		newDate.setDate(newDate.getDate());   
+		$('#transaction_date').val(newDate.getFullYear() + "-" +  (newDate.getMonth()+1) + "-" + newDate.getDate());
 	</script>
 
 	<script type="text/javascript">
@@ -579,21 +563,8 @@
 		var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
 
 		var newDate = new Date();
-		var dueDate = new Date();
-
-		var parameter = minDays + 2;
-
-		newDate.setDate(newDate.getDate());   
-		dueDate.setDate(newDate.getDate()+minDays);
-  
-		function commaSeparateNumber(val){
-		    while (/(\d+)(\d{3})/.test(val.toString())){
-		      val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
-		    }
-		    return val;
-		 }
-
-		 $('#dueDate').val(dueDate.getFullYear() + "-" +  (dueDate.getMonth()+1) + "-" + dueDate.getDate());
+		newDate.setDate(newDate.getDate());    
+		$('#Date').html(dayNames[newDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
 	
 	</script>
 

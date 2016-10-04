@@ -285,6 +285,9 @@
 									                          <div class="col s8"><input style="margin-left:60%; padding:5px; padding-left:10px;" value="{{ $empname->employeename }}" name="payment-info" type="text" class=""></div>
 								                          <div class="col s4"><label style="color:black; margin-top:5px; margin-left:20px"><b>Process Done By:</b></label></div>							                          
 									                        </div>
+									                        <input type="hidden" id="transaction_date" name="transaction_date" />
+															<input type="hidden" id="due_date" name="due_date" />
+															<input type="hidden" id="joID" name="joID" />
 														
 															<div class="col s12" style="margin-top:30px">
 																<!-- <a hidden href="{{ URL::to('billing-payment/payment-receipt-pdf') }}" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to print a copy of receipt" style="background-color:teal"><i class="large mdi-action-print" style="font-size:30px"></i></a> -->
@@ -398,6 +401,7 @@
 		var amount_to_pay = 0.00;
 		var amount_paid = 0.00;
 		var bal = 0.00;
+		var dueDate;
 
 		//Gets the days needed to finish the product
 
@@ -411,12 +415,15 @@
 			var orders = {!! json_encode($customer_orders) !!}
 			var payment = {!! json_encode($payments) !!}
 
+			var joId = $('#unpaid-payments').val();
+			$('#joID').val(joId);
 				
 		for(var i = 0; i < payment.length; i++){
 		
 				amount_to_pay = payment[i].dblOrderTotalPrice;
 				amount_paid = payment[i].dblAmountToPay;
 				bal = payment[i].dblOutstandingBal;
+				dueDate = payment[i].dtPaymentDueDate;
 
 			if($('#unpaid-payments').val() == payment[i].strJobOrderID)
 			{
@@ -439,7 +446,7 @@
 			// alert($('#unpaid-payments').val());
 		}
 						
-
+		$('#due_date').val(dueDate);	
 		});
 
 		$('#amount-tendered').blur(function(){	
@@ -458,30 +465,10 @@
 
 		});
 
-		var monthNames = [ "January", "February", "March", "April", "May", "June",
-		    "July", "August", "September", "October", "November", "December" ];
-			var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+		var newDate = new Date();
 
-			var newDate = new Date();
-			var dueDate = new Date();
-
-			var parameter = minDays + 2;
-
-			newDate.setDate(newDate.getDate());   
-			dueDate.setDate(newDate.getDate()+minDays);
-	  
-			function commaSeparateNumber(val){
-			    while (/(\d+)(\d{3})/.test(val.toString())){
-			      val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
-			    }
-			    return val;
-			 }
-
-			 $('#dueDate').val(dueDate.getFullYear() + "-" +  (dueDate.getMonth()+1) + "-" + dueDate.getDate());
-
-			$('#due-date').text(dayNames[dueDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
-			$('#transaction_date').val(monthNames[(newDate.getMonth()+1)] + " " + newDate.getDate() + ", " + newDate.getFullYear());
-			$('#due_date').val(monthNames[(dueDate.getMonth()+1)] + " " + dueDate.getDate() + ", " + dueDate.getFullYear());
+		newDate.setDate(newDate.getDate());   
+		$('#transaction_date').val(newDate.getFullYear() + "-" +  (newDate.getMonth()+1) + "-" + newDate.getDate());
 		
 	</script>
 
@@ -491,21 +478,8 @@
 		var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
 
 		var newDate = new Date();
-		var dueDate = new Date();
-
-		var parameter = minDays + 2;
-
-		newDate.setDate(newDate.getDate());   
-		dueDate.setDate(newDate.getDate()+minDays);
-  
-		function commaSeparateNumber(val){
-		    while (/(\d+)(\d{3})/.test(val.toString())){
-		      val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
-		    }
-		    return val;
-		 }
-
-		 $('#dueDate').val(dueDate.getFullYear() + "-" +  (dueDate.getMonth()+1) + "-" + dueDate.getDate());
+		newDate.setDate(newDate.getDate());    
+		$('#Date').html(dayNames[newDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
 	
 	</script>
 

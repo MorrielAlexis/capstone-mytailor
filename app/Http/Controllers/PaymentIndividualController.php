@@ -140,25 +140,16 @@ class PaymentIndividualController extends Controller
         session(['amountChange' => $request->input('amount-change')]);
         session(['transaction_date' => $request->input('transaction_date')]);
         session(['dueDate' => $request->input('due_date')]);
+        $joID = $request->input('joID');
 
         //dd(session()->get('amountToPay'));
-        $custId = \DB::table('tblCustIndividual AS a')
-                ->leftJoin('tblJobOrder AS b', 'a.strIndivID', '=', 'b.strJO_CustomerFK')
-                ->leftJoin('tblJOPayment AS c', 'b.strJobOrderID', '=', 'c.strTransactionFK')
-                ->select('a.strIndivID', \DB::raw('CONCAT(a.strIndivFName, " ", a.strIndivMName, " ", a.strIndivLName) AS fullname'), 'b.*', 'c.*')
-                ->where(\DB::raw('CONCAT(a.strIndivFName, " ", a.strIndivMName, " ", a.strIndivLName)'), '=', $name)
-                ->get();
-
-        
+        $custId = \DB::table('tblCustIndividual')
+                ->select('strIndivID', \DB::raw('CONCAT(strIndivFName, " ", strIndivMName, " ", strIndivLName) AS fullname'))
+                ->where(\DB::raw('CONCAT(strIndivFName, " ", strIndivMName, " ", strIndivLName)'), '=', $name)
+                ->get(); //dd($custId);
 
         for($i = 0; $i < count($custId); $i++){
             $customerID = $custId[$i]->strIndivID;
-        }
-
-        for($i = 0; $i < count($custId); $i++){
-            
-                $joID = $custId[$i]->strJobOrderID;
-        
         }
 
         session(['cust_id' => $customerID]);
@@ -187,6 +178,7 @@ class PaymentIndividualController extends Controller
 
         $employee = session()->get('employee');
         $joId = session()->get('jo_ID');
+        $dueDate = session()->get('dueDate');
         $amtToPay = (double)session()->get('amountToPay');
         $amtBalance = (double)session()->get('outstandingBal');
         
@@ -211,8 +203,8 @@ class PaymentIndividualController extends Controller
                     'dblAmountTendered' => $amtTendered,
                     'dblAmountChange' => $amtChange,
                     'strReceivedByEmployeeNameFK' => "EMPL001",
-                    'dtPaymentDate' => 2013-08-21,
-                    'dtPaymentDueDate' => 2013-08-22,
+                    'dtPaymentDate' => $orderDate,
+                    'dtPaymentDueDate' => $dueDate,
                     'strPaymentStatus' => $payTerms,
                     'boolIsActive' => 1
 
