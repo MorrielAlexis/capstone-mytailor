@@ -92,6 +92,7 @@ class PaymentIndividualController extends Controller
                 ->orderBy('a.strJobOrderID')
                 ->get();
 
+
         $empEmail = \Auth::user()->email; //dd($empEmail);
         $emp = \DB::table('tblEmployee')
                 ->select('tblEmployee.strEmployeeID')
