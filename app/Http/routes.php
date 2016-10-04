@@ -402,8 +402,10 @@ Route::group(['prefix' => 'transaction'], function(){
 		Route::get('alteration-walkin-newcustomer-update', 'AlterationWalkInController@updateCart');
 		Route::get('alteration-walkin-oldcustomer', 'AlterationWalkInController@oldcust');
 		Route::get('alteration-checkout-info', 'AlterationWalkInController@checkoutCustInfo');
+		Route::post('alteration-checkout-info', 'AlterationWalkInController@existingCustomerInformation');
 		Route::get('alteration-checkout-payment', 'AlterationWalkInController@checkoutPayment');
 		Route::get('alteration-checkout-measurement', 'AlterationWalkInController@checkoutAddMeasurement');
+		Route::get('alteration-customer-check', 'AlterationWalkInController@customerCheck');
 
 		Route::post('alteration-walkin-newcustomer', 'AlterationWalkInController@addValues');
 		Route::post('alteration-walkin-newcustomer-delete', 'AlterationWalkInController@deleteOrder');

@@ -64,7 +64,7 @@
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
-                                <input required value="{{$tax->strTaxName}}" id="editTaxName" name="editTaxName" type="text" class="validate" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="30" minlength="2" >
+                                <input required value="{{$tax->strTaxName}}" id="editTaxName" name="editTaxName" type="text"  pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" maxlength="100" minlength="2" readonly="">
                                 <label for="name"> Tax Name  <span class="red-text"><b>*</b></span></label>
                               </div>
                           </div>
