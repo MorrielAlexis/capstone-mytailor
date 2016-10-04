@@ -271,10 +271,10 @@
 													
 													</div><!--modal to-->
 											   
-								        		
+								        			{!! Form::close() !!}
 
 								                        <div class="col s12" style="margin-top:3%"><div class="divider" style="height:3px; color:gray"></div></div>
-								                    
+								                   {!! Form::open(['url' => 'transaction/payment/individual/save-payment', 'method' => 'POST']) !!}
 								                    <div class="payment-form" id="payment-form" style="display:block">
 								                        <div style="color:black" class="input-field col s12">                 
 								                          <div class="col s8"><input style="margin-left:60%; padding:1%; padding-left:1%; border:3px gray solid" name="amount-tendered" id="amount-tendered" type="text" class="" onkeypress='return event.charCode >= 48 && event.charCode <= 57'></div>
@@ -313,11 +313,11 @@
 														
 														<div class="col s12" style="margin-top:30px">
 															<!-- <a hidden href="{{ URL::to('billing-payment/payment-receipt-pdf') }}" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to print a copy of receipt" style="background-color:teal"><i class="large mdi-action-print" style="font-size:30px"></i></a> -->
-															<a href="{{URL::to('transaction/payment/individual/save-payment')}}" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="CLick to save data" style="background-color:teal; margin-left:20px">Save</button>
+															<button type="submit" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="CLick to save data" style="background-color:teal; margin-left:20px">Save</button>
 															<a href="{{URL::to('transaction/payment/individual/home')}}" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to clear all fields for payment process" style="background-color:teal">Cancel</a>
 														</div>
 													</div>
-													
+													{!! Form::close() !!}
 													</div>
 												</div>
 											</div>
@@ -326,6 +326,7 @@
 										<div class="col s5">
 											<div class="card-panel">
 											<div class="card-content">
+											{!! Form::open(['url' => 'transaction/payment/individual/customer-info', 'method' => 'GET']) !!}
 												@for($i = 0; $i < count($orders); $i++)
 												@if($orders[$i]->strTermsOfPayment != "Full Payment")
 												@if($payments[$i]->strTransactionFK == $orders[$i]->strJobOrderID)
@@ -375,13 +376,13 @@
 												@endif
 													@endif
 												@endfor
-													
+												{!! Form::close() !!}	
 											</div>
 										</div>
 										</div>
 										@endif
 										@endif       							                    												
-										{!! Form::close() !!}
+										
 
 									</div>
 
@@ -495,17 +496,17 @@
 		var dropdown = document.getElementById('unpaid-payments');
 
 		$('#unpaid-payments').change(function(){
-			var orders = {!! json_encode($customer_orders) !!}
+			var orders = {!! json_encode($orders) !!}
 			var payment = {!! json_encode($payments) !!}
 
 				
-		for(var i = 0; i < payment.length; i++){
+		for(var i = 0; i < orders.length; i++){
 		
-				amount_to_pay = payment[i].dblOrderTotalPrice;
-				amount_paid = payment[i].dblAmountToPay;
-				bal = payment[i].dblOutstandingBal;
+				amount_to_pay = orders[i].dblOrderTotalPrice;
+				amount_paid = orders[i].dblAmountToPay;
+				bal = orders[i].dblOutstandingBal;
 
-			if($('#unpaid-payments').val() == payment[i].strJobOrderID)
+			if($('#unpaid-payments').val() == orders[i].strJobOrderID)
 			{
 				form.style.display = "block";
 				summary.style.display = "block";
