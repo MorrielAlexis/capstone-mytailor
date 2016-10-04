@@ -516,6 +516,8 @@
 				summary.style.display = "block";
 
 				$('#amount-to-pay').val(amount_to_pay.toFixed(2));
+				$('#amount-payable').val(bal.toFixed(2));
+				$('#amount-payable').prop('readonly', true);
 				$('#amount-paid').val(amount_paid.toFixed(2));
 				$('#outstanding-bal').val(bal.toFixed(2));
 				$('#hidden-outstanding-bal').val(bal.toFixed(2));
