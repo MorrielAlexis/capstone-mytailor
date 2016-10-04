@@ -13,6 +13,7 @@ use App\SegmentPattern;
 use App\GarmentSegment; 
 use App\Alteration; 
 use App\Individual;
+use App\Company;
 
 use App\TransactionJOAlteration;
 use App\TransactionNonShopAlteration;
@@ -139,6 +140,40 @@ class AlterationWalkInController extends Controller
         session(['orders' => $values]);
 
         return redirect('transaction/alteration-walkin-newcustomer-update');
+    }
+
+    public function customerCheck()
+    {
+        $individual = Individual::all();
+        //$company = Company::all();
+
+        return view('alteration.walkin-alteration-customer-check')
+                ->with('individual', $individual);
+                //->with('company', $company)
+    }
+
+    public function existingCustomerInformation(Request $request)
+    {
+        $custID = $request->input('custID');
+
+        $ids = \DB::table('tblNonShopAlteration')
+            ->select('strNonShopAlterID')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('strNonShopAlterID', 'desc')
+            ->take(1)
+            ->get();
+
+        if($ids == null){
+            $altID = $this->smartCounter("ALTN000"); 
+        }else{
+            $ID = $ids["0"]->strNonShopAlterID;
+            $altID = $this->smartCounter($ID);  
+        }
+
+        session(['alteration_id' => $altID]);
+        session(['customer_id' => $custID]); 
+
+        return redirect('transaction/alteration-checkout-payment');
     }
 
     public function checkoutCustInfo()
@@ -273,7 +308,7 @@ class AlterationWalkInController extends Controller
         session()->forget('orders');
         session()->forget('alteration_id');
 
-        \Session::flash('flash_message','Alteration successfully created.Order is not being processed.'); //flash message
+        \Session::flash('flash_message','Alteration successfully created.Order is being processed.'); //flash message
 
         return redirect('transaction/alteration-walkin-newcustomer');
     }

@@ -76,7 +76,7 @@ class PackagesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(MaintenancePackagesRequest $request)
-    {
+    { dd($request->input('strPackageSex'));
         $file = $request->input('addImage');
         $destinationPath = 'imgPackages';
 
