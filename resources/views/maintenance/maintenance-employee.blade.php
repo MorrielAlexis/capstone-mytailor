@@ -190,7 +190,7 @@
 
                       <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s4">
-                            <input required value="{{"$employee->strEmpFName"}}" id="editFirstName" name="editFirstName" placeholder="Hope" type="text" class="validate" required data-position="bottom" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$" maxlength="30" minlength="2">
+                            <input required value="{{$employee->strEmpFName}}" id="editFirstName" name="editFirstName" placeholder="Hope" type="text" class="validate" required data-position="bottom" pattern="^([A-Za-z\-'`]+ )+[A-Za-z\-'`]+$|^[A-Za-z\-'`]+$" maxlength="30" minlength="2">
                             <label for="first_name">First Name <span class="red-text"><b>*</b></span> </label>
                           </div>
 
@@ -233,12 +233,12 @@
                           </div>
 
                            <div class="input-field col s3">
-                            <input required value="{{$employee->strEmpStreet}}" id="editEmpStreet" name="editEmpStreet" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?" type="text" placeholder="Malunggay" class="validate">
+                            <input required value="{{$employee->strEmpStreet}}" id="editEmpStreet" name="editEmpStreet" pattern="^[a-zA-Z\d\-'`.]+(\s[a-zA-Z\-'`.]+)?" type="text" placeholder="Malunggay" class="validate">
                             <label for="Emp Street">Street <span class="red-text"><b>*</b></span></label>
                           </div>
 
                           <div class="input-field col s3">
-                            <input value="{{$employee->strEmpBarangay}}" id="editEmpBarangay" name="editEmpBarangay" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?" type="text" placeholder="Daang Bakal" class="validate">
+                            <input value="{{$employee->strEmpBarangay}}" id="editEmpBarangay" name="editEmpBarangay" pattern="^[a-zA-Z\d\-'`.]+(\s[a-zA-Z\-'`.]+)?" type="text" placeholder="Daang Bakal" class="validate">
                             <label for="Emp Brgy">Barangay/Subd </label>
                           </div>
                           
@@ -307,7 +307,7 @@
                           <div class="file-field input-field col s12">
                             <div style="color:black" class="btn tooltipped btn-small center-text light-green lighten-2" data-position="bottom" data-delay="50" data-tooltip="May upload jpg, png, gif, bmp, tif, tiff files">
                               <span>Upload Image</span>
-                              <input id="editImg" name="editImg" type="file" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*">
+                              <input id="editImg" name="editImg" type="file" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*" onchange="readURL(this);">
                             </div>
                           
                             <div class="file-path-wrapper">
@@ -446,24 +446,24 @@
                   </div>
 
                    <div class="input-field col s3">
-                    <input required id="strEmpStreet" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$" name="strEmpStreet" type="text" placeholder="Malunggay" class="validate">
+                    <input required id="strEmpStreet" pattern="^[a-zA-Z\d\-'`.]+(\s[a-zA-Z\-'`.]+)?" name="strEmpStreet" type="text" placeholder="Malunggay" class="validate">
                     <label for="Emp Street">Street<span class="red-text"><b>*</b></span></label>
                   </div>
 
                   <div class="input-field col s3">
-                    <input  id="strEmpBarangay" pattern="^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$" name="strEmpBarangay" type="text" placeholder="Daang Bakal" class="validate">
+                    <input  id="strEmpBarangay" pattern="^[a-zA-Z\d\-'`.]+(\s[a-zA-Z\-'`.]+)?" name="strEmpBarangay" type="text" placeholder="Daang Bakal" class="validate">
                     <label for="Emp Brgy">Barangay/Subd.</label>
                   </div>
 
                   <div class="input-field col s3">
-                    <input required id="strEmpCity" pattern="^[a-zA-Z\'\-]+( [a-zA-Z\'\-]+)*$" name="strEmpCity" type="text" placeholder="Mandaluyong" class="validate">
+                    <input required id="strEmpCity" pattern="^[a-zA-Z\d\-'`.]+(\s[a-zA-Z\-'`.]+)?" name="strEmpCity" type="text" placeholder="Mandaluyong" class="validate">
                     <label for="Emp City">City/Municipality<span class="red-text"><b>*</b></span></label>
                   </div>
               </div>
 
               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                   <div class="input-field col s6">
-                    <input id="strEmpProvince" pattern="^[a-zA-Z\'\-\.]+( [a-zA-Z\'\-\.]+)*$" name="strEmpProvince" type="text" placeholder="Pampanga" class="validate">
+                    <input id="strEmpProvince" pattern="^[a-zA-Z\d\-'`.]+(\s[a-zA-Z\-'`.]+)?" name="strEmpProvince" type="text" placeholder="Pampanga" class="validate">
                     <label for="Emp Province">Province</label>
                   </div>
 
@@ -495,7 +495,7 @@
 
                  
                   <div class="input-field col s6">
-                    <input id="strCellNoAlt" pattern="^[0-9]{11,11}$" name="strCellNoAlt" type="text" class="validate" placeholder="09361234567" maxlength="11" {{-- pattern="((\+63)|0)\d{10} --}}>
+                    <input id="strCellNoAlt" pattern="^[0-9]{11,11}$" name="strCellNoAlt" type="text" class="validate" placeholder="09361234567" maxlength="11"> <!-- pattern="((\+63)|0)\d{10} -->
                     <label for="cellphone_number">Cellphone Number (Alt)</label>
                     <span id="left"></span>
                   </div>

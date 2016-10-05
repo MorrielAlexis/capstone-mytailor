@@ -124,27 +124,18 @@ class PaymentCompanyController extends Controller
         session(['outstandingBal' => (double)$request->input('hidden-outstanding-bal')]);
         session(['amountTendered' => $request->input('amount-tendered')]);
         session(['amountChange' => $request->input('amount-change')]);
-        session(['transaction_date' => $request->input('transaction_date')]);
+        session(['transaction_date' => $request->input('transaction_date')]); 
         session(['dueDate' => $request->input('due_date')]);
+        $joID = $request->input('joID');
 
         //dd(session()->get('amountToPay'));
-        $custId = \DB::table('tblCustCompany AS a')
-                ->leftJoin('tblJobOrder AS b', 'a.strCompanyID', '=', 'b.strJO_CustomerCompanyFK')
-                ->leftJoin('tblJOPayment AS c', 'b.strJobOrderID', '=', 'c.strTransactionFK')
-                ->select('a.strCompanyID', 'a.strCompanyName', 'b.*', 'c.*')
-                ->where('a.strCompanyName', '=', $name)
+        $custId = \DB::table('tblCustCompany')
+                ->select('strCompanyID', 'strCompanyName')
+                ->where('strCompanyName', '=', $name)
                 ->get();
-
-            
 
         for($i = 0; $i < count($custId); $i++){
             $customerID = $custId[$i]->strCompanyID;
-        }
-
-        for($i = 0; $i < count($custId); $i++){
-            
-                $joID = $custId[$i]->strJobOrderID;
-        
         }
 
         session(['cust_id' => $customerID]);
@@ -175,6 +166,7 @@ class PaymentCompanyController extends Controller
 
         $employee = session()->get('employee');
         $joId = session()->get('jo_ID');
+        $dueDate = session()->get('dueDate');
         $amtToPay = (double)session()->get('amountToPay');
         $amtBalance = (double)session()->get('outstandingBal');
 
@@ -199,8 +191,8 @@ class PaymentCompanyController extends Controller
                 'dblAmountTendered' => $amtTendered,
                 'dblAmountChange' => $amtChange,
                 'strReceivedByEmployeeNameFK' => 'EMPL001' ,
-                'dtPaymentDate' => 2013-08-21,
-                'dtPaymentDueDate' => 2013-08-22,
+                'dtPaymentDate' => $orderDate,
+                'dtPaymentDueDate' => $dueDate,
                 'strPaymentStatus' => $payTerms,
                 'boolIsActive' => 1
 

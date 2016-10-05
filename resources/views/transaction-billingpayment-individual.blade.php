@@ -102,35 +102,32 @@
 						                    		<!--eto ang iloloop beybe-->
 						                    		<div class="col s12" style="padding-left:15%">
 						                    		
-															@for($i = 0; $i < count($payments); $i++)
+															@for($j = 0; $j < count($orders); $j++)
 
-															@if($customer_info->strTermsOfPayment == "Full Payment")
+															@if($orders[$j]->strTermsOfPayment == "Full Payment")
 
-						                    					<div @if($payments[$i]->strTransactionFK != $customer_info->strJobOrderID) hidden @endif> You have no pending payment</div>
+						                    					<div @if($orders[$j]->strTransactionFK != $customer_info->strJobOrderID) hidden @endif> You have no pending payment</div>
 
-															@elseif($customer_info->strTermsOfPayment != "Full Payment")
-																@if($payments[$i]->strPaymentStatus == "Pending")
-																	@if($payments[$i]->strTransactionFK == $customer_info->strJobOrderID)
-																	@if($payments[$i]->strPaymentStatus == "Pending")
-									                    			<div class="col s12 {{$payments[$i]->strJobOrderID}}" style="color:black; margin-top:3%; padding:0; font-size:18px" id="{{$payments[$i]->strJobOrderID}}" @if($payments[$i]->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>{{ $customer_info->dtOrderDate }} {{ $customer_info->strJobOrderID }}
+						                    					
+															@elseif($orders[$j]->strTermsOfPayment != "Full Payment")
+																@if($orders[$j]->strPaymentStatus == "Pending")
+																	
+																	
+									                    			<div class="col s12 {{$orders[$j]->strJobOrderID}}" style="color:black; margin-top:3%; padding:0; font-size:18px" id="{{$orders[$j]->strJobOrderID}}"><center><strong><font color="gray">( {{$j+1}} )</font> {{ $orders[$j]->dtOrderDate }} {{ $orders[$j]->strJobOrderID }}</strong>
 								                    				<!-- <a href=""><u>See transaction detail</u></a> -->
-								                    				<a class="{{$payments[$i]->strJobOrderID}}{{$i+1}}" style="background-color:#ef9a9a; color:white; padding-left:3%; padding-right:3%" id="{{$payments[$i]->dtPaymentDueDate}}">Due date: {{$payments[$i]->dtPaymentDueDate }}</a>
+								                    				<a class="{{$orders[$j]->strJobOrderID}}" style="background-color:#e0f2f1; color:black; padding-left:3%; padding-right:3%" id="{{$orders[$j]->dtPaymentDueDate}}">Due date: <strong style="color:teal">{{$orders[$j]->dtPaymentDueDate }}</strong></a></center>
 								                    				</div>
-								                    				@elseif($payments[$i]->strPaymentStatus != "Pending")
-								                    				<div hidden class="col s12 {{$payments[$i]->strJobOrderID}}" style="color:black; margin-top:3%; padding:0; font-size:18px" id="{{$payments[$i]->strJobOrderID}}" @if($payments[$i]->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>{{ $customer_info->dtOrderDate }} {{ $customer_info->strJobOrderID }}
-								                    				<!-- <a href=""><u>See transaction detail</u></a> -->
-								                    				<a class="{{$payments[$i]->strJobOrderID}}{{$i+1}}" style="background-color:#ef9a9a; color:white; padding-left:3%; padding-right:3%" id="{{$payments[$i]->dtPaymentDueDate}}">Due date: {{$payments[$i]->dtPaymentDueDate }}</a>
-								                    				</div>
-								                    				@endif	
-								                    				@endif
-							                    				@elseif($payments[$i]->strPaymentStatus != "Pending")
-								                    				@if($payments[$i]->strTransactionFK == $customer_info->strJobOrderID)
-								                    					<div @if($payments[$i]->strTransactionFK != $customer_info->strJobOrderID) hidden @endif><center> You have no pending payment</center></div>
+								                    				
+								                    				
+							                    				@elseif($orders[$j]->strPaymentStatus != "Pending")
+								                    				@if($orders[$j]->strTransactionFK == $customer_info->strJobOrderID)
+								                    					<div @if($orders[$j]->strTransactionFK != $customer_info->strJobOrderID) hidden @endif><center> You have no pending payment</center></div>
 								                    				@endif
 								                    			@endif				                    				
 						                    					
 							                    			@endif
 							                    			@endfor
+							                    			
 							                    		
 						                    		</div>
 						                    		<!--ends here-->
@@ -169,9 +166,9 @@
 													<div class="row" id="pay_form" style="display:none">
 													
 												
-													@for($i = 0; $i < count($payments); $i++)
-														@if($payments[$i]->strTransactionFK == $customer_info->strJobOrderID)
-														<div class="payment-summary {{ $payments[$i]->strJobOrderID}}" @if($payments[$i]->strTransactionFK != $customer_info->strJobOrderID) hidden @endif>
+													@for($i = 0; $i < count($orders); $i++)
+														@if($payments[$i]->strTransactionFK == $orders[$i]->strJobOrderID)
+														<div class="payment-summary {{ $payments[$i]->strJobOrderID}}">
 															<div style="color:black" class="input-field col s12">                 
 											                  <div class="col s8" style="padding-right: 15%"><input style="margin-left:80%; padding:1%; padding-left:1%" name="amount-to-pay" type="text" class="" id="amount-to-pay" readonly></div>
 											                  <div class="col s4"><label style="color:teal; margin-top:1%; margin-left:2%"><center><b>Total Amount Due<br> <font style="opacity:0.80">(Php)</font>:</b></center></label></div>
@@ -184,13 +181,12 @@
 
 											                <div style="color:black" class="input-field col s12">                 
 											                  <div class="col s8" style="padding-right: 15%"><input style="margin-left:80%; padding:1%; padding-left:1%; color:teal; font-style:bold" name="outstanding-bal" type="text" class="outstanding-bal" id="outstanding-bal" readonly></div>
-											                  <div class="col s4"><label style="color:teal; margin-top:1%; margin-left:2%"><center><b>Outstanding Balance<br><font style="opacity:0.80">(Php)</font>:</b></center></label></div>
-											                	
+											                  <div class="col s4"><label style="color:teal; margin-top:1%; margin-left:2%"><center><b>Outstanding Balance<br><font style="opacity:0.80">(Php)</font>:</b></center></label></div>											                	
 											                </div>
 											            </div>
-											            @endif
+											          @endif
+												@endfor
 											           
-											        @endfor
 
 											        <div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
 													<h5><font color="teal"><center><b>Summary of Orders</b></center></font></h5>
@@ -273,11 +269,11 @@
 												            </div>
 													
 													</div><!--modal to-->
-											    {!! Form::close() !!}   
-								        		
+											   
+								        			{!! Form::close() !!}
 
 								                        <div class="col s12" style="margin-top:3%"><div class="divider" style="height:3px; color:gray"></div></div>
-								                    {!! Form::open(['url' => 'transaction/payment/individual/save-payment', 'method' => 'POST']) !!}
+								                   {!! Form::open(['url' => 'transaction/payment/individual/save-payment', 'method' => 'POST']) !!}
 								                    <div class="payment-form" id="payment-form" style="display:block">
 								                        <div style="color:black" class="input-field col s12">                 
 								                          <div class="col s8"><input style="margin-left:60%; padding:1%; padding-left:1%; border:3px gray solid" name="amount-tendered" id="amount-tendered" type="text" class="" onkeypress='return event.charCode >= 48 && event.charCode <= 57'></div>
@@ -312,7 +308,8 @@
 														<input type="hidden" id="hidden-outstanding-bal" name="hidden-outstanding-bal">
 								                        <input type="hidden" id="Date" name="Date">
 								                        <input type="hidden" id="transaction_date" name="transaction_date" />
-														<input type="hidden" id="dueDate" name="dueDate" />
+														<input type="hidden" id="due_date" name="due_date" />
+														<input type="hidden" id="joID" name="joID" />
 														
 														<div class="col s12" style="margin-top:30px">
 															<!-- <a hidden href="{{ URL::to('billing-payment/payment-receipt-pdf') }}" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to print a copy of receipt" style="background-color:teal"><i class="large mdi-action-print" style="font-size:30px"></i></a> -->
@@ -320,7 +317,7 @@
 															<a href="{{URL::to('transaction/payment/individual/home')}}" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to clear all fields for payment process" style="background-color:teal">Cancel</a>
 														</div>
 													</div>
-													
+													{!! Form::close() !!}
 													</div>
 												</div>
 											</div>
@@ -329,20 +326,21 @@
 										<div class="col s5">
 											<div class="card-panel">
 											<div class="card-content">
-												@foreach($customer_orders as $j => $order)
-													@if($order->strTermsOfPayment != "Full Payment")
-
-												<div class="row" id="or_summary" style="display:none">
+											{!! Form::open(['url' => 'transaction/payment/individual/customer-info', 'method' => 'GET']) !!}
+												@for($i = 0; $i < count($orders); $i++)
+												@if($orders[$i]->strTermsOfPayment != "Full Payment")
+												@if($payments[$i]->strTransactionFK == $orders[$i]->strJobOrderID)
+												<div class="row payment-summary {{ $orders[$i]->strJobOrderID}}" id="or_summary" style="display:none">
 													<center><h6><b>Payment History</b></h6></center>
 													<div class="col s12" style="margin-top:10px"><div class="divider" style="height:3px; color:gray"></div></div>
 												
 												<!--In case of multiple pending transactions...-->
 													<div  class="col s6" style="border-right:1px darkgray solid">
-														<h6>Order No.: <p style="color:teal"><b><a href="#summary-of-order" class="modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to view summary of order" style="color:teal"><u>{{ $order->strJobOrderID }}</u></a></b></p></h6>
+														<h6>Order No.: <p style="color:teal"><b><a href="#summary-of-order" class="modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to view summary of order" style="color:teal"><u>{{ $orders[$i]->strJobOrderID }}</u></a></b></p></h6>
 													</div>
 
 													<div  class="col s6">
-														<h6>Transaction Date: <p style="color:teal"><b>{{ $order->dtOrderDate}}</b></p></h6>
+														<h6>Transaction Date: <p style="color:teal"><b>{{ $orders[$i]->dtOrderDate}}</b></p></h6>
 													</div>
 
 													<div class="col s12"><div class="divider" style="background-color: gray; height:2px; margin-bottom: 2%"></div></div>
@@ -359,50 +357,32 @@
 																</tr>
 															</thead>
 															<tbody>
-															@foreach($payments as $payment)
-															@if($payment->strTransactionFK == $order->strJobOrderID)
+															@for($i = 0; $i < count($orders); $i++)
+															@if($payments[$i]->strTransactionFK == $orders[$i]->strJobOrderID)
 																<tr>
-																	<td>{{ $payment->strPaymentID }}</td>
-																	<td>{{ number_format($payment->dblAmountToPay, 2) }}</td>
-																	<td>{{ number_format($payment->dblOutstandingBal ,2) }}</td>
-																	<td>{{ $payment->dtPaymentDate }}</td>
+																	<td>{{ $payments[$i]->strPaymentID }}</td>
+																	<td>{{ number_format($payments[$i]->dblAmountToPay, 2) }}</td>
+																	<td>{{ number_format($payments[$i]->dblOutstandingBal ,2) }}</td>
+																	<td>{{ $payments[$i]->dtPaymentDate }}</td>
 																</tr>
 															@endif
-															@endforeach
+															@endfor
 															</tbody>
 														</table>
 													</div>
 
-													<!-- <div class="col s12">
-														<table class="table centered order-summary">
-															<thead style="color:gray">
-																<th>Product Name</th>
-																<th>Quantity</th>
-																<th>Unit Price</th>
-															</thead>
-															<tbody>
-
-																<tr>
-																	<td>{{ $order->strGarmentCategoryName }},<br> {{ $order->strSegmentName }}</td>
-																	<td>{{ $order->intQuantity }}</td>
-																	<td>P {{ number_format(($order->dblOrderTotalPrice / $order->intJO_OrderQuantity), 2) }}</td>
-																</tr>
-														</table>
-
-														<!-- <center><a href="#summary-of-order" class="btn modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to view summary of orders" style="background-color:teal">View Order Details</a></center> -->
-													<!-- </div> -->
-
-
+													
 												</div>
-
+												@endif
 													@endif
-												@endforeach
+												@endfor
+												{!! Form::close() !!}	
 											</div>
 										</div>
 										</div>
 										@endif
 										@endif       							                    												
-										{!! Form::close() !!}
+										
 
 									</div>
 
@@ -506,6 +486,7 @@
 		var amount_to_pay = 0.00;
 		var amount_paid = 0.00;
 		var bal = 0.00;
+		var dueDate;
 
 		//Gets the days needed to finish the product
 
@@ -516,22 +497,27 @@
 		var dropdown = document.getElementById('unpaid-payments');
 
 		$('#unpaid-payments').change(function(){
-			var orders = {!! json_encode($customer_orders) !!}
+			var orders = {!! json_encode($orders) !!}
 			var payment = {!! json_encode($payments) !!}
 
+			var joId = $('#unpaid-payments').val();
+			$('#joID').val(joId);
 				
-		for(var i = 0; i < payment.length; i++){
+		for(var i = 0; i < orders.length; i++){
 		
-				amount_to_pay = payment[i].dblOrderTotalPrice;
-				amount_paid = payment[i].dblAmountToPay;
-				bal = payment[i].dblOutstandingBal;
+				amount_to_pay = orders[i].dblOrderTotalPrice;
+				amount_paid = orders[i].dblAmountToPay;
+				bal = orders[i].dblOutstandingBal;
+				dueDate = orders[i].dtPaymentDueDate;
 
-			if($('#unpaid-payments').val() == payment[i].strJobOrderID)
+			if($('#unpaid-payments').val() == orders[i].strJobOrderID)
 			{
 				form.style.display = "block";
 				summary.style.display = "block";
 
 				$('#amount-to-pay').val(amount_to_pay.toFixed(2));
+				$('#amount-payable').val(bal.toFixed(2));
+				$('#amount-payable').prop('readonly', true);
 				$('#amount-paid').val(amount_paid.toFixed(2));
 				$('#outstanding-bal').val(bal.toFixed(2));
 				$('#hidden-outstanding-bal').val(bal.toFixed(2));
@@ -546,7 +532,8 @@
 			}
 			// alert($('#unpaid-payments').val());
 		}
-						
+		
+		$('#due_date').val(dueDate);			
 
 		});
 
@@ -566,31 +553,10 @@
 
 		});
 
-		var monthNames = [ "January", "February", "March", "April", "May", "June",
-		    "July", "August", "September", "October", "November", "December" ];
-			var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+		var newDate = new Date();
 
-			var newDate = new Date();
-			var dueDate = new Date();
-
-			var parameter = minDays + 2;
-
-			newDate.setDate(newDate.getDate());   
-			dueDate.setDate(newDate.getDate()+minDays);
-	  
-			function commaSeparateNumber(val){
-			    while (/(\d+)(\d{3})/.test(val.toString())){
-			      val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
-			    }
-			    return val;
-			 }
-
-			 $('#dueDate').val(dueDate.getFullYear() + "-" +  (dueDate.getMonth()+1) + "-" + dueDate.getDate());
-
-			$('#due-date').text(dayNames[dueDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
-			$('#transaction_date').val(monthNames[(newDate.getMonth()+1)] + " " + newDate.getDate() + ", " + newDate.getFullYear());
-			$('#due_date').val(monthNames[(dueDate.getMonth()+1)] + " " + dueDate.getDate() + ", " + dueDate.getFullYear());
-		
+		newDate.setDate(newDate.getDate());   
+		$('#transaction_date').val(newDate.getFullYear() + "-" +  (newDate.getMonth()+1) + "-" + newDate.getDate());
 	</script>
 
 	<script type="text/javascript">
@@ -599,21 +565,8 @@
 		var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
 
 		var newDate = new Date();
-		var dueDate = new Date();
-
-		var parameter = minDays + 2;
-
-		newDate.setDate(newDate.getDate());   
-		dueDate.setDate(newDate.getDate()+minDays);
-  
-		function commaSeparateNumber(val){
-		    while (/(\d+)(\d{3})/.test(val.toString())){
-		      val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
-		    }
-		    return val;
-		 }
-
-		 $('#dueDate').val(dueDate.getFullYear() + "-" +  (dueDate.getMonth()+1) + "-" + dueDate.getDate());
+		newDate.setDate(newDate.getDate());    
+		$('#Date').html(dayNames[newDate.getDay()] +" | " +" " + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + "," + ' ' + newDate.getFullYear());
 	
 	</script>
 

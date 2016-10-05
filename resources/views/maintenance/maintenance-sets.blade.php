@@ -178,18 +178,18 @@
                               </div>
 
 
-                            <div class="input-field col s12" style="margin-top:47px">                                                    
-                                <select required name='editSex'>
-                                      <option disabled>Sex</option>
-                                          @if($sets->strPackageSex == "M")
-                                              <option selected value="{{$sets->strPackageSex}}">Male</option>
-                                              <option value="F">Female</option>
-                                          @else
-                                              <option value="M">Male</option>
-                                              <option selected value="{{$sets->strPackageSex}}">Female</option>
-                                          @endif
-                                </select>    
-                                <label>Sex</label>
+                            <div class="input-field col s12" style="margin-top:47px">   
+                              <select name='editPackageSex' required>
+                                <option disabled>Sex</option>
+                                    @if($sets->strPackageSex == "M")
+                                      <option selected value="{{ $sets->strPackageSex }}">Male</option>
+                                      <option value="F">Female</option>
+                                    @else
+                                      <option value="M">Male</option>
+                                      <option selected value="{{ $sets->strPackageSex }}">Female</option>
+                                    @endif
+                              </select>    
+                              <label>Sex</label>
                             </div>  
                           
 
@@ -392,15 +392,14 @@
                       </div>
                   </div>
 
-                  <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                 
                     <div class="input-field col s12" style="margin-top:47px">
                         <select value="" name='strPackageSex' id='strPackageSex' required>
-                            <option value="M">Male</option>
-                            <option value="F">Female</option>
+                          <option value="M">Male</option>
+                          <option value="F">Female</option>
                         </select>    
                       <label>Sex</label>
                     </div>
-                  </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
@@ -520,9 +519,9 @@
 @section('scripts')
     <script>
       $(document).ready(function(){
-      $('select').material_select();
+        $('select').material_select();
       });
-    </script>}
+    </script>
     
     <script type="text/javascript">
       $('.validateSegName').on('input', function() {
@@ -582,7 +581,6 @@
 
       $(document).ready(function() {
           $('.data-garmentsDetails').DataTable();
-          $('.data-reactSegment').DataTable();
           $('select').material_select();
 
           setTimeout(function () {

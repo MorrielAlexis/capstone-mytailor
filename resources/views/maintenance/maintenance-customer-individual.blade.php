@@ -204,7 +204,7 @@
                                   </div>
 
                                   <div class="input-field col s3">
-                                    <input value="{{$individual->strIndivBarangay}}" id="editCustPrivBarangay" name="editCustPrivBarangay" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?" placeholder="Daang Bakal" class="validate">
+                                    <input value="{{$individual->strIndivBarangay}}" id="editCustPrivBarangay" name="editCustPrivBarangay" pattern="^[a-zA-Z\d\-'`.]+(\s[a-zA-Z\-'`.]+)?" type="text" placeholder="Daang Bakal" class="validate">
                                     <label for=" Brgy">Barangay </label>
                                   </div>
 
@@ -376,7 +376,7 @@
                          <!--  ^[a-zA-Z0-9\'\-\.]+(\s[a-zA-Z0-9\'\-\.]+)*$ -->
 
                           <div class="input-field col s3">
-                            <input  id="strIndivBarangay" name="strIndivBarangay" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?" type="text" placeholder="Daang Bakal" class="validate">
+                            <input  id="strIndivBarangay" name="strIndivBarangay" pattern="^[a-zA-Z\d\-'`.]+(\s[a-zA-Z\-'`.]+)?" type="text" placeholder="Daang Bakal" class="validate">
                             <label for=" Brgy">Barangay/Subd </label>
                           </div>
 

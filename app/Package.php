@@ -10,6 +10,7 @@ class Package extends Model
 	protected $primaryKey = 'strPackageID';
 	protected $fillable = array('strPackageID',
 								'strPackageName',
+								'strPackageSex',
 								'strPackageSeg1FK',
 								'strPackageSeg2FK',
 								'strPackageSeg3FK',

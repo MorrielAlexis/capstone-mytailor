@@ -76,7 +76,7 @@ class PackagesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(MaintenancePackagesRequest $request)
-    {
+    { //dd($request->input('strPackageSex'));
         $file = $request->input('addImage');
         $destinationPath = 'imgPackages';
 
@@ -84,7 +84,7 @@ class PackagesController extends Controller
                 $sets = Package::create(array(
                  'strPackageID' => $request->input('strPackageID'),
                  'strPackageName' => trim($request->input('strPackageName')),
-                 'strPackageSex' => $request->input('strPackageSex'),
+                 'strPackageSex' => trim($request->input('strPackageSex')),
                  'strPackageSeg1FK' => $request->input('strPackageSeg1FK'),
                  'strPackageSeg2FK' => $request->input('strPackageSeg2FK'),
                  'strPackageSeg3FK' => $request->input('strPackageSeg3FK'),
@@ -173,6 +173,7 @@ class PackagesController extends Controller
         $sets = Package::find($request->input('editPackageID'));
         $checkSets = Package::all();
 
+        dd($request->input('editPackageSex'));
         $file = $request->input('editImage');
         $destinationPath = 'imgPackages';
         $isAdded = FALSE;
@@ -190,7 +191,7 @@ class PackagesController extends Controller
                 if($file == $sets->strPackageImage)
                 {
                     $sets->strPackageName = trim($request->input('editPackageName'));
-                    $sets->strPackageSex = $request->input('editSex');
+                    $sets->strPackageSex = $request->input('editPackageSex');
                     $sets->strPackageSeg1FK = $request->input('editSegment1');
                     $sets->strPackageSeg2FK = $request->input('editSegment2');
                     $sets->strPackageSeg3FK = $request->input('editSegment3');
@@ -204,7 +205,7 @@ class PackagesController extends Controller
                     $request->file('editImg')->move($destinationPath);
 
                     $sets->strPackageName = trim($request->input('editPackageName'));
-                    $sets->strPackageSex = $request->input('editSex');
+                    $sets->strPackageSex = $request->input('editPackageSex');
                     $sets->strPackageSeg1FK = $request->input('editSegment1');
                     $sets->strPackageSeg2FK = $request->input('editSegment2');
                     $sets->strPackageSeg3FK = $request->input('editSegment3');

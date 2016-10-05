@@ -106,7 +106,7 @@
               </div>
 
                 <div style="color:black" class="input-field col s4">
-                    <input id="addCustPrivZipCode" name="addCustPrivZipCode" type="text" class="validateZip" pattern="^[0-9]+$">
+                    <input id="addCustPrivZipCode" name="addCustPrivZipCode" type="text" class="validate" pattern="^[0-9]+$">
                     <label style="color:gray" for=" Zip Code"><b>Zip Code </b></label>
               </div>
           </div>

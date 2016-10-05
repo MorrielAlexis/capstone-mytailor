@@ -150,7 +150,7 @@
 
                                     <div class="modal-footer col s12">
                                       <p class="left" style="margin-left:10px; color:gray;">Continue to payment?</p>
-                                      <a href="{{URL::to('transaction/alteration-checkout-info')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Yes</font></a>
+                                      <a href="{{URL::to('transaction/alteration-customer-check')}}" class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">Yes</font></a>
                                       <a class="modal-action modal-close waves-effect waves-green btn-flat"><font color="black">No</font></a>
                                     </div>
                               </div>

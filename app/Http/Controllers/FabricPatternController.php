@@ -146,7 +146,7 @@ class FabricPatternController extends Controller
     function delete_fabricPattern(Request $request)
     {
             $id = $request->input('delFabricPatternID');
-            $fabricPattern = FabricPattern::find($request-> input('delFabricPatternID'));
+            $fabricPattern = FabricPattern::find($request-> input('delFabricPatternID')); 
 
             $count = \DB::table('tblFabric')
                 ->join('tblFabricPattern', 'tblFabric.strFabricPatternFK', '=', 'tblFabricPattern.strFabricPatternID')
@@ -157,8 +157,8 @@ class FabricPatternController extends Controller
             if ($count != 0){
                     return redirect('maintenance/fabric-pattern?success=beingUsed'); 
                 }else {
-
-            $fabricPattern->strFabricPatternInactiveReason = trim($request->input('delInactiveFabricPattern'));
+                    
+            $fabricPattern->strFabricPatternInactiveReason = trim($request->input('delInactivefabricPattern'));
             $fabricPattern->boolIsActive = 0;
             $fabricPattern->save();
 

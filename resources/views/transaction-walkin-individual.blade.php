@@ -45,7 +45,7 @@
 										    	<option value="{{ $category->strGarmentCategoryID }}" class="circle">{{ $category->strGarmentCategoryName }}</option>
 											@endforeach
 										</select>
-										<label><font size="3" color="Red">Choose a garment category</font></label>
+										<label><font size="3" color="gray">Choose a garment category</font></label>
 								</div>
 							</div>
 						
@@ -57,7 +57,7 @@
 										    <option value="M" class="circle">Male</option>
 										    <option value="F" class="circle">Female</option>
 										</select>
-										<label><font size="3" color="Red">Show garments for (sex):</font></label>
+										<label><font size="3" color="gray">Show garments for (sex):</font></label>
 								</div>
 							</div>
 
@@ -81,8 +81,8 @@
 										<div class="center col s12">
 					          				<input type="checkbox" name="cbx-segment-name[]"  class="filled-in cbx-segment-name" id="{{ $garment->strSegmentID }}" value="{{ $garment->strSegmentID }}" style="padding:5px"/>
 			      							<label for="{{ $garment->strSegmentID }}"><font size="+1"><b>{{ $garment->strSegmentName }}</b></font></label>
-			      							@if($garment->strSegmentSex == 'M')<label for="{{ $garment->strSegmentID }}"><font color="red">Male</font></label>
-			      							@elseif($garment->strSegmentSex == 'F')<label for="{{ $garment->strSegmentID }}"><font color="red">Female</font></label>
+			      							@if($garment->strSegmentSex == 'M')<label for="{{ $garment->strSegmentID }}"><font color="teal"><strong>Male</strong></font></label>
+			      							@elseif($garment->strSegmentSex == 'F')<label for="{{ $garment->strSegmentID }}"><font color="teal"><strong>Female</strong></font></label>
 			      							@endif
 			      						</div>
 
@@ -105,23 +105,26 @@
 
 						
 							<div class="col s12">
-								<div class="divider"></div>
-								<button type="submit" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize orders" style="margin-left:40px; margin-top:20px; font-size:15px; color:white; background-color: teal; opacity:0.90; margin-right:3%"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Customize Orders<!--</i></button>
-								<a class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to add orders to cart " style="margin-top:30px; background-color: teal; font-size:15px; color:white" href="#!"><i class="mdi-editor-add" style="font-size:20px;">-->  {{-- Add to Cart --}}</i></a>
+								<div class="divider" style="margin-top: 4%"></div>
+								<button type="submit" class="right btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to customize orders" style="margin-left:40px; margin-top:4%; font-size:15px; color:white; background-color: teal; opacity:0.90; margin-right:3%"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  <strong>Customize Orders</strong><!--</i></button>
+								<a class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to add orders to cart " style="margin-top:30px; background-color: teal; font-size:15px; color:white" href="#!"><i class="mdi-editor-add" style="font-size:20px;">--></button>
 								<!--<a cphplass="left tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to see available package 5sets" href="{{URL::to('/transaction/walkin-individual-bulk-orders')}}" style=" margin-top:30px; font-size:18px;"><i class="mdi-navigation-arrow-back"></i><b><u>Go to Bulk Orders</u></b></a>-->
 
 					{!! Form::close() !!}
 					
 								{!! Form::open(['url' => 'transaction/walkin-individual-clear-order', 'method' => 'POST']) !!}
-								<button type="submit" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to cancel orders" style="margin-top:30px; font-size:15px; color:white; background-color: teal; opacity:0.90 margin-left:3%"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  Reset Order<!--</i>--></button>
+								<button type="submit" class="left btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to clear orders made" style="margin-top:4%; font-size:15px; color:black; background-color: #80cbc4; opacity:0.90; margin-left:3%"><!--<i class="mdi-editor-add" style="font-size:20px;">-->  <strong>Reset Order<!--</i>--></strong></button>
 								{!! Form::close() !!}
 							</div>
-						</div> 
 
-					</div>
-					<div class="col s12">
+							<div class="col s12">
 						<div class="divider" style="height:2px; margin-top:30px"></div>      	
 		      			<center><p><font color="gray">End of product list for MyTailor</font></p></center>
+					</div>
+						</div> 
+
+					
+					
 					</div>
 				</div>
 			</div>

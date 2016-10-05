@@ -69,7 +69,7 @@
 				                    	{!! Form::close() !!}
 									<!-- Customer Info -->					
 									
-										<div class="col s12" style="margin-top:10px">
+										<div class="col s12" style="margin-top:10px" hidden>
 
 											<div class="col s12">
 					                    		<div style="color:black" class="col s12">     
@@ -105,7 +105,7 @@
 											</div><!--End of customer info-->
 
 					                    	<!--START OF PAYMENT PROCESS HERE-->
-					                    	<div class="col s12" style="padding-left:5%">
+					                    	<div class="col s12" style="padding-left:5%" hidden>
 												<div class="input-field col s9">
 													<div class="container">
 														<select class="browser-default tooltipped" data-position="bottom" data-delay="50" data-tooltip="In case of multiple pending payments" style="margin-left:45%">
@@ -119,7 +119,7 @@
 											</div>
 
 											<div class="col s12" style="margin-top:30px">
-										<div class="col s7">
+										<div class="col s7" hidden>
 										<div class="card-panel">
 											<div class="card-content">
 												<div class="row" style="display:none">
@@ -185,7 +185,7 @@
 
 										</div>
 
-										<div class="col s5">
+										<div class="col s5" hidden>
 											<div class="card-panel">
 											<div class="card-content">
 												<div class="row">

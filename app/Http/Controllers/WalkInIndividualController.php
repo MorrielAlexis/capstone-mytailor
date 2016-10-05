@@ -18,7 +18,7 @@ use App\FabricPattern;
 use App\FabricThreadCount;
 
 use App\Individual;
-
+use App\UtilitiesVat;
 use App\Segment;
 use App\SegmentPattern;
 use App\SegmentStyle;
@@ -417,9 +417,9 @@ class WalkInIndividualController extends Controller
             }
         }
 
-        session(['measurement_id' => $measurementID]);
+        session(['measurement_id' => $measurementID]); //dd($measurementID);
         session(['measurement_values' => $measurementValues]);
-        session(['measurement_name' => $measurementProfileName]);
+        session(['measurement_name' => $measurementProfileName]); 
         session(['measurement_sex' => $measurementProfileSex]);
 
         return redirect('transaction/walkin-individual-payment-information');
@@ -480,7 +480,7 @@ class WalkInIndividualController extends Controller
         
         //dd($styleTotal);
         $styFabPrice = 0.00;
-        foreach ($values as $i => $value){ 
+        for($i = 0; $i < count($values); $i++){ 
             for($j = 0; $j < count($fabric[$i]); $j++){
                 $styFabPrice += $fab[$i][$j]->dblFabricPrice;
             }
@@ -509,11 +509,7 @@ class WalkInIndividualController extends Controller
             }
         }
        
-        $vatCharge = \DB::table('tblVat')
-                ->where('strTaxName', '=', 'Value Added Tax', 'OR', 'strTaxName', '=', 'VAT')
-                ->select('dblTaxPercentage')
-                ->get();
-        //dd($vatCharge);
+        $vatCharge = UtilitiesVat::first();
 
         return view('walkin-individual-checkout-pay')
                     ->with('values', $values)
@@ -522,7 +518,7 @@ class WalkInIndividualController extends Controller
                     ->with('quantities', $quantity)
                     ->with('unitPrice', $unitPrice)
                     ->with('styleFabric', $fab)
-                    ->with('vat', $vatCharge)
+                    ->with('vat', $vatCharge->dblTaxPercentage)
                     ->with('othercharge', $othercharges)
                     ->with('joID', $joID)
                     ->with('style_count', $style_count)
@@ -670,8 +666,8 @@ class WalkInIndividualController extends Controller
             ));
                     //dd($tempQuantity);    
             $jobOrderSpecifics->save();
-
-            for($j = 0; $j <= count($patterns); $j++){ //dd($designs);
+//dd($patterns);
+            for($j = 0; $j < count($patterns); $j++){ //dd($designs);
                 //dd($designs[$i][$j]->strSegPatternID);
                     $jobOrderSpecificsPattern = TransactionJobOrderSpecificsPattern::create(array(
                             'strJobOrderSpecificFK' => $jobSpecsID,
@@ -708,7 +704,7 @@ class WalkInIndividualController extends Controller
                 ));
 
                 $joMeasurementProfile->save();
-
+                //dd($measurementID[$i][$k]);
                 for($l = 0; $l < count($measurementID[$i][$k]); $l++)
                 {  
                     $ids = \DB::table('tblJOMeasureSpecific')
@@ -724,7 +720,7 @@ class WalkInIndividualController extends Controller
                         $ID = $ids["0"]->strJOMeasureSpecificID;
                         $joMeasSpecificID = $this->smartCounter($ID);  
                     }
-                    dd($$measurementName[$i][$j]);
+                    //dd($measurementID[$i][$k][$l]);
                     $joMeasurementSpecific = TransactionJobOrderMeasurementSpecifics::create(array(
                             'strJOMeasureSpecificID' => $joMeasSpecificID,
                             'strJobOrderSpecificFK' => $jobSpecsID,
