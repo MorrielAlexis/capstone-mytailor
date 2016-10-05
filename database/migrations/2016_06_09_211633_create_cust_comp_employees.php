@@ -18,7 +18,7 @@ class CreateCustCompEmployees extends Migration
             $table->string('strCustCompEmpFirstName');
             $table->string('strCustCompEmpLastName');
             $table->string('strCustCompEmpMiddleName')->nullable();
-            $table->string('strCustCompEmpSex');
+            $table->string('strCustCompEmpSex')->nullable();
             $table->boolean('boolIsActive');
             $table->timestamps();
 
