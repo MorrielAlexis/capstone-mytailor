@@ -202,7 +202,7 @@ class PackagesController extends Controller
                     $sets->strPackageDesc = trim($request->input('editPackageDesc'));
                     
                 }else{
-                    $request->file('editImg')->move($destinationPath);
+                    $request->file('editImg')->move($destinationPath, $file);
 
                     $sets->strPackageName = trim($request->input('editPackageName'));
                     $sets->strPackageSex = $request->input('editPackageSex');

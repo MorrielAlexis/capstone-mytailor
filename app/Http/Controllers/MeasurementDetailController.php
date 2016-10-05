@@ -78,7 +78,7 @@ class MeasurementDetailController extends Controller
                 ));
               }else{
 
-                $request->file('addImg')->move($destinationPath);
+                $request->file('addImg')->move($destinationPath, $file);
 
                 $detail = MeasurementDetail::create(array(
 

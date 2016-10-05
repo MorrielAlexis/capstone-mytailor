@@ -236,7 +236,7 @@ class EmployeeController extends Controller
                 $employee->strEmailAdd = trim($request->input('editEmail'));
                 }else{
 
-                $request->file('editImg')->move($destinationPath);
+                $request->file('editImg')->move($destinationPath,$file);
 
                 $employee->strEmpFName = trim($request->input('editFirstName')); 
                 $employee->strEmpLName = trim($request->input('editLastName'));  

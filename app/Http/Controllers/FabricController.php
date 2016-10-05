@@ -204,7 +204,7 @@ class FabricController extends Controller
                     $fabric->txtFabricDesc = trim($request->input('editFabricDesc'));
                     
                 }else{
-                    $request->file('editImg')->move($destinationPath);
+                    $request->file('editImg')->move($destinationPath, $file);
                     $fabric->strFabricTypeFK = $request->input('editFabricType');
                     $fabric->strFabricPatternFK = $request->input('editFabricPattern');
                     $fabric->strFabricColorFK = $request->input('editFabricColor');

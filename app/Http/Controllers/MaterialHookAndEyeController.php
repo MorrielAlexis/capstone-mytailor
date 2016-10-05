@@ -177,7 +177,7 @@ class MaterialHookAndEyeController extends Controller
                     $hook ->textHookDesc = trim($request->input('editHookDesc'));
                     
                 }else{
-                    $request->file('editImg')->move($destinationPath);
+                    $request->file('editImg')->move($destinationPath, $file);
                     $hook ->strHookBrand = trim($request->input('editHookBrand'));
                     $hook ->strHookSize = trim($request->input('editHookSize'));
                     $hook ->strHookColor = trim($request->input('editHookColor'));

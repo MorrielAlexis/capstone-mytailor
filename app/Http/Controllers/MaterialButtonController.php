@@ -178,7 +178,7 @@ class MaterialButtonController extends Controller
                     $button ->strButtonDesc = trim($request->input('editButtonDesc'));
                     
                 }else{
-                    $request->file('editImg')->move($destinationPath);
+                    $request->file('editImg')->move($destinationPath, $file);
                     $button ->strButtonBrand = trim($request->input('editButtonBrand'));
                     $button ->strButtonSize = trim($request->input('editButtonSize'));
                     $button ->strButtonColor = trim($request->input('editButtonColor'));

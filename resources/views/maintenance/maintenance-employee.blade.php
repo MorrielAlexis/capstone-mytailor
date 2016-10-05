@@ -241,8 +241,7 @@
                             <input value="{{$employee->strEmpBarangay}}" id="editEmpBarangay" name="editEmpBarangay" pattern="^[a-zA-Z\d\-'`.]+(\s[a-zA-Z\-'`.]+)?" type="text" placeholder="Daang Bakal" class="validate">
                             <label for="Emp Brgy">Barangay/Subd </label>
                           </div>
-                          
-                          {{-- ^[a-zA-Z0-9\'\-\.]+( [a-zA-Z0-9\'\-\.]+)*$ --}}
+                
 
                           <div class="input-field col s3">
                             <input required value="{{$employee->strEmpCity}}" id="editEmpCity" name="editEmpCity" pattern="^[a-zA-Z\d\-'`]+(\s[a-zA-Z\-'`]+)?" type="text" placeholder="Mandaluyong" class="validate">
@@ -286,7 +285,7 @@
 
             
                           <div class="input-field col s6">
-                            <input value="{{$employee->strCellNoAlt}}" id="editCellNoAlt" name="editCellNoAlt" pattern="^[0-9]{10,10}$" type="text" class="validate" placeholder="9361234567" maxlength="10">
+                            <input value="{{$employee->strCellNoAlt}}" id="editCellNoAlt" name="editCellNoAlt" pattern="^[0-9]{11,11}$" type="text" class="validate" placeholder="9361234567" maxlength="11">
                             <label for="cellphone_number">Cellphone Number (alternate)</label>
                           </div>
                         </div>
@@ -311,7 +310,7 @@
                             </div>
                           
                             <div class="file-path-wrapper">
-                              <input value="{{$employee->strEmpImg}}" id="editImage" name="editImage" class="file-path validate" type="text" readonly="readonly">
+                              <input value="{{$employee->strEmpImg}}" id="editImage" name="editImage" class="file-path" type="text" readonly="readonly">
                             </div>
                           </div>  
                       </div>
@@ -622,23 +621,5 @@
         }
 }
 </script>
-
-<script> function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('#blah2')
-                    .attr('src', e.target.result)
-                    .width(160)
-                    .height(150);
-            };
-
-            reader.readAsDataURL(input.files[0]);
-        }
-}
-</script>    
-
-
 
 @stop

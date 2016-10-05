@@ -24,21 +24,6 @@ class AlterationController extends Controller
         $this->middleware('auth');
     }
 
-
-    public function alteration(){
-
-        $alteration = \DB::table('tblAlteration')
-            ->select('strAlterationID')
-            ->orderBy('created_at', 'desc')
-            ->orderBy('strAlterationID', 'desc')
-            ->take(1)
-            ->get();
-
-        $segment = GarmentSegment::all();
-
-
-    }
-
     
     public function index()
     {

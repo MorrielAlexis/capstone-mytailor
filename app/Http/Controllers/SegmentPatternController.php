@@ -183,7 +183,7 @@ class SegmentPatternController extends Controller
 
                 }else{
 
-                    $request->file('editImg')->move($destinationPath);
+                    $request->file('editImg')->move($destinationPath,$file);
                     $pattern->strSegPStyleCategoryFK = $request->input('editSegmentStyle');
                     $pattern->strSegPName = trim($request->input('editPatternName'));
                     $pattern->dblPatternPrice = trim($request->input('editPatternPrice'));

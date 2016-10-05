@@ -162,7 +162,7 @@ class MaterialNeedleController extends Controller
                     $needle->strNeedleDesc = trim($request->input('editNeedleDesc'));    
                 }else{  
                     $destinationPath = 'imgNeedles';
-                    $request->file('editImg')->move($destinationPath);
+                    $request->file('editImg')->move($destinationPath,$file);
 
                     $needle->strNeedleBrand = trim($request->input('editNeedleBrand'));
                     $needle->strNeedleSize = trim($request->input('editNeedleSize'));

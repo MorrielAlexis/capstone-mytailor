@@ -181,7 +181,7 @@ class GarmentSegmentController extends Controller
                 $segment->intMinDays = trim($request->input('editMinDays')); 
                 $segment->textSegmentDesc = trim($request->input('editSegmentDesc'));
             }else{
-                    $request->file('editImg')->move($destinationPath);
+                    $request->file('editImg')->move($destinationPath, $file);
                     $segment->strSegCategoryFK = $request->input('editCategory'); 
                     $segment->strSegmentName = trim($request->input('editSegmentName'));  
                     $segment->dblSegmentPrice = trim($request->input('editSegmentPrice')); 

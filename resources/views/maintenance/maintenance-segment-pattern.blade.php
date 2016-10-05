@@ -194,7 +194,7 @@
                             </div>
                           
                             <div class="file-path-wrapper">
-                              <input value="{{$pattern->strSegPImage}}" id="editImage" name="editImage" class="file-path validate" type="text" readonly="readonly">
+                              <input value="{{$pattern->strSegPImage}}" id="editImage" name="editImage" class="file-path" type="text" readonly="readonly">
                             </div>
                           </div>
                       </div>

@@ -159,7 +159,7 @@ class MaterialZipperController extends Controller
                     $zipper->strZipperColor = trim($request->input('editZipperColor'));
                     $zipper->txtZipperDesc = trim($request->input('editZipperDesc'));    
                 }else{  
-                    $request->file('editImg')->move($destinationPath);
+                    $request->file('editImg')->move($destinationPath, $file);
 
                     $zipper->strZipperBrand = trim($request->input('editZipperBrand'));
                     $zipper->strZipperColor = trim($request->input('editZipperColor'));

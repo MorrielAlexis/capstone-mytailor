@@ -163,7 +163,7 @@ class MaterialThreadController extends Controller
                     $thread->strThreadDesc = trim($request->input('editThreadDesc'));    
                 }else{  
                     $destinationPath = 'imgThreads';
-                    $request->file('editImg')->move($destinationPath);
+                    $request->file('editImg')->move($destinationPath, $file);
 
                     $thread->strThreadBrand = trim($request->input('editThreadBrand'));
                     $thread->strThreadColor = trim($request->input('editThreadColor'));
