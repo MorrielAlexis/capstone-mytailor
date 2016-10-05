@@ -173,7 +173,6 @@ class PackagesController extends Controller
         $sets = Package::find($request->input('editPackageID'));
         $checkSets = Package::all();
 
-        dd($request->input('editPackageSex'));
         $file = $request->input('editImage');
         $destinationPath = 'imgPackages';
         $isAdded = FALSE;

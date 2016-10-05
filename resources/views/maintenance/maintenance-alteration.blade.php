@@ -118,7 +118,7 @@
                     <td>{{$alteration->strSegmentName}}</td>
               		  <td>{{$alteration->txtAlterationDesc}}</td>
                     <td>{{$alteration->intAlterationMinDays}}</td>
-                    <td>{{"Php" . $alteration->dblAlterationPrice}}</td>
+                    <td>{{"Php" . number_format($alteration->dblAlterationPrice, 2)}}</td>
               		  <td><a style="color:black" class="modal-trigger btn tooltipped btn-floating blue" data-position="bottom" data-delay="50" data-tooltip="Click to edit data of alteration name" href="#edit{{$alteration->strAlterationID}}"><i class="mdi-editor-mode-edit"></i></a>
                     <a style="color:black" class="modal-trigger btn tooltipped btn-floating red" data-position="bottom" data-delay="50" data-tooltip="Click to remove data of alteration name from the table" href="#del{{$alteration->strAlterationID}}"><i class="mdi-action-delete"></i></a></td>
               	

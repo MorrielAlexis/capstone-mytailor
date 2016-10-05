@@ -468,7 +468,7 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                           <div class="input-field col s12">
-                            <input required  id="dblPackagePrice" name= "dblPackagePrice" type="text" class="validate"  data-position="bottom" pattern="^[0-9]*$" minlength="2">
+                            <input required  id="dblPackagePrice" name= "dblPackagePrice" type="text" class="validate"  data-position="bottom" pattern="^[1-9]\d{0,7}(?:\.\d{1,4})?|\.\d{1,4}$" minlength="2">
                             <label for="days"><span class="red-text"><b>*</b></span>Set Price:</label>
                           </div>
                       </div>
