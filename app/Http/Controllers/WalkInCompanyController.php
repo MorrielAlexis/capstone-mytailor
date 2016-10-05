@@ -251,27 +251,36 @@ class WalkInCompanyController extends Controller
 
                 if($tempCustomFabrics == null) $tempCustomFabrics = $request->input('fabrics' . ($i+1));
 
-                if($tempPatterns != null){
-                    $patterns[$i][$k] = $tempPatterns;
-                    $customFabric[$i][$k] = $tempCustomFabrics;
-                    $k++;
-                }
+                //if($tempPatterns != null){
+                    $patterns[$i][$j] = $tempPatterns;
+                    $customFabric[$i][$j] = $tempCustomFabrics;
+                //    $k++;
+                //}
             }
             $k = 0;
         }
 
+        for($i = 0; $i < count($patterns); $i++) $patterns[$i] = array_values(array_filter($patterns[$i]));
+
+       
+
 
         for($i = 0; $i < count($values); $i++){
-            for($j = 0; $j < count($patterns[$i]); $j++){
-                $sqlStyles[$i][$j] = \DB::table('tblSegmentPattern AS a')
-                    ->leftJoin('tblSegmentStyleCategory AS b', 'a.strSegPStyleCategoryFK', '=', 'b.strSegStyleCatID')
-                    ->leftJoin('tblSegment AS c', 'b.strSegmentFK', '=', 'strSegmentID')
-                    ->select('c.strSegmentID', 'a.strSegPStyleCategoryFK', 'a.strSegPatternID', 
-                       'a.strSegPName', 'b.strSegStyleName', 'a.dblPatternPrice')
-                    ->where('a.strSegPatternID', $patterns[$i][$j])
-                    ->first();
-            }
+            if(count($patterns[$i]) != 0){
+                for($j = 0; $j < count($patterns[$i]); $j++){
+                    $sqlStyles[$i][$j] = \DB::table('tblSegmentPattern AS a')
+                        ->leftJoin('tblSegmentStyleCategory AS b', 'a.strSegPStyleCategoryFK', '=', 'b.strSegStyleCatID')
+                        ->leftJoin('tblSegment AS c', 'b.strSegmentFK', '=', 'strSegmentID')
+                        ->select('c.strSegmentID', 'a.strSegPStyleCategoryFK', 'a.strSegPatternID', 
+                           'a.strSegPName', 'b.strSegStyleName', 'a.dblPatternPrice')
+                        ->where('a.strSegPatternID', $patterns[$i][$j])
+                        ->first();
+                }
+            }else $sqlStyles[$i] = null;
         }
+
+        //dd($sqlStyles);
+
         for($i = 0; $i < count($values); $i++)
         {   
             $tempFabrics[$i] = $request->input('fabrics' . ($i+1));
@@ -626,32 +635,35 @@ class WalkInCompanyController extends Controller
                 }   
             }
         }
-
+        //dd(count(session()->get('package_segment_pattern')[0][1]));
         $i = 0;
         for($j = 0; $j < count(session()->get('package_segments')); $j++)
         {
             for($k = 0; $k < count(session()->get('package_segments')[$j]); $k++)
             {
-                for($l = 0; $l < count(session()->get('package_segment_pattern')[$j][$k]); $l++)
-                {
-                    if($l == 0)
+                if(count(session()->get('package_segment_pattern')[$j][$k]) != 0){
+                    for($l = 0; $l < count(session()->get('package_segment_pattern')[$j][$k]); $l++)
                     {
-                        $unitStyleTotal[$j][$k] = session()->get('package_segment_pattern')[$j][$k][$l]->dblPatternPrice;
-                        continue;
-                    }
-                    else if(session()->get('package_segment_pattern')[$j][$k][$l]->strSegmentID == session()->get('package_segment_pattern')[$j][$k][$l-1]->strSegmentID)
-                    {
-                        $unitStyleTotal[$j][$k] += session()->get('package_segment_pattern')[$j][$k][$l]->dblPatternPrice; 
-                        $i += 1;
-                    }
-                    else
-                    {
-                        $i = 0;
-                        $unitStyleTotal[$j][$k] = session()->get('package_segment_pattern')[$j][$k][$i]->dblPatternPrice;
-                    }
-                }   
+                        if($l == 0)
+                        {
+                            $unitStyleTotal[$j][$k] = session()->get('package_segment_pattern')[$j][$k][$l]->dblPatternPrice;
+                            continue;
+                        }
+                        else if(session()->get('package_segment_pattern')[$j][$k][$l]->strSegmentID == session()->get('package_segment_pattern')[$j][$k][$l-1]->strSegmentID)
+                        {
+                            $unitStyleTotal[$j][$k] += session()->get('package_segment_pattern')[$j][$k][$l]->dblPatternPrice; 
+                            $i += 1;
+                        }
+                        else
+                        {
+                            $i = 0;
+                            $unitStyleTotal[$j][$k] = session()->get('package_segment_pattern')[$j][$k][$i]->dblPatternPrice;
+                        }
+                    }   
+                }else $unitStyleTotal[$j][$k] = 0;  
             }
         }
+        //dd($unitStyleTotal);
         //dd(session()->get('package_segment_pattern'));
         for($j = 0; $j < count(session()->get('package_segments')); $j++)
         {
