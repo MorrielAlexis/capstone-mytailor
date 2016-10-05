@@ -17,7 +17,7 @@ class CreateJoMeasurementProfile extends Migration
             $table->string('strMeasProfCustIndivFK')->index()->nullable();
             $table->string('strMeasProfCustCompanyFK')->index()->nullable();
             $table->string('strProfileName');
-            $table->string('strSex');
+            $table->string('strSex')->nullable();
             $table->boolean('boolIsActive');
             $table->timestamps();
 

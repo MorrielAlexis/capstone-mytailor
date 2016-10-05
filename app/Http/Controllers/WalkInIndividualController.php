@@ -477,6 +477,7 @@ class WalkInIndividualController extends Controller
             }//dd($priceStyle);
             $styleTotal[$i]['dblPatternPrice'] = $priceStyle;
         }   
+        
         //dd($styleTotal);
         $styFabPrice = 0.00;
         for($i = 0; $i < count($values); $i++){ 
@@ -490,7 +491,7 @@ class WalkInIndividualController extends Controller
         for($i = 0; $i < count($values); $i++){
             for($j = 0; $j < count($styleTotal[$i]); $j++){ //dd($fab[$i][$j]->strFabricName);
                 if($fab[$i][$j]->strFabricName != $fabrics[$i]->strFabricName){
-                    $unitPrice[] = ($values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice']) + ($styleTotal[$i]['dblPatternPrice'] + $fab[$i][$j]->dblFabricPrice);
+                     $unitPrice[] = ($values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice']) + ($styleTotal[$i]['dblPatternPrice'] + $fab[$i][$j]->dblFabricPrice);
                 }else if($fab[$i][$j]->strFabricName == $fabrics[$i]->strFabricName){
                     $unitPrice[] = ($values[$i]['dblSegmentPrice'] + $values[$i]['dblFabricPrice']) + ($styleTotal[$i]['dblPatternPrice']);
                 }else if($fab[$i][$j]->strFabricName == null){
