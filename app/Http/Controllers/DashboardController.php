@@ -84,7 +84,7 @@ class DashboardController extends Controller
             ->get();
 
 
-        $topCustomers = \DB::select('SELECT Concat(tblCustIndividual.strIndivFName, " " , tblCustIndividual.strIndivMName, " " , tblCustIndividual.strIndivLName)as name, COUNT(strIndivID) as ctr FROM tblJobOrder,tblCustIndividual WHERE tblCustIndividual.strIndivID = tblJobOrder.strJO_CustomerFK GROUP BY strIndivID ORDER BY ctr DESC limit 3');
+        $topCustomers = \DB::select('SELECT Concat(tblCustIndividual.strIndivFName, " " , tblCustIndividual.strIndivMName, " " , tblCustIndividual.strIndivLName)as name, COUNT(strIndivID) as ctr FROM tblJobOrder,tblCustIndividual WHERE tblCustIndividual.strIndivID = tblJobOrder.strJO_CustomerFK GROUP BY strIndivID ORDER BY ctr DESC limit 6');
     
 
         return view('dashboard')
