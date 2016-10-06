@@ -105,8 +105,6 @@
                     <th data-field="alteration MinDays">Min. Days of Production</th>
                     <th data-field="alterationPrice">Price</th>
                     <th data-field="Edit">Actions</th>
-                    
-
               	  </tr>
                 </thead>
               
