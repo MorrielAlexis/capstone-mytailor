@@ -53,13 +53,13 @@
             @foreach($sleeves as $j => $sleeve)
               @if($sleeve->boolIsActive == 1)
               <div class="col s12" style="margin-top:20px;">
-                <ul class="collapsible" data-collapsible="accordion" style="border:none;" @if($segment->strSegmentID != $collar->strSegmentFK) hidden @endif>
+                <ul class="collapsible" data-collapsible="accordion" style="border:none;" @if($segment->strSegmentID != $sleeve->strSegmentFK) hidden @endif>
                   <li>
-                    <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $collar->strSegStyleName }}</div>
+                    <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $sleeve->strSegStyleName }}</div>
                     <div class="collapsible-body row overflow-x" style="padding:20px;">  
                       <div class="col s12">
                         @foreach($patterns as $k => $pattern)
-                        <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $collar->strSegStyleCatID) hidden @endif>
+                        <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $sleeve->strSegStyleCatID) hidden @endif>
                           <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
                           <p>
                             <input name="sleeve" value = "{{$pattern->strSegPatternID}}" type="radio" class="filled-in" id="{{$pattern->strSegPatternID}}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" />
