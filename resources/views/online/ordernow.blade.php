@@ -94,6 +94,8 @@
                                     <div class="col s5" style="color:red"><p>{{$mqty}}</p></div>
                                   @elseif($selected->strGarmentCategoryName == 'Women Shirt')
                                     <div class="col s5" style="color:red"><p>{{$wqty}}</p></div>
+                                  @elseif($selected->strGarmentCategoryName == 'Pants')
+                                    <div class="col s5" style="color:red"><p>{{$pqty}}</p></div>
                                   @endif
                                 </div>
                               </div>

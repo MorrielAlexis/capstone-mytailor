@@ -64,25 +64,25 @@
           @endforeach
 
 
-          @foreach($segments as $segment)
-          @foreach($style as $style)
+          @foreach($segments as $i => $segment)
+          @foreach($styles as $j => $style)
           @if($style->boolIsActive == 1)
           <div class="col s12" style="margin-top:20px;">
             <ul class="collapsible" data-collapsible="accordion" style="border:none;" @if($segment->strSegmentID != $style->strSegmentFK) hidden @endif>
               <li>
                 <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $style->strSegStyleName }}</div>
-                <div class="collapsible-body row overflow-x" style="padding:20px;">       
+                <div class="collapsible-body row overflow-x" style="padding:20px;">  
                   <div class="col s12">
-                    @foreach($pattern as $patterns)
-                    <div class="col s2" @if($patterns->strSegPStyleCategoryFK != $style->strSegStyleCatID) hidden @endif>
-                      <img class="materialboxed responsive-img" src="{{URL::asset($patterns->strSegPImage)}}">
+                    @foreach($patterns as $k => $pattern)
+                    <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $style->strSegStyleCatID) hidden @endif>
+                      <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
                       <p>
-                        <input name="rdb_pattern{{ $style->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $patterns->strSegPatternID }}" id="{{ $patterns->strSegPatternID }}" />
-                        <label for="{{$patterns->strSegPatternID}}"><font size="+1"><b>{{$patterns->strSegPName}}</b></font></label>
+                        <input name="ppleats" value = "{{$pattern->strSegPatternID}}" type="radio" class="filled-in" id="{{$pattern->strSegPatternID}}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" />
+                        <label for="{{$pattern->strSegPatternID}}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}">{{$pattern->strSegPName}} {{ number_format($pattern->dblPatternPrice, 2) }} PHP</label>
                       </p>
                     </div>
                     @endforeach
-                  </div>               
+                  </div>                 
                 </div>
               </li>
             </ul>
@@ -108,10 +108,6 @@
 @section('scripts')
 
   <script>
-    
-    $(document).ready(function(){
-      $('.modal-trigger').leanModal();
-    });
 
     $(document).ready(function(){
       $('ul.tabs').tabs('select_tab', 'tab_id');

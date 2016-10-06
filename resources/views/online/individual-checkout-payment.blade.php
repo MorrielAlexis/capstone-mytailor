@@ -102,6 +102,8 @@
                             </tr>
                           @endforeach
                         @endif
+
+
                          @if($wsegment == 1)
                           <tr style="border:1px teal solid">
                             <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)">{{$wqty}}<b></b></td>
@@ -126,6 +128,36 @@
                               <td class="right" style="border:none; color:teal; padding-right:10%">Style Name and Pattern</td>
                               <td style="border:1px teal solid"> <br> <font color="gray"><b><i>{{$wstyle->strSegStyleName}} {{$wstyle->strSegPName}}</i></b></font></td>
                               <td style="border:1px teal solid">PHP {{number_format ($wstyle->dblPatternPrice , 2)}}</td>
+                              <td style="border:1px teal solid"></td>
+                              <td style="border:1px teal solid"></td>  
+                            </tr>
+                          @endforeach
+                        @endif
+
+                        @if($psegment == 1)
+                          <tr style="border:1px teal solid">
+                            <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)">{{$pqty}}<b></b></td>
+                            <td style="border:1px teal solid; padding-left:5%; padding-right:5%; background-color:rgba(52, 162, 232, 0.2)"><b>{{$pname}}</b></td>
+                            <td style="padding-left:2%; padding-right:2%; background-color:rgba(52, 162, 232, 0.2)"></td>
+                            <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>PHP {{number_format($pprice, 2)}}</b></td>
+                            <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b>PHP {{number_format($plinetotal, 2)}}</b></td>
+                            <td style="border:1px teal solid; background-color:rgba(52, 162, 232, 0.2)"><b></b>PHP {{number_format($ptotal, 2)}}</td>
+                          </tr>
+                          <tr style="border:1px teal solid">
+                            <td style="border:1px teal solid"></td>
+                            <td style="border:none; color:teal; padding-left:10%">Fabric Name</td>
+                            <td style="padding-left:4%; padding-right:4%; border:1px teal solid">{{$pfname}}</td>
+                            <td style="border:1px teal solid">PHP {{number_format($pfprice, 2)}}</td>
+                            <td style="border:1px teal solid"></td>
+                            <td style="border:1px teal solid"></td>
+                          </tr>
+
+                          @foreach($pstyles as $pstyle)
+                            <tr style="border:1px teal solid">
+                              <td style="border:1px teal solid"></td>
+                              <td class="right" style="border:none; color:teal; padding-right:10%">Style Name and Pattern</td>
+                              <td style="border:1px teal solid"> <br> <font color="gray"><b><i>{{$pstyle->strSegStyleName}} {{$pstyle->strSegPName}}</i></b></font></td>
+                              <td style="border:1px teal solid">PHP {{number_format ($pstyle->dblPatternPrice , 2)}}</td>
                               <td style="border:1px teal solid"></td>
                               <td style="border:1px teal solid"></td>  
                             </tr>
@@ -158,7 +190,7 @@
                       </div>
 
                       <div class="col s12">
-                        <div class="col s4" style="color:gray; font-size:15px"><p><b>VAT (12%)</b></p></div>
+                        <div class="col s4" style="color:gray; font-size:15px"><p><b>VAT ( {{$vat}} %)</b></p></div>
                             <div class="col s8" style="color:black;"><p><input id="vat_total" value = "PHP {{number_format($vat_total, 2)}}" name="vat_total" type="text" class="" readonly /></p></div>
                       </div>
 

@@ -44,63 +44,68 @@
           {!! Form::open(['url' => 'customize-pants-style-bottom', 'method' => 'post']) !!}
           <div class="col s12">
             <div><button class="right btn-flat teal accent-4 white-text" type="submit">Next step</button></div>
-            <div><a class="left btn-flat teal accent-4 white-text" href="{{URL::to('/customize-pants-style-pleats')}}">Previous step</a></div>
           </div>
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div> 
 
-          @foreach($segments as $segment)
-          <div class="col s12" style="margin-top:20px;">
-            <ul class="collapsible" data-collapsible="accordion" style="border:none;">  
-              @foreach($pocketSegment as $pocket)
+
+          @foreach($segments as $i => $segment)
+            @foreach($pocketSegments as $j => $pocket)
               @if($pocket->boolIsActive == 1)
-              <li @if($segment->strSegmentID != $pocket->strSegmentFK) hidden @endif>
-                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $pocket->strSegStyleName }}</div>
-                <div class="collapsible-body row overflow-x" style="padding:20px;">       
-                  <div class="col s12">
-                    @foreach($patterns as $pattern)
-                    <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $pocket->strSegStyleCatID) hidden @endif>
-                      <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
-                      <p>
-                        <input name="rdb_pattern{{ $pocket->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
-                        <label for="{{ $pattern->strSegPatternID }}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
-                      </p>
+              <div class="col s12" style="margin-top:20px;">
+                <ul class="collapsible" data-collapsible="accordion" style="border:none;" @if($segment->strSegmentID != $pocket->strSegmentFK) hidden @endif>
+                  <li>
+                    <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $pocket->strSegStyleName }}</div>
+                    <div class="collapsible-body row overflow-x" style="padding:20px;">  
+                      <div class="col s12">
+                        @foreach($patterns as $k => $pattern)
+                        <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $pocket->strSegStyleCatID) hidden @endif>
+                          <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
+                          <p>
+                            <input name="ppocket" value = "{{$pattern->strSegPatternID}}" type="radio" class="filled-in" id="{{$pattern->strSegPatternID}}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" />
+                            <label for="{{$pattern->strSegPatternID}}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}">{{$pattern->strSegPName}} PHP {{ number_format($pattern->dblPatternPrice, 2) }}</label>
+                          </p>
+                        </div>
+                        @endforeach
+                      </div>                 
                     </div>
-                    @endforeach
-                  </div>                  
-                </div>
-              </li>
+                  </li>
+                </ul>
+              </div>
               @endif
-              @endforeach
-            
-              @foreach($backSegment as $back)
+            @endforeach
+          
+     
+            <!-- @foreach($backSegments as $j => $back)
               @if($back->boolIsActive == 1)
-              <li @if($segment->strSegmentID != $back->strSegmentFK) hidden @endif>
-                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $back->strSegStyleName }}</div>
-                <div class="collapsible-body row overflow-x" style="padding:20px;">  
-                  <div class="col s12">
-                    @foreach($patterns as $pattern)
-                    <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $back->strSegStyleCatID) hidden @endif>
-                      <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
-                      <p>
-                        <input name="rdb_pattern{{ $back->strSegStyleCatID }}" type="radio" class="filled-in" value = "{{ $pattern->strSegPatternID }}" id="{{ $pattern->strSegPatternID }}" />
-                        <label for="{{ $pattern->strSegPatternID }}"><font size="+1"><b>{{$pattern->strSegPName}}</b></font></label>
-                      </p>
+              <div class="col s12" style="margin-top:20px;">
+                <ul class="collapsible" data-collapsible="accordion" style="border:none;" @if($segment->strSegmentID != $back->strSegmentFK) hidden @endif>
+                  <li>
+                    <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $back->strSegStyleName }}</div>
+                    <div class="collapsible-body row overflow-x" style="padding:20px;">  
+                      <div class="col s12">
+                        @foreach($patterns as $k => $pattern)
+                        <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $back->strSegStyleCatID) hidden @endif>
+                          <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
+                          <p>
+                            <input name="pback" value = "{{$pattern->strSegPatternID}}" type="radio" class="filled-in" id="{{$pattern->strSegPatternID}}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" />
+                            <label for="{{$pattern->strSegPatternID}}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}">{{$pattern->strSegPName}} PHP {{ number_format($pattern->dblPatternPrice, 2) }}</label>
+                          </p>
+                        </div>
+                        @endforeach
+                      </div>                 
                     </div>
-                    @endforeach
-                  </div>                
-                </div>
-              </li>  
-              @endif
-              @endforeach            
-            </ul>
-          </div>
-          @endforeach        
+                  </li>
+                </ul>
+              </div>
+              @endif 
+            @endforeach   -->
+          @endforeach          
+           
 
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12">
             <div><button class="right btn-flat teal accent-4 white-text" type="submit">Next step</button></div>
-            <div><a class="left btn-flat teal accent-4 white-text" href="{{URL::to('/customize-pants-style-pleats')}}">Previous step</a></div>
-          </div>
+            
 
         </div>
         {!! Form::close() !!}
@@ -116,9 +121,6 @@
 
   <script>
     
-    $(document).ready(function(){
-      $('.modal-trigger').leanModal();
-    });
 
     $(document).ready(function(){
       $('ul.tabs').tabs('select_tab', 'tab_id');
@@ -133,4 +135,6 @@
     });
 
   </script>
+
+@stop
         

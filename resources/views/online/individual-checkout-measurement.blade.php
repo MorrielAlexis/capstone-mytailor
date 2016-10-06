@@ -62,7 +62,7 @@
                             <input type="hidden" name="" value="{{ $measurement->strMeasurementDetailID }}">              
                             <input name="{{ $measurement->strMeasurementDetailID }}" required class= "" type="number">
                             <label style="color:teal" for = "{{ $measurement->strMeasurementDetailID }}"><b>{{ $measurement->strMeasDetailName }}</b> (cm): </label>
-                        </div>
+                          </div>
                       </div>
                  
                     @endforeach
@@ -126,8 +126,9 @@
                   @endforeach
                 </select>
             </div>
-           @endforeach
           </div>
+          @endforeach
+          
 
 
         <!--bottom buttons-->

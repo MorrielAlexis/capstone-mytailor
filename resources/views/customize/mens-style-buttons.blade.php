@@ -117,7 +117,7 @@
           <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
           <div class="col s12">
             <div><button class="right btn-flat teal accent-4 white-text" type="submit">Next step</button></div>
-            <div><a class="left btn-flat teal accent-4 white-text" href="{{URL::to('/customize-mens-style-cuffs')}}">Previous step</a></div>
+            
           </div>
 
         </div>
@@ -144,6 +144,16 @@
 
     $(document).ready(function() {
       $('select').material_select();
+    });
+
+    $(document).ready(function() {
+      Materialize.updateTextFields();
+    });
+
+  </script>
+
+@stop
+        select();
     });
 
     $(document).ready(function() {
