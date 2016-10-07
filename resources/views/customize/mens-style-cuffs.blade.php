@@ -45,7 +45,8 @@
         <div id="tabCuffs" class="col s12 white" style="padding:20px; border 2px teal accent-4 white-text;">
           
           <div class="col s12">
-            <div><button class="right btn-flat teal accent-4 white-text" type="submit">Next step</button></div>
+            <div class="left col s6"><label style="font-size: 15px;"><br/>Want something differnt? Click on 'Select Fabric' for a more distinct design then click 'Continue' when done</label></div>
+            <div class="right col s6" style="margin-top:20px;"><button class="right btn-flat teal accent-4 white-text" type="submit">Continue</button></div>
           </div>
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
 
@@ -79,7 +80,7 @@
             @foreach($cuffs as $j => $cuff)
               @if($cuff->boolIsActive == 1)
               <li @if($segment->strSegmentID != $cuff->strSegmentFK) hidden @endif>
-                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $cuff->strSegStyleName }}</div>
+                <div class="collapsible-header active" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $cuff->strSegStyleName }}</div>
                 <div class="collapsible-body row overflow-x" style="padding:20px;">  
                   <div class="col s12">
                     @foreach($patterns as $k => $pattern)
@@ -104,27 +105,27 @@
           <div class="divider dashed" style="height:2px;"></div>
 
           <div class="col s12" style="margin-top:20px;">
-            <div class="col s3" style="padding-left:20px;"><h5><b>Contrast Cuffs</b></h5></div>
-            <div class="col s6" style="padding-left:20px;"><h5><b>Inside fabric for collar & cuffs</b></h5></div>
-            <div class="col s3" style="padding-left:20px;"><h5><b>Select Cufflinks</b></h5></div>
+            <div class="center col s4" style="padding-left:20px; border-right:2px gray solid; color:dimgray"><h5><b>Contrast Cuffs</b></h5></div>
+            <div class="center col s4" style="padding-left:20px; color:dimgray"><h5><b>Inside fabric for collar & cuffs</b></h5></div>
+            <div class="center col s4" style="padding-left:20px; border-left:2px gray solid; color:dimgray"><h5><b>Select Cufflinks</b></h5></div>
           </div>
 
           <div class="col s12">
 
-            <div class="col s3" style="padding:20px;">
-              <img class="materialboxed responsive-img" src="imgDesignPatterns/contrastcuff.jpg">
-              <div><a style="color:white; margin-top:10px" class="modal-trigger btn tooltipped teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#cuffContrast"><font size="+1">Select Fabric</font></a></div>
+            <div class="center col s4 z-depth-1" style="padding:20px; border-right:2px gray solid">
+              <center><img class="center materialboxed" src="imgDesignPatterns/contrastcuff.jpg" style="height:80%; width: 80%"></center>
+              <div><a style="color:white; margin-top:10px; padding-left: 3%; padding-right: 3%" class="modal-trigger btn tooltipped teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#cuffContrast"><font size="+1">Select Fabric</font></a></div>
             </div>             
 
-            <div class="col s6" style="padding:20px;">
-              <div class="col s3"><img class="materialboxed responsive-img" src="imgDesignPatterns/insidecollar.jpg"></div>
-              <div class="col s3"><img class="materialboxed responsive-img" src="imgDesignPatterns/insidecuff.jpg"></div>
-              <div class="col s12"><a style="color:white; margin-top:10px" class="modal-trigger btn tooltipped teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#fabricInside"><font size="+1">Select Fabric</font></a></div>
+            <div class="center col s4" style="padding:20px;">
+              <div class="col s6"><center><img class="materialboxed z-depth-1center " src="imgDesignPatterns/insidecollar.jpg" style="height:80%; width: 80%"></center></div>
+              <div class="col s6"><center><img class="materialboxed z-depth-1center " src="imgDesignPatterns/insidecuff.jpg" style="height:80%; width: 80%"></center></div>
+              <div class="col s12"><a style="color:white; margin-top:10px; padding-left: 3%; padding-right: 3%" class="modal-trigger btn tooltipped teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#fabricInside"><font size="+1">Select Fabric</font></a></div>
             </div> 
 
-            <div class="col s3" style="padding:20px;">
-              <img class="materialboxed responsive-img" src="imgDesignPatterns/cufflinksamp.jpg">
-              <div><a style="color:white; margin-top:10px" class="modal-trigger btn tooltipped teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#cufflinks"><font size="+1">Select Cufflinks</font></a></div>
+            <div class="center col s4 z-depth-1" style="padding:20px; border-left:2px gray solid">
+              <center><img class="materialboxed" src="imgDesignPatterns/cufflinksamp.jpg" style="height:80%; width: 80%"></center>
+              <div class="center"><a style="color:white; margin-top:10px; padding-left: 3%; padding-right: 3%" class="center modal-trigger btn tooltipped teal" data-position="bottom" data-delay="50" data-tooltip="Click to choose a fabric" href="#cufflinks"><font size="+1"><center>Select Cufflinks</center></font></a></div>
             </div> 
 
           </div>     
@@ -302,7 +303,7 @@
                               <div class="card-panel teal lighten-4 z-depth-1">
                                 <div class="row valign-wrapper">
                                   <div class="center col s4">
-                                    <img src="{{URL::asset($contrast->strFabricImage)}}"class="responsive-img"> <!-- notice the "circle" class -->
+                                    <img src="{{URL::asset($contrast->strFabricImage)}}" class="responsive-img"> <!-- notice the "circle" class -->
                                   </div>
                                   <div class="col s8"> 
                                     <p><b id="{{ 'fabricText'.$contrast->strFabricID }}">{{ $contrast->strFabricName }}</b></p> <!-- This will be the name of the pattern -->
@@ -369,9 +370,10 @@
                   </div>
               <!--End of modal for Cuff Contrast -->
 
-          <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
+          <div class="col s12 divider" style="height:4px; margin-bottom:0%; margin-top:5%;"></div>
           <div class="col s12">
-            <div><button class="right btn-flat teal accent-4 white-text" type="submit">Next step</button></div>
+            <div class="left col s6"><label style="font-size: 15px;"><br/>Want something differnt? Click on 'Select Fabric' for a more distinct design then click 'Continue' when done</label></div>
+            <div class="right col s6" style="margin-top:20px;"><button class="right btn-flat teal accent-4 white-text" type="submit">Continue</button></div>
           </div>
 
         </div>

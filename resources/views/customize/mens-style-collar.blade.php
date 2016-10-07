@@ -44,26 +44,32 @@
         {!! Form::open(['url' => 'customize-mens-style-cuffs', 'method' => 'POST']) !!}
         <div id="tabCollar" class="col s12 white" style="padding:20px; border 2px teal accent-4 white-text;">
           
-          <div class="col s12"><button class="btn-flat right teal accent-4 white-text" type="submit">Next step</button></div>
+          <div class="left col s6"><label style="font-size: 15px;"><br/>Design your own clothing by choosing among available segment patterns then click 'Continue' when done</label></div>
+          <div class="right col s6" style="margin-top:20px;"><button class="right btn-flat teal accent-4 white-text" type="submit">Continue</button></div>
           <div class="col s12 divider" style="height:4px; margin-top:10px;"></div>
           
           <div class="col s12" style="margin-top:10px;">
             <label class="col s2"><font size="+1"><b>Selected Fabric</b></font></label>
-            <label class="col s5"><a class="btn teal accent-4 white-text" href="{{URL::to('/customize-mens-fabric')}}"><font size="+1">Edit / Change Fabric</font></a></label>
-          </div>
+            
+          
           
           @foreach($fabrics as $fabric)
           <div class="col s12">
             <div class="col s2">
               <img class="responsive-img" src="{{ URL::asset($fabric->strFabricImage) }}">
             </div>
-            <div class="col s5" style="background-color:#eeeeee;">
+            <div class="col s5">
+              <div style="background-color:#eeeeee; padding:3%">
                 <p>Fabric Name: {{ $fabric->strFabricName }}</p>
                 <p>Swatch Code: {{ $fabric->strFabricCode }}</p>
                 <p>Price:       {{ number_format($fabric->dblFabricPrice, 2) }} PHP</p>
-            </div>
+              </div>
+                <a class="btn teal darken-2 white-text tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to choose a specific fabric for your collar" href="{{URL::to('/customize-mens-fabric')}}" style="padding-left:2%; padding-right: 2%; margin-top:3%"><font size="+1">Edit / Change Fabric</font></a>
+         
           </div>
           @endforeach
+          
+          </div>
 
           @foreach($segments as $i => $segment)
           @foreach($collars as $j => $collar)
@@ -71,16 +77,20 @@
           <div class="col s12" style="margin-top:20px;">
             <ul class="collapsible" data-collapsible="accordion" style="border:none;" @if($segment->strSegmentID != $collar->strSegmentFK) hidden @endif>
               <li>
-                <div class="collapsible-header" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $collar->strSegStyleName }}</div>
+                <div class="collapsible-header active" style="background-color:#00838f; color:white; height:30px; padding-top:10px; padding-bottom:50px; font-size:18px">{{ $collar->strSegStyleName }}</div>
                 <div class="collapsible-body row overflow-x" style="padding:20px;">  
                   <div class="col s12">
                     @foreach($patterns as $k => $pattern)
-                    <div class="col s2" @if($pattern->strSegPStyleCategoryFK != $collar->strSegStyleCatID) hidden @endif>
-                      <img class="materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
-                      <p>
-                        <input name="mcollar" value = "{{$pattern->strSegPatternID}}" type="radio" class="filled-in" id="{{$pattern->strSegPatternID}}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" />
-                        <label for="{{$pattern->strSegPatternID}}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}">{{$pattern->strSegPName}} {{ number_format($pattern->dblPatternPrice, 2) }} PHP</label>
+                    <div class="col s12 m3 " @if($pattern->strSegPStyleCategoryFK != $collar->strSegStyleCatID) hidden @endif>
+                      <div class="center col s12">
+                      <img class="center materialboxed responsive-img" src="{{URL::asset($pattern->strSegPImage)}}">
+                      </div>
+                      <div class="col s12">
+                      <p align="center" style="margin-left: 0; margin-right: 8%">
+                        <input name="mcollar" value = "{{$pattern->strSegPatternID}}" type="radio" class="left filled-in" id="{{$pattern->strSegPatternID}}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}" />
+                        <label for="{{$pattern->strSegPatternID}}{{ $i+1 }}{{ $j+1 }}{{ $k+1 }}"><b style="color:teal">{{$pattern->strSegPName}}</b> <br/> {{ number_format($pattern->dblPatternPrice, 2) }} PHP</label>
                       </p>
+                      </div>
                     </div>
                     @endforeach
                   </div>                 
@@ -237,8 +247,9 @@
                   </div>
               <!--End of modal for choosing fabric--> 
 
-          <div class="col s12 divider" style="height:4px; margin-bottom:10px;"></div>
-          <div class="col s12"><button class="right btn-flat teal accent-4 white-text" type="submit">Next step</button></div>
+          <div class="col s12 divider" style="height:4px; margin-bottom:0%; margin-top:5%;"></div>
+          <div class="left col s6"><label style="font-size: 15px;"><br/>Design your own clothing by choosing among available segment patterns then click 'Continue' when done</label></div>
+          <div class="right col s6" style="margin-top:20px;"><button class="right btn-flat teal accent-4 white-text" type="submit">Continue</button></div></div>
 
         </div>
         <!--END OF COLLAR TAB-->

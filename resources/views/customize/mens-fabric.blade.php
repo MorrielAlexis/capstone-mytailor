@@ -89,15 +89,16 @@
 
       </div>
      
-      <div class="col s12 divider dashed" style="height:4px; margin-top:10px; margin-bottom:10px;"></div>
+     
       
       
       {!! Form::open(['url' => 'customize-mens-style-collar', 'method' => 'post', "id" => "order-form"]) !!}
-      <div class="col s12" style="margin-bottom:20px;"><button class="right btn-flat teal accent-4 white-text" type="submit">Continue</button></div>
-
+      <div class="left col s6"><label style="font-size: 15px;"><br/>Choose only one among the following fabrics then click 'Continue' when done</label></div>
+      <div class="right col s6" style="margin-bottom:20px;"><button class="right btn-flat teal accent-4 white-text" type="submit">Continue</button></div>
+       <div class="col s12 divider dashed" style="height:4px; margin-top:10px; margin-bottom:10px;"></div>
       @foreach($fabrics as $fabric)
-      <div class="col s12 fabric-general {{ $fabric->strFabricTypeFK }} {{ $fabric->strFabricPatternFK }} {{ $fabric->strFabricColorFK }} {{ $fabric->strFabricThreadCountFK }}" style="margin-bottom:20px; padding:20px; padding-top:0;">
-        <div class="col s6">
+      <div class="col s12 m4 fabric-general {{ $fabric->strFabricTypeFK }} {{ $fabric->strFabricPatternFK }} {{ $fabric->strFabricColorFK }} {{ $fabric->strFabricThreadCountFK }}" style="margin-bottom:20px; padding:20px; padding-top:0;">
+        <div class="col s12 row">
           <div class="center col s2 " style="margin-top:100px">
             <input name="mfabric" type="radio" class="cbx-fabric filled-in" value = "{{$fabric->strFabricID}}" id="{{$fabric->strFabricID}}" />
             <label for="{{$fabric->strFabricID}}"></label>
@@ -105,15 +106,15 @@
 
           <div class="col s10">
             <div class="card-panel teal lighten-4 z-depth-1" style="height:265px">
-              <div class="row valign-wrapper">
-                <div class="center col s6">
-                  <img src="{{URL::asset($fabric->strFabricImage)}}"class="responsive-img">
-                </div>
-                <div class="col s6"> 
+              <div class="row">
+                <div class="center col s12">
+                  <img class="z-depth-1" src="{{URL::asset($fabric->strFabricImage)}}" style="height:80%; width:80%">
+                </div><br/>
+                <div class="center col s12"> 
                   <span><b>{{$fabric->strFabricName}}</b></span>
                   <br/>
-                  <span class="black-text">
-                    <b>{{$fabric->strFabricCode}}</b> <br>
+                  <span class="center black-text">
+                    <b style="color:teal">{{$fabric->strFabricCode}}</b> <br>
                     <b>{{ number_format($fabric->dblFabricPrice, 2) }} PHP</b>
                   </span>
                 </div>
@@ -121,6 +122,7 @@
             </div>
           </div>
         </div>
+
       </div>
       @endforeach 
       {!! Form::close() !!}
