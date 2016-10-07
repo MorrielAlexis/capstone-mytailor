@@ -444,8 +444,8 @@ Route::get('/track', 'OnlineCustomerProfileIndividualController@trackJob');
 			Route::get('home', 'PaymentCompanyController@index');
 			Route::get('company-info', 'PaymentCompanyController@companyInfo'); 
 			Route::post('save-payment', 'PaymentCompanyController@savePayment');
-			Route::get('print-receipt', 'PaymentIndividualController@printReceipt');
-			Route::get('generate-receipt', 'PaymentIndividualController@generateReceipt');
+			Route::get('print-receipt', 'PaymentCompanyController@printReceipt');
+			Route::get('generate-receipt', 'PaymentCompanyController@generateReceipt');
 		});
 	});
 
@@ -458,6 +458,7 @@ Route::get('/track', 'OnlineCustomerProfileIndividualController@trackJob');
 
 		Route::group(['prefix' => 'company'], function() {
 			Route::get('home', 'CollectionCompanyController@index');
+			Route::get('payment-records', 'CollectionCompanyController@paymentRecord');
 		});
 	});
 

@@ -29,11 +29,12 @@
 						<a class="center" href="#!" onclick="window.open('/transaction/payment/company/generate-receipt')">
 							<center><img style="height:20%; width:20%" src="{{URL::to('img/temp-online.png')}}"></center>
 							<p align="center" style="font-size:30px; color:teal"><center><b><u><font size="4em">Print order receipt</font></u></b></center></p>
+							<p align="center" style="color:gray"><center>Kindly click done to go back to homepage</center></p>
 						</a>
 						
 						<br><br>
 						<div class="col s12"><div class="divider" style="height:2px; background-color:teal; margin-bottom:18px"></div></div>
-						<right><button type="submit" class="right" style="background-color:teal; color:white; height:4%; width:8%">Done!</button></right>
+						<right><button type="submit" class="right btn" style="background-color:teal; color:white">Done!</button></right>
 
 
 	            	</div> <!-- end of col s12 -->

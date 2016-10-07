@@ -67,7 +67,7 @@
 				                    	<div class="col s12" style="margin-top:30px"><div class="divider" style="height:3px; color:gray"></div></div>
 
 									<!-- Customer Info -->
-										<div class="col s12" style="margin-top:10px">
+										<div class="col s12" style="margin-top:10px" hidden>
 											<div class="col s12">
 					                    		<div style="color:black" class="col s12">     
 					                    			<div class="col s3" style="color:teal; margin-top:4%"><b>Company Name:</b></div>            
@@ -109,7 +109,7 @@
 
 									<!--PAYMENT PROCESS STARTS HERE-->
 									<!--START OF PAYMENT PROCESS HERE-->
-					                    	<div class="col s12" style="padding-left:5%">
+					                    	<div class="col s12" style="padding-left:5%" hidden>
 												<div class="input-field col s9">
 													<div class="container">
 														<select class="browser-default tooltipped" data-position="bottom" data-delay="50" data-tooltip="In case of multiple pending payments" style="margin-left:45%">
@@ -122,7 +122,7 @@
 												</div>
 											</div>
 
-									<div class="col s12" style="margin-top:30px">
+									<div class="col s12" style="margin-top:30px" hidden>
 										<div class="col s7">
 										<div class="card-panel">
 											<div class="card-content">

@@ -93,14 +93,16 @@
 					</tr>
 				</thead>
 				<tbody>
+				@foreach($customer_orders as $order)
 					<tr>
 						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%"><b>{{ $joId }}</b></td>
-						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%">{{ $payments->strTermsOfPayment }}</td>
+						<td style="width:40%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%">{{ $order->strTermsOfPayment }}</td>
 						
 						<td style="width:60%">
-							P {{ number_format($payments->dblOrderTotalPrice, 2) }} 
+							P {{ number_format($order->dblOrderTotalPrice, 2) }} 
 						</td>
 					</tr>
+				@endforeach
 				</tbody>
 				
 
@@ -111,9 +113,10 @@
 		<div class="col s12" style="margin-top:1%">
 			<table width="98%">
 				<tbody>
+				@foreach($customer_orders as $order)
 					<tr>
 						<td style="width:50%; padding-top:10px; padding-bottom:10px; background-color:teal; color:white; border: 2px white solid">AMOUNT PAID</td>
-						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1.2em"><b>P {{ number_format($payments->dblAmountToPay,2) }}</b></td>
+						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1.2em"><b>P {{ number_format($order->dblAmountToPay,2) }}</b></td>
 					</tr>
 					<tr>
 						<td style="width:50%; padding-top:10px; padding-bottom:10px; background-color:teal; color:white; border: 2px white solid">AMOUNT TENDERED</td>
@@ -124,15 +127,15 @@
 						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1em">P {{ number_format($amtChange, 2) }}</td>
 					</tr>
 					<tr>
-						@if( $payments->dblOutstandingBal != 0)
+						@if( $order->dblOutstandingBal != 0)
 							<td style="width:50%; padding-top:10px; padding-bottom:10px; background-color:teal; color:white; border: 2px white solid">OUTSTANDING BALANCE</td>
 							<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1.2em"><b>P {{ number_format($newBalance, 2) }}</b></td>
 						@endif
 					</tr>
-					@if( $payments->dblOutstandingBal != 0 )
+					@if( $order->dblOutstandingBal != 0 )
 					<tr>
 						<td style="width:50%; padding-top:10px; padding-bottom:10px; background-color:teal; opacity:0.80; color:white; border: 2px white solid">DUE DATE FOR PAYMENT</td>
-						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1.2em; color:teal"><b>{{ $payments->dtPaymentDueDate }}</b> <br><font color="gray" size="15px">*Pay balance before or on the said date</font></td>
+						<td style="width:50%; padding-top:10px; padding-bottom:10px; padding-left:10%; padding-right:10%; font-size:1.2em; color:teal"><b>{{ $order->dtPaymentDueDate }}</b> <br><font color="gray" size="15px">*Pay balance before or on the said date</font></td>
 					</tr>
 					@endif
 					<!-- <tr>
@@ -141,7 +144,7 @@
 							<b>{!! session('outstandingBal') !!} PHP</b>
 						</td>
 					</tr> -->
-
+					@endforeach
 				</tbody>
 			</table>
 		</div>

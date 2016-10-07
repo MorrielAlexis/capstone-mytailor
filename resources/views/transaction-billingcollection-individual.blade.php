@@ -104,7 +104,7 @@
 								
 								@foreach($customers as $customer)
 									@foreach($cust as $custs)
-										@if($customer->boolIsActive == 1 AND $customer->strJO_CustomerFK == $custs->strIndivID AND $customer->strTransactionFK == $custs->strJobOrderID)				
+										@if($customer->boolIsActive == 1 AND $customer->strJO_CustomerFK == $custs->strIndivID AND $customer->strTransactionFK == $custs->strJobOrderID)			
 											@if($customer->strPaymentStatus == "Pending")	
 											<tr style="background-color:rgba(54, 162, 235, 0.2)" @if($customer->strJO_CustomerFK != $custs->strIndivID) hidden @endif>	
 												<td class="center"><a class="modal-trigger tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click to see order summary" href="#view{{ $customer->strPaymentID }}"><b>{{ $customer->strPaymentID }}</b></a></td>									
@@ -135,12 +135,13 @@
 												<td class="center" style="color:teal">P {{ number_format($customer->dblOrderTotalPrice, 2) }}</td>
 												<td class="center">P {{ number_format(($customer->dblOrderTotalPrice/2), 2) }}</td>
 												<td class="center">P {{ number_format($customer->dblAmountToPay, 2) }}</td>
-												<td class="center">P {{ number_format($customer->dblOutstandingBal, 2)}}</td>
-													@if($customer->strPaymentStatus != "Pending") 
-														<td class="center" style="color:teal">Completed</td>
-													@elseif($customer->strPaymentStatus == "Pending")
-														<td class="center" style="color:teal" >{{ $customer->dtPaymentDueDate }}</td>
-													@endif
+												@if($customer->strPaymentStatus != "Pending") 
+												<td class="center">No balance</td>
+												<td class="center" style="color:teal">Completed</td>
+												@elseif($customer->strPaymentStatus == "Pending")
+												<td class="center">{{ number_format($customer->dblOutstandingBal, 2)}}</td>
+												<td class="center" style="color:teal" >{{ $customer->dtPaymentDueDate }}</td>
+												@endif
 												<td class="center" style="color:green"><i>{{ $customer->strPaymentStatus }}</i></td>
 													
 											</tr>

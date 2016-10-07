@@ -22,22 +22,64 @@ class CollectionCompanyController extends Controller
 
     public function index()
     {
-        $companies = \DB::table('tblJobOrder AS a')
+
+        return redirect('transaction/collection/company/payment-records');
+
+    }
+
+    public function paymentRecord(){
+
+        $customers  = \DB::table('tblJobOrder AS a')
                 ->leftJoin('tblJOPayment AS b', 'a.strJobOrderID', '=', 'b.strTransactionFK')
                 ->leftJoin('tblCustCompany AS c', 'c.strCompanyID', '=', 'a.strJO_CustomerCompanyFK')
                 ->select('a.*', 'b.*', 'c.strCompanyID', 'c.strCompanyName')
                 ->orderBy('b.strPaymentID')
                 ->get();
-
-        $comp = \DB::table('tblCustCompany AS a')
+        //dd($customers);
+        $cust = \DB::table('tblCustCompany AS a')
                 ->leftJoin('tblJobOrder AS b', 'a.strCompanyID', '=', 'b.strJO_CustomerCompanyFK')
-                ->select('a.strCompanyID', 'a.strCompanyName','b.*')
+                ->select('a.strCompanyID', 'a.strCompanyName', 'b.*')
                 ->orderBy('b.strJobOrderID')
                 ->get();
 
+        $orders = \DB::table('tblCustCompany AS a')
+                ->leftJoin('tblJobOrder AS b', 'a.strCompanyID', '=', 'b.strJO_CustomerCompanyFK')
+                ->leftJoin('tblJOSpecific AS c', 'b.strJobOrderID', '=', 'c.strJobOrderFK')
+                ->leftJoin('tblSegment AS d', 'c.strJOSegmentFK', '=', 'd.strSegmentID')
+                ->leftJoin('tblGarmentCategory as e', 'd.strSegCategoryFK', '=', 'e.strGarmentCategoryID')
+                ->leftJoin('tblFabric AS f', 'c.strJOFabricFK', '=', 'f.strFabricID')
+                ->leftJoin('tblJOSpecificSegmentPattern AS g', 'c.strJOSpecificID', '=', 'g.strJobOrderSpecificFK')
+                ->leftJoin('tblSegmentPattern AS h', 'g.strSegmentPatternFK', '=', 'h.strSegPatternID')
+                ->leftJoin('tblSegmentStyleCategory AS i', 'h.strSegPStyleCategoryFK', '=', 'i.strSegStyleCatID')
+                ->leftJoin('tblJOPayment AS j', 'b.strJobOrderID', '=', 'j.strTransactionFK')
+                ->select('a.strCompanyID', 'b.*', 'c.*', 'd.*', 'e.*', 'f.*', 'g.*', 'h.*', 'i.*', 'j.*')
+                ->orderBy('b.strJobOrderID')
+                ->get();
+
+
+        $empEmail = \Auth::user()->email; //dd($empEmail);
+        $emp = \DB::table('tblEmployee')
+                ->select('tblEmployee.strEmployeeID')
+                ->where('tblEmployee.strEmailAdd', 'LIKE', $empEmail)
+                ->get(); //dd($emp);
+
+        for($i = 0; $i < count($emp); $i++){
+            $empId = $emp[$i]->strEmployeeID;
+        } 
+
+        $empname = \DB::table('tblEmployee')
+                    ->select('strEmployeeID', \DB::raw('CONCAT(strEmpFName, " ", strEmpMName, " ", strEmpLName) AS employeename'))
+                    ->where('strEmployeeID', '=', $empId)//Temporary, since naka-hardcode pa yung pagset ng employee sa naunang process.
+                    ->first(); 
+
+        session(['employee' => $empname]);
+
         return view('transaction-billingcollection-company')
-                ->with('companies', $companies)
-                ->with('comp', $comp);
+            ->with('customers', $customers)
+            ->with('cust', $cust)
+            ->with('orders', $orders)
+            ->with('empname', $empname);
+
     }
 
     /**

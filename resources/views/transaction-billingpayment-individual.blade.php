@@ -80,20 +80,22 @@
 						                        </div>
 					                    	</div>
 					                    	<div class="col s12">
-					                    		<div class="col s12">
-						                    		@if(count($customer_info->strPaymentID) == 0)
+					                    		
+					                    		@for($i = 0; $i < count($orders); $i++)
+						                    		@if( $orders[$i]->strTransactionFK == $customer_info->strJobOrderID AND $orders[$i]->strPaymentStatus == "Paid")
 							                    	<div class="col s12" style="margin-top:1%"><div class="divider" style="height:3px; color:gray; margin-bottom:4%"></div></div> 
 							                    		<div class="center col s12" style="color:teal; padding:5%; font-size:15px;">
 							                    			<center><b>*** Customer has no pending balance ***</b></center>
-							                    		</div>		
-						                    		<div class="col s9">				                    				
-						                    		@elseif(count($customer_info->strPaymentID) != 0)
-						                    		<div class="col s7" style="color:black; margin-top:3%; padding:0; font-size:18px;"><b></b>
-
+							                    		</div>
+							                    	@elseif(( $orders[$i]->strTransactionFK != $customer_info->strJobOrderID OR $orders[$i]->strPaymentStatus != "Paid"))
+						                    		<div class="col s9">				                    										      	
+							                    		<div class="col s7" style="color:black; margin-top:3%; padding:0; font-size:18px;"><b></b>
+							                    		
+							                    		</div>
 						                    		</div>
-						                    		</div>
-					                    		</div>
-
+						                    		
+					                    	
+					                    		
 					                    		<div class="col s12">
 					                    			<div class="col s12">
 						                    			<div class="col s3" style="color:teal; margin-top:1%; padding:0"><b>Pending Payment(s):</b></div>
@@ -102,31 +104,32 @@
 						                    		<!--eto ang iloloop beybe-->
 						                    		<div class="col s12" style="padding-left:15%">
 						                    		
-															@for($j = 0; $j < count($orders); $j++)
+														
 
-															@if($orders[$j]->strTermsOfPayment == "Full Payment")
+															@if($orders[$i]->strTermsOfPayment == "Full Payment")
 
-						                    					<div @if($orders[$j]->strTransactionFK != $customer_info->strJobOrderID) hidden @endif> You have no pending payment</div>
+						                    					<div @if($orders[$i]->strTransactionFK != $customer_info->strJobOrderID) hidden @endif> You have no pending payment</div>
 
 						                    					
-															@elseif($orders[$j]->strTermsOfPayment != "Full Payment")
-																@if($orders[$j]->strPaymentStatus == "Pending")
+															@elseif($orders[$i]->strTermsOfPayment != "Full Payment")
+																@if($orders[$i]->strPaymentStatus == "Pending")
 																	
 																	
-									                    			<div class="col s12 {{$orders[$j]->strJobOrderID}}" style="color:black; margin-top:3%; padding:0; font-size:18px" id="{{$orders[$j]->strJobOrderID}}"><center><strong><font color="gray">( {{$j+1}} )</font> {{ $orders[$j]->dtOrderDate }} {{ $orders[$j]->strJobOrderID }}</strong>
+									                    			<div class="col s12" style="color:black; margin-top:3%; padding:0; font-size:18px" id="{{$orders[$i]->strJobOrderID}}"><center><strong><font color="gray">( {{$i+1}} )</font> {{ $orders[$i]->dtOrderDate }} {{ $orders[$i]->strJobOrderID }}</strong>
 								                    				<!-- <a href=""><u>See transaction detail</u></a> -->
-								                    				<a class="{{$orders[$j]->strJobOrderID}}" style="background-color:#e0f2f1; color:black; padding-left:3%; padding-right:3%" id="{{$orders[$j]->dtPaymentDueDate}}">Due date: <strong style="color:teal">{{$orders[$j]->dtPaymentDueDate }}</strong></a></center>
+								                    				<a style="background-color:#e0f2f1; color:black; padding-left:3%; padding-right:3%" id="{{$orders[$i]->dtPaymentDueDate}}">Due date: <strong style="color:teal">{{$orders[$i]->dtPaymentDueDate }}</strong></a></center>
 								                    				</div>
 								                    				
 								                    				
-							                    				@elseif($orders[$j]->strPaymentStatus != "Pending")
-								                    				@if($orders[$j]->strTransactionFK == $customer_info->strJobOrderID)
-								                    					<div @if($orders[$j]->strTransactionFK != $customer_info->strJobOrderID) hidden @endif><center> You have no pending payment</center></div>
+							                    				@elseif($orders[$i]->strPaymentStatus != "Pending")
+								                    				@if($orders[$i]->strTransactionFK == $customer_info->strJobOrderID)
+								                    					<div @if($orders[$i]->strTransactionFK != $customer_info->strJobOrderID) hidden @endif><center> You have no pending payment</center></div>
 								                    				@endif
+
 								                    			@endif				                    				
 						                    					
 							                    			@endif
-							                    			@endfor
+							                    			
 							                    			
 							                    		
 						                    		</div>
@@ -184,8 +187,9 @@
 											                  <div class="col s4"><label style="color:teal; margin-top:1%; margin-left:2%"><center><b>Outstanding Balance<br><font style="opacity:0.80">(Php)</font>:</b></center></label></div>											                	
 											                </div>
 											            </div>
-											          @endif
-												@endfor
+											         
+											          	@endif
+													@endfor
 											           
 
 											        <div id="summary-of-order" class="modal modal-fixed-footer" style="height:500px; width:800px; margin-top:30px">
@@ -381,6 +385,7 @@
 										</div>
 										</div>
 										@endif
+										@endfor
 										@endif       							                    												
 										
 

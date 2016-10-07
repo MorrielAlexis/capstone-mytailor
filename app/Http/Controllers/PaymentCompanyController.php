@@ -9,12 +9,16 @@ use App\Http\Controllers\Controller;
 
 use Session;
 use PDF;
+use DB;
 
-use App\Company;
 use App\TransactionJobOrder;
 use App\TransactionJobOrderPayment;
+use App\TransactionJobOrderSpecifics;
+use App\TransactionJobOrderSpecificsPattern;
+use App\TransactionJobOrderMeasurementProfile;
+use App\TransactionJobOrderMeasurementSpecifics;
+use App\TransactionJobOrderReceipt;
 use App\TransactionPaymentReceipt;
-
 use App\Employee;
 
 class PaymentCompanyController extends Controller
@@ -138,6 +142,12 @@ class PaymentCompanyController extends Controller
             $customerID = $custId[$i]->strCompanyID;
         }
 
+        $payId = \DB::table('tblJOPayment')
+                ->select('strPaymentID', 'strTransactionFK')
+                ->where('strTransactionFK', $joID)
+                ->where('strPaymentStatus', 'Pending')
+                ->get();
+
         session(['cust_id' => $customerID]);
         session(['jo_ID' => $joID]);
 
@@ -172,7 +182,7 @@ class PaymentCompanyController extends Controller
 
         if($amtToPay == $amtBalance){
 
-            $balance = 0.00;
+            $balance = (double)$amtToPay - $amtBalance;
             $payTerms = "Paid";
         }
         else{
@@ -183,21 +193,25 @@ class PaymentCompanyController extends Controller
 
 
 
-        $payment = TransactionJobOrderPayment::create(array(
-                'strPaymentID' => $jobPaymentID,
-                'strTransactionFK' => $joId,//tblJobOrder
-                'dblAmountToPay' => $amtToPay, 
-                'dblOutstandingBal' => $balance,
-                'dblAmountTendered' => $amtTendered,
-                'dblAmountChange' => $amtChange,
-                'strReceivedByEmployeeNameFK' => 'EMPL001' ,
-                'dtPaymentDate' => $orderDate,
-                'dtPaymentDueDate' => $dueDate,
-                'strPaymentStatus' => $payTerms,
-                'boolIsActive' => 1
+        // $payment = TransactionJobOrderPayment::create(array(
+        //         'strPaymentID' => $jobPaymentID,
+        //         'strTransactionFK' => $joId,//tblJobOrder
+        //         'dblAmountToPay' => $amtToPay, 
+        //         'dblOutstandingBal' => $balance,
+        //         'dblAmountTendered' => $amtTendered,
+        //         'dblAmountChange' => $amtChange,
+        //         'strReceivedByEmployeeNameFK' => 'EMPL001' ,
+        //         'dtPaymentDate' => $orderDate,
+        //         'dtPaymentDueDate' => $dueDate,
+        //         'strPaymentStatus' => $payTerms,
+        //         'boolIsActive' => 1
 
-        ));
-        $payment->save();
+        // ));
+        // $payment->save();
+
+        $updatePayment = \DB::table('tblJOPayment')
+                ->where('strTransactionFK', $joID)
+                ->update(['strPaymentStatus' => $payTerms], ['dblOutstandingBal' => $balance], ['dtPaymentDueDate' => $dueDate]);
 
         $paymentid = session()->get('payment_id');
 
@@ -243,9 +257,8 @@ class PaymentCompanyController extends Controller
     public function generateReceipt()
     {
 
-        $custId = session()->get('cust_id'); //dd($custId);
+         $custId = session()->get('cust_id'); //dd($custId);
         $custname = session()->get('name');
-
         $joId = session()->get('jo_ID');
         
         $amtPaid = session()->get('amountToPay');
@@ -261,25 +274,27 @@ class PaymentCompanyController extends Controller
         $amtTendered = (double)session()->get('amountTendered');
         $amtChange = (double)session()->get('amountChange');
 
+        $customer_info = \DB::table('tblCustCompany AS a')
+                ->leftJoin('tblJobOrder AS b', 'a.strCompanyID', '=', 'b.strJO_CustomerCompanyFK')
+                ->leftJoin('tblJOPayment AS c', 'b.strJobOrderID', '=', 'c.strTransactionFK')
+                ->select('a.strCompanyID', 'a.strCompanyName', 'b.*', 'c.*')
+                ->where('a.strCompanyName', '=', $custname)
+                ->first();
+
 
         $customer_orders = \DB::table('tblCustCompany AS a')
                 ->leftJoin('tblJobOrder AS b', 'a.strCompanyID', '=', 'b.strJO_CustomerCompanyFK')
                 ->select('a.strCompanyID', 'a.strCompanyName','b.*')
-                ->where('a.strCompanyName', '=', $custname)
+                ->where('a.strCompanyName', $custname)
                 ->orderBy('b.strJobOrderID')
                 ->get();
 
         $payments = \DB::table('tblJobOrder AS a')
                 ->leftJoin('tblJOPayment AS b', 'a.strJobOrderID', '=', 'b.strTransactionFK')
                 ->leftJoin('tblCustCompany AS c', 'c.strCompanyID', '=', 'a.strJO_CustomerCompanyFK')
-                ->leftJoin('tblJOSpecific AS d', 'a.strJobOrderID', '=', 'd.strJobOrderFK')
-                ->leftJoin('tblSegment AS e', 'd.strJOSegmentFK', '=', 'e.strSegmentID')
-                ->leftJoin('tblPackages AS f', 'f.strPackageSeg1FK', '=', 'e.strSegmentID')
-                ->select('a.*', 'b.*', 'c.strCompanyID', 'd.*', 'e.*', 'f.*')
-                ->where('a.strJO_CustomerFK', $custId)
+                ->select('a.*', 'b.*', 'c.strCompanyID')
                 ->where('b.strPaymentID', $paymentid)
-                ->orderBy('a.strJobOrderID')
-                ->first();
+                ->get();
 
 
         $empname = \DB::table('tblEmployee')
@@ -287,13 +302,13 @@ class PaymentCompanyController extends Controller
                     ->where('strEmployeeID', '=', 'EMPL001')//Temporary, since naka-hardcode pa yung pagset ng employee sa naunang process.
                     ->first();
 
-
-        $pdf = PDF::loadView('pdf/billpayment-individual-receipt', 
+        $pdf = PDF::loadView('pdf/billpayment-company-receipt', 
                     compact('paymentid', 'order_receipt', 'payment_receipt', 'custId',
                         'amtTendered', 'amtChange','empname', 'custname', 'payments', 'customer_orders', 'customer_info', 'joId', 'newBalance'))
         ->setPaper('Letter')->setOrientation('portrait');
 
         return $pdf->stream();
+
 
     }
 
@@ -313,6 +328,7 @@ class PaymentCompanyController extends Controller
         session()->forget('search_custname');
         session()->forget('name');
         session()->forget('employee');
+
 
 
     }

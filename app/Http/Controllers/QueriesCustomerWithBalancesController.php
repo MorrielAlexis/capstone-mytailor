@@ -20,7 +20,7 @@ class QueriesCustomerWithBalancesController extends Controller
                     ->join('tblJobOrder as b','a.strTransactionFK',  '=' , 'b.strJobOrderID')
                     ->join('tblCustIndividual AS c', 'b.strJO_CustomerFK', '=', 'c.strIndivID')
                     ->select(\DB::raw('CONCAT(c.strIndivFName, " " , c.strIndivMName, " " , c.strIndivLName) as custName'),'a.dblOutstandingBal as balance', 'a.dtPaymentDueDate as dueDate')
-                    ->where('a.dblOutstandingBal', '!=', 0)
+                    ->where('a.strPaymentStatus', '!=', "Paid")
                     ->orderBy('strIndivID', 'desc')
                     ->get();
         
@@ -36,7 +36,7 @@ class QueriesCustomerWithBalancesController extends Controller
                     ->join('tblCustCompany AS c', 'b.strJO_CustomerCompanyFK', '=', 'c.strCompanyID')
                     ->where('a.dblOutstandingBal', '!=', 0)
                     ->select('c.strCompanyName as name','a.dblOutstandingBal as balance', 'a.dtPaymentDueDate as dueDate')
-                    ->where('a.dblOutstandingBal', '!=', 0)
+                    ->where('a.strPaymentStatus', '!=', "Paid")
                     ->orderBy('strCompanyID', 'desc')
                     ->get();
         
