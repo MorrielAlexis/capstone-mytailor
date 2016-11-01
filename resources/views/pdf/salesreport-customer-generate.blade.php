@@ -28,10 +28,10 @@
     <div class="col s12">
       <left>
         <h1 style="color:teal; font-size:20px;">
-          <img src="img/logo.jpg" class="left circle responsive-img valign profile-image center" style="height:5%; width:5%; margin-top:5px;">
+          <img src="{{ Session::get('shop_logo') }}" class="left circle responsive-img valign profile-image center" style="height:5%; width:5%; margin-top:5px;">
           <b>MyTailor</b> Store
           <p style="color:gray; font-size:-0.5px;"></p>
-          <p style="color:gray">123-A Heaven St., Sta. Mesa, Manila</p>
+          <p style="color:gray">{{ Session::get('shop_address') }}</p>
           <p style="color:gray">Contact: 0908-223-5065</p>
           <p style="color:gray">Visit: www.myTailor.com</p>
         </h1>
