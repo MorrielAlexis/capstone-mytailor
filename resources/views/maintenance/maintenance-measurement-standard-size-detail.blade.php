@@ -242,7 +242,7 @@
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                               <div class="input-field col s12">
-                                <input  value="{{ $standardDetail->txtStanSizeDesc }}" id="SegmentDesc" name = "editSegmentDesc" type="text" class="validate">
+                                <input  value="{{ $standardDetail->txtStanSizeDesc }}" id="editStanSizeDesc" name = "editStanSizeDesc" type="text" class="validate">
                                <label for="stanSizeDet_description">Description</label>
                               </div>
                           </div> 
@@ -256,7 +256,7 @@
                       </div>
                     <!--***************************Soft Delete********************************-->
                       <div id="del{{ $standardDetail->strStandardSizeDetID }}" class="modal modal-fixed-footer">
-                        <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS GARMENT SEGMENT?</center> </font> </h5>
+                        <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS STANDARD SIZE DETAIL?</center> </font> </h5>
                           
                           {!! Form::open(['url' => 'maintenance/standard-size-detail/destroy']) !!}
                             <div class="divider" style="height:2px"></div>
@@ -294,7 +294,7 @@
                               </div>
                           </div>
 
-                          <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                          <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                               <div class="input-field col s12">
                                 <input required value="{{ $standardDetail->strStandardSizeDetInactiveReason }}" type="text" name="delStandardSizeDet" id="delStandardSizeDet">
                                 <label for="stanSizeDet_desc"><span class="red-text"><b>*</b></span>Reason for Deactivation: </label>
@@ -411,7 +411,7 @@
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">
                       <div class="input-field col s12">
-                        <input required id="txtStanSizeDesc" name= "txtStanSizeDesc" type="text" class="validate" data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" class="active"  placeholder="Measurement around the neck.">
+                        <input required id="txtStanSizeDesc" name= "txtStanSizeDesc" type="text" class="validate" data-position="bottom" class="active"  placeholder="Measurement around the neck.">
                         <label for="stanSizeDet_desc">Description<span class="red-text"><b>*</b></span></label>
                       </div>
                   </div>

@@ -218,7 +218,7 @@
 
                               <div class="modal-footer col s12" style="background-color:#26a69a">
                                 <button type="submit" class=" modal-action  waves-effect waves-green btn-flat">OK</button>
-                                <a class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
+                                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>  
                               </div>
                             {!! Form::close() !!}
                           </div>

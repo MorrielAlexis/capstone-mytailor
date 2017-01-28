@@ -193,20 +193,21 @@
                               </div>
                           </div>
 
-
-                          <div class="input-field col s12" style="margin-top:47px">                                                    
-                            <select required name='editSegmentSex' id="editSegmentSex">
-                              <option disabled>Sex</option>
-                                  @if($segment->strSegmentSex == "M")
-                                    <option selected value="M">Male</option>
-                                    <option value="F">Female</option>
-                                  @else
-                                    <option value="M">Male</option>
-                                    <option selected value="F">Female</option>
-                                  @endif
-                            </select>    
-                            <label>Sex</label>
-                          </div>  
+                          <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
+                              <div class="input-field col s12" style="margin-top:47px">                                                    
+                                <select required name='editSegmentSex' id="editSegmentSex">
+                                  <option disabled>Sex</option>
+                                      @if($segment->strSegmentSex == "M")
+                                        <option selected value="M">Male</option>
+                                        <option value="F">Female</option>
+                                      @else
+                                        <option value="M">Male</option>
+                                        <option selected value="F">Female</option>
+                                      @endif
+                                </select>    
+                                <label>Sex</label>
+                              </div>  
+                          </div>
 
                           <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s6">
@@ -290,13 +291,12 @@
                               </div>
                           </div>
 
+                          <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">                       
                               <div class="input-field col s12">
                                 <label for="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span> </label>
                                 <input required value="{{ $segment->strSegInactiveReason }}" id="delInactiveSegment" name="delInactiveSegment" type="text">
                               </div>
-
-                              <div class = "col s12" style="padding:15px;  border:3px solid white;">
-                              </div>
+                          </div>
 
                           </div>
 
@@ -362,12 +362,14 @@
                       </div>
                   </div>
 
-                  <div class="input-field col s12" style="margin-top:47px">
-                    <select value="" name='strSegmentSex' id='strSegmentSex' required>
-                      <option value="M">Male</option>
-                      <option value="F">Female</option>
-                    </select>    
-                    <label>Sex</label>
+                  <div class = "col s12" style="padding:15px;  border:3px solid white;">
+                    <div class="input-field col s12" style="margin-top:47px">
+                      <select value="" name='strSegmentSex' id='strSegmentSex' required>
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                      </select>    
+                      <label>Sex</label>
+                    </div>
                   </div>
 
                   <div class = "col s12" style="padding:15px;  border:3px solid white;">

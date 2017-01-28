@@ -169,7 +169,7 @@
 
                             <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                 <div class="input-field col s6">
-                                  <input id="editHooks" name = "editHooks" value = "{{$hook->strHookSize}}" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
+                                  <input id="editHookSize" name = "editHookSize" value = "{{$hook->strHookSize}}" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
                                   <label for="HookEye_s"> Hook and Eye Size<span class="red-text"><b>*</b></span></label>
                                 </div>
 
@@ -245,10 +245,12 @@
                                   </div>
                               </div>
 
+                              <div class = "col s12" style="padding:15px;  border:3px solid white;">
                                   <div class="input-field col s12">
                                     <label fo="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span></label>
                                     <input value="{{$hook->strHookInactiveReason}}" required id="delInactiveHook" name="delInactiveHook" type="text">
                                   </div>
+                                </div>
 
                               <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                                   <!--<div class="input-field col s12">
@@ -304,7 +306,7 @@
 
       <div class = "col s12" style="padding:15px;  border:3px solid white;">
         <div class="input-field col s6">
-          <input required id="strHooks" name = "strHooks" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
+          <input required id="strHookSize" name = "strHookSize" type="text" class="validate" required data-position="bottom" pattern="^[a-zA-Z\-'`]+(\s[a-zA-Z\-'`]+)?" >
           <label for="HookEye_s"> Hook and Eye Size <span class="red-text"><b>*</b></span></label>
         </div>
 

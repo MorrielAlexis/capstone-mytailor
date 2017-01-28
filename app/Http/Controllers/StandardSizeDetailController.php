@@ -163,7 +163,7 @@ class StandardSizeDetailController extends Controller
                 $standardDetail->strStanSizeFitType = trim($request->input('editStanSizeFitType'));
                 $standardDetail->dblStanSizeInch = trim($request->input('editStanSizeInch'));
                 $standardDetail->dblStanSizeCm = trim($request->input('editStanSizeCm'));
-                $standardDetail->txtStanSizeDesc = trim($request->input('editConPerson'));
+                $standardDetail->txtStanSizeDesc = trim($request->input('editStanSizeDesc'));
 
                 $standardDetail->save();
 

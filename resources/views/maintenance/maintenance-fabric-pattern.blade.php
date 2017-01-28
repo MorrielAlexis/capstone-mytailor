@@ -187,13 +187,11 @@
                           </div>
                       </div>
 
-                          <div class="input-field col s12">
+                      <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
+                           <div class="input-field col s12">
                             <label for="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span> </label>
                             <input value="{{$fabricPattern->strFabricPatternInactiveReason}}" id="delInactivefabricPattern" name="delInactivefabricPattern" type="text" required>
                           </div>
-
-                      <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
-                           
                       </div>
                       </div>
 
@@ -218,7 +216,7 @@
 
             <!--********ADD MODAL******-->
              <div id="addfabricPattern" class="modal modal-fixed-footer">                  
-                <h5><font color = "#1b5e20"><center>CREATE FABRIC COLOR</center> </font> </h5> 
+                <h5><font color = "#1b5e20"><center>CREATE FABRIC PATTERN</center> </font> </h5> 
                   {!! Form::open(['url' => 'maintenance/fabric-pattern', 'method' => 'post']) !!} 
                 <div class="divider" style="height:2px"></div>
                   <div class="modal-content col s12">

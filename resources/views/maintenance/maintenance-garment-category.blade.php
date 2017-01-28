@@ -225,10 +225,12 @@
                               </div>
                           </div>
 
+                          <div class = "col s12" style="padding:15px;  border:3px solid white; margin-bottom:40px">
                               <div class="input-field col s12">
                                 <label for="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span> </label>
                                 <input required value="{{ $garment->strGarmentCategoryInactiveReason }}" type="text" id="delInactiveGarment" name="delInactiveGarment">
                               </div>
+                          </div>
 
                           </div>
     

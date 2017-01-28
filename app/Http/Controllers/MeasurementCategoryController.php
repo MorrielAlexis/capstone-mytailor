@@ -137,7 +137,7 @@ class MeasurementCategoryController extends Controller
         if(!$isAdded){
 
         $meas_category->strMeasurementCategoryName = trim($request->input('editMeasurementCategoryName'));
-        $meas_category->strMeasurementCategoryID = trim($request->input('editMeasurementCategoryDesc'));
+        $meas_category->txtMeasurementCategoryDesc = trim($request->input('editMeasurementCategoryDesc'));
         $meas_category->save();
 
         \Session::flash('flash_message_update','Measurement category successfully edited.'); //flash message

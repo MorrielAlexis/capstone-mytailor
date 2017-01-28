@@ -315,7 +315,7 @@
 
                     <!--***************************Soft Delete********************************-->
                       <div id="del{{ $sets->strPackageID }}" class="modal modal-fixed-footer">
-                        <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS PACKAGE?</center> </font> </h5>
+                        <h5><font color = "#1b5e20"><center>ARE YOU SURE TO DEACTIVATE THIS SET?</center> </font> </h5>
                           
 
                           {!! Form::open(['url' => 'maintenance/sets/destroy']) !!}
@@ -340,12 +340,12 @@
                               </div>
                           </div>
 
-
-
+                              <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               <div class="input-field col s12">
                                 <label for="inactive_reason"> Reason for Deactivation <span class="red-text"><b>*</b></span> </label>
                                 <input required value="{{ $sets->strPackageInactiveReason }}" id="delInactivePackage" name="delInactivePackage" type="text">
                               </div>
+                            </div>
 
                               <div class = "col s12" style="padding:15px;  border:3px solid white;">
                               </div>
