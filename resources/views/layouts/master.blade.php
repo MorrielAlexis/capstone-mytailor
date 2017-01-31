@@ -13,11 +13,21 @@
     </head>
 
     <body>
-
+    <div class="fixed-action-btn horizontal">
+            <a class="btn-floating btn-large" style="background-color: #16425B">
+              <i class="large mdi-social-person"></i>
+            </a>
+            <ul>
+              <!-- <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li> -->
+              <li><a class="btn-floating yellow darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Visit Profile"><i class="mdi-action-face-unlock"></i></a></li>
+              <li><a href="{{URL::to('/logout')}}" class="btn-floating red tooltipped" data-position="top" data-delay="50" data-tooltip="Logout"><i class="mdi-action-exit-to-app"></i></a></li>
+              <li><a href="{{URL::to('/online-home')}}"  class="btn-floating green tooltipped" data-position="top" data-delay="50" data-tooltip="Go to website of myTailor"><i class="mdi-av-web"></i></a></li>
+            </ul>
+        </div>
     <header>
         <img src="../../{{ Session::get('shop_logo') }}"  alt="" class="right circle responsive-img valign profile-image center" style="height:70px; width:80px; margin-top:5px;">
         <div class="right col s9 " style="padding-top:20px">
-          <font size = "+2" color = "black" style="margin-top:5px" >{{ Session::get('shop_name')}}</font>
+          <font size = "+2" color = "white" style="margin-top:5px; margin-right: 2%" >{{ Session::get('shop_name')}}</font>
         </div>
     </header>
 
@@ -30,12 +40,12 @@
           </div>
         </div>
         <div class="col s12 container" style="margin-top:-90px;">
-          <a class='dropdown-button btn btn-flat waves-effect waves-light profile-btn white-text' href="#!" style="background-color: transparent; " data-activates='profile-dropdown'>{{ Auth::user()->name }}</a>
+          <a class='center white-text' href="#!" style="background-color: transparent; " >{{ Auth::user()->name }}</a>
           @endif
-          <ul id="profile-dropdown" class="dropdown-content" style="background-color: white;margin-top:65px"> 
-            <li><a href="#!"><i class="mdi-action-face-unlock" style="font-size:16px; margin-top:10px;margin-left:0px;font-style:Segoe UI"> Profile</i></a></li>
+          <!-- <ul id="profile-dropdown" class="dropdown-content" style="background-color: white;margin-top:65px"> 
+            <li><a href="#!" style="padding:0; margin:0"><i class="mdi-action-face-unlock" style="font-size:15px; font-style:Segoe UI; padding:0; margin:0"> Profile</i></a></li>
             <li><a href="{{URL::to('/logout')}}"><i class="mdi-hardware-keyboard-tab" style="font-size:16px;margin-top:10px;margin-left:0px;font-style:Segoe UI"> Logout</i></a></li>
-          </ul>
+          </ul> -->
         </div>
 
         <ul id="sidenav-ul">
